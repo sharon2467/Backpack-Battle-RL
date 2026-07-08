@@ -108,11 +108,12 @@ built_backpack = {
 
 ### items
 
-每个放入背包的物品实例按输入列表顺序生成 `instance_id`。
+每个放入背包的物品实例按输入列表顺序生成 `item_key`。
+`item_key` 按同名 `item_id` 的出现次数生成，例如 `stone1`、`stone2`、`banana1`。
 
 ```python
 placed_item = {
-    "instance_id": 0,
+    "item_key": "stone1",
     "item_id": "stone",
     "x": 0,
     "y": 0,
@@ -124,7 +125,7 @@ placed_item = {
 }
 ```
 
-`instance_id` 用来区分同名物品实例。
+`item_key` 用来区分同名物品实例，并作为后续战斗模块的实例身份。
 
 这里的 `x` 和 `y` 是参考点坐标，不表示物品外框左上角。
 
@@ -140,14 +141,14 @@ occupancy_matrix = [
     [None, None, None, None, None, None, None, None, None],
     [None, None, None, None, None, None, None, None, None],
     [None, None, None, None, None, None, None, None, None],
-    [0, None, None, None, None, None, None, None, None],
+    ["stone1", None, None, None, None, None, None, None, None],
 ]
 ```
 
 矩阵规则：
 
 - 空格是 `None`。
-- 被占用格是 `instance_id`。
+- 被占用格是 `item_key`。
 - 矩阵第 0 行显示背包顶部，第 6 行显示背包底部。
 - 矩阵列下标对应 `x`。
 - 如果用 Python 的 0-based 行下标访问矩阵，行下标是 `6 - y`。
@@ -159,16 +160,16 @@ occupancy_matrix = [
 
 ```python
 marker_link = {
-    "source_instance_id": 0,
-    "target_instance_id": 1,
+    "source_item_key": "source1",
+    "target_item_key": "target1",
     "star_cell": (1, 0),
 }
 ```
 
 字段含义：
 
-- `source_instance_id`：拥有这个 marker 的物品实例。
-- `target_instance_id`：被这个 marker 指到的物品实例。
+- `source_item_key`：拥有这个 marker 的物品实例。
+- `target_item_key`：被这个 marker 指到的物品实例。
 - `star_cell` / `diamond_cell` / `triangle_cell`：marker 所在的全局坐标。
 
 ## 最小函数
@@ -205,7 +206,8 @@ V1 只实现以下四个函数，不额外增加功能函数。
 - 调用 `place_item`，让普通星位和特殊星位规则都进入 `placed_items`。
 - 检查占用格是否在 9x7 范围内。
 - 检查占用格是否和已有物品重叠。
-- 把 `instance_id` 写入矩阵。
+- 按同名出现次数生成 `item_key`。
+- 把 `item_key` 写入矩阵。
 
 ### find_marker_links(placed_items, occupancy_matrix, marker_type)
 

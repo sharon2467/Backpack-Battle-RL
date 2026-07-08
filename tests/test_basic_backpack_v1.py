@@ -18,11 +18,11 @@ class BasicBackpackV1Test(unittest.TestCase):
             ITEM_CATALOG,
         )
 
-        self.assertEqual(placed_items[0]["instance_id"], 0)
+        self.assertEqual(placed_items[0]["item_key"], "stone1")
         self.assertEqual(placed_items[0]["occupied_cells"], [(0, 0)])
-        self.assertEqual(occupancy_matrix[6][0], 0)
+        self.assertEqual(occupancy_matrix[6][0], "stone1")
 
-    def test_two_non_overlapping_items_write_instance_ids(self):
+    def test_two_non_overlapping_items_write_item_keys(self):
         occupancy_matrix, placed_items = build_occupancy_matrix(
             [
                 {"item_id": "stone", "x": 0, "y": 0, "rotation": 0},
@@ -32,8 +32,8 @@ class BasicBackpackV1Test(unittest.TestCase):
         )
 
         self.assertEqual(len(placed_items), 2)
-        self.assertEqual(occupancy_matrix[6][0], 0)
-        self.assertEqual(occupancy_matrix[3][2], 1)
+        self.assertEqual(occupancy_matrix[6][0], "stone1")
+        self.assertEqual(occupancy_matrix[3][2], "stone2")
 
     def test_overlapping_items_fail(self):
         with self.assertRaises(ValueError):
@@ -85,9 +85,9 @@ class BasicBackpackV1Test(unittest.TestCase):
         )
 
         self.assertCountEqual(placed_items[0]["occupied_cells"], [(2, 2), (2, 3), (1, 2)])
-        self.assertEqual(occupancy_matrix[4][2], 0)
-        self.assertEqual(occupancy_matrix[3][2], 0)
-        self.assertEqual(occupancy_matrix[4][1], 0)
+        self.assertEqual(occupancy_matrix[4][2], "l_shape1")
+        self.assertEqual(occupancy_matrix[3][2], "l_shape1")
+        self.assertEqual(occupancy_matrix[4][1], "l_shape1")
 
     def test_reference_point_does_not_need_to_be_in_shape_cells(self):
         item_catalog = {
@@ -104,7 +104,7 @@ class BasicBackpackV1Test(unittest.TestCase):
         )
 
         self.assertEqual(placed_items[0]["occupied_cells"], [(1, 0)])
-        self.assertEqual(occupancy_matrix[6][1], 0)
+        self.assertEqual(occupancy_matrix[6][1], "offset_item1")
 
     def test_ordinary_star_cells_rotate_with_item(self):
         item_catalog = {
@@ -117,7 +117,7 @@ class BasicBackpackV1Test(unittest.TestCase):
 
         placed_item = place_item(
             item_catalog["star_source"],
-            {"instance_id": 0, "item_id": "star_source", "x": 3, "y": 3, "rotation": 90},
+            {"item_key": "star_source1", "item_id": "star_source", "x": 3, "y": 3, "rotation": 90},
         )
 
         self.assertEqual(placed_item["star_cells"], [(3, 4)])
@@ -125,7 +125,7 @@ class BasicBackpackV1Test(unittest.TestCase):
     def test_special_star_cells_by_rotation_are_read_directly(self):
         placed_item = place_item(
             ITEM_CATALOG["bag_of_stones"],
-            {"instance_id": 0, "item_id": "bag_of_stones", "x": 3, "y": 3, "rotation": 90},
+            {"item_key": "bag_of_stones1", "item_id": "bag_of_stones", "x": 3, "y": 3, "rotation": 90},
         )
 
         self.assertEqual(placed_item["occupied_cells"], [(3, 3), (3, 4)])
@@ -143,7 +143,7 @@ class BasicBackpackV1Test(unittest.TestCase):
             with self.subTest(rotation=rotation):
                 placed_item = place_item(
                     ITEM_CATALOG["bag_of_stones"],
-                    {"instance_id": 0, "item_id": "bag_of_stones", "x": 3, "y": 3, "rotation": rotation},
+                    {"item_key": "bag_of_stones1", "item_id": "bag_of_stones", "x": 3, "y": 3, "rotation": rotation},
                 )
 
                 expected_occupied_cells, expected_star_cells = expected
@@ -162,7 +162,7 @@ class BasicBackpackV1Test(unittest.TestCase):
             with self.subTest(rotation=rotation):
                 placed_item = place_item(
                     ITEM_CATALOG["health_potion"],
-                    {"instance_id": 0, "item_id": "health_potion", "x": 3, "y": 3, "rotation": rotation},
+                    {"item_key": "health_potion1", "item_id": "health_potion", "x": 3, "y": 3, "rotation": rotation},
                 )
 
                 expected_occupied_cells, expected_star_cells = expected
@@ -187,7 +187,7 @@ class BasicBackpackV1Test(unittest.TestCase):
     def test_mage_hat_loads_star_diamond_and_triangle_cells(self):
         placed_item = place_item(
             ITEM_CATALOG["mage_hat"],
-            {"instance_id": 0, "item_id": "mage_hat", "x": 3, "y": 3, "rotation": 0},
+            {"item_key": "mage_hat1", "item_id": "mage_hat", "x": 3, "y": 3, "rotation": 0},
         )
 
         self.assertCountEqual(placed_item["occupied_cells"], [(3, 4), (2, 3), (3, 3), (4, 3)])
@@ -198,7 +198,7 @@ class BasicBackpackV1Test(unittest.TestCase):
     def test_mage_hat_marker_cells_rotate_like_ordinary_cells(self):
         placed_item = place_item(
             ITEM_CATALOG["mage_hat"],
-            {"instance_id": 0, "item_id": "mage_hat", "x": 4, "y": 3, "rotation": 90},
+            {"item_key": "mage_hat1", "item_id": "mage_hat", "x": 4, "y": 3, "rotation": 90},
         )
 
         self.assertCountEqual(placed_item["occupied_cells"], [(3, 3), (4, 2), (4, 3), (4, 4)])
@@ -219,15 +219,15 @@ class BasicBackpackV1Test(unittest.TestCase):
 
         self.assertEqual(
             find_star_links(placed_items, occupancy_matrix),
-            [{"source_instance_id": 0, "target_instance_id": 1, "star_cell": (2, 4)}],
+            [{"source_item_key": "mage_hat1", "target_item_key": "stone1", "star_cell": (2, 4)}],
         )
         self.assertEqual(
             find_diamond_links(placed_items, occupancy_matrix),
-            [{"source_instance_id": 0, "target_instance_id": 2, "diamond_cell": (4, 4)}],
+            [{"source_item_key": "mage_hat1", "target_item_key": "stone2", "diamond_cell": (4, 4)}],
         )
         self.assertEqual(
             find_triangle_links(placed_items, occupancy_matrix),
-            [{"source_instance_id": 0, "target_instance_id": 3, "triangle_cell": (3, 6)}],
+            [{"source_item_key": "mage_hat1", "target_item_key": "stone3", "triangle_cell": (3, 6)}],
         )
 
     def test_star_link_is_created_when_star_points_to_other_item(self):
@@ -253,7 +253,7 @@ class BasicBackpackV1Test(unittest.TestCase):
 
         self.assertEqual(
             find_star_links(placed_items, occupancy_matrix),
-            [{"source_instance_id": 0, "target_instance_id": 1, "star_cell": (1, 0)}],
+            [{"source_item_key": "source1", "target_item_key": "target1", "star_cell": (1, 0)}],
         )
 
     def test_empty_star_cell_creates_no_link(self):
@@ -331,18 +331,18 @@ class BasicBackpackV1Test(unittest.TestCase):
             item_catalog,
         )
 
-        self.assertEqual(occupancy_matrix[6][0], 0)
-        self.assertEqual(occupancy_matrix[6][1], 1)
-        self.assertEqual(occupancy_matrix[4][5], 2)
-        self.assertEqual(occupancy_matrix[4][4], 2)
-        self.assertEqual(occupancy_matrix[3][4], 3)
-        self.assertEqual(occupancy_matrix[4][2], 4)
-        self.assertEqual(occupancy_matrix[0][8], 5)
+        self.assertEqual(occupancy_matrix[6][0], "ordinary_source1")
+        self.assertEqual(occupancy_matrix[6][1], "target1")
+        self.assertEqual(occupancy_matrix[4][5], "special_source1")
+        self.assertEqual(occupancy_matrix[4][4], "special_source1")
+        self.assertEqual(occupancy_matrix[3][4], "target2")
+        self.assertEqual(occupancy_matrix[4][2], "empty_source1")
+        self.assertEqual(occupancy_matrix[0][8], "out_of_bounds_source1")
         self.assertEqual(
             find_star_links(placed_items, occupancy_matrix),
             [
-                {"source_instance_id": 0, "target_instance_id": 1, "star_cell": (1, 0)},
-                {"source_instance_id": 2, "target_instance_id": 3, "star_cell": (4, 3)},
+                {"source_item_key": "ordinary_source1", "target_item_key": "target1", "star_cell": (1, 0)},
+                {"source_item_key": "special_source1", "target_item_key": "target2", "star_cell": (4, 3)},
             ],
         )
 

@@ -1,0 +1,240 @@
+import contextlib
+import io
+import json
+import tempfile
+import unittest
+from pathlib import Path
+
+from battle_module_v1 import BattleItem
+from main_v1 import (
+    load_battle_run_file,
+    main,
+    normalize_player_specs,
+    run_battle_from_config,
+    run_battle_from_file,
+)
+
+
+class DamageItem(BattleItem):
+    def __init__(self, damage=100, **kwargs):
+        super().__init__(
+            triggers=["always"],
+            effects=["damage"],
+            is_active_item=True,
+            **kwargs,
+        )
+        self.damage = damage
+
+    def update_triggers(self, context):
+        self.triggered = True
+
+    def run_own_effects(self, context):
+        context.opponent.health -= self.damage
+
+
+def make_damage_factory(damage=100):
+    def factory(item_id, item_key, player_id):
+        return DamageItem(
+            item_id=item_id,
+            item_key=item_key,
+            player_id=player_id,
+            damage=damage,
+        )
+
+    return factory
+
+
+def minimal_config(players=None, settings=None):
+    if players is None:
+        players = [
+            {
+                "player_id": 0,
+                "class_id": "ranger",
+                "health": 25,
+                "placements": [],
+            },
+            {
+                "player_id": 1,
+                "class_id": "reaper",
+                "health": 25,
+                "placements": [],
+            },
+        ]
+    if settings is None:
+        settings = {"max_frames": 1, "frame_delta": 1.0}
+
+    return {
+        "schema_version": "battle_run_v1",
+        "settings": settings,
+        "players": players,
+    }
+
+
+class MainV1Test(unittest.TestCase):
+    def test_normalize_player_specs_keeps_class_id_as_metadata(self):
+        player_specs, metadata = normalize_player_specs(minimal_config())
+
+        self.assertEqual(
+            player_specs,
+            [
+                {"player_id": 0, "health": 25, "placements": []},
+                {"player_id": 1, "health": 25, "placements": []},
+            ],
+        )
+        self.assertEqual(metadata["players"][0]["class_id"], "ranger")
+        self.assertEqual(metadata["players"][1]["class_id"], "reaper")
+
+    def test_run_battle_from_config_returns_max_frames_result(self):
+        result = run_battle_from_config(
+            minimal_config(settings={"max_frames": 2, "frame_delta": 0.5}),
+            item_factories={},
+            item_catalog={},
+        )
+
+        self.assertEqual(result["winner"], None)
+        self.assertEqual(result["finish_reason"], "max_frames_reached")
+        self.assertEqual(result["frame"], 2)
+        self.assertEqual(result["time"], 1.0)
+        self.assertEqual(result["players"][0]["class_id"], "ranger")
+        self.assertEqual(result["players"][1]["class_id"], "reaper")
+        self.assertEqual(result["log"], [])
+
+    def test_run_battle_from_config_returns_winner_result(self):
+        item_catalog = {
+            "stone": {"item_id": "stone", "shape_cells": [(0, 0)]},
+        }
+        config = minimal_config(
+            players=[
+                {
+                    "player_id": 0,
+                    "class_id": "ranger",
+                    "health": 25,
+                    "placements": [
+                        {"item_id": "stone", "x": 0, "y": 0, "rotation": 0},
+                    ],
+                },
+                {
+                    "player_id": 1,
+                    "class_id": "reaper",
+                    "health": 25,
+                    "placements": [],
+                },
+            ],
+            settings={"max_frames": 5, "frame_delta": 1.0},
+        )
+
+        result = run_battle_from_config(
+            config,
+            item_factories={"stone": make_damage_factory()},
+            item_catalog=item_catalog,
+        )
+
+        self.assertEqual(result["winner"], 0)
+        self.assertEqual(result["finish_reason"], "winner")
+        self.assertEqual(result["frame"], 1)
+        self.assertEqual(result["players"][1]["health"], -75)
+        self.assertEqual(
+            result["active_items"],
+            [{"player_id": 0, "item_key": "stone1", "item_id": "stone"}],
+        )
+
+    def test_load_battle_run_file_reads_and_validates_json(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            input_path = Path(temp_dir) / "battle_run.json"
+            input_path.write_text(json.dumps(minimal_config()), encoding="utf-8")
+
+            result = load_battle_run_file(input_path)
+
+        self.assertEqual(result["schema_version"], "battle_run_v1")
+
+    def test_run_battle_from_file_loads_json_then_runs(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            input_path = Path(temp_dir) / "battle_run.json"
+            input_path.write_text(json.dumps(minimal_config()), encoding="utf-8")
+
+            result = run_battle_from_file(input_path, item_factories={}, item_catalog={})
+
+        self.assertEqual(result["finish_reason"], "max_frames_reached")
+
+    def test_unknown_schema_version_fails(self):
+        config = minimal_config()
+        config["schema_version"] = "other"
+
+        with self.assertRaises(ValueError):
+            run_battle_from_config(config, item_factories={}, item_catalog={})
+
+    def test_requires_exactly_two_players(self):
+        config = minimal_config(players=[])
+
+        with self.assertRaises(ValueError):
+            run_battle_from_config(config, item_factories={}, item_catalog={})
+
+    def test_missing_required_player_field_fails(self):
+        config = minimal_config()
+        del config["players"][0]["health"]
+
+        with self.assertRaises(ValueError):
+            run_battle_from_config(config, item_factories={}, item_catalog={})
+
+    def test_missing_item_factory_fails(self):
+        item_catalog = {
+            "stone": {"item_id": "stone", "shape_cells": [(0, 0)]},
+        }
+        config = minimal_config(
+            players=[
+                {
+                    "player_id": 0,
+                    "health": 25,
+                    "placements": [
+                        {"item_id": "stone", "x": 0, "y": 0, "rotation": 0},
+                    ],
+                },
+                {"player_id": 1, "health": 25, "placements": []},
+            ],
+        )
+
+        with self.assertRaises(ValueError):
+            run_battle_from_config(config, item_factories={}, item_catalog=item_catalog)
+
+    def test_main_prints_success_result_for_empty_battle(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            input_path = Path(temp_dir) / "battle_run.json"
+            input_path.write_text(json.dumps(minimal_config()), encoding="utf-8")
+
+            stdout = io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                exit_code = main(["--input", str(input_path)])
+
+        result = json.loads(stdout.getvalue())
+        self.assertEqual(exit_code, 0)
+        self.assertEqual(result["finish_reason"], "max_frames_reached")
+
+    def test_main_prints_error_result_for_missing_factory(self):
+        config = minimal_config(
+            players=[
+                {
+                    "player_id": 0,
+                    "health": 25,
+                    "placements": [
+                        {"item_id": "stone", "x": 0, "y": 0, "rotation": 0},
+                    ],
+                },
+                {"player_id": 1, "health": 25, "placements": []},
+            ],
+        )
+        with tempfile.TemporaryDirectory() as temp_dir:
+            input_path = Path(temp_dir) / "battle_run.json"
+            input_path.write_text(json.dumps(config), encoding="utf-8")
+
+            stdout = io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                exit_code = main(["--input", str(input_path)])
+
+        result = json.loads(stdout.getvalue())
+        self.assertEqual(exit_code, 1)
+        self.assertEqual(result["finish_reason"], "error")
+        self.assertEqual(result["error"]["type"], "ValueError")
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -133,7 +133,7 @@ backpack = {
     "occupancy": grid,           # item instance id or empty
     "items": [
         {
-            "instance_id": int,
+            "item_key": str,
             "item_id": int,
             "name_id": int,
             "class_id": int | None,

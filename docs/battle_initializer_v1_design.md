@@ -83,11 +83,11 @@ player_specs = [
 - `health`：写入 `PlayerState.health`。V1 不根据 round 自动推导生命。
 - `placements`：交给背包模块分析。
 
-`instance_id` 由背包模块按单个玩家的 `placements` 顺序生成，因此它只在该玩家内部唯一。初始化器内部用 `instance_id` 把 marker link 映射回物品 key；初始化完成后，战斗逻辑使用 `item_key` 和 `player_id` 区分实例。
+`item_key` 由背包模块在 `build_occupancy_matrix()` 阶段按单个玩家的 `placements` 顺序生成，因此它只在该玩家内部唯一。初始化完成后，战斗逻辑使用 `item_key` 和 `player_id` 区分实例。
 
 ### item_key
 
-初始化器为每个玩家的物品自动生成 `item_key`。规则是按 `placed_items` 顺序统计同名 `item_id` 的出现次数：
+背包模块为每个玩家的物品自动生成 `item_key`。规则是按 `placed_items` 顺序统计同名 `item_id` 的出现次数：
 
 ```python
 stone -> stone1
@@ -151,7 +151,7 @@ PlayerState(
 )
 ```
 
-`PlayerState.items` 是字典，键是初始化器生成的 `item_key`，值是对应的 `BattleItem` 实例。字典插入顺序按背包模块生成的 `instance_id` 升序。
+`PlayerState.items` 是字典，键是背包模块生成的 `item_key`，值是对应的 `BattleItem` 实例。字典插入顺序按 `placed_items` 顺序。
 
 `BattleState.active_items` 只保存 `battle_item.is_active_item == True` 的物品。
 
@@ -192,34 +192,32 @@ triangle_links = find_triangle_links(placed_items, occupancy_matrix)
 
 这一步得到的 `placed_items` 和 marker links 只用于后续实例化和连边，不作为战斗物品运行时数据保存。
 
-### 3. 生成 item_key 并实例化 BattleItem
+### 3. 实例化 BattleItem
 
 对每个 `placed_item`：
 
-1. 根据 `placed_item["item_id"]` 更新该玩家的同名计数。
-2. 生成 `item_key`，例如 `stone1`、`stone2`。
-3. 找到 `item_factories[placed_item["item_id"]]`。
-4. 调用工厂创建 `BattleItem`。
-5. 校验返回值是 `BattleItem` 实例。
-6. 校验 `battle_item.item_id == placed_item["item_id"]`。
-7. 校验 `battle_item.item_key == item_key`。
-8. 校验 `battle_item.player_id == player_id`。
-9. 写入玩家局部表：
+1. 读取 `placed_item["item_key"]`。
+2. 找到 `item_factories[placed_item["item_id"]]`。
+3. 调用工厂创建 `BattleItem`。
+4. 校验返回值是 `BattleItem` 实例。
+5. 校验 `battle_item.item_id == placed_item["item_id"]`。
+6. 校验 `battle_item.item_key == placed_item["item_key"]`。
+7. 校验 `battle_item.player_id == player_id`。
+8. 写入玩家局部表：
 
 ```python
-items_by_instance_id[placed_item["instance_id"]] = item_key
-items_by_key[item_key] = battle_item
+items_by_key[placed_item["item_key"]] = battle_item
 ```
 
-V1 不要求 `BattleItem` 保存背包模块的 `instance_id`。初始化器用 `instance_id` 完成局部映射后，战斗阶段以 `item_key` 作为玩家内部的实例身份。
+战斗阶段以 `item_key` 作为玩家内部的实例身份，不再保留旧数字身份。
 
 ### 4. 装配 marker links
 
 对每条 marker link：
 
 ```python
-source_key = items_by_instance_id[source_instance_id]
-target_key = items_by_instance_id[target_instance_id]
+source_key = marker_link["source_item_key"]
+target_key = marker_link["target_item_key"]
 source_item = items_by_key[source_key]
 ```
 
@@ -319,12 +317,12 @@ V1 初始化器负责以下校验：
 - 每个玩家必须提供 `health`。
 - 背包模块抛出的非法摆放错误原样向外抛出。
 - `placed_item["item_id"]` 必须有对应工厂。
-- 同一玩家内生成的 `item_key` 必须唯一。
+- 同一玩家内的 `placed_item["item_key"]` 必须唯一。
 - 工厂返回值必须是 `BattleItem`。
 - 工厂返回的 `item_id` 必须和 `placed_item["item_id"]` 一致。
-- 工厂返回的 `item_key` 必须和初始化器生成的 `item_key` 一致。
+- 工厂返回的 `item_key` 必须和 `placed_item["item_key"]` 一致。
 - 工厂返回的 `player_id` 必须和当前 `player_id` 一致。
-- marker link 中的 source/target instance 必须能映射到当前玩家的 `item_key`。
+- marker link 中的 `source_item_key` / `target_item_key` 必须能在当前玩家的物品表中找到。
 
 V1 不把以下情况视为初始化错误：
 

@@ -70,7 +70,7 @@ def place_item(item_spec, placement):
         marker_cells[cells_key] = [(x + x_offset, y + y_offset) for x, y in cells]
 
     placed_item = {
-        "instance_id": placement.get("instance_id"),
+        "item_key": placement.get("item_key"),
         "item_id": item_spec["item_id"],
         "x": x_offset,
         "y": y_offset,
@@ -84,17 +84,21 @@ def place_item(item_spec, placement):
 def build_occupancy_matrix(placements, item_catalog):
     occupancy_matrix = [[None for _ in range(WIDTH)] for _ in range(HEIGHT)]
     placed_items = []
+    item_counts = {}
 
-    for instance_id, placement in enumerate(placements):
+    for placement in placements:
         item_id = placement["item_id"]
         if item_id not in item_catalog:
             raise ValueError(f"unknown item_id: {item_id}")
         if placement["rotation"] not in VALID_ROTATIONS:
             raise ValueError(f"invalid rotation: {placement['rotation']}")
 
-        placement_with_instance_id = dict(placement)
-        placement_with_instance_id["instance_id"] = instance_id
-        placed_item = place_item(item_catalog[item_id], placement_with_instance_id)
+        item_counts[item_id] = item_counts.get(item_id, 0) + 1
+        item_key = f"{item_id}{item_counts[item_id]}"
+
+        placement_with_item_key = dict(placement)
+        placement_with_item_key["item_key"] = item_key
+        placed_item = place_item(item_catalog[item_id], placement_with_item_key)
 
         for x, y in placed_item["occupied_cells"]:
             if not (0 <= x < WIDTH and 0 <= y < HEIGHT):
@@ -102,7 +106,7 @@ def build_occupancy_matrix(placements, item_catalog):
             row_index = HEIGHT - 1 - y
             if occupancy_matrix[row_index][x] is not None:
                 raise ValueError(f"occupied cell overlaps: {(x, y)}")
-            occupancy_matrix[row_index][x] = instance_id
+            occupancy_matrix[row_index][x] = item_key
 
         placed_items.append(placed_item)
 
@@ -115,21 +119,21 @@ def find_marker_links(placed_items, occupancy_matrix, marker_type):
     marker_links = []
 
     for placed_item in placed_items:
-        source_instance_id = placed_item["instance_id"]
+        source_item_key = placed_item["item_key"]
         for x, y in placed_item.get(cells_key, []):
             if not (0 <= x < WIDTH and 0 <= y < HEIGHT):
                 continue
 
-            target_instance_id = occupancy_matrix[HEIGHT - 1 - y][x]
-            if target_instance_id is None:
+            target_item_key = occupancy_matrix[HEIGHT - 1 - y][x]
+            if target_item_key is None:
                 continue
-            if target_instance_id == source_instance_id:
+            if target_item_key == source_item_key:
                 continue
 
             marker_links.append(
                 {
-                    "source_instance_id": source_instance_id,
-                    "target_instance_id": target_instance_id,
+                    "source_item_key": source_item_key,
+                    "target_item_key": target_item_key,
                     cell_key: (x, y),
                 }
             )
