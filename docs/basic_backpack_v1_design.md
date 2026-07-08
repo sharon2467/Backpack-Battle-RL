@@ -41,68 +41,34 @@ placements = [
 - 背包左下角格子是 `(0, 0)`。
 - 背包右上角格子是 `(8, 6)`。
 - 有效坐标范围是 `0 <= x < 9`，`0 <= y < 7`。
-- 参考点只是计算相对坐标的锚点，本身不需要显式出现在 `shape_cells` 或 `star_cells` 中。
+- 参考点只是计算相对坐标的锚点，本身不需要显式出现在 `shape_cells` 或 marker cells 中。
 
 ## 物品定义
 
-V1 的物品数据先手写最小样例，不批量导入真实 wiki 数据。
+V1 的物品数据先手写最小样例，存放在 `data/item_catalog_v1.json`，不批量导入真实 wiki 数据。
 
-```python
-item_catalog = {
-    "stone": {
-        "item_id": "stone",
-        "shape_cells": [(0, 0)],
-        "star_cells": [],
-    },
-    "banana": {
-        "item_id": "banana",
-        "shape_cells": [(0, 1), (0, 0), (1, 0)],
-        "star_cells": [(0, 2), (-1, 1), (1, 1), (-1, 0), (2, 0), (0, -1), (1, -1)],
-    },
-    "blood_harvester": {
-        "item_id": "blood_harvester",
-        "shape_cells": [(0, 1), (1, 1), (2, 1), (0, 0), (0, -1), (0, -2)],
-        "star_cells": [(1, 0), (2, 0), (1, -1), (2, -1), (1, -2), (2, -2)],
-    },
-    "bag_of_stones": {
-        "item_id": "bag_of_stones",
-        "shape_cells": [(0, 0), (1, 0)],
-        "star_cells_by_rotation": {
-            0: [(0, 1), (1, 1)],
-            90: [(0, 2)],
-            180: [(0, 1), (-1, 1)],
-            270: [(0, 1)],
-        },
-    },
-    "health_potion": {
-        "item_id": "health_potion",
-        "shape_cells": [(0, 0), (0, 1)],
-        "star_cells_by_rotation": {
-            0: [(0, 2)],
-            90: [(-1, 1)],
-            180: [(0, 1)],
-            270: [(1, 1)],
-        },
-    },
-}
-```
+程序启动时读取这个 JSON，得到 `item_catalog`。
 
 字段含义：
 
 - `item_id`：物品定义 id。
 - `shape_cells`：未旋转时，物品占用格子相对于参考点的位置。
 - `star_cells`：未旋转时，物品星位相对于参考点的位置。
+- `diamond_cells`：未旋转时，物品菱形位相对于参考点的位置。
+- `triangle_cells`：未旋转时，物品三角位相对于参考点的位置。
 - `star_cells_by_rotation`：特殊物品使用；直接穷举每个旋转状态下的星位相对坐标。
 
-`shape_cells`、`star_cells` 和 `star_cells_by_rotation` 都使用物品本地坐标。
+`shape_cells`、`star_cells`、`diamond_cells`、`triangle_cells` 和 `*_cells_by_rotation` 都使用物品本地坐标。
 
 相对坐标可以是负数。比如一个斜向物品不需要强行找左上角，只要选一个容易理解的参考点，再把占用格写成相对这个参考点的位置。
 
-普通物品使用 `star_cells`，星位会按 `rotation` 旋转。特殊物品使用 `star_cells_by_rotation`，`place_item` 直接读取对应旋转状态的星位，不再对这些星位调用 `rotate_cells`。
+普通物品使用 `star_cells`、`diamond_cells`、`triangle_cells`，这些 marker 会按 `rotation` 旋转。特殊物品使用 `*_cells_by_rotation`，`place_item` 直接读取对应旋转状态的 marker，不再对这些 marker 调用 `rotate_cells`。
 
 `Bag of Stones` 和药水类物品不能作为普通星位旋转样例。wiki.gg 页面说明它们的星位始终在物品垂直上方，不遵循普通旋转变换，所以这里直接写出四种旋转状态下的 `star_cells_by_rotation`。
 
 来源备注：`Bag of Stones` 页面修订时间 `2025-09-19T04:52:07Z`，`Potion` 页面修订时间 `2024-03-20T09:28:17Z`，`Health Potion` 页面修订时间 `2025-09-19T03:30:04Z`；查询日期 `2026-07-07`。
+
+`Mage Hat` 使用 star、diamond 和 triangle 三类 marker。wiki.gg `Template:Grid` 中 `2` 表示 Star、`3` 表示 Diamond、`4` 表示 tertiary 图标；`Mage Hat` 页面效果文本将 `4` 作为 triangle 使用。`Mage Hat` 页面修订时间 `2025-10-17T17:30:53Z`，`Template:Grid` 修订时间 `2025-10-29T09:33:11Z`；查询日期 `2026-07-07`。
 
 ## 旋转规则
 
@@ -122,9 +88,9 @@ V1 中正向旋转按 `x` 向右、`y` 向上的坐标系逆时针计算。
 平移规则：
 
 1. 先旋转 `shape_cells`。
-2. 如果物品定义了 `star_cells_by_rotation`，直接读取 `star_cells_by_rotation[placement.rotation]`。
-3. 如果物品没有定义 `star_cells_by_rotation`，再旋转 `star_cells`。
-4. 每个旋转后的占用格和当前旋转状态的星位，都直接加上 `placement.x` 和 `placement.y`，得到全局坐标。
+2. 对每类 marker，如果物品定义了 `*_cells_by_rotation`，直接读取当前 `placement.rotation` 对应的坐标。
+3. 对每类 marker，如果物品没有定义 `*_cells_by_rotation`，就旋转对应的 `*_cells`。
+4. 每个旋转后的占用格和当前旋转状态的 marker，都直接加上 `placement.x` 和 `placement.y`，得到全局坐标。
 
 这样 `placement.x` 和 `placement.y` 始终表示物品参考点的全局坐标。
 
@@ -136,7 +102,7 @@ V1 中正向旋转按 `x` 向右、`y` 向上的坐标系逆时针计算。
 built_backpack = {
     "items": placed_items,
     "occupancy_matrix": occupancy_matrix,
-    "star_links": star_links,
+    "marker_links": marker_links,
 }
 ```
 
@@ -153,6 +119,8 @@ placed_item = {
     "rotation": 0,
     "occupied_cells": [(0, 0)],
     "star_cells": [],
+    "diamond_cells": [],
+    "triangle_cells": [],
 }
 ```
 
@@ -185,12 +153,12 @@ occupancy_matrix = [
 - 如果用 Python 的 0-based 行下标访问矩阵，行下标是 `6 - y`。
 - 也就是用 `occupancy_matrix[6 - y][x]` 访问坐标 `(x, y)` 对应的格子。
 
-### star_links
+### marker_links
 
-如果一个物品的星位落在另一个物品占用格上，就生成一条关联：
+如果一个物品的 marker 落在另一个物品占用格上，就生成一条关联：
 
 ```python
-star_link = {
+marker_link = {
     "source_instance_id": 0,
     "target_instance_id": 1,
     "star_cell": (1, 0),
@@ -199,9 +167,9 @@ star_link = {
 
 字段含义：
 
-- `source_instance_id`：拥有这个星位的物品实例。
-- `target_instance_id`：被这个星位指到的物品实例。
-- `star_cell`：星位所在的全局坐标。
+- `source_instance_id`：拥有这个 marker 的物品实例。
+- `target_instance_id`：被这个 marker 指到的物品实例。
+- `star_cell` / `diamond_cell` / `triangle_cell`：marker 所在的全局坐标。
 
 ## 最小函数
 
@@ -220,11 +188,11 @@ V1 只实现以下四个函数，不额外增加功能函数。
 负责：
 
 - 旋转占用格。
-- 普通物品旋转 `star_cells`。
-- 特殊物品直接读取 `star_cells_by_rotation[rotation]`。
+- 普通物品旋转 `star_cells`、`diamond_cells`、`triangle_cells`。
+- 特殊物品直接读取对应的 `*_cells_by_rotation[rotation]`。
 - 按参考点平移。
 - 生成全局 `occupied_cells`。
-- 生成全局 `star_cells`。
+- 生成全局 `star_cells`、`diamond_cells`、`triangle_cells`。
 
 ### build_occupancy_matrix(placements, item_catalog)
 
@@ -239,16 +207,18 @@ V1 只实现以下四个函数，不额外增加功能函数。
 - 检查占用格是否和已有物品重叠。
 - 把 `instance_id` 写入矩阵。
 
-### find_star_links(placed_items, occupancy_matrix)
+### find_marker_links(placed_items, occupancy_matrix, marker_type)
 
-输入已放置物品和占用矩阵，返回 `star_links`。
+输入已放置物品、占用矩阵和 marker 类型，返回对应 marker links。
 
 规则：
 
-- 星位落在另一个物品占用格上，生成关联。
-- 星位落空，不生成关联。
-- 星位越界，不生成关联。
-- 星位指向自己，不生成关联。
+- marker 落在另一个物品占用格上，生成关联。
+- marker 落空，不生成关联。
+- marker 越界，不生成关联。
+- marker 指向自己，不生成关联。
+
+`find_star_links`、`find_diamond_links`、`find_triangle_links` 是针对三类 marker 的薄封装。
 
 ## 校验规则
 
@@ -256,7 +226,7 @@ V1 只做以下校验：
 
 - `item_id` 不存在时报错。
 - `rotation` 不是 `0`、`90`、`180`、`270` 时报错。
-- 物品定义了 `star_cells_by_rotation` 但没有穷举四种合法旋转状态时报错。
+- 物品定义了 `*_cells_by_rotation` 但没有穷举四种合法旋转状态时报错。
 - 物品占用格超出 9x7 矩阵时报错。
 - 两个物品占用同一格时报错。
 
@@ -278,12 +248,12 @@ V1 不把以下情况当作错误：
 - 越界放置失败。
 - L 形物品旋转后占用格正确。
 - 参考点不在 `shape_cells` 中时，物品仍能正确写入矩阵。
-- 普通物品的 `star_cells` 会跟随 `rotation` 旋转。
-- 特殊物品的 `star_cells_by_rotation` 会按当前 `rotation` 直接读取，不再额外旋转。
-- 星位指向另一个物品时生成 `star_link`。
-- 星位落空时不生成 `star_link`。
-- 星位越界时不生成 `star_link`。
-- 星位指向自己时不生成 `star_link`。
+- 普通物品的 marker cells 会跟随 `rotation` 旋转。
+- 特殊物品的 `*_cells_by_rotation` 会按当前 `rotation` 直接读取，不再额外旋转。
+- star、diamond、triangle 指向另一个物品时生成对应 link。
+- marker 落空时不生成 link。
+- marker 越界时不生成 link。
+- marker 指向自己时不生成 link。
 
 ## 暂不实现
 
@@ -292,7 +262,6 @@ V1 明确不实现：
 - 商店。
 - 背包格或袋子解锁。
 - 合成。
-- 菱形位。
 - 战斗效果。
 - 真实物品数据导入。
 - UI。

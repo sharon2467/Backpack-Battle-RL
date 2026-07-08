@@ -3,7 +3,9 @@ import unittest
 from basic_backpack_v1 import (
     ITEM_CATALOG,
     build_occupancy_matrix,
+    find_diamond_links,
     find_star_links,
+    find_triangle_links,
     place_item,
     rotate_cells,
 )
@@ -129,6 +131,44 @@ class BasicBackpackV1Test(unittest.TestCase):
         self.assertEqual(placed_item["occupied_cells"], [(3, 3), (3, 4)])
         self.assertEqual(placed_item["star_cells"], [(3, 5)])
 
+    def test_bag_of_stones_special_star_cells_are_defined_for_all_rotations(self):
+        expected_by_rotation = {
+            0: ([(3, 3), (4, 3)], [(3, 4), (4, 4)]),
+            90: ([(3, 3), (3, 4)], [(3, 5)]),
+            180: ([(3, 3), (2, 3)], [(3, 4), (2, 4)]),
+            270: ([(3, 3), (3, 2)], [(3, 4)]),
+        }
+
+        for rotation, expected in expected_by_rotation.items():
+            with self.subTest(rotation=rotation):
+                placed_item = place_item(
+                    ITEM_CATALOG["bag_of_stones"],
+                    {"instance_id": 0, "item_id": "bag_of_stones", "x": 3, "y": 3, "rotation": rotation},
+                )
+
+                expected_occupied_cells, expected_star_cells = expected
+                self.assertEqual(placed_item["occupied_cells"], expected_occupied_cells)
+                self.assertEqual(placed_item["star_cells"], expected_star_cells)
+
+    def test_health_potion_special_star_cells_are_defined_for_all_rotations(self):
+        expected_by_rotation = {
+            0: ([(3, 3), (3, 4)], [(3, 5)]),
+            90: ([(3, 3), (2, 3)], [(2, 4)]),
+            180: ([(3, 3), (3, 2)], [(3, 4)]),
+            270: ([(3, 3), (4, 3)], [(4, 4)]),
+        }
+
+        for rotation, expected in expected_by_rotation.items():
+            with self.subTest(rotation=rotation):
+                placed_item = place_item(
+                    ITEM_CATALOG["health_potion"],
+                    {"instance_id": 0, "item_id": "health_potion", "x": 3, "y": 3, "rotation": rotation},
+                )
+
+                expected_occupied_cells, expected_star_cells = expected
+                self.assertEqual(placed_item["occupied_cells"], expected_occupied_cells)
+                self.assertEqual(placed_item["star_cells"], expected_star_cells)
+
     def test_incomplete_star_cells_by_rotation_fails(self):
         item_catalog = {
             "special": {
@@ -143,6 +183,52 @@ class BasicBackpackV1Test(unittest.TestCase):
                 [{"item_id": "special", "x": 0, "y": 0, "rotation": 0}],
                 item_catalog,
             )
+
+    def test_mage_hat_loads_star_diamond_and_triangle_cells(self):
+        placed_item = place_item(
+            ITEM_CATALOG["mage_hat"],
+            {"instance_id": 0, "item_id": "mage_hat", "x": 3, "y": 3, "rotation": 0},
+        )
+
+        self.assertCountEqual(placed_item["occupied_cells"], [(3, 4), (2, 3), (3, 3), (4, 3)])
+        self.assertEqual(placed_item["star_cells"], [(2, 4), (1, 3), (2, 2), (2, 1)])
+        self.assertEqual(placed_item["diamond_cells"], [(4, 4), (5, 3), (4, 2), (4, 1)])
+        self.assertEqual(placed_item["triangle_cells"], [(3, 6), (3, 5), (3, 2), (3, 1)])
+
+    def test_mage_hat_marker_cells_rotate_like_ordinary_cells(self):
+        placed_item = place_item(
+            ITEM_CATALOG["mage_hat"],
+            {"instance_id": 0, "item_id": "mage_hat", "x": 4, "y": 3, "rotation": 90},
+        )
+
+        self.assertCountEqual(placed_item["occupied_cells"], [(3, 3), (4, 2), (4, 3), (4, 4)])
+        self.assertEqual(placed_item["star_cells"], [(3, 2), (4, 1), (5, 2), (6, 2)])
+        self.assertEqual(placed_item["diamond_cells"], [(3, 4), (4, 5), (5, 4), (6, 4)])
+        self.assertEqual(placed_item["triangle_cells"], [(1, 3), (2, 3), (5, 3), (6, 3)])
+
+    def test_mage_hat_star_diamond_and_triangle_links_are_found(self):
+        occupancy_matrix, placed_items = build_occupancy_matrix(
+            [
+                {"item_id": "mage_hat", "x": 3, "y": 3, "rotation": 0},
+                {"item_id": "stone", "x": 2, "y": 4, "rotation": 0},
+                {"item_id": "stone", "x": 4, "y": 4, "rotation": 0},
+                {"item_id": "stone", "x": 3, "y": 6, "rotation": 0},
+            ],
+            ITEM_CATALOG,
+        )
+
+        self.assertEqual(
+            find_star_links(placed_items, occupancy_matrix),
+            [{"source_instance_id": 0, "target_instance_id": 1, "star_cell": (2, 4)}],
+        )
+        self.assertEqual(
+            find_diamond_links(placed_items, occupancy_matrix),
+            [{"source_instance_id": 0, "target_instance_id": 2, "diamond_cell": (4, 4)}],
+        )
+        self.assertEqual(
+            find_triangle_links(placed_items, occupancy_matrix),
+            [{"source_instance_id": 0, "target_instance_id": 3, "triangle_cell": (3, 6)}],
+        )
 
     def test_star_link_is_created_when_star_points_to_other_item(self):
         item_catalog = {
@@ -199,6 +285,66 @@ class BasicBackpackV1Test(unittest.TestCase):
         )
 
         self.assertEqual(find_star_links(placed_items, occupancy_matrix), [])
+
+    def test_mixed_backpack_scenario_builds_matrix_and_star_links(self):
+        item_catalog = {
+            "ordinary_source": {
+                "item_id": "ordinary_source",
+                "shape_cells": [(0, 0)],
+                "star_cells": [(1, 0)],
+            },
+            "special_source": {
+                "item_id": "special_source",
+                "shape_cells": [(0, 0), (0, 1)],
+                "star_cells_by_rotation": {
+                    0: [(0, 2)],
+                    90: [(-1, 1)],
+                    180: [(0, 1)],
+                    270: [(1, 1)],
+                },
+            },
+            "empty_source": {
+                "item_id": "empty_source",
+                "shape_cells": [(0, 0)],
+                "star_cells": [(1, 0)],
+            },
+            "out_of_bounds_source": {
+                "item_id": "out_of_bounds_source",
+                "shape_cells": [(0, 0)],
+                "star_cells": [(0, 1)],
+            },
+            "target": {
+                "item_id": "target",
+                "shape_cells": [(0, 0)],
+                "star_cells": [],
+            },
+        }
+        occupancy_matrix, placed_items = build_occupancy_matrix(
+            [
+                {"item_id": "ordinary_source", "x": 0, "y": 0, "rotation": 0},
+                {"item_id": "target", "x": 1, "y": 0, "rotation": 0},
+                {"item_id": "special_source", "x": 5, "y": 2, "rotation": 90},
+                {"item_id": "target", "x": 4, "y": 3, "rotation": 0},
+                {"item_id": "empty_source", "x": 2, "y": 2, "rotation": 0},
+                {"item_id": "out_of_bounds_source", "x": 8, "y": 6, "rotation": 0},
+            ],
+            item_catalog,
+        )
+
+        self.assertEqual(occupancy_matrix[6][0], 0)
+        self.assertEqual(occupancy_matrix[6][1], 1)
+        self.assertEqual(occupancy_matrix[4][5], 2)
+        self.assertEqual(occupancy_matrix[4][4], 2)
+        self.assertEqual(occupancy_matrix[3][4], 3)
+        self.assertEqual(occupancy_matrix[4][2], 4)
+        self.assertEqual(occupancy_matrix[0][8], 5)
+        self.assertEqual(
+            find_star_links(placed_items, occupancy_matrix),
+            [
+                {"source_instance_id": 0, "target_instance_id": 1, "star_cell": (1, 0)},
+                {"source_instance_id": 2, "target_instance_id": 3, "star_cell": (4, 3)},
+            ],
+        )
 
     def test_self_targeting_star_cell_creates_no_link(self):
         item_catalog = {

@@ -1,0 +1,44 @@
+{
+  "stone": {
+    "item_id": "stone",
+    "shape_cells": [[0, 0]],
+    "star_cells": []
+  },
+  "banana": {
+    "item_id": "banana",
+    "shape_cells": [[0, 1], [0, 0], [1, 0]],
+    "star_cells": [[0, 2], [-1, 1], [1, 1], [-1, 0], [2, 0], [0, -1], [1, -1]]
+  },
+  "blood_harvester": {
+    "item_id": "blood_harvester",
+    "shape_cells": [[0, 1], [1, 1], [2, 1], [0, 0], [0, -1], [0, -2]],
+    "star_cells": [[1, 0], [2, 0], [1, -1], [2, -1], [1, -2], [2, -2]]
+  },
+  "bag_of_stones": {
+    "item_id": "bag_of_stones",
+    "shape_cells": [[0, 0], [1, 0]],
+    "star_cells_by_rotation": {
+      "0": [[0, 1], [1, 1]],
+      "90": [[0, 2]],
+      "180": [[0, 1], [-1, 1]],
+      "270": [[0, 1]]
+    }
+  },
+  "health_potion": {
+    "item_id": "health_potion",
+    "shape_cells": [[0, 0], [0, 1]],
+    "star_cells_by_rotation": {
+      "0": [[0, 2]],
+      "90": [[-1, 1]],
+      "180": [[0, 1]],
+      "270": [[1, 1]]
+    }
+  },
+  "mage_hat": {
+    "item_id": "mage_hat",
+    "shape_cells": [[0, 1], [-1, 0], [0, 0], [1, 0]],
+    "star_cells": [[-1, 1], [-2, 0], [-1, -1], [-1, -2]],
+    "diamond_cells": [[1, 1], [2, 0], [1, -1], [1, -2]],
+    "triangle_cells": [[0, 3], [0, 2], [0, -1], [0, -2]]
+  }
+}
