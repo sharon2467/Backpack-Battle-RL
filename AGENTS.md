@@ -1,20 +1,44 @@
-# Project Context
+# 项目背景
 
-This project is about planning and eventually building a reinforcement-learning AI for Backpack Battles.
+本项目旨在规划并最终构建一个用于《背包乱斗》的强化学习 AI。
 
-Before discussing game mechanics, state/action design, environment design, item data, shop rules, combat simulation, or model choices, read:
+在讨论游戏机制、状态/动作设计、环境设计、物品数据、商店规则、战斗模拟或模型选择之前，请先阅读：
 
 - `docs/backpack_battles_knowledge_base.md`
 
-Use that file as the local project knowledge base. Do not rely only on prior chat history for Backpack Battles facts.
+请将该文件作为本项目的本地知识库。不要只依赖先前聊天记录中的《背包乱斗》相关事实。
 
-When updating game facts, use only the current community wiki at `backpackbattles.wiki.gg` and its MediaWiki/Cargo API unless the user explicitly approves another source. Prefer recording source URLs, wiki revision dates, and query dates in the knowledge base.
+更新游戏事实时，除非用户明确批准其他来源，否则只能使用当前的 `backpackbattles.wiki.gg` 社区 Wiki 及其 MediaWiki/Cargo API。知识库中最好记录资料来源 URL、Wiki 修订日期和查询日期。
 
-Important modeling assumptions already captured in the knowledge base:
 
-- `class_id` is part of the observation because class affects available mechanics, items, and starting choices.
-- A standalone `subclass_id` should not be exposed to the policy if the subclass is fully represented by a visible owned subclass item.
-- The simulator may still track subclass internally for validation and debugging.
-- Backpack state must include both spatial layout and item-instance identity.
-- Shop state must include gold, reroll count/cost, discounts, reserved items, round, and relevant generation constraints.
-- Recipe state must account for adjacency, combine locks, and catalysts.
+- 背包状态必须同时包含空间布局和物品实例身份。
+
+- 目前项目状态为先实现战斗框架，尔后给定物品训练最优化物品布局的AI。
+
+- 暂时不考虑局外发育，不应擅自在代码中引入任何有关内容。
+
+# 约束
+
+严禁未经申请修改此AGENT.md文档，必须得到用户明确批准才可修改。
+
+在执行任何编程任务前，务必先编写SPEC文档，明确
+1. Requirements(需求)
+用自然语言 + 可选的 EARS 语法(Easy Approach to Requirements Syntax,如 "WHEN... THEN the system SHALL...")描述功能目标、用户故事、验收标准。
+
+2. Design(设计)
+架构决策、数据模型、接口定义、技术选型、关键流程图(时序图/状态图),阐述理解"如何实现"而不仅是"实现什么"。
+
+3. Tasks(任务拆解)
+把设计拆成一个个可独立执行、可验证的小任务清单,通常带编号和依赖关系,方便按步骤执行并回溯。
+
+4. Acceptance Criteria / Tests(验收标准)
+明确的测试用例或验证方法,用来判断某个任务/整个 spec 是否算完成。
+
+SPEC必须达到逐函数，逐测试级的精度，将每个具体函数都写明接口以及伪代码实现。
+
+即使用户未主动要求，也必须提醒用户生成SPEC，并拒绝在未充分就SPEC文档讨论之前贸然开始工作。禁止未经说明擅自执行任何代码修改。
+
+代码风格必须遵循以简单为第一资源的原则，不允许擅自引入复杂的架构模式，接口设计，调用逻辑，数据结构等等。若认为确有需要使用的，或者用户提出相关需求的，必须向用户详细说明是什么，为什么，怎么做三个问题，由用户来作出最终判断。
+
+# 其他
+所有文档存入docs，所有测试存入tests。

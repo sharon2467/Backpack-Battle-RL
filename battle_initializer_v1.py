@@ -93,7 +93,7 @@ def _validate_battle_item(battle_item, item_id, item_key, player_id):
         raise ValueError(f"battle item player_id mismatch: {battle_item.player_id} != {player_id}")
 
 
-def _attach_marker_links(marker_links, items_by_key):
+def _attach_marker_links(marker_links, items_by_key:dict[str,BattleItem]):
     for marker_link in marker_links:
         source_key = marker_link["source_item_key"]
         target_key = marker_link["target_item_key"]

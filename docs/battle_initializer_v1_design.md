@@ -65,6 +65,8 @@ player_specs = [
     {
         "player_id": 0,
         "health": 25,
+        "max_stamina": 5.0,
+        "stamina": 5.0,
         "placements": [
             {"item_id": "stone", "x": 0, "y": 0, "rotation": 0},
         ],
@@ -81,6 +83,8 @@ player_specs = [
 
 - `player_id`：写入 `PlayerState.player_id` 和每个 `BattleItem.player_id`。
 - `health`：写入 `PlayerState.health`。V1 不根据 round 自动推导生命。
+- `max_stamina`：写入 `PlayerState.max_stamina`。标准战斗开局时作为当前耐力满格值。
+- `stamina`：写入 `PlayerState.stamina`。标准战斗开局要求 `stamina == max_stamina`。
 - `placements`：交给背包模块分析。
 
 `item_key` 由背包模块在 `build_occupancy_matrix()` 阶段按单个玩家的 `placements` 顺序生成，因此它只在该玩家内部唯一。初始化完成后，战斗逻辑使用 `item_key` 和 `player_id` 区分实例。
@@ -120,6 +124,8 @@ factory(
 
 V1 默认严格模式：`item_id` 没有对应工厂时直接报错，不静默创建通用占位物品。测试或实验如果需要假物品，可以显式传入测试工厂。
 
+真实物品工厂应为每个物品实例创建独立的 trigger/effect 实例。不要在物品类属性上共享 `CooldownTrigger(...)`、`StaminaConsumptionEffect(...)`、`MeleeAttackEffect(...)` 这类对象，否则同名物品之间会共享冷却进度或其它运行时状态。
+
 ## 输出
 
 初始化完成后返回：
@@ -140,6 +146,9 @@ BattleState(
 PlayerState(
     player_id=player_id,
     health=health,
+    max_stamina=max_stamina,
+    stamina=stamina,
+    stamina_regen_per_second=1.0,
     block=0,
     buffs={},
     debuffs={},
@@ -244,6 +253,8 @@ V1 先保持最小接口，只把 marker links 翻译成 `linked_items`。
 player_state = PlayerState(
     player_id=player_id,
     health=player_spec["health"],
+    max_stamina=player_spec["max_stamina"],
+    stamina=player_spec["stamina"],
     items=items_by_key,
 )
 ```
@@ -315,6 +326,9 @@ V1 初始化器负责以下校验：
 - `player_id` 不能重复。
 - 每个玩家必须提供 `placements`。
 - 每个玩家必须提供 `health`。
+- 每个玩家必须提供 `max_stamina` 和 `stamina`。
+- `max_stamina` 必须为正数。
+- 标准战斗输入中 `stamina` 必须等于 `max_stamina`，表示初始耐力满格。
 - 背包模块抛出的非法摆放错误原样向外抛出。
 - `placed_item["item_id"]` 必须有对应工厂。
 - 同一玩家内的 `placed_item["item_key"]` 必须唯一。

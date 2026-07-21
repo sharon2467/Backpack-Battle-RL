@@ -61,6 +61,8 @@ V1 推荐使用 JSON 作为玩家信息结构化文件。JSON 足够直观，也
       "player_id": 0,
       "class_id": "ranger",
       "health": 25,
+      "max_stamina": 5.0,
+      "stamina": 5.0,
       "placements": [
         {"item_id": "stone", "x": 0, "y": 0, "rotation": 0}
       ]
@@ -69,6 +71,8 @@ V1 推荐使用 JSON 作为玩家信息结构化文件。JSON 足够直观，也
       "player_id": 1,
       "class_id": "reaper",
       "health": 25,
+      "max_stamina": 5.0,
+      "stamina": 5.0,
       "placements": []
     }
   ]
@@ -85,8 +89,8 @@ V1 推荐使用 JSON 作为玩家信息结构化文件。JSON 足够直观，也
 
 - `max_frames`: 可选，正整数；默认建议为 `1000`。用于防止战斗因物品逻辑问题无限运行。
 - `frame_delta`: 可选，正数；默认建议为 `1.0`。传给 `BattleState.run()`。
-- `seed`: 可选，当前 V1 可读取但暂不使用。后续命中、暴击、随机触发等进入战斗模块后再接入。
-- `collect_log`: 可选，布尔值；当前 V1 可保留该字段，但如果战斗模块还没有日志系统，则结果里只返回空日志或不返回日志。
+- `seed`: 可选。用于初始化 `BattleState.rng`，集中控制命中、伤害、暴击和未来随机触发等全局随机；为 `null` 时使用非固定随机源。
+- `collect_log`: 可选，布尔值；当前 V1 可保留该字段用于未来扩展，但木剑首版不落地 combat log。结果里只返回空日志或不返回日志。
 
 ### players 字段
 
@@ -95,6 +99,8 @@ V1 推荐使用 JSON 作为玩家信息结构化文件。JSON 足够直观，也
 - `player_id`: 必填。传入 `PlayerState.player_id`，两名玩家不能重复。
 - `class_id`: 推荐保留。根据项目知识库，职业会影响物品、机制和起始选择，所以结构化文件中应保存它。当前 V1 的 `PlayerState` 暂不接收该字段，`main` 只做输入保留与结果回显，不把它塞进战斗对象。
 - `health`: 必填。传入 `PlayerState.health`。V1 不根据回合自动推导生命值。
+- `max_stamina`: 必填。传入 `PlayerState.max_stamina`，表示当前战斗开始时的耐力上限。
+- `stamina`: 必填。传入 `PlayerState.stamina`，表示当前战斗开始时的耐力值。标准战斗开局耐力满格，因此应等于 `max_stamina`。
 - `placements`: 必填。传给背包分析模块和战斗初始化模块。
 
 `placements` 的格式沿用当前背包模块：
@@ -165,7 +171,9 @@ python main_v1.py --input examples/battle_run_v1.json
 - JSON 可解析。
 - `schema_version == "battle_run_v1"`。
 - `players` 存在且长度为 2。
-- 每个玩家包含 `player_id`、`health`、`placements`。
+- 每个玩家包含 `player_id`、`health`、`max_stamina`、`stamina`、`placements`。
+- 每个玩家的 `max_stamina` 为正数。
+- 每个玩家的 `stamina` 等于 `max_stamina`，表示标准战斗开局满耐力。
 - `settings.max_frames` 和 `settings.frame_delta` 为正数。
 
 结构层面的错误由 `main` 报出；背包摆放合法性继续交给背包模块。
@@ -179,6 +187,8 @@ player_specs = [
     {
         "player_id": 0,
         "health": 25,
+        "max_stamina": 5.0,
+        "stamina": 5.0,
         "placements": [...]
     },
     ...
@@ -198,6 +208,8 @@ battle_state = initialize_battle(
     item_catalog=ITEM_CATALOG,
 )
 ```
+
+如果 `settings.seed` 不是 `null`，`main` 应基于该 seed 创建或配置 `BattleState.rng`。所有具体物品的命中、伤害等随机逻辑都应从 `BattleState.rng` 取数，而不是使用全局 `random`。
 
 这一步会间接完成：
 
@@ -241,6 +253,8 @@ winner = battle_state.run(max_frames=max_frames, frame_delta=frame_delta)
       "player_id": 0,
       "class_id": "ranger",
       "health": 10,
+      "max_stamina": 5.0,
+      "stamina": 3.0,
       "block": 0,
       "buffs": {},
       "debuffs": {},
@@ -250,6 +264,8 @@ winner = battle_state.run(max_frames=max_frames, frame_delta=frame_delta)
       "player_id": 1,
       "class_id": "reaper",
       "health": 0,
+      "max_stamina": 5.0,
+      "stamina": 4.0,
       "block": 0,
       "buffs": {},
       "debuffs": {},
@@ -324,8 +340,10 @@ V1 建议保持错误清晰、直接：
 
 - 可从合法 JSON 文件运行一场最小战斗。
 - `players` 不是 2 名时报错。
-- 缺少 `health` / `placements` / `player_id` 时报错。
+- 缺少 `health` / `max_stamina` / `stamina` / `placements` / `player_id` 时报错。
+- `stamina != max_stamina` 的标准战斗输入时报错。
 - 未知 `schema_version` 报错。
+- 同一 `settings.seed` 下，依赖随机数的战斗结果可复现。
 - 缺失物品工厂时报错，并能在 CLI 结果中看到 `error.message`。
 - 跑满 `max_frames` 且无胜者时返回 `finish_reason == "max_frames_reached"`。
 - 有胜者时返回 `finish_reason == "winner"`，并回显最终 `frame`、`time`、玩家生命值。
@@ -336,10 +354,10 @@ V1 建议保持错误清晰、直接：
 - 商店、金币、刷新、保留、折扣。
 - 合成、combine lock、催化剂。
 - 真实完整物品数据库导入。
-- 真实命中、暴击、疲劳、资源、冷却时间线。
+- 完整真实命中、暴击、疲劳、复杂资源、冷却时间线。首版只接入 `BattleState.rng` 和玩家耐力字段所需的最小能力。
 - 强化学习 observation / action space。
 - 独立 `subclass_id`。如项目知识库所述，如果 subclass 已由可见拥有物品表达，则不应额外暴露给策略；当前 V1 只保留玩家文件中可见物品和 `class_id`。
-- 对战日志系统。可以预留 `collect_log` 和 `log` 字段，但不在 main 中伪造日志。
+- 对战日志系统。可以预留 `collect_log` 和 `log` 字段，但木剑首版不落地 combat log，也不在 main 中伪造日志。
 
 ## 后续演进点
 
@@ -350,4 +368,3 @@ V1 建议保持错误清晰、直接：
 - 增加可选 `--debug-backpack`，输出每名玩家的占用矩阵和 marker links。
 - 增加战斗日志收集接口，供调试物品触发链。
 - 增加批量评估入口，把多份玩家结构化文件跑成结果表。
-
