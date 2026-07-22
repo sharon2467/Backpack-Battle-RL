@@ -37,15 +37,23 @@
 - 玩家初始耐力为满格。
 - 每名玩家的 `max_stamina` 和当前 `stamina` 都应在一开始的 `battle_run_v1` JSON 输入中显式提供。
 - `stamina` 和 `max_stamina` 都是战斗中可变的玩家状态，物品效果可以动态修改。
-- 物品冷却完成但耐力不足时，不等待耐力；冷却仍直接进入新一轮，随后由耐力消耗 effect 停止后续效果。
+- 物品冷却完成但耐力不足时，不等待耐力；冷却仍直接进入新一轮。耐力消耗 effect 返回 `False`，近战 effect 读取该结果后不产生攻击副作用。
 - 允许为 `BattleState` 增加 `rng`，集中控制命中、伤害等全局随机。
 - 首版具体物品类直接放在 `item_factory_registry_v1.py`。
 - 接受 `item_classes`、`item_types`、`icon_types` 这一组归一化 tuple 字段命名。
 - 木剑首版不落地 combat log，测试先用状态断言验证效果。
-- trigger 和 effect 独立成可复用实例，物品只负责组装并轮流调用实例接口。
+- trigger 和 effect 独立成可复用实例；具体物品负责组装组件，并在 `run_own_effect()` 中组合结果和选择调用顺序。
 - `CooldownTrigger` 不包含消耗耐力的逻辑，只负责逐帧推进并判定冷却是否完成。
 - 耐力消耗独立为 `StaminaConsumptionEffect`，这样有冷却但不耗耐力的物品可以省略该 effect，耗耐力但不造成伤害的物品也可以复用该 effect。
 - 木剑使用最常见的 `CooldownTrigger`、`StaminaConsumptionEffect` 和 `MeleeAttackEffect`。
+
+项目审阅补充，记录日期：2026-07-22：
+
+- 删除独立的 trigger-to-effect 逻辑判断层。
+- `BattleItem.update_triggers(context)` 保存并返回基础 trigger 的 bool 结果列表。
+- `BattleState.step()` 不再使用 `is_triggered()` 粗筛；所有物品每次都进入 `run_effects()`，因此全 False trigger 也可以被物品按 NOT 条件解释。
+- 所有物品级逻辑放在具体物品的 `run_own_effect(trigger_results, context)` 中，包括 trigger 组合、effect 是否调用、effect 失败后的分支，以及是否继续 linked items。
+- 基本 effect 只接收 `context` 并执行自身效果，不接收 trigger/effect 结果列表。
 
 ## Wooden Sword 数据快照
 
@@ -191,9 +199,9 @@ icon_types = ()
 - `battle_initializer_v1.initialize_battle()` 会根据 `item_id` 调用 `item_factories[item_id]`。
 - 工厂返回值必须是 `BattleItem`。
 - `BattleState.step()` 只直接遍历 `is_active_item == True` 的物品。
-- `BattleItem.update_triggers(context)` 负责按顺序调用 `triggers` 中的实例接口。
-- `BattleItem.run_own_effects(context)` 负责按顺序调用 `effects` 中的实例接口，并根据返回值决定是否继续后续 effect 和 linked item。
-- 具体物品只负责组装自己的 trigger/effect 实例。
+- `BattleItem.update_triggers(context)` 负责按顺序调用 `triggers` 中的实例接口，保存并返回基础 bool 结果列表。
+- `BattleItem.run_effects(context)` 负责固定的“更新 trigger -> 调用具体物品逻辑 -> 可选 linked items”流程。
+- 木剑的 `run_own_effect(trigger_results, context)` 负责判断冷却、调用耐力/攻击 effect，并返回是否继续 linked items。
 
 因此木剑应实现为主动战斗物品：
 
@@ -231,6 +239,18 @@ class WoodenSword(BattleItem):
                 ),
             ],
         )
+
+    def run_own_effect(self, trigger_results, context):
+        cooldown_ready = trigger_results[0]
+        if not cooldown_ready:
+            return False
+
+        stamina_paid = self.effects[0].apply(context)
+        if not stamina_paid:
+            return False
+
+        attack_result = self.effects[1].apply(context)
+        return attack_result
 ```
 
 注意：`CooldownTrigger(...)`、`StaminaConsumptionEffect(...)` 和 `MeleeAttackEffect(...)` 必须在构造函数中为每个木剑实例新建，不能作为类属性共享。
@@ -245,7 +265,7 @@ DEFAULT_ITEM_FACTORIES = {
 
 ## Trigger 设计
 
-木剑触发条件由 `CooldownTrigger` 实例负责：冷却进度累计完成。`CooldownTrigger` 不检查也不消耗耐力；冷却完成后返回 `True` 并扣除一轮冷却进度，后续是否真正执行攻击由 effect 链决定。
+木剑触发条件由 `CooldownTrigger` 实例负责：冷却进度累计完成。`CooldownTrigger` 不检查也不消耗耐力；冷却完成后返回 `True` 并扣除一轮冷却进度，后续是否真正执行攻击由木剑的 `run_own_effect()` 决定。
 
 `CooldownTrigger` 的运行时状态：
 
@@ -264,13 +284,17 @@ cooldown_progress = 0.0
 cooldown_progress += frame_delta * trigger_speed_multiplier
 ```
 
-其中 `trigger_speed_multiplier` 初版可以恒为 `1.0`，后续接入 Heat/Cold：
+`Heat` 与 `Cold` 先按层数互相抵消，再按每层 2% 计算当前帧的触发速度倍率。净 Heat 使用加速公式，净 Cold 使用减速公式：
 
 ```text
-trigger_speed_multiplier = 1 + heat * 0.02 - cold * 0.02
+net_heat_stacks = heat - cold
+if net_heat_stacks >= 0:
+    trigger_speed_multiplier = 1 + net_heat_stacks * 0.02
+else:
+    trigger_speed_multiplier = 1 / (1 + abs(net_heat_stacks) * 0.02)
 ```
 
-具体是否需要下限保护留给 Heat/Cold 实现时统一决定。
+`CooldownTrigger` 每帧重新读取当前层数，因此冷却期间发生的 Heat/Cold 变化会立即影响后续推进。
 
 `CooldownTrigger.update(context)` 伪代码：
 
@@ -287,16 +311,16 @@ def update(self, context):
     return True
 ```
 
-`BattleItem.update_triggers(context)` 只负责调用该 trigger 实例，并把返回值汇总到 `item.triggered`。
+`BattleItem.update_triggers(context)` 只负责调用该 trigger 实例，将返回值保存并返回为 `item.trigger_results`。无论结果真假，`run_effects()` 随后都会调用木剑的 `run_own_effect()`。
 
 当前 `BattleState.step()` 每帧每个物品最多执行一次效果。因此如果 `frame_delta` 大于或接近 `cooldown_seconds`，一帧内即使累计出多次冷却，也只执行一次攻击。木剑测试应使用较小 `frame_delta`，例如 `0.1`，避免把调度误差误认为物品错误。
 
 是否保留超额冷却进度：
 
-- 冷却完成后统一执行 `cooldown_progress -= cooldown_seconds`，无论后续 effect 是否因耐力不足而停止。
+- 冷却完成后统一执行 `cooldown_progress -= cooldown_seconds`，不受后续耐力 effect 返回结果影响。
 - 如果采用 `cooldown_progress = 0.0`，会在离散帧下系统性损失冷却时间，不利于以后做高速触发物品。
 
-本轮不实现 Heat/Cold 具体效果，但 `CooldownTrigger` 应为它们预留每帧读取 owner buff/debuff 的入口。
+`CooldownTrigger` 每帧读取 `context.owner.buffs.Heat` 和 `context.owner.debuffs.Cold`，并按抵消后的净层数推进冷却。
 
 ## Effect 设计
 
@@ -305,7 +329,7 @@ def update(self, context):
 1. `StaminaConsumptionEffect(stamina_cost=1)`：尝试支付 1 点耐力。
 2. `MeleeAttackEffect(min_damage=1, max_damage=3, accuracy=90)`：支付成功后执行一次 melee weapon attack。
 
-建议所有 `BattleEffect.apply(context)` 返回布尔值：`True` 表示继续执行后续 effect，`False` 表示停止当前物品的后续 effect 和 linked item 调用。默认无特殊中断语义的 effect 返回 `True`。
+所有 `BattleEffect.apply(context)` 返回布尔值。基本 effect 不读取 trigger，也不决定后续 effect 或 linked item；具体物品的 `run_own_effect()` 负责是否调用 effect 及如何解释其返回值。
 
 `StaminaConsumptionEffect.apply(context)` 伪代码：
 
@@ -318,22 +342,34 @@ def apply(self, context):
     return True
 ```
 
-这让耐力不足时的语义保持清晰：冷却已经完成并进入下一轮，但当前 effect 链在攻击前停止，所以木剑不造成伤害，也不等待耐力回复。
+这让耐力不足时的语义保持清晰：冷却已经完成并进入下一轮，耐力 effect 返回 `False`；木剑的 `run_own_effect()` 立即返回 `False`，因此不调用 melee effect，也不继续 linked items。
 
 基础流程：
 
-1. 检查是否命中：`accuracy=90`。
-2. 命中时随机伤害：`randint(1, 3)`。
-3. 先扣除对手 `block`，剩余伤害扣除对手 `health`。
-4. 未命中时不造成伤害。
+1. 创建包含攻击双方、来源物品、`accuracy=90` 和伤害区间的 `AttackEvent`。
+2. 交给 `BattleState.resolve_attack(event)` 进行命中判定。
+3. 命中时随机伤害：`randint(1, 3)`，再向防守方派发 `on_attacked` 响应。
+4. 所有响应完成后，由 `BattleState` 先把剩余伤害结算到 `block`，再结算到 `health`。
+5. 未命中时不抽取伤害、不派发 `on_attacked`，也不修改 `block` 或 `health`。
 
-`MeleeAttackEffect.apply(context)` 建议伤害结算，并在执行完成后返回 `True`：
+`MeleeAttackEffect.apply(context)` 只负责一次近战攻击：
 
 ```python
-blocked = min(context.opponent.block, raw_damage)
-context.opponent.block -= blocked
-context.opponent.health -= raw_damage - blocked
+def apply(self, context):
+    event = AttackEvent(
+        attacker=context.owner,
+        defender=context.opponent,
+        source_item=context.item,
+        attack_types=("melee",),
+        min_damage=self.min_damage,
+        max_damage=self.max_damage,
+        accuracy=self.accuracy,
+    )
+    resolved_event = context.battle_state.resolve_attack(event)
+    return resolved_event.hit is True
 ```
+
+`MeleeAttackEffect` 不直接修改对手状态。返回 `True` 表示攻击命中，未命中时返回 `False`；即使命中伤害被响应物品完全阻止，仍返回 `True`。是否调用该 effect 已由木剑的 `run_own_effect()` 在耐力支付成功后决定。攻击事务、响应缓存和统一伤害提交的完整设计见 `docs/attack_event_resolution_spec.md`。
 
 随机数来源：
 
@@ -381,14 +417,14 @@ owner.stamina = min(
 耐力不足时的触发规则：
 
 - 如果冷却尚未完成，不检查耐力。
-- 如果冷却完成但当前耐力不足，`CooldownTrigger` 仍然返回 `True` 并通过 `cooldown_progress -= cooldown_seconds` 直接进入新一轮冷却；随后 `StaminaConsumptionEffect` 返回 `False`，不扣耐力，并阻止后续 `MeleeAttackEffect` 执行。
+- 如果冷却完成但当前耐力不足，`CooldownTrigger` 仍然返回 `True` 并通过 `cooldown_progress -= cooldown_seconds` 直接进入新一轮冷却；随后 `StaminaConsumptionEffect` 返回 `False` 且不扣耐力，木剑的 `run_own_effect()` 不调用 `MeleeAttackEffect`。
 - Heroic Potion 等“耐力耗尽时”触发系统暂不在木剑首版实现。
 
 实现顺序建议：
 
-1. 在每个 `BattleState.step(frame_delta)` 开始时为玩家回复耐力。
+1. 在每个 `BattleState.step()` 开始时按 `BattleState.frame_delta` 为玩家回复耐力。
 2. 再遍历 active item 累积冷却并判定触发。
-3. 木剑触发后先运行 `StaminaConsumptionEffect` 消耗 1 点耐力；支付成功才继续运行 `MeleeAttackEffect`。
+3. 木剑的 `run_own_effect()` 判断冷却完成后先运行 `StaminaConsumptionEffect`；只有支付结果为 `True` 时才调用 `MeleeAttackEffect`。
 
 因为初始耐力满格，木剑第一次冷却完成时通常可以支付 1 点耐力并攻击。这仍然满足“木剑开局不攻击”。
 
@@ -436,9 +472,9 @@ apply(context) -> bool
 
 职责：
 
-- 检查 `context.owner.stamina` 是否足够。
-- 足够时扣除 `stamina_cost` 并返回 `True`，允许后续 effect 继续执行。
-- 不足时不扣耐力并返回 `False`，停止当前物品的后续 effect 和 linked item 调用。
+- 耐力足够时扣除 `stamina_cost` 并返回 `True`。
+- 耐力不足时不扣耐力并返回 `False`。
+- 返回值由具体物品的 `run_own_effect()` 解释。
 
 ### MeleeAttackEffect
 
@@ -458,11 +494,10 @@ apply(context) -> bool
 
 职责：
 
-- 使用 `BattleState.rng` 判定命中。
-- 命中后使用 `BattleState.rng` 在伤害区间内掷出伤害。
-- 先扣除对手 `block`，再扣除对手 `health`。
-- 未命中时不修改对手 `block` 或 `health`。
-- 执行完成后返回 `True`。
+- 创建独立的 melee `AttackEvent`，并调用 `BattleState.resolve_attack()`。
+- 命中、伤害抽取、攻击响应和 Block/Health 提交统一由 `BattleState` 处理。
+- 不直接修改对手 `block` 或 `health`。
+- 命中返回 `True`，未命中返回 `False`。
 
 ## 建议实现位置
 
@@ -470,8 +505,9 @@ apply(context) -> bool
 
 - `battle_module_v1.py`
   - 修改 `BattleItem`，增加所有物品通用的元数据字段：`display_name`、`item_classes`、`rarity`、`cost`、`item_types`、`icon_types`。
-  - 修改 `BattleItem.update_triggers(context)`，让它轮流调用 trigger 实例接口并汇总结果。
-  - 修改 `BattleItem.run_own_effects(context)`，让它轮流调用 effect 实例接口；当某个 effect 返回 `False` 时停止后续 effect，并让 `run_effects()` 跳过 linked item 调用。
+  - 修改 `BattleItem.update_triggers(context)`，让它轮流调用 trigger 实例接口，保存并返回 bool 结果列表。
+  - 用具体物品实现的 `BattleItem.run_own_effect(trigger_results, context)` 负责 trigger 组合、effect 分支和 linked item 返回值。
+  - 修改 `BattleItem.run_effects(context)`，固定执行 update triggers、run own effect、可选 linked items。
   - 在 `BattleItem.__init__()` 中把这些类属性复制到实例，支持未来测试或特殊工厂覆盖。
 - `item_factory_registry_v1.py`
   - 增加 `CooldownTrigger`。
@@ -505,10 +541,10 @@ apply(context) -> bool
 11. JSON 中每个玩家显式提供 `stamina` 和 `max_stamina`，标准开局要求 `stamina == max_stamina`。
 12. 玩家耐力每秒自然回复 1 点，且不超过当前 `max_stamina`。
 13. `CooldownTrigger` 冷却已满时只返回触发结果，不读取或修改玩家耐力。
-14. 冷却已满但耐力不足时，`StaminaConsumptionEffect` 返回 `False`，不扣耐力、不执行 `MeleeAttackEffect`，并且冷却已经进入新一轮。
+14. 冷却已满但耐力不足时，`StaminaConsumptionEffect` 返回 `False` 且不扣耐力；木剑的 `run_own_effect()` 不调用 `MeleeAttackEffect`，并且冷却已经进入新一轮。
 15. 耐力足够时先扣 1 点耐力，再执行命中和伤害判定。
-16. 命中时对手生命减少 1-3 中由 `BattleState.rng` 控制的随机值。
-17. 对手有 block 时先扣 block，再扣 health。
+16. 命中时创建的 `AttackEvent` 由 `BattleState.rng` 控制伤害抽取，并在提交前允许 `on_attacked` 响应修改待结算伤害。
+17. 所有攻击响应完成后，剩余伤害先扣 block，再扣 health。
 18. 未命中时不扣 block/health。
 19. `wooden_sword` 两格竖形可以被 `build_occupancy_matrix()` 正确写入矩阵。
 20. 一场双方都带木剑的最小战斗可以运行到 `winner` 或 `max_frames_reached`，不再因缺少 factory 报错。
@@ -516,9 +552,11 @@ apply(context) -> bool
 ## 已确认开发口径
 
 - `BattleItem` 公共字段使用 `item_classes`、`item_types`、`icon_types` 这一组归一化 tuple 字段。
-- trigger 和 effect 使用可复用实例，物品只负责组装和调用。
+- trigger 和 effect 使用可复用实例，具体物品负责组装，并在 `run_own_effect()` 中实现组合与调用逻辑。
 - 木剑 trigger 使用 `CooldownTrigger`，且 `CooldownTrigger` 不包含耐力消耗逻辑。
 - 木剑 effect 按顺序使用 `StaminaConsumptionEffect` 和 `MeleeAttackEffect`。
-- `BattleEffect.apply(context)` 返回 `bool`，用于决定是否继续执行后续 effect 和 linked item。
+- `BattleEffect.apply(context)` 返回 `bool`，具体物品的 `run_own_effect()` 解释该结果。
+- `BattleState.step()` 不使用 `is_triggered()`；`run_effects()` 无条件更新 trigger 并调用 `run_own_effect()`。
+- 木剑的 `run_own_effect()` 负责耐力失败后不调用近战 effect，并返回是否继续 linked items。
 - 木剑首版不落地 combat log。
 - 首版测试以状态断言为主，验证耐力、冷却、命中、伤害、护盾和胜负结果。

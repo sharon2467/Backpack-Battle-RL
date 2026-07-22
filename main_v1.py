@@ -1,6 +1,7 @@
 import argparse
 import json
 import sys
+from dataclasses import asdict
 from pathlib import Path
 
 from basic_backpack_v1 import ITEM_CATALOG
@@ -30,6 +31,8 @@ def normalize_player_specs(run_config):
         player_spec = {
             "player_id": player["player_id"],
             "health": player["health"],
+            "stamina": player["stamina"],
+            "max_stamina": player["max_stamina"],
             "placements": player["placements"],
         }
         player_specs.append(player_spec)
@@ -121,9 +124,20 @@ def _validate_run_config(run_config):
     for player in players:
         if not isinstance(player, dict):
             raise ValueError("player spec must be a dict")
-        for key in ("player_id", "health", "placements"):
+        for key in (
+            "player_id",
+            "health",
+            "stamina",
+            "max_stamina",
+            "placements",
+        ):
             if key not in player:
                 raise ValueError(f"missing required player field: {key}")
+
+        _validate_positive_number("player.stamina", player["stamina"])
+        _validate_positive_number("player.max_stamina", player["max_stamina"])
+        if player["stamina"] != player["max_stamina"]:
+            raise ValueError("player stamina must equal max_stamina at battle start")
 
 
 def _validate_positive_int(name, value):
@@ -178,8 +192,10 @@ def _serialize_player(player, metadata):
         "class_id": metadata.get("class_id"),
         "health": player.health,
         "block": player.block,
-        "buffs": dict(player.buffs),
-        "debuffs": dict(player.debuffs),
+        "stamina": player.stamina,
+        "max_stamina": player.max_stamina,
+        "buffs": asdict(player.buffs),
+        "debuffs": asdict(player.debuffs),
         "items": list(player.items),
     }
 

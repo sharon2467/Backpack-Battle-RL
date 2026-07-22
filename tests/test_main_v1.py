@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from battle_module_v1 import BattleItem
+from battle_module_v1 import BattleItem, Effect, Trigger
 from main_v1 import (
     load_battle_run_file,
     main,
@@ -15,21 +15,33 @@ from main_v1 import (
 )
 
 
+class AlwaysTrigger(Trigger):
+    def update(self, context):
+        return True
+
+
+class DamageEffect(Effect):
+    def __init__(self, damage):
+        self.damage = damage
+
+    def apply(self, context):
+        context.opponent.health -= self.damage
+        return True
+
+
 class DamageItem(BattleItem):
     def __init__(self, damage=100, **kwargs):
         super().__init__(
-            triggers=["always"],
-            effects=["damage"],
+            triggers=[AlwaysTrigger()],
+            effects=[DamageEffect(damage)],
             is_active_item=True,
             **kwargs,
         )
-        self.damage = damage
 
-    def update_triggers(self, context):
-        self.triggered = True
-
-    def run_own_effects(self, context):
-        context.opponent.health -= self.damage
+    def run_own_effect(self, trigger_results, context):
+        if not trigger_results[0]:
+            return False
+        return self.effects[0].apply(context)
 
 
 def make_damage_factory(damage=100):
@@ -51,12 +63,16 @@ def minimal_config(players=None, settings=None):
                 "player_id": 0,
                 "class_id": "ranger",
                 "health": 25,
+                "stamina": 5.0,
+                "max_stamina": 5.0,
                 "placements": [],
             },
             {
                 "player_id": 1,
                 "class_id": "reaper",
                 "health": 25,
+                "stamina": 5.0,
+                "max_stamina": 5.0,
                 "placements": [],
             },
         ]
@@ -77,8 +93,20 @@ class MainV1Test(unittest.TestCase):
         self.assertEqual(
             player_specs,
             [
-                {"player_id": 0, "health": 25, "placements": []},
-                {"player_id": 1, "health": 25, "placements": []},
+                {
+                    "player_id": 0,
+                    "health": 25,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [],
+                },
+                {
+                    "player_id": 1,
+                    "health": 25,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [],
+                },
             ],
         )
         self.assertEqual(metadata["players"][0]["class_id"], "ranger")
@@ -97,6 +125,24 @@ class MainV1Test(unittest.TestCase):
         self.assertEqual(result["time"], 1.0)
         self.assertEqual(result["players"][0]["class_id"], "ranger")
         self.assertEqual(result["players"][1]["class_id"], "reaper")
+        self.assertEqual(result["players"][0]["stamina"], 5.0)
+        self.assertEqual(result["players"][0]["max_stamina"], 5.0)
+        self.assertEqual(
+            result["players"][0]["buffs"],
+            {
+                "Empower": 0,
+                "Heat": 0,
+                "Luck": 0,
+                "Mana": 0,
+                "Regeneration": 0,
+                "Spikes": 0,
+                "Vampirism": 0,
+            },
+        )
+        self.assertEqual(
+            result["players"][0]["debuffs"],
+            {"Poison": 0, "Blind": 0, "Cold": 0},
+        )
         self.assertEqual(result["log"], [])
 
     def test_run_battle_from_config_returns_winner_result(self):
@@ -109,6 +155,8 @@ class MainV1Test(unittest.TestCase):
                     "player_id": 0,
                     "class_id": "ranger",
                     "health": 25,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
                     "placements": [
                         {"item_id": "stone", "x": 0, "y": 0, "rotation": 0},
                     ],
@@ -117,6 +165,8 @@ class MainV1Test(unittest.TestCase):
                     "player_id": 1,
                     "class_id": "reaper",
                     "health": 25,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
                     "placements": [],
                 },
             ],
@@ -176,6 +226,32 @@ class MainV1Test(unittest.TestCase):
         with self.assertRaises(ValueError):
             run_battle_from_config(config, item_factories={}, item_catalog={})
 
+    def test_missing_stamina_player_fields_fail(self):
+        for field_name in ("stamina", "max_stamina"):
+            with self.subTest(field_name=field_name):
+                config = minimal_config()
+                del config["players"][0][field_name]
+
+                with self.assertRaises(ValueError):
+                    run_battle_from_config(config, item_factories={}, item_catalog={})
+
+    def test_stamina_player_fields_must_be_positive_numbers(self):
+        for invalid_value in (0, True, "5"):
+            with self.subTest(invalid_value=invalid_value):
+                config = minimal_config()
+                config["players"][0]["stamina"] = invalid_value
+                config["players"][0]["max_stamina"] = invalid_value
+
+                with self.assertRaises(ValueError):
+                    run_battle_from_config(config, item_factories={}, item_catalog={})
+
+    def test_battle_must_start_with_full_stamina(self):
+        config = minimal_config()
+        config["players"][0]["stamina"] = 4.0
+
+        with self.assertRaises(ValueError):
+            run_battle_from_config(config, item_factories={}, item_catalog={})
+
     def test_missing_item_factory_fails(self):
         item_catalog = {
             "stone": {"item_id": "stone", "shape_cells": [(0, 0)]},
@@ -185,11 +261,19 @@ class MainV1Test(unittest.TestCase):
                 {
                     "player_id": 0,
                     "health": 25,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
                     "placements": [
                         {"item_id": "stone", "x": 0, "y": 0, "rotation": 0},
                     ],
                 },
-                {"player_id": 1, "health": 25, "placements": []},
+                {
+                    "player_id": 1,
+                    "health": 25,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [],
+                },
             ],
         )
 
@@ -215,11 +299,19 @@ class MainV1Test(unittest.TestCase):
                 {
                     "player_id": 0,
                     "health": 25,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
                     "placements": [
                         {"item_id": "stone", "x": 0, "y": 0, "rotation": 0},
                     ],
                 },
-                {"player_id": 1, "health": 25, "placements": []},
+                {
+                    "player_id": 1,
+                    "health": 25,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [],
+                },
             ],
         )
         with tempfile.TemporaryDirectory() as temp_dir:

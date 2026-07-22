@@ -35,13 +35,10 @@ class BattleItem:
     def update_triggers(self, context):
         pass
 
-    def is_triggered(self):
-        pass
-
     def run_effects(self, context):
         pass
 
-    def run_own_effects(self, context):
+    def run_own_effect(self, trigger_results, context):
         pass
 
     def run_linked_items(self, context):
@@ -65,11 +62,11 @@ class BattleItem:
 - `add_linked_item(linked_key)` 是登记关联的唯一入口，负责按 `item_key` 去重并保留首次登记顺序。
 - 同一个物品实例可以保存自己的运行时状态；优先把可复用状态放在 trigger/effect 实例中，例如冷却进度放在 `CooldownTrigger` 中。
 - 背包分析器在战斗开始前负责实例化物品，并把逻辑关联登记到对应物品的 `linked_items` 中。
-- 具体物品只负责组装自己的 trigger/effect 实例，不负责控制整场战斗循环。
+- 具体物品负责组装 trigger/effect 实例，并在 `run_own_effect()` 中实现自身调度逻辑；它不负责控制整场战斗循环。
 
 ## Trigger 和 Effect 组件
 
-trigger 和 effect 是独立组件实例。`BattleItem.update_triggers(context)` 只负责按顺序调用 trigger 实例接口，并把结果汇总到 `self.triggered`；`BattleItem.run_own_effects(context)` 只负责按顺序调用 effect 实例接口，并根据 effect 返回值决定是否继续。
+trigger 和 effect 是独立组件实例。`BattleItem.update_triggers(context)` 按顺序调用 trigger 并返回基础 bool 结果列表；具体物品的 `BattleItem.run_own_effect(trigger_results, context)` 负责组合 trigger、选择要调用的 effect、解释 effect 返回值，并决定是否继续检查 linked items。基本 effect 只执行自身效果。
 
 建议接口：
 
@@ -85,7 +82,7 @@ class BattleEffect:
     effect_key = None
 
     def apply(self, context):
-        """Apply this effect and return whether later effects should continue."""
+        """Apply this effect and return its boolean result."""
 ```
 
 `BattleItem.update_triggers(context)` 的默认流程：
@@ -95,34 +92,36 @@ def update_triggers(self, context):
     results = []
     for trigger in self.triggers:
         results.append(trigger.update(context))
-    self.triggered = all(results)
+    self.trigger_results = results
+    return results
 ```
 
-`BattleItem.run_own_effects(context)` 的默认流程：
+`BattleItem.run_effects(context)` 的固定流程：
 
 ```python
-def run_own_effects(self, context):
-    for effect in self.effects:
-        should_continue = effect.apply(context)
-        if should_continue is False:
-            return False
-    return True
+def run_effects(self, context):
+    trigger_results = self.update_triggers(context)
+    will_run_linked_items = self.run_own_effect(trigger_results, context)
+    if will_run_linked_items:
+        self.run_linked_items(context)
+    return will_run_linked_items
 ```
 
 约定：
 
-- V1 中多个 trigger 默认是 AND 关系，即所有 trigger 都返回 true 时物品才触发。
-- 复杂触发语义可以封装成一个组合 trigger，例如 `AnyTrigger`、`SequenceTrigger` 或物品专用 trigger，而不是让 `BattleItem` 理解所有组合规则。
+- 无论 trigger 结果是否全为 `False`，都调用具体物品的 `run_own_effect()`，因此 NOT-only 条件不会被框架提前过滤。
+- trigger 之间的 AND/OR/NOT、trigger 与 effect 的对应关系以及 effect 返回值依赖均由具体物品的 `run_own_effect()` 判断。
 - 有状态 trigger/effect 必须是每个物品实例独立创建的新对象，不能把 `CooldownTrigger(...)` 这类对象直接作为类属性共享。
 - trigger 可以有副作用，例如推进冷却、记录触发状态；资源消耗优先建模为 effect。`CooldownTrigger` 特别不读取、不判断、不消耗耐力。
 - effect 可以有副作用，例如扣血、扣护盾、加 buff、消耗资源；这些副作用必须通过 `context` 修改公共战斗状态。
-- effect 的返回值用于控制当前物品的后续执行。返回 `False` 表示停止后续 effect，并让 `run_effects()` 跳过 linked item 调用；返回 `True` 表示继续。
+- effect 只接收 `context` 并返回自身结果。返回 `False` 后是否调用其他 effect，由当前物品的 `run_own_effect()` 决定。
+- `run_own_effect()` 返回值统一表示 `will_run_linked_items`；框架只按该值决定是否递归 linked items。
 
 首批可复用组件：
 
 - `CooldownTrigger`: 最常见的主动触发器。逐帧累积冷却进度，冷却完成后扣除一轮冷却进度并返回 true；它不处理耐力。
-- `StaminaConsumptionEffect`: 最常见的耐力支付效果。耐力足够时扣除耐力并返回 true；耐力不足时不扣耐力并返回 false，停止后续 effect。
-- `MeleeAttackEffect`: 最常见的近战武器攻击效果。使用 `BattleState.rng` 做命中和伤害随机，命中后先扣对手 `block`，再扣 `health`。
+- `StaminaConsumptionEffect`: 最常见的耐力支付效果。被物品调用后，耐力足够时扣除耐力并返回 true；不足时不扣耐力并返回 false。
+- `MeleeAttackEffect`: 最常见的近战武器攻击效果。被物品调用后使用 `BattleState.rng` 做命中和伤害随机，命中后先扣对手 `block`，再扣 `health`。
 
 ## 主动物品和被动物品
 
@@ -148,10 +147,7 @@ while battle not finished:
 
     for active_item in active_items:
         context = build_context(active_item)
-        active_item.update_triggers(context)
-
-        if active_item.is_triggered():
-            active_item.run_effects(context)
+        active_item.run_effects(context)
 
     update battle state
     check battle end
@@ -161,16 +157,18 @@ while battle not finished:
 
 - 每一帧按顺序检查主动物品。
 - 每一帧先按 `frame_delta` 为玩家自然回复耐力，再检查主动物品。
-- 主动物品触发后，由它自己的 `run_effects()` 检查并调用 `linked_items`。
+- 每个主动物品都进入自己的 `run_effects()`；该方法更新 trigger、调用物品逻辑，并按返回值决定是否检查 `linked_items`。
 - 被动物品不单独进入主循环。
 - 关联物品的调用发生在物品内部，因此可以递归触发更深层的关联物品。
 - 如果某个物品既能独立触发，又能被其他物品触发，它可以同时是主动物品和关联物品。
-- 具体物品如果冷却完成但耐力不足，不应等待耐力；`CooldownTrigger` 已经进入新一轮冷却，随后由 `StaminaConsumptionEffect` 停止后续 effect。
+- 具体物品如果冷却完成但耐力不足，不应等待耐力；`CooldownTrigger` 已经进入新一轮冷却，木剑的 `run_own_effect()` 读取 `StaminaConsumptionEffect` 的 `False` 后不调用伤害 effect。
 
 `run_effects()` 的内部流程可以是：
 
 ```text
-if run this item's effects:
+trigger_results = update_triggers(context)
+will_run_linked_items = run_own_effect(trigger_results, context)
+if will_run_linked_items:
     run_linked_items(context)
 ```
 
@@ -180,10 +178,7 @@ if run this item's effects:
 for linked_key in self.linked_items:
     linked_item = context.owner.items[linked_key]
     linked_context = context.for_item(linked_item)
-    linked_item.update_triggers(linked_context)
-
-    if linked_item.is_triggered():
-        linked_item.run_effects(linked_context)
+    linked_item.run_effects(linked_context)
 ```
 
 ## 战斗状态

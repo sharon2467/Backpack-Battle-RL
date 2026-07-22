@@ -12,6 +12,44 @@ from basic_backpack_v1 import (
 
 
 class BasicBackpackV1Test(unittest.TestCase):
+    def test_wooden_buckler_occupies_two_by_two_cells_without_markers(self):
+        occupancy_matrix, placed_items = build_occupancy_matrix(
+            [{"item_id": "wooden_buckler", "x": 0, "y": 0, "rotation": 0}],
+            ITEM_CATALOG,
+        )
+
+        self.assertEqual(
+            ITEM_CATALOG["wooden_buckler"]["shape_cells"],
+            [[0, 0], [1, 0], [0, 1], [1, 1]],
+        )
+        self.assertEqual(ITEM_CATALOG["wooden_buckler"]["star_cells"], [])
+        self.assertEqual(
+            placed_items[0]["occupied_cells"],
+            [(0, 0), (1, 0), (0, 1), (1, 1)],
+        )
+        self.assertEqual(occupancy_matrix[6][0], "wooden_buckler1")
+        self.assertEqual(occupancy_matrix[6][1], "wooden_buckler1")
+        self.assertEqual(occupancy_matrix[5][0], "wooden_buckler1")
+        self.assertEqual(occupancy_matrix[5][1], "wooden_buckler1")
+
+    def test_wooden_sword_occupies_two_vertical_cells_without_markers(self):
+        occupancy_matrix, placed_items = build_occupancy_matrix(
+            [{"item_id": "wooden_sword", "x": 0, "y": 0, "rotation": 0}],
+            ITEM_CATALOG,
+        )
+
+        self.assertEqual(
+            ITEM_CATALOG["wooden_sword"]["shape_cells"],
+            [[0, 0], [0, 1]],
+        )
+        self.assertEqual(ITEM_CATALOG["wooden_sword"]["star_cells"], [])
+        self.assertEqual(
+            placed_items[0]["occupied_cells"],
+            [(0, 0), (0, 1)],
+        )
+        self.assertEqual(occupancy_matrix[6][0], "wooden_sword1")
+        self.assertEqual(occupancy_matrix[5][0], "wooden_sword1")
+
     def test_single_one_by_one_item_writes_to_bottom_left_matrix_cell(self):
         occupancy_matrix, placed_items = build_occupancy_matrix(
             [{"item_id": "stone", "x": 0, "y": 0, "rotation": 0}],

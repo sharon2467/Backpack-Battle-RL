@@ -21,13 +21,10 @@ V1 只做初始化和装配，不实现真实物品效果、不改商店、不�
 战斗执行时，物品需要的对局状态由外部调用方传入，例如：
 
 ```python
-active_item.update_triggers(context)
-
-if active_item.is_triggered():
-    active_item.run_effects(context)
+active_item.run_effects(context)
 ```
 
-`context` 由战斗循环基于当前 `BattleState`、触发物品、所属玩家和对手玩家临时构造。物品实例保存自己的内部可变状态，例如冷却、触发次数和临时加成；公共对局状态不挂在物品身上。
+`run_effects()` 内部固定执行“更新 trigger、调用具体物品的 `run_own_effect()`、按返回值决定是否检查 linked items”。`context` 由战斗循环基于当前 `BattleState`、触发物品、所属玩家和对手玩家临时构造。物品实例保存自己的内部可变状态，例如冷却、触发次数和临时加成；公共对局状态不挂在物品身上。
 
 ## 依赖边界
 

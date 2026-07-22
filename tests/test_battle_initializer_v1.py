@@ -1,22 +1,29 @@
 import unittest
 
 from battle_initializer_v1 import initialize_battle
-from battle_module_v1 import BattleItem
+from battle_module_v1 import BattleItem, Effect, Trigger
+
+
+class AlwaysTrigger(Trigger):
+    def update(self, context):
+        return True
+
+
+class NoopEffect(Effect):
+    def apply(self, context):
+        return True
 
 
 class TestBattleItem(BattleItem):
     def __init__(self, **kwargs):
         super().__init__(
-            triggers=["test_trigger"],
-            effects=["test_effect"],
+            triggers=[AlwaysTrigger()],
+            effects=[NoopEffect()],
             **kwargs,
         )
 
-    def update_triggers(self, context):
-        self.triggered = True
-
-    def run_own_effects(self, context):
-        pass
+    def run_own_effect(self, trigger_results, context):
+        return False
 
 
 def make_factory(is_active_item=False, **overrides):
@@ -33,6 +40,17 @@ def make_factory(is_active_item=False, **overrides):
     return factory
 
 
+def with_stamina(player_specs):
+    return [
+        {
+            "stamina": 5.0,
+            "max_stamina": 5.0,
+            **player_spec,
+        }
+        for player_spec in player_specs
+    ]
+
+
 class BattleInitializerV1Test(unittest.TestCase):
     def test_requires_exactly_two_players(self):
         with self.assertRaises(ValueError):
@@ -40,11 +58,11 @@ class BattleInitializerV1Test(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             initialize_battle(
-                [
+                with_stamina([
                     {"player_id": 0, "health": 25, "placements": []},
                     {"player_id": 1, "health": 25, "placements": []},
                     {"player_id": 2, "health": 25, "placements": []},
-                ],
+                ]),
                 {},
                 item_catalog={},
             )
@@ -52,9 +70,20 @@ class BattleInitializerV1Test(unittest.TestCase):
     def test_requires_unique_player_ids(self):
         with self.assertRaises(ValueError):
             initialize_battle(
+                with_stamina([
+                    {"player_id": 0, "health": 25, "placements": []},
+                    {"player_id": 0, "health": 25, "placements": []},
+                ]),
+                {},
+                item_catalog={},
+            )
+
+    def test_requires_stamina_fields(self):
+        with self.assertRaises(ValueError):
+            initialize_battle(
                 [
                     {"player_id": 0, "health": 25, "placements": []},
-                    {"player_id": 0, "health": 25, "placements": []},
+                    {"player_id": 1, "health": 25, "placements": []},
                 ],
                 {},
                 item_catalog={},
@@ -65,7 +94,7 @@ class BattleInitializerV1Test(unittest.TestCase):
             "stone": {"item_id": "stone", "shape_cells": [(0, 0)]},
         }
         battle = initialize_battle(
-            [
+            with_stamina([
                 {
                     "player_id": 0,
                     "health": 25,
@@ -75,7 +104,7 @@ class BattleInitializerV1Test(unittest.TestCase):
                     ],
                 },
                 {"player_id": 1, "health": 25, "placements": []},
-            ],
+            ]),
             {"stone": make_factory()},
             item_catalog=item_catalog,
         )
@@ -83,6 +112,8 @@ class BattleInitializerV1Test(unittest.TestCase):
         player = battle.players[0]
         self.assertEqual(player.player_id, 0)
         self.assertEqual(player.health, 25)
+        self.assertEqual(player.stamina, 5.0)
+        self.assertEqual(player.max_stamina, 5.0)
         self.assertEqual(list(player.items), ["stone1", "stone2"])
         self.assertEqual(player.items["stone1"].item_id, "stone")
         self.assertEqual(player.items["stone1"].item_key, "stone1")
@@ -100,7 +131,7 @@ class BattleInitializerV1Test(unittest.TestCase):
             "target": {"item_id": "target", "shape_cells": [(0, 0)]},
         }
         battle = initialize_battle(
-            [
+            with_stamina([
                 {
                     "player_id": 0,
                     "health": 25,
@@ -112,7 +143,7 @@ class BattleInitializerV1Test(unittest.TestCase):
                     ],
                 },
                 {"player_id": 1, "health": 25, "placements": []},
-            ],
+            ]),
             {
                 "source": make_factory(),
                 "target": make_factory(),
@@ -134,7 +165,7 @@ class BattleInitializerV1Test(unittest.TestCase):
             "target": {"item_id": "target", "shape_cells": [(0, 0)]},
         }
         battle = initialize_battle(
-            [
+            with_stamina([
                 {
                     "player_id": 0,
                     "health": 25,
@@ -144,7 +175,7 @@ class BattleInitializerV1Test(unittest.TestCase):
                     ],
                 },
                 {"player_id": 1, "health": 25, "placements": []},
-            ],
+            ]),
             {
                 "source": make_factory(),
                 "target": make_factory(),
@@ -161,7 +192,7 @@ class BattleInitializerV1Test(unittest.TestCase):
             "inactive": {"item_id": "inactive", "shape_cells": [(0, 0)]},
         }
         battle = initialize_battle(
-            [
+            with_stamina([
                 {
                     "player_id": 0,
                     "health": 25,
@@ -177,7 +208,7 @@ class BattleInitializerV1Test(unittest.TestCase):
                         {"item_id": "active", "x": 0, "y": 0, "rotation": 0},
                     ],
                 },
-            ],
+            ]),
             {
                 "active": make_factory(is_active_item=True),
                 "inactive": make_factory(is_active_item=False),
@@ -197,12 +228,12 @@ class BattleInitializerV1Test(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             initialize_battle(
-                [
+                with_stamina([
                     {"player_id": 0, "health": 25, "placements": [
                         {"item_id": "stone", "x": 0, "y": 0, "rotation": 0},
                     ]},
                     {"player_id": 1, "health": 25, "placements": []},
-                ],
+                ]),
                 {},
                 item_catalog=item_catalog,
             )
@@ -214,12 +245,12 @@ class BattleInitializerV1Test(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             initialize_battle(
-                [
+                with_stamina([
                     {"player_id": 0, "health": 25, "placements": [
                         {"item_id": "stone", "x": 0, "y": 0, "rotation": 0},
                     ]},
                     {"player_id": 1, "health": 25, "placements": []},
-                ],
+                ]),
                 {"stone": make_factory(return_value=object())},
                 item_catalog=item_catalog,
             )
@@ -231,12 +262,12 @@ class BattleInitializerV1Test(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             initialize_battle(
-                [
+                with_stamina([
                     {"player_id": 0, "health": 25, "placements": [
                         {"item_id": "stone", "x": 0, "y": 0, "rotation": 0},
                     ]},
                     {"player_id": 1, "health": 25, "placements": []},
-                ],
+                ]),
                 {"stone": make_factory(item_key="wrong1")},
                 item_catalog=item_catalog,
             )

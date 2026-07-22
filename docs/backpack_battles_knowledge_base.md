@@ -18,6 +18,7 @@
 | 合成配方（Recipe） | https://backpackbattles.wiki.gg/wiki/Recipe | 2025-10-24 | 合成规则及配方数据库入口 |
 | 增益效果（Buff） | https://backpackbattles.wiki.gg/wiki/Buff | 2024-03-28 | 增益效果定义 |
 | 减益效果（Debuff） | https://backpackbattles.wiki.gg/wiki/Debuff | 2024-03-28 | 减益效果定义 |
+| 冷却（Cooldown） | https://backpackbattles.wiki.gg/wiki/Cooldown | 查询于 2026-07-22 | 冷却加速/减速的组合公式 |
 | 效果（Effect） | https://backpackbattles.wiki.gg/wiki/Effect | 2024-11-08 | 效果伤害概念 |
 | Cargo `Items` 表 | `api.php?action=cargoquery&tables=Items` | 查询于 2026-07-09 | 结构化物品字段、数量及分类枚举 |
 | Cargo `Recipes` 表 | `api.php?action=cargoquery&tables=Recipes` | 查询于 2026-07-03 | 结构化配方字段及数量 |
@@ -290,7 +291,7 @@ wiki.gg 列出的其他战斗概念：
 - 狂战士之怒（`Battle Rage`）：狂战士职业物品特有机制，满足特定条件后进入一段时间的强化状态。
 - 护盾（`Block`）：每层抵挡一点伤害。
 - 治疗（`Heal`）：某些物品提供的直接治疗，注意恢复是Buff，治疗是其效果。
-- 疲惫（`Fatigue`）：战斗开始一段时间后双方每秒受到逐渐递增的疲惫伤害。F[i]=F[i-1]+ceil(F[i-1]/10)
+- 疲惫（`Fatigue`）：战斗开始一段时间后双方每秒受到逐渐递增的疲惫伤害。F[i]=F[i-1]+floor(F[i-1]/10)+1
 - 无敌（`Invulnerability`）：一段时间内受到的所有伤害变为0，注意仍视为受到伤害。
 - 眩晕（`Stun`）：一段时间内所有具有冷却的物品暂停冷却。
 - 复活（`Reincarnate`）：生命值归0，比赛即将失败时恢复部分生命值并继续战斗。
@@ -326,6 +327,13 @@ else:
 ```
 - 具有抵消规则的机制包括：狂热和冰冷，复制增益和无效化增益，复制减益和抵抗。
 
+冷却加速/减速的精确计算：
+
+- 所有加速与减速先相加并互相抵消。
+- 净加速比例为 `faster` 时，`cooldown = base_cooldown / (1 + faster)`；等价的逐帧冷却推进倍率为 `1 + faster`。
+- 净减速比例为 `slower` 时，`cooldown = base_cooldown * (1 + slower)`；等价的逐帧冷却推进倍率为 `1 / (1 + slower)`。
+- Heat 每层提供 2% 加速，Cold 每层提供 2% 减速。因此相同层数完全抵消，只对抵消后的净层数应用对应分支。
+
 模拟含义：
 
 - 战斗引擎应以事件/时间线为基础。
@@ -342,15 +350,18 @@ else:
 - 除非未来有某个效果修改规则，否则耐力自然恢复速度为每秒 1 点。
 - `CooldownTrigger` 不检查也不消耗耐力；它只推进冷却并报告是否就绪。
 - 耐力消耗由独立的 `StaminaConsumptionEffect` 建模。
-- 如果一件物品结束冷却时其拥有者没有足够耐力，该物品不会等待。此时冷却已经进入新的周期；`StaminaConsumptionEffect` 会失败且不消耗耐力，并停止执行近战伤害等后续效果。
+- 如果一件物品结束冷却时其拥有者没有足够耐力，该物品不会等待。此时冷却已经进入新的周期；`StaminaConsumptionEffect` 会返回 `False` 且不消耗耐力，木剑的 `run_own_effect()` 据此不调用后续近战伤害 effect。
 - `BattleState` 持有用于命中检查、伤害抽取等战斗随机过程的全局随机数生成器。
 
 项目中的触发器/效果组合决定：
 
-- 触发器和效果逻辑应由可复用的组件实例实现，不应分别硬编码到每个物品类中。
-- `BattleItem.update_triggers(context)` 应调用每个触发器实例的接口并合并结果。
-- `BattleItem.run_own_effects(context)` 应按顺序调用每个效果实例的接口，并在某个效果返回 `False` 时停止。
-- 具体物品应主要负责组装触发器/效果实例并提供物品元数据。
+- 基础 trigger/effect 行为应由可复用组件实例实现；具体物品类只编写组合这些结果所需的简明调度逻辑，不重复实现冷却、耐力支付、攻击等基础行为。
+- `BattleItem.update_triggers(context)` 应调用每个触发器实例的接口，保存并返回与 trigger 顺序一致的基础 bool 结果列表。
+- `BattleItem.run_effects(context)` 应始终先更新 trigger，再调用具体物品的 `run_own_effect(trigger_results, context)`，最后按其 bool 返回值决定是否检查 linked items。
+- `BattleState.step()` 和 `run_linked_items()` 不应使用 `is_triggered()` 或其他 trigger 粗筛；即使所有基础 trigger 都为 `False`，仍进入 `run_own_effect()`，以支持 NOT trigger 条件。
+- trigger 的 AND/OR/NOT、effect 是否调用、effect 失败后的分支，以及是否继续 linked items，都由具体物品的 `run_own_effect()` 决定。
+- 基本 effect 只接收 `context` 并执行自身效果；它不接收 trigger 结果，也不负责物品级激活判断。
+- 具体物品应主要负责组装触发器/效果实例、提供物品元数据并实现简明的 `run_own_effect()` 调度逻辑。
 - 有状态的触发器/效果对象必须按物品实例创建，不能作为可变的类级对象共享。
 - 木剑（Wooden Sword）应使用可复用的 `CooldownTrigger`、`StaminaConsumptionEffect` 和 `MeleeAttackEffect`；未来具有类似行为的物品也应复用这些组件。
 - 第一版木剑刻意不实现战斗日志；测试应直接验证状态变化。
