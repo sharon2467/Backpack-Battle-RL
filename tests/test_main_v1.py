@@ -25,7 +25,13 @@ class DamageEffect(Effect):
         self.damage = damage
 
     def apply(self, context):
-        context.opponent.health -= self.damage
+        blocked_damage = min(context.opponent.block, self.damage)
+        health_damage = self.damage - blocked_damage
+        context.battle_state.commit_health_reduction(
+            context.opponent,
+            blocked_damage,
+            health_damage,
+        )
         return True
 
 
@@ -181,12 +187,47 @@ class MainV1Test(unittest.TestCase):
 
         self.assertEqual(result["winner"], 0)
         self.assertEqual(result["finish_reason"], "winner")
-        self.assertEqual(result["frame"], 1)
-        self.assertEqual(result["players"][1]["health"], -75)
+        self.assertEqual(result["frame"], 0)
+        self.assertEqual(result["time"], 0.0)
+        self.assertEqual(result["players"][1]["health"], 0)
         self.assertEqual(
             result["active_items"],
             [{"player_id": 0, "item_key": "stone1", "item_id": "stone"}],
         )
+
+    def test_run_battle_serializes_fatigue_damage(self):
+        result = run_battle_from_config(
+            minimal_config(
+                settings={"max_frames": 17, "frame_delta": 1.0},
+            ),
+            item_factories={},
+            item_catalog={},
+        )
+
+        self.assertEqual(result["players"][0]["fatigue_damage"], 1)
+        self.assertEqual(result["players"][1]["fatigue_damage"], 1)
+
+    def test_lethal_fatigue_returns_player_win_without_draw(self):
+        config = minimal_config(
+            settings={"max_frames": 17, "frame_delta": 1.0},
+        )
+        config["players"][0]["health"] = 1
+        config["players"][1]["health"] = 1
+
+        result = run_battle_from_config(
+            config,
+            item_factories={},
+            item_catalog={},
+        )
+
+        self.assertEqual(result["winner"], 0)
+        self.assertEqual(result["finish_reason"], "winner")
+        self.assertEqual(result["frame"], 17)
+        self.assertEqual(result["time"], 17.0)
+        self.assertEqual(result["players"][0]["health"], 1)
+        self.assertEqual(result["players"][0]["fatigue_damage"], 0)
+        self.assertEqual(result["players"][1]["health"], 0)
+        self.assertEqual(result["players"][1]["fatigue_damage"], 1)
 
     def test_load_battle_run_file_reads_and_validates_json(self):
         with tempfile.TemporaryDirectory() as temp_dir:

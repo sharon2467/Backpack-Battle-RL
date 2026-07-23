@@ -192,6 +192,7 @@ def _serialize_player(player, metadata):
         "class_id": metadata.get("class_id"),
         "health": player.health,
         "block": player.block,
+        "fatigue_damage": player.fatigue_damage,
         "stamina": player.stamina,
         "max_stamina": player.max_stamina,
         "buffs": asdict(player.buffs),

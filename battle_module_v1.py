@@ -5,6 +5,23 @@ from typing import Sequence
 
 ATTACK_PHASE_ON_ATTACKED = "on_attacked"
 SUPPORTED_ATTACK_REACTION_PHASES = (ATTACK_PHASE_ON_ATTACKED,)
+NIGHTFALL_FATIGUE_START_TIME = 17.0
+NIGHTFALL_FATIGUE_INTERVAL = 1.0
+TIME_COMPARISON_EPSILON = 1e-9
+
+
+def calculate_next_fatigue_damage(
+    previous: int,
+    *,
+    nightfall: bool,
+)->int:
+    if type(previous) is not int or previous < 0:
+        raise ValueError("previous fatigue damage must be a non-negative int")
+    if type(nightfall) is not bool:
+        raise ValueError("nightfall must be a bool")
+    if nightfall:
+        return previous + previous // 10 + 1
+    return previous + 1
 
 class Trigger:
     def update(self, context:BattleContext)->bool:
@@ -111,11 +128,24 @@ class PlayerState:
     player_id: object = None
     health: int = 0
     block: int = 0
+    fatigue_damage: int = 0
     stamina: float = 0.0
     max_stamina: float = 0.0
     buffs: BuffSlot = field(default_factory=BuffSlot)
     debuffs: DebuffSlot = field(default_factory=DebuffSlot)
     items: dict[str,BattleItem] = field(default_factory=dict)
+
+    def __setattr__(self, name, value):
+        if (
+            name == "health"
+            and "health" in self.__dict__
+            and value < self.__dict__["health"]
+        ):
+            raise ValueError(
+                "health reductions must use "
+                "BattleState.commit_health_reduction"
+            )
+        super().__setattr__(name, value)
 
 
 @dataclass
@@ -136,6 +166,9 @@ class AttackEvent:
     is_resolved: bool = False
 
 
+class _BattleFinishedSignal(Exception):
+    pass
+
 
 @dataclass
 class BattleState:
@@ -145,26 +178,33 @@ class BattleState:
     active_items: list[BattleItem] = field(default_factory=list)
     winner: object = None
     frame_delta: float = 1.0
+    next_nightfall_fatigue_time: float = NIGHTFALL_FATIGUE_START_TIME
     rng: random.Random = field(default_factory=random.Random)
     _responder_item_cache: dict[
         object,
         dict[str, tuple[BattleItem, ...]],
     ] = field(default_factory=dict, init=False, repr=False)
 
-    def step(self):
+    def regenerate_stamina(self):
         for player in self.players:
             player.stamina = min(
                 player.max_stamina,
                 player.stamina + self.frame_delta,
             )
 
-        for active_item in list(self.active_items):
-            context = self.build_context(active_item)
-            active_item.run_effects(context)
+    def step(self):
+        frame_end_time = self.time + self.frame_delta
+        self.regenerate_stamina()
+        try:
+            for active_item in list(self.active_items):
+                context = self.build_context(active_item)
+                active_item.run_effects(context)
 
-        self.frame += 1
-        self.time += self.frame_delta
-        self.check_battle_end()
+            self.frame += 1
+            self._apply_due_nightfall_fatigue(frame_end_time)
+        except _BattleFinishedSignal:
+            return self.winner
+
         return self.winner
 
     def run(self, max_frames: int, frame_delta: float = 1.0):
@@ -182,6 +222,52 @@ class BattleState:
         alive_players = [player for player in self.players if player.health > 0]
         if len(alive_players) == 1:
             self.winner = alive_players[0].player_id
+
+    def stop_if_battle_ended(self):
+        self.check_battle_end()
+        if self.winner is not None:
+            raise _BattleFinishedSignal()
+
+    def inflict_fatigue(
+        self,
+        target: PlayerState,
+        *,
+        nightfall: bool,
+    )->int:
+        if self.get_player(target.player_id) is not target:
+            raise ValueError("fatigue target is not part of this battle")
+
+        next_damage = calculate_next_fatigue_damage(
+            target.fatigue_damage,
+            nightfall=nightfall,
+        )
+        target.fatigue_damage = next_damage
+        blocked_damage = min(target.block, next_damage)
+        health_damage = next_damage - blocked_damage
+        self.commit_health_reduction(
+            target,
+            blocked_damage,
+            health_damage,
+        )
+        return next_damage
+
+    def _apply_due_nightfall_fatigue(self, frame_end_time: float)->None:
+        if len(self.players) != 2:
+            self.time = frame_end_time
+            return
+
+        while (
+            self.next_nightfall_fatigue_time
+            <= frame_end_time + TIME_COMPARISON_EPSILON
+        ):
+            event_time = self.next_nightfall_fatigue_time
+            self.next_nightfall_fatigue_time += NIGHTFALL_FATIGUE_INTERVAL
+            self.time = event_time
+
+            for target in (self.players[1], self.players[0]):
+                self.inflict_fatigue(target, nightfall=True)
+
+        self.time = frame_end_time
 
     def build_context(self, item: BattleItem)->BattleContext:
         owner = self.get_player(item.player_id)
@@ -262,8 +348,21 @@ class BattleState:
             event.defender,
             event,
         )
-        self.commit_attack_damage(event)
+        if event.is_resolved:
+            raise ValueError("cannot commit a resolved attack event")
+        if event.hit is not True:
+            raise ValueError("cannot commit an attack that did not hit")
+        if event.pending_damage < 0:
+            raise ValueError("pending attack damage cannot be negative")
+        event.block_damage = min(event.defender.block, event.pending_damage)
+        event.health_damage = event.pending_damage - event.block_damage
         event.is_resolved = True
+        # Battle log may be added here in the future to record the attack event details.
+        self.commit_health_reduction(
+            event.defender,
+            event.block_damage,
+            event.health_damage,
+        )
         return event
 
     def dispatch_attack_reactions(
@@ -285,20 +384,28 @@ class BattleState:
             )
             item.run_effects(context)
 
-    def commit_attack_damage(self, event: AttackEvent)->None:
-        if event.is_resolved:
-            raise ValueError("cannot commit a resolved attack event")
-        if event.hit is not True:
-            raise ValueError("cannot commit an attack that did not hit")
-        if event.pending_damage < 0:
-            raise ValueError("pending attack damage cannot be negative")
-
-        blocked_damage = min(event.defender.block, event.pending_damage)
-        health_damage = event.pending_damage - blocked_damage
-        event.defender.block -= blocked_damage
-        event.defender.health -= health_damage
-        event.block_damage = blocked_damage
-        event.health_damage = health_damage
+    def commit_health_reduction(
+        self,
+        player: PlayerState,
+        blocked_damage: int,
+        health_damage: int,
+    )->None:
+        if self.get_player(player.player_id) is not player:
+            raise ValueError("health reduction target is not part of this battle")
+        if (
+            type(blocked_damage) is not int
+            or type(health_damage) is not int
+            or blocked_damage < 0
+            or health_damage < 0
+        ):
+            raise ValueError("health reduction values must be non-negative ints")
+        if blocked_damage > player.block:
+            raise ValueError("blocked damage cannot exceed current block")
+        if health_damage > player.health:
+            health_damage = player.health
+        player.block -= blocked_damage
+        object.__setattr__(player, "health", player.health - health_damage)
+        self.stop_if_battle_ended()
 
     def get_player(self, player_id):
         for player in self.players:

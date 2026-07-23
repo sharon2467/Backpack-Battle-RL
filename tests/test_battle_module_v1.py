@@ -6,6 +6,7 @@ from battle_module_v1 import (
     Effect,
     PlayerState,
     Trigger,
+    calculate_next_fatigue_damage,
     evaluate_layout,
 )
 
@@ -615,6 +616,365 @@ class BattleModuleV1Test(unittest.TestCase):
         self.assertEqual(second_player.buffs.Heat, 0)
         self.assertEqual(second_player.debuffs.Poison, 0)
         self.assertEqual(second_player.items, {})
+
+    def test_player_state_rejects_direct_health_reduction(self):
+        player = PlayerState(player_id=0, health=10)
+
+        with self.assertRaisesRegex(
+            ValueError,
+            "health reductions must use BattleState.commit_health_reduction",
+        ):
+            player.health -= 1
+
+        self.assertEqual(player.health, 10)
+
+    def test_player_state_allows_direct_health_increase(self):
+        player = PlayerState(player_id=0, health=10)
+
+        player.health += 3
+
+        self.assertEqual(player.health, 13)
+
+    def test_commit_health_reduction_updates_block_and_health(self):
+        target = PlayerState(player_id=0, health=10, block=3)
+        opponent = PlayerState(player_id=1, health=10)
+        battle = BattleState(players=[target, opponent])
+
+        battle.commit_health_reduction(
+            target,
+            blocked_damage=2,
+            health_damage=4,
+        )
+
+        self.assertEqual(target.block, 1)
+        self.assertEqual(target.health, 6)
+        self.assertIsNone(battle.winner)
+
+    def test_commit_health_reduction_rejects_invalid_values(self):
+        target = PlayerState(player_id=0, health=10, block=3)
+        opponent = PlayerState(player_id=1, health=10)
+        battle = BattleState(players=[target, opponent])
+
+        invalid_values = [
+            (-1, 0),
+            (0, -1),
+            (4, 0),
+            (1.0, 0),
+            (0, 1.0),
+        ]
+        for blocked_damage, health_damage in invalid_values:
+            with self.subTest(
+                blocked_damage=blocked_damage,
+                health_damage=health_damage,
+            ):
+                with self.assertRaises(ValueError):
+                    battle.commit_health_reduction(
+                        target,
+                        blocked_damage,
+                        health_damage,
+                    )
+
+        self.assertEqual(target.block, 3)
+        self.assertEqual(target.health, 10)
+
+    def test_commit_health_reduction_rejects_player_outside_battle(self):
+        first_player = PlayerState(player_id=0, health=10)
+        second_player = PlayerState(player_id=1, health=10)
+        outsider = PlayerState(player_id=2, health=10)
+        battle = BattleState(players=[first_player, second_player])
+
+        with self.assertRaises(ValueError):
+            battle.commit_health_reduction(
+                outsider,
+                blocked_damage=0,
+                health_damage=1,
+            )
+
+        self.assertEqual(outsider.health, 10)
+
+    def test_calculate_item_fatigue_increases_by_one(self):
+        self.assertEqual(
+            calculate_next_fatigue_damage(0, nightfall=False),
+            1,
+        )
+        self.assertEqual(
+            calculate_next_fatigue_damage(10, nightfall=False),
+            11,
+        )
+
+    def test_calculate_nightfall_fatigue_uses_accelerating_formula(self):
+        expected_values = {
+            0: 1,
+            9: 10,
+            10: 12,
+            29: 32,
+        }
+
+        for previous, expected in expected_values.items():
+            with self.subTest(previous=previous):
+                self.assertEqual(
+                    calculate_next_fatigue_damage(
+                        previous,
+                        nightfall=True,
+                    ),
+                    expected,
+                )
+
+    def test_calculate_fatigue_rejects_invalid_arguments(self):
+        invalid_previous_values = (-1, 1.0, True)
+        for previous in invalid_previous_values:
+            with self.subTest(previous=previous):
+                with self.assertRaises(ValueError):
+                    calculate_next_fatigue_damage(
+                        previous,
+                        nightfall=True,
+                    )
+
+        with self.assertRaises(ValueError):
+            calculate_next_fatigue_damage(0, nightfall=1)
+
+    def test_nightfall_fatigue_first_triggers_at_seventeen_seconds(self):
+        first_player = PlayerState(player_id=0, health=100)
+        second_player = PlayerState(player_id=1, health=100)
+        battle = BattleState(players=[first_player, second_player])
+
+        battle.run(max_frames=16, frame_delta=1.0)
+
+        self.assertEqual(battle.time, 16.0)
+        self.assertEqual(first_player.health, 100)
+        self.assertEqual(second_player.health, 100)
+        self.assertEqual(first_player.fatigue_damage, 0)
+        self.assertEqual(second_player.fatigue_damage, 0)
+
+        battle.step()
+
+        self.assertEqual(battle.time, 17.0)
+        self.assertEqual(first_player.health, 99)
+        self.assertEqual(second_player.health, 99)
+        self.assertEqual(first_player.fatigue_damage, 1)
+        self.assertEqual(second_player.fatigue_damage, 1)
+
+    def test_nightfall_fatigue_repeats_each_second(self):
+        first_player = PlayerState(player_id=0, health=100)
+        second_player = PlayerState(player_id=1, health=100)
+        battle = BattleState(players=[first_player, second_player])
+
+        battle.run(max_frames=19, frame_delta=1.0)
+
+        self.assertEqual(first_player.health, 94)
+        self.assertEqual(second_player.health, 94)
+        self.assertEqual(first_player.fatigue_damage, 3)
+        self.assertEqual(second_player.fatigue_damage, 3)
+        self.assertEqual(battle.next_nightfall_fatigue_time, 20.0)
+
+    def test_nightfall_fatigue_catches_up_crossed_ticks(self):
+        first_player = PlayerState(player_id=0, health=100)
+        second_player = PlayerState(player_id=1, health=100)
+        battle = BattleState(
+            frame=16,
+            time=16.0,
+            players=[first_player, second_player],
+        )
+
+        battle.run(max_frames=1, frame_delta=2.0)
+
+        self.assertEqual(battle.frame, 17)
+        self.assertEqual(battle.time, 18.0)
+        self.assertEqual(first_player.health, 97)
+        self.assertEqual(second_player.health, 97)
+        self.assertEqual(first_player.fatigue_damage, 2)
+        self.assertEqual(second_player.fatigue_damage, 2)
+        self.assertEqual(battle.next_nightfall_fatigue_time, 19.0)
+
+    def test_players_keep_independent_fatigue_damage(self):
+        first_player = PlayerState(
+            player_id=0,
+            health=100,
+            fatigue_damage=8,
+        )
+        second_player = PlayerState(player_id=1, health=100)
+        battle = BattleState(
+            frame=16,
+            time=16.0,
+            players=[first_player, second_player],
+        )
+
+        battle.step()
+
+        self.assertEqual(first_player.fatigue_damage, 9)
+        self.assertEqual(first_player.health, 91)
+        self.assertEqual(second_player.fatigue_damage, 1)
+        self.assertEqual(second_player.health, 99)
+
+    def test_fatigue_consumes_block_before_health(self):
+        first_player = PlayerState(player_id=0, health=10)
+        target = PlayerState(player_id=1, health=10, block=2)
+        battle = BattleState(players=[first_player, target])
+
+        first_damage = battle.inflict_fatigue(
+            target,
+            nightfall=False,
+        )
+        second_damage = battle.inflict_fatigue(
+            target,
+            nightfall=False,
+        )
+
+        self.assertEqual(first_damage, 1)
+        self.assertEqual(second_damage, 2)
+        self.assertEqual(target.fatigue_damage, 2)
+        self.assertEqual(target.block, 0)
+        self.assertEqual(target.health, 9)
+
+    def test_opponent_takes_nightfall_fatigue_before_player(self):
+        target_order = []
+
+        class RecordingFatigueBattleState(BattleState):
+            def inflict_fatigue(self, target, *, nightfall):
+                target_order.append(target.player_id)
+                return super().inflict_fatigue(
+                    target,
+                    nightfall=nightfall,
+                )
+
+        first_player = PlayerState(player_id=0, health=100)
+        second_player = PlayerState(player_id=1, health=100)
+        battle = RecordingFatigueBattleState(
+            frame=16,
+            time=16.0,
+            players=[first_player, second_player],
+        )
+
+        battle.step()
+
+        self.assertEqual(target_order, [1, 0])
+
+    def test_player_wins_lethal_nightfall_fatigue_race(self):
+        first_player = PlayerState(player_id=0, health=1)
+        second_player = PlayerState(player_id=1, health=1)
+        battle = BattleState(
+            frame=16,
+            time=16.0,
+            players=[first_player, second_player],
+        )
+
+        battle.step()
+
+        self.assertEqual(battle.winner, 0)
+        self.assertEqual(battle.frame, 17)
+        self.assertEqual(battle.time, 17.0)
+        self.assertEqual(first_player.health, 1)
+        self.assertEqual(first_player.fatigue_damage, 0)
+        self.assertEqual(second_player.health, 0)
+        self.assertEqual(second_player.fatigue_damage, 1)
+
+    def test_lethal_fatigue_stops_remaining_targets_and_ticks(self):
+        first_player = PlayerState(player_id=0, health=1)
+        second_player = PlayerState(player_id=1, health=1)
+        battle = BattleState(
+            frame=16,
+            time=16.0,
+            frame_delta=3.0,
+            players=[first_player, second_player],
+        )
+
+        battle.step()
+
+        self.assertEqual(battle.winner, 0)
+        self.assertEqual(battle.frame, 17)
+        self.assertEqual(battle.time, 17.0)
+        self.assertEqual(battle.next_nightfall_fatigue_time, 18.0)
+        self.assertEqual(first_player.fatigue_damage, 0)
+        self.assertEqual(second_player.fatigue_damage, 1)
+
+    def test_item_kill_before_frame_end_skips_nightfall_fatigue(self):
+        def deal_lethal_damage(item, trigger_results, context):
+            context.battle_state.commit_health_reduction(
+                context.opponent,
+                blocked_damage=0,
+                health_damage=10,
+            )
+            return False
+
+        active_item = DecisionItem(
+            trigger_results=[True],
+            effect_results=[True],
+            decision=deal_lethal_damage,
+            item_key="active1",
+            player_id=0,
+            is_active_item=True,
+        )
+        first_player = PlayerState(
+            player_id=0,
+            health=10,
+            items={"active1": active_item},
+        )
+        second_player = PlayerState(player_id=1, health=10)
+        battle = BattleState(
+            frame=16,
+            time=16.0,
+            players=[first_player, second_player],
+            active_items=[active_item],
+        )
+
+        battle.step()
+
+        self.assertEqual(battle.winner, 0)
+        self.assertEqual(battle.frame, 16)
+        self.assertEqual(battle.time, 16.0)
+        self.assertEqual(battle.next_nightfall_fatigue_time, 17.0)
+        self.assertEqual(first_player.fatigue_damage, 0)
+        self.assertEqual(second_player.fatigue_damage, 0)
+
+    def test_lethal_health_reduction_stops_remaining_active_items(self):
+        log = []
+
+        def deal_lethal_damage(item, trigger_results, context):
+            log.append("lethal")
+            context.battle_state.commit_health_reduction(
+                context.opponent,
+                blocked_damage=0,
+                health_damage=10,
+            )
+            log.append("unreachable")
+            return False
+
+        first_item = DecisionItem(
+            trigger_results=[True],
+            effect_results=[True],
+            decision=deal_lethal_damage,
+            item_key="first1",
+            player_id=0,
+            is_active_item=True,
+        )
+        second_item = RecordingItem(
+            "second",
+            log,
+            item_key="second1",
+            player_id=1,
+            is_active_item=True,
+        )
+        first_player = PlayerState(
+            player_id=0,
+            health=10,
+            items={"first1": first_item},
+        )
+        second_player = PlayerState(
+            player_id=1,
+            health=10,
+            items={"second1": second_item},
+        )
+        battle = BattleState(
+            players=[first_player, second_player],
+            active_items=[first_item, second_item],
+        )
+
+        battle.step()
+
+        self.assertEqual(log, ["lethal"])
+        self.assertEqual(battle.winner, 0)
+        self.assertEqual(battle.frame, 0)
+        self.assertEqual(battle.time, 0.0)
 
     def test_battle_state_sets_winner_when_one_player_remains_alive(self):
         winner = PlayerState(player_id=0, health=10)
