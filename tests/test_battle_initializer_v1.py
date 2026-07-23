@@ -22,8 +22,8 @@ class TestBattleItem(BattleItem):
             **kwargs,
         )
 
-    def run_own_effect(self, trigger_results, context):
-        return False
+    def run_effect(self, trigger_results, context):
+        return
 
 
 def make_factory(is_active_item=False, **overrides):
@@ -40,9 +40,10 @@ def make_factory(is_active_item=False, **overrides):
     return factory
 
 
-def with_stamina(player_specs):
+def with_required_player_resources(player_specs):
     return [
         {
+            "max_health": 25,
             "stamina": 5.0,
             "max_stamina": 5.0,
             **player_spec,
@@ -58,7 +59,7 @@ class BattleInitializerV1Test(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             initialize_battle(
-                with_stamina([
+                with_required_player_resources([
                     {"player_id": 0, "health": 25, "placements": []},
                     {"player_id": 1, "health": 25, "placements": []},
                     {"player_id": 2, "health": 25, "placements": []},
@@ -70,7 +71,7 @@ class BattleInitializerV1Test(unittest.TestCase):
     def test_requires_unique_player_ids(self):
         with self.assertRaises(ValueError):
             initialize_battle(
-                with_stamina([
+                with_required_player_resources([
                     {"player_id": 0, "health": 25, "placements": []},
                     {"player_id": 0, "health": 25, "placements": []},
                 ]),
@@ -82,8 +83,44 @@ class BattleInitializerV1Test(unittest.TestCase):
         with self.assertRaises(ValueError):
             initialize_battle(
                 [
-                    {"player_id": 0, "health": 25, "placements": []},
-                    {"player_id": 1, "health": 25, "placements": []},
+                    {
+                        "player_id": 0,
+                        "health": 25,
+                        "max_health": 25,
+                        "placements": [],
+                    },
+                    {
+                        "player_id": 1,
+                        "health": 25,
+                        "max_health": 25,
+                        "placements": [],
+                    },
+                ],
+                {},
+                item_catalog={},
+            )
+
+    def test_requires_max_health(self):
+        with self.assertRaisesRegex(
+            ValueError,
+            "missing required field: max_health",
+        ):
+            initialize_battle(
+                [
+                    {
+                        "player_id": 0,
+                        "health": 25,
+                        "stamina": 5.0,
+                        "max_stamina": 5.0,
+                        "placements": [],
+                    },
+                    {
+                        "player_id": 1,
+                        "health": 25,
+                        "stamina": 5.0,
+                        "max_stamina": 5.0,
+                        "placements": [],
+                    },
                 ],
                 {},
                 item_catalog={},
@@ -94,7 +131,7 @@ class BattleInitializerV1Test(unittest.TestCase):
             "stone": {"item_id": "stone", "shape_cells": [(0, 0)]},
         }
         battle = initialize_battle(
-            with_stamina([
+            with_required_player_resources([
                 {
                     "player_id": 0,
                     "health": 25,
@@ -112,12 +149,38 @@ class BattleInitializerV1Test(unittest.TestCase):
         player = battle.players[0]
         self.assertEqual(player.player_id, 0)
         self.assertEqual(player.health, 25)
+        self.assertEqual(player.max_health, 25)
         self.assertEqual(player.stamina, 5.0)
         self.assertEqual(player.max_stamina, 5.0)
         self.assertEqual(list(player.items), ["stone1", "stone2"])
         self.assertEqual(player.items["stone1"].item_id, "stone")
         self.assertEqual(player.items["stone1"].item_key, "stone1")
         self.assertEqual(player.items["stone1"].player_id, 0)
+
+    def test_passes_explicit_max_health_to_player_state(self):
+        battle = initialize_battle(
+            with_required_player_resources([
+                {
+                    "player_id": 0,
+                    "health": 6,
+                    "max_health": 10,
+                    "placements": [],
+                },
+                {
+                    "player_id": 1,
+                    "health": 8,
+                    "max_health": 12,
+                    "placements": [],
+                },
+            ]),
+            {},
+            item_catalog={},
+        )
+
+        self.assertEqual(battle.players[0].health, 6)
+        self.assertEqual(battle.players[0].max_health, 10)
+        self.assertEqual(battle.players[1].health, 8)
+        self.assertEqual(battle.players[1].max_health, 12)
 
     def test_marker_links_are_attached_as_target_keys(self):
         item_catalog = {
@@ -131,7 +194,7 @@ class BattleInitializerV1Test(unittest.TestCase):
             "target": {"item_id": "target", "shape_cells": [(0, 0)]},
         }
         battle = initialize_battle(
-            with_stamina([
+            with_required_player_resources([
                 {
                     "player_id": 0,
                     "health": 25,
@@ -165,7 +228,7 @@ class BattleInitializerV1Test(unittest.TestCase):
             "target": {"item_id": "target", "shape_cells": [(0, 0)]},
         }
         battle = initialize_battle(
-            with_stamina([
+            with_required_player_resources([
                 {
                     "player_id": 0,
                     "health": 25,
@@ -192,7 +255,7 @@ class BattleInitializerV1Test(unittest.TestCase):
             "inactive": {"item_id": "inactive", "shape_cells": [(0, 0)]},
         }
         battle = initialize_battle(
-            with_stamina([
+            with_required_player_resources([
                 {
                     "player_id": 0,
                     "health": 25,
@@ -228,7 +291,7 @@ class BattleInitializerV1Test(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             initialize_battle(
-                with_stamina([
+                with_required_player_resources([
                     {"player_id": 0, "health": 25, "placements": [
                         {"item_id": "stone", "x": 0, "y": 0, "rotation": 0},
                     ]},
@@ -245,7 +308,7 @@ class BattleInitializerV1Test(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             initialize_battle(
-                with_stamina([
+                with_required_player_resources([
                     {"player_id": 0, "health": 25, "placements": [
                         {"item_id": "stone", "x": 0, "y": 0, "rotation": 0},
                     ]},
@@ -262,7 +325,7 @@ class BattleInitializerV1Test(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             initialize_battle(
-                with_stamina([
+                with_required_player_resources([
                     {"player_id": 0, "health": 25, "placements": [
                         {"item_id": "stone", "x": 0, "y": 0, "rotation": 0},
                     ]},

@@ -31,6 +31,7 @@ def normalize_player_specs(run_config):
         player_spec = {
             "player_id": player["player_id"],
             "health": player["health"],
+            "max_health": player["max_health"],
             "stamina": player["stamina"],
             "max_stamina": player["max_stamina"],
             "placements": player["placements"],
@@ -127,6 +128,7 @@ def _validate_run_config(run_config):
         for key in (
             "player_id",
             "health",
+            "max_health",
             "stamina",
             "max_stamina",
             "placements",
@@ -134,6 +136,10 @@ def _validate_run_config(run_config):
             if key not in player:
                 raise ValueError(f"missing required player field: {key}")
 
+        _validate_positive_int("player.health", player["health"])
+        _validate_positive_int("player.max_health", player["max_health"])
+        if player["health"] > player["max_health"]:
+            raise ValueError("player health cannot exceed max_health")
         _validate_positive_number("player.stamina", player["stamina"])
         _validate_positive_number("player.max_stamina", player["max_stamina"])
         if player["stamina"] != player["max_stamina"]:
@@ -191,6 +197,7 @@ def _serialize_player(player, metadata):
         "player_id": player.player_id,
         "class_id": metadata.get("class_id"),
         "health": player.health,
+        "max_health": player.max_health,
         "block": player.block,
         "fatigue_damage": player.fatigue_damage,
         "stamina": player.stamina,

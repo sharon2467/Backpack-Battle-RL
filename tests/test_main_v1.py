@@ -44,10 +44,10 @@ class DamageItem(BattleItem):
             **kwargs,
         )
 
-    def run_own_effect(self, trigger_results, context):
+    def run_effect(self, trigger_results, context):
         if not trigger_results[0]:
-            return False
-        return self.effects[0].apply(context)
+            return
+        self.effects[0].apply(context)
 
 
 def make_damage_factory(damage=100):
@@ -69,6 +69,7 @@ def minimal_config(players=None, settings=None):
                 "player_id": 0,
                 "class_id": "ranger",
                 "health": 25,
+                "max_health": 25,
                 "stamina": 5.0,
                 "max_stamina": 5.0,
                 "placements": [],
@@ -77,6 +78,7 @@ def minimal_config(players=None, settings=None):
                 "player_id": 1,
                 "class_id": "reaper",
                 "health": 25,
+                "max_health": 25,
                 "stamina": 5.0,
                 "max_stamina": 5.0,
                 "placements": [],
@@ -102,6 +104,7 @@ class MainV1Test(unittest.TestCase):
                 {
                     "player_id": 0,
                     "health": 25,
+                    "max_health": 25,
                     "stamina": 5.0,
                     "max_stamina": 5.0,
                     "placements": [],
@@ -109,6 +112,7 @@ class MainV1Test(unittest.TestCase):
                 {
                     "player_id": 1,
                     "health": 25,
+                    "max_health": 25,
                     "stamina": 5.0,
                     "max_stamina": 5.0,
                     "placements": [],
@@ -131,6 +135,8 @@ class MainV1Test(unittest.TestCase):
         self.assertEqual(result["time"], 1.0)
         self.assertEqual(result["players"][0]["class_id"], "ranger")
         self.assertEqual(result["players"][1]["class_id"], "reaper")
+        self.assertEqual(result["players"][0]["health"], 25)
+        self.assertEqual(result["players"][0]["max_health"], 25)
         self.assertEqual(result["players"][0]["stamina"], 5.0)
         self.assertEqual(result["players"][0]["max_stamina"], 5.0)
         self.assertEqual(
@@ -161,6 +167,7 @@ class MainV1Test(unittest.TestCase):
                     "player_id": 0,
                     "class_id": "ranger",
                     "health": 25,
+                    "max_health": 25,
                     "stamina": 5.0,
                     "max_stamina": 5.0,
                     "placements": [
@@ -171,6 +178,7 @@ class MainV1Test(unittest.TestCase):
                     "player_id": 1,
                     "class_id": "reaper",
                     "health": 25,
+                    "max_health": 25,
                     "stamina": 5.0,
                     "max_stamina": 5.0,
                     "placements": [],
@@ -261,11 +269,48 @@ class MainV1Test(unittest.TestCase):
             run_battle_from_config(config, item_factories={}, item_catalog={})
 
     def test_missing_required_player_field_fails(self):
-        config = minimal_config()
-        del config["players"][0]["health"]
+        for field_name in ("health", "max_health"):
+            with self.subTest(field_name=field_name):
+                config = minimal_config()
+                del config["players"][0][field_name]
 
-        with self.assertRaises(ValueError):
-            run_battle_from_config(config, item_factories={}, item_catalog={})
+                with self.assertRaises(ValueError):
+                    run_battle_from_config(
+                        config,
+                        item_factories={},
+                        item_catalog={},
+                    )
+
+    def test_health_and_max_health_must_be_positive_ints(self):
+        for field_name in ("health", "max_health"):
+            for invalid_value in (0, -1, 1.5, True, "25"):
+                with self.subTest(
+                    field_name=field_name,
+                    invalid_value=invalid_value,
+                ):
+                    config = minimal_config()
+                    config["players"][0][field_name] = invalid_value
+
+                    with self.assertRaises(ValueError):
+                        run_battle_from_config(
+                            config,
+                            item_factories={},
+                            item_catalog={},
+                        )
+
+    def test_health_cannot_exceed_max_health(self):
+        config = minimal_config()
+        config["players"][0]["health"] = 26
+
+        with self.assertRaisesRegex(
+            ValueError,
+            "player health cannot exceed max_health",
+        ):
+            run_battle_from_config(
+                config,
+                item_factories={},
+                item_catalog={},
+            )
 
     def test_missing_stamina_player_fields_fail(self):
         for field_name in ("stamina", "max_stamina"):
@@ -302,6 +347,7 @@ class MainV1Test(unittest.TestCase):
                 {
                     "player_id": 0,
                     "health": 25,
+                    "max_health": 25,
                     "stamina": 5.0,
                     "max_stamina": 5.0,
                     "placements": [
@@ -311,6 +357,7 @@ class MainV1Test(unittest.TestCase):
                 {
                     "player_id": 1,
                     "health": 25,
+                    "max_health": 25,
                     "stamina": 5.0,
                     "max_stamina": 5.0,
                     "placements": [],
@@ -340,6 +387,7 @@ class MainV1Test(unittest.TestCase):
                 {
                     "player_id": 0,
                     "health": 25,
+                    "max_health": 25,
                     "stamina": 5.0,
                     "max_stamina": 5.0,
                     "placements": [
@@ -349,6 +397,7 @@ class MainV1Test(unittest.TestCase):
                 {
                     "player_id": 1,
                     "health": 25,
+                    "max_health": 25,
                     "stamina": 5.0,
                     "max_stamina": 5.0,
                     "placements": [],

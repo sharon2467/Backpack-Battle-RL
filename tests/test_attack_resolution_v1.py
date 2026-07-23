@@ -2,6 +2,8 @@ import unittest
 
 from battle_module_v1 import (
     ATTACK_PHASE_ON_ATTACKED,
+    ATTACK_PHASE_ON_ATTACK_MISSED,
+    SUPPORTED_ATTACK_REACTION_PHASES,
     AttackEvent,
     AttackReactionContext,
     BattleContext,
@@ -12,6 +14,7 @@ from battle_module_v1 import (
     Trigger,
 )
 from item_factory_registry_v1 import (
+    AttackMissTrigger,
     CooldownTrigger,
     MeleeAttackEffect,
     OnAttackedTrigger,
@@ -71,6 +74,10 @@ class RecordingAttackTrigger(StaticTrigger):
     attack_phase = ATTACK_PHASE_ON_ATTACKED
 
 
+class RecordingAttackMissTrigger(StaticTrigger):
+    attack_phase = ATTACK_PHASE_ON_ATTACK_MISSED
+
+
 class CountingAttackPhaseTrigger(StaticTrigger):
     def __init__(self, result=True):
         super().__init__(result)
@@ -109,7 +116,6 @@ class ConfigurableItem(BattleItem):
         self,
         trigger=None,
         effects=None,
-        will_run_linked_items=False,
         decision=None,
         **kwargs,
     ):
@@ -118,21 +124,20 @@ class ConfigurableItem(BattleItem):
             effects=list(effects) if effects is not None else [NoopEffect()],
             **kwargs,
         )
-        self.will_run_linked_items = will_run_linked_items
         self.decision = decision
         self.run_calls = 0
         self.contexts = []
 
-    def run_own_effect(self, trigger_results, context):
+    def run_effect(self, trigger_results, context):
         self.run_calls += 1
         self.contexts.append(context)
         if self.decision is not None:
-            return self.decision(self, trigger_results, context)
+            self.decision(self, trigger_results, context)
+            return
         if not any(trigger_results):
-            return False
+            return
         for effect in self.effects:
             effect.apply(context)
-        return self.will_run_linked_items
 
 
 class NestedAttackEffect(Effect):
@@ -314,6 +319,225 @@ class AttackResolutionV1Test(unittest.TestCase):
         self.assertEqual(reaction.run_calls, 0)
         self.assertEqual(rng.calls, ["random"])
 
+    def test_supported_attack_reaction_phases_include_attack_missed(self):
+        self.assertEqual(
+            SUPPORTED_ATTACK_REACTION_PHASES,
+            (
+                ATTACK_PHASE_ON_ATTACKED,
+                ATTACK_PHASE_ON_ATTACK_MISSED,
+            ),
+        )
+        self.assertEqual(ATTACK_PHASE_ON_ATTACKED, "on_attacked")
+        self.assertEqual(
+            ATTACK_PHASE_ON_ATTACK_MISSED,
+            "on_attack_missed",
+        )
+
+    def test_attack_miss_is_dispatched_to_defender_before_event_is_resolved(
+        self,
+    ):
+        observed = []
+        reaction = ConfigurableItem(
+            trigger=AttackMissTrigger(),
+            effects=[
+                CallbackEffect(
+                    lambda context: observed.append(
+                        (
+                            context.attack_event,
+                            context.attack_event.hit,
+                            context.attack_event.is_resolved,
+                        )
+                    )
+                    or True
+                ),
+            ],
+        )
+        rng = SequenceRng(random_values=[0.9])
+        battle, attacker, defender, source = self.make_battle(
+            [reaction],
+            rng=rng,
+        )
+        event = self.make_event(
+            attacker,
+            defender,
+            source,
+            accuracy=50,
+        )
+
+        battle.resolve_attack(event)
+
+        self.assertEqual(observed, [(event, False, False)])
+        self.assertTrue(event.is_resolved)
+
+    def test_attack_miss_is_dispatched_only_to_defender(self):
+        attacker_reaction = ConfigurableItem(
+            trigger=AttackMissTrigger(),
+            item_key="attacker_miss1",
+            player_id=0,
+        )
+        defender_reaction = ConfigurableItem(
+            trigger=AttackMissTrigger(),
+        )
+        rng = SequenceRng(random_values=[0.9])
+        battle, attacker, defender, source = self.make_battle(
+            [defender_reaction],
+            rng=rng,
+        )
+        attacker.items[attacker_reaction.item_key] = attacker_reaction
+        event = self.make_event(
+            attacker,
+            defender,
+            source,
+            accuracy=50,
+        )
+
+        battle.resolve_attack(event)
+
+        self.assertEqual(attacker_reaction.run_calls, 0)
+        self.assertEqual(defender_reaction.run_calls, 1)
+
+    def test_attack_miss_dispatch_does_not_roll_or_apply_damage(self):
+        reaction = ConfigurableItem(trigger=AttackMissTrigger())
+        rng = SequenceRng(
+            random_values=[0.9],
+            randint_values=[5],
+        )
+        battle, attacker, defender, source = self.make_battle(
+            [reaction],
+            rng=rng,
+            defender_block=3,
+        )
+        event = self.make_event(
+            attacker,
+            defender,
+            source,
+            min_damage=5,
+            max_damage=5,
+            accuracy=50,
+        )
+
+        battle.resolve_attack(event)
+
+        self.assertEqual(reaction.run_calls, 1)
+        self.assertEqual(rng.calls, ["random"])
+        self.assertEqual(rng.randint_values, [5])
+        self.assertEqual(event.rolled_damage, 0)
+        self.assertEqual(event.pending_damage, 0)
+        self.assertEqual(defender.block, 3)
+        self.assertEqual(defender.health, 20)
+
+    def test_attack_miss_and_on_attacked_use_separate_phase_caches(self):
+        on_attacked_item = ConfigurableItem(
+            trigger=RecordingAttackTrigger(),
+        )
+        attack_miss_item = ConfigurableItem(
+            trigger=RecordingAttackMissTrigger(),
+        )
+        battle, _, defender, _ = self.make_battle(
+            [on_attacked_item, attack_miss_item],
+        )
+
+        on_attacked_items = battle._get_attack_reaction_items(
+            defender,
+            ATTACK_PHASE_ON_ATTACKED,
+        )
+        attack_miss_items = battle._get_attack_reaction_items(
+            defender,
+            ATTACK_PHASE_ON_ATTACK_MISSED,
+        )
+
+        self.assertEqual(on_attacked_items, (on_attacked_item,))
+        self.assertEqual(attack_miss_items, (attack_miss_item,))
+        self.assertIs(
+            on_attacked_items,
+            battle._get_attack_reaction_items(
+                defender,
+                ATTACK_PHASE_ON_ATTACKED,
+            ),
+        )
+        self.assertIs(
+            attack_miss_items,
+            battle._get_attack_reaction_items(
+                defender,
+                ATTACK_PHASE_ON_ATTACK_MISSED,
+            ),
+        )
+
+    def test_attack_miss_trigger_accepts_matching_context_without_rng(self):
+        item = ConfigurableItem(trigger=AttackMissTrigger())
+        rng = SequenceRng()
+        battle, attacker, defender, source = self.make_battle(
+            [item],
+            rng=rng,
+        )
+        event = self.make_event(attacker, defender, source)
+        event.hit = False
+        context = battle.build_attack_reaction_context(
+            item,
+            ATTACK_PHASE_ON_ATTACK_MISSED,
+            event,
+        )
+
+        result = item.triggers[0].update(context)
+
+        self.assertTrue(result)
+        self.assertEqual(rng.calls, [])
+
+    def test_attack_miss_trigger_rejects_base_wrong_phase_and_hit_context(
+        self,
+    ):
+        item = ConfigurableItem(trigger=AttackMissTrigger())
+        rng = SequenceRng()
+        battle, attacker, defender, source = self.make_battle(
+            [item],
+            rng=rng,
+        )
+        event = self.make_event(attacker, defender, source)
+        event.hit = False
+        wrong_phase_context = AttackReactionContext(
+            battle,
+            item,
+            defender,
+            attacker,
+            ATTACK_PHASE_ON_ATTACKED,
+            event,
+        )
+
+        self.assertFalse(
+            item.triggers[0].update(battle.build_context(item))
+        )
+        self.assertFalse(item.triggers[0].update(wrong_phase_context))
+
+        event.hit = True
+        hit_context = battle.build_attack_reaction_context(
+            item,
+            ATTACK_PHASE_ON_ATTACK_MISSED,
+            event,
+        )
+        self.assertFalse(item.triggers[0].update(hit_context))
+        self.assertEqual(rng.calls, [])
+
+    def test_existing_on_attacked_item_does_not_run_on_attack_miss(self):
+        buckler = WoodenBuckler()
+        rng = SequenceRng(random_values=[0.9])
+        battle, attacker, defender, source = self.make_battle(
+            [buckler],
+            rng=rng,
+            attacker_stamina=1.0,
+        )
+        event = self.make_event(
+            attacker,
+            defender,
+            source,
+            accuracy=50,
+        )
+
+        battle.resolve_attack(event)
+
+        self.assertEqual(rng.calls, ["random"])
+        self.assertEqual(attacker.stamina, 1.0)
+        self.assertEqual(defender.health, 20)
+
     def test_resolve_attack_hit_rolls_damage_then_consumes_block_then_health(self):
         rng = SequenceRng(random_values=[0.0], randint_values=[5])
         battle, attacker, defender, source = self.make_battle(
@@ -492,7 +716,9 @@ class AttackResolutionV1Test(unittest.TestCase):
         self.assertEqual(event.pending_damage, 0)
         self.assertEqual(second.run_calls, 1)
 
-    def test_dispatch_ignores_item_link_decision_for_next_responder(self):
+    def test_dispatch_continues_to_next_responder_after_first_run_effect(
+        self,
+    ):
         first = ConfigurableItem(trigger=RecordingAttackTrigger())
         second = ConfigurableItem(trigger=RecordingAttackTrigger())
         rng = SequenceRng(random_values=[0.0], randint_values=[1])
@@ -504,10 +730,11 @@ class AttackResolutionV1Test(unittest.TestCase):
         self.assertEqual(first.run_calls, 1)
         self.assertEqual(second.run_calls, 1)
 
-    def test_attack_response_linked_item_receives_same_event(self):
+    def test_attack_response_does_not_implicitly_activate_linked_item(
+        self,
+    ):
         parent = ConfigurableItem(
             trigger=RecordingAttackTrigger(),
-            will_run_linked_items=True,
             item_key="parent1",
         )
         linked = ConfigurableItem(
@@ -521,9 +748,9 @@ class AttackResolutionV1Test(unittest.TestCase):
 
         battle.resolve_attack(event)
 
-        self.assertEqual(linked.run_calls, 1)
-        self.assertIsInstance(linked.contexts[0], AttackReactionContext)
-        self.assertIs(linked.contexts[0].attack_event, event)
+        self.assertEqual(parent.run_calls, 1)
+        self.assertEqual(linked.run_calls, 0)
+        self.assertEqual(linked.contexts, [])
 
     def test_on_attacked_trigger_rolls_for_matching_melee_attack(self):
         item = ConfigurableItem(trigger=RecordingAttackTrigger())
@@ -660,7 +887,9 @@ class AttackResolutionV1Test(unittest.TestCase):
         self.assertEqual(defender.health, 17)
         self.assertAlmostEqual(attacker.stamina, 0.7)
 
-    def test_wooden_buckler_runs_linked_item_when_chance_succeeds(self):
+    def test_wooden_buckler_does_not_implicitly_activate_linked_item(
+        self,
+    ):
         buckler = WoodenBuckler(item_key="buckler1")
         linked = ConfigurableItem(item_key="linked1")
         buckler.add_linked_item("linked1")
@@ -673,9 +902,11 @@ class AttackResolutionV1Test(unittest.TestCase):
 
         battle.resolve_attack(event)
 
-        self.assertEqual(linked.run_calls, 1)
-        self.assertIsInstance(linked.contexts[0], AttackReactionContext)
-        self.assertIs(linked.contexts[0].attack_event, event)
+        self.assertEqual(event.prevented_damage, 5)
+        self.assertEqual(defender.health, 20)
+        self.assertAlmostEqual(attacker.stamina, 1.7)
+        self.assertEqual(linked.run_calls, 0)
+        self.assertEqual(linked.contexts, [])
 
     def test_wooden_buckler_still_removes_stamina_when_damage_is_zero(self):
         full_prevention = ConfigurableItem(

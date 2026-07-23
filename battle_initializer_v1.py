@@ -22,6 +22,7 @@ def initialize_battle(player_specs, item_factories, item_catalog=ITEM_CATALOG):
     for player_spec in player_specs:
         player_id = player_spec["player_id"]
         health = _required_field(player_spec, "health")
+        max_health = _required_field(player_spec, "max_health")
         stamina = _required_field(player_spec, "stamina")
         max_stamina = _required_field(player_spec, "max_stamina")
         placements = _required_field(player_spec, "placements")
@@ -43,6 +44,7 @@ def initialize_battle(player_specs, item_factories, item_catalog=ITEM_CATALOG):
         player_state = PlayerState(
             player_id=player_id,
             health=health,
+            max_health=max_health,
             stamina=stamina,
             max_stamina=max_stamina,
             items=items_by_key,

@@ -350,18 +350,20 @@ else:
 - 除非未来有某个效果修改规则，否则耐力自然恢复速度为每秒 1 点。
 - `CooldownTrigger` 不检查也不消耗耐力；它只推进冷却并报告是否就绪。
 - 耐力消耗由独立的 `StaminaConsumptionEffect` 建模。
-- 如果一件物品结束冷却时其拥有者没有足够耐力，该物品不会等待。此时冷却已经进入新的周期；`StaminaConsumptionEffect` 会返回 `False` 且不消耗耐力，木剑的 `run_own_effect()` 据此不调用后续近战伤害 effect。
+- 如果一件物品结束冷却时其拥有者没有足够耐力，该物品不会等待。此时冷却已经进入新的周期；`StaminaConsumptionEffect` 会返回 `False` 且不消耗耐力，木剑的 `run_effect()` 据此不调用后续近战伤害 effect。
 - `BattleState` 持有用于命中检查、伤害抽取等战斗随机过程的全局随机数生成器。
 
 项目中的触发器/效果组合决定：
 
 - 基础 trigger/effect 行为应由可复用组件实例实现；具体物品类只编写组合这些结果所需的简明调度逻辑，不重复实现冷却、耐力支付、攻击等基础行为。
 - `BattleItem.update_triggers(context)` 应调用每个触发器实例的接口，保存并返回与 trigger 顺序一致的基础 bool 结果列表。
-- `BattleItem.run_effects(context)` 应始终先更新 trigger，再调用具体物品的 `run_own_effect(trigger_results, context)`，最后按其 bool 返回值决定是否检查 linked items。
-- `BattleState.step()` 和 `run_linked_items()` 不应使用 `is_triggered()` 或其他 trigger 粗筛；即使所有基础 trigger 都为 `False`，仍进入 `run_own_effect()`，以支持 NOT trigger 条件。
-- trigger 的 AND/OR/NOT、effect 是否调用、effect 失败后的分支，以及是否继续 linked items，都由具体物品的 `run_own_effect()` 决定。
+- `BattleItem.activate_item(context)` 应始终先更新 trigger，再调用具体物品的 `run_effect(trigger_results, context)`；这两个接口均不提供框架级业务返回值。
+- `BattleState.step()` 和攻击响应调度不应使用 `is_triggered()` 或其他 trigger 粗筛；即使所有基础 trigger 都为 `False`，仍进入 `run_effect()`，以支持 NOT trigger 条件。
+- trigger 的 AND/OR/NOT、effect 是否调用以及 effect 失败后的分支，都由具体物品的 `run_effect()` 决定。
+- `BattleItem` 不自动激活 `linked_items`。需要激活连接物品时，应由具体物品使用的专用 effect 显式选择目标并调用其 `activate_item()`。
 - 基本 effect 只接收 `context` 并执行自身效果；它不接收 trigger 结果，也不负责物品级激活判断。
-- 具体物品应主要负责组装触发器/效果实例、提供物品元数据并实现简明的 `run_own_effect()` 调度逻辑。
+- `Effect.apply(context) -> bool` 的返回值仍可用于物品自身的耐力失败、命中失败等内部短路，但不会由 `activate_item()` 解释或传播。
+- 具体物品应主要负责组装触发器/效果实例、提供物品元数据并实现简明的 `run_effect()` 调度逻辑。
 - 有状态的触发器/效果对象必须按物品实例创建，不能作为可变的类级对象共享。
 - 木剑（Wooden Sword）应使用可复用的 `CooldownTrigger`、`StaminaConsumptionEffect` 和 `MeleeAttackEffect`；未来具有类似行为的物品也应复用这些组件。
 - 第一版木剑刻意不实现战斗日志；测试应直接验证状态变化。

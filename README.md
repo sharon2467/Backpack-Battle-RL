@@ -91,6 +91,9 @@ DEFAULT_ITEM_FACTORIES = {
       "player_id": 0,
       "class_id": "ranger",
       "health": 25,
+      "max_health": 25,
+      "stamina": 5.0,
+      "max_stamina": 5.0,
       "placements": [
         {
           "item_id": "your_item_id",
@@ -104,6 +107,9 @@ DEFAULT_ITEM_FACTORIES = {
       "player_id": 1,
       "class_id": "reaper",
       "health": 25,
+      "max_health": 25,
+      "stamina": 5.0,
+      "max_stamina": 5.0,
       "placements": []
     }
   ]
@@ -114,7 +120,9 @@ DEFAULT_ITEM_FACTORIES = {
 
 - `schema_version` 必须是 `battle_run_v1`。
 - `players` 必须恰好包含两名玩家，且 `player_id` 不能重复。
-- 每名玩家必须提供 `player_id`、`health` 和 `placements`；`class_id` 可以省略。
+- 每名玩家必须提供 `player_id`、`health`、`max_health`、`stamina`、`max_stamina` 和 `placements`；`class_id` 可以省略。
+- `health` 和 `max_health` 必须是正整数，且 `health <= max_health`。
+- `stamina` 和 `max_stamina` 必须是正数；标准战斗开始时二者必须相等。
 - `settings` 可以省略。`max_frames` 默认为 `1000`，`frame_delta` 默认为 `1.0`。
 - `max_frames` 必须是正整数，`frame_delta` 必须是正数，`collect_log` 必须是布尔值。
 - `placements` 中的 `item_id` 必须已经同时登记到物品目录和工厂注册表。
@@ -175,6 +183,7 @@ result_from_dict = run_battle_from_config(
       "player_id": 0,
       "class_id": "ranger",
       "health": 10,
+      "max_health": 25,
       "block": 0,
       "buffs": {
         "Empower": 0,
@@ -196,6 +205,7 @@ result_from_dict = run_battle_from_config(
       "player_id": 1,
       "class_id": "reaper",
       "health": 0,
+      "max_health": 25,
       "block": 0,
       "buffs": {
         "Empower": 0,

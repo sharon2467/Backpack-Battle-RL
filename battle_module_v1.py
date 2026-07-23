@@ -4,7 +4,11 @@ from dataclasses import dataclass, field
 from typing import Sequence
 
 ATTACK_PHASE_ON_ATTACKED = "on_attacked"
-SUPPORTED_ATTACK_REACTION_PHASES = (ATTACK_PHASE_ON_ATTACKED,)
+ATTACK_PHASE_ON_ATTACK_MISSED = "on_attack_missed"
+SUPPORTED_ATTACK_REACTION_PHASES = (
+    ATTACK_PHASE_ON_ATTACKED,
+    ATTACK_PHASE_ON_ATTACK_MISSED,
+)
 NIGHTFALL_FATIGUE_START_TIME = 17.0
 NIGHTFALL_FATIGUE_INTERVAL = 1.0
 TIME_COMPARISON_EPSILON = 1e-9
@@ -86,24 +90,12 @@ class BattleItem:
         self.trigger_results = results
         return results
 
-    def run_effects(self, context:BattleContext)->bool:
+    def activate_item(self, context:BattleContext)->None:
         trigger_results = self.update_triggers(context)
-        will_run_linked_items = self.run_own_effect(trigger_results, context)
-        if type(will_run_linked_items) is not bool:
-            raise ValueError("run_own_effect must return a bool")
+        self.run_effect(trigger_results, context)
 
-        if will_run_linked_items:
-            self.run_linked_items(context)
-        return will_run_linked_items
-
-    def run_own_effect(self, trigger_results:list[bool], context:BattleContext)->bool:
-        raise NotImplementedError("concrete items must run their own effect logic")
-
-    def run_linked_items(self, context:BattleContext)->None:
-        for linked_key in self.linked_items:
-            linked_item = context.owner.items[linked_key]
-            linked_context = context.for_item(linked_item)
-            linked_item.run_effects(linked_context)
+    def run_effect(self, trigger_results:list[bool], context:BattleContext)->None:
+        raise NotImplementedError("concrete items must run their effect logic")
 
     def add_linked_item(self, linked_key:str):
         if linked_key not in self.linked_items:
@@ -127,6 +119,7 @@ class DebuffSlot:
 class PlayerState:
     player_id: object = None
     health: int = 0
+    max_health: int = 0
     block: int = 0
     fatigue_damage: int = 0
     stamina: float = 0.0
@@ -198,7 +191,7 @@ class BattleState:
         try:
             for active_item in list(self.active_items):
                 context = self.build_context(active_item)
-                active_item.run_effects(context)
+                active_item.activate_item(context)
 
             self.frame += 1
             self._apply_due_nightfall_fatigue(frame_end_time)
@@ -335,6 +328,15 @@ class BattleState:
 
         event.hit = self.rng.random()*100 < event.accuracy
         if not event.hit:
+            self.dispatch_attack_reactions(
+                ATTACK_PHASE_ON_ATTACK_MISSED,
+                event.defender,
+                event,
+            )
+            if event.is_resolved:
+                raise ValueError("cannot resolve an already resolved attack event")
+            if event.hit is not False:
+                raise ValueError("cannot resolve an attack whose hit result changed")
             event.is_resolved = True
             return event
 
@@ -382,7 +384,7 @@ class BattleState:
                 phase,
                 event,
             )
-            item.run_effects(context)
+            item.activate_item(context)
 
     def commit_health_reduction(
         self,

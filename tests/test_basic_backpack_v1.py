@@ -50,6 +50,237 @@ class BasicBackpackV1Test(unittest.TestCase):
         self.assertEqual(occupancy_matrix[6][0], "wooden_sword1")
         self.assertEqual(occupancy_matrix[5][0], "wooden_sword1")
 
+    def test_banana_catalog_matches_wiki_grid(self):
+        _, placed_items = build_occupancy_matrix(
+            [{"item_id": "banana", "x": 2, "y": 2, "rotation": 0}],
+            ITEM_CATALOG,
+        )
+
+        self.assertEqual(
+            ITEM_CATALOG["banana"]["shape_cells"],
+            [[0, 1], [0, 0], [1, 0]],
+        )
+        self.assertEqual(
+            ITEM_CATALOG["banana"]["star_cells"],
+            [
+                [0, 2],
+                [-1, 1],
+                [1, 1],
+                [-1, 0],
+                [2, 0],
+                [0, -1],
+                [1, -1],
+            ],
+        )
+        self.assertCountEqual(
+            placed_items[0]["occupied_cells"],
+            [(2, 3), (2, 2), (3, 2)],
+        )
+        self.assertCountEqual(
+            placed_items[0]["star_cells"],
+            [
+                (2, 4),
+                (1, 3),
+                (3, 3),
+                (1, 2),
+                (4, 2),
+                (2, 1),
+                (3, 1),
+            ],
+        )
+        self.assertEqual(placed_items[0]["diamond_cells"], [])
+        self.assertEqual(placed_items[0]["triangle_cells"], [])
+
+    def test_garlic_catalog_matches_wiki_grid(self):
+        _, placed_items = build_occupancy_matrix(
+            [{"item_id": "garlic", "x": 2, "y": 2, "rotation": 0}],
+            ITEM_CATALOG,
+        )
+
+        self.assertEqual(
+            ITEM_CATALOG["garlic"]["shape_cells"],
+            [[0, 1], [0, 0]],
+        )
+        self.assertEqual(
+            ITEM_CATALOG["garlic"]["star_cells"],
+            [
+                [0, 2],
+                [-1, 1],
+                [1, 1],
+                [-1, 0],
+                [1, 0],
+                [0, -1],
+            ],
+        )
+        self.assertCountEqual(
+            placed_items[0]["occupied_cells"],
+            [(2, 3), (2, 2)],
+        )
+        self.assertCountEqual(
+            placed_items[0]["star_cells"],
+            [
+                (2, 4),
+                (1, 3),
+                (3, 3),
+                (1, 2),
+                (3, 2),
+                (2, 1),
+            ],
+        )
+        self.assertEqual(placed_items[0]["diamond_cells"], [])
+        self.assertEqual(placed_items[0]["triangle_cells"], [])
+
+    def test_garlic_catalog_rotates_shape_and_stars(self):
+        placed_item = place_item(
+            ITEM_CATALOG["garlic"],
+            {
+                "item_id": "garlic",
+                "item_key": "garlic1",
+                "x": 3,
+                "y": 3,
+                "rotation": 90,
+            },
+        )
+
+        self.assertCountEqual(
+            placed_item["occupied_cells"],
+            [(2, 3), (3, 3)],
+        )
+        self.assertCountEqual(
+            placed_item["star_cells"],
+            [
+                (1, 3),
+                (2, 2),
+                (2, 4),
+                (3, 2),
+                (3, 4),
+                (4, 3),
+            ],
+        )
+
+    def test_pan_catalog_matches_wiki_grid(self):
+        _, placed_items = build_occupancy_matrix(
+            [{"item_id": "pan", "x": 2, "y": 2, "rotation": 0}],
+            ITEM_CATALOG,
+        )
+
+        self.assertEqual(
+            ITEM_CATALOG["pan"]["shape_cells"],
+            [[1, 1], [0, 0], [1, 0]],
+        )
+        self.assertEqual(
+            ITEM_CATALOG["pan"]["star_cells"],
+            [
+                [1, 2],
+                [0, 1],
+                [2, 1],
+                [-1, 0],
+                [2, 0],
+                [0, -1],
+                [1, -1],
+            ],
+        )
+        self.assertCountEqual(
+            placed_items[0]["occupied_cells"],
+            [(3, 3), (2, 2), (3, 2)],
+        )
+        self.assertCountEqual(
+            placed_items[0]["star_cells"],
+            [
+                (3, 4),
+                (2, 3),
+                (4, 3),
+                (1, 2),
+                (4, 2),
+                (2, 1),
+                (3, 1),
+            ],
+        )
+        self.assertEqual(placed_items[0]["diamond_cells"], [])
+        self.assertEqual(placed_items[0]["triangle_cells"], [])
+
+    def test_pan_catalog_rotates_shape_and_stars(self):
+        placed_item = place_item(
+            ITEM_CATALOG["pan"],
+            {
+                "item_id": "pan",
+                "item_key": "pan1",
+                "x": 3,
+                "y": 3,
+                "rotation": 90,
+            },
+        )
+
+        self.assertCountEqual(
+            placed_item["occupied_cells"],
+            [(2, 4), (3, 3), (3, 4)],
+        )
+        self.assertCountEqual(
+            placed_item["star_cells"],
+            [
+                (1, 4),
+                (2, 3),
+                (2, 5),
+                (3, 2),
+                (3, 5),
+                (4, 3),
+                (4, 4),
+            ],
+        )
+        self.assertNotIn("star_cells_by_rotation", ITEM_CATALOG["pan"])
+
+    def test_broom_catalog_matches_wiki_vertical_grid(self):
+        _, placed_items = build_occupancy_matrix(
+            [{"item_id": "broom", "x": 4, "y": 3, "rotation": 0}],
+            ITEM_CATALOG,
+        )
+
+        self.assertEqual(
+            ITEM_CATALOG["broom"]["shape_cells"],
+            [[0, 0], [0, 1], [0, 2], [0, 3]],
+        )
+        self.assertEqual(ITEM_CATALOG["broom"]["star_cells"], [])
+        self.assertEqual(
+            placed_items[0]["occupied_cells"],
+            [(4, 3), (4, 4), (4, 5), (4, 6)],
+        )
+        self.assertEqual(placed_items[0]["star_cells"], [])
+        self.assertEqual(placed_items[0]["diamond_cells"], [])
+        self.assertEqual(placed_items[0]["triangle_cells"], [])
+
+    def test_broom_catalog_rotates_four_cell_line(self):
+        expected_cells = {
+            0: [(4, 3), (4, 4), (4, 5), (4, 6)],
+            90: [(4, 3), (3, 3), (2, 3), (1, 3)],
+            180: [(4, 3), (4, 2), (4, 1), (4, 0)],
+            270: [(4, 3), (5, 3), (6, 3), (7, 3)],
+        }
+
+        for rotation, expected in expected_cells.items():
+            with self.subTest(rotation=rotation):
+                placed_item = place_item(
+                    ITEM_CATALOG["broom"],
+                    {
+                        "item_id": "broom",
+                        "item_key": "broom1",
+                        "x": 4,
+                        "y": 3,
+                        "rotation": rotation,
+                    },
+                )
+
+                self.assertEqual(
+                    placed_item["occupied_cells"],
+                    expected,
+                )
+                self.assertEqual(
+                    len(set(placed_item["occupied_cells"])),
+                    4,
+                )
+                self.assertEqual(placed_item["star_cells"], [])
+                self.assertEqual(placed_item["diamond_cells"], [])
+                self.assertEqual(placed_item["triangle_cells"], [])
+
     def test_single_one_by_one_item_writes_to_bottom_left_matrix_cell(self):
         occupancy_matrix, placed_items = build_occupancy_matrix(
             [{"item_id": "stone", "x": 0, "y": 0, "rotation": 0}],

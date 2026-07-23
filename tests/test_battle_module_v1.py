@@ -47,7 +47,6 @@ class RecordingItem(BattleItem):
         name,
         log,
         should_trigger=True,
-        will_run_linked_items=True,
         **kwargs,
     ):
         item_key = kwargs.get("item_key")
@@ -59,17 +58,15 @@ class RecordingItem(BattleItem):
         )
         self.name = name
         self.log = log
-        self.will_run_linked_items = will_run_linked_items
-        self.run_own_effect_calls = 0
+        self.run_effect_calls = 0
         self.received_trigger_results = []
 
-    def run_own_effect(self, trigger_results, context):
-        self.run_own_effect_calls += 1
+    def run_effect(self, trigger_results, context):
+        self.run_effect_calls += 1
         self.received_trigger_results.append(list(trigger_results))
         if not trigger_results[0]:
-            return False
+            return
         self.effects[0].apply(context)
-        return self.will_run_linked_items
 
 
 class DecisionItem(BattleItem):
@@ -87,10 +84,24 @@ class DecisionItem(BattleItem):
         self.decision = decision
         self.received_trigger_results = []
 
-    def run_own_effect(self, trigger_results, context):
-        self.log.append("own")
+    def run_effect(self, trigger_results, context):
+        self.log.append("run")
         self.received_trigger_results.append(list(trigger_results))
-        return self.decision(self, trigger_results, context)
+        self.decision(self, trigger_results, context)
+
+
+class ActivateLinkedItemEffect(Effect):
+    def __init__(self, linked_key):
+        self.linked_key = linked_key
+        self.calls = 0
+
+    def apply(self, context):
+        self.calls += 1
+        linked_item = context.owner.items[self.linked_key]
+        linked_item.activate_item(
+            context.for_item(linked_item)
+        )
+        return True
 
 
 class MetadataItem(BattleItem):
@@ -103,6 +114,13 @@ class MetadataItem(BattleItem):
 
 
 class BattleModuleV1Test(unittest.TestCase):
+    def test_battle_item_exposes_new_activation_interface_only(self):
+        self.assertTrue(hasattr(BattleItem, "activate_item"))
+        self.assertTrue(hasattr(BattleItem, "run_effect"))
+        self.assertFalse(hasattr(BattleItem, "run_effects"))
+        self.assertFalse(hasattr(BattleItem, "run_own_effect"))
+        self.assertFalse(hasattr(BattleItem, "run_linked_items"))
+
     def test_battle_item_requires_at_least_one_trigger(self):
         with self.assertRaises(ValueError):
             BattleItem(item_id="empty", item_key="empty1", triggers=[], effects=[Effect()])
@@ -267,36 +285,37 @@ class BattleModuleV1Test(unittest.TestCase):
         with self.assertRaises(ValueError):
             item.update_triggers(context=None)
 
-    def test_run_effects_updates_triggers_before_run_own_effect(self):
+    def test_activate_item_updates_triggers_before_run_effect(self):
         item = DecisionItem(
             trigger_results=[True, False],
             effect_results=[True],
             decision=lambda item, trigger_results, context: False,
         )
 
-        item.run_effects(context=None)
+        item.activate_item(context=None)
 
-        self.assertEqual(item.log, ["trigger:0", "trigger:1", "own"])
+        self.assertEqual(item.log, ["trigger:0", "trigger:1", "run"])
         self.assertEqual(item.received_trigger_results, [[True, False]])
 
-    def test_run_effects_calls_run_own_effect_when_all_triggers_are_false(self):
+    def test_activate_item_calls_run_effect_when_all_triggers_are_false(
+        self,
+    ):
         item = DecisionItem(
             trigger_results=[False, False],
             effect_results=[True],
             decision=lambda item, trigger_results, context: False,
         )
 
-        result = item.run_effects(context=None)
+        result = item.activate_item(context=None)
 
-        self.assertFalse(result)
+        self.assertIsNone(result)
         self.assertEqual(item.received_trigger_results, [[False, False]])
-        self.assertEqual(item.log, ["trigger:0", "trigger:1", "own"])
+        self.assertEqual(item.log, ["trigger:0", "trigger:1", "run"])
 
     def test_not_trigger_item_can_apply_effect_when_trigger_is_false(self):
         def run_not_effect(item, trigger_results, context):
             if not trigger_results[0]:
-                return item.effects[0].apply(context)
-            return False
+                item.effects[0].apply(context)
 
         item = DecisionItem(
             trigger_results=[False],
@@ -304,28 +323,35 @@ class BattleModuleV1Test(unittest.TestCase):
             decision=run_not_effect,
         )
 
-        result = item.run_effects(context=None)
+        result = item.activate_item(context=None)
 
-        self.assertTrue(result)
+        self.assertIsNone(result)
         self.assertEqual(item.effects[0].calls, 1)
-        self.assertEqual(item.log, ["trigger:0", "own", "effect:0"])
+        self.assertEqual(item.log, ["trigger:0", "run", "effect:0"])
 
-    def test_run_effects_rejects_non_bool_link_decision(self):
-        item = DecisionItem(
-            trigger_results=[True],
-            effect_results=[True],
-            decision=lambda item, trigger_results, context: 1,
-        )
+    def test_activate_item_returns_none_without_interpreting_run_effect_return(
+        self,
+    ):
+        for callback_result in (True, False, 1, None):
+            with self.subTest(callback_result=callback_result):
+                item = DecisionItem(
+                    trigger_results=[True],
+                    effect_results=[True],
+                    decision=lambda item, trigger_results, context: (
+                        callback_result
+                    ),
+                )
 
-        with self.assertRaises(ValueError):
-            item.run_effects(context=None)
+                result = item.activate_item(context=None)
 
-    def test_item_can_stop_own_effect_sequence_after_effect_failure(self):
+                self.assertIsNone(result)
+
+    def test_run_effect_can_stop_effect_sequence_after_failure(self):
         def stop_after_failure(item, trigger_results, context):
             first_result = item.effects[0].apply(context)
             if not first_result:
-                return False
-            return item.effects[1].apply(context)
+                return
+            item.effects[1].apply(context)
 
         item = DecisionItem(
             trigger_results=[True],
@@ -333,16 +359,14 @@ class BattleModuleV1Test(unittest.TestCase):
             decision=stop_after_failure,
         )
 
-        result = item.run_effects(context=None)
+        item.activate_item(context=None)
 
-        self.assertFalse(result)
         self.assertEqual([effect.calls for effect in item.effects], [1, 0])
 
-    def test_item_can_continue_own_effect_sequence_after_effect_failure(self):
+    def test_run_effect_can_continue_effect_sequence_after_failure(self):
         def continue_after_failure(item, trigger_results, context):
-            first_result = item.effects[0].apply(context)
-            second_result = item.effects[1].apply(context)
-            return first_result or second_result
+            item.effects[0].apply(context)
+            item.effects[1].apply(context)
 
         item = DecisionItem(
             trigger_results=[True],
@@ -350,9 +374,8 @@ class BattleModuleV1Test(unittest.TestCase):
             decision=continue_after_failure,
         )
 
-        result = item.run_effects(context=None)
+        item.activate_item(context=None)
 
-        self.assertTrue(result)
         self.assertEqual([effect.calls for effect in item.effects], [1, 1])
 
     def test_effect_apply_receives_only_context(self):
@@ -360,7 +383,6 @@ class BattleModuleV1Test(unittest.TestCase):
 
         def apply_effect(item, trigger_results, context):
             item.effects[0].apply(context)
-            return False
 
         item = DecisionItem(
             trigger_results=[True],
@@ -368,7 +390,7 @@ class BattleModuleV1Test(unittest.TestCase):
             decision=apply_effect,
         )
 
-        item.run_effects(marker_context)
+        item.activate_item(marker_context)
 
         self.assertEqual(item.effects[0].contexts, [marker_context])
 
@@ -407,17 +429,16 @@ class BattleModuleV1Test(unittest.TestCase):
         self.assertEqual(battle.frame, 1)
         self.assertEqual(battle.time, 1.0)
 
-    def test_run_effects_recursively_updates_linked_items_by_key(self):
+    def test_effect_can_explicitly_activate_linked_item(self):
         log = []
         active_item = RecordingItem("active", log, item_key="active1", player_id=0, is_active_item=True)
         linked_item = RecordingItem("linked", log, item_key="linked1", player_id=0)
-        nested_item = RecordingItem("nested", log, item_key="nested1", player_id=0)
         active_item.add_linked_item("linked1")
-        linked_item.add_linked_item("nested1")
+        activation_effect = ActivateLinkedItemEffect("linked1")
+        active_item.effects[0] = activation_effect
         owner = PlayerState(player_id=0, health=10, items={
             "active1": active_item,
             "linked1": linked_item,
-            "nested1": nested_item,
         })
         opponent = PlayerState(player_id=1, health=10)
         battle = BattleState(players=[owner, opponent], active_items=[active_item])
@@ -428,33 +449,16 @@ class BattleModuleV1Test(unittest.TestCase):
             log,
             [
                 "update:active1",
-                "effect:active1",
                 "update:linked1",
                 "effect:linked1",
-                "update:nested1",
-                "effect:nested1",
             ],
         )
+        self.assertEqual(activation_effect.calls, 1)
+        self.assertEqual(linked_item.run_effect_calls, 1)
 
-    def test_linked_item_with_false_trigger_still_runs_own_logic(self):
-        log = []
-        active_item = RecordingItem("active", log, item_key="active1", player_id=0, is_active_item=True)
-        linked_item = RecordingItem("linked", log, item_key="linked1", player_id=0, should_trigger=False)
-        active_item.add_linked_item("linked1")
-        owner = PlayerState(player_id=0, health=10, items={
-            "active1": active_item,
-            "linked1": linked_item,
-        })
-        opponent = PlayerState(player_id=1, health=10)
-        battle = BattleState(players=[owner, opponent], active_items=[active_item])
-
-        battle.step()
-
-        self.assertEqual(log, ["update:active1", "effect:active1", "update:linked1"])
-        self.assertEqual(linked_item.run_own_effect_calls, 1)
-        self.assertEqual(linked_item.received_trigger_results, [[False]])
-
-    def test_run_own_effect_false_skips_linked_items(self):
+    def test_activate_item_does_not_implicitly_activate_linked_items(
+        self,
+    ):
         log = []
         active_item = RecordingItem(
             "active",
@@ -462,7 +466,6 @@ class BattleModuleV1Test(unittest.TestCase):
             item_key="active1",
             player_id=0,
             is_active_item=True,
-            will_run_linked_items=False,
         )
         linked_item = RecordingItem("linked", log, item_key="linked1", player_id=0)
         active_item.add_linked_item("linked1")
@@ -477,9 +480,11 @@ class BattleModuleV1Test(unittest.TestCase):
 
         self.assertEqual(log, ["update:active1", "effect:active1"])
         self.assertEqual(linked_item.triggers[0].calls, 0)
-        self.assertEqual(linked_item.run_own_effect_calls, 0)
+        self.assertEqual(linked_item.run_effect_calls, 0)
 
-    def test_battle_state_step_calls_own_logic_for_all_false_triggers(self):
+    def test_battle_state_step_calls_run_effect_for_all_false_triggers(
+        self,
+    ):
         log = []
         active_item = RecordingItem(
             "active",
@@ -496,10 +501,12 @@ class BattleModuleV1Test(unittest.TestCase):
         battle.step()
 
         self.assertEqual(log, ["update:active1"])
-        self.assertEqual(active_item.run_own_effect_calls, 1)
+        self.assertEqual(active_item.run_effect_calls, 1)
         self.assertEqual(active_item.received_trigger_results, [[False]])
 
-    def test_false_link_decision_does_not_stop_other_active_items(self):
+    def test_first_active_item_early_return_does_not_stop_other_active_items(
+        self,
+    ):
         log = []
         first_item = RecordingItem(
             "first",
@@ -507,7 +514,7 @@ class BattleModuleV1Test(unittest.TestCase):
             item_key="first1",
             player_id=0,
             is_active_item=True,
-            will_run_linked_items=False,
+            should_trigger=False,
         )
         second_item = RecordingItem(
             "second",
@@ -529,7 +536,6 @@ class BattleModuleV1Test(unittest.TestCase):
             log,
             [
                 "update:first1",
-                "effect:first1",
                 "update:second1",
                 "effect:second1",
             ],
@@ -629,11 +635,31 @@ class BattleModuleV1Test(unittest.TestCase):
         self.assertEqual(player.health, 10)
 
     def test_player_state_allows_direct_health_increase(self):
-        player = PlayerState(player_id=0, health=10)
+        player = PlayerState(player_id=0, health=10, max_health=20)
 
         player.health += 3
 
         self.assertEqual(player.health, 13)
+
+    def test_player_state_stores_explicit_max_health(self):
+        player = PlayerState(player_id=0, health=6, max_health=10)
+
+        self.assertEqual(player.health, 6)
+        self.assertEqual(player.max_health, 10)
+
+    def test_player_state_does_not_infer_max_health_from_health(self):
+        player = PlayerState(player_id=0, health=10)
+
+        self.assertEqual(player.max_health, 0)
+
+    def test_player_states_own_independent_max_health_values(self):
+        first = PlayerState(player_id=0, health=6, max_health=10)
+        second = PlayerState(player_id=1, health=7, max_health=12)
+
+        first.max_health = 20
+
+        self.assertEqual(first.max_health, 20)
+        self.assertEqual(second.max_health, 12)
 
     def test_commit_health_reduction_updates_block_and_health(self):
         target = PlayerState(player_id=0, health=10, block=3)
