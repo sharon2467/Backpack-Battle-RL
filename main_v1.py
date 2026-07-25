@@ -12,7 +12,7 @@ from item_factory_registry_v1 import DEFAULT_ITEM_FACTORIES
 BATTLE_RUN_SCHEMA_VERSION = "battle_run_v1"
 BATTLE_RESULT_SCHEMA_VERSION = "battle_result_v1"
 DEFAULT_MAX_FRAMES = 1000
-DEFAULT_FRAME_DELTA = 1.0
+DEFAULT_FRAME_DELTA = 1.0 / 30.0
 
 
 def load_battle_run_file(input_path):

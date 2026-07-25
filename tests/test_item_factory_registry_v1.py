@@ -10,6 +10,8 @@ from battle_module_v1 import (
     AttackReactionContext,
     BattleContext,
     BattleState,
+    BuffSlot,
+    DebuffSlot,
     PlayerState,
 )
 from item_factory_registry_v1 import (
@@ -17,11 +19,13 @@ from item_factory_registry_v1 import (
     Banana,
     Broom,
     BuffRemovalEffect,
+    CleanseDebuffEffect,
     CooldownTrigger,
     DEFAULT_ITEM_FACTORIES,
     FoodCooldownTrigger,
     FoodLinkedMeleeAttackEffect,
     GainBlockEffect,
+    GainBuffEffect,
     Garlic,
     HealEffect,
     InflictDebuffEffect,
@@ -32,6 +36,7 @@ from item_factory_registry_v1 import (
     RegenerateStaminaEffect,
     RemoveOpponentStaminaEffect,
     StaminaConsumptionEffect,
+    UseBuffEffect,
     WoodenBuckler,
     WoodenSword,
 )
@@ -546,6 +551,46 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         self.assertFalse(trigger.update(context))
         self.assertAlmostEqual(trigger.cooldown_progress, 0.1)
 
+    def test_cooldown_clamps_positive_heat_cold_difference(self):
+        trigger = CooldownTrigger(cooldown_seconds=100.0)
+        context = self.make_context(frame_delta=1.0)
+        context.owner.buffs.Heat = 1000
+
+        self.assertFalse(trigger.update(context))
+
+        self.assertAlmostEqual(trigger.cooldown_progress, 11.0)
+
+    def test_cooldown_clamps_negative_heat_cold_difference(self):
+        trigger = CooldownTrigger(cooldown_seconds=100.0)
+        context = self.make_context(frame_delta=1.0)
+        context.owner.debuffs.Cold = 1000
+
+        self.assertFalse(trigger.update(context))
+
+        self.assertAlmostEqual(trigger.cooldown_progress, 1.0 / 11.0)
+
+    def test_cooldown_adds_speed_modifier_after_status_cap(self):
+        trigger = CooldownTrigger(cooldown_seconds=100.0)
+        trigger.stack_speed_modifier(2.0)
+        trigger.speed_modifiers_prepared = True
+        context = self.make_context(frame_delta=1.0)
+        context.owner.buffs.Heat = 1000
+
+        self.assertFalse(trigger.update(context))
+
+        self.assertAlmostEqual(trigger.cooldown_progress, 13.0)
+
+    def test_cooldown_uses_slower_formula_after_status_cap_and_modifier(self):
+        trigger = CooldownTrigger(cooldown_seconds=100.0)
+        trigger.stack_speed_modifier(2.0)
+        trigger.speed_modifiers_prepared = True
+        context = self.make_context(frame_delta=1.0)
+        context.owner.debuffs.Cold = 1000
+
+        self.assertFalse(trigger.update(context))
+
+        self.assertAlmostEqual(trigger.cooldown_progress, 1.0 / 9.0)
+
     def test_cooldown_trigger_preserves_overflow_progress(self):
         trigger = CooldownTrigger(cooldown_seconds=1.0)
         context = self.make_context(frame_delta=0.75)
@@ -785,6 +830,70 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     GainBlockEffect(invalid_amount)
 
+    def test_gain_buff_effect_adds_named_buff_to_owner(self):
+        effect = GainBuffEffect("Mana", 3)
+        context = self.make_context()
+        context.owner.buffs.Mana = 2
+        context.opponent.buffs.Mana = 7
+
+        result = effect.apply(context)
+
+        self.assertTrue(result)
+        self.assertEqual(context.owner.buffs.Mana, 5)
+        self.assertEqual(context.opponent.buffs.Mana, 7)
+
+    def test_gain_buff_effect_supports_all_buff_names(self):
+        context = self.make_context()
+
+        for buff_name in BuffSlot.__annotations__:
+            with self.subTest(buff_name=buff_name):
+                self.assertTrue(GainBuffEffect(buff_name, 1).apply(context))
+                self.assertEqual(
+                    getattr(context.owner.buffs, buff_name),
+                    1,
+                )
+
+    def test_gain_buff_effect_zero_is_no_change(self):
+        context = self.make_context()
+
+        self.assertFalse(GainBuffEffect("Mana", 0).apply(context))
+        self.assertEqual(context.owner.buffs.Mana, 0)
+
+    def test_gain_buff_effect_rejects_invalid_arguments(self):
+        for invalid_name in ("", "Unknown", True, 1):
+            with self.subTest(invalid_name=invalid_name):
+                with self.assertRaises(ValueError):
+                    GainBuffEffect(invalid_name, 1)
+        for invalid_amount in (-1, 1.5, True, "1"):
+            with self.subTest(invalid_amount=invalid_amount):
+                with self.assertRaises(ValueError):
+                    GainBuffEffect("Mana", invalid_amount)
+
+    def test_use_buff_effect_is_all_or_nothing(self):
+        context = self.make_context()
+        context.owner.buffs.Mana = 5
+
+        self.assertTrue(UseBuffEffect("Mana", 3).apply(context))
+        self.assertEqual(context.owner.buffs.Mana, 2)
+        self.assertFalse(UseBuffEffect("Mana", 3).apply(context))
+        self.assertEqual(context.owner.buffs.Mana, 2)
+
+    def test_use_zero_buff_succeeds_without_change(self):
+        context = self.make_context()
+
+        self.assertTrue(UseBuffEffect("Mana", 0).apply(context))
+        self.assertEqual(context.owner.buffs.Mana, 0)
+
+    def test_use_buff_effect_rejects_invalid_arguments(self):
+        for invalid_name in ("", "Unknown", True, 1):
+            with self.subTest(invalid_name=invalid_name):
+                with self.assertRaises(ValueError):
+                    UseBuffEffect(invalid_name, 1)
+        for invalid_amount in (-1, 1.5, True, "1"):
+            with self.subTest(invalid_amount=invalid_amount):
+                with self.assertRaises(ValueError):
+                    UseBuffEffect("Mana", invalid_amount)
+
     def test_buff_removal_effect_removes_named_buff(self):
         effect = BuffRemovalEffect(
             buff_name="Vampirism",
@@ -855,6 +964,51 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
                         buff_name="Vampirism",
                         amount=invalid_amount,
                     )
+
+    def test_cleanse_debuff_effect_removes_from_owner_only(self):
+        effect = CleanseDebuffEffect("Poison", 3)
+        context = self.make_context()
+        context.owner.debuffs.Poison = 4
+        context.opponent.debuffs.Poison = 7
+
+        result = effect.apply(context)
+
+        self.assertTrue(result)
+        self.assertEqual(context.owner.debuffs.Poison, 1)
+        self.assertEqual(context.opponent.debuffs.Poison, 7)
+
+    def test_cleanse_debuff_effect_caps_and_reports_no_stacks(self):
+        context = self.make_context()
+        context.owner.debuffs.Poison = 1
+        effect = CleanseDebuffEffect("Poison", 3)
+
+        self.assertTrue(effect.apply(context))
+        self.assertEqual(context.owner.debuffs.Poison, 0)
+        self.assertFalse(effect.apply(context))
+
+    def test_cleanse_debuff_effect_supports_all_debuff_names(self):
+        context = self.make_context()
+
+        for debuff_name in DebuffSlot.__annotations__:
+            with self.subTest(debuff_name=debuff_name):
+                setattr(context.owner.debuffs, debuff_name, 1)
+                self.assertTrue(
+                    CleanseDebuffEffect(debuff_name, 1).apply(context)
+                )
+                self.assertEqual(
+                    getattr(context.owner.debuffs, debuff_name),
+                    0,
+                )
+
+    def test_cleanse_debuff_effect_rejects_invalid_arguments(self):
+        for invalid_name in ("", "Unknown", True, 1):
+            with self.subTest(invalid_name=invalid_name):
+                with self.assertRaises(ValueError):
+                    CleanseDebuffEffect(invalid_name, 1)
+        for invalid_amount in (-1, 1.5, True, "1"):
+            with self.subTest(invalid_amount=invalid_amount):
+                with self.assertRaises(ValueError):
+                    CleanseDebuffEffect("Poison", invalid_amount)
 
     def test_heal_effect_increases_health_by_amount(self):
         effect = HealEffect(amount=4)

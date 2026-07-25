@@ -12,6 +12,7 @@ from battle_module_v1 import (
     Effect,
     PlayerState,
     Trigger,
+    _BattleFinishedSignal,
 )
 from item_factory_registry_v1 import (
     AttackMissTrigger,
@@ -183,6 +184,8 @@ class AttackResolutionV1Test(unittest.TestCase):
         self,
         defender_items=(),
         rng=None,
+        attacker_health=20,
+        attacker_max_health=0,
         attacker_stamina=2.0,
         defender_stamina=2.0,
         defender_block=0,
@@ -194,7 +197,8 @@ class AttackResolutionV1Test(unittest.TestCase):
         )
         attacker = PlayerState(
             player_id=0,
-            health=20,
+            health=attacker_health,
+            max_health=attacker_max_health,
             stamina=attacker_stamina,
             max_stamina=5.0,
             items={"source1": source},
@@ -603,13 +607,21 @@ class AttackResolutionV1Test(unittest.TestCase):
             effects=[PreventAttackDamageEffect(99)],
         )
         rng = SequenceRng(random_values=[0.0], randint_values=[5])
-        battle, _, defender, source = self.make_battle([blocker], rng=rng)
+        battle, attacker, defender, source = self.make_battle(
+            [blocker],
+            rng=rng,
+            attacker_health=10,
+            attacker_max_health=20,
+        )
+        attacker.buffs.Vampirism = 5
+        defender.buffs.Spikes = 5
         effect = MeleeAttackEffect(5, 5, 100)
 
         result = effect.apply(battle.build_context(source))
 
         self.assertTrue(result)
         self.assertEqual(defender.health, 20)
+        self.assertEqual(attacker.health, 10)
 
     def test_melee_attack_effect_does_not_directly_mutate_damage_before_resolver(self):
         source = ConfigurableItem(item_key="source1", player_id=0)
@@ -1013,6 +1025,280 @@ class AttackResolutionV1Test(unittest.TestCase):
         battle.resolve_attack(event)
 
         self.assertFalse(hasattr(battle, "current_attack"))
+
+    def test_melee_statuses_use_commit_returned_final_damage(self):
+        heal_requests = []
+
+        class AdjustedFinalDamageBattleState(BattleState):
+            def commit_health_reduction(
+                self,
+                player,
+                blocked_damage,
+                health_damage,
+            ):
+                actual_damage = super().commit_health_reduction(
+                    player,
+                    blocked_damage,
+                    health_damage,
+                )
+                if player is self.players[1]:
+                    return 2
+                return actual_damage
+
+            def heal(self, target, amount):
+                heal_requests.append(amount)
+                return super().heal(target, amount)
+
+        rng = SequenceRng(random_values=[0.0], randint_values=[7])
+        source = ConfigurableItem(
+            item_key="source1",
+            player_id=0,
+            is_active_item=True,
+        )
+        attacker = PlayerState(
+            player_id=0,
+            health=10,
+            max_health=20,
+            items={"source1": source},
+        )
+        attacker.buffs.Vampirism = 10
+        defender = PlayerState(player_id=1, health=20, max_health=20)
+        defender.buffs.Spikes = 10
+        battle = AdjustedFinalDamageBattleState(
+            players=[attacker, defender],
+            rng=rng,
+        )
+        event = self.make_event(attacker, defender, source, 7, 7)
+
+        battle.resolve_attack(event)
+
+        self.assertEqual(defender.health, 13)
+        self.assertEqual(attacker.health, 10)
+        self.assertEqual(heal_requests, [2])
+
+    def test_vampirism_caps_at_stacks_and_missing_health(self):
+        rng = SequenceRng(
+            random_values=[0.0, 0.0],
+            randint_values=[7, 7],
+        )
+        battle, attacker, defender, source = self.make_battle(
+            rng=rng,
+            attacker_health=17,
+            attacker_max_health=20,
+        )
+        attacker.buffs.Vampirism = 2
+
+        battle.resolve_attack(
+            self.make_event(attacker, defender, source, 7, 7)
+        )
+        self.assertEqual(attacker.health, 19)
+
+        attacker.buffs.Vampirism = 5
+        battle.resolve_attack(
+            self.make_event(attacker, defender, source, 7, 7)
+        )
+        self.assertEqual(attacker.health, 20)
+
+    def test_spikes_caps_at_stack_count_and_consumes_block_first(self):
+        rng = SequenceRng(random_values=[0.0], randint_values=[7])
+        battle, attacker, defender, source = self.make_battle(rng=rng)
+        attacker.block = 3
+        defender.buffs.Spikes = 5
+
+        battle.resolve_attack(
+            self.make_event(attacker, defender, source, 7, 7)
+        )
+
+        self.assertEqual(attacker.block, 0)
+        self.assertEqual(attacker.health, 18)
+
+    def test_melee_statuses_use_damage_across_defender_block_and_health(self):
+        rng = SequenceRng(random_values=[0.0], randint_values=[7])
+        battle, attacker, defender, source = self.make_battle(
+            rng=rng,
+            defender_block=2,
+        )
+        defender.buffs.Spikes = 7
+
+        battle.resolve_attack(
+            self.make_event(attacker, defender, source, 7, 7)
+        )
+
+        self.assertEqual(defender.block, 0)
+        self.assertEqual(defender.health, 15)
+        self.assertEqual(attacker.health, 13)
+
+    def test_fully_blocked_main_damage_still_counts_for_melee_statuses(self):
+        rng = SequenceRng(random_values=[0.0], randint_values=[5])
+        battle, attacker, defender, source = self.make_battle(
+            rng=rng,
+            defender_block=5,
+        )
+        defender.buffs.Spikes = 3
+
+        battle.resolve_attack(
+            self.make_event(attacker, defender, source, 5, 5)
+        )
+
+        self.assertEqual(defender.block, 0)
+        self.assertEqual(defender.health, 20)
+        self.assertEqual(attacker.health, 17)
+
+    def test_melee_hit_applies_spikes_before_vampirism(self):
+        order = []
+
+        class RecordingBattleState(BattleState):
+            def commit_health_reduction(
+                self,
+                player,
+                blocked_damage,
+                health_damage,
+            ):
+                order.append(("damage", player.player_id))
+                return super().commit_health_reduction(
+                    player,
+                    blocked_damage,
+                    health_damage,
+                )
+
+            def heal(self, target, amount):
+                order.append(("heal", target.player_id))
+                return super().heal(target, amount)
+
+        rng = SequenceRng(random_values=[0.0], randint_values=[5])
+        source = ConfigurableItem(item_key="source1", player_id=0)
+        attacker = PlayerState(
+            player_id=0,
+            health=10,
+            max_health=20,
+            items={"source1": source},
+        )
+        attacker.buffs.Vampirism = 2
+        defender = PlayerState(player_id=1, health=20, max_health=20)
+        defender.buffs.Spikes = 2
+        battle = RecordingBattleState(
+            players=[attacker, defender],
+            rng=rng,
+        )
+
+        battle.resolve_attack(
+            self.make_event(attacker, defender, source, 5, 5)
+        )
+
+        self.assertEqual(
+            order,
+            [("damage", 1), ("damage", 0), ("heal", 0)],
+        )
+        self.assertEqual(attacker.health, 10)
+
+    def test_fatal_main_attack_skips_spikes_and_vampirism(self):
+        rng = SequenceRng(random_values=[0.0], randint_values=[20])
+        battle, attacker, defender, source = self.make_battle(
+            rng=rng,
+            attacker_health=10,
+            attacker_max_health=20,
+        )
+        attacker.buffs.Vampirism = 20
+        defender.buffs.Spikes = 20
+
+        with self.assertRaises(_BattleFinishedSignal):
+            battle.resolve_attack(
+                self.make_event(attacker, defender, source, 20, 20)
+            )
+
+        self.assertEqual(battle.winner, 0)
+        self.assertEqual(attacker.health, 10)
+
+    def test_lethal_spikes_immediately_skips_vampirism(self):
+        rng = SequenceRng(random_values=[0.0], randint_values=[5])
+        battle, attacker, defender, source = self.make_battle(
+            rng=rng,
+            attacker_health=2,
+            attacker_max_health=20,
+        )
+        attacker.buffs.Vampirism = 5
+        defender.buffs.Spikes = 5
+
+        with self.assertRaises(_BattleFinishedSignal):
+            battle.resolve_attack(
+                self.make_event(attacker, defender, source, 5, 5)
+            )
+
+        self.assertEqual(battle.winner, 1)
+        self.assertEqual(attacker.health, 0)
+        self.assertEqual(defender.health, 15)
+
+    def test_miss_zero_and_non_melee_do_not_apply_melee_statuses(self):
+        cases = (
+            (SequenceRng(random_values=[0.9]), 1, 1, 0, ("melee",)),
+            (
+                SequenceRng(random_values=[0.0], randint_values=[0]),
+                0,
+                0,
+                100,
+                ("melee",),
+            ),
+            (
+                SequenceRng(random_values=[0.0], randint_values=[3]),
+                3,
+                3,
+                100,
+                ("ranged",),
+            ),
+            (
+                SequenceRng(random_values=[0.0], randint_values=[3]),
+                3,
+                3,
+                100,
+                ("effect",),
+            ),
+        )
+
+        for rng, minimum, maximum, accuracy, attack_types in cases:
+            with self.subTest(
+                accuracy=accuracy,
+                attack_types=attack_types,
+                damage=minimum,
+            ):
+                battle, attacker, defender, source = self.make_battle(
+                    rng=rng,
+                    attacker_health=10,
+                    attacker_max_health=20,
+                )
+                attacker.buffs.Vampirism = 5
+                defender.buffs.Spikes = 5
+
+                battle.resolve_attack(
+                    self.make_event(
+                        attacker,
+                        defender,
+                        source,
+                        minimum,
+                        maximum,
+                        accuracy=accuracy,
+                        attack_types=attack_types,
+                    )
+                )
+
+                self.assertEqual(attacker.health, 10)
+
+    def test_mixed_attack_with_melee_type_applies_melee_statuses(self):
+        rng = SequenceRng(random_values=[0.0], randint_values=[3])
+        battle, attacker, defender, source = self.make_battle(rng=rng)
+        defender.buffs.Spikes = 2
+
+        battle.resolve_attack(
+            self.make_event(
+                attacker,
+                defender,
+                source,
+                3,
+                3,
+                attack_types=("melee", "effect"),
+            )
+        )
+
+        self.assertEqual(attacker.health, 18)
 
     def test_first_reaction_item_lookup_scans_triggers_and_populates_cache(self):
         ordinary_trigger = MissingAttackPhaseTrigger()

@@ -11,7 +11,9 @@ SUPPORTED_ATTACK_REACTION_PHASES = (
 )
 NIGHTFALL_FATIGUE_START_TIME = 17.0
 NIGHTFALL_FATIGUE_INTERVAL = 1.0
-TIME_COMPARISON_EPSILON = 1e-9
+STATUS_TICK_INTERVAL = 2.0
+FIRST_REGENERATION_TIME = 1.0
+FIRST_POISON_TIME = 2.0
 
 
 def calculate_next_fatigue_damage(
@@ -170,7 +172,9 @@ class BattleState:
     players: list[PlayerState] = field(default_factory=list)
     active_items: list[BattleItem] = field(default_factory=list)
     winner: object = None
-    frame_delta: float = 1.0
+    frame_delta: float = 1.0 / 30.0
+    next_regeneration_time: float = FIRST_REGENERATION_TIME
+    next_poison_time: float = FIRST_POISON_TIME
     next_nightfall_fatigue_time: float = NIGHTFALL_FATIGUE_START_TIME
     rng: random.Random = field(default_factory=random.Random)
     _responder_item_cache: dict[
@@ -186,7 +190,6 @@ class BattleState:
             )
 
     def step(self):
-        frame_end_time = self.time + self.frame_delta
         self.regenerate_stamina()
         try:
             for active_item in list(self.active_items):
@@ -194,13 +197,14 @@ class BattleState:
                 active_item.activate_item(context)
 
             self.frame += 1
-            self._apply_due_nightfall_fatigue(frame_end_time)
+            self.time += self.frame_delta
+            self._apply_system_triggers()
         except _BattleFinishedSignal:
             return self.winner
 
         return self.winner
 
-    def run(self, max_frames: int, frame_delta: float = 1.0):
+    def run(self, max_frames: int, frame_delta: float = 1.0 / 30.0):
         self.frame_delta = frame_delta
         for _ in range(max_frames):
             if self.winner is not None:
@@ -244,23 +248,63 @@ class BattleState:
         )
         return next_damage
 
-    def _apply_due_nightfall_fatigue(self, frame_end_time: float)->None:
+    def heal(self, target: PlayerState, amount: int)->int:
+        if self.get_player(target.player_id) is not target:
+            raise ValueError("healing target is not part of this battle")
+        if type(amount) is not int or amount < 0:
+            raise ValueError("healing amount must be a non-negative int")
+
+        old_health = target.health
+        if amount == 0 or old_health >= target.max_health:
+            return 0
+        target.health = min(target.max_health, old_health + amount)
+        return target.health - old_health
+
+    def _apply_regeneration_tick(self, target: PlayerState)->int:
+        return self.heal(target, target.buffs.Regeneration)
+
+    def _apply_poison_tick(self, target: PlayerState)->int:
+        damage = target.debuffs.Poison
+        if damage == 0:
+            return 0
+
+        blocked_damage = min(target.block, damage)
+        health_damage = damage - blocked_damage
+        return self.commit_health_reduction(
+            target,
+            blocked_damage,
+            health_damage,
+        )
+
+    def _apply_system_triggers(self)->None:
         if len(self.players) != 2:
-            self.time = frame_end_time
             return
 
-        while (
-            self.next_nightfall_fatigue_time
-            <= frame_end_time + TIME_COMPARISON_EPSILON
-        ):
-            event_time = self.next_nightfall_fatigue_time
+        regeneration_due = self.time >= self.next_regeneration_time
+        poison_due = self.time >= self.next_poison_time
+        fatigue_due = self.time >= self.next_nightfall_fatigue_time
+
+        if regeneration_due:
+            self.next_regeneration_time += STATUS_TICK_INTERVAL
+        if poison_due:
+            self.next_poison_time += STATUS_TICK_INTERVAL
+        if fatigue_due:
             self.next_nightfall_fatigue_time += NIGHTFALL_FATIGUE_INTERVAL
-            self.time = event_time
 
-            for target in (self.players[1], self.players[0]):
-                self.inflict_fatigue(target, nightfall=True)
+        enemy = self.players[1]
+        player = self.players[0]
 
-        self.time = frame_end_time
+        if regeneration_due:
+            self._apply_regeneration_tick(enemy)
+        if poison_due:
+            self._apply_poison_tick(enemy)
+        if fatigue_due:
+            self.inflict_fatigue(enemy, nightfall=True)
+            self.inflict_fatigue(player, nightfall=True)
+        if poison_due:
+            self._apply_poison_tick(player)
+        if regeneration_due:
+            self._apply_regeneration_tick(player)
 
     def build_context(self, item: BattleItem)->BattleContext:
         owner = self.get_player(item.player_id)
@@ -360,12 +404,46 @@ class BattleState:
         event.health_damage = event.pending_damage - event.block_damage
         event.is_resolved = True
         # Battle log may be added here in the future to record the attack event details.
-        self.commit_health_reduction(
+        final_damage = self.commit_health_reduction(
             event.defender,
             event.block_damage,
             event.health_damage,
         )
+        # Spike and Vampirism effects can be applied here
+        self._apply_melee_hit_statuses(event, final_damage)
         return event
+
+    def _apply_melee_hit_statuses(
+        self,
+        event: AttackEvent,
+        final_damage: int,
+    )->None:
+        if (
+            event.hit is not True
+            or "melee" not in event.attack_types
+            or final_damage <= 0
+        ):
+            return
+
+        spikes_damage = min(
+            event.defender.buffs.Spikes,
+            final_damage,
+        )
+        if spikes_damage > 0:
+            blocked_damage = min(event.attacker.block, spikes_damage)
+            health_damage = spikes_damage - blocked_damage
+            self.commit_health_reduction(
+                event.attacker,
+                blocked_damage,
+                health_damage,
+            )
+
+        vampirism_healing = min(
+            event.attacker.buffs.Vampirism,
+            final_damage,
+        )
+        if vampirism_healing > 0:
+            self.heal(event.attacker, vampirism_healing)
 
     def dispatch_attack_reactions(
         self,
@@ -391,7 +469,7 @@ class BattleState:
         player: PlayerState,
         blocked_damage: int,
         health_damage: int,
-    )->None:
+    )->int:
         if self.get_player(player.player_id) is not player:
             raise ValueError("health reduction target is not part of this battle")
         if (
@@ -403,11 +481,19 @@ class BattleState:
             raise ValueError("health reduction values must be non-negative ints")
         if blocked_damage > player.block:
             raise ValueError("blocked damage cannot exceed current block")
-        if health_damage > player.health:
-            health_damage = player.health
-        player.block -= blocked_damage
-        object.__setattr__(player, "health", player.health - health_damage)
+        final_blocked_damage = blocked_damage
+        final_health_damage = health_damage
+        #future damage resistance or mitigation effects can be applied here
+        final_health_damage = min(player.health, final_health_damage)
+        player.block -= final_blocked_damage
+        object.__setattr__(
+            player,
+            "health",
+            player.health - final_health_damage,
+        )
+        final_damage = final_blocked_damage + final_health_damage
         self.stop_if_battle_ended()
+        return final_damage
 
     def get_player(self, player_id):
         for player in self.players:

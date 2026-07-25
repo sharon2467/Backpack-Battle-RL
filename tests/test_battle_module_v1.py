@@ -4,8 +4,12 @@ from battle_module_v1 import (
     BattleItem,
     BattleState,
     Effect,
+    FIRST_POISON_TIME,
+    FIRST_REGENERATION_TIME,
     PlayerState,
+    STATUS_TICK_INTERVAL,
     Trigger,
+    _BattleFinishedSignal,
     calculate_next_fatigue_damage,
     evaluate_layout,
 )
@@ -427,7 +431,7 @@ class BattleModuleV1Test(unittest.TestCase):
 
         self.assertEqual(log, ["update:active1", "effect:active1"])
         self.assertEqual(battle.frame, 1)
-        self.assertEqual(battle.time, 1.0)
+        self.assertEqual(battle.time, 1.0 / 30.0)
 
     def test_effect_can_explicitly_activate_linked_item(self):
         log = []
@@ -666,15 +670,63 @@ class BattleModuleV1Test(unittest.TestCase):
         opponent = PlayerState(player_id=1, health=10)
         battle = BattleState(players=[target, opponent])
 
-        battle.commit_health_reduction(
+        final_damage = battle.commit_health_reduction(
             target,
             blocked_damage=2,
             health_damage=4,
         )
 
+        self.assertEqual(final_damage, 6)
         self.assertEqual(target.block, 1)
         self.assertEqual(target.health, 6)
         self.assertIsNone(battle.winner)
+
+    def test_commit_health_reduction_returns_block_only_and_health_only(self):
+        first = PlayerState(player_id=0, health=10, block=3)
+        second = PlayerState(player_id=1, health=10)
+        battle = BattleState(players=[first, second])
+
+        self.assertEqual(
+            battle.commit_health_reduction(first, 2, 0),
+            2,
+        )
+        self.assertEqual(
+            battle.commit_health_reduction(first, 0, 4),
+            4,
+        )
+
+    def test_commit_health_reduction_lethal_overkill_stops_before_return(self):
+        first = PlayerState(player_id=0, health=2)
+        second = PlayerState(player_id=1, health=10)
+        battle = BattleState(players=[first, second])
+
+        with self.assertRaises(_BattleFinishedSignal):
+            battle.commit_health_reduction(first, 0, 99)
+
+        self.assertEqual(first.health, 0)
+        self.assertEqual(battle.winner, 1)
+
+    def test_heal_returns_actual_amount_and_caps_at_max_health(self):
+        first = PlayerState(player_id=0, health=8, max_health=10)
+        second = PlayerState(player_id=1, health=10, max_health=10)
+        battle = BattleState(players=[first, second])
+
+        self.assertEqual(battle.heal(first, 5), 2)
+        self.assertEqual(first.health, 10)
+        self.assertEqual(battle.heal(first, 1), 0)
+
+    def test_heal_rejects_invalid_amount_and_foreign_target(self):
+        first = PlayerState(player_id=0, health=8, max_health=10)
+        second = PlayerState(player_id=1, health=10, max_health=10)
+        outsider = PlayerState(player_id=2, health=5, max_health=10)
+        battle = BattleState(players=[first, second])
+
+        for invalid_amount in (-1, 1.0, True, "1"):
+            with self.subTest(invalid_amount=invalid_amount):
+                with self.assertRaises(ValueError):
+                    battle.heal(first, invalid_amount)
+        with self.assertRaises(ValueError):
+            battle.heal(outsider, 1)
 
     def test_commit_health_reduction_rejects_invalid_values(self):
         target = PlayerState(player_id=0, health=10, block=3)
@@ -687,6 +739,8 @@ class BattleModuleV1Test(unittest.TestCase):
             (4, 0),
             (1.0, 0),
             (0, 1.0),
+            (True, 0),
+            (0, True),
         ]
         for blocked_damage, health_damage in invalid_values:
             with self.subTest(
@@ -793,7 +847,7 @@ class BattleModuleV1Test(unittest.TestCase):
         self.assertEqual(second_player.fatigue_damage, 3)
         self.assertEqual(battle.next_nightfall_fatigue_time, 20.0)
 
-    def test_nightfall_fatigue_catches_up_crossed_ticks(self):
+    def test_nightfall_fatigue_triggers_at_most_once_when_crossing_ticks(self):
         first_player = PlayerState(player_id=0, health=100)
         second_player = PlayerState(player_id=1, health=100)
         battle = BattleState(
@@ -806,11 +860,11 @@ class BattleModuleV1Test(unittest.TestCase):
 
         self.assertEqual(battle.frame, 17)
         self.assertEqual(battle.time, 18.0)
-        self.assertEqual(first_player.health, 97)
-        self.assertEqual(second_player.health, 97)
-        self.assertEqual(first_player.fatigue_damage, 2)
-        self.assertEqual(second_player.fatigue_damage, 2)
-        self.assertEqual(battle.next_nightfall_fatigue_time, 19.0)
+        self.assertEqual(first_player.health, 99)
+        self.assertEqual(second_player.health, 99)
+        self.assertEqual(first_player.fatigue_damage, 1)
+        self.assertEqual(second_player.fatigue_damage, 1)
+        self.assertEqual(battle.next_nightfall_fatigue_time, 18.0)
 
     def test_players_keep_independent_fatigue_damage(self):
         first_player = PlayerState(
@@ -822,6 +876,7 @@ class BattleModuleV1Test(unittest.TestCase):
         battle = BattleState(
             frame=16,
             time=16.0,
+            frame_delta=1.0,
             players=[first_player, second_player],
         )
 
@@ -868,6 +923,7 @@ class BattleModuleV1Test(unittest.TestCase):
         battle = RecordingFatigueBattleState(
             frame=16,
             time=16.0,
+            frame_delta=1.0,
             players=[first_player, second_player],
         )
 
@@ -881,6 +937,7 @@ class BattleModuleV1Test(unittest.TestCase):
         battle = BattleState(
             frame=16,
             time=16.0,
+            frame_delta=1.0,
             players=[first_player, second_player],
         )
 
@@ -908,10 +965,251 @@ class BattleModuleV1Test(unittest.TestCase):
 
         self.assertEqual(battle.winner, 0)
         self.assertEqual(battle.frame, 17)
-        self.assertEqual(battle.time, 17.0)
+        self.assertEqual(battle.time, 19.0)
         self.assertEqual(battle.next_nightfall_fatigue_time, 18.0)
         self.assertEqual(first_player.fatigue_damage, 0)
         self.assertEqual(second_player.fatigue_damage, 1)
+
+    def test_regeneration_tick_heals_current_stacks(self):
+        first = PlayerState(player_id=0, health=5, max_health=10)
+        second = PlayerState(player_id=1, health=10, max_health=10)
+        first.buffs.Regeneration = 3
+        battle = BattleState(players=[first, second])
+
+        self.assertEqual(battle._apply_regeneration_tick(first), 3)
+        first.buffs.Regeneration = 4
+        self.assertEqual(battle._apply_regeneration_tick(first), 2)
+        self.assertEqual(first.health, 10)
+
+    def test_poison_tick_consumes_block_before_health(self):
+        first = PlayerState(player_id=0, health=10, block=2)
+        second = PlayerState(player_id=1, health=10)
+        first.debuffs.Poison = 5
+        battle = BattleState(players=[first, second])
+
+        self.assertEqual(battle._apply_poison_tick(first), 5)
+        self.assertEqual(first.block, 0)
+        self.assertEqual(first.health, 7)
+
+    def test_regeneration_and_poison_first_tick_times(self):
+        first = PlayerState(player_id=0, health=5, max_health=10)
+        second = PlayerState(player_id=1, health=10, max_health=10)
+        first.buffs.Regeneration = 1
+        first.debuffs.Poison = 2
+        battle = BattleState(
+            players=[first, second],
+            frame_delta=0.5,
+        )
+
+        battle.step()
+        self.assertEqual(first.health, 5)
+        battle.step()
+        self.assertEqual(first.health, 6)
+        battle.step()
+        self.assertEqual(first.health, 6)
+        battle.step()
+        self.assertEqual(first.health, 4)
+
+    def test_status_clocks_advance_when_stacks_are_zero(self):
+        first = PlayerState(player_id=0, health=10)
+        second = PlayerState(player_id=1, health=10)
+        battle = BattleState(players=[first, second])
+
+        battle.run(max_frames=4, frame_delta=1.0)
+
+        self.assertEqual(battle.next_regeneration_time, 5.0)
+        self.assertEqual(battle.next_poison_time, 6.0)
+
+    def test_gaining_status_does_not_reset_global_clock(self):
+        first = PlayerState(player_id=0, health=5, max_health=10)
+        second = PlayerState(player_id=1, health=10, max_health=10)
+        battle = BattleState(players=[first, second], frame_delta=1.0)
+
+        battle.step()
+        first.buffs.Regeneration = 2
+        battle.step()
+        self.assertEqual(first.health, 5)
+        battle.step()
+        self.assertEqual(first.health, 7)
+
+        first.debuffs.Poison = 1
+        battle.step()
+        self.assertEqual(first.health, 6)
+
+    def test_system_clocks_trigger_at_most_once_per_frame(self):
+        first = PlayerState(player_id=0, health=10, max_health=20)
+        second = PlayerState(player_id=1, health=10, max_health=20)
+        first.buffs.Regeneration = 1
+        first.debuffs.Poison = 1
+        battle = BattleState(
+            players=[first, second],
+            frame_delta=6.0,
+        )
+
+        battle.step()
+
+        self.assertEqual(first.health, 10)
+        self.assertEqual(battle.next_regeneration_time, 3.0)
+        self.assertEqual(battle.next_poison_time, 4.0)
+        self.assertEqual(battle.next_nightfall_fatigue_time, 17.0)
+
+    def test_poison_targets_enemy_before_player_and_stops_on_death(self):
+        first = PlayerState(player_id=0, health=1)
+        second = PlayerState(player_id=1, health=1)
+        first.debuffs.Poison = 1
+        second.debuffs.Poison = 1
+        battle = BattleState(
+            time=1.0,
+            frame_delta=1.0,
+            players=[first, second],
+            next_regeneration_time=3.0,
+        )
+
+        battle.step()
+
+        self.assertEqual(battle.winner, 0)
+        self.assertEqual(first.health, 1)
+        self.assertEqual(second.health, 0)
+        self.assertEqual(battle.next_poison_time, 4.0)
+
+    def test_regeneration_and_fatigue_use_role_interleaving(self):
+        order = []
+
+        class RecordingBattleState(BattleState):
+            def _apply_regeneration_tick(self, target):
+                order.append(("regeneration", target.player_id))
+                return 0
+
+            def inflict_fatigue(self, target, *, nightfall):
+                order.append(("fatigue", target.player_id))
+                return 0
+
+        first = PlayerState(player_id=0, health=10)
+        second = PlayerState(player_id=1, health=10)
+        battle = RecordingBattleState(
+            time=16.0,
+            frame_delta=1.0,
+            players=[first, second],
+            next_regeneration_time=17.0,
+            next_poison_time=18.0,
+        )
+
+        battle.step()
+
+        self.assertEqual(
+            order,
+            [
+                ("regeneration", 1),
+                ("fatigue", 1),
+                ("fatigue", 0),
+                ("regeneration", 0),
+            ],
+        )
+
+    def test_poison_and_fatigue_use_role_interleaving(self):
+        order = []
+
+        class RecordingBattleState(BattleState):
+            def _apply_poison_tick(self, target):
+                order.append(("poison", target.player_id))
+                return 0
+
+            def inflict_fatigue(self, target, *, nightfall):
+                order.append(("fatigue", target.player_id))
+                return 0
+
+        first = PlayerState(player_id=0, health=10)
+        second = PlayerState(player_id=1, health=10)
+        battle = RecordingBattleState(
+            time=17.0,
+            frame_delta=1.0,
+            players=[first, second],
+            next_regeneration_time=19.0,
+            next_poison_time=18.0,
+            next_nightfall_fatigue_time=18.0,
+        )
+
+        battle.step()
+
+        self.assertEqual(
+            order,
+            [
+                ("poison", 1),
+                ("fatigue", 1),
+                ("fatigue", 0),
+                ("poison", 0),
+            ],
+        )
+
+    def test_system_trigger_check_never_rewinds_battle_time(self):
+        observed_times = []
+
+        class RecordingBattleState(BattleState):
+            def _apply_regeneration_tick(self, target):
+                observed_times.append(self.time)
+                return 0
+
+            def _apply_poison_tick(self, target):
+                observed_times.append(self.time)
+                return 0
+
+            def inflict_fatigue(self, target, *, nightfall):
+                observed_times.append(self.time)
+                return 0
+
+        first = PlayerState(player_id=0, health=10)
+        second = PlayerState(player_id=1, health=10)
+        battle = RecordingBattleState(
+            time=16.0,
+            frame_delta=3.0,
+            players=[first, second],
+        )
+
+        battle.step()
+
+        self.assertEqual(observed_times, [19.0] * 6)
+        self.assertEqual(battle.time, 19.0)
+
+    def test_system_tick_timers_advance_before_lethal_effect(self):
+        first = PlayerState(player_id=0, health=10)
+        second = PlayerState(player_id=1, health=1)
+        second.debuffs.Poison = 1
+        battle = BattleState(
+            time=1.0,
+            frame_delta=1.0,
+            players=[first, second],
+            next_regeneration_time=3.0,
+        )
+
+        battle.step()
+
+        self.assertEqual(battle.winner, 0)
+        self.assertEqual(battle.next_poison_time, 4.0)
+        self.assertEqual(battle.next_regeneration_time, 3.0)
+
+    def test_non_two_player_system_state_only_advances_time(self):
+        player = PlayerState(player_id=0, health=10)
+        battle = BattleState(players=[player], frame_delta=1.0)
+
+        battle.step()
+
+        self.assertEqual(battle.time, 1.0)
+        self.assertEqual(
+            battle.next_regeneration_time,
+            FIRST_REGENERATION_TIME,
+        )
+        self.assertEqual(battle.next_poison_time, FIRST_POISON_TIME)
+
+    def test_battle_state_and_run_default_to_thirty_frames_per_second(self):
+        first = PlayerState(player_id=0, health=10)
+        second = PlayerState(player_id=1, health=10)
+        battle = BattleState(players=[first, second])
+
+        self.assertEqual(battle.frame_delta, 1.0 / 30.0)
+        battle.run(max_frames=1)
+        self.assertEqual(battle.frame_delta, 1.0 / 30.0)
+        self.assertEqual(battle.time, 1.0 / 30.0)
+        self.assertEqual(STATUS_TICK_INTERVAL, 2.0)
 
     def test_item_kill_before_frame_end_skips_nightfall_fatigue(self):
         def deal_lethal_damage(item, trigger_results, context):

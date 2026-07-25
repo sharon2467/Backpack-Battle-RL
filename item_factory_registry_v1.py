@@ -31,9 +31,18 @@ class CooldownTrigger(Trigger):
         if not self.speed_modifiers_prepared:
             self.prepare_speed_modifiers(context)
             self.speed_modifiers_prepared = True
-        faster = context.owner.buffs.Heat * 0.02
-        slower = context.owner.debuffs.Cold * 0.02
-        net_faster = faster - slower + self.speed_modifiers
+        status_faster = min(
+            10.0,
+            max(
+                -10.0,
+                (
+                    context.owner.buffs.Heat
+                    - context.owner.debuffs.Cold
+                )
+                * 0.02,
+            ),
+        )
+        net_faster = status_faster + self.speed_modifiers
         if net_faster >= 0:
             trigger_speed_multiplier = 1.0 + net_faster
         else:
@@ -88,12 +97,11 @@ class HealEffect(Effect):
         self.amount = amount
 
     def apply(self, context: BattleContext) -> bool:
-        old_health = context.owner.health
-        context.owner.health = min(
-            context.owner.max_health,
-            old_health + self.amount,
+        actual_healing = context.battle_state.heal(
+            context.owner,
+            self.amount,
         )
-        return context.owner.health > old_health
+        return actual_healing > 0
 
 
 class RegenerateStaminaEffect(Effect):
@@ -127,6 +135,58 @@ class GainBlockEffect(Effect):
         old_block = context.owner.block
         context.owner.block = old_block + self.amount
         return context.owner.block > old_block
+
+
+class GainBuffEffect(Effect):
+    def __init__(self, buff_name: str, amount: int):
+        if (
+            type(buff_name) is not str
+            or buff_name not in BuffSlot.__annotations__
+        ):
+            raise ValueError("unsupported buff name")
+        if type(amount) is not int or amount < 0:
+            raise ValueError(
+                "gained buff amount must be a non-negative int"
+            )
+        self.buff_name = buff_name
+        self.amount = amount
+
+    def apply(self, context: BattleContext) -> bool:
+        old_stacks = getattr(context.owner.buffs, self.buff_name)
+        application = self.amount
+        setattr(
+            context.owner.buffs,
+            self.buff_name,
+            old_stacks + application,
+        )
+        return application > 0
+
+
+class UseBuffEffect(Effect):
+    def __init__(self, buff_name: str, amount: int):
+        if (
+            type(buff_name) is not str
+            or buff_name not in BuffSlot.__annotations__
+        ):
+            raise ValueError("unsupported buff name")
+        if type(amount) is not int or amount < 0:
+            raise ValueError(
+                "used buff amount must be a non-negative int"
+            )
+        self.buff_name = buff_name
+        self.amount = amount
+
+    def apply(self, context: BattleContext) -> bool:
+        available = getattr(context.owner.buffs, self.buff_name)
+        if available < self.amount:
+            return False
+
+        setattr(
+            context.owner.buffs,
+            self.buff_name,
+            available - self.amount,
+        )
+        return True
 
 
 class BuffRemovalEffect(Effect):
@@ -186,6 +246,35 @@ class InflictDebuffEffect(Effect):
             old_stacks + application,
         )
         return application > 0
+
+
+class CleanseDebuffEffect(Effect):
+    def __init__(self, debuff_name: str, amount: int):
+        if (
+            type(debuff_name) is not str
+            or debuff_name not in DebuffSlot.__annotations__
+        ):
+            raise ValueError("unsupported debuff name")
+        if type(amount) is not int or amount < 0:
+            raise ValueError(
+                "cleansed debuff amount must be a non-negative int"
+            )
+        self.debuff_name = debuff_name
+        self.amount = amount
+
+    def apply(self, context: BattleContext) -> bool:
+        old_stacks = getattr(
+            context.owner.debuffs,
+            self.debuff_name,
+        )
+        cleansing = self.amount
+        actual_cleansing = min(old_stacks, cleansing)
+        setattr(
+            context.owner.debuffs,
+            self.debuff_name,
+            old_stacks - actual_cleansing,
+        )
+        return actual_cleansing > 0
 
 
 class MeleeAttackEffect(Effect):

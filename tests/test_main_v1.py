@@ -7,6 +7,7 @@ from pathlib import Path
 
 from battle_module_v1 import BattleItem, Effect, Trigger
 from main_v1 import (
+    DEFAULT_FRAME_DELTA,
     load_battle_run_file,
     main,
     normalize_player_specs,
@@ -50,6 +51,27 @@ class DamageItem(BattleItem):
         self.effects[0].apply(context)
 
 
+class StatusSetupEffect(Effect):
+    def apply(self, context):
+        context.owner.buffs.Regeneration = 2
+        context.opponent.debuffs.Poison = 1
+        return True
+
+
+class StatusSetupItem(BattleItem):
+    def __init__(self, **kwargs):
+        super().__init__(
+            triggers=[AlwaysTrigger()],
+            effects=[StatusSetupEffect()],
+            is_active_item=True,
+            **kwargs,
+        )
+
+    def run_effect(self, trigger_results, context):
+        if trigger_results[0]:
+            self.effects[0].apply(context)
+
+
 def make_damage_factory(damage=100):
     def factory(item_id, item_key, player_id):
         return DamageItem(
@@ -60,6 +82,14 @@ def make_damage_factory(damage=100):
         )
 
     return factory
+
+
+def make_status_setup_factory(item_id, item_key, player_id):
+    return StatusSetupItem(
+        item_id=item_id,
+        item_key=item_key,
+        player_id=player_id,
+    )
 
 
 def minimal_config(players=None, settings=None):
@@ -95,6 +125,16 @@ def minimal_config(players=None, settings=None):
 
 
 class MainV1Test(unittest.TestCase):
+    def test_main_default_frame_delta_is_one_thirtieth(self):
+        result = run_battle_from_config(
+            minimal_config(settings={"max_frames": 1}),
+            item_factories={},
+            item_catalog={},
+        )
+
+        self.assertEqual(DEFAULT_FRAME_DELTA, 1.0 / 30.0)
+        self.assertEqual(result["time"], 1.0 / 30.0)
+
     def test_normalize_player_specs_keeps_class_id_as_metadata(self):
         player_specs, metadata = normalize_player_specs(minimal_config())
 
@@ -214,6 +254,61 @@ class MainV1Test(unittest.TestCase):
 
         self.assertEqual(result["players"][0]["fatigue_damage"], 1)
         self.assertEqual(result["players"][1]["fatigue_damage"], 1)
+
+    def test_run_battle_serializes_regeneration_and_lethal_poison(self):
+        config = minimal_config(
+            players=[
+                {
+                    "player_id": 0,
+                    "class_id": "ranger",
+                    "health": 5,
+                    "max_health": 10,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [
+                        {
+                            "item_id": "status_setup",
+                            "x": 0,
+                            "y": 0,
+                            "rotation": 0,
+                        },
+                    ],
+                },
+                {
+                    "player_id": 1,
+                    "class_id": "reaper",
+                    "health": 1,
+                    "max_health": 1,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [],
+                },
+            ],
+            settings={"max_frames": 2, "frame_delta": 1.0},
+        )
+        item_catalog = {
+            "status_setup": {
+                "item_id": "status_setup",
+                "shape_cells": [(0, 0)],
+            },
+        }
+
+        result = run_battle_from_config(
+            config,
+            item_factories={
+                "status_setup": make_status_setup_factory,
+            },
+            item_catalog=item_catalog,
+        )
+
+        self.assertEqual(result["winner"], 0)
+        self.assertEqual(result["finish_reason"], "winner")
+        self.assertEqual(result["frame"], 2)
+        self.assertEqual(result["time"], 2.0)
+        self.assertEqual(result["players"][0]["health"], 7)
+        self.assertEqual(result["players"][0]["buffs"]["Regeneration"], 2)
+        self.assertEqual(result["players"][1]["health"], 0)
+        self.assertEqual(result["players"][1]["debuffs"]["Poison"], 1)
 
     def test_lethal_fatigue_returns_player_win_without_draw(self):
         config = minimal_config(
