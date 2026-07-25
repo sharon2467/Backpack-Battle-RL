@@ -12,6 +12,42 @@ from basic_backpack_v1 import (
 
 
 class BasicBackpackV1Test(unittest.TestCase):
+    def test_start_of_battle_item_catalog_grids_match_wiki(self):
+        expected_shapes = {
+            "pocket_sand": [[0, 0]],
+            "healing_herbs": [[0, 0]],
+            "flame": [[0, 0]],
+            "walrus_tusk": [[0, 1], [0, 0]],
+        }
+
+        for item_id, expected_shape in expected_shapes.items():
+            with self.subTest(item_id=item_id):
+                placed_item = place_item(
+                    ITEM_CATALOG[item_id],
+                    {
+                        "item_id": item_id,
+                        "item_key": f"{item_id}1",
+                        "x": 2,
+                        "y": 2,
+                        "rotation": 0,
+                    },
+                )
+
+                self.assertEqual(
+                    ITEM_CATALOG[item_id]["shape_cells"],
+                    expected_shape,
+                )
+                self.assertEqual(
+                    placed_item["occupied_cells"],
+                    [
+                        (x + 2, y + 2)
+                        for x, y in expected_shape
+                    ],
+                )
+                self.assertEqual(placed_item["star_cells"], [])
+                self.assertEqual(placed_item["diamond_cells"], [])
+                self.assertEqual(placed_item["triangle_cells"], [])
+
     def test_wooden_buckler_occupies_two_by_two_cells_without_markers(self):
         occupancy_matrix, placed_items = build_occupancy_matrix(
             [{"item_id": "wooden_buckler", "x": 0, "y": 0, "rotation": 0}],

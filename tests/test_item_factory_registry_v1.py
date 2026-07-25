@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import Mock, call
 
-from basic_backpack_v1 import ITEM_CATALOG
+from basic_backpack_v1 import ITEM_CATALOG, place_item
 from battle_initializer_v1 import initialize_battle
 from battle_module_v1 import (
     ATTACK_PHASE_ON_ATTACKED,
@@ -12,9 +12,12 @@ from battle_module_v1 import (
     BattleState,
     BuffSlot,
     DebuffSlot,
+    ItemActivationContext,
     PlayerState,
 )
 from item_factory_registry_v1 import (
+    AfterTimeTrigger,
+    AttackEffect,
     AttackMissTrigger,
     Banana,
     Broom,
@@ -24,22 +27,44 @@ from item_factory_registry_v1 import (
     DEFAULT_ITEM_FACTORIES,
     FoodCooldownTrigger,
     FoodLinkedMeleeAttackEffect,
+    Flame,
     GainBlockEffect,
     GainBuffEffect,
     Garlic,
+    Goobling,
+    HealingHerbs,
     HealEffect,
+    HolyLinkedHealEffect,
     InflictDebuffEffect,
-    MeleeAttackEffect,
+    ItemAcceleratedCooldownTrigger,
+    LinkedItemActivationCountTrigger,
+    LinkedWeaponDamageEffect,
     OnAttackedTrigger,
     Pan,
+    PocketSand,
     PreventAttackDamageEffect,
+    Rat,
     RegenerateStaminaEffect,
+    RemoveOpponentBlockEffect,
     RemoveOpponentStaminaEffect,
+    ShinyShell,
+    Shortbow,
     StaminaConsumptionEffect,
+    StartOfBattleTrigger,
+    Stone,
     UseBuffEffect,
+    WalrusTusk,
+    Whetstone,
     WoodenBuckler,
     WoodenSword,
 )
+
+
+def spy_on_activation_dispatch(battle_state):
+    original_dispatch = battle_state.dispatch_item_activation
+    dispatch_spy = Mock(wraps=original_dispatch)
+    battle_state.dispatch_item_activation = dispatch_spy
+    return dispatch_spy
 
 
 class ItemFactoryRegistryV1Test(unittest.TestCase):
@@ -67,6 +92,235 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
 
     def test_default_item_factories_is_a_registry_dict(self):
         self.assertIsInstance(DEFAULT_ITEM_FACTORIES, dict)
+
+    def test_start_of_battle_items_are_registered_with_wiki_metadata(self):
+        cases = (
+            (
+                "pocket_sand",
+                PocketSand,
+                "Pocket Sand",
+                ("Neutral",),
+                2,
+                ("nature",),
+                InflictDebuffEffect,
+                "Blind",
+                1,
+            ),
+            (
+                "healing_herbs",
+                HealingHerbs,
+                "Healing Herbs",
+                ("Neutral",),
+                4,
+                ("nature",),
+                GainBuffEffect,
+                "Regeneration",
+                2,
+            ),
+            (
+                "flame",
+                Flame,
+                "Flame",
+                ("Pyromancer",),
+                1,
+                ("fire",),
+                GainBuffEffect,
+                "Heat",
+                1,
+            ),
+            (
+                "walrus_tusk",
+                WalrusTusk,
+                "Walrus Tusk",
+                ("Neutral",),
+                4,
+                ("nature",),
+                GainBuffEffect,
+                "Spikes",
+                1,
+            ),
+        )
+
+        for (
+            item_id,
+            item_type,
+            display_name,
+            item_classes,
+            cost,
+            icon_types,
+            effect_type,
+            status_name,
+            amount,
+        ) in cases:
+            with self.subTest(item_id=item_id):
+                item = DEFAULT_ITEM_FACTORIES[item_id](
+                    item_id=item_id,
+                    item_key=f"{item_id}1",
+                    player_id=0,
+                )
+
+                self.assertIsInstance(item, item_type)
+                self.assertEqual(item.display_name, display_name)
+                self.assertEqual(item.item_classes, item_classes)
+                self.assertEqual(item.rarity, "Common")
+                self.assertEqual(item.cost, cost)
+                self.assertEqual(item.item_types, ("Accessory",))
+                self.assertEqual(item.icon_types, icon_types)
+                self.assertTrue(item.is_active_item)
+                self.assertEqual(item.socket_count, 0)
+                self.assertIsInstance(
+                    item.triggers[0],
+                    StartOfBattleTrigger,
+                )
+                self.assertIsInstance(item.effects[0], effect_type)
+                self.assertEqual(
+                    getattr(
+                        item.effects[0],
+                        "buff_name",
+                        getattr(
+                            item.effects[0],
+                            "debuff_name",
+                            None,
+                        ),
+                    ),
+                    status_name,
+                )
+                self.assertEqual(item.effects[0].amount, amount)
+
+    def test_start_of_battle_trigger_fires_once_only_at_frame_zero(self):
+        item = PocketSand(item_key="pocket_sand1", player_id=0)
+        context = self.make_context()
+        context.item = item
+        context.owner.items[item.item_key] = item
+
+        self.assertTrue(item.triggers[0].update(context))
+        self.assertFalse(item.triggers[0].update(context))
+
+        late_item = PocketSand(item_key="pocket_sand2", player_id=0)
+        context.item = late_item
+        context.battle_state.frame = 1
+        self.assertFalse(late_item.triggers[0].update(context))
+
+    def test_start_of_battle_items_apply_status_once_and_keep_targets(self):
+        cases = (
+            (
+                PocketSand,
+                "debuffs",
+                "Blind",
+                1,
+                "opponent",
+            ),
+            (
+                HealingHerbs,
+                "buffs",
+                "Regeneration",
+                2,
+                "owner",
+            ),
+            (Flame, "buffs", "Heat", 1, "owner"),
+            (WalrusTusk, "buffs", "Spikes", 1, "owner"),
+        )
+
+        for item_type, slot_name, status_name, amount, target_name in cases:
+            with self.subTest(item_type=item_type.__name__):
+                item = item_type(
+                    item_key=f"{item_type.item_id}1",
+                    player_id=0,
+                )
+                owner = PlayerState(
+                    player_id=0,
+                    health=10,
+                    max_health=10,
+                    items={item.item_key: item},
+                )
+                opponent = PlayerState(
+                    player_id=1,
+                    health=10,
+                    max_health=10,
+                )
+                target = owner if target_name == "owner" else opponent
+                slot = getattr(target, slot_name)
+                setattr(slot, status_name, 2)
+                battle = BattleState(
+                    players=[owner, opponent],
+                    active_items=[item],
+                )
+
+                battle.step()
+                self.assertEqual(
+                    getattr(slot, status_name),
+                    2 + amount,
+                )
+                battle.step()
+                self.assertEqual(
+                    getattr(slot, status_name),
+                    2 + amount,
+                )
+
+    def test_initializer_runs_all_four_start_of_battle_items_together(self):
+        battle = initialize_battle(
+            [
+                {
+                    "player_id": 0,
+                    "health": 25,
+                    "max_health": 25,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [
+                        {
+                            "item_id": "pocket_sand",
+                            "x": 0,
+                            "y": 0,
+                            "rotation": 0,
+                        },
+                        {
+                            "item_id": "healing_herbs",
+                            "x": 1,
+                            "y": 0,
+                            "rotation": 0,
+                        },
+                        {
+                            "item_id": "flame",
+                            "x": 2,
+                            "y": 0,
+                            "rotation": 0,
+                        },
+                        {
+                            "item_id": "walrus_tusk",
+                            "x": 3,
+                            "y": 0,
+                            "rotation": 0,
+                        },
+                    ],
+                },
+                {
+                    "player_id": 1,
+                    "health": 25,
+                    "max_health": 25,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [],
+                },
+            ],
+            DEFAULT_ITEM_FACTORIES,
+            item_catalog=ITEM_CATALOG,
+        )
+
+        battle.step()
+
+        self.assertEqual(battle.players[0].buffs.Regeneration, 2)
+        self.assertEqual(battle.players[0].buffs.Heat, 1)
+        self.assertEqual(battle.players[0].buffs.Spikes, 1)
+        self.assertEqual(battle.players[1].debuffs.Blind, 1)
+        self.assertEqual(
+            [item.item_id for item in battle.active_items],
+            [
+                "pocket_sand",
+                "healing_herbs",
+                "flame",
+                "walrus_tusk",
+            ],
+        )
 
     def test_banana_is_registered_with_metadata_and_components(self):
         banana = DEFAULT_ITEM_FACTORIES["banana"](
@@ -357,7 +611,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         self.assertIsInstance(sword.triggers[0], CooldownTrigger)
         self.assertEqual(len(sword.effects), 2)
         self.assertIsInstance(sword.effects[0], StaminaConsumptionEffect)
-        self.assertIsInstance(sword.effects[1], MeleeAttackEffect)
+        self.assertIsInstance(sword.effects[1], AttackEffect)
 
     def test_wooden_swords_own_independent_component_instances(self):
         first = WoodenSword(item_key="wooden_sword1", player_id=0)
@@ -377,6 +631,9 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             frame_delta=0.1,
             stamina=2.0,
         )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
+        )
 
         sword.activate_item(context)
 
@@ -385,6 +642,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         self.assertEqual(context.opponent.health, 10)
         rng.random.assert_not_called()
         rng.randint.assert_not_called()
+        dispatch_spy.assert_not_called()
 
     def test_wooden_sword_pays_stamina_and_attacks_after_cooldown(self):
         rng = Mock()
@@ -395,6 +653,9 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             frame_delta=1.4,
             stamina=2.0,
         )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
+        )
 
         sword.activate_item(context)
 
@@ -403,6 +664,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         self.assertAlmostEqual(sword.triggers[0].cooldown_progress, 0.0)
         rng.random.assert_called_once_with()
         rng.randint.assert_called_once_with(1, 3)
+        dispatch_spy.assert_called_once_with(sword)
 
     def test_wooden_sword_pays_stamina_but_does_not_damage_on_miss(
         self,
@@ -414,6 +676,9 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             frame_delta=1.4,
             stamina=2.0,
         )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
+        )
 
         sword.activate_item(context)
 
@@ -421,6 +686,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         self.assertEqual(context.opponent.health, 10)
         rng.random.assert_called_once_with()
         rng.randint.assert_not_called()
+        dispatch_spy.assert_called_once_with(sword)
 
     def test_wooden_sword_skips_attack_and_restarts_cooldown_without_stamina(self):
         rng = Mock()
@@ -428,6 +694,9 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             rng=rng,
             frame_delta=1.4,
             stamina=0.5,
+        )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
         )
 
         sword.activate_item(context)
@@ -437,6 +706,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         self.assertEqual(context.opponent.health, 10)
         rng.random.assert_not_called()
         rng.randint.assert_not_called()
+        dispatch_spy.assert_not_called()
 
         context.owner.stamina = 2.0
         context.battle_state.frame_delta = 0.1
@@ -479,6 +749,985 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         sword = battle.players[0].items["wooden_sword1"]
         self.assertIsInstance(sword, WoodenSword)
         self.assertEqual(battle.active_items, [sword])
+
+    def test_attack_effect_rejects_invalid_damage_ranges(self):
+        for arguments in ((-1, 3, 85), (3, 2, 85)):
+            with self.subTest(arguments=arguments):
+                with self.assertRaises(ValueError):
+                    AttackEffect(*arguments)
+
+    def test_attack_effect_rejects_unsupported_attack_type(self):
+        effect = AttackEffect(1, 1, 100)
+        context = self.make_context()
+        context.item = Mock(item_types=("Weapon",))
+
+        with self.assertRaisesRegex(ValueError, "unsupported attack type"):
+            effect.apply(context, "magic")
+
+        self.assertFalse(effect.damage_modifier_prepared)
+
+    def test_attack_effect_resolves_each_supported_attack_type(self):
+        for attack_type in ("melee", "ranged", "effect"):
+            with self.subTest(attack_type=attack_type):
+                effect = AttackEffect(2, 3, 85)
+                context = self.make_context()
+                context.item = Mock(item_types=("Weapon",))
+                context.battle_state.resolve_attack = Mock(
+                    return_value=Mock(hit=True),
+                )
+
+                self.assertTrue(effect.apply(context, attack_type))
+
+                event = (
+                    context.battle_state.resolve_attack.call_args.args[0]
+                )
+                self.assertEqual(event.attack_types, (attack_type,))
+
+    def test_non_weapon_attack_effect_ignores_attack_statuses(self):
+        for attack_type in ("melee", "ranged", "effect"):
+            with self.subTest(attack_type=attack_type):
+                effect = AttackEffect(5, 5, 80)
+                effect.stack_damage_modifier(1)
+                context = self.make_context()
+                context.item = Mock(item_types=("Pet",))
+                context.owner.buffs.Empower = 7
+                context.owner.buffs.Luck = 4
+                context.owner.debuffs.Blind = 1
+                context.battle_state.resolve_attack = Mock(
+                    return_value=Mock(hit=True),
+                )
+
+                self.assertTrue(effect.apply(context, attack_type))
+
+                event = (
+                    context.battle_state.resolve_attack.call_args.args[0]
+                )
+                self.assertEqual(
+                    (event.min_damage, event.max_damage),
+                    (6, 6),
+                )
+                self.assertEqual(event.accuracy, 80)
+
+    def test_weapon_attack_effect_applies_attack_statuses(self):
+        for attack_type in ("melee", "ranged", "effect"):
+            with self.subTest(attack_type=attack_type):
+                effect = AttackEffect(5, 5, 80)
+                effect.stack_damage_modifier(1)
+                context = self.make_context()
+                context.item = Mock(item_types=("Weapon",))
+                context.owner.buffs.Empower = 7
+                context.owner.buffs.Luck = 4
+                context.owner.debuffs.Blind = 1
+                context.battle_state.resolve_attack = Mock(
+                    return_value=Mock(hit=True),
+                )
+
+                self.assertTrue(effect.apply(context, attack_type))
+
+                event = (
+                    context.battle_state.resolve_attack.call_args.args[0]
+                )
+                self.assertEqual(
+                    (event.min_damage, event.max_damage),
+                    (13, 13),
+                )
+                self.assertEqual(event.accuracy, 95)
+
+    def test_attack_effect_resolves_ranged_hit(self):
+        effect = AttackEffect(2, 3, 85)
+        effect.stack_damage_modifier(1)
+        context = self.make_context()
+        context.item = Mock(item_types=("Weapon",))
+        context.owner.buffs.Empower = 2
+        context.owner.buffs.Luck = 2
+        context.owner.debuffs.Blind = 1
+        context.battle_state.resolve_attack = Mock(
+            return_value=Mock(hit=True),
+        )
+
+        result = effect.apply(context, "ranged")
+
+        self.assertTrue(result)
+        event = context.battle_state.resolve_attack.call_args.args[0]
+        self.assertEqual(event.attack_types, ("ranged",))
+        self.assertEqual((event.min_damage, event.max_damage), (5, 6))
+        self.assertEqual(event.accuracy, 90)
+        self.assertTrue(effect.damage_modifier_prepared)
+
+    def test_ranged_attack_effect_miss_returns_false_without_damage_roll(
+        self,
+    ):
+        effect = AttackEffect(2, 3, 85)
+        context = self.make_context()
+        context.item = Mock(item_types=("Weapon",))
+        context.battle_state.rng = Mock()
+        context.battle_state.rng.random.return_value = 0.85
+
+        result = effect.apply(context, "ranged")
+
+        self.assertFalse(result)
+        context.battle_state.rng.random.assert_called_once_with()
+        context.battle_state.rng.randint.assert_not_called()
+
+    def test_ranged_attack_does_not_apply_spikes_or_vampirism(self):
+        effect = AttackEffect(2, 3, 100)
+        context = self.make_context(health=5, max_health=10)
+        context.item = Mock(item_types=("Weapon",))
+        context.owner.buffs.Vampirism = 5
+        context.opponent.buffs.Spikes = 5
+        context.battle_state.rng = Mock()
+        context.battle_state.rng.random.return_value = 0.0
+        context.battle_state.rng.randint.return_value = 2
+
+        self.assertTrue(effect.apply(context, "ranged"))
+
+        self.assertEqual(context.owner.health, 5)
+        self.assertEqual(context.opponent.health, 8)
+
+    def test_ranged_attack_does_not_trigger_wooden_buckler(self):
+        shortbow = Shortbow(item_key="shortbow1", player_id=0)
+        buckler = WoodenBuckler(
+            item_key="wooden_buckler1",
+            player_id=1,
+        )
+        owner = PlayerState(
+            player_id=0,
+            health=10,
+            max_health=10,
+            stamina=5.0,
+            max_stamina=5.0,
+            items={"shortbow1": shortbow},
+        )
+        opponent = PlayerState(
+            player_id=1,
+            health=10,
+            max_health=10,
+            items={"wooden_buckler1": buckler},
+        )
+        rng = Mock()
+        rng.random.return_value = 0.0
+        rng.randint.return_value = 2
+        context = BattleContext(
+            BattleState(players=[owner, opponent], rng=rng),
+            shortbow,
+            owner,
+            opponent,
+        )
+
+        self.assertTrue(shortbow.effects[1].apply(context, "ranged"))
+
+        self.assertEqual(opponent.health, 8)
+        self.assertAlmostEqual(owner.stamina, 5.0)
+        rng.random.assert_called_once_with()
+
+    def test_shortbow_is_registered_with_metadata_and_components(self):
+        shortbow = DEFAULT_ITEM_FACTORIES["shortbow"](
+            item_id="shortbow",
+            item_key="shortbow1",
+            player_id=0,
+        )
+
+        self.assertIsInstance(shortbow, Shortbow)
+        self.assertEqual(shortbow.display_name, "Shortbow")
+        self.assertEqual(shortbow.item_classes, ("Ranger",))
+        self.assertEqual(shortbow.rarity, "Common")
+        self.assertEqual(shortbow.cost, 4)
+        self.assertEqual(shortbow.item_types, ("Weapon",))
+        self.assertEqual(shortbow.icon_types, ("ranged",))
+        self.assertTrue(shortbow.is_active_item)
+        self.assertEqual(shortbow.socket_count, 1)
+        self.assertIsInstance(shortbow.triggers[0], CooldownTrigger)
+        self.assertAlmostEqual(shortbow.triggers[0].cooldown_seconds, 1.7)
+        self.assertIsInstance(
+            shortbow.effects[0],
+            StaminaConsumptionEffect,
+        )
+        self.assertAlmostEqual(shortbow.effects[0].stamina_cost, 0.7)
+        self.assertIsInstance(shortbow.effects[1], AttackEffect)
+        self.assertEqual(
+            (
+                shortbow.effects[1].min_damage,
+                shortbow.effects[1].max_damage,
+                shortbow.effects[1].accuracy,
+            ),
+            (2, 3, 85),
+        )
+
+    def test_shortbows_own_independent_component_instances(self):
+        first = Shortbow(item_key="shortbow1", player_id=0)
+        second = Shortbow(item_key="shortbow2", player_id=0)
+
+        self.assertIsNot(first.triggers[0], second.triggers[0])
+        self.assertIsNot(first.effects[0], second.effects[0])
+        self.assertIsNot(first.effects[1], second.effects[1])
+        first.triggers[0].cooldown_progress = 0.5
+        first.effects[1].stack_damage_modifier(2)
+        self.assertAlmostEqual(second.triggers[0].cooldown_progress, 0.0)
+        self.assertEqual(second.effects[1].damage_modifier, 0)
+
+    def test_shortbow_attacks_after_cooldown(self):
+        rng = Mock()
+        rng.random.return_value = 0.0
+        rng.randint.return_value = 2
+        shortbow, context = self.make_shortbow_context(
+            rng=rng,
+            frame_delta=1.7,
+            stamina=2.0,
+        )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
+        )
+
+        shortbow.activate_item(context)
+
+        self.assertAlmostEqual(context.owner.stamina, 1.3)
+        self.assertEqual(context.opponent.health, 8)
+        self.assertAlmostEqual(shortbow.triggers[0].cooldown_progress, 0.0)
+        rng.random.assert_called_once_with()
+        rng.randint.assert_called_once_with(2, 3)
+        dispatch_spy.assert_called_once_with(shortbow)
+
+    def test_shortbow_pays_stamina_on_miss(self):
+        rng = Mock()
+        rng.random.return_value = 0.85
+        shortbow, context = self.make_shortbow_context(
+            rng=rng,
+            frame_delta=1.7,
+            stamina=2.0,
+        )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
+        )
+
+        shortbow.activate_item(context)
+
+        self.assertAlmostEqual(context.owner.stamina, 1.3)
+        self.assertEqual(context.opponent.health, 10)
+        rng.random.assert_called_once_with()
+        rng.randint.assert_not_called()
+        dispatch_spy.assert_called_once_with(shortbow)
+
+    def test_shortbow_restarts_cooldown_without_stamina(self):
+        rng = Mock()
+        shortbow, context = self.make_shortbow_context(
+            rng=rng,
+            frame_delta=1.7,
+            stamina=0.6,
+        )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
+        )
+
+        shortbow.activate_item(context)
+
+        self.assertAlmostEqual(context.owner.stamina, 0.6)
+        self.assertAlmostEqual(shortbow.triggers[0].cooldown_progress, 0.0)
+        self.assertEqual(context.opponent.health, 10)
+        rng.random.assert_not_called()
+        rng.randint.assert_not_called()
+        dispatch_spy.assert_not_called()
+
+    def test_initializer_builds_shortbow_as_active_item(self):
+        battle = initialize_battle(
+            [
+                {
+                    "player_id": 0,
+                    "health": 10,
+                    "max_health": 10,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [
+                        {
+                            "item_id": "shortbow",
+                            "x": 0,
+                            "y": 0,
+                            "rotation": 0,
+                        },
+                    ],
+                },
+                {
+                    "player_id": 1,
+                    "health": 10,
+                    "max_health": 10,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [],
+                },
+            ],
+            DEFAULT_ITEM_FACTORIES,
+            item_catalog=ITEM_CATALOG,
+        )
+
+        shortbow = battle.players[0].items["shortbow1"]
+        self.assertIsInstance(shortbow, Shortbow)
+        self.assertEqual(battle.active_items, [shortbow])
+
+    def test_after_time_trigger_fires_once_after_delay(self):
+        trigger = AfterTimeTrigger(delay_seconds=5.0)
+        context = self.make_context(frame_delta=2.5)
+
+        self.assertFalse(trigger.update(context))
+        self.assertTrue(trigger.update(context))
+        self.assertFalse(trigger.update(context))
+        self.assertTrue(trigger.has_triggered)
+
+    def test_after_time_trigger_reuses_cooldown_speed_modifiers(self):
+        trigger = AfterTimeTrigger(delay_seconds=5.0)
+        trigger.stack_speed_modifier(0.2)
+        context = self.make_context(frame_delta=1.0)
+        context.owner.buffs.Heat = 10
+        context.owner.debuffs.Cold = 5
+
+        self.assertFalse(trigger.update(context))
+
+        self.assertAlmostEqual(trigger.cooldown_progress, 1.3)
+
+    def test_after_time_trigger_can_lock_has_triggered_false(self):
+        trigger = AfterTimeTrigger(delay_seconds=1.0)
+        trigger.lock_has_triggered_false()
+        context = self.make_context(frame_delta=1.0)
+
+        self.assertTrue(trigger.update(context))
+        self.assertTrue(trigger.update(context))
+
+        self.assertFalse(trigger.has_triggered)
+        self.assertTrue(trigger.has_triggered_locked_false)
+
+    def test_after_time_trigger_lock_reopens_trigger_after_first_activation(
+        self,
+    ):
+        trigger = AfterTimeTrigger(delay_seconds=1.0)
+        context = self.make_context(frame_delta=1.0)
+
+        self.assertTrue(trigger.update(context))
+        self.assertFalse(trigger.update(context))
+        trigger.lock_has_triggered_false()
+        self.assertTrue(trigger.update(context))
+
+        self.assertFalse(trigger.has_triggered)
+        self.assertTrue(trigger.has_triggered_locked_false)
+
+    def test_holy_linked_heal_effect_counts_only_linked_holy_items(self):
+        shell = ShinyShell(item_key="shiny_shell1", player_id=0)
+        first_holy = ShinyShell(item_key="shiny_shell2", player_id=0)
+        second_holy = ShinyShell(item_key="shiny_shell3", player_id=0)
+        unlinked_holy = ShinyShell(item_key="shiny_shell4", player_id=0)
+        non_holy = WoodenSword(item_key="wooden_sword1", player_id=0)
+        shell.linked_items = [
+            first_holy.item_key,
+            second_holy.item_key,
+            non_holy.item_key,
+            shell.item_key,
+        ]
+        owner = PlayerState(
+            player_id=0,
+            health=0,
+            max_health=20,
+            items={
+                shell.item_key: shell,
+                first_holy.item_key: first_holy,
+                second_holy.item_key: second_holy,
+                unlinked_holy.item_key: unlinked_holy,
+                non_holy.item_key: non_holy,
+            },
+        )
+        opponent = PlayerState(player_id=1, health=10, max_health=10)
+        battle_state = BattleState(players=[owner, opponent])
+        context = BattleContext(
+            battle_state,
+            shell,
+            owner,
+            opponent,
+        )
+        effect = HolyLinkedHealEffect(base_amount=5, amount_per_holy=3)
+
+        self.assertTrue(effect.apply(context))
+
+        self.assertEqual(owner.health, 11)
+        self.assertEqual(effect.qualifying_holy_count, 2)
+        self.assertEqual(effect.amount, 11)
+
+    def test_holy_linked_heal_effect_prepares_amount_once(self):
+        shell = ShinyShell(item_key="shiny_shell1", player_id=0)
+        first_holy = ShinyShell(item_key="shiny_shell2", player_id=0)
+        shell.add_linked_item(first_holy.item_key)
+        owner = PlayerState(
+            player_id=0,
+            health=0,
+            max_health=20,
+            items={
+                shell.item_key: shell,
+                first_holy.item_key: first_holy,
+            },
+        )
+        opponent = PlayerState(player_id=1, health=10, max_health=10)
+        battle_state = BattleState(players=[owner, opponent])
+        context = BattleContext(
+            battle_state,
+            shell,
+            owner,
+            opponent,
+        )
+        effect = HolyLinkedHealEffect(base_amount=5, amount_per_holy=3)
+
+        self.assertTrue(effect.apply(context))
+        second_holy = ShinyShell(item_key="shiny_shell3", player_id=0)
+        owner.items[second_holy.item_key] = second_holy
+        shell.add_linked_item(second_holy.item_key)
+        battle_state.commit_health_reduction(owner, 0, owner.health - 1)
+        self.assertTrue(effect.apply(context))
+
+        self.assertEqual(owner.health, 9)
+        self.assertEqual(effect.qualifying_holy_count, 1)
+        self.assertEqual(effect.amount, 8)
+
+    def test_shiny_shell_is_registered_with_metadata_and_components(self):
+        shell = DEFAULT_ITEM_FACTORIES["shiny_shell"](
+            item_id="shiny_shell",
+            item_key="shiny_shell1",
+            player_id=0,
+        )
+        second_shell = ShinyShell(item_key="shiny_shell2", player_id=0)
+
+        self.assertIsInstance(shell, ShinyShell)
+        self.assertEqual(shell.display_name, "Shiny Shell")
+        self.assertEqual(shell.item_classes, ("Neutral",))
+        self.assertEqual(shell.rarity, "Common")
+        self.assertEqual(shell.cost, 2)
+        self.assertEqual(shell.item_types, ("Accessory",))
+        self.assertEqual(shell.icon_types, ("nature", "holy"))
+        self.assertTrue(shell.is_active_item)
+        self.assertEqual(shell.socket_count, 0)
+        self.assertIsInstance(shell.triggers[0], AfterTimeTrigger)
+        self.assertAlmostEqual(shell.triggers[0].cooldown_seconds, 5.0)
+        self.assertIsInstance(shell.effects[0], HolyLinkedHealEffect)
+        self.assertEqual(shell.effects[0].base_amount, 5)
+        self.assertEqual(shell.effects[0].amount_per_holy, 3)
+        self.assertIsNot(shell.triggers[0], second_shell.triggers[0])
+        self.assertIsNot(shell.effects[0], second_shell.effects[0])
+
+    def test_shiny_shell_triggers_once_and_does_not_retry_at_full_health(self):
+        shell = ShinyShell(item_key="shiny_shell1", player_id=0)
+        owner = PlayerState(
+            player_id=0,
+            health=10,
+            max_health=10,
+            items={shell.item_key: shell},
+        )
+        opponent = PlayerState(player_id=1, health=10, max_health=10)
+        battle_state = BattleState(
+            players=[owner, opponent],
+            active_items=[shell],
+            frame_delta=5.0,
+        )
+        context = BattleContext(
+            battle_state,
+            shell,
+            owner,
+            opponent,
+        )
+        dispatch_spy = spy_on_activation_dispatch(battle_state)
+
+        shell.activate_item(context)
+        battle_state.commit_health_reduction(owner, 0, owner.health - 1)
+        shell.activate_item(context)
+
+        self.assertEqual(owner.health, 1)
+        self.assertTrue(shell.triggers[0].has_triggered)
+        dispatch_spy.assert_called_once_with(shell)
+
+    def test_initializer_links_shiny_shells_left_and_right_stars(self):
+        battle = initialize_battle(
+            [
+                {
+                    "player_id": 0,
+                    "health": 10,
+                    "max_health": 10,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [
+                        {
+                            "item_id": "shiny_shell",
+                            "x": x,
+                            "y": 0,
+                            "rotation": 0,
+                        }
+                        for x in (1, 2, 3)
+                    ],
+                },
+                {
+                    "player_id": 1,
+                    "health": 10,
+                    "max_health": 10,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [],
+                },
+            ],
+            DEFAULT_ITEM_FACTORIES,
+            item_catalog=ITEM_CATALOG,
+        )
+
+        center_shell = battle.players[0].items["shiny_shell2"]
+        self.assertEqual(
+            set(center_shell.linked_items),
+            {"shiny_shell1", "shiny_shell3"},
+        )
+
+    def test_initializer_builds_shiny_shell_as_active_item(self):
+        battle = initialize_battle(
+            [
+                {
+                    "player_id": 0,
+                    "health": 10,
+                    "max_health": 10,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [
+                        {
+                            "item_id": "shiny_shell",
+                            "x": 0,
+                            "y": 0,
+                            "rotation": 0,
+                        }
+                    ],
+                },
+                {
+                    "player_id": 1,
+                    "health": 10,
+                    "max_health": 10,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [],
+                },
+            ],
+            DEFAULT_ITEM_FACTORIES,
+            item_catalog=ITEM_CATALOG,
+        )
+
+        shell = battle.players[0].items["shiny_shell1"]
+        self.assertIsInstance(shell, ShinyShell)
+        self.assertEqual(battle.active_items, [shell])
+
+    def test_linked_weapon_damage_effect_rejects_invalid_amounts(self):
+        for amount in (True, 1.0, -1):
+            with self.subTest(amount=amount):
+                with self.assertRaises(ValueError):
+                    LinkedWeaponDamageEffect(amount)
+
+    def test_linked_weapon_damage_effect_buffs_all_linked_attack_effects(
+        self,
+    ):
+        whetstone = Whetstone(item_key="whetstone1", player_id=0)
+        sword = WoodenSword(item_key="wooden_sword1", player_id=0)
+        shortbow = Shortbow(item_key="shortbow1", player_id=0)
+        pan = Pan(item_key="pan1", player_id=0)
+        whetstone.linked_items = [
+            sword.item_key,
+            shortbow.item_key,
+            pan.item_key,
+        ]
+        owner = PlayerState(
+            player_id=0,
+            health=10,
+            max_health=10,
+            items={
+                whetstone.item_key: whetstone,
+                sword.item_key: sword,
+                shortbow.item_key: shortbow,
+                pan.item_key: pan,
+            },
+        )
+        opponent = PlayerState(player_id=1, health=10, max_health=10)
+        context = BattleContext(
+            BattleState(players=[owner, opponent]),
+            whetstone,
+            owner,
+            opponent,
+        )
+        effect = LinkedWeaponDamageEffect(amount=1)
+
+        self.assertTrue(effect.apply(context))
+
+        self.assertEqual(sword.effects[1].damage_modifier, 1)
+        self.assertEqual(shortbow.effects[1].damage_modifier, 1)
+        self.assertEqual(pan.effects[1].damage_modifier, 1)
+        self.assertEqual(
+            (sword.effects[1].min_damage, sword.effects[1].max_damage),
+            (1, 3),
+        )
+        self.assertEqual(
+            (
+                shortbow.effects[1].min_damage,
+                shortbow.effects[1].max_damage,
+            ),
+            (2, 3),
+        )
+
+    def test_linked_weapon_damage_effect_ignores_non_weapons_and_unlinked_weapons(
+        self,
+    ):
+        whetstone = Whetstone(item_key="whetstone1", player_id=0)
+        shell = ShinyShell(item_key="shiny_shell1", player_id=0)
+        rat = Rat(item_key="rat1", player_id=0)
+        sword = WoodenSword(item_key="wooden_sword1", player_id=0)
+        whetstone.add_linked_item(shell.item_key)
+        whetstone.add_linked_item(rat.item_key)
+        owner = PlayerState(
+            player_id=0,
+            health=10,
+            max_health=10,
+            items={
+                whetstone.item_key: whetstone,
+                shell.item_key: shell,
+                rat.item_key: rat,
+                sword.item_key: sword,
+            },
+        )
+        opponent = PlayerState(player_id=1, health=10, max_health=10)
+        context = BattleContext(
+            BattleState(players=[owner, opponent]),
+            whetstone,
+            owner,
+            opponent,
+        )
+
+        self.assertFalse(whetstone.effects[0].apply(context))
+
+        self.assertEqual(sword.effects[1].damage_modifier, 0)
+        self.assertEqual(rat.effects[0].damage_modifier, 0)
+
+    def test_whetstone_is_registered_with_metadata_and_components(self):
+        whetstone = DEFAULT_ITEM_FACTORIES["whetstone"](
+            item_id="whetstone",
+            item_key="whetstone1",
+            player_id=0,
+        )
+        second = Whetstone(item_key="whetstone2", player_id=0)
+
+        self.assertIsInstance(whetstone, Whetstone)
+        self.assertEqual(whetstone.display_name, "Whetstone")
+        self.assertEqual(whetstone.item_classes, ("Neutral",))
+        self.assertEqual(whetstone.rarity, "Common")
+        self.assertEqual(whetstone.cost, 4)
+        self.assertEqual(whetstone.item_types, ("Accessory",))
+        self.assertEqual(whetstone.icon_types, ())
+        self.assertTrue(whetstone.is_active_item)
+        self.assertEqual(whetstone.socket_count, 0)
+        self.assertIsInstance(whetstone.triggers[0], StartOfBattleTrigger)
+        self.assertIsInstance(
+            whetstone.effects[0],
+            LinkedWeaponDamageEffect,
+        )
+        self.assertEqual(whetstone.effects[0].amount, 1)
+        self.assertIsNot(whetstone.triggers[0], second.triggers[0])
+        self.assertIsNot(whetstone.effects[0], second.effects[0])
+
+    def test_whetstone_triggers_once(self):
+        whetstone = Whetstone(item_key="whetstone1", player_id=0)
+        sword = WoodenSword(item_key="wooden_sword1", player_id=0)
+        whetstone.add_linked_item(sword.item_key)
+        owner = PlayerState(
+            player_id=0,
+            health=10,
+            max_health=10,
+            items={
+                whetstone.item_key: whetstone,
+                sword.item_key: sword,
+            },
+        )
+        opponent = PlayerState(player_id=1, health=10, max_health=10)
+        context = BattleContext(
+            BattleState(players=[owner, opponent]),
+            whetstone,
+            owner,
+            opponent,
+        )
+
+        whetstone.activate_item(context)
+        whetstone.activate_item(context)
+
+        self.assertEqual(sword.effects[1].damage_modifier, 1)
+        self.assertTrue(whetstone.triggers[0].has_triggered)
+
+    def test_initializer_links_whetstone_left_and_right_stars(self):
+        battle = initialize_battle(
+            [
+                {
+                    "player_id": 0,
+                    "health": 10,
+                    "max_health": 10,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [
+                        {
+                            "item_id": "wooden_sword",
+                            "x": 1,
+                            "y": 0,
+                            "rotation": 0,
+                        },
+                        {
+                            "item_id": "whetstone",
+                            "x": 2,
+                            "y": 0,
+                            "rotation": 0,
+                        },
+                        {
+                            "item_id": "shortbow",
+                            "x": 3,
+                            "y": 0,
+                            "rotation": 0,
+                        },
+                    ],
+                },
+                {
+                    "player_id": 1,
+                    "health": 10,
+                    "max_health": 10,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [],
+                },
+            ],
+            DEFAULT_ITEM_FACTORIES,
+            item_catalog=ITEM_CATALOG,
+        )
+
+        whetstone = battle.players[0].items["whetstone1"]
+        self.assertEqual(
+            set(whetstone.linked_items),
+            {"wooden_sword1", "shortbow1"},
+        )
+
+    def test_initializer_builds_whetstone_as_active_item(self):
+        battle = initialize_battle(
+            [
+                {
+                    "player_id": 0,
+                    "health": 10,
+                    "max_health": 10,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [
+                        {
+                            "item_id": "whetstone",
+                            "x": 0,
+                            "y": 0,
+                            "rotation": 0,
+                        }
+                    ],
+                },
+                {
+                    "player_id": 1,
+                    "health": 10,
+                    "max_health": 10,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [],
+                },
+            ],
+            DEFAULT_ITEM_FACTORIES,
+            item_catalog=ITEM_CATALOG,
+        )
+
+        whetstone = battle.players[0].items["whetstone1"]
+        self.assertIsInstance(whetstone, Whetstone)
+        self.assertEqual(battle.active_items, [whetstone])
+
+    def test_remove_opponent_block_effect_validates_and_clamps_amount(self):
+        for amount in (True, 1.0, -1):
+            with self.subTest(amount=amount):
+                with self.assertRaises(ValueError):
+                    RemoveOpponentBlockEffect(amount)
+
+        context = self.make_context()
+        context.opponent.block = 3
+        effect = RemoveOpponentBlockEffect(amount=4)
+
+        self.assertTrue(effect.apply(context))
+        self.assertEqual(context.opponent.block, 0)
+        self.assertFalse(effect.apply(context))
+
+    def test_stone_is_registered_with_metadata_and_components(self):
+        stone = DEFAULT_ITEM_FACTORIES["stone"](
+            item_id="stone",
+            item_key="stone1",
+            player_id=0,
+        )
+        second = Stone(item_key="stone2", player_id=0)
+
+        self.assertIsInstance(stone, Stone)
+        self.assertEqual(stone.display_name, "Stone")
+        self.assertEqual(stone.item_classes, ("Neutral",))
+        self.assertEqual(stone.rarity, "Common")
+        self.assertEqual(stone.cost, 1)
+        self.assertEqual(stone.item_types, ("Weapon",))
+        self.assertEqual(stone.icon_types, ("ranged", "nature"))
+        self.assertTrue(stone.is_active_item)
+        self.assertEqual(stone.socket_count, 0)
+        self.assertIsInstance(stone.triggers[0], AfterTimeTrigger)
+        self.assertAlmostEqual(stone.triggers[0].cooldown_seconds, 2.5)
+        self.assertFalse(stone.triggers[0].has_triggered_locked_false)
+        self.assertIsInstance(stone.effects[0], AttackEffect)
+        self.assertEqual(
+            (
+                stone.effects[0].min_damage,
+                stone.effects[0].max_damage,
+                stone.effects[0].accuracy,
+            ),
+            (2, 4, 70),
+        )
+        self.assertIsInstance(
+            stone.effects[1],
+            RemoveOpponentBlockEffect,
+        )
+        self.assertEqual(stone.effects[1].amount, 4)
+        self.assertIsNot(stone.triggers[0], second.triggers[0])
+        self.assertIsNot(stone.effects[0], second.effects[0])
+        self.assertIsNot(stone.effects[1], second.effects[1])
+
+    def test_stone_hits_once_and_removes_block_after_attack(self):
+        rng = Mock()
+        rng.random.return_value = 0.0
+        rng.randint.return_value = 2
+        stone = Stone(item_key="stone1", player_id=0)
+        owner = PlayerState(
+            player_id=0,
+            health=10,
+            max_health=10,
+            items={stone.item_key: stone},
+        )
+        opponent = PlayerState(
+            player_id=1,
+            health=10,
+            max_health=10,
+            block=10,
+        )
+        context = BattleContext(
+            BattleState(
+                players=[owner, opponent],
+                active_items=[stone],
+                frame_delta=2.5,
+                rng=rng,
+            ),
+            stone,
+            owner,
+            opponent,
+        )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
+        )
+
+        stone.activate_item(context)
+        stone.activate_item(context)
+
+        self.assertEqual(opponent.block, 4)
+        self.assertEqual(opponent.health, 10)
+        self.assertTrue(stone.triggers[0].has_triggered)
+        rng.random.assert_called_once_with()
+        rng.randint.assert_called_once_with(2, 4)
+        dispatch_spy.assert_called_once_with(stone)
+
+    def test_stone_miss_consumes_its_only_throw_without_removing_block(self):
+        rng = Mock()
+        rng.random.return_value = 0.70
+        stone = Stone(item_key="stone1", player_id=0)
+        owner = PlayerState(
+            player_id=0,
+            health=10,
+            max_health=10,
+            items={stone.item_key: stone},
+        )
+        opponent = PlayerState(
+            player_id=1,
+            health=10,
+            max_health=10,
+            block=10,
+        )
+        context = BattleContext(
+            BattleState(
+                players=[owner, opponent],
+                active_items=[stone],
+                frame_delta=2.5,
+                rng=rng,
+            ),
+            stone,
+            owner,
+            opponent,
+        )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
+        )
+
+        stone.activate_item(context)
+        stone.activate_item(context)
+
+        self.assertEqual(opponent.block, 10)
+        self.assertEqual(opponent.health, 10)
+        self.assertTrue(stone.triggers[0].has_triggered)
+        rng.random.assert_called_once_with()
+        rng.randint.assert_not_called()
+        dispatch_spy.assert_called_once_with(stone)
+
+    def test_whetstone_can_buff_stone(self):
+        whetstone = Whetstone(item_key="whetstone1", player_id=0)
+        stone = Stone(item_key="stone1", player_id=0)
+        whetstone.add_linked_item(stone.item_key)
+        owner = PlayerState(
+            player_id=0,
+            health=10,
+            max_health=10,
+            items={
+                whetstone.item_key: whetstone,
+                stone.item_key: stone,
+            },
+        )
+        opponent = PlayerState(player_id=1, health=10, max_health=10)
+        context = BattleContext(
+            BattleState(players=[owner, opponent]),
+            whetstone,
+            owner,
+            opponent,
+        )
+
+        whetstone.activate_item(context)
+
+        self.assertEqual(stone.effects[0].damage_modifier, 1)
+
+    def test_initializer_builds_stone_as_active_item(self):
+        battle = initialize_battle(
+            [
+                {
+                    "player_id": 0,
+                    "health": 10,
+                    "max_health": 10,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [
+                        {
+                            "item_id": "stone",
+                            "x": 0,
+                            "y": 0,
+                            "rotation": 0,
+                        }
+                    ],
+                },
+                {
+                    "player_id": 1,
+                    "health": 10,
+                    "max_health": 10,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [],
+                },
+            ],
+            DEFAULT_ITEM_FACTORIES,
+            item_catalog=ITEM_CATALOG,
+        )
+
+        stone = battle.players[0].items["stone1"]
+        self.assertIsInstance(stone, Stone)
+        self.assertEqual(battle.active_items, [stone])
 
     def test_cooldown_trigger_starts_empty_and_does_not_trigger_immediately(self):
         trigger = CooldownTrigger(cooldown_seconds=1.4)
@@ -609,6 +1858,128 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
 
         self.assertAlmostEqual(first_trigger.cooldown_progress, 0.25)
         self.assertAlmostEqual(second_trigger.cooldown_progress, 0.0)
+
+    def test_item_accelerated_cooldown_rejects_invalid_conditions(self):
+        invalid_conditions = (
+            None,
+            (),
+            [None],
+            [{"unknown": "Pet", "accelerate": 0.15}],
+            [{"item_type": "", "accelerate": 0.15}],
+            [{"item_type": "Pet"}],
+            [{"item_type": "Pet", "accelerate": True}],
+            [{"item_type": "Pet", "accelerate": -0.1}],
+            [{"item_type": "Pet", "accelerate": "0.15"}],
+        )
+
+        for conditions in invalid_conditions:
+            with self.subTest(conditions=conditions):
+                with self.assertRaises(ValueError):
+                    ItemAcceleratedCooldownTrigger(3.3, conditions)
+
+    def test_item_accelerated_cooldown_requires_all_condition_fields(self):
+        trigger = ItemAcceleratedCooldownTrigger(
+            100.0,
+            [
+                {
+                    "class": "Ranger",
+                    "rarity": "Common",
+                    "item_type": "Pet",
+                    "icon_type": "nature",
+                    "accelerate": 0.20,
+                }
+            ],
+        )
+        matching = Mock(
+            item_classes=("Ranger",),
+            rarity="Common",
+            item_types=("Pet",),
+            icon_types=("nature",),
+        )
+        wrong_rarity = Mock(
+            item_classes=("Ranger",),
+            rarity="Rare",
+            item_types=("Pet",),
+            icon_types=("nature",),
+        )
+        context = self.make_context(frame_delta=1.0)
+        context.item = Mock(linked_items=["matching", "wrong_rarity"])
+        context.owner.items = {
+            "matching": matching,
+            "wrong_rarity": wrong_rarity,
+        }
+
+        self.assertFalse(trigger.update(context))
+
+        self.assertAlmostEqual(trigger.item_acceleration, 0.20)
+        self.assertAlmostEqual(trigger.speed_modifiers, 0.20)
+        self.assertAlmostEqual(trigger.cooldown_progress, 1.20)
+
+    def test_item_accelerated_cooldown_without_filters_matches_all_items(
+        self,
+    ):
+        trigger = ItemAcceleratedCooldownTrigger(
+            100.0,
+            [{"accelerate": 0.10}],
+        )
+        context = self.make_context(frame_delta=1.0)
+        context.item = Mock(linked_items=["first", "second"])
+        context.owner.items = {
+            "first": Mock(),
+            "second": Mock(),
+        }
+
+        self.assertFalse(trigger.update(context))
+
+        self.assertAlmostEqual(trigger.item_acceleration, 0.20)
+        self.assertAlmostEqual(trigger.speed_modifiers, 0.20)
+        self.assertAlmostEqual(trigger.cooldown_progress, 1.20)
+
+    def test_item_accelerated_cooldown_adds_each_matching_condition(self):
+        conditions = [
+            {"item_type": "Pet", "accelerate": 0.15},
+            {"item_type": "Food", "accelerate": 0.15},
+        ]
+        trigger = ItemAcceleratedCooldownTrigger(100.0, conditions)
+        conditions[0]["accelerate"] = 9.0
+        dual_type = Mock(
+            item_classes=("Ranger",),
+            rarity="Common",
+            item_types=("Pet", "Food"),
+            icon_types=("nature",),
+        )
+        pet = Mock(
+            item_classes=("Ranger",),
+            rarity="Common",
+            item_types=("Pet",),
+            icon_types=("nature",),
+        )
+        context = self.make_context(frame_delta=1.0)
+        context.item = Mock(linked_items=["dual_type", "pet"])
+        context.owner.items = {
+            "dual_type": dual_type,
+            "pet": pet,
+        }
+        context.owner.buffs.Heat = 5
+        trigger.stack_speed_modifier(0.20)
+
+        self.assertFalse(trigger.update(context))
+
+        self.assertAlmostEqual(trigger.item_acceleration, 0.45)
+        self.assertAlmostEqual(trigger.speed_modifiers, 0.65)
+        self.assertAlmostEqual(trigger.cooldown_progress, 1.75)
+
+        context.item.linked_items.append("late_food")
+        context.owner.items["late_food"] = Mock(
+            item_classes=("Neutral",),
+            rarity="Common",
+            item_types=("Food",),
+            icon_types=("nature",),
+        )
+        self.assertFalse(trigger.update(context))
+        self.assertAlmostEqual(trigger.item_acceleration, 0.45)
+        self.assertAlmostEqual(trigger.speed_modifiers, 0.65)
+        self.assertAlmostEqual(trigger.cooldown_progress, 3.50)
 
     def test_food_cooldown_counts_each_linked_other_food_instance(self):
         banana, context, _ = self.make_banana_context(
@@ -1115,6 +2486,9 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             stamina=2.0,
             max_stamina=5.0,
         )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
+        )
 
         banana.activate_item(context)
 
@@ -1124,6 +2498,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         )
         self.assertEqual(context.owner.health, 5)
         self.assertEqual(context.owner.stamina, 2.0)
+        dispatch_spy.assert_not_called()
 
     def test_banana_heals_and_regenerates_stamina_after_cooldown(self):
         banana, context, _ = self.make_banana_context(
@@ -1132,6 +2507,9 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             max_health=10,
             stamina=2.0,
             max_stamina=5.0,
+        )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
         )
 
         banana.activate_item(context)
@@ -1142,6 +2520,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             banana.triggers[0].cooldown_progress,
             0.0,
         )
+        dispatch_spy.assert_called_once_with(banana)
 
     def test_banana_runs_stamina_effect_when_heal_has_no_effect(self):
         banana, context, _ = self.make_banana_context(
@@ -1212,6 +2591,9 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             opponent_vampirism=2,
             rng=rng,
         )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
+        )
 
         garlic.activate_item(context)
 
@@ -1222,6 +2604,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         self.assertEqual(context.owner.block, 2)
         self.assertEqual(context.opponent.buffs.Vampirism, 2)
         rng.random.assert_not_called()
+        dispatch_spy.assert_not_called()
 
     def test_garlic_gains_block_and_removes_vampirism_on_success(self):
         rng = Mock()
@@ -1231,6 +2614,9 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             block=2,
             opponent_vampirism=2,
             rng=rng,
+        )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
         )
 
         garlic.activate_item(context)
@@ -1242,6 +2628,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             0.0,
         )
         rng.random.assert_called_once_with()
+        dispatch_spy.assert_called_once_with(garlic)
 
     def test_garlic_still_gains_block_when_removal_roll_fails(self):
         rng = Mock()
@@ -1252,12 +2639,16 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             opponent_vampirism=2,
             rng=rng,
         )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
+        )
 
         garlic.activate_item(context)
 
         self.assertEqual(context.owner.block, 5)
         self.assertEqual(context.opponent.buffs.Vampirism, 2)
         rng.random.assert_called_once_with()
+        dispatch_spy.assert_called_once_with(garlic)
 
     def test_garlic_still_gains_block_when_opponent_has_no_vampirism(self):
         rng = Mock()
@@ -1319,8 +2710,9 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
     def test_melee_attack_effect_starts_with_unprepared_zero_damage_modifier(
         self,
     ):
-        effect = MeleeAttackEffect(1, 3, 90)
+        effect = AttackEffect(1, 3, 90)
         context = self.make_context()
+        context.item = Mock(item_types=("Weapon",))
         context.battle_state.rng = Mock()
         context.battle_state.rng.random.return_value = 0.0
         context.battle_state.rng.randint.return_value = 1
@@ -1328,7 +2720,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         self.assertEqual(effect.damage_modifier, 0)
         self.assertFalse(effect.damage_modifier_prepared)
 
-        result = effect.apply(context)
+        result = effect.apply(context, "melee")
 
         self.assertTrue(result)
         self.assertTrue(effect.damage_modifier_prepared)
@@ -1336,22 +2728,23 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         context.battle_state.rng.randint.assert_called_once_with(1, 3)
 
     def test_melee_attack_effect_stacks_persistent_damage_modifiers(self):
-        effect = MeleeAttackEffect(1, 3, 90)
+        effect = AttackEffect(1, 3, 90)
         effect.stack_damage_modifier(2)
         effect.stack_damage_modifier(3)
         context = self.make_context()
+        context.item = Mock(item_types=("Weapon",))
         context.owner.buffs.Empower = 1
         context.battle_state.rng = Mock()
         context.battle_state.rng.random.return_value = 0.0
         context.battle_state.rng.randint.return_value = 7
 
-        effect.apply(context)
+        effect.apply(context, "melee")
 
         self.assertEqual(effect.damage_modifier, 5)
         context.battle_state.rng.randint.assert_called_once_with(7, 9)
 
     def test_melee_attack_effect_prepares_intrinsic_modifier_once(self):
-        class PreparingMeleeAttackEffect(MeleeAttackEffect):
+        class PreparingAttackEffect(AttackEffect):
             def __init__(self):
                 super().__init__(1, 3, 90)
                 self.prepare_calls = 0
@@ -1360,14 +2753,15 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
                 self.prepare_calls += 1
                 self.stack_damage_modifier(2)
 
-        effect = PreparingMeleeAttackEffect()
+        effect = PreparingAttackEffect()
         context = self.make_context()
+        context.item = Mock(item_types=("Weapon",))
         context.battle_state.rng = Mock()
         context.battle_state.rng.random.return_value = 0.0
         context.battle_state.rng.randint.side_effect = [3, 3]
 
-        effect.apply(context)
-        effect.apply(context)
+        effect.apply(context, "melee")
+        effect.apply(context, "melee")
 
         self.assertEqual(effect.prepare_calls, 1)
         self.assertEqual(effect.damage_modifier, 2)
@@ -1393,7 +2787,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         )
         effect = pan.effects[1]
 
-        effect.apply(context)
+        effect.apply(context, "melee")
 
         self.assertEqual(effect.qualifying_food_count, 2)
         self.assertEqual(effect.damage_modifier, 2)
@@ -1417,7 +2811,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         )
         effect = pan.effects[1]
 
-        effect.apply(context)
+        effect.apply(context, "melee")
 
         self.assertEqual(effect.qualifying_food_count, 0)
         self.assertEqual(effect.damage_modifier, 0)
@@ -1435,7 +2829,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         )
         effect = pan.effects[1]
 
-        effect.apply(context)
+        effect.apply(context, "melee")
 
         blueberries = Mock()
         blueberries.item_id = "blueberries"
@@ -1443,7 +2837,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         linked_items["blueberries1"] = blueberries
         context.owner.items["blueberries1"] = blueberries
         pan.add_linked_item("blueberries1")
-        effect.apply(context)
+        effect.apply(context, "melee")
 
         self.assertEqual(effect.qualifying_food_count, 1)
         self.assertEqual(effect.damage_modifier, 1)
@@ -1481,7 +2875,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         effect = pan.effects[1]
         effect.stack_damage_modifier(4)
 
-        effect.apply(context)
+        effect.apply(context, "melee")
 
         self.assertEqual(effect.damage_modifier, 6)
         self.assertEqual(effect.min_damage, 5)
@@ -1600,6 +2994,9 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             stamina=5.0,
             rng=rng,
         )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
+        )
 
         pan.activate_item(context)
 
@@ -1609,6 +3006,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         self.assertFalse(pan.effects[1].damage_modifier_prepared)
         rng.random.assert_not_called()
         rng.randint.assert_not_called()
+        dispatch_spy.assert_not_called()
 
     def test_pan_pays_stamina_and_attacks_with_base_damage(self):
         rng = Mock()
@@ -1620,6 +3018,9 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             opponent_health=20,
             rng=rng,
         )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
+        )
 
         pan.activate_item(context)
 
@@ -1628,6 +3029,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         self.assertAlmostEqual(pan.triggers[0].cooldown_progress, 0.0)
         rng.random.assert_called_once_with()
         rng.randint.assert_called_once_with(5, 6)
+        dispatch_spy.assert_called_once_with(pan)
 
     def test_pan_adds_one_damage_per_linked_food(self):
         rng = Mock()
@@ -1734,6 +3136,9 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
                 ("banana1", "banana", ("Food",)),
             ),
         )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
+        )
 
         pan.activate_item(context)
 
@@ -1744,6 +3149,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         self.assertEqual(pan.effects[1].damage_modifier, 0)
         rng.random.assert_not_called()
         rng.randint.assert_not_called()
+        dispatch_spy.assert_not_called()
 
     def test_pan_does_not_activate_star_linked_food_on_hit(self):
         rng = Mock()
@@ -1756,6 +3162,9 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             linked_item_specs=(
                 ("banana1", "banana", ("Food",)),
             ),
+        )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
         )
 
         pan.activate_item(context)
@@ -1802,6 +3211,9 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
                 ("banana1", "banana", ("Food",)),
             ),
         )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
+        )
 
         pan.activate_item(context)
 
@@ -1812,6 +3224,239 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         rng.random.assert_called_once_with()
         rng.randint.assert_not_called()
         linked_items["banana1"].activate_item.assert_not_called()
+        dispatch_spy.assert_called_once_with(pan)
+
+    def test_rat_is_registered_with_metadata_and_components(self):
+        rat = DEFAULT_ITEM_FACTORIES["rat"](
+            item_id="rat",
+            item_key="rat1",
+            player_id=0,
+        )
+        second = Rat(item_key="rat2", player_id=0)
+
+        self.assertIsInstance(rat, Rat)
+        self.assertEqual(rat.display_name, "Rat")
+        self.assertEqual(rat.item_classes, ("Ranger",))
+        self.assertEqual(rat.rarity, "Common")
+        self.assertEqual(rat.cost, 4)
+        self.assertEqual(rat.item_types, ("Pet",))
+        self.assertEqual(rat.icon_types, ("nature",))
+        self.assertTrue(rat.is_active_item)
+        self.assertEqual(rat.socket_count, 0)
+        self.assertIsInstance(
+            rat.triggers[0],
+            ItemAcceleratedCooldownTrigger,
+        )
+        self.assertAlmostEqual(rat.triggers[0].cooldown_seconds, 3.3)
+        self.assertEqual(
+            rat.triggers[0].acceleration_conditions,
+            [
+                {"item_type": "Pet", "accelerate": 0.15},
+                {"item_type": "Food", "accelerate": 0.15},
+            ],
+        )
+        self.assertIsInstance(rat.effects[0], AttackEffect)
+        self.assertEqual(
+            (
+                rat.effects[0].min_damage,
+                rat.effects[0].max_damage,
+                rat.effects[0].accuracy,
+            ),
+            (5, 5, 100),
+        )
+        self.assertEqual(
+            [
+                (effect.debuff_name, effect.amount)
+                for effect in rat.effects[1:]
+            ],
+            [("Poison", 1), ("Blind", 1)],
+        )
+        self.assertIsNot(rat.triggers[0], second.triggers[0])
+        for effect, second_effect in zip(rat.effects, second.effects):
+            self.assertIsNot(effect, second_effect)
+
+    def test_rat_activation_ignores_attack_statuses_and_applies_debuffs(self):
+        rng = Mock()
+        rng.random.side_effect = [0.0, 0.74, 0.09]
+        rng.randint.return_value = 5
+        rat, context = self.make_rat_context(
+            rng=rng,
+            opponent_block=2,
+        )
+        context.owner.buffs.Empower = 10
+        context.owner.buffs.Luck = 0
+        context.owner.debuffs.Blind = 100
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
+        )
+
+        rat.activate_item(context)
+
+        self.assertEqual(context.opponent.block, 0)
+        self.assertEqual(context.opponent.health, 7)
+        self.assertEqual(context.opponent.debuffs.Poison, 1)
+        self.assertEqual(context.opponent.debuffs.Blind, 1)
+        rng.randint.assert_called_once_with(5, 5)
+        self.assertEqual(rng.random.call_count, 3)
+        dispatch_spy.assert_called_once_with(rat)
+
+    def test_rat_forced_attack_miss_emits_without_status_rng(self):
+        rng = Mock()
+        rat, context = self.make_rat_context(rng=rng)
+        rat.effects[0].apply = Mock(return_value=False)
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
+        )
+
+        rat.activate_item(context)
+
+        rat.effects[0].apply.assert_called_once_with(context, "effect")
+        rng.random.assert_not_called()
+        rng.randint.assert_not_called()
+        dispatch_spy.assert_called_once_with(rat)
+
+    def test_rat_does_not_emit_before_cooldown(self):
+        rng = Mock()
+        rat, context = self.make_rat_context(
+            rng=rng,
+            frame_delta=1.0,
+        )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
+        )
+
+        rat.activate_item(context)
+
+        rng.random.assert_not_called()
+        rng.randint.assert_not_called()
+        dispatch_spy.assert_not_called()
+
+    def test_rat_debuff_chances_fail_at_boundaries(self):
+        rng = Mock()
+        rng.random.side_effect = [0.0, 0.75, 0.10]
+        rng.randint.return_value = 5
+        rat, context = self.make_rat_context(rng=rng)
+
+        rat.activate_item(context)
+
+        self.assertEqual(context.opponent.health, 5)
+        self.assertEqual(context.opponent.debuffs.Poison, 0)
+        self.assertEqual(context.opponent.debuffs.Blind, 0)
+
+    def test_initializer_links_all_six_rat_stars(self):
+        battle = initialize_battle(
+            [
+                {
+                    "player_id": 0,
+                    "health": 20,
+                    "max_health": 20,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [
+                        {
+                            "item_id": "rat",
+                            "x": 3,
+                            "y": 3,
+                            "rotation": 0,
+                        },
+                        {
+                            "item_id": "pocket_sand",
+                            "x": 3,
+                            "y": 4,
+                            "rotation": 0,
+                        },
+                        {
+                            "item_id": "pocket_sand",
+                            "x": 4,
+                            "y": 4,
+                            "rotation": 0,
+                        },
+                        {
+                            "item_id": "pocket_sand",
+                            "x": 2,
+                            "y": 3,
+                            "rotation": 0,
+                        },
+                        {
+                            "item_id": "pocket_sand",
+                            "x": 5,
+                            "y": 3,
+                            "rotation": 0,
+                        },
+                        {
+                            "item_id": "pocket_sand",
+                            "x": 3,
+                            "y": 2,
+                            "rotation": 0,
+                        },
+                        {
+                            "item_id": "pocket_sand",
+                            "x": 4,
+                            "y": 2,
+                            "rotation": 0,
+                        },
+                    ],
+                },
+                {
+                    "player_id": 1,
+                    "health": 20,
+                    "max_health": 20,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [],
+                },
+            ],
+            DEFAULT_ITEM_FACTORIES,
+            item_catalog=ITEM_CATALOG,
+        )
+
+        rat = battle.players[0].items["rat1"]
+        self.assertEqual(
+            rat.linked_items,
+            [
+                "pocket_sand1",
+                "pocket_sand2",
+                "pocket_sand3",
+                "pocket_sand4",
+                "pocket_sand5",
+                "pocket_sand6",
+            ],
+        )
+
+    def test_initializer_builds_rat_as_active_item(self):
+        battle = initialize_battle(
+            [
+                {
+                    "player_id": 0,
+                    "health": 20,
+                    "max_health": 20,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [
+                        {
+                            "item_id": "rat",
+                            "x": 0,
+                            "y": 0,
+                            "rotation": 0,
+                        }
+                    ],
+                },
+                {
+                    "player_id": 1,
+                    "health": 20,
+                    "max_health": 20,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [],
+                },
+            ],
+            DEFAULT_ITEM_FACTORIES,
+            item_catalog=ITEM_CATALOG,
+        )
+
+        rat = battle.players[0].items["rat1"]
+        self.assertIsInstance(rat, Rat)
+        self.assertEqual(battle.active_items, [rat])
 
     def test_cooldown_trigger_ignores_attack_reaction_context(self):
         broom, context, _ = self.make_broom_context(
@@ -1913,7 +3558,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             StaminaConsumptionEffect,
         )
         self.assertEqual(broom.effects[0].stamina_cost, 1.2)
-        self.assertIsInstance(broom.effects[1], MeleeAttackEffect)
+        self.assertIsInstance(broom.effects[1], AttackEffect)
         self.assertEqual(broom.effects[1].min_damage, 2)
         self.assertEqual(broom.effects[1].max_damage, 4)
         self.assertEqual(broom.effects[1].accuracy, 95)
@@ -2003,6 +3648,9 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             stamina=5.0,
             rng=rng,
         )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
+        )
 
         broom.activate_item(context)
 
@@ -2015,6 +3663,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         self.assertEqual(context.opponent.debuffs.Blind, 0)
         rng.random.assert_not_called()
         rng.randint.assert_not_called()
+        dispatch_spy.assert_not_called()
 
     def test_broom_gains_two_damage_when_opponent_melee_attack_misses(
         self,
@@ -2022,6 +3671,9 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         rng = Mock()
         rng.random.return_value = 0.5
         broom, context, _ = self.make_broom_context(rng=rng)
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
+        )
 
         self.resolve_opponent_attack(
             context,
@@ -2038,6 +3690,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         self.assertEqual(context.owner.stamina, 5.0)
         rng.random.assert_called_once_with()
         rng.randint.assert_not_called()
+        dispatch_spy.assert_not_called()
 
     def test_broom_attack_miss_trigger_accepts_ranged_and_effect_attacks(
         self,
@@ -2097,6 +3750,9 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             stamina=5.0,
             rng=rng,
         )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
+        )
 
         broom.activate_item(context)
 
@@ -2104,6 +3760,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         self.assertEqual(context.opponent.health, 98)
         rng.randint.assert_called_once_with(2, 4)
         self.assertEqual(rng.random.call_count, 2)
+        dispatch_spy.assert_called_once_with(broom)
 
     def test_broom_applies_accumulated_bonus_then_clears_it_on_hit(
         self,
@@ -2116,6 +3773,9 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             stamina=5.0,
             rng=rng,
         )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
+        )
         self.resolve_opponent_attack(context, accuracy=0)
         self.resolve_opponent_attack(context, accuracy=0)
 
@@ -2126,6 +3786,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         self.assertEqual(broom.effects[1].damage_modifier, 0)
         self.assertEqual(broom.effects[1].min_damage, 2)
         self.assertEqual(broom.effects[1].max_damage, 4)
+        dispatch_spy.assert_called_once_with(broom)
 
     def test_broom_miss_retains_accumulated_bonus_and_skips_blind_roll(
         self,
@@ -2136,6 +3797,9 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             frame_delta=1.7,
             stamina=5.0,
             rng=rng,
+        )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
         )
         self.resolve_opponent_attack(context, accuracy=0)
         self.resolve_opponent_attack(context, accuracy=0)
@@ -2148,6 +3812,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         self.assertEqual(context.opponent.debuffs.Blind, 0)
         self.assertEqual(rng.random.call_count, 3)
         rng.randint.assert_not_called()
+        dispatch_spy.assert_called_once_with(broom)
 
     def test_broom_retained_bonus_is_used_on_later_hit(self):
         rng = Mock()
@@ -2182,6 +3847,9 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             stamina=1.0,
             rng=rng,
         )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
+        )
         self.resolve_opponent_attack(context, accuracy=0)
 
         broom.activate_item(context)
@@ -2195,6 +3863,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         )
         rng.random.assert_called_once_with()
         rng.randint.assert_not_called()
+        dispatch_spy.assert_not_called()
 
     def test_broom_on_hit_inflicts_blind_when_chance_succeeds(self):
         rng = Mock()
@@ -2349,6 +4018,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             item = Mock()
             item.item_id = item_id
             item.item_types = item_types
+            item.linked_items = []
             linked_items[item_key] = item
             owner_items[item_key] = item
 
@@ -2402,6 +4072,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             item = Mock()
             item.item_id = item_id
             item.item_types = item_types
+            item.linked_items = []
             linked_items[item_key] = item
             owner_items[item_key] = item
 
@@ -2462,6 +4133,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             item = Mock()
             item.item_id = item_id
             item.item_types = item_types
+            item.linked_items = []
             linked_items[item_key] = item
             owner_items[item_key] = item
 
@@ -2499,6 +4171,40 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             opponent,
         )
         return pan, context, linked_items, rng
+
+    def make_rat_context(
+        self,
+        rng,
+        frame_delta=3.3,
+        opponent_health=10,
+        opponent_block=0,
+    ):
+        rat = Rat(item_key="rat1", player_id=0)
+        owner = PlayerState(
+            player_id=0,
+            health=10,
+            max_health=10,
+            items={"rat1": rat},
+        )
+        opponent = PlayerState(
+            player_id=1,
+            health=opponent_health,
+            max_health=opponent_health,
+            block=opponent_block,
+        )
+        battle_state = BattleState(
+            players=[owner, opponent],
+            active_items=[rat],
+            frame_delta=frame_delta,
+            rng=rng,
+        )
+        context = BattleContext(
+            battle_state,
+            rat,
+            owner,
+            opponent,
+        )
+        return rat, context
 
     def make_broom_context(
         self,
@@ -2591,6 +4297,744 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         )
         context = BattleContext(battle_state, sword, owner, opponent)
         return sword, context
+
+    def make_shortbow_context(
+        self,
+        rng,
+        frame_delta,
+        stamina,
+    ):
+        shortbow = Shortbow(item_key="shortbow1", player_id=0)
+        owner = PlayerState(
+            player_id=0,
+            health=10,
+            max_health=10,
+            stamina=stamina,
+            max_stamina=5.0,
+            items={"shortbow1": shortbow},
+        )
+        opponent = PlayerState(
+            player_id=1,
+            health=10,
+            max_health=10,
+            stamina=5.0,
+            max_stamina=5.0,
+        )
+        battle_state = BattleState(
+            players=[owner, opponent],
+            active_items=[shortbow],
+            frame_delta=frame_delta,
+            rng=rng,
+        )
+        context = BattleContext(
+            battle_state,
+            shortbow,
+            owner,
+            opponent,
+        )
+        return shortbow, context
+
+
+class GooblingSpecTest(unittest.TestCase):
+    def make_linked_goobling_state(
+        self,
+        *,
+        health=10,
+        max_health=20,
+        linked=True,
+    ):
+        source = WoodenSword(
+            item_key="wooden_sword1",
+            player_id=0,
+        )
+        goobling = Goobling(
+            item_key="goobling1",
+            player_id=0,
+        )
+        if linked:
+            goobling.add_linked_item(source.item_key)
+        owner = PlayerState(
+            player_id=0,
+            health=health,
+            max_health=max_health,
+            stamina=5.0,
+            max_stamina=5.0,
+            items={
+                source.item_key: source,
+                goobling.item_key: goobling,
+            },
+        )
+        opponent = PlayerState(
+            player_id=1,
+            health=20,
+            max_health=20,
+            stamina=5.0,
+            max_stamina=5.0,
+        )
+        battle = BattleState(
+            players=[owner, opponent],
+            active_items=[source],
+        )
+        context = ItemActivationContext(
+            battle_state=battle,
+            item=goobling,
+            owner=owner,
+            opponent=opponent,
+            source_item=source,
+        )
+        return source, goobling, battle, owner, opponent, context
+
+    def initialize_battle_for_test(
+        self,
+        player_placements,
+        opponent_placements=(),
+        *,
+        health=20,
+        max_health=20,
+        stamina=5.0,
+        max_stamina=5.0,
+        item_factories=DEFAULT_ITEM_FACTORIES,
+        item_catalog=ITEM_CATALOG,
+    ):
+        return initialize_battle(
+            [
+                {
+                    "player_id": 0,
+                    "health": health,
+                    "max_health": max_health,
+                    "stamina": stamina,
+                    "max_stamina": max_stamina,
+                    "placements": list(player_placements),
+                },
+                {
+                    "player_id": 1,
+                    "health": 20,
+                    "max_health": 20,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": list(opponent_placements),
+                },
+            ],
+            item_factories,
+            item_catalog=item_catalog,
+        )
+
+    def test_linked_activation_count_trigger_rejects_invalid_required_count(
+        self,
+    ):
+        for invalid in (0, -1, 1.0, True, None):
+            with self.subTest(invalid=invalid):
+                with self.assertRaises(ValueError):
+                    LinkedItemActivationCountTrigger(invalid)
+
+    def test_linked_activation_count_trigger_ignores_base_context(self):
+        source, goobling, battle, owner, opponent, _ = (
+            self.make_linked_goobling_state()
+        )
+        trigger = goobling.triggers[0]
+        context = BattleContext(
+            battle_state=battle,
+            item=goobling,
+            owner=owner,
+            opponent=opponent,
+        )
+
+        self.assertFalse(trigger.update(context))
+        self.assertEqual(trigger.activation_count, 0)
+        self.assertIsNotNone(source)
+
+    def test_linked_activation_count_trigger_ignores_unlinked_source(self):
+        _, goobling, _, _, _, context = (
+            self.make_linked_goobling_state(linked=False)
+        )
+        trigger = goobling.triggers[0]
+
+        self.assertFalse(trigger.update(context))
+        self.assertEqual(trigger.activation_count, 0)
+
+    def test_linked_activation_count_trigger_fires_every_third_event(self):
+        _, goobling, _, _, _, context = (
+            self.make_linked_goobling_state()
+        )
+        trigger = goobling.triggers[0]
+
+        results = [trigger.update(context) for _ in range(6)]
+
+        self.assertEqual(
+            results,
+            [False, False, True, False, False, True],
+        )
+        self.assertEqual(trigger.activation_count, 0)
+
+    def test_linked_activation_count_trigger_instances_are_independent(self):
+        first = LinkedItemActivationCountTrigger(3)
+        second = LinkedItemActivationCountTrigger(3)
+        source, goobling, _, _, _, context = (
+            self.make_linked_goobling_state()
+        )
+        other_goobling = Goobling(
+            item_key="goobling2",
+            player_id=0,
+        )
+        other_goobling.add_linked_item(source.item_key)
+        other_context = ItemActivationContext(
+            battle_state=context.battle_state,
+            item=other_goobling,
+            owner=context.owner,
+            opponent=context.opponent,
+            source_item=source,
+        )
+
+        self.assertFalse(first.update(context))
+        self.assertFalse(first.update(context))
+        self.assertFalse(second.update(other_context))
+        self.assertTrue(first.update(context))
+        self.assertFalse(second.update(other_context))
+        self.assertTrue(second.update(other_context))
+        self.assertEqual(first.activation_count, 0)
+        self.assertEqual(second.activation_count, 0)
+        self.assertIsNot(goobling, other_goobling)
+
+    def test_goobling_is_registered_with_metadata_and_components(self):
+        goobling = DEFAULT_ITEM_FACTORIES["goobling"](
+            item_id="goobling",
+            item_key="goobling1",
+            player_id=0,
+        )
+
+        self.assertIsInstance(goobling, Goobling)
+        self.assertEqual(goobling.item_id, "goobling")
+        self.assertEqual(goobling.display_name, "Goobling")
+        self.assertEqual(goobling.item_classes, ("Neutral",))
+        self.assertEqual(goobling.rarity, "Common")
+        self.assertEqual(goobling.cost, 2)
+        self.assertEqual(goobling.item_types, ("Pet",))
+        self.assertEqual(goobling.icon_types, ())
+        self.assertFalse(goobling.is_active_item)
+        self.assertEqual(goobling.socket_count, 0)
+        self.assertIsInstance(
+            goobling.triggers[0],
+            LinkedItemActivationCountTrigger,
+        )
+        self.assertEqual(goobling.triggers[0].required_activations, 3)
+        self.assertIsInstance(goobling.effects[0], HealEffect)
+        self.assertEqual(goobling.effects[0].amount, 4)
+
+    def test_gooblings_own_independent_trigger_and_effect_instances(self):
+        first = Goobling(item_key="goobling1", player_id=0)
+        second = Goobling(item_key="goobling2", player_id=0)
+
+        self.assertIsNot(first.triggers[0], second.triggers[0])
+        self.assertIsNot(first.effects[0], second.effects[0])
+        first.triggers[0].activation_count = 2
+        self.assertEqual(second.triggers[0].activation_count, 0)
+
+    def test_goobling_heals_four_on_third_linked_activation(self):
+        source, goobling, battle, owner, _, _ = (
+            self.make_linked_goobling_state()
+        )
+
+        battle.dispatch_item_activation(source)
+        self.assertEqual(owner.health, 10)
+        battle.dispatch_item_activation(source)
+        self.assertEqual(owner.health, 10)
+        battle.dispatch_item_activation(source)
+
+        self.assertEqual(owner.health, 14)
+        self.assertEqual(goobling.triggers[0].activation_count, 0)
+
+    def test_goobling_repeats_after_each_three_activations(self):
+        source, goobling, battle, owner, _, _ = (
+            self.make_linked_goobling_state(health=10, max_health=30)
+        )
+
+        for _ in range(6):
+            battle.dispatch_item_activation(source)
+
+        self.assertEqual(owner.health, 18)
+        self.assertEqual(goobling.triggers[0].activation_count, 0)
+
+    def test_goobling_consumes_third_activation_at_full_health(self):
+        source, goobling, battle, owner, _, _ = (
+            self.make_linked_goobling_state(health=20, max_health=20)
+        )
+
+        for _ in range(4):
+            battle.dispatch_item_activation(source)
+
+        self.assertEqual(owner.health, 20)
+        self.assertEqual(goobling.triggers[0].activation_count, 1)
+
+    def test_goobling_emits_own_activation_even_when_heal_has_no_effect(
+        self,
+    ):
+        source, goobling, battle, _, _, _ = (
+            self.make_linked_goobling_state(health=20, max_health=20)
+        )
+        original_dispatch = battle.dispatch_item_activation
+        battle.dispatch_item_activation = Mock(wraps=original_dispatch)
+
+        for _ in range(3):
+            battle.dispatch_item_activation(source)
+
+        self.assertEqual(
+            [
+                dispatch_call
+                for dispatch_call in battle.dispatch_item_activation.call_args_list
+                if dispatch_call == call(goobling)
+            ],
+            [call(goobling)],
+        )
+
+    def test_initializer_links_goobling_left_and_right_stars(self):
+        battle = self.initialize_battle_for_test(
+            [
+                {
+                    "item_id": "stone",
+                    "x": 0,
+                    "y": 0,
+                    "rotation": 0,
+                },
+                {
+                    "item_id": "goobling",
+                    "x": 1,
+                    "y": 0,
+                    "rotation": 0,
+                },
+                {
+                    "item_id": "stone",
+                    "x": 2,
+                    "y": 0,
+                    "rotation": 0,
+                },
+            ]
+        )
+
+        goobling = battle.players[0].items["goobling1"]
+        self.assertEqual(
+            goobling.linked_items,
+            ["stone1", "stone2"],
+        )
+
+    def test_initializer_deduplicates_source_covering_both_goobling_stars(
+        self,
+    ):
+        catalog = dict(ITEM_CATALOG)
+        catalog["wide_source"] = {
+            "item_id": "wide_source",
+            "shape_cells": [[0, 0], [2, 0]],
+            "star_cells": [],
+        }
+        factories = dict(DEFAULT_ITEM_FACTORIES)
+        factories["wide_source"] = (
+            lambda item_id, item_key, player_id: WoodenSword(
+                item_id=item_id,
+                item_key=item_key,
+                player_id=player_id,
+            )
+        )
+        battle = self.initialize_battle_for_test(
+            [
+                {
+                    "item_id": "goobling",
+                    "x": 1,
+                    "y": 0,
+                    "rotation": 0,
+                },
+                {
+                    "item_id": "wide_source",
+                    "x": 0,
+                    "y": 0,
+                    "rotation": 0,
+                },
+            ],
+            item_factories=factories,
+            item_catalog=catalog,
+        )
+        source = battle.players[0].items["wide_source1"]
+        goobling = battle.players[0].items["goobling1"]
+
+        self.assertEqual(goobling.linked_items, ["wide_source1"])
+        battle.dispatch_item_activation(source)
+        self.assertEqual(goobling.triggers[0].activation_count, 1)
+
+    def test_goobling_catalog_rotates_shape_and_two_stars(self):
+        expected_stars = {
+            0: [(2, 3), (4, 3)],
+            90: [(3, 2), (3, 4)],
+            180: [(4, 3), (2, 3)],
+            270: [(3, 4), (3, 2)],
+        }
+
+        for rotation, stars in expected_stars.items():
+            with self.subTest(rotation=rotation):
+                placed = place_item(
+                    ITEM_CATALOG["goobling"],
+                    {
+                        "item_key": "goobling1",
+                        "x": 3,
+                        "y": 3,
+                        "rotation": rotation,
+                    },
+                )
+                self.assertEqual(placed["occupied_cells"], [(3, 3)])
+                self.assertEqual(placed["star_cells"], stars)
+
+    def test_initializer_builds_goobling_as_passive_item(self):
+        battle = self.initialize_battle_for_test(
+            [
+                {
+                    "item_id": "goobling",
+                    "x": 0,
+                    "y": 0,
+                    "rotation": 0,
+                }
+            ]
+        )
+        goobling = battle.players[0].items["goobling1"]
+
+        self.assertIsInstance(goobling, Goobling)
+        self.assertNotIn(goobling, battle.active_items)
+
+    def test_linked_start_of_battle_item_does_not_advance_goobling(self):
+        cases = (
+            ("healing_herbs", "Regeneration", 2),
+            ("flame", "Heat", 1),
+        )
+        for item_id, buff_name, amount in cases:
+            with self.subTest(item_id=item_id):
+                battle = self.initialize_battle_for_test(
+                    [
+                        {
+                            "item_id": item_id,
+                            "x": 0,
+                            "y": 0,
+                            "rotation": 0,
+                        },
+                        {
+                            "item_id": "goobling",
+                            "x": 1,
+                            "y": 0,
+                            "rotation": 0,
+                        },
+                    ]
+                )
+                goobling = battle.players[0].items["goobling1"]
+
+                battle.step()
+
+                self.assertEqual(
+                    getattr(battle.players[0].buffs, buff_name),
+                    amount,
+                )
+                self.assertEqual(
+                    goobling.triggers[0].activation_count,
+                    0,
+                )
+                battle.step()
+                self.assertEqual(
+                    goobling.triggers[0].activation_count,
+                    0,
+                )
+
+    def test_linked_weapon_without_stamina_does_not_advance_goobling(self):
+        battle = self.initialize_battle_for_test(
+            [
+                {
+                    "item_id": "wooden_sword",
+                    "x": 0,
+                    "y": 0,
+                    "rotation": 0,
+                },
+                {
+                    "item_id": "goobling",
+                    "x": 1,
+                    "y": 0,
+                    "rotation": 0,
+                },
+            ],
+            stamina=0.0,
+            max_stamina=0.0,
+        )
+        battle.frame_delta = 1.4
+        battle.rng = Mock()
+        goobling = battle.players[0].items["goobling1"]
+
+        battle.step()
+
+        self.assertEqual(goobling.triggers[0].activation_count, 0)
+        battle.rng.random.assert_not_called()
+
+    def test_linked_weapon_miss_still_advances_goobling(self):
+        battle = self.initialize_battle_for_test(
+            [
+                {
+                    "item_id": "wooden_sword",
+                    "x": 0,
+                    "y": 0,
+                    "rotation": 0,
+                },
+                {
+                    "item_id": "goobling",
+                    "x": 1,
+                    "y": 0,
+                    "rotation": 0,
+                },
+            ]
+        )
+        battle.frame_delta = 1.4
+        battle.rng = Mock()
+        battle.rng.random.return_value = 0.99
+        goobling = battle.players[0].items["goobling1"]
+
+        battle.step()
+
+        self.assertEqual(goobling.triggers[0].activation_count, 1)
+        battle.rng.randint.assert_not_called()
+
+    def test_linked_wooden_buckler_advances_on_successful_reaction(self):
+        battle = self.initialize_battle_for_test(
+            [
+                {
+                    "item_id": "wooden_buckler",
+                    "x": 0,
+                    "y": 0,
+                    "rotation": 0,
+                },
+                {
+                    "item_id": "goobling",
+                    "x": 2,
+                    "y": 0,
+                    "rotation": 0,
+                },
+            ],
+            [
+                {
+                    "item_id": "wooden_sword",
+                    "x": 4,
+                    "y": 0,
+                    "rotation": 0,
+                }
+            ],
+        )
+        battle.frame_delta = 1.4
+        battle.rng = Mock()
+        battle.rng.random.side_effect = [0.0, 0.29]
+        battle.rng.randint.return_value = 1
+        goobling = battle.players[0].items["goobling1"]
+
+        battle.step()
+
+        self.assertEqual(goobling.triggers[0].activation_count, 1)
+        self.assertEqual(battle.players[0].health, 20)
+
+    def test_linked_wooden_buckler_does_not_advance_when_chance_fails(
+        self,
+    ):
+        battle = self.initialize_battle_for_test(
+            [
+                {
+                    "item_id": "wooden_buckler",
+                    "x": 0,
+                    "y": 0,
+                    "rotation": 0,
+                },
+                {
+                    "item_id": "goobling",
+                    "x": 2,
+                    "y": 0,
+                    "rotation": 0,
+                },
+            ],
+            [
+                {
+                    "item_id": "wooden_sword",
+                    "x": 4,
+                    "y": 0,
+                    "rotation": 0,
+                }
+            ],
+        )
+        battle.frame_delta = 1.4
+        battle.rng = Mock()
+        battle.rng.random.side_effect = [0.0, 0.30]
+        battle.rng.randint.return_value = 1
+        goobling = battle.players[0].items["goobling1"]
+
+        battle.step()
+
+        self.assertEqual(goobling.triggers[0].activation_count, 0)
+        self.assertEqual(battle.players[0].health, 19)
+
+    def test_linked_broom_opponent_miss_branch_does_not_advance_goobling(
+        self,
+    ):
+        battle = self.initialize_battle_for_test(
+            [
+                {
+                    "item_id": "broom",
+                    "x": 0,
+                    "y": 0,
+                    "rotation": 0,
+                },
+                {
+                    "item_id": "goobling",
+                    "x": 1,
+                    "y": 0,
+                    "rotation": 0,
+                },
+            ],
+            [
+                {
+                    "item_id": "wooden_sword",
+                    "x": 4,
+                    "y": 0,
+                    "rotation": 0,
+                }
+            ],
+        )
+        battle.frame_delta = 1.4
+        battle.rng = Mock()
+        battle.rng.random.return_value = 0.99
+        broom = battle.players[0].items["broom1"]
+        goobling = battle.players[0].items["goobling1"]
+
+        battle.step()
+
+        self.assertEqual(broom.miss_damage_bonus, 2)
+        self.assertEqual(goobling.triggers[0].activation_count, 0)
+
+    def test_linked_broom_weapon_miss_advances_without_blind_roll(self):
+        battle = self.initialize_battle_for_test(
+            [
+                {
+                    "item_id": "broom",
+                    "x": 0,
+                    "y": 0,
+                    "rotation": 0,
+                },
+                {
+                    "item_id": "goobling",
+                    "x": 1,
+                    "y": 0,
+                    "rotation": 0,
+                },
+            ]
+        )
+        battle.frame_delta = 1.7
+        battle.rng = Mock()
+        battle.rng.random.return_value = 0.99
+        broom = battle.players[0].items["broom1"]
+        goobling = battle.players[0].items["goobling1"]
+        broom.miss_damage_bonus = 2
+        broom.effects[1].stack_damage_modifier(2)
+
+        battle.step()
+
+        self.assertEqual(broom.miss_damage_bonus, 2)
+        self.assertEqual(goobling.triggers[0].activation_count, 1)
+        self.assertEqual(battle.rng.random.call_count, 1)
+        battle.rng.randint.assert_not_called()
+
+    def test_two_gooblings_listening_to_same_source_both_advance(self):
+        battle = self.initialize_battle_for_test(
+            [
+                {
+                    "item_id": "stone",
+                    "x": 2,
+                    "y": 1,
+                    "rotation": 0,
+                },
+                {
+                    "item_id": "goobling",
+                    "x": 1,
+                    "y": 1,
+                    "rotation": 0,
+                },
+                {
+                    "item_id": "goobling",
+                    "x": 3,
+                    "y": 1,
+                    "rotation": 0,
+                },
+            ]
+        )
+        source = battle.players[0].items["stone1"]
+        first = battle.players[0].items["goobling1"]
+        second = battle.players[0].items["goobling2"]
+
+        battle.dispatch_item_activation(source)
+
+        self.assertEqual(first.triggers[0].activation_count, 1)
+        self.assertEqual(second.triggers[0].activation_count, 1)
+
+    def test_goobling_activation_can_advance_another_goobling(self):
+        source = WoodenSword(
+            item_key="wooden_sword1",
+            player_id=0,
+        )
+        first = Goobling(item_key="goobling1", player_id=0)
+        second = Goobling(item_key="goobling2", player_id=0)
+        first.add_linked_item(source.item_key)
+        second.add_linked_item(first.item_key)
+        owner = PlayerState(
+            player_id=0,
+            health=10,
+            max_health=20,
+            items={
+                source.item_key: source,
+                first.item_key: first,
+                second.item_key: second,
+            },
+        )
+        opponent = PlayerState(player_id=1, health=20, max_health=20)
+        battle = BattleState(players=[owner, opponent])
+
+        for _ in range(3):
+            battle.dispatch_item_activation(source)
+
+        self.assertEqual(owner.health, 14)
+        self.assertEqual(first.triggers[0].activation_count, 0)
+        self.assertEqual(second.triggers[0].activation_count, 1)
+
+    def test_simple_start_of_battle_items_do_not_emit_activation(self):
+        for item_type in (
+            PocketSand,
+            HealingHerbs,
+            Flame,
+            WalrusTusk,
+            Whetstone,
+        ):
+            with self.subTest(item_type=item_type.__name__):
+                item = item_type(
+                    item_key=f"{item_type.item_id}1",
+                    player_id=0,
+                )
+                owner_items = {item.item_key: item}
+                if isinstance(item, Whetstone):
+                    sword = WoodenSword(
+                        item_key="wooden_sword1",
+                        player_id=0,
+                    )
+                    owner_items[sword.item_key] = sword
+                    item.add_linked_item(sword.item_key)
+                owner = PlayerState(
+                    player_id=0,
+                    health=20,
+                    max_health=20,
+                    items=owner_items,
+                )
+                opponent = PlayerState(
+                    player_id=1,
+                    health=20,
+                    max_health=20,
+                )
+                battle = BattleState(players=[owner, opponent])
+                battle.dispatch_item_activation = Mock()
+
+                item.activate_item(battle.build_context(item))
+
+                battle.dispatch_item_activation.assert_not_called()
 
 
 if __name__ == "__main__":

@@ -4,6 +4,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from battle_module_v1 import BattleItem, Effect, Trigger
 from main_v1 import (
@@ -504,7 +505,10 @@ class MainV1Test(unittest.TestCase):
             input_path.write_text(json.dumps(config), encoding="utf-8")
 
             stdout = io.StringIO()
-            with contextlib.redirect_stdout(stdout):
+            with (
+                patch("main_v1.DEFAULT_ITEM_FACTORIES", {}),
+                contextlib.redirect_stdout(stdout),
+            ):
                 exit_code = main(["--input", str(input_path)])
 
         result = json.loads(stdout.getvalue())

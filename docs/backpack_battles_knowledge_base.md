@@ -368,6 +368,46 @@ else:
 - 木剑（Wooden Sword）应使用可复用的 `CooldownTrigger`、`StaminaConsumptionEffect` 和 `MeleeAttackEffect`；未来具有类似行为的物品也应复用这些组件。
 - 第一版木剑刻意不实现战斗日志；测试应直接验证状态变化。
 
+### 已核对的战斗开始物品
+
+查询日期：2026-07-25。以下数据来自当前 `backpackbattles.wiki.gg` 页面及
+MediaWiki API：
+
+| 物品 | 当前效果 | 元数据与格子 | 页面修订 |
+| --- | --- | --- | --- |
+| [一口袋沙子](https://backpackbattles.wiki.gg/wiki/Pocket_Sand) | 战斗开始时向对手施加 1 层 `Blind` | Neutral / Common / Accessory / nature / 2 金币 / 1 格 | 10732，2025-09-17 |
+| [治疗草药](https://backpackbattles.wiki.gg/wiki/Healing_Herbs) | 战斗开始时获得 2 层 `Regeneration` | Neutral / Common / Accessory / nature / 4 金币 / 1 格 | 10723，2025-09-17 |
+| [火焰](https://backpackbattles.wiki.gg/wiki/Flame) | 战斗开始时获得 1 层 `Heat` | Pyromancer / Common / Accessory / fire / 1 金币 / 1 格 | 10835，2025-09-19 |
+| [海象尖牙](https://backpackbattles.wiki.gg/wiki/Walrus_Tusk) | 战斗开始时获得 1 层 `Spikes` | Neutral / Common / Accessory / nature / 4 金币 / 纵向 2 格 | 11808，2026-05-05 |
+
+### 已核对的黏宝宝与物品激活通知
+
+查询日期：2026-07-25。
+
+- [Goobling](https://backpackbattles.wiki.gg/wiki/Goobling?oldid=10757)，修订
+  `10757`（2025-09-17 23:29:01 UTC）：Common / Neutral / Pet / 2 金币；
+  本体 1 格、左右各一个星标；3 个星标物品激活后治疗 4。
+- [Interactions FAQ](https://backpackbattles.wiki.gg/wiki/Interactions_FAQ?oldid=12504)，
+  修订 `12504`（2026-07-22 08:14:21 UTC）：Wiki 规则中 trigger 与
+  activation 同义，战斗开始效果算激活，On hit 只在命中时激活。
+- [Weapon](https://backpackbattles.wiki.gg/wiki/Weapon?oldid=10449)，修订
+  `10449`（2024-11-08 15:27:58 UTC）：武器需要耐力支付成功后才算成功激活，
+  命中判定发生在成功激活之后。
+
+项目实现决定：
+
+- `BattleItem.activate_item()` 表示检查 trigger 并运行物品逻辑，不直接等同于
+  “物品真正激活”；`activate_item()` 与 `run_effect()` 均继续返回 `None`。
+- 真正激活由具体物品在业务成功分支显式调用 `emit_activation()`；该通知只派发给
+  同一玩家中以星标连接该来源实例、且声明物品激活监听 phase 的物品。
+- `linked_items` 不自动递归激活，现有普通 Food、Weapon 等空间连接语义保持不变。
+- 经用户确认，本轮采用比 Wiki FAQ 更窄的口径：Pocket Sand、Healing Herbs、
+  Flame、Walrus Tusk、Whetstone 的 start-of-battle 分支不发激活通知；Broom 的
+  opponent-miss 分支也不发通知，只叠加下一次命中的伤害。
+- 武器冷却完成但耐力不足不发通知；耐力支付成功后即使攻击未命中仍发一次通知。
+- Goobling 每收到 3 次合法来源通知就治疗 4 并清零该轮计数；即使实际治疗为 0，
+  也视为 Goobling 自身激活并继续发出通知。
+
 ## 子职业建模说明
 
 wiki.gg 的职业页面说明，子职业物品带来的效果可能不止直接的战斗效果。部分子职业物品会改变商店可用性或商店概率，例如使特定物品系列可用，或提高某些物品的出现概率。

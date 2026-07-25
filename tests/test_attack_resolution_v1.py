@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import Mock
 
 from battle_module_v1 import (
     ATTACK_PHASE_ON_ATTACKED,
@@ -15,9 +16,9 @@ from battle_module_v1 import (
     _BattleFinishedSignal,
 )
 from item_factory_registry_v1 import (
+    AttackEffect,
     AttackMissTrigger,
     CooldownTrigger,
-    MeleeAttackEffect,
     OnAttackedTrigger,
     PreventAttackDamageEffect,
     RemoveOpponentStaminaEffect,
@@ -594,9 +595,9 @@ class AttackResolutionV1Test(unittest.TestCase):
     def test_melee_attack_effect_returns_false_on_miss(self):
         rng = SequenceRng(random_values=[0.9])
         battle, _, defender, source = self.make_battle(rng=rng)
-        effect = MeleeAttackEffect(1, 3, 50)
+        effect = AttackEffect(1, 3, 50)
 
-        result = effect.apply(battle.build_context(source))
+        result = effect.apply(battle.build_context(source), "melee")
 
         self.assertFalse(result)
         self.assertEqual(defender.health, 20)
@@ -615,9 +616,9 @@ class AttackResolutionV1Test(unittest.TestCase):
         )
         attacker.buffs.Vampirism = 5
         defender.buffs.Spikes = 5
-        effect = MeleeAttackEffect(5, 5, 100)
+        effect = AttackEffect(5, 5, 100)
 
-        result = effect.apply(battle.build_context(source))
+        result = effect.apply(battle.build_context(source), "melee")
 
         self.assertTrue(result)
         self.assertEqual(defender.health, 20)
@@ -628,9 +629,9 @@ class AttackResolutionV1Test(unittest.TestCase):
         attacker = PlayerState(player_id=0, health=20, items={"source1": source})
         defender = PlayerState(player_id=1, health=20)
         battle = CapturingBattleState(players=[attacker, defender])
-        effect = MeleeAttackEffect(1, 3, 90)
+        effect = AttackEffect(1, 3, 90)
 
-        result = effect.apply(battle.build_context(source))
+        result = effect.apply(battle.build_context(source), "melee")
 
         self.assertFalse(result)
         self.assertEqual(battle.captured_values, (None, 0, 0, False))
@@ -638,6 +639,7 @@ class AttackResolutionV1Test(unittest.TestCase):
 
     def test_melee_attack_effect_applies_attacker_empower_luck_and_blind(self):
         source = ConfigurableItem(item_key="source1", player_id=0)
+        source.item_types = ("Weapon",)
         attacker = PlayerState(player_id=0, health=20, items={"source1": source})
         attacker.buffs.Empower = 2
         attacker.buffs.Luck = 3
@@ -645,9 +647,9 @@ class AttackResolutionV1Test(unittest.TestCase):
         defender = PlayerState(player_id=1, health=20)
         defender.debuffs.Blind = 99
         battle = CapturingBattleState(players=[attacker, defender])
-        effect = MeleeAttackEffect(1, 3, 90)
+        effect = AttackEffect(1, 3, 90)
 
-        effect.apply(battle.build_context(source))
+        effect.apply(battle.build_context(source), "melee")
 
         self.assertEqual(battle.captured_event.min_damage, 3)
         self.assertEqual(battle.captured_event.max_damage, 5)
@@ -890,6 +892,9 @@ class AttackResolutionV1Test(unittest.TestCase):
             rng=rng,
             attacker_stamina=1.0,
         )
+        original_dispatch = battle.dispatch_item_activation
+        dispatch_spy = Mock(wraps=original_dispatch)
+        battle.dispatch_item_activation = dispatch_spy
         event = self.make_event(attacker, defender, source, 10, 10)
 
         battle.resolve_attack(event)
@@ -898,6 +903,7 @@ class AttackResolutionV1Test(unittest.TestCase):
         self.assertEqual(event.pending_damage, 3)
         self.assertEqual(defender.health, 17)
         self.assertAlmostEqual(attacker.stamina, 0.7)
+        dispatch_spy.assert_called_once_with(buckler)
 
     def test_wooden_buckler_does_not_implicitly_activate_linked_item(
         self,
@@ -950,6 +956,9 @@ class AttackResolutionV1Test(unittest.TestCase):
             rng=rng,
             attacker_stamina=1.0,
         )
+        original_dispatch = battle.dispatch_item_activation
+        dispatch_spy = Mock(wraps=original_dispatch)
+        battle.dispatch_item_activation = dispatch_spy
         event = self.make_event(attacker, defender, source, 10, 10)
 
         battle.resolve_attack(event)
@@ -958,6 +967,7 @@ class AttackResolutionV1Test(unittest.TestCase):
         self.assertEqual(defender.health, 10)
         self.assertEqual(attacker.stamina, 1.0)
         self.assertEqual(linked.run_calls, 0)
+        dispatch_spy.assert_not_called()
 
     def test_attack_rng_call_order_is_hit_damage_then_reactions(self):
         buckler = WoodenBuckler()

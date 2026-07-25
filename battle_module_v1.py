@@ -5,6 +5,7 @@ from typing import Sequence
 
 ATTACK_PHASE_ON_ATTACKED = "on_attacked"
 ATTACK_PHASE_ON_ATTACK_MISSED = "on_attack_missed"
+ITEM_ACTIVATION_PHASE_LINKED = "linked_item_activated"
 SUPPORTED_ATTACK_REACTION_PHASES = (
     ATTACK_PHASE_ON_ATTACKED,
     ATTACK_PHASE_ON_ATTACK_MISSED,
@@ -96,6 +97,11 @@ class BattleItem:
         trigger_results = self.update_triggers(context)
         self.run_effect(trigger_results, context)
 
+    def emit_activation(self, context: BattleContext) -> None:
+        if context.item is not self:
+            raise ValueError("activation context item mismatch")
+        context.battle_state.dispatch_item_activation(self)
+
     def run_effect(self, trigger_results:list[bool], context:BattleContext)->None:
         raise NotImplementedError("concrete items must run their effect logic")
 
@@ -178,6 +184,10 @@ class BattleState:
     next_nightfall_fatigue_time: float = NIGHTFALL_FATIGUE_START_TIME
     rng: random.Random = field(default_factory=random.Random)
     _responder_item_cache: dict[
+        object,
+        dict[str, tuple[BattleItem, ...]],
+    ] = field(default_factory=dict, init=False, repr=False)
+    _item_activation_listener_cache: dict[
         object,
         dict[str, tuple[BattleItem, ...]],
     ] = field(default_factory=dict, init=False, repr=False)
@@ -310,6 +320,70 @@ class BattleState:
         owner = self.get_player(item.player_id)
         opponent = self.get_opponent(item.player_id)
         return BattleContext(self, item, owner, opponent)
+
+    def build_item_activation_context(
+        self,
+        listener: BattleItem,
+        source_item: BattleItem,
+    ) -> ItemActivationContext:
+        listener_context = self.build_context(listener)
+        if source_item.player_id != listener.player_id:
+            raise ValueError(
+                "activation source and listener must have the same owner"
+            )
+        if (
+            listener_context.owner.items.get(source_item.item_key)
+            is not source_item
+        ):
+            raise ValueError(
+                "activation source is not owned by the listener owner"
+            )
+        return ItemActivationContext(
+            battle_state=self,
+            item=listener,
+            owner=listener_context.owner,
+            opponent=listener_context.opponent,
+            source_item=source_item,
+        )
+
+    def _get_item_activation_listeners(
+        self,
+        source_item: BattleItem,
+    ) -> tuple[BattleItem, ...]:
+        owner = self.get_player(source_item.player_id)
+        if owner.items.get(source_item.item_key) is not source_item:
+            raise ValueError("activation source is not part of this battle")
+
+        player_cache = self._item_activation_listener_cache.setdefault(
+            owner.player_id,
+            {},
+        )
+        if source_item.item_key in player_cache:
+            return player_cache[source_item.item_key]
+
+        matching_items = tuple(
+            item
+            for item in owner.items.values()
+            if source_item.item_key in item.linked_items
+            and any(
+                getattr(trigger, "item_activation_phase", None)
+                == ITEM_ACTIVATION_PHASE_LINKED
+                for trigger in item.triggers
+            )
+        )
+        player_cache[source_item.item_key] = matching_items
+        return matching_items
+
+    def dispatch_item_activation(
+        self,
+        source_item: BattleItem,
+    ) -> None:
+        for listener in self._get_item_activation_listeners(source_item):
+            context = self.build_item_activation_context(
+                listener,
+                source_item,
+            )
+            listener.activate_item(context)
 
     def build_attack_reaction_context(
         self,
@@ -519,6 +593,11 @@ class BattleContext:
         if item.player_id == self.opponent.player_id:
             return BattleContext(self.battle_state, item, self.opponent, self.owner)
         raise ValueError(f"item has unknown player_id: {item.player_id}")
+
+
+@dataclass
+class ItemActivationContext(BattleContext):
+    source_item: BattleItem
 
 
 @dataclass
