@@ -630,6 +630,64 @@ class BattleModuleV1Test(unittest.TestCase):
 
         self.assertEqual(item.linked_items, ["target1", "target2"])
 
+    def test_add_marker_item_keeps_marker_groups_and_linked_union(self):
+        item = BattleItem(
+            item_id="source",
+            item_key="source1",
+            triggers=[Trigger()],
+            effects=[Effect()],
+        )
+
+        item.add_marker_item("star", "target1")
+        item.add_marker_item("diamond", "target1")
+        item.add_marker_item("diamond", "target2")
+        item.add_marker_item("diamond", "target2")
+
+        self.assertEqual(item.marker_items["star"], ["target1"])
+        self.assertEqual(
+            item.marker_items["diamond"],
+            ["target1", "target2"],
+        )
+        self.assertEqual(item.marker_items["triangle"], [])
+        self.assertEqual(item.linked_items, ["target1", "target2"])
+
+    def test_add_marker_item_rejects_unknown_marker_type(self):
+        item = BattleItem(
+            item_id="source",
+            item_key="source1",
+            triggers=[Trigger()],
+            effects=[Effect()],
+        )
+
+        with self.assertRaisesRegex(
+            ValueError,
+            "unsupported marker type",
+        ):
+            item.add_marker_item("hex", "target1")
+
+    def test_battle_item_marker_groups_are_instance_independent(self):
+        first = BattleItem(
+            item_id="first",
+            item_key="first1",
+            triggers=[Trigger()],
+            effects=[Effect()],
+        )
+        second = BattleItem(
+            item_id="second",
+            item_key="second1",
+            triggers=[Trigger()],
+            effects=[Effect()],
+        )
+
+        first.add_marker_item("star", "target1")
+
+        self.assertEqual(first.marker_items["star"], ["target1"])
+        self.assertEqual(second.marker_items["star"], [])
+        self.assertIsNot(
+            first.marker_items["star"],
+            second.marker_items["star"],
+        )
+
     def test_battle_item_list_container_ownership_contract(self):
         first_item = BattleItem(
             item_id="first",
@@ -1104,13 +1162,13 @@ class BattleModuleV1Test(unittest.TestCase):
         opponent = PlayerState(player_id=1, health=10)
         battle = BattleState(players=[target, opponent])
 
-        final_damage = battle.commit_health_reduction(
+        final_damage_parts = battle.commit_health_reduction(
             target,
             blocked_damage=2,
             health_damage=4,
         )
 
-        self.assertEqual(final_damage, 6)
+        self.assertEqual(final_damage_parts, (2, 4))
         self.assertEqual(target.block, 1)
         self.assertEqual(target.health, 6)
         self.assertIsNone(battle.winner)
@@ -1122,11 +1180,11 @@ class BattleModuleV1Test(unittest.TestCase):
 
         self.assertEqual(
             battle.commit_health_reduction(first, 2, 0),
-            2,
+            (2, 0),
         )
         self.assertEqual(
             battle.commit_health_reduction(first, 0, 4),
-            4,
+            (0, 4),
         )
 
     def test_commit_health_reduction_lethal_overkill_stops_before_return(self):
@@ -1421,7 +1479,7 @@ class BattleModuleV1Test(unittest.TestCase):
         first.debuffs.Poison = 5
         battle = BattleState(players=[first, second])
 
-        self.assertEqual(battle._apply_poison_tick(first), 5)
+        self.assertEqual(battle._apply_poison_tick(first), (2, 3))
         self.assertEqual(first.block, 0)
         self.assertEqual(first.health, 7)
 

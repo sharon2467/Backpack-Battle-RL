@@ -1052,7 +1052,7 @@ class AttackResolutionV1Test(unittest.TestCase):
                     health_damage,
                 )
                 if player is self.players[1]:
-                    return 2
+                    return 0, 2
                 return actual_damage
 
             def heal(self, target, amount):

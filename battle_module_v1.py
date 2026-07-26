@@ -6,6 +6,7 @@ from typing import Sequence
 ATTACK_PHASE_ON_ATTACKED = "on_attacked"
 ATTACK_PHASE_ON_ATTACK_MISSED = "on_attack_missed"
 ITEM_ACTIVATION_PHASE_LINKED = "linked_item_activated"
+ITEM_MARKER_TYPES = ("star", "diamond", "triangle")
 SUPPORTED_ATTACK_REACTION_PHASES = (
     ATTACK_PHASE_ON_ATTACKED,
     ATTACK_PHASE_ON_ATTACK_MISSED,
@@ -75,6 +76,10 @@ class BattleItem:
         self.triggers = list(triggers) if triggers is not None else []
         self.effects = list(effects) if effects is not None else []
         self.linked_items = list(linked_items) if linked_items is not None else []
+        self.marker_items = {
+            marker_type: []
+            for marker_type in ITEM_MARKER_TYPES
+        }
 
         if not self.triggers:
             raise ValueError("battle item must have at least one trigger")
@@ -108,6 +113,17 @@ class BattleItem:
     def add_linked_item(self, linked_key:str):
         if linked_key not in self.linked_items:
             self.linked_items.append(linked_key)
+
+    def add_marker_item(
+        self,
+        marker_type: str,
+        linked_key: str,
+    ) -> None:
+        if marker_type not in ITEM_MARKER_TYPES:
+            raise ValueError(f"unsupported marker type: {marker_type}")
+        if linked_key not in self.marker_items[marker_type]:
+            self.marker_items[marker_type].append(linked_key)
+        self.add_linked_item(linked_key)
 
 @dataclass
 class BuffSlot:
@@ -165,6 +181,8 @@ class AttackEvent:
     block_damage: int = 0
     health_damage: int = 0
     is_resolved: bool = False
+    final_blocked_damage: int = 0
+    final_health_damage: int = 0
 
 
 class _BattleFinishedSignal(Exception):
@@ -478,11 +496,14 @@ class BattleState:
         event.health_damage = event.pending_damage - event.block_damage
         event.is_resolved = True
         # Battle log may be added here in the future to record the attack event details.
-        final_damage = self.commit_health_reduction(
+        final_blocked_damage, final_health_damage = self.commit_health_reduction(
             event.defender,
             event.block_damage,
             event.health_damage,
         )
+        final_damage = final_blocked_damage + final_health_damage
+        event.final_blocked_damage = final_blocked_damage
+        event.final_health_damage = final_health_damage
         # Spike and Vampirism effects can be applied here
         self._apply_melee_hit_statuses(event, final_damage)
         return event
@@ -543,7 +564,7 @@ class BattleState:
         player: PlayerState,
         blocked_damage: int,
         health_damage: int,
-    )->int:
+    )->tuple[int, int]:
         if self.get_player(player.player_id) is not player:
             raise ValueError("health reduction target is not part of this battle")
         if (
@@ -565,9 +586,8 @@ class BattleState:
             "health",
             player.health - final_health_damage,
         )
-        final_damage = final_blocked_damage + final_health_damage
         self.stop_if_battle_ended()
-        return final_damage
+        return final_blocked_damage, final_health_damage
 
     def get_player(self, player_id):
         for player in self.players:

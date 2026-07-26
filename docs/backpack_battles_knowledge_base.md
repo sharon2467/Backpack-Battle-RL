@@ -380,6 +380,32 @@ MediaWiki API：
 | [火焰](https://backpackbattles.wiki.gg/wiki/Flame) | 战斗开始时获得 1 层 `Heat` | Pyromancer / Common / Accessory / fire / 1 金币 / 1 格 | 10835，2025-09-19 |
 | [海象尖牙](https://backpackbattles.wiki.gg/wiki/Walrus_Tusk) | 战斗开始时获得 1 层 `Spikes` | Neutral / Common / Accessory / nature / 4 金币 / 纵向 2 格 | 11808，2026-05-05 |
 
+### 已核对的平衡魔棒
+
+查询日期：2026-07-26。
+
+- [平衡魔棒（Wand of Equilibrium）](https://backpackbattles.wiki.gg/wiki/Wand_of_Equilibrium?oldid=10782)，
+  修订 `10782`（2025-09-18 03:39:38 UTC）：Mage / Common / Accessory /
+  4 金币；Cargo `icontype` 为空；纵向 2 格，无标记和镶嵌位。
+- 每 `3.3s`，在 `Mana`、`Luck`、`Regeneration` 中获得当前最少的一项 1 层；
+  随后若三项中至少一项达到 10，消耗当前最多的一项 1 层并获得 1 层 `Empower`。
+- Wiki 未说明并列选择规则。经用户确认，项目按页面顺序
+  `Mana -> Luck -> Regeneration` 选择第一个并列项，不读取 RNG。
+- 一次冷却触发无论是否执行资源转换，都只发出一次物品激活通知。
+
+### 已核对的细绳
+
+查询日期：2026-07-26。
+
+- [细绳（Twine）](https://backpackbattles.wiki.gg/zh/wiki/%E7%BB%86%E7%BB%B3?oldid=4863)，
+  修订 `4863`（2025-10-13 06:23:16 UTC）：Adventurer / Common /
+  Accessory / 2 金币；1 格本体，右侧 1 个星标，左侧连续 3 个方片。
+- 星标物品激活时有 20% 概率获得 2 点最大生命；每个方片连接的
+  `Neutral` 物品使概率增加 20%。
+- [Interactions FAQ](https://backpackbattles.wiki.gg/wiki/Interactions_FAQ?oldid=12504)，
+  修订 `12504`（2026-07-22 08:14:21 UTC）：获得最大生命会同时增加等量
+  当前生命，但不算治疗。
+
 ### 已核对的黏宝宝与物品激活通知
 
 查询日期：2026-07-25。

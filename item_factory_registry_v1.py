@@ -2,6 +2,7 @@ from battle_module_v1 import (
     ATTACK_PHASE_ON_ATTACKED,
     ATTACK_PHASE_ON_ATTACK_MISSED,
     ITEM_ACTIVATION_PHASE_LINKED,
+    ITEM_MARKER_TYPES,
     AttackEvent,
     AttackReactionContext,
     BattleContext,
@@ -30,10 +31,28 @@ class StartOfBattleTrigger(Trigger):
         return True
 
 
-class LinkedItemActivationCountTrigger(Trigger):
+class ActivationTrigger(Trigger):
     item_activation_phase = ITEM_ACTIVATION_PHASE_LINKED
 
+    def __init__(self, marker_type: str = "star"):
+        if marker_type not in ITEM_MARKER_TYPES:
+            raise ValueError(f"unsupported marker type: {marker_type}")
+        self.marker_type = marker_type
+
+    def update(self, context: BattleContext) -> bool:
+        if not isinstance(context, ItemActivationContext):
+            return False
+        if context.source_item.player_id != context.item.player_id:
+            return False
+        return (
+            context.source_item.item_key
+            in context.item.marker_items[self.marker_type]
+        )
+
+
+class SlimeActivationTrigger(ActivationTrigger):
     def __init__(self, required_activations: int):
+        super().__init__(marker_type="star")
         if (
             type(required_activations) is not int
             or required_activations <= 0
@@ -45,11 +64,7 @@ class LinkedItemActivationCountTrigger(Trigger):
         self.activation_count = 0
 
     def update(self, context: BattleContext) -> bool:
-        if not isinstance(context, ItemActivationContext):
-            return False
-        if context.source_item.player_id != context.item.player_id:
-            return False
-        if context.source_item.item_key not in context.item.linked_items:
+        if not super().update(context):
             return False
 
         self.activation_count += 1
@@ -257,6 +272,20 @@ class HealEffect(Effect):
             self.amount,
         )
         return actual_healing > 0
+
+
+class GainMaxHealthEffect(Effect):
+    def __init__(self, amount: int):
+        if type(amount) is not int or amount <= 0:
+            raise ValueError(
+                "maximum health gain must be a positive int"
+            )
+        self.amount = amount
+
+    def apply(self, context: BattleContext) -> bool:
+        context.owner.max_health += self.amount
+        context.owner.health += self.amount
+        return True
 
 
 class HolyLinkedHealEffect(HealEffect):
@@ -860,6 +889,84 @@ class ShinyShell(BattleItem):
         self.emit_activation(context)
 
 
+class WandOfEquilibrium(BattleItem):
+    item_id = "wand_of_equilibrium"
+    display_name = "Wand of Equilibrium"
+    item_classes = ("Mage",)
+    rarity = "Common"
+    cost = 4
+    item_types = ("Accessory",)
+    icon_types = ()
+    is_active_item = True
+    socket_count = 0
+    RESOURCE_NAMES = ("Mana", "Luck", "Regeneration")
+
+    def __init__(
+        self,
+        item_id: str | None = None,
+        item_key: str | None = None,
+        player_id: int | None = None,
+    ) -> None:
+        gain_effects = [
+            GainBuffEffect(resource_name, 1)
+            for resource_name in self.RESOURCE_NAMES
+        ]
+        use_effects = [
+            UseBuffEffect(resource_name, 1)
+            for resource_name in self.RESOURCE_NAMES
+        ]
+        empower_effect = GainBuffEffect("Empower", 1)
+        super().__init__(
+            item_id=item_id,
+            item_key=item_key,
+            player_id=player_id,
+            is_active_item=True,
+            triggers=[CooldownTrigger(cooldown_seconds=3.3)],
+            effects=[*gain_effects, *use_effects, empower_effect],
+        )
+        self._gain_effects_by_name = dict(
+            zip(self.RESOURCE_NAMES, gain_effects)
+        )
+        self._use_effects_by_name = dict(
+            zip(self.RESOURCE_NAMES, use_effects)
+        )
+        self._empower_effect = empower_effect
+
+    def _least_resource_name(self, buffs: BuffSlot) -> str:
+        return min(
+            self.RESOURCE_NAMES,
+            key=lambda resource_name: getattr(buffs, resource_name),
+        )
+
+    def _most_resource_name(self, buffs: BuffSlot) -> str:
+        return max(
+            self.RESOURCE_NAMES,
+            key=lambda resource_name: getattr(buffs, resource_name),
+        )
+
+    def run_effect(
+        self,
+        trigger_results: list[bool],
+        context: BattleContext,
+    ) -> None:
+        if not trigger_results[0]:
+            return
+
+        buffs = context.owner.buffs
+        least_resource = self._least_resource_name(buffs)
+        self._gain_effects_by_name[least_resource].apply(context)
+
+        if max(
+            getattr(buffs, resource_name)
+            for resource_name in self.RESOURCE_NAMES
+        ) >= 10:
+            most_resource = self._most_resource_name(buffs)
+            self._use_effects_by_name[most_resource].apply(context)
+            self._empower_effect.apply(context)
+
+        self.emit_activation(context)
+
+
 class Whetstone(BattleItem):
     item_id = "whetstone"
     display_name = "Whetstone"
@@ -895,6 +1002,69 @@ class Whetstone(BattleItem):
             self.effects[0].apply(context)
 
 
+class Twine(BattleItem):
+    item_id = "twine"
+    display_name = "Twine"
+    item_classes = ("Adventurer",)
+    rarity = "Common"
+    cost = 2
+    item_types = ("Accessory",)
+    icon_types = ()
+    is_active_item = False
+    socket_count = 0
+    BASE_CHANCE = 0.20
+    CHANCE_PER_NEUTRAL = 0.20
+
+    def __init__(
+        self,
+        item_id: str | None = None,
+        item_key: str | None = None,
+        player_id: int | None = None,
+    ):
+        super().__init__(
+            item_id=item_id,
+            item_key=item_key,
+            player_id=player_id,
+            is_active_item=False,
+            triggers=[ActivationTrigger(marker_type="star")],
+            effects=[GainMaxHealthEffect(amount=2)],
+        )
+        self.neutral_item_count: int | None = None
+
+    def _prepare_neutral_item_count(
+        self,
+        context: BattleContext,
+    ) -> None:
+        if self.neutral_item_count is not None:
+            return
+
+        self.neutral_item_count = sum(
+            1
+            for linked_key in self.marker_items["diamond"]
+            if "Neutral" in context.owner.items[linked_key].item_classes
+        )
+
+    def run_effect(
+        self,
+        trigger_results: list[bool],
+        context: BattleContext,
+    ) -> None:
+        if not trigger_results[0]:
+            return
+
+        self._prepare_neutral_item_count(context)
+        chance = min(
+            1.0,
+            self.BASE_CHANCE
+            + self.neutral_item_count * self.CHANCE_PER_NEUTRAL,
+        )
+        if context.battle_state.rng.random() >= chance:
+            return
+
+        self.effects[0].apply(context)
+        self.emit_activation(context)
+
+
 class Goobling(BattleItem):
     item_id = "goobling"
     display_name = "Goobling"
@@ -918,7 +1088,7 @@ class Goobling(BattleItem):
             player_id=player_id,
             is_active_item=False,
             triggers=[
-                LinkedItemActivationCountTrigger(
+                SlimeActivationTrigger(
                     required_activations=3,
                 )
             ],
@@ -1396,7 +1566,9 @@ DEFAULT_ITEM_FACTORIES = {
     "shiny_shell": ShinyShell,
     "shortbow": Shortbow,
     "stone": Stone,
+    "twine": Twine,
     "walrus_tusk": WalrusTusk,
+    "wand_of_equilibrium": WandOfEquilibrium,
     "whetstone": Whetstone,
     "wooden_buckler": WoodenBuckler,
     "wooden_sword": WoodenSword,

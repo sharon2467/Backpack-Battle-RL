@@ -216,6 +216,9 @@ class BattleInitializerV1Test(unittest.TestCase):
 
         source = battle.players[0].items["source1"]
         self.assertEqual(source.linked_items, ["target1", "target2", "target3"])
+        self.assertEqual(source.marker_items["star"], ["target1"])
+        self.assertEqual(source.marker_items["diamond"], ["target2"])
+        self.assertEqual(source.marker_items["triangle"], ["target3"])
 
     def test_duplicate_marker_links_are_deduplicated_by_battle_item_method(self):
         item_catalog = {
@@ -248,6 +251,9 @@ class BattleInitializerV1Test(unittest.TestCase):
 
         source = battle.players[0].items["source1"]
         self.assertEqual(source.linked_items, ["target1"])
+        self.assertEqual(source.marker_items["star"], ["target1"])
+        self.assertEqual(source.marker_items["diamond"], ["target1"])
+        self.assertEqual(source.marker_items["triangle"], [])
 
     def test_active_items_are_ordered_by_player_and_item_insertion_order(self):
         item_catalog = {

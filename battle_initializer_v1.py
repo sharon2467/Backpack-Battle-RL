@@ -28,10 +28,14 @@ def initialize_battle(player_specs, item_factories, item_catalog=ITEM_CATALOG):
         placements = _required_field(player_spec, "placements")
 
         occupancy_matrix, placed_items = build_occupancy_matrix(placements, item_catalog)
-        marker_links = (
-            find_star_links(placed_items, occupancy_matrix)
-            + find_diamond_links(placed_items, occupancy_matrix)
-            + find_triangle_links(placed_items, occupancy_matrix)
+        star_links = find_star_links(placed_items, occupancy_matrix)
+        diamond_links = find_diamond_links(
+            placed_items,
+            occupancy_matrix,
+        )
+        triangle_links = find_triangle_links(
+            placed_items,
+            occupancy_matrix,
         )
 
         items_by_key = _create_battle_items(
@@ -39,7 +43,9 @@ def initialize_battle(player_specs, item_factories, item_catalog=ITEM_CATALOG):
             player_id,
             item_factories,
         )
-        _attach_marker_links(marker_links, items_by_key)
+        _attach_marker_links(star_links, items_by_key, "star")
+        _attach_marker_links(diamond_links, items_by_key, "diamond")
+        _attach_marker_links(triangle_links, items_by_key, "triangle")
 
         player_state = PlayerState(
             player_id=player_id,
@@ -99,7 +105,11 @@ def _validate_battle_item(battle_item, item_id, item_key, player_id):
         raise ValueError(f"battle item player_id mismatch: {battle_item.player_id} != {player_id}")
 
 
-def _attach_marker_links(marker_links, items_by_key:dict[str,BattleItem]):
+def _attach_marker_links(
+    marker_links,
+    items_by_key: dict[str, BattleItem],
+    marker_type: str,
+) -> None:
     for marker_link in marker_links:
         source_key = marker_link["source_item_key"]
         target_key = marker_link["target_item_key"]
@@ -109,4 +119,7 @@ def _attach_marker_links(marker_links, items_by_key:dict[str,BattleItem]):
         if target_key not in items_by_key:
             raise ValueError(f"unknown target_item_key: {target_key}")
 
-        items_by_key[source_key].add_linked_item(target_key)
+        items_by_key[source_key].add_marker_item(
+            marker_type,
+            target_key,
+        )

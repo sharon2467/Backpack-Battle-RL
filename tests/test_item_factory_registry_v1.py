@@ -16,6 +16,7 @@ from battle_module_v1 import (
     PlayerState,
 )
 from item_factory_registry_v1 import (
+    ActivationTrigger,
     AfterTimeTrigger,
     AttackEffect,
     AttackMissTrigger,
@@ -30,6 +31,7 @@ from item_factory_registry_v1 import (
     Flame,
     GainBlockEffect,
     GainBuffEffect,
+    GainMaxHealthEffect,
     Garlic,
     Goobling,
     HealingHerbs,
@@ -37,7 +39,6 @@ from item_factory_registry_v1 import (
     HolyLinkedHealEffect,
     InflictDebuffEffect,
     ItemAcceleratedCooldownTrigger,
-    LinkedItemActivationCountTrigger,
     LinkedWeaponDamageEffect,
     OnAttackedTrigger,
     Pan,
@@ -49,11 +50,14 @@ from item_factory_registry_v1 import (
     RemoveOpponentStaminaEffect,
     ShinyShell,
     Shortbow,
+    SlimeActivationTrigger,
     StaminaConsumptionEffect,
     StartOfBattleTrigger,
     Stone,
+    Twine,
     UseBuffEffect,
     WalrusTusk,
+    WandOfEquilibrium,
     Whetstone,
     WoodenBuckler,
     WoodenSword,
@@ -89,6 +93,49 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             frame_delta=frame_delta,
         )
         return BattleContext(battle_state, None, owner, opponent)
+
+    def make_wand_of_equilibrium_context(
+        self,
+        *,
+        mana=0,
+        luck=0,
+        regeneration=0,
+        empower=0,
+        frame_delta=3.3,
+    ):
+        wand = WandOfEquilibrium(
+            item_key="wand_of_equilibrium1",
+            player_id=0,
+        )
+        owner = PlayerState(
+            player_id=0,
+            health=10,
+            max_health=10,
+            buffs=BuffSlot(
+                Empower=empower,
+                Luck=luck,
+                Mana=mana,
+                Regeneration=regeneration,
+            ),
+            items={wand.item_key: wand},
+        )
+        opponent = PlayerState(
+            player_id=1,
+            health=10,
+            max_health=10,
+        )
+        battle_state = BattleState(
+            players=[owner, opponent],
+            active_items=[wand],
+            frame_delta=frame_delta,
+        )
+        context = BattleContext(
+            battle_state,
+            wand,
+            owner,
+            opponent,
+        )
+        return wand, context
 
     def test_default_item_factories_is_a_registry_dict(self):
         self.assertIsInstance(DEFAULT_ITEM_FACTORIES, dict)
@@ -1308,6 +1355,293 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         shell = battle.players[0].items["shiny_shell1"]
         self.assertIsInstance(shell, ShinyShell)
         self.assertEqual(battle.active_items, [shell])
+
+    def test_wand_of_equilibrium_is_registered_with_metadata_and_components(
+        self,
+    ):
+        wand = DEFAULT_ITEM_FACTORIES["wand_of_equilibrium"](
+            item_id="wand_of_equilibrium",
+            item_key="wand_of_equilibrium1",
+            player_id=0,
+        )
+        second_wand = WandOfEquilibrium(
+            item_key="wand_of_equilibrium2",
+            player_id=0,
+        )
+
+        self.assertIsInstance(wand, WandOfEquilibrium)
+        self.assertEqual(wand.item_id, "wand_of_equilibrium")
+        self.assertEqual(wand.display_name, "Wand of Equilibrium")
+        self.assertEqual(wand.item_classes, ("Mage",))
+        self.assertEqual(wand.rarity, "Common")
+        self.assertEqual(wand.cost, 4)
+        self.assertEqual(wand.item_types, ("Accessory",))
+        self.assertEqual(wand.icon_types, ())
+        self.assertTrue(wand.is_active_item)
+        self.assertEqual(wand.socket_count, 0)
+        self.assertIsInstance(wand.triggers[0], CooldownTrigger)
+        self.assertAlmostEqual(wand.triggers[0].cooldown_seconds, 3.3)
+        self.assertEqual(len(wand.effects), 7)
+        self.assertTrue(
+            all(
+                isinstance(effect, GainBuffEffect)
+                for effect in wand.effects[:3]
+            )
+        )
+        self.assertTrue(
+            all(
+                isinstance(effect, UseBuffEffect)
+                for effect in wand.effects[3:6]
+            )
+        )
+        self.assertIsInstance(wand.effects[6], GainBuffEffect)
+        self.assertEqual(
+            [effect.buff_name for effect in wand.effects],
+            [
+                "Mana",
+                "Luck",
+                "Regeneration",
+                "Mana",
+                "Luck",
+                "Regeneration",
+                "Empower",
+            ],
+        )
+        self.assertEqual(
+            [effect.amount for effect in wand.effects],
+            [1, 1, 1, 1, 1, 1, 1],
+        )
+        self.assertIsNot(wand.triggers[0], second_wand.triggers[0])
+        for first_effect, second_effect in zip(
+            wand.effects,
+            second_wand.effects,
+        ):
+            self.assertIsNot(first_effect, second_effect)
+
+    def test_wand_of_equilibrium_gains_the_least_resource(self):
+        cases = (
+            ((0, 2, 3), (1, 2, 3)),
+            ((3, 0, 2), (3, 1, 2)),
+            ((2, 3, 0), (2, 3, 1)),
+        )
+        for initial, expected in cases:
+            with self.subTest(initial=initial):
+                wand, context = self.make_wand_of_equilibrium_context(
+                    mana=initial[0],
+                    luck=initial[1],
+                    regeneration=initial[2],
+                )
+
+                wand.activate_item(context)
+
+                self.assertEqual(
+                    (
+                        context.owner.buffs.Mana,
+                        context.owner.buffs.Luck,
+                        context.owner.buffs.Regeneration,
+                    ),
+                    expected,
+                )
+                self.assertEqual(context.owner.buffs.Empower, 0)
+
+    def test_wand_of_equilibrium_uses_stable_order_for_minimum_ties(
+        self,
+    ):
+        wand, context = self.make_wand_of_equilibrium_context()
+
+        wand.activate_item(context)
+        self.assertEqual(
+            (
+                context.owner.buffs.Mana,
+                context.owner.buffs.Luck,
+                context.owner.buffs.Regeneration,
+            ),
+            (1, 0, 0),
+        )
+        wand.activate_item(context)
+        self.assertEqual(
+            (
+                context.owner.buffs.Mana,
+                context.owner.buffs.Luck,
+                context.owner.buffs.Regeneration,
+            ),
+            (1, 1, 0),
+        )
+        wand.activate_item(context)
+
+        self.assertEqual(
+            (
+                context.owner.buffs.Mana,
+                context.owner.buffs.Luck,
+                context.owner.buffs.Regeneration,
+            ),
+            (1, 1, 1),
+        )
+
+    def test_wand_of_equilibrium_checks_threshold_after_gain(self):
+        wand, context = self.make_wand_of_equilibrium_context(
+            mana=9,
+            luck=9,
+            regeneration=9,
+        )
+
+        wand.activate_item(context)
+
+        self.assertEqual(
+            (
+                context.owner.buffs.Mana,
+                context.owner.buffs.Luck,
+                context.owner.buffs.Regeneration,
+            ),
+            (9, 9, 9),
+        )
+        self.assertEqual(context.owner.buffs.Empower, 1)
+
+    def test_wand_of_equilibrium_uses_the_most_resource(self):
+        wand, context = self.make_wand_of_equilibrium_context(
+            mana=12,
+            luck=6,
+            regeneration=4,
+        )
+
+        wand.activate_item(context)
+
+        self.assertEqual(
+            (
+                context.owner.buffs.Mana,
+                context.owner.buffs.Luck,
+                context.owner.buffs.Regeneration,
+            ),
+            (11, 6, 5),
+        )
+        self.assertEqual(context.owner.buffs.Empower, 1)
+
+    def test_wand_of_equilibrium_uses_stable_order_for_maximum_ties(
+        self,
+    ):
+        wand, context = self.make_wand_of_equilibrium_context(
+            mana=12,
+            luck=12,
+            regeneration=11,
+        )
+
+        wand.activate_item(context)
+
+        self.assertEqual(
+            (
+                context.owner.buffs.Mana,
+                context.owner.buffs.Luck,
+                context.owner.buffs.Regeneration,
+            ),
+            (11, 12, 12),
+        )
+        self.assertEqual(context.owner.buffs.Empower, 1)
+
+    def test_wand_of_equilibrium_does_not_convert_below_threshold(self):
+        wand, context = self.make_wand_of_equilibrium_context(
+            mana=8,
+            luck=8,
+            regeneration=8,
+        )
+
+        wand.activate_item(context)
+
+        self.assertEqual(
+            (
+                context.owner.buffs.Mana,
+                context.owner.buffs.Luck,
+                context.owner.buffs.Regeneration,
+            ),
+            (9, 8, 8),
+        )
+        self.assertEqual(context.owner.buffs.Empower, 0)
+
+    def test_wand_of_equilibrium_emits_once_per_cooldown_activation(
+        self,
+    ):
+        wand, context = self.make_wand_of_equilibrium_context(
+            frame_delta=3.2,
+        )
+        dispatch_spy = spy_on_activation_dispatch(
+            context.battle_state
+        )
+
+        wand.activate_item(context)
+        dispatch_spy.assert_not_called()
+
+        context.battle_state.frame_delta = 0.1
+        wand.activate_item(context)
+        dispatch_spy.assert_called_once_with(wand)
+
+        context.battle_state.frame_delta = 3.3
+        wand.activate_item(context)
+        self.assertEqual(
+            dispatch_spy.call_args_list,
+            [call(wand), call(wand)],
+        )
+
+    def test_initializer_builds_wand_of_equilibrium_as_active_item(self):
+        battle = initialize_battle(
+            [
+                {
+                    "player_id": 0,
+                    "health": 10,
+                    "max_health": 10,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [
+                        {
+                            "item_id": "wand_of_equilibrium",
+                            "x": 0,
+                            "y": 0,
+                            "rotation": 0,
+                        }
+                    ],
+                },
+                {
+                    "player_id": 1,
+                    "health": 10,
+                    "max_health": 10,
+                    "stamina": 5.0,
+                    "max_stamina": 5.0,
+                    "placements": [],
+                },
+            ],
+            DEFAULT_ITEM_FACTORIES,
+            item_catalog=ITEM_CATALOG,
+        )
+
+        wand = battle.players[0].items["wand_of_equilibrium1"]
+        self.assertIsInstance(wand, WandOfEquilibrium)
+        self.assertEqual(battle.active_items, [wand])
+
+    def test_wand_of_equilibrium_catalog_rotates_vertical_shape(self):
+        expected_cells = {
+            0: [(3, 4), (3, 3)],
+            90: [(2, 3), (3, 3)],
+            180: [(3, 2), (3, 3)],
+            270: [(4, 3), (3, 3)],
+        }
+
+        for rotation, occupied_cells in expected_cells.items():
+            with self.subTest(rotation=rotation):
+                placed = place_item(
+                    ITEM_CATALOG["wand_of_equilibrium"],
+                    {
+                        "item_key": "wand_of_equilibrium1",
+                        "x": 3,
+                        "y": 3,
+                        "rotation": rotation,
+                    },
+                )
+
+                self.assertEqual(
+                    placed["occupied_cells"],
+                    occupied_cells,
+                )
+                self.assertEqual(placed["star_cells"], [])
+                self.assertEqual(placed["diamond_cells"], [])
+                self.assertEqual(placed["triangle_cells"], [])
 
     def test_linked_weapon_damage_effect_rejects_invalid_amounts(self):
         for amount in (True, 1.0, -1):
@@ -4352,7 +4686,7 @@ class GooblingSpecTest(unittest.TestCase):
             player_id=0,
         )
         if linked:
-            goobling.add_linked_item(source.item_key)
+            goobling.add_marker_item("star", source.item_key)
         owner = PlayerState(
             player_id=0,
             health=health,
@@ -4419,15 +4753,46 @@ class GooblingSpecTest(unittest.TestCase):
             item_catalog=item_catalog,
         )
 
-    def test_linked_activation_count_trigger_rejects_invalid_required_count(
+    def test_activation_trigger_rejects_unknown_marker_type(self):
+        for invalid in ("hex", "", None, 1):
+            with self.subTest(invalid=invalid):
+                with self.assertRaises(ValueError):
+                    ActivationTrigger(invalid)
+
+    def test_activation_trigger_only_validates_matching_activation_event(
+        self,
+    ):
+        source, goobling, battle, owner, opponent, context = (
+            self.make_linked_goobling_state()
+        )
+        trigger = ActivationTrigger("star")
+        battle.rng = Mock()
+
+        self.assertTrue(trigger.update(context))
+        self.assertFalse(
+            trigger.update(
+                BattleContext(
+                    battle_state=battle,
+                    item=goobling,
+                    owner=owner,
+                    opponent=opponent,
+                )
+            )
+        )
+        goobling.marker_items["star"].clear()
+        self.assertFalse(trigger.update(context))
+        self.assertEqual(battle.rng.method_calls, [])
+        self.assertIsNotNone(source)
+
+    def test_slime_activation_trigger_rejects_invalid_required_count(
         self,
     ):
         for invalid in (0, -1, 1.0, True, None):
             with self.subTest(invalid=invalid):
                 with self.assertRaises(ValueError):
-                    LinkedItemActivationCountTrigger(invalid)
+                    SlimeActivationTrigger(invalid)
 
-    def test_linked_activation_count_trigger_ignores_base_context(self):
+    def test_slime_activation_trigger_ignores_base_context(self):
         source, goobling, battle, owner, opponent, _ = (
             self.make_linked_goobling_state()
         )
@@ -4443,7 +4808,7 @@ class GooblingSpecTest(unittest.TestCase):
         self.assertEqual(trigger.activation_count, 0)
         self.assertIsNotNone(source)
 
-    def test_linked_activation_count_trigger_ignores_unlinked_source(self):
+    def test_slime_activation_trigger_ignores_unlinked_source(self):
         _, goobling, _, _, _, context = (
             self.make_linked_goobling_state(linked=False)
         )
@@ -4452,7 +4817,7 @@ class GooblingSpecTest(unittest.TestCase):
         self.assertFalse(trigger.update(context))
         self.assertEqual(trigger.activation_count, 0)
 
-    def test_linked_activation_count_trigger_fires_every_third_event(self):
+    def test_slime_activation_trigger_fires_every_third_event(self):
         _, goobling, _, _, _, context = (
             self.make_linked_goobling_state()
         )
@@ -4466,9 +4831,9 @@ class GooblingSpecTest(unittest.TestCase):
         )
         self.assertEqual(trigger.activation_count, 0)
 
-    def test_linked_activation_count_trigger_instances_are_independent(self):
-        first = LinkedItemActivationCountTrigger(3)
-        second = LinkedItemActivationCountTrigger(3)
+    def test_slime_activation_trigger_instances_are_independent(self):
+        first = SlimeActivationTrigger(3)
+        second = SlimeActivationTrigger(3)
         source, goobling, _, _, _, context = (
             self.make_linked_goobling_state()
         )
@@ -4476,7 +4841,7 @@ class GooblingSpecTest(unittest.TestCase):
             item_key="goobling2",
             player_id=0,
         )
-        other_goobling.add_linked_item(source.item_key)
+        other_goobling.add_marker_item("star", source.item_key)
         other_context = ItemActivationContext(
             battle_state=context.battle_state,
             item=other_goobling,
@@ -4514,7 +4879,7 @@ class GooblingSpecTest(unittest.TestCase):
         self.assertEqual(goobling.socket_count, 0)
         self.assertIsInstance(
             goobling.triggers[0],
-            LinkedItemActivationCountTrigger,
+            SlimeActivationTrigger,
         )
         self.assertEqual(goobling.triggers[0].required_activations, 3)
         self.assertIsInstance(goobling.effects[0], HealEffect)
@@ -4975,8 +5340,8 @@ class GooblingSpecTest(unittest.TestCase):
         )
         first = Goobling(item_key="goobling1", player_id=0)
         second = Goobling(item_key="goobling2", player_id=0)
-        first.add_linked_item(source.item_key)
-        second.add_linked_item(first.item_key)
+        first.add_marker_item("star", source.item_key)
+        second.add_marker_item("star", first.item_key)
         owner = PlayerState(
             player_id=0,
             health=10,
