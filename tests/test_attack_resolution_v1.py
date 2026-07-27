@@ -15,14 +15,16 @@ from battle_module_v1 import (
     Trigger,
     _BattleFinishedSignal,
 )
-from item_factory_registry_v1 import (
+from item_effects_v1 import (
     AttackEffect,
+    PreventAttackDamageEffect,
+    RemoveOpponentStaminaEffect,
+)
+from item_factory_registry_v1 import WoodenBuckler
+from item_triggers_v1 import (
     AttackMissTrigger,
     CooldownTrigger,
     OnAttackedTrigger,
-    PreventAttackDamageEffect,
-    RemoveOpponentStaminaEffect,
-    WoodenBuckler,
 )
 
 
@@ -1045,11 +1047,14 @@ class AttackResolutionV1Test(unittest.TestCase):
                 player,
                 blocked_damage,
                 health_damage,
+                *,
+                log_handle=None,
             ):
                 actual_damage = super().commit_health_reduction(
                     player,
                     blocked_damage,
                     health_damage,
+                    log_handle=log_handle,
                 )
                 if player is self.players[1]:
                     return 0, 2
@@ -1163,12 +1168,15 @@ class AttackResolutionV1Test(unittest.TestCase):
                 player,
                 blocked_damage,
                 health_damage,
+                *,
+                log_handle=None,
             ):
                 order.append(("damage", player.player_id))
                 return super().commit_health_reduction(
                     player,
                     blocked_damage,
                     health_damage,
+                    log_handle=log_handle,
                 )
 
             def heal(self, target, amount):

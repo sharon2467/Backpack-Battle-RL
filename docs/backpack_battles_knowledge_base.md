@@ -393,6 +393,24 @@ MediaWiki API：
   `Mana -> Luck -> Regeneration` 选择第一个并列项，不读取 RNG。
 - 一次冷却触发无论是否执行资源转换，都只发出一次物品激活通知。
 
+### 已核对的魔法入门指南
+
+查询日期：2026-07-26。
+
+- [Magic For Dummies](https://backpackbattles.wiki.gg/wiki/Magic_For_Dummies?oldid=11970)，
+  修订 `11970`（2026-05-08 20:20:46 UTC）：Mage / Common / Book / magic /
+  4 金币；纵向 2 格，周围 6 个星标，无方片、三角和镶嵌位。
+- [中文魔法入门指南](https://backpackbattles.wiki.gg/zh/wiki/%E9%AD%94%E6%B3%95%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97?oldid=6192)，
+  修订 `6192`（2026-03-23 02:09:57 UTC）与英文页当前数值一致。
+- 魔法书和魔法卷轴的商店打折几率增加 10%；当前战斗框架暂不实现该商店效果。
+- 每 `5s` 消耗 1 点 `Mana`，获得 8 点最大生命；每个星标连接的
+  `Spell` 再增加 3 点，可由配方打造的 `Spell` 按两个计算。
+- [Interactions FAQ](https://backpackbattles.wiki.gg/wiki/Interactions_FAQ?oldid=12504)
+  说明 crafted 是物品种类的固定分类，即使从商店直接获得仍按 crafted 计算。
+  项目使用静态 `BattleItem.is_crafted` 元数据表示该分类，默认值为 `False`。
+- 经用户批准，Mana 不足时不产生最大生命效果或激活通知，冷却进入下一周期；
+  成功时增加的最大生命同时增加等量当前生命，且不算治疗。
+
 ### 已核对的细绳
 
 查询日期：2026-07-26。

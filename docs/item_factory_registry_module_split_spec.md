@@ -1,6 +1,6 @@
 # Item Factory Registry 模块拆分 SPEC
 
-状态：待用户确认后实施  
+状态：已实施并通过验收
 目标文件：`item_factory_registry_v1.py`  
 拟新增文件：`item_triggers_v1.py`、`item_effects_v1.py`  
 编写日期：2026-07-26

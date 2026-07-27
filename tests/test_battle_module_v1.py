@@ -1479,7 +1479,7 @@ class BattleModuleV1Test(unittest.TestCase):
         first.debuffs.Poison = 5
         battle = BattleState(players=[first, second])
 
-        self.assertEqual(battle._apply_poison_tick(first), (2, 3))
+        self.assertEqual(battle._apply_poison_tick(first), 5)
         self.assertEqual(first.block, 0)
         self.assertEqual(first.health, 7)
 

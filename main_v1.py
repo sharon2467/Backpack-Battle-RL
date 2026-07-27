@@ -1,6 +1,8 @@
 import argparse
 import json
+import math
 import sys
+from copy import deepcopy
 from dataclasses import asdict
 from pathlib import Path
 
@@ -13,6 +15,7 @@ BATTLE_RUN_SCHEMA_VERSION = "battle_run_v1"
 BATTLE_RESULT_SCHEMA_VERSION = "battle_result_v1"
 DEFAULT_MAX_FRAMES = 1000
 DEFAULT_FRAME_DELTA = 1.0 / 30.0
+STAMINA_COMPRESSION_ABS_TOLERANCE = 1e-9
 
 
 def load_battle_run_file(input_path):
@@ -56,6 +59,10 @@ def run_battle_from_config(run_config, item_factories, item_catalog=ITEM_CATALOG
         player_specs=player_specs,
         item_factories=item_factories,
         item_catalog=item_catalog,
+    )
+    battle_state.collect_player_state_history = settings.get(
+        "collect_player_state_history",
+        False,
     )
     battle_state.run(max_frames=max_frames, frame_delta=frame_delta)
 
@@ -113,6 +120,13 @@ def _validate_run_config(run_config):
 
     if "collect_log" in settings and not isinstance(settings["collect_log"], bool):
         raise ValueError("settings.collect_log must be a bool")
+    if (
+        "collect_player_state_history" in settings
+        and not isinstance(settings["collect_player_state_history"], bool)
+    ):
+        raise ValueError(
+            "settings.collect_player_state_history must be a bool"
+        )
 
     if "players" not in run_config:
         raise ValueError("missing required field: players")
@@ -168,8 +182,130 @@ def _apply_cli_overrides(run_config, args):
     run_config["settings"] = settings
 
 
+def _players_match_for_history_compression(
+    previous_players: list[dict[str, object]],
+    current_players: list[dict[str, object]],
+    frame_delta: float,
+) -> bool:
+    if len(previous_players) != len(current_players):
+        return False
+
+    for previous_player, current_player in zip(
+        previous_players,
+        current_players,
+    ):
+        previous_without_stamina = {
+            key: value
+            for key, value in previous_player.items()
+            if key != "stamina"
+        }
+        current_without_stamina = {
+            key: value
+            for key, value in current_player.items()
+            if key != "stamina"
+        }
+        if previous_without_stamina != current_without_stamina:
+            return False
+
+        stamina_delta = (
+            current_player["stamina"]
+            - previous_player["stamina"]
+        )
+        if math.isclose(
+            stamina_delta,
+            0.0,
+            rel_tol=0.0,
+            abs_tol=STAMINA_COMPRESSION_ABS_TOLERANCE,
+        ):
+            continue
+        if math.isclose(
+            stamina_delta,
+            frame_delta,
+            rel_tol=0.0,
+            abs_tol=STAMINA_COMPRESSION_ABS_TOLERANCE,
+        ):
+            continue
+
+        reached_max_stamina = math.isclose(
+            current_player["stamina"],
+            current_player["max_stamina"],
+            rel_tol=0.0,
+            abs_tol=STAMINA_COMPRESSION_ABS_TOLERANCE,
+        )
+        if (
+            reached_max_stamina
+            and 0.0 < stamina_delta < frame_delta
+        ):
+            continue
+        return False
+
+    return True
+
+
+def compress_player_state_history(
+    player_state_history: list[dict[str, object]],
+    frame_delta: float,
+) -> list[dict[str, object]]:
+    compressed_history = []
+    previous_record = None
+
+    for record in player_state_history:
+        if (
+            previous_record is not None
+            and _players_match_for_history_compression(
+                previous_record["players"],
+                record["players"],
+                frame_delta,
+            )
+        ):
+            current = compressed_history[-1]
+            current["sequence"] = (
+                current["sequence"][0],
+                record["sequence"],
+            )
+            current["frame"] = (
+                current["frame"][0],
+                record["frame"],
+            )
+            current["time"] = (
+                current["time"][0],
+                record["time"],
+            )
+            for compressed_player, record_player in zip(
+                current["players"],
+                record["players"],
+            ):
+                compressed_player["stamina"] = (
+                    round(compressed_player["stamina"][0], 2),
+                    round(record_player["stamina"], 2),
+                )
+            previous_record = record
+            continue
+
+        compressed_players = deepcopy(record["players"])
+        for player in compressed_players:
+            stamina = player["stamina"]
+            player["stamina"] = (round(stamina, 2), round(stamina, 2))
+
+        compressed_history.append(
+            {
+                "sequence": (record["sequence"], record["sequence"]),
+                "frame": (record["frame"], record["frame"]),
+                "time": (record["time"], record["time"]),
+                "players": compressed_players,
+            }
+        )
+        previous_record = record
+
+    return compressed_history
+
+
 def _build_success_result(battle_state, run_metadata, finish_reason):
     player_metadata = run_metadata.get("players", {})
+    compressed_player_state_history = compress_player_state_history(
+        battle_state.player_state_history,
+        battle_state.frame_delta,
+    )
     return {
         "schema_version": BATTLE_RESULT_SCHEMA_VERSION,
         "winner": battle_state.winner,
@@ -188,7 +324,8 @@ def _build_success_result(battle_state, run_metadata, finish_reason):
             }
             for item in battle_state.active_items
         ],
-        "log": [],
+        "player_state_history": compressed_player_state_history,
+        "log": list(battle_state.log),
     }
 
 

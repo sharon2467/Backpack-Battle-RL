@@ -9,15 +9,14 @@ from battle_module_v1 import (
     ItemActivationContext,
     PlayerState,
 )
+from item_effects_v1 import GainMaxHealthEffect
 from item_factory_registry_v1 import (
-    ActivationTrigger,
     DEFAULT_ITEM_FACTORIES,
-    GainMaxHealthEffect,
-    SlimeActivationTrigger,
     Stone,
     Twine,
     WoodenSword,
 )
+from item_triggers_v1 import ActivationTrigger, SlimeActivationTrigger
 
 
 def spy_on_activation_dispatch(battle_state):

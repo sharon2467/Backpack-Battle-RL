@@ -1,6 +1,7 @@
 from __future__ import annotations
+import math
 import random
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field
 from typing import Sequence
 
 ATTACK_PHASE_ON_ATTACKED = "on_attacked"
@@ -46,6 +47,7 @@ class BattleItem:
     item_types = ()
     icon_types = ()
     is_active_item = False
+    is_crafted = False
 
     def __init__(
         self,
@@ -105,6 +107,10 @@ class BattleItem:
     def emit_activation(self, context: BattleContext) -> None:
         if context.item is not self:
             raise ValueError("activation context item mismatch")
+        context.battle_state.record_log(
+            self,
+            {"action": "item_activation"},
+        )
         context.battle_state.dispatch_item_activation(self)
 
     def run_effect(self, trigger_results:list[bool], context:BattleContext)->None:
@@ -165,6 +171,20 @@ class PlayerState:
         super().__setattr__(name, value)
 
 
+def serialize_player_state(player: PlayerState) -> dict[str, object]:
+    return {
+        "player_id": player.player_id,
+        "health": player.health,
+        "max_health": player.max_health,
+        "block": player.block,
+        "fatigue_damage": player.fatigue_damage,
+        "stamina": player.stamina,
+        "max_stamina": player.max_stamina,
+        "buffs": asdict(player.buffs),
+        "debuffs": asdict(player.debuffs),
+    }
+
+
 @dataclass
 class AttackEvent:
     attacker: PlayerState
@@ -189,6 +209,12 @@ class _BattleFinishedSignal(Exception):
     pass
 
 
+@dataclass(frozen=True, eq=False)
+class LogHandle:
+    battle_state: BattleState = field(repr=False)
+    sequence: int
+
+
 @dataclass
 class BattleState:
     frame: int = 0
@@ -201,6 +227,11 @@ class BattleState:
     next_poison_time: float = FIRST_POISON_TIME
     next_nightfall_fatigue_time: float = NIGHTFALL_FATIGUE_START_TIME
     rng: random.Random = field(default_factory=random.Random)
+    log: list[dict[str, object]] = field(default_factory=list)
+    collect_player_state_history: bool = False
+    player_state_history: list[dict[str, object]] = field(
+        default_factory=list,
+    )
     _responder_item_cache: dict[
         object,
         dict[str, tuple[BattleItem, ...]],
@@ -210,12 +241,99 @@ class BattleState:
         dict[str, tuple[BattleItem, ...]],
     ] = field(default_factory=dict, init=False, repr=False)
 
+    def record_log(
+        self,
+        source: object,
+        data: dict[str, object],
+    ) -> LogHandle:
+        if type(source) is str:
+            serialized_source = {
+                "type": "system",
+                "name": source,
+            }
+        else:
+            serialized_source = {
+                "type": "item",
+                "player_id": getattr(source, "player_id", None),
+                "item_key": getattr(source, "item_key", None),
+                "item_id": getattr(source, "item_id", None),
+            }
+
+        sequence = len(self.log)
+        self.log.append(
+            {
+                "sequence": sequence,
+                "frame": self.frame,
+                "time": round(self.time, 3),
+                "source": serialized_source,
+                "data": dict(data),
+            }
+        )
+        return LogHandle(self, sequence)
+
+    def _get_pending_damage_log_data(
+        self,
+        log_handle: LogHandle,
+        target: PlayerState,
+    ) -> dict[str, object]:
+        if not isinstance(log_handle, LogHandle):
+            raise ValueError("damage log handle must be a LogHandle")
+        if log_handle.battle_state is not self:
+            raise ValueError("damage log handle belongs to another battle")
+        if not 0 <= log_handle.sequence < len(self.log):
+            raise ValueError("damage log handle is stale")
+
+        entry = self.log[log_handle.sequence]
+        if entry.get("sequence") != log_handle.sequence:
+            raise ValueError("damage log handle is stale")
+        data = entry.get("data")
+        if not isinstance(data, dict):
+            raise ValueError("damage log data must be a dict")
+        if (
+            "block_damage" not in data
+            or "health_damage" not in data
+        ):
+            raise ValueError("damage log is missing raw damage fields")
+        if data.get("target_player_id") != target.player_id:
+            raise ValueError("damage log target does not match damage target")
+        if (
+            "final_block_damage" in data
+            or "final_health_damage" in data
+        ):
+            raise ValueError("damage log is already complete")
+        return data
+
+    def _complete_damage_log(
+        self,
+        data: dict[str, object],
+        final_block_damage: int,
+        final_health_damage: int,
+    ) -> None:
+        data["final_block_damage"] = final_block_damage
+        data["final_health_damage"] = final_health_damage
+
+    def record_player_state_snapshot(self) -> None:
+        if not self.collect_player_state_history:
+            return
+
+        self.player_state_history.append(
+            {
+                "sequence": len(self.player_state_history),
+                "frame": self.frame,
+                "time": round(self.time, 3),
+                "players": [
+                    serialize_player_state(player)
+                    for player in self.players
+                ],
+            }
+        )
+
     def regenerate_stamina(self):
         for player in self.players:
-            player.stamina = min(
+            player.stamina = round(min(
                 player.max_stamina,
                 player.stamina + self.frame_delta,
-            )
+            ),4)
 
     def step(self):
         self.regenerate_stamina()
@@ -228,8 +346,10 @@ class BattleState:
             self.time += self.frame_delta
             self._apply_system_triggers()
         except _BattleFinishedSignal:
+            self.record_player_state_snapshot()
             return self.winner
 
+        self.record_player_state_snapshot()
         return self.winner
 
     def run(self, max_frames: int, frame_delta: float = 1.0 / 30.0):
@@ -262,17 +382,31 @@ class BattleState:
         if self.get_player(target.player_id) is not target:
             raise ValueError("fatigue target is not part of this battle")
 
+        previous_fatigue_damage = target.fatigue_damage
         next_damage = calculate_next_fatigue_damage(
-            target.fatigue_damage,
+            previous_fatigue_damage,
             nightfall=nightfall,
         )
         target.fatigue_damage = next_damage
         blocked_damage = min(target.block, next_damage)
         health_damage = next_damage - blocked_damage
+        log_handle = self.record_log(
+            "Fatigue",
+            {
+                "action": "fatigue_damage",
+                "target_player_id": target.player_id,
+                "fatigue_damage_delta": (
+                    next_damage - previous_fatigue_damage
+                ),
+                "block_damage": blocked_damage,
+                "health_damage": health_damage,
+            },
+        )
         self.commit_health_reduction(
             target,
             blocked_damage,
             health_damage,
+            log_handle=log_handle,
         )
         return next_damage
 
@@ -289,7 +423,19 @@ class BattleState:
         return target.health - old_health
 
     def _apply_regeneration_tick(self, target: PlayerState)->int:
-        return self.heal(target, target.buffs.Regeneration)
+        requested_healing = target.buffs.Regeneration
+        actual_healing = self.heal(target, requested_healing)
+        if requested_healing > 0:
+            self.record_log(
+                "Regeneration",
+                {
+                    "action": "heal",
+                    "target_player_id": target.player_id,
+                    "healing": requested_healing,
+                    "final_healing": actual_healing,
+                },
+            )
+        return actual_healing
 
     def _apply_poison_tick(self, target: PlayerState)->int:
         damage = target.debuffs.Poison
@@ -298,11 +444,24 @@ class BattleState:
 
         blocked_damage = min(target.block, damage)
         health_damage = damage - blocked_damage
-        return self.commit_health_reduction(
-            target,
-            blocked_damage,
-            health_damage,
+        log_handle = self.record_log(
+            "Poison",
+            {
+                "action": "poison_damage",
+                "target_player_id": target.player_id,
+                "block_damage": blocked_damage,
+                "health_damage": health_damage,
+            },
         )
+        final_block_damage, final_health_damage = (
+            self.commit_health_reduction(
+                target,
+                blocked_damage,
+                health_damage,
+                log_handle=log_handle,
+            )
+        )
+        return final_block_damage + final_health_damage
 
     def _apply_system_triggers(self)->None:
         if len(self.players) != 2:
@@ -462,8 +621,18 @@ class BattleState:
         if self.get_player(event.defender.player_id) is not event.defender:
             raise ValueError("attack defender is not part of this battle")
 
-        event.hit = self.rng.random()*100 < event.accuracy
+        hit_roll = self.rng.random() * 100
+        event.hit = hit_roll < event.accuracy
         if not event.hit:
+            self.record_log(
+                event.source_item,
+                {
+                    "action": "attack",
+                    "target_player_id": event.defender.player_id,
+                    "attack_types": list(event.attack_types),
+                    "hit": False,
+                },
+            )
             self.dispatch_attack_reactions(
                 ATTACK_PHASE_ON_ATTACK_MISSED,
                 event.defender,
@@ -495,15 +664,31 @@ class BattleState:
         event.block_damage = min(event.defender.block, event.pending_damage)
         event.health_damage = event.pending_damage - event.block_damage
         event.is_resolved = True
-        # Battle log may be added here in the future to record the attack event details.
-        final_blocked_damage, final_health_damage = self.commit_health_reduction(
-            event.defender,
-            event.block_damage,
-            event.health_damage,
+        log_handle = self.record_log(
+            event.source_item,
+            {
+                "action": "attack",
+                "target_player_id": event.defender.player_id,
+                "attack_types": list(event.attack_types),
+                "hit": True,
+                "block_damage": event.block_damage,
+                "health_damage": event.health_damage,
+            },
         )
-        final_damage = final_blocked_damage + final_health_damage
-        event.final_blocked_damage = final_blocked_damage
-        event.final_health_damage = final_health_damage
+        committed_blocked_damage, committed_health_damage = (
+            self.commit_health_reduction(
+                event.defender,
+                event.block_damage,
+                event.health_damage,
+                log_handle=log_handle,
+            )
+        )
+        event.final_blocked_damage = committed_blocked_damage
+        event.final_health_damage = committed_health_damage
+        final_damage = (
+            committed_blocked_damage
+            + committed_health_damage
+        )
         # Spike and Vampirism effects can be applied here
         self._apply_melee_hit_statuses(event, final_damage)
         return event
@@ -527,10 +712,31 @@ class BattleState:
         if spikes_damage > 0:
             blocked_damage = min(event.attacker.block, spikes_damage)
             health_damage = spikes_damage - blocked_damage
+            log_handle = self.record_log(
+                "Spikes",
+                {
+                    "action": "spikes_damage",
+                    "owner_player_id": event.defender.player_id,
+                    "target_player_id": event.attacker.player_id,
+                    "attack_source_item_key": getattr(
+                        event.source_item,
+                        "item_key",
+                        None,
+                    ),
+                    "attack_source_item_id": getattr(
+                        event.source_item,
+                        "item_id",
+                        None,
+                    ),
+                    "block_damage": blocked_damage,
+                    "health_damage": health_damage,
+                },
+            )
             self.commit_health_reduction(
                 event.attacker,
                 blocked_damage,
                 health_damage,
+                log_handle=log_handle,
             )
 
         vampirism_healing = min(
@@ -538,7 +744,29 @@ class BattleState:
             final_damage,
         )
         if vampirism_healing > 0:
-            self.heal(event.attacker, vampirism_healing)
+            actual_healing = self.heal(
+                event.attacker,
+                vampirism_healing,
+            )
+            self.record_log(
+                "Vampirism",
+                {
+                    "action": "heal",
+                    "target_player_id": event.attacker.player_id,
+                    "attack_source_item_key": getattr(
+                        event.source_item,
+                        "item_key",
+                        None,
+                    ),
+                    "attack_source_item_id": getattr(
+                        event.source_item,
+                        "item_id",
+                        None,
+                    ),
+                    "healing": vampirism_healing,
+                    "final_healing": actual_healing,
+                },
+            )
 
     def dispatch_attack_reactions(
         self,
@@ -564,6 +792,8 @@ class BattleState:
         player: PlayerState,
         blocked_damage: int,
         health_damage: int,
+        *,
+        log_handle: LogHandle | None = None,
     )->tuple[int, int]:
         if self.get_player(player.player_id) is not player:
             raise ValueError("health reduction target is not part of this battle")
@@ -576,9 +806,17 @@ class BattleState:
             raise ValueError("health reduction values must be non-negative ints")
         if blocked_damage > player.block:
             raise ValueError("blocked damage cannot exceed current block")
+        log_data = (
+            None
+            if log_handle is None
+            else self._get_pending_damage_log_data(
+                log_handle,
+                player,
+            )
+        )
         final_blocked_damage = blocked_damage
         final_health_damage = health_damage
-        #future damage resistance or mitigation effects can be applied here
+        #future damage resistance mitigation,and invincible effects can be applied here
         final_health_damage = min(player.health, final_health_damage)
         player.block -= final_blocked_damage
         object.__setattr__(
@@ -586,6 +824,12 @@ class BattleState:
             "health",
             player.health - final_health_damage,
         )
+        if log_data is not None:
+            self._complete_damage_log(
+                log_data,
+                final_blocked_damage,
+                final_health_damage,
+            )
         self.stop_if_battle_ended()
         return final_blocked_damage, final_health_damage
 
