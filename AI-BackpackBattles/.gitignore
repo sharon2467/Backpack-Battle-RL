@@ -1,0 +1,57 @@
+# ============ Python ============
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ============ 构建产物 ============
+build/
+build_gui/
+*.spec
+dist/
+
+# ============ 日志与临时文件 ============
+logs/
+tmp_assets/
+screenshots/
+gh.zip
+gh_tmp/
+
+# ============ 游戏本体与资源包 ============
+Backpack Battles/
+*.pck
+
+# ============ 提取/解密/反编译的游戏内容（本地保留，不入库）============
+extracted/
+extracted_decrypted/
+extracted_gdc/
+decompiled_gd/
+
+# 反编译最终产物（入库保留）；仅排除 GDRE 中间缓存、导出日志与 Godot 自动生成文件
+decompiled_full/.autoconverted/
+decompiled_full/gdre_export.log
+decompiled_full/.godot/
+*.uid
+
+# 模拟器运行输出（可再生成）
+output/
+
+# 备份文件
+*.bak*
+*.bak_*
+
+# ============ 逆向工具产物（工具本体保留在 tools/ 本地）============
+tools/gdre/
+tools/*.exe
+tools/_*
+tools/candidates_*.txt
+tools/Combat.gde
+tools/__pycache__/
+
+# 根目录孤立的反编译测试输出
+StaminaGainCounter.gde.gd
+
+# ============ IDE 与系统文件 ============
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
