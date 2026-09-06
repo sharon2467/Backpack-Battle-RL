@@ -1,593 +1,335 @@
 # 《背包乱斗》强化学习规划知识库
 
-数据最后更新：2026-07-09
+最后按新解包校订：2026-09-01
 
-中文翻译校订：2026-07-21
+本文件只覆盖战斗、物品与背包布局、物品实例、对手 run 数据，以及与当前布局训练目标直接相关的状态/动作定义。商店经营、配方规划和局外成长不属于当前目标。
 
-资料来源政策：环境设计所依据的游戏事实只能来自当前的 `backpackbattles.wiki.gg` 社区 Wiki 及其 MediaWiki/Cargo API。
+## 证据政策
 
-术语说明：中文游戏术语优先采用中文 Wiki 的现有译名；Cargo 字段、枚举值、代码标识符及动作名保留英文原值，以免与数据接口不一致。本次术语校对参考了中文 Wiki 的[物品](https://backpackbattles.wiki.gg/zh/wiki/物品)、[稀有度](https://backpackbattles.wiki.gg/zh/wiki/稀有度)、[增益效果](https://backpackbattles.wiki.gg/zh/wiki/增益效果)、[减益效果](https://backpackbattles.wiki.gg/zh/wiki/减益效果)和[子职业](https://backpackbattles.wiki.gg/zh/wiki/子职业)页面，查询日期为 2026-07-21。
+游戏事实按以下优先级处理：
 
-## 资料来源索引
+1. `Backpack Battles/` 中当前完整解包的脚本、场景和资源；
+2. 与同一游戏版本匹配的运行时日志、战斗回放和 `user://` 缓存样本；
+3. 根目录模拟器与测试，只用于说明项目实现状态，不能反向证明游戏机制；
+4. Wiki、第三方模拟器和 README，只作术语、外观或历史参考。
 
-| 页面 / API 数据 | URL | 最近核对的 Wiki 修订日期 | 用途 |
-| --- | --- | --- | --- |
-| 游戏机制（Game Mechanics） | https://backpackbattles.wiki.gg/wiki/Game_Mechanics | 2026-02-18 | 物品栏、商店、稀有度概率、战斗概念、排位概览 |
-| 物品（Items） | https://backpackbattles.wiki.gg/wiki/Items | 2026-05-09 | 物品分类、特卖/出售规则、物品数据库入口 |
-| 角色（Characters） | https://backpackbattles.wiki.gg/wiki/Characters | 2026-04-28 | 当前可玩职业及商店管理员/储物箱相关事实 |
-| 合成配方（Recipe） | https://backpackbattles.wiki.gg/wiki/Recipe | 2025-10-24 | 合成规则及配方数据库入口 |
-| 增益效果（Buff） | https://backpackbattles.wiki.gg/wiki/Buff | 2024-03-28 | 增益效果定义 |
-| 减益效果（Debuff） | https://backpackbattles.wiki.gg/wiki/Debuff | 2024-03-28 | 减益效果定义 |
-| 冷却（Cooldown） | https://backpackbattles.wiki.gg/wiki/Cooldown | 查询于 2026-07-22 | 冷却加速/减速的组合公式 |
-| 效果（Effect） | https://backpackbattles.wiki.gg/wiki/Effect | 2024-11-08 | 效果伤害概念 |
-| Cargo `Items` 表 | `api.php?action=cargoquery&tables=Items` | 查询于 2026-07-09 | 结构化物品字段、数量及分类枚举 |
-| Cargo `Recipes` 表 | `api.php?action=cargoquery&tables=Recipes` | 查询于 2026-07-03 | 结构化配方字段及数量 |
+当低优先级资料与高优先级证据冲突时，以高优先级证据为准。`AI-BackpackBattles/simulator` 与 `AI-BackpackBattles/decompiled_full` 都不能作为正确性证据；后者的重建配置甚至声明 Godot 4.7，而当前完整解包由导出日志识别为 Godot 3.6.0（`AI-BackpackBattles/decompiled_full/project.godot:9,15`；`Backpack Battles/gdre_export.log:8,65`）。
 
-## 当前数据快照
+本文使用这些证据标签：
 
-wiki.gg 的结构化 Cargo 数据当前提供：
+- **源码确认**：脚本明确给出控制流、数据结构或公式。
+- **场景/资源确认**：`.tscn`、`.tres` 或数据资源明确给出结构或取值。
+- **项目建模决定**：为了训练接口作出的选择，不伪装成游戏事实。
+- **待运行验证**：静态解包不足以确定的引擎调度、样本内容或边界行为。
+- **Wiki 参考**：只保留术语、外观或历史快照，不用于裁决实现。
 
-- `Items`：497 条记录。
-- `Recipes`：224 条记录。
+引用路径均相对仓库根目录。中文术语可沿用 Wiki 译名，但枚举、字段与动作名保留源码拼写。
 
-按标准化物品职业统计的物品数量：
+## 当前权威解包
 
-Cargo 的 `class` 字段可能包含以逗号分隔的多个值。为了建模，Cargo 中空的 `class` 值统一标准化为 `Neutral`。
+**源码确认**：`Backpack Battles/gdre_export.log` 记录了 Godot 3.6.0、9356 个文件校验与解出均无错误、815 个脚本全部反编译且 0 个失败（`Backpack Battles/gdre_export.log:8-11,28-29`）。游戏内版本常量为 `1.1.8`（`Backpack Battles/Core/Game.gd:3-16`）。这些事实证明本知识库所引用的是当前新解包，而不是旧的 4.x 重建结果。
 
-| 职业枚举值 | 标准化后的数量 |
-| --- | ---: |
-| `Adventurer`（冒险家） | 29 |
-| `Berserker`（狂战士） | 39 |
-| `Engineer`（工程师） | 43 |
-| `Mage`（魔法师） | 56 |
-| `Neutral`（通用） | 219 |
-| `Pyromancer`（火焰魔导士） | 39 |
-| `Ranger`（游侠） | 38 |
-| `Reaper`（收割者） | 43 |
+**待运行验证**：完整反编译不等于运行时等价性已经逐项证明。涉及同一物理帧内 signal 回调先后、Godot Timer 的边界触发、随机数消耗顺序或疑似反编译异常时，仍需用 Godot 3.6.0 的匹配运行轨迹验证。本轮不启动 Godot。
 
-按有效稀有度统计的物品数量：
+## 物品静态数据与资源层
 
-| 稀有度枚举值 | 数量 |
-| --- | ---: |
-| `Common`（普通） | 27 |
-| `Rare`（罕见） | 62 |
-| `Epic`（史诗） | 68 |
-| `Legendary`（传说） | 91 |
-| `Godly`（神级） | 96 |
-| `Unique`（特别） | 148 |
+### ItemData 与 `ItemDescriptor`
 
-Cargo 当前有 5 行的原始稀有度字段为 `Varies`（不定）；它不是有效的模型稀有度。导入代码应在实例化前将这些行解析为具体稀有度；在完成解析前，也可以拒绝将这些行用于战斗/商店模拟。
+**源码确认**：正式构建从加密的 `Sheets/CSV/ItemData_e.csv` 读取物品表。密钥按 0 到 31 生成，`Table.loadFromCsv()` 使用 `File.open_encrypted()` 读取；编辑器/特定测试分支才读取明文 `ItemData.csv`（`Backpack Battles/Sheets/ItemBook.gd:640-685,724-727`；`Backpack Battles/Sheets/Table.gd:6-29`）。因此仓库中加密文件不能直接当普通 CSV 查看，但它仍是游戏正式数据输入。
 
-按主要物品类型统计的物品数量：
+`ItemDescriptor` 是每种物品的静态描述，不是单个物品实例。关键字段包括：
 
-| 类型枚举值 | 数量 |
-| --- | ---: |
-| `Accessory`（配饰） | 117 |
-| `Armor`（护甲） | 14 |
-| `Bag`（背包） | 27 |
-| `Book`（魔法书） | 5 |
-| `Chess Piece`（棋子） | 12 |
-| `Food`（食物） | 20 |
-| `Gemstone`（宝石） | 14 |
-| `Gloves`（手套） | 4 |
-| `Helmet`（头盔） | 9 |
-| `Pet`（宠物） | 79 |
-| `Playing Card`（卡牌） | 8 |
-| `Potion`（魔药） | 18 |
-| `Shield`（盾牌） | 10 |
-| `Shoes`（鞋子） | 5 |
-| `Skill`（技能） | 58 |
-| `Spell`（魔法卷轴） | 11 |
-| `Weapon`（武器） | 111 |
+- `identifier`、`itemIndex`、`scene`、`version`、`releaseState`；
+- `rarity`、`types`、`classes`、`tags`、`material`、`physics`；
+- `minDam`、`maxDam`、`cd`/`extraCds`、`accuracy`、`staminaCost`、`block`；
+- `chance`、`chance2`、`shopChance`、命名参数与堆叠类型位图；
+- `canActivate`、动画、配方与出现回合等元数据。
 
-标准化的图标类型值如下：
+字段定义见 `Backpack Battles/Items/ItemDescriptor.gd:23-84`。加载器把表格列映射到描述符、解析多个冷却与命名参数，并按物品名找到对应场景（`Backpack Battles/Sheets/ItemBook.gd:731-803,821-889,944-960`）。
 
-| 图标类型枚举值 | 拆分后的数量 |
-| --- | ---: |
-| `dark`（黑暗） | 41 |
-| `effect`（效果） | 21 |
-| `fire`（火） | 35 |
-| `holy`（神圣） | 51 |
-| `ice`（冰） | 20 |
-| `magic`（魔法属性） | 82 |
-| `melee`（近战） | 67 |
-| `musical`（乐器） | 7 |
-| `nature`（自然） | 84 |
-| `ranged`（远程） | 41 |
-| `treasure`（宝藏） | 34 |
-| `vampiric`（吸血属性） | 28 |
+**项目建模决定**：训练侧应保存稳定的 `item_index`/规范化标识符，并把多类型、多职业字段编码成集合或 multi-hot。不得仅靠显示名连接数据，也不得把 Wiki Cargo 行号当游戏内 ID。
 
-Cargo 当前有 193 行的原始 `icontype` 字段为空。建模时应将其表示为空的图标类型元组/列表，而不是单独设立一个图标枚举值。
+### 物品场景、形状、方向与宝石槽
 
-已知对建模有用的 Cargo 物品字段包括：
+**场景/资源确认**：物品场景通常继承 `Items/Item.tscn`。基场景是 `RigidBody2D`，包含 `CollisionMap` TileMap 与 `Icon/Sockets`；各物品场景覆盖 TileMap 数据并按需实例化 `GemSocket.tscn`（`Backpack Battles/Items/Item.tscn:1768-1793`；示例 `Backpack Battles/Items/WoodenSword.tscn:3-6,13-28`、`Backpack Battles/Items/Pandamonium.tscn:3-6,103-123`）。
 
-- `name`
-- `class`
-- `rarity`
-- `cost`
-- `itemtype`
-- `icontype`
-- `tags`
-- `effect`
+**源码确认**：`CollisionMap` 的 tile id 语义不是 Wiki 猜测：
 
-## 物品分类标准化
+- `Extension = 2`：背包物品扩出的可用格；
+- `Collision = 3`：普通物品占用/碰撞格；
+- `Affected = 4`、`AffectedSecondary = 6`、`AffectedTertiary = 10`、`AffectedLightning = 11`：四类静态受影响格；
+- `AffectedDynamic = 5`、`AffectedSecondaryDynamic = 7`：运行时动态生成的前两类受影响格；
+- `AffectedExtension = 8`：可在运行时启停的扩展影响格。
 
-物品分类字段应使用面向模型的标准化值，而不是原始 Cargo 字符串。
+枚举和颜色映射见 `Backpack Battles/Items/Item.gd:189-213`；初始化时缓存 collision/extension/affected-extension 的流程见 `Backpack Battles/Items/Item.gd:510-605,726-728`。
 
-推荐的物品元数据字段：
+方向是四值 `UP/RIGHT/DOWN/LEFT`，旋转会更新 `faceDirection` 与场景变换（`Backpack Battles/Items/Item.gd:157-162,1964-2047`）。形状和 affected cells 必须按“物品场景 + 当前方向 + 动态扩展”计算，不能只按矩形宽高表示。
 
-```python
-item_metadata = {
-    "display_name": str,
-    "item_classes": tuple[str, ...],
-    "rarity": str,
-    "cost": int,
-    "item_types": tuple[str, ...],
-    "icon_types": tuple[str, ...],
-}
-```
+`GemSocket` 是真实场景节点，槽中保存 `item` 与可空的 `gem` 引用；可用性还受拥有者与出售状态限制（`Backpack Battles/Items/GemSocket.gd:1-35`；`Backpack Battles/Items/GemSocket.tscn:1-15`）。物品实例可枚举槽位、宝石、宝石方向与锁定状态（`Backpack Battles/Items/Item.gd:2978-3057`）。
 
-标准化规则：
+### 职业与初始布局资源
 
-- `class`：按逗号拆分并去除空白。若 Cargo 原始字段为空，则使用 `("Neutral",)`。有效的物品职业值为 `Adventurer`、`Berserker`、`Engineer`、`Mage`、`Neutral`、`Pyromancer`、`Ranger` 和 `Reaper`。
-- `rarity`：使用一个明确的稀有度。有效值为 `Common`、`Rare`、`Epic`、`Legendary`、`Godly` 和 `Unique`。`Varies` 只是原始数据中的占位值，不是有效的运行时稀有度。
-- `itemtype`：按逗号拆分并去除空白。有效值为 `Accessory`、`Armor`、`Bag`、`Book`、`Chess Piece`、`Food`、`Gemstone`、`Gloves`、`Helmet`、`Pet`、`Playing Card`、`Potion`、`Shield`、`Shoes`、`Skill`、`Spell` 和 `Weapon`。
-- `icontype`：按逗号拆分并去除空白。若原始字段为空，则使用空元组/列表。有效的非空值为 `dark`、`effect`、`fire`、`holy`、`ice`、`magic`、`melee`、`musical`、`nature`、`ranged`、`treasure` 和 `vampiric`。
+**源码确认**：完整版本的职业枚举包含 `Ranger`、`Reaper`、`Berserker`、`Pyromancer`、`Mage`、`Adventurer`、`Engineer` 七个职业（`Backpack Battles/Core/Game.gd:129-137`）。`ItemDescriptor.StuffedClasses` 另含 `Neutral` 位掩码（`Backpack Battles/Items/ItemDescriptor.gd:4-15`）。
 
-建模含义：
+**场景/资源确认**：职业资源直接定义生命、耐力、金币及三套初始物品数组；每个 `StartingItem` 保存 `itemName`、`faceDirection` 和 `topLeftCell`（`Backpack Battles/CharacterClasses/CharacterClass.gd:1-9,97-107`；`Backpack Battles/CharacterClasses/StartingItem.gd:1-7`）。例如 Ranger 资源同时包含背包、普通物品、方向和左上格坐标（`Backpack Battles/CharacterClasses/Ranger/Ranger.tres:6-73`）。初始数值与布局应从当前职业资源导入，不应套用“所有职业相同”的旧 Wiki 概括。
 
-- `BattleItem` 应为所有物品提供通用元数据字段，包括 `display_name`、`item_classes`、`rarity`、`cost`、`item_types` 和 `icon_types`。
-- 由于 Cargo 可能编码多个值，职业、物品类型和图标类型应使用元组/列表字段表示。
-- 玩家可见观测应将物品职业/类型/图标元数据编码为 multi-hot，或使用由多个 ID 组成的列表，而不是单个标量 ID。
+## 背包网格与合法布局
 
-待处理的数据问题：确认物品形状/网格、镶嵌位、星标/菱形标记位置、冷却、伤害、耐力及其他数值字段是否可通过模板/Cargo 表获取，还是必须从各个物品页面解析。
+### 地址空间与动态可用格
 
-## 可玩职业
+**源码确认 + 场景/资源确认**：Inventory 的地址空间是 `9 × 7`，最大编码范围是 `10 × 10`，格子尺寸为 `80 × 80`（`Backpack Battles/Core/Inventory.gd:37-42`）。`Inventory.tscn` 的 TileMap 确实列出 9 列、7 行共 63 个坐标（`Backpack Battles/Core/Inventory.tscn:309-323`）。
 
-wiki.gg 的 `Characters` 页面列出了以下可玩职业：
+63 是可寻址边界，不等于任意时刻都可放置普通物品。Inventory 同时维护：
 
-- 游侠（`Ranger`）
-- 收割者（`Reaper`）
-- 火焰魔导士（`Pyromancer`）
-- 狂战士（`Berserker`）
-- 魔法师（`Mage`）
-- 冒险家（`Adventurer`）
-- 工程师（`Engineer`）
+- `inventoryCells`：场景中的全地址空间；
+- `bagCells`：当前背包实例扩出的内部/可用格；
+- `filledCells`：普通物品当前占用的碰撞格；
+- `items`：按实例保存的物品列表。
 
-根据 `Characters` 和 `Game Mechanics` 页面，所有职业的初始生命值、初始金币和每回合金币安排均相同。
+见 `Backpack Battles/Core/Inventory.gd:45-56,88-123`。背包只能占用尚未由其他背包扩出的潜在格；普通物品的全部 collision cells 必须位于当前可放置格中，且不能与 `filledCells` 冲突（`Backpack Battles/Core/Inventory.gd:186-219`）。背包和普通物品分别写入 `bagCells` 与 `filledCells`（`Backpack Battles/Core/Inventory.gd:609-627`）。
 
-各职业页面表明，职业身份会影响策略、物品可用性、初始背包选择和职业专属机制。对于强化学习状态设计，除非环境被简化为无职业的玩具版本，否则应把 `class_id` 视为非冗余信息。
+**项目建模决定**：布局环境每一步都要重新生成动态 `placable_cells` 与合法动作掩码。它至少区分：地址空间、当前背包可用格、普通物品占用格、可继续放背包的潜在格。将固定 63 格全视为可放置会产生游戏中非法的布局。
 
-## 物品栏机制
+### affected cells 与实例关系
 
-wiki.gg 当前记录的机制：
+**源码确认**：四类 affected cells 分别经过 `canAffect`、`canAffect_secondary`、`canAffect_tertiary`、`canAffect_lightning` 筛选。命中某一格不自动代表格中实例真正受影响；代码还会处理空格效果、物品类型筛选、同一实例跨多格去重，以及 Lightning 的不同去重规则（`Backpack Battles/Items/Item.gd:3523-3547`；`Backpack Battles/Core/Inventory.gd:291-345`）。
 
-- 每个职业开局只解锁全部物品栏格子中的一部分。
-- 一共有 63 个格子。
-- 根据职业/配置不同，开局可用格子数为 12 到 14 个。
-- 物品栏格子可以重新排列和旋转。
-- 皮包（Leather Bag）、腰包（Fanny Pack）、耐力包（Stamina Sack）、魔药腰带（Potion Belt）和守护钱包（Protective Purse）等背包物品可以解锁更多可用格子。
-- 放在储物箱中的物品不会产生战斗效果；只有放入活动物品栏后才会生效。
-- 物品具有格子形状和空间协同关系。
-- 部分物品效果会根据附近物品或受影响物品，使用星标和菱形标记进行判定。
+**项目建模决定**：观测既保存原始四类 cell 集合，也保存按当前布局解析后的 affected instance ids。前者让模型理解方向/空间，后者避免模型重复推导复杂实例去重语义。
 
-强化学习含义：
-- 计划分为给定物品最优化背包摆盘模型和商店运营购买物品模型。
-- 只有持有物品的纯列表并不够。
-- 只有纯网格也不够，除非它还能保留物品身份和实例级状态。
-- 观测应同时编码对象实例和空间占用。
-- 储物箱和活动物品栏应分开表示。
+## 物品实例状态
 
-## 商店机制
+**源码确认**：同种 `ItemDescriptor` 可实例化多个独立 `Item`。实例持有 owner、所在 Inventory、`occupiedCells`、`faceDirection`、宝石、是否 consumed、动态类型、冷却进度、缓存的 affected instances 等状态（`Backpack Battles/Items/Item.gd:382-450`）。因此“物品种类列表”不能完整表示布局或战斗。
 
-wiki.gg 当前记录的机制：
+`getData()`/`setData()` 是实例扩展点；基类默认无数据，但具体物品可覆盖（`Backpack Battles/Items/Item.gd:822-826`）。对手 run 的持久实例数据采用可选 `pd`：只有实现 `getDataPersistent()` 的物品才写入位流，反序列化后通过 `setData()` 恢复（`Backpack Battles/Core/RunDatabase.gd:584-607`；`Backpack Battles/Utility/RunData.gd:257-267`；`Backpack Battles/Core/Game.gd:2884-2894`）。
 
-- 玩家开局拥有 12 金币和 25 点生命值。
-- 商店陈列五件物品。
-- 战斗开始前，玩家可以购买商店物品，并将其放入物品栏或储物箱。
-- 物品可以半价卖给小板栗，出售价格向上取整。
-- 一件商店物品的基础打折概率为 10%，打折价格为原价的一半并向上取整。
-- 打折价等于出售价格，因此买入打折物品再将其卖出不会损失金币。
-- 商店可以刷新，且每回合结束进入商店时都会展示新的物品而非上回合留下的物品。
-- 每回合前四次刷新各花费 1 金币，之后每次花费 2 金币。
-- 右键点击商店物品可以将其预留，使它不会被刷新替换，也不会在进入下一回合时被替换。
-- `Unique`（中文 Wiki：特别）物品从第 4 回合起可以出现。
-- 进入商店时，`Unique` 物品的基础出现概率为 2%；刷新商店时不会触发此概率。
-- 玩家同一时间只能拥有一件 `Unique` 物品，除非拥有其他增加Unique物品数量的特殊道具。
-- 第 8 回合解锁子职业。
-
-进入商店时获得的金币：
-
-| 回合 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12-18 |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 金币 | 12 | 9 | 9 | 9 | 10 | 10 | 11 | 21 | 12 | 12 | 13 | 后续回合为 13-15 |
-
-页面给出的后期回合确切金币数：
-
-| 回合 | 12 | 13 | 14 | 15 | 16 | 17 | 18 |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 金币 | 13 | 14 | 14 | 15 | 15 | 15 | 15 |
-
-页面给出的初始生命值/各回合生命值：
-
-| 回合 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 生命值 | 25 | 35 | 45 | 55 | 70 | 85 | 100 | 115 | 130 | 150 | 170 | 190 | 210 | 230 | 260 | 290 | 320 | 350 |
-
-各回合的商店稀有度概率：
-
-| 稀有度 | R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 | R9 | R10 | R11 | R12-18 |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 普通（`Common`） | 90 | 84 | 75 | 64 | 45 | 29 | 20 | 20 | 20 | 20 | 20 | 20 |
-| 罕见（`Rare`） | 10 | 15 | 20 | 25 | 35 | 40 | 35 | 30 | 28 | 25 | 23 | 20 |
-| 史诗（`Epic`） | 0 | 1 | 5 | 10 | 15 | 20 | 25 | 25 | 25 | 25 | 23 | 20 |
-| 传说（`Legendary`） | 0 | 0 | 0 | 1 | 5 | 10 | 15 | 15 | 15 | 15 | 17 | 20 |
-| 神级（`Godly`） | 0 | 0 | 0 | 0 | 0 | 1 | 5 | 10 | 12 | 15 | 17 | 20 |
-
-强化学习含义：
-
-- 金币、刷新次数/费用、预留状态、打折状态和回合数都是必需的状态变量。
-- 商店生成器必须知道随回合变化的稀有度概率。
-- 是否已拥有 `Unique` 物品属于环境状态，因为它会影响后续商店生成。
-- 子职业物品可能影响商店中的物品可用性或出现概率，因此商店生成器必须检查已拥有的特殊物品及其效果。
-
-## 配方机制
-
-wiki.gg 当前记录的机制：
-
-- 在背包中相邻摆放的配方组件会在下一个商店阶段合成。
-- 右键点击物品可以锁定它，阻止其参与合成。
-- 有些配方使用催化剂。催化剂会保留，其他材料则被消耗并生成结果物品。
-- 游戏内的配方书会记录已经发现的配方。
-- 结构化 `Recipes` 表当前有 224 条记录。
-
-已知的结构化配方字段包括：
-
-- `recipename`
-- `ingredients`
-- `catalysts`
-
-强化学习含义：
-
-- 合成机会可以根据物品身份、相邻关系和合成锁定状态推导出来。
-- 为提高训练效率，派生出 `available_recipe_mask` 会很有帮助。
-- 环境必须实现催化剂保留规则。
-- 动作模型需要 `toggle_combine_lock`。
+**项目建模决定**：环境为每个当前物品实例分配 episode 内稳定且唯一的 `instance_id`。`item_index` 代表种类，`instance_id` 代表副本；两者不得混用。`pd` 在未实现对应解码器前保留为不透明、版本化字段，不能丢弃或臆测含义。
 
 ## 战斗机制
 
-wiki.gg 当前记录的战斗概念：
+### 战斗初始化与开始顺序
 
-- 命中率决定攻击是命中还是未命中。
-- 冷却是物品两次激活之间的时间间隔。
-- 暴击造成双倍伤害。
-- 许多物品的位置效果由星标和菱形标记决定。
-- 通常，一件物品只能填充另一件物品的一个星标和一个菱形标记。
-- 除非物品另有说明，增益效果和减益效果可以叠加，并且通常持续到战斗结束。
-- 夜幕降临后开始产生疲惫，对双方造成逐渐增强的伤害。
+**源码确认**：进入战斗时，游戏先构造对手、装入对手物品并初始化 CombatTimer。玩家物品和对手物品各自先 `shuffle()`，再按 `getTriggerPriority()` 降序排序；随后异步 `prepareItems(player + opponent)`，并在 `COMBAT_DELAY` 后调用 `activateItems(player + opponent)`（`Backpack Battles/Core/Game.gd:2627-2670`；排序函数见 `Backpack Battles/Core/Game.gd:5375-5384`）。同优先级的相对次序因预先 shuffle 而不是固定页面顺序。
 
-wiki.gg 列出的增益效果：
+`activateItems()` 的源码顺序为：
 
-| 增益效果 | 建模效果 |
-| --- | --- |
-| 充能（`Empower`） | 每层增加1点武器伤害 |
-| 狂热（`Heat`） | 每层加快物品触发速度2% |
-| 幸运（`Luck`） | 每层提高命中率5% |
-| 魔法（`Mana`） | 魔法属性物品使用的资源 |
-| 恢复（`Regeneration`） | 每层2s恢复1点生命值 |
-| 尖刺（`Spikes`） | 对近战攻击者造成伤害，伤害量为min(Spikes,final_damage) |
-| 吸血（`Vampirism`） | 近战命中时恢复生命值，恢复量为min(Vampirism,final_damage)|
+1. 发出全局 `combat_start` signal；
+2. 启动 CombatTimer；
+3. 依次调用玩家与对手 `Character.combatStart()`；
+4. 对合并后的物品序列完成全部 `preCombatStart()`；
+5. 再完成全部 `combatStart()`；
+6. 最后完成全部 `postCombatStart()`。
 
-wiki.gg 列出的减益效果：
+见 `Backpack Battles/Core/Game.gd:2897-2920`。物品 `prepare()` 会先缓存当前 affected instances 并准备宝石；`preCombatStart()` 初始化首轮冷却，三个物品阶段也各自递归对应宝石钩子（`Backpack Battles/Items/Item.gd:3339-3395`）。
 
-| 减益效果 | 建模效果 |
-| --- | --- |
-| 致盲（`Blind`） | 每层降低5%命中率 |
-| 冰冷（`Cold`） | 每层增加物品冷却时间2% |
-| 中毒（`Poison`） | 每层2s造成一点伤害 |
+**待运行验证**：全局 signal 的嵌套回调、deferred `prepareItems` 与延迟激活在同帧边界上的精确顺序，以及相同 Timer 到期时双方谁先执行，需要匹配版本运行轨迹确认。静态模拟器应显式建模这些顺序，而不是依赖宿主语言字典顺序。
 
-wiki.gg 列出的其他战斗概念：
-- 减伤/增伤：受到的伤害减少/增加某百分比或某数值，在其他机制结算完后结算。
-- 狂战士之怒（`Battle Rage`）：狂战士职业物品特有机制，满足特定条件后进入一段时间的强化状态。
-- 护盾（`Block`）：每层抵挡一点伤害。
-- 治疗（`Heal`）：某些物品提供的直接治疗，注意恢复是Buff，治疗是其效果。
-- 疲惫（`Fatigue`）：战斗开始一段时间后双方每秒受到逐渐递增的疲惫伤害。F[i]=F[i-1]+floor(F[i-1]/10)+1
-- 无敌（`Invulnerability`）：一段时间内受到的所有伤害变为0，注意仍视为受到伤害。
-- 眩晕（`Stun`）：一段时间内所有具有冷却的物品暂停冷却。
-- 复活（`Reincarnate`）：生命值归0，比赛即将失败时恢复部分生命值并继续战斗。
+### Timer 与周期 Tick
 
-- 复制增益效果(`Duplicate buff`)：尝试获得增益效果时，若通过复制检定，则此次获得两层增益。
-- 无效化（`Nullify`）：即将获得来自任何来源的增益效果时，若通过无效化检定，则此次不获得增益。
-- 移除(`Remove buff`)：某些物品触发时能够减少对手特定增益的层数。
-- 阻止移除(`Protect buff from removal`)：在触发移除时，概率使得移除失败。
-- 偷取增益(`Buff steal`)：某些物品触发时能够移除对手增益并对自己施加相同增益。视为移除和施加两个独立动作。
+**场景/资源确认**：Character 场景的 `TickTimer.timeout` 连接到 `onTick()`；战斗开始时 `tickCounter = 0` 并启动 Timer，战斗结束时停止（`Backpack Battles/Core/Character.tscn:1632-1645,1665-1670`；`Backpack Battles/Core/Character.gd:328-346`）。
 
-- 复制减益效果(`Duplicate debuff`)：对对手施加减益效果时，若通过复制检定，则此次施加两层减益。
-- 抵抗（`Resist`）：即将受到来自任何来源的减益效果时，若触发抵抗，则此次不受到减益。
-- 净化（`Cleansing`）:某些物品触发时能够减少自身特定减益的层数。
-- 阻止净化（`Protect debuff from cleansed`）:在触发净化时，概率使得净化失败。
-- 反弹（`Reflect`）：即将受到来自任何来源的减益效果时，改为对对手施加该效果，且不可再次反弹。视为一个特殊动作。
+**源码确认**：`onTick()` 按 tick 奇偶交替处理：偶数 tick 用当前 `Regeneration` 治疗，奇数 tick 用当前 `Poison` 造成伤害，然后计数加一（`Backpack Battles/Core/Character.gd:401-414`）。因此 Regeneration 与 Poison 各自不是每秒同时结算；在默认重复 Timer 节奏下，它们各每两个 tick 结算一次。
 
-- 所有检定均为每层效果分开检定。
+**待运行验证**：`Character.tscn` 未显式写 `wait_time`，精确首 tick 时间依赖 Godot 3.6 Timer 默认值与启动帧。离线模拟器采用 1 秒默认值前，应以运行日志固定时间零点和边界语义。
 
-伤害类型：
+### 冷却、速度与耐力
 
-- 武器造成的伤害类型分为`melee`,`ranged`和`effect` ，某些武器可能拥有多种伤害类型。
-- 一般而言，不同类型的伤害与尖刺和盾牌的交互方式不同，某些物品也可能修改交互方式。
-抵消规则：
-- 许多相反的效果具有互相抵消的机制，最终只有抵消后的一种效果生效。
-- 逻辑为
-```python
-if(positive_effect.stack>negative_effect.stack):
-    play_positive_effect(positive_effect.stack-negative_effect.stack)
-elif(positive_effect.stack<negative_effect.stack):
-    play_negative_effect(negative_effect.stack-positive_effect.stack)
-else:
-    continue
-```
-- 具有抵消规则的机制包括：狂热和冰冷，复制增益和无效化增益，复制减益和抵抗。
+**源码确认**：物品有冷却时，战斗前计算带随机扰动的 `iterationCooldown`，令 `triggerTime = iterationCooldown` 并启用物理处理（`Backpack Battles/Items/Item.gd:3358-3366,3788-3795`）。未眩晕时，每个物理帧执行：
 
-冷却加速/减速的精确计算：
-
-- 所有加速与减速先相加并互相抵消。
-- 净加速比例为 `faster` 时，`cooldown = base_cooldown / (1 + faster)`；等价的逐帧冷却推进倍率为 `1 + faster`。
-- 净减速比例为 `slower` 时，`cooldown = base_cooldown * (1 + slower)`；等价的逐帧冷却推进倍率为 `1 / (1 + slower)`。
-- Heat 每层提供 2% 加速，Cold 每层提供 2% 减速。因此相同层数完全抵消，只对抵消后的净层数应用对应分支。
-
-模拟含义：
-
-- 战斗引擎应以事件/时间线为基础。
-- 每件物品都需要触发规则、冷却、目标规则、资源变化和位置依赖。
-- 许多效果具有条件且可以叠加，因此必须有战斗日志用于调试。
-- 模拟器必须控制命中率、暴击、商店抽取及其他随机过程所使用的随机种子。
-
-项目中的耐力/随机数生成建模决定：
-
-- 玩家状态同时包含 `stamina` 和 `max_stamina`。
-- 标准战斗输入中，玩家以满耐力开始，所以初始时 `stamina == max_stamina`。
-- 初始 `stamina` 和 `max_stamina` 是运行战斗所用 JSON 输入中的显式逐玩家字段，而不是隐藏默认值。
-- `stamina` 和 `max_stamina` 在战斗中都可改变；物品效果可以修改其中任意一个。
-- 除非未来有某个效果修改规则，否则耐力自然恢复速度为每秒 1 点。
-- `CooldownTrigger` 不检查也不消耗耐力；它只推进冷却并报告是否就绪。
-- 耐力消耗由独立的 `StaminaConsumptionEffect` 建模。
-- 如果一件物品结束冷却时其拥有者没有足够耐力，该物品不会等待。此时冷却已经进入新的周期；`StaminaConsumptionEffect` 会返回 `False` 且不消耗耐力，木剑的 `run_effect()` 据此不调用后续近战伤害 effect。
-- `BattleState` 持有用于命中检查、伤害抽取等战斗随机过程的全局随机数生成器。
-
-项目中的触发器/效果组合决定：
-
-- 基础 trigger/effect 行为应由可复用组件实例实现；具体物品类只编写组合这些结果所需的简明调度逻辑，不重复实现冷却、耐力支付、攻击等基础行为。
-- `BattleItem.update_triggers(context)` 应调用每个触发器实例的接口，保存并返回与 trigger 顺序一致的基础 bool 结果列表。
-- `BattleItem.activate_item(context)` 应始终先更新 trigger，再调用具体物品的 `run_effect(trigger_results, context)`；这两个接口均不提供框架级业务返回值。
-- `BattleState.step()` 和攻击响应调度不应使用 `is_triggered()` 或其他 trigger 粗筛；即使所有基础 trigger 都为 `False`，仍进入 `run_effect()`，以支持 NOT trigger 条件。
-- trigger 的 AND/OR/NOT、effect 是否调用以及 effect 失败后的分支，都由具体物品的 `run_effect()` 决定。
-- `BattleItem` 不自动激活 `linked_items`。需要激活连接物品时，应由具体物品使用的专用 effect 显式选择目标并调用其 `activate_item()`。
-- 基本 effect 只接收 `context` 并执行自身效果；它不接收 trigger 结果，也不负责物品级激活判断。
-- `Effect.apply(context) -> bool` 的返回值仍可用于物品自身的耐力失败、命中失败等内部短路，但不会由 `activate_item()` 解释或传播。
-- 具体物品应主要负责组装触发器/效果实例、提供物品元数据并实现简明的 `run_effect()` 调度逻辑。
-- 有状态的触发器/效果对象必须按物品实例创建，不能作为可变的类级对象共享。
-- 木剑（Wooden Sword）应使用可复用的 `CooldownTrigger`、`StaminaConsumptionEffect` 和 `MeleeAttackEffect`；未来具有类似行为的物品也应复用这些组件。
-- 第一版木剑刻意不实现战斗日志；测试应直接验证状态变化。
-
-### 已核对的战斗开始物品
-
-查询日期：2026-07-25。以下数据来自当前 `backpackbattles.wiki.gg` 页面及
-MediaWiki API：
-
-| 物品 | 当前效果 | 元数据与格子 | 页面修订 |
-| --- | --- | --- | --- |
-| [一口袋沙子](https://backpackbattles.wiki.gg/wiki/Pocket_Sand) | 战斗开始时向对手施加 1 层 `Blind` | Neutral / Common / Accessory / nature / 2 金币 / 1 格 | 10732，2025-09-17 |
-| [治疗草药](https://backpackbattles.wiki.gg/wiki/Healing_Herbs) | 战斗开始时获得 2 层 `Regeneration` | Neutral / Common / Accessory / nature / 4 金币 / 1 格 | 10723，2025-09-17 |
-| [火焰](https://backpackbattles.wiki.gg/wiki/Flame) | 战斗开始时获得 1 层 `Heat` | Pyromancer / Common / Accessory / fire / 1 金币 / 1 格 | 10835，2025-09-19 |
-| [海象尖牙](https://backpackbattles.wiki.gg/wiki/Walrus_Tusk) | 战斗开始时获得 1 层 `Spikes` | Neutral / Common / Accessory / nature / 4 金币 / 纵向 2 格 | 11808，2026-05-05 |
-
-### 已核对的平衡魔棒
-
-查询日期：2026-07-26。
-
-- [平衡魔棒（Wand of Equilibrium）](https://backpackbattles.wiki.gg/wiki/Wand_of_Equilibrium?oldid=10782)，
-  修订 `10782`（2025-09-18 03:39:38 UTC）：Mage / Common / Accessory /
-  4 金币；Cargo `icontype` 为空；纵向 2 格，无标记和镶嵌位。
-- 每 `3.3s`，在 `Mana`、`Luck`、`Regeneration` 中获得当前最少的一项 1 层；
-  随后若三项中至少一项达到 10，消耗当前最多的一项 1 层并获得 1 层 `Empower`。
-- Wiki 未说明并列选择规则。经用户确认，项目按页面顺序
-  `Mana -> Luck -> Regeneration` 选择第一个并列项，不读取 RNG。
-- 一次冷却触发无论是否执行资源转换，都只发出一次物品激活通知。
-
-### 已核对的魔法入门指南
-
-查询日期：2026-07-26。
-
-- [Magic For Dummies](https://backpackbattles.wiki.gg/wiki/Magic_For_Dummies?oldid=11970)，
-  修订 `11970`（2026-05-08 20:20:46 UTC）：Mage / Common / Book / magic /
-  4 金币；纵向 2 格，周围 6 个星标，无方片、三角和镶嵌位。
-- [中文魔法入门指南](https://backpackbattles.wiki.gg/zh/wiki/%E9%AD%94%E6%B3%95%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97?oldid=6192)，
-  修订 `6192`（2026-03-23 02:09:57 UTC）与英文页当前数值一致。
-- 魔法书和魔法卷轴的商店打折几率增加 10%；当前战斗框架暂不实现该商店效果。
-- 每 `5s` 消耗 1 点 `Mana`，获得 8 点最大生命；每个星标连接的
-  `Spell` 再增加 3 点，可由配方打造的 `Spell` 按两个计算。
-- [Interactions FAQ](https://backpackbattles.wiki.gg/wiki/Interactions_FAQ?oldid=12504)
-  说明 crafted 是物品种类的固定分类，即使从商店直接获得仍按 crafted 计算。
-  项目使用静态 `BattleItem.is_crafted` 元数据表示该分类，默认值为 `False`。
-- 经用户批准，Mana 不足时不产生最大生命效果或激活通知，冷却进入下一周期；
-  成功时增加的最大生命同时增加等量当前生命，且不算治疗。
-
-### 已核对的细绳
-
-查询日期：2026-07-26。
-
-- [细绳（Twine）](https://backpackbattles.wiki.gg/zh/wiki/%E7%BB%86%E7%BB%B3?oldid=4863)，
-  修订 `4863`（2025-10-13 06:23:16 UTC）：Adventurer / Common /
-  Accessory / 2 金币；1 格本体，右侧 1 个星标，左侧连续 3 个方片。
-- 星标物品激活时有 20% 概率获得 2 点最大生命；每个方片连接的
-  `Neutral` 物品使概率增加 20%。
-- [Interactions FAQ](https://backpackbattles.wiki.gg/wiki/Interactions_FAQ?oldid=12504)，
-  修订 `12504`（2026-07-22 08:14:21 UTC）：获得最大生命会同时增加等量
-  当前生命，但不算治疗。
-
-### 已核对的黏宝宝与物品激活通知
-
-查询日期：2026-07-25。
-
-- [Goobling](https://backpackbattles.wiki.gg/wiki/Goobling?oldid=10757)，修订
-  `10757`（2025-09-17 23:29:01 UTC）：Common / Neutral / Pet / 2 金币；
-  本体 1 格、左右各一个星标；3 个星标物品激活后治疗 4。
-- [Interactions FAQ](https://backpackbattles.wiki.gg/wiki/Interactions_FAQ?oldid=12504)，
-  修订 `12504`（2026-07-22 08:14:21 UTC）：Wiki 规则中 trigger 与
-  activation 同义，战斗开始效果算激活，On hit 只在命中时激活。
-- [Weapon](https://backpackbattles.wiki.gg/wiki/Weapon?oldid=10449)，修订
-  `10449`（2024-11-08 15:27:58 UTC）：武器需要耐力支付成功后才算成功激活，
-  命中判定发生在成功激活之后。
-
-项目实现决定：
-
-- `BattleItem.activate_item()` 表示检查 trigger 并运行物品逻辑，不直接等同于
-  “物品真正激活”；`activate_item()` 与 `run_effect()` 均继续返回 `None`。
-- 真正激活由具体物品在业务成功分支显式调用 `emit_activation()`；该通知只派发给
-  同一玩家中以星标连接该来源实例、且声明物品激活监听 phase 的物品。
-- `linked_items` 不自动递归激活，现有普通 Food、Weapon 等空间连接语义保持不变。
-- 经用户确认，本轮采用比 Wiki FAQ 更窄的口径：Pocket Sand、Healing Herbs、
-  Flame、Walrus Tusk、Whetstone 的 start-of-battle 分支不发激活通知；Broom 的
-  opponent-miss 分支也不发通知，只叠加下一次命中的伤害。
-- 武器冷却完成但耐力不足不发通知；耐力支付成功后即使攻击未命中仍发一次通知。
-- Goobling 每收到 3 次合法来源通知就治疗 4 并清零该轮计数；即使实际治疗为 0，
-  也视为 Goobling 自身激活并继续发出通知。
-
-## 子职业建模说明
-
-wiki.gg 的职业页面说明，子职业物品带来的效果可能不止直接的战斗效果。部分子职业物品会改变商店可用性或商店概率，例如使特定物品系列可用，或提高某些物品的出现概率。
-
-对于观测设计：
-
-- 如果子职业已经由一件玩家可见且已拥有的子职业物品完整表示，并且模型能获取足够的物品元数据/效果身份，则不需要单独的 `subclass_id`。
-- 环境转移函数仍必须实现子职业物品效果，特别是对商店物品池和商店概率的修改。
-- 如果把物品效果简化为不透明 ID，那么特殊子职业物品的 ID 就足够了。
-
-实用折中方案：
-
-```python
-observation = {
-    "class_id": int,
-    "items": [...],          # 包含子职业物品实例
-    # 最小观测中不单独设置 subclass_id
-}
+```text
+triggerTime -= delta * speed
+if triggerTime <= 0: trigger()
 ```
 
-模拟器内部的真实状态仍可记录所选子职业，以便调试和数据验证；但如果它与已拥有物品的状态等价，策略就不需要单独观测该字段。
+`trigger()` 先重算下一周期并执行 `triggerTime += iterationCooldown`，再调用具体物品的 `doCooldownEffect()`（`Backpack Battles/Items/Item.gd:4409-4442`）。所以源码中的冷却是“效果尝试的调度周期”，不是“两次成功激活之间的时间”。
 
-## 观测草案
+武器的 `doCooldownEffect()` 只有在 `useStamina()` 成功时才攻击；体力不足会记录事件与动画，但由于下一周期已经在此前排好，不会停在满冷却等待体力（`Backpack Battles/Items/Weapon.gd:7-13`；`Backpack Battles/Items/Item.gd:4196-4207`）。
 
-策略模型可见观测：
+速度不是简单把多个百分比逐项乘在冷却值上。当前通用实现先取 `speed_ = speedScale + (Heat - Cold) × 0.02`：非负时倍率为 `1 + speed_`，负值时为 `1 / (1 - speed_)`，最终限制在 `[0.1, 10]`；显示用修正冷却为 `baseCooldown / speed`（`Backpack Battles/Items/Item.gd:3725-3743,3781-3785`）。
 
-```python
-observation = {
-    "round": int,
-    "gold": int,
-    "health": int,
-    "class_id": int,
-    "rerolls_this_round": int,
-    "reroll_cost": int,
-    "unique_item_number": int,
-    "max_unique_item": int,
-    "owned_items": {
-        "items": [
-            {
-                "is_slot": bool,
-                "item_id": int,
-                "price": int,
-            }
-        ],
-    },
-    "shop": {
-        "items": [
-            {
-                "is_slot": bool,
-                "item_id": int,
-                "price": int,
-                "discounted": bool,
-                "reserved": bool,
-            }
-        ],
-    },
-    "victory_rate_returned_by_placement_model": float
-}
-```
-摆包模型可观测：
-```python
-observation = {
-    "owned_items": {
-        "items": [
-            {
-                "is_slot": bool,
-                "item_id": int,
-            }
-        ],
-    },
-    "placement":{
-    }
-    "occupacy_matrix":[[
+### 伤害类型、标志与结算顺序
 
-    ]]
-}
-```
-为早期学习推荐的派生特征：
+**源码确认**：`DamageSource.Type` 包含 `Melee`、`Ranged`、`Effect`、`SelfDamage`，以及特殊的 `Unhealing`、`Spikes`、`Poison`、`Fatigue`。是否可格挡、可 miss、可暴击、可触发尖刺/吸血/物品由独立 flags 控制，不能只凭伤害类型推导（`Backpack Battles/Utility/DamageSource.gd:4-37,57-83,132-158`）。例如疲惫源明确只有 `CanBeBlocked`（`Backpack Battles/Core/Game.gd:2138-2145`）。
 
-- 合法摆放掩码。
-- 合法配方掩码。
-- 活动物品栏的空格子。
-- 各物品标签的数量。
-- 星标/菱形覆盖矩阵。
-- 商店物品可负担掩码。
-- 出售价格向量。
+`Character.takeDamage()` 的主要结算顺序是：
 
-不得暴露：
+1. 复制伤害源，检查死亡；
+2. 若允许 miss，做命中检定并可能消耗 dodge stack；
+3. 执行攻击的 early pre-deal hook；
+4. 命中时抽取基础伤害，叠加防守方 fatigue bonus；
+5. 做暴击/暴击抵抗；
+6. 先应用百分比 `damageResistance`；
+7. 仅对 attack 应用固定 `damageReduction`；
+8. 无敌将当前伤害置零；
+9. 发出 `pre_take_damage`，减去事件在 `DamageResult.damageReduction` 中累计的减伤并截到非负；
+10. 执行 late pre-deal 与 `pre_take_damage_late`；
+11. 若 flags 允许，再用 Block 吸收并得到 `healthDamage`；
+12. 扣生命，记录事件，处理死亡，最后处理尖刺反伤。
 
-- 未来的商店抽取结果。
-- 隐藏的随机种子。
-- 玩家不可见的未来对手。但模型可以在内部保存数个当前版本流行的对手摆盘以供评估胜率。
-- 超出真实游戏可见信息范围的对手隐藏数据。
+证据见 `Backpack Battles/Core/Character.gd:495-653`，事件减伤的累加规则见 `Backpack Battles/Utility/DamageResult.gd:35-41`。因此旧的“所有其他机制后统一减伤”说法不成立；模拟器必须保留抗性、攻击固定减伤、事件减伤和 Block 的不同阶段。
 
-## 动作空间草案
+攻击型物品的伤害区间还会先加实例 bonus 与 Empower，再叠加每个伤害类型的 factor，之后乘实例伤害倍率并取整/截零（`Backpack Battles/Items/Item.gd:3630-3690`）。暴击倍率在 `DamageResult.makeCritical()` 中应用，物品可覆盖暴击严重度（`Backpack Battles/Utility/DamageResult.gd:25-33`），不能把所有暴击硬编码成固定二倍。
 
-分模型动作格式：
+### Buff、Debuff 与 Block
 
-```python
-action_strategy_model = {
-    "type": one_of([
-        "buy_to_storage",
-        "sell_item",
-        "reroll_shop",
-        "toggle_shop_reserve",
-        "toggle_combine_lock",
-        "end_shop",
-    ]),
-    "args": ...
-}
-action_placement_model = {
-    "type":one_of([        
-        "move_item",
-        "rotate_item",
-    ])
-}
+**源码确认**：源码将 Block 与七种 Buff（`Lucky`、`Regeneration`、`Vampirism`、`Spikes`、`Mana`、`Empower`、`Heat`）以及三种 Debuff（`Poison`、`Blind`、`Cold`）作为 stack 范围（`Backpack Battles/Core/Game.gd:413-456,4929-4947`；`Backpack Battles/Items/Item.gd:96-111`）。
+
+通用 stack 容器区分永久层与有到期时间的临时层；Block 上限为 100000，其他 stack 上限为 10000。施加时按层处理概率抵抗/放大、Debuff 反弹、专用抵抗层和全局 Debuff 抵抗层；移除时另有净化保护/保护层（`Backpack Battles/Core/Buff.gd:23-41,71-196,199-240`）。因此“施加 N 层”不是一个不可分割的布尔动作。
+
+当前通用公式中：
+
+- Lucky 与 Blind 每层分别对准确率贡献 `+5` 与 `-5`（`Backpack Battles/Core/Character.gd:1349-1354`）；
+- 默认每层 Empower 增加 1 点可强化武器伤害，但该每层系数是可变角色状态（`Backpack Battles/Core/Character.gd:1290-1300,1350-1351,1490-1491`）；
+- Heat 与 Cold 通过上述 `±0.02` 的净速度项影响物品冷却推进（`Backpack Battles/Items/Item.gd:3725-3743`）；
+- Block 只在伤害源含 `CanBeBlocked` 时吸收伤害（`Backpack Battles/Core/Character.gd:587-599`）；
+- Spikes 与 Vampirism 还受伤害 flags 和近战/远程/效果上限约束（`Backpack Battles/Core/Character.gd:709-737`）。
+
+**待运行验证**：若反编译文本出现明显可疑赋值或未传递参数，应先用运行轨迹确认，不应为“修正看起来像 bug 的源码”而自行改变语义。
+
+### 疲惫
+
+**源码确认 + 场景/资源确认**：疲惫常量 `FATIGUE_TIME = 17`。CombatTimer 启动时先把一次性 `FatigueStartTimer` 设为 `17 - 3 = 14` 秒；其 timeout 调用 `startFatigue()`，后者再把一次性 `FatigueTickTimer` 设为 3 秒，所以正常时间轴的首个疲惫伤害在战斗计时约 17 秒。随后每次伤害后把 tick timer 重启为 1 秒（`Backpack Battles/Interface/CombatTimer/CombatTimer.gd:3-21,114-120,145-179`；连接见 `Backpack Battles/Core/Main.tscn:9905-9911,14984-14985`）。
+
+共享疲惫计数 `F` 从 0 开始，每跳先增长再造成伤害：
+
+```text
+combatTime < 60: F <- F + 1 + floor(0.1 * F)
+combatTime >= 60: F <- F + 1 + floor(0.2 * F)
 ```
 
-所需的合法性掩码：
+双方依次受到以该共享 `F` 为基础、再加各自 `bonusFatigueDamage` 且不低于 0 的伤害（`Backpack Battles/Interface/CombatTimer/CombatTimer.gd:153-178`；`Backpack Battles/Core/Character.gd:1591-1600`）。疲惫可被 Block，因为其 DamageSource flags 明确包含 `CanBeBlocked`。
 
-- 能否负担物品价格。
-- 物品能否放入活动物品栏格子。
-- 如果储物箱有空间限制，物品能否放入储物箱。
-- 不得重叠。
-- 出售目标必须存在。
-- 有足够金币刷新商店。
-- 商店栏位必须存在。
-- 物品可以锁定合成。
-- 可以结束商店阶段。
+`advanceTime()` 会直接缩短疲惫开始 timer；若越过零则立即进入 `startFatigue()`（`Backpack Battles/Interface/CombatTimer/CombatTimer.gd:184-196`）。模拟器必须同时保存真实战斗计时、时间推进量、共享疲惫计数与双方 bonus，不能只保存“是否已疲惫”。
 
-## 近期仅使用 Wiki.gg 的数据任务
+### 激活、消耗与开始战斗效果
 
-1. 将 Cargo `Items` 表的所有行导出到本地结构化文件。
-2. 将 Cargo `Recipes` 表的所有行导出到本地结构化文件。
-3. 确定物品网格/形状/星标/菱形数据是结构化数据，还是必须从各物品页面解析。
-4. 确定初始背包/配置数据存储在哪里。
-5. 确定是否可以根据标准化的 `item_classes`、`Neutral` 以及子职业物品效果重建各职业的商店物品池。
-6. 编写一个小脚本，在补丁发布后重新查询 wiki.gg，并与本地物品/配方数据比较差异。
-7. 战斗部分先从数值效果易于解析的一小部分物品开始，再逐步扩展。
+**源码确认**：`Item.activate()` 是激活事件的统一基础入口。非背包且战斗未结束时，它创建 Activation 事件、发出 `activated` signal 并增加激活计数；随后处理动画/声音（`Backpack Battles/Items/Item.gd:4669-4720`）。`consume()` 先调用 `activate(..., consume=true)`，再设置 `consumed = true`（`Backpack Battles/Items/Item.gd:4798-4800`）。Potion 还有独立的满/空状态和 `potion_triggered`/`potion_emptied` 信号（`Backpack Battles/Items/Potion.gd:31-94`）。
+
+开始战斗钩子本身既不自动等于激活，也不自动等于消耗。某件物品是否在 `onPreCombatStart`/`onCombatStart`/`onPostCombatStart` 内调用 `activate()`、`consume()` 或只修改状态，必须逐个读取该物品脚本。旧文档中按物品名称制定的“一律不发激活通知”白名单已删除，因为它与统一入口和具体脚本控制流不一致。
+
+当前已明确核对的开战物品中，Pocket Sand、Healing Herbs、Flame 和 Walrus Tusk 都在 `onCombatStart()` 施加效果后调用 `consume()`；由于 `consume()` 内部先调用 `activate()`，它们会产生激活事件。Whetstone 在开战修改相连武器后直接调用 `activate()`（`Backpack Battles/Items/PocketSand.gd:1-5`；`Backpack Battles/Items/HealingHerbs.gd:1-5`；`Backpack Battles/Items/Exclusive/Flame.gd:1-5`；`Backpack Battles/Items/WalrusTusk.gd:1-5`；`Backpack Battles/Items/Whetstone.gd:1-11`；统一入口见 `Backpack Battles/Items/Item.gd:4669-4720,4798-4800`）。这五项与根目录当前模拟器的实现存在已知冲突，应由源码一致性测试驱动修正。
+
+**项目建模决定**：模拟器事件模型应区分 `cooldown_due`、`effect_attempted`、`activation_emitted`、`consumed` 与 `potion_emptied`。这些事件可能相邻发生，但不是同一个布尔量。
+
+## 对手 run 数据与可见性
+
+### 缓存来源与请求规模
+
+**源码确认**：当前正式缓存路径是 `user://runs_steam.cache` 与 `user://runs_sw.cache`；Beta/Playtest 有各自子路径，旧 `user://runs.cache` 会在加载时删除（`Backpack Battles/Core/RunDatabase.gd:5-17,221-260`）。缓存文件用 Godot `store_var/get_var` 形式保存序列化 run 数组（`Backpack Battles/Core/RunDatabase.gd:245-300`）。
+
+网络侧 SilentWolf 单次请求参数是 400 条，不是“源码确认固定缓存 2000 条”；Steam 与 SilentWolf 结果可合并，缓存的实际条数取决于返回结果与后续写入（`Backpack Battles/Core/RunDatabase.gd:126-147,184-215`）。当在线来源少于 30 条时才用本地缓存补充（`Backpack Battles/Core/RunDatabase.gd:54-66`）。
+
+**待运行验证**：新解包不包含用户目录里的真实 `runs_steam.cache`/`runs_sw.cache` 样本。本仓库目前也没有匹配样本。因此条数分布、两个文件是否同时存在、实际版本混合情况和磁盘 Variant 布局必须从运行同一版本的 `user://` 目录采集后验证。
+
+### run 与回合 schema
+
+**源码确认**：一个序列化 run 有 10 个属性：`runId`、编码名字、rating、playerId、results、characterClass、rounds、entryVersion、chibiStyle、skins（`Backpack Battles/Utility/RunData.gd:4-16,34-70`）。版本早于 leaderboard breaking version 或晚于当前版本会被拒绝（`Backpack Battles/Utility/RunData.gd:74-80`）。
+
+每个回合位流先保存基础最大生命与最大耐力，再顺序保存物品。物品 tuple 解码为：
+
+- `d`：`ItemDescriptor`/物品索引；
+- `c`：左上格坐标；
+- `f`：四方向；
+- `g`：可选宝石索引数组，空槽使用专用 sentinel；
+- `pd`：可选的物品持久实例数据。
+
+见 `Backpack Battles/Utility/RunData.gd:195-271`；写入对称流程见 `Backpack Battles/Core/RunDatabase.gd:571-607`。回合外再补 `class`、`loadout`、名字、chibi 与 skins（`Backpack Battles/Utility/RunData.gd:174-193`）。
+
+对手加载时先按背包顺序排序，实例化每个 descriptor，按 `c/f` 定向并检查布局合法性，然后装入宝石与 `pd`；非法 run 会被丢弃/标记（`Backpack Battles/Core/Game.gd:2775-2825,2861-2895`）。
+
+### 训练可见性边界
+
+**源码确认**：被选中的当前对手回合数据用于构建战斗场景，因而战斗布局、职业、生命、耐力和已解码物品状态是环境内部真实状态。匹配池中的其他 runs、未来回合与排名筛选内部量不是当前战斗布局的一部分（选择流程见 `Backpack Battles/Core/RunDatabase.gd:311-354`）。
+
+**项目建模决定**：布局策略的原始 observation 不泄露尚未选中的缓存池、未来对手回合或 matchmaker 分数。若任务定义为战前已显示对手布局，可暴露当前已选对手；若任务定义为纯己方摆盘，则对手输入只能是任务显式提供的条件。两种任务必须用不同环境配置和数据集元数据标识。
+
+## 当前布局训练的观测
+
+以下是**项目建模决定**，不是游戏 UI 原生接口。
+
+每个 observation 至少包含：
+
+```text
+source_version: 游戏版本、schema 版本
+character: class_id、loadout_id、基础生命/耐力（任务需要时）
+board:
+  addressable_cells: 9×7 坐标
+  bag_cells: 当前背包扩出的动态可用格
+  filled_cells: 普通物品当前占用格
+  potential_bag_cells: 当前仍可扩展背包的格
+  placable_cells / legal_action_mask: 针对当前实例与方向动态计算
+instances[]:
+  instance_id: episode 内唯一身份
+  item_index / identifier: 静态物品身份
+  owner / container
+  top_left_cell
+  face_direction
+  collision_cells
+  extension_cells
+  affected_cells_primary
+  affected_cells_secondary
+  affected_cells_tertiary
+  affected_cells_lightning
+  affected_instance_ids_by_type
+  sockets[]: 槽号、宝石 instance/item identity、方向、锁定/空槽
+  pd: 可选、版本化的持久实例状态
+  dynamic_instance_state: consumed、可见的可变参数等
+opponent_current_round: 仅按任务可见性配置加入
+```
+
+其中 collision、extension 和四类 affected cells 应从场景与当前方向派生并保留，不能只编码成物品中心点。宝石既要挂到宿主槽位，也要保留宝石自身身份。对于重复物品，所有关系都引用 `instance_id`。
+
+原始 observation 不包含胜率预测、布局评分、启发式价值、搜索排名或 evaluator 输出。这些量可以作为 reward、训练标签、critic 输入或诊断信息，但不能混入声称等价于游戏可见状态的张量。
+
+若训练包含战斗时序，另需保存双方当前生命/耐力、全部 stack、眩晕/无敌、每件物品 `triggerTime`/`iterationCooldown`/speed、共享疲惫计数与双方 fatigue bonus，以及确定性回放所需 RNG 状态或随机事件流。
+
+## 当前布局训练的动作
+
+以下同样是**项目建模决定**。最小动作集合建议为：
+
+- `place_or_move(instance_id, top_left_cell, face_direction)`；
+- `rotate(instance_id, quarter_turns)`，可归一化到上一动作；
+- `move_to_storage(instance_id)` / `move_from_storage(...)`，仅当任务包含储物箱；
+- `socket_gem(gem_instance_id, host_instance_id, socket_index)`；
+- `unsocket_gem(host_instance_id, socket_index)`；
+- `stop`，结束本次布局。
+
+每个动作必须通过当前动态合法性检查：普通物品校验 collision cells 是否完全落在可用 bag cells 且无碰撞；背包校验 extension cells 是否位于潜在空间；旋转后重新计算所有空间集合；镶嵌动作校验真实 socket 与 owner 状态。动作掩码应调用与 `Inventory.canAddItemOrBag()` 等价的规则，而不是只检查矩形边界。
+
+动作序列不把“自动整理”“自动合成”“估值后选最佳位置”伪装成游戏原子动作。此类操作若用于搜索加速，应标记为规划器宏动作，并能展开成上面的合法原子动作。
+
+## 当前非目标与历史草案归档
+
+**项目建模决定**：当前只做给定物品集合下的布局与其战斗评估。以下内容归档为后续方向，本知识库不再为其维护可执行策略：
+
+- 商店刷新、购买、出售、预留、折扣和金币策略；
+- 配方发现、合成锁与商店内合成规划；
+- 奖杯、皮肤、成就、解锁、天赋或其他局外成长；
+- 排位运营和跨 run 长期策略。
+
+相关源码仍可在需要时另建 SPEC 审计，但不得把旧 Wiki 商店概率或旧模拟器实现带入当前布局环境。
+
+## Wiki 历史快照（降级参考）
+
+**Wiki 参考**：旧知识库在 2026-07-03 至 2026-07-22 查询过 wiki.gg 的 Game Mechanics、Items、Characters、Recipe、Buff、Debuff、Cooldown、Effect 页面及 Cargo `Items`/`Recipes` 表。当时 Cargo 快照记录 `Items = 497`、`Recipes = 224`，并保存了职业、稀有度和主要类型计数。这些数据仍可用于术语翻译、人工对照与发现可能漏解的内容，但不是当前游戏事实，也不应用于生成运行时物品 ID、形状、数值或机制。
+
+历史入口：
+
+- https://backpackbattles.wiki.gg/wiki/Game_Mechanics
+- https://backpackbattles.wiki.gg/wiki/Items
+- https://backpackbattles.wiki.gg/wiki/Characters
+- https://backpackbattles.wiki.gg/wiki/Recipe
+- https://backpackbattles.wiki.gg/wiki/Buff
+- https://backpackbattles.wiki.gg/wiki/Debuff
+- https://backpackbattles.wiki.gg/wiki/Cooldown
+- https://backpackbattles.wiki.gg/wiki/Effect
+
+旧快照中的 `class`、`rarity`、`itemtype`、`icontype`、`effect` 等 Cargo 字段可作为数据核对提示，但静态游戏数据应从 `ItemData_e.csv` 的正式加载逻辑、`ItemDescriptor` 和具体场景/脚本重建。旧 Wiki 对“63 格”“战斗开始激活”“疲惫公式”“固定二倍暴击”等概括均不得覆盖本文件前述源码证据。
+
+## 待运行验证清单
+
+- 获取与游戏版本 1.1.8 匹配的真实 `runs_steam.cache` 与 `runs_sw.cache`，记录文件数量、run 数量、版本分布及 `pd` 实例；
+- 用 Godot 3.6.0 轨迹固定战斗时间零点、Character 首 tick、疲惫 14/17/60 秒边界；
+- 对相同 trigger priority 的物品、双方同帧 Timer、signal 嵌套回调做顺序回放；
+- 对所有实现 `getDataPersistent()` 的物品建立 `pd` 位宽与字段解码表；
+- 用场景解析器回归 collision、extension、四类 affected cells、动态 affected 与宝石槽；
+- 对疑似反编译异常只做运行对照，不在无证据时“修正”游戏逻辑。
