@@ -534,7 +534,13 @@ class BattleLoggingV1Test(unittest.TestCase):
                 )
                 state.players[0].items[source.item_key] = source
                 item.add_marker_item("star", source.item_key)
-                context = state.build_item_activation_context(item, source)
+                context = ItemActivationContext(
+                    battle_state=state,
+                    item=item,
+                    owner=state.players[0],
+                    opponent=state.players[1],
+                    source_item=source,
+                )
 
                 item.activate_item(context)
 
@@ -560,7 +566,13 @@ class BattleLoggingV1Test(unittest.TestCase):
         item.add_marker_item("star", source.item_key)
 
         for _ in range(3):
-            context = state.build_item_activation_context(item, source)
+            context = ItemActivationContext(
+                battle_state=state,
+                item=item,
+                owner=state.players[0],
+                opponent=state.players[1],
+                source_item=source,
+            )
             item.activate_item(context)
 
         self.assertEqual(
@@ -796,6 +808,7 @@ class BattleLoggingV1Test(unittest.TestCase):
             rng=SequenceRng(random_values=[0.5]),
         )
         state.players[1].items[attack_source.item_key] = attack_source
+        state.prepareItems()
         event = AttackEvent(
             attacker=state.players[1],
             defender=state.players[0],

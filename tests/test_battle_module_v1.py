@@ -7,7 +7,6 @@ from battle_module_v1 import (
     Effect,
     FIRST_POISON_TIME,
     FIRST_REGENERATION_TIME,
-    ITEM_ACTIVATION_PHASE_LINKED,
     ItemActivationContext,
     PlayerState,
     STATUS_TICK_INTERVAL,
@@ -124,15 +123,13 @@ class ActivationListenerItem(BattleItem):
     def __init__(
         self,
         *,
-        has_phase=True,
+        listen_for_activation=True,
         should_trigger=False,
         event_log=None,
         emit_when_triggered=False,
         **kwargs,
     ):
         trigger = RecordingTrigger(should_trigger)
-        if has_phase:
-            trigger.item_activation_phase = ITEM_ACTIVATION_PHASE_LINKED
         super().__init__(
             triggers=[trigger],
             effects=[RecordingEffect()],
@@ -141,6 +138,19 @@ class ActivationListenerItem(BattleItem):
         self.contexts = []
         self.event_log = event_log
         self.emit_when_triggered = emit_when_triggered
+        self.listen_for_activation = listen_for_activation
+        for linked_key in self.linked_items:
+            self.add_marker_item("star", linked_key)
+
+    def onPrepare(self, context):
+        super().onPrepare(context)
+        if self.listen_for_activation:
+            for source_key in self.marker_items["star"]:
+                context.battle_state.connect(
+                    context.owner.items[source_key],
+                    "item_activation",
+                    (self, 0),
+                )
 
     def run_effect(self, trigger_results, context):
         self.contexts.append(context)
@@ -173,7 +183,9 @@ class BattleModuleV1Test(unittest.TestCase):
                 for item in opponent_items
             },
         )
-        return BattleState(players=[owner, opponent]), owner, opponent
+        battle = BattleState(players=[owner, opponent])
+        battle.prepareItems()
+        return battle, owner, opponent
 
     def test_battle_item_exposes_new_activation_interface_only(self):
         self.assertTrue(hasattr(BattleItem, "activate_item"))
@@ -188,43 +200,52 @@ class BattleModuleV1Test(unittest.TestCase):
             item_id="source",
             item_key="source1",
             player_id=0,
-            has_phase=False,
+            listen_for_activation=False,
         )
         other = ActivationListenerItem(
             item_id="other",
             item_key="other1",
             player_id=0,
-            has_phase=False,
+            listen_for_activation=False,
         )
         battle, _, _ = self.make_activation_state([source, other])
-        battle.dispatch_item_activation = Mock()
+        battle.emit_signal = Mock()
 
         with self.assertRaises(ValueError):
             source.emit_activation(battle.build_context(other))
 
-        battle.dispatch_item_activation.assert_not_called()
+        battle.emit_signal.assert_not_called()
 
     def test_emit_activation_delegates_to_battle_state_and_returns_none(self):
         source = ActivationListenerItem(
             item_id="source",
             item_key="source1",
             player_id=0,
-            has_phase=False,
+            listen_for_activation=False,
         )
-        battle, _, _ = self.make_activation_state([source])
-        battle.dispatch_item_activation = Mock()
+        battle, owner, opponent = self.make_activation_state([source])
+        battle.emit_signal = Mock()
 
         result = source.emit_activation(battle.build_context(source))
 
         self.assertIsNone(result)
-        battle.dispatch_item_activation.assert_called_once_with(source)
+        battle.emit_signal.assert_called_once()
+        emitter, signal_name, context = battle.emit_signal.call_args.args
+        self.assertIs(emitter, source)
+        self.assertEqual(signal_name, "item_activation")
+        self.assertIsInstance(context, ItemActivationContext)
+        self.assertIs(context.battle_state, battle)
+        self.assertIs(context.item, source)
+        self.assertIs(context.owner, owner)
+        self.assertIs(context.opponent, opponent)
+        self.assertIs(context.source_item, source)
 
-    def test_build_item_activation_context_preserves_source_reference(self):
+    def test_activation_bus_preserves_source_reference(self):
         source = ActivationListenerItem(
             item_id="source",
             item_key="source1",
             player_id=0,
-            has_phase=False,
+            listen_for_activation=False,
         )
         listener = ActivationListenerItem(
             item_id="listener",
@@ -236,7 +257,8 @@ class BattleModuleV1Test(unittest.TestCase):
             [source, listener]
         )
 
-        context = battle.build_item_activation_context(listener, source)
+        source.emit_activation(battle.build_context(source))
+        context = listener.contexts[0]
 
         self.assertIsInstance(context, ItemActivationContext)
         self.assertIs(context.battle_state, battle)
@@ -245,45 +267,12 @@ class BattleModuleV1Test(unittest.TestCase):
         self.assertIs(context.opponent, opponent)
         self.assertIs(context.source_item, source)
 
-    def test_build_item_activation_context_rejects_other_owner_or_foreign_source(
-        self,
-    ):
-        listener = ActivationListenerItem(
-            item_id="listener",
-            item_key="listener1",
-            player_id=0,
-        )
-        other_owner_source = ActivationListenerItem(
-            item_id="source",
-            item_key="source1",
-            player_id=1,
-            has_phase=False,
-        )
-        battle, _, _ = self.make_activation_state(
-            [listener],
-            [other_owner_source],
-        )
-        foreign_source = ActivationListenerItem(
-            item_id="foreign",
-            item_key="foreign1",
-            player_id=0,
-            has_phase=False,
-        )
-
-        with self.assertRaises(ValueError):
-            battle.build_item_activation_context(
-                listener,
-                other_owner_source,
-            )
-        with self.assertRaises(ValueError):
-            battle.build_item_activation_context(listener, foreign_source)
-
-    def test_activation_listener_lookup_requires_phase_and_source_link(self):
+    def test_activation_bus_requires_connection_and_source_link(self):
         source = ActivationListenerItem(
             item_id="source",
             item_key="source1",
             player_id=0,
-            has_phase=False,
+            listen_for_activation=False,
         )
         linked_with_phase = ActivationListenerItem(
             item_id="linked_with_phase",
@@ -296,7 +285,7 @@ class BattleModuleV1Test(unittest.TestCase):
             item_key="linked_without_phase1",
             player_id=0,
             linked_items=["source1"],
-            has_phase=False,
+            listen_for_activation=False,
         )
         phase_without_link = ActivationListenerItem(
             item_id="phase_without_link",
@@ -312,17 +301,18 @@ class BattleModuleV1Test(unittest.TestCase):
             ]
         )
 
-        self.assertEqual(
-            battle._get_item_activation_listeners(source),
-            (linked_with_phase,),
-        )
+        source.emit_activation(battle.build_context(source))
 
-    def test_activation_listener_lookup_preserves_owner_item_order(self):
+        self.assertEqual(len(linked_with_phase.contexts), 1)
+        self.assertEqual(linked_without_phase.contexts, [])
+        self.assertEqual(phase_without_link.contexts, [])
+
+    def test_activation_bus_preserves_connection_order(self):
         source = ActivationListenerItem(
             item_id="source",
             item_key="source1",
             player_id=0,
-            has_phase=False,
+            listen_for_activation=False,
         )
         first = ActivationListenerItem(
             item_id="first",
@@ -340,23 +330,24 @@ class BattleModuleV1Test(unittest.TestCase):
             [source, second, first]
         )
 
-        self.assertEqual(
-            battle._get_item_activation_listeners(source),
-            (second, first),
-        )
+        order = []
+        first.event_log = second.event_log = order
+        source.emit_activation(battle.build_context(source))
 
-    def test_activation_listener_lookup_never_reads_opponent_items(self):
+        self.assertEqual(order, [("second1", source), ("first1", source)])
+
+    def test_activation_bus_isolates_owners_with_identical_source_keys(self):
         source = ActivationListenerItem(
             item_id="source",
             item_key="shared1",
             player_id=0,
-            has_phase=False,
+            listen_for_activation=False,
         )
         opponent_source = ActivationListenerItem(
             item_id="opponent_source",
             item_key="shared1",
             player_id=1,
-            has_phase=False,
+            listen_for_activation=False,
         )
         opponent_listener = ActivationListenerItem(
             item_id="opponent_listener",
@@ -369,61 +360,19 @@ class BattleModuleV1Test(unittest.TestCase):
             [opponent_source, opponent_listener],
         )
 
-        self.assertEqual(
-            battle._get_item_activation_listeners(source),
-            (),
-        )
+        source.emit_activation(battle.build_context(source))
 
-    def test_second_activation_listener_lookup_uses_cached_tuple(self):
-        source = ActivationListenerItem(
-            item_id="source",
-            item_key="source1",
-            player_id=0,
-            has_phase=False,
-        )
-        listener = ActivationListenerItem(
-            item_id="listener",
-            item_key="listener1",
-            player_id=0,
-            linked_items=["source1"],
-        )
-        battle, _, _ = self.make_activation_state([source, listener])
-
-        first = battle._get_item_activation_listeners(source)
-        listener.triggers[0].item_activation_phase = None
-        second = battle._get_item_activation_listeners(source)
-
-        self.assertIs(first, second)
-        self.assertEqual(second, (listener,))
-
-    def test_empty_activation_listener_lookup_is_cached(self):
-        source = ActivationListenerItem(
-            item_id="source",
-            item_key="source1",
-            player_id=0,
-            has_phase=False,
-        )
-        battle, owner, _ = self.make_activation_state([source])
-
-        first = battle._get_item_activation_listeners(source)
-        listener = ActivationListenerItem(
-            item_id="listener",
-            item_key="listener1",
-            player_id=0,
-            linked_items=["source1"],
-        )
-        owner.items[listener.item_key] = listener
-        second = battle._get_item_activation_listeners(source)
-
-        self.assertIs(first, second)
-        self.assertEqual(second, ())
+        self.assertEqual(opponent_listener.contexts, [])
+        opponent_source.emit_activation(battle.build_context(opponent_source))
+        self.assertEqual(len(opponent_listener.contexts), 1)
+        self.assertIs(opponent_listener.contexts[0].source_item, opponent_source)
 
     def test_dispatch_builds_fresh_context_for_each_source_event(self):
         source = ActivationListenerItem(
             item_id="source",
             item_key="source1",
             player_id=0,
-            has_phase=False,
+            listen_for_activation=False,
         )
         listener = ActivationListenerItem(
             item_id="listener",
@@ -433,8 +382,8 @@ class BattleModuleV1Test(unittest.TestCase):
         )
         battle, _, _ = self.make_activation_state([source, listener])
 
-        battle.dispatch_item_activation(source)
-        battle.dispatch_item_activation(source)
+        source.emit_activation(battle.build_context(source))
+        source.emit_activation(battle.build_context(source))
 
         self.assertEqual(len(listener.contexts), 2)
         self.assertIsNot(listener.contexts[0], listener.contexts[1])
@@ -448,7 +397,7 @@ class BattleModuleV1Test(unittest.TestCase):
             item_id="source",
             item_key="source1",
             player_id=0,
-            has_phase=False,
+            listen_for_activation=False,
         )
         first = ActivationListenerItem(
             item_id="first",
@@ -468,7 +417,7 @@ class BattleModuleV1Test(unittest.TestCase):
             [source, first, second]
         )
 
-        battle.dispatch_item_activation(source)
+        source.emit_activation(battle.build_context(source))
 
         self.assertEqual(len(first.contexts), 1)
         self.assertEqual(len(second.contexts), 1)
@@ -479,7 +428,7 @@ class BattleModuleV1Test(unittest.TestCase):
             item_id="source",
             item_key="source1",
             player_id=0,
-            has_phase=False,
+            listen_for_activation=False,
         )
         first = ActivationListenerItem(
             item_id="first",
@@ -508,7 +457,7 @@ class BattleModuleV1Test(unittest.TestCase):
             [source, first, nested, last]
         )
 
-        battle.dispatch_item_activation(source)
+        source.emit_activation(battle.build_context(source))
 
         self.assertEqual(
             log,
@@ -519,12 +468,12 @@ class BattleModuleV1Test(unittest.TestCase):
             ],
         )
 
-    def test_battle_states_own_independent_activation_listener_caches(self):
+    def test_activation_bus_isolates_battle_states(self):
         first_source = ActivationListenerItem(
             item_id="source",
             item_key="source1",
             player_id=0,
-            has_phase=False,
+            listen_for_activation=False,
         )
         first_listener = ActivationListenerItem(
             item_id="listener",
@@ -539,23 +488,15 @@ class BattleModuleV1Test(unittest.TestCase):
             item_id="source",
             item_key="source1",
             player_id=0,
-            has_phase=False,
+            listen_for_activation=False,
         )
         second_battle, _, _ = self.make_activation_state([second_source])
 
-        first_tuple = first_battle._get_item_activation_listeners(
-            first_source
-        )
-        second_tuple = second_battle._get_item_activation_listeners(
-            second_source
-        )
+        first_source.emit_activation(first_battle.build_context(first_source))
+        second_source.emit_activation(second_battle.build_context(second_source))
 
-        self.assertIsNot(
-            first_battle._item_activation_listener_cache,
-            second_battle._item_activation_listener_cache,
-        )
-        self.assertEqual(first_tuple, (first_listener,))
-        self.assertEqual(second_tuple, ())
+        self.assertEqual(len(first_listener.contexts), 1)
+        self.assertIs(first_listener.contexts[0].source_item, first_source)
 
     def test_battle_item_requires_at_least_one_trigger(self):
         with self.assertRaises(ValueError):

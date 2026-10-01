@@ -1,12 +1,10 @@
 from battle_module_v1 import (
     ATTACK_PHASE_ON_ATTACKED,
     ATTACK_PHASE_ON_ATTACK_MISSED,
-    ITEM_ACTIVATION_PHASE_LINKED,
     ITEM_MARKER_TYPES,
     AttackReactionContext,
     BattleContext,
     BattleItem,
-    ItemActivationContext,
     Trigger,
 )
 from item_effects_v1 import SUPPORTED_ATTACK_TYPES
@@ -14,6 +12,7 @@ from item_effects_v1 import SUPPORTED_ATTACK_TYPES
 
 class StartOfBattleTrigger(Trigger):
     def __init__(self):
+        super().__init__()
         self.has_triggered = False
 
     def update(self, context: BattleContext) -> bool:
@@ -24,27 +23,27 @@ class StartOfBattleTrigger(Trigger):
 
         self.has_triggered = True
         return True
+    def connect_bus(self, context: BattleContext) -> None:
+        context.battle_state.connect(None, "start_of_battle", (self.item, self.idx))
 
 
 class ActivationTrigger(Trigger):
-    item_activation_phase = ITEM_ACTIVATION_PHASE_LINKED
 
     def __init__(self, marker_type: str = "star"):
+        super().__init__()
         if marker_type not in ITEM_MARKER_TYPES:
             raise ValueError(f"unsupported marker type: {marker_type}")
         self.marker_type = marker_type
 
     def update(self, context: BattleContext) -> bool:
-        if not isinstance(context, ItemActivationContext):
-            return False
-        if context.source_item.player_id != context.item.player_id:
-            return False
-        return (
-            context.source_item.item_key
-            in context.item.marker_items[self.marker_type]
-        )
-
-
+        return True if context.item.marker_items[self.marker_type] else False
+    def connect_bus(self, context: BattleContext) -> None:
+        for marker_item in context.item.marker_items[self.marker_type]:
+            context.battle_state.connect(
+                context.owner.items[marker_item],
+                "item_activation",
+                (self.item, self.idx),
+            )
 class SlimeActivationTrigger(ActivationTrigger):
     def __init__(self, required_activations: int):
         super().__init__(marker_type="star")
@@ -93,6 +92,7 @@ class SlimeActivationTrigger(ActivationTrigger):
 
 class CooldownTrigger(Trigger):
     def __init__(self, cooldown_seconds: float):
+        super().__init__()
         self.cooldown_seconds = cooldown_seconds
         self.cooldown_progress = 0.0
         self.speed_modifiers: float = 0.0
@@ -273,6 +273,8 @@ class AttackMissTrigger(Trigger):
         if context.attack_phase != self.attack_phase:
             return False
         return context.attack_event.hit is False
+    def connect_bus(self, context: BattleContext) -> None:
+        context.battle_state.connect(context.opponent, self.attack_phase, (self.item, self.idx))
 
 
 class OnAttackedTrigger(Trigger):
@@ -283,6 +285,7 @@ class OnAttackedTrigger(Trigger):
         attack_types: tuple[str, ...],
         chance: float = 1.0,
     ):
+        super().__init__()
         if not attack_types:
             raise ValueError("on-attacked trigger requires an attack type")
         if any(
@@ -335,3 +338,5 @@ class OnAttackedTrigger(Trigger):
             },
         )
         return success
+    def connect_bus(self, context: BattleContext) -> None:
+        context.battle_state.connect(context.owner, self.attack_phase, (self.item, self.idx))

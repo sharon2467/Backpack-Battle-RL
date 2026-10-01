@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import Mock
+from unittest.mock import ANY, Mock
 
 from basic_backpack_v1 import ITEM_CATALOG, place_item
 from battle_initializer_v1 import initialize_battle
@@ -113,8 +113,8 @@ class MagicForDummiesItemFactoryV1Test(unittest.TestCase):
     def test_cooldown_does_nothing_before_five_seconds(self):
         guide, battle, owner, _, context = self.make_state()
         battle.frame_delta = 4.9
-        battle.dispatch_item_activation = Mock(
-            wraps=battle.dispatch_item_activation
+        battle.emit_signal = Mock(
+            wraps=battle.emit_signal
         )
 
         guide.activate_item(context)
@@ -123,13 +123,13 @@ class MagicForDummiesItemFactoryV1Test(unittest.TestCase):
         self.assertEqual(owner.health, 10)
         self.assertEqual(owner.max_health, 20)
         self.assertIsNone(guide.spell_weight)
-        battle.dispatch_item_activation.assert_not_called()
+        battle.emit_signal.assert_not_called()
 
     def test_success_uses_mana_and_gains_base_max_health(self):
         guide, battle, owner, _, context = self.make_state()
         battle.frame_delta = 5.0
-        battle.dispatch_item_activation = Mock(
-            wraps=battle.dispatch_item_activation
+        battle.emit_signal = Mock(
+            wraps=battle.emit_signal
         )
 
         guide.activate_item(context)
@@ -138,13 +138,13 @@ class MagicForDummiesItemFactoryV1Test(unittest.TestCase):
         self.assertEqual(owner.health, 18)
         self.assertEqual(owner.max_health, 28)
         self.assertEqual(guide.spell_weight, 0)
-        battle.dispatch_item_activation.assert_called_once_with(guide)
+        battle.emit_signal.assert_called_once_with(guide, "item_activation", ANY)
 
     def test_insufficient_mana_skips_effect_and_activation(self):
         guide, battle, owner, _, context = self.make_state(mana=0)
         battle.frame_delta = 5.0
-        battle.dispatch_item_activation = Mock(
-            wraps=battle.dispatch_item_activation
+        battle.emit_signal = Mock(
+            wraps=battle.emit_signal
         )
 
         guide.activate_item(context)
@@ -152,7 +152,7 @@ class MagicForDummiesItemFactoryV1Test(unittest.TestCase):
         self.assertEqual(owner.health, 10)
         self.assertEqual(owner.max_health, 20)
         self.assertIsNone(guide.spell_weight)
-        battle.dispatch_item_activation.assert_not_called()
+        battle.emit_signal.assert_not_called()
 
         owner.buffs.Mana = 1
         guide.activate_item(context)
@@ -160,7 +160,7 @@ class MagicForDummiesItemFactoryV1Test(unittest.TestCase):
         self.assertEqual(owner.buffs.Mana, 0)
         self.assertEqual(owner.health, 18)
         self.assertEqual(owner.max_health, 28)
-        battle.dispatch_item_activation.assert_called_once_with(guide)
+        battle.emit_signal.assert_called_once_with(guide, "item_activation", ANY)
 
     def test_counts_only_starred_spell_instances(self):
         guide, battle, owner, _, context = self.make_state()

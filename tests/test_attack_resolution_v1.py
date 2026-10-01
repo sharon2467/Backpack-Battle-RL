@@ -62,35 +62,22 @@ class StaticTrigger(Trigger):
         return self.result
 
 
-class MissingAttackPhaseTrigger(StaticTrigger):
-    def __init__(self, result=True):
-        super().__init__(result)
-        self.phase_reads = 0
-
-    def __getattr__(self, name):
-        if name == "attack_phase":
-            self.phase_reads += 1
-            raise AttributeError(name)
-        raise AttributeError(name)
-
-
 class RecordingAttackTrigger(StaticTrigger):
     attack_phase = ATTACK_PHASE_ON_ATTACKED
+
+    def connect_bus(self, context):
+        context.battle_state.connect(
+            context.owner, self.attack_phase, (self.item, self.idx),
+        )
 
 
 class RecordingAttackMissTrigger(StaticTrigger):
     attack_phase = ATTACK_PHASE_ON_ATTACK_MISSED
 
-
-class CountingAttackPhaseTrigger(StaticTrigger):
-    def __init__(self, result=True):
-        super().__init__(result)
-        self.phase_reads = 0
-
-    @property
-    def attack_phase(self):
-        self.phase_reads += 1
-        return ATTACK_PHASE_ON_ATTACKED
+    def connect_bus(self, context):
+        context.battle_state.connect(
+            context.opponent, self.attack_phase, (self.item, self.idx),
+        )
 
 
 class NoopEffect(Effect):
@@ -226,6 +213,7 @@ class AttackResolutionV1Test(unittest.TestCase):
         if rng is not None:
             battle_kwargs["rng"] = rng
         battle = BattleState(**battle_kwargs)
+        battle.prepareItems()
         return battle, attacker, defender, source
 
     def make_event(
@@ -391,6 +379,7 @@ class AttackResolutionV1Test(unittest.TestCase):
             rng=rng,
         )
         attacker.items[attacker_reaction.item_key] = attacker_reaction
+        attacker_reaction.onPrepare(battle.build_context(attacker_reaction))
         event = self.make_event(
             attacker,
             defender,
@@ -433,42 +422,21 @@ class AttackResolutionV1Test(unittest.TestCase):
         self.assertEqual(defender.block, 3)
         self.assertEqual(defender.health, 20)
 
-    def test_attack_miss_and_on_attacked_use_separate_phase_caches(self):
-        on_attacked_item = ConfigurableItem(
-            trigger=RecordingAttackTrigger(),
+    def test_attack_bus_keeps_hit_and_miss_listeners_separate(self):
+        hit_item = ConfigurableItem(trigger=RecordingAttackTrigger())
+        miss_item = ConfigurableItem(trigger=RecordingAttackMissTrigger())
+        rng = SequenceRng(random_values=[0.9, 0.0], randint_values=[1])
+        battle, attacker, defender, source = self.make_battle(
+            [hit_item, miss_item], rng=rng,
         )
-        attack_miss_item = ConfigurableItem(
-            trigger=RecordingAttackMissTrigger(),
-        )
-        battle, _, defender, _ = self.make_battle(
-            [on_attacked_item, attack_miss_item],
-        )
-
-        on_attacked_items = battle._get_attack_reaction_items(
-            defender,
-            ATTACK_PHASE_ON_ATTACKED,
-        )
-        attack_miss_items = battle._get_attack_reaction_items(
-            defender,
-            ATTACK_PHASE_ON_ATTACK_MISSED,
-        )
-
-        self.assertEqual(on_attacked_items, (on_attacked_item,))
-        self.assertEqual(attack_miss_items, (attack_miss_item,))
-        self.assertIs(
-            on_attacked_items,
-            battle._get_attack_reaction_items(
-                defender,
-                ATTACK_PHASE_ON_ATTACKED,
-            ),
-        )
-        self.assertIs(
-            attack_miss_items,
-            battle._get_attack_reaction_items(
-                defender,
-                ATTACK_PHASE_ON_ATTACK_MISSED,
-            ),
-        )
+        miss = self.make_event(attacker, defender, source, accuracy=50)
+        hit = self.make_event(attacker, defender, source, 1, 1)
+        battle.resolve_attack(miss)
+        battle.resolve_attack(hit)
+        self.assertEqual(hit_item.run_calls, 1)
+        self.assertEqual(miss_item.run_calls, 1)
+        self.assertIs(hit_item.contexts[0].attack_event, hit)
+        self.assertIs(miss_item.contexts[0].attack_event, miss)
 
     def test_attack_miss_trigger_accepts_matching_context_without_rng(self):
         item = ConfigurableItem(trigger=AttackMissTrigger())
@@ -894,9 +862,8 @@ class AttackResolutionV1Test(unittest.TestCase):
             rng=rng,
             attacker_stamina=1.0,
         )
-        original_dispatch = battle.dispatch_item_activation
-        dispatch_spy = Mock(wraps=original_dispatch)
-        battle.dispatch_item_activation = dispatch_spy
+        activation_spy = Mock(wraps=buckler.emit_activation)
+        buckler.emit_activation = activation_spy
         event = self.make_event(attacker, defender, source, 10, 10)
 
         battle.resolve_attack(event)
@@ -905,7 +872,8 @@ class AttackResolutionV1Test(unittest.TestCase):
         self.assertEqual(event.pending_damage, 3)
         self.assertEqual(defender.health, 17)
         self.assertAlmostEqual(attacker.stamina, 0.7)
-        dispatch_spy.assert_called_once_with(buckler)
+        activation_spy.assert_called_once()
+        self.assertIs(activation_spy.call_args.args[0].item, buckler)
 
     def test_wooden_buckler_does_not_implicitly_activate_linked_item(
         self,
@@ -958,9 +926,8 @@ class AttackResolutionV1Test(unittest.TestCase):
             rng=rng,
             attacker_stamina=1.0,
         )
-        original_dispatch = battle.dispatch_item_activation
-        dispatch_spy = Mock(wraps=original_dispatch)
-        battle.dispatch_item_activation = dispatch_spy
+        activation_spy = Mock(wraps=buckler.emit_activation)
+        buckler.emit_activation = activation_spy
         event = self.make_event(attacker, defender, source, 10, 10)
 
         battle.resolve_attack(event)
@@ -969,7 +936,7 @@ class AttackResolutionV1Test(unittest.TestCase):
         self.assertEqual(defender.health, 10)
         self.assertEqual(attacker.stamina, 1.0)
         self.assertEqual(linked.run_calls, 0)
-        dispatch_spy.assert_not_called()
+        activation_spy.assert_not_called()
 
     def test_attack_rng_call_order_is_hit_damage_then_reactions(self):
         buckler = WoodenBuckler()
@@ -1318,170 +1285,50 @@ class AttackResolutionV1Test(unittest.TestCase):
 
         self.assertEqual(attacker.health, 18)
 
-    def test_first_reaction_item_lookup_scans_triggers_and_populates_cache(self):
-        ordinary_trigger = MissingAttackPhaseTrigger()
-        ordinary = ConfigurableItem(trigger=ordinary_trigger)
-        first_trigger = CountingAttackPhaseTrigger()
-        second_trigger = CountingAttackPhaseTrigger()
-        first = ConfigurableItem(trigger=first_trigger)
-        second = ConfigurableItem(trigger=second_trigger)
-        battle, _, defender, _ = self.make_battle([ordinary, first, second])
+    def test_attack_bus_isolates_responder_players(self):
+        first = ConfigurableItem(
+            trigger=RecordingAttackTrigger(), item_key="shared", player_id=0,
+        )
+        second = ConfigurableItem(
+            trigger=RecordingAttackTrigger(), item_key="shared", player_id=1,
+        )
+        owner = PlayerState(player_id=0, health=20, items={"shared": first})
+        opponent = PlayerState(player_id=1, health=20, items={"shared": second})
+        battle = BattleState(players=[owner, opponent])
+        battle.prepareItems()
+        event = self.make_event(opponent, owner, second)
+        event.hit = True
+        context = battle.build_attack_reaction_context(
+            second, ATTACK_PHASE_ON_ATTACKED, event,
+        )
+        battle.emit_signal(owner, ATTACK_PHASE_ON_ATTACKED, context)
+        self.assertEqual(first.run_calls, 1)
+        self.assertEqual(second.run_calls, 0)
+        self.assertIs(first.contexts[0].owner, owner)
 
-        items = battle._get_attack_reaction_items(
-            defender,
-            ATTACK_PHASE_ON_ATTACKED,
-        )
-
-        self.assertEqual(items, (first, second))
-        self.assertIs(
-            items,
-            battle._responder_item_cache[defender.player_id][
-                ATTACK_PHASE_ON_ATTACKED
-            ],
-        )
-        self.assertEqual(ordinary_trigger.phase_reads, 1)
-        self.assertEqual(first_trigger.phase_reads, 1)
-        self.assertEqual(second_trigger.phase_reads, 1)
-
-    def test_second_reaction_item_lookup_does_not_read_attack_phase_again(self):
-        trigger = CountingAttackPhaseTrigger()
-        item = ConfigurableItem(trigger=trigger)
-        battle, _, defender, _ = self.make_battle([item])
-
-        first = battle._get_attack_reaction_items(
-            defender,
-            ATTACK_PHASE_ON_ATTACKED,
-        )
-        reads_after_first_lookup = trigger.phase_reads
-        second = battle._get_attack_reaction_items(
-            defender,
-            ATTACK_PHASE_ON_ATTACKED,
-        )
-
-        self.assertIs(first, second)
-        self.assertEqual(trigger.phase_reads, reads_after_first_lookup)
-
-    def test_empty_reaction_item_lookup_is_cached(self):
-        trigger = MissingAttackPhaseTrigger()
-        item = ConfigurableItem(trigger=trigger)
-        battle, _, defender, _ = self.make_battle([item])
-
-        first = battle._get_attack_reaction_items(
-            defender,
-            ATTACK_PHASE_ON_ATTACKED,
-        )
-        reads_after_first_lookup = trigger.phase_reads
-        second = battle._get_attack_reaction_items(
-            defender,
-            ATTACK_PHASE_ON_ATTACKED,
-        )
-
-        self.assertEqual(first, ())
-        self.assertIs(first, second)
-        self.assertEqual(trigger.phase_reads, reads_after_first_lookup)
-
-    def test_reaction_item_cache_is_separate_for_each_responder(self):
-        first_item = ConfigurableItem(
-            trigger=RecordingAttackTrigger(),
-            item_key="first1",
-            player_id=0,
-        )
-        second_item = ConfigurableItem(
-            trigger=RecordingAttackTrigger(),
-            item_key="second1",
-            player_id=1,
-        )
-        first_player = PlayerState(
-            player_id=0,
-            health=20,
-            items={"first1": first_item},
-        )
-        second_player = PlayerState(
-            player_id=1,
-            health=20,
-            items={"second1": second_item},
-        )
-        battle = BattleState(players=[first_player, second_player])
-
-        first_items = battle._get_attack_reaction_items(
-            first_player,
-            ATTACK_PHASE_ON_ATTACKED,
-        )
-        second_items = battle._get_attack_reaction_items(
-            second_player,
-            ATTACK_PHASE_ON_ATTACKED,
-        )
-
-        self.assertEqual(first_items, (first_item,))
-        self.assertEqual(second_items, (second_item,))
-        self.assertIsNot(
-            battle._responder_item_cache[0],
-            battle._responder_item_cache[1],
-        )
-
-    def test_cached_reaction_items_preserve_responder_item_order(self):
-        items = [
-            ConfigurableItem(trigger=RecordingAttackTrigger())
-            for _ in range(3)
-        ]
-        battle, _, defender, _ = self.make_battle(items)
-
-        cached_items = battle._get_attack_reaction_items(
-            defender,
-            ATTACK_PHASE_ON_ATTACKED,
-        )
-
-        self.assertEqual(cached_items, tuple(items))
-
-    def test_cached_items_reuse_list_but_dispatch_builds_fresh_context_per_attack(self):
-        trigger = RecordingAttackTrigger()
-        item = ConfigurableItem(trigger=trigger)
-        battle, attacker, defender, source = self.make_battle([item])
-        first_event = self.make_event(attacker, defender, source)
-        second_event = self.make_event(attacker, defender, source)
-        first_event.hit = True
-        second_event.hit = True
-
-        cached_before = battle._get_attack_reaction_items(
-            defender,
-            ATTACK_PHASE_ON_ATTACKED,
-        )
-        battle.dispatch_attack_reactions(
-            ATTACK_PHASE_ON_ATTACKED,
-            defender,
-            first_event,
-        )
-        battle.dispatch_attack_reactions(
-            ATTACK_PHASE_ON_ATTACKED,
-            defender,
-            second_event,
-        )
-        cached_after = battle._get_attack_reaction_items(
-            defender,
-            ATTACK_PHASE_ON_ATTACKED,
-        )
-
-        self.assertIs(cached_before, cached_after)
+    def test_attack_bus_builds_fresh_context_per_attack(self):
+        item = ConfigurableItem(trigger=RecordingAttackTrigger())
+        rng = SequenceRng(random_values=[0.0, 0.0], randint_values=[1, 1])
+        battle, attacker, defender, source = self.make_battle([item], rng=rng)
+        first_event = self.make_event(attacker, defender, source, 1, 1)
+        second_event = self.make_event(attacker, defender, source, 1, 1)
+        battle.resolve_attack(first_event)
+        battle.resolve_attack(second_event)
         self.assertIsNot(item.contexts[0], item.contexts[1])
         self.assertIs(item.contexts[0].attack_event, first_event)
         self.assertIs(item.contexts[1].attack_event, second_event)
 
-    def test_battle_states_own_independent_reaction_item_caches(self):
+    def test_attack_bus_isolates_battle_states(self):
         first_item = ConfigurableItem(trigger=RecordingAttackTrigger())
         second_item = ConfigurableItem(trigger=RecordingAttackTrigger())
-        first_battle, _, first_defender, _ = self.make_battle([first_item])
-        second_battle, _, _, _ = self.make_battle([second_item])
-
-        first_battle._get_attack_reaction_items(
-            first_defender,
-            ATTACK_PHASE_ON_ATTACKED,
+        first, attacker, defender, source = self.make_battle(
+            [first_item], rng=SequenceRng(random_values=[0.0], randint_values=[1]),
         )
-
-        self.assertIsNot(
-            first_battle._responder_item_cache,
-            second_battle._responder_item_cache,
-        )
-        self.assertEqual(second_battle._responder_item_cache, {})
+        second, _, _, _ = self.make_battle([second_item])
+        first.resolve_attack(self.make_event(attacker, defender, source, 1, 1))
+        self.assertEqual(first_item.run_calls, 1)
+        self.assertEqual(second_item.run_calls, 0)
+        self.assertIs(first_item.contexts[0].battle_state, first)
 
 
 if __name__ == "__main__":

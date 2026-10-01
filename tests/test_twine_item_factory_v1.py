@@ -19,11 +19,17 @@ from item_factory_registry_v1 import (
 from item_triggers_v1 import ActivationTrigger, SlimeActivationTrigger
 
 
-def spy_on_activation_dispatch(battle_state):
-    original_dispatch = battle_state.dispatch_item_activation
-    dispatch_spy = Mock(wraps=original_dispatch)
-    battle_state.dispatch_item_activation = dispatch_spy
-    return dispatch_spy
+def spy_on_item_activation(battle_state):
+    original_emit = battle_state.emit_signal
+    activation_spy = Mock()
+
+    def emit_signal(emitter, signal_name, event_context=None):
+        if signal_name == "item_activation":
+            activation_spy(emitter)
+        original_emit(emitter, signal_name, event_context)
+
+    battle_state.emit_signal = emit_signal
+    return activation_spy
 
 
 class TwineItemFactoryV1Test(unittest.TestCase):
@@ -76,6 +82,7 @@ class TwineItemFactoryV1Test(unittest.TestCase):
             max_health=20,
         )
         battle = BattleState(players=[owner, opponent])
+        battle.prepareItems()
         context = ItemActivationContext(
             battle_state=battle,
             item=twine,
@@ -208,7 +215,7 @@ class TwineItemFactoryV1Test(unittest.TestCase):
         twine.add_marker_item("diamond", source.item_key)
         battle.rng = Mock()
 
-        battle.dispatch_item_activation(source)
+        source.emit_activation(battle.build_context(source))
 
         self.assertIsNone(twine.neutral_item_count)
         self.assertEqual(owner.health, 10)
@@ -298,9 +305,9 @@ class TwineItemFactoryV1Test(unittest.TestCase):
         source, twine, battle, owner, _, _ = self.make_twine_state()
         battle.rng = Mock()
         battle.rng.random.return_value = 0.0
-        dispatch_spy = spy_on_activation_dispatch(battle)
+        dispatch_spy = spy_on_item_activation(battle)
 
-        battle.dispatch_item_activation(source)
+        source.emit_activation(battle.build_context(source))
 
         self.assertEqual(owner.health, 12)
         self.assertEqual(owner.max_health, 22)
@@ -313,9 +320,9 @@ class TwineItemFactoryV1Test(unittest.TestCase):
         source, twine, battle, owner, _, _ = self.make_twine_state()
         battle.rng = Mock()
         battle.rng.random.return_value = 0.20
-        dispatch_spy = spy_on_activation_dispatch(battle)
+        dispatch_spy = spy_on_item_activation(battle)
 
-        battle.dispatch_item_activation(source)
+        source.emit_activation(battle.build_context(source))
 
         self.assertEqual(owner.health, 10)
         self.assertEqual(owner.max_health, 20)

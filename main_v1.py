@@ -64,6 +64,7 @@ def run_battle_from_config(run_config, item_factories, item_catalog=ITEM_CATALOG
         "collect_player_state_history",
         False,
     )
+    battle_state.prepareItems()
     battle_state.run(max_frames=max_frames, frame_delta=frame_delta)
 
     finish_reason = "winner" if battle_state.winner is not None else "max_frames_reached"

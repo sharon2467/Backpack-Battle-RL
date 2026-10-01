@@ -1,12 +1,11 @@
 from __future__ import annotations
 import math
 import random
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass, field, replace
 from typing import Sequence
 
 ATTACK_PHASE_ON_ATTACKED = "on_attacked"
 ATTACK_PHASE_ON_ATTACK_MISSED = "on_attack_missed"
-ITEM_ACTIVATION_PHASE_LINKED = "linked_item_activated"
 ITEM_MARKER_TYPES = ("star", "diamond", "triangle")
 SUPPORTED_ATTACK_REACTION_PHASES = (
     ATTACK_PHASE_ON_ATTACKED,
@@ -33,11 +32,18 @@ def calculate_next_fatigue_damage(
     return previous + 1
 
 class Trigger:
+    def __init__(self):
+        self.idx: int|None = None
+        self.item:BattleItem|None = None
     def update(self, context:BattleContext)->bool:
         raise NotImplementedError("concrete triggers must implement update")
+    def connect_bus(self, context:BattleContext)->None:
+        pass
 class Effect:
     def apply(self, context:BattleContext)->bool:
         raise NotImplementedError("concrete effects must implement apply")
+    def __init__(self):
+        self.item:BattleItem|None = None
 class BattleItem:
     item_id = None
     display_name = None
@@ -82,26 +88,40 @@ class BattleItem:
             marker_type: []
             for marker_type in ITEM_MARKER_TYPES
         }
-
+        self.has_prepared = False
         if not self.triggers:
             raise ValueError("battle item must have at least one trigger")
         if not self.effects:
             raise ValueError("battle item must have at least one effect")
         self.trigger_results = [False for _ in self.triggers]
+        for idx, trigger in enumerate(self.triggers):
+            trigger.item = self
+            trigger.idx = idx
+        for effect in self.effects:
+            effect.item = self
 
-    def update_triggers(self, context:BattleContext)->list[bool]:
-        results = []
-        for trigger in self.triggers:
+    def update_triggers(self, context:BattleContext,trigger_index:int|None=None)->list[bool]:
+        results = [False for _ in self.triggers]
+        if trigger_index is not None:
+            if trigger_index < 0 or trigger_index >= len(self.triggers):
+                raise ValueError("trigger index out of range")
+            trigger = self.triggers[trigger_index]
             result = trigger.update(context)
             if type(result) is not bool:
                 raise ValueError("trigger update must return a bool")
-            results.append(result)
-
-        self.trigger_results = results
+            results[trigger_index]=result
+        else:
+            for idx,trigger in enumerate(self.triggers):
+                result = trigger.update(context)
+                if type(result) is not bool:
+                    raise ValueError("trigger update must return a bool")
+                results[idx]=result
+        for i in range(len(self.triggers)):
+            self.trigger_results[i] = results[i]
         return results
 
-    def activate_item(self, context:BattleContext)->None:
-        trigger_results = self.update_triggers(context)
+    def activate_item(self, context:BattleContext , trigger_index:int|None=None)->None:
+        trigger_results = self.update_triggers(context, trigger_index)
         self.run_effect(trigger_results, context)
 
     def emit_activation(self, context: BattleContext) -> None:
@@ -111,7 +131,18 @@ class BattleItem:
             self,
             {"action": "item_activation"},
         )
-        context.battle_state.dispatch_item_activation(self)
+        activation_context = ItemActivationContext(
+            battle_state=context.battle_state,
+            item=self,
+            owner=context.owner,
+            opponent=context.opponent,
+            source_item=self,
+        )
+        context.battle_state.emit_signal(
+            self,
+            "item_activation",
+            activation_context,
+        )
 
     def run_effect(self, trigger_results:list[bool], context:BattleContext)->None:
         raise NotImplementedError("concrete items must run their effect logic")
@@ -130,6 +161,12 @@ class BattleItem:
         if linked_key not in self.marker_items[marker_type]:
             self.marker_items[marker_type].append(linked_key)
         self.add_linked_item(linked_key)
+    def onPrepare(self, context:BattleContext)->None:
+        if self.has_prepared:
+            raise ValueError("item has already been prepared")
+        for trigger in self.triggers:
+            trigger.connect_bus(context)
+        self.has_prepared = True
 
 @dataclass
 class BuffSlot:
@@ -147,7 +184,7 @@ class DebuffSlot:
     Cold: int = 0
 @dataclass
 class PlayerState:
-    player_id: object = None
+    player_id: str|None = None
     health: int = 0
     max_health: int = 0
     block: int = 0
@@ -232,14 +269,45 @@ class BattleState:
     player_state_history: list[dict[str, object]] = field(
         default_factory=list,
     )
-    _responder_item_cache: dict[
-        object,
-        dict[str, tuple[BattleItem, ...]],
-    ] = field(default_factory=dict, init=False, repr=False)
-    _item_activation_listener_cache: dict[
-        object,
-        dict[str, tuple[BattleItem, ...]],
-    ] = field(default_factory=dict, init=False, repr=False)
+    _bus_cache: dict[tuple[object, str], list[tuple[BattleItem,int]]] = field(default_factory=dict, init=False, repr=False)
+    def prepareItems(self):
+        for player in self.players:
+            for item in player.items.values():
+                context = self.build_context(item)
+                item.onPrepare(context)
+    def emit_signal(
+        self,
+        emitter: BattleItem | PlayerState | None,
+        signalName: str,
+        event_context: BattleContext | None = None,
+    ) -> None:
+        if event_context is not None and event_context.battle_state is not self:
+            raise ValueError("event context belongs to another battle")
+        if hasattr(emitter, "item_key"):
+            emitter_key = ("item",emitter.player_id,emitter.item_key)
+        elif hasattr(emitter, "player_id"):
+            emitter_key = ("player",emitter.player_id)
+        elif emitter is None:
+            emitter_key = "environment"
+        if (emitter_key, signalName) in self._bus_cache:
+            for listener in self._bus_cache[(emitter_key, signalName)]:
+                listener_item,listener_idx = listener
+                context = (
+                    event_context.for_item(listener_item)
+                    if event_context is not None
+                    else self.build_context(listener_item)
+                )
+                listener_item.activate_item(context,listener_idx)
+    def connect(self, emitter, signalName, listener:tuple[BattleItem,int]):
+        if hasattr(emitter, "item_key"):
+            emitter_key = ("item",emitter.player_id,emitter.item_key)
+        elif hasattr(emitter, "player_id"):
+            emitter_key = ("player",emitter.player_id)
+        elif emitter is None:
+            emitter_key = "environment"
+        if (emitter_key, signalName) not in self._bus_cache:
+            self._bus_cache[(emitter_key, signalName)] = []
+        self._bus_cache[(emitter_key, signalName)].append(listener)
 
     def record_log(
         self,
@@ -498,70 +566,6 @@ class BattleState:
         opponent = self.get_opponent(item.player_id)
         return BattleContext(self, item, owner, opponent)
 
-    def build_item_activation_context(
-        self,
-        listener: BattleItem,
-        source_item: BattleItem,
-    ) -> ItemActivationContext:
-        listener_context = self.build_context(listener)
-        if source_item.player_id != listener.player_id:
-            raise ValueError(
-                "activation source and listener must have the same owner"
-            )
-        if (
-            listener_context.owner.items.get(source_item.item_key)
-            is not source_item
-        ):
-            raise ValueError(
-                "activation source is not owned by the listener owner"
-            )
-        return ItemActivationContext(
-            battle_state=self,
-            item=listener,
-            owner=listener_context.owner,
-            opponent=listener_context.opponent,
-            source_item=source_item,
-        )
-
-    def _get_item_activation_listeners(
-        self,
-        source_item: BattleItem,
-    ) -> tuple[BattleItem, ...]:
-        owner = self.get_player(source_item.player_id)
-        if owner.items.get(source_item.item_key) is not source_item:
-            raise ValueError("activation source is not part of this battle")
-
-        player_cache = self._item_activation_listener_cache.setdefault(
-            owner.player_id,
-            {},
-        )
-        if source_item.item_key in player_cache:
-            return player_cache[source_item.item_key]
-
-        matching_items = tuple(
-            item
-            for item in owner.items.values()
-            if source_item.item_key in item.linked_items
-            and any(
-                getattr(trigger, "item_activation_phase", None)
-                == ITEM_ACTIVATION_PHASE_LINKED
-                for trigger in item.triggers
-            )
-        )
-        player_cache[source_item.item_key] = matching_items
-        return matching_items
-
-    def dispatch_item_activation(
-        self,
-        source_item: BattleItem,
-    ) -> None:
-        for listener in self._get_item_activation_listeners(source_item):
-            context = self.build_item_activation_context(
-                listener,
-                source_item,
-            )
-            listener.activate_item(context)
-
     def build_attack_reaction_context(
         self,
         item: BattleItem,
@@ -583,35 +587,8 @@ class BattleState:
             attack_event=attack_event,
         )
 
-    def _get_attack_reaction_items(
-        self,
-        responder: PlayerState,
-        attack_phase: str,
-    )->tuple[BattleItem, ...]:
-        if attack_phase not in SUPPORTED_ATTACK_REACTION_PHASES:
-            raise ValueError(f"unsupported attack reaction phase: {attack_phase}")
-        if self.get_player(responder.player_id) is not responder:
-            raise ValueError("attack responder is not part of this battle")
-
-        phase_cache = self._responder_item_cache.setdefault(
-            responder.player_id,
-            {},
-        )
-        if attack_phase in phase_cache:
-            return phase_cache[attack_phase]
-
-        matching_items = tuple(
-            item
-            for item in responder.items.values()
-            if any(
-                getattr(trigger, "attack_phase", None) == attack_phase
-                for trigger in item.triggers
-            )
-        )
-        phase_cache[attack_phase] = matching_items
-        return matching_items
-
     def resolve_attack(self, event: AttackEvent)->AttackEvent:
+        item = event.source_item
         if event.is_resolved:
             raise ValueError("attack event is already resolved")
         if event.attacker is event.defender:
@@ -633,11 +610,9 @@ class BattleState:
                     "hit": False,
                 },
             )
-            self.dispatch_attack_reactions(
-                ATTACK_PHASE_ON_ATTACK_MISSED,
-                event.defender,
-                event,
-            )
+            context = self.build_attack_reaction_context(item, ATTACK_PHASE_ON_ATTACK_MISSED, event)
+
+            self.emit_signal(event.attacker,ATTACK_PHASE_ON_ATTACK_MISSED,context)
             if event.is_resolved:
                 raise ValueError("cannot resolve an already resolved attack event")
             if event.hit is not False:
@@ -650,11 +625,8 @@ class BattleState:
             event.max_damage,
         )
         event.pending_damage = event.rolled_damage
-        self.dispatch_attack_reactions(
-            ATTACK_PHASE_ON_ATTACKED,
-            event.defender,
-            event,
-        )
+        context = self.build_attack_reaction_context(item, ATTACK_PHASE_ON_ATTACKED, event)
+        self.emit_signal(event.defender,ATTACK_PHASE_ON_ATTACKED,context)
         if event.is_resolved:
             raise ValueError("cannot commit a resolved attack event")
         if event.hit is not True:
@@ -768,25 +740,6 @@ class BattleState:
                 },
             )
 
-    def dispatch_attack_reactions(
-        self,
-        phase: str,
-        responder: PlayerState,
-        event: AttackEvent,
-    )->None:
-        if phase not in SUPPORTED_ATTACK_REACTION_PHASES:
-            raise ValueError(f"unsupported attack reaction phase: {phase}")
-        if event.is_resolved:
-            raise ValueError("cannot dispatch a resolved attack event")
-
-        for item in self._get_attack_reaction_items(responder, phase):
-            context = self.build_attack_reaction_context(
-                item,
-                phase,
-                event,
-            )
-            item.activate_item(context)
-
     def commit_health_reduction(
         self,
         player: PlayerState,
@@ -853,10 +806,12 @@ class BattleContext:
 
     def for_item(self, item: BattleItem)->BattleContext:
         if item.player_id == self.owner.player_id:
-            return BattleContext(self.battle_state, item, self.owner, self.opponent)
-        if item.player_id == self.opponent.player_id:
-            return BattleContext(self.battle_state, item, self.opponent, self.owner)
-        raise ValueError(f"item has unknown player_id: {item.player_id}")
+            owner, opponent = self.owner, self.opponent
+        elif item.player_id == self.opponent.player_id:
+            owner, opponent = self.opponent, self.owner
+        else:
+            raise ValueError(f"item has unknown player_id: {item.player_id}")
+        return replace(self, item=item, owner=owner, opponent=opponent)
 
 
 @dataclass
@@ -868,17 +823,6 @@ class ItemActivationContext(BattleContext):
 class AttackReactionContext(BattleContext):
     attack_phase: str
     attack_event: AttackEvent
-
-    def for_item(self, item: BattleItem)->AttackReactionContext:
-        base_context = super().for_item(item)
-        return AttackReactionContext(
-            battle_state=base_context.battle_state,
-            item=base_context.item,
-            owner=base_context.owner,
-            opponent=base_context.opponent,
-            attack_phase=self.attack_phase,
-            attack_event=self.attack_event,
-        )
 
 def evaluate_layout(placements, opponent:PlayerState):
     raise NotImplementedError(

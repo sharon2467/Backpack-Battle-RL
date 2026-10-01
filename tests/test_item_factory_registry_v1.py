@@ -68,11 +68,17 @@ from item_triggers_v1 import (
 )
 
 
-def spy_on_activation_dispatch(battle_state):
-    original_dispatch = battle_state.dispatch_item_activation
-    dispatch_spy = Mock(wraps=original_dispatch)
-    battle_state.dispatch_item_activation = dispatch_spy
-    return dispatch_spy
+def spy_on_item_activation(battle_state):
+    original_emit = battle_state.emit_signal
+    activation_spy = Mock()
+
+    def emit_signal(emitter, signal_name, event_context=None):
+        if signal_name == "item_activation":
+            activation_spy(emitter)
+        original_emit(emitter, signal_name, event_context)
+
+    battle_state.emit_signal = emit_signal
+    return activation_spy
 
 
 class ItemFactoryRegistryV1Test(unittest.TestCase):
@@ -631,13 +637,16 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         buckler = battle.players[1].items["wooden_buckler1"]
         self.assertIsInstance(buckler, WoodenBuckler)
         self.assertEqual(battle.active_items, [sword])
-        self.assertEqual(
-            battle._get_attack_reaction_items(
-                battle.players[1],
-                ATTACK_PHASE_ON_ATTACKED,
-            ),
-            (buckler,),
+        battle.prepareItems()
+        battle.rng = Mock()
+        battle.rng.random.side_effect = [0.0, 0.0]
+        battle.rng.randint.return_value = 8
+        event = AttackEvent(
+            battle.players[0], battle.players[1], sword,
+            ("melee",), 8, 8, 100,
         )
+        battle.resolve_attack(event)
+        self.assertEqual(event.prevented_damage, 7)
 
     def test_wooden_sword_is_registered_with_metadata_and_components(self):
         sword = DEFAULT_ITEM_FACTORIES["wooden_sword"](
@@ -682,7 +691,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             frame_delta=0.1,
             stamina=2.0,
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -704,7 +713,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             frame_delta=1.4,
             stamina=2.0,
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -727,7 +736,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             frame_delta=1.4,
             stamina=2.0,
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -746,7 +755,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             frame_delta=1.4,
             stamina=0.5,
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -910,7 +919,8 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
     ):
         effect = AttackEffect(2, 3, 85)
         context = self.make_context()
-        context.item = Mock(item_types=("Weapon",))
+        context.item = WoodenSword(item_key="source1", player_id=context.owner.player_id)
+        context.owner.items[context.item.item_key] = context.item
         context.battle_state.rng = Mock()
         context.battle_state.rng.random.return_value = 0.85
 
@@ -923,7 +933,8 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
     def test_ranged_attack_does_not_apply_spikes_or_vampirism(self):
         effect = AttackEffect(2, 3, 100)
         context = self.make_context(health=5, max_health=10)
-        context.item = Mock(item_types=("Weapon",))
+        context.item = WoodenSword(item_key="source1", player_id=context.owner.player_id)
+        context.owner.items[context.item.item_key] = context.item
         context.owner.buffs.Vampirism = 5
         context.opponent.buffs.Spikes = 5
         context.battle_state.rng = Mock()
@@ -1025,7 +1036,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             frame_delta=1.7,
             stamina=2.0,
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -1046,7 +1057,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             frame_delta=1.7,
             stamina=2.0,
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -1065,7 +1076,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             frame_delta=1.7,
             stamina=0.6,
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -1277,7 +1288,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             owner,
             opponent,
         )
-        dispatch_spy = spy_on_activation_dispatch(battle_state)
+        dispatch_spy = spy_on_item_activation(battle_state)
 
         shell.activate_item(context)
         battle_state.commit_health_reduction(owner, 0, owner.health - 1)
@@ -1566,7 +1577,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         wand, context = self.make_wand_of_equilibrium_context(
             frame_delta=3.2,
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -1952,7 +1963,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             owner,
             opponent,
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -1993,7 +2004,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             owner,
             opponent,
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -2824,7 +2835,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             stamina=2.0,
             max_stamina=5.0,
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -2846,7 +2857,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             stamina=2.0,
             max_stamina=5.0,
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -2929,7 +2940,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             opponent_vampirism=2,
             rng=rng,
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -2953,7 +2964,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             opponent_vampirism=2,
             rng=rng,
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -2977,7 +2988,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             opponent_vampirism=2,
             rng=rng,
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -3050,7 +3061,8 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
     ):
         effect = AttackEffect(1, 3, 90)
         context = self.make_context()
-        context.item = Mock(item_types=("Weapon",))
+        context.item = WoodenSword(item_key="source1", player_id=context.owner.player_id)
+        context.owner.items[context.item.item_key] = context.item
         context.battle_state.rng = Mock()
         context.battle_state.rng.random.return_value = 0.0
         context.battle_state.rng.randint.return_value = 1
@@ -3070,7 +3082,8 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         effect.stack_damage_modifier(2)
         effect.stack_damage_modifier(3)
         context = self.make_context()
-        context.item = Mock(item_types=("Weapon",))
+        context.item = WoodenSword(item_key="source1", player_id=context.owner.player_id)
+        context.owner.items[context.item.item_key] = context.item
         context.owner.buffs.Empower = 1
         context.battle_state.rng = Mock()
         context.battle_state.rng.random.return_value = 0.0
@@ -3093,7 +3106,8 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
 
         effect = PreparingAttackEffect()
         context = self.make_context()
-        context.item = Mock(item_types=("Weapon",))
+        context.item = WoodenSword(item_key="source1", player_id=context.owner.player_id)
+        context.owner.items[context.item.item_key] = context.item
         context.battle_state.rng = Mock()
         context.battle_state.rng.random.return_value = 0.0
         context.battle_state.rng.randint.side_effect = [3, 3]
@@ -3332,7 +3346,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             stamina=5.0,
             rng=rng,
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -3356,7 +3370,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             opponent_health=20,
             rng=rng,
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -3474,7 +3488,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
                 ("banana1", "banana", ("Food",)),
             ),
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -3501,7 +3515,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
                 ("banana1", "banana", ("Food",)),
             ),
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -3549,7 +3563,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
                 ("banana1", "banana", ("Food",)),
             ),
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -3624,7 +3638,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         context.owner.buffs.Empower = 10
         context.owner.buffs.Luck = 0
         context.owner.debuffs.Blind = 100
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -3642,7 +3656,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         rng = Mock()
         rat, context = self.make_rat_context(rng=rng)
         rat.effects[0].apply = Mock(return_value=False)
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -3659,7 +3673,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             rng=rng,
             frame_delta=1.0,
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -3964,20 +3978,17 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         broom = battle.players[0].items["broom1"]
         self.assertIsInstance(broom, Broom)
         self.assertIn(broom, battle.active_items)
-        self.assertEqual(
-            battle._get_attack_reaction_items(
-                battle.players[0],
-                ATTACK_PHASE_ON_ATTACK_MISSED,
-            ),
-            (broom,),
+        source = WoodenSword(item_key="opponent_sword", player_id=1)
+        battle.players[1].items[source.item_key] = source
+        battle.prepareItems()
+        battle.rng = Mock()
+        battle.rng.random.return_value = 0.9
+        event = AttackEvent(
+            battle.players[1], battle.players[0], source,
+            ("melee",), 1, 1, 0,
         )
-        self.assertEqual(
-            battle._get_attack_reaction_items(
-                battle.players[0],
-                ATTACK_PHASE_ON_ATTACKED,
-            ),
-            (),
-        )
+        battle.resolve_attack(event)
+        self.assertEqual(broom.miss_damage_bonus, 2)
 
     def test_broom_waits_for_cooldown_without_rng(self):
         rng = Mock()
@@ -3986,7 +3997,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             stamina=5.0,
             rng=rng,
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -4009,7 +4020,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         rng = Mock()
         rng.random.return_value = 0.5
         broom, context, _ = self.make_broom_context(rng=rng)
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -4088,7 +4099,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             stamina=5.0,
             rng=rng,
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
@@ -4111,7 +4122,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             stamina=5.0,
             rng=rng,
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
         self.resolve_opponent_attack(context, accuracy=0)
@@ -4136,7 +4147,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             stamina=5.0,
             rng=rng,
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
         self.resolve_opponent_attack(context, accuracy=0)
@@ -4185,7 +4196,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             stamina=1.0,
             rng=rng,
         )
-        dispatch_spy = spy_on_activation_dispatch(
+        dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
         self.resolve_opponent_attack(context, accuracy=0)
@@ -4303,6 +4314,10 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             frame_delta=1.7,
             rng=rng,
         )
+        opponent.items["opponent_sword1"] = WoodenSword(
+            item_key="opponent_sword1", player_id=opponent.player_id,
+        )
+        battle.prepareItems()
         context = BattleContext(battle, first, owner, opponent)
 
         self.resolve_opponent_attack(context, accuracy=0)
@@ -4568,6 +4583,9 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             stamina=10.0,
             max_stamina=10.0,
         )
+        opponent.items["opponent_sword1"] = WoodenSword(
+            item_key="opponent_sword1", player_id=opponent.player_id,
+        )
         opponent.debuffs.Blind = opponent_blind
         if rng is None:
             rng = Mock()
@@ -4577,6 +4595,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             frame_delta=frame_delta,
             rng=rng,
         )
+        battle_state.prepareItems()
         context = BattleContext(
             battle_state,
             broom,
@@ -4597,7 +4616,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         event = AttackEvent(
             attacker=context.opponent,
             defender=context.owner,
-            source_item=Mock(),
+            source_item=context.opponent.items["opponent_sword1"],
             attack_types=attack_types,
             min_damage=min_damage,
             max_damage=max_damage,
@@ -4713,6 +4732,7 @@ class GooblingSpecTest(unittest.TestCase):
             players=[owner, opponent],
             active_items=[source],
         )
+        battle.prepareItems()
         context = ItemActivationContext(
             battle_state=battle,
             item=goobling,
@@ -4734,7 +4754,7 @@ class GooblingSpecTest(unittest.TestCase):
         item_factories=DEFAULT_ITEM_FACTORIES,
         item_catalog=ITEM_CATALOG,
     ):
-        return initialize_battle(
+        battle = initialize_battle(
             [
                 {
                     "player_id": 0,
@@ -4757,36 +4777,28 @@ class GooblingSpecTest(unittest.TestCase):
             item_catalog=item_catalog,
         )
 
+        battle.prepareItems()
+        return battle
+
     def test_activation_trigger_rejects_unknown_marker_type(self):
         for invalid in ("hex", "", None, 1):
             with self.subTest(invalid=invalid):
                 with self.assertRaises(ValueError):
                     ActivationTrigger(invalid)
 
-    def test_activation_trigger_only_validates_matching_activation_event(
-        self,
-    ):
-        source, goobling, battle, owner, opponent, context = (
-            self.make_linked_goobling_state()
-        )
-        trigger = ActivationTrigger("star")
+    def test_activation_bus_only_routes_connected_sources(self):
+        source, goobling, battle, owner, opponent, _ = self.make_linked_goobling_state()
+        unlinked = WoodenSword(item_key="unlinked1", player_id=owner.player_id)
+        other_side = WoodenSword(item_key="other1", player_id=opponent.player_id)
+        owner.items[unlinked.item_key] = unlinked
+        opponent.items[other_side.item_key] = other_side
         battle.rng = Mock()
-
-        self.assertTrue(trigger.update(context))
-        self.assertFalse(
-            trigger.update(
-                BattleContext(
-                    battle_state=battle,
-                    item=goobling,
-                    owner=owner,
-                    opponent=opponent,
-                )
-            )
-        )
-        goobling.marker_items["star"].clear()
-        self.assertFalse(trigger.update(context))
+        source.emit_activation(battle.build_context(source))
+        self.assertEqual(goobling.triggers[0].activation_count, 1)
+        unlinked.emit_activation(battle.build_context(unlinked))
+        other_side.emit_activation(battle.build_context(other_side))
+        self.assertEqual(goobling.triggers[0].activation_count, 1)
         self.assertEqual(battle.rng.method_calls, [])
-        self.assertIsNotNone(source)
 
     def test_slime_activation_trigger_rejects_invalid_required_count(
         self,
@@ -4796,21 +4808,10 @@ class GooblingSpecTest(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     SlimeActivationTrigger(invalid)
 
-    def test_slime_activation_trigger_ignores_base_context(self):
-        source, goobling, battle, owner, opponent, _ = (
-            self.make_linked_goobling_state()
-        )
-        trigger = goobling.triggers[0]
-        context = BattleContext(
-            battle_state=battle,
-            item=goobling,
-            owner=owner,
-            opponent=opponent,
-        )
-
-        self.assertFalse(trigger.update(context))
-        self.assertEqual(trigger.activation_count, 0)
-        self.assertIsNotNone(source)
+    def test_activation_bus_ignores_other_signals(self):
+        source, goobling, battle, _, _, _ = self.make_linked_goobling_state()
+        battle.emit_signal(source, "unrelated_event", battle.build_context(source))
+        self.assertEqual(goobling.triggers[0].activation_count, 0)
 
     def test_slime_activation_trigger_ignores_unlinked_source(self):
         _, goobling, _, _, _, context = (
@@ -4903,11 +4904,11 @@ class GooblingSpecTest(unittest.TestCase):
             self.make_linked_goobling_state()
         )
 
-        battle.dispatch_item_activation(source)
+        source.emit_activation(battle.build_context(source))
         self.assertEqual(owner.health, 10)
-        battle.dispatch_item_activation(source)
+        source.emit_activation(battle.build_context(source))
         self.assertEqual(owner.health, 10)
-        battle.dispatch_item_activation(source)
+        source.emit_activation(battle.build_context(source))
 
         self.assertEqual(owner.health, 14)
         self.assertEqual(goobling.triggers[0].activation_count, 0)
@@ -4918,7 +4919,7 @@ class GooblingSpecTest(unittest.TestCase):
         )
 
         for _ in range(6):
-            battle.dispatch_item_activation(source)
+            source.emit_activation(battle.build_context(source))
 
         self.assertEqual(owner.health, 18)
         self.assertEqual(goobling.triggers[0].activation_count, 0)
@@ -4929,7 +4930,7 @@ class GooblingSpecTest(unittest.TestCase):
         )
 
         for _ in range(4):
-            battle.dispatch_item_activation(source)
+            source.emit_activation(battle.build_context(source))
 
         self.assertEqual(owner.health, 20)
         self.assertEqual(goobling.triggers[0].activation_count, 1)
@@ -4940,16 +4941,15 @@ class GooblingSpecTest(unittest.TestCase):
         source, goobling, battle, _, _, _ = (
             self.make_linked_goobling_state(health=20, max_health=20)
         )
-        original_dispatch = battle.dispatch_item_activation
-        battle.dispatch_item_activation = Mock(wraps=original_dispatch)
+        activation_spy = spy_on_item_activation(battle)
 
         for _ in range(3):
-            battle.dispatch_item_activation(source)
+            source.emit_activation(battle.build_context(source))
 
         self.assertEqual(
             [
                 dispatch_call
-                for dispatch_call in battle.dispatch_item_activation.call_args_list
+                for dispatch_call in activation_spy.call_args_list
                 if dispatch_call == call(goobling)
             ],
             [call(goobling)],
@@ -5024,7 +5024,7 @@ class GooblingSpecTest(unittest.TestCase):
         goobling = battle.players[0].items["goobling1"]
 
         self.assertEqual(goobling.linked_items, ["wide_source1"])
-        battle.dispatch_item_activation(source)
+        source.emit_activation(battle.build_context(source))
         self.assertEqual(goobling.triggers[0].activation_count, 1)
 
     def test_goobling_catalog_rotates_shape_and_two_stars(self):
@@ -5332,7 +5332,7 @@ class GooblingSpecTest(unittest.TestCase):
         first = battle.players[0].items["goobling1"]
         second = battle.players[0].items["goobling2"]
 
-        battle.dispatch_item_activation(source)
+        source.emit_activation(battle.build_context(source))
 
         self.assertEqual(first.triggers[0].activation_count, 1)
         self.assertEqual(second.triggers[0].activation_count, 1)
@@ -5358,9 +5358,10 @@ class GooblingSpecTest(unittest.TestCase):
         )
         opponent = PlayerState(player_id=1, health=20, max_health=20)
         battle = BattleState(players=[owner, opponent])
+        battle.prepareItems()
 
         for _ in range(3):
-            battle.dispatch_item_activation(source)
+            source.emit_activation(battle.build_context(source))
 
         self.assertEqual(owner.health, 14)
         self.assertEqual(first.triggers[0].activation_count, 0)
@@ -5399,11 +5400,11 @@ class GooblingSpecTest(unittest.TestCase):
                     max_health=20,
                 )
                 battle = BattleState(players=[owner, opponent])
-                battle.dispatch_item_activation = Mock()
+                battle.emit_signal = Mock()
 
                 item.activate_item(battle.build_context(item))
 
-                battle.dispatch_item_activation.assert_not_called()
+                battle.emit_signal.assert_not_called()
 
 
 if __name__ == "__main__":

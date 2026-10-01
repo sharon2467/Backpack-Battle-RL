@@ -149,9 +149,9 @@ OK
 ### 仍有的资源与运行风险
 
 1. 新解包没有实际 `runs*.cache`；这些文件位于游戏运行时 `user://`，必须从匹配版本用户数据目录另行取得。
-2. 明文 `Sheets/CSV/ItemData.csv` 不存在。编辑器分支会先读取它，再以 `File.WRITE` 打开有效的 `ItemData_e.csv`，因此不能在唯一副本上直接用 Godot 编辑器运行。
+2. 原始解包没有明文 `Sheets/CSV/ItemData.csv`，旧编辑器分支会覆盖有效的 `ItemData_e.csv`。2026-09-27 已从原游戏运行时提取并校验明文表，编辑器分支改为只读明文，不再覆盖加密原件；修复过程见 `decompiled_godotsteam_startup_fix_spec.md`。
 3. 三个 editor/debug 场景、一个默认关闭的 Statistics 脚本及少量插件示例资源仍断链，但不阻塞无 GUI 训练数据提取。
-4. 精确运行原工程需要 GodotSteam 3.6.0；本次没有启动引擎，不能把静态完整性等同于运行验证。
+4. 原版运行时为 GodotSteam 3.6.0；本机 GodotSteam 3.6.2 经兼容修复后已用 GLES3 实测标题、非排位商店和一场 Dark Reflection 离线战斗。Steam 在线榜单及战斗流程与原版逐项等价仍未验证；详见 `docs/decompiled_godotsteam_startup_fix_spec.md`。
 5. 动态资源路径和场景继承必须递归解析，静态路径存在率不是完整语义覆盖率。
 
 ## 当前实现与游戏源码的主要差距

@@ -14,6 +14,7 @@ SUPPORTED_ATTACK_TYPES = ("melee", "ranged", "effect")
 
 class StaminaConsumptionEffect(Effect):
     def __init__(self, stamina_cost: float):
+        super().__init__()
         self.stamina_cost = stamina_cost
 
     def apply(self, context: BattleContext) -> bool:
@@ -46,6 +47,7 @@ class StaminaConsumptionEffect(Effect):
 
 class HealEffect(Effect):
     def __init__(self, amount: int):
+        super().__init__()
         if type(amount) is not int or amount < 0:
             raise ValueError("healing amount must be a non-negative int")
         self.amount = amount
@@ -69,6 +71,7 @@ class HealEffect(Effect):
 
 class GainMaxHealthEffect(Effect):
     def __init__(self, amount: int):
+        super().__init__()
         if type(amount) is not int or amount <= 0:
             raise ValueError(
                 "maximum health gain must be a positive int"
@@ -125,6 +128,7 @@ class HolyLinkedHealEffect(HealEffect):
 
 class RegenerateStaminaEffect(Effect):
     def __init__(self, amount: float):
+        super().__init__()
         if (
             isinstance(amount, bool)
             or not isinstance(amount, (int, float))
@@ -156,6 +160,7 @@ class RegenerateStaminaEffect(Effect):
 
 class GainBlockEffect(Effect):
     def __init__(self, amount: int):
+        super().__init__()
         if type(amount) is not int or amount < 0:
             raise ValueError("block amount must be a non-negative int")
         self.amount = amount
@@ -179,6 +184,7 @@ class GainBlockEffect(Effect):
 
 class RemoveOpponentBlockEffect(Effect):
     def __init__(self, amount: int):
+        super().__init__()
         if type(amount) is not int or amount < 0:
             raise ValueError(
                 "removed block amount must be a non-negative int"
@@ -204,6 +210,7 @@ class RemoveOpponentBlockEffect(Effect):
 
 class GainBuffEffect(Effect):
     def __init__(self, buff_name: str, amount: int):
+        super().__init__()
         if (
             type(buff_name) is not str
             or buff_name not in BuffSlot.__annotations__
@@ -240,6 +247,7 @@ class GainBuffEffect(Effect):
 
 class UseBuffEffect(Effect):
     def __init__(self, buff_name: str, amount: int):
+        super().__init__()
         if (
             type(buff_name) is not str
             or buff_name not in BuffSlot.__annotations__
@@ -291,6 +299,7 @@ class UseBuffEffect(Effect):
 
 class BuffRemovalEffect(Effect):
     def __init__(self, buff_name: str, amount: int):
+        super().__init__()
         if (
             type(buff_name) is not str
             or buff_name not in BuffSlot.__annotations__
@@ -332,6 +341,7 @@ class BuffRemovalEffect(Effect):
 
 class InflictDebuffEffect(Effect):
     def __init__(self, debuff_name: str, amount: int):
+        super().__init__()
         if (
             type(debuff_name) is not str
             or debuff_name not in DebuffSlot.__annotations__
@@ -372,6 +382,7 @@ class InflictDebuffEffect(Effect):
 
 class CleanseDebuffEffect(Effect):
     def __init__(self, debuff_name: str, amount: int):
+        super().__init__()
         if (
             type(debuff_name) is not str
             or debuff_name not in DebuffSlot.__annotations__
@@ -417,6 +428,7 @@ class AttackEffect(Effect):
         max_damage: int,
         accuracy: float,
     ):
+        super().__init__()
         if min_damage < 0:
             raise ValueError("minimum damage cannot be negative")
         if max_damage < min_damage:
@@ -468,6 +480,7 @@ class AttackEffect(Effect):
 
 class LinkedWeaponDamageEffect(Effect):
     def __init__(self, amount: int):
+        super().__init__()
         if type(amount) is not int or amount < 0:
             raise ValueError(
                 "linked weapon damage must be a non-negative int"
@@ -555,6 +568,7 @@ class FoodLinkedMeleeAttackEffect(AttackEffect):
 
 class PreventAttackDamageEffect(Effect):
     def __init__(self, amount: int):
+        super().__init__()
         if amount < 0:
             raise ValueError("prevented damage cannot be negative")
         self.amount = amount
@@ -600,6 +614,7 @@ class PreventAttackDamageEffect(Effect):
 
 class RemoveOpponentStaminaEffect(Effect):
     def __init__(self, amount: float):
+        super().__init__()
         if amount < 0:
             raise ValueError("removed stamina cannot be negative")
         self.amount = amount

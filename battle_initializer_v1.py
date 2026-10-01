@@ -93,7 +93,6 @@ def _create_battle_items(placed_items, player_id, item_factories):
 
     return items_by_key
 
-
 def _validate_battle_item(battle_item, item_id, item_key, player_id):
     if not isinstance(battle_item, BattleItem):
         raise ValueError("item factory must return a BattleItem")
