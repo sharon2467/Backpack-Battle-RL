@@ -4,7 +4,7 @@ from unittest.mock import Mock, call
 from basic_backpack_v1 import ITEM_CATALOG, place_item
 from battle_initializer_v1 import initialize_battle
 from battle_module_v1 import (
-    ATTACK_PHASE_ON_ATTACKED,
+    ATTACK_PHASE_PRE_TAKE_DAMAGE,
     ATTACK_PHASE_ON_ATTACK_MISSED,
     AttackEvent,
     AttackReactionContext,

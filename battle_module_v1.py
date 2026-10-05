@@ -2,13 +2,28 @@ from __future__ import annotations
 import math
 import random
 from dataclasses import asdict, dataclass, field, replace
-from typing import Sequence
+from typing import TYPE_CHECKING
 
-ATTACK_PHASE_ON_ATTACKED = "on_attacked"
+if TYPE_CHECKING:
+    from item_factory_registry_v1 import BattleItem
+
+ATTACK_PHASE_PRE_DEAL_DAMAGE_EARLY = "pre_deal_damage_early"
+ATTACK_PHASE_PRE_TAKE_DAMAGE = "pre_take_damage"
+ATTACK_PHASE_PRE_DEAL_DAMAGE_LATE = "pre_deal_damage_late"
+ATTACK_PHASE_PRE_TAKE_DAMAGE_LATE = "pre_take_damage_late"
+ATTACK_PHASE_CHARACTER_ATTACKED = "character_attacked"
+ATTACK_PHASE_CHARACTER_DAMAGED = "character_damaged"
+ATTACK_PHASE_ATTACKED = "attacked"
 ATTACK_PHASE_ON_ATTACK_MISSED = "on_attack_missed"
 ITEM_MARKER_TYPES = ("star", "diamond", "triangle")
 SUPPORTED_ATTACK_REACTION_PHASES = (
-    ATTACK_PHASE_ON_ATTACKED,
+    ATTACK_PHASE_PRE_DEAL_DAMAGE_EARLY,
+    ATTACK_PHASE_PRE_TAKE_DAMAGE,
+    ATTACK_PHASE_PRE_DEAL_DAMAGE_LATE,
+    ATTACK_PHASE_PRE_TAKE_DAMAGE_LATE,
+    ATTACK_PHASE_CHARACTER_ATTACKED,
+    ATTACK_PHASE_CHARACTER_DAMAGED,
+    ATTACK_PHASE_ATTACKED,
     ATTACK_PHASE_ON_ATTACK_MISSED,
 )
 NIGHTFALL_FATIGUE_START_TIME = 17.0
@@ -31,142 +46,8 @@ def calculate_next_fatigue_damage(
         return previous + previous // 10 + 1
     return previous + 1
 
-class Trigger:
-    def __init__(self):
-        self.idx: int|None = None
-        self.item:BattleItem|None = None
-    def update(self, context:BattleContext)->bool:
-        raise NotImplementedError("concrete triggers must implement update")
-    def connect_bus(self, context:BattleContext)->None:
-        pass
-class Effect:
-    def apply(self, context:BattleContext)->bool:
-        raise NotImplementedError("concrete effects must implement apply")
-    def __init__(self):
-        self.item:BattleItem|None = None
-class BattleItem:
-    item_id = None
-    display_name = None
-    item_classes = ()
-    rarity = None
-    cost = None
-    item_types = ()
-    icon_types = ()
-    is_active_item = False
-    is_crafted = False
 
-    def __init__(
-        self,
-        item_id:str|None=None,
-        item_key:str|None=None,
-        player_id:int|None=None,
-        is_active_item:bool=False,
-        triggers:Sequence[Trigger]|None=None,
-        effects:Sequence[Effect]|None=None,
-        linked_items:Sequence[str]|None=None,
-        display_name:str|None=None,
-        item_classes:tuple[str, ...]|None=None,
-        rarity:str|None=None,
-        cost:int|None=None,
-        item_types:tuple[str, ...]|None=None,
-        icon_types:tuple[str, ...]|None=None,
-    ):
-        self.item_id = type(self).item_id if item_id is None else item_id
-        self.item_key = item_key
-        self.player_id = player_id
-        self.display_name = type(self).display_name if display_name is None else display_name
-        self.item_classes = type(self).item_classes if item_classes is None else item_classes
-        self.rarity = type(self).rarity if rarity is None else rarity
-        self.cost = type(self).cost if cost is None else cost
-        self.item_types = type(self).item_types if item_types is None else item_types
-        self.icon_types = type(self).icon_types if icon_types is None else icon_types
-        self.is_active_item = type(self).is_active_item if is_active_item is None else is_active_item
-        self.triggers = list(triggers) if triggers is not None else []
-        self.effects = list(effects) if effects is not None else []
-        self.linked_items = list(linked_items) if linked_items is not None else []
-        self.marker_items = {
-            marker_type: []
-            for marker_type in ITEM_MARKER_TYPES
-        }
-        self.has_prepared = False
-        if not self.triggers:
-            raise ValueError("battle item must have at least one trigger")
-        if not self.effects:
-            raise ValueError("battle item must have at least one effect")
-        self.trigger_results = [False for _ in self.triggers]
-        for idx, trigger in enumerate(self.triggers):
-            trigger.item = self
-            trigger.idx = idx
-        for effect in self.effects:
-            effect.item = self
 
-    def update_triggers(self, context:BattleContext,trigger_index:int|None=None)->list[bool]:
-        results = [False for _ in self.triggers]
-        if trigger_index is not None:
-            if trigger_index < 0 or trigger_index >= len(self.triggers):
-                raise ValueError("trigger index out of range")
-            trigger = self.triggers[trigger_index]
-            result = trigger.update(context)
-            if type(result) is not bool:
-                raise ValueError("trigger update must return a bool")
-            results[trigger_index]=result
-        else:
-            for idx,trigger in enumerate(self.triggers):
-                result = trigger.update(context)
-                if type(result) is not bool:
-                    raise ValueError("trigger update must return a bool")
-                results[idx]=result
-        for i in range(len(self.triggers)):
-            self.trigger_results[i] = results[i]
-        return results
-
-    def activate_item(self, context:BattleContext , trigger_index:int|None=None)->None:
-        trigger_results = self.update_triggers(context, trigger_index)
-        self.run_effect(trigger_results, context)
-
-    def emit_activation(self, context: BattleContext) -> None:
-        if context.item is not self:
-            raise ValueError("activation context item mismatch")
-        context.battle_state.record_log(
-            self,
-            {"action": "item_activation"},
-        )
-        activation_context = ItemActivationContext(
-            battle_state=context.battle_state,
-            item=self,
-            owner=context.owner,
-            opponent=context.opponent,
-            source_item=self,
-        )
-        context.battle_state.emit_signal(
-            self,
-            "item_activation",
-            activation_context,
-        )
-
-    def run_effect(self, trigger_results:list[bool], context:BattleContext)->None:
-        raise NotImplementedError("concrete items must run their effect logic")
-
-    def add_linked_item(self, linked_key:str):
-        if linked_key not in self.linked_items:
-            self.linked_items.append(linked_key)
-
-    def add_marker_item(
-        self,
-        marker_type: str,
-        linked_key: str,
-    ) -> None:
-        if marker_type not in ITEM_MARKER_TYPES:
-            raise ValueError(f"unsupported marker type: {marker_type}")
-        if linked_key not in self.marker_items[marker_type]:
-            self.marker_items[marker_type].append(linked_key)
-        self.add_linked_item(linked_key)
-    def onPrepare(self, context:BattleContext)->None:
-        if self.has_prepared:
-            raise ValueError("item has already been prepared")
-        for trigger in self.triggers:
-            trigger.connect_bus(context)
-        self.has_prepared = True
 
 @dataclass
 class BuffSlot:
@@ -228,10 +109,24 @@ class AttackEvent:
     defender: PlayerState
     source_item: BattleItem
     attack_types: tuple[str, ...]
+
     min_damage: int
     max_damage: int
+
     accuracy: float
     hit: bool | None = None
+
+    can_be_blocked: bool = True
+    can_be_spiked: bool = True
+    can_be_vampiric: bool = True
+    can_activate_item:bool = True
+    can_miss: bool = True
+
+    can_crit: bool = True
+    crit_chance: float = 0.0
+    crit_multiplier: float = 2.0
+    crit: bool=False
+
     rolled_damage: int = 0
     pending_damage: int = 0
     prevented_damage: int = 0
@@ -241,7 +136,8 @@ class AttackEvent:
     final_blocked_damage: int = 0
     final_health_damage: int = 0
 
-
+    log_handle: LogHandle | None = None
+    trigger_log_handle: LogHandle | None = None
 class _BattleFinishedSignal(Exception):
     pass
 
@@ -598,10 +494,24 @@ class BattleState:
         if self.get_player(event.defender.player_id) is not event.defender:
             raise ValueError("attack defender is not part of this battle")
 
+        is_attack = any(
+            attack_type in event.attack_types
+            for attack_type in ("melee", "ranged")
+        )
+        final_damage = 0
         hit_roll = self.rng.random() * 100
         event.hit = hit_roll < event.accuracy
+        if is_attack:
+            context = self.build_attack_reaction_context(
+                item, ATTACK_PHASE_PRE_DEAL_DAMAGE_EARLY, event,
+            )
+            self.emit_signal(item, ATTACK_PHASE_PRE_DEAL_DAMAGE_EARLY, context)
+            early_hook = getattr(item, "onPreDealDamage_early", None)
+            if early_hook is not None:
+                early_hook(context)
+
         if not event.hit:
-            self.record_log(
+            event.log_handle=self.record_log(
                 event.source_item,
                 {
                     "action": "attack",
@@ -618,51 +528,81 @@ class BattleState:
             if event.hit is not False:
                 raise ValueError("cannot resolve an attack whose hit result changed")
             event.is_resolved = True
-            return event
-
-        event.rolled_damage = self.rng.randint(
-            event.min_damage,
-            event.max_damage,
-        )
-        event.pending_damage = event.rolled_damage
-        context = self.build_attack_reaction_context(item, ATTACK_PHASE_ON_ATTACKED, event)
-        self.emit_signal(event.defender,ATTACK_PHASE_ON_ATTACKED,context)
-        if event.is_resolved:
-            raise ValueError("cannot commit a resolved attack event")
-        if event.hit is not True:
-            raise ValueError("cannot commit an attack that did not hit")
-        if event.pending_damage < 0:
-            raise ValueError("pending attack damage cannot be negative")
-        event.block_damage = min(event.defender.block, event.pending_damage)
-        event.health_damage = event.pending_damage - event.block_damage
-        event.is_resolved = True
-        log_handle = self.record_log(
-            event.source_item,
-            {
-                "action": "attack",
-                "target_player_id": event.defender.player_id,
-                "attack_types": list(event.attack_types),
-                "hit": True,
-                "block_damage": event.block_damage,
-                "health_damage": event.health_damage,
-            },
-        )
-        committed_blocked_damage, committed_health_damage = (
-            self.commit_health_reduction(
-                event.defender,
-                event.block_damage,
-                event.health_damage,
-                log_handle=log_handle,
+        else:
+            event.rolled_damage = self.rng.randint(
+                event.min_damage,
+                event.max_damage,
             )
+            event.pending_damage += event.rolled_damage
+            context = self.build_attack_reaction_context(
+                item, ATTACK_PHASE_PRE_TAKE_DAMAGE, event,
+            )
+            self.emit_signal(event.defender, ATTACK_PHASE_PRE_TAKE_DAMAGE, context)
+            event.pending_damage = max(0, event.pending_damage-event.prevented_damage)
+            if is_attack:
+                context = self.build_attack_reaction_context(
+                    item, ATTACK_PHASE_PRE_DEAL_DAMAGE_LATE, event,
+                )
+                self.emit_signal(item, ATTACK_PHASE_PRE_DEAL_DAMAGE_LATE, context)
+                late_hook = getattr(item, "onPreDealDamage_late", None)
+                if late_hook is not None:
+                    late_hook(context)
+
+            context = self.build_attack_reaction_context(
+                item, ATTACK_PHASE_PRE_TAKE_DAMAGE_LATE, event,
+            )
+            self.emit_signal(event.defender, ATTACK_PHASE_PRE_TAKE_DAMAGE_LATE, context)
+            if event.is_resolved:
+                raise ValueError("cannot commit a resolved attack event")
+            if event.hit is not True:
+                raise ValueError("cannot commit an attack that did not hit")
+            if event.pending_damage < 0:
+                raise ValueError("pending attack damage cannot be negative")
+            event.block_damage = min(event.defender.block, event.pending_damage)
+            event.health_damage = event.pending_damage - event.block_damage
+            event.is_resolved = True
+            log_handle = self.record_log(
+                item,
+                {
+                    "action": "attack",
+                    "target_player_id": event.defender.player_id,
+                    "attack_types": list(event.attack_types),
+                    "hit": True,
+                    "block_damage": event.block_damage,
+                    "health_damage": event.health_damage,
+                },
+            )
+            event.log_handle = log_handle
+            committed_blocked_damage, committed_health_damage = (
+                self.commit_health_reduction(
+                    event.defender,
+                    event.block_damage,
+                    event.health_damage,
+                    log_handle=log_handle,
+                )
+            )
+            event.final_blocked_damage = committed_blocked_damage
+            event.final_health_damage = committed_health_damage
+            final_damage = committed_blocked_damage + committed_health_damage
+
+        post_context = self.build_attack_reaction_context(
+            item, ATTACK_PHASE_CHARACTER_ATTACKED, event,
         )
-        event.final_blocked_damage = committed_blocked_damage
-        event.final_health_damage = committed_health_damage
-        final_damage = (
-            committed_blocked_damage
-            + committed_health_damage
+        self.emit_signal(event.defender, ATTACK_PHASE_CHARACTER_ATTACKED, post_context)
+        damage_context = self.build_attack_reaction_context(
+            item, ATTACK_PHASE_CHARACTER_DAMAGED, event,
         )
-        # Spike and Vampirism effects can be applied here
+        self.emit_signal(event.defender, ATTACK_PHASE_CHARACTER_DAMAGED, damage_context)
+        if is_attack:
+            dealt_hook = getattr(item, "onDealtDamage", None)
+            if dealt_hook is not None:
+                dealt_hook(post_context)
         self._apply_melee_hit_statuses(event, final_damage)
+        if is_attack:
+            context = self.build_attack_reaction_context(
+                item, ATTACK_PHASE_ATTACKED, event,
+            )
+            self.emit_signal(item, ATTACK_PHASE_ATTACKED, context)
         return event
 
     def _apply_melee_hit_statuses(

@@ -2,29 +2,43 @@ import unittest
 from unittest.mock import Mock
 
 from battle_module_v1 import (
-    ATTACK_PHASE_ON_ATTACKED,
+    ATTACK_PHASE_ATTACKED,
+    ATTACK_PHASE_CHARACTER_ATTACKED,
+    ATTACK_PHASE_CHARACTER_DAMAGED,
+    ATTACK_PHASE_PRE_DEAL_DAMAGE_EARLY,
+    ATTACK_PHASE_PRE_DEAL_DAMAGE_LATE,
+    ATTACK_PHASE_PRE_TAKE_DAMAGE,
+    ATTACK_PHASE_PRE_TAKE_DAMAGE_LATE,
     ATTACK_PHASE_ON_ATTACK_MISSED,
     SUPPORTED_ATTACK_REACTION_PHASES,
     AttackEvent,
     AttackReactionContext,
     BattleContext,
-    BattleItem,
     BattleState,
-    Effect,
     PlayerState,
-    Trigger,
     _BattleFinishedSignal,
 )
 from item_effects_v1 import (
     AttackEffect,
+    Effect,
     PreventAttackDamageEffect,
     RemoveOpponentStaminaEffect,
 )
-from item_factory_registry_v1 import WoodenBuckler
+from item_factory_registry_v1 import (
+    BattleItem,
+    Broom,
+    Pan,
+    Shortbow,
+    Stone,
+    Weapon,
+    WoodenBuckler,
+    WoodenSword,
+)
 from item_triggers_v1 import (
     AttackMissTrigger,
     CooldownTrigger,
     OnAttackedTrigger,
+    Trigger,
 )
 
 
@@ -63,7 +77,7 @@ class StaticTrigger(Trigger):
 
 
 class RecordingAttackTrigger(StaticTrigger):
-    attack_phase = ATTACK_PHASE_ON_ATTACKED
+    attack_phase = ATTACK_PHASE_PRE_TAKE_DAMAGE
 
     def connect_bus(self, context):
         context.battle_state.connect(
@@ -155,6 +169,54 @@ class NestedAttackEffect(Effect):
         return True
 
 
+class RecordingStageTrigger(StaticTrigger):
+    def __init__(self, emitter, attack_phase):
+        super().__init__()
+        self.emitter = emitter
+        self.attack_phase = attack_phase
+
+    def connect_bus(self, context):
+        context.battle_state.connect(
+            self.emitter, self.attack_phase, (self.item, self.idx),
+        )
+
+    def update(self, context):
+        if not isinstance(context, AttackReactionContext):
+            return False
+        if context.attack_phase != self.attack_phase:
+            return False
+        return super().update(context)
+
+
+class RecordingWeapon(Weapon):
+    item_types = ("Weapon",)
+
+    def __init__(self, observed, early_action=None, **kwargs):
+        super().__init__(triggers=[StaticTrigger()], effects=[NoopEffect()], **kwargs)
+        self.observed = observed
+        self.early_action = early_action
+
+    def onPreDealDamage_early(self, context):
+        self.observed.append((
+            "early_hook", context, context.attack_event.is_resolved,
+            context.attack_event.defender.health, context.attack_event.attacker.health,
+        ))
+        if self.early_action is not None:
+            self.early_action(context)
+
+    def onPreDealDamage_late(self, context):
+        self.observed.append((
+            "late_hook", context, context.attack_event.is_resolved,
+            context.attack_event.defender.health, context.attack_event.attacker.health,
+        ))
+
+    def onDealtDamage(self, context):
+        self.observed.append((
+            "dealt_hook", context, context.attack_event.is_resolved,
+            context.attack_event.defender.health, context.attack_event.attacker.health,
+        ))
+
+
 class CapturingBattleState(BattleState):
     def resolve_attack(self, event):
         self.captured_event = event
@@ -236,6 +298,169 @@ class AttackResolutionV1Test(unittest.TestCase):
             accuracy=accuracy,
         )
 
+    def make_stage_battle(
+        self, *, hit_roll=0.0, accuracy=100, attacker_health=20, early_action=None,
+        attack_types=("melee",),
+    ):
+        observed = []
+        source = RecordingWeapon(
+            observed, early_action, item_key="source1", player_id=0,
+        )
+        attacker = PlayerState(
+            player_id=0, health=attacker_health, max_health=20, items={"source1": source},
+        )
+        defender = PlayerState(player_id=1, health=20, max_health=20)
+        stages = (
+            (source, ATTACK_PHASE_PRE_DEAL_DAMAGE_EARLY),
+            (defender, ATTACK_PHASE_PRE_TAKE_DAMAGE),
+            (source, ATTACK_PHASE_PRE_DEAL_DAMAGE_LATE),
+            (defender, ATTACK_PHASE_PRE_TAKE_DAMAGE_LATE),
+            (defender, ATTACK_PHASE_CHARACTER_ATTACKED),
+            (defender, ATTACK_PHASE_CHARACTER_DAMAGED),
+            (source, ATTACK_PHASE_ATTACKED),
+            (attacker, ATTACK_PHASE_ON_ATTACK_MISSED),
+        )
+        for index, (emitter, phase) in enumerate(stages):
+            listener = ConfigurableItem(
+                item_key=f"listener{index}", player_id=1,
+                trigger=RecordingStageTrigger(emitter, phase),
+                effects=[CallbackEffect(
+                    lambda context, phase=phase: observed.append((
+                        phase, context, context.attack_event.is_resolved,
+                        context.attack_event.defender.health,
+                        context.attack_event.attacker.health,
+                    )) or True
+                )],
+            )
+            defender.items[listener.item_key] = listener
+        battle = BattleState(
+            players=[attacker, defender],
+            rng=SequenceRng(random_values=[hit_roll], randint_values=[5]),
+        )
+        battle.prepareItems()
+        event = self.make_event(
+            attacker, defender, source, 5, 5, accuracy=accuracy,
+            attack_types=attack_types,
+        )
+        return battle, event, observed
+
+    def test_attack_stages_use_correct_emitters_order_and_shared_event(self):
+        battle, initial_event, observed = self.make_stage_battle(attacker_health=10)
+        initial_event.attacker.buffs.Vampirism = 2
+        initial_event.defender.buffs.Spikes = 1
+
+        hit = AttackEffect(5, 5, 100).apply(
+            battle.build_context(initial_event.source_item), "melee",
+        )
+
+        self.assertTrue(hit)
+        self.assertEqual([entry[0] for entry in observed], [
+            ATTACK_PHASE_PRE_DEAL_DAMAGE_EARLY, "early_hook",
+            ATTACK_PHASE_PRE_TAKE_DAMAGE,
+            ATTACK_PHASE_PRE_DEAL_DAMAGE_LATE, "late_hook",
+            ATTACK_PHASE_PRE_TAKE_DAMAGE_LATE,
+            ATTACK_PHASE_CHARACTER_ATTACKED, ATTACK_PHASE_CHARACTER_DAMAGED,
+            "dealt_hook", ATTACK_PHASE_ATTACKED,
+        ])
+        event = observed[0][1].attack_event
+        self.assertTrue(event.is_resolved)
+        self.assertEqual(event.defender.health, 15)
+        for label, context, resolved, health, attacker_health in observed:
+            self.assertIs(context.attack_event, event)
+            self.assertIsInstance(context, AttackReactionContext)
+            if label.endswith("_hook"):
+                self.assertIs(context.item, event.source_item)
+                self.assertIs(context.owner, event.attacker)
+                self.assertIs(context.opponent, event.defender)
+            else:
+                self.assertIs(context.owner, event.defender)
+                self.assertIs(context.opponent, event.attacker)
+                self.assertEqual(context.attack_phase, label)
+            if label in (
+                ATTACK_PHASE_CHARACTER_ATTACKED, ATTACK_PHASE_CHARACTER_DAMAGED,
+                "dealt_hook", ATTACK_PHASE_ATTACKED,
+            ):
+                self.assertTrue(resolved)
+                self.assertEqual(health, 15)
+            else:
+                self.assertFalse(resolved)
+                self.assertEqual(health, 20)
+        self.assertEqual(observed[-2][4], 10)
+        self.assertEqual(observed[-1][4], 11)
+
+    def test_miss_completes_post_signals_without_damage_roll(self):
+        battle, event, observed = self.make_stage_battle(hit_roll=0.9, accuracy=50)
+
+        result = battle.resolve_attack(event)
+
+        self.assertIs(result, event)
+        self.assertFalse(event.hit)
+        self.assertTrue(event.is_resolved)
+        self.assertEqual(event.final_health_damage, 0)
+        self.assertEqual(event.defender.health, 20)
+        self.assertEqual(battle.rng.calls, ["random"])
+        self.assertEqual([entry[0] for entry in observed], [
+            ATTACK_PHASE_PRE_DEAL_DAMAGE_EARLY, "early_hook",
+            ATTACK_PHASE_ON_ATTACK_MISSED,
+            ATTACK_PHASE_CHARACTER_ATTACKED, ATTACK_PHASE_CHARACTER_DAMAGED,
+            "dealt_hook", ATTACK_PHASE_ATTACKED,
+        ])
+        self.assertEqual(len(battle.log), 1)
+        self.assertFalse(battle.log[0]["data"]["hit"])
+
+    def test_early_hook_can_turn_miss_into_hit_and_preserves_added_damage(self):
+        battle, event, observed = self.make_stage_battle(
+            hit_roll=0.9, accuracy=50,
+            early_action=lambda context: (
+                setattr(context.attack_event, "hit", True),
+                setattr(context.attack_event, "pending_damage", 2),
+            ),
+        )
+
+        battle.resolve_attack(event)
+
+        self.assertTrue(event.hit)
+        self.assertTrue(event.is_resolved)
+        self.assertEqual(event.rolled_damage, 5)
+        self.assertEqual(event.pending_damage, 7)
+        self.assertEqual(event.final_health_damage, 7)
+        self.assertEqual(event.defender.health, 13)
+        self.assertNotIn(ATTACK_PHASE_ON_ATTACK_MISSED, [entry[0] for entry in observed])
+
+    def test_effect_damage_skips_weapon_hooks_and_source_signals(self):
+        battle, event, observed = self.make_stage_battle(attack_types=("effect",))
+
+        battle.resolve_attack(event)
+
+        self.assertEqual([entry[0] for entry in observed], [
+            ATTACK_PHASE_PRE_TAKE_DAMAGE, ATTACK_PHASE_PRE_TAKE_DAMAGE_LATE,
+            ATTACK_PHASE_CHARACTER_ATTACKED, ATTACK_PHASE_CHARACTER_DAMAGED,
+        ])
+        self.assertTrue(event.is_resolved)
+        self.assertEqual(event.final_health_damage, 5)
+
+    def test_registered_weapons_inherit_default_hooks(self):
+        for item_type in (Broom, WoodenSword, Shortbow, Stone, Pan):
+            with self.subTest(item_type=item_type):
+                item = item_type(item_key="weapon1", player_id=0)
+                self.assertIsInstance(item, Weapon)
+                attacker = PlayerState(
+                    player_id=0, health=20, items={"weapon1": item},
+                )
+                defender = PlayerState(player_id=1, health=20)
+                battle = BattleState(
+                    players=[attacker, defender],
+                    rng=SequenceRng(random_values=[0.0], randint_values=[5]),
+                )
+                battle.prepareItems()
+
+                hit = AttackEffect(5, 5, 100).apply(
+                    battle.build_context(item), item.icon_types[0],
+                )
+
+                self.assertTrue(hit)
+                self.assertEqual(defender.health, 15)
+
     def test_attack_event_starts_with_unresolved_result_fields(self):
         battle, attacker, defender, source = self.make_battle()
 
@@ -269,14 +494,14 @@ class AttackResolutionV1Test(unittest.TestCase):
 
         context = battle.build_attack_reaction_context(
             item,
-            ATTACK_PHASE_ON_ATTACKED,
+            ATTACK_PHASE_PRE_TAKE_DAMAGE,
             event,
         )
 
         self.assertIsInstance(context, AttackReactionContext)
         self.assertIs(context.owner, defender)
         self.assertIs(context.opponent, attacker)
-        self.assertEqual(context.attack_phase, ATTACK_PHASE_ON_ATTACKED)
+        self.assertEqual(context.attack_phase, ATTACK_PHASE_PRE_TAKE_DAMAGE)
         self.assertIs(context.attack_event, event)
 
     def test_attack_reaction_context_for_item_preserves_subclass_and_event_reference(self):
@@ -289,7 +514,7 @@ class AttackResolutionV1Test(unittest.TestCase):
         event = self.make_event(attacker, defender, source)
         context = battle.build_attack_reaction_context(
             parent,
-            ATTACK_PHASE_ON_ATTACKED,
+            ATTACK_PHASE_PRE_TAKE_DAMAGE,
             event,
         )
 
@@ -297,7 +522,7 @@ class AttackResolutionV1Test(unittest.TestCase):
 
         self.assertIsInstance(linked_context, AttackReactionContext)
         self.assertIs(linked_context.attack_event, event)
-        self.assertEqual(linked_context.attack_phase, ATTACK_PHASE_ON_ATTACKED)
+        self.assertEqual(linked_context.attack_phase, ATTACK_PHASE_PRE_TAKE_DAMAGE)
 
     def test_resolve_attack_miss_does_not_roll_or_apply_damage(self):
         reaction = ConfigurableItem(trigger=RecordingAttackTrigger())
@@ -318,11 +543,17 @@ class AttackResolutionV1Test(unittest.TestCase):
         self.assertEqual(
             SUPPORTED_ATTACK_REACTION_PHASES,
             (
-                ATTACK_PHASE_ON_ATTACKED,
+                ATTACK_PHASE_PRE_DEAL_DAMAGE_EARLY,
+                ATTACK_PHASE_PRE_TAKE_DAMAGE,
+                ATTACK_PHASE_PRE_DEAL_DAMAGE_LATE,
+                ATTACK_PHASE_PRE_TAKE_DAMAGE_LATE,
+                ATTACK_PHASE_CHARACTER_ATTACKED,
+                ATTACK_PHASE_CHARACTER_DAMAGED,
+                ATTACK_PHASE_ATTACKED,
                 ATTACK_PHASE_ON_ATTACK_MISSED,
             ),
         )
-        self.assertEqual(ATTACK_PHASE_ON_ATTACKED, "on_attacked")
+        self.assertEqual(ATTACK_PHASE_PRE_TAKE_DAMAGE, "pre_take_damage")
         self.assertEqual(
             ATTACK_PHASE_ON_ATTACK_MISSED,
             "on_attack_missed",
@@ -474,7 +705,7 @@ class AttackResolutionV1Test(unittest.TestCase):
             item,
             defender,
             attacker,
-            ATTACK_PHASE_ON_ATTACKED,
+            ATTACK_PHASE_PRE_TAKE_DAMAGE,
             event,
         )
 
@@ -744,7 +975,7 @@ class AttackResolutionV1Test(unittest.TestCase):
         event.hit = True
         context = battle.build_attack_reaction_context(
             item,
-            ATTACK_PHASE_ON_ATTACKED,
+            ATTACK_PHASE_PRE_TAKE_DAMAGE,
             event,
         )
         trigger = OnAttackedTrigger(("melee",), chance=0.3)
@@ -790,7 +1021,7 @@ class AttackResolutionV1Test(unittest.TestCase):
         event.hit = True
         context = battle.build_attack_reaction_context(
             item,
-            ATTACK_PHASE_ON_ATTACKED,
+            ATTACK_PHASE_PRE_TAKE_DAMAGE,
             event,
         )
 
@@ -807,7 +1038,7 @@ class AttackResolutionV1Test(unittest.TestCase):
         event.pending_damage = 5
         context = battle.build_attack_reaction_context(
             item,
-            ATTACK_PHASE_ON_ATTACKED,
+            ATTACK_PHASE_PRE_TAKE_DAMAGE,
             event,
         )
 
@@ -834,7 +1065,7 @@ class AttackResolutionV1Test(unittest.TestCase):
             item,
             defender,
             attacker,
-            ATTACK_PHASE_ON_ATTACKED,
+            ATTACK_PHASE_PRE_TAKE_DAMAGE,
             event,
         )
         with self.assertRaises(ValueError):
@@ -1299,9 +1530,9 @@ class AttackResolutionV1Test(unittest.TestCase):
         event = self.make_event(opponent, owner, second)
         event.hit = True
         context = battle.build_attack_reaction_context(
-            second, ATTACK_PHASE_ON_ATTACKED, event,
+            second, ATTACK_PHASE_PRE_TAKE_DAMAGE, event,
         )
-        battle.emit_signal(owner, ATTACK_PHASE_ON_ATTACKED, context)
+        battle.emit_signal(owner, ATTACK_PHASE_PRE_TAKE_DAMAGE, context)
         self.assertEqual(first.run_calls, 1)
         self.assertEqual(second.run_calls, 0)
         self.assertIs(first.contexts[0].owner, owner)

@@ -3,15 +3,15 @@ import unittest
 from copy import deepcopy
 
 from battle_module_v1 import (
-    BattleItem,
     BattleState,
     BuffSlot,
     DebuffSlot,
-    Effect,
     PlayerState,
-    Trigger,
     serialize_player_state,
 )
+from item_effects_v1 import Effect
+from item_factory_registry_v1 import BattleItem
+from item_triggers_v1 import Trigger
 from main_v1 import (
     compress_player_state_history,
     run_battle_from_config,

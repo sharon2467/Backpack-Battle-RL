@@ -1,15 +1,26 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from battle_module_v1 import (
-    ATTACK_PHASE_ON_ATTACKED,
+    ATTACK_PHASE_PRE_TAKE_DAMAGE,
     AttackEvent,
     AttackReactionContext,
     BattleContext,
-    BattleItem,
     BuffSlot,
     DebuffSlot,
-    Effect,
 )
 
-SUPPORTED_ATTACK_TYPES = ("melee", "ranged", "effect")
+if TYPE_CHECKING:
+    from item_factory_registry_v1 import BattleItem
+
+SUPPORTED_ATTACK_TYPES = ("melee", "ranged", "effect" ,"self_damage","unhealing","spikes","poison","fatigue")
+
+class Effect:
+    def apply(self, context:BattleContext)->bool:
+        raise NotImplementedError("concrete effects must implement apply")
+    def __init__(self):
+        self.item:BattleItem|None = None
 
 
 class StaminaConsumptionEffect(Effect):
@@ -576,8 +587,8 @@ class PreventAttackDamageEffect(Effect):
     def apply(self, context: BattleContext) -> bool:
         if not isinstance(context, AttackReactionContext):
             raise ValueError("prevent attack damage requires an attack context")
-        if context.attack_phase != ATTACK_PHASE_ON_ATTACKED:
-            raise ValueError("prevent attack damage requires on-attacked phase")
+        if context.attack_phase != ATTACK_PHASE_PRE_TAKE_DAMAGE:
+            raise ValueError("prevent attack damage requires pre-take-damage phase")
 
         event = context.attack_event
         if event.is_resolved:
@@ -585,8 +596,7 @@ class PreventAttackDamageEffect(Effect):
         if event.pending_damage < 0:
             raise ValueError("pending attack damage cannot be negative")
 
-        prevented_damage = min(self.amount, event.pending_damage)
-        event.pending_damage -= prevented_damage
+        prevented_damage = min(self.amount, max(0, event.pending_damage-event.prevented_damage))
         event.prevented_damage += prevented_damage
         context.battle_state.record_log(
             context.item,

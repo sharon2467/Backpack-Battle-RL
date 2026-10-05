@@ -4,19 +4,19 @@ import unittest
 from pathlib import Path
 
 from battle_module_v1 import (
-    ATTACK_PHASE_ON_ATTACKED,
+    ATTACK_PHASE_PRE_TAKE_DAMAGE,
     ATTACK_PHASE_ON_ATTACK_MISSED,
     AttackEvent,
-    BattleItem,
     BattleState,
-    Effect,
     ItemActivationContext,
     PlayerState,
-    Trigger,
     _BattleFinishedSignal,
 )
+from item_effects_v1 import Effect
+from item_triggers_v1 import Trigger
 from item_factory_registry_v1 import (
     Banana,
+    BattleItem,
     Broom,
     Flame,
     Garlic,
@@ -617,7 +617,7 @@ class BattleLoggingV1Test(unittest.TestCase):
         )
         context = state.build_attack_reaction_context(
             item,
-            ATTACK_PHASE_ON_ATTACKED,
+            ATTACK_PHASE_PRE_TAKE_DAMAGE,
             event,
         )
 

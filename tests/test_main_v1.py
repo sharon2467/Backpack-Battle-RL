@@ -6,7 +6,9 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from battle_module_v1 import BattleItem, Effect, Trigger
+from item_effects_v1 import Effect
+from item_factory_registry_v1 import BattleItem
+from item_triggers_v1 import Trigger
 from main_v1 import (
     DEFAULT_FRAME_DELTA,
     load_battle_run_file,

@@ -1,7 +1,9 @@
 import unittest
 
 from battle_initializer_v1 import initialize_battle
-from battle_module_v1 import BattleItem, Effect, Trigger
+from item_effects_v1 import Effect
+from item_factory_registry_v1 import BattleItem
+from item_triggers_v1 import Trigger
 
 
 class AlwaysTrigger(Trigger):

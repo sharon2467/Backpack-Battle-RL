@@ -1,35 +1,155 @@
-from battle_module_v1 import BattleContext, BattleItem, BuffSlot
-from item_effects_v1 import (
-    AttackEffect,
-    BuffRemovalEffect,
-    FoodLinkedMeleeAttackEffect,
-    GainBlockEffect,
-    GainBuffEffect,
-    GainMaxHealthEffect,
-    HealEffect,
-    HolyLinkedHealEffect,
-    InflictDebuffEffect,
-    LinkedWeaponDamageEffect,
-    PreventAttackDamageEffect,
-    RegenerateStaminaEffect,
-    RemoveOpponentBlockEffect,
-    RemoveOpponentStaminaEffect,
-    StaminaConsumptionEffect,
-    UseBuffEffect,
+from battle_module_v1 import (
+    ITEM_MARKER_TYPES,
+    BattleContext,
+    BuffSlot,
+    ItemActivationContext,
 )
-from item_triggers_v1 import (
-    ActivationTrigger,
-    AfterTimeTrigger,
-    AttackMissTrigger,
-    CooldownTrigger,
-    FoodCooldownTrigger,
-    ItemAcceleratedCooldownTrigger,
-    OnAttackedTrigger,
-    SlimeActivationTrigger,
-    StartOfBattleTrigger,
-)
+from item_effects_v1 import *
+from item_triggers_v1 import *
+from typing import Sequence
 
 
+
+class BattleItem:
+    item_id = None
+    display_name = None
+    item_classes = ()
+    rarity = None
+    cost = None
+    item_types = ()
+    icon_types = ()
+    is_active_item = False
+    is_crafted = False
+
+    def __init__(
+        self,
+        item_id:str|None=None,
+        item_key:str|None=None,
+        player_id:int|None=None,
+        is_active_item:bool=False,
+        triggers:Sequence[Trigger]|None=None,
+        effects:Sequence[Effect]|None=None,
+        linked_items:Sequence[str]|None=None,
+        display_name:str|None=None,
+        item_classes:tuple[str, ...]|None=None,
+        rarity:str|None=None,
+        cost:int|None=None,
+        item_types:tuple[str, ...]|None=None,
+        icon_types:tuple[str, ...]|None=None,
+    ):
+        self.item_id = type(self).item_id if item_id is None else item_id
+        self.item_key = item_key
+        self.player_id = player_id
+        self.display_name = type(self).display_name if display_name is None else display_name
+        self.item_classes = type(self).item_classes if item_classes is None else item_classes
+        self.rarity = type(self).rarity if rarity is None else rarity
+        self.cost = type(self).cost if cost is None else cost
+        self.item_types = type(self).item_types if item_types is None else item_types
+        self.icon_types = type(self).icon_types if icon_types is None else icon_types
+        self.is_active_item = type(self).is_active_item if is_active_item is None else is_active_item
+        self.triggers = list(triggers) if triggers is not None else []
+        self.effects = list(effects) if effects is not None else []
+        self.linked_items = list(linked_items) if linked_items is not None else []
+        self.marker_items = {
+            marker_type: []
+            for marker_type in ITEM_MARKER_TYPES
+        }
+        self.has_prepared = False
+        if not self.triggers:
+            raise ValueError("battle item must have at least one trigger")
+        if not self.effects:
+            raise ValueError("battle item must have at least one effect")
+        self.trigger_results = [False for _ in self.triggers]
+        for idx, trigger in enumerate(self.triggers):
+            trigger.item = self
+            trigger.idx = idx
+        for effect in self.effects:
+            effect.item = self
+
+    def update_triggers(self, context:BattleContext,trigger_index:int|None=None)->list[bool]:
+        results = [False for _ in self.triggers]
+        if trigger_index is not None:
+            if trigger_index < 0 or trigger_index >= len(self.triggers):
+                raise ValueError("trigger index out of range")
+            trigger = self.triggers[trigger_index]
+            result = trigger.update(context)
+            if type(result) is not bool:
+                raise ValueError("trigger update must return a bool")
+            results[trigger_index]=result
+        else:
+            for idx,trigger in enumerate(self.triggers):
+                result = trigger.update(context)
+                if type(result) is not bool:
+                    raise ValueError("trigger update must return a bool")
+                results[idx]=result
+        for i in range(len(self.triggers)):
+            self.trigger_results[i] = results[i]
+        return results
+
+    def activate_item(self, context:BattleContext , trigger_index:int|None=None)->None:
+        trigger_results = self.update_triggers(context, trigger_index)
+        self.run_effect(trigger_results, context)
+
+    def emit_activation(self, context: BattleContext) -> None:
+        if context.item is not self:
+            raise ValueError("activation context item mismatch")
+        context.battle_state.record_log(
+            self,
+            {"action": "item_activation"},
+        )
+        activation_context = ItemActivationContext(
+            battle_state=context.battle_state,
+            item=self,
+            owner=context.owner,
+            opponent=context.opponent,
+            source_item=self,
+        )
+        context.battle_state.emit_signal(
+            self,
+            "item_activation",
+            activation_context,
+        )
+
+    def run_effect(self, trigger_results:list[bool], context:BattleContext)->None:
+        raise NotImplementedError("concrete items must run their effect logic")
+
+    def add_linked_item(self, linked_key:str):
+        if linked_key not in self.linked_items:
+            self.linked_items.append(linked_key)
+
+    def add_marker_item(
+        self,
+        marker_type: str,
+        linked_key: str,
+    ) -> None:
+        if marker_type not in ITEM_MARKER_TYPES:
+            raise ValueError(f"unsupported marker type: {marker_type}")
+        if linked_key not in self.marker_items[marker_type]:
+            self.marker_items[marker_type].append(linked_key)
+        self.add_linked_item(linked_key)
+    def onPrepare(self, context:BattleContext)->None:
+        if self.has_prepared:
+            raise ValueError("item has already been prepared")
+        for trigger in self.triggers:
+            trigger.connect_bus(context)
+        self.has_prepared = True
+
+class Weapon(BattleItem):
+    def __init__(self,item_id: str | None = None, item_key: str | None = None, player_id: int | None = None,is_active_item: bool = True, triggers: list = [], effects: list = []):
+        super().__init__(
+            item_id=item_id,
+            item_key=item_key,
+            player_id=player_id,
+            is_active_item=is_active_item,
+            triggers=triggers,
+            effects=effects,
+        )
+    def onPreDealDamage_early(self, context: BattleContext) -> None:
+        pass
+    def onPreDealDamage_late(self, context: BattleContext) -> None:
+        pass
+    def onDealtDamage(self, context: BattleContext) -> None:
+        pass
 class PocketSand(BattleItem):
     item_id = "pocket_sand"
     display_name = "Pocket Sand"
@@ -563,7 +683,7 @@ class WoodenBuckler(BattleItem):
         self.emit_activation(context)
 
 
-class Broom(BattleItem):
+class Broom(Weapon):
     item_id = "broom"
     display_name = "Broom"
     item_classes = ("Neutral",)
@@ -672,7 +792,7 @@ class Broom(BattleItem):
         self.emit_activation(context)
 
 
-class WoodenSword(BattleItem):
+class WoodenSword(Weapon):
     item_id = "wooden_sword"
     display_name = "Wooden Sword"
     item_classes = ("Neutral",)
@@ -718,7 +838,7 @@ class WoodenSword(BattleItem):
         self.emit_activation(context)
 
 
-class Shortbow(BattleItem):
+class Shortbow(Weapon):
     item_id = "shortbow"
     display_name = "Shortbow"
     item_classes = ("Ranger",)
@@ -764,7 +884,7 @@ class Shortbow(BattleItem):
         self.emit_activation(context)
 
 
-class Stone(BattleItem):
+class Stone(Weapon):
     item_id = "stone"
     display_name = "Stone"
     item_classes = ("Neutral",)
@@ -907,7 +1027,7 @@ class Garlic(BattleItem):
         self.emit_activation(context)
 
 
-class Pan(BattleItem):
+class Pan(Weapon):
     item_id = "pan"
     display_name = "Pan"
     item_classes = ("Neutral",)

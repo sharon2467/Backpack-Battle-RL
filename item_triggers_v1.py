@@ -1,14 +1,27 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from battle_module_v1 import (
-    ATTACK_PHASE_ON_ATTACKED,
+    ATTACK_PHASE_PRE_TAKE_DAMAGE,
     ATTACK_PHASE_ON_ATTACK_MISSED,
     ITEM_MARKER_TYPES,
     AttackReactionContext,
     BattleContext,
-    BattleItem,
-    Trigger,
 )
 from item_effects_v1 import SUPPORTED_ATTACK_TYPES
 
+if TYPE_CHECKING:
+    from item_factory_registry_v1 import BattleItem
+
+class Trigger:
+    def __init__(self):
+        self.idx: int|None = None
+        self.item:BattleItem|None = None
+    def update(self, context:BattleContext)->bool:
+        raise NotImplementedError("concrete triggers must implement update")
+    def connect_bus(self, context:BattleContext)->None:
+        pass
 
 class StartOfBattleTrigger(Trigger):
     def __init__(self):
@@ -278,7 +291,7 @@ class AttackMissTrigger(Trigger):
 
 
 class OnAttackedTrigger(Trigger):
-    attack_phase = ATTACK_PHASE_ON_ATTACKED
+    attack_phase = ATTACK_PHASE_PRE_TAKE_DAMAGE
 
     def __init__(
         self,

@@ -1,18 +1,17 @@
 import unittest
 
 from battle_module_v1 import (
-    ATTACK_PHASE_ON_ATTACKED,
+    ATTACK_PHASE_PRE_TAKE_DAMAGE,
     AttackEvent,
     AttackReactionContext,
     BattleContext,
-    BattleItem,
     BattleState,
-    Effect,
     ItemActivationContext,
     PlayerState,
-    Trigger,
 )
-from item_factory_registry_v1 import Goobling, WoodenSword
+from item_effects_v1 import Effect
+from item_factory_registry_v1 import BattleItem, Goobling, WoodenSword
+from item_triggers_v1 import Trigger
 
 
 class AlwaysTrigger(Trigger):
@@ -89,7 +88,7 @@ class EventBusContextV1Test(unittest.TestCase):
             self.battle.build_context(self.source),
             self.make_activation_context(),
             self.battle.build_attack_reaction_context(
-                self.source, ATTACK_PHASE_ON_ATTACKED, event,
+                self.source, ATTACK_PHASE_PRE_TAKE_DAMAGE, event,
             ),
         ]
         for original in contexts:
@@ -109,7 +108,7 @@ class EventBusContextV1Test(unittest.TestCase):
                         self.assertIs(adapted.source_item, self.source)
                     if isinstance(original, AttackReactionContext):
                         self.assertIs(adapted.attack_event, event)
-                        self.assertEqual(adapted.attack_phase, ATTACK_PHASE_ON_ATTACKED)
+                        self.assertEqual(adapted.attack_phase, ATTACK_PHASE_PRE_TAKE_DAMAGE)
                     self.assertIs(original.item, self.source)
                     self.assertIs(original.owner, self.owner)
                     self.assertIs(original.opponent, self.opponent)
@@ -156,14 +155,14 @@ class EventBusContextV1Test(unittest.TestCase):
 
         self.same_side.callback = reduce_three
         self.other_side.callback = reduce_five
-        self.battle.connect(self.owner, ATTACK_PHASE_ON_ATTACKED, (self.same_side, 0))
-        self.battle.connect(self.owner, ATTACK_PHASE_ON_ATTACKED, (self.other_side, 0))
+        self.battle.connect(self.owner, ATTACK_PHASE_PRE_TAKE_DAMAGE, (self.same_side, 0))
+        self.battle.connect(self.owner, ATTACK_PHASE_PRE_TAKE_DAMAGE, (self.other_side, 0))
         event = self.make_attack_event()
         original = self.battle.build_attack_reaction_context(
-            self.source, ATTACK_PHASE_ON_ATTACKED, event,
+            self.source, ATTACK_PHASE_PRE_TAKE_DAMAGE, event,
         )
 
-        self.battle.emit_signal(self.owner, ATTACK_PHASE_ON_ATTACKED, original)
+        self.battle.emit_signal(self.owner, ATTACK_PHASE_PRE_TAKE_DAMAGE, original)
 
         self.assertEqual(order, ["first", "second"])
         self.assertEqual(event.pending_damage, 12)
@@ -171,7 +170,7 @@ class EventBusContextV1Test(unittest.TestCase):
             context = item.calls[0][0]
             self.assertIsInstance(context, AttackReactionContext)
             self.assertIs(context.attack_event, event)
-            self.assertEqual(context.attack_phase, ATTACK_PHASE_ON_ATTACKED)
+            self.assertEqual(context.attack_phase, ATTACK_PHASE_PRE_TAKE_DAMAGE)
 
     def test_nested_activation_preserves_outer_source_and_execution_order(self):
         order = []
@@ -254,7 +253,7 @@ class EventBusContextV1Test(unittest.TestCase):
     def test_activation_emitted_from_attack_context_creates_new_activation_context(self):
         event = self.make_attack_event()
         attack_context = self.battle.build_attack_reaction_context(
-            self.source, ATTACK_PHASE_ON_ATTACKED, event,
+            self.source, ATTACK_PHASE_PRE_TAKE_DAMAGE, event,
         )
         self.battle.connect(self.source, "item_activation", (self.same_side, 0))
 

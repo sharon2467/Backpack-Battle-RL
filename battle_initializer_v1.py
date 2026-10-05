@@ -5,7 +5,8 @@ from basic_backpack_v1 import (
     find_star_links,
     find_triangle_links,
 )
-from battle_module_v1 import BattleItem, BattleState, PlayerState
+from battle_module_v1 import BattleState, PlayerState
+from item_factory_registry_v1 import BattleItem
 
 
 def initialize_battle(player_specs, item_factories, item_catalog=ITEM_CATALOG):

@@ -2,19 +2,19 @@ import unittest
 from unittest.mock import Mock
 
 from battle_module_v1 import (
-    BattleItem,
     BattleState,
-    Effect,
     FIRST_POISON_TIME,
     FIRST_REGENERATION_TIME,
     ItemActivationContext,
     PlayerState,
     STATUS_TICK_INTERVAL,
-    Trigger,
     _BattleFinishedSignal,
     calculate_next_fatigue_damage,
     evaluate_layout,
 )
+from item_effects_v1 import Effect
+from item_factory_registry_v1 import BattleItem
+from item_triggers_v1 import Trigger
 
 
 class RecordingTrigger(Trigger):
