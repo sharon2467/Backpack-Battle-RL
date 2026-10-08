@@ -1,3 +1,4 @@
+from battle_module_v1 import make_attack_event
 import contextlib
 import io
 import json
@@ -31,11 +32,10 @@ class DamageEffect(Effect):
     def apply(self, context):
         blocked_damage = min(context.opponent.block, self.damage)
         health_damage = self.damage - blocked_damage
-        context.battle_state.commit_health_reduction(
-            context.opponent,
-            blocked_damage,
-            health_damage,
-        )
+        context.battle_state.resolve_attack(make_attack_event(
+            attacker=context.owner, defender=context.opponent, source_item=None,
+            attack_types=("effect",), min_damage=self.damage, max_damage=self.damage,
+        ))
         return True
 
 
@@ -240,7 +240,7 @@ class MainV1Test(unittest.TestCase):
         self.assertEqual(result["finish_reason"], "winner")
         self.assertEqual(result["frame"], 0)
         self.assertEqual(result["time"], 0.0)
-        self.assertEqual(result["players"][1]["health"], 0)
+        self.assertEqual(result["players"][1]["health"], -75)
         self.assertEqual(
             result["active_items"],
             [{"player_id": 0, "item_key": "stone1", "item_id": "stone"}],

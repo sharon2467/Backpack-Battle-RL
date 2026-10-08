@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from battle_module_v1 import (
     ATTACK_PHASE_PRE_TAKE_DAMAGE,
     AttackEvent,
+    make_attack_event,
     AttackReactionContext,
     BattleContext,
     BuffSlot,
@@ -67,15 +68,7 @@ class HealEffect(Effect):
         actual_healing = context.battle_state.heal(
             context.owner,
             self.amount,
-        )
-        context.battle_state.record_log(
-            context.item,
-            {
-                "action": "heal",
-                "target_player_id": context.owner.player_id,
-                "healing": self.amount,
-                "final_healing": actual_healing,
-            },
+            source=context.item,
         )
         return actual_healing > 0
 
@@ -465,12 +458,11 @@ class AttackEffect(Effect):
         damage = self.damage_modifier
         accuracy = self.accuracy
         if "Weapon" in context.item.item_types:
-            damage += context.owner.buffs.Empower
             accuracy += (
                 context.owner.buffs.Luck - context.owner.debuffs.Blind
             ) * 5
 
-        event = AttackEvent(
+        event = make_attack_event(
             attacker=context.owner,
             defender=context.opponent,
             source_item=context.item,

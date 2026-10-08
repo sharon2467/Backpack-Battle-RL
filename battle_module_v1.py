@@ -14,7 +14,6 @@ ATTACK_PHASE_PRE_TAKE_DAMAGE_LATE = "pre_take_damage_late"
 ATTACK_PHASE_CHARACTER_ATTACKED = "character_attacked"
 ATTACK_PHASE_CHARACTER_DAMAGED = "character_damaged"
 ATTACK_PHASE_ATTACKED = "attacked"
-ATTACK_PHASE_ON_ATTACK_MISSED = "on_attack_missed"
 ITEM_MARKER_TYPES = ("star", "diamond", "triangle")
 SUPPORTED_ATTACK_REACTION_PHASES = (
     ATTACK_PHASE_PRE_DEAL_DAMAGE_EARLY,
@@ -24,14 +23,32 @@ SUPPORTED_ATTACK_REACTION_PHASES = (
     ATTACK_PHASE_CHARACTER_ATTACKED,
     ATTACK_PHASE_CHARACTER_DAMAGED,
     ATTACK_PHASE_ATTACKED,
-    ATTACK_PHASE_ON_ATTACK_MISSED,
 )
 NIGHTFALL_FATIGUE_START_TIME = 17.0
 NIGHTFALL_FATIGUE_INTERVAL = 1.0
 STATUS_TICK_INTERVAL = 2.0
 FIRST_REGENERATION_TIME = 1.0
 FIRST_POISON_TIME = 2.0
+DEFAULT_ATTACK_FLAGS = {
+    name: dict(zip(
+        ("can_be_blocked", "can_be_spiked", "can_be_vampiric",
+         "can_activate_item", "can_miss", "can_crit"), values,
+    ))
+    for name, values in {
+        "melee": (True, True, True, True, True, True),
+        "ranged": (True, True, True, True, True, True),
+        "effect": (True, False, False, True, False, True),
+        "self_damage": (True, False, False, True, False, False),
+        "unhealing": (True, False, False, True, False, False),
+        "spikes": (True, False, False, False, False, True),
+        "poison": (True, False, False, False, False, True),
+        "fatigue": (True, False, False, False, False, False),
+    }.items()
+}
 
+
+def godot_round(value: float) -> int:
+    return math.floor(value + 0.5) if value >= 0 else math.ceil(value - 0.5)
 
 def calculate_next_fatigue_damage(
     previous: int,
@@ -63,6 +80,42 @@ class DebuffSlot:
     Poison: int = 0
     Blind: int = 0
     Cold: int = 0
+
+
+@dataclass
+class BalancedRngState:
+    expected_wins: float = 0.0
+    wins: int = 0
+    last_result: bool = False
+
+    def reset(self) -> None:
+        self.expected_wins = 0.0
+        self.wins = 0
+        self.last_result = False
+
+    def roll_percent(self, percent: float, rng) -> bool:
+        target = percent / 100.0
+        if target <= 0:
+            return False
+        if target >= 1:
+            return True
+        chance = target
+        difference = self.expected_wins - self.wins
+        if difference > 0.3:
+            chance *= 3.0 * min(1.0, difference)
+        elif difference < -0.3:
+            chance /= 3.0 * min(1.0, -difference)
+        self.expected_wins += target
+        if self.last_result and target < 0.4:
+            chance *= 0.5
+        elif not self.last_result and target > 0.6:
+            chance *= 2.0
+        self.last_result = rng.random() <= chance
+        if self.last_result:
+            self.wins += 1
+        return self.last_result
+
+
 @dataclass
 class PlayerState:
     player_id: str|None = None
@@ -75,6 +128,37 @@ class PlayerState:
     buffs: BuffSlot = field(default_factory=BuffSlot)
     debuffs: DebuffSlot = field(default_factory=DebuffSlot)
     items: dict[str,BattleItem] = field(default_factory=dict)
+
+    is_dead: bool = False
+    damage_resistance: float = 0.0
+    damage_reduction: int = 0
+    invulnerable: bool = False
+    dodge_stacks: int = 0
+    crit_tokens: int = 0
+    crit_resistance: float = 0.0
+    crit_resist_stacks: int = 0
+    bonus_fatigue_damage: int = 0
+    healing_efficiency: float = 1.0
+    unhealing_amount: float = 0.0
+    empower_damage: float = 1.0
+    typed_damage_factors: dict[str, float] = field(default_factory=lambda: {
+        "melee": 0.0,
+        "ranged": 0.0,
+        "effect": 0.0,
+        "self_damage": 0.0,
+        "unhealing": 0.0,
+        "spikes": 0.0,
+        "poison": 0.0,
+        "fatigue": 0.0,
+    })
+    melee_spikes_limit: float = 1.0
+    ranged_spikes_limit: float = 0.0
+    effect_spikes_limit: float = 0.0
+    melee_vampirism_limit: float = 1.0
+    ranged_vampirism_limit: float = 0.0
+    accuracy_rng: BalancedRngState = field(default_factory=BalancedRngState)
+    crit_rng: BalancedRngState = field(default_factory=BalancedRngState)
+    crit_resistance_rng: BalancedRngState = field(default_factory=BalancedRngState)
 
     def __setattr__(self, name, value):
         if (
@@ -107,7 +191,7 @@ def serialize_player_state(player: PlayerState) -> dict[str, object]:
 class AttackEvent:
     attacker: PlayerState
     defender: PlayerState
-    source_item: BattleItem
+    source_item: BattleItem|None
     attack_types: tuple[str, ...]
 
     min_damage: int
@@ -133,11 +217,33 @@ class AttackEvent:
     block_damage: int = 0
     health_damage: int = 0
     is_resolved: bool = False
-    final_blocked_damage: int = 0
-    final_health_damage: int = 0
 
     log_handle: LogHandle | None = None
     trigger_log_handle: LogHandle | None = None
+
+
+def make_attack_event(
+    *, attacker, defender, source_item, attack_types, min_damage, max_damage,
+    accuracy=100.0, flag_overrides=None, trigger_log_handle=None,
+) -> AttackEvent:
+    if not attack_types or any(t not in DEFAULT_ATTACK_FLAGS for t in attack_types):
+        raise ValueError("unsupported attack types")
+    # Match DamageSource.setItem's precedence for combined types.
+    primary = next((t for t in ("melee", "ranged", "self_damage")
+                    if t in attack_types), attack_types[0])
+    flags = DEFAULT_ATTACK_FLAGS[primary].copy()
+    if flag_overrides:
+        if any(k not in flags or type(v) is not bool for k, v in flag_overrides.items()):
+            raise ValueError("invalid attack flag override")
+        flags.update(flag_overrides)
+    return AttackEvent(
+        attacker=attacker, defender=defender, source_item=source_item,
+        attack_types=tuple(attack_types), min_damage=min_damage,
+        max_damage=max_damage, accuracy=accuracy,
+        trigger_log_handle=trigger_log_handle, **flags,
+    )
+
+
 class _BattleFinishedSignal(Exception):
     pass
 
@@ -168,7 +274,11 @@ class BattleState:
     _bus_cache: dict[tuple[object, str], list[tuple[BattleItem,int]]] = field(default_factory=dict, init=False, repr=False)
     def prepareItems(self):
         for player in self.players:
+            player.accuracy_rng.reset()
+            player.crit_rng.reset()
+            player.crit_resistance_rng.reset()
             for item in player.items.values():
+                item.damage_range_acc = 0.0
                 context = self.build_context(item)
                 item.onPrepare(context)
     def emit_signal(
@@ -187,6 +297,8 @@ class BattleState:
             emitter_key = "environment"
         if (emitter_key, signalName) in self._bus_cache:
             for listener in self._bus_cache[(emitter_key, signalName)]:
+                if self.winner is not None:
+                    return
                 listener_item,listener_idx = listener
                 context = (
                     event_context.for_item(listener_item)
@@ -235,47 +347,6 @@ class BattleState:
         )
         return LogHandle(self, sequence)
 
-    def _get_pending_damage_log_data(
-        self,
-        log_handle: LogHandle,
-        target: PlayerState,
-    ) -> dict[str, object]:
-        if not isinstance(log_handle, LogHandle):
-            raise ValueError("damage log handle must be a LogHandle")
-        if log_handle.battle_state is not self:
-            raise ValueError("damage log handle belongs to another battle")
-        if not 0 <= log_handle.sequence < len(self.log):
-            raise ValueError("damage log handle is stale")
-
-        entry = self.log[log_handle.sequence]
-        if entry.get("sequence") != log_handle.sequence:
-            raise ValueError("damage log handle is stale")
-        data = entry.get("data")
-        if not isinstance(data, dict):
-            raise ValueError("damage log data must be a dict")
-        if (
-            "block_damage" not in data
-            or "health_damage" not in data
-        ):
-            raise ValueError("damage log is missing raw damage fields")
-        if data.get("target_player_id") != target.player_id:
-            raise ValueError("damage log target does not match damage target")
-        if (
-            "final_block_damage" in data
-            or "final_health_damage" in data
-        ):
-            raise ValueError("damage log is already complete")
-        return data
-
-    def _complete_damage_log(
-        self,
-        data: dict[str, object],
-        final_block_damage: int,
-        final_health_damage: int,
-    ) -> None:
-        data["final_block_damage"] = final_block_damage
-        data["final_health_damage"] = final_health_damage
-
     def record_player_state_snapshot(self) -> None:
         if not self.collect_player_state_history:
             return
@@ -300,11 +371,13 @@ class BattleState:
             ),4)
 
     def step(self):
-        self.regenerate_stamina()
         try:
+            self.stop_if_battle_ended()
+            self.regenerate_stamina()
             for active_item in list(self.active_items):
                 context = self.build_context(active_item)
                 active_item.activate_item(context)
+                self.stop_if_battle_ended()
 
             self.frame += 1
             self.time += self.frame_delta
@@ -325,15 +398,14 @@ class BattleState:
         return self.winner
 
     def check_battle_end(self):
-        if len(self.players) < 2:
+        if self.winner is not None or len(self.players) != 2:
             return
-
-        alive_players = [player for player in self.players if player.health > 0]
-        if len(alive_players) == 1:
-            self.winner = alive_players[0].player_id
+        if not any(player.is_dead for player in self.players):
+            return
+        player, opponent = self.players
+        self.winner = (player if opponent.health <= 0 else opponent).player_id
 
     def stop_if_battle_ended(self):
-        self.check_battle_end()
         if self.winner is not None:
             raise _BattleFinishedSignal()
 
@@ -352,80 +424,77 @@ class BattleState:
             nightfall=nightfall,
         )
         target.fatigue_damage = next_damage
-        blocked_damage = min(target.block, next_damage)
-        health_damage = next_damage - blocked_damage
-        log_handle = self.record_log(
-            "Fatigue",
-            {
-                "action": "fatigue_damage",
-                "target_player_id": target.player_id,
-                "fatigue_damage_delta": (
-                    next_damage - previous_fatigue_damage
-                ),
-                "block_damage": blocked_damage,
-                "health_damage": health_damage,
-            },
+        event = make_attack_event(
+            attacker=self.get_opponent(target.player_id), defender=target,
+            source_item=None, attack_types=("fatigue",),
+            min_damage=next_damage, max_damage=next_damage,
         )
-        self.commit_health_reduction(
-            target,
-            blocked_damage,
-            health_damage,
-            log_handle=log_handle,
-        )
+        self.resolve_attack(event)
+        if event.log_handle is not None:
+            self.log[event.log_handle.sequence]["data"]["fatigue_damage_delta"] = (
+                next_damage - previous_fatigue_damage
+            )
         return next_damage
 
-    def heal(self, target: PlayerState, amount: int)->int:
+    def heal(
+        self, target: PlayerState, amount: float | int, *,
+        source: object = "Healing", trigger_log_handle: LogHandle | None = None,
+    ) -> int:
         if self.get_player(target.player_id) is not target:
             raise ValueError("healing target is not part of this battle")
-        if type(amount) is not int or amount < 0:
-            raise ValueError("healing amount must be a non-negative int")
+        if (isinstance(amount, bool) or not isinstance(amount, (float, int))
+                or not math.isfinite(amount) or amount < 0):
+            raise ValueError("healing amount must be non-negative")
 
         old_health = target.health
-        if amount == 0 or old_health >= target.max_health:
-            return 0
+        amount = godot_round(float(amount) * max(0.0, target.healing_efficiency))
         target.health = min(target.max_health, old_health + amount)
-        return target.health - old_health
+        actual = target.health - old_health
+        overheal = max(0, amount - (target.max_health - old_health))
+        log_handle = self.record_log(source, {
+            "action": "heal", "target_player_id": target.player_id,
+            "healing": amount, "final_healing": actual, "overheal": overheal,
+            "trigger_log_sequence": (
+                trigger_log_handle.sequence if trigger_log_handle else None
+            ),
+        })
+        context = HealingContext(
+            self, source if hasattr(source, "item_key") else None,
+            target, self.get_opponent(target.player_id), amount, overheal, log_handle,
+        )
+        self.emit_signal(target, "character_healed", context)
+        if overheal > 0:
+            self.emit_signal(target, "character_overhealed", context)
+        unhealing = math.ceil(amount * target.unhealing_amount * (
+            1.0 + target.typed_damage_factors.get("unhealing", 0.0)
+        ))
+        if unhealing > 0:
+            self.resolve_attack(make_attack_event(
+                attacker=target, defender=self.get_opponent(target.player_id),
+                source_item=None, attack_types=("unhealing",),
+                min_damage=unhealing, max_damage=unhealing,
+                trigger_log_handle=log_handle,
+            ))
+        return actual
 
     def _apply_regeneration_tick(self, target: PlayerState)->int:
         requested_healing = target.buffs.Regeneration
-        actual_healing = self.heal(target, requested_healing)
-        if requested_healing > 0:
-            self.record_log(
-                "Regeneration",
-                {
-                    "action": "heal",
-                    "target_player_id": target.player_id,
-                    "healing": requested_healing,
-                    "final_healing": actual_healing,
-                },
-            )
-        return actual_healing
+        if requested_healing <= 0:
+            return 0
+        return self.heal(target, requested_healing, source="Regeneration")
 
     def _apply_poison_tick(self, target: PlayerState)->int:
         damage = target.debuffs.Poison
         if damage == 0:
             return 0
 
-        blocked_damage = min(target.block, damage)
-        health_damage = damage - blocked_damage
-        log_handle = self.record_log(
-            "Poison",
-            {
-                "action": "poison_damage",
-                "target_player_id": target.player_id,
-                "block_damage": blocked_damage,
-                "health_damage": health_damage,
-            },
+        event = make_attack_event(
+            attacker=self.get_opponent(target.player_id), defender=target,
+            source_item=None, attack_types=("poison",),
+            min_damage=damage, max_damage=damage,
         )
-        final_block_damage, final_health_damage = (
-            self.commit_health_reduction(
-                target,
-                blocked_damage,
-                health_damage,
-                log_handle=log_handle,
-            )
-        )
-        return final_block_damage + final_health_damage
+        self.resolve_attack(event)
+        return event.block_damage + event.health_damage
 
     def _apply_system_triggers(self)->None:
         if len(self.players) != 2:
@@ -447,15 +516,21 @@ class BattleState:
 
         if regeneration_due:
             self._apply_regeneration_tick(enemy)
+            self.stop_if_battle_ended()
         if poison_due:
             self._apply_poison_tick(enemy)
+            self.stop_if_battle_ended()
         if fatigue_due:
             self.inflict_fatigue(enemy, nightfall=True)
+            self.stop_if_battle_ended()
             self.inflict_fatigue(player, nightfall=True)
+            self.stop_if_battle_ended()
         if poison_due:
             self._apply_poison_tick(player)
+            self.stop_if_battle_ended()
         if regeneration_due:
             self._apply_regeneration_tick(player)
+            self.stop_if_battle_ended()
 
     def build_context(self, item: BattleItem)->BattleContext:
         owner = self.get_player(item.player_id)
@@ -464,7 +539,7 @@ class BattleState:
 
     def build_attack_reaction_context(
         self,
-        item: BattleItem,
+        item: BattleItem | None,
         attack_phase: str,
         attack_event: AttackEvent,
     )->AttackReactionContext:
@@ -473,35 +548,53 @@ class BattleState:
         if attack_event is None:
             raise ValueError("attack reaction context requires an attack event")
 
-        base_context = self.build_context(item)
         return AttackReactionContext(
-            battle_state=base_context.battle_state,
-            item=base_context.item,
-            owner=base_context.owner,
-            opponent=base_context.opponent,
+            battle_state=self,
+            item=item,
+            owner=attack_event.attacker,
+            opponent=attack_event.defender,
             attack_phase=attack_phase,
             attack_event=attack_event,
+        )
+
+    def canBeEmpowered(self, event: AttackEvent) -> bool:
+        return (
+            event.source_item is not None
+            and "Weapon" in event.source_item.item_types
+            and any(t in event.attack_types for t in ("melee", "ranged"))
+            and any(getattr(effect, "min_damage", 0) > 0
+                    for effect in event.source_item.effects)
         )
 
     def resolve_attack(self, event: AttackEvent)->AttackEvent:
         item = event.source_item
         if event.is_resolved:
             raise ValueError("attack event is already resolved")
-        if event.attacker is event.defender:
-            raise ValueError("attack requires different players")
         if self.get_player(event.attacker.player_id) is not event.attacker:
             raise ValueError("attack attacker is not part of this battle")
         if self.get_player(event.defender.player_id) is not event.defender:
             raise ValueError("attack defender is not part of this battle")
+        if event.defender.is_dead:
+            event.hit = False
+            event.rolled_damage = event.pending_damage = 0
+            event.block_damage = event.health_damage = 0
+            event.crit = False
+            event.is_resolved = True
+            return event
 
         is_attack = any(
             attack_type in event.attack_types
             for attack_type in ("melee", "ranged")
         )
-        final_damage = 0
-        hit_roll = self.rng.random() * 100
-        event.hit = hit_roll < event.accuracy
-        if is_attack:
+        if event.can_miss:
+            event.hit = event.defender.accuracy_rng.roll_percent(event.accuracy, self.rng)
+            if event.hit and event.defender.dodge_stacks > 0:
+                event.hit = False
+                event.defender.dodge_stacks -= 1
+        else :
+            event.hit = True
+
+        if is_attack and item is not None:
             context = self.build_attack_reaction_context(
                 item, ATTACK_PHASE_PRE_DEAL_DAMAGE_EARLY, event,
             )
@@ -520,26 +613,79 @@ class BattleState:
                     "hit": False,
                 },
             )
-            context = self.build_attack_reaction_context(item, ATTACK_PHASE_ON_ATTACK_MISSED, event)
-
-            self.emit_signal(event.attacker,ATTACK_PHASE_ON_ATTACK_MISSED,context)
             if event.is_resolved:
                 raise ValueError("cannot resolve an already resolved attack event")
             if event.hit is not False:
                 raise ValueError("cannot resolve an attack whose hit result changed")
             event.is_resolved = True
         else:
-            event.rolled_damage = self.rng.randint(
-                event.min_damage,
-                event.max_damage,
-            )
+            min_damage = float(event.min_damage)
+            max_damage = float(event.max_damage)
+            if item is not None:
+                if is_attack:
+                    min_damage, max_damage = math.ceil(min_damage), math.ceil(max_damage)
+                    if self.canBeEmpowered(event):
+                        empower = event.attacker.empower_damage * event.attacker.buffs.Empower
+                        min_damage += empower
+                        max_damage += empower
+                    factor = 1.0 + sum(event.attacker.typed_damage_factors.get(t, 0.0)
+                                       for t in event.attack_types)
+                    event.min_damage = max(0, godot_round(min_damage * factor * item.damage_multiplier))
+                    event.max_damage = max(0, godot_round(max_damage * factor * item.damage_multiplier))
+                else:
+                    # updateEffect assigns the modified float to integer endpoints.
+                    factor = 1.0 + event.attacker.typed_damage_factors.get("effect", 0.0)
+                    event.min_damage = max(0, int(min_damage * factor * item.damage_multiplier))
+                    event.max_damage = max(0, int(max_damage * factor * item.damage_multiplier))
+                event.rolled_damage = item.roll_damage(event.min_damage, event.max_damage, self.rng)
+            else:
+                event.rolled_damage = self.rng.randint(event.min_damage, event.max_damage)
             event.pending_damage += event.rolled_damage
+            if "fatigue" in event.attack_types:
+                event.pending_damage += event.defender.bonus_fatigue_damage
+
+
+            if event.can_crit:
+                crit = event.defender.crit_rng.roll_percent(event.crit_chance, self.rng)
+                if not event.crit and item is not None and item.crit_tokens > 0:
+                    item.crit_tokens-=1
+                    crit=True
+                if event.crit==False and event.attacker.crit_tokens>0:
+                    event.attacker.crit_tokens-=1
+                    crit=True
+                if crit:
+                    crit_resisted = event.defender.crit_resistance_rng.roll_percent(
+                        event.defender.crit_resistance, self.rng,
+                    )
+                    if crit_resisted:
+                        crit=False
+                    elif event.defender.crit_resist_stacks>0:
+                        event.defender.crit_resist_stacks-=1
+                        crit=False
+                event.crit=crit
+                if event.crit:
+                    event.pending_damage = int(
+                        event.pending_damage * event.crit_multiplier
+                    )
+            else:
+                event.crit = False
+
+            r=max(min(event.defender.damage_resistance/100,1.0),-10.0)
+            event.pending_damage = godot_round(float(event.pending_damage) * (1-r))
+            if is_attack:
+                event.pending_damage = event.pending_damage - event.defender.damage_reduction
+
+            event.pending_damage =0 if event.defender.invulnerable else event.pending_damage
+
+
             context = self.build_attack_reaction_context(
                 item, ATTACK_PHASE_PRE_TAKE_DAMAGE, event,
             )
             self.emit_signal(event.defender, ATTACK_PHASE_PRE_TAKE_DAMAGE, context)
             event.pending_damage = max(0, event.pending_damage-event.prevented_damage)
-            if is_attack:
+
+
+            if is_attack and item is not None:
                 context = self.build_attack_reaction_context(
                     item, ATTACK_PHASE_PRE_DEAL_DAMAGE_LATE, event,
                 )
@@ -552,38 +698,45 @@ class BattleState:
                 item, ATTACK_PHASE_PRE_TAKE_DAMAGE_LATE, event,
             )
             self.emit_signal(event.defender, ATTACK_PHASE_PRE_TAKE_DAMAGE_LATE, context)
+
+
             if event.is_resolved:
                 raise ValueError("cannot commit a resolved attack event")
             if event.hit is not True:
                 raise ValueError("cannot commit an attack that did not hit")
             if event.pending_damage < 0:
                 raise ValueError("pending attack damage cannot be negative")
-            event.block_damage = min(event.defender.block, event.pending_damage)
-            event.health_damage = event.pending_damage - event.block_damage
+
+            if event.can_be_blocked:
+                event.block_damage = min(event.defender.block, event.pending_damage)
+                event.health_damage = event.pending_damage - event.block_damage
+            else:
+                event.block_damage = 0
+                event.health_damage = event.pending_damage
             event.is_resolved = True
             log_handle = self.record_log(
-                item,
+                item if item is not None else event.attack_types[0].title(),
                 {
-                    "action": "attack",
+                    "action": "attack" if item is not None else event.attack_types[0] + "_damage",
                     "target_player_id": event.defender.player_id,
                     "attack_types": list(event.attack_types),
                     "hit": True,
                     "block_damage": event.block_damage,
                     "health_damage": event.health_damage,
+                    "final_block_damage": event.block_damage,
+                    "final_health_damage": event.health_damage,
+                    "critical": event.crit,
+                    "trigger_log_sequence": (
+                        event.trigger_log_handle.sequence if event.trigger_log_handle else None
+                    ),
                 },
             )
             event.log_handle = log_handle
-            committed_blocked_damage, committed_health_damage = (
-                self.commit_health_reduction(
+            self.commit_health_reduction(
                     event.defender,
                     event.block_damage,
                     event.health_damage,
-                    log_handle=log_handle,
-                )
             )
-            event.final_blocked_damage = committed_blocked_damage
-            event.final_health_damage = committed_health_damage
-            final_damage = committed_blocked_damage + committed_health_damage
 
         post_context = self.build_attack_reaction_context(
             item, ATTACK_PHASE_CHARACTER_ATTACKED, event,
@@ -593,91 +746,72 @@ class BattleState:
             item, ATTACK_PHASE_CHARACTER_DAMAGED, event,
         )
         self.emit_signal(event.defender, ATTACK_PHASE_CHARACTER_DAMAGED, damage_context)
-        if is_attack:
+        if is_attack and item is not None:
             dealt_hook = getattr(item, "onDealtDamage", None)
             if dealt_hook is not None:
                 dealt_hook(post_context)
-        self._apply_melee_hit_statuses(event, final_damage)
-        if is_attack:
+        if event.defender.health <= 0:
+            event.defender.is_dead = True
+            self.check_battle_end()
+        self.apply_spikes(event)
+        if is_attack and item is not None:
+            self.apply_vampirism(event)
             context = self.build_attack_reaction_context(
                 item, ATTACK_PHASE_ATTACKED, event,
             )
             self.emit_signal(item, ATTACK_PHASE_ATTACKED, context)
         return event
 
-    def _apply_melee_hit_statuses(
-        self,
-        event: AttackEvent,
-        final_damage: int,
-    )->None:
+    def apply_spikes(self, event: AttackEvent) -> None:
         if (
             event.hit is not True
-            or "melee" not in event.attack_types
-            or final_damage <= 0
+            or event.pending_damage <= 0
+            or not event.can_be_spiked
+            or event.defender.buffs.Spikes <= 0
         ):
             return
 
+        if "ranged" in event.attack_types:
+            spikes_limit = event.defender.ranged_spikes_limit
+        else:
+            spikes_limit = event.defender.melee_spikes_limit
+        if "effect" in event.attack_types:
+            spikes_limit = max(spikes_limit, event.defender.effect_spikes_limit)
+
+
         spikes_damage = min(
             event.defender.buffs.Spikes,
-            final_damage,
+            godot_round(event.pending_damage * spikes_limit),
         )
         if spikes_damage > 0:
-            blocked_damage = min(event.attacker.block, spikes_damage)
-            health_damage = spikes_damage - blocked_damage
-            log_handle = self.record_log(
-                "Spikes",
-                {
-                    "action": "spikes_damage",
-                    "owner_player_id": event.defender.player_id,
-                    "target_player_id": event.attacker.player_id,
-                    "attack_source_item_key": getattr(
-                        event.source_item,
-                        "item_key",
-                        None,
-                    ),
-                    "attack_source_item_id": getattr(
-                        event.source_item,
-                        "item_id",
-                        None,
-                    ),
-                    "block_damage": blocked_damage,
-                    "health_damage": health_damage,
-                },
+            attack_event = make_attack_event(
+                attacker=event.defender,
+                defender=event.attacker,
+                source_item=None,
+                attack_types=("spikes",),
+                min_damage=spikes_damage,
+                max_damage=spikes_damage,
+                accuracy=100.0,
+                trigger_log_handle=event.log_handle
             )
-            self.commit_health_reduction(
-                event.attacker,
-                blocked_damage,
-                health_damage,
-                log_handle=log_handle,
-            )
+            self.resolve_attack(attack_event)
 
+    def apply_vampirism(self, event: AttackEvent) -> None:
+        if (event.hit is not True or event.pending_damage <= 0
+                or not event.can_be_vampiric or event.attacker.buffs.Vampirism <= 0):
+            return
+        vampirism_limit = (event.attacker.ranged_vampirism_limit
+                          if "ranged" in event.attack_types
+                          else event.attacker.melee_vampirism_limit)
         vampirism_healing = min(
             event.attacker.buffs.Vampirism,
-            final_damage,
+            godot_round(event.pending_damage * vampirism_limit),
         )
-        if vampirism_healing > 0:
-            actual_healing = self.heal(
+        if vampirism_healing > 0 and event.can_be_vampiric:
+            self.heal(
                 event.attacker,
                 vampirism_healing,
-            )
-            self.record_log(
-                "Vampirism",
-                {
-                    "action": "heal",
-                    "target_player_id": event.attacker.player_id,
-                    "attack_source_item_key": getattr(
-                        event.source_item,
-                        "item_key",
-                        None,
-                    ),
-                    "attack_source_item_id": getattr(
-                        event.source_item,
-                        "item_id",
-                        None,
-                    ),
-                    "healing": vampirism_healing,
-                    "final_healing": actual_healing,
-                },
+                source="Vampirism", trigger_log_handle=event.log_handle,
             )
 
     def commit_health_reduction(
@@ -685,9 +819,7 @@ class BattleState:
         player: PlayerState,
         blocked_damage: int,
         health_damage: int,
-        *,
-        log_handle: LogHandle | None = None,
-    )->tuple[int, int]:
+    ):
         if self.get_player(player.player_id) is not player:
             raise ValueError("health reduction target is not part of this battle")
         if (
@@ -699,32 +831,14 @@ class BattleState:
             raise ValueError("health reduction values must be non-negative ints")
         if blocked_damage > player.block:
             raise ValueError("blocked damage cannot exceed current block")
-        log_data = (
-            None
-            if log_handle is None
-            else self._get_pending_damage_log_data(
-                log_handle,
-                player,
-            )
-        )
-        final_blocked_damage = blocked_damage
-        final_health_damage = health_damage
-        #future damage resistance mitigation,and invincible effects can be applied here
-        final_health_damage = min(player.health, final_health_damage)
-        player.block -= final_blocked_damage
+
+        player.block -= blocked_damage
         object.__setattr__(
             player,
             "health",
-            player.health - final_health_damage,
+            player.health - health_damage,
         )
-        if log_data is not None:
-            self._complete_damage_log(
-                log_data,
-                final_blocked_damage,
-                final_health_damage,
-            )
-        self.stop_if_battle_ended()
-        return final_blocked_damage, final_health_damage
+        return
 
     def get_player(self, player_id):
         for player in self.players:
@@ -740,7 +854,7 @@ class BattleState:
 @dataclass
 class BattleContext:
     battle_state: BattleState
-    item: BattleItem
+    item: BattleItem | None
     owner: PlayerState
     opponent: PlayerState
 
@@ -763,6 +877,13 @@ class ItemActivationContext(BattleContext):
 class AttackReactionContext(BattleContext):
     attack_phase: str
     attack_event: AttackEvent
+
+
+@dataclass
+class HealingContext(BattleContext):
+    amount: int
+    overheal: int
+    log_handle: LogHandle
 
 def evaluate_layout(placements, opponent:PlayerState):
     raise NotImplementedError(

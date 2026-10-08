@@ -9,9 +9,9 @@ from battle_module_v1 import (
     ATTACK_PHASE_PRE_DEAL_DAMAGE_LATE,
     ATTACK_PHASE_PRE_TAKE_DAMAGE,
     ATTACK_PHASE_PRE_TAKE_DAMAGE_LATE,
-    ATTACK_PHASE_ON_ATTACK_MISSED,
     SUPPORTED_ATTACK_REACTION_PHASES,
     AttackEvent,
+    make_attack_event,
     AttackReactionContext,
     BattleContext,
     BattleState,
@@ -85,13 +85,8 @@ class RecordingAttackTrigger(StaticTrigger):
         )
 
 
-class RecordingAttackMissTrigger(StaticTrigger):
-    attack_phase = ATTACK_PHASE_ON_ATTACK_MISSED
-
-    def connect_bus(self, context):
-        context.battle_state.connect(
-            context.opponent, self.attack_phase, (self.item, self.idx),
-        )
+class RecordingAttackMissTrigger(AttackMissTrigger):
+    pass
 
 
 class NoopEffect(Effect):
@@ -164,7 +159,6 @@ class NestedAttackEffect(Effect):
         context.battle_state.resolve_attack(self.nested_event)
 
         prevented_damage = min(1, self.outer_event.pending_damage)
-        self.outer_event.pending_damage -= prevented_damage
         self.outer_event.prevented_damage += prevented_damage
         return True
 
@@ -288,7 +282,7 @@ class AttackResolutionV1Test(unittest.TestCase):
         accuracy=100,
         attack_types=("melee",),
     ):
-        return AttackEvent(
+        return make_attack_event(
             attacker=attacker,
             defender=defender,
             source_item=source,
@@ -318,7 +312,6 @@ class AttackResolutionV1Test(unittest.TestCase):
             (defender, ATTACK_PHASE_CHARACTER_ATTACKED),
             (defender, ATTACK_PHASE_CHARACTER_DAMAGED),
             (source, ATTACK_PHASE_ATTACKED),
-            (attacker, ATTACK_PHASE_ON_ATTACK_MISSED),
         )
         for index, (emitter, phase) in enumerate(stages):
             listener = ConfigurableItem(
@@ -346,6 +339,7 @@ class AttackResolutionV1Test(unittest.TestCase):
 
     def test_attack_stages_use_correct_emitters_order_and_shared_event(self):
         battle, initial_event, observed = self.make_stage_battle(attacker_health=10)
+        battle.rng.randint_values.append(1)
         initial_event.attacker.buffs.Vampirism = 2
         initial_event.defender.buffs.Spikes = 1
 
@@ -396,12 +390,11 @@ class AttackResolutionV1Test(unittest.TestCase):
         self.assertIs(result, event)
         self.assertFalse(event.hit)
         self.assertTrue(event.is_resolved)
-        self.assertEqual(event.final_health_damage, 0)
+        self.assertEqual(event.health_damage, 0)
         self.assertEqual(event.defender.health, 20)
         self.assertEqual(battle.rng.calls, ["random"])
         self.assertEqual([entry[0] for entry in observed], [
             ATTACK_PHASE_PRE_DEAL_DAMAGE_EARLY, "early_hook",
-            ATTACK_PHASE_ON_ATTACK_MISSED,
             ATTACK_PHASE_CHARACTER_ATTACKED, ATTACK_PHASE_CHARACTER_DAMAGED,
             "dealt_hook", ATTACK_PHASE_ATTACKED,
         ])
@@ -423,9 +416,9 @@ class AttackResolutionV1Test(unittest.TestCase):
         self.assertTrue(event.is_resolved)
         self.assertEqual(event.rolled_damage, 5)
         self.assertEqual(event.pending_damage, 7)
-        self.assertEqual(event.final_health_damage, 7)
+        self.assertEqual(event.health_damage, 7)
         self.assertEqual(event.defender.health, 13)
-        self.assertNotIn(ATTACK_PHASE_ON_ATTACK_MISSED, [entry[0] for entry in observed])
+        self.assertNotIn("on_attack_missed", [entry[0] for entry in observed])
 
     def test_effect_damage_skips_weapon_hooks_and_source_signals(self):
         battle, event, observed = self.make_stage_battle(attack_types=("effect",))
@@ -437,7 +430,7 @@ class AttackResolutionV1Test(unittest.TestCase):
             ATTACK_PHASE_CHARACTER_ATTACKED, ATTACK_PHASE_CHARACTER_DAMAGED,
         ])
         self.assertTrue(event.is_resolved)
-        self.assertEqual(event.final_health_damage, 5)
+        self.assertEqual(event.health_damage, 5)
 
     def test_registered_weapons_inherit_default_hooks(self):
         for item_type in (Broom, WoodenSword, Shortbow, Stone, Pan):
@@ -499,8 +492,8 @@ class AttackResolutionV1Test(unittest.TestCase):
         )
 
         self.assertIsInstance(context, AttackReactionContext)
-        self.assertIs(context.owner, defender)
-        self.assertIs(context.opponent, attacker)
+        self.assertIs(context.owner, attacker)
+        self.assertIs(context.opponent, defender)
         self.assertEqual(context.attack_phase, ATTACK_PHASE_PRE_TAKE_DAMAGE)
         self.assertIs(context.attack_event, event)
 
@@ -539,27 +532,16 @@ class AttackResolutionV1Test(unittest.TestCase):
         self.assertEqual(reaction.run_calls, 0)
         self.assertEqual(rng.calls, ["random"])
 
-    def test_supported_attack_reaction_phases_include_attack_missed(self):
-        self.assertEqual(
-            SUPPORTED_ATTACK_REACTION_PHASES,
-            (
-                ATTACK_PHASE_PRE_DEAL_DAMAGE_EARLY,
-                ATTACK_PHASE_PRE_TAKE_DAMAGE,
-                ATTACK_PHASE_PRE_DEAL_DAMAGE_LATE,
-                ATTACK_PHASE_PRE_TAKE_DAMAGE_LATE,
-                ATTACK_PHASE_CHARACTER_ATTACKED,
-                ATTACK_PHASE_CHARACTER_DAMAGED,
-                ATTACK_PHASE_ATTACKED,
-                ATTACK_PHASE_ON_ATTACK_MISSED,
-            ),
-        )
-        self.assertEqual(ATTACK_PHASE_PRE_TAKE_DAMAGE, "pre_take_damage")
-        self.assertEqual(
-            ATTACK_PHASE_ON_ATTACK_MISSED,
-            "on_attack_missed",
-        )
+    def test_supported_phases_exclude_removed_miss_stage(self):
+        self.assertNotIn("on_attack_missed", SUPPORTED_ATTACK_REACTION_PHASES)
+        self.assertEqual(len(SUPPORTED_ATTACK_REACTION_PHASES), 7)
+        battle, attacker, defender, source = self.make_battle()
+        with self.assertRaises(ValueError):
+            battle.build_attack_reaction_context(
+                source, "on_attack_missed", self.make_event(attacker, defender, source),
+            )
 
-    def test_attack_miss_is_dispatched_to_defender_before_event_is_resolved(
+    def test_miss_is_observed_on_character_attacked_after_resolution(
         self,
     ):
         observed = []
@@ -592,7 +574,7 @@ class AttackResolutionV1Test(unittest.TestCase):
 
         battle.resolve_attack(event)
 
-        self.assertEqual(observed, [(event, False, False)])
+        self.assertEqual(observed, [(event, False, True)])
         self.assertTrue(event.is_resolved)
 
     def test_attack_miss_is_dispatched_only_to_defender(self):
@@ -665,7 +647,8 @@ class AttackResolutionV1Test(unittest.TestCase):
         battle.resolve_attack(miss)
         battle.resolve_attack(hit)
         self.assertEqual(hit_item.run_calls, 1)
-        self.assertEqual(miss_item.run_calls, 1)
+        self.assertEqual(miss_item.run_calls, 2)
+        self.assertEqual(miss_item.effects[0].calls, 1)
         self.assertIs(hit_item.contexts[0].attack_event, hit)
         self.assertIs(miss_item.contexts[0].attack_event, miss)
 
@@ -680,7 +663,7 @@ class AttackResolutionV1Test(unittest.TestCase):
         event.hit = False
         context = battle.build_attack_reaction_context(
             item,
-            ATTACK_PHASE_ON_ATTACK_MISSED,
+            ATTACK_PHASE_CHARACTER_ATTACKED,
             event,
         )
 
@@ -717,7 +700,7 @@ class AttackResolutionV1Test(unittest.TestCase):
         event.hit = True
         hit_context = battle.build_attack_reaction_context(
             item,
-            ATTACK_PHASE_ON_ATTACK_MISSED,
+            ATTACK_PHASE_CHARACTER_ATTACKED,
             event,
         )
         self.assertFalse(item.triggers[0].update(hit_context))
@@ -852,8 +835,8 @@ class AttackResolutionV1Test(unittest.TestCase):
 
         effect.apply(battle.build_context(source), "melee")
 
-        self.assertEqual(battle.captured_event.min_damage, 3)
-        self.assertEqual(battle.captured_event.max_damage, 5)
+        self.assertEqual(battle.captured_event.min_damage, 1)
+        self.assertEqual(battle.captured_event.max_damage, 3)
         self.assertEqual(battle.captured_event.accuracy, 100)
 
     def test_on_attacked_is_dispatched_only_after_hit(self):
@@ -1045,7 +1028,7 @@ class AttackResolutionV1Test(unittest.TestCase):
         result = PreventAttackDamageEffect(7).apply(context)
 
         self.assertTrue(result)
-        self.assertEqual(event.pending_damage, 0)
+        self.assertEqual(event.pending_damage, 5)
         self.assertEqual(event.prevented_damage, 5)
 
     def test_prevent_attack_damage_rejects_base_context_or_resolved_event(self):
@@ -1151,7 +1134,7 @@ class AttackResolutionV1Test(unittest.TestCase):
         buckler = WoodenBuckler(item_key="buckler1")
         linked = ConfigurableItem(item_key="linked1")
         buckler.add_linked_item("linked1")
-        rng = SequenceRng(random_values=[0.0, 0.9], randint_values=[10])
+        rng = SequenceRng(random_values=[0.9], randint_values=[10])
         battle, attacker, defender, source = self.make_battle(
             [buckler, linked],
             rng=rng,
@@ -1177,7 +1160,7 @@ class AttackResolutionV1Test(unittest.TestCase):
 
         battle.resolve_attack(event)
 
-        self.assertEqual(rng.calls, ["random", "randint", "random"])
+        self.assertEqual(rng.calls, ["randint", "random"])
 
     def test_missed_attack_does_not_consume_damage_or_reaction_rng(self):
         buckler = WoodenBuckler()
@@ -1236,7 +1219,7 @@ class AttackResolutionV1Test(unittest.TestCase):
 
         self.assertFalse(hasattr(battle, "current_attack"))
 
-    def test_melee_statuses_use_commit_returned_final_damage(self):
+    def test_melee_statuses_use_event_damage_not_commit_return(self):
         heal_requests = []
 
         class AdjustedFinalDamageBattleState(BattleState):
@@ -1252,17 +1235,16 @@ class AttackResolutionV1Test(unittest.TestCase):
                     player,
                     blocked_damage,
                     health_damage,
-                    log_handle=log_handle,
                 )
                 if player is self.players[1]:
                     return 0, 2
                 return actual_damage
 
-            def heal(self, target, amount):
+            def heal(self, target, amount, **kwargs):
                 heal_requests.append(amount)
-                return super().heal(target, amount)
+                return super().heal(target, amount, **kwargs)
 
-        rng = SequenceRng(random_values=[0.0], randint_values=[7])
+        rng = SequenceRng(random_values=[0.0], randint_values=[7, 7])
         source = ConfigurableItem(
             item_key="source1",
             player_id=0,
@@ -1287,7 +1269,7 @@ class AttackResolutionV1Test(unittest.TestCase):
 
         self.assertEqual(defender.health, 13)
         self.assertEqual(attacker.health, 10)
-        self.assertEqual(heal_requests, [2])
+        self.assertEqual(heal_requests, [7])
 
     def test_vampirism_caps_at_stacks_and_missing_health(self):
         rng = SequenceRng(
@@ -1313,7 +1295,7 @@ class AttackResolutionV1Test(unittest.TestCase):
         self.assertEqual(attacker.health, 20)
 
     def test_spikes_caps_at_stack_count_and_consumes_block_first(self):
-        rng = SequenceRng(random_values=[0.0], randint_values=[7])
+        rng = SequenceRng(random_values=[0.0], randint_values=[7, 5])
         battle, attacker, defender, source = self.make_battle(rng=rng)
         attacker.block = 3
         defender.buffs.Spikes = 5
@@ -1326,7 +1308,7 @@ class AttackResolutionV1Test(unittest.TestCase):
         self.assertEqual(attacker.health, 18)
 
     def test_melee_statuses_use_damage_across_defender_block_and_health(self):
-        rng = SequenceRng(random_values=[0.0], randint_values=[7])
+        rng = SequenceRng(random_values=[0.0], randint_values=[7, 7])
         battle, attacker, defender, source = self.make_battle(
             rng=rng,
             defender_block=2,
@@ -1342,7 +1324,7 @@ class AttackResolutionV1Test(unittest.TestCase):
         self.assertEqual(attacker.health, 13)
 
     def test_fully_blocked_main_damage_still_counts_for_melee_statuses(self):
-        rng = SequenceRng(random_values=[0.0], randint_values=[5])
+        rng = SequenceRng(random_values=[0.0], randint_values=[5, 3])
         battle, attacker, defender, source = self.make_battle(
             rng=rng,
             defender_block=5,
@@ -1374,14 +1356,13 @@ class AttackResolutionV1Test(unittest.TestCase):
                     player,
                     blocked_damage,
                     health_damage,
-                    log_handle=log_handle,
                 )
 
-            def heal(self, target, amount):
+            def heal(self, target, amount, **kwargs):
                 order.append(("heal", target.player_id))
-                return super().heal(target, amount)
+                return super().heal(target, amount, **kwargs)
 
-        rng = SequenceRng(random_values=[0.0], randint_values=[5])
+        rng = SequenceRng(random_values=[0.0], randint_values=[5, 2])
         source = ConfigurableItem(item_key="source1", player_id=0)
         attacker = PlayerState(
             player_id=0,
@@ -1407,8 +1388,8 @@ class AttackResolutionV1Test(unittest.TestCase):
         )
         self.assertEqual(attacker.health, 10)
 
-    def test_fatal_main_attack_skips_spikes_and_vampirism(self):
-        rng = SequenceRng(random_values=[0.0], randint_values=[20])
+    def test_fatal_main_attack_finishes_spikes_and_vampirism(self):
+        rng = SequenceRng(random_values=[0.0], randint_values=[20, 20])
         battle, attacker, defender, source = self.make_battle(
             rng=rng,
             attacker_health=10,
@@ -1417,16 +1398,15 @@ class AttackResolutionV1Test(unittest.TestCase):
         attacker.buffs.Vampirism = 20
         defender.buffs.Spikes = 20
 
-        with self.assertRaises(_BattleFinishedSignal):
-            battle.resolve_attack(
-                self.make_event(attacker, defender, source, 20, 20)
-            )
+        battle.resolve_attack(
+            self.make_event(attacker, defender, source, 20, 20)
+        )
 
         self.assertEqual(battle.winner, 0)
         self.assertEqual(attacker.health, 10)
 
-    def test_lethal_spikes_immediately_skips_vampirism(self):
-        rng = SequenceRng(random_values=[0.0], randint_values=[5])
+    def test_lethal_spikes_locks_winner_before_vampirism(self):
+        rng = SequenceRng(random_values=[0.0], randint_values=[5, 5])
         battle, attacker, defender, source = self.make_battle(
             rng=rng,
             attacker_health=2,
@@ -1435,13 +1415,12 @@ class AttackResolutionV1Test(unittest.TestCase):
         attacker.buffs.Vampirism = 5
         defender.buffs.Spikes = 5
 
-        with self.assertRaises(_BattleFinishedSignal):
-            battle.resolve_attack(
-                self.make_event(attacker, defender, source, 5, 5)
-            )
+        battle.resolve_attack(
+            self.make_event(attacker, defender, source, 5, 5)
+        )
 
         self.assertEqual(battle.winner, 1)
-        self.assertEqual(attacker.health, 0)
+        self.assertEqual(attacker.health, 2)
         self.assertEqual(defender.health, 15)
 
     def test_miss_zero_and_non_melee_do_not_apply_melee_statuses(self):
@@ -1499,7 +1478,7 @@ class AttackResolutionV1Test(unittest.TestCase):
                 self.assertEqual(attacker.health, 10)
 
     def test_mixed_attack_with_melee_type_applies_melee_statuses(self):
-        rng = SequenceRng(random_values=[0.0], randint_values=[3])
+        rng = SequenceRng(random_values=[0.0], randint_values=[3, 2])
         battle, attacker, defender, source = self.make_battle(rng=rng)
         defender.buffs.Spikes = 2
 

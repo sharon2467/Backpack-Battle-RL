@@ -55,6 +55,9 @@ class BattleItem:
             for marker_type in ITEM_MARKER_TYPES
         }
         self.has_prepared = False
+        self.damage_multiplier = 1.0
+        self.crit_tokens = 0
+        self.damage_range_acc = 0.0
         if not self.triggers:
             raise ValueError("battle item must have at least one trigger")
         if not self.effects:
@@ -65,6 +68,20 @@ class BattleItem:
             trigger.idx = idx
         for effect in self.effects:
             effect.item = self
+
+    def roll_damage(self, min_damage: int, max_damage: int, rng) -> int:
+        damage = rng.randint(min_damage, max_damage)
+        difference = damage - 0.5 * (min_damage + max_damage)
+        if self.damage_range_acc >= 1:
+            malus = min(damage - min_damage, int(self.damage_range_acc))
+            self.damage_range_acc -= malus
+            damage -= malus
+        elif self.damage_range_acc <= -1:
+            bonus = min(max_damage - damage, int(abs(self.damage_range_acc)))
+            self.damage_range_acc += bonus
+            damage += bonus
+        self.damage_range_acc += difference
+        return damage
 
     def update_triggers(self, context:BattleContext,trigger_index:int|None=None)->list[bool]:
         results = [False for _ in self.triggers]
@@ -93,6 +110,8 @@ class BattleItem:
     def emit_activation(self, context: BattleContext) -> None:
         if context.item is not self:
             raise ValueError("activation context item mismatch")
+        if context.battle_state.winner is not None:
+            return
         context.battle_state.record_log(
             self,
             {"action": "item_activation"},
@@ -144,6 +163,8 @@ class Weapon(BattleItem):
             triggers=triggers,
             effects=effects,
         )
+        if not 'Weapon' in self.item_types:
+            raise ValueError("Weapon must have 'Weapon' in item_types")
     def onPreDealDamage_early(self, context: BattleContext) -> None:
         pass
     def onPreDealDamage_late(self, context: BattleContext) -> None:
@@ -760,22 +781,23 @@ class Broom(Weapon):
             return
         if not self.effects[0].apply(context):
             return
-        hit = self.effects[1].apply(context, "melee")
-        if hit:
-            if self.miss_damage_bonus > 0:
-                consumed_bonus = self.miss_damage_bonus
-                self.effects[1].stack_damage_modifier(
-                    -self.miss_damage_bonus
-                )
-                self.miss_damage_bonus = 0
-                context.battle_state.record_log(
-                    self,
-                    {
-                        "action": "consume_miss_damage_bonus",
-                        "miss_damage_bonus_delta": -consumed_bonus,
-                        "damage_modifier_delta": -consumed_bonus,
-                    },
-                )
+        self.effects[1].apply(context, "melee")
+        self.emit_activation(context)
+        if self.miss_damage_bonus > 0:
+            consumed_bonus = self.miss_damage_bonus
+            self.effects[1].stack_damage_modifier(-consumed_bonus)
+            self.miss_damage_bonus = 0
+            context.battle_state.record_log(
+                self,
+                {
+                    "action": "consume_miss_damage_bonus",
+                    "miss_damage_bonus_delta": -consumed_bonus,
+                    "damage_modifier_delta": -consumed_bonus,
+                },
+            )
+
+    def onDealtDamage(self, context: BattleContext) -> None:
+        if context.attack_event.hit is True:
             blind_roll = context.battle_state.rng.random()
             blind_success = blind_roll < 0.33
             context.battle_state.record_log(
@@ -789,7 +811,6 @@ class Broom(Weapon):
             )
             if blind_success:
                 self.effects[2].apply(context)
-        self.emit_activation(context)
 
 
 class WoodenSword(Weapon):

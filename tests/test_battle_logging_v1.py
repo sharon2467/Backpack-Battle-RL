@@ -5,7 +5,7 @@ from pathlib import Path
 
 from battle_module_v1 import (
     ATTACK_PHASE_PRE_TAKE_DAMAGE,
-    ATTACK_PHASE_ON_ATTACK_MISSED,
+    ATTACK_PHASE_CHARACTER_ATTACKED,
     AttackEvent,
     BattleState,
     ItemActivationContext,
@@ -218,140 +218,8 @@ class BattleLoggingV1Test(unittest.TestCase):
         )
         self.assertEqual(state.log[1]["sequence"], 1)
 
-    def test_damage_log_handle_updates_only_its_exact_entry(self):
-        target = PlayerState(
-            player_id=0,
-            health=10,
-            max_health=10,
-            block=3,
-        )
-        opponent = PlayerState(player_id=1, health=10, max_health=10)
-        state = BattleState(players=[target, opponent])
-        handle = state.record_log(
-            "Damage",
-            {
-                "action": "damage",
-                "target_player_id": 0,
-                "block_damage": 1,
-                "health_damage": 1,
-            },
-        )
 
-        state.commit_health_reduction(
-            target,
-            1,
-            1,
-            log_handle=handle,
-        )
-        completed_data = dict(state.log[0]["data"])
-        state.commit_health_reduction(target, 1, 2)
 
-        self.assertEqual(state.log[0]["data"], completed_data)
-        self.assertEqual(
-            completed_data,
-            {
-                "action": "damage",
-                "target_player_id": 0,
-                "block_damage": 1,
-                "health_damage": 1,
-                "final_block_damage": 1,
-                "final_health_damage": 1,
-            },
-        )
-
-    def test_damage_log_handle_rejects_cross_battle_and_reuse(self):
-        first_target = PlayerState(
-            player_id=0,
-            health=10,
-            max_health=10,
-        )
-        first = BattleState(
-            players=[
-                first_target,
-                PlayerState(player_id=1, health=10, max_health=10),
-            ]
-        )
-        handle = first.record_log(
-            "Damage",
-            {
-                "action": "damage",
-                "target_player_id": 0,
-                "block_damage": 0,
-                "health_damage": 1,
-            },
-        )
-        second_target = PlayerState(
-            player_id=0,
-            health=10,
-            max_health=10,
-        )
-        second = BattleState(
-            players=[
-                second_target,
-                PlayerState(player_id=1, health=10, max_health=10),
-            ]
-        )
-
-        with self.assertRaisesRegex(ValueError, "another battle"):
-            second.commit_health_reduction(
-                second_target,
-                0,
-                1,
-                log_handle=handle,
-            )
-        self.assertEqual(second_target.health, 10)
-
-        with self.assertRaisesRegex(ValueError, "target does not match"):
-            first.commit_health_reduction(
-                first.players[1],
-                0,
-                1,
-                log_handle=handle,
-            )
-        self.assertEqual(first.players[1].health, 10)
-
-        first.commit_health_reduction(
-            first_target,
-            0,
-            1,
-            log_handle=handle,
-        )
-        with self.assertRaisesRegex(ValueError, "already complete"):
-            first.commit_health_reduction(
-                first_target,
-                0,
-                1,
-                log_handle=handle,
-            )
-        self.assertEqual(first_target.health, 9)
-
-    def test_damage_log_handle_rejects_stale_sequence(self):
-        target = PlayerState(player_id=0, health=10, max_health=10)
-        state = BattleState(
-            players=[
-                target,
-                PlayerState(player_id=1, health=10, max_health=10),
-            ]
-        )
-        handle = state.record_log(
-            "Damage",
-            {
-                "action": "damage",
-                "target_player_id": 0,
-                "block_damage": 0,
-                "health_damage": 1,
-            },
-        )
-        state.log.clear()
-
-        with self.assertRaisesRegex(ValueError, "stale"):
-            state.commit_health_reduction(
-                target,
-                0,
-                1,
-                log_handle=handle,
-            )
-        self.assertEqual(target.health, 10)
 
     def test_success_result_extracts_complete_log_without_aliasing(self):
         state = BattleState()
@@ -621,7 +489,7 @@ class BattleLoggingV1Test(unittest.TestCase):
             event,
         )
 
-        item.activate_item(context)
+        item.activate_item(context.for_item(item))
 
         self.assertEqual(
             actions(state),
@@ -632,7 +500,7 @@ class BattleLoggingV1Test(unittest.TestCase):
                 "item_activation",
             ],
         )
-        self.assertEqual(event.pending_damage, 0)
+        self.assertEqual(event.pending_damage, 5)
         self.assertEqual(state.players[1].stamina, 4.7)
 
     def test_broom_logs_opponent_miss_bonus(self):
@@ -656,7 +524,7 @@ class BattleLoggingV1Test(unittest.TestCase):
         )
         context = state.build_attack_reaction_context(
             item,
-            ATTACK_PHASE_ON_ATTACK_MISSED,
+            ATTACK_PHASE_CHARACTER_ATTACKED,
             event,
         )
 
@@ -776,7 +644,7 @@ class BattleLoggingV1Test(unittest.TestCase):
         state, context = make_item_context(
             item,
             rng=SequenceRng(
-                random_values=[0.0, 0.0, 0.5],
+                random_values=[0.0, 0.5],
                 randint_values=[5],
             ),
         )
@@ -848,17 +716,18 @@ class BattleLoggingV1Test(unittest.TestCase):
             ),
         )
 
+        item.run_effect([True], context)
         with self.assertRaises(_BattleFinishedSignal):
-            item.run_effect([True], context)
+            state.stop_if_battle_ended()
 
-        self.assertEqual(actions(state), ["attack"])
+        self.assertEqual(actions(state), ["attack", "remove_block"])
         self.assertEqual(
             state.log[0]["data"]["final_block_damage"],
             0,
         )
         self.assertEqual(
             state.log[0]["data"]["final_health_damage"],
-            1,
+            2,
         )
 
     def test_attack_and_spikes_complete_separate_damage_logs(self):
@@ -883,7 +752,7 @@ class BattleLoggingV1Test(unittest.TestCase):
             players=[attacker, defender],
             rng=SequenceRng(
                 random_values=[0.0],
-                randint_values=[5],
+                randint_values=[5, 2],
             ),
         )
         event = AttackEvent(
@@ -912,7 +781,7 @@ class BattleLoggingV1Test(unittest.TestCase):
             stamina=5.0,
             max_stamina=5.0,
         )
-        state = BattleState(players=[target])
+        state = BattleState(players=[target, PlayerState(player_id=1, health=10, max_health=10)])
         target.buffs.Regeneration = 2
         target.debuffs.Poison = 1
 

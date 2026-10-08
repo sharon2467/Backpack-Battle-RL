@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING
 
 from battle_module_v1 import (
     ATTACK_PHASE_PRE_TAKE_DAMAGE,
-    ATTACK_PHASE_ON_ATTACK_MISSED,
+    ATTACK_PHASE_CHARACTER_ATTACKED,
     ITEM_MARKER_TYPES,
     AttackReactionContext,
     BattleContext,
@@ -278,7 +278,7 @@ class ItemAcceleratedCooldownTrigger(CooldownTrigger):
 
 
 class AttackMissTrigger(Trigger):
-    attack_phase = ATTACK_PHASE_ON_ATTACK_MISSED
+    attack_phase = ATTACK_PHASE_CHARACTER_ATTACKED
 
     def update(self, context: BattleContext) -> bool:
         if not isinstance(context, AttackReactionContext):
@@ -287,7 +287,7 @@ class AttackMissTrigger(Trigger):
             return False
         return context.attack_event.hit is False
     def connect_bus(self, context: BattleContext) -> None:
-        context.battle_state.connect(context.opponent, self.attack_phase, (self.item, self.idx))
+        context.battle_state.connect(context.owner, self.attack_phase, (self.item, self.idx))
 
 
 class OnAttackedTrigger(Trigger):
@@ -319,7 +319,7 @@ class OnAttackedTrigger(Trigger):
             return False
 
         event = context.attack_event
-        if event.hit is not True:
+        if event.hit is not True or not event.can_activate_item:
             return False
         if not any(
             attack_type in event.attack_types

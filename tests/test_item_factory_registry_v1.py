@@ -5,7 +5,7 @@ from basic_backpack_v1 import ITEM_CATALOG, place_item
 from battle_initializer_v1 import initialize_battle
 from battle_module_v1 import (
     ATTACK_PHASE_PRE_TAKE_DAMAGE,
-    ATTACK_PHASE_ON_ATTACK_MISSED,
+    ATTACK_PHASE_CHARACTER_ATTACKED,
     AttackEvent,
     AttackReactionContext,
     BattleContext,
@@ -740,6 +740,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             context.battle_state
         )
 
+        context.opponent.accuracy_rng.last_result = True
         sword.activate_item(context)
 
         self.assertAlmostEqual(context.owner.stamina, 1.0)
@@ -889,7 +890,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
                 )
                 self.assertEqual(
                     (event.min_damage, event.max_damage),
-                    (13, 13),
+                    (6, 6),
                 )
                 self.assertEqual(event.accuracy, 95)
 
@@ -910,7 +911,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         self.assertTrue(result)
         event = context.battle_state.resolve_attack.call_args.args[0]
         self.assertEqual(event.attack_types, ("ranged",))
-        self.assertEqual((event.min_damage, event.max_damage), (5, 6))
+        self.assertEqual((event.min_damage, event.max_damage), (3, 4))
         self.assertEqual(event.accuracy, 90)
         self.assertTrue(effect.damage_modifier_prepared)
 
@@ -922,8 +923,9 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         context.item = WoodenSword(item_key="source1", player_id=context.owner.player_id)
         context.owner.items[context.item.item_key] = context.item
         context.battle_state.rng = Mock()
-        context.battle_state.rng.random.return_value = 0.85
+        context.battle_state.rng.random.return_value = 0.99
 
+        context.opponent.accuracy_rng.last_result = True
         result = effect.apply(context, "ranged")
 
         self.assertFalse(result)
@@ -1051,7 +1053,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
 
     def test_shortbow_pays_stamina_on_miss(self):
         rng = Mock()
-        rng.random.return_value = 0.85
+        rng.random.return_value = 0.99
         shortbow, context = self.make_shortbow_context(
             rng=rng,
             frame_delta=1.7,
@@ -1061,6 +1063,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             context.battle_state
         )
 
+        context.opponent.accuracy_rng.last_result = True
         shortbow.activate_item(context)
 
         self.assertAlmostEqual(context.owner.stamina, 1.3)
@@ -1979,7 +1982,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
 
     def test_stone_miss_consumes_its_only_throw_without_removing_block(self):
         rng = Mock()
-        rng.random.return_value = 0.70
+        rng.random.return_value = 0.999
         stone = Stone(item_key="stone1", player_id=0)
         owner = PlayerState(
             player_id=0,
@@ -2008,7 +2011,9 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             context.battle_state
         )
 
+        context.opponent.accuracy_rng.last_result = True
         stone.activate_item(context)
+        context.opponent.accuracy_rng.last_result = True
         stone.activate_item(context)
 
         self.assertEqual(opponent.block, 10)
@@ -3553,7 +3558,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         self,
     ):
         rng = Mock()
-        rng.random.return_value = 0.85
+        rng.random.return_value = 0.99
         pan, context, linked_items, _ = self.make_pan_context(
             frame_delta=2.2,
             stamina=5.0,
@@ -3567,6 +3572,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             context.battle_state
         )
 
+        context.opponent.accuracy_rng.last_result = True
         pan.activate_item(context)
 
         self.assertEqual(context.owner.stamina, 3.0)
@@ -3629,7 +3635,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
 
     def test_rat_activation_ignores_attack_statuses_and_applies_debuffs(self):
         rng = Mock()
-        rng.random.side_effect = [0.0, 0.74, 0.09]
+        rng.random.side_effect = [0.74, 0.09]
         rng.randint.return_value = 5
         rat, context = self.make_rat_context(
             rng=rng,
@@ -3649,7 +3655,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         self.assertEqual(context.opponent.debuffs.Poison, 1)
         self.assertEqual(context.opponent.debuffs.Blind, 1)
         rng.randint.assert_called_once_with(5, 5)
-        self.assertEqual(rng.random.call_count, 3)
+        self.assertEqual(rng.random.call_count, 2)
         dispatch_spy.assert_called_once_with(rat)
 
     def test_rat_forced_attack_miss_emits_without_status_rng(self):
@@ -3685,7 +3691,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
 
     def test_rat_debuff_chances_fail_at_boundaries(self):
         rng = Mock()
-        rng.random.side_effect = [0.0, 0.75, 0.10]
+        rng.random.side_effect = [0.75, 0.10]
         rng.randint.return_value = 5
         rat, context = self.make_rat_context(rng=rng)
 
@@ -3829,7 +3835,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             item=broom,
             owner=context.owner,
             opponent=context.opponent,
-            attack_phase=ATTACK_PHASE_ON_ATTACK_MISSED,
+            attack_phase=ATTACK_PHASE_CHARACTER_ATTACKED,
             attack_event=event,
         )
 
@@ -4037,7 +4043,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             broom.triggers[0].speed_modifiers_prepared
         )
         self.assertEqual(context.owner.stamina, 5.0)
-        rng.random.assert_called_once_with()
+        rng.random.assert_not_called()
         rng.randint.assert_not_called()
         dispatch_spy.assert_not_called()
 
@@ -4057,7 +4063,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
 
         self.assertEqual(broom.miss_damage_bonus, 4)
         self.assertEqual(broom.effects[1].damage_modifier, 4)
-        self.assertEqual(rng.random.call_count, 2)
+        self.assertEqual(rng.random.call_count, 0)
         rng.randint.assert_not_called()
 
     def test_broom_multiple_opponent_misses_stack(self):
@@ -4137,11 +4143,11 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         self.assertEqual(broom.effects[1].max_damage, 4)
         dispatch_spy.assert_called_once_with(broom)
 
-    def test_broom_miss_retains_accumulated_bonus_and_skips_blind_roll(
+    def test_broom_miss_consumes_accumulated_bonus_and_skips_blind_roll(
         self,
     ):
         rng = Mock()
-        rng.random.side_effect = [0.5, 0.5, 0.99]
+        rng.random.side_effect = [0.99]
         broom, context, _ = self.make_broom_context(
             frame_delta=1.7,
             stamina=5.0,
@@ -4153,40 +4159,57 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         self.resolve_opponent_attack(context, accuracy=0)
         self.resolve_opponent_attack(context, accuracy=0)
 
+        context.opponent.accuracy_rng.last_result = True
         broom.activate_item(context)
 
         self.assertAlmostEqual(context.owner.stamina, 3.8)
-        self.assertEqual(broom.miss_damage_bonus, 4)
-        self.assertEqual(broom.effects[1].damage_modifier, 4)
+        self.assertEqual(broom.miss_damage_bonus, 0)
+        self.assertEqual(broom.effects[1].damage_modifier, 0)
         self.assertEqual(context.opponent.debuffs.Blind, 0)
-        self.assertEqual(rng.random.call_count, 3)
+        self.assertEqual(rng.random.call_count, 1)
         rng.randint.assert_not_called()
         dispatch_spy.assert_called_once_with(broom)
 
-    def test_broom_retained_bonus_is_used_on_later_hit(self):
+    def test_broom_miss_consumes_bonus_before_later_hit(self):
         rng = Mock()
-        rng.random.side_effect = [
-            0.5,
-            0.5,
-            0.99,
-            0.0,
-            0.5,
-        ]
-        rng.randint.return_value = 6
+        rng.random.side_effect = [0.99, 0.0, 0.5]
+        rng.randint.return_value = 2
         broom, context, _ = self.make_broom_context(
-            frame_delta=1.7,
-            stamina=10.0,
-            rng=rng,
+            frame_delta=1.7, stamina=10.0, rng=rng,
         )
         self.resolve_opponent_attack(context, accuracy=0)
         self.resolve_opponent_attack(context, accuracy=0)
+        context.opponent.accuracy_rng.last_result = True
         broom.activate_item(context)
-
-        broom.activate_item(context)
-
-        rng.randint.assert_called_once_with(6, 8)
         self.assertEqual(broom.miss_damage_bonus, 0)
         self.assertEqual(broom.effects[1].damage_modifier, 0)
+        broom.activate_item(context)
+        rng.randint.assert_called_once_with(2, 4)
+        self.assertEqual(context.opponent.health, 98)
+
+    def test_broom_lethal_attack_inflicts_blind_before_death_and_clears_bonus(self):
+        rng = Mock()
+        rng.random.return_value = 0.0
+        rng.randint.return_value = 4
+        broom, context, _ = self.make_broom_context(
+            frame_delta=1.7, opponent_health=1, rng=rng,
+        )
+        self.resolve_opponent_attack(context, accuracy=0)
+        seen = []
+        original_apply = broom.effects[2].apply
+        def observe_blind(ctx):
+            seen.append((ctx.opponent.is_dead, ctx.battle_state.winner))
+            return original_apply(ctx)
+        broom.effects[2].apply = observe_blind
+        context.battle_state.step()
+        self.assertEqual(seen, [(False, None)])
+        self.assertEqual(context.opponent.debuffs.Blind, 1)
+        self.assertEqual(context.battle_state.winner, 0)
+        self.assertEqual(broom.miss_damage_bonus, 0)
+        self.assertEqual(broom.effects[1].damage_modifier, 0)
+        actions = [entry["data"]["action"] for entry in context.battle_state.log]
+        self.assertEqual(actions[-1], "consume_miss_damage_bonus")
+        self.assertNotIn("item_activation", actions)
 
     def test_broom_insufficient_stamina_retains_bonus_without_rng(self):
         rng = Mock()
@@ -4210,7 +4233,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
             broom.triggers[0].cooldown_progress,
             0.0,
         )
-        rng.random.assert_called_once_with()
+        rng.random.assert_not_called()
         rng.randint.assert_not_called()
         dispatch_spy.assert_not_called()
 
@@ -5156,6 +5179,8 @@ class GooblingSpecTest(unittest.TestCase):
         battle.rng.random.return_value = 0.99
         goobling = battle.players[0].items["goobling1"]
 
+        for player in battle.players:
+            player.accuracy_rng.last_result = True
         battle.step()
 
         self.assertEqual(goobling.triggers[0].activation_count, 1)
@@ -5268,6 +5293,8 @@ class GooblingSpecTest(unittest.TestCase):
         broom = battle.players[0].items["broom1"]
         goobling = battle.players[0].items["goobling1"]
 
+        for player in battle.players:
+            player.accuracy_rng.last_result = True
         battle.step()
 
         self.assertEqual(broom.miss_damage_bonus, 2)
@@ -5298,9 +5325,11 @@ class GooblingSpecTest(unittest.TestCase):
         broom.miss_damage_bonus = 2
         broom.effects[1].stack_damage_modifier(2)
 
+        for player in battle.players:
+            player.accuracy_rng.last_result = True
         battle.step()
 
-        self.assertEqual(broom.miss_damage_bonus, 2)
+        self.assertEqual(broom.miss_damage_bonus, 0)
         self.assertEqual(goobling.triggers[0].activation_count, 1)
         self.assertEqual(battle.rng.random.call_count, 1)
         battle.rng.randint.assert_not_called()

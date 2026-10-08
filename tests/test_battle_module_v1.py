@@ -3,6 +3,7 @@ from unittest.mock import Mock
 
 from battle_module_v1 import (
     BattleState,
+    make_attack_event,
     FIRST_POISON_TIME,
     FIRST_REGENERATION_TIME,
     ItemActivationContext,
@@ -1109,7 +1110,7 @@ class BattleModuleV1Test(unittest.TestCase):
             health_damage=4,
         )
 
-        self.assertEqual(final_damage_parts, (2, 4))
+        self.assertIsNone(final_damage_parts)
         self.assertEqual(target.block, 1)
         self.assertEqual(target.health, 6)
         self.assertIsNone(battle.winner)
@@ -1121,23 +1122,21 @@ class BattleModuleV1Test(unittest.TestCase):
 
         self.assertEqual(
             battle.commit_health_reduction(first, 2, 0),
-            (2, 0),
+            None,
         )
         self.assertEqual(
             battle.commit_health_reduction(first, 0, 4),
-            (0, 4),
+            None,
         )
 
-    def test_commit_health_reduction_lethal_overkill_stops_before_return(self):
+    def test_commit_health_reduction_keeps_overkill_and_does_not_decide_death(self):
         first = PlayerState(player_id=0, health=2)
         second = PlayerState(player_id=1, health=10)
         battle = BattleState(players=[first, second])
-
-        with self.assertRaises(_BattleFinishedSignal):
-            battle.commit_health_reduction(first, 0, 99)
-
-        self.assertEqual(first.health, 0)
-        self.assertEqual(battle.winner, 1)
+        self.assertIsNone(battle.commit_health_reduction(first, 0, 99))
+        self.assertEqual(first.health, -97)
+        self.assertFalse(first.is_dead)
+        self.assertIsNone(battle.winner)
 
     def test_heal_returns_actual_amount_and_caps_at_max_health(self):
         first = PlayerState(player_id=0, health=8, max_health=10)
@@ -1154,7 +1153,7 @@ class BattleModuleV1Test(unittest.TestCase):
         outsider = PlayerState(player_id=2, health=5, max_health=10)
         battle = BattleState(players=[first, second])
 
-        for invalid_amount in (-1, 1.0, True, "1"):
+        for invalid_amount in (-1, float("nan"), True, "1"):
             with self.subTest(invalid_amount=invalid_amount):
                 with self.assertRaises(ValueError):
                     battle.heal(first, invalid_amount)
@@ -1646,11 +1645,10 @@ class BattleModuleV1Test(unittest.TestCase):
 
     def test_item_kill_before_frame_end_skips_nightfall_fatigue(self):
         def deal_lethal_damage(item, trigger_results, context):
-            context.battle_state.commit_health_reduction(
-                context.opponent,
-                blocked_damage=0,
-                health_damage=10,
-            )
+            context.battle_state.resolve_attack(make_attack_event(
+                attacker=context.owner, defender=context.opponent, source_item=None,
+                attack_types=("effect",), min_damage=10, max_damage=10,
+            ))
             return False
 
         active_item = DecisionItem(
@@ -1688,12 +1686,11 @@ class BattleModuleV1Test(unittest.TestCase):
 
         def deal_lethal_damage(item, trigger_results, context):
             log.append("lethal")
-            context.battle_state.commit_health_reduction(
-                context.opponent,
-                blocked_damage=0,
-                health_damage=10,
-            )
-            log.append("unreachable")
+            context.battle_state.resolve_attack(make_attack_event(
+                attacker=context.owner, defender=context.opponent, source_item=None,
+                attack_types=("effect",), min_damage=10, max_damage=10,
+            ))
+            log.append("finished_current_item")
             return False
 
         first_item = DecisionItem(
@@ -1728,14 +1725,14 @@ class BattleModuleV1Test(unittest.TestCase):
 
         battle.step()
 
-        self.assertEqual(log, ["lethal"])
+        self.assertEqual(log, ["lethal", "finished_current_item"])
         self.assertEqual(battle.winner, 0)
         self.assertEqual(battle.frame, 0)
         self.assertEqual(battle.time, 0.0)
 
     def test_battle_state_sets_winner_when_one_player_remains_alive(self):
         winner = PlayerState(player_id=0, health=10)
-        loser = PlayerState(player_id=1, health=0)
+        loser = PlayerState(player_id=1, health=0, is_dead=True)
         battle = BattleState(players=[winner, loser])
 
         battle.check_battle_end()

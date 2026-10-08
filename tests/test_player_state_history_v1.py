@@ -1,3 +1,4 @@
+from battle_module_v1 import make_attack_event
 import json
 import unittest
 from copy import deepcopy
@@ -40,11 +41,11 @@ class LethalItem(BattleItem):
         )
 
     def run_effect(self, trigger_results, context):
-        context.battle_state.commit_health_reduction(
-            context.opponent,
-            blocked_damage=0,
-            health_damage=context.opponent.health,
-        )
+        context.battle_state.resolve_attack(make_attack_event(
+            attacker=context.owner, defender=context.opponent, source_item=None,
+            attack_types=("effect",), min_damage=context.opponent.health,
+            max_damage=context.opponent.health,
+        ))
 
 
 class ErrorItem(BattleItem):
