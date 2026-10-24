@@ -65,7 +65,14 @@ LD_LIBRARY_PATH="$RUNTIME/engine:$RUNTIME/debian/usr/lib/x86_64-linux-gnu${LD_LI
   "$RUNTIME/engine/godotsteam.362.editor.x86_64" --version
 ```
 
-This probes the executable; it does not run a battle. Future oracle collection requires a newly initialized pool from the recovered baseline and explicit user permission to resume. No old running process or private user account is restored.
+Or run the packaged minimal check against the recovered directory:
+
+```sh
+python3 -I -B -S recovery_checkpoint/check_restored.py \
+  --destination "$RECOVERED" --smoke --runtime-version
+```
+
+This runs one pure-Python historical example and probes the executable version; it does not run an original-game battle. Future oracle collection requires a newly initialized pool from the recovered baseline and explicit user permission to resume. No old running process or private user account is restored.
 
 ## Integrity and validation level
 
