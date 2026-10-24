@@ -1,0 +1,110 @@
+{
+  "checkpoint_archive_scope": [
+    "base243",
+    "support243",
+    "overlay343",
+    "control347"
+  ],
+  "claim": "bounded pattern and known-credential scan, not a guarantee against every possible secret format",
+  "counts": {
+    "deduplicated": 27436,
+    "nested_tar_xz": 67,
+    "nested_zip": 178,
+    "references": 41347,
+    "unique_bytes": 6848482816,
+    "unique_files": 13911
+  },
+  "findings": [],
+  "known_original_credentials": "two literals redacted;two encrypted companions omitted;see sanitization.json",
+  "method": "Known original API values, cloud/private-key/Bearer/completion/signedURL patterns; ZIP and tar.xz recursion with SHA dedup; malformed negative fixtures payload-scanned",
+  "negative_fixture_handling": [
+    {
+      "path": "python-original-engine-phase243-basic-goobert-progress-current.zip!PAYLOAD.tar.xz!repo/data/compact-handover-validation/v2-filenames-first-001/fixtures/006.zip!valid",
+      "reason": "BadZipFile",
+      "status": "MALFORMED_FIXTURE_PAYLOAD_STILL_SCANNED"
+    },
+    {
+      "path": "python-original-engine-phase243-basic-goobert-progress-current.zip!PAYLOAD.tar.xz!repo/data/compact-handover-validation/v2-filenames-first-001/fixtures/007.zip!valid",
+      "reason": "BadZipFile",
+      "status": "MALFORMED_FIXTURE_PAYLOAD_STILL_SCANNED"
+    },
+    {
+      "path": "python-original-engine-phase243-basic-goobert-progress-current.zip!PAYLOAD.tar.xz!repo/data/compact-handover-validation/v2-filenames-first-001/fixtures/008.zip!valid",
+      "reason": "BadZipFile",
+      "status": "MALFORMED_FIXTURE_PAYLOAD_STILL_SCANNED"
+    },
+    {
+      "path": "python-original-engine-phase243-basic-goobert-progress-current.zip!PAYLOAD.tar.xz!repo/data/compact-handover-validation/v2-filenames-first-001/fixtures/012.zip!valid",
+      "reason": "BadZipFile",
+      "status": "MALFORMED_FIXTURE_PAYLOAD_STILL_SCANNED"
+    },
+    {
+      "path": "python-original-engine-phase243-basic-goobert-progress-current.zip!PAYLOAD.tar.xz!repo/data/compact-handover-validation/v2-filenames-first-001/fixtures/013.zip!valid",
+      "reason": "BadZipFile",
+      "status": "MALFORMED_FIXTURE_PAYLOAD_STILL_SCANNED"
+    },
+    {
+      "entries": 1,
+      "path": "python-original-engine-phase243-basic-goobert-progress-current.zip!PAYLOAD.tar.xz!repo/data/compact-handover-validation/v2-filenames-first-001/fixtures/003.zip",
+      "status": "MALFORMED_UTF8_FILENAME_ZIP_PAYLOADS_SCANNED"
+    },
+    {
+      "path": "python-original-engine-phase243-basic-goobert-progress-current.zip!PAYLOAD.tar.xz!repo/data/compact-handover-validation/v2-filenames-first-001/fixtures/014.zip!valid",
+      "reason": "NotImplementedError",
+      "status": "MALFORMED_FIXTURE_PAYLOAD_STILL_SCANNED"
+    },
+    {
+      "followup": "targeted fixture exact243 identity verified; decompressed raw bytes or identical pristine compressed body scanned",
+      "path": "python-original-engine-phase243-basic-goobert-progress-current.zip!PAYLOAD.tar.xz!repo/data/compact-handover-validation/controls-first-001/fixtures/045.zip!PAYLOAD.tar.xz",
+      "reason": "ReadError",
+      "status": "VALID_XZ_CORRUPT_TAR_HEADER_ALL_RAW_DECODED_BYTES_SCANNED"
+    },
+    {
+      "followup": "targeted fixture exact243 identity verified; decompressed raw bytes or identical pristine compressed body scanned",
+      "path": "python-original-engine-phase243-basic-goobert-progress-current.zip!PAYLOAD.tar.xz!repo/data/compact-handover-validation/controls-first-001/fixtures/070.zip!PAYLOAD.tar.xz",
+      "reason": "ReadError",
+      "status": "SINGLE_XZ_HEADER_BYTE_MUTATION_IDENTICAL_PRISTINE_BODY_SCANNED"
+    },
+    {
+      "path": "python-original-engine-phase243-basic-goobert-progress-current.zip!PAYLOAD.tar.xz!repo/data/compact-handover-validation/v2-filenames-first-001/fixtures/004.zip!restore_handover.py",
+      "reason": "BadZipFile",
+      "status": "MALFORMED_FIXTURE_PAYLOAD_STILL_SCANNED"
+    },
+    {
+      "path": "python-original-engine-phase243-basic-goobert-progress-current.zip!PAYLOAD.tar.xz!repo/data/compact-handover-validation/final-negatives-first-001/fixtures/encrypted.zip!HANDOVER-README.md",
+      "reason": "RuntimeError",
+      "status": "MALFORMED_FIXTURE_PAYLOAD_STILL_SCANNED"
+    },
+    {
+      "path": "python-original-engine-phase243-basic-goobert-progress-current.zip!PAYLOAD.tar.xz!repo/tools/compact_handover_v2/negative-fixtures/source-mismatch-nul-local.zip!safe12345",
+      "reason": "BadZipFile",
+      "status": "MALFORMED_FIXTURE_PAYLOAD_STILL_SCANNED"
+    },
+    {
+      "path": "python-original-engine-phase243-basic-goobert-progress-current.zip!PAYLOAD.tar.xz!repo/tools/compact_handover_v2/negative-fixtures/source-mismatch-safe-local.zip!safe12345",
+      "reason": "BadZipFile",
+      "status": "MALFORMED_FIXTURE_PAYLOAD_STILL_SCANNED"
+    }
+  ],
+  "schema": "checkpoint-security-scan/1",
+  "targeted_negative_fixture_followup": [
+    {
+      "compressed_bytes": 7444,
+      "credential_matches": 0,
+      "decoded_bytes": 30720,
+      "decoded_sha256": "63cd082f118a3c619b9ee402fc8405d29067e8214c657a06c76f980831addd24",
+      "file": "data/compact-handover-validation/controls-first-001/fixtures/045.zip",
+      "fixture_sha256": "f54b9f4a13b16733d975a59eeb2e12b6afb8c723fa9ccb20f7305ee73a718f31",
+      "status": "VALID_XZ_CORRUPT_TAR_HEADER_ALL_RAW_DECODED_BYTES_SCANNED"
+    },
+    {
+      "compressed_bytes": 7236,
+      "credential_matches": 0,
+      "decoded_bytes": 30720,
+      "decoded_sha256": "a26b2f388fadf482707d143c54c068aae75b1d8141f04d7dc884efc4312d3ae5",
+      "file": "data/compact-handover-validation/controls-first-001/fixtures/070.zip",
+      "fixture_sha256": "6fa1bc81a306c0e8d4d1820110d2259fc32275c4ebc8395efb7b3f6e9cb99700",
+      "status": "SINGLE_XZ_HEADER_BYTE_MUTATION_IDENTICAL_PRISTINE_BODY_SCANNED"
+    }
+  ]
+}

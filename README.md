@@ -1,3 +1,5 @@
+> **完整工程恢复检查点（含原版材料及原始验收档案）：** [recovery_checkpoint/README.md](recovery_checkpoint/README.md)。按清单从 GitHub 分卷恢复，无需旧云环境文件；凭据脱敏及验证级别均有说明。
+
 > **独立 Python 无 GUI 引擎快照：** [python_engine/README.md](python_engine/README.md)。正式入口为有限 68 项；75 项候选独立验收通过但未晋级，完整原版引擎及 RL 仍未完成。下文是仓库已有 v1 模拟器的说明，输入格式不同。
 
 # 《背包乱斗》战斗配置与结果说明

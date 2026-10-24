@@ -1,3 +1,5 @@
+> Scope: this specification describes the small `python_engine/` package. The subsequently authorized self-contained engineering/original-material backup is specified in [checkpoint_recovery_spec.md](checkpoint_recovery_spec.md) and [recovery_checkpoint/README.md](../recovery_checkpoint/README.md).
+
 # Python engine checkpoint publication
 
 ## Requirements
