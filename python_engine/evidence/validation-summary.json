@@ -1,0 +1,92 @@
+{
+  "candidate75": {
+    "audit_checker_failures_preserved": 4,
+    "classes": [
+      0,
+      2
+    ],
+    "effect_calls_observed": {
+      "219": 2,
+      "220": 1,
+      "416": 2,
+      "469": 1
+    },
+    "effects_not_observed": [
+      74,
+      169,
+      401
+    ],
+    "items": 75,
+    "mirror": {
+      "zero_sum_0": 2
+    },
+    "original_comparison": {
+      "RNG_rows": 505,
+      "Timer_timeouts": 99,
+      "allocations": 401,
+      "callbacks": 26120,
+      "finite_pollution_controls_rejected": 7,
+      "global_Timer_API": 56,
+      "native_events": 400,
+      "new7_effect_calls": 6,
+      "ordinary_callbacks": 26021,
+      "referenced_events": 30,
+      "unlogged_allocation_ids": [
+        399
+      ]
+    },
+    "original_process_clean_exit": false,
+    "registered_descriptions": 76,
+    "scope": "Bounded default fresh75 production candidate with exact SOURCE/finite components/fixed mixed pure/current026 evidence. Not all75 original branches or arbitrary whole-game equivalence",
+    "status": "independently_accepted_not_promoted",
+    "successful_model_reruns": 0
+  },
+  "formal68": {
+    "classes": [
+      0,
+      2
+    ],
+    "items": 68,
+    "original_comparison": {
+      "RNGdraws": 827,
+      "Timer_API_pairs": 61,
+      "allocations": 672,
+      "callbacks": 34210,
+      "events": 672,
+      "parent_references": 120,
+      "strict_full_histories": true,
+      "strict_typed_final": true,
+      "unlogged": 0
+    },
+    "original_comparison_not_hit": [
+      "Ruby positive-start path",
+      "Mirror zero/cap",
+      "Light/Corrupted Goobert reset and positive temporary expiry",
+      "Goobert reentry/limiter"
+    ],
+    "original_process_clean_exit": false,
+    "registered_descriptions": 76,
+    "standalone_example": {
+      "draws": 842,
+      "events": 681,
+      "frames": 2340,
+      "oracle_reads": 0,
+      "seed": 32001,
+      "winner": "O"
+    },
+    "status": "accepted_finite_default_ingress"
+  },
+  "historical_receipt_sha256": {
+    "candidate75": "7264460622b0afd78566249bd673cd3e43d47131ce5c1a788212734bb7f3d562",
+    "formal68": "e2e9c1bd38fd64df05ae6ddfb3c4cf29c214291a12718b0feb06eb74c75fd2fc",
+    "standalone68": "0f6393afa99e492ff13723cec232bc998cccf7b827aa6b109db0d9522ee72f94"
+  },
+  "historical_record_date": "2026-10-20",
+  "limitations": [
+    "Historical raw oracle evidence and proprietary originals are not included. Summaries and hashes do not independently reproduce the original-game comparison.",
+    "Component and Python mixed-layout evidence for candidate items 74/169/401 is not an original-game natural-hit claim.",
+    "No complete item/class/modifier/terminal/reentry or RL coverage claim."
+  ],
+  "publication_does_not_rerun_original_game": true,
+  "schema": "python-engine-curated-historical-evidence/1"
+}
