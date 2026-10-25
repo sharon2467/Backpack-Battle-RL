@@ -1,0 +1,119 @@
+{
+  "Engine_constructions": 0,
+  "RNG_constructions": 0,
+  "RuntimeDTO_instances": 0,
+  "actual_native_evidence": false,
+  "boundary": "-I-B-S import of exact real standalone schema, no closed-file audit hook claim",
+  "candidate_imports": 0,
+  "capture_reads": 0,
+  "controls": [
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "bool"
+      },
+      "expected": "accept",
+      "label": "real-module-API-and-native-not-authorized",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "label": "plain-state-ID1-positive",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "reject",
+      "label": "public-plain-state-unknown-ID999-must-reject",
+      "pass_": false
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "reject",
+      "label": "public-plain-state-King-without-private-fields-must-reject",
+      "pass_": false
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "label": "normal-item-ID1-positive",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "item descriptor outside fixed six IDs",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "normal-item-unknown-ID999-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "label": "fixed-O19-role-positive",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "unknown fixed A native reference role",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "deleted-O12-role-rejected",
+      "pass_": true
+    }
+  ],
+  "executed": 8,
+  "expected_reads": 0,
+  "failures": [
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "reject",
+      "label": "public-plain-state-unknown-ID999-must-reject",
+      "pass_": false
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "reject",
+      "label": "public-plain-state-King-without-private-fields-must-reject",
+      "pass_": false
+    }
+  ],
+  "input_builds": 0,
+  "models": 0,
+  "module": {
+    "path": "data/phase357-independent-schema-review/SOURCE/phase357_king_observer_schema.py",
+    "sha256": "99d25e637217e8e56f3e73cf14e67b08e8b199851a63f8c8c950fe947bcf5867",
+    "size": 258647
+  },
+  "native": 0,
+  "schema": "phase357-independent-first-pure-schema-probe/1",
+  "schema_module_imports": 1,
+  "status": "BLOCKED_SOURCE_SEMANTIC_COUNTEREXAMPLE",
+  "synthetic_only": true
+}

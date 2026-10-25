@@ -1,0 +1,69 @@
+{
+  "Godot_nullable_note": "typed Object references allowNULL; source/native identity validation is separate, not a forgedclass inheritance table",
+  "changes": [
+    {
+      "added_type": "native_ref|null",
+      "evidence": "SOURCE_DERIVED_NOT_EXECUTED",
+      "function_sha256": "3f6031d769974fba0e1c23fe8fff71db44234f917003a6999e83b5782664252a",
+      "line_end": 110,
+      "line_start": 98,
+      "parameter": "emitter",
+      "signature": "func connectEvent(emitter: Node, signalName: String, receiver: Node, method: String)",
+      "site": "Utility/EventBus.gd::connectEvent",
+      "source": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Utility/EventBus.gd"
+    },
+    {
+      "added_type": "native_ref|null",
+      "evidence": "SOURCE_DERIVED_NOT_EXECUTED",
+      "function_sha256": "3f6031d769974fba0e1c23fe8fff71db44234f917003a6999e83b5782664252a",
+      "line_end": 110,
+      "line_start": 98,
+      "parameter": "receiver",
+      "signature": "func connectEvent(emitter: Node, signalName: String, receiver: Node, method: String)",
+      "site": "Utility/EventBus.gd::connectEvent",
+      "source": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Utility/EventBus.gd"
+    },
+    {
+      "added_type": "native_ref|null",
+      "evidence": "INDEPENDENT357_ACTUAL_FALSE_ACCEPT",
+      "function_sha256": "02894443e26b9b30406cf21a6f7a091e357ce06b94091927654bb4d69c3b3c8a",
+      "line_end": 97,
+      "line_start": 56,
+      "parameter": "emitter",
+      "signature": "func emitAndLog(emitter: Node, signalName: String, event: CombatEvent, arguments: Array)",
+      "site": "Utility/EventBus.gd::emitAndLog",
+      "source": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Utility/EventBus.gd"
+    },
+    {
+      "added_type": "native_ref|null",
+      "evidence": "INDEPENDENT357_ACTUAL_FALSE_ACCEPT",
+      "function_sha256": "cfa85bd0878398313ab0e3a1d49686cd17665c91f5c72fc6d2be69a68db2334c",
+      "line_end": 1594,
+      "line_start": 1591,
+      "parameter": "timer",
+      "signature": "func changeTimer(timer: Timer, t: float)",
+      "site": "Utility/Util.gd::changeTimer",
+      "source": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Utility/Util.gd"
+    }
+  ],
+  "evidence": {
+    "SOURCE_derived_unexecuted_parameters": 2,
+    "actual_parameters": 2
+  },
+  "explicit_type_map": {
+    "Array": "array",
+    "Character": "native_ref|null",
+    "CombatEvent": "event_ref|null",
+    "DamageResult": "damage_result|null",
+    "DamageSource": "damage_source|null",
+    "Dictionary": "dictionary",
+    "Item": "native_ref|null",
+    "Node": "native_ref|null",
+    "String": "string",
+    "Timer": "native_ref|null",
+    "bool": "bool",
+    "float": "float",
+    "int": "int"
+  },
+  "schema": "phase358-object-argument-repair/1"
+}

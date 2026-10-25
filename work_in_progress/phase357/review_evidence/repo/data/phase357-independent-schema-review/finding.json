@@ -1,0 +1,64 @@
+{
+  "author_module": {
+    "path": "tests/phase357_king_observer_schema.py",
+    "sha256": "99d25e637217e8e56f3e73cf14e67b08e8b199851a63f8c8c950fe947bcf5867",
+    "size": 258647
+  },
+  "counts": {
+    "Engine_constructions": 0,
+    "RNG_constructions": 0,
+    "RuntimeDTO_instances": 0,
+    "candidate_imports": 0,
+    "capture_reads": 0,
+    "controls": 8,
+    "expected_outcomes_matched": 6,
+    "expected_reads": 0,
+    "false_accepts": 2,
+    "input_builds": 0,
+    "models": 0,
+    "native": 0,
+    "schema_module_imports": 1
+  },
+  "explanation": "validate_state accepts plain_item because it is in CONTRACT.state_schemas, but the Item descriptor/domain/subtype guard runs only for item/goobert/king/potion. Selecting the public accepted kind plain_item skips that guard. Synthetic plain fields with descriptor999 outside fixed6 and descriptor262 without mandatory King private fields both return successfully. The identical normal item call rejects999, isolating the bypass to kind dispatch.",
+  "false_accepts": [
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "reject",
+      "label": "public-plain-state-unknown-ID999-must-reject",
+      "pass_": false
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "reject",
+      "label": "public-plain-state-King-without-private-fields-must-reject",
+      "pass_": false
+    }
+  ],
+  "minimum_repair": "Route every accepted Item state-kind, including plain_item, through one exact descriptor/domain/subtype guard; reject outside6 and mismatched requested subtype before field validation. Preserve all other source/schema behavior; do not change356closed gate or build producer.",
+  "module": {
+    "path": "data/phase357-independent-schema-review/SOURCE/phase357_king_observer_schema.py",
+    "sha256": "99d25e637217e8e56f3e73cf14e67b08e8b199851a63f8c8c950fe947bcf5867",
+    "size": 258647
+  },
+  "other_obligations": "15GD/103source declarations+43pure clones static checked. Remaining seven-family semantic obligations not executed or accepted by this first probe.",
+  "report": {
+    "path": "data/phase357-independent-schema-review/probe-first-001/report.json",
+    "sha256": "906f4b15845c04db2f4f834571448985daf619513c9abe95c5021ca971befcb8",
+    "size": 2893
+  },
+  "schema": "phase357-independent-schema-first-finding/1",
+  "scope": "Pure actual standalone schema only. Not a native/capture/model/input-bundle counterexample. Synthetic type fixtures are explicitly not real original observations.",
+  "source_location": "tests/phase357_king_observer_schema.py:3195-3214",
+  "source_owner": {
+    "path": "data/phase357-independent-schema-review/source-owner.json",
+    "sha256": "a3a376b82442ddca72f950d34da5f37bb1169f2157df4f6bc1cbdd74aa81f5a3",
+    "size": 2470
+  },
+  "status": "BLOCKED_PUBLIC_ITEM_KIND_BYPASSES_DESCRIPTOR_SUBTYPE"
+}

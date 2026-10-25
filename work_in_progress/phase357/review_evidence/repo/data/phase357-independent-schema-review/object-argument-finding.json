@@ -1,0 +1,104 @@
+{
+  "actual_GD_omissions": [
+    {
+      "GD_type": "Node",
+      "argument": "emitter",
+      "signature": "func connectEvent(emitter: Node, signalName: String, receiver: Node, method: String)",
+      "site": "Utility/EventBus.gd::connectEvent",
+      "source_identity": {
+        "sha256": "3f6031d769974fba0e1c23fe8fff71db44234f917003a6999e83b5782664252a",
+        "size": 398
+      }
+    },
+    {
+      "GD_type": "Node",
+      "argument": "receiver",
+      "signature": "func connectEvent(emitter: Node, signalName: String, receiver: Node, method: String)",
+      "site": "Utility/EventBus.gd::connectEvent",
+      "source_identity": {
+        "sha256": "3f6031d769974fba0e1c23fe8fff71db44234f917003a6999e83b5782664252a",
+        "size": 398
+      }
+    },
+    {
+      "GD_type": "Node",
+      "argument": "emitter",
+      "signature": "func emitAndLog(emitter: Node, signalName: String, event: CombatEvent, arguments: Array)",
+      "site": "Utility/EventBus.gd::emitAndLog",
+      "source_identity": {
+        "sha256": "02894443e26b9b30406cf21a6f7a091e357ce06b94091927654bb4d69c3b3c8a",
+        "size": 468
+      }
+    },
+    {
+      "GD_type": "Timer",
+      "argument": "timer",
+      "signature": "func changeTimer(timer: Timer, t: float)",
+      "site": "Utility/Util.gd::changeTimer",
+      "source_identity": {
+        "sha256": "cfa85bd0878398313ab0e3a1d49686cd17665c91f5c72fc6d2be69a68db2334c",
+        "size": 108
+      }
+    }
+  ],
+  "actual_false_accepts": [
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "reject",
+      "label": "actual-Timer-parameter-INT-must-reject",
+      "pass_": false
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "reject",
+      "label": "actual-Node-parameter-INT-must-reject",
+      "pass_": false
+    }
+  ],
+  "counts": {
+    "Engine_constructions": 0,
+    "RNG_constructions": 0,
+    "candidate_imports": 0,
+    "capture_reads": 0,
+    "cumulative_logical_controls": 12,
+    "expected_reads": 0,
+    "false_accepts": 2,
+    "input_builds": 0,
+    "matched_expected": 2,
+    "models": 0,
+    "native": 0,
+    "new_controls": 4,
+    "public_validator_top_calls": 11,
+    "schema_module_imports": 2
+  },
+  "explanation": "The GD mapper silently omits declared Node and Timer. Real module.validate_record accepts otherwise valid synthetic enter records with INT0 for emitAndLog.emitter:Node and changeTimer.timer:Timer; corresponding native-ref rows pass. Source also proves same omission for connectEvent.emitter/receiver:Node,not separately executed. This is source-entry typing,not native value evidence.",
+  "minimum_repair": "New source:map Node/Timer to proper nullable native-ref ABI;fail on unknown declared annotations rather than treat as untyped. Regenerate all4affected argument positions in3sites/type manifest;keep other schema and356guard.",
+  "module": {
+    "path": "data/phase357-independent-schema-review/SOURCE/phase357_king_observer_schema.py",
+    "sha256": "99d25e637217e8e56f3e73cf14e67b08e8b199851a63f8c8c950fe947bcf5867",
+    "size": 258647
+  },
+  "report": {
+    "path": "data/phase357-independent-schema-review/object-argument-first-001/report.json",
+    "sha256": "6862d7af4d9d4d052c3d34606952d02a8bd4eb220cdd6fb700ee3c324402c76f",
+    "size": 1670
+  },
+  "schema": "phase357-independent-object-argument-finding/1",
+  "scope": "Pure synthetic record controls only;first8 not rerun;connectEvent positions SOURCE_DERIVED_NOT_EXECUTED",
+  "source_locations": [
+    "tests/phase357_prepare_schema_source.py:94-102",
+    "tests/phase357_king_observer_schema.py:3319-3344"
+  ],
+  "source_owner": {
+    "path": "data/phase357-independent-schema-review/object-argument-source-owner.json",
+    "sha256": "fea2d2db4ac37e78cfb701842637ec2959ec368a2214af93a8617424400e1f70",
+    "size": 893
+  },
+  "status": "BLOCKED_EXPLICIT_GD_OBJECT_ARGUMENT_TYPE_OMITTED"
+}

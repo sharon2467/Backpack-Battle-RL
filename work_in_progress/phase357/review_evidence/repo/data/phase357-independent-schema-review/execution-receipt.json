@@ -1,0 +1,87 @@
+{
+  "actual_native_evidence": false,
+  "all_previous_controls_rerun": 0,
+  "counts": {
+    "Engine_constructions": 0,
+    "RNG_constructions": 0,
+    "RuntimeDTO_instances": 0,
+    "actual_accepted": 10,
+    "actual_rejected": 2,
+    "candidate_imports": 0,
+    "capture_reads": 0,
+    "expected_positive": 6,
+    "expected_reads": 0,
+    "expected_reject": 6,
+    "false_accepts": 4,
+    "initializations": 0,
+    "input_builds": 0,
+    "logical_controls": 12,
+    "matched_expected": 8,
+    "maximum_preparation_budget": 80,
+    "models": 0,
+    "native": 0,
+    "public_validator_top_calls": 11,
+    "recursive_internal_calls": "NOT_COUNTED",
+    "schema_module_imports": 2,
+    "steps": 0
+  },
+  "isolation": "-I-B-S exact real standalone schema +stdlib and frozen syntheticdata;no closed-file audit hook claim",
+  "output_only_metadata_first_failure": {
+    "path": "data/phase357-independent-schema-review/object-finding-metadata-first-failure.json",
+    "sha256": "dbde57712f34fdb42f4a74561523fd4ed8245579686f9cda3ee706ccb2da8eaf",
+    "size": 540
+  },
+  "processes": [
+    {
+      "command": "python3 -I -B -S tests/phase357_independent_schema_probe.py",
+      "controls": 8,
+      "exit_code": 0,
+      "false_accepts": 2,
+      "matched": 6,
+      "report": {
+        "path": "data/phase357-independent-schema-review/probe-first-001/report.json",
+        "sha256": "906f4b15845c04db2f4f834571448985daf619513c9abe95c5021ca971befcb8",
+        "size": 2893
+      },
+      "stderr": {
+        "path": "data/phase357-independent-schema-review/probe-first.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "data/phase357-independent-schema-review/probe-first.stdout.txt",
+        "sha256": "33ee4f1a6c5c8e4ff1192798d381262f05504f7b2ab4ff76da47f961654d31cf",
+        "size": 192
+      }
+    },
+    {
+      "command": "python3 -I -B -S tests/phase357_independent_object_argument_probe.py",
+      "controls": 4,
+      "exit_code": 0,
+      "false_accepts": 2,
+      "matched": 2,
+      "report": {
+        "path": "data/phase357-independent-schema-review/object-argument-first-001/report.json",
+        "sha256": "6862d7af4d9d4d052c3d34606952d02a8bd4eb220cdd6fb700ee3c324402c76f",
+        "size": 1670
+      },
+      "stderr": {
+        "path": "data/phase357-independent-schema-review/object-argument-first.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "stdout": {
+        "path": "data/phase357-independent-schema-review/object-argument-first.stdout.txt",
+        "sha256": "66ce432d5509b6c7fa113e2ca9625d2a0d3ee21a941861d7d09da26578d339e7",
+        "size": 161
+      }
+    }
+  ],
+  "schema": "phase357-independent-schema-execution/1",
+  "source_preparation_diagnostics": {
+    "path": "data/phase357-independent-schema-review/preparation-first-syntax-error.json",
+    "sha256": "6ae8b29ecae6e5287def12b1e5791168b670ebe1110f1d679e4e3368795e1782",
+    "size": 406
+  },
+  "synthetic_only": true
+}

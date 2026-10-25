@@ -1,0 +1,8 @@
+{"accepted": true, "detail": {"return_type": "bool"}, "expected": "accept", "label": "real-module-API-and-native-not-authorized", "pass_": true}
+{"accepted": true, "detail": {"return_type": "dict"}, "expected": "accept", "label": "plain-state-ID1-positive", "pass_": true}
+{"accepted": true, "detail": {"return_type": "dict"}, "expected": "reject", "label": "public-plain-state-unknown-ID999-must-reject", "pass_": false}
+{"accepted": true, "detail": {"return_type": "dict"}, "expected": "reject", "label": "public-plain-state-King-without-private-fields-must-reject", "pass_": false}
+{"accepted": true, "detail": {"return_type": "dict"}, "expected": "accept", "label": "normal-item-ID1-positive", "pass_": true}
+{"accepted": false, "detail": {"message": "item descriptor outside fixed six IDs", "type": "ValueError"}, "expected": "reject", "label": "normal-item-unknown-ID999-rejected", "pass_": true}
+{"accepted": true, "detail": {"return_type": "dict"}, "expected": "accept", "label": "fixed-O19-role-positive", "pass_": true}
+{"accepted": false, "detail": {"message": "unknown fixed A native reference role", "type": "ValueError"}, "expected": "reject", "label": "deleted-O12-role-rejected", "pass_": true}

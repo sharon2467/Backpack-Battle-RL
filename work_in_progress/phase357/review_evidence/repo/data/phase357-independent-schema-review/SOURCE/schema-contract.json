@@ -1,0 +1,508 @@
+{
+  "Timer_source_forms": {
+    "Core/Buff.gd::gainTemporary:start": {
+      "argc": 1,
+      "args": [
+        "REALduration"
+      ],
+      "operation": "start",
+      "role": "buff:<side>:<type>"
+    },
+    "Core/Buff.gd::onTimeout:start": {
+      "argc": 1,
+      "args": [
+        "REALdelay"
+      ],
+      "operation": "start",
+      "role": "buff:<side>:<type>"
+    },
+    "Core/Character.gd::combatStart:tick": {
+      "argc": 0,
+      "args": [],
+      "operation": "start",
+      "role": "tick:<side>"
+    },
+    "Interface/CombatTimer/CombatTimer.gd::dealFatigueDamage": {
+      "argc": 1,
+      "args": [
+        "INT1"
+      ],
+      "operation": "start",
+      "role": "fatigue:tick"
+    },
+    "Interface/CombatTimer/CombatTimer.gd::start": {
+      "argc": 1,
+      "args": [
+        "INT14"
+      ],
+      "operation": "start",
+      "role": "fatigue:start"
+    },
+    "Interface/CombatTimer/CombatTimer.gd::startFatigue": {
+      "argc": 1,
+      "args": [
+        "INT3"
+      ],
+      "operation": "start",
+      "role": "fatigue:tick"
+    },
+    "Items/CarrotGoobert.gd::doCooldownEffect:start": {
+      "argc": 1,
+      "args": [
+        "REALduration"
+      ],
+      "operation": "start",
+      "role": "particle:<instance>"
+    },
+    "all_known_stop_sites": {
+      "argc": 0,
+      "args": [],
+      "operation": "stop"
+    }
+  },
+  "caps": {
+    "array": 8192,
+    "depth": 16,
+    "descriptors": 6,
+    "dictionary": 512,
+    "failure_file_bytes": 4096,
+    "file_bytes": 268435456,
+    "first_error_bytes": 1024,
+    "flush_bytes": 4194304,
+    "host_capture_files": 64,
+    "native_ids": 8192,
+    "observer_files": 8,
+    "pending_rows": 64,
+    "record_bytes": 2097152,
+    "records": 300000,
+    "roles": 1024,
+    "sparse_nodes": 16384,
+    "string_utf8": 4096,
+    "total_bytes": 268435456
+  },
+  "computed_fields": {
+    "allocation_counter": "Game.combatLog.eventNum",
+    "connection_count": "sum each EventBus.connections array length",
+    "event_count": "CombatLog.events.size",
+    "native_reference": "nativeintID retained; Objecttransientargs only; no Object saved",
+    "subtype_rules": "goobert/carrot/potion include literalmergedItemfields; appropriate source-specific nullableconstructoronly"
+  },
+  "current_permissions": {
+    "input_build": false,
+    "model": false,
+    "native": false
+  },
+  "envelope_exact": [
+    "schema",
+    "sequence",
+    "channel",
+    "site",
+    "edge",
+    "subject",
+    "stamp",
+    "payload"
+  ],
+  "envelope_schema": "observer7-record/1",
+  "failure_policy": "boundedfirsterror durable+failedlatch; originalRNG/gameplay executes/returnsexactlyonce regardlessobserverrecordfailure; collector laterstops capturefalse",
+  "file_channels": {
+    "allocation": "observer7-allocations.jsonl",
+    "failure": "observer7_failure.json",
+    "input": "observer7-input.jsonl",
+    "lineage": "observer7-lineage.jsonl",
+    "metadata": "observer7-metadata.jsonl",
+    "primitive": "observer7-primitives.jsonl",
+    "registration": "observer7-registration.jsonl",
+    "runtime": "observer7-runtime.jsonl"
+  },
+  "genuine_extraction_enabled": false,
+  "input_leaf_whitelist": [
+    "fixture.json",
+    "player_fixture.json",
+    "observer7-input.jsonl",
+    "observer7-lineage.jsonl",
+    "observer7-metadata.jsonl",
+    "observer7-primitives.jsonl",
+    "king-clock-checkpoint.json",
+    "king-clock-passes.jsonl",
+    "king-input-facts.json",
+    "king-ui-authority.jsonl",
+    "king-rng-checkpoint.json"
+  ],
+  "lifecycle_api_exact": [
+    "role",
+    "operation",
+    "argc",
+    "args",
+    "public_before",
+    "public_after"
+  ],
+  "primitive_context_exact": [
+    "operation",
+    "item",
+    "target",
+    "ordinal",
+    "width",
+    "branch",
+    "stack",
+    "reflect_argument"
+  ],
+  "primitive_exact": [
+    "kind",
+    "label",
+    "args",
+    "value",
+    "context"
+  ],
+  "primitive_sites": {
+    "Items/Item.gd::adjustCooldown:belowMasterOpponent": {
+      "args": [
+        "REAL0.975",
+        "REAL1.05"
+      ],
+      "kind": "randf_range"
+    },
+    "Items/Item.gd::adjustCooldown:other": {
+      "args": [
+        "REAL0.95",
+        "REAL1.05"
+      ],
+      "kind": "randf_range"
+    },
+    "Utility/BalancedRange.gd::randIntRange": {
+      "args": [
+        "INTfrom",
+        "INTto"
+      ],
+      "kind": "randi_range"
+    },
+    "Utility/DamageSource.gd::randDamage": {
+      "args": [
+        "INTminDamage",
+        "INTmaxDamage"
+      ],
+      "kind": "randi_range"
+    },
+    "Utility/Util.gd::flip": {
+      "args": [],
+      "kind": "randf"
+    },
+    "Utility/Util.gd::pickRandomElement": {
+      "args": [
+        "INT0",
+        "INTsizeMinus1"
+      ],
+      "kind": "randi_range"
+    },
+    "Utility/Util.gd::randPitch": {
+      "kind": "randf_range"
+    },
+    "Utility/Util.gd::roll": {
+      "args": [
+        "INT0",
+        "REALmaximum"
+      ],
+      "default_maximum": "REAL100.0",
+      "kind": "randf_range"
+    },
+    "fixed7fraction_shuffle": {
+      "args": [],
+      "instance_context": true,
+      "kind": "global_u32",
+      "widths": [
+        7,
+        6,
+        5,
+        4,
+        3,
+        2
+      ]
+    }
+  },
+  "raw_to_numeric_tape": "onlylistedexactsiteconversion, retainedrawtypes/sourceview, directreturncopyunchanged; genuineextraction/modelviewdisabledpendinglatergate",
+  "return_semantics": "SOURCE_EXPRESSION_BEFORE_ORIGINAL_TYPED_BOUNDARY",
+  "schema": "phase357-king-typed-record-contract/1",
+  "stamp_exact": [
+    "physics_frame",
+    "idle_frame",
+    "util_time",
+    "combat_time",
+    "phase"
+  ],
+  "state_schemas": {
+    "auto_hide": {
+      "emitting": "bool",
+      "explosiveness": "float",
+      "lifetime": "float",
+      "one_shot": "bool",
+      "speed_scale": "float",
+      "timer": "timer|null",
+      "visible": "bool"
+    },
+    "buff": {
+      "character": "native_ref|null",
+      "cleanseProtectionChancePercent": "float",
+      "current": "int",
+      "nextTemporaryTimeout": "int",
+      "permanentStacks": "int",
+      "reflectChancePercent": "float",
+      "resistChancePercent": "float",
+      "resistStacks": "int",
+      "temporaryStacks": "temporary_array",
+      "timer": "timer|null",
+      "type": "int"
+    },
+    "character": {
+      "allowStaminaOverflow": "bool",
+      "autoRageItem": "native_ref|null",
+      "battleRageBonusDur": "float",
+      "battleRageTimer": "timer",
+      "buffProtectStacks": "int",
+      "critResistStacks": "int",
+      "critResistance": "float",
+      "critTokens": "int",
+      "curHealth": "float",
+      "curStamina": "float",
+      "damageResistance": "float",
+      "debuffReflectStacks": "int",
+      "healingEfficiency": "float",
+      "invulBubbleVisible": "bool",
+      "invulnerabilityItem": "native_ref|null",
+      "invulnerabilityTimer": "timer",
+      "invulnerable": "bool",
+      "isDead": "bool",
+      "maxHealth": "float",
+      "maxStamina": "float",
+      "playerId": "int",
+      "stunnedDuration": "float",
+      "temporaryMaxHealth": "float",
+      "temporaryMaxStamina": "float",
+      "tickCounter": "int",
+      "typedDamageFactors": "dictionary",
+      "unhealingAmount": "float"
+    },
+    "combat_log": {
+      "eventNum": "int",
+      "event_count": "int",
+      "eventsLogged": "int",
+      "loggingFinished": "bool"
+    },
+    "combat_timer": {
+      "combatTime": "float",
+      "fatigueCounter": "int",
+      "fatigueStartTimer": "timer",
+      "fatigueTickTimer": "timer",
+      "timeAdvance": "float"
+    },
+    "event_bus": {
+      "connection_count": "int",
+      "loggingMode": "int",
+      "signalQueue": "array"
+    },
+    "game": {
+      "allocation_counter": "int",
+      "curClass": "int",
+      "curMode": "int",
+      "curRound": "int",
+      "fightEnded": "bool",
+      "roundResults": "array"
+    },
+    "generic": {
+      "native_id": "id"
+    },
+    "goobert": {
+      "activations": "int",
+      "activationsThisFrame": "int",
+      "activationsToTrigger": "float",
+      "cachedAffectedItems": "dictionary",
+      "consumed": "bool",
+      "currentAffectedItems": "dictionary",
+      "descriptorIndex": "int",
+      "faceDirection": "int",
+      "iterationCooldown": "float",
+      "lastActivationTime": "float",
+      "lastTriggerTime": "float",
+      "ownerType": "int",
+      "placed": "bool",
+      "speedScale": "float",
+      "triggerTime": "float",
+      "triggersThisFrame": "int"
+    },
+    "item": {
+      "activationsThisFrame": "int",
+      "cachedAffectedItems": "dictionary",
+      "consumed": "bool",
+      "currentAffectedItems": "dictionary",
+      "descriptorIndex": "int",
+      "faceDirection": "int",
+      "iterationCooldown": "float",
+      "lastActivationTime": "float",
+      "lastTriggerTime": "float",
+      "ownerType": "int",
+      "placed": "bool",
+      "speedScale": "float",
+      "triggerTime": "float",
+      "triggersThisFrame": "int"
+    },
+    "king": {
+      "activationParticles": "auto_hide",
+      "activations": "int",
+      "activationsThisFrame": "int",
+      "activationsToTrigger": "float",
+      "buffTimer": "timer",
+      "cachedAffectedItems": "dictionary",
+      "consumed": "bool",
+      "currentAffectedItems": "dictionary",
+      "descriptorIndex": "int",
+      "faceDirection": "int",
+      "invuCharges": "int",
+      "iterationCooldown": "float",
+      "lastActivationTime": "float",
+      "lastTriggerTime": "float",
+      "manaCost": "float",
+      "ownerType": "int",
+      "placed": "bool",
+      "protectedBuffs": "float",
+      "speedScale": "float",
+      "triggerTime": "float",
+      "triggersThisFrame": "int"
+    },
+    "node": {
+      "class": "string",
+      "inside_tree": "bool",
+      "internal_idle": "bool",
+      "internal_physics": "bool",
+      "name": "string",
+      "native_id": "id",
+      "ordinary_idle": "bool",
+      "ordinary_physics": "bool",
+      "path": "string|nulloutsideTree",
+      "positions": "int_array",
+      "priority": "int",
+      "role": "string|null"
+    },
+    "plain_item": {
+      "activationsThisFrame": "int",
+      "cachedAffectedItems": "dictionary",
+      "consumed": "bool",
+      "currentAffectedItems": "dictionary",
+      "descriptorIndex": "int",
+      "faceDirection": "int",
+      "iterationCooldown": "float",
+      "lastActivationTime": "float",
+      "lastTriggerTime": "float",
+      "ownerType": "int",
+      "placed": "bool",
+      "speedScale": "float",
+      "triggerTime": "float",
+      "triggersThisFrame": "int"
+    },
+    "potion": {
+      "activationsThisFrame": "int",
+      "cachedAffectedItems": "dictionary",
+      "consumed": "bool",
+      "currentAffectedItems": "dictionary",
+      "descriptorIndex": "int",
+      "faceDirection": "int",
+      "isFull": "bool",
+      "iterationCooldown": "float",
+      "lastActivationTime": "float",
+      "lastTriggerTime": "float",
+      "ownerType": "int",
+      "placed": "bool",
+      "speedScale": "float",
+      "triggerTime": "float",
+      "triggersThisFrame": "int"
+    },
+    "temporary_constructor": {
+      "amount": "int",
+      "item": "native_ref|null",
+      "timeout": "float"
+    },
+    "timer": {
+      "autostart": "bool",
+      "node": "node",
+      "one_shot": "bool",
+      "paused": "bool",
+      "process_mode": "int",
+      "stopped": "bool",
+      "time_left": "float",
+      "wait_time": "float"
+    },
+    "util": {
+      "clockTime": "float",
+      "frameCounter": "int",
+      "time": "float"
+    }
+  },
+  "status": "SOURCE_SCHEMA_IMPLEMENTED_ADMISSION_CLOSED",
+  "typed_exact": {
+    "array": [
+      "type",
+      "values"
+    ],
+    "bool": [
+      "type",
+      "value"
+    ],
+    "damage_result": [
+      "type",
+      "native_id",
+      "event",
+      "damageSource",
+      "damage",
+      "healthDamage",
+      "hit",
+      "critical",
+      "damageReduction"
+    ],
+    "damage_source": [
+      "type",
+      "native_id",
+      "minDamage",
+      "maxDamage",
+      "types",
+      "accuracy",
+      "critChancePercent",
+      "origin",
+      "flags"
+    ],
+    "dictionary": [
+      "type",
+      "entries"
+    ],
+    "event_ref": [
+      "type",
+      "native_id",
+      "event_id"
+    ],
+    "float": [
+      "type",
+      "binary64_be"
+    ],
+    "int": [
+      "type",
+      "decimal"
+    ],
+    "native_ref": [
+      "type",
+      "native_id",
+      "role",
+      "class"
+    ],
+    "null": [
+      "type"
+    ],
+    "string": [
+      "type",
+      "value"
+    ],
+    "temporary": [
+      "type",
+      "native_id",
+      "ordinal",
+      "amount",
+      "timeout",
+      "item"
+    ]
+  }
+}

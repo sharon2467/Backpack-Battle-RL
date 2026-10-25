@@ -1,0 +1,113 @@
+{
+  "King_production_admitted": false,
+  "accepted": false,
+  "author_source_owner": {
+    "path": "data/phase357-king-observer-schema-source/source-owner.json",
+    "sha256": "cee4404934446da8b90808c96b22b794bc78ec1e99e08ba3e1c19ef15a41b369",
+    "size": 3955
+  },
+  "blockers": [
+    "Public validate_state(kind=plain_item) skips descriptor/subtype guard:999outsidefixed6 and262withoutKingprivatefields accepted.",
+    "Explicit GD Node/Timer annotations omitted from argument_types. INT0 for changeTimer.timer and emitAndLog.emitter accepted;connectEvent emitter/receiver same SOURCE omission."
+  ],
+  "counts": {
+    "Engine_constructions": 0,
+    "RNG_constructions": 0,
+    "RuntimeDTO_instances": 0,
+    "actual_accepted": 10,
+    "actual_rejected": 2,
+    "candidate_imports": 0,
+    "capture_reads": 0,
+    "expected_positive": 6,
+    "expected_reads": 0,
+    "expected_reject": 6,
+    "false_accepts": 4,
+    "initializations": 0,
+    "input_builds": 0,
+    "logical_controls": 12,
+    "matched_expected": 8,
+    "maximum_preparation_budget": 80,
+    "models": 0,
+    "native": 0,
+    "public_validator_top_calls": 11,
+    "recursive_internal_calls": "NOT_COUNTED",
+    "schema_module_imports": 2,
+    "steps": 0
+  },
+  "evidence": {
+    "coverage": {
+      "path": "data/phase357-independent-schema-review/coverage.json",
+      "sha256": "cff6b5e8e42675305240aa631ae3c460165c9982d8301b7e99286fa763e77eb5",
+      "size": 3804
+    },
+    "execution": {
+      "path": "data/phase357-independent-schema-review/execution-receipt.json",
+      "sha256": "cd61eff6639839a1b0ffc8edc81c4ea84bff02665b0eadccf887e6667076f343",
+      "size": 3094
+    },
+    "static": {
+      "path": "data/phase357-independent-schema-review/static-review.json",
+      "sha256": "d8cda57937441c0c12780f9b6f4f5b8672ba44d3c3c423cad6cc68f6442ecb5e",
+      "size": 42224
+    }
+  },
+  "findings": [
+    {
+      "path": "data/phase357-independent-schema-review/finding.json",
+      "sha256": "54d90374fd11a8d64b754da768cb1b1437714df662dbc4ce8c91a48e927aeea3",
+      "size": 2915
+    },
+    {
+      "path": "data/phase357-independent-schema-review/object-argument-finding.json",
+      "sha256": "e423bd60c30dc3386a5810b857c540136630354f89ec8e7276843cc8cae76dbd",
+      "size": 3948
+    }
+  ],
+  "first_scientific_process_exits": [
+    0,
+    0
+  ],
+  "formal_production_accepted_bounded": 75,
+  "full_engine_RL": "IN_PROGRESS",
+  "guard356": "UNCHANGED_UNCONDITIONAL_PENDING",
+  "independent_source_owners": [
+    {
+      "path": "data/phase357-independent-schema-review/source-owner.json",
+      "sha256": "a3a376b82442ddca72f950d34da5f37bb1169f2157df4f6bc1cbdd74aa81f5a3",
+      "size": 2470
+    },
+    {
+      "path": "data/phase357-independent-schema-review/object-argument-source-owner.json",
+      "sha256": "fea2d2db4ac37e78cfb701842637ec2959ec368a2214af93a8617424400e1f70",
+      "size": 893
+    }
+  ],
+  "metadata_first_exit": 1,
+  "minimum_new_source_repair": [
+    "All Item state-kinds share exactdescriptor/domain/subtype gate,includingplain_item.",
+    "Map all4Node/Timerpositions across3sites;unknown explicitannotations mustfailclosed instead of becominguntyped.",
+    "Keep frozen357v1/firstfacts/356closedguard and all kernels unchanged;no collector needed for these fixes."
+  ],
+  "module": {
+    "path": "tests/phase357_king_observer_schema.py",
+    "sha256": "99d25e637217e8e56f3e73cf14e67b08e8b199851a63f8c8c950fe947bcf5867",
+    "size": 258647
+  },
+  "new_genuine_profile_admitted": false,
+  "no_more_writes": true,
+  "notes": "Exit0 is execution success only;4invalid cases actuallyaccepted. Independent journals/reportsealed before interpretation;none rerun. SOURCE-preparation and metadata failures separatelypreserved. Interactive missing optional metadata names/list-vs-dict read errors were not schema execution.",
+  "preparation_first_syntax_exit": 1,
+  "preparation_owner": {
+    "path": "data/phase357-independent-schema-preparation/owned-files.json",
+    "sha256": "d5466b0c2a3ca526b89d329758dcb8c73e5a9ad4b76de6ec7354dd80369481bb",
+    "size": 1205
+  },
+  "schema": "phase357-independent-schema-source-review/1",
+  "scope": "BLOCKED component,nocomplete schema or native acceptance. Only12ofmaximum80semanticcontrols executed;all remaining families explicitlypending.15GD/103declarations/43ASTclones are static evidence,not runtime coverage.",
+  "source_schema_freeze": {
+    "path": "data/phase357-king-observer-schema-source/schema-source-freeze.json",
+    "sha256": "1cfe9d1ad5deee7fb5a55317a23d0b8839694197200f99df49103766d2f3ab58",
+    "size": 998
+  },
+  "status": "INDEPENDENT357_SCHEMA_SOURCE_BLOCKED_DESCRIPTOR_AND_GD_ARGUMENT_TYPING"
+}

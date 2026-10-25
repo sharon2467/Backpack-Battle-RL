@@ -1,0 +1,48 @@
+--- 357/phase357_king_observer_schema.py
++++ 358/phase358_king_observer_schema.py
+@@ -1862,7 +1862,9 @@
+                                                      'channel': 'runtime',
+                                                      'explicit_returns': [],
+                                                      'state_schema': 'auto_hide'},
+-           'Utility/EventBus.gd::connectEvent': {'argument_types': {'method': 'string',
++           'Utility/EventBus.gd::connectEvent': {'argument_types': {'emitter': 'native_ref|null',
++                                                                    'method': 'string',
++                                                                    'receiver': 'native_ref|null',
+                                                                     'signalName': 'string'},
+                                                  'arguments_exact': ['emitter',
+                                                                      'signalName',
+@@ -1937,6 +1939,7 @@
+                                                   'source': 'Utility/EventBus.gd',
+                                                   'state_schema': 'event_bus'},
+            'Utility/EventBus.gd::emitAndLog': {'argument_types': {'arguments': 'array',
++                                                                  'emitter': 'native_ref|null',
+                                                                   'event': 'event_ref|null',
+                                                                   'signalName': 'string'},
+                                                'arguments_exact': ['emitter',
+@@ -2082,7 +2085,7 @@
+                                          'channel': 'runtime',
+                                          'explicit_returns': [],
+                                          'state_schema': 'util'},
+-           'Utility/Util.gd::changeTimer': {'argument_types': {'t': 'float'},
++           'Utility/Util.gd::changeTimer': {'argument_types': {'t': 'float', 'timer': 'native_ref|null'},
+                                             'arguments_exact': ['timer', 't'],
+                                             'channel': 'runtime',
+                                             'explicit_returns': [],
+@@ -3195,7 +3198,7 @@
+ def validate_state(value, kind, constructor=False):
+     if kind not in CONTRACT['state_schemas']:
+         raise ValueError('unknown K1 state schema')
+-    if kind in ('item', 'goobert', 'king', 'potion'):
++    if kind in ('item', 'goobert', 'king', 'potion', 'plain_item'):
+         if type(value) is not dict or 'descriptorIndex' not in value:
+             raise ValueError('item descriptor raw identity required')
+         validate_typed(value['descriptorIndex'])
+@@ -3205,7 +3208,7 @@
+         if index not in DESCRIPTOR_IDS:
+             raise ValueError('item descriptor outside fixed six IDs')
+         actual = 'king' if index == 262 else 'potion' if index == 19 else 'plain_item'
+-        if kind == 'king' and actual != 'king' or kind == 'potion' and actual != 'potion' or kind == 'goobert' and actual != 'king':
++        if kind == 'king' and actual != 'king' or kind == 'potion' and actual != 'potion' or kind == 'goobert' and actual != 'king' or kind == 'plain_item' and actual != 'plain_item':
+             raise ValueError('closed source Item subtype')
+         kind = actual
+     # Reuse the old field loop, bypass its ambiguous legacy item-shape dispatcher.

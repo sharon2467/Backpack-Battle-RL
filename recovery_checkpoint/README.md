@@ -108,4 +108,19 @@ The additive355 SOURCE-only candidate and its27 owner leaves are independently i
 
 SOURCE355 later failed independent profile↔old-patch provenance coupling. Its immutable source and exact independent failure records remain at `../work_in_progress/phase355/`; the separate356 shared-admission repair is at `../work_in_progress/phase356/`, with independent SOURCE regression now accepted68/68 while native admission stays closed. Both are work in progress and do not replace production75. Follow their READMEs for additive recovery.
 
-The later complete typed observer schema SOURCE and independent prerequisite matrix are preserved at [phase357](../work_in_progress/phase357/README.md), pending actual independent schema tests. This remains SOURCE-only; native admission is closed.
+The later complete typed observer schema SOURCE and independent prerequisite matrix are preserved at [phase357](../work_in_progress/phase357/README.md), now independently blocked by its first schema probes. The separate [358 schema repair](../work_in_progress/phase358/README.md) is pending independent regression. This remains SOURCE-only; native admission is closed.
+
+All flat post-cut supplements can be added in any order using their repo-relative paths; they are immutable stage snapshots, not an incremental script chain. From this Git clone root after the main restoration, this single loop recovers all available SOURCE versions and review evidence without overwriting existing files:
+
+```sh
+for segment in recovery_checkpoint/verification_evidence/repo \
+  work_in_progress/phase*/repo work_in_progress/phase*/source/repo \
+  work_in_progress/phase*/independent_preparation/repo \
+  work_in_progress/phase*/review_evidence/repo; do
+  if [ -d "$segment" ]; then
+    cp -rn "$segment/." "$RECOVERED/workspace/python-original-engine/repo/"
+  fi
+done
+```
+
+Adjacent FILES.json inventories and frozen owners preserve exact stage identities. Reading later SOURCE snapshots never implies production promotion.

@@ -1,0 +1,52 @@
+{
+  "controls": [
+    {
+      "expected": "accept",
+      "fixture": "util_Timer_ref",
+      "label": "actual-Timer-parameter-native-ref-positive"
+    },
+    {
+      "expected": "reject",
+      "fixture": "util_Timer_INT",
+      "label": "actual-Timer-parameter-INT-must-reject"
+    },
+    {
+      "expected": "accept",
+      "fixture": "bus_Node_ref",
+      "label": "actual-Node-parameter-native-ref-positive"
+    },
+    {
+      "expected": "reject",
+      "fixture": "bus_Node_INT",
+      "label": "actual-Node-parameter-INT-must-reject"
+    }
+  ],
+  "cumulative_planned": 12,
+  "executed_so_far": 8,
+  "files": [
+    {
+      "path": "tests/phase357_independent_object_argument_probe.py",
+      "sha256": "f0ab520a9eb82830861a3ad88bc18026693114900db958f600434757eae2edbf",
+      "size": 2562
+    },
+    {
+      "path": "data/phase357-independent-schema-review/object-argument-fixtures.json",
+      "sha256": "217ce707978bdb3a484e17d0542be39f5df2fd3cba91cf83745f629114fb9c1c",
+      "size": 6800
+    },
+    {
+      "path": "data/phase357-independent-schema-review/SOURCE/phase357_king_observer_schema.py",
+      "sha256": "99d25e637217e8e56f3e73cf14e67b08e8b199851a63f8c8c950fe947bcf5867",
+      "size": 258647
+    }
+  ],
+  "max_budget": 80,
+  "new_controls": 4,
+  "no_prior_control_rerun": true,
+  "schema": "phase357-independent-object-argument-preexecution/1",
+  "source_authority": [
+    "Original Utility/Util.gd:1591 func changeTimer(timer:Timer,t:float)",
+    "Original Utility/EventBus.gd:56 func emitAndLog(emitter:Node,signalName:String,event:CombatEvent,arguments:Array)"
+  ],
+  "synthetic_only": true
+}
