@@ -202,18 +202,18 @@
       "sha256": "78fc3b2ddb7e933d05af63895051097b6b56761253322b1b95240b6faab78dcd",
       "size": 4638
     },
-    "progress348": {
-      "description": "Stable348 exact75 promotion and346 actual independent package evidence",
+    "progress_current": {
+      "description": "Cumulative current engineering progress; no sequential patch chain",
       "format": "zip",
       "parts": [
         {
-          "path": "parts/progress348.part001",
-          "sha256": "44b47a70f0ebfa5e49e98c2fb7c542f41c20eebaa9b7965c661a5338dd91c1f2",
-          "size": 1082896
+          "path": "parts/phase352-current.part001",
+          "sha256": "8ec6067ec2d5cc6a25416a3062df577134e32bf6b52b10c23eb992c2b15fa86d",
+          "size": 20488014
         }
       ],
-      "sha256": "44b47a70f0ebfa5e49e98c2fb7c542f41c20eebaa9b7965c661a5338dd91c1f2",
-      "size": 1082896
+      "sha256": "8ec6067ec2d5cc6a25416a3062df577134e32bf6b52b10c23eb992c2b15fa86d",
+      "size": 20488014
     },
     "support243": {
       "description": "Exact243 verification support; data/docs/tests merge into repo",
@@ -230,11 +230,11 @@
     }
   },
   "coverage": {
-    "active_bytes": 1472008548,
-    "active_files": 20542,
+    "active_bytes": 1712134527,
+    "active_files": 21000,
     "archive_parts": 28,
-    "logical_bytes": 10321049940,
-    "logical_files": 48021,
+    "logical_bytes": 10561175919,
+    "logical_files": 48479,
     "owner_closure_paths": 1036,
     "source_inputs": {
       "checkpoints": [
@@ -283,7 +283,7 @@
         "published_files": 15416
       }
     },
-    "stored_bytes": 1047197652
+    "stored_bytes": 1066602770
   },
   "credential_scan": {
     "checkpoint_scan": {
@@ -366,6 +366,19 @@
     "method": "Known original API values, cloud/private-key/Bearer/completion/signedURL patterns; ZIP and tar.xz recursion with SHA dedup; malformed negative fixtures payload-scanned",
     "original_encrypted_files": "Opaque original encrypted sources retained except two credential-bearing counterparts; plaintext source companions scanned"
   },
+  "current_progress": {
+    "all_payloads_active": true,
+    "label": "phase352",
+    "new_models": 0,
+    "new_native": 0,
+    "no_old_cloud_files_required": [],
+    "payload_files": 569,
+    "stable_repo_files": 516,
+    "whole_archive": {
+      "sha256": "8ec6067ec2d5cc6a25416a3062df577134e32bf6b52b10c23eb992c2b15fa86d",
+      "size": 20488014
+    }
+  },
   "dependencies": {
     "debian_snapshot": "https://snapshot.debian.org/archive/debian/20260925T181338Z/",
     "godotsteam": {
@@ -382,10 +395,29 @@
     ],
     "python": "3.12 tested;stdlib only"
   },
+  "historical_progress_archives": [
+    {
+      "archive": {
+        "description": "Stable348 exact75 promotion and346 actual independent package evidence",
+        "format": "zip",
+        "parts": [
+          {
+            "path": "parts/progress348.part001",
+            "sha256": "44b47a70f0ebfa5e49e98c2fb7c542f41c20eebaa9b7965c661a5338dd91c1f2",
+            "size": 1082896
+          }
+        ],
+        "sha256": "44b47a70f0ebfa5e49e98c2fb7c542f41c20eebaa9b7965c661a5338dd91c1f2",
+        "size": 1082896
+      },
+      "old_part_files_retained": true,
+      "superseded_at": "phase352"
+    }
+  ],
   "logical_index": {
     "path": "logical-files.jsonl",
-    "sha256": "52c81f3acb897984200d44494a2bf4265193022e32c127a024c22a386b4193ea",
-    "size": 17266154
+    "sha256": "815a005779b304dee800277e86ae2bc1c6f975695a1c80ccbc0862f441850a05",
+    "size": 17439924
   },
   "mode_policy": "644 regular data;755 executable data. Byte identities unchanged;no setuid/setgid/group-writable restores.",
   "old_cloud_files_required_for_supported_engineering_continuation": [],
@@ -414,7 +446,7 @@
   "schema": "github-workspace-checkpoint/1",
   "source_preservation": "Original source workspace, assets and checkpoint archives retained unchanged. Public archive bytes are exact except sanitized original-code layer.",
   "status": {
-    "King": "349_SOURCE_implementation_pending; NOT_production_admitted",
+    "King": "Candidate only; inspect current task state for SOURCE/component/pure gates; not production admitted",
     "candidate75": "independent_FINAL_passed_PROMOTED344_verified348",
     "engine_or_RL_complete": false,
     "formal_items": 75,
