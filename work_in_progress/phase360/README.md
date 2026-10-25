@@ -1,5 +1,5 @@
-# Schema and auxiliary-binding interface design
+# Schema and auxiliary-binding SOURCE checkpoint
 
-This is design only, not implemented or independently accepted. It specifies the three missing Goobert sites, separate12thslot-binding proof, lawful input projection and joint source identity. Producer359 is still under independent review;356 stays closed. Copy the repo/ tree using the normal additive supplement loop. FILES.json pins the one design file.
+The original design is under design/repo/; the separately frozen implementation under source/repo/; independent review, first raw controls and root bounded acceptance under review_evidence/repo/. Each has an exact FILES.json inventory and can be added with the recovery supplement loop.
 
-The separately frozen implementation source is now in source/repo/. It adds three Goobert sites to all MATRIX delegates and validates the independent auxiliary binding carrier/provenance join. It has no projection, runtime admission, collector or host. Independent schema review is pending; original358/359/356 and formal75 are preserved unchanged.15 files/520,150 bytes are pinned by source/FILES.json.
+Independent first-run56/56 controls passed (7 accepted/49 rejected), including a relation-only synthetic join positive and3site/King subtype/type/geometry/identity/order checks.58 prior functions/classes AST and103 old sites are conserved. No actual complete12-carrier positive, model or native execution exists.356 admission stays closed; collector/projection/host and actual evidence remain pending.
