@@ -1,0 +1,12 @@
+{
+  "cause": "Nine independent runtime-proof-leak controls iterate a frozenset. Their cross-process inventory row order is intentionally unspecified. Unique labels and expected outcomes are identical.",
+  "correction": "Compare unique label->expected inventories, preserving all actual report rows and their order. No scientific stream is sorted or normalized.",
+  "exit_code": 1,
+  "failed_assertion": "actual52 == contract[base_controls] using list-position equality",
+  "first_inline_finalizer_source_saved": false,
+  "phase": "output-only final metadata before any final JSON write",
+  "schema": "phase356-final-metadata-first-failure/1",
+  "scope": "No source control rerun,no candidate action,no new native/schema positive",
+  "source_note": "Full original inline metadata snippet was not separately saved; exact failing assertion/trace and actual outputs retained,not invented as a complete source snapshot.",
+  "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 9, in <module>\nAssertionError\n"
+}

@@ -1,0 +1,64 @@
+{
+  "Engine_constructions": 0,
+  "RNG_constructions": 0,
+  "author_readback": {
+    "bytes": 622877,
+    "leaves": 23
+  },
+  "byte_conserved": 13,
+  "candidate_imports": 0,
+  "changed": [
+    "native_replay_v8/engine.py",
+    "native_replay_v8/genuine.py"
+  ],
+  "comparator_guard_before_Path": true,
+  "compiled_candidate_modules": 15,
+  "direct_engine_source_call_lines": {
+    "SeededRandom": [
+      1188
+    ],
+    "validate_runtime_inputs": [
+      1187,
+      1189
+    ]
+  },
+  "inverse_complete_modules_equal_355": true,
+  "models": 0,
+  "native": 0,
+  "observed_source_call_lines": {
+    "CombatEngine": [
+      25
+    ],
+    "SeededRandom": [
+      21
+    ],
+    "TapeRandom": [
+      24
+    ],
+    "validate_runtime_inputs": [
+      17
+    ]
+  },
+  "old_profile_patch_helpers_unchanged": true,
+  "pending_profile_not_native_ready": true,
+  "schema": "phase356-independent-static-regression/1",
+  "shared_sites": [
+    {
+      "first_new_branch_action": "shared unconditional guard",
+      "function": "validate_profile",
+      "line": 77
+    },
+    {
+      "first_new_branch_action": "shared unconditional guard",
+      "function": "validate_result_profile",
+      "line": 150
+    },
+    {
+      "first_new_branch_action": "import shared function then unconditional guard before fixture/remaining runtime",
+      "function": "validate_runtime_inputs",
+      "line": 959
+    }
+  ],
+  "status": "PASS",
+  "unconditional_no_argument_no_caller_flag_guard": true
+}

@@ -1,0 +1,222 @@
+{
+  "base_controls": [
+    {
+      "expected": "accept",
+      "label": "fixed-A-SOURCE-fixture"
+    },
+    {
+      "expected": "reject",
+      "label": "class-bool"
+    },
+    {
+      "expected": "reject",
+      "label": "class-two"
+    },
+    {
+      "expected": "reject",
+      "label": "wrong-geometry"
+    },
+    {
+      "expected": "reject",
+      "label": "missing-King"
+    },
+    {
+      "expected": "reject",
+      "label": "wrong-HP"
+    },
+    {
+      "expected": "reject",
+      "label": "new-profile-domain-only"
+    },
+    {
+      "expected": "reject",
+      "label": "new-result-domain-only"
+    },
+    {
+      "expected": "reject",
+      "label": "input-wrong-mode"
+    },
+    {
+      "expected": "reject",
+      "label": "input-wrong-terminal_profile"
+    },
+    {
+      "expected": "reject",
+      "label": "result-wrong-mode"
+    },
+    {
+      "expected": "reject",
+      "label": "result-wrong-terminal_profile"
+    },
+    {
+      "expected": "accept",
+      "label": "approved-old307-SOURCE-patch-alone"
+    },
+    {
+      "expected": "reject",
+      "label": "unknown-new-patch-rejected"
+    },
+    {
+      "expected": "reject",
+      "label": "NEW_PROFILE_MUST_NOT_ACCEPT_OLD307_PATCH"
+    },
+    {
+      "expected": "accept",
+      "label": "proof-defaults-local-scalar-only"
+    },
+    {
+      "expected": "reject",
+      "label": "wrong-default-descriptorIndex"
+    },
+    {
+      "expected": "reject",
+      "label": "wrong-default-activations"
+    },
+    {
+      "expected": "reject",
+      "label": "wrong-default-invuCharges"
+    },
+    {
+      "expected": "reject",
+      "label": "wrong-default-manaCost"
+    },
+    {
+      "expected": "reject",
+      "label": "counter-BOOL"
+    },
+    {
+      "expected": "reject",
+      "label": "counter-REAL"
+    },
+    {
+      "expected": "reject",
+      "label": "REAL-NaN"
+    },
+    {
+      "expected": "accept",
+      "label": "transport-only-eleven-framing-NOT-native-schema"
+    },
+    {
+      "expected": "reject",
+      "label": "extra-expected-file"
+    },
+    {
+      "expected": "reject",
+      "label": "missing-file"
+    },
+    {
+      "expected": "reject",
+      "label": "nonbytes"
+    },
+    {
+      "expected": "reject",
+      "label": "wrong-file-channel"
+    },
+    {
+      "expected": "reject",
+      "label": "duplicate-cross-channel-sequence"
+    },
+    {
+      "expected": "reject",
+      "label": "reverse-physical-sequence"
+    },
+    {
+      "expected": "reject",
+      "label": "BOOL-sequence"
+    },
+    {
+      "expected": "reject",
+      "label": "negative-sequence"
+    },
+    {
+      "expected": "reject",
+      "label": "oversize-sequence"
+    },
+    {
+      "expected": "reject",
+      "label": "missing-EOF-newline"
+    },
+    {
+      "expected": "reject",
+      "label": "blank-line"
+    },
+    {
+      "expected": "reject",
+      "label": "duplicate-JSON-key"
+    },
+    {
+      "expected": "reject",
+      "label": "invalid-UTF8"
+    },
+    {
+      "expected": "reject",
+      "label": "nonfinite-JSON"
+    },
+    {
+      "expected": "reject",
+      "label": "overflow-REAL"
+    },
+    {
+      "expected": "reject",
+      "label": "global-primitive-forbidden"
+    },
+    {
+      "expected": "reject",
+      "label": "UI-record-cap"
+    },
+    {
+      "expected": "reject",
+      "label": "RNG-file-cap"
+    },
+    {
+      "expected": "reject",
+      "label": "old-native-profile-delegation-rejected"
+    },
+    {
+      "expected": "reject",
+      "label": "runtime-proof-leak-fresh_facts"
+    },
+    {
+      "expected": "reject",
+      "label": "runtime-proof-leak-source_resources"
+    },
+    {
+      "expected": "reject",
+      "label": "runtime-proof-leak-rng_checkpoint"
+    },
+    {
+      "expected": "reject",
+      "label": "runtime-proof-leak-initial_rng"
+    },
+    {
+      "expected": "reject",
+      "label": "runtime-proof-leak-terminal_endpoint"
+    },
+    {
+      "expected": "reject",
+      "label": "runtime-proof-leak-source_defaults"
+    },
+    {
+      "expected": "reject",
+      "label": "runtime-proof-leak-cleanup"
+    },
+    {
+      "expected": "reject",
+      "label": "runtime-proof-leak-source_proof"
+    },
+    {
+      "expected": "reject",
+      "label": "runtime-proof-leak-source_caches"
+    }
+  ],
+  "composition": "Original old307 patch composition expectedreject unchanged; now must actually reject",
+  "full_native_positive_fabricated": false,
+  "outcome_changes": [
+    "new-profile-domain-only:accept->reject",
+    "new-result-domain-only:accept->reject"
+  ],
+  "schema": "phase356-independent-regression-contract/1",
+  "source_only": true,
+  "stdio_boundary": "python-I-B-S, stdlib/exactAST; no closed-file audit claim",
+  "supplement_controls": 16
+}
