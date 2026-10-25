@@ -1,0 +1,53 @@
+{
+  "schema": "root-source-failure-readback/1",
+  "status": "BLOCKED_REPAIR363_REQUIRED",
+  "review": {
+    "path": "data/phase362-independent-source-review/review.json",
+    "size": 3098,
+    "sha256": "f96b30a7ddfa7644d7f7759b884ed9e754de96cf02612b6327c7bcce366dd085"
+  },
+  "owner": {
+    "path": "data/phase362-independent-source-review/owned-files.json",
+    "size": 5753,
+    "sha256": "4ea5455500316574d55f5be866a93135626f28d513bbff5d65ef1ffd61ec56b7"
+  },
+  "owner_leaves_read": 28,
+  "owner_bytes_read": 153276,
+  "first_case": {
+    "path": "data/phase362-independent-source-review/installer-first-001/report.json",
+    "size": 1643,
+    "sha256": "a2e7f36aaee8c1df6db97a809600d8a2a8ddbace71faf20ddb1618ca08e791a0"
+  },
+  "findings": [
+    "direct install accepts hardlink and modifies alias",
+    "no directly testable generic monitor core",
+    "leader-exited group may receive TERM without KILL",
+    "two50ms waits do not implement single50ms polling"
+  ],
+  "original_Game_or_pool_touched": false,
+  "native": 0,
+  "models": 0,
+  "linked_failure_files": [
+    [
+      {
+        "path": "data/phase362-independent-source-review/installer-first-001/alias.txt",
+        "nlink": 2,
+        "content": {
+          "path": "data/phase362-independent-source-review/installer-first-001/alias.txt",
+          "size": 23,
+          "sha256": "c4db25330d3761f87c4a754c81673305c54d516121a01ac267f97149014cb5d5"
+        }
+      },
+      {
+        "path": "data/phase362-independent-source-review/installer-first-001/tiny-target/example.txt",
+        "nlink": 2,
+        "content": {
+          "path": "data/phase362-independent-source-review/installer-first-001/tiny-target/example.txt",
+          "size": 23,
+          "sha256": "c4db25330d3761f87c4a754c81673305c54d516121a01ac267f97149014cb5d5"
+        }
+      }
+    ]
+  ],
+  "topology_note": "Git preserves file contents, not hardlink identity. Linked raw leaves remain untouched locally; reports and reproducer preserve topology facts. Do not alter frozen evidence to rerun."
+}

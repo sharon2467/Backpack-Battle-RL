@@ -1,0 +1,79 @@
+{
+  "failed_FS_cases": 1,
+  "findings": [
+    {
+      "actual": "Returned success and both target/alias changed to replacement bytes at nlink2",
+      "api": "phase362_oracle_storage.install",
+      "evidence": {
+        "path": "data/phase362-independent-source-review/installer-first-001/report.json",
+        "sha256": "a2e7f36aaee8c1df6db97a809600d8a2a8ddbace71faf20ddb1618ca08e791a0",
+        "size": 1643
+      },
+      "expected": "Reject st_nlink>1 before mutating any target or alias",
+      "id": "F1_INSTALL_HARDLINK",
+      "minimal_fix": "Regular-file and nlink1 preflight for all existing source-path targets, not only host artifact branch; retain all-target validation before writes.",
+      "scope": "Direct helper only; normal host check_ready/reset_previous c.inventory also rejects hardlinks upstream. No real baseline or pool damage asserted.",
+      "status": "CONFIRMED_SYNTHETIC_FS_COUNTEREXAMPLE"
+    },
+    {
+      "actual": "Only process-launch helper binds command() to offlineExec/Xvfb/Godot path, so authorized generic-child monitor tests cannot run through it",
+      "api": "phase362_oracle_process.execute_process",
+      "evidence": {
+        "end_line": 118,
+        "function": "execute_process",
+        "line": 57,
+        "source": {
+          "path": "data/phase362-independent-source-review/SOURCE/process.py",
+          "sha256": "8250c580989ff880210e7c434450c6ba17f70a8932b73f88cc5e27cf112aa65c",
+          "size": 8044
+        }
+      },
+      "expected": "Real generic monitoring core directly usable by a small purePython child without replacing Godot command",
+      "id": "F2_MONITOR_GENERIC_TESTABILITY",
+      "minimal_fix": "Extract generic command/process monitor core; oracle wrapper retains fixed command, roots, strict policy/limits and genuine process counts. Unit controls use direct core, no monkeypatch or FakeNative.",
+      "status": "SOURCE_REQUIRED_EXECUTION_BLOCKED"
+    },
+    {
+      "actual": "KILL exists only when leader itself stays alive past wait(timeout=5). If leader exited or dies before remaining descendant, epilogue sends only TERM; no group KILL/escalation follows.",
+      "evidence": {
+        "finally_statements": [
+          "selector.close()",
+          "if proc.poll() is None:\n                os.killpg(proc.pid,signal.SIGTERM)\n                try: proc.wait(timeout=5)\n                except subprocess.TimeoutExpired: os.killpg(proc.pid,signal.SIGKILL); proc.wait()",
+          "try: os.killpg(proc.pid,signal.SIGTERM)\n            except ProcessLookupError: pass"
+        ],
+        "source": {
+          "path": "data/phase362-independent-source-review/SOURCE/process.py",
+          "sha256": "8250c580989ff880210e7c434450c6ba17f70a8932b73f88cc5e27cf112aa65c",
+          "size": 8044
+        }
+      },
+      "expected": "TERM then bounded grace then KILL remaining own process group irrespective of leader exit",
+      "id": "F3_DESCENDANT_GROUP_CLEANUP",
+      "minimal_fix": "Track/escalate own session/process group independently of leader proc.poll/wait and verify descendant cleanup with <=5sec Python unit.",
+      "status": "SOURCE_CONTROL_FLOW_DEFECT_DYNAMIC_NOT_EXECUTED"
+    },
+    {
+      "actual": "selector.select(timeout=.05) plus proc.wait(timeout=.05) in each loop can make quiet scans about100ms apart plus work",
+      "evidence": {
+        "extra_wait": "proc.wait(timeout=0.05)",
+        "select": "selector.select(timeout=0.05)",
+        "source": {
+          "path": "data/phase362-independent-source-review/SOURCE/process.py",
+          "sha256": "8250c580989ff880210e7c434450c6ba17f70a8932b73f88cc5e27cf112aa65c",
+          "size": 8044
+        }
+      },
+      "expected": "One configured50ms poll scheduling interval plus honestly disclosed scan/IO overhead, not a hard aggregate quota",
+      "id": "F4_POLLING_INTERVAL",
+      "minimal_fix": "Remove duplicate timed wait or revise frozen interval contract accurately; preserve explicit inter-poll overage limitation and no kernel-quota claim.",
+      "status": "SOURCE_INTERVAL_CONTRACT_MISMATCH"
+    }
+  ],
+  "kernel_quota_required": false,
+  "root_policy": "bounded-writers-and-monitored-process/1",
+  "schema": "phase362-independent-first-source-findings/1",
+  "static_checks_passed": 7,
+  "status": "BLOCKED",
+  "synthetic_processes": 0,
+  "unique_FS_cases": 1
+}
