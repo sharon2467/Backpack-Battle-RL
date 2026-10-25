@@ -1,0 +1,72 @@
+{
+  "evidence": {
+    "partition": {
+      "capture": null,
+      "capture_complete": false,
+      "expected_observations_opaque": {},
+      "expected_semantics_read": false,
+      "lawful_inputs_missing": [
+        "fixture.json",
+        "player_fixture.json",
+        "observer7-input.jsonl",
+        "observer7-lineage.jsonl",
+        "observer7-metadata.jsonl",
+        "observer7-primitives.jsonl",
+        "king-clock-checkpoint.json",
+        "king-clock-passes.jsonl",
+        "king-input-facts.json",
+        "king-ui-authority.jsonl",
+        "king-rng-checkpoint.json",
+        "king-slot-bindings.json"
+      ],
+      "lawful_inputs_present": {},
+      "models": 0,
+      "partial_files_opaque": {
+        "user/partial-unit.bin": {
+          "sha256": "49e925f4624c78e042ef3015679b710326efe2860108de72e49d6652be122986",
+          "size": 16
+        }
+      },
+      "primary_failure": {
+        "abort_reason": null,
+        "exit_code": 2,
+        "kind": "native_process_failure",
+        "timed_out": false
+      },
+      "projection": 0,
+      "schema": "phase365-partial-source-partition/1",
+      "secondary_errors": [
+        {
+          "code": "capture_relocation_failed",
+          "error": "ValueError('exactly one native raw capture')"
+        },
+        {
+          "code": "missing_required_file",
+          "file": "validation.json"
+        },
+        {
+          "code": "missing_lawful_inputs",
+          "files": [
+            "fixture.json",
+            "player_fixture.json",
+            "observer7-input.jsonl",
+            "observer7-lineage.jsonl",
+            "observer7-metadata.jsonl",
+            "observer7-primitives.jsonl",
+            "king-clock-checkpoint.json",
+            "king-clock-passes.jsonl",
+            "king-input-facts.json",
+            "king-ui-authority.jsonl",
+            "king-rng-checkpoint.json",
+            "king-slot-bindings.json"
+          ]
+        }
+      ]
+    },
+    "scope": "SYNTHETIC_CONTROL_METADATA_ONLY",
+    "source_changes_gate": "SOURCE execute uses partition.capture_complete and not project_changed; clean is separately retained"
+  },
+  "id": 21,
+  "label": "rename-or-partial-location-error",
+  "status": "PASS"
+}

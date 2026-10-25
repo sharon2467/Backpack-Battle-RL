@@ -1,0 +1,55 @@
+{
+  "schema": "phase365-root-pool-recovery/1",
+  "action": "restore",
+  "root_restore_authorized": true,
+  "native_allowed": 0,
+  "models_allowed": 0,
+  "projection_allowed": 0,
+  "source_freeze": {
+    "path": "data/phase365-control-recovery-source/combined-source-freeze.json",
+    "size": 53830,
+    "sha256": "b222ebf79e748ba6031c1d1196d465117790888497d7bc9cd7c33819b93bb47f"
+  },
+  "source_owner": {
+    "path": "data/phase365-control-recovery-source/source-owner.json",
+    "size": 2343,
+    "sha256": "ef9ec5a403c186094c7c07d5d3d47f4f9fb7b1a6618db2d94032867bffbce66c"
+  },
+  "reviews": [
+    {
+      "receipt": {
+        "path": "data/phase365-independent-source-review/review.json",
+        "size": 6051,
+        "sha256": "de50d4e31856fe72db09e7e8d3751628a773c378044ccca76ea7a20704be64a2"
+      },
+      "owner": {
+        "path": "data/phase365-independent-source-review/owned-files.json",
+        "size": 222816,
+        "sha256": "491299b91561088df046d9ff516cfa08acf60cd203b2bd64d5d578cd84e2ad3a"
+      }
+    }
+  ],
+  "restore_map": {
+    "path": "data/phase365-source-recovery-plan/restore-map.json",
+    "sha256": "67d11fd66bb9120a7dbcd85aef9db6d68745ac26c01ba6d1ff85c54e79ed5547",
+    "size": 68242
+  },
+  "input_pins": {
+    "path": "data/phase365-source-recovery-plan/source-input-pins.json",
+    "sha256": "46bc6bd56fe3a76e401eeb10e51101983f69730e0615b74f8f6987f71a8af273",
+    "size": 4913
+  },
+  "roots": {
+    "source_root": "/workspace/python-original-engine/repo",
+    "pool": "/workspace/native-combat-20261013/pool",
+    "baseline": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles",
+    "failed_run": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261025-attempt01",
+    "previous_run": "/workspace/native-combat-20261013/runs/native-v7-026-rainbow75-N-327"
+  },
+  "root_source_acceptance": {
+    "path": "data/phase366-actual-pool-restore/source-accepted.json",
+    "size": 848,
+    "sha256": "dcc192c22068808368aae0baf1b0d9070cca7861a242ef6844455c0952c01f4f"
+  },
+  "scope": "restore exact mapped oldREADY tree only; keepfailed; no Rootcommit/native until independently owned actual fulltree readback"
+}

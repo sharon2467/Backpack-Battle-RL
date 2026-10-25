@@ -1,0 +1,42 @@
+--- frozen362/collector.gd
++++ source365/collector.gd
+@@ -57,11 +57,27 @@
+ var source_connection_order = []
+ 
+ 
++func config_matches_source(value):
++	if typeof(value) != TYPE_DICTIONARY or value.size() != SOURCE_CONFIG.size():
++		return false
++	for key in SOURCE_CONFIG:
++		if not value.has(key):
++			return false
++	if typeof(value.player_fixture_enabled) != TYPE_BOOL or value.player_fixture_enabled != true:
++		return false
++	var actual_rest = value.duplicate()
++	var source_rest = SOURCE_CONFIG.duplicate()
++	actual_rest.erase("player_fixture_enabled")
++	source_rest.erase("player_fixture_enabled")
++	return get_root().get_node("NativeRandomObserver").source_same_slot_value(actual_rest, source_rest)
++
++
+ func _initialize():
+ 	started = OS.get_ticks_msec()
+ 	stage_started = started
+ 	Directory.new().make_dir_recursive(OUT)
+ 	var f = File.new()
++	var source_config_input = {}
+ 	if f.file_exists("res://native_capture_config.json"):
+ 		f.open("res://native_capture_config.json", File.READ)
+ 		var parsed = JSON.parse(f.get_as_text())
+@@ -69,9 +85,10 @@
+ 		if parsed.error != OK or typeof(parsed.result) != TYPE_DICTIONARY:
+ 			fail("invalid native_capture_config.json")
+ 			return
++		source_config_input = parsed.result
+ 		for key in parsed.result:
+ 			config[key] = parsed.result[key]
+-	if not get_root().get_node("NativeRandomObserver").source_same_slot_value(config, SOURCE_CONFIG):
++	if not config_matches_source(source_config_input):
+ 		fail("fixed config differs")
+ 		return
+ 	if not timeout_budget_selftest():

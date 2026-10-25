@@ -1,0 +1,15 @@
+func config_matches_source(value):
+	if typeof(value) != TYPE_DICTIONARY or value.size() != SOURCE_CONFIG.size():
+		return false
+	for key in SOURCE_CONFIG:
+		if not value.has(key):
+			return false
+	if typeof(value.player_fixture_enabled) != TYPE_BOOL or value.player_fixture_enabled != true:
+		return false
+	var actual_rest = value.duplicate()
+	var source_rest = SOURCE_CONFIG.duplicate()
+	actual_rest.erase("player_fixture_enabled")
+	source_rest.erase("player_fixture_enabled")
+	return get_root().get_node("NativeRandomObserver").source_same_slot_value(actual_rest, source_rest)
+
+

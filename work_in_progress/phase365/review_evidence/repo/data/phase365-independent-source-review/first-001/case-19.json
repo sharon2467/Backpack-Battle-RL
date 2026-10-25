@@ -1,0 +1,81 @@
+{
+  "evidence": {
+    "partition": {
+      "capture": "/workspace/python-original-engine/repo/data/phase365-independent-source-review/first-001/host-19/output/capture",
+      "capture_complete": false,
+      "expected_observations_opaque": {
+        "collector-first-failure.json": {
+          "sha256": "e495b263a0159b3491e4983b7c49157f9bed6e91af614d710628fca1a47df431",
+          "size": 20
+        },
+        "opaque-unit.bin": {
+          "sha256": "65b8ee0cadc57b1d36959874f878be3de2cb659c702b94bf0ca1b99f8ad5f4cd",
+          "size": 41
+        }
+      },
+      "expected_semantics_read": false,
+      "lawful_inputs_missing": [
+        "fixture.json",
+        "player_fixture.json",
+        "observer7-input.jsonl",
+        "observer7-lineage.jsonl",
+        "observer7-metadata.jsonl",
+        "observer7-primitives.jsonl",
+        "king-clock-checkpoint.json",
+        "king-clock-passes.jsonl",
+        "king-input-facts.json",
+        "king-ui-authority.jsonl",
+        "king-rng-checkpoint.json",
+        "king-slot-bindings.json"
+      ],
+      "lawful_inputs_present": {},
+      "models": 0,
+      "partial_files_opaque": {},
+      "primary_failure": {
+        "identity": {
+          "sha256": "e495b263a0159b3491e4983b7c49157f9bed6e91af614d710628fca1a47df431",
+          "size": 20
+        },
+        "kind": "invalid_collector_control_failure"
+      },
+      "projection": 0,
+      "schema": "phase365-partial-source-partition/1",
+      "secondary_errors": [
+        {
+          "code": "capture_relocation_failed",
+          "error": "ValueError('exactly one native raw capture')"
+        },
+        {
+          "code": "bad_collector_control",
+          "error": "JSONDecodeError('Expecting value: line 1 column 1 (char 0)')"
+        },
+        {
+          "code": "missing_required_file",
+          "file": "validation.json"
+        },
+        {
+          "code": "missing_lawful_inputs",
+          "files": [
+            "fixture.json",
+            "player_fixture.json",
+            "observer7-input.jsonl",
+            "observer7-lineage.jsonl",
+            "observer7-metadata.jsonl",
+            "observer7-primitives.jsonl",
+            "king-clock-checkpoint.json",
+            "king-clock-passes.jsonl",
+            "king-input-facts.json",
+            "king-ui-authority.jsonl",
+            "king-rng-checkpoint.json",
+            "king-slot-bindings.json"
+          ]
+        }
+      ]
+    },
+    "scope": "SYNTHETIC_CONTROL_METADATA_ONLY",
+    "source_changes_gate": "SOURCE execute uses partition.capture_complete and not project_changed; clean is separately retained"
+  },
+  "id": 19,
+  "label": "malformed-firstcontrol",
+  "status": "PASS"
+}

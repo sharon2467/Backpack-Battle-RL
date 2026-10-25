@@ -1,0 +1,125 @@
+--- frozen363/host.py
++++ source365/host.py
+@@ -10,11 +10,11 @@
+                                      reset_previous,install,archive_streaming,c)
+ from phase363_oracle_process import execute_process,rename_capture,usage
+ 
+-SOURCE = 'data/phase363-oracle-repair-source'
++SOURCE = 'data/phase365-control-recovery-source'
+ DATA = 'data/phase362-oracle-capture-source'
+ CASE = 'NATIVE-027-KING-A'
+-RUN_NAME = 'original027-king-single-A-20261025-attempt01'
+-REVIEW_STATUS = 'INDEPENDENT363_INSTALLER_MONITOR_SOURCE_ACCEPTED_ROOT_PENDING'
++RUN_NAME = 'original027-king-single-A-20261025-attempt02'
++REVIEW_STATUS = 'INDEPENDENT365_CONTROL_RECOVERY_SOURCE_ACCEPTED_ROOT_PENDING'
+ POLICY = 'bounded-writers-and-monitored-process/1'
+ NAMES = ('custom_player.json','custom_opponent.json','native_capture_config.json')
+ LAWFUL = ('fixture.json','player_fixture.json','observer7-input.jsonl','observer7-lineage.jsonl',
+@@ -45,7 +45,7 @@
+ 
+ def source_gate(source_root,config_descriptor):
+     root=directory(source_root); config_path=descriptor(root,config_descriptor); config=read(config_path)
+-    if config.get('schema')!='phase363-root-oracle-acceptance/1' or config.get('root_oracle_authorized') is not True:
++    if config.get('schema')!='phase365-root-oracle-acceptance/1' or config.get('root_oracle_authorized') is not True:
+         raise ValueError('actual root oracle-only authorization required')
+     if any(type(config.get(k)) is not int or config[k]!=0 for k in ('models_allowed','input_builds_allowed','expected_comparison_allowed')):
+         raise ValueError('strictINT0 model/inputbuild/expected permissions')
+@@ -102,7 +102,7 @@
+                           player_fixture_enabled=True,timeouts=dict(battle_seconds=120,total_seconds=295)):
+         raise ValueError('fixed SOURCE config/seeds/timeouts')
+     return dict(schema='phase362-oracle-readonly-plan/1',paths={k:str(v) for k,v in paths.items()},source_root=str(root),
+-        run=str(run),case_id=CASE,attempt=1,previous_run=str(previous),budget=capacity,
++        run=str(run),case_id=CASE,attempt=2,previous_run=str(previous),budget=capacity,
+         root_config=config_descriptor,freeze=config['source_freeze'],source_owner=config['source_owner'],
+         reviews=config['reviews'],config=native_config,policy=POLICY,
+         oracle_processes=0,models=0,projection_calls=0,Game_copies=0,
+@@ -123,7 +123,7 @@
+         data=member(root,DATA+'/case-A')
+         for name in NAMES:
+             shutil.copy2(data/name,run/'data'/name)
+-        artifacts={'native_combat_capture.gd':member(root,DATA+'/collector.gd'),
++        artifacts={'native_combat_capture.gd':member(root,SOURCE+'/collector.gd'),
+                    'native_capture_config.json':data/NAMES[2],'.native-random-observer-disposable':member(root,DATA+'/disposable-marker.txt')}
+         journal=install(root,project,freeze,artifacts,out/'source-preimages')
+         for name in NAMES[:2]: shutil.copy2(run/'data'/name,paths['pool']/'data'/name)
+@@ -157,23 +157,71 @@
+         if descriptor(root,config_descriptor)!=descriptor(root,launch['root_config']): raise ValueError('config drift')
+         # Preserve the same config identity, no second dynamic plan after mutation.
+         source_gate(root,config_descriptor); resource_gate(root,config,paths); usage(run)
+-        write_new(out/'one-shot-launch.json',dict(case_id=CASE,attempt=1,models=0,timeout=dict(battle=120,collector=295,runner=300)))
++        write_new(out/'one-shot-launch.json',dict(case_id=CASE,attempt=2,models=0,timeout=dict(battle=120,collector=295,runner=300)))
+         result=execute_process(root,paths['task_root'],run,project,check_only=False)
+-        capture=rename_capture(run)
+-        validation=read(capture/'validation.json')
+-        complete=result['exit_code']==0 and not result['abort_reason'] and validation.get('native_checks_pass') is True
+-        if not set(LAWFUL)<={p.name for p in capture.iterdir()}: complete=False
+-        if c.inventory(project)!=before['project']: complete=False
+-        partition=dict(lawful_inputs={name:pin(capture/name) for name in LAWFUL},
+-                       expected_observations={p.name:pin(p) for p in capture.iterdir() if p.is_file() and p.name not in LAWFUL})
++        write_new(out/'process-returned.json',result)
++        partition=collect_capture_metadata(run,result)
++        project_changed=c.inventory(project)!=before['project']
++        complete=partition['capture_complete'] and not project_changed
+         write_new(out/'source-partition.json',partition)
+-        write_new(out/'process_result.json',dict(result,capture_complete=complete,source_changes_after_run=[] if c.inventory(project)==before['project'] else ['PROJECT_TREE_CHANGED'],
++        write_new(out/'process_result.json',dict(result,capture_complete=complete,
++            primary_failure=partition['primary_failure'],secondary_errors=partition['secondary_errors'],
++            source_changes_after_run=['PROJECT_TREE_CHANGED'] if project_changed else [],
+             process_clean_exit=result['process_clean_exit'],model_acceptance=False,automatic_retry=False))
+         if not complete: raise RuntimeError('first original027 failed/partial; preserve, no retry')
+         proof=archive_streaming(paths['baseline'],paths['pool'],run,before)
+         # No write after READY: retained run identity remains stable.
+         return dict(status='ORACLE_CAPTURE_ARCHIVED_MODELS_AND_FULLPROJECTION_PENDING',run=str(run),proof=proof,
+                     process_clean_exit=result['process_clean_exit'],models=0,inputbuilds=0,King_production_admitted=False)
++
++
++
++def read_control(path,limit):
++    if pin(path)['size']>limit: raise ValueError('bounded control JSON exceeded cap')
++    value=read(path)
++    if type(value) is not dict: raise ValueError('control JSON must be object')
++    return value
++
++
++def collect_capture_metadata(run,result):
++    """Decode controls only; business/expected observations remain opaque hashes."""
++    secondary=[]; primary=None; capture=None; present={}; expected={}; validation=None; partial={}
++    try: capture=rename_capture(run)
++    except Exception as exc:
++        secondary.append(dict(code='capture_relocation_failed',error=repr(exc)))
++        if (run/'output/capture').is_dir() and not (run/'output/capture').is_symlink(): capture=run/'output/capture'
++        for root in (run/'user',) if capture is None else ():
++            if root.is_dir() and not root.is_symlink():
++                for path in sorted(root.rglob('*')):
++                    if path.is_symlink(): secondary.append(dict(code='linked_partial_capture',path=str(path.relative_to(run))))
++                    elif path.is_file(): partial[str(path.relative_to(run))]=pin(path)
++    if capture is not None:
++        for path in sorted(capture.iterdir()):
++            if path.is_symlink() or not path.is_file():
++                secondary.append(dict(code='unsupported_capture_leaf',file=path.name)); continue
++            (present if path.name in LAWFUL else expected)[path.name]=pin(path)
++        control=capture/'collector-first-failure.json'
++        if control.name in expected:
++            try: primary=dict(kind='collector_control_failure',identity=pin(control),control=read_control(control,65536))
++            except Exception as exc:
++                primary=dict(kind='invalid_collector_control_failure',identity=pin(control))
++                secondary.append(dict(code='bad_collector_control',error=repr(exc)))
++        path=capture/'validation.json'
++        if path.name not in expected: secondary.append(dict(code='missing_required_file',file='validation.json'))
++        else:
++            try: validation=read_control(path,1024*1024)
++            except Exception as exc: secondary.append(dict(code='bad_validation',identity=pin(path),error=repr(exc)))
++    else: secondary.append(dict(code='missing_required_file',file='validation.json'))
++    missing=[name for name in LAWFUL if name not in present]
++    if missing: secondary.append(dict(code='missing_lawful_inputs',files=missing))
++    process_ok=result['exit_code']==0 and not result['abort_reason'] and not result['timed_out']
++    if primary is None and not process_ok:
++        primary=dict(kind='native_process_failure',exit_code=result['exit_code'],abort_reason=result['abort_reason'],timed_out=result['timed_out'])
++    complete=process_ok and primary is None and not missing and validation is not None and validation.get('native_checks_pass') is True and not secondary
++    return dict(schema='phase365-partial-source-partition/1',capture_complete=complete,
++        capture=None if capture is None else str(capture),lawful_inputs_present=present,lawful_inputs_missing=missing,
++        expected_observations_opaque=expected,partial_files_opaque=partial,primary_failure=primary,secondary_errors=secondary,
++        expected_semantics_read=False,models=0,projection=0)
+ 
+ 
+ def main():
