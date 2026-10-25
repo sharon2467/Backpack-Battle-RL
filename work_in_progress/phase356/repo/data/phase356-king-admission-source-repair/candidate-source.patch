@@ -1,0 +1,45 @@
+--- 355/native_replay_v8/engine.py
++++ 356/native_replay_v8/engine.py
+@@ -955,7 +955,8 @@
+     if _source_king_profile(data):
+         return _validate_source_king_runtime(data, fixture, runtime)
+     if _single_king_genuine_profile(data):
+-        from .genuine import validate_single_king_fixture
++        from .genuine import validate_single_king_fixture, require_single_king_admission
++        require_single_king_admission()
+         validate_single_king_fixture(fixture)
+     king = _has_king(fixture)
+     if king and _has_rage(fixture):
+--- 355/native_replay_v8/genuine.py
++++ 356/native_replay_v8/genuine.py
+@@ -74,6 +74,7 @@
+ 
+ def validate_profile(data, fixture):
+     if data.get('profile_id') == SINGLE_KING_GENUINE_PROFILE:
++        require_single_king_admission()
+         if data.get('mode') != 'genuine' or data.get('terminal_profile') != SINGLE_KING_TERMINAL:
+             raise ValueError('single King finite genuine runtime/terminal required')
+         validate_single_king_fixture(fixture)
+@@ -146,6 +147,7 @@
+ 
+ def validate_result_profile(runtime,fixture):
+     if runtime.get('profile') == SINGLE_KING_GENUINE_PROFILE:
++        require_single_king_admission()
+         if runtime.get('mode') != 'genuine' or runtime.get('terminal_profile') != SINGLE_KING_TERMINAL:
+             raise ValueError('single King finite genuine result/terminal required')
+         validate_single_king_fixture(fixture)
+@@ -1033,3 +1035,14 @@
+                 ready='READY_OWNER_ONLY_NOT_TIMER', private_origin='SOURCE_CONSTRUCTOR_NO_START_NOT_PUBLIC_ZERO',
+                 initial_rng=rng, ui_authority=ui, dataflow='PROOF_ONLY_STRIP_BEFORE_MODEL_RUNTIME',
+                 shared_consumption_closed=False, genuine_capture_accepted=False)
++
++
++def require_single_king_admission():
++    """No opening flag: future SOURCE must bind this profile to its new observer/patch.
++
++    Pure source validators are available for review. Runtime/result admission is
++    closed until a separately frozen observer/schema/patch contract is checked
++    jointly at every admission/comparison boundary; old patch acceptance cannot
++    substitute for that contract.
++    """
++    raise ValueError('PENDING_SINGLE_KING_OBSERVER_PATCH_BINDING: new observer/schema/patch SOURCE not frozen')

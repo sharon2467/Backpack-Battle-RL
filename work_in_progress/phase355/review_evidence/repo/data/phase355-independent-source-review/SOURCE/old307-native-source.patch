@@ -1,0 +1,3443 @@
+--- a/Core/Buff.gd
++++ b/Core/Buff.gd
+@@ -23,6 +23,7 @@
+ var MAX_STACKS: int
+ 
+ func init(_type, _character, _counter = null, _signalName = ""):
++	NativeRandomObserver.entry("Core/Buff.gd::init", self, {"_type": _type, "_character": _character, "_counter": _counter, "_signalName": _signalName})
+ 	type = _type
+ 	isBuff = Game.isBuff(type)
+ 	character = _character
+@@ -40,7 +41,9 @@
+ 	else:
+ 		MAX_STACKS = 10000
+ 	
+-	return self
++	var observer7_return_0 = self
++	NativeRandomObserver.leave("Core/Buff.gd::init", self, observer7_return_0, "return_explicit")
++	return observer7_return_0
+ 
+ func getStacks():
+ 	return current
+@@ -57,16 +60,22 @@
+ 	reflectChancePercent = 0.0
+ 
+ func changeResistChance(chance):
++	NativeRandomObserver.entry("Core/Buff.gd::changeResistChance", self, {"chance": chance})
+ 	resistChancePercent += chance
++	NativeRandomObserver.leave("Core/Buff.gd::changeResistChance", self, null, "return_implicit")
+ 
+ func changeResistStacks(amount):
+ 	resistStacks = max(0, resistStacks + amount)
+ 
+ func changeCleanseProtectionChance(chance):
++	NativeRandomObserver.entry("Core/Buff.gd::changeCleanseProtectionChance", self, {"chance": chance})
+ 	cleanseProtectionChancePercent += chance
++	NativeRandomObserver.leave("Core/Buff.gd::changeCleanseProtectionChance", self, null, "return_implicit")
+ 
+ func changeReflectChance(amount):
++	NativeRandomObserver.entry("Core/Buff.gd::changeReflectChance", self, {"amount": amount})
+ 	reflectChancePercent += amount
++	NativeRandomObserver.leave("Core/Buff.gd::changeReflectChance", self, null, "return_implicit")
+ 
+ func gainStacks(amount: int, item = null, triggerEvent = null, 
+ 	reflect: bool = false):
+@@ -75,6 +84,7 @@
+ 
+ func gainTemporary(amount: int, duration: float, item = null, 
+ 	triggerEvent = null, reflect: bool = false):
++	NativeRandomObserver.entry("Core/Buff.gd::gainTemporary", self, {"amount": amount, "duration": duration, "item": item, "triggerEvent": triggerEvent, "reflect": reflect})
+ 	
+ 	var event = null
+ 	
+@@ -88,11 +98,11 @@
+ 			
+ 		if totalResistChance > 0:
+ 			for i in amount:
+-				if Util.flipPercent(totalResistChance):
++				if Util.flipPercent(totalResistChance, NativeRandomObserver.buff_label(character, item, type, "resist", i)):
+ 					resisted += 1
+ 		elif totalResistChance < 0:
+ 			for i in amount:
+-				if Util.flipPercent( - totalResistChance):
++				if Util.flipPercent( - totalResistChance, NativeRandomObserver.buff_label(character, item, type, "amplify", i)):
+ 					amount += 1
+ 		
+ 		var left = amount - resisted
+@@ -103,7 +113,7 @@
+ 			
+ 			if not reflect:
+ 				for i in amount:
+-					if Util.flipPercent(reflectChancePercent):
++					if Util.flipPercent(reflectChancePercent, NativeRandomObserver.reflect_label(character, item, type)):
+ 						reflected += 1
+ 				
+ 				left -= reflected
+@@ -145,7 +155,10 @@
+ 		
+ 		if amount > 0:
+ 			amount = int(min(amount, MAX_STACKS - current))
+-			if amount == 0: return null
++			if amount == 0:
++				var observer7_return_0 = null
++				NativeRandomObserver.leave("Core/Buff.gd::gainTemporary", self, observer7_return_0, "return_explicit")
++				return observer7_return_0
+ 			
+ 			current += amount
+ 			counter.updateHud(current)
+@@ -156,14 +169,21 @@
+ 				var timeout = Util.time + duration
+ 				var tempStacks = TemporaryStacks.new(amount, timeout, item)
+ 				temporaryStacks.push_back(tempStacks)
++				NativeRandomObserver.middle("Core/Buff.gd::gainTemporary", "temporary_append", self, { "entry": NativeRandomObserver.temporary(tempStacks, temporaryStacks.size() - 1), "buff": NativeRandomObserver.state(self, "buff"), "timer": NativeRandomObserver.timer_state(timer) })
+ 				
+ 				if timer.is_stopped():
++					NativeRandomObserver.timer_before(timer, "start", [duration], "Core/Buff.gd::gainTemporary")
+ 					timer.start(duration)
++					NativeRandomObserver.timer_after(timer, "start", [duration], "Core/Buff.gd::gainTemporary")
+ 					nextTemporaryTimeout = 0
+ 				else:
+ 					if duration < timer.get_time_left():
++						NativeRandomObserver.timer_before(timer, "stop", [], "Core/Buff.gd::gainTemporary")
+ 						timer.stop()
++						NativeRandomObserver.timer_after(timer, "stop", [], "Core/Buff.gd::gainTemporary")
++						NativeRandomObserver.timer_before(timer, "start", [duration], "Core/Buff.gd::gainTemporary")
+ 						timer.start(duration)
++						NativeRandomObserver.timer_after(timer, "start", [duration], "Core/Buff.gd::gainTemporary")
+ 						nextTemporaryTimeout = temporaryStacks.size() - 1
+ 			
+ 			
+@@ -193,10 +213,13 @@
+ 			character.opponent.gainStacksTemporary(type, reflected, duration, 
+ 				item, triggerEvent, true)
+ 		
+-	return event
++	var observer7_return_1 = event
++	NativeRandomObserver.leave("Core/Buff.gd::gainTemporary", self, observer7_return_1, "return_explicit")
++	return observer7_return_1
+ 
+ 
+ func loseStacks(amount: int, item = null, triggerEvent = null, used = false):
++	NativeRandomObserver.entry("Core/Buff.gd::loseStacks", self, {"amount": amount, "item": item, "triggerEvent": triggerEvent, "used": used})
+ 	
+ 	amount = min(current, amount)
+ 	
+@@ -206,12 +229,12 @@
+ 		
+ 		if cleanseProtectionChancePercent > 0:
+ 			for i in amount:
+-				if Util.flipPercent(cleanseProtectionChancePercent):
++				if Util.flipPercent(cleanseProtectionChancePercent, NativeRandomObserver.buff_label(character, item, type, "protect", i)):
+ 					protected += 1
+ 		
+ 		elif cleanseProtectionChancePercent < 0:
+ 			for i in amount:
+-				if Util.flipPercent( - cleanseProtectionChancePercent):
++				if Util.flipPercent( - cleanseProtectionChancePercent, NativeRandomObserver.buff_label(character, item, type, "unprotect", i)):
+ 					protected -= 1
+ 		
+ 		amount -= protected
+@@ -275,13 +298,18 @@
+ 				
+ 				if temporaryStacks.empty():
+ 					
++					NativeRandomObserver.timer_before(timer, "stop", [], "Core/Buff.gd::loseStacks")
+ 					timer.stop()
+-	
+-	return changeCurrentLogShowLabel(false, amount, item, triggerEvent, used)
++					NativeRandomObserver.timer_after(timer, "stop", [], "Core/Buff.gd::loseStacks")
++	
++	var observer7_return_0 = changeCurrentLogShowLabel(false, amount, item, triggerEvent, used)
++	NativeRandomObserver.leave("Core/Buff.gd::loseStacks", self, observer7_return_0, "return_explicit")
++	return observer7_return_0
+ 
+ 
+ func changeCurrentLogShowLabel(isTimeout: bool, amount: int, 
+ 	item = null, triggerEvent = null, used: bool = false):
++	NativeRandomObserver.entry("Core/Buff.gd::changeCurrentLogShowLabel", self, {"isTimeout": isTimeout, "amount": amount, "item": item, "triggerEvent": triggerEvent, "used": used})
+ 		
+ 	var change = min(current, amount)
+ 
+@@ -310,14 +338,20 @@
+ 			var appliedToOpponent = (character != item.character())
+ 			Util.spawnBuffLabel_item(type, item, - change, appliedToOpponent)
+ 			
+-			return event
+-	
+-	return null
++			var observer7_return_0 = event
++			NativeRandomObserver.leave("Core/Buff.gd::changeCurrentLogShowLabel", self, observer7_return_0, "return_explicit")
++			return observer7_return_0
++	
++	var observer7_return_1 = null
++	NativeRandomObserver.leave("Core/Buff.gd::changeCurrentLogShowLabel", self, observer7_return_1, "return_explicit")
++	return observer7_return_1
+ 
+ func onTimeout():
++	NativeRandomObserver.entry("Core/Buff.gd::onTimeout", self, {})
+ 	var timedOutStacks: TemporaryStacks = temporaryStacks[nextTemporaryTimeout]
+ 	changeCurrentLogShowLabel(true, timedOutStacks.amount, timedOutStacks.item)
+ 	temporaryStacks.remove(nextTemporaryTimeout)
++	NativeRandomObserver.middle("Core/Buff.gd::onTimeout", "temporary_remove", self, { "buff": NativeRandomObserver.state(self, "buff"), "timer": NativeRandomObserver.timer_state(timer) })
+ 	
+ 	
+ 	
+@@ -337,11 +371,18 @@
+ 		if delay <= 0.01:
+ 			onTimeout()
+ 		else:
++			NativeRandomObserver.timer_before(timer, "start", [delay], "Core/Buff.gd::onTimeout")
+ 			timer.start(delay)
++			NativeRandomObserver.timer_after(timer, "start", [delay], "Core/Buff.gd::onTimeout")
++	NativeRandomObserver.leave("Core/Buff.gd::onTimeout", self, null, "return_implicit")
+ 
+ func combatEnd():
++	NativeRandomObserver.entry("Core/Buff.gd::combatEnd", self, {})
++	NativeRandomObserver.timer_before(timer, "stop", [], "Core/Buff.gd::combatEnd")
+ 	timer.stop()
++	NativeRandomObserver.timer_after(timer, "stop", [], "Core/Buff.gd::combatEnd")
+ 	temporaryStacks.clear()
++	NativeRandomObserver.leave("Core/Buff.gd::combatEnd", self, null, "return_implicit")
+ 
+ class TemporaryStacks extends Reference:
+ 	var amount: int
+@@ -349,13 +390,9 @@
+ 	var item: Item
+ 	
+ 	func _init(_amount, _timeout, _item = null):
++		NativeRandomObserver.entry("Core/Buff.gd::TemporaryStacks._init", self, {"_amount": _amount, "_timeout": _timeout, "_item": _item})
+ 		amount = _amount
+ 		timeout = _timeout
+ 		item = _item
+-	
+-
+-
+-
+-
+-
+-
++		NativeRandomObserver.leave("Core/Buff.gd::TemporaryStacks._init", self, null, "return_implicit")
++
+--- a/Utility/DamageSource.gd
++++ b/Utility/DamageSource.gd
+@@ -160,12 +160,14 @@
+ func makeSpectral():
+ 	unsetFlag(Flags.CanBeBlocked)
+ 
+-func randDamage():
++func randDamage(observer_label = ""):
+ 	if origin is Item:
+ 		critChancePercent = origin.getCritChancePercent()
+ 		if isAttack():
+ 			setDamage(origin.getMinDamage(self), origin.getMaxDamage(self))
+ 		return origin.damageRangeRng.randIntRange(
+-			minDamage, maxDamage)
++			minDamage, maxDamage, observer_label)
+ 	else:
+-		return Util.rng.randi_range(minDamage, maxDamage)
++		var observer_draw = Util.rng.randi_range(minDamage, maxDamage)
++		NativeRandomObserver.primitive("Utility/DamageSource.gd::randDamage", "randi_range", observer_label, [minDamage, maxDamage], observer_draw)
++		return observer_draw
+--- a/Utility/Util.gd
++++ b/Utility/Util.gd
+@@ -146,6 +146,7 @@
+ 	clockTime += delta
+ 
+ func _physics_process(delta):
++	NativeRandomObserver.entry("Utility/Util.gd::_physics_process", self, {"delta": delta})
+ 	
+ 	if not get_tree().paused:
+ 		frameCounter += 1
+@@ -154,6 +155,7 @@
+ 	var curMousePos = getMousePosInWindow()
+ 	mouseVelocity = (curMousePos - lastMousePos)
+ 	lastMousePos = curMousePos
++	NativeRandomObserver.leave("Utility/Util.gd::_physics_process", self, null, "return_implicit")
+ 
+ func getMouseSpeed() -> float:
+ 	return mouseVelocity.length()
+@@ -449,8 +451,10 @@
+ func absv(vec: Vector2):
+ 	return Vector2(abs(vec.x), abs(vec.y))
+ 
+-func pickRandomElement(array: Array):
+-	return array[rng.randi_range(0, array.size() - 1)]
++func pickRandomElement(array: Array, observer_label = ""):
++	var observer7_index = rng.randi_range(0, array.size() - 1)
++	NativeRandomObserver.primitive("Utility/Util.gd::pickRandomElement", "randi_range", observer_label, [0, array.size() - 1], observer7_index)
++	return array[observer7_index]
+ 
+ func getArrayElement(array: Array, index: int, default = null):
+ 	if index > array.size() - 1:
+@@ -1004,14 +1008,18 @@
+ 		flattened.append_array(inner)
+ 	return flattened
+ 
+-func roll(maximum = 100.0) -> float:
+-	return rng.randf_range(0, maximum)
+-
+-func flip(chance = 0.5) -> bool:
+-	return rng.randf() <= chance
+-
+-func flipPercent(chance) -> bool:
+-	return roll() <= chance
++func roll(maximum = 100.0, observer_label = "") -> float:
++	var observer7_value = rng.randf_range(0, maximum)
++	NativeRandomObserver.primitive("Utility/Util.gd::roll", "randf_range", observer_label, [0, maximum], observer7_value)
++	return observer7_value
++
++func flip(chance = 0.5, observer_label = "") -> bool:
++	var observer7_value = rng.randf()
++	NativeRandomObserver.primitive("Utility/Util.gd::flip", "randf", observer_label, [], observer7_value)
++	return observer7_value <= chance
++
++func flipPercent(chance, observer_label = "") -> bool:
++	return roll(100.0, observer_label) <= chance
+ 
+ 
+ func flipRound(chance) -> int:
+@@ -1600,10 +1608,13 @@
+ 	popup.setText(translationKey)
+ 
+ 
+-func sortDict(dict: Dictionary, shuffleBeforeSort = false) -> Array:
++func sortDict(dict: Dictionary, shuffleBeforeSort = false, observer_context = "") -> Array:
+ 	var sorted: Array = dict.keys()
+ 	if shuffleBeforeSort:
+-		sorted.shuffle()
++		if observer_context == "":
++			sorted.shuffle()
++		else:
++			NativeRandomObserver.fraction_shuffle(sorted, observer_context)
+ 	var dictSorter = DictSorter.new(dict)
+ 	sorted.sort_custom(dictSorter, "sort")
+ 	return sorted
+--- a/Utility/BalancedRandom.gd
++++ b/Utility/BalancedRandom.gd
+@@ -12,10 +12,10 @@
+ func setBias(bias):
+ 	expectedWins += bias
+ 
+-func rollPercent(target) -> bool:
+-	return roll(target / 100.0)
++func rollPercent(target, observer_label = "") -> bool:
++	return roll(target / 100.0, observer_label)
+ 
+-func roll(target) -> bool:
++func roll(target, observer_label = "") -> bool:
+ 	if target <= 0: return false
+ 	elif target >= 1: return true
+ 	
+@@ -40,7 +40,7 @@
+ 		
+ 		
+ 	
+-	var result = Util.flip(chance)
++	var result = Util.flip(chance, observer_label)
+ 	
+ 	
+ 	lastResult = result
+--- a/Utility/BalancedRange.gd
++++ b/Utility/BalancedRange.gd
+@@ -6,8 +6,9 @@
+ func reset():
+ 	acc = 0.0
+ 
+-func randIntRange(from: int, to: int) -> int:
++func randIntRange(from: int, to: int, observer_label = "") -> int:
+ 	var rng = Util.rng.randi_range(from, to)
++	NativeRandomObserver.primitive("Utility/BalancedRange.gd::randIntRange", "randi_range", observer_label, [from, to], rng)
+ 	var expected: float = 0.5 * (from + to)
+ 	
+ 	var dif: float = rng - expected
+--- a/Core/Character.gd
++++ b/Core/Character.gd
+@@ -138,6 +138,7 @@
+ onready var levelUpParticles = get_node_or_null("Mirroring/Sprite/LevelUpParticles")
+ 
+ func _ready() -> void :
++	NativeRandomObserver.entry("Core/Character.gd::_ready", self, {})
+ 	Util.localizeFonts(self)
+ 	
+ 	Util.addFallbackFonts(nameLabel.get("custom_fonts/font"))
+@@ -169,7 +170,8 @@
+ 	
+ 	for damageType in DamageSource.Type.values():
+ 		typedDamageFactors[damageType] = 0.0
+-	
++	NativeRandomObserver.leave("Core/Character.gd::_ready", self, null, "return_implicit")
++
+ func isPlayer():
+ 	return playerId == ID.PLAYER
+ 
+@@ -292,6 +294,7 @@
+ 
+ 
+ func prepare():
++	NativeRandomObserver.entry("Core/Character.gd::prepare", self, {})
+ 	staminaRegen = baseStaminaRegen
+ 	var bonusHealth = getMaxHealth() * ((CustomRules.getHealthMultiplier() - 100.0) / 100.0)
+ 	changeMaxHealthTemporary(bonusHealth)
+@@ -324,27 +327,44 @@
+ 		
+ 		if not battleRageItems.empty():
+ 			autoRageItem = battleRageItems.pick_random()
++	NativeRandomObserver.leave("Core/Character.gd::prepare", self, null, "return_implicit")
+ 
+ func combatStart():
++	NativeRandomObserver.entry("Core/Character.gd::combatStart", self, {})
+ 	stunnedDuration = 0.0
+ 	set_physics_process(true)
+ 	combatDefaultPos = spriteNode.position
+ 	tickCounter = 0
++	NativeRandomObserver.timer_before(tickTimer, "start", [], "Core/Character.gd::combatStart")
+ 	tickTimer.start()
++	NativeRandomObserver.timer_after(tickTimer, "start", [], "Core/Character.gd::combatStart")
+ 	
+ 	if autoRageItem != null:
++		NativeRandomObserver.timer_before(autoRageTimer, "start", [AUTO_RAGE_DELAY], "Core/Character.gd::combatStart")
+ 		autoRageTimer.start(AUTO_RAGE_DELAY)
++		NativeRandomObserver.timer_after(autoRageTimer, "start", [AUTO_RAGE_DELAY], "Core/Character.gd::combatStart")
++	NativeRandomObserver.leave("Core/Character.gd::combatStart", self, null, "return_implicit")
+ 
+ func combatEnd():
++	NativeRandomObserver.entry("Core/Character.gd::combatEnd", self, {})
+ 	set_physics_process(false)
++	NativeRandomObserver.timer_before(tickTimer, "stop", [], "Core/Character.gd::combatEnd")
+ 	tickTimer.stop()
++	NativeRandomObserver.timer_after(tickTimer, "stop", [], "Core/Character.gd::combatEnd")
+ 	attackMovingForward = false
+ 	
+ 	for buff in buffs:
+ 		buffs[buff].combatEnd()
++	NativeRandomObserver.timer_before(battleRageTimer, "stop", [], "Core/Character.gd::combatEnd")
+ 	battleRageTimer.stop()
++	NativeRandomObserver.timer_after(battleRageTimer, "stop", [], "Core/Character.gd::combatEnd")
++	NativeRandomObserver.timer_before(autoRageTimer, "stop", [], "Core/Character.gd::combatEnd")
+ 	autoRageTimer.stop()
++	NativeRandomObserver.timer_after(autoRageTimer, "stop", [], "Core/Character.gd::combatEnd")
++	NativeRandomObserver.timer_before(invulnerabilityTimer, "stop", [], "Core/Character.gd::combatEnd")
+ 	invulnerabilityTimer.stop()
++	NativeRandomObserver.timer_after(invulnerabilityTimer, "stop", [], "Core/Character.gd::combatEnd")
++	NativeRandomObserver.leave("Core/Character.gd::combatEnd", self, null, "return_implicit")
+ 
+ func cleanse():
+ 	isDead = false
+@@ -399,6 +419,7 @@
+ 	spikeDamageSource.critChancePercent = 0
+ 
+ func onTick():
++	NativeRandomObserver.entry("Core/Character.gd::onTick", self, {})
+ 	if tickCounter % 2 == 0:
+ 		var regen = getRegeneration()
+ 		if regen > 0:
+@@ -412,6 +433,7 @@
+ 			buffs[Game.EventType.Poison].counter.activate()
+ 		
+ 	tickCounter += 1
++	NativeRandomObserver.leave("Core/Character.gd::onTick", self, null, "return_implicit")
+ 
+ func replayEvent(event):
+ 	var origin = event.getOrigin()
+@@ -493,6 +515,7 @@
+ 	return global_position - Vector2(0, 100)
+ 
+ func takeDamage(damageSource: DamageSource, triggerEvent = null) -> DamageResult:
++	NativeRandomObserver.entry("Core/Character.gd::takeDamage", self, {"damageSource": damageSource, "triggerEvent": triggerEvent})
+ 	
+ 	var damageRes = DamageResult.new()
+ 	
+@@ -502,7 +525,9 @@
+ 	damageRes.reset()
+ 	
+ 	if isDead:
+-		return damageRes
++		var observer7_return_0 = damageRes
++		NativeRandomObserver.leave("Core/Character.gd::takeDamage", self, observer7_return_0, "return_explicit")
++		return observer7_return_0
+ 	
+ 	var item = null
+ 	if damageSource.origin is Item:
+@@ -515,7 +540,7 @@
+ 	
+ 	if damageSource.canMiss():
+ 		var accuracy = damageSource.accuracy
+-		damageRes.hit = accuracyRng.rollPercent(accuracy)
++		damageRes.hit = accuracyRng.rollPercent(accuracy, "accuracy:" + NativeRandomObserver.side(self) + ":" + NativeRandomObserver.item_id(item))
+ 		if damageRes.hit and dodgeStacks > 0:
+ 			changeDodgeStacks( - 1)
+ 			damageRes.hit = false
+@@ -534,7 +559,7 @@
+ 				item.onPreDealDamage_early(damageRes)
+ 	
+ 	if damageRes.hit:
+-		damageRes.damage += damageSource.randDamage()
++		damageRes.damage += damageSource.randDamage(NativeRandomObserver.damage_label(self, item, damageSource))
+ 		
+ 		if damageSource.hasType(DamageSource.Type.Fatigue):
+ 			damageRes.damage += bonusFatigueDamage
+@@ -543,7 +568,7 @@
+ 			var critical = false
+ 			
+ 			var critChancePercent = damageSource.getCritChancePercent()
+-			if critChancePercent > 0 and critRng.rollPercent(critChancePercent):
++			if critChancePercent > 0 and critRng.rollPercent(critChancePercent, "critical:" + NativeRandomObserver.side(self) + ":" + NativeRandomObserver.item_id(item)):
+ 				critical = true
+ 			
+ 			if not damageRes.critical and item != null and item.getCritTokens() > 0:
+@@ -650,7 +675,9 @@
+ 	
+ 	applySpikes(damageRes)
+ 	
+-	return damageRes
++	var observer7_return_1 = damageRes
++	NativeRandomObserver.leave("Core/Character.gd::takeDamage", self, observer7_return_1, "return_explicit")
++	return observer7_return_1
+ 
+ func isVulnerable():
+ 	return not invulnerable
+@@ -852,6 +879,7 @@
+ 	emit_signal("health_changed_ui")
+ 
+ func loseHealth(amount, item = null, triggerEvent = null):
++	NativeRandomObserver.entry("Core/Character.gd::loseHealth", self, {"amount": amount, "item": item, "triggerEvent": triggerEvent})
+ 	curHealth -= amount
+ 	var pos = randDmgNumberPos()
+ 	var direction = randDmgNumberDir()
+@@ -866,7 +894,9 @@
+ 	if curHealth <= 0:
+ 		death()
+ 	
+-	return event
++	var observer7_return_0 = event
++	NativeRandomObserver.leave("Core/Character.gd::loseHealth", self, observer7_return_0, "return_explicit")
++	return observer7_return_0
+ 
+ func setMaxHealth(_maxHealth):
+ 	maxHealth = _maxHealth
+@@ -890,6 +920,7 @@
+ 
+ 
+ func changeMaxHealthTemporary(amount, item = null, triggerEvent = null):
++	NativeRandomObserver.entry("Core/Character.gd::changeMaxHealthTemporary", self, {"amount": amount, "item": item, "triggerEvent": triggerEvent})
+ 	if amount != 0:
+ 		temporaryMaxHealth += amount
+ 		
+@@ -899,6 +930,7 @@
+ 			var event = Game.combatLog.createEvent_TemporaryMaxHealth(item, amount, triggerEvent)
+ 			EventBus.logEvent(event)
+ 		emit_signal("health_changed_ui")
++	NativeRandomObserver.leave("Core/Character.gd::changeMaxHealthTemporary", self, null, "return_implicit")
+ 
+ func changeMaxHealthGain(amount):
+ 	temporaryMaxHealthGain += amount
+@@ -1027,12 +1059,14 @@
+ 	spriteAnimation.play("Jump")
+ 
+ func _physics_process(delta: float) -> void :
++	NativeRandomObserver.entry("Core/Character.gd::_physics_process", self, {"delta": delta})
+ 	if stunnedDuration > 0:
+ 		stunnedDuration -= delta
+ 		if stunnedDuration <= 0:
+ 			endStun()
+ 	
+ 	addStamina(getStaminaRegeneration() * delta)
++	NativeRandomObserver.leave("Core/Character.gd::_physics_process", self, null, "return_implicit")
+ 
+ func makeInvulnerable(invuDur, item, triggerEvent = null):
+ 	invulnerabilityItem = item
+@@ -1069,6 +1103,7 @@
+ 		invulBubbleVisible = false
+ 
+ func stun(duration, item = null, triggerEvent = null):
++	NativeRandomObserver.entry("Core/Character.gd::stun", self, {"duration": duration, "item": item, "triggerEvent": triggerEvent})
+ 	
+ 	if stunResisted():
+ 		Util.spawnBuffLabel(Game.EventType.StunResisted, randBuffLabelPos(), duration)
+@@ -1081,11 +1116,14 @@
+ 		Game.combatLog.snapshotCharacterStat(self, Stat.Stunned, false, event)
+ 		playStunAnimation()
+ 		Sound.playSound(stunnedSound)
++	NativeRandomObserver.leave("Core/Character.gd::stun", self, null, "return_implicit")
+ 
+ func endStun():
++	NativeRandomObserver.entry("Core/Character.gd::endStun", self, {})
+ 	stunnedDuration = 0.0
+ 	Game.combatLog.snapshotCharacterStat(self, Stat.Stunned, true)
+ 	playStunAnimation()
++	NativeRandomObserver.leave("Core/Character.gd::endStun", self, null, "return_implicit")
+ 
+ func playStunAnimation(duration = stunnedDuration):
+ 	if duration > 0:
+@@ -1148,20 +1186,29 @@
+ 
+ func gainStacks(buffType, amount: int, item = null, triggerEvent = null, 
+ 	reflect: bool = false):
+-	
+-	return buffs[buffType].gainStacks(amount, item, triggerEvent)
++	NativeRandomObserver.entry("Core/Character.gd::gainStacks", self, {"buffType": buffType, "amount": amount, "item": item, "triggerEvent": triggerEvent, "reflect": reflect})
++	
++	var observer7_return_0 = buffs[buffType].gainStacks(amount, item, triggerEvent)
++	NativeRandomObserver.leave("Core/Character.gd::gainStacks", self, observer7_return_0, "return_explicit")
++	return observer7_return_0
+ 
+ func gainStacksTemporary(buffType, amount: int, duration, item = null, 
+ 	triggerEvent = null, reflect: bool = false):
+-	
+-	return buffs[buffType].gainTemporary(amount, duration, item, triggerEvent, reflect)
++	NativeRandomObserver.entry("Core/Character.gd::gainStacksTemporary", self, {"buffType": buffType, "amount": amount, "duration": duration, "item": item, "triggerEvent": triggerEvent, "reflect": reflect})
++	
++	var observer7_return_0 = buffs[buffType].gainTemporary(amount, duration, item, triggerEvent, reflect)
++	NativeRandomObserver.leave("Core/Character.gd::gainStacksTemporary", self, observer7_return_0, "return_explicit")
++	return observer7_return_0
+ 
+ 
+ func loseStacks(buffType, amount: int, item = null, triggerEvent = null):
+ 	return buffs[buffType].loseStacks(amount, item, triggerEvent)
+ 
+ func useStacks(buffType, amount: int, item = null, triggerEvent = null):
+-	return buffs[buffType].loseStacks(amount, item, triggerEvent, true)
++	NativeRandomObserver.entry("Core/Character.gd::useStacks", self, {"buffType": buffType, "amount": amount, "item": item, "triggerEvent": triggerEvent})
++	var observer7_return_0 = buffs[buffType].loseStacks(amount, item, triggerEvent, true)
++	NativeRandomObserver.leave("Core/Character.gd::useStacks", self, observer7_return_0, "return_explicit")
++	return observer7_return_0
+ 
+ func changeResistChance(buffType, chance):
+ 	buffs[buffType].changeResistChance(chance)
+@@ -1277,12 +1324,18 @@
+ 	setStacks(Game.EventType.Mana, amount)
+ 
+ func gainMana(amount: int, item = null, triggerEvent = null):
+-	return gainStacks(Game.EventType.Mana, amount, item, triggerEvent)
++	NativeRandomObserver.entry("Core/Character.gd::gainMana", self, {"amount": amount, "item": item, "triggerEvent": triggerEvent})
++	var observer7_return_0 = gainStacks(Game.EventType.Mana, amount, item, triggerEvent)
++	NativeRandomObserver.leave("Core/Character.gd::gainMana", self, observer7_return_0, "return_explicit")
++	return observer7_return_0
+ 
+ func useMana(amount: int, item = null, triggerEvent = null):
++	NativeRandomObserver.entry("Core/Character.gd::useMana", self, {"amount": amount, "item": item, "triggerEvent": triggerEvent})
+ 	var event = useStacks(Game.EventType.Mana, amount, item, triggerEvent)
+ 	
+-	return event
++	var observer7_return_0 = event
++	NativeRandomObserver.leave("Core/Character.gd::useMana", self, observer7_return_0, "return_explicit")
++	return observer7_return_0
+ 
+ func loseMana(amount: int, item = null, triggerEvent = null):
+ 	return loseStacks(Game.EventType.Mana, amount, item, triggerEvent)
+@@ -1459,8 +1512,10 @@
+ 	Game.combatLog.snapshotCharacterStat(self, Stat.DebuffResistStacks, true)
+ 
+ func changeDebuffReflectStacks(amount):
++	NativeRandomObserver.entry("Core/Character.gd::changeDebuffReflectStacks", self, {"amount": amount})
+ 	debuffReflectStacks += amount
+ 	Game.combatLog.snapshotCharacterStat(self, Stat.ReflectStacks, true)
++	NativeRandomObserver.leave("Core/Character.gd::changeDebuffReflectStacks", self, null, "return_implicit")
+ 
+ func changeBuffProtectStacks(amount):
+ 	buffProtectStacks += amount
+@@ -1552,24 +1607,32 @@
+ 	return not battleRageTimer.is_stopped()
+ 
+ func startBattleRage(item, duration, triggerEvent = null, applyBonus = true):
++	NativeRandomObserver.entry("Core/Character.gd::startBattleRage", self, {"item": item, "duration": duration, "triggerEvent": triggerEvent, "applyBonus": applyBonus})
+ 	
+ 	
+ 	var fullDur = duration
+ 	if applyBonus:
+ 		fullDur += battleRageBonusDur
++	NativeRandomObserver.timer_before(battleRageTimer, "start", [fullDur], "Core/Character.gd::startBattleRage")
+ 	battleRageTimer.start(fullDur)
++	NativeRandomObserver.timer_after(battleRageTimer, "start", [fullDur], "Core/Character.gd::startBattleRage")
+ 	
+ 	var event = Game.combatLog.createEvent_BattleRageStart(item, fullDur, triggerEvent)
+ 	EventBus.emitEvent(self, "battle_rage_started", event, [event])
+ 	Game.combatLog.snapshotCharacterStat(self, Stat.BattleRage, false, event)
+ 	playBattleRageAnimation(true)
++	NativeRandomObserver.leave("Core/Character.gd::startBattleRage", self, null, "return_implicit")
+ 
+ func endBattleRage():
++	NativeRandomObserver.entry("Core/Character.gd::endBattleRage", self, {})
++	NativeRandomObserver.timer_before(battleRageTimer, "stop", [], "Core/Character.gd::endBattleRage")
+ 	battleRageTimer.stop()
++	NativeRandomObserver.timer_after(battleRageTimer, "stop", [], "Core/Character.gd::endBattleRage")
+ 	var event = Game.combatLog.createEvent_BattleRageEnd(playerId)
+ 	EventBus.emitEvent(self, "battle_rage_ended", event, [event])
+ 	Game.combatLog.snapshotCharacterStat(self, Stat.BattleRage, false, event)
+ 	playBattleRageAnimation(false)
++	NativeRandomObserver.leave("Core/Character.gd::endBattleRage", self, null, "return_implicit")
+ 
+ func playBattleRageAnimation(rageStart):
+ 	if rageStart:
+--- a/Core/Game.gd
++++ b/Core/Game.gd
+@@ -3057,13 +3057,16 @@
+ 	return 0
+ 
+ func prepareItems(items):
++	NativeRandomObserver.entry("Core/Game.gd::prepareItems", self, {"items": items})
+ 	PLAYER.prepare()
+ 	OPPONENT.prepare()
+ 	
+ 	for item in items:
+ 		item.prepare()
++	NativeRandomObserver.leave("Core/Game.gd::prepareItems", self, null, "return_implicit")
+ 
+ func activateItems(items):
++	NativeRandomObserver.entry("Core/Game.gd::activateItems", self, {"items": items})
+ 	
+ 	
+ 	emit_signal("combat_start")
+@@ -3080,9 +3083,13 @@
+ 	
+ 	for item in items:
+ 		item.postCombatStart()
++	NativeRandomObserver.leave("Core/Game.gd::activateItems", self, null, "return_implicit")
+ 
+ func endCombat():
++	NativeRandomObserver.entry("Core/Game.gd::endCombat", self, {})
+ 	if fightEnded:
++		var observer7_return_0 = null
++		NativeRandomObserver.leave("Core/Game.gd::endCombat", self, observer7_return_0, "return_explicit")
+ 		return
+ 	
+ 	Engine.time_scale = 1
+@@ -3110,8 +3117,10 @@
+ 	print("Round ", curRound, " Battle ended with ", Util.enumToString(RoundResult, roundResults[curRound - 1]))
+ 	
+ 	call_deferred("combatEndDeferred")
++	NativeRandomObserver.leave("Core/Game.gd::endCombat", self, null, "return_implicit")
+ 
+ func combatEndDeferred():
++	NativeRandomObserver.entry("Core/Game.gd::combatEndDeferred", self, {})
+ 	emit_signal("combat_end", roundResults[curRound - 1])
+ 	
+ 	EventBus.disconnectAll()
+@@ -3177,6 +3186,7 @@
+ 			endRun_lobby()
+ 		else:
+ 			endRun(true, true)
++	NativeRandomObserver.leave("Core/Game.gd::combatEndDeferred", self, null, "return_implicit")
+ 
+ func forceLoseCombat():
+ 	Engine.time_scale = 1
+--- a/Items/Item.gd
++++ b/Items/Item.gd
+@@ -508,6 +508,7 @@
+ 
+ 
+ func _ready() -> void :
++	NativeRandomObserver.entry("Items/Item.gd::_ready", self, {})
+ 	if not pooled:
+ 		
+ 		
+@@ -624,6 +625,7 @@
+ 		set_process_input(false)
+ 	
+ 	call_deferred("ready_deferred")
++	NativeRandomObserver.leave("Items/Item.gd::_ready", self, null, "return_implicit")
+ 
+ func ready_deferred():
+ 	
+@@ -3342,6 +3344,7 @@
+ 
+ 
+ func prepare():
++	NativeRandomObserver.entry("Items/Item.gd::prepare", self, {})
+ 	cacheAffectedItemsForCombat()
+ 	
+ 	disablePicking()
+@@ -3350,7 +3353,7 @@
+ 	for gem in getGemsNoNull():
+ 		gem.prepare()
+ 	onPrepare()
+-	
++	NativeRandomObserver.leave("Items/Item.gd::prepare", self, null, "return_implicit")
+ 
+ func onPrepare():
+ 	pass
+@@ -3412,12 +3415,14 @@
+ 	sprite.scale = spriteScale
+ 
+ func combatEnd():
++	NativeRandomObserver.entry("Items/Item.gd::combatEnd", self, {})
+ 	
+ 	set_physics_process(false)
+ 	disconnectCombat()
+ 	for gem in getGemsNoNull():
+ 		gem.combatEnd()
+ 	onCombatEnd()
++	NativeRandomObserver.leave("Items/Item.gd::combatEnd", self, null, "return_implicit")
+ 
+ func onCombatEnd():
+ 	pass
+@@ -3788,9 +3793,9 @@
+ func adjustCooldown():
+ 	var adjustedCooldown = getCooldown()
+ 	if ownerType == Owner.Opponent and (Game.isBelowLeague(Game.Leagues.Master) or Game.curMode == Game.Mode.Lobbies):
+-		adjustedCooldown *= Util.rng.randf_range(0.975, 1.05)
+-	else:
+-		adjustedCooldown *= Util.rng.randf_range(0.95, 1.05)
++		adjustedCooldown *= NativeRandomObserver.cooldown(self, 0.975, 1.05)
++	else:
++		adjustedCooldown *= NativeRandomObserver.cooldown(self, 0.95, 1.05)
+ 	
+ 	return adjustedCooldown
+ 
+@@ -4033,6 +4038,7 @@
+ 	Game.combatLog.snapshotItemTooltipStat(self, Stat.Accuracy)
+ 
+ func addBonusDamage(damage, removable: bool = true):
++	NativeRandomObserver.entry("Items/Item.gd::addBonusDamage", self, {"damage": damage, "removable": removable})
+ 	if damage != 0:
+ 		bonusMinDam += damage
+ 		bonusMaxDam += damage
+@@ -4044,6 +4050,7 @@
+ 		
+ 		if removable:
+ 			spawnLabel(Game.EventType.DamageBuff, damage)
++	NativeRandomObserver.leave("Items/Item.gd::addBonusDamage", self, null, "return_implicit")
+ 
+ func changeVaryingDamage(damage):
+ 	addBonusDamage(damage, false)
+@@ -4109,7 +4116,7 @@
+ 	doubleAttackEffectChance += _chance / 100.0
+ 
+ func rollDoubleAttackEffect() -> int:
+-	return int(Util.flip(doubleAttackEffectChance))
++	return int(Util.flip(doubleAttackEffectChance, "double_attack_effect:" + NativeRandomObserver.item_id(self)))
+ 
+ 
+ func dealDamage(triggerEvent = null):
+@@ -4216,11 +4223,13 @@
+ 	character().gainMaxStaminaTemporary(amount, self, triggerEvent, filled)
+ 
+ func giveMaxHealth(amount = getP_m("maxhealth"), triggerEvent = null):
++	NativeRandomObserver.entry("Items/Item.gd::giveMaxHealth", self, {"amount": amount, "triggerEvent": triggerEvent})
+ 	amount = character().applyTemporaryMaxHealthGain(amount)
+ 	if amount > 0:
+ 		addMetric(Game.ItemMetrics.MaxHealth, amount, null, true)
+ 		character().changeMaxHealthTemporary(amount, self, triggerEvent)
+ 		spawnLabel(Game.EventType.TemporaryMaxHealth, amount)
++	NativeRandomObserver.leave("Items/Item.gd::giveMaxHealth", self, null, "return_implicit")
+ 
+ func getAffectedGoldValue() -> int:
+ 	var gold = 0
+@@ -4388,10 +4397,13 @@
+ 
+ 
+ func rollChance(chance = getBaseChance()) -> bool:
+-	return chanceRng.rollPercent(applyBonusChance(chance, 1))
++	NativeRandomObserver.entry("Items/Item.gd::rollChance", self, {"chance": chance})
++	var observer7_return_0 = chanceRng.rollPercent(applyBonusChance(chance, 1), "item_chance:" + NativeRandomObserver.item_id(self) + ":primary")
++	NativeRandomObserver.leave("Items/Item.gd::rollChance", self, observer7_return_0, "return_explicit")
++	return observer7_return_0
+ 	
+ func rollChance2() -> bool:
+-	return chanceRng.rollPercent(applyBonusChance(descriptor.chance2, 2))
++	return chanceRng.rollPercent(applyBonusChance(descriptor.chance2, 2), "item_chance:" + NativeRandomObserver.item_id(self) + ":secondary")
+ 
+ func rollShopChance(shopChance = descriptor.shopChance) -> bool:
+ 	return chanceRng.rollPercent(shopChance)
+@@ -4434,14 +4446,13 @@
+ 	Game.combatLog.snapshotItemTooltipStat(self, Stat.BaseCooldown)
+ 
+ func _physics_process(delta: float):
++	NativeRandomObserver.entry("Items/Item.gd::_physics_process", self, {"delta": delta})
+ 	if not character().isStunned():
+ 		triggerTime -= delta * getSpeed()
+ 		showCooldown(1.0 - (triggerTime / iterationCooldown))
+ 		if triggerTime <= 0:
+ 			trigger()
+-
+-
+-
++	NativeRandomObserver.leave("Items/Item.gd::_physics_process", self, null, "return_implicit")
+ 
+ func getCooldownEncoded():
+ 	if iterationCooldown == 0:
+@@ -4492,11 +4503,13 @@
+ 	Game.combatLog.snapshotItemTooltipStat(self, Stat.Cooldown)
+ 
+ func miniActivate():
++	NativeRandomObserver.entry("Items/Item.gd::miniActivate", self, {})
+ 	if animation.current_animation == "":
+ 		if consumed:
+ 			animation.play("MiniActivate_consumed")
+ 		else:
+ 			animation.play("MiniActivate")
++	NativeRandomObserver.leave("Items/Item.gd::miniActivate", self, null, "return_implicit")
+ 
+ func playActivationAnimation_Scale(maxScale: float):
+ 	shadowTween = Util.refreshTween(shadowTween)
+@@ -4668,9 +4681,16 @@
+ 
+ func activate(damageRes = null, playCombatAni = true, consume = false, 
+ 	animationOverride = descriptor.activationAni):
+-	
+-	if dragged: return
+-	if Util.isTweenRunning(movebackTween): return
++	NativeRandomObserver.entry("Items/Item.gd::activate", self, {"damageRes": damageRes, "playCombatAni": playCombatAni, "consume": consume, "animationOverride": animationOverride})
++	
++	if dragged:
++		var observer7_return_0 = null
++		NativeRandomObserver.leave("Items/Item.gd::activate", self, observer7_return_0, "return_explicit")
++		return
++	if Util.isTweenRunning(movebackTween):
++		var observer7_return_1 = null
++		NativeRandomObserver.leave("Items/Item.gd::activate", self, observer7_return_1, "return_explicit")
++		return
+ 	
+ 
+ 
+@@ -4682,7 +4702,10 @@
+ 		lastActivationTime = Util.time
+ 	else:
+ 		activationsThisFrame += 1
+-		if activationsThisFrame > 3: return
++		if activationsThisFrame > 3:
++			var observer7_return_2 = null
++			NativeRandomObserver.leave("Items/Item.gd::activate", self, observer7_return_2, "return_explicit")
++			return
+ 	
+ 	
+ 	var event = null
+@@ -4717,7 +4740,9 @@
+ 
+ 
+ 
+-	return event
++	var observer7_return_3 = event
++	NativeRandomObserver.leave("Items/Item.gd::activate", self, observer7_return_3, "return_explicit")
++	return observer7_return_3
+ 
+ 
+ func activateFromEvent(event):
+@@ -4796,8 +4821,10 @@
+ 
+ 
+ func consume(damageRes = null, playCombatAni = true):
++	NativeRandomObserver.entry("Items/Item.gd::consume", self, {"damageRes": damageRes, "playCombatAni": playCombatAni})
+ 	activate(damageRes, playCombatAni, true)
+ 	consumed = true
++	NativeRandomObserver.leave("Items/Item.gd::consume", self, null, "return_implicit")
+ 
+ func setState(newState, withNextEvent: bool = false, event = null):
+ 	Game.combatLog.snapshotItemState(self, newState, withNextEvent, event)
+@@ -5043,33 +5070,47 @@
+ 	return character().useStacks(Game.EventType.Lucky, amount, self, triggerEvent)
+ 
+ func giveMana(amount, triggerEvent = null):
++	NativeRandomObserver.entry("Items/Item.gd::giveMana", self, {"amount": amount, "triggerEvent": triggerEvent})
+ 	giveStacks(character(), Game.EventType.Mana, amount, triggerEvent)
+-
++	NativeRandomObserver.leave("Items/Item.gd::giveMana", self, null, "return_implicit")
+ 
+ func giveMana_capped(amount, maximum, triggerEvent = null):
++	NativeRandomObserver.entry("Items/Item.gd::giveMana_capped", self, {"amount": amount, "maximum": maximum, "triggerEvent": triggerEvent})
+ 	amount = round(amount * buffPowers[Game.EventType.Mana])
+ 	var curMana = character().getMana()
+ 	if maximum > curMana:
+ 		var missingMana = maximum - curMana
+ 		var manaGiven = min(amount, missingMana)
+ 		character().gainMana(manaGiven, self, triggerEvent)
+-		return amount - manaGiven
+-	else:
+-		return amount
++		var observer7_return_0 = amount - manaGiven
++		NativeRandomObserver.leave("Items/Item.gd::giveMana_capped", self, observer7_return_0, "return_explicit")
++		return observer7_return_0
++	else:
++		var observer7_return_1 = amount
++		NativeRandomObserver.leave("Items/Item.gd::giveMana_capped", self, observer7_return_1, "return_explicit")
++		return observer7_return_1
+ 
+ func checkMana(amount) -> bool:
+ 	return character().getMana() >= amount
+ 
+ func useMana(amount, triggerEvent = null):
+-	return character().useMana(amount, self, triggerEvent)
++	NativeRandomObserver.entry("Items/Item.gd::useMana", self, {"amount": amount, "triggerEvent": triggerEvent})
++	var observer7_return_0 = character().useMana(amount, self, triggerEvent)
++	NativeRandomObserver.leave("Items/Item.gd::useMana", self, observer7_return_0, "return_explicit")
++	return observer7_return_0
+ 
+ 
+ func tryUseMana(amount, triggerEvent = null):
++	NativeRandomObserver.entry("Items/Item.gd::tryUseMana", self, {"amount": amount, "triggerEvent": triggerEvent})
+ 	var curMana = character().getMana()
+ 	if curMana < amount:
+-		return null
+-	else:
+-		return useMana(amount, triggerEvent)
++		var observer7_return_0 = null
++		NativeRandomObserver.leave("Items/Item.gd::tryUseMana", self, observer7_return_0, "return_explicit")
++		return observer7_return_0
++	else:
++		var observer7_return_1 = useMana(amount, triggerEvent)
++		NativeRandomObserver.leave("Items/Item.gd::tryUseMana", self, observer7_return_1, "return_explicit")
++		return observer7_return_1
+ 
+ func removeMana(amount, triggerEvent = null):
+ 	opponent().loseMana(amount, self, triggerEvent)
+@@ -5103,12 +5144,14 @@
+ 	character().loseEmpower(amount, self, triggerEvent)
+ 
+ func healthToBlock(health: float, block, triggerEvent = null):
++	NativeRandomObserver.entry("Items/Item.gd::healthToBlock", self, {"health": health, "block": block, "triggerEvent": triggerEvent})
+ 	var clampedHealth = min(health, character().getCurrentHealth() - 1)
+ 	if clampedHealth > 0:
+ 		character().loseHealth(clampedHealth, self, triggerEvent)
+ 		
+ 		block = ceil((clampedHealth / health) * block)
+ 		giveBlock(block, true, triggerEvent)
++	NativeRandomObserver.leave("Items/Item.gd::healthToBlock", self, null, "return_implicit")
+ 
+ func getModifiedEffectDamage(baseDamage):
+ 	var modifiedDamage = baseDamage
+@@ -5117,10 +5160,13 @@
+ 	return modifiedDamage
+ 
+ func stealLife(damage, lifestealFactor: float = 1.0, triggerEvent = null):
++	NativeRandomObserver.entry("Items/Item.gd::stealLife", self, {"damage": damage, "lifestealFactor": lifestealFactor, "triggerEvent": triggerEvent})
+ 	Game.stealLifeDamageSource.updateEffect(self, damage)
+ 	var damageRes = opponent().takeDamage(Game.stealLifeDamageSource, triggerEvent)
+ 	heal(damageRes.damage * lifestealFactor, damageRes.event)
+-	return damageRes
++	var observer7_return_0 = damageRes
++	NativeRandomObserver.leave("Items/Item.gd::stealLife", self, observer7_return_0, "return_explicit")
++	return observer7_return_0
+ 
+ func giveCritTokens(amount):
+ 	character().gainCritTokens(amount)
+@@ -5403,6 +5449,7 @@
+ 
+ 
+ func pickRandomStacks(stackTypes, numStacks, target, priorityStack = null):
++	NativeRandomObserver.entry("Items/Item.gd::pickRandomStacks", self, {"stackTypes": stackTypes, "numStacks": numStacks, "target": target, "priorityStack": priorityStack})
+ 	var stacks = Dictionary()
+ 	for stackType in stackTypes:
+ 		var numTargetStacks = target.getStacks(stackType)
+@@ -5420,17 +5467,19 @@
+ 	
+ 	for i in numStacks:
+ 		if not stacks.empty():
+-			var stackType = Util.pickRandomElement(stacks.keys())
++			var stackType = Util.pickRandomElement(stacks.keys(), NativeRandomObserver.stack_pick_label(self, target, "take", i))
+ 			Util.dictAdd(pickedStacks, stackType, 1)
+ 			Util.dictSub(stacks, stackType, 1)
+ 	
+-	return pickedStacks
+-
+-
+-func pickRandomStacksToGive(stackTypes, numStacks):
++	var observer7_return_0 = pickedStacks
++	NativeRandomObserver.leave("Items/Item.gd::pickRandomStacks", self, observer7_return_0, "return_explicit")
++	return observer7_return_0
++
++
++func pickRandomStacksToGive(stackTypes, numStacks, observer_target = null):
+ 	var pickedStacks = Dictionary()
+ 	for i in numStacks:
+-		var stackType = Util.pickRandomElement(stackTypes)
++		var stackType = Util.pickRandomElement(stackTypes, NativeRandomObserver.stack_pick_label(self, observer_target, "give", i))
+ 		Util.dictAdd(pickedStacks, stackType, 1)
+ 		
+ 	return pickedStacks
+@@ -5438,7 +5487,7 @@
+ func giveRandomBuffs(numBuffs: int, triggerEvent = null, availableBuffs = Game.getBuffs(), 
+ 	target = character()):
+ 		
+-	var pickedBuffs = pickRandomStacksToGive(availableBuffs, numBuffs)
++	var pickedBuffs = pickRandomStacksToGive(availableBuffs, numBuffs, target)
+ 	EventBus.setLoggingMode(EventBus.LoggingMode.Delayed)
+ 	for buff in pickedBuffs:
+ 		giveStacks(target, buff, pickedBuffs[buff], triggerEvent)
+@@ -5463,7 +5512,7 @@
+ 	return events
+ 
+ func inflictRandomDebuffs(numDebuffs, triggerEvent = null, availableDebuffs = Game.getDebuffs()):
+-	var pickedDebuffs = pickRandomStacksToGive(availableDebuffs, numDebuffs)
++	var pickedDebuffs = pickRandomStacksToGive(availableDebuffs, numDebuffs, opponent())
+ 	
+ 	EventBus.setLoggingMode(EventBus.LoggingMode.Delayed)
+ 	for debuff in pickedDebuffs:
+@@ -5497,6 +5546,7 @@
+ 	
+ 
+ func cleanseRandomDebuffs(numDebuffs, triggerEvent = null):
++	NativeRandomObserver.entry("Items/Item.gd::cleanseRandomDebuffs", self, {"numDebuffs": numDebuffs, "triggerEvent": triggerEvent})
+ 	var cleansedDebuffs = pickRandomStacks(Game.getDebuffs(), numDebuffs, character())
+ 	
+ 	
+@@ -5507,8 +5557,7 @@
+ 		
+ 		
+ 	EventBus.flushLoggingQueue()
+-	
+-	
++	NativeRandomObserver.leave("Items/Item.gd::cleanseRandomDebuffs", self, null, "return_implicit")
+ 
+ func getLeastStacks(numStacks, target, availableStacks):
+ 	var priorStacks: = {}
+@@ -5544,6 +5593,7 @@
+ 		giveStacks(target, buffType, pickedStacks[buffType], triggerEvent)
+ 
+ func getMostStacks(target, availableStacks):
++	NativeRandomObserver.entry("Items/Item.gd::getMostStacks", self, {"target": target, "availableStacks": availableStacks})
+ 	var buffs = Dictionary()
+ 	for buff in availableStacks:
+ 		buffs[buff] = target.getStacks(buff)
+@@ -5558,13 +5608,16 @@
+ 			maxBuffs.push_back(buff)
+ 			maxStacks = buffs[buff]
+ 	
+-	return maxBuffs
++	var observer7_return_0 = maxBuffs
++	NativeRandomObserver.leave("Items/Item.gd::getMostStacks", self, observer7_return_0, "return_explicit")
++	return observer7_return_0
+ 
+ func giveMostBuffs(numBuffs, triggerEvent = null, availableBuffs = Game.getBuffs()):
++	NativeRandomObserver.entry("Items/Item.gd::giveMostBuffs", self, {"numBuffs": numBuffs, "triggerEvent": triggerEvent, "availableBuffs": availableBuffs})
+ 	var maxBuffs = getMostStacks(character(), availableBuffs)
+-	var buffToGive = Util.pickRandomElement(maxBuffs)
++	var buffToGive = Util.pickRandomElement(maxBuffs, NativeRandomObserver.most_buff_label(self))
+ 	giveStacks(character(), buffToGive, numBuffs, triggerEvent)
+-
++	NativeRandomObserver.leave("Items/Item.gd::giveMostBuffs", self, null, "return_implicit")
+ 
+ func removeMostBuffs(numBuffs, triggerEvent = null, use: bool = false, availableBuffs = Game.getBuffs()):
+ 	var target
+@@ -5591,7 +5644,7 @@
+ 
+ 
+ func getStackFraction(target, fraction: float, 
+-	limit: int, availableStacks):
++	limit: int, availableStacks, observer_operation = "direct"):
+ 	
+ 	var sum: = 0.0
+ 	var stacksUnlimited: = {}
+@@ -5622,7 +5675,7 @@
+ 		
+ 	
+ 	var overflowBuffs: = totalToGive - totalGiven
+-	var sortedOverflow: Array = Util.sortDict(overflow, true)
++	var sortedOverflow: Array = Util.sortDict(overflow, true, NativeRandomObserver.fraction_context(self, target, observer_operation))
+ 	
+ 	for buff in sortedOverflow:
+ 		if overflowBuffs == 0:
+@@ -5636,7 +5689,7 @@
+ func multiplyBuffsLimit(bonus: float, limit: int, 
+ 	availableBuffs = Game.getBuffs()):
+ 	
+-	var buffsToGive = getStackFraction(character(), bonus, limit, availableBuffs)
++	var buffsToGive = getStackFraction(character(), bonus, limit, availableBuffs, "multiply")
+ 	if buffsToGive == null: return
+ 	
+ 	EventBus.setLoggingMode(EventBus.LoggingMode.Delayed)
+@@ -5647,7 +5700,7 @@
+ func removeBuffsFraction(fraction: float, limit: int, 
+ 	triggerEvent = null, availableBuffs = Game.getBuffs()):
+ 	
+-	var buffsToRemove = getStackFraction(opponent(), fraction, limit, availableBuffs)
++	var buffsToRemove = getStackFraction(opponent(), fraction, limit, availableBuffs, "remove")
+ 	if buffsToRemove == null: return
+ 	
+ 	EventBus.setLoggingMode(EventBus.LoggingMode.Delayed)
+@@ -5658,7 +5711,7 @@
+ func stealBuffsFraction(fraction: float, limit: int, 
+ 	triggerEvent = null, availableBuffs = Game.getBuffs()):
+ 	
+-	var buffsToSteal = getStackFraction(opponent(), fraction, limit, availableBuffs)
++	var buffsToSteal = getStackFraction(opponent(), fraction, limit, availableBuffs, "steal")
+ 	if buffsToSteal == null: return
+ 	
+ 	EventBus.setLoggingMode(EventBus.LoggingMode.Delayed)
+--- a/Interface/CombatTimer/CombatTimer.gd
++++ b/Interface/CombatTimer/CombatTimer.gd
+@@ -96,9 +96,14 @@
+ 	return "Fatigue"
+ 
+ func combatEnd():
++	NativeRandomObserver.entry("Interface/CombatTimer/CombatTimer.gd::combatEnd", self, {})
+ 	fatigueCounter = 0
++	NativeRandomObserver.timer_before(fatigueStartTimer, "stop", [], "Interface/CombatTimer/CombatTimer.gd::combatEnd")
+ 	fatigueStartTimer.stop()
++	NativeRandomObserver.timer_after(fatigueStartTimer, "stop", [], "Interface/CombatTimer/CombatTimer.gd::combatEnd")
++	NativeRandomObserver.timer_before(fatigueTickTimer, "stop", [], "Interface/CombatTimer/CombatTimer.gd::combatEnd")
+ 	fatigueTickTimer.stop()
++	NativeRandomObserver.timer_after(fatigueTickTimer, "stop", [], "Interface/CombatTimer/CombatTimer.gd::combatEnd")
+ 	Game.fatigueDamageSource.setDamage(0)
+ 	animation.play("HideTimer")
+ 	speedSlider.editable = false
+@@ -110,18 +115,29 @@
+ 	speedLabel.text = "x1"
+ 	set_physics_process(false)
+ 	set_process_unhandled_input(false)
++	NativeRandomObserver.leave("Interface/CombatTimer/CombatTimer.gd::combatEnd", self, null, "return_implicit")
+ 
+ func start():
+-	
++	NativeRandomObserver.entry("Interface/CombatTimer/CombatTimer.gd::start", self, {})
++	
++	NativeRandomObserver.timer_before(fatigueStartTimer, "stop", [], "Interface/CombatTimer/CombatTimer.gd::start")
+ 	fatigueStartTimer.stop()
++	NativeRandomObserver.timer_after(fatigueStartTimer, "stop", [], "Interface/CombatTimer/CombatTimer.gd::start")
++	NativeRandomObserver.timer_before(fatigueTickTimer, "stop", [], "Interface/CombatTimer/CombatTimer.gd::start")
+ 	fatigueTickTimer.stop()
+-	
++	NativeRandomObserver.timer_after(fatigueTickTimer, "stop", [], "Interface/CombatTimer/CombatTimer.gd::start")
++	
++	NativeRandomObserver.timer_before(fatigueStartTimer, "start", [FATIGUE_TIME - 3], "Interface/CombatTimer/CombatTimer.gd::start")
+ 	fatigueStartTimer.start(FATIGUE_TIME - 3)
++	NativeRandomObserver.timer_after(fatigueStartTimer, "start", [FATIGUE_TIME - 3], "Interface/CombatTimer/CombatTimer.gd::start")
+ 	set_physics_process(true)
++	NativeRandomObserver.leave("Interface/CombatTimer/CombatTimer.gd::start", self, null, "return_implicit")
+ 
+ func _physics_process(delta: float) -> void :
++	NativeRandomObserver.entry("Interface/CombatTimer/CombatTimer.gd::_physics_process", self, {"delta": delta})
+ 	combatTime += delta
+ 	updateTimer()
++	NativeRandomObserver.leave("Interface/CombatTimer/CombatTimer.gd::_physics_process", self, null, "return_implicit")
+ 
+ func _unhandled_input(event):
+ 	if InputBlocker.isActive(): return
+@@ -143,14 +159,19 @@
+ 	return combatTime
+ 
+ func startFatigue():
++	NativeRandomObserver.entry("Interface/CombatTimer/CombatTimer.gd::startFatigue", self, {})
+ 	fatigueAnimation.play("Start")
+ 	
+ 	fatigueCounter = 0
+ 	
+ 	fatigueLabel.text = Util.tra("UI_Fatigue").format({"counter": 1})
++	NativeRandomObserver.timer_before(fatigueTickTimer, "start", [3], "Interface/CombatTimer/CombatTimer.gd::startFatigue")
+ 	fatigueTickTimer.start(3)
++	NativeRandomObserver.timer_after(fatigueTickTimer, "start", [3], "Interface/CombatTimer/CombatTimer.gd::startFatigue")
++	NativeRandomObserver.leave("Interface/CombatTimer/CombatTimer.gd::startFatigue", self, null, "return_implicit")
+ 
+ func dealFatigueDamage():
++	NativeRandomObserver.entry("Interface/CombatTimer/CombatTimer.gd::dealFatigueDamage", self, {})
+ 	if fatigueCounter == 0:
+ 		Sound.playSound(fatigueStartSound)
+ 		EventBus.emitSignal(self, "fatigue_start")
+@@ -176,7 +197,10 @@
+ 	else:
+ 		counter = fatigueCounter
+ 	fatigueLabel.text = Util.tra("UI_Fatigue").format({"counter": counter})
++	NativeRandomObserver.timer_before(fatigueTickTimer, "start", [1], "Interface/CombatTimer/CombatTimer.gd::dealFatigueDamage")
+ 	fatigueTickTimer.start(1)
++	NativeRandomObserver.timer_after(fatigueTickTimer, "start", [1], "Interface/CombatTimer/CombatTimer.gd::dealFatigueDamage")
++	NativeRandomObserver.leave("Interface/CombatTimer/CombatTimer.gd::dealFatigueDamage", self, null, "return_implicit")
+ 
+ func hasFatigueStarted() -> bool:
+ 	return fatigueCounter > 0
+--- a/project.godot
++++ b/project.godot
+@@ -465,6 +465,8 @@
+ 
+ [autoload]
+ 
++NativeRandomObserver="*res://native_random_observer_sink_v7.gd"
++
+ ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"
+ Util="*res://Utility/Util.gd"
+ SteamHelper="*res://Utility/SteamHelper.gd"
+--- a/Core/CombatLog.gd
++++ b/Core/CombatLog.gd
+@@ -192,6 +192,7 @@
+ 		globalStatHistories[GlobalStat.TimeAdvance].addValue(0.0, eventNum)
+ 
+ func onCombatEnd(roundResult):
++	NativeRandomObserver.entry("Core/CombatLog.gd::onCombatEnd", self, {"roundResult": roundResult})
+ 	close()
+ 	
+ 	
+@@ -222,6 +223,7 @@
+ 			
+ 			if item.logCooldown():
+ 				itemsWithCooldown[i].push_back(item)
++	NativeRandomObserver.leave("Core/CombatLog.gd::onCombatEnd", self, null, "return_implicit")
+ 
+ func getTimeStamp():
+ 	return Game.combatTimer.getTimeStamp()
+@@ -238,7 +240,9 @@
+ var scrolledToBottom = false
+ 
+ func createEvent(triggerEvent, origin, type) -> CombatEvent:
++	NativeRandomObserver.entry("Core/CombatLog.gd::createEvent", self, {"triggerEvent": triggerEvent, "origin": origin, "type": type})
+ 	eventNum += 1
++	NativeRandomObserver.middle("Core/CombatLog.gd::createEvent", "allocation_increment", self, { "eventNum": eventNum })
+ 	
+ 	var event = CombatEvent.new(eventNum, getTimeStamp(), triggerEvent, 
+ 				origin, type)
+@@ -246,7 +250,9 @@
+ 	for character in [Game.PLAYER, Game.OPPONENT]:
+ 		snapshotCharacterStat(character, Character.Stat.Stamina)
+ 	
+-	return event
++	var observer7_return_0 = event
++	NativeRandomObserver.leave("Core/CombatLog.gd::createEvent", self, observer7_return_0, "return_explicit")
++	return observer7_return_0
+ 
+ 
+ var delayedLogList = []
+@@ -264,7 +270,11 @@
+ 	return true
+ 
+ func logEvent(event, afterFightAllowed = false):
+-	if Game.fightEnded and not afterFightAllowed: return
++	NativeRandomObserver.entry("Core/CombatLog.gd::logEvent", self, {"event": event, "afterFightAllowed": afterFightAllowed})
++	if Game.fightEnded and not afterFightAllowed:
++		var observer7_return_0 = null
++		NativeRandomObserver.leave("Core/CombatLog.gd::logEvent", self, observer7_return_0, "return_explicit")
++		return
+ 	
+ 	eventsLogged += 1
+ 	if not visible:
+@@ -274,6 +284,8 @@
+ 		addLogLine(event)
+ 	
+ 	events.push_back(event)
++	NativeRandomObserver.middle("Core/CombatLog.gd::logEvent", "append", self, { "event": event, "state": NativeRandomObserver.state(self, "combat_log") })
++	NativeRandomObserver.leave("Core/CombatLog.gd::logEvent", self, null, "return_implicit")
+ 
+ func catchUpEvent(event):
+ 	addLogLine(event)
+@@ -501,6 +513,7 @@
+ 	item.queueTooltipUpdate()
+ 
+ func snapshotItemState(item, state, withNextEvent: bool, event: CombatEvent):
++	NativeRandomObserver.entry("Core/CombatLog.gd::snapshotItemState", self, {"item": item, "state": state, "withNextEvent": withNextEvent, "event": event})
+ 	var playerId = item.character().playerId
+ 	var connectedEventNum = eventNum
+ 	if event != null:
+@@ -513,6 +526,7 @@
+ 	
+ 	if loggingFinished:
+ 		activeItemState[item] = state
++	NativeRandomObserver.leave("Core/CombatLog.gd::snapshotItemState", self, null, "return_implicit")
+ 
+ func snapshotCharacterStat(character: Character, stat: int, 
+ 	withNextEvent: bool = false, event: CombatEvent = null):
+@@ -722,6 +736,7 @@
+ func createEvent_Stack(type: int, item: Item, amount: int, 
+ 	playerId: int, triggerEvent: CombatEvent = null, 
+ 	used: bool = false, reflected: bool = false):
++	NativeRandomObserver.entry("Core/CombatLog.gd::createEvent_Stack", self, {"type": type, "item": item, "amount": amount, "playerId": playerId, "triggerEvent": triggerEvent, "used": used, "reflected": reflected})
+ 	
+ 	var event = createEvent(triggerEvent, item, type)
+ 	event.setParam("amount", amount)
+@@ -747,19 +762,27 @@
+ 			if item.isWeapon():
+ 				snapshotItemTooltipStat(item, Item.Stat.Accuracy)
+ 	
+-	return event
++	var observer7_return_0 = event
++	NativeRandomObserver.leave("Core/CombatLog.gd::createEvent_Stack", self, observer7_return_0, "return_explicit")
++	return observer7_return_0
+ 
+ func createEvent_StackTemporary(type, item, amount, duration, playerId, 
+ 	triggerEvent, reflected: bool = false):
++	NativeRandomObserver.entry("Core/CombatLog.gd::createEvent_StackTemporary", self, {"type": type, "item": item, "amount": amount, "duration": duration, "playerId": playerId, "triggerEvent": triggerEvent, "reflected": reflected})
+ 	var event = createEvent_Stack(type, item, amount, playerId, triggerEvent)
+ 	event.setParam("duration", duration)
+ 	event.setParam("reflected", reflected)
+-	return event
++	var observer7_return_0 = event
++	NativeRandomObserver.leave("Core/CombatLog.gd::createEvent_StackTemporary", self, observer7_return_0, "return_explicit")
++	return observer7_return_0
+ 
+ func createEvent_StackTimeout(type, item, amount, playerId, triggerEvent):
++	NativeRandomObserver.entry("Core/CombatLog.gd::createEvent_StackTimeout", self, {"type": type, "item": item, "amount": amount, "playerId": playerId, "triggerEvent": triggerEvent})
+ 	var event = createEvent_Stack(type, item, amount, playerId, triggerEvent)
+ 	event.setParam("timeout", true)
+-	return event
++	var observer7_return_0 = event
++	NativeRandomObserver.leave("Core/CombatLog.gd::createEvent_StackTimeout", self, observer7_return_0, "return_explicit")
++	return observer7_return_0
+ 
+ func createEvent_StackResistOrNullify(type, item, amount, playerId, triggerEvent, 
+ 	reflect: bool = false):
+@@ -835,15 +858,21 @@
+ 
+ 
+ func createEvent_BattleRageStart(item, duration, triggerEvent = null):
++	NativeRandomObserver.entry("Core/CombatLog.gd::createEvent_BattleRageStart", self, {"item": item, "duration": duration, "triggerEvent": triggerEvent})
+ 	var event = createEvent(triggerEvent, item, Game.EventType.BattleRageStart)
+ 	event.setParam("duration", duration)
+-	return event
++	var observer7_return_0 = event
++	NativeRandomObserver.leave("Core/CombatLog.gd::createEvent_BattleRageStart", self, observer7_return_0, "return_explicit")
++	return observer7_return_0
+ 
+ func createEvent_BattleRageEnd(playerId, triggerEvent = null):
++	NativeRandomObserver.entry("Core/CombatLog.gd::createEvent_BattleRageEnd", self, {"playerId": playerId, "triggerEvent": triggerEvent})
+ 	var event = createEvent(triggerEvent, Game.EventType.BattleRageEnd, 
+ 		Game.EventType.BattleRageEnd)
+ 	event.setTarget(playerId)
+-	return event
++	var observer7_return_0 = event
++	NativeRandomObserver.leave("Core/CombatLog.gd::createEvent_BattleRageEnd", self, observer7_return_0, "return_explicit")
++	return observer7_return_0
+ 
+ func createEvent_Reincarnate(item, health: int, triggerEvent = null):
+ 	var event = createEvent(triggerEvent, item, Game.EventType.Reincarnate)
+--- a/Items/CarrotGoobert.gd
++++ b/Items/CarrotGoobert.gd
+@@ -6,23 +6,37 @@
+ onready var activationParticles = $EmpowerParticles
+ 
+ func onPrepare():
++	NativeRandomObserver.entry("Items/CarrotGoobert.gd::onPrepare", self, {})
+ 	setState(false)
+ 	activationParticles.global_rotation = 0
++	NativeRandomObserver.leave("Items/CarrotGoobert.gd::onPrepare", self, null, "return_implicit")
+ 
+ func doCooldownEffect():
++	NativeRandomObserver.entry("Items/CarrotGoobert.gd::doCooldownEffect", self, {})
+ 	setState(true, true)
+ 	cleanseRandomDebuffs(getP2())
+ 	var duration = getP_m("dur")
+ 	giveStacksTemporary(character(), Game.EventType.Empower, 
+ 		empower, duration)
++	NativeRandomObserver.timer_before(particleTimer, "stop", [], "Items/CarrotGoobert.gd::doCooldownEffect")
+ 	particleTimer.stop()
++	NativeRandomObserver.timer_after(particleTimer, "stop", [], "Items/CarrotGoobert.gd::doCooldownEffect")
++	NativeRandomObserver.timer_before(particleTimer, "start", [duration], "Items/CarrotGoobert.gd::doCooldownEffect")
+ 	particleTimer.start(duration)
++	NativeRandomObserver.timer_after(particleTimer, "start", [duration], "Items/CarrotGoobert.gd::doCooldownEffect")
++	NativeRandomObserver.leave("Items/CarrotGoobert.gd::doCooldownEffect", self, null, "return_implicit")
+ 
+ func onCombatEnd():
++	NativeRandomObserver.entry("Items/CarrotGoobert.gd::onCombatEnd", self, {})
++	NativeRandomObserver.timer_before(particleTimer, "stop", [], "Items/CarrotGoobert.gd::onCombatEnd")
+ 	particleTimer.stop()
++	NativeRandomObserver.timer_after(particleTimer, "stop", [], "Items/CarrotGoobert.gd::onCombatEnd")
++	NativeRandomObserver.leave("Items/CarrotGoobert.gd::onCombatEnd", self, null, "return_implicit")
+ 
+ func onParticleTimeout():
++	NativeRandomObserver.entry("Items/CarrotGoobert.gd::onParticleTimeout", self, {})
+ 	setState(false)
++	NativeRandomObserver.leave("Items/CarrotGoobert.gd::onParticleTimeout", self, null, "return_implicit")
+ 
+ func onShopEntered():
+ 	onStateChanged(false)
+--- a/Items/Goobert.gd
++++ b/Items/Goobert.gd
+@@ -14,6 +14,7 @@
+ 	return item.canActivate()
+ 
+ func prepare():
++	NativeRandomObserver.entry("Items/Goobert.gd::prepare", self, {})
+ 	activations = 0
+ 	iterationCooldown = activationsToTrigger
+ 	triggerTime = iterationCooldown
+@@ -22,11 +23,15 @@
+ 	for item in getAffectedItems():
+ 		connectForCombat(item, "activated", "onItemActivated")
+ 	.prepare()
++	NativeRandomObserver.leave("Items/Goobert.gd::prepare", self, null, "return_implicit")
+ 
+ func doCooldownEffect():
++	NativeRandomObserver.entry("Items/Goobert.gd::doCooldownEffect", self, {})
+ 	heal()
++	NativeRandomObserver.leave("Items/Goobert.gd::doCooldownEffect", self, null, "return_implicit")
+ 
+ func onItemActivated(event):
++	NativeRandomObserver.entry("Items/Goobert.gd::onItemActivated", self, {"event": event})
+ 	activations += 1
+ 	
+ 	if activations == getP1():
+@@ -44,14 +49,5 @@
+ 	
+ 	triggerTime = activationsToTrigger - activations
+ 	Game.combatLog.snapshotItemTooltipStat(self, Stat.Cooldown, null, false, event)
++	NativeRandomObserver.leave("Items/Goobert.gd::onItemActivated", self, null, "return_implicit")
+ 
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+--- a/Items/ItemDescriptor.gd
++++ b/Items/ItemDescriptor.gd
+@@ -87,15 +87,21 @@
+ 	return 1 << classI
+ 
+ func instantiate():
++	NativeRandomObserver.entry("Items/ItemDescriptor.gd::instantiate", self, {})
+ 	var item = scene.instance()
+ 	item.descriptor = self
+-	return item
++	var observer7_return_0 = item
++	NativeRandomObserver.leave("Items/ItemDescriptor.gd::instantiate", self, observer7_return_0, "return_explicit")
++	return observer7_return_0
+ 
+ func instantiate_pooled():
++	NativeRandomObserver.entry("Items/ItemDescriptor.gd::instantiate_pooled", self, {})
+ 	var item = ObjectPool.instance(scene)
+ 	item.descriptor = self
+ 	item.pooled = true
+-	return item
++	var observer7_return_0 = item
++	NativeRandomObserver.leave("Items/ItemDescriptor.gd::instantiate_pooled", self, observer7_return_0, "return_explicit")
++	return observer7_return_0
+ 
+ func addNamedParam(paramName: String, paramVal):
+ 	namedParams[paramName] = paramVal
+--- a/Sheets/ItemBook.gd
++++ b/Sheets/ItemBook.gd
+@@ -1361,6 +1361,7 @@
+ 
+ 
+ func detectMentionedStacks():
++	NativeRandomObserver.entry("Sheets/ItemBook.gd::detectMentionedStacks", self, {})
+ 	
+ 	var stackCmds = {}
+ 	for stack in Game.stackIdentifiers:
+@@ -1385,6 +1386,7 @@
+ 				item.mentionedTypes[Item.Type[type]] = true
+ 	
+ 		item.hasBattleRageEffect = (descr.find("$rage[") != - 1)
++	NativeRandomObserver.leave("Sheets/ItemBook.gd::detectMentionedStacks", self, null, "return_implicit")
+ 
+ func calcRecipeTrees():
+ 	for itemName in items:
+--- a/Utility/EventBus.gd
++++ b/Utility/EventBus.gd
+@@ -22,10 +22,14 @@
+ 
+ 
+ func flushLoggingQueue():
++	NativeRandomObserver.entry("Utility/EventBus.gd::flushLoggingQueue", self, {})
+ 	setLoggingMode(LoggingMode.Instant)
++	NativeRandomObserver.middle("Utility/EventBus.gd::flushLoggingQueue", "mode_instant", self, { "state": NativeRandomObserver.state(self, "event_bus") })
+ 	
+ 	var queueDuplicate = signalQueue.duplicate()
++	NativeRandomObserver.middle("Utility/EventBus.gd::flushLoggingQueue", "queue_snapshot", self, { "queue_snapshot": queueDuplicate, "state": NativeRandomObserver.state(self, "event_bus") })
+ 	signalQueue.clear()
++	NativeRandomObserver.middle("Utility/EventBus.gd::flushLoggingQueue", "queue_clear", self, { "state": NativeRandomObserver.state(self, "event_bus") })
+ 	
+ 	for tuple in queueDuplicate:
+ 		var emitter = tuple[0]
+@@ -33,7 +37,7 @@
+ 		var event = tuple[2]
+ 		var arguments = tuple[3]
+ 		emitAndLog(emitter, signalName, event, arguments)
+-
++	NativeRandomObserver.leave("Utility/EventBus.gd::flushLoggingQueue", self, null, "return_implicit")
+ 
+ func emitSignal(emitter: Node, signalName: String, arguments = []):
+ 	emitEvent(emitter, signalName, null, arguments)
+@@ -54,6 +58,7 @@
+ 
+ 
+ func emitAndLog(emitter: Node, signalName: String, event: CombatEvent, arguments: Array):
++	NativeRandomObserver.entry("Utility/EventBus.gd::emitAndLog", self, {"emitter": emitter, "signalName": signalName, "event": event, "arguments": arguments})
+ 	if event != null:
+ 		Game.combatLog.logEvent(event)
+ 	
+@@ -83,6 +88,8 @@
+ 	
+ 	
+ 	if emitter == null or not signalName in signalIDs:
++		var observer7_return_0 = null
++		NativeRandomObserver.leave("Utility/EventBus.gd::emitAndLog", self, observer7_return_0, "return_explicit")
+ 		return
+ 	
+ 	
+@@ -91,11 +98,17 @@
+ 	var emissionID = getEmissionID(emitter, signalID)
+ 	for funcRef in connections.get(emissionID, []):
+ 		if Game.fightEnded:
++			var observer7_return_1 = null
++			NativeRandomObserver.leave("Utility/EventBus.gd::emitAndLog", self, observer7_return_1, "return_explicit")
+ 			return
+ 		
++		NativeRandomObserver.middle("Utility/EventBus.gd::emitAndLog", "receiver_attempt", self, { "funcRefID": funcRef.get_instance_id(), "emissionID": emissionID, "event_id": event, "fightEnded": Game.fightEnded })
+ 		funcRef.call_funcv(arguments)
+-	
++		NativeRandomObserver.middle("Utility/EventBus.gd::emitAndLog", "receiver_return", self, { "funcRefID": funcRef.get_instance_id(), "emissionID": emissionID, "event_id": event, "fightEnded": Game.fightEnded })
++	NativeRandomObserver.leave("Utility/EventBus.gd::emitAndLog", self, null, "return_implicit")
++
+ func connectEvent(emitter: Node, signalName: String, receiver: Node, method: String):
++	NativeRandomObserver.entry("Utility/EventBus.gd::connectEvent", self, {"emitter": emitter, "signalName": signalName, "receiver": receiver, "method": method})
+ 	if not signalName in signalIDs:
+ 		signalIDs[signalName] = signalIDs.size()
+ 	var signalID = signalIDs[signalName]
+@@ -107,6 +120,8 @@
+ 
+ 
+ 	Util.dictAppend(connections, emissionID, funcRef)
++	NativeRandomObserver.middle("Utility/EventBus.gd::connectEvent", "registration", self, { "emitter": emitter, "signalName": signalName, "receiver": receiver, "method": method, "emissionID": emissionID, "funcRefID": funcRef.get_instance_id(), "insertion_index": connections[emissionID].size() - 1 })
++	NativeRandomObserver.leave("Utility/EventBus.gd::connectEvent", self, null, "return_implicit")
+ 
+ func getEmissionID(emitter: Node, signalID: int) -> int:
+ 	var ID = emitter.get_instance_id()
+@@ -126,8 +141,7 @@
+ 	
+ 
+ func disconnectAll():
++	NativeRandomObserver.entry("Utility/EventBus.gd::disconnectAll", self, {})
+ 	connections.clear()
++	NativeRandomObserver.leave("Utility/EventBus.gd::disconnectAll", self, null, "return_implicit")
+ 
+-
+-
+-
+--- a/Items/BloodGoobert.gd
++++ b/Items/BloodGoobert.gd
+@@ -4,8 +4,13 @@
+ onready var vampirism: = int(getP("vampirism"))
+ 
+ func onCombatStart():
++	NativeRandomObserver.entry("Items/BloodGoobert.gd::onCombatStart", self, {})
+ 	giveVampirism(vampirism)
+ 	activate()
++	NativeRandomObserver.leave("Items/BloodGoobert.gd::onCombatStart", self, null, "return_implicit")
+ 
+ func doCooldownEffect():
++	NativeRandomObserver.entry("Items/BloodGoobert.gd::doCooldownEffect", self, {})
+ 	stealLife(dam + character().getVampirism(), getP_m("lifesteal") / 100.0)
++	NativeRandomObserver.leave("Items/BloodGoobert.gd::doCooldownEffect", self, null, "return_implicit")
++
+--- a/Items/Exclusive/CheeseGoobert.gd
++++ b/Items/Exclusive/CheeseGoobert.gd
+@@ -1,5 +1,8 @@
+ extends Goobert
+ 
+ func doCooldownEffect():
++	NativeRandomObserver.entry("Items/Exclusive/CheeseGoobert.gd::doCooldownEffect", self, {})
+ 	giveMaxHealth()
+ 	giveRandomBuffs(getP3())
++	NativeRandomObserver.leave("Items/Exclusive/CheeseGoobert.gd::doCooldownEffect", self, null, "return_implicit")
++
+--- a/Items/Exclusive/CupcakeGoobert.gd
++++ b/Items/Exclusive/CupcakeGoobert.gd
+@@ -3,26 +3,8 @@
+ onready var numBuffs: = int(getP("buffs"))
+ 
+ func doCooldownEffect():
++	NativeRandomObserver.entry("Items/Exclusive/CupcakeGoobert.gd::doCooldownEffect", self, {})
+ 	heal()
+ 	giveMostBuffs(numBuffs)
++	NativeRandomObserver.leave("Items/Exclusive/CupcakeGoobert.gd::doCooldownEffect", self, null, "return_implicit")
+ 
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+--- a/Items/Exclusive/RainbowGoobertAdventurer.gd
++++ b/Items/Exclusive/RainbowGoobertAdventurer.gd
+@@ -1,6 +1,7 @@
+ extends Goobert
+ 
+ func doCooldownEffect():
++	NativeRandomObserver.entry("Items/Exclusive/RainbowGoobertAdventurer.gd::doCooldownEffect", self, {})
+ 	giveBlock()
+ 	heal()
+ 	giveVampirism(getP3())
+@@ -10,3 +11,5 @@
+ 	for item in getAffectedItems():
+ 		if item.canBeEmpowered():
+ 			item.addBonusDamage(getP6())
++	NativeRandomObserver.leave("Items/Exclusive/RainbowGoobertAdventurer.gd::doCooldownEffect", self, null, "return_implicit")
++
+--- a/Items/Exclusive/RainbowGoobertBerserker.gd
++++ b/Items/Exclusive/RainbowGoobertBerserker.gd
+@@ -1,6 +1,7 @@
+ extends Goobert
+ 
+ func doCooldownEffect():
++	NativeRandomObserver.entry("Items/Exclusive/RainbowGoobertBerserker.gd::doCooldownEffect", self, {})
+ 	giveBlock()
+ 	giveMaxHealth()
+ 	giveVampirism(getP3())
+@@ -10,3 +11,5 @@
+ 	for item in getAffectedItems():
+ 		if item.canBeEmpowered():
+ 			item.addBonusDamage(getP5())
++	NativeRandomObserver.leave("Items/Exclusive/RainbowGoobertBerserker.gd::doCooldownEffect", self, null, "return_implicit")
++
+--- a/Items/Exclusive/RainbowGoobertEngineer.gd
++++ b/Items/Exclusive/RainbowGoobertEngineer.gd
+@@ -7,6 +7,7 @@
+ onready var dambonus: = getP("dambonus")
+ 
+ func doCooldownEffect():
++	NativeRandomObserver.entry("Items/Exclusive/RainbowGoobertEngineer.gd::doCooldownEffect", self, {})
+ 	giveBlock()
+ 	heal()
+ 	giveStamina(stamina)
+@@ -17,3 +18,5 @@
+ 	for item in getAffectedItems():
+ 		if item.canBeEmpowered():
+ 			item.addBonusDamage(dambonus)
++	NativeRandomObserver.leave("Items/Exclusive/RainbowGoobertEngineer.gd::doCooldownEffect", self, null, "return_implicit")
++
+--- a/Items/Exclusive/RainbowGoobertMage.gd
++++ b/Items/Exclusive/RainbowGoobertMage.gd
+@@ -1,6 +1,7 @@
+ extends Goobert
+ 
+ func doCooldownEffect():
++	NativeRandomObserver.entry("Items/Exclusive/RainbowGoobertMage.gd::doCooldownEffect", self, {})
+ 	giveBlock()
+ 	heal()
+ 	giveVampirism(getP3())
+@@ -10,3 +11,5 @@
+ 	for item in getAffectedItems():
+ 		if item.canBeEmpowered():
+ 			item.addBonusDamage(getP6())
++	NativeRandomObserver.leave("Items/Exclusive/RainbowGoobertMage.gd::doCooldownEffect", self, null, "return_implicit")
++
+--- a/Items/Exclusive/RainbowGoobertPyromancer.gd
++++ b/Items/Exclusive/RainbowGoobertPyromancer.gd
+@@ -1,6 +1,7 @@
+ extends Goobert
+ 
+ func doCooldownEffect():
++	NativeRandomObserver.entry("Items/Exclusive/RainbowGoobertPyromancer.gd::doCooldownEffect", self, {})
+ 	giveBlock()
+ 	heal()
+ 	giveVampirism(getP3())
+@@ -10,3 +11,5 @@
+ 	for item in getAffectedItems():
+ 		if item.canBeEmpowered():
+ 			item.addBonusDamage(getP5())
++	NativeRandomObserver.leave("Items/Exclusive/RainbowGoobertPyromancer.gd::doCooldownEffect", self, null, "return_implicit")
++
+--- a/Items/LightGoobert.gd
++++ b/Items/LightGoobert.gd
+@@ -7,23 +7,37 @@
+ onready var blindAmount = getP3()
+ 
+ func onPrepare():
++	NativeRandomObserver.entry("Items/LightGoobert.gd::onPrepare", self, {})
+ 	setState(false)
++	NativeRandomObserver.leave("Items/LightGoobert.gd::onPrepare", self, null, "return_implicit")
+ 
+ func doCooldownEffect():
++	NativeRandomObserver.entry("Items/LightGoobert.gd::doCooldownEffect", self, {})
+ 	setState(true, true)
+ 	heal()
+ 	var duration = getP_m("dur_blind")
+ 	giveStacksTemporary(opponent(), Game.EventType.Blind, 
+ 		blindAmount, duration)
++	NativeRandomObserver.timer_before(particleTimer, "stop", [], "Items/LightGoobert.gd::doCooldownEffect")
+ 	particleTimer.stop()
++	NativeRandomObserver.timer_after(particleTimer, "stop", [], "Items/LightGoobert.gd::doCooldownEffect")
++	NativeRandomObserver.timer_before(particleTimer, "start", [duration], "Items/LightGoobert.gd::doCooldownEffect")
+ 	particleTimer.start(duration)
++	NativeRandomObserver.timer_after(particleTimer, "start", [duration], "Items/LightGoobert.gd::doCooldownEffect")
+ 	Util.createPulse(activationPulse, self, global_position)
++	NativeRandomObserver.leave("Items/LightGoobert.gd::doCooldownEffect", self, null, "return_implicit")
+ 
+ func onCombatEnd():
++	NativeRandomObserver.entry("Items/LightGoobert.gd::onCombatEnd", self, {})
++	NativeRandomObserver.timer_before(particleTimer, "stop", [], "Items/LightGoobert.gd::onCombatEnd")
+ 	particleTimer.stop()
++	NativeRandomObserver.timer_after(particleTimer, "stop", [], "Items/LightGoobert.gd::onCombatEnd")
++	NativeRandomObserver.leave("Items/LightGoobert.gd::onCombatEnd", self, null, "return_implicit")
+ 
+ func onParticleTimeout():
++	NativeRandomObserver.entry("Items/LightGoobert.gd::onParticleTimeout", self, {})
+ 	setState(false)
++	NativeRandomObserver.leave("Items/LightGoobert.gd::onParticleTimeout", self, null, "return_implicit")
+ 
+ func onShopEntered():
+ 	onStateChanged(false)
+--- a/Items/RainbowGoobert.gd
++++ b/Items/RainbowGoobert.gd
+@@ -1,6 +1,7 @@
+ extends Goobert
+ 
+ func doCooldownEffect():
++	NativeRandomObserver.entry("Items/RainbowGoobert.gd::doCooldownEffect", self, {})
+ 	giveBlock()
+ 	heal()
+ 	giveVampirism(getP3())
+@@ -10,3 +11,5 @@
+ 	for item in getAffectedItems():
+ 		if item.canBeEmpowered():
+ 			item.addBonusDamage(getP5())
++	NativeRandomObserver.leave("Items/RainbowGoobert.gd::doCooldownEffect", self, null, "return_implicit")
++
+--- a/Items/RainbowGoobertRanger.gd
++++ b/Items/RainbowGoobertRanger.gd
+@@ -1,6 +1,7 @@
+ extends Goobert
+ 
+ func doCooldownEffect():
++	NativeRandomObserver.entry("Items/RainbowGoobertRanger.gd::doCooldownEffect", self, {})
+ 	giveBlock()
+ 	heal()
+ 	giveVampirism(getP3())
+@@ -10,3 +11,5 @@
+ 	for item in getAffectedItems():
+ 		if item.canBeEmpowered():
+ 			item.addBonusDamage(getP6())
++	NativeRandomObserver.leave("Items/RainbowGoobertRanger.gd::doCooldownEffect", self, null, "return_implicit")
++
+--- a/Items/Exclusive/BroccoliGoobert.gd
++++ b/Items/Exclusive/BroccoliGoobert.gd
+@@ -5,7 +5,10 @@
+ onready var regen: = int(getP("regen"))
+ 
+ func doCooldownEffect():
++	NativeRandomObserver.entry("Items/Exclusive/BroccoliGoobert.gd::doCooldownEffect", self, {})
+ 	if character().getLucky() >= luckNeeded:
+ 		giveRegeneration(regen)
+ 	else:
+ 		giveLucky(luck)
++	NativeRandomObserver.leave("Items/Exclusive/BroccoliGoobert.gd::doCooldownEffect", self, null, "return_implicit")
++
+--- a/Items/Exclusive/ToastGoobert.gd
++++ b/Items/Exclusive/ToastGoobert.gd
+@@ -5,8 +5,10 @@
+ onready var regen: = int(getP("regen"))
+ 
+ func doCooldownEffect():
++	NativeRandomObserver.entry("Items/Exclusive/ToastGoobert.gd::doCooldownEffect", self, {})
+ 	if character().getCurrentStamina() < staminaThreshold:
+ 		giveStamina(stamina)
+ 	else:
+ 		giveRegeneration(regen)
+-	
++	NativeRandomObserver.leave("Items/Exclusive/ToastGoobert.gd::doCooldownEffect", self, null, "return_implicit")
++
+--- a/Items/SteelGoobert.gd
++++ b/Items/SteelGoobert.gd
+@@ -6,13 +6,20 @@
+ 	return item.canBeEmpowered()
+ 
+ func onPrepare():
++	NativeRandomObserver.entry("Items/SteelGoobert.gd::onPrepare", self, {})
+ 	for item in getAffectedItems(Affected.Secondary):
+ 		affectedWeapons.push_back(item)
++	NativeRandomObserver.leave("Items/SteelGoobert.gd::onPrepare", self, null, "return_implicit")
+ 
+ func doCooldownEffect():
++	NativeRandomObserver.entry("Items/SteelGoobert.gd::doCooldownEffect", self, {})
+ 	for item in affectedWeapons:
+ 		item.addBonusDamage(getP2())
+ 	giveBlock()
++	NativeRandomObserver.leave("Items/SteelGoobert.gd::doCooldownEffect", self, null, "return_implicit")
+ 
+ func onCombatEnd():
++	NativeRandomObserver.entry("Items/SteelGoobert.gd::onCombatEnd", self, {})
+ 	affectedWeapons.clear()
++	NativeRandomObserver.leave("Items/SteelGoobert.gd::onCombatEnd", self, null, "return_implicit")
++
+--- a/Items/PoisonGoobert.gd
++++ b/Items/PoisonGoobert.gd
+@@ -1,5 +1,8 @@
+ extends Goobert
+ 
+ func doCooldownEffect():
++	NativeRandomObserver.entry("Items/PoisonGoobert.gd::doCooldownEffect", self, {})
+ 	heal()
+ 	inflictPoison(getP3())
++	NativeRandomObserver.leave("Items/PoisonGoobert.gd::doCooldownEffect", self, null, "return_implicit")
++
+--- a/Items/Exclusive/ChiliGoobert.gd
++++ b/Items/Exclusive/ChiliGoobert.gd
+@@ -1,5 +1,8 @@
+ extends Goobert
+ 
+ func doCooldownEffect():
++	NativeRandomObserver.entry("Items/Exclusive/ChiliGoobert.gd::doCooldownEffect", self, {})
+ 	heal()
+ 	giveHeat(getP3())
++	NativeRandomObserver.leave("Items/Exclusive/ChiliGoobert.gd::doCooldownEffect", self, null, "return_implicit")
++
+--- a/Items/MagicStaff.gd
++++ b/Items/MagicStaff.gd
+@@ -7,9 +7,12 @@
+ onready var permDamBonus = getP3()
+ 
+ func onPreDealDamage_early(damageRes: DamageResult):
++	NativeRandomObserver.entry("Items/MagicStaff.gd::onPreDealDamage_early", self, {"damageRes": damageRes})
+ 	var event = tryUseMana(manaCost)
+ 	if event != null:
+ 		damageRes.damage += tempDamBonus
+ 		addBonusDamage(permDamBonus)
+ 		var activationParticles = ObjectPool.particleOneShot(activationParticleScene, self)
+ 		activationParticles.global_position = specificDragParticles[0].global_position
++	NativeRandomObserver.leave("Items/MagicStaff.gd::onPreDealDamage_early", self, null, "return_implicit")
++
+--- a/Items/ManaPotion.gd
++++ b/Items/ManaPotion.gd
+@@ -4,26 +4,41 @@
+ 
+ 
+ func onTriggerPotion(event = null):
++	NativeRandomObserver.entry("Items/ManaPotion.gd::onTriggerPotion", self, {"event": event})
+ 	giveMana(getP2(), event)
+ 	
+ 	giveMaxHealth()
++	NativeRandomObserver.leave("Items/ManaPotion.gd::onTriggerPotion", self, null, "return_implicit")
+ 
+ func onPrepare():
++	NativeRandomObserver.entry("Items/ManaPotion.gd::onPrepare", self, {})
+ 	
+ 	connectForCombat(character(), "character_mana_changed", "onManaChanged")
+ 	connectForCombat(character(), "character_damaged", "onDamaged")
++	NativeRandomObserver.leave("Items/ManaPotion.gd::onPrepare", self, null, "return_implicit")
+ 
+ func onDamaged(_healthChange, event):
+-	if isEmpty(): return
++	NativeRandomObserver.entry("Items/ManaPotion.gd::onDamaged", self, {"_healthChange": _healthChange, "event": event})
++	if isEmpty():
++		var observer7_return_0 = null
++		NativeRandomObserver.leave("Items/ManaPotion.gd::onDamaged", self, observer7_return_0, "return_explicit")
++		return
+ 	
+ 	var relHealth = character().getRelativeHealth()
+ 	if relHealth < healthThreshold:
+ 		consumePotion(event)
++	NativeRandomObserver.leave("Items/ManaPotion.gd::onDamaged", self, null, "return_implicit")
+ 
+ func onManaChanged(amount, event):
+-	if isEmpty(): return
++	NativeRandomObserver.entry("Items/ManaPotion.gd::onManaChanged", self, {"amount": amount, "event": event})
++	if isEmpty():
++		var observer7_return_0 = null
++		NativeRandomObserver.leave("Items/ManaPotion.gd::onManaChanged", self, observer7_return_0, "return_explicit")
++		return
+ 	
+ 	if (amount < 0 and 
+ 		event.getOrigin() is Item and 
+ 		event.getOrigin().character() == character()):
+ 			consumePotion(event)
++	NativeRandomObserver.leave("Items/ManaPotion.gd::onManaChanged", self, null, "return_implicit")
++
+--- a/Items/HealthPotion.gd
++++ b/Items/HealthPotion.gd
+@@ -3,18 +3,27 @@
+ onready var healthThreshold = getP1() / 100.0
+ 
+ func onTriggerPotion(triggerEvent = null):
++	NativeRandomObserver.entry("Items/HealthPotion.gd::onTriggerPotion", self, {"triggerEvent": triggerEvent})
+ 	heal(getP_m("heal"), triggerEvent)
+ 	cleansePoison(getP3(), triggerEvent)
++	NativeRandomObserver.leave("Items/HealthPotion.gd::onTriggerPotion", self, null, "return_implicit")
+ 
+ func onPrepare():
++	NativeRandomObserver.entry("Items/HealthPotion.gd::onPrepare", self, {})
+ 	connectForCombat(character(), "character_damaged", "onDamaged")
++	NativeRandomObserver.leave("Items/HealthPotion.gd::onPrepare", self, null, "return_implicit")
+ 
+ func onDamaged(_healthChange, event):
+-	if isEmpty(): return
++	NativeRandomObserver.entry("Items/HealthPotion.gd::onDamaged", self, {"_healthChange": _healthChange, "event": event})
++	if isEmpty():
++		var observer7_return_0 = null
++		NativeRandomObserver.leave("Items/HealthPotion.gd::onDamaged", self, observer7_return_0, "return_explicit")
++		return
+ 	
+ 	var relHealth = character().getRelativeHealth()
+ 	if relHealth < healthThreshold:
+ 		consumePotion(event)
++	NativeRandomObserver.leave("Items/HealthPotion.gd::onDamaged", self, null, "return_implicit")
+ 
+ func getTriggerPriority() -> int:
+ 	return Priority.High
+--- a/Items/Weapon.gd
++++ b/Items/Weapon.gd
+@@ -5,9 +5,14 @@
+ 	damageSource = DamageSource.new().setItem(self)
+ 
+ func attack(triggerEvent = null):
++	NativeRandomObserver.entry("Items/Weapon.gd::attack", self, {"triggerEvent": triggerEvent})
+ 	var res: DamageResult = dealDamage(triggerEvent)
+ 	activate(res)
++	NativeRandomObserver.leave("Items/Weapon.gd::attack", self, null, "return_implicit")
+ 
+ func doCooldownEffect():
++	NativeRandomObserver.entry("Items/Weapon.gd::doCooldownEffect", self, {})
+ 	if useStamina() == Character.StaminaResult.Sufficient:
+ 		attack()
++	NativeRandomObserver.leave("Items/Weapon.gd::doCooldownEffect", self, null, "return_implicit")
++
+--- a/Items/Carrot.gd
++++ b/Items/Carrot.gd
+@@ -1,9 +1,12 @@
+ extends Food
+ 
+ func doCooldownEffect():
++	NativeRandomObserver.entry("Items/Carrot.gd::doCooldownEffect", self, {})
+ 	cleanseRandomDebuffs(1)
+ 	
+ 	if character().getLucky() >= getP2():
+ 		if rollChance():
+ 			giveEmpower(1)
+ 	activate()
++	NativeRandomObserver.leave("Items/Carrot.gd::doCooldownEffect", self, null, "return_implicit")
++
+--- a/Items/BurningTorch.gd
++++ b/Items/BurningTorch.gd
+@@ -4,11 +4,16 @@
+ onready var permDamBonus = getP2()
+ 
+ func onCombatStart():
++	NativeRandomObserver.entry("Items/BurningTorch.gd::onCombatStart", self, {})
+ 	giveHeat(getP1())
+ 	activate(null, false)
++	NativeRandomObserver.leave("Items/BurningTorch.gd::onCombatStart", self, null, "return_implicit")
+ 
+ func onPreDealDamage_early(damageRes: DamageResult):
++	NativeRandomObserver.entry("Items/BurningTorch.gd::onPreDealDamage_early", self, {"damageRes": damageRes})
+ 	if damageRes.hasHit() and rollChance():
+ 		addBonusDamage(permDamBonus)
+ 		var particles = ObjectPool.particleOneShot(activationParticles, sprite)
+ 		particles.scale = Vector2(1.2, 1.2)
++	NativeRandomObserver.leave("Items/BurningTorch.gd::onPreDealDamage_early", self, null, "return_implicit")
++
+--- a/Items/Food.gd
++++ b/Items/Food.gd
+@@ -5,5 +5,8 @@
+ 	return item.hasType(Type.Food) and item.descriptor != descriptor
+ 	
+ func prepare():
++	NativeRandomObserver.entry("Items/Food.gd::prepare", self, {})
+ 	.prepare()
+ 	addSpeed(getNumAffectedItems() * 0.1)
++	NativeRandomObserver.leave("Items/Food.gd::prepare", self, null, "return_implicit")
++
+--- a/Items/HealingHerbs.gd
++++ b/Items/HealingHerbs.gd
+@@ -1,5 +1,8 @@
+ extends Item
+ 
+ func onCombatStart():
++	NativeRandomObserver.entry("Items/HealingHerbs.gd::onCombatStart", self, {})
+ 	giveRegeneration(getP1())
+ 	consume()
++	NativeRandomObserver.leave("Items/HealingHerbs.gd::onCombatStart", self, null, "return_implicit")
++
+--- a/Items/WalrusTusk.gd
++++ b/Items/WalrusTusk.gd
+@@ -1,5 +1,8 @@
+ extends Item
+ 
+ func onCombatStart():
++	NativeRandomObserver.entry("Items/WalrusTusk.gd::onCombatStart", self, {})
+ 	giveSpikes(getP1())
+ 	consume()
++	NativeRandomObserver.leave("Items/WalrusTusk.gd::onCombatStart", self, null, "return_implicit")
++
+--- a/Items/PocketSand.gd
++++ b/Items/PocketSand.gd
+@@ -1,5 +1,8 @@
+ extends Item
+ 
+ func onCombatStart():
++	NativeRandomObserver.entry("Items/PocketSand.gd::onCombatStart", self, {})
+ 	inflictBlind(getP1())
+ 	consume()
++	NativeRandomObserver.leave("Items/PocketSand.gd::onCombatStart", self, null, "return_implicit")
++
+--- a/Items/BloodAmulet.gd
++++ b/Items/BloodAmulet.gd
+@@ -1,6 +1,9 @@
+ extends Item
+ 
+ func onCombatStart():
++	NativeRandomObserver.entry("Items/BloodAmulet.gd::onCombatStart", self, {})
+ 	giveVampirism(getP1())
+ 	giveMaxHealth()
+ 	activate()
++	NativeRandomObserver.leave("Items/BloodAmulet.gd::onCombatStart", self, null, "return_implicit")
++
+--- a/Items/RangerCollar.gd
++++ b/Items/RangerCollar.gd
+@@ -6,6 +6,7 @@
+ var affectedItems
+ 
+ func prepare():
++	NativeRandomObserver.entry("Items/RangerCollar.gd::prepare", self, {})
+ 	affectedItems = getAffectedItems()
+ 	var numAces = countAllInInventoryOfType(acornAceDescriptor)
+ 	if numAces > 0:
+@@ -13,3 +14,5 @@
+ 		for item in affectedItems:
+ 			item.changeStaminaFactor(staminaReduction)
+ 	.prepare()
++	NativeRandomObserver.leave("Items/RangerCollar.gd::prepare", self, null, "return_implicit")
++
+--- a/Items/AcornCollar.gd
++++ b/Items/AcornCollar.gd
+@@ -4,9 +4,14 @@
+ 	return item.canDamage()
+ 
+ func onPrepare():
++	NativeRandomObserver.entry("Items/AcornCollar.gd::onPrepare", self, {})
+ 	if not affectedItems.empty():
+ 		connectForCombat(character(), "character_lucky_changed", "onLuckyChanged")
++	NativeRandomObserver.leave("Items/AcornCollar.gd::onPrepare", self, null, "return_implicit")
+ 
+ func onLuckyChanged(amount, _event):
++	NativeRandomObserver.entry("Items/AcornCollar.gd::onLuckyChanged", self, {"amount": amount, "_event": _event})
+ 	for item in affectedItems:
+ 		item.changeCritChancePercent(amount * getChance())
++	NativeRandomObserver.leave("Items/AcornCollar.gd::onLuckyChanged", self, null, "return_implicit")
++
+--- a/Items/Broom.gd
++++ b/Items/Broom.gd
+@@ -8,30 +8,34 @@
+ var onMissReadyTime = 0.0
+ 
+ func onPrepare():
++	NativeRandomObserver.entry("Items/Broom.gd::onPrepare", self, {})
+ 	connectForCombat(character(), "character_attacked", "onAttacked")
++	NativeRandomObserver.leave("Items/Broom.gd::onPrepare", self, null, "return_implicit")
+ 
+ func onAttacked(damageRes):
++	NativeRandomObserver.entry("Items/Broom.gd::onAttacked", self, {"damageRes": damageRes})
+ 	if not damageRes.hasHit():
+ 		addBonusDamage(bonusDamPerMiss)
+ 		broomBonusDam += bonusDamPerMiss
+-
+-
+-
++	NativeRandomObserver.leave("Items/Broom.gd::onAttacked", self, null, "return_implicit")
+ 
+ func attack(event = null):
++	NativeRandomObserver.entry("Items/Broom.gd::attack", self, {"event": event})
+ 	.attack(event)
+ 	if broomBonusDam != 0:
+ 		reduceBonusDamage(broomBonusDam, false)
+ 		broomBonusDam = 0
+-
++	NativeRandomObserver.leave("Items/Broom.gd::attack", self, null, "return_implicit")
+ 
+ func onDealtDamage(damageRes):
++	NativeRandomObserver.entry("Items/Broom.gd::onDealtDamage", self, {"damageRes": damageRes})
+ 	if damageRes.hasHit():
+ 		if rollChance():
+ 			inflictBlind(1, damageRes.event)
+ 			var particles = ObjectPool.particleOneShot(blindParticles, sprite)
+ 			particles.position = Vector2(0, 230)
+ 			particles.global_rotation = 0
++	NativeRandomObserver.leave("Items/Broom.gd::onDealtDamage", self, null, "return_implicit")
+ 
+ func onShopEntered():
+ 	broomBonusDam = 0
+--- a/Items/Hammer.gd
++++ b/Items/Hammer.gd
+@@ -3,10 +3,12 @@
+ const stunParticles = preload("res://Items/Particles/StunParticles.tscn")
+ 
+ func onDealtDamage(damageRes: DamageResult):
++	NativeRandomObserver.entry("Items/Hammer.gd::onDealtDamage", self, {"damageRes": damageRes})
+ 	if damageRes.hasHit() and rollChance():
+ 		stun(getP_m("dur_stun"), damageRes.event)
+ 		var particles = ObjectPool.particleOneShot(stunParticles, sprite)
+ 		particles.position = Vector2(175, - 144)
++	NativeRandomObserver.leave("Items/Hammer.gd::onDealtDamage", self, null, "return_implicit")
+ 
+ func onFusingAsCatalystFinished():
+ 	.onFusingAsCatalystFinished()
+--- a/Items/ThornWhip.gd
++++ b/Items/ThornWhip.gd
+@@ -3,12 +3,19 @@
+ const activationParticles = preload("res://Items/Particles/ThornWhipActivationParticles.tscn")
+ 
+ func onPrepare():
++	NativeRandomObserver.entry("Items/ThornWhip.gd::onPrepare", self, {})
+ 	connectForCombat(character(), "character_spikes_changed", "onSpikesChanged")
++	NativeRandomObserver.leave("Items/ThornWhip.gd::onPrepare", self, null, "return_implicit")
+ 
+ func onPreDealDamage_early(damageRes: DamageResult):
++	NativeRandomObserver.entry("Items/ThornWhip.gd::onPreDealDamage_early", self, {"damageRes": damageRes})
+ 	if damageRes.hasHit():
+ 		giveSpikes(1)
+ 		ObjectPool.particleOneShot(activationParticles, sprite)
++	NativeRandomObserver.leave("Items/ThornWhip.gd::onPreDealDamage_early", self, null, "return_implicit")
+ 
+ func onSpikesChanged(amount, _event):
++	NativeRandomObserver.entry("Items/ThornWhip.gd::onSpikesChanged", self, {"amount": amount, "_event": _event})
+ 	changeVaryingDamage(getP1() * amount)
++	NativeRandomObserver.leave("Items/ThornWhip.gd::onSpikesChanged", self, null, "return_implicit")
++
+--- a/Items/HungryBlade.gd
++++ b/Items/HungryBlade.gd
+@@ -7,20 +7,28 @@
+ onready var vampirismForRegen: = int(getP3())
+ 
+ func onPrepare():
++	NativeRandomObserver.entry("Items/HungryBlade.gd::onPrepare", self, {})
+ 	connectForCombat(character(), "character_vampirism_changed", "onVampirismChanged")
++	NativeRandomObserver.leave("Items/HungryBlade.gd::onPrepare", self, null, "return_implicit")
+ 
+ func onCombatStart():
++	NativeRandomObserver.entry("Items/HungryBlade.gd::onCombatStart", self, {})
+ 	giveVampirism(vampirism)
+ 	activate(null, false, false, ActivationAni.Jump)
++	NativeRandomObserver.leave("Items/HungryBlade.gd::onCombatStart", self, null, "return_implicit")
+ 
+ func onVampirismChanged(amount, _event):
++	NativeRandomObserver.entry("Items/HungryBlade.gd::onVampirismChanged", self, {"amount": amount, "_event": _event})
+ 	addMaxDamage(amount)
++	NativeRandomObserver.leave("Items/HungryBlade.gd::onVampirismChanged", self, null, "return_implicit")
+ 
+ func onPreDealDamage_early(damageRes: DamageResult):
++	NativeRandomObserver.entry("Items/HungryBlade.gd::onPreDealDamage_early", self, {"damageRes": damageRes})
+ 	if damageRes.hasHit():
+ 		var numRegen = character().getRegeneration()
+ 		if numRegen >= regenNeeded:
+ 			var event = useRegeneration(regenNeeded)
+ 			giveVampirism(vampirismForRegen, event)
+ 			ObjectPool.particleOneShot(activationParticles, sprite)
+-			
++	NativeRandomObserver.leave("Items/HungryBlade.gd::onPreDealDamage_early", self, null, "return_implicit")
++
+--- a/Items/Dagger.gd
++++ b/Items/Dagger.gd
+@@ -6,4 +6,7 @@
+ 	connectForCombat(opponent(), "character_stunned", "onStun")
+ 
+ func onStun(triggerEvent):
++	NativeRandomObserver.entry("Items/Dagger.gd::onStun", self, {"triggerEvent": triggerEvent})
+ 	attack(triggerEvent)
++	NativeRandomObserver.leave("Items/Dagger.gd::onStun", self, null, "return_implicit")
++
+--- a/Items/Potion.gd
++++ b/Items/Potion.gd
+@@ -29,8 +29,10 @@
+ 
+ 
+ func prepare():
++	NativeRandomObserver.entry("Items/Potion.gd::prepare", self, {})
+ 	.prepare()
+ 	setState(true)
++	NativeRandomObserver.leave("Items/Potion.gd::prepare", self, null, "return_implicit")
+ 
+ func canAffect(item):
+ 	return item.hasType(Type.Potion)
+@@ -55,7 +57,11 @@
+ 	setState(false, true)
+ 
+ func consumePotion(event = null, withActivate: bool = true):
+-	if isEmpty(): return
++	NativeRandomObserver.entry("Items/Potion.gd::consumePotion", self, {"event": event, "withActivate": withActivate})
++	if isEmpty():
++		var observer7_return_0 = null
++		NativeRandomObserver.leave("Items/Potion.gd::consumePotion", self, observer7_return_0, "return_explicit")
++		return
+ 	
+ 	drink()
+ 	
+@@ -68,14 +74,17 @@
+ 	
+ 	if withActivate:
+ 		activate()
++	NativeRandomObserver.leave("Items/Potion.gd::consumePotion", self, null, "return_implicit")
+ 
+ func onTriggerPotion(triggerEvent = null):
+ 	pass
+ 
+ func triggerPotion(triggerEvent = null):
++	NativeRandomObserver.entry("Items/Potion.gd::triggerPotion", self, {"triggerEvent": triggerEvent})
+ 	onTriggerPotion(triggerEvent)
+ 	playActivationAnimation()
+ 	EventBus.emitSignal(self, "potion_triggered", [self])
++	NativeRandomObserver.leave("Items/Potion.gd::triggerPotion", self, null, "return_implicit")
+ 
+ func onStateChanged(_isFull):
+ 	if _isFull:
+@@ -87,11 +96,13 @@
+ 
+ func activate(damageRes = null, playCombatAni = true, consume = false, 
+ 	animationOverride = null, emitSignal: bool = true):
++	NativeRandomObserver.entry("Items/Potion.gd::activate", self, {"damageRes": damageRes, "playCombatAni": playCombatAni, "consume": consume, "animationOverride": animationOverride, "emitSignal": emitSignal})
+ 	
+ 	.activate(damageRes, playCombatAni, consume, null)
+ 	
+ 	if emitSignal:
+ 		EventBus.emitSignal(self, "potion_emptied", [self])
++	NativeRandomObserver.leave("Items/Potion.gd::activate", self, null, "return_implicit")
+ 
+ func shopEntered(craft: bool):
+ 	.shopEntered(craft)
+--- a/Items/StrongHealthPotion.gd
++++ b/Items/StrongHealthPotion.gd
+@@ -1,8 +1,10 @@
+ extends "res://Items/HealthPotion.gd"
+ 
+ func onTriggerPotion(triggerEvent = null):
++	NativeRandomObserver.entry("Items/StrongHealthPotion.gd::onTriggerPotion", self, {"triggerEvent": triggerEvent})
+ 	.onTriggerPotion(triggerEvent)
+ 	giveRegeneration(getP4(), triggerEvent)
++	NativeRandomObserver.leave("Items/StrongHealthPotion.gd::onTriggerPotion", self, null, "return_implicit")
+ 
+ func getTriggerPriority() -> int:
+ 	return Priority.High + 1
+--- a/Items/StoneSkinPotion.gd
++++ b/Items/StoneSkinPotion.gd
+@@ -1,14 +1,24 @@
+ extends Potion
+ 
+ func onTriggerPotion(triggerEvent = null):
++	NativeRandomObserver.entry("Items/StoneSkinPotion.gd::onTriggerPotion", self, {"triggerEvent": triggerEvent})
+ 	healthToBlock(getP2(), getBlock(), triggerEvent)
++	NativeRandomObserver.leave("Items/StoneSkinPotion.gd::onTriggerPotion", self, null, "return_implicit")
+ 
+ func onPrepare():
++	NativeRandomObserver.entry("Items/StoneSkinPotion.gd::onPrepare", self, {})
+ 	connectForCombat(character(), "character_block_changed", "onBlockChanged")
++	NativeRandomObserver.leave("Items/StoneSkinPotion.gd::onPrepare", self, null, "return_implicit")
+ 
+ func onBlockChanged(_amount, event):
+-	if isEmpty(): return
++	NativeRandomObserver.entry("Items/StoneSkinPotion.gd::onBlockChanged", self, {"_amount": _amount, "event": event})
++	if isEmpty():
++		var observer7_return_0 = null
++		NativeRandomObserver.leave("Items/StoneSkinPotion.gd::onBlockChanged", self, observer7_return_0, "return_explicit")
++		return
+ 	
+ 	if character().getBlock() >= getP1():
+ 		
+ 		consumePotion()
++	NativeRandomObserver.leave("Items/StoneSkinPotion.gd::onBlockChanged", self, null, "return_implicit")
++
+--- a/Items/StrongStoneSkinPotion.gd
++++ b/Items/StrongStoneSkinPotion.gd
+@@ -3,6 +3,9 @@
+ onready var spikes: = int(getP("spikes"))
+ 
+ func onTriggerPotion(triggerEvent = null):
++	NativeRandomObserver.entry("Items/StrongStoneSkinPotion.gd::onTriggerPotion", self, {"triggerEvent": triggerEvent})
+ 	.onTriggerPotion(triggerEvent)
+ 	giveStacksTemporary(character(), Game.EventType.Spikes, 
+ 		spikes, getP_m("dur"), triggerEvent)
++	NativeRandomObserver.leave("Items/StrongStoneSkinPotion.gd::onTriggerPotion", self, null, "return_implicit")
++
+--- a/Items/PestilenceFlask.gd
++++ b/Items/PestilenceFlask.gd
+@@ -1,14 +1,22 @@
+ extends Potion
+ 
+ func onTriggerPotion(triggerEvent = null):
++	NativeRandomObserver.entry("Items/PestilenceFlask.gd::onTriggerPotion", self, {"triggerEvent": triggerEvent})
+ 	inflictPoison(getP1(), triggerEvent)
+ 	selfInflictPoison(getP2(), triggerEvent)
++	NativeRandomObserver.leave("Items/PestilenceFlask.gd::onTriggerPotion", self, null, "return_implicit")
+ 
+ func onPrepare():
++	NativeRandomObserver.entry("Items/PestilenceFlask.gd::onPrepare", self, {})
+ 	connectForCombat(opponent(), "character_healed", "onOpponentHeal")
++	NativeRandomObserver.leave("Items/PestilenceFlask.gd::onPrepare", self, null, "return_implicit")
+ 
+ func onOpponentHeal(_amount, event):
+-	if isEmpty(): return
++	NativeRandomObserver.entry("Items/PestilenceFlask.gd::onOpponentHeal", self, {"_amount": _amount, "event": event})
++	if isEmpty():
++		var observer7_return_0 = null
++		NativeRandomObserver.leave("Items/PestilenceFlask.gd::onOpponentHeal", self, observer7_return_0, "return_explicit")
++		return
+ 	
+ 	drink()
+ 	
+@@ -20,4 +28,5 @@
+ 		affected[0].miniActivate()
+ 	
+ 	activate()
++	NativeRandomObserver.leave("Items/PestilenceFlask.gd::onOpponentHeal", self, null, "return_implicit")
+ 
+--- a/Items/VampiricArmor.gd
++++ b/Items/VampiricArmor.gd
+@@ -1,10 +1,15 @@
+ extends Item
+ 
+ func onCombatStart():
++	NativeRandomObserver.entry("Items/VampiricArmor.gd::onCombatStart", self, {})
+ 	healthToBlock(getP1(), getBlock())
+ 	giveVampirism(getP2())
+ 	activate()
+-	
++	NativeRandomObserver.leave("Items/VampiricArmor.gd::onCombatStart", self, null, "return_implicit")
++
+ func doCooldownEffect():
++	NativeRandomObserver.entry("Items/VampiricArmor.gd::doCooldownEffect", self, {})
+ 	healthToBlock(getP3(), getP4())
+ 	activate()
++	NativeRandomObserver.leave("Items/VampiricArmor.gd::doCooldownEffect", self, null, "return_implicit")
++
+--- a/Items/LeatherArmor.gd
++++ b/Items/LeatherArmor.gd
+@@ -1,8 +1,13 @@
+ extends Item
+ 
+ func onPreCombatStart():
++	NativeRandomObserver.entry("Items/LeatherArmor.gd::onPreCombatStart", self, {})
+ 	character().changeDebuffResistStacks(getP1())
++	NativeRandomObserver.leave("Items/LeatherArmor.gd::onPreCombatStart", self, null, "return_implicit")
+ 
+ func onCombatStart():
++	NativeRandomObserver.entry("Items/LeatherArmor.gd::onCombatStart", self, {})
+ 	giveBlock()
+ 	activate()
++	NativeRandomObserver.leave("Items/LeatherArmor.gd::onCombatStart", self, null, "return_implicit")
++
+--- a/Items/GlovesofHaste.gd
++++ b/Items/GlovesofHaste.gd
+@@ -6,6 +6,9 @@
+ 	return item.hasCooldown()
+ 	
+ func onCombatStart():
++	NativeRandomObserver.entry("Items/GlovesofHaste.gd::onCombatStart", self, {})
+ 	for item in getAffectedItems():
+ 		item.addSpeed(bonusSpeed)
+ 	activate()
++	NativeRandomObserver.leave("Items/GlovesofHaste.gd::onCombatStart", self, null, "return_implicit")
++
+--- a/Items/LeatherBoots.gd
++++ b/Items/LeatherBoots.gd
+@@ -4,11 +4,17 @@
+ var hasActivated: bool
+ 
+ func onPrepare():
++	NativeRandomObserver.entry("Items/LeatherBoots.gd::onPrepare", self, {})
+ 	hasActivated = false
+ 	connectForCombat(character(), "character_damaged", "onDamaged")
++	NativeRandomObserver.leave("Items/LeatherBoots.gd::onPrepare", self, null, "return_implicit")
+ 
+ func onDamaged(_damage, event):
+-	if hasActivated: return
++	NativeRandomObserver.entry("Items/LeatherBoots.gd::onDamaged", self, {"_damage": _damage, "event": event})
++	if hasActivated:
++		var observer7_return_0 = null
++		NativeRandomObserver.leave("Items/LeatherBoots.gd::onDamaged", self, observer7_return_0, "return_explicit")
++		return
+ 	
+ 	var relHealth = character().getRelativeHealth()
+ 	if relHealth < healthThreshold:
+@@ -17,6 +23,7 @@
+ 		giveEmpower(getP3(), event)
+ 		giveBlock(getBlock(), true, event)
+ 		consume()
++	NativeRandomObserver.leave("Items/LeatherBoots.gd::onDamaged", self, null, "return_implicit")
+ 
+ func getTriggerPriority() -> int:
+ 	return Priority.High + 2
+--- a/Items/HeroSword.gd
++++ b/Items/HeroSword.gd
+@@ -4,6 +4,9 @@
+ 	return item.canBeEmpowered()
+ 
+ func onCombatStart():
++	NativeRandomObserver.entry("Items/HeroSword.gd::onCombatStart", self, {})
+ 	for item in getAffectedItems():
+ 		item.addBonusDamage(getP1())
+ 	activate(null, false, false, ActivationAni.Jump)
++	NativeRandomObserver.leave("Items/HeroSword.gd::onCombatStart", self, null, "return_implicit")
++
+--- a/Items/HeroLongsword.gd
++++ b/Items/HeroLongsword.gd
+@@ -4,9 +4,11 @@
+ 	return item.canBeEmpowered()
+ 
+ func onCombatStart():
++	NativeRandomObserver.entry("Items/HeroLongsword.gd::onCombatStart", self, {})
+ 	for item in getAffectedItems():
+ 		item.addBonusDamage(getP1())
+ 	activate(null, false)
++	NativeRandomObserver.leave("Items/HeroLongsword.gd::onCombatStart", self, null, "return_implicit")
+ 
+ func getCraftingOffset(forDirection):
+ 	match forDirection:
+--- a/Items/FalconBlade.gd
++++ b/Items/FalconBlade.gd
+@@ -4,12 +4,15 @@
+ 	return item.hasCooldown()
+ 	
+ func onCombatStart():
++	NativeRandomObserver.entry("Items/FalconBlade.gd::onCombatStart", self, {})
+ 	for item in getAffectedItems():
+ 		item.addSpeed(getP1() / 100)
+ 	
+ 	activate(null, false)
++	NativeRandomObserver.leave("Items/FalconBlade.gd::onCombatStart", self, null, "return_implicit")
+ 
+ func doCooldownEffect():
++	NativeRandomObserver.entry("Items/FalconBlade.gd::doCooldownEffect", self, {})
+ 	if useStamina() == Character.StaminaResult.Sufficient:
+ 		var res: DamageResult = dealDamage()
+ 		activate(res, false)
+@@ -29,6 +32,7 @@
+ 			ani.animation.play("SingleHit")
+ 		else:
+ 			ani.animation.play("Miss")
++	NativeRandomObserver.leave("Items/FalconBlade.gd::doCooldownEffect", self, null, "return_implicit")
+ 
+ func getCraftingOffset(forDirection):
+ 	match forDirection:
+--- a/Items/Crossblades.gd
++++ b/Items/Crossblades.gd
+@@ -7,6 +7,7 @@
+ 	return item.hasCooldown()
+ 
+ func onCombatStart():
++	NativeRandomObserver.entry("Items/Crossblades.gd::onCombatStart", self, {})
+ 	for item in getAffectedItems(Affected.Primary):
+ 		item.addBonusDamage(getP1())
+ 	
+@@ -14,11 +15,14 @@
+ 		item.addSpeed(getP2() / 100.0)
+ 	
+ 	activate(null, false)
++	NativeRandomObserver.leave("Items/Crossblades.gd::onCombatStart", self, null, "return_implicit")
+ 
+ func onPreDealDamage_early(damageRes: DamageResult):
++	NativeRandomObserver.entry("Items/Crossblades.gd::onPreDealDamage_early", self, {"damageRes": damageRes})
+ 	if damageRes.hasHit():
+ 		addBonusDamage(getP3())
+ 		addSpeed(getP4() / 100.0)
++	NativeRandomObserver.leave("Items/Crossblades.gd::onPreDealDamage_early", self, null, "return_implicit")
+ 
+ func getCraftingOffset(forDirection):
+ 	match forDirection:
+--- a/Items/Exclusive/ThornShortbow.gd
++++ b/Items/Exclusive/ThornShortbow.gd
+@@ -3,6 +3,9 @@
+ const thornParticlesScene = preload("res://Items/Exclusive/Particles/ThornShortbowParticles.tscn")
+ 
+ func onDealtDamage(damageRes: DamageResult):
++	NativeRandomObserver.entry("Items/Exclusive/ThornShortbow.gd::onDealtDamage", self, {"damageRes": damageRes})
+ 	if damageRes.hasHit() and rollChance():
+ 		giveSpikes(1, damageRes.event)
+ 		ObjectPool.particleOneShot(thornParticlesScene, self)
++	NativeRandomObserver.leave("Items/Exclusive/ThornShortbow.gd::onDealtDamage", self, null, "return_implicit")
++
+--- a/Items/Exclusive/LuckyShortbow.gd
++++ b/Items/Exclusive/LuckyShortbow.gd
+@@ -3,6 +3,9 @@
+ const luckyParticlesScene = preload("res://Items/Exclusive/Particles/LuckyShortbowParticles.tscn")
+ 
+ func onPreDealDamage_early(damageRes: DamageResult):
++	NativeRandomObserver.entry("Items/Exclusive/LuckyShortbow.gd::onPreDealDamage_early", self, {"damageRes": damageRes})
+ 	if damageRes.hasHit() and rollChance():
+ 		giveLucky(1)
+ 		ObjectPool.particleOneShot(luckyParticlesScene, self)
++	NativeRandomObserver.leave("Items/Exclusive/LuckyShortbow.gd::onPreDealDamage_early", self, null, "return_implicit")
++
+--- a/Items/Exclusive/PoisonShortbow.gd
++++ b/Items/Exclusive/PoisonShortbow.gd
+@@ -5,11 +5,14 @@
+ onready var poison: int = getP1()
+ 
+ func onPreDealDamage_early(damageRes: DamageResult):
++	NativeRandomObserver.entry("Items/Exclusive/PoisonShortbow.gd::onPreDealDamage_early", self, {"damageRes": damageRes})
+ 	if damageRes.hasHit() and rollChance():
+-		var randomDebuff = Util.pickRandomElement(Game.getDebuffs())
++		var randomDebuff = Util.pickRandomElement(Game.getDebuffs(), NativeRandomObserver.shortbow_debuff_label(self))
+ 		if randomDebuff == Game.EventType.Poison:
+ 			inflictPoison(poison + 1)
+ 		else:
+ 			inflictPoison(poison)
+ 			giveStacks(opponent(), randomDebuff, 1)
+ 		ObjectPool.particleOneShot(poisonParticlesScene, self)
++	NativeRandomObserver.leave("Items/Exclusive/PoisonShortbow.gd::onPreDealDamage_early", self, null, "return_implicit")
++
+--- a/Items/Exclusive/BerserkerBag.gd
++++ b/Items/Exclusive/BerserkerBag.gd
+@@ -9,29 +9,37 @@
+ 	return toItem.hasCooldown()
+ 
+ func onPrepare():
++	NativeRandomObserver.entry("Items/Exclusive/BerserkerBag.gd::onPrepare", self, {})
+ 	activated = false
+ 	connectForCombat(character(), "character_damaged", "onDamaged")
+ 	connectForCombat(character(), "battle_rage_started", "onBattleRageStarted")
+ 	connectForCombat(character(), "battle_rage_ended", "onBattleRageEnded")
++	NativeRandomObserver.leave("Items/Exclusive/BerserkerBag.gd::onPrepare", self, null, "return_implicit")
+ 
+ func onDamaged(_damage, event):
++	NativeRandomObserver.entry("Items/Exclusive/BerserkerBag.gd::onDamaged", self, {"_damage": _damage, "event": event})
+ 	if not activated:
+ 		if character().getRelativeHealth() < healthThreshold:
+ 			activated = true
+ 			character().startBattleRage(self, getP_m("dur_rage"), event)
+ 			activate()
++	NativeRandomObserver.leave("Items/Exclusive/BerserkerBag.gd::onDamaged", self, null, "return_implicit")
+ 
+ func onBattleRageStarted(_event):
++	NativeRandomObserver.entry("Items/Exclusive/BerserkerBag.gd::onBattleRageStarted", self, {"_event": _event})
+ 	character().changeDamageResistance(damageResistance)
+ 	for item in getItemsInside():
+ 		if canApplyEffect(item):
+ 			item.addSpeed(battleRageSpeed)
++	NativeRandomObserver.leave("Items/Exclusive/BerserkerBag.gd::onBattleRageStarted", self, null, "return_implicit")
+ 
+ func onBattleRageEnded(_event):
++	NativeRandomObserver.entry("Items/Exclusive/BerserkerBag.gd::onBattleRageEnded", self, {"_event": _event})
+ 	character().changeDamageResistance( - damageResistance)
+ 	for item in getItemsInside():
+ 		if canApplyEffect(item):
+ 			item.reduceSpeed(battleRageSpeed)
++	NativeRandomObserver.leave("Items/Exclusive/BerserkerBag.gd::onBattleRageEnded", self, null, "return_implicit")
+ 
+ func getTriggerPriority() -> int:
+ 	return Priority.High + 10
+--- a/Items/RubyEgg.gd
++++ b/Items/RubyEgg.gd
+@@ -4,14 +4,20 @@
+ onready var heat: = int(getP3())
+ 
+ func onPreCombatStart():
++	NativeRandomObserver.entry("Items/RubyEgg.gd::onPreCombatStart", self, {})
+ 	giveReflectStacks(reflects)
++	NativeRandomObserver.leave("Items/RubyEgg.gd::onPreCombatStart", self, null, "return_implicit")
+ 
+ func onCombatStart():
++	NativeRandomObserver.entry("Items/RubyEgg.gd::onCombatStart", self, {})
+ 	doCooldownEffect(false)
+-
++	NativeRandomObserver.leave("Items/RubyEgg.gd::onCombatStart", self, null, "return_implicit")
+ 
+ func doCooldownEffect(withReflectStacks: bool = true):
++	NativeRandomObserver.entry("Items/RubyEgg.gd::doCooldownEffect", self, {"withReflectStacks": withReflectStacks})
+ 	if withReflectStacks:
+ 		giveReflectStacks(reflects)
+ 	giveHeat(heat)
+ 	activate()
++	NativeRandomObserver.leave("Items/RubyEgg.gd::doCooldownEffect", self, null, "return_implicit")
++
+--- a/Items/Exclusive/BookofIce.gd
++++ b/Items/Exclusive/BookofIce.gd
+@@ -8,6 +8,7 @@
+ 	return item.hasType(Type.Spell)
+ 
+ func onPrepare():
++	NativeRandomObserver.entry("Items/Exclusive/BookofIce.gd::onPrepare", self, {})
+ 	var speed = 0.0
+ 	for item in getAffectedItems():
+ 		if item.hasType(Type.Ice):
+@@ -15,9 +16,13 @@
+ 		else:
+ 			speed += spellSpeed
+ 	addSpeed(speed)
++	NativeRandomObserver.leave("Items/Exclusive/BookofIce.gd::onPrepare", self, null, "return_implicit")
+ 
+ func doCooldownEffect():
++	NativeRandomObserver.entry("Items/Exclusive/BookofIce.gd::doCooldownEffect", self, {})
+ 	if character().getMana() >= manaNeeded:
+ 		var event = useMana(manaNeeded)
+ 		inflictCold(cold, event)
+ 	activate()
++	NativeRandomObserver.leave("Items/Exclusive/BookofIce.gd::doCooldownEffect", self, null, "return_implicit")
++
+--- a/Items/Exclusive/MagicMirror.gd
++++ b/Items/Exclusive/MagicMirror.gd
+@@ -7,10 +7,14 @@
+ 	return item.hasType(Type.Holy)
+ 
+ func onPrepare():
++	NativeRandomObserver.entry("Items/Exclusive/MagicMirror.gd::onPrepare", self, {})
+ 	var totalChance = getChance() + getNumAffectedItems() * getChance2()
+ 	character().changeAllDebuffsReflectChance(totalChance)
++	NativeRandomObserver.leave("Items/Exclusive/MagicMirror.gd::onPrepare", self, null, "return_implicit")
+ 
+ func doCooldownEffect():
++	NativeRandomObserver.entry("Items/Exclusive/MagicMirror.gd::doCooldownEffect", self, {})
+ 	multiplyBuffsLimit(buffFactor, buffLimit)
+ 	onAfterEffectFinished()
++	NativeRandomObserver.leave("Items/Exclusive/MagicMirror.gd::doCooldownEffect", self, null, "return_implicit")
+ 
+--- a/Items/Exclusive/ShepherdsCrook.gd
++++ b/Items/Exclusive/ShepherdsCrook.gd
+@@ -4,11 +4,16 @@
+ 	return item.canBeEmpowered()
+ 
+ func onPrepare():
++	NativeRandomObserver.entry("Items/Exclusive/ShepherdsCrook.gd::onPrepare", self, {})
+ 	character().changeBuffProtectionChance(getChance())
+ 	character().changeResistChance(Game.EventType.Blind, getChance2())
+ 	character().changeResistChance(Game.EventType.Cold, getChance2())
++	NativeRandomObserver.leave("Items/Exclusive/ShepherdsCrook.gd::onPrepare", self, null, "return_implicit")
+ 
+ func onCombatStart():
++	NativeRandomObserver.entry("Items/Exclusive/ShepherdsCrook.gd::onCombatStart", self, {})
+ 	for item in getAffectedItems():
+ 		item.addBonusDamage(getP1())
+ 	activate()
++	NativeRandomObserver.leave("Items/Exclusive/ShepherdsCrook.gd::onCombatStart", self, null, "return_implicit")
++
+--- a/Items/Exclusive/Shelly.gd
++++ b/Items/Exclusive/Shelly.gd
+@@ -7,13 +7,17 @@
+ 	return item.hasType(Type.Potion)
+ 
+ func doCooldownEffect():
++	NativeRandomObserver.entry("Items/Exclusive/Shelly.gd::doCooldownEffect", self, {})
+ 	cleanseRandomDebuffs(cleanses)
+ 	heal()
+ 	activate()
++	NativeRandomObserver.leave("Items/Exclusive/Shelly.gd::doCooldownEffect", self, null, "return_implicit")
+ 
+ func onPrepare():
++	NativeRandomObserver.entry("Items/Exclusive/Shelly.gd::onPrepare", self, {})
+ 	character().changeDebuffProtectionChance( - getChance())
+ 	addSpeed(potionSpeed * getNumAffectedItems())
++	NativeRandomObserver.leave("Items/Exclusive/Shelly.gd::onPrepare", self, null, "return_implicit")
+ 
+ func getTriggerPriority() -> int:
+ 	return Priority.High
+--- /dev/null
++++ b/native_random_observer_sink_v7.gd
+@@ -0,0 +1,730 @@
++extends Node
++# observer7: passive source hooks only. No processing or gameplay signal subscriptions.
++# Not parser/runtime/native accepted by phase040.
++const CAPS = {"array": 8192, "depth": 16, "descriptors": 75, "dictionary": 512, "failure_file_bytes": 4096, "file_bytes": 268435456, "first_error_bytes": 1024, "flush_bytes": 4194304, "host_capture_files": 64, "native_ids": 8192, "observer_files": 8, "pending_rows": 64, "record_bytes": 2097152, "records": 300000, "roles": 1024, "sparse_nodes": 16384, "string_utf8": 4096, "total_bytes": 268435456}
++const STATE_SCHEMAS = {"berserker_bag": {"activated": "bool", "activationsThisFrame": "int", "cachedAffectedItems": "dictionary", "consumed": "bool", "currentAffectedItems": "dictionary", "descriptorIndex": "int", "faceDirection": "int", "iterationCooldown": "float", "lastActivationTime": "float", "lastTriggerTime": "float", "ownerType": "int", "placed": "bool", "speedScale": "float", "triggerTime": "float", "triggersThisFrame": "int"}, "blood": {"activations": "int", "activationsThisFrame": "int", "activationsToTrigger": "float", "cachedAffectedItems": "dictionary", "consumed": "bool", "currentAffectedItems": "dictionary", "dam": "float", "descriptorIndex": "int", "faceDirection": "int", "iterationCooldown": "float", "lastActivationTime": "float", "lastTriggerTime": "float", "ownerType": "int", "placed": "bool", "sourceCurrentVampirism": "int|null", "sourceOwnerAvailable": "bool", "speedScale": "float", "triggerTime": "float", "triggersThisFrame": "int", "vampirism": "int"}, "book_ice": {"activationsThisFrame": "int", "cachedAffectedItems": "dictionary", "cold": "int", "consumed": "bool", "currentAffectedItems": "dictionary", "descriptorIndex": "int", "faceDirection": "int", "iterationCooldown": "float", "lastActivationTime": "float", "lastTriggerTime": "float", "manaNeeded": "int", "ownerType": "int", "placed": "bool", "speedScale": "float", "spellSpeed": "float", "triggerTime": "float", "triggersThisFrame": "int"}, "broccoli": {"activations": "int", "activationsThisFrame": "int", "activationsToTrigger": "float", "cachedAffectedItems": "dictionary", "consumed": "bool", "currentAffectedItems": "dictionary", "descriptorIndex": "int", "faceDirection": "int", "iterationCooldown": "float", "lastActivationTime": "float", "lastTriggerTime": "float", "luck": "int", "luckNeeded": "int", "ownerType": "int", "placed": "bool", "regen": "int", "sourceCurrentLucky": "int|null", "sourceOwnerAvailable": "bool", "speedScale": "float", "triggerTime": "float", "triggersThisFrame": "int"}, "broom": {"activationsThisFrame": "int", "broomBonusDam": "int", "cachedAffectedItems": "dictionary", "consumed": "bool", "currentAffectedItems": "dictionary", "descriptorIndex": "int", "faceDirection": "int", "iterationCooldown": "float", "lastActivationTime": "float", "lastTriggerTime": "float", "ownerType": "int", "placed": "bool", "speedScale": "float", "triggerTime": "float", "triggersThisFrame": "int"}, "buff": {"character": "native_ref|null", "cleanseProtectionChancePercent": "float", "current": "int", "nextTemporaryTimeout": "int", "permanentStacks": "int", "reflectChancePercent": "float", "resistChancePercent": "float", "resistStacks": "int", "temporaryStacks": "temporary_array", "timer": "timer|null", "type": "int"}, "burning_torch": {"activationsThisFrame": "int", "bonusMaxDam": "float", "bonusMinDam": "float", "cachedAffectedItems": "dictionary", "consumed": "bool", "currentAffectedItems": "dictionary", "descriptorIndex": "int", "faceDirection": "int", "iterationCooldown": "float", "lastActivationTime": "float", "lastTriggerTime": "float", "ownerType": "int", "permDamBonus": "float", "placed": "bool", "removableDam": "float", "speedScale": "float", "triggerTime": "float", "triggersThisFrame": "int"}, "carrot": {"activations": "int", "activationsThisFrame": "int", "activationsToTrigger": "float", "cachedAffectedItems": "dictionary", "consumed": "bool", "currentAffectedItems": "dictionary", "descriptorIndex": "int", "empower": "float", "faceDirection": "int", "iterationCooldown": "float", "lastActivationTime": "float", "lastTriggerTime": "float", "ownerType": "int", "particleTimer": "timer", "placed": "bool", "speedScale": "float", "triggerTime": "float", "triggersThisFrame": "int"}, "character": {"allowStaminaOverflow": "bool", "autoRageItem": "native_ref|null", "battleRageBonusDur": "float", "battleRageTimer": "timer", "critResistStacks": "int", "critResistance": "float", "critTokens": "int", "curHealth": "float", "curStamina": "float", "damageResistance": "float", "debuffReflectStacks": "int", "healingEfficiency": "float", "invulnerable": "bool", "isDead": "bool", "maxHealth": "float", "maxStamina": "float", "playerId": "int", "stunnedDuration": "float", "temporaryMaxHealth": "float", "temporaryMaxStamina": "float", "tickCounter": "int", "typedDamageFactors": "dictionary", "unhealingAmount": "float"}, "collar": {"activationsThisFrame": "int", "affectedItems": "array|null", "cachedAffectedItems": "dictionary", "consumed": "bool", "currentAffectedItems": "dictionary", "descriptorIndex": "int", "faceDirection": "int", "iterationCooldown": "float", "lastActivationTime": "float", "lastTriggerTime": "float", "ownerType": "int", "placed": "bool", "speedScale": "float", "triggerTime": "float", "triggersThisFrame": "int"}, "combat_log": {"eventNum": "int", "event_count": "int", "eventsLogged": "int", "loggingFinished": "bool"}, "combat_timer": {"combatTime": "float", "fatigueCounter": "int", "fatigueStartTimer": "timer", "fatigueTickTimer": "timer", "timeAdvance": "float"}, "cupcake": {"activations": "int", "activationsThisFrame": "int", "activationsToTrigger": "float", "cachedAffectedItems": "dictionary", "consumed": "bool", "currentAffectedItems": "dictionary", "descriptorIndex": "int", "faceDirection": "int", "iterationCooldown": "float", "lastActivationTime": "float", "lastTriggerTime": "float", "numBuffs": "int", "ownerType": "int", "placed": "bool", "speedScale": "float", "triggerTime": "float", "triggersThisFrame": "int"}, "event_bus": {"connection_count": "int", "loggingMode": "int", "signalQueue": "array"}, "game": {"allocation_counter": "int", "curClass": "int", "curMode": "int", "curRound": "int", "fightEnded": "bool", "roundResults": "array"}, "generic": {"native_id": "id"}, "goobert": {"activations": "int", "activationsThisFrame": "int", "activationsToTrigger": "float", "cachedAffectedItems": "dictionary", "consumed": "bool", "currentAffectedItems": "dictionary", "descriptorIndex": "int", "faceDirection": "int", "iterationCooldown": "float", "lastActivationTime": "float", "lastTriggerTime": "float", "ownerType": "int", "placed": "bool", "speedScale": "float", "triggerTime": "float", "triggersThisFrame": "int"}, "item": {"activationsThisFrame": "int", "cachedAffectedItems": "dictionary", "consumed": "bool", "currentAffectedItems": "dictionary", "descriptorIndex": "int", "faceDirection": "int", "iterationCooldown": "float", "lastActivationTime": "float", "lastTriggerTime": "float", "ownerType": "int", "placed": "bool", "speedScale": "float", "triggerTime": "float", "triggersThisFrame": "int"}, "light": {"activations": "int", "activationsThisFrame": "int", "activationsToTrigger": "float", "blindAmount": "float", "cachedAffectedItems": "dictionary", "consumed": "bool", "currentAffectedItems": "dictionary", "descriptorIndex": "int", "faceDirection": "int", "iterationCooldown": "float", "lastActivationTime": "float", "lastTriggerTime": "float", "ownerType": "int", "particleTimer": "timer", "placed": "bool", "speedScale": "float", "triggerTime": "float", "triggersThisFrame": "int"}, "magic_staff": {"activationsThisFrame": "int", "bonusMaxDam": "float", "bonusMinDam": "float", "cachedAffectedItems": "dictionary", "consumed": "bool", "currentAffectedItems": "dictionary", "descriptorIndex": "int", "faceDirection": "int", "iterationCooldown": "float", "lastActivationTime": "float", "lastTriggerTime": "float", "manaCost": "float", "ownerType": "int", "permDamBonus": "float", "placed": "bool", "removableDam": "float", "speedScale": "float", "tempDamBonus": "float", "triggerTime": "float", "triggersThisFrame": "int"}, "mana_potion": {"activationsThisFrame": "int", "cachedAffectedItems": "dictionary", "consumed": "bool", "currentAffectedItems": "dictionary", "descriptorIndex": "int", "faceDirection": "int", "healthThreshold": "float", "isFull": "bool", "iterationCooldown": "float", "lastActivationTime": "float", "lastTriggerTime": "float", "ownerType": "int", "placed": "bool", "speedScale": "float", "triggerTime": "float", "triggersThisFrame": "int"}, "mirror": {"activationsThisFrame": "int", "buffFactor": "float", "buffLimit": "int", "cachedAffectedItems": "dictionary", "consumed": "bool", "currentAffectedItems": "dictionary", "descriptorIndex": "int", "faceDirection": "int", "iterationCooldown": "float", "lastActivationTime": "float", "lastTriggerTime": "float", "ownerType": "int", "placed": "bool", "speedScale": "float", "triggerTime": "float", "triggersThisFrame": "int"}, "node": {"class": "string", "inside_tree": "bool", "internal_idle": "bool", "internal_physics": "bool", "name": "string", "native_id": "id", "ordinary_idle": "bool", "ordinary_physics": "bool", "path": "string|nulloutsideTree", "positions": "int_array", "priority": "int", "role": "string|null"}, "poison_shortbow": {"activationsThisFrame": "int", "cachedAffectedItems": "dictionary", "consumed": "bool", "currentAffectedItems": "dictionary", "descriptorIndex": "int", "faceDirection": "int", "iterationCooldown": "float", "lastActivationTime": "float", "lastTriggerTime": "float", "ownerType": "int", "placed": "bool", "poison": "int", "speedScale": "float", "triggerTime": "float", "triggersThisFrame": "int"}, "potion": {"activationsThisFrame": "int", "cachedAffectedItems": "dictionary", "consumed": "bool", "currentAffectedItems": "dictionary", "descriptorIndex": "int", "faceDirection": "int", "isFull": "bool", "iterationCooldown": "float", "lastActivationTime": "float", "lastTriggerTime": "float", "ownerType": "int", "placed": "bool", "speedScale": "float", "triggerTime": "float", "triggersThisFrame": "int"}, "rainbow_engineer": {"activations": "int", "activationsThisFrame": "int", "activationsToTrigger": "float", "blind": "int", "cachedAffectedItems": "dictionary", "consumed": "bool", "currentAffectedItems": "dictionary", "dambonus": "float", "descriptorIndex": "int", "faceDirection": "int", "iterationCooldown": "float", "lastActivationTime": "float", "lastTriggerTime": "float", "ownerType": "int", "placed": "bool", "regen": "int", "speedScale": "float", "stamina": "float", "triggerTime": "float", "triggersThisFrame": "int", "vampirism": "int"}, "ruby": {"activationsThisFrame": "int", "cachedAffectedItems": "dictionary", "consumed": "bool", "currentAffectedItems": "dictionary", "descriptorIndex": "int", "faceDirection": "int", "heat": "int", "iterationCooldown": "float", "lastActivationTime": "float", "lastTriggerTime": "float", "ownerType": "int", "placed": "bool", "reflects": "int", "speedScale": "float", "triggerTime": "float", "triggersThisFrame": "int"}, "shelly": {"activationsThisFrame": "int", "cachedAffectedItems": "dictionary", "cleanses": "int", "consumed": "bool", "currentAffectedItems": "dictionary", "descriptorIndex": "int", "faceDirection": "int", "iterationCooldown": "float", "lastActivationTime": "float", "lastTriggerTime": "float", "ownerType": "int", "placed": "bool", "potionSpeed": "float", "speedScale": "float", "triggerTime": "float", "triggersThisFrame": "int"}, "steel": {"activations": "int", "activationsThisFrame": "int", "activationsToTrigger": "float", "affectedWeapons": "array", "cachedAffectedItems": "dictionary", "consumed": "bool", "currentAffectedItems": "dictionary", "descriptorIndex": "int", "faceDirection": "int", "iterationCooldown": "float", "lastActivationTime": "float", "lastTriggerTime": "float", "ownerType": "int", "placed": "bool", "speedScale": "float", "triggerTime": "float", "triggersThisFrame": "int"}, "temporary_constructor": {"amount": "int", "item": "native_ref|null", "timeout": "float"}, "timer": {"autostart": "bool", "node": "node", "one_shot": "bool", "paused": "bool", "process_mode": "int", "stopped": "bool", "time_left": "float", "wait_time": "float"}, "toast": {"activations": "int", "activationsThisFrame": "int", "activationsToTrigger": "float", "cachedAffectedItems": "dictionary", "consumed": "bool", "currentAffectedItems": "dictionary", "descriptorIndex": "int", "faceDirection": "int", "iterationCooldown": "float", "lastActivationTime": "float", "lastTriggerTime": "float", "ownerType": "int", "placed": "bool", "regen": "int", "sourceAllowStaminaOverflow": "bool|null", "sourceCurrentStamina": "float|null", "sourceMaxStamina": "float|null", "sourceOwnerAvailable": "bool", "speedScale": "float", "stamina": "float", "staminaThreshold": "float", "triggerTime": "float", "triggersThisFrame": "int"}, "util": {"clockTime": "float", "frameCounter": "int", "time": "float"}}
++const SITES = {"Core/Buff.gd::TemporaryStacks._init": {"channel": "lineage", "state_schema": "temporary_constructor"}, "Core/Buff.gd::changeCleanseProtectionChance": {"channel": "runtime", "state_schema": "buff"}, "Core/Buff.gd::changeCurrentLogShowLabel": {"channel": "runtime", "state_schema": "buff"}, "Core/Buff.gd::changeReflectChance": {"channel": "runtime", "state_schema": "buff"}, "Core/Buff.gd::changeResistChance": {"channel": "runtime", "state_schema": "buff"}, "Core/Buff.gd::combatEnd": {"channel": "runtime", "state_schema": "buff"}, "Core/Buff.gd::gainTemporary": {"channel": "runtime", "state_schema": "buff"}, "Core/Buff.gd::init": {"channel": "lineage", "state_schema": "buff"}, "Core/Buff.gd::loseStacks": {"channel": "runtime", "state_schema": "buff"}, "Core/Buff.gd::onTimeout": {"channel": "runtime", "state_schema": "buff"}, "Core/Character.gd::_physics_process": {"channel": "runtime", "state_schema": "character"}, "Core/Character.gd::_ready": {"channel": "runtime", "state_schema": "character"}, "Core/Character.gd::changeDebuffReflectStacks": {"channel": "runtime", "state_schema": "character"}, "Core/Character.gd::changeMaxHealthTemporary": {"channel": "runtime", "state_schema": "character"}, "Core/Character.gd::combatEnd": {"channel": "runtime", "state_schema": "character"}, "Core/Character.gd::combatStart": {"channel": "runtime", "state_schema": "character"}, "Core/Character.gd::endBattleRage": {"channel": "runtime", "state_schema": "character"}, "Core/Character.gd::endStun": {"channel": "runtime", "state_schema": "character"}, "Core/Character.gd::gainMana": {"channel": "runtime", "state_schema": "character"}, "Core/Character.gd::gainStacks": {"channel": "runtime", "state_schema": "character"}, "Core/Character.gd::gainStacksTemporary": {"channel": "runtime", "state_schema": "character"}, "Core/Character.gd::loseHealth": {"channel": "runtime", "state_schema": "character"}, "Core/Character.gd::onTick": {"channel": "runtime", "state_schema": "character"}, "Core/Character.gd::prepare": {"channel": "runtime", "state_schema": "character"}, "Core/Character.gd::startBattleRage": {"channel": "runtime", "state_schema": "character"}, "Core/Character.gd::stun": {"channel": "runtime", "state_schema": "character"}, "Core/Character.gd::takeDamage": {"channel": "runtime", "state_schema": "character"}, "Core/Character.gd::useMana": {"channel": "runtime", "state_schema": "character"}, "Core/Character.gd::useStacks": {"channel": "runtime", "state_schema": "character"}, "Core/CombatLog.gd::createEvent": {"channel": "runtime", "state_schema": "combat_log"}, "Core/CombatLog.gd::createEvent_BattleRageEnd": {"channel": "runtime", "state_schema": "combat_log"}, "Core/CombatLog.gd::createEvent_BattleRageStart": {"channel": "runtime", "state_schema": "combat_log"}, "Core/CombatLog.gd::createEvent_Stack": {"channel": "runtime", "state_schema": "combat_log"}, "Core/CombatLog.gd::createEvent_StackTemporary": {"channel": "runtime", "state_schema": "combat_log"}, "Core/CombatLog.gd::createEvent_StackTimeout": {"channel": "runtime", "state_schema": "combat_log"}, "Core/CombatLog.gd::logEvent": {"channel": "runtime", "state_schema": "combat_log"}, "Core/CombatLog.gd::onCombatEnd": {"channel": "runtime", "state_schema": "combat_log"}, "Core/CombatLog.gd::snapshotItemState": {"channel": "runtime", "state_schema": "combat_log"}, "Core/Game.gd::activateItems": {"channel": "input", "state_schema": "game"}, "Core/Game.gd::combatEndDeferred": {"channel": "runtime", "state_schema": "game"}, "Core/Game.gd::endCombat": {"channel": "runtime", "state_schema": "game"}, "Core/Game.gd::prepareItems": {"channel": "input", "state_schema": "game"}, "Interface/CombatTimer/CombatTimer.gd::_physics_process": {"channel": "runtime", "state_schema": "combat_timer"}, "Interface/CombatTimer/CombatTimer.gd::combatEnd": {"channel": "runtime", "state_schema": "combat_timer"}, "Interface/CombatTimer/CombatTimer.gd::dealFatigueDamage": {"channel": "runtime", "state_schema": "combat_timer"}, "Interface/CombatTimer/CombatTimer.gd::start": {"channel": "runtime", "state_schema": "combat_timer"}, "Interface/CombatTimer/CombatTimer.gd::startFatigue": {"channel": "runtime", "state_schema": "combat_timer"}, "Items/AcornCollar.gd::onLuckyChanged": {"channel": "runtime", "state_schema": "collar"}, "Items/AcornCollar.gd::onPrepare": {"channel": "runtime", "state_schema": "collar"}, "Items/BloodAmulet.gd::onCombatStart": {"channel": "runtime", "state_schema": "item"}, "Items/BloodGoobert.gd::doCooldownEffect": {"channel": "runtime", "state_schema": "blood"}, "Items/BloodGoobert.gd::onCombatStart": {"channel": "runtime", "state_schema": "blood"}, "Items/Broom.gd::attack": {"channel": "runtime", "state_schema": "broom"}, "Items/Broom.gd::onAttacked": {"channel": "runtime", "state_schema": "broom"}, "Items/Broom.gd::onDealtDamage": {"channel": "runtime", "state_schema": "broom"}, "Items/Broom.gd::onPrepare": {"channel": "runtime", "state_schema": "broom"}, "Items/BurningTorch.gd::onCombatStart": {"channel": "runtime", "state_schema": "burning_torch"}, "Items/BurningTorch.gd::onPreDealDamage_early": {"channel": "runtime", "state_schema": "burning_torch"}, "Items/Carrot.gd::doCooldownEffect": {"channel": "runtime", "state_schema": "item"}, "Items/CarrotGoobert.gd::doCooldownEffect": {"channel": "runtime", "state_schema": "carrot"}, "Items/CarrotGoobert.gd::onCombatEnd": {"channel": "runtime", "state_schema": "carrot"}, "Items/CarrotGoobert.gd::onParticleTimeout": {"channel": "runtime", "state_schema": "carrot"}, "Items/CarrotGoobert.gd::onPrepare": {"channel": "runtime", "state_schema": "carrot"}, "Items/Crossblades.gd::onCombatStart": {"channel": "runtime", "state_schema": "item"}, "Items/Crossblades.gd::onPreDealDamage_early": {"channel": "runtime", "state_schema": "item"}, "Items/Dagger.gd::onStun": {"channel": "runtime", "state_schema": "item"}, "Items/Exclusive/BerserkerBag.gd::onBattleRageEnded": {"channel": "runtime", "state_schema": "berserker_bag"}, "Items/Exclusive/BerserkerBag.gd::onBattleRageStarted": {"channel": "runtime", "state_schema": "berserker_bag"}, "Items/Exclusive/BerserkerBag.gd::onDamaged": {"channel": "runtime", "state_schema": "berserker_bag"}, "Items/Exclusive/BerserkerBag.gd::onPrepare": {"channel": "runtime", "state_schema": "berserker_bag"}, "Items/Exclusive/BookofIce.gd::doCooldownEffect": {"channel": "runtime", "state_schema": "book_ice"}, "Items/Exclusive/BookofIce.gd::onPrepare": {"channel": "runtime", "state_schema": "book_ice"}, "Items/Exclusive/BroccoliGoobert.gd::doCooldownEffect": {"channel": "runtime", "state_schema": "broccoli"}, "Items/Exclusive/CheeseGoobert.gd::doCooldownEffect": {"channel": "runtime", "state_schema": "goobert"}, "Items/Exclusive/ChiliGoobert.gd::doCooldownEffect": {"channel": "runtime", "state_schema": "goobert"}, "Items/Exclusive/CupcakeGoobert.gd::doCooldownEffect": {"channel": "runtime", "state_schema": "cupcake"}, "Items/Exclusive/LuckyShortbow.gd::onPreDealDamage_early": {"channel": "runtime", "state_schema": "item"}, "Items/Exclusive/MagicMirror.gd::doCooldownEffect": {"channel": "input", "state_schema": "mirror"}, "Items/Exclusive/MagicMirror.gd::onPrepare": {"channel": "runtime", "state_schema": "mirror"}, "Items/Exclusive/PoisonShortbow.gd::onPreDealDamage_early": {"channel": "runtime", "state_schema": "poison_shortbow"}, "Items/Exclusive/RainbowGoobertAdventurer.gd::doCooldownEffect": {"channel": "runtime", "state_schema": "goobert"}, "Items/Exclusive/RainbowGoobertBerserker.gd::doCooldownEffect": {"channel": "runtime", "state_schema": "goobert"}, "Items/Exclusive/RainbowGoobertEngineer.gd::doCooldownEffect": {"channel": "runtime", "state_schema": "rainbow_engineer"}, "Items/Exclusive/RainbowGoobertMage.gd::doCooldownEffect": {"channel": "runtime", "state_schema": "goobert"}, "Items/Exclusive/RainbowGoobertPyromancer.gd::doCooldownEffect": {"channel": "runtime", "state_schema": "goobert"}, "Items/Exclusive/Shelly.gd::doCooldownEffect": {"channel": "runtime", "state_schema": "shelly"}, "Items/Exclusive/Shelly.gd::onPrepare": {"channel": "runtime", "state_schema": "shelly"}, "Items/Exclusive/ShepherdsCrook.gd::onCombatStart": {"channel": "runtime", "state_schema": "item"}, "Items/Exclusive/ShepherdsCrook.gd::onPrepare": {"channel": "runtime", "state_schema": "item"}, "Items/Exclusive/ThornShortbow.gd::onDealtDamage": {"channel": "runtime", "state_schema": "item"}, "Items/Exclusive/ToastGoobert.gd::doCooldownEffect": {"channel": "runtime", "state_schema": "toast"}, "Items/FalconBlade.gd::doCooldownEffect": {"channel": "runtime", "state_schema": "item"}, "Items/FalconBlade.gd::onCombatStart": {"channel": "runtime", "state_schema": "item"}, "Items/Food.gd::prepare": {"channel": "runtime", "state_schema": "item"}, "Items/GlovesofHaste.gd::onCombatStart": {"channel": "runtime", "state_schema": "item"}, "Items/Goobert.gd::doCooldownEffect": {"channel": "runtime", "state_schema": "goobert"}, "Items/Goobert.gd::onItemActivated": {"channel": "runtime", "state_schema": "goobert"}, "Items/Goobert.gd::prepare": {"channel": "runtime", "state_schema": "goobert"}, "Items/Hammer.gd::onDealtDamage": {"channel": "runtime", "state_schema": "item"}, "Items/HealingHerbs.gd::onCombatStart": {"channel": "runtime", "state_schema": "item"}, "Items/HealthPotion.gd::onDamaged": {"channel": "runtime", "state_schema": "potion"}, "Items/HealthPotion.gd::onPrepare": {"channel": "runtime", "state_schema": "potion"}, "Items/HealthPotion.gd::onTriggerPotion": {"channel": "runtime", "state_schema": "potion"}, "Items/HeroLongsword.gd::onCombatStart": {"channel": "runtime", "state_schema": "item"}, "Items/HeroSword.gd::onCombatStart": {"channel": "runtime", "state_schema": "item"}, "Items/HungryBlade.gd::onCombatStart": {"channel": "runtime", "state_schema": "item"}, "Items/HungryBlade.gd::onPreDealDamage_early": {"channel": "runtime", "state_schema": "item"}, "Items/HungryBlade.gd::onPrepare": {"channel": "runtime", "state_schema": "item"}, "Items/HungryBlade.gd::onVampirismChanged": {"channel": "runtime", "state_schema": "item"}, "Items/Item.gd::_physics_process": {"channel": "runtime", "state_schema": "item"}, "Items/Item.gd::_ready": {"channel": "lineage", "state_schema": "generic"}, "Items/Item.gd::activate": {"channel": "runtime", "state_schema": "item"}, "Items/Item.gd::addBonusDamage": {"channel": "runtime", "state_schema": "item"}, "Items/Item.gd::cleanseRandomDebuffs": {"channel": "runtime", "state_schema": "item"}, "Items/Item.gd::combatEnd": {"channel": "runtime", "state_schema": "item"}, "Items/Item.gd::consume": {"channel": "runtime", "state_schema": "item"}, "Items/Item.gd::getMostStacks": {"channel": "runtime", "state_schema": "item"}, "Items/Item.gd::giveMana": {"channel": "runtime", "state_schema": "item"}, "Items/Item.gd::giveMana_capped": {"channel": "runtime", "state_schema": "item"}, "Items/Item.gd::giveMaxHealth": {"channel": "runtime", "state_schema": "item"}, "Items/Item.gd::giveMostBuffs": {"channel": "runtime", "state_schema": "item"}, "Items/Item.gd::healthToBlock": {"channel": "runtime", "state_schema": "item"}, "Items/Item.gd::miniActivate": {"channel": "runtime", "state_schema": "item"}, "Items/Item.gd::pickRandomStacks": {"channel": "runtime", "state_schema": "item"}, "Items/Item.gd::prepare": {"channel": "runtime", "state_schema": "item"}, "Items/Item.gd::rollChance": {"channel": "runtime", "state_schema": "item"}, "Items/Item.gd::stealLife": {"channel": "runtime", "state_schema": "item"}, "Items/Item.gd::tryUseMana": {"channel": "runtime", "state_schema": "item"}, "Items/Item.gd::useMana": {"channel": "runtime", "state_schema": "item"}, "Items/ItemDescriptor.gd::instantiate": {"channel": "lineage", "state_schema": "generic"}, "Items/ItemDescriptor.gd::instantiate_pooled": {"channel": "lineage", "state_schema": "generic"}, "Items/LeatherArmor.gd::onCombatStart": {"channel": "runtime", "state_schema": "item"}, "Items/LeatherArmor.gd::onPreCombatStart": {"channel": "runtime", "state_schema": "item"}, "Items/LeatherBoots.gd::onDamaged": {"channel": "runtime", "state_schema": "item"}, "Items/LeatherBoots.gd::onPrepare": {"channel": "runtime", "state_schema": "item"}, "Items/LightGoobert.gd::doCooldownEffect": {"channel": "runtime", "state_schema": "light"}, "Items/LightGoobert.gd::onCombatEnd": {"channel": "runtime", "state_schema": "light"}, "Items/LightGoobert.gd::onParticleTimeout": {"channel": "runtime", "state_schema": "light"}, "Items/LightGoobert.gd::onPrepare": {"channel": "runtime", "state_schema": "light"}, "Items/MagicStaff.gd::onPreDealDamage_early": {"channel": "runtime", "state_schema": "magic_staff"}, "Items/ManaPotion.gd::onDamaged": {"channel": "runtime", "state_schema": "mana_potion"}, "Items/ManaPotion.gd::onManaChanged": {"channel": "runtime", "state_schema": "mana_potion"}, "Items/ManaPotion.gd::onPrepare": {"channel": "runtime", "state_schema": "mana_potion"}, "Items/ManaPotion.gd::onTriggerPotion": {"channel": "runtime", "state_schema": "mana_potion"}, "Items/PestilenceFlask.gd::onOpponentHeal": {"channel": "runtime", "state_schema": "potion"}, "Items/PestilenceFlask.gd::onPrepare": {"channel": "runtime", "state_schema": "potion"}, "Items/PestilenceFlask.gd::onTriggerPotion": {"channel": "runtime", "state_schema": "potion"}, "Items/PocketSand.gd::onCombatStart": {"channel": "runtime", "state_schema": "item"}, "Items/PoisonGoobert.gd::doCooldownEffect": {"channel": "runtime", "state_schema": "goobert"}, "Items/Potion.gd::activate": {"channel": "runtime", "state_schema": "potion"}, "Items/Potion.gd::consumePotion": {"channel": "runtime", "state_schema": "potion"}, "Items/Potion.gd::prepare": {"channel": "runtime", "state_schema": "potion"}, "Items/Potion.gd::triggerPotion": {"channel": "runtime", "state_schema": "potion"}, "Items/RainbowGoobert.gd::doCooldownEffect": {"channel": "runtime", "state_schema": "goobert"}, "Items/RainbowGoobertRanger.gd::doCooldownEffect": {"channel": "runtime", "state_schema": "goobert"}, "Items/RangerCollar.gd::prepare": {"channel": "runtime", "state_schema": "collar"}, "Items/RubyEgg.gd::doCooldownEffect": {"channel": "runtime", "state_schema": "ruby"}, "Items/RubyEgg.gd::onCombatStart": {"channel": "runtime", "state_schema": "ruby"}, "Items/RubyEgg.gd::onPreCombatStart": {"channel": "runtime", "state_schema": "ruby"}, "Items/SteelGoobert.gd::doCooldownEffect": {"channel": "runtime", "state_schema": "steel"}, "Items/SteelGoobert.gd::onCombatEnd": {"channel": "runtime", "state_schema": "steel"}, "Items/SteelGoobert.gd::onPrepare": {"channel": "runtime", "state_schema": "steel"}, "Items/StoneSkinPotion.gd::onBlockChanged": {"channel": "runtime", "state_schema": "potion"}, "Items/StoneSkinPotion.gd::onPrepare": {"channel": "runtime", "state_schema": "potion"}, "Items/StoneSkinPotion.gd::onTriggerPotion": {"channel": "runtime", "state_schema": "potion"}, "Items/StrongHealthPotion.gd::onTriggerPotion": {"channel": "runtime", "state_schema": "potion"}, "Items/StrongStoneSkinPotion.gd::onTriggerPotion": {"channel": "runtime", "state_schema": "potion"}, "Items/ThornWhip.gd::onPreDealDamage_early": {"channel": "runtime", "state_schema": "item"}, "Items/ThornWhip.gd::onPrepare": {"channel": "runtime", "state_schema": "item"}, "Items/ThornWhip.gd::onSpikesChanged": {"channel": "runtime", "state_schema": "item"}, "Items/VampiricArmor.gd::doCooldownEffect": {"channel": "runtime", "state_schema": "item"}, "Items/VampiricArmor.gd::onCombatStart": {"channel": "runtime", "state_schema": "item"}, "Items/WalrusTusk.gd::onCombatStart": {"channel": "runtime", "state_schema": "item"}, "Items/Weapon.gd::attack": {"channel": "runtime", "state_schema": "item"}, "Items/Weapon.gd::doCooldownEffect": {"channel": "runtime", "state_schema": "item"}, "Sheets/ItemBook.gd::detectMentionedStacks": {"channel": "metadata", "state_schema": "generic"}, "Utility/EventBus.gd::connectEvent": {"channel": "runtime", "state_schema": "event_bus"}, "Utility/EventBus.gd::disconnectAll": {"channel": "runtime", "state_schema": "event_bus"}, "Utility/EventBus.gd::emitAndLog": {"channel": "runtime", "state_schema": "event_bus"}, "Utility/EventBus.gd::flushLoggingQueue": {"channel": "runtime", "state_schema": "event_bus"}, "Utility/Util.gd::_physics_process": {"channel": "runtime", "state_schema": "util"}}
++const CHANNEL_FILES = {"allocation": "observer7-allocations.jsonl", "input": "observer7-input.jsonl", "lineage": "observer7-lineage.jsonl", "metadata": "observer7-metadata.jsonl", "primitive": "observer7-primitives.jsonl", "registration": "observer7-registration.jsonl", "runtime": "observer7-runtime.jsonl"}
++const OUT = "user://native-capture"
++var ids = {} # integer native IDs -> immutable role strings only
++var seen_ids = {} # integer -> class string, never Object
++var file_sizes = {}
++var sequence = 0
++var total_bytes = 0
++var failed = false
++var first_error = null
++var configured = false
++var enabled = false
++var metadata_ready = false
++var closed = false
++var active_buff_calls = [] # primitive-only nested source-call context
++var connection_ids = {} # actual FuncRef int ID -> original emission int ID
++var source_types = {} # int native ID -> known qualified constructor type, never Object
++var source_lifetimes = {} # integer IDs -> primitive counters only
++var source_phase = "bootstrap"
++var activation_checkpoints = 0
++var registered_connections = 0
++var encoding_remaining = 2097152
++
++func begin_encoding():
++	encoding_remaining = CAPS.record_bytes
++
++func reserve_encoding(amount):
++	if amount < 0 or amount > encoding_remaining:
++		return fail("ENCODER_PREALLOCATION_CAP", source_phase)
++	encoding_remaining -= amount
++	return true
++
++func _ready():
++	var status = Directory.new().make_dir_recursive(OUT)
++	if status != OK:
++		fail("BOOTSTRAP_DIRECTORY", "sink", status)
++		return
++	var existing = File.new()
++	for filename in CHANNEL_FILES.values() + ["observer7_failure.json"]:
++		if existing.file_exists(OUT.plus_file(filename)):
++			fail("PREEXISTING_OBSERVER_FILE", "sink")
++			return
++
++func fail(code, site, detail = null):
++	if failed:
++		return false
++	failed = true
++	# Fixed-size fields only; never stringifies an unknown Object or unbounded detail.
++	var safe_detail = detail if typeof(detail) in [TYPE_NIL, TYPE_INT, TYPE_BOOL] else null
++	first_error = {"schema": "observer7-failure/1", "code": code, "site": site.substr(0, 256), "sequence": sequence, "detail": safe_detail, "capture_complete": false}
++	var message = JSON.print(first_error)
++	if message.to_utf8().size() > CAPS.first_error_bytes:
++		message = '{"schema":"observer7-failure/1","code":"FAILURE_ENCODING","capture_complete":false}'
++	var file = File.new()
++	if not file.file_exists(OUT.plus_file("observer7_failure.json")) and file.open(OUT.plus_file("observer7_failure.json"), File.WRITE) == OK:
++		file.store_string(message + "\n")
++		file.flush()
++		file.close()
++	return false
++
++func native_id(object):
++	if object == null or not is_instance_valid(object):
++		fail("INVALID_NATIVE_REFERENCE", source_phase)
++		return null
++	var id = object.get_instance_id()
++	if not seen_ids.has(id):
++		if seen_ids.size() >= CAPS.native_ids:
++			fail("NATIVE_ID_CAP", source_phase)
++			return null
++		seen_ids[id] = object.get_class()
++	elif seen_ids[id] != object.get_class():
++		fail("NATIVE_ID_COLLISION", source_phase)
++	return str(id)
++
++func reference(object):
++	if object == null:
++		return {"type": "null"}
++	var id = native_id(object)
++	if id == null:
++		return {"type": "null"}
++	return {"type": "native_ref", "native_id": id, "role": ids.get(object.get_instance_id(), null), "class": object.get_class()}
++
++func float_bits(value):
++	var buffer = StreamPeerBuffer.new()
++	buffer.big_endian = true
++	buffer.put_double(value)
++	return buffer.data_array.hex_encode()
++
++func encode(value, depth = 0, ordinal = 0):
++	if not reserve_encoding(64):
++		return {"type": "null"}
++	if failed:
++		return {"type": "null"}
++	if depth > CAPS.depth:
++		fail("DEPTH_CAP", source_phase)
++		return {"type": "null"}
++	match typeof(value):
++		TYPE_NIL:
++			return {"type": "null"}
++		TYPE_BOOL:
++			return {"type": "bool", "value": value}
++		TYPE_INT:
++			return {"type": "int", "decimal": str(value)}
++		TYPE_REAL:
++			if is_nan(value) or is_inf(value):
++				fail("NONFINITE", source_phase)
++				return {"type": "null"}
++			return {"type": "float", "binary64_be": float_bits(value)}
++		TYPE_STRING:
++			if value.length() > CAPS.string_utf8 or value.to_utf8().size() > CAPS.string_utf8 or not reserve_encoding(value.length() * 24):
++				fail("STRING_CAP", source_phase)
++				return {"type": "null"}
++			return {"type": "string", "value": value}
++		TYPE_ARRAY:
++			if value.size() > CAPS.array or not reserve_encoding(value.size() * 16):
++				fail("ARRAY_CAP", source_phase)
++				return {"type": "null"}
++			var rows = []
++			for i in range(value.size()):
++				if failed:
++					break
++				rows.append(encode(value[i], depth + 1, i))
++			return {"type": "array", "values": rows}
++		TYPE_DICTIONARY:
++			if value.size() > CAPS.dictionary or not reserve_encoding(value.size() * 32):
++				fail("DICTIONARY_CAP", source_phase)
++				return {"type": "null"}
++			var rows = []
++			for key in value:
++				if failed:
++					break
++				rows.append({"key": encode(key, depth + 1), "value": encode(value[key], depth + 1)})
++			return {"type": "dictionary", "entries": rows}
++		TYPE_OBJECT:
++			if not is_instance_valid(value):
++				fail("FREED_REFERENCE", source_phase)
++				return {"type": "null"}
++			if is_temporary(value):
++				return temporary(value, ordinal, depth + 1)
++			if source_is(value, "res://Utility/DamageResult.gd"):
++				var result = {"type": "damage_result", "native_id": native_id(value)}
++				for key in ["event", "damageSource", "damage", "healthDamage", "hit", "critical", "damageReduction"]:
++					result[key] = encode(value.get(key), depth + 1)
++				return result
++			if source_is(value, "res://Utility/DamageSource.gd"):
++				var result = {"type": "damage_source", "native_id": native_id(value)}
++				for key in ["minDamage", "maxDamage", "types", "accuracy", "critChancePercent", "origin", "flags"]:
++					result[key] = encode(value.get(key), depth + 1)
++				return result
++			if source_is(value, "res://Core/CombatEvent.gd"):
++				return {"type": "event_ref", "native_id": native_id(value), "event_id": str(value.id)}
++			if value is Node or source_types.get(value.get_instance_id(), "") == "buff":
++				return reference(value)
++			fail("UNKNOWN_REFERENCE", source_phase)
++			return {"type": "null"}
++	fail("UNKNOWN_VARIANT", source_phase, typeof(value))
++	return {"type": "null"}
++
++func temporary(value, ordinal, depth = 0):
++	if depth > CAPS.depth or not is_temporary(value):
++		fail("TEMPORARY_REFERENCE", source_phase)
++		return {"type": "null"}
++	return {"type": "temporary", "native_id": native_id(value), "ordinal": ordinal, "amount": encode(value.amount, depth + 1), "timeout": encode(value.timeout, depth + 1), "item": reference(value.item)}
++
++func node_state(node):
++	if not node is Node:
++		fail("NODE_REQUIRED", source_phase)
++		return null
++	var positions = []
++	var cursor = node
++	while cursor != null:
++		if positions.size() >= CAPS.depth:
++			fail("ANCESTOR_DEPTH", source_phase)
++			return null
++		positions.push_front(cursor.get_index())
++		cursor = cursor.get_parent()
++	return {"native_id": native_id(node), "role": ids.get(node.get_instance_id(), null), "path": str(node.get_path()) if node.is_inside_tree() else null, "name": str(node.name), "class": node.get_class(), "positions": positions, "priority": node.get_process_priority(), "inside_tree": node.is_inside_tree(), "ordinary_physics": node.is_physics_processing(), "internal_physics": node.is_physics_processing_internal(), "ordinary_idle": node.is_processing(), "internal_idle": node.is_processing_internal()}
++
++func timer_state(timer):
++	if timer == null:
++		return null
++	if not timer is Timer:
++		fail("TIMER_REQUIRED", source_phase)
++		return null
++	return {"node": node_state(timer), "process_mode": timer.process_mode, "wait_time": encode(timer.wait_time), "time_left": encode(timer.time_left), "one_shot": timer.one_shot, "autostart": timer.autostart, "paused": timer.paused, "stopped": timer.is_stopped()}
++
++func state(object, schema):
++	if schema in ["item", "goobert"]:
++		var support_scripts = {62: ["ruby", "res://Items/RubyEgg.gd"], 179: ["book_ice", "res://Items/Exclusive/BookofIce.gd"], 332: ["mirror", "res://Items/Exclusive/MagicMirror.gd"], 374: ["shelly", "res://Items/Exclusive/Shelly.gd"]}
++		if support_scripts.has(object.descriptor.itemIndex):
++			var support = support_scripts[object.descriptor.itemIndex]
++			if not source_is(object, support[1]):
++				fail("SUPPORT68_SCRIPT_IDENTITY", source_phase)
++				return {}
++			schema = support[0]
++		if object.descriptor.itemIndex == 32:
++			schema = "magic_staff"
++		if object.descriptor.itemIndex == 209:
++			schema = "burning_torch"
++		if object.descriptor.itemIndex == 39:
++			schema = "collar"
++		if object.descriptor.itemIndex == 3:
++			schema = "broom"
++		if object.descriptor.itemIndex in [19,35,36,37,46,172]:
++			schema = "potion"
++		if object.descriptor.itemIndex == 172:
++			schema = "mana_potion"
++		if object.descriptor.itemIndex == 235:
++			schema = "poison_shortbow"
++		if object.descriptor.itemIndex == 129:
++			schema = "berserker_bag"
++		if source_is(object, "res://Items/Goobert.gd"):
++			var index = object.descriptor.itemIndex
++			schema = "carrot" if index == 168 else "goobert"
++			var variants = {204: ["goobert", "res://Items/Exclusive/CheeseGoobert.gd"], 220: ["goobert", "res://Items/Exclusive/RainbowGoobertBerserker.gd"], 340: ["cupcake", "res://Items/Exclusive/CupcakeGoobert.gd"], 416: ["goobert", "res://Items/Exclusive/RainbowGoobertMage.gd"], 74: ["goobert", "res://Items/RainbowGoobert.gd"], 169: ["goobert", "res://Items/RainbowGoobertRanger.gd"], 219: ["goobert", "res://Items/Exclusive/RainbowGoobertPyromancer.gd"], 401: ["goobert", "res://Items/Exclusive/RainbowGoobertAdventurer.gd"], 469: ["rainbow_engineer", "res://Items/Exclusive/RainbowGoobertEngineer.gd"], 53: ["light", "res://Items/LightGoobert.gd"], 54: ["blood", "res://Items/BloodGoobert.gd"], 52: ["steel", "res://Items/SteelGoobert.gd"], 400: ["broccoli", "res://Items/Exclusive/BroccoliGoobert.gd"], 468: ["toast", "res://Items/Exclusive/ToastGoobert.gd"]}
++			if variants.has(index):
++				if not source_is(object, variants[index][1]):
++					fail("B_SCRIPT_IDENTITY", source_phase)
++					return {}
++				schema = variants[index][0]
++		elif source_is(object, "res://Items/Potion.gd"):
++			schema = "mana_potion" if object.descriptor.itemIndex == 172 else "potion"
++	if not STATE_SCHEMAS.has(schema):
++		fail("STATE_SCHEMA", source_phase)
++		return {}
++	if schema == "node":
++		return node_state(object)
++	if schema == "timer":
++		return timer_state(object)
++	var result = {}
++	for key in STATE_SCHEMAS[schema]:
++		if key == "descriptorIndex":
++			result[key] = encode(object.descriptor.itemIndex)
++		elif key == "sourceOwnerAvailable":
++			result[key] = encode(object.hasCharacter())
++		elif key in ["sourceCurrentVampirism", "sourceCurrentLucky", "sourceCurrentStamina", "sourceMaxStamina", "sourceAllowStaminaOverflow"]:
++			if not object.hasCharacter():
++				result[key] = encode(null)
++			elif key == "sourceCurrentVampirism":
++				result[key] = encode(object.character().getVampirism())
++			elif key == "sourceCurrentLucky":
++				result[key] = encode(object.character().getLucky())
++			elif key == "sourceCurrentStamina":
++				result[key] = encode(object.character().getCurrentStamina())
++			elif key == "sourceMaxStamina":
++				result[key] = encode(object.character().getMaxStamina())
++			else:
++				result[key] = encode(object.character().allowStaminaOverflow)
++		elif key == "affectedWeapons":
++			if object.affectedWeapons.size() > CAPS.array or not reserve_encoding(object.affectedWeapons.size() * 16):
++				fail("STEEL_CACHE_ARRAY_CAP", source_phase)
++				return {}
++			var weapons = []
++			var seen = {}
++			for weapon in object.affectedWeapons:
++				if not is_instance_valid(weapon) or not source_is(weapon, "res://Items/Item.gd") or not weapon.isWeapon() or not ids.has(weapon.get_instance_id()) or weapon.inventory != object.inventory or not weapon.canBeEmpowered() or seen.has(weapon.get_instance_id()):
++					fail("STEEL_WEAPON_REFERENCE", source_phase)
++					return {}
++				seen[weapon.get_instance_id()] = true
++				weapons.append(reference(weapon))
++			result[key] = {"type": "array", "values": weapons}
++		elif key == "native_id":
++			result[key] = native_id(object)
++		elif key == "allocation_counter":
++			result[key] = encode(object.combatLog.eventNum)
++		elif key == "event_count":
++			result[key] = encode(object.events.size())
++		elif key == "connection_count":
++			var count = 0
++			for emission in object.connections:
++				count += object.connections[emission].size()
++			result[key] = encode(count)
++		elif STATE_SCHEMAS[schema][key] in ["timer", "timer|null"]:
++			result[key] = timer_state(object.get(key))
++		else:
++			result[key] = encode(object.get(key))
++	return result
++
++func stamp():
++	var util = get_node_or_null("/root/Util")
++	var game = get_node_or_null("/root/Game")
++	var clock = null
++	if game != null and game.combatTimer != null:
++		clock = game.combatTimer.combatTime
++	return {"physics_frame": str(Engine.get_physics_frames()), "idle_frame": str(Engine.get_idle_frames()), "util_time": encode(util.time if util != null else null), "combat_time": encode(clock), "phase": source_phase}
++
++# Bound the JSON allocation before JSON.print; all stored values are copied primitives.
++func estimated_bytes(value, depth = 0):
++	if depth > CAPS.depth + 8:
++		return CAPS.record_bytes + 1
++	match typeof(value):
++		TYPE_NIL, TYPE_BOOL, TYPE_INT, TYPE_REAL:
++			return 32
++		TYPE_STRING:
++			if value.length() > CAPS.record_bytes:
++				return CAPS.record_bytes + 1
++			return 2 + value.to_utf8().size() * 6
++		TYPE_ARRAY, TYPE_DICTIONARY:
++			var n = 2
++			if value.size() > CAPS.array:
++				return CAPS.record_bytes + 1
++			for key in value:
++				if typeof(value) == TYPE_DICTIONARY:
++					n += estimated_bytes(key, depth + 1) + estimated_bytes(value[key], depth + 1) + 2
++				else:
++					n += estimated_bytes(key, depth + 1) + 1
++				if n > CAPS.record_bytes:
++					return n
++			return n
++	return CAPS.record_bytes + 1
++
++func write_record(channel, site, edge, subject, payload):
++	if failed or closed:
++		return false
++	if not CHANNEL_FILES.has(channel) or sequence >= CAPS.records:
++		return fail("RECORD_CAP_OR_CHANNEL", site)
++	var row = {"schema": "observer7-record/1", "sequence": sequence, "channel": channel, "site": site, "edge": edge, "subject": reference(subject), "stamp": stamp(), "payload": payload}
++	if estimated_bytes(row) > CAPS.record_bytes:
++		return fail("RECORD_PREALLOCATION_CAP", site)
++	var bytes = (JSON.print(row) + "\n").to_utf8()
++	if bytes.size() > CAPS.record_bytes or bytes.size() > CAPS.flush_bytes or total_bytes + bytes.size() > CAPS.total_bytes:
++		return fail("BYTE_CAP", site)
++	var filename = CHANNEL_FILES[channel]
++	var previous = file_sizes.get(filename, 0)
++	if previous + bytes.size() > CAPS.file_bytes:
++		return fail("FILE_BYTE_CAP", site)
++	var file = File.new()
++	var status = file.open(OUT.plus_file(filename), File.READ_WRITE if previous > 0 else File.WRITE)
++	if status != OK:
++		return fail("FILE_OPEN", site, status)
++	file.seek_end()
++	file.store_buffer(bytes)
++	file.flush()
++	var error = file.get_error()
++	file.close()
++	if error != OK:
++		return fail("FILE_WRITE", site, error)
++	file_sizes[filename] = previous + bytes.size()
++	total_bytes += bytes.size()
++	sequence += 1
++	return true
++
++func configure(registry):
++	if configured or registry.size() > CAPS.roles:
++		return fail("REGISTRY_RECONFIGURE_OR_CAP", "configure")
++	var roles_seen = {}
++	for id in registry:
++		if typeof(id) != TYPE_INT or typeof(registry[id]) != TYPE_STRING or roles_seen.has(registry[id]):
++			return fail("REGISTRY_ID_ROLE", "configure")
++		if registry[id].length() > CAPS.string_utf8 or registry[id].to_utf8().size() > CAPS.string_utf8:
++			return fail("ROLE_STRING_CAP", "configure")
++		roles_seen[registry[id]] = true
++		ids[id] = registry[id]
++	configured = true
++	return true
++
++func identity(object):
++	if not enabled:
++		return "UNOBSERVED"
++	if object == null:
++		return "null"
++	var id = object.get_instance_id()
++	if ids.has(id):
++		return ids[id]
++	fail("UNREGISTERED_SELECTED_REFERENCE", source_phase)
++	return "UNREGISTERED"
++
++func item_id(item):
++	return identity(item)
++
++func side(character):
++	return identity(character)
++
++func entry(site, object, arguments):
++	if failed or closed:
++		return
++	begin_encoding()
++	if site in ["Core/Buff.gd::init", "Core/Buff.gd::TemporaryStacks._init"]:
++		var source_id = native_id(object)
++		if source_id == null:
++			return
++		var source_type = "temporary" if site == "Core/Buff.gd::TemporaryStacks._init" else "buff"
++		var key = object.get_instance_id()
++		if source_types.has(key) and source_types[key] != source_type:
++			fail("SOURCE_TYPE_ID_COLLISION", site)
++			return
++		source_types[key] = source_type
++	if site in ["Items/Item.gd::_ready", "Items/Item.gd::prepare", "Core/Buff.gd::init"]:
++		var id = object.get_instance_id()
++		native_id(object)
++		if not source_lifetimes.has(id):
++			source_lifetimes[id] = {"scene": 0, "ready": 0, "prepare": 0, "buff_init": 0, "pooled": false}
++		var counter = "ready" if site == "Items/Item.gd::_ready" else ("prepare" if site == "Items/Item.gd::prepare" else "buff_init")
++		source_lifetimes[id][counter] += 1
++	source_phase = site + ":enter"
++	if site == "Core/Game.gd::prepareItems":
++		if not configured:
++			fail("MISSING_PREPREPARE_REGISTRY", site)
++		enabled = true
++	if site == "Core/Game.gd::activateItems":
++		activation_checkpoints += 1
++		if activation_checkpoints != 1:
++			fail("ACTIVATE_CHECKPOINT_MULTIPLE", site)
++	if site == "Core/Buff.gd::gainTemporary":
++		if active_buff_calls.size() >= CAPS.depth:
++			fail("BUFF_CONTEXT_DEPTH", site)
++		else:
++			active_buff_calls.append({"target": ids.get(object.character.get_instance_id(), null), "stack": buff_name(object.type), "reflect": arguments.reflect})
++	if site in ["Core/Game.gd::prepareItems", "Core/Game.gd::activateItems"]:
++		checkpoint(site, object, arguments.items)
++	var spec = SITES[site]
++	write_record(spec.channel, site, "enter", object, {"arguments": encode(arguments), "state": state(object, spec.state_schema)})
++
++func leave(site, object, value, edge):
++	if failed or closed:
++		return
++	begin_encoding()
++	if site in ["Items/ItemDescriptor.gd::instantiate", "Items/ItemDescriptor.gd::instantiate_pooled"]:
++		scene_instance(object, value, site.ends_with("instantiate_pooled"))
++	if site.begins_with("Core/CombatLog.gd::createEvent") and source_is(value, "res://Core/CombatEvent.gd"):
++		write_record("allocation", site, "allocation_complete", object, {"event_data": event_data(value)})
++	source_phase = site + ":" + edge
++	var spec = SITES[site]
++	write_record(spec.channel, site, edge, object, {"return_value": encode(value), "state": state(object, spec.state_schema)})
++	if site == "Core/Buff.gd::gainTemporary":
++		if active_buff_calls.empty():
++			fail("BUFF_CONTEXT_UNBALANCED", site)
++		else:
++			active_buff_calls.pop_back()
++	if site == "Sheets/ItemBook.gd::detectMentionedStacks":
++		metadata_ready = true
++	if site == "Core/Game.gd::combatEndDeferred":
++		enabled = false
++		closed = true
++
++func middle(site, edge, object, values):
++	if failed or closed:
++		return
++	begin_encoding()
++	source_phase = site + ":" + edge
++	if edge == "registration":
++		if connection_ids.size() >= CAPS.native_ids or connection_ids.has(values.funcRefID):
++			fail("CONNECTION_ID_CAP_COLLISION", site)
++		else:
++			connection_ids[values.funcRefID] = values.emissionID
++	if edge in ["receiver_attempt", "receiver_return"]:
++		if not connection_ids.has(values.funcRefID) or connection_ids[values.funcRefID] != values.emissionID:
++			fail("UNREGISTERED_CALLBACK_ID", site)
++	var payload = {}
++	for key in values:
++		if key in ["state", "buff", "timer", "entry"]:
++			payload[key] = values[key]
++		else:
++			payload[key] = encode(values[key])
++	var channel = "registration" if edge in ["registration", "receiver_attempt", "receiver_return"] else "allocation"
++	if edge in ["mode_instant", "queue_snapshot", "queue_clear", "temporary_append", "temporary_remove"]:
++		channel = "runtime"
++	write_record(channel, site, edge, object, payload)
++
++func timer_before(timer, operation, args, site):
++	if failed or closed:
++		return
++	source_phase = site + ":timer_before"
++	begin_encoding()
++	var raw_args = []
++	for arg in args:
++		raw_args.append(encode(arg))
++	write_record("runtime", site, "timer_before", timer, {"role": ids.get(timer.get_instance_id(), "native:" + str(timer.get_instance_id())), "operation": operation, "argc": args.size(), "args": raw_args, "public_before": timer_state(timer), "public_after": null})
++
++func timer_after(timer, operation, args, site):
++	if failed or closed:
++		return
++	source_phase = site + ":timer_after"
++	begin_encoding()
++	var raw_args = []
++	for arg in args:
++		raw_args.append(encode(arg))
++	write_record("runtime", site, "timer_after", timer, {"role": ids.get(timer.get_instance_id(), "native:" + str(timer.get_instance_id())), "operation": operation, "argc": args.size(), "args": raw_args, "public_before": null, "public_after": timer_state(timer)})
++
++func buff_name(buff_type):
++	var game = get_node("/root/Game")
++	for name in game.EventType:
++		if game.EventType[name] == buff_type:
++			return name
++	fail("BUFF_TYPE", source_phase)
++	return "INVALID"
++
++func buff_label(character, item, buff_type, branch, index):
++	return "buff:" + branch + ":" + side(character) + ":" + item_id(item) + ":" + buff_name(buff_type) + ":" + str(index)
++
++func reflect_label(character, item, buff_type):
++	return "reflect:" + side(character) + ":" + item_id(item) + ":" + buff_name(buff_type)
++
++func stack_pick_label(item, target, operation, index):
++	if target == null:
++		target = item.character()
++	return "random_stack:" + item_id(item) + ":" + side(target) + ":" + operation + ":" + str(index)
++
++func shortbow_debuff_label(item):
++	return "shortbow_debuff:" + item_id(item)
++
++func most_buff_label(item):
++	return "most_buff:" + item_id(item) + ":" + side(item.character())
++
++func damage_label(character, item, damage_source):
++	if item != null:
++		return "damage:" + item_id(item)
++	for pair in [[99, "fatigue"], [104, "spikes"], [108, "poison"]]:
++		if damage_source.hasType(pair[0]):
++			return pair[1] + ":" + side(character)
++	return ""
++
++func fraction_context(item, target, operation):
++	if not enabled:
++		return ""
++	return "fraction_shuffle:" + item_id(item) + ":" + side(target) + ":" + operation
++
++func context(label, kind):
++	var result = {"operation": null, "item": null, "target": null, "ordinal": null, "width": null, "branch": null, "stack": null, "reflect_argument": null}
++	var parts = label.split(":")
++	if label.begins_with("fraction_shuffle:"):
++		result.item = parts[1] + ":" + parts[2]
++		result.target = parts[3]
++		result.operation = parts[4]
++		result.ordinal = int(parts[5])
++		result.width = int(parts[6])
++	elif label.begins_with("shortbow_debuff:"):
++		result.item = parts[1] + ":" + parts[2]
++		result.operation = "shortbow_debuff"
++	elif label.begins_with("most_buff:"):
++		result.item = parts[1] + ":" + parts[2]
++		result.target = parts[3]
++		result.operation = "most"
++	elif label.begins_with("random_stack:"):
++		result.item = parts[1] + ":" + parts[2]
++		result.target = parts[3]
++		result.operation = parts[4]
++		result.ordinal = int(parts[5])
++	elif label.begins_with("buff:"):
++		result.branch = parts[1]
++		result.target = parts[2]
++		var is_null = parts[3] == "null"
++		result.item = "null" if is_null else parts[3] + ":" + parts[4]
++		result.stack = parts[4] if is_null else parts[5]
++		result.ordinal = int(parts[5] if is_null else parts[6])
++	elif label.begins_with("reflect:"):
++		result.branch = "reflect"
++		result.target = parts[1]
++		result.item = "null" if parts[2] == "null" else parts[2] + ":" + parts[3]
++		result.stack = parts[3] if parts[2] == "null" else parts[4]
++	if result.branch in ["resist", "amplify", "reflect"]:
++		if active_buff_calls.empty():
++			fail("MISSING_BUFF_SOURCE_CONTEXT", source_phase)
++		else:
++			var current = active_buff_calls.back()
++			if current.target != result.target or current.stack != result.stack:
++				fail("BUFF_SOURCE_CONTEXT_MISMATCH", source_phase)
++			result.reflect_argument = current.reflect
++	return result
++
++func primitive(site, kind, label, args, value):
++	if enabled and label != "" and not failed and not closed:
++		source_phase = site + ":return_native_primitive"
++		begin_encoding()
++		var raw_args = []
++		for arg in args:
++			raw_args.append(encode(arg))
++		write_record("primitive", site, "return_native_primitive", null, {"kind": kind, "label": label, "args": raw_args, "value": encode(value), "context": context(label, kind)})
++	return value
++
++func cooldown(item, low, high):
++	var value = get_node("/root/Util").rng.randf_range(low, high)
++	primitive("Items/Item.gd::adjustCooldown:" + ("belowMasterOpponent" if low == 0.975 else "other"), "randf_range", "cooldown:" + item_id(item), [low, high], value)
++	return value
++
++func fraction_shuffle(values, label):
++	if values.size() != 7:
++		fail("FRACTION_FIXED7", source_phase)
++		# Original unsupported route still executes once; it cannot be accepted.
++		values.shuffle()
++		return
++	var ordinal = 0
++	for i in range(6, 0, -1):
++		var value = randi()
++		primitive("fixed7fraction_shuffle", "global_u32", label + ":" + str(ordinal) + ":" + str(i + 1), [], value)
++		var index = value % (i + 1)
++		var previous = values[index]
++		values[index] = values[i]
++		values[i] = previous
++		ordinal += 1
++
++func export_data():
++	return {"schema": "observer7-status/1", "failed": failed, "first_error": first_error, "records": sequence, "bytes": total_bytes, "files": file_sizes.duplicate(), "activation_checkpoints": activation_checkpoints, "metadata_ready": metadata_ready, "genuine_enabled": false, "capture_complete": false}
++
++func scene_instance(descriptor, item, pooled):
++	if failed or closed:
++		return
++	begin_encoding()
++	var id = native_id(item)
++	var key = item.get_instance_id()
++	if not source_lifetimes.has(key):
++		source_lifetimes[key] = {"scene": 0, "ready": 0, "prepare": 0, "buff_init": 0, "pooled": false}
++	source_lifetimes[key].scene += 1
++	source_lifetimes[key].pooled = pooled
++	var particle = item.get_node_or_null("ParticleTimer")
++	write_record("lineage", "Items/ItemDescriptor.gd::instantiate_pooled" if pooled else "Items/ItemDescriptor.gd::instantiate", "scene_instance", item, {"descriptor_id": native_id(descriptor), "item_id": id, "item_index": encode(descriptor.itemIndex), "pooled": pooled, "scene_path": descriptor.scene.resource_path, "particle": timer_state(particle) if particle != null else null})
++
++func event_data(event):
++	var result = {"native_id": native_id(event)}
++	for key in ["id", "timestamp", "parentEvent", "origin", "target", "type", "params", "snapshot"]:
++		result[key] = encode(event.get(key))
++	return result
++
++func metadata(descriptor_ids):
++	if not metadata_ready or descriptor_ids.size() != CAPS.descriptors:
++		return fail("METADATA_NOT_READY_OR_75", "loaded_descriptors")
++	begin_encoding()
++	var wanted = {}
++	for id in descriptor_ids:
++		if wanted.has(id):
++			return fail("DUPLICATE_DESCRIPTOR_ID", "loaded_descriptors")
++		wanted[id] = true
++	var rows = []
++	var found = {}
++	var book = get_node("/root/ItemBook")
++	for descriptor in book.items.values():
++		if not wanted.has(descriptor.itemIndex):
++			continue
++		if found.has(descriptor.itemIndex):
++			return fail("DUPLICATE_LOADED_DESCRIPTOR", "loaded_descriptors")
++		found[descriptor.itemIndex] = true
++		var row = {}
++		for key in ["itemIndex", "identifier", "types", "tags", "gainedStacks", "removedStacks", "usedStacks", "hasBattleRageEffect", "descriptionKey"]:
++			row[key] = descriptor.get(key)
++		row.scene_path = descriptor.scene.resource_path
++		rows.append(encode(row))
++	if rows.size() != CAPS.descriptors:
++		return fail("MISSING_LOADED_DESCRIPTOR", "loaded_descriptors")
++	write_record("metadata", "Sheets/ItemBook.gd::detectMentionedStacks", "loaded_descriptors", book, {"descriptors": {"type": "array", "values": rows}, "locale": TranslationServer.get_locale()})
++	for descriptor in book.items.values():
++		if wanted.has(descriptor.itemIndex) and descriptor.hasBattleRageEffect and descriptor.itemIndex != 129:
++			return fail("PRECONDITION_UNSUPPORTED_RAGE", "loaded_descriptors", descriptor.itemIndex)
++	return not failed
++
++func selected_lineage(items, characters):
++	for character in characters:
++		for buff in character.buffs.values():
++			var id = buff.get_instance_id()
++			if not source_lifetimes.has(id) or source_lifetimes[id].buff_init != 1:
++				return fail("BUFF_LINEAGE_MISSING_REUSED", "selected_lineage")
++	for item in items:
++		var id = item.get_instance_id()
++		if not source_lifetimes.has(id):
++			return fail("ITEM_LINEAGE_MISSING", "selected_lineage")
++		var life = source_lifetimes[id]
++		if life.scene != 1 or life.ready != 1 or life.prepare != 0 or life.pooled:
++			return fail("ITEM_LINEAGE_REUSED_OR_PREPARED", "selected_lineage")
++	return not failed
++
++func checkpoint(site, game, items):
++	begin_encoding()
++	var rows = []
++	var nodes = []
++	append_node(nodes, "root_viewport", get_tree().get_root())
++	append_node(nodes, "game", game)
++	append_node(nodes, "util", get_node("/root/Util"))
++	append_node(nodes, "combat_timer", game.combatTimer)
++	append_node(nodes, "fatigue:start", game.combatTimer.fatigueStartTimer)
++	append_node(nodes, "fatigue:tick", game.combatTimer.fatigueTickTimer)
++	for character in [game.PLAYER, game.OPPONENT]:
++		var label = ids.get(character.get_instance_id(), "UNREGISTERED")
++		append_node(nodes, "character:" + label, character)
++		append_node(nodes, "tick:" + label, character.tickTimer)
++		for name in ["battleRageTimer", "autoRageTimer", "invulnerabilityTimer"]:
++			append_node(nodes, "aux:" + label + ":" + name, character.get(name))
++		for buff in character.buffs.values():
++			append_node(nodes, "buff:" + label + ":" + str(buff.type), buff.timer)
++	if items.size() > 128:
++		fail("CHECKPOINT_ITEM_CAP", site)
++		return
++	for item in items:
++		var schema = "carrot" if item.descriptor.itemIndex == 168 else ("goobert" if source_is(item, "res://Items/Goobert.gd") else "item")
++		var fields = state(item, schema)
++		var tween = item.movebackTween
++		rows.append({"instance": ids.get(item.get_instance_id(), null), "fields": fields, "dragged": encode(item.dragged), "moveback_running": encode(is_instance_valid(tween) and tween.is_valid()), "cachedAffectedItems": encode(item.cachedAffectedItems), "currentAffectedItems": encode(item.currentAffectedItems)})
++		append_node(nodes, "item:" + ids.get(item.get_instance_id(), "UNREGISTERED"), item)
++		if item.descriptor.itemIndex in [53, 168]:
++			append_node(nodes, "particle:" + ids.get(item.get_instance_id(), "UNREGISTERED"), item.particleTimer)
++	write_record("input", site, "checkpoint", game, {"environment": {"fps": encode(Engine.iterations_per_second), "scale": encode(Engine.time_scale), "paused": encode(get_tree().paused)}, "nodes": nodes, "items": rows, "source_resources": source_resources(game)})
++
++func append_node(rows, role, node):
++	if failed:
++		return
++	if rows.size() >= CAPS.sparse_nodes or not reserve_encoding(512):
++		fail("SPARSE_NODE_CAP", source_phase)
++		return
++	rows.append({"role": role, "node": node_state(node), "timer": timer_state(node) if node is Timer else null})
++
++# Pure runtime Script metadata, never load/preload or global gameplay class access.
++func source_is(value, expected_path):
++	if value == null or not is_instance_valid(value):
++		return false
++	var script = value.get_script()
++	for _depth in range(16):
++		if script == null:
++			return false
++		if script.resource_path == expected_path:
++			return true
++		script = script.get_base_script()
++	fail("SCRIPT_CHAIN_DEPTH", source_phase)
++	return false
++
++func is_temporary(value):
++	return value != null and is_instance_valid(value) and source_types.get(value.get_instance_id(), "") == "temporary"
++
++# Read-only SOURCE panel in lawful input checkpoints, never an injected model state.
++func source_resources(game):
++	var result = []
++	for character in [game.PLAYER, game.OPPONENT]:
++		var rows = []
++		for stack in range(100, 111):
++			var buff = character.buffs[stack]
++			rows.append({"stack": encode(stack), "resistChancePercent": encode(buff.resistChancePercent), "reflectChancePercent": encode(buff.reflectChancePercent), "cleanseProtectionChancePercent": encode(buff.cleanseProtectionChancePercent)})
++		result.append({"side": side(character), "native_id": native_id(character), "debuffReflectStacks": encode(character.debuffReflectStacks), "buffs": rows})
++	return result

@@ -1,0 +1,48 @@
+{
+  "Engine_constructions": 0,
+  "RNG_constructions": 0,
+  "candidate_imports": 0,
+  "completed_now": "Only AST calls/conditional order and output metadata; successful conservation/52 semantic controls not rerun.",
+  "corrected_source_order": {
+    "all_calls": {
+      "SeededRandom": [
+        1187
+      ],
+      "validate_runtime_inputs": [
+        1186,
+        1188
+      ]
+    },
+    "new_profile_branch": "At1186 new-profile predicate validates before default RNG1187. Successful DTO reused at1188; invalid validation raises before RNG. No candidate execution used."
+  },
+  "metadata_defect": "Dictionary overwrote the first same-named validate_runtime_inputs call with the fallback call at1188.",
+  "models": 0,
+  "native": 0,
+  "original_stderr": {
+    "path": "data/phase355-independent-source-review/static-first.stderr.txt",
+    "sha256": "4ee008a48208f7b0a4e85f28130ddf4515079df838fea20fe4d10bcc05359412",
+    "size": 445
+  },
+  "original_tool": {
+    "path": "tests/phase355_independent_static_review_v2.py",
+    "sha256": "502b2d5e0b291bd6e64c58f14a7c141badaa0a80e71860b4653135d35cfbd326",
+    "size": 7822
+  },
+  "original_tool_exit": 1,
+  "schema": "phase355-independent-static-output-completion/1",
+  "status": "CONSERVATION_SUCCESS_REUSED_METADATA_ORDER_CORRECTED",
+  "success_before_first_error": {
+    "author_owner_bytes": 704335,
+    "author_owner_leaves": 27,
+    "byte_conserved": 13,
+    "compiled_candidate_modules": 15,
+    "exact_fixed_A_conversion": true,
+    "old_function_counts": {
+      "engine.py": 211,
+      "genuine.py": 20
+    },
+    "total_old_functions": 231,
+    "whole_old_modules_inverse_AST": true
+  },
+  "success_evidence": "Original frozen tool straight-line assertions at lines64-100 completed before preserved failure at109; no separate per-layer snapshot was produced and none is invented."
+}

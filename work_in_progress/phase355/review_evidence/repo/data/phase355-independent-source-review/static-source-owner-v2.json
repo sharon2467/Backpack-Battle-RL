@@ -1,0 +1,20 @@
+{
+  "files": [
+    {
+      "path": "tests/phase355_independent_static_review_v2.py",
+      "sha256": "502b2d5e0b291bd6e64c58f14a7c141badaa0a80e71860b4653135d35cfbd326",
+      "size": 7822
+    }
+  ],
+  "preexecution_correction": {
+    "authority": "SOURCE/engine.py:221-230,323-330",
+    "old_tool": {
+      "path": "tests/phase355_independent_static_review.py",
+      "sha256": "07bc7d42122ab57a794085f8ad625ae111ed2781d04b73d9d294f5d1fa0ffa8e",
+      "size": 7729
+    },
+    "old_tool_executions": 0,
+    "reason": "SOURCE inspection found headless-layout/1 requires existing validate_fixture defaults schema1/game1.1.8/modeUnranked/round1/rulesdefault, not a new invented schema string; no control or candidate execution had occurred"
+  },
+  "schema": "phase355-independent-static-tool-v2-owner/1"
+}

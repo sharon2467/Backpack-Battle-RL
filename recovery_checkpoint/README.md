@@ -105,3 +105,5 @@ cp -rn recovery_checkpoint/verification_evidence/repo/. "$RECOVERED/workspace/py
 ```
 
 The additive355 SOURCE-only candidate and its27 owner leaves are independently inventoried at [work_in_progress/phase355](../work_in_progress/phase355/README.md). Its remaining dependencies and pending independent status are explicit; it is not part of production75. Copying either flat tree does not replace the formal engine. These are direct GitHub files, not a sequential archive chain. Current actual remote verification is in `VALIDATION.md`.
+
+SOURCE355 later failed independent profile↔old-patch provenance coupling. Its immutable source and exact independent failure records remain at `../work_in_progress/phase355/`; the separate356 shared-admission repair is at `../work_in_progress/phase356/`, with independent regression pending. Both are work in progress and do not replace production75. Follow their READMEs for additive recovery.

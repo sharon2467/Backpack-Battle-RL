@@ -1,0 +1,540 @@
+{
+  "Engine_constructions": 0,
+  "RNG_constructions": 0,
+  "candidate_imports": 0,
+  "controls": [
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "bool"
+      },
+      "expected": "accept",
+      "label": "fixed-A-SOURCE-fixture",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "single King outside predeclared fixed A fixture",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "class-bool",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "single King outside predeclared fixed A fixture",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "class-two",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "single King outside predeclared fixed A fixture",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "wrong-geometry",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "single King outside predeclared fixed A fixture",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "missing-King",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "single King outside predeclared fixed A fixture",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "wrong-HP",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "NoneType"
+      },
+      "expected": "accept",
+      "label": "new-profile-domain-only",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "NoneType"
+      },
+      "expected": "accept",
+      "label": "new-result-domain-only",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "single King finite genuine runtime/terminal required",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "input-wrong-mode",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "single King finite genuine runtime/terminal required",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "input-wrong-terminal_profile",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "single King finite genuine result/terminal required",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "result-wrong-mode",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "single King finite genuine result/terminal required",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "result-wrong-terminal_profile",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "NoneType"
+      },
+      "expected": "accept",
+      "label": "approved-old307-SOURCE-patch-alone",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "unrecognized finite original-source patch provenance",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "unknown-new-patch-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "NoneType"
+      },
+      "expected": "reject",
+      "label": "NEW_PROFILE_MUST_NOT_ACCEPT_OLD307_PATCH",
+      "pass_": false
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "label": "proof-defaults-local-scalar-only",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "single King source INT descriptorIndex",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "wrong-default-descriptorIndex",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "single King source INT activations",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "wrong-default-activations",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "single King source INT invuCharges",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "wrong-default-invuCharges",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "single King source REAL manaCost",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "wrong-default-manaCost",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "nonnegative bounded integer counter required",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "counter-BOOL",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "nonnegative bounded integer counter required",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "counter-REAL",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "finite BE64 required",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "REAL-NaN",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "label": "transport-only-eleven-framing-NOT-native-schema",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "exact eleven lawful source names; no expected files",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "extra-expected-file",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "exact eleven lawful source names; no expected files",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "missing-file",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "nonempty bounded raw source bytes required",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "nonbytes",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "physical source channel/order/global sequence observer7-input.jsonl",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "wrong-file-channel",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "physical source channel/order/global sequence observer7-lineage.jsonl",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "duplicate-cross-channel-sequence",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "physical source channel/order/global sequence observer7-input.jsonl",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "reverse-physical-sequence",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "physical source channel/order/global sequence observer7-input.jsonl",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "BOOL-sequence",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "physical source channel/order/global sequence observer7-input.jsonl",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "negative-sequence",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "physical source channel/order/global sequence observer7-input.jsonl",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "oversize-sequence",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "source JSONL final newline king-clock-passes.jsonl",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "missing-EOF-newline",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "source JSONL record cap king-ui-authority.jsonl",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "blank-line",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "duplicate source JSON key x",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "duplicate-JSON-key",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "'utf-8' codec can't decode byte 0xff in position 0: invalid start byte",
+        "type": "UnicodeDecodeError"
+      },
+      "expected": "reject",
+      "label": "invalid-UTF8",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "nonfinite source JSON constant NaN",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "nonfinite-JSON",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "nonfinite source JSON number",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "overflow-REAL",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "K1 Util primitive ABI only; no Mirror/global_u32",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "global-primitive-forbidden",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "source JSONL record cap king-ui-authority.jsonl",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "UI-record-cap",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "nonempty bounded raw source bytes required",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "RNG-file-cap",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "new frozen King typed observer SOURCE schema required",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "old-native-profile-delegation-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "proof/outcome observations leaked into runtime projection",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "runtime-proof-leak-fresh_facts",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "proof/outcome observations leaked into runtime projection",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "runtime-proof-leak-source_resources",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "proof/outcome observations leaked into runtime projection",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "runtime-proof-leak-rng_checkpoint",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "proof/outcome observations leaked into runtime projection",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "runtime-proof-leak-initial_rng",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "proof/outcome observations leaked into runtime projection",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "runtime-proof-leak-terminal_endpoint",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "proof/outcome observations leaked into runtime projection",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "runtime-proof-leak-source_defaults",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "proof/outcome observations leaked into runtime projection",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "runtime-proof-leak-cleanup",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "proof/outcome observations leaked into runtime projection",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "runtime-proof-leak-source_proof",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "proof/outcome observations leaked into runtime projection",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "label": "runtime-proof-leak-source_caches",
+      "pass_": true
+    }
+  ],
+  "executed": 52,
+  "expected_failclosed_violations": [
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "NoneType"
+      },
+      "expected": "reject",
+      "label": "NEW_PROFILE_MUST_NOT_ACCEPT_OLD307_PATCH",
+      "pass_": false
+    }
+  ],
+  "expected_reads": 0,
+  "input_builds": 0,
+  "models": 0,
+  "native": 0,
+  "positive_scope": "transport/domain/local default predicates only, never complete native admission",
+  "schema": "phase355-independent-pure-source-controls/1",
+  "source_caller": "compare_capture calls validate_result_profile before validate_provenance; validate_provenance calls validate_patch(report,diff) without profile",
+  "status": "SOURCE_COUNTEREXAMPLE_FOUND"
+}

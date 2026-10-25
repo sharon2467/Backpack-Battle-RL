@@ -1,0 +1,36 @@
+{
+  "Engine_constructions": 0,
+  "RNG_constructions": 0,
+  "byte_conserved": 13,
+  "candidate_imports": 0,
+  "changed": [
+    "native_replay_v8/engine.py",
+    "native_replay_v8/genuine.py"
+  ],
+  "compile": "PASS_NO_IMPORT",
+  "helper_calls": 0,
+  "inverse_old_modules_AST_equal_355": true,
+  "models": 0,
+  "native": 0,
+  "no_args_no_flags_unconditional_raise": true,
+  "preRNG_call_order": "STATIC_SOURCE_PASS_OBSERVED_AND_DIRECT_ENGINE_PATHS",
+  "schema": "phase356-static-repair-validation/1",
+  "semantic_controls_executed": 0,
+  "shared_gate": "require_single_king_admission",
+  "three_admission_sites": [
+    "genuine.validate_profile",
+    "genuine.validate_result_profile",
+    "engine.validate_runtime_inputs"
+  ],
+  "unchanged": [
+    "validate_patch",
+    "compare.py",
+    "all pure SOURCE helpers",
+    "all existing profile branches",
+    "headless",
+    "effects",
+    "PCG",
+    "TimerRuntime",
+    "FrameDriver"
+  ]
+}

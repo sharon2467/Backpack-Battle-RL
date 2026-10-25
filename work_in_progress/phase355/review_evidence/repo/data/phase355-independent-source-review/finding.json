@@ -1,0 +1,62 @@
+{
+  "candidate_source_freeze": {
+    "path": "data/phase355-king-finite-source/candidate-source-freeze.json",
+    "sha256": "30dfb7e97f037b9eee070498012bedcb269e96556d3f71e76e9ad2cf9f2a3085",
+    "size": 2744
+  },
+  "control_report": {
+    "path": "data/phase355-independent-source-review/controls-first-001/report.json",
+    "sha256": "dd23288927dc384e275dffbca37d62bb286abb7599fdaf2c0805cc618623f114",
+    "size": 13638
+  },
+  "counts": {
+    "Engine_constructions": 0,
+    "RNG_constructions": 0,
+    "candidate_imports": 0,
+    "executed_controls": 52,
+    "expected_outcomes_matched": 51,
+    "expected_reads": 0,
+    "input_builds": 0,
+    "invalid_composition_accepted": 1,
+    "models": 0,
+    "native": 0
+  },
+  "explanation": "Fixed-A new input/result profile predicates accept; the unchanged patch validator also accepts the real old307 support68 identity and static patch bytes. compare_capture invokes those checks independently, without passing the new profile into patch validation. This is a SOURCE predicate/caller counterexample, not a fabricated capture, full comparator PASS or Engine execution.",
+  "minimum_repair": "Keep old profile behavior intact. Until an exact new observer/patch closure is frozen, fail closed for the new profile at a shared admission boundary; alternatively explicitly bind new profile to its future patch identity and reject old identities. No collector implementation is required to add a closed pending gate.",
+  "not_claimed": [
+    "No complete new observer schema was created",
+    "No runtime DTO, input bundle, capture or model was constructed",
+    "Unknown future patch is rejected, but this does not reject an already-approved old patch for the new profile"
+  ],
+  "observed": {
+    "accepted": true,
+    "detail": {
+      "return_type": "NoneType"
+    },
+    "expected": "reject",
+    "label": "NEW_PROFILE_MUST_NOT_ACCEPT_OLD307_PATCH",
+    "pass_": false
+  },
+  "schema": "phase355-independent-first-source-finding/1",
+  "source_control": {
+    "path": "tests/phase355_independent_source_controls.py",
+    "sha256": "aa05d0385e74e9ec511e92758a7aa73c9b6fdb965aa2f6d3ff60afc142d5aab0",
+    "size": 11495
+  },
+  "source_locations": [
+    {
+      "lines": "75-80,147-152,267-278",
+      "path": "data/phase355-king-finite-source/staged/native_replay_v8/genuine.py"
+    },
+    {
+      "lines": "267-273,397-406",
+      "path": "data/phase355-king-finite-source/staged/native_replay_v8/compare.py"
+    }
+  ],
+  "source_owner": {
+    "path": "data/phase355-independent-source-review/source-owner.json",
+    "sha256": "ef9e0780151baa613ad2c7fa1b3cdb820ae63c7ef132612f86332a9e15667d51",
+    "size": 1836
+  },
+  "status": "BLOCKED_NEW_PROFILE_SOURCE_PATCH_COUPLING"
+}
