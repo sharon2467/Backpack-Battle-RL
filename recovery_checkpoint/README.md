@@ -1,8 +1,8 @@
 # Self-contained engineering recovery checkpoint
 
-This directory is the complete **GitHub-hosted recovery route**, not just the small Python demonstration. It contains the received original game code/resources/imports, the complete 243 base and support, the complete 343 work overlay, the final347 pause metadata plus the current cumulative352 engineering progress, fixed Linux runtime/dependency artifacts, and a standard-library restore tool. No Library file, old cloud workspace, old cache, or external checkpoint is needed to obtain the engineering files.
+This directory is the complete **GitHub-hosted recovery route**, not just the small Python demonstration. It contains the received original game code/resources/imports, the complete 243 base and support, the complete 343 work overlay, the final347 pause metadata plus the current cumulative354 engineering progress, fixed Linux runtime/dependency artifacts, and a standard-library restore tool. No Library file, old cloud workspace, old cache, or external checkpoint is needed to obtain the engineering files.
 
-The user explicitly resumed work on2026-10-25. **Formal bounded75 has now been promoted and independently verified**, including one actual isolated package CLI run. King and the complete engine/RL remain unfinished. The current cumulative352 work cut includes the frozen349 single-King candidate, the independently accepted350 finite-component evidence, all failed and repaired controllers, and four newly produced351 raw trajectories. Their strict cross-mode independent comparison is PENDING at this cut; King is not promoted. The source-only353 original-observer plan and unfinished checker sources are retained as actual work, not successful runtime evidence. Restore never automatically executes development, collection or training.
+The user explicitly resumed work on2026-10-25. **Formal bounded75 has now been promoted and independently verified**, including one actual isolated package CLI run. King and the complete engine/RL remain unfinished. The current cumulative354 work cut includes the frozen349 single-King candidate, the independently accepted350 finite-component evidence, all failed and repaired controllers, and four newly produced351 raw trajectories. Their first strict cross-mode independent comparison PASSED with all12 presealed negative controls rejected; King is not promoted. The source-only353 original-observer plan is retained as planning, and the complete351 checker with its independent FINAL evidence is retained. Future355 implementation is outside this cut. Restore never automatically executes development, collection or training.
 
 ## Recovery commands
 
@@ -12,6 +12,7 @@ Use Linux x86_64 and Python 3.12. The repository uses ordinary Git blobs, not pa
 git clone --single-branch --branch backpack/python-engine-checkpoint-20261025 \
   https://github.com/sharon2467/Backpack-Battle-RL.git backpack-checkpoint
 cd backpack-checkpoint
+CHECKPOINT_REPOSITORY=$PWD
 python3 -I -B -S recovery_checkpoint/restore.py \
   --destination /absolute/path/to/NEW-recovered-directory --profile full
 ```
@@ -68,15 +69,17 @@ LD_LIBRARY_PATH="$RUNTIME/engine:$RUNTIME/debian/usr/lib/x86_64-linux-gnu${LD_LI
 Or run the packaged minimal check against the recovered directory:
 
 ```sh
-python3 -I -B -S recovery_checkpoint/check_restored75.py \
+python3 -I -B -S "$CHECKPOINT_REPOSITORY/recovery_checkpoint/check_restored75.py" \
   --destination "$RECOVERED" --help-only
 ```
 
-This reads the current15 source identities and actual promotion/package owners, then invokes CLI help only. It does not initialize or run a battle. To read back the cumulative352 King work, failed cases and accepted finite-component evidence owners without executing any engine code, also run:
+This reads the current15 source identities and actual promotion/package owners, then invokes CLI help only. It does not initialize or run a battle. One historical owner references the saved352 ZIP by its old absolute path. Its exact whole bytes are already the retained public single part `parts/phase352-current.part001`. The explicit whitelist `owner-relocations.json` and the following helper materialize that20,488,014-byte historical artifact inside the new recovery directory, without reading the old cloud path or overwriting existing files. This is a separately receipted artifact copy, beyond the active logical-file count. Then read back cumulative354 King work and evidence owners:
 
 ```bash
-python3 -I -B -S recovery_checkpoint/check_restored_work.py \
-  --destination /tmp/backpack-recovered
+python3 -I -B -S "$CHECKPOINT_REPOSITORY/recovery_checkpoint/materialize_owner_artifacts.py" \
+  --destination "$RECOVERED"
+python3 -I -B -S "$CHECKPOINT_REPOSITORY/recovery_checkpoint/check_restored_work.py" \
+  --destination "$RECOVERED"
 ```
 
 Use the same destination supplied to restore. The historical68 checker and validation remain in the earlier commit/history; the official runtime bytes are unchanged. Future oracle collection uses a newly initialized pool from the recovered baseline and a separately reviewed collection plan. No old running process or private user account is restored.
@@ -89,6 +92,6 @@ Each part has its own size/SHA-256, every reconstructed archive has its whole si
 
 The original remote-clone verification is retained under `history/phase347-*`. The current work-cut remote recovery result is recorded in `VALIDATION.md`. Distinguish full archive/hash verification, actual active working-set materialization, a pure-Python smoke run, and a runtime version probe from a **fresh operating-system** or **full physical** restore. No new cloud environment is created by this procedure. Full historical oracle comparisons are retained as evidence, not rerun during publication.
 
-The inherited `coverage.owner_closure_paths` is the base347 planning statistic. All current cumulative payloads are active; current complete logical/physical counts are recomputed in the coverage fields. Current source/material review receipts are `progress-current-source-review.json` and `progress-current-material-review.json`; the348 receipts remain historical evidence. Cumulative352 remote active recovery and both output-only checkers passed; see `VALIDATION.md` and `validation.json` for exact identities, counts and validation limits.
+The inherited `coverage.owner_closure_paths` is the base347 planning statistic. All current cumulative payloads are active; current complete logical/physical counts are recomputed in the coverage fields. Current source/material review receipts are `progress-current-source-review.json` and `progress-current-material-review.json`; the348 receipts remain historical evidence. Cumulative352 remote active recovery and both output-only checkers passed; current354 verification is recorded separately; see `VALIDATION.md` and `validation.json` for exact identities, counts and validation limits.
 
 Current work remains a single complete logical index: ten fixed historical/original/runtime archives plus one cumulative progress archive. Earlier progress part files and manifests are retained as history. They are not a sequential patch chain. The active formal entry remains75; use the staged King source only within its documented experimental domain and validation gates.
