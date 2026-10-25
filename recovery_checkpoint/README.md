@@ -126,3 +126,5 @@ done
 ```
 
 Adjacent FILES.json inventories and frozen owners preserve exact stage identities. Reading later SOURCE snapshots never implies production promotion.
+
+Generated observation-producer SOURCE and its independent preparation are preserved at [phase359](../work_in_progress/phase359/README.md), with explicit schema/auxiliary-proof gaps. No runtime or original-game validation is implied.

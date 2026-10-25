@@ -1,0 +1,2059 @@
+{
+  "caveat": "Actual GD parse/VM getter conformance not executed; source-only proof and independent delta review pending",
+  "computed_branches": {
+    "allocation_counter": "object.combatLog.eventNum",
+    "connection_count": "read-only nested dictionary/array sizes",
+    "descriptorIndex": "object.descriptor.itemIndex",
+    "event_count": "object.events.size()",
+    "native_id": "Object.get_instance_id/class, immutable numeric/string identity"
+  },
+  "forbidden_observation_calls": [
+    "prepare",
+    "reset",
+    "cacheAffectedItemsForCombat",
+    "getAffectedItems",
+    "getP",
+    "getP_m",
+    "gain/use/change resource business APIs"
+  ],
+  "native_property_scope": "readonly public getters inherited old111/154; no claim of direct private Timer countdown",
+  "native_readonly": [
+    "Node instance/class/script/base_script/path/name/parent/index/priority/tree/processing flags/viewport lookup",
+    "Timer mode/wait/time_left/one_shot/autostart/paused/is_stopped",
+    "Engine frames/is_in_physics_frame/time_scale/fps",
+    "Particles2D scalar/flags and CanvasItem light visible/self_modulate",
+    "StreamPeerBuffer double serialization"
+  ],
+  "properties": [
+    {
+      "declarations": [
+        {
+          "declaration": "var activationsThisFrame: int = 0",
+          "line": 465,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "activationsThisFrame",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var cachedAffectedItems: Dictionary",
+          "line": 433,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "cachedAffectedItems",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "dictionary",
+      "schema": "item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var consumed: bool",
+          "line": 449,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "consumed",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "bool",
+      "schema": "item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var currentAffectedItems: Dictionary = {}",
+          "line": 432,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "currentAffectedItems",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "dictionary",
+      "schema": "item"
+    },
+    {
+      "field": "descriptorIndex",
+      "origin": "explicit computed branch; no object.get for this name",
+      "raw_kind": "int",
+      "schema": "item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var faceDirection = FaceDirection.UP",
+          "line": 404,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "faceDirection",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var iterationCooldown: float",
+          "line": 470,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "iterationCooldown",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var lastActivationTime: float = 0.0",
+          "line": 464,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "lastActivationTime",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var lastTriggerTime: float = 0.0",
+          "line": 466,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "lastTriggerTime",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var ownerType: int",
+          "line": 385,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "ownerType",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var placed: = false",
+          "line": 386,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "placed",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "bool",
+      "schema": "item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var speedScale: float = 0.0",
+          "line": 474,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "speedScale",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var triggerTime: float",
+          "line": 469,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "triggerTime",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var triggersThisFrame: int = 0",
+          "line": 467,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "triggersThisFrame",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var activationsThisFrame: int = 0",
+          "line": 465,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "activationsThisFrame",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "plain_item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var cachedAffectedItems: Dictionary",
+          "line": 433,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "cachedAffectedItems",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "dictionary",
+      "schema": "plain_item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var consumed: bool",
+          "line": 449,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "consumed",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "bool",
+      "schema": "plain_item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var currentAffectedItems: Dictionary = {}",
+          "line": 432,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "currentAffectedItems",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "dictionary",
+      "schema": "plain_item"
+    },
+    {
+      "field": "descriptorIndex",
+      "origin": "explicit computed branch; no object.get for this name",
+      "raw_kind": "int",
+      "schema": "plain_item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var faceDirection = FaceDirection.UP",
+          "line": 404,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "faceDirection",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "plain_item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var iterationCooldown: float",
+          "line": 470,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "iterationCooldown",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "plain_item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var lastActivationTime: float = 0.0",
+          "line": 464,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "lastActivationTime",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "plain_item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var lastTriggerTime: float = 0.0",
+          "line": 466,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "lastTriggerTime",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "plain_item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var ownerType: int",
+          "line": 385,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "ownerType",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "plain_item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var placed: = false",
+          "line": 386,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "placed",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "bool",
+      "schema": "plain_item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var speedScale: float = 0.0",
+          "line": 474,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "speedScale",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "plain_item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var triggerTime: float",
+          "line": 469,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "triggerTime",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "plain_item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var triggersThisFrame: int = 0",
+          "line": 467,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "triggersThisFrame",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "plain_item"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var activationsThisFrame: int = 0",
+          "line": 465,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "activationsThisFrame",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "potion"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var cachedAffectedItems: Dictionary",
+          "line": 433,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "cachedAffectedItems",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "dictionary",
+      "schema": "potion"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var consumed: bool",
+          "line": 449,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "consumed",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "bool",
+      "schema": "potion"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var currentAffectedItems: Dictionary = {}",
+          "line": 432,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "currentAffectedItems",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "dictionary",
+      "schema": "potion"
+    },
+    {
+      "field": "descriptorIndex",
+      "origin": "explicit computed branch; no object.get for this name",
+      "raw_kind": "int",
+      "schema": "potion"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var faceDirection = FaceDirection.UP",
+          "line": 404,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "faceDirection",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "potion"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var isFull: bool = true",
+          "line": 18,
+          "path": "Items/Potion.gd"
+        }
+      ],
+      "field": "isFull",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "bool",
+      "schema": "potion"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var iterationCooldown: float",
+          "line": 470,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "iterationCooldown",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "potion"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var lastActivationTime: float = 0.0",
+          "line": 464,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "lastActivationTime",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "potion"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var lastTriggerTime: float = 0.0",
+          "line": 466,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "lastTriggerTime",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "potion"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var ownerType: int",
+          "line": 385,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "ownerType",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "potion"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var placed: = false",
+          "line": 386,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "placed",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "bool",
+      "schema": "potion"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var speedScale: float = 0.0",
+          "line": 474,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "speedScale",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "potion"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var triggerTime: float",
+          "line": 469,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "triggerTime",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "potion"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var triggersThisFrame: int = 0",
+          "line": 467,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "triggersThisFrame",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "potion"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var activations: int",
+          "line": 7,
+          "path": "Items/Goobert.gd"
+        }
+      ],
+      "field": "activations",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "goobert"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var activationsThisFrame: int = 0",
+          "line": 465,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "activationsThisFrame",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "goobert"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "onready var activationsToTrigger = getP1()",
+          "line": 5,
+          "path": "Items/Goobert.gd"
+        }
+      ],
+      "field": "activationsToTrigger",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "goobert"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var cachedAffectedItems: Dictionary",
+          "line": 433,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "cachedAffectedItems",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "dictionary",
+      "schema": "goobert"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var consumed: bool",
+          "line": 449,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "consumed",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "bool",
+      "schema": "goobert"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var currentAffectedItems: Dictionary = {}",
+          "line": 432,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "currentAffectedItems",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "dictionary",
+      "schema": "goobert"
+    },
+    {
+      "field": "descriptorIndex",
+      "origin": "explicit computed branch; no object.get for this name",
+      "raw_kind": "int",
+      "schema": "goobert"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var faceDirection = FaceDirection.UP",
+          "line": 404,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "faceDirection",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "goobert"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var iterationCooldown: float",
+          "line": 470,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "iterationCooldown",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "goobert"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var lastActivationTime: float = 0.0",
+          "line": 464,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "lastActivationTime",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "goobert"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var lastTriggerTime: float = 0.0",
+          "line": 466,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "lastTriggerTime",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "goobert"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var ownerType: int",
+          "line": 385,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "ownerType",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "goobert"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var placed: = false",
+          "line": 386,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "placed",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "bool",
+      "schema": "goobert"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var speedScale: float = 0.0",
+          "line": 474,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "speedScale",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "goobert"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var triggerTime: float",
+          "line": 469,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "triggerTime",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "goobert"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var triggersThisFrame: int = 0",
+          "line": 467,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "triggersThisFrame",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "goobert"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "onready var activationParticles = $ActivationParticles",
+          "line": 7,
+          "path": "Items/Exclusive/KingGoobert.gd"
+        }
+      ],
+      "field": "activationParticles",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "auto_hide",
+      "schema": "king"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var activations: int",
+          "line": 7,
+          "path": "Items/Goobert.gd"
+        }
+      ],
+      "field": "activations",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "king"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var activationsThisFrame: int = 0",
+          "line": 465,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "activationsThisFrame",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "king"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "onready var activationsToTrigger = getP1()",
+          "line": 5,
+          "path": "Items/Goobert.gd"
+        }
+      ],
+      "field": "activationsToTrigger",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "king"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "onready var buffTimer = $BuffTimer",
+          "line": 8,
+          "path": "Items/Exclusive/KingGoobert.gd"
+        }
+      ],
+      "field": "buffTimer",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "timer",
+      "schema": "king"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var cachedAffectedItems: Dictionary",
+          "line": 433,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "cachedAffectedItems",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "dictionary",
+      "schema": "king"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var consumed: bool",
+          "line": 449,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "consumed",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "bool",
+      "schema": "king"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var currentAffectedItems: Dictionary = {}",
+          "line": 432,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "currentAffectedItems",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "dictionary",
+      "schema": "king"
+    },
+    {
+      "field": "descriptorIndex",
+      "origin": "explicit computed branch; no object.get for this name",
+      "raw_kind": "int",
+      "schema": "king"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var faceDirection = FaceDirection.UP",
+          "line": 404,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "faceDirection",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "king"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var invuCharges: int",
+          "line": 11,
+          "path": "Items/Exclusive/KingGoobert.gd"
+        }
+      ],
+      "field": "invuCharges",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "king"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var iterationCooldown: float",
+          "line": 470,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "iterationCooldown",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "king"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var lastActivationTime: float = 0.0",
+          "line": 464,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "lastActivationTime",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "king"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var lastTriggerTime: float = 0.0",
+          "line": 466,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "lastTriggerTime",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "king"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "onready var manaCost = getP(\"mana\")",
+          "line": 6,
+          "path": "Items/Exclusive/KingGoobert.gd"
+        }
+      ],
+      "field": "manaCost",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "king"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var ownerType: int",
+          "line": 385,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "ownerType",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "king"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var placed: = false",
+          "line": 386,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "placed",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "bool",
+      "schema": "king"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "onready var protectedBuffs = getP(\"buffs\")",
+          "line": 5,
+          "path": "Items/Exclusive/KingGoobert.gd"
+        }
+      ],
+      "field": "protectedBuffs",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "king"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var speedScale: float = 0.0",
+          "line": 474,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "speedScale",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "king"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var triggerTime: float",
+          "line": 469,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "triggerTime",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "king"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var triggersThisFrame: int = 0",
+          "line": 467,
+          "path": "Items/Item.gd"
+        }
+      ],
+      "field": "triggersThisFrame",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "king"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var allowStaminaOverflow: bool = false",
+          "line": 67,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "allowStaminaOverflow",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "bool",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var autoRageItem = null",
+          "line": 110,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "autoRageItem",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "native_ref|null",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var battleRageBonusDur: float = 0.0",
+          "line": 84,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "battleRageBonusDur",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "onready var battleRageTimer = $BattleRageTimer",
+          "line": 122,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "battleRageTimer",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "timer",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var buffProtectStacks: int = 0",
+          "line": 82,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "buffProtectStacks",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var critResistStacks: int = 0",
+          "line": 77,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "critResistStacks",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var critResistance: float = 0.0",
+          "line": 76,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "critResistance",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var critTokens: int = 0",
+          "line": 83,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "critTokens",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var curHealth: float",
+          "line": 58,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "curHealth",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var curStamina: float",
+          "line": 63,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "curStamina",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var damageResistance: float = 0.0",
+          "line": 73,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "damageResistance",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var debuffReflectStacks: int = 0",
+          "line": 81,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "debuffReflectStacks",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var healingEfficiency: float = 1.0",
+          "line": 72,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "healingEfficiency",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var invulBubbleVisible: = false",
+          "line": 105,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "invulBubbleVisible",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "bool",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var invulnerabilityItem = null",
+          "line": 70,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "invulnerabilityItem",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "native_ref|null",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "onready var invulnerabilityTimer = $InvulnerabilityTimer",
+          "line": 121,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "invulnerabilityTimer",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "timer",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var invulnerable: bool = false",
+          "line": 69,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "invulnerable",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "bool",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var isDead: bool",
+          "line": 55,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "isDead",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "bool",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var maxHealth: float = 30.0",
+          "line": 57,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "maxHealth",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var maxStamina: float = 5.0",
+          "line": 62,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "maxStamina",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var playerId: int",
+          "line": 50,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "playerId",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var stunnedDuration: float",
+          "line": 68,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "stunnedDuration",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var temporaryMaxHealth: float = 0.0",
+          "line": 59,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "temporaryMaxHealth",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var temporaryMaxStamina: float = 0.0",
+          "line": 64,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "temporaryMaxStamina",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var tickCounter: int",
+          "line": 109,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "tickCounter",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var typedDamageFactors = {}",
+          "line": 92,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "typedDamageFactors",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "dictionary",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var unhealingAmount: float = 0.0",
+          "line": 71,
+          "path": "Core/Character.gd"
+        }
+      ],
+      "field": "unhealingAmount",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "character"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var character: Node2D",
+          "line": 6,
+          "path": "Core/Buff.gd"
+        }
+      ],
+      "field": "character",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "native_ref|null",
+      "schema": "buff"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var cleanseProtectionChancePercent: float = 0.0",
+          "line": 17,
+          "path": "Core/Buff.gd"
+        }
+      ],
+      "field": "cleanseProtectionChancePercent",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "buff"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var current: int = 0",
+          "line": 7,
+          "path": "Core/Buff.gd"
+        }
+      ],
+      "field": "current",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "buff"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var nextTemporaryTimeout: int",
+          "line": 22,
+          "path": "Core/Buff.gd"
+        }
+      ],
+      "field": "nextTemporaryTimeout",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "buff"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var permanentStacks: int = 0",
+          "line": 8,
+          "path": "Core/Buff.gd"
+        }
+      ],
+      "field": "permanentStacks",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "buff"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var reflectChancePercent: float = 0.0",
+          "line": 15,
+          "path": "Core/Buff.gd"
+        }
+      ],
+      "field": "reflectChancePercent",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "buff"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var resistChancePercent: float = 0.0",
+          "line": 12,
+          "path": "Core/Buff.gd"
+        }
+      ],
+      "field": "resistChancePercent",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "buff"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var resistStacks: int = 0",
+          "line": 13,
+          "path": "Core/Buff.gd"
+        }
+      ],
+      "field": "resistStacks",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "buff"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var temporaryStacks: Array",
+          "line": 21,
+          "path": "Core/Buff.gd"
+        }
+      ],
+      "field": "temporaryStacks",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "temporary_array",
+      "schema": "buff"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var timer: Timer",
+          "line": 20,
+          "path": "Core/Buff.gd"
+        }
+      ],
+      "field": "timer",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "timer|null",
+      "schema": "buff"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var type: int",
+          "line": 4,
+          "path": "Core/Buff.gd"
+        }
+      ],
+      "field": "type",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "buff"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var amount: int",
+          "line": 347,
+          "path": "Core/Buff.gd"
+        }
+      ],
+      "field": "amount",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "temporary_constructor"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var item: Item",
+          "line": 349,
+          "path": "Core/Buff.gd"
+        }
+      ],
+      "field": "item",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "native_ref|null",
+      "schema": "temporary_constructor"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var timeout = Util.time + duration",
+          "line": 156,
+          "path": "Core/Buff.gd"
+        },
+        {
+          "declaration": "var timeout: float",
+          "line": 348,
+          "path": "Core/Buff.gd"
+        }
+      ],
+      "field": "timeout",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "temporary_constructor"
+    },
+    {
+      "field": "allocation_counter",
+      "origin": "explicit computed branch; no object.get for this name",
+      "raw_kind": "int",
+      "schema": "game"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var curClass = Classes.Ranger",
+          "line": 316,
+          "path": "Core/Game.gd"
+        }
+      ],
+      "field": "curClass",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "game"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var curMode = Mode.Unselected",
+          "line": 317,
+          "path": "Core/Game.gd"
+        }
+      ],
+      "field": "curMode",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "game"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var curRound: int = 1",
+          "line": 298,
+          "path": "Core/Game.gd"
+        }
+      ],
+      "field": "curRound",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "game"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var fightEnded: bool = true",
+          "line": 314,
+          "path": "Core/Game.gd"
+        }
+      ],
+      "field": "fightEnded",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "bool",
+      "schema": "game"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var roundResults = []",
+          "line": 318,
+          "path": "Core/Game.gd"
+        }
+      ],
+      "field": "roundResults",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "array",
+      "schema": "game"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var clockTime = 0.0",
+          "line": 5,
+          "path": "Utility/Util.gd"
+        }
+      ],
+      "field": "clockTime",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "util"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var frameCounter = 0",
+          "line": 3,
+          "path": "Utility/Util.gd"
+        }
+      ],
+      "field": "frameCounter",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "util"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var time = 0.0",
+          "line": 4,
+          "path": "Utility/Util.gd"
+        }
+      ],
+      "field": "time",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "util"
+    },
+    {
+      "field": "connection_count",
+      "origin": "explicit computed branch; no object.get for this name",
+      "raw_kind": "int",
+      "schema": "event_bus"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var loggingMode = LoggingMode.Instant",
+          "line": 8,
+          "path": "Utility/EventBus.gd"
+        }
+      ],
+      "field": "loggingMode",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "event_bus"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var signalQueue = []",
+          "line": 9,
+          "path": "Utility/EventBus.gd"
+        }
+      ],
+      "field": "signalQueue",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "array",
+      "schema": "event_bus"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var combatTime: float",
+          "line": 21,
+          "path": "Interface/CombatTimer/CombatTimer.gd"
+        }
+      ],
+      "field": "combatTime",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "combat_timer"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var fatigueCounter: int",
+          "line": 19,
+          "path": "Interface/CombatTimer/CombatTimer.gd"
+        }
+      ],
+      "field": "fatigueCounter",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "combat_timer"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "onready var fatigueStartTimer = $FatigueStartTimer",
+          "line": 7,
+          "path": "Interface/CombatTimer/CombatTimer.gd"
+        }
+      ],
+      "field": "fatigueStartTimer",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "timer",
+      "schema": "combat_timer"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "onready var fatigueTickTimer = $FatigueTickTimer",
+          "line": 14,
+          "path": "Interface/CombatTimer/CombatTimer.gd"
+        }
+      ],
+      "field": "fatigueTickTimer",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "timer",
+      "schema": "combat_timer"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var timeAdvance: float",
+          "line": 22,
+          "path": "Interface/CombatTimer/CombatTimer.gd"
+        }
+      ],
+      "field": "timeAdvance",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "float",
+      "schema": "combat_timer"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var eventNum: = - 1",
+          "line": 58,
+          "path": "Core/CombatLog.gd"
+        }
+      ],
+      "field": "eventNum",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "combat_log"
+    },
+    {
+      "field": "event_count",
+      "origin": "explicit computed branch; no object.get for this name",
+      "raw_kind": "int",
+      "schema": "combat_log"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var eventsLogged = 0",
+          "line": 254,
+          "path": "Core/CombatLog.gd"
+        }
+      ],
+      "field": "eventsLogged",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "int",
+      "schema": "combat_log"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var loggingFinished: = false",
+          "line": 62,
+          "path": "Core/CombatLog.gd"
+        }
+      ],
+      "field": "loggingFinished",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "bool",
+      "schema": "combat_log"
+    },
+    {
+      "field": "emitting",
+      "origin": "native Particles2D property; AutoHide has no _get/setget",
+      "raw_kind": "bool",
+      "schema": "auto_hide"
+    },
+    {
+      "field": "explosiveness",
+      "origin": "native Particles2D property; AutoHide has no _get/setget",
+      "raw_kind": "float",
+      "schema": "auto_hide"
+    },
+    {
+      "field": "lifetime",
+      "origin": "native Particles2D property; AutoHide has no _get/setget",
+      "raw_kind": "float",
+      "schema": "auto_hide"
+    },
+    {
+      "field": "one_shot",
+      "origin": "native Particles2D property; AutoHide has no _get/setget",
+      "raw_kind": "bool",
+      "schema": "auto_hide"
+    },
+    {
+      "field": "speed_scale",
+      "origin": "native Particles2D property; AutoHide has no _get/setget",
+      "raw_kind": "float",
+      "schema": "auto_hide"
+    },
+    {
+      "declarations": [
+        {
+          "declaration": "var timer",
+          "line": 3,
+          "path": "Utility/AutoHideParticles.gd"
+        }
+      ],
+      "field": "timer",
+      "getter": "direct declared script member; _get/setget absent in audited source chains",
+      "phase": "callee-bound state or actual checkpoint/cleanup/final",
+      "raw_kind": "timer|null",
+      "schema": "auto_hide"
+    },
+    {
+      "field": "visible",
+      "origin": "native Particles2D property; AutoHide has no _get/setget",
+      "raw_kind": "bool",
+      "schema": "auto_hide"
+    }
+  ],
+  "schema": "phase359-readonly-field-source-matrix/1",
+  "source_files": {
+    "Core/Buff.gd": {
+      "sha256": "3efabb72eb0b337e30ebc924347aba40bd1039a3c5f718b761b0ee78b48ab8bb",
+      "size": 8827
+    },
+    "Core/Character.gd": {
+      "sha256": "dc372965eaa048657caa1646d70aba85ff9b4b9677565eaa480bc195de027496",
+      "size": 48033
+    },
+    "Core/CombatLog.gd": {
+      "sha256": "502ba9802874c189798001a59c4135ca6591efaec80b007559760b12dc0bf638",
+      "size": 35028
+    },
+    "Core/Game.gd": {
+      "sha256": "f3688bfdf39b95a8ed6a77d9a7ad058a95a0aaa4bcb6d297bc953425add4b9c9",
+      "size": 145148
+    },
+    "Interface/CombatTimer/CombatTimer.gd": {
+      "sha256": "3e1bb3ac33ae78b399d98cfd7bdd6ddb35a337d3afa9f3347af660757cd3b7fd",
+      "size": 5769
+    },
+    "Items/Exclusive/KingGoobert.gd": {
+      "sha256": "2f852255072386a57757bceea38a9f5825e0d1299b6fa8ce2c55b14827385d0f",
+      "size": 1581
+    },
+    "Items/Goobert.gd": {
+      "sha256": "8fda35f3740fe787231d4c69c38eaab1938127c1a01e076df70252cc4212e723",
+      "size": 1076
+    },
+    "Items/Item.gd": {
+      "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f",
+      "size": 170717
+    },
+    "Items/Potion.gd": {
+      "sha256": "b4c0c7026fec662f50cd159f6f363cf78ab8abcc89c20bc770a97d02ee614a1a",
+      "size": 4922
+    },
+    "Utility/AutoHideParticles.gd": {
+      "sha256": "c18ceb3f6a489fd1fc69329155a182e1a658804c36e14651ecc546b450c53503",
+      "size": 531
+    },
+    "Utility/EventBus.gd": {
+      "sha256": "ff9a8424cacd109104dc1598c4d0fee8a285f125f3c89c54fb0f11c479b4f788",
+      "size": 2321
+    },
+    "Utility/Util.gd": {
+      "sha256": "596e7f7a9308ea03957e5c9f6e5cb43aa1591e1e0fd13217e2f2c70368970a36",
+      "size": 44381
+    }
+  }
+}

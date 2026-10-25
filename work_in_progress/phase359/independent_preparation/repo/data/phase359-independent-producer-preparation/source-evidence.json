@@ -1,0 +1,161 @@
+{
+  "conclusions": [
+    "canActivate body directly reads descriptor.canActivate;not blanket approval of every business getter.",
+    "cacheAffectedItemsForCombat writes cachedAffectedItems and prepare calls it/disables picking/resets chanceRng;observer must not call them.",
+    "getAffectedItems invokes other inventory/filter helpers when cacheempty;whole transitive purity not closed here,so no default readonly approval.",
+    "getP/getP_m shown read params/modifier tables;future getter use must still bind exact body/property/source and avoid missing-onready value synthesis."
+  ],
+  "consulted_frozen_pins": [
+    {
+      "path": "tests/phase358_king_observer_schema.py",
+      "sha256": "d8dabd87ffe0352ceb886ad3f25c2548d1e4412d13538da813ba77f8115947a7",
+      "size": 259033
+    },
+    {
+      "path": "data/phase358-king-schema-source-repair/schema-source-freeze.json",
+      "sha256": "e4782136ff842c2f4f88c5a4e17113ed400ce62026bdf9b4f9b71de3b73ad413",
+      "size": 811
+    },
+    {
+      "path": "data/phase358-independent-schema-review/review.json",
+      "sha256": "e0647acc824b085fd1eef9d4f5b8b00a61bf2fea6d1d133fdea46dfa6d9c22bc",
+      "size": 4007
+    },
+    {
+      "path": "data/phase358-independent-schema-review/owned-files.json",
+      "sha256": "74176fd9c66dfdfa59e79f99032ed5bd475d0cb4de7e84867a7b6aa652050b40",
+      "size": 5470
+    },
+    {
+      "path": "data/phase356-king-admission-source-repair/candidate-source-freeze.json",
+      "sha256": "a135fc774658dab7f9b16d9e9955252f700c030fb0fb661d7db0c06ec3424afb",
+      "size": 2783
+    },
+    {
+      "path": "data/phase353-king-native-source-plan/source-index.json",
+      "sha256": "80b779d8e8ed66913d96b24c5bf89e54acd4bc8f034f692098dad4acf1413f82",
+      "size": 21625
+    },
+    {
+      "path": "data/phase351-fixed-pure-input-plan/A.json",
+      "sha256": "b62bb554426aa9fd414a7dbe4f981b8fbb3e85028c4394236a0ccf40b7bb424d",
+      "size": 5561
+    },
+    {
+      "path": "data/phase355-king-finite-source/fixed-A-v8-fixture.json",
+      "sha256": "e969df30573a01e1ce7a0efa65a90b7f153d3e32636492cb6832ad705ee8c627",
+      "size": 5636
+    },
+    {
+      "path": "tests/phase307_native_profile.py",
+      "sha256": "6b96836d39a42572c60c340f688d2783a7ac2d961d45d1706b818760b9e0964c",
+      "size": 9472
+    },
+    {
+      "path": "tests/native_observer7_profile_111.py",
+      "sha256": "2ce9abc9a426bab37f0f7261679ae87be4b74d04e345cdf6a3d839bad790b92a",
+      "size": 12193
+    },
+    {
+      "path": "tests/native_observer7_profile_154.py",
+      "sha256": "f0cf7aaffee840d5a732fb60ec6f37d4173b6c6278960413143b5664c62eff87",
+      "size": 4856
+    },
+    {
+      "path": "tests/native_king_ui_137.py",
+      "sha256": "acc93586b6cfba3ee161d6053ed46ce39362deb3c48838c253f6be4404d76eb0",
+      "size": 11392
+    },
+    {
+      "path": "tests/native_king_rng_148.py",
+      "sha256": "00944b4d261f471bf91ee909dffa7881a2fd65089dab3b9291291f2373298e43",
+      "size": 5462
+    },
+    {
+      "path": "tests/native_king_clock_111.py",
+      "sha256": "7186ff9dddc463d2b6d01c39f86a2f8e58696e288706001188c22c9f860efb35",
+      "size": 19232
+    },
+    {
+      "path": "tests/phase355_input_source_contract.py",
+      "sha256": "a24914fc4ea7f89f3355e7e6f3e0645e37fb2353f862e1d2d612020b6cf210b0",
+      "size": 8565
+    }
+  ],
+  "getter_excerpts": [
+    {
+      "end": 1179,
+      "excerpt": "func getItemsInAffectedCells_cached(color = Affected.Primary) -> Array:\n\treturn getOwnOrPlayerInventory().getItemsInCells(getAffectedCellsInInventory_cached(color))\n\nfunc getItemsInAffectedCells(color = Affected.Primary) -> Array:\n\treturn getOwnOrPlayerInventory().getItemsInCells(getAffectedCellsInInventory(color))\n\nfunc countItemsInAffectedCells_cached(color = Affected.Primary) -> Dictionary:\n\treturn getOwnOrPlayerInventory().countItemsInCells(getAffectedCellsInInventory_cached(color))\n\nfunc getAffectedItems(color = Affected.Primary) -> Array:\n\tif not cachedAffectedItems.empty():\n\n\n\n\n\t\treturn cachedAffectedItems[color]\n\t\n\tvar items = []\n\tfor item in getItemsInAffectedCells_cached(color):\n\t\tif canAffect_color(item, color):\n\t\t\titems.push_back(item)\n\treturn items\n\nfunc getAffectedItems_nocache(color = Affected.Primary) -> Array:\n\tvar items = []\n\tfor item in getItemsInAffectedCells(color):\n\t\tif canAffect_color(item, color):\n\t\t\titems.push_back(item)\n",
+      "excerpt_sha256": "86b6d29e74e1bfbc6bb9b5af5e4799a53471652ef46423ae7cccb948195c1091",
+      "original_file_identity": {
+        "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f",
+        "size": 170717
+      },
+      "original_path_provenance": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "source": "Items/Item.gd",
+      "start": 1152
+    },
+    {
+      "end": 3351,
+      "excerpt": "func cacheAffectedItemsForCombat():\n\tfor color in Affected.values():\n\t\tcachedAffectedItems[color] = currentAffectedItems[color].keys()\n\n\nfunc prepare():\n\tcacheAffectedItemsForCombat()\n\t\n\tdisablePicking()\n\tchanceRng.reset()\n\tdamageRangeRng.reset()\n\tfor gem in getGemsNoNull():\n\t\tgem.prepare()\n",
+      "excerpt_sha256": "8bb25a2ed8347f97a7f1641d42136ef2ec4b92faba37c163d45f7dbbccd85ca3",
+      "original_file_identity": {
+        "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f",
+        "size": 170717
+      },
+      "original_path_provenance": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "source": "Items/Item.gd",
+      "start": 3339
+    },
+    {
+      "end": 3644,
+      "excerpt": "func canActivate() -> bool:\n\treturn descriptor.canActivate\n\n",
+      "excerpt_sha256": "26aacd26fe1d15146ac8f2e48d285031a397163b3578116e34c2f391661b53bb",
+      "original_file_identity": {
+        "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f",
+        "size": 170717
+      },
+      "original_path_provenance": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "source": "Items/Item.gd",
+      "start": 3642
+    },
+    {
+      "end": 3874,
+      "excerpt": "func getP(index) -> float:\n\treturn descriptor.getP(index)\n\nfunc getP_check(index) -> float:\n\tassert (descriptor.params[index] != 0)\n\treturn descriptor.params[index]\n\n",
+      "excerpt_sha256": "fcbc24889824c87754d2c9cd3af564f49060dc719034a064eebdfc15b21d7e90",
+      "original_file_identity": {
+        "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f",
+        "size": 170717
+      },
+      "original_path_provenance": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "source": "Items/Item.gd",
+      "start": 3868
+    },
+    {
+      "end": 3914,
+      "excerpt": "func getP_m(paramName: String) -> float:\n\tvar baseVal = getP(paramName)\n\treturn getParamModified(paramName, baseVal)\n\nfunc getParamModified(paramName: String, baseVal) -> float:\n\tvar baseParam = descriptor.paramBases[paramName]\n\treturn (baseVal + paramAdd.get(baseParam, 0)) * paramMult.get(baseParam, 1.0)\n\t\n\n\n",
+      "excerpt_sha256": "19e8fcaf4d80d325069be6a07ed8121d496109afadd0917e51409b54e7be4669",
+      "original_file_identity": {
+        "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f",
+        "size": 170717
+      },
+      "original_path_provenance": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "source": "Items/Item.gd",
+      "start": 3905
+    },
+    {
+      "end": 143,
+      "excerpt": "func getP(index) -> float:\n\tif typeof(index) == TYPE_INT:\n\t\treturn params[index]\n\telse:\n\t\treturn namedParams[index]\n\n",
+      "excerpt_sha256": "241dfc2013b41fb2f86dcb3c199faf0cccac0bf9a15e28cdb0d0ca8609679443",
+      "original_file_identity": {
+        "sha256": "5c4959baed459c1981bf0fb9c2d39ace7f99f916925b03b05e3359cd55694794",
+        "size": 8254
+      },
+      "original_path_provenance": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/ItemDescriptor.gd",
+      "source": "Items/ItemDescriptor.gd",
+      "start": 138
+    }
+  ],
+  "schema": "phase359-independent-preparation-source-evidence/1",
+  "scope": "Narrow getter/source excerpts only;no repeat15GD/103declaration audit,no newproducer source read/import/schema execution"
+}

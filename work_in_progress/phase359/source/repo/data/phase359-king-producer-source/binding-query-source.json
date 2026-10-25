@@ -1,0 +1,50 @@
+{
+  "actual_binding_receipt": "king-slot-bindings.json auxiliary proof pending12th schema/adapter admission",
+  "functions": [
+    {
+      "body": "func getTopLeftCell() -> Vector2:\n\tvar topLeft = Vector2(INF, INF)\n\tfor cell in occupiedCells:\n\t\ttopLeft.x = min(cell.x, topLeft.x)\n\t\ttopLeft.y = min(cell.y, topLeft.y)\n\treturn topLeft\n\n\n",
+      "function": "getTopLeftCell",
+      "path": "Items/Item.gd",
+      "sha256": "d44dc851db14d0b79ac0177eaa98027859e5b65fccf07cf6c963824133cbc931",
+      "size": 187
+    },
+    {
+      "body": "func getGemsNoNull() -> Array:\n\treturn Util.filterNull(getGems())\n\n",
+      "function": "getGemsNoNull",
+      "path": "Items/Item.gd",
+      "sha256": "4a653e589312486b376e7d7b7fde72d8acaadb831cf9132d3d7bbaae12ccfaa5",
+      "size": 67
+    },
+    {
+      "body": "func getGems() -> Array:\n\tvar gems = []\n\tfor socket in sockets:\n\t\tgems.push_back(socket.getGem())\n\treturn gems\n\n",
+      "function": "getGems",
+      "path": "Items/Item.gd",
+      "sha256": "a79e852a1e6e94c558efaeadfa6943776cfce6654ac46a6ce1b691e3ad8f92d1",
+      "size": 112
+    },
+    {
+      "body": "func getGem():\n\treturn gem\n\n",
+      "function": "getGem",
+      "path": "Items/GemSocket.gd",
+      "sha256": "87936eafbe5d42609a13f4bda6c06f9b2b7a760e766b7b8141f03aa309e20e1f",
+      "size": 28
+    },
+    {
+      "body": "func filterNull(arr: Array) -> Array:\n\tvar nonNull = []\n\tfor element in arr:\n\t\tif element != null:\n\t\t\tnonNull.push_back(element)\n\treturn nonNull\n\n",
+      "function": "filterNull",
+      "path": "Utility/Util.gd",
+      "sha256": "d5f4fac947aa0f07d6b899819f2074418bb9e4cd4fade17dce20d9ce47e436c5",
+      "size": 146
+    },
+    {
+      "body": "func getItems() -> Array:\n\treturn items\n\n",
+      "function": "getItems",
+      "path": "Core/Inventory.gd",
+      "sha256": "58e7a50a7462b83ab5faf6385257dedcc28558abee694c0dba8cafb85ff4e141",
+      "size": 41
+    }
+  ],
+  "getGemsNoNull": "getGems creates a fresh local array of direct socket.getGem member reads; filterNull creates another local array; no writes to sockets/items/inventory or business calls",
+  "inventory_order": "getItems returns live items array; observer reads only, never sorts/mutates it",
+  "source_only": "Exact original function bodies and no _get/setget in their declaring scripts; no getter called by author, independent SOURCE review pending"
+}

@@ -1,0 +1,463 @@
+{
+  "extra_readonly_originals": [
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Inventory.gd",
+      "sha256": "aa17f0ef93bcc57cd8e5f1ce19c463a0e0f077c711c0a787b030b35a3498ba6e",
+      "size": 27240
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/GemSocket.gd",
+      "sha256": "cc98f6294227b10e2113b8d10cd3bf4037b1d361815b738fb2ff0ae6dbb76814",
+      "size": 1117
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Utility/DamageResult.gd",
+      "sha256": "d559c66d10f4b43c1b0fa15db9a3ef74f6fe31362388ca81d320cb39dcaa02de",
+      "size": 1553
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Utility/DamageSource.gd",
+      "sha256": "6e0848d001b6cb62d9720bc2f56e35fb72d6ef4378fa6fe391a2e8bb4baf3378",
+      "size": 3790
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/CombatEvent.gd",
+      "sha256": "a20b0ab26aabd6c4ee4d4830bdb7c24bc8166c1878eb323d99cdf5b9ecc94142",
+      "size": 4641
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/ItemDescriptor.gd",
+      "sha256": "5c4959baed459c1981bf0fb9c2d39ace7f99f916925b03b05e3359cd55694794",
+      "size": 8254
+    }
+  ],
+  "original_GD_before": {
+    "Core/Buff.gd": {
+      "path": "data/phase298-native68-source/before-source/Core/Buff.gd",
+      "sha256": "3efabb72eb0b337e30ebc924347aba40bd1039a3c5f718b761b0ee78b48ab8bb",
+      "size": 8827
+    },
+    "Core/Character.gd": {
+      "path": "data/phase298-native68-source/before-source/Core/Character.gd",
+      "sha256": "dc372965eaa048657caa1646d70aba85ff9b4b9677565eaa480bc195de027496",
+      "size": 48033
+    },
+    "Core/CombatLog.gd": {
+      "path": "data/phase298-native68-source/before-source/Core/CombatLog.gd",
+      "sha256": "502ba9802874c189798001a59c4135ca6591efaec80b007559760b12dc0bf638",
+      "size": 35028
+    },
+    "Core/Game.gd": {
+      "path": "data/phase298-native68-source/before-source/Core/Game.gd",
+      "sha256": "f3688bfdf39b95a8ed6a77d9a7ad058a95a0aaa4bcb6d297bc953425add4b9c9",
+      "size": 145148
+    },
+    "Interface/CombatTimer/CombatTimer.gd": {
+      "path": "data/phase298-native68-source/before-source/Interface/CombatTimer/CombatTimer.gd",
+      "sha256": "3e1bb3ac33ae78b399d98cfd7bdd6ddb35a337d3afa9f3347af660757cd3b7fd",
+      "size": 5769
+    },
+    "Items/AcornCollar.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/AcornCollar.gd",
+      "sha256": "c5f20b31974472c7726a9ea7222844670edd2b4521e16428cf5a9d347fc595f0",
+      "size": 315
+    },
+    "Items/BloodAmulet.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/BloodAmulet.gd",
+      "sha256": "e6d651cc850dae13f16290561a79ee40f5e49ba952cadc3b115a1d576e49d563",
+      "size": 89
+    },
+    "Items/BloodGoobert.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/BloodGoobert.gd",
+      "sha256": "8501b1b9d2f957ff2576df7f2bff488399df51267b06e9f644db1b6e955a387b",
+      "size": 257
+    },
+    "Items/Broom.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Broom.gd",
+      "sha256": "bfaa9831117d21df5981c43ed5ce25aef7e8e1bfd9180279dfe04b09d1365d5f",
+      "size": 826
+    },
+    "Items/BurningTorch.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/BurningTorch.gd",
+      "sha256": "e4ec16db82e7c88a466eeaf1da0c69229968a879768c542c97e849de853809f4",
+      "size": 445
+    },
+    "Items/Carrot.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Carrot.gd",
+      "sha256": "a9e67dccd2fbb8d60cfcf69f1d9b44ce49877398c82f2f2f382875e079aef0bb",
+      "size": 154
+    },
+    "Items/CarrotGoobert.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/CarrotGoobert.gd",
+      "sha256": "c782d3e3fb531ee7403d4432bdd2fda3f6eac3e6a90d072461b7101f96724ec6",
+      "size": 712
+    },
+    "Items/Crossblades.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Crossblades.gd",
+      "sha256": "eccfad5532f04766d31db6a5aea6773974e263c066a29cea4186f053d8482ebd",
+      "size": 727
+    },
+    "Items/Dagger.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Dagger.gd",
+      "sha256": "7e658abe88aa49f8bf6a842061ff7cbc15a5ce44f107362358fe81fbd107d2f1",
+      "size": 173
+    },
+    "Items/Exclusive/BerserkerBag.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Exclusive/BerserkerBag.gd",
+      "sha256": "97a3c6bea9075f3e34bd40ccc8f74c308852ec0ddb25876e73c6ffb12e5ad322",
+      "size": 1154
+    },
+    "Items/Exclusive/BookofIce.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Exclusive/BookofIce.gd",
+      "sha256": "8c4b46afcd679f093869b63f402584c8c1c5322b0a71621fb6f941367072bc17",
+      "size": 518
+    },
+    "Items/Exclusive/BroccoliGoobert.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Exclusive/BroccoliGoobert.gd",
+      "sha256": "89470ce24475ad4b7683f8f8ff1d746d2b38160ae964b4e184ee7a6e07f924f3",
+      "size": 259
+    },
+    "Items/Exclusive/CheeseGoobert.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Exclusive/CheeseGoobert.gd",
+      "sha256": "2f337e13266b4fe70c9a800643f195b26c5063e524aed350bb02b348c176c2cd",
+      "size": 85
+    },
+    "Items/Exclusive/ChiliGoobert.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Exclusive/ChiliGoobert.gd",
+      "sha256": "5b9dc90b01fdc37e8ecbb9c1df13242b1b3453d9cd97ce448798345d9ebc517b",
+      "size": 69
+    },
+    "Items/Exclusive/CupcakeGoobert.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Exclusive/CupcakeGoobert.gd",
+      "sha256": "341e3670bb0ecfbecdf765ce288b90e10fc8e605dd08650cb10485e35ff45bde",
+      "size": 140
+    },
+    "Items/Exclusive/KingGoobert.gd": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/KingGoobert.gd",
+      "sha256": "2f852255072386a57757bceea38a9f5825e0d1299b6fa8ce2c55b14827385d0f",
+      "size": 1581
+    },
+    "Items/Exclusive/LuckyShortbow.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Exclusive/LuckyShortbow.gd",
+      "sha256": "b0a89ba570340e0ee8e10dd0879c36429b48a3daa08e4c9a5b26bd996e1b3f2a",
+      "size": 281
+    },
+    "Items/Exclusive/MagicMirror.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Exclusive/MagicMirror.gd",
+      "sha256": "a841a129b60215e66d78ff65434825dfa2191c66dd9b6b30e3def57fe5c0e087",
+      "size": 399
+    },
+    "Items/Exclusive/PoisonShortbow.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Exclusive/PoisonShortbow.gd",
+      "sha256": "ec04639ee3771a124f66a3a8abae2038de73229abc6b4f275d42d8eee8edb19a",
+      "size": 516
+    },
+    "Items/Exclusive/RainbowGoobertAdventurer.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Exclusive/RainbowGoobertAdventurer.gd",
+      "sha256": "1460de96b329698a0044416b82a24ed608a398831165b3252d08412160282f71",
+      "size": 232
+    },
+    "Items/Exclusive/RainbowGoobertBerserker.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Exclusive/RainbowGoobertBerserker.gd",
+      "sha256": "04850d634668367514661ef114d2248be4ef8c9f81fc5f1a33191cca2d1aae0d",
+      "size": 246
+    },
+    "Items/Exclusive/RainbowGoobertEngineer.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Exclusive/RainbowGoobertEngineer.gd",
+      "sha256": "8b2f707cd3435c95b9491463fcd5e75c28ac3b754b7c860fc62f8e9328ddfa19",
+      "size": 462
+    },
+    "Items/Exclusive/RainbowGoobertMage.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Exclusive/RainbowGoobertMage.gd",
+      "sha256": "5d0114122c75a1c4b711fdbc5ed173031756d08394cdbf358f0e86c22104e1b8",
+      "size": 229
+    },
+    "Items/Exclusive/RainbowGoobertPyromancer.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Exclusive/RainbowGoobertPyromancer.gd",
+      "sha256": "8434c2b05b866a798182b9689f77732666ac3ae29fd256d51bffa483b6ac65f1",
+      "size": 230
+    },
+    "Items/Exclusive/Shelly.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Exclusive/Shelly.gd",
+      "sha256": "f54c5410aa4c83649bee2007558a73bbef7eb208b126a6631bff9e73263465c6",
+      "size": 424
+    },
+    "Items/Exclusive/ShepherdsCrook.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Exclusive/ShepherdsCrook.gd",
+      "sha256": "95cb5457f674ebfd556014d55a1d2bc64a8af06a4fd07a88d6774217ef827d80",
+      "size": 372
+    },
+    "Items/Exclusive/ThornShortbow.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Exclusive/ThornShortbow.gd",
+      "sha256": "4571fc8e2b13a9be0a8a2e64f9f68866df913c8b083356a28d0c0d39365a6a5e",
+      "size": 291
+    },
+    "Items/Exclusive/ToastGoobert.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Exclusive/ToastGoobert.gd",
+      "sha256": "9aee3f0b40c928b7a720f20b77b496a04dde9eebaa76cb673aee0ad72dbd0825",
+      "size": 285
+    },
+    "Items/FalconBlade.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/FalconBlade.gd",
+      "sha256": "49fdefbe1d945718846c54270991e7740122e79e253e18600c0010473e03ce06",
+      "size": 899
+    },
+    "Items/Food.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Food.gd",
+      "sha256": "e0ff858b55f1f5a2d8e1b06ee155a4f7444ba7f4cd903bbee2b09780bfb20a23",
+      "size": 187
+    },
+    "Items/GlovesofHaste.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/GlovesofHaste.gd",
+      "sha256": "364a36db81b4a7c1f07d465aa3422eb3091dc61265c210d60276ab28cc2f8274",
+      "size": 201
+    },
+    "Items/Goobert.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Goobert.gd",
+      "sha256": "8fda35f3740fe787231d4c69c38eaab1938127c1a01e076df70252cc4212e723",
+      "size": 1076
+    },
+    "Items/Hammer.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Hammer.gd",
+      "sha256": "398026354c8abb77f3a58118449f0c8bcff22e1b911ee72981f791f8cd9b0bac",
+      "size": 426
+    },
+    "Items/HealingHerbs.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/HealingHerbs.gd",
+      "sha256": "b3d217ddde35584372fe7daf320c1adb873443663c2f2e7921f4056117ce9f39",
+      "size": 74
+    },
+    "Items/HealthPotion.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/HealthPotion.gd",
+      "sha256": "0b535483c8832de65ca689d42184d8d650699dd38897bf2e2c719e15edd153e6",
+      "size": 489
+    },
+    "Items/HeroLongsword.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/HeroLongsword.gd",
+      "sha256": "25960dff77790260dc90a55ce1d03481508a4099e016ae2e94bc9f0bf557be2e",
+      "size": 424
+    },
+    "Items/HeroSword.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/HeroSword.gd",
+      "sha256": "a7db8746cab812fb19d16de2961dfaabc9a7e5263facf0c8725d5e12ab8bfff0",
+      "size": 205
+    },
+    "Items/HungryBlade.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/HungryBlade.gd",
+      "sha256": "27951e7b636db455edb044da777332292ad794daac3d468b601b72ad86e396ee",
+      "size": 809
+    },
+    "Items/Item.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Item.gd",
+      "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f",
+      "size": 170717
+    },
+    "Items/ItemDescriptor.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/ItemDescriptor.gd",
+      "sha256": "5c4959baed459c1981bf0fb9c2d39ace7f99f916925b03b05e3359cd55694794",
+      "size": 8254
+    },
+    "Items/LeatherArmor.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/LeatherArmor.gd",
+      "sha256": "30b446a809322ee27e348ed6678baee6f03ccc36f85e6bf9b36d257e89ba8ebd",
+      "size": 134
+    },
+    "Items/LeatherBoots.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/LeatherBoots.gd",
+      "sha256": "1841675b9e83afc29e740ef54221dc5b8362ade68cab5fe954610a54ba0e885c",
+      "size": 531
+    },
+    "Items/LightGoobert.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/LightGoobert.gd",
+      "sha256": "e117cce691addbef0dbbe90d7f4828900e1050bb5d056621b930ba31957a3290",
+      "size": 802
+    },
+    "Items/MagicStaff.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/MagicStaff.gd",
+      "sha256": "bdc6aa5d90109e66f492af8d8808c268a638d0714a425d736411a0e337c67344",
+      "size": 558
+    },
+    "Items/ManaPotion.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/ManaPotion.gd",
+      "sha256": "ba964cb923f464a555383ba66c6cd55a3e6bd802060ead7544859888c7bc9d47",
+      "size": 670
+    },
+    "Items/PestilenceFlask.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/PestilenceFlask.gd",
+      "sha256": "4057c77eb3f23041caacf3070ca36631c95ef1c5f78b96aecd073648a6fa29ad",
+      "size": 463
+    },
+    "Items/PocketSand.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/PocketSand.gd",
+      "sha256": "aaa6ed7c772ac1af8567f85754902f85e8246dca2edb7cfe7b67aaecc9c33425",
+      "size": 70
+    },
+    "Items/PoisonGoobert.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/PoisonGoobert.gd",
+      "sha256": "03cc9c92ad2f2bc1d05ee680ae9f0554026df58269521abbdc036607bfd7342b",
+      "size": 74
+    },
+    "Items/Potion.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Potion.gd",
+      "sha256": "b4c0c7026fec662f50cd159f6f363cf78ab8abcc89c20bc770a97d02ee614a1a",
+      "size": 4922
+    },
+    "Items/RainbowGoobert.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/RainbowGoobert.gd",
+      "sha256": "76f13fe96cb5bcf56379314d09901b5368ece434367d29a965b08651eef7880e",
+      "size": 229
+    },
+    "Items/RainbowGoobertRanger.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/RainbowGoobertRanger.gd",
+      "sha256": "b30e1774409b76720be53771f83444f3df168cc56e711794dd0447f94b529e93",
+      "size": 227
+    },
+    "Items/RangerCollar.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/RangerCollar.gd",
+      "sha256": "b1e5989edb310ca502988f66dd2a4ec502d487bbbef2e2d1fae367916878509a",
+      "size": 416
+    },
+    "Items/RubyEgg.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/RubyEgg.gd",
+      "sha256": "96bb4db10885913fe6815bb63028e3e0aa82c646bf98e4a0fcd041afe1101b49",
+      "size": 330
+    },
+    "Items/SteelGoobert.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/SteelGoobert.gd",
+      "sha256": "e54aad5c3b097023e222cfcee7f3e5c0eeeb06b615b3f2c5596b1f5faa03adeb",
+      "size": 355
+    },
+    "Items/StoneSkinPotion.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/StoneSkinPotion.gd",
+      "sha256": "82d5cc87a25c04b992e4372983704f3e27ad8871fd0b79dfef658d91bfcf4a51",
+      "size": 326
+    },
+    "Items/StrongHealthPotion.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/StrongHealthPotion.gd",
+      "sha256": "a8c56715527b84607ea4525a71ab039989d22f538126e36c312f8268f94d86cb",
+      "size": 216
+    },
+    "Items/StrongStoneSkinPotion.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/StrongStoneSkinPotion.gd",
+      "sha256": "715187b3bb5734b79acd73b1af96123190317c098f3ea8b672f50941db8de420",
+      "size": 257
+    },
+    "Items/ThornWhip.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/ThornWhip.gd",
+      "sha256": "fce0b91011cad7a295aee43a89b0531fff2eaeae43064d224131cfc47d240ef6",
+      "size": 438
+    },
+    "Items/VampiricArmor.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/VampiricArmor.gd",
+      "sha256": "fb9008f6e56b6f4e965cd3466848552c743283d69c2e41552e267f661a975325",
+      "size": 180
+    },
+    "Items/WalrusTusk.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/WalrusTusk.gd",
+      "sha256": "5dfc859b22775138ce9a8b2ff12787fe83c9261c06137426cc599a49cef5cf8b",
+      "size": 68
+    },
+    "Items/Weapon.gd": {
+      "path": "data/phase298-native68-source/before-source/Items/Weapon.gd",
+      "sha256": "6acd1030b6e29521647df3718d48a865bdaeaced19f3190cb310f63e890253a2",
+      "size": 298
+    },
+    "Sheets/ItemBook.gd": {
+      "path": "data/phase298-native68-source/before-source/Sheets/ItemBook.gd",
+      "sha256": "6b0f0b78c0ee1a0529e7740b424b157837b614cbd74c3e8f22886f9509cb9d84",
+      "size": 48708
+    },
+    "Utility/AutoHideParticles.gd": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Utility/AutoHideParticles.gd",
+      "sha256": "c18ceb3f6a489fd1fc69329155a182e1a658804c36e14651ecc546b450c53503",
+      "size": 531
+    },
+    "Utility/BalancedRandom.gd": {
+      "path": "data/phase298-native68-source/before-source/Utility/BalancedRandom.gd",
+      "sha256": "cfd5d34cd03bd915aab84999862a1ca63f9bebaf519c8ec067241b921170266a",
+      "size": 1643
+    },
+    "Utility/BalancedRange.gd": {
+      "path": "data/phase298-native68-source/before-source/Utility/BalancedRange.gd",
+      "sha256": "3e54446c0a88186313170ca19275afbf9b75595bb9bb6b59c364dede4216cb3b",
+      "size": 493
+    },
+    "Utility/DamageSource.gd": {
+      "path": "data/phase298-native68-source/before-source/Utility/DamageSource.gd",
+      "sha256": "6e0848d001b6cb62d9720bc2f56e35fb72d6ef4378fa6fe391a2e8bb4baf3378",
+      "size": 3790
+    },
+    "Utility/EventBus.gd": {
+      "path": "data/phase298-native68-source/before-source/Utility/EventBus.gd",
+      "sha256": "ff9a8424cacd109104dc1598c4d0fee8a285f125f3c89c54fb0f11c479b4f788",
+      "size": 2321
+    },
+    "Utility/Util.gd": {
+      "path": "data/phase298-native68-source/before-source/Utility/Util.gd",
+      "sha256": "596e7f7a9308ea03957e5c9f6e5cb43aa1591e1e0fd13217e2f2c70368970a36",
+      "size": 44381
+    },
+    "project.godot": {
+      "path": "data/phase298-native68-source/before-source/project.godot",
+      "sha256": "2bac91bcf55a46a2ff8527a2b672692cb26c67ca38780e129eebc5b5d6a707dd",
+      "size": 34736
+    }
+  },
+  "source_getter_matrix": {
+    "path": "data/phase359-king-producer-source/field-getter-source-matrix.json",
+    "sha256": "a25db479e6d8424c60d1d9d14eed6b53770d1c226f7a0b960be0ea63f08e8bff",
+    "size": 64061
+  },
+  "sources": [
+    {
+      "path": "tests/phase358_king_observer_schema.py",
+      "sha256": "d8dabd87ffe0352ceb886ad3f25c2548d1e4412d13538da813ba77f8115947a7",
+      "size": 259033
+    },
+    {
+      "path": "tests/native_random_observer_sink_v7_154.gd",
+      "sha256": "c82a5224a29e8a82bb391c93267c2b8bcb2d70a2c29e945427d996c3eb59f309",
+      "size": 72441
+    },
+    {
+      "path": "data/phase307-observer-chance-source/native-source-freeze.json",
+      "sha256": "1827654015f3876db1637a34285dab4e8de21b94d2ddceb2d42221d4d9eb235a",
+      "size": 36161
+    },
+    {
+      "path": "data/phase353-king-native-source-plan/owned-files.json",
+      "sha256": "bf972aa05caf9d8e3ca441e5e9a615dd140aac9fd6291d7e21c67a4445488e72",
+      "size": 1058
+    },
+    {
+      "path": "data/phase356-king-admission-source-repair/candidate-source-freeze.json",
+      "sha256": "a135fc774658dab7f9b16d9e9955252f700c030fb0fb661d7db0c06ec3424afb",
+      "size": 2783
+    },
+    {
+      "path": "data/phase358-king-schema-source-repair/schema-source-freeze.json",
+      "sha256": "e4782136ff842c2f4f88c5a4e17113ed400ce62026bdf9b4f9b71de3b73ad413",
+      "size": 811
+    },
+    {
+      "path": "data/phase351-fixed-pure-input-plan/A.json",
+      "sha256": "b62bb554426aa9fd414a7dbe4f981b8fbb3e85028c4394236a0ccf40b7bb424d",
+      "size": 5561
+    },
+    {
+      "path": "data/phase355-king-finite-source/fixed-A-v8-fixture.json",
+      "sha256": "e969df30573a01e1ce7a0efa65a90b7f153d3e32636492cb6832ad705ee8c627",
+      "size": 5636
+    },
+    {
+      "path": "data/phase321-rainbow-king-source-plan/catalog-literal-for-layout-geometry.json",
+      "sha256": "29c0b08eb1b144317f525bb20f5aaa4b040ca3e6642aecadea78d49acd1fe5bc",
+      "size": 13299
+    },
+    {
+      "path": "data/phase359-independent-producer-preparation/contract.json",
+      "sha256": "9623900973925691e755d69083f64515819692cea7554d3476e294a7c042915a",
+      "size": 8185
+    }
+  ]
+}
