@@ -1,4 +1,4 @@
-# Current engineering status after SOURCE360
+# Current engineering status after SOURCE361 implementation
 
 Complete original-engine/RL migration remains IN_PROGRESS. Formal bounded75 is accepted; registry76, classes0/2. King262 is not production-admitted. Python is the production engine and Godot only the oracle. Pure combat scope excludes GUI/shop/economy/out-of-battle implementation. Strict typed events/order/parents/history/final/RNG/Timer comparison remains required; no expected-derived missing inputs or winrate substitutes.
 
@@ -7,7 +7,7 @@ Complete original-engine/RL migration remains IN_PROGRESS. Formal bounded75 is a
 - Schema357 false accepts are preserved.358 repair passed80 bounded SOURCE controls. Full actual carriers were not accepted.
 - Producer359:independent first24/24 SOURCE/text checks passed.43 exact inverse edits,68 inherited source paths and75 generated source identities were verified; readonly getter/control-flow and evalonce were reviewed.1pure-text generator import/6text hook calls; no GD parse/run/schema/model/native. Only this bounded SOURCE component is accepted.
 - Schema360:independent first56/56 controls passed (7 accepted/49 rejected), including one relation-only synthetic join positive.58 old functions/classes and103 prior sites are conserved;3 Goobert sites and separate auxiliary slot-binding proof have bounded SOURCE/schema coverage. The full actual12-carrier positive does not exist. No candidate/RNG/Engine/RuntimeDTO/model/native/expected access occurred.
-- Projection361 is design only in this checkpoint. The selected minimal option preserves the existing17-key UI validation-only ABI. UI is validated/stored, not a battle command or terminal driver; no15-source refactor is included. Input projection/sealer, collector/host, joint source admission and real original evidence are still pending.
+- Projection361 SOURCE is now implemented/frozen with independent review pending; its32-control preparation is preserved separately. The selected minimal option preserves the existing17-key UI validation-only ABI. UI is validated/stored, not a battle command or terminal driver; no15-source refactor is included. Projection/sealer implementation has not been executed or independently accepted. The true capture reader remains unconditionally closed before release/capture reads; collector/host, joint source admission and real original evidence are still pending.
 
 All frozen source, first failures, repairs, independent controls and bounded root acceptances are under ../work_in_progress/ at original repo-relative paths with adjacent FILES.json. Use the README additive supplement loop; these flat snapshots do not replace the formal15 or add a replay-transform chain.359review and360review_evidence hold current accepted component conclusions. Static declared-site counts are not runtime HIT/coverage.
 

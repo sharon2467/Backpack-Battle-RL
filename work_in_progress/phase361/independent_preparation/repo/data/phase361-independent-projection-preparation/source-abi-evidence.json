@@ -1,0 +1,169 @@
+{
+  "actual_UI_subscript_count": 10,
+  "counts": {
+    "input_builds": 0,
+    "models": 0,
+    "native": 0,
+    "new_API_calls": 0,
+    "schema_imports": 0
+  },
+  "engine_UI_subscripts": [
+    {
+      "expression": "data['ui_authority']",
+      "function": "_validate_processing_inputs",
+      "line": 827
+    },
+    {
+      "expression": "data['ui_authority']",
+      "function": "_validate_processing_inputs",
+      "line": 882
+    },
+    {
+      "expression": "data['ui_authority']",
+      "function": "_validate_processing_inputs",
+      "line": 882
+    },
+    {
+      "expression": "data['ui_authority']",
+      "function": "_validate_single_king_processing_inputs",
+      "line": 3493
+    },
+    {
+      "expression": "data['ui_authority']",
+      "function": "_validate_single_king_processing_inputs",
+      "line": 3547
+    },
+    {
+      "expression": "data['ui_authority']",
+      "function": "_validate_single_king_processing_inputs",
+      "line": 3547
+    },
+    {
+      "expression": "data['ui_authority']",
+      "function": "_validate_processing_inputs",
+      "line": 873
+    },
+    {
+      "expression": "data['ui_authority']",
+      "function": "_validate_processing_inputs",
+      "line": 884
+    },
+    {
+      "expression": "data['ui_authority']",
+      "function": "_validate_single_king_processing_inputs",
+      "line": 3538
+    },
+    {
+      "expression": "data['ui_authority']",
+      "function": "_validate_single_king_processing_inputs",
+      "line": 3549
+    }
+  ],
+  "functions": [
+    {
+      "body": "def run_input_bundle(bundle):\n    if type(bundle)is not dict or set(bundle)!={'schema','fixture','runtime','draws','synthetic_seed'}:\n        raise ValueError('unknown/missing input-only bundle fields')\n    if bundle['schema']!='native-v8-input-only/1':raise ValueError('unknown input bundle schema')\n    validate_fixture(bundle['fixture'])\n    runtime=validate_runtime_inputs(bundle['runtime'],bundle['fixture'])\n    if bundle['draws']is None:\n        if runtime.data['mode']=='genuine':raise ValueError('genuine requires actual direct primitive tape')\n        if type(bundle['synthetic_seed'])is not int:raise ValueError('explicit synthetic integer seed required')\n        rng=SeededRandom(bundle['synthetic_seed'])\n    else:\n        if bundle['synthetic_seed']is not None:raise ValueError('select either tape or synthetic seed')\n        rng=TapeRandom(bundle['draws'])\n    engine=CombatEngine(bundle['fixture'],rng,runtime)\n    result=engine.run()\n    if isinstance(rng,TapeRandom):rng.assert_consumed()\n    return result",
+      "end_line": 28,
+      "file": {
+        "path": "data/phase356-king-admission-source-repair/staged/native_replay_v8/observed.py",
+        "sha256": "0a04fb2b03e48cd1cd9a3e43425deddef56c7906105dadeaefafa81ac84a6fd1",
+        "size": 2323
+      },
+      "line": 12,
+      "name": "run_input_bundle"
+    },
+    {
+      "body": "def validate_runtime_inputs(runtime, fixture):\n    data = deepcopy(runtime.data if isinstance(runtime, RuntimeDTO) else runtime)\n    if _source_king_profile(data):\n        return _validate_source_king_runtime(data, fixture, runtime)\n    if _single_king_genuine_profile(data):\n        from .genuine import validate_single_king_fixture, require_single_king_admission\n        require_single_king_admission()\n        validate_single_king_fixture(fixture)\n    king = _has_king(fixture)\n    if king and _has_rage(fixture):\n        raise ValueError(\"combined King/rage runtime topology not admitted in this increment\")\n    integration = _integration_domain(data)\n    _keys(data, ('schema','mode','profile_id','checkpoint','environment','nodes','timer_lineage','initial_items',\n                 'prepare_order','activate_order','terminal_profile') + (('frame_clock','king_particles') if king else ()) + (('root_node','processing_nodes','inactive_auxiliaries','ui_authority')if integration else()), 'runtime')\n    if king:\n        if not ((data['mode']=='synthetic' and data['profile_id'] in (KING_PROFILE,KING_INTEGRATION_PROFILE)) or (data['mode']=='genuine' and data['profile_id'] in (KING_GENUINE_PROFILE, SINGLE_KING_GENUINE_PROFILE))) or data['terminal_profile']!=KING_TERMINAL:\n            raise ValueError('King requires an exact code-approved finite or explicit synthetic profile')\n        frame_clock=decode_clock(data['frame_clock'])\n        kings={i['instance_id'] for side in fixture['sides'] for i in side['items'] if i['item_index']==262}\n        _keys(data['king_particles'],kings,'King particle map')\n        for value in data['king_particles'].values():\n            if integration:\n                _keys(value,('activation','drag'),'distinct particle inputs')\n                for part in value.values():\n                    _keys(part,('node','getters'),'particle source interface')\n                    _king_particle_facts(part['getters'])\n            else:_king_particle_facts(value)\n    if any(type(data[k]) is not str for k in ('schema','mode','profile_id','terminal_profile')):\n        raise ValueError('runtime discriminants must be strings')\n    if data['schema'] != 'native-v8-runtime-input/1':\n        raise ValueError('BLOCKED_INHERITED_INPUT: missing v8 runtime schema')\n    if data['mode'] == 'genuine':\n        if data['profile_id'] not in GENUINE_PROFILES or data['terminal_profile'] not in GENUINE_TERMINAL_PROFILES:\n            raise ValueError('genuine/terminal profile is not code-approved; NOT_CAPTURE_READY')\n        from .genuine import validate_profile\n        validate_profile(data, fixture)\n    elif not king and (data['mode'] != 'synthetic' or data['profile_id'] != SYNTHETIC_PROFILE or data['terminal_profile'] != SYNTHETIC_TERMINAL):\n        raise ValueError('unsupported explicit synthetic profile')\n    _keys(data['environment'], ('fps','scale','paused','no_pending_gameplay_transform'), 'environment')\n    env = data['environment']\n    if type(env['fps']) is not int or env['fps'] != 60 or type(env['scale']) is not float or env['scale'] != 1.0:\n        raise ValueError('only declared60Hz scale1 profile')\n    if env['paused'] is not False or env['no_pending_gameplay_transform'] is not True:\n        raise ValueError('paused or unclosed gameplay transform')\n    _keys(data['checkpoint'], ('util_time_bits','combat_time_bits','source_phase'), 'checkpoint')\n    clock = _be_float(data['checkpoint']['util_time_bits'])\n    if clock < 0 or _be_float(data['checkpoint']['combat_time_bits']) != 0.0 or data['checkpoint']['source_phase'] != ('Core/Game.gd::activateItems:enter' if data['mode']=='genuine' else 'synthetic-before-activate'):\n        raise ValueError('invalid synthetic initial checkpoint')\n    if king and _float_bits(clock)!=_float_bits(frame_clock.util_time):\n        raise ValueError('King checkpoint and exogenous Util.time disagree')\n    ids = {i['instance_id'] for side in fixture['sides'] for i in side['items']}\n    for field_name in ('prepare_order','activate_order'):\n        order = data[field_name]\n        if type(order) is not list or any(type(i) is not str for i in order) or len(order) != len(ids) or set(order) != ids:\n            raise ValueError('runtime order must contain each instance once')\n    if data['prepare_order'] != data['activate_order']:\n        raise ValueError('unsupported different preparation/activation order')\n    _keys(data['initial_items'], ids, 'initial item table')\n    for identity, values in data['initial_items'].items():\n        _keys(values, ('lastActivationTime_bits','activationsThisFrame','lastTriggerTime_bits','triggersThisFrame',\n                      'dragged','moveback_running','cache_fresh'), 'initial limiter')\n        for key in ('lastActivationTime_bits','lastTriggerTime_bits'):\n            if _be_float(values[key]) < 0:\n                raise ValueError('negative source limiter time')\n        for key in ('activationsThisFrame','triggersThisFrame'):\n            if type(values[key]) is not int or not 0 <= values[key] <= 2147483647:\n                raise ValueError('invalid limiter counter')\n        if values['dragged'] is not False or values['moveback_running'] is not False or values['cache_fresh'] is not True:\n            raise ValueError('unknown picking/tween/cache lineage')\n    if _single_king_genuine_profile(data):\n        _validate_single_king_initials(data)\n    _validate_runtime_nodes(data,fixture,king)\n    if integration:_validate_processing_inputs(data,fixture)\n    if isinstance(runtime, RuntimeDTO):\n        if (type(runtime.prepare_order) is not tuple or runtime.prepare_order != tuple(data['prepare_order'])\n                or type(runtime.util_time) is not float or _float_bits(runtime.util_time) != _float_bits(clock)):\n            raise ValueError('RuntimeDTO convenience fields disagree with validated data')\n    return RuntimeDTO(data, tuple(data['prepare_order']), clock)",
+      "end_line": 1030,
+      "file": {
+        "path": "data/phase356-king-admission-source-repair/staged/native_replay_v8/engine.py",
+        "sha256": "9efd7b63729bcc9ab3086ec2edbb8919e4e589a670bc5858a1232fec386dca6d",
+        "size": 206349
+      },
+      "line": 953,
+      "name": "validate_runtime_inputs"
+    },
+    {
+      "body": "def _validate_single_king_initials(data):\n    zero = _float_bits(0.0)\n    for fields in data['initial_items'].values():\n        if any(fields[k] != zero for k in ('lastActivationTime_bits', 'lastTriggerTime_bits')):\n            raise ValueError('single King fresh constructor limiter times required')\n        if any(type(fields[k]) is not int or fields[k] != 0 for k in ('activationsThisFrame', 'triggersThisFrame')):\n            raise ValueError('single King fresh constructor limiter counters required')",
+      "end_line": 3468,
+      "file": {
+        "path": "data/phase356-king-admission-source-repair/staged/native_replay_v8/engine.py",
+        "sha256": "9efd7b63729bcc9ab3086ec2edbb8919e4e589a670bc5858a1232fec386dca6d",
+        "size": 206349
+      },
+      "line": 3462,
+      "name": "_validate_single_king_initials"
+    },
+    {
+      "body": "def _validate_single_king_processing_inputs(data,fixture):\n    from .genuine import validate_single_king_ui_authority, validate_single_king_fixture\n    authority=validate_single_king_ui_authority(data['ui_authority'])\n    # No guessed flags or caller-supplied verified booleans: raw complete carrier is revalidated.\n    if authority['unsupported']!=0:raise ValueError('NOT_ADMITTED: unsupported UI entry')\n    required=set(_required_roles(fixture))|AUX_ROLES|{'root_viewport','game'}\n    rows=data['processing_nodes']\n    if type(rows)is not list or len(rows)!=len(required):raise ValueError('single King processing association roles')\n    validate_single_king_fixture(fixture)\n    table={};native_ids=set();paths=set();positions=set();prefixes={}\n    for n in rows:\n        _keys(n,NODE_INPUT_KEYS,'processing node')\n        if n['role']not in required or n['role']in table or type(n['native_id'])is not str or re.fullmatch('[1-9][0-9]*',n['native_id'])is None or n['native_id']in native_ids:\n            raise ValueError('processing identity/role')\n        if n['inside_tree']is not True or type(n['path'])is not str or n['path']in paths or type(n['positions'])is not list or tuple(n['positions'])in positions:\n            raise ValueError('processing actual path/index')\n        names=n['path'].split('/')[1:]\n        if not(n['path']=='/root' or n['path'].startswith('/root/')) or len(names)!=len(n['positions']) or n['positions'][0]!=-1 or any(type(x)is not int or not 0<=x<=4096 for x in n['positions'][1:]) or n['name']!=names[-1]:raise ValueError('processing node coordinates')\n        if type(n['priority'])is not int or type(n['class'])is not str:raise ValueError('processing scalar types')\n        for flag in ('ordinary_physics','internal_physics','ordinary_idle','internal_idle'):\n            if type(n[flag])is not bool:raise ValueError('actual independent processing flags')\n        for j in range(1,len(names)+1):\n            key=tuple(n['positions'][:j]);value=tuple(names[:j])\n            if key in prefixes and prefixes[key]!=value:raise ValueError('raw processing prefix conflict')\n            prefixes[key]=value\n        table[n['role']]=n;native_ids.add(n['native_id']);paths.add(n['path']);positions.add(tuple(n['positions']))\n    root=table['root_viewport']\n    if data['root_node']!=root or root['path']!='/root' or root['positions']!=[-1] or root['priority']!=0 or root['class']!='Viewport' or not root['internal_physics'] or root['ordinary_physics'] or root['ordinary_idle']:\n        raise ValueError('unsupported actual root flags')\n    for node in data['nodes']:\n        actual=table[node['role']]\n        if any(node[k]!=actual[k]for k in ('path','positions','priority')):raise ValueError('model/raw topology mismatch')\n        if node['kind']=='timer' and actual['class']!='Timer':raise ValueError('Timer class')\n    for role,n in table.items():\n        if role=='root_viewport':continue\n        if n['internal_physics'] or n['internal_idle']:raise ValueError('nonroot initial internal callback')\n        flags=(n['ordinary_physics'],n['ordinary_idle'])\n        expected=(True,True)if role in ('util','game')else (True,False)if role.startswith('character:')else (False,True)if role.startswith('item:')else(False,False)\n        if flags!=expected:raise ValueError('unsupported initial ordinary membership '+role)\n    _keys(data['inactive_auxiliaries'],AUX_ROLES,'inactive auxiliary table')\n    for role,x in data['inactive_auxiliaries'].items():\n        _keys(x,('source_lemma','lineage','wait_time_bits','one_shot','process_mode'),'auxiliary fact')\n        if x['source_lemma']!=AUX_LEMMA or x['lineage']!='fresh_configured' or x['one_shot']is not True or type(x['process_mode'])is not int or x['process_mode']!=0 or table[role]['class']!='Timer':raise ValueError('source inactive auxiliary')\n        wait=_be_float(x['wait_time_bits'])\n        if wait<=0 or f32(wait)!=wait:raise ValueError('aux wait getter')\n    for identity,parts in data['king_particles'].items():\n        king=table['item:'+identity]\n        binds=[r['payload']for r in data['ui_authority']if r['kind']=='bind' and r['payload']['item_id']==king['native_id']]\n        if len(binds)!=1:raise ValueError('particle source binding')\n        for kind,part in parts.items():\n            n=part['node'];_keys(n,NODE_INPUT_KEYS,'actual particle node')\n            timer=table[('king_hide:'if kind=='activation'else'king_drag:')+identity]\n            if n['class']!='Particles2D' or n['role']is not None or n['native_id']!=binds[0][kind+'_id'] or timer['path'].rsplit('/',1)[0]!=n['path'] or timer['positions'][:-1]!=n['positions'] or n['name']!=n['path'].rsplit('/',1)[1] or n['inside_tree']is not True or type(n['priority'])is not int:\n                raise ValueError('distinct actual particle identity')\n            if n['native_id']in native_ids or any(n[k]is not False for k in ('ordinary_physics','internal_physics','ordinary_idle','internal_idle')):raise ValueError('continuous particle source inactive callback flags')\n            native_ids.add(n['native_id'])\n    first=data['ui_authority'][0];last=data['ui_authority'][-1];controls=last['payload']['controls']\n    if controls['root_id']!=root['native_id'] or any(controls[k]!=root[k]for k in ('ordinary_physics','internal_physics','ordinary_idle','internal_idle')):raise ValueError('UI/root flags disagree')\n    roles=next(r['payload']for r in data['ui_authority']if r['kind']=='roles')\n    for guard in roles['selected_guards']:\n        node=table.get('item:'+guard['role'])\n        if node is None or node['native_id']!=guard['item_id'] or guard['viewport_id']!=root['native_id']:raise ValueError('UI selected native association')\n    clock=decode_clock(data['frame_clock'])\n    if not(first['physics_frame']<=clock.physics_frame<=last['physics_frame'] and first['idle_frame']<=clock.idle_frame<=last['idle_frame']):raise ValueError('activation outside complete UI window')\n    # Source UI footer is authority only: it never ends the model or configures pass consumption.\n    _validate_single_king_topology(data, table)\n    return table",
+      "end_line": 3557,
+      "file": {
+        "path": "data/phase356-king-admission-source-repair/staged/native_replay_v8/engine.py",
+        "sha256": "9efd7b63729bcc9ab3086ec2edbb8919e4e589a670bc5858a1232fec386dca6d",
+        "size": 206349
+      },
+      "line": 3491,
+      "name": "_validate_single_king_processing_inputs"
+    },
+    {
+      "body": "def activate_from_checkpoint(self):\n        if self.king_mode and not self.frame_driver.activated:\n            if not self.prepared:raise ValueError('activate requires prepared combat')\n            return self.frame_driver.activate(lambda driver:self.activate_from_checkpoint())\n        if not self.prepared or self.activated:\n            raise ValueError('activation requires prepared/unactivated')\n        self.util_time = self.runtime_inputs.util_time\n        for identity, fields in self.runtime_inputs.data['initial_items'].items():\n            item = self.items[identity]\n            item.last_activation_time = _be_float(fields['lastActivationTime_bits'])\n            item.activations_this_frame = fields['activationsThisFrame']\n            item.last_trigger_time = _be_float(fields['lastTriggerTime_bits'])\n            item.triggers_this_frame = fields['triggersThisFrame']\n        self.activated = True\n        self._stop_timer('fatigue:start'); self._stop_timer('fatigue:tick')\n        self._start_timer('fatigue:start', 14.0)\n        if self.integration_mode:\n            self._set_source_processing('combat_timer',True,'CombatTimer.start')\n            for side in ('P','O'):\n                self._set_source_processing('character:'+side,True,'Character.combatStart')\n                self._start_timer('tick:'+side,0.0)\n        else:self._start_timer('tick:P', 0.0); self._start_timer('tick:O', 0.0)\n        # ALL preCombatStart before ANY combatStart.\n        for identity in self.preparation_order:\n            item = self.items[identity]\n            if item.has_cooldown:\n                item.iteration_cooldown = self.adjust_cooldown(item)\n                item.trigger_time = item.iteration_cooldown\n                self._set_item_cooldown(item,True,'Item.activateCooldown')\n                self.histories.tooltip(item, 9)\n            if item.item_index == 2:\n                self.add_bonus_damage(item, len(self.affected_items(item)))\n            elif item.item_index == 17:\n                self.change_debuff_resistance(item.side, 3)\n            elif item.item_index == 62:\n                self.change_debuff_reflection(item.side, item.definition[\"reflect_stacks\"])\n        for identity in self.preparation_order:\n            item = self.items[identity]\n            if item.item_index in (29, 82, 83, 84):\n                if item.item_index in (29, 82, 84):\n                    for affected in self.affected_items(item):\n                        self.add_bonus_damage(affected, item.definition[\"start_damage\"])\n                if item.item_index == 83:\n                    for affected in self.affected_items(item):\n                        self.add_speed(affected, item.definition[\"start_speed\"])\n                elif item.item_index == 84:\n                    for target in self.steel_secondary_cache[item.instance_id]:\n                        self.add_speed(self.items[target], item.definition[\"start_speed\"])\n                self.activate(item)\n            elif item.item_index == 351:\n                for affected in self.affected_items(item):\n                    self.add_bonus_damage(affected, item.definition[\"bonus_damage\"])\n                self.activate(item)\n            elif item.item_index == 26:\n                if any(other.item_index == 361 for other in self.side_items[item.side]):\n                    raise ValueError(\"unsupported Bagtacular Fanny Pack modifier\")\n                total_speed = item.definition[\"bag_speed\"]\n                active = False\n                for other in self.inside_items(item):\n                    if other.has_cooldown and not other.definition[\"bag\"]:\n                        other.speed_scale += total_speed\n                        self.histories.tooltip(other, 3)\n                        self.histories.tooltip(other, 9)\n                        active = True\n                if active:\n                    self.activate(item)\n            elif item.item_index == 54:\n                self.give_stack(item, item.side, \"Vampirism\", item.definition['vampirism'])\n                self.activate(item)\n            elif item.item_index == 28:\n                self.give_stack(item, item.side, \"Vampirism\", 1)\n                self.activate(item)\n            elif item.item_index == 209:\n                self.give_stack(item, item.side, \"Heat\", 2)\n                self.activate(item)\n            elif item.item_index == 62:\n                self.ruby_effect(item, False)\n            elif item.item_index == 50:\n                self.health_to_block(item,item.definition[\"start_health\"],item.definition[\"start_block\"])\n                self.give_stack(item,item.side,\"Vampirism\",item.definition[\"vampirism\"])\n                self.activate(item)\n            elif item.item_index == 17:\n                self.give_stack(item, item.side, \"Block\", 45)\n                self.activate(item)\n            elif item.item_index == 18:\n                for affected in self.affected_items(item):\n                    affected.speed_scale += 0.2\n                    self.histories.tooltip(affected, 3)\n                    self.histories.tooltip(affected, 9)\n                self.activate(item)\n            elif item.item_index == 48:\n                self.give_stack(item, item.side, \"Vampirism\", 2)\n                self.give_max_health(item, 20.0)\n                self.activate(item)\n            elif item.item_index == 24:\n                self.give_lucky(item, 1)\n                self.activate(item)\n                item.consumed = True\n            elif item.item_index in (7, 8, 20):\n                side = item.side if item.item_index in (7, 8) else (\"O\" if item.side == \"P\" else \"P\")\n                self.give_stack(item, side, {7: \"Regeneration\", 8: \"Spikes\", 20: \"Blind\"}[item.item_index],\n                                2 if item.item_index == 7 else 1)\n                self.activate(item)\n                item.consumed = True\n            elif item.item_index == 10:\n                for affected in self.affected_items(item):\n                    self.add_bonus_damage(affected, 1)\n                self.activate(item)\n        self.prepared = True",
+      "end_line": 1892,
+      "file": {
+        "path": "data/phase356-king-admission-source-repair/staged/native_replay_v8/engine.py",
+        "sha256": "9efd7b63729bcc9ab3086ec2edbb8919e4e589a670bc5858a1232fec386dca6d",
+        "size": 206349
+      },
+      "line": 1784,
+      "name": "activate_from_checkpoint"
+    },
+    {
+      "body": "class TapeRandom:\n    alignment='conditional_direct_native_primitive_returns'\n    def __init__(self, records):\n        if type(records) is not list:raise ValueError('primitive tape must be array')\n        from copy import deepcopy\n        self.records=deepcopy(records);self.position=0;self.audit=[]\n        for row in self.records:self._validate(row)\n    @staticmethod\n    def _validate(row):\n        if type(row) is not dict or type(row.get('label')) is not str or not row['label']:raise ValueError('invalid primitive label')\n        kind=row.get('kind');fields={'kind','label','args'}\n        if kind in ('randf','randf_range'):\n            if set(row)!=fields|{'value_bits'}:raise ValueError('unknown float primitive fields')\n            if type(row['args'])is not list or len(row['args'])!=(0 if kind=='randf'else 2):raise ValueError('bad float args')\n            args=[_float(x)for x in row['args']];value=_float(row['value_bits']);low,high=(0.0,1.0)if not args else(min(args),max(args))\n            if not low<=value<=high:raise ValueError('primitive return outside bounds')\n        elif kind=='randi_range':\n            if set(row)!=fields|{'value'}or type(row['args'])is not list or len(row['args'])!=2:raise ValueError('bad integer fields')\n            if any(type(v)is not int or not -(2**31)<=v<2**31 for v in row['args'])or type(row['value'])is not int or not min(row['args'])<=row['value']<=max(row['args']):raise ValueError('bad integer primitive')\n        elif kind=='global_u32':\n            if set(row)!=fields|{'value','context','ordinal','width'}or row['args']!=[]or type(row['value'])is not int or not 0<=row['value']<=4294967295:raise ValueError('bad global uint32')\n            _uint32_contract(row['label'],row['context'],row['ordinal'],row['width'])\n        else:raise ValueError('unknown direct primitive kind; old uniform/integer tapes are historical')\n    def _take(self,kind,label,args,extra=None):\n        if self.position>=len(self.records):raise ValueError('primitive tape exhausted: '+label)\n        row=self.records[self.position]\n        for key,value in dict(kind=kind,label=label,args=args,**(extra or {})).items():\n            if type(row.get(key))is not type(value)or row[key]!=value:raise ValueError('primitive tape mismatch at '+str(self.position)+':'+key)\n        self.position+=1;self.audit.append(dict(row));return _float(row['value_bits'])if'value_bits'in row else row['value']\n    def randf(self,label):return self._take('randf',label,[])\n    def randf_range(self,label,low,high):return self._take('randf_range',label,[_bits(low),_bits(high)])\n    def randi_range(self,label,low,high):\n        if type(low)is not int or type(high)is not int:raise ValueError('integer endpoints required')\n        return self._take('randi_range',label,[low,high])\n    def global_u32(self,label,context,ordinal,width):\n        _uint32_contract(label,context,ordinal,width)\n        return self._take('global_u32',label,[],dict(context=context,ordinal=ordinal,width=width))\n    def assert_consumed(self):\n        if self.position!=len(self.records):raise ValueError('unconsumed direct primitive tape')",
+      "end_line": 85,
+      "file": {
+        "path": "data/phase356-king-admission-source-repair/staged/native_replay_v8/randomness.py",
+        "sha256": "676d42a69937394dc1bd8ff23268a08dc41fe9604f7e56213bb968ab331b9139",
+        "size": 7063
+      },
+      "line": 47,
+      "name": "TapeRandom"
+    },
+    {
+      "body": "def require_single_king_admission():\n    \"\"\"No opening flag: future SOURCE must bind this profile to its new observer/patch.\n\n    Pure source validators are available for review. Runtime/result admission is\n    closed until a separately frozen observer/schema/patch contract is checked\n    jointly at every admission/comparison boundary; old patch acceptance cannot\n    substitute for that contract.\n    \"\"\"\n    raise ValueError('PENDING_SINGLE_KING_OBSERVER_PATCH_BINDING: new observer/schema/patch SOURCE not frozen')",
+      "end_line": 1048,
+      "file": {
+        "path": "data/phase356-king-admission-source-repair/staged/native_replay_v8/genuine.py",
+        "sha256": "fc7730527d1ef45a50811b6b019825c82979e2b5cfb460fad24130ec4a7ba7e3",
+        "size": 244592
+      },
+      "line": 1040,
+      "name": "require_single_king_admission"
+    }
+  ],
+  "preparation_metadata_first_errors": [
+    "In-memory expected8 UI subscripts assertion: actual10 because first/last have two AST expressions.",
+    "Design table parser first counted combined schema/mode/profile_id and prepare_order/activate_order rows together; split gives actual17. Both failures before writing or imports/semantic controls."
+  ],
+  "schema": "phase361-independent-source-abi-evidence/1",
+  "scope": "Only old SOURCE text/AST. All10 constant UI subscripts lie in two validator functions; no dispatch/callback executes UI. New implementations must prove equivalent dataflow.",
+  "sources": [
+    {
+      "path": "data/phase356-king-admission-source-repair/staged/native_replay_v8/observed.py",
+      "sha256": "0a04fb2b03e48cd1cd9a3e43425deddef56c7906105dadeaefafa81ac84a6fd1",
+      "size": 2323
+    },
+    {
+      "path": "data/phase356-king-admission-source-repair/staged/native_replay_v8/engine.py",
+      "sha256": "9efd7b63729bcc9ab3086ec2edbb8919e4e589a670bc5858a1232fec386dca6d",
+      "size": 206349
+    },
+    {
+      "path": "data/phase356-king-admission-source-repair/staged/native_replay_v8/randomness.py",
+      "sha256": "676d42a69937394dc1bd8ff23268a08dc41fe9604f7e56213bb968ab331b9139",
+      "size": 7063
+    },
+    {
+      "path": "data/phase356-king-admission-source-repair/staged/native_replay_v8/genuine.py",
+      "sha256": "fc7730527d1ef45a50811b6b019825c82979e2b5cfb460fad24130ec4a7ba7e3",
+      "size": 244592
+    }
+  ]
+}

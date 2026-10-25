@@ -1,0 +1,475 @@
+{
+  "actual_authorities": [
+    {
+      "path": "data/phase359-root-acceptance/accepted.json",
+      "sha256": "8fbcb7148ee12aa424cf101daf39ddc04606db5938c36099cb2d9e873e34a770",
+      "size": 1257
+    },
+    {
+      "path": "data/phase360-root-acceptance/accepted.json",
+      "sha256": "23915057cc663ca2dc9f885159c2e62780787e48d576a6f98c6ba435a306dc5e",
+      "size": 1375
+    },
+    {
+      "path": "data/phase360-independent-schema-review/review.json",
+      "sha256": "7e0fad1907dbff5f488880d806e3d4ff63afe8a2d909c416c05189ee54669603",
+      "size": 3895
+    },
+    {
+      "path": "data/phase356-king-admission-source-repair/candidate-source-freeze.json",
+      "sha256": "a135fc774658dab7f9b16d9e9955252f700c030fb0fb661d7db0c06ec3424afb",
+      "size": 2783
+    }
+  ],
+  "actual_controls": 0,
+  "authority_spec": {
+    "path": "docs/phase361_king_projection_sealer_source_spec.md",
+    "sha256": "ec63db9b284e0ead47979d9cefb4fce858ff3c495ef4d8270777235b2f633da0",
+    "size": 13317
+  },
+  "bundle_exact": [
+    "schema",
+    "fixture",
+    "runtime",
+    "draws",
+    "synthetic_seed"
+  ],
+  "controls": [
+    {
+      "expected": "Exact actual359/360 SOURCE acceptance+owner pins required; no caller verified boolean",
+      "id": 1,
+      "kind": "SOURCE",
+      "label": "receipt-owner-closure",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Read only exact12 legal source leaves, no runtime/alloc/registration/events/final/endpoint/Game/pool",
+      "id": 2,
+      "kind": "SOURCE",
+      "label": "12-reader-whitelist",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Missing collector/schema/patch/host/provenance tuple refuses; no invented pins",
+      "id": 3,
+      "kind": "SOURCE",
+      "label": "future-closure-failclosed",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Newprofile+old307patch independently valid pieces cannot authorize",
+      "id": 4,
+      "kind": "SOURCE",
+      "label": "shared-profile-patch-binding",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Exact5 bundle/17 runtime keys, reject sixth proof business key",
+      "id": 5,
+      "kind": "SOURCE",
+      "label": "five-bundle17-runtime-ABI",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Only validator/storage uses; no UI command/initial-combat-state/end-stop writer",
+      "id": 6,
+      "kind": "SOURCE",
+      "label": "UI-read-writer-closure",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Every projected writer enumerated; no proof/default/resource/cache/RNGstate/terminal leakage",
+      "id": 7,
+      "kind": "SOURCE",
+      "label": "proof-resource-dataflow",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "All source/release/admission failures before TapeRandom/SeededRandom/Engine",
+      "id": 8,
+      "kind": "SOURCE",
+      "label": "pre-RNG-order",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "ExactA/classes/HP/layout/39roles, O13..19 not reenumerated",
+      "id": 9,
+      "kind": "PURE_FUTURE",
+      "label": "fixed-A39-O-hole",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Keep joined actual activation origin/combat0/sourcephase, no endpoint time",
+      "id": 10,
+      "kind": "PURE_FUTURE",
+      "label": "activation-clock-bits",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Only SOURCE+0bits/strictINT0; reject arbitrary prepared limiter state",
+      "id": 11,
+      "kind": "PURE_FUTURE",
+      "label": "constructor-limiter",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "charges3/Mana/protect/crown cannot become model initial state",
+      "id": 12,
+      "kind": "PURE_FUTURE",
+      "label": "prepared-private-resource-poison",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Caches remain validation/externalproof, never copied business arrays",
+      "id": 13,
+      "kind": "PURE_FUTURE",
+      "label": "cache-poison",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Seed/state cannot configure productionseed, generate tape or fill missing returns",
+      "id": 14,
+      "kind": "PURE_FUTURE",
+      "label": "RNG-checkpoint-poison",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Endframe/winner/count/endpoint not readable admitted input or stoppingcondition",
+      "id": 15,
+      "kind": "PURE_FUTURE",
+      "label": "terminal-poison",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Keep complete rawUI validation17th field; invalid evidence refuses, no repair/fallback",
+      "id": 16,
+      "kind": "PURE_FUTURE",
+      "label": "UI-only-compatible-proof",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Emptyargs and exact REAL valuebits retained",
+      "id": 17,
+      "kind": "PURE_FUTURE",
+      "label": "randf-original-bits",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Exact endpoint/valuebits except explicit SOURCE-listed roll INT0\u2192REAL+0",
+      "id": 18,
+      "kind": "PURE_FUTURE",
+      "label": "randf-range-and-known-coercion",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "INT endpoints/value retained; BOOL/REAL aliases and unknown coercion rejected",
+      "id": 19,
+      "kind": "PURE_FUTURE",
+      "label": "randi-strictINT",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "No sort/dedup/filter; map original sequence to draw",
+      "id": 20,
+      "kind": "PURE_FUTURE",
+      "label": "physical-row-order",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Original validated label/context, exact Tape row keys, no caller recontext",
+      "id": 21,
+      "kind": "PURE_FUTURE",
+      "label": "label-context-TapeABI",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Any global_u32 rejected; no Mirror exception",
+      "id": 22,
+      "kind": "PURE_FUTURE",
+      "label": "K1-global-refusal",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Singleton source return consumes row; never optimize or regenerate",
+      "id": 23,
+      "kind": "PURE_FUTURE",
+      "label": "singleton-kept",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Envelope/inner item/Character/Buff numeric\u2192symbol exactly; Mana105/Vampirism103",
+      "id": 24,
+      "kind": "PURE_FUTURE",
+      "label": "role-symbol-map",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "39 originalrefs through accepted native\u2192role aliases, prepare/activate/encounter views separate",
+      "id": 25,
+      "kind": "PURE_FUTURE",
+      "label": "actual-order-alias",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Wait/mode/oneshot/topology only; missingbirth/owner/no-start fails, no public0/private-1 inference",
+      "id": 26,
+      "kind": "PURE_FUTURE",
+      "label": "Timer-fresh-only",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Activation/drag nodes and promotedREAL32 SOURCE bits only, not prepared state",
+      "id": 27,
+      "kind": "PURE_FUTURE",
+      "label": "particle-default-bits",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Entire original ordered passes, no trimming/extra tail/endpoint-driven finish",
+      "id": 28,
+      "kind": "PURE_FUTURE",
+      "label": "full-external-clock",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Hash12 originals/readset/release before and after; translate copies only",
+      "id": 29,
+      "kind": "IO_FUTURE",
+      "label": "raw-immutability-before-pins",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Newdir+xb, collision/symlink/unknown outputs refuse without overwrite",
+      "id": 30,
+      "kind": "IO_FUTURE",
+      "label": "exclusive-output",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Readback bundle/proof/before then immediate jointseal, before summary",
+      "id": 31,
+      "kind": "IO_FUTURE",
+      "label": "jointseal-before-summary",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "First failedbuild/seal saved; no implicit secondbuild/model or fake actual12 positive",
+      "id": 32,
+      "kind": "IO_FUTURE",
+      "label": "firstfailure-no-retry",
+      "requires": "Frozen361 SOURCE+explicit root gate; missing actual closure stays failclosed; synthetic pure units never imply actual12 acceptance",
+      "status": "NOT_EXECUTED"
+    }
+  ],
+  "counts": {
+    "Engine": 0,
+    "RNG": 0,
+    "RuntimeDTO": 0,
+    "candidate_imports": 0,
+    "capture_reads": 0,
+    "expected_reads": 0,
+    "input_builds": 0,
+    "models": 0,
+    "native": 0,
+    "new_API_calls": 0,
+    "projection_calls": 0,
+    "schema_imports": 0
+  },
+  "current_guard": "356_UNCONDITIONAL_CLOSED",
+  "fixed_A": {
+    "path": "data/phase351-fixed-pure-input-plan/A.json",
+    "sha256": "b62bb554426aa9fd414a7dbe4f981b8fbb3e85028c4394236a0ccf40b7bb424d",
+    "size": 5561
+  },
+  "maximum_unique_controls": 48,
+  "model_external_proof": [
+    "input-proof.json",
+    "metadata/default/private/cache/resource validation",
+    "native RNG checkpoint seed/state",
+    "terminal/final/cleanup/endpoint"
+  ],
+  "not_claimed": "No actual or complete synthetic12 carrier positive, no projection acceptance. Static source reading is not semantic execution.",
+  "not_repeated": [
+    "35880",
+    "35924",
+    "36056"
+  ],
+  "pending": [
+    "Frozen361 reader/projection/sealer",
+    "Actual collector and fixedslot call/export12 closure",
+    "Joint profile/schema/patch/collector/projector candidate provenance",
+    "Root config/host/lease/archive/actual release"
+  ],
+  "planned_unique_controls": 32,
+  "runtime_exact": [
+    "schema",
+    "mode",
+    "profile_id",
+    "checkpoint",
+    "environment",
+    "nodes",
+    "timer_lineage",
+    "initial_items",
+    "prepare_order",
+    "activate_order",
+    "terminal_profile",
+    "frame_clock",
+    "king_particles",
+    "root_node",
+    "processing_nodes",
+    "inactive_auxiliaries",
+    "ui_authority"
+  ],
+  "runtime_field_sources": [
+    {
+      "classification": "EXPLICIT_EXTERNAL_OR_FRESH_ABI",
+      "consumer": "validator/observer\u6807\u8bc6\uff1b\u672c\u8eab\u4e0d\u4ea7\u751f\u6548\u679c",
+      "field": "schema",
+      "legal_source": "\u51bb\u7ed3\u65b0genuine\u4ee3\u7801\u5e38\u91cf\uff0c\u975eraw\u81ea\u7531\u503c"
+    },
+    {
+      "classification": "EXPLICIT_EXTERNAL_OR_FRESH_ABI",
+      "consumer": "validator/observer\u6807\u8bc6\uff1b\u672c\u8eab\u4e0d\u4ea7\u751f\u6548\u679c",
+      "field": "mode",
+      "legal_source": "\u51bb\u7ed3\u65b0genuine\u4ee3\u7801\u5e38\u91cf\uff0c\u975eraw\u81ea\u7531\u503c"
+    },
+    {
+      "classification": "EXPLICIT_EXTERNAL_OR_FRESH_ABI",
+      "consumer": "validator/observer\u6807\u8bc6\uff1b\u672c\u8eab\u4e0d\u4ea7\u751f\u6548\u679c",
+      "field": "profile_id",
+      "legal_source": "\u51bb\u7ed3\u65b0genuine\u4ee3\u7801\u5e38\u91cf\uff0c\u975eraw\u81ea\u7531\u503c"
+    },
+    {
+      "classification": "EXPLICIT_EXTERNAL_OR_FRESH_ABI",
+      "consumer": "validate_runtime_inputs\u68c0\u67e5\uff1bactivate_from_checkpoint\u8bbe\u7f6eUtil.time\u3002\u5408\u6cd5\u5916\u751f\u65f6\u949f\u539f\u70b9\uff0c\u4e0d\u662fHP/Mana\u7b49\u5185\u751f\u72b6\u6001",
+      "field": "checkpoint",
+      "legal_source": "activate entry\u5b9e\u9645Util.time\u3001combat_time=0\u53ca\u51c6\u786esource_phase\uff1b\u4e0eclock header join"
+    },
+    {
+      "classification": "EXPLICIT_EXTERNAL_OR_FRESH_ABI",
+      "consumer": "validator/scaffold\u73af\u5883\u7ea6\u675f\uff0c\u4e0d\u5141\u8bb8caller\u5e03\u5c14\u4ee3\u66ff\u6765\u6e90",
+      "field": "environment",
+      "legal_source": "\u5b9e\u9645\u5df2\u6821\u9a8c60Hz/scale1/unpaused\uff1bno_pending_gameplay_transform\u987b\u5b8c\u6574fresh/UI/placement\u6765\u6e90\u652f\u6301"
+    },
+    {
+      "classification": "EXPLICIT_EXTERNAL_OR_FRESH_ABI",
+      "consumer": "build_runtime_scaffold\u5efa\u7acb\u8c03\u5ea6\u6811/Timer\uff1b\u4e0d\u590d\u5236Timer time_left/private\u5269\u4f59\u91cf",
+      "field": "nodes",
+      "legal_source": "\u5b9e\u9645pre/act\u8fde\u7eed\u8eab\u4efd\u7684path\u3001positions\u3001priority\u3001kind\uff1bTimer\u53ea\u914d\u7f6ewait/oneShot/mode"
+    },
+    {
+      "classification": "EXPLICIT_EXTERNAL_OR_FRESH_ABI",
+      "consumer": "_validate_runtime_nodes\u68c0\u67e5\uff1bTimerRuntime\u6309\u771f\u5b9econstructor\u5efa\u7acbprivate\u72b6\u6001\uff0c\u4e0d\u80fd\u628apublic0\u53cd\u63a8\u22121",
+      "field": "timer_lineage",
+      "legal_source": "\u51fa\u751f/\u914d\u7f6e/owner/\u65e0start\u94fe\u9a8c\u8bc1\u540e\uff0c\u5199\u56fa\u5b9a\u8bed\u4e49fresh_configured"
+    },
+    {
+      "classification": "EXPLICIT_EXTERNAL_OR_FRESH_ABI",
+      "consumer": "_validate_single_king_initials\u9a8c\u8bc1\uff1bactivate_from_checkpoint\u5199\u56dblimiter\u5b57\u6bb5\u3002\u4e0d\u80fd\u4ece\u4efb\u610fact\u89c2\u5bdf\u56de\u586b\u65b0\u72b6\u6001",
+      "field": "initial_items",
+      "legal_source": "\u53eaSOURCE constructor limiter\u96f6\u503c\uff1aREAL+0\u65f6\u95f4\u3001INT0 counter\u3001dragged=false\u3001moveback=false\uff1bcache_fresh\u662ffresh\u95e8\u7ed3\u8bba\uff0c\u4e0d\u662fcache\u5185\u5bb9"
+    },
+    {
+      "classification": "EXPLICIT_EXTERNAL_OR_FRESH_ABI",
+      "consumer": "prepare\u771f\u5b9e\u904d\u5386\u3001effects\u53caactivation\u771f\u5b9e\u987a\u5e8f\uff1b\u4e0d\u662f\u6765\u81eaevent\u7ed3\u679c\u6216sorted targets",
+      "field": "prepare_order",
+      "legal_source": "Game\u4e24\u4e2a\u539f\u59cbentry\u7684items native refs\uff0c\u7ecf\u5df2\u9a8c\u8bc1alias\u8f6c\u539finstanceID\uff1b\u540439\u552f\u4e00\u4e14\u539f\u987a\u5e8f\u76f8\u7b49"
+    },
+    {
+      "classification": "EXPLICIT_EXTERNAL_OR_FRESH_ABI",
+      "consumer": "prepare\u771f\u5b9e\u904d\u5386\u3001effects\u53caactivation\u771f\u5b9e\u987a\u5e8f\uff1b\u4e0d\u662f\u6765\u81eaevent\u7ed3\u679c\u6216sorted targets",
+      "field": "activate_order",
+      "legal_source": "Game\u4e24\u4e2a\u539f\u59cbentry\u7684items native refs\uff0c\u7ecf\u5df2\u9a8c\u8bc1alias\u8f6c\u539finstanceID\uff1b\u540439\u552f\u4e00\u4e14\u539f\u987a\u5e8f\u76f8\u7b49"
+    },
+    {
+      "classification": "EXPLICIT_EXTERNAL_OR_FRESH_ABI",
+      "consumer": "\u9009\u62e9\u65e2\u6709cleanup/barrier\u89c4\u5219\uff0c\u4e0d\u542b\u89c2\u6d4b\u7ec8\u7ed3\u65f6\u95f4/\u8d62\u5bb6/\u505c\u6b62frame",
+      "field": "terminal_profile",
+      "legal_source": "\u56fa\u5b9aSOURCE\u7b97\u6cd5\u540dsource-two-physics-idle-pre-internal/1"
+    },
+    {
+      "classification": "EXPLICIT_EXTERNAL_OR_FRESH_ABI",
+      "consumer": "\u65e7finite FrameDriver\u4e25\u683c\u6d88\u8d39\u771f\u5b9e\u5916\u751fdelta\uff1b\u4e1a\u52a1\u81ea\u884crequest_end\u540e\u9a8c\u8bc1\u4e24futurephysics+\u9996idlepreinternal/EOF\uff0c\u4e0d\u80fd\u7528endpoint\u5f3a\u8feb\u6b7b\u4ea1/\u7ed3\u675f",
+      "field": "frame_clock",
+      "legal_source": "\u5b8c\u6574\u5b9e\u9645clock header+\u539f\u987a\u5e8fphysics/idle passes"
+    },
+    {
+      "classification": "EXPLICIT_EXTERNAL_OR_FRESH_ABI",
+      "consumer": "constructor\u4fdd\u5b58\u5408\u6cd5fresh particle_facts\uff1b\u65e2\u6709\u7c92\u5b50/AutoHide/Timer\u8fc7\u7a0b\u7531\u539f\u4ee3\u7801\u6f14\u7b97\uff0c\u4e0d\u8bfb\u53d6\u672a\u6765\u89c2\u5bdf\u7ea0\u504f",
+      "field": "king_particles",
+      "legal_source": "\u5df2\u8bc1fresh\u914d\u7f6e\u53ca\u771f\u5b9enode\u62d3\u6251\uff1bdefault lifetime REAL32\u2192REAL64 bits\u3001explosiveness/speed/flags\u5fc5\u987b\u4e0eSOURCE\u7cbe\u786e\u76f8\u540c"
+    },
+    {
+      "classification": "EXPLICIT_EXTERNAL_OR_FRESH_ABI",
+      "consumer": "build_runtime_scaffold\u53d6root internal_idle\u7b49\u8c03\u5ea6\u4e8b\u5b9e\uff0c\u975e\u4efb\u610fGUI\u8f93\u5165",
+      "field": "root_node",
+      "legal_source": "\u5b9e\u9645fresh root\u8eab\u4efd/processing flags\uff0c\u4e0eUI controls\u548cclock\u540croot"
+    },
+    {
+      "classification": "EXPLICIT_EXTERNAL_OR_FRESH_ABI",
+      "consumer": "constructor.processing_inputs\u4e0eordinary/internal\u8c03\u5ea6\u3001\u5feb\u7167\u8bfb\u53d6\uff1b\u5c5e\u4e8e\u5408\u6cd5fresh\u8c03\u5ea6\u62d3\u6251\uff0c\u4e0d\u80fd\u7531plan\u586bnativeID",
+      "field": "processing_nodes",
+      "legal_source": "\u5b9e\u9645\u5b8c\u657480 raw\u8282\u70b9\uff0c\u51c6\u786erole\u8f6c\u6362\uff0c\u4fdd\u539fflags/positions/priority/identity"
+    },
+    {
+      "classification": "EXPLICIT_EXTERNAL_OR_FRESH_ABI",
+      "consumer": "_inactive_aux_full\u7b49\u9a8c\u8bc1/\u5feb\u7167\uff1b\u4e0d\u80fd\u4ee5\u5f02\u5e38public0\u4e3a\u53ef\u63a5\u53d7private\u72b6\u6001",
+      "field": "inactive_auxiliaries",
+      "legal_source": "\u5b9e\u9645fresh aux Timer\u914d\u7f6e+\u516dID/noRage SOURCE\u8c03\u7528\u57dflemma"
+    },
+    {
+      "classification": "VALIDATION_ONLY_RAW_UI_COMPATIBILITY",
+      "consumer": "_validate_single_king_processing_inputs\u91cd\u9a8c\u5e76\u5173\u8054\u8eab\u4efd/processing flags\uff1bRuntimeDTO\u4f1a\u4fdd\u5b58\u5b83\u3002\u5df2\u8bfbSOURCE\u4e2d\u65e0UI\u4e8b\u4ef6\u6267\u884c\u5668\uff0c\u4e0d\u628aUI\u5f53\u4e1a\u52a1\u547d\u4ee4\u3001\u521d\u59cb\u8d44\u6e90\u3001\u968f\u673a\u6216\u7ec8\u6b62\u6307\u4ee4\uff1bruntime\u7ed3\u679c\u6295\u5f71\u4e0d\u9760UIfooter\u505c\u6218",
+      "field": "ui_authority",
+      "legal_source": "**\u73b0\u6709\u5fc5\u9700validation-only ABI**\uff1a\u5b8c\u6574raw UI\u72ec\u7acb\u5e8f\u5217/open-close/foreign\u5206\u7c7b\u3001\u5b9e\u9645root/King/particle/selected join"
+    }
+  ],
+  "schema": "phase361-independent-projection-preparation/1",
+  "source_whitelist": [
+    "fixture.json",
+    "player_fixture.json",
+    "observer7-input.jsonl",
+    "observer7-lineage.jsonl",
+    "observer7-metadata.jsonl",
+    "observer7-primitives.jsonl",
+    "king-clock-checkpoint.json",
+    "king-clock-passes.jsonl",
+    "king-input-facts.json",
+    "king-ui-authority.jsonl",
+    "king-rng-checkpoint.json",
+    "king-slot-bindings.json"
+  ],
+  "stage": "PREPARATION_ONLY_NO_UNFROZEN_IMPLEMENTATION_READ",
+  "ui_policy": "RETAIN17_KEY_VALIDATION_ONLY_ABI_NO15_SOURCE_REFACTOR"
+}
