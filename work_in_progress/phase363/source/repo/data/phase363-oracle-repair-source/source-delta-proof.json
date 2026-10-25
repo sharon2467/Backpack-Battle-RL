@@ -1,0 +1,121 @@
+{
+  "collector_byte_identical": {
+    "path": "data/phase362-oracle-capture-source/collector.gd",
+    "sha256": "35676e172400f079dfd3415eafc42103e130bdb1efcfe8fdaad6428faf4854ca",
+    "size": 44575
+  },
+  "generic_monitor_selector_calls": 1,
+  "generic_monitor_wait_calls": [],
+  "modules": {
+    "host": {
+      "added_functions": [],
+      "after": {
+        "path": "tests/phase363_oracle_host.py",
+        "sha256": "c803d0160e600ca298b2ac916d4cb90872f6870e2050598a99c665217b8254ed",
+        "size": 13778
+      },
+      "before": {
+        "path": "tests/phase362_oracle_host.py",
+        "sha256": "7e53a0bbda7ccb8048e49a0a6c74744eb6ae2b0759d67619be8338f1da0ddfe4",
+        "size": 13739
+      },
+      "changed_existing_functions": [
+        "execute",
+        "plan",
+        "source_gate"
+      ],
+      "inverse": "EXACT_BYTES_PROTOCOL_REPLACEMENTS",
+      "unchanged_functions": [
+        "descriptor",
+        "main",
+        "resource_gate",
+        "verify_owner"
+      ]
+    },
+    "process": {
+      "added_functions": [
+        "_group_members",
+        "_seconds",
+        "_signal_group",
+        "cleanup_process_group",
+        "monitor_command"
+      ],
+      "after": {
+        "path": "tests/phase363_oracle_process.py",
+        "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f",
+        "size": 13665
+      },
+      "before": {
+        "path": "tests/phase362_oracle_process.py",
+        "sha256": "8250c580989ff880210e7c434450c6ba17f70a8932b73f88cc5e27cf112aa65c",
+        "size": 8044
+      },
+      "changed_existing_functions": [
+        "execute_process"
+      ],
+      "inverse": "EXACT_MODULE_AST_BY_DECLARED_FUNCTION_REPLACEMENTS",
+      "unchanged_functions": [
+        "command",
+        "environment",
+        "rename_capture",
+        "usage",
+        "user_kind"
+      ]
+    },
+    "storage": {
+      "added_functions": [
+        "atomic_image",
+        "regular_target"
+      ],
+      "after": {
+        "path": "tests/phase363_oracle_storage.py",
+        "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc",
+        "size": 15496
+      },
+      "before": {
+        "path": "tests/phase362_oracle_storage.py",
+        "sha256": "a92d489e3849e402b339780f13a8e6b5ba22cc69f80f496966800d41632b7c32",
+        "size": 13317
+      },
+      "changed_existing_functions": [
+        "install",
+        "lease",
+        "reset_previous",
+        "state_write"
+      ],
+      "inverse": "EXACT_MODULE_AST_BY_DECLARED_FUNCTION_REPLACEMENTS",
+      "unchanged_functions": [
+        "archive_streaming",
+        "budget",
+        "check_ready",
+        "directory",
+        "map_recorded",
+        "member",
+        "pin",
+        "read",
+        "sync",
+        "write_new"
+      ]
+    }
+  },
+  "operational_helpers_executed": false,
+  "schema": "phase363-bounded-source-delta/1",
+  "three_case_inputs": [
+    {
+      "path": "data/phase362-oracle-capture-source/case-A/custom_opponent.json",
+      "sha256": "9c57f7781c8ae58027296004262cc0b2b691c25084ea29d8f4171ff44828a689",
+      "size": 1597
+    },
+    {
+      "path": "data/phase362-oracle-capture-source/case-A/custom_player.json",
+      "sha256": "a42675c3fedb0651e4309754403d5658edcce869f85edb07963e7a2f87391c56",
+      "size": 1676
+    },
+    {
+      "path": "data/phase362-oracle-capture-source/case-A/native_capture_config.json",
+      "sha256": "dbded47b0896eb3efa859b75aacab673da495a32b845c1e795090969ad76f2c8",
+      "size": 229
+    }
+  ],
+  "unchanged_static_layers": "Reused independent3627successful layers via exact source identities; not rerun"
+}

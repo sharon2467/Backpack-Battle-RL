@@ -1,0 +1,340 @@
+{
+  "actual_controls": 0,
+  "controls": [
+    {
+      "expected": "Reject existing hardlinked mutable target before target/alias change or backup/output creation",
+      "family": "hardlink repair and installer tinyFS",
+      "id": 1,
+      "label": "old-hardlink-counterexample-regression",
+      "mode": "real tinyFS/API",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "One later bad linked/preimage target prevents writes/backups to earlier valid targets",
+      "family": "hardlink repair and installer tinyFS",
+      "id": 2,
+      "label": "mixed-target-preflight",
+      "mode": "real tinyFS/API",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Exact tiny preimage\u2192after bytes, mode/mtime and complete journal saved/readback",
+      "family": "hardlink repair and installer tinyFS",
+      "id": 3,
+      "label": "regular-install-positive",
+      "mode": "real tinyFS/API",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Original SHA mismatch rejects with all targets/backup unchanged",
+      "family": "hardlink repair and installer tinyFS",
+      "id": 4,
+      "label": "wrong-preimage",
+      "mode": "real tinyFS/API",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Reject linked target or ancestor before any mutation",
+      "family": "hardlink repair and installer tinyFS",
+      "id": 5,
+      "label": "symlink-leaf-or-ancestor",
+      "mode": "real tinyFS/API",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Reject traversal/absolute/noncanonical names, no outside tiny-tree access",
+      "family": "hardlink repair and installer tinyFS",
+      "id": 6,
+      "label": "unsafe-path",
+      "mode": "real tinyFS/API",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Duplicate/overlapping source/artifact targets refuse before writes",
+      "family": "hardlink repair and installer tinyFS",
+      "id": 7,
+      "label": "source-artifact-overlap",
+      "mode": "real tinyFS/API",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Existing backup/transaction refuses without overwrite or retry",
+      "family": "hardlink repair and installer tinyFS",
+      "id": 8,
+      "label": "backup-existing",
+      "mode": "real tinyFS/API",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Journal backups preserve original tiny bytes/mode/mtime; declared inverse exact",
+      "family": "hardlink repair and installer tinyFS",
+      "id": 9,
+      "label": "metadata-and-inverse",
+      "mode": "tinyFS plus SOURCE if inverse API absent",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Only declared fresh new file allowed; existing target with beforeNULL refuses",
+      "family": "hardlink repair and installer tinyFS",
+      "id": 10,
+      "label": "added-file-before-null",
+      "mode": "real tinyFS/API",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Real tiny Python child stdout/stderr/owned file returned exactly; generic counters truthful, not oracle",
+      "family": "generic real Python child monitor",
+      "id": 11,
+      "label": "positive-command-and-output",
+      "mode": "real subprocess <=5s",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Small configured combined PIPE cap triggers bounded output/kill and retained first partial",
+      "family": "generic real Python child monitor",
+      "id": 12,
+      "label": "stdout-stderr-cap",
+      "mode": "real subprocess <=5s",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Short configurable timeout stops Python child and records timedout/exit/partial separately",
+      "family": "generic real Python child monitor",
+      "id": 13,
+      "label": "wall-timeout",
+      "mode": "real subprocess <=5s",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Leader exits while descendant ignoresTERM; entire owned group eventually KILL, independent of leader wait status",
+      "family": "generic real Python child monitor",
+      "id": 14,
+      "label": "leader-exit-descendant-ignoreTERM",
+      "mode": "real subprocess tree <=5s/short grace",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Normal or aborted leader path also leaves no live owned descendant; observe PIDs/group, not helper assertion only",
+      "family": "generic real Python child monitor",
+      "id": 15,
+      "label": "active-leader-descendant-cleanup",
+      "mode": "real subprocess tree <=5s/short grace",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Legal new cache file under explicit isolated root counted/retained, no false unknown-filename rejection",
+      "family": "generic real Python child monitor",
+      "id": 16,
+      "label": "allowed-cache-accounting",
+      "mode": "real subprocess or tinyFS according to API",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Unexpected outside declared user root/link rejects and kills monitored child; preserve evidence",
+      "family": "generic real Python child monitor",
+      "id": 17,
+      "label": "unknown-root-or-link",
+      "mode": "real subprocess/tinyFS, no external data",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Actual/mockable data-level free-floor/attempt threshold check has strict boundaries and aborts before/after launch as API defines",
+      "family": "generic real Python child monitor",
+      "id": 18,
+      "label": "floor-cap-refusal",
+      "mode": "pure arithmetic/tinyFS; no fake monitor",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "I/O/accounting failure preserves existing stdout/stderr/files and firstreason, no automatic retry",
+      "family": "generic real Python child monitor",
+      "id": 19,
+      "label": "partial-on-exception",
+      "mode": "real tinyFS/generic monitor unit",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "No duplicate timed wait; one50ms scheduling policy with scan/IO overhead and overshoot honestly recorded",
+      "family": "generic real Python child monitor",
+      "id": 20,
+      "label": "polling-source-closure",
+      "mode": "SOURCE plus bounded timestamp observation if meaningful",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Oracle wrapper constructs exact real fixed command/policy/limits and genuine count; unit command cannot open native gate",
+      "family": "generic real Python child monitor",
+      "id": 21,
+      "label": "oracle-wrapper-fixed",
+      "mode": "SOURCE only, no oracle invocation",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Tiny baseline+overlay+live-tree logical bytes/CRC/SHA/mode/mtime match, no physical second tree reconstructed by API",
+      "family": "streamoverlay and READY remaining tiny units",
+      "id": 22,
+      "label": "small-overlay-positive",
+      "mode": "real tinyFS/ZIP",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Wrong/truncated payload or declared identity refuses; leave first failed bundle evidence",
+      "family": "streamoverlay and READY remaining tiny units",
+      "id": 23,
+      "label": "bad-ZIP-content-or-CRC",
+      "mode": "real tinyZIP/API",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Unexpected/unsafe/duplicate/missing overlay member refuses before READY",
+      "family": "streamoverlay and READY remaining tiny units",
+      "id": 24,
+      "label": "unsafe-duplicate-missing-member",
+      "mode": "real tinyZIP/API",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Live tiny leaf byte mismatch refuses rather than trusting a map alone",
+      "family": "streamoverlay and READY remaining tiny units",
+      "id": 25,
+      "label": "live-content-drift",
+      "mode": "real tinyFS/API",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Mode/mtime mismatch refuses; content equality insufficient",
+      "family": "streamoverlay and READY remaining tiny units",
+      "id": 26,
+      "label": "live-metadata-drift",
+      "mode": "real tinyFS/API",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Correct dispatch old materialized vs new logical proof; unknown/missing mode/identities rejected",
+      "family": "streamoverlay and READY remaining tiny units",
+      "id": 27,
+      "label": "old-new-READY-isolation",
+      "mode": "small synthetic descriptors, not true nativeREADY",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Whole call closure does not invoke copytree/_reconstruct/hidden materialization fallback",
+      "family": "streamoverlay and READY remaining tiny units",
+      "id": 28,
+      "label": "no-scratch-Game-copy",
+      "mode": "SOURCE AST/call review",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Generic relocation tested only on neutral tiny directory names if API permits; otherwise SOURCE-only, no fakecapture",
+      "family": "streamoverlay and READY remaining tiny units",
+      "id": 29,
+      "label": "capture-rename-without-native",
+      "mode": "tinyFS only if true generic interface",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Missing actual root descriptor/config refuses before plan/lease/project/process; no fabricated positive review",
+      "family": "ROOT/source/budget boundary",
+      "id": 30,
+      "label": "missing-ROOT-config",
+      "mode": "real early-refusal entry only",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Wrong host/source/owner/receipt/fixture/patch identity refuses without operational calls",
+      "family": "ROOT/source/budget boundary",
+      "id": 31,
+      "label": "wrong-SOURCE-binding",
+      "mode": "SOURCE plus tiny descriptors where possible",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Nonlinked/disjoint explicit roots, unknown relocation/overlapping prefix/newrun collision refuse",
+      "family": "ROOT/source/budget boundary",
+      "id": 32,
+      "label": "explicit-roots-and-run-collision",
+      "mode": "tinyFS/rejection only",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "At real plan4GiB reserve+1536MiB attempt; strict boundary/no stalefree/caller risk flag",
+      "family": "ROOT/source/budget boundary",
+      "id": 33,
+      "label": "fresh-budget-formula",
+      "mode": "pure arithmetic/source or tinyFS",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Exact writer caps + total/log/cache/partial/error reserve accounting; monitored background is not aggregatekernelquota",
+      "family": "ROOT/source/budget boundary",
+      "id": 34,
+      "label": "writer/log/user/partial-ledger",
+      "mode": "SOURCE+new real unit evidence",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "Exact source/proof/config/tree afterprepare beforeoneoracle call; no automatic attempt retry",
+      "family": "ROOT/source/budget boundary",
+      "id": 35,
+      "label": "proof-before-unique-execute",
+      "mode": "SOURCE only",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "expected": "356/361 untouched; normal headless no oracle dependency, no projection/model permission from SOURCE controls",
+      "family": "ROOT/source/budget boundary",
+      "id": 36,
+      "label": "oracle-only-model-guard",
+      "mode": "SOURCE identity/import graph",
+      "status": "NOT_EXECUTED"
+    }
+  ],
+  "counts": {
+    "Godot": 0,
+    "actual_Game_operations": 0,
+    "actual_pool_operations": 0,
+    "capture_reads": 0,
+    "controls_executed": 0,
+    "expected_reads": 0,
+    "models": 0,
+    "native": 0,
+    "new_API_calls": 0,
+    "new_module_imports": 0,
+    "parse": 0,
+    "projection_calls": 0,
+    "synthetic_subprocesses": 0,
+    "tinyFS_install_calls": 0,
+    "unsealed_implementation_reads": 0
+  },
+  "future_test_SOURCE": "Actual API signatures/fixtures/expected behavior must be frozen only after new363SOURCE is available and reviewed; no current implementation import.",
+  "maximum_new_controls": 64,
+  "native_still_unexecuted": [
+    "Godot parse",
+    "SceneTree actual connection order",
+    "same-idle terminalcut",
+    "actual12 positive",
+    "fullprojection positive",
+    "real pool installation/READY/plan",
+    "native or model"
+  ],
+  "original_obligations": 48,
+  "planned_unique_new_controls": 36,
+  "requirements_delta": {
+    "counts": "Record direct synthetic child calls, descendant processes/PIDs and actual files separately; models/native0 does not imply subprocess0.",
+    "disclosure": "POLLING_NOT_KERNEL_AGGREGATE_QUOTA",
+    "generic_child_units_authorized_only_after_freeze": true,
+    "hard_kernelquota_required": false,
+    "max_child_seconds": 5,
+    "no_FakeNative": true,
+    "policy": "bounded-writers-and-monitored-process/1",
+    "short_configurable_grace": true
+  },
+  "schema": "phase363-independent-repair-preparation/1",
+  "scope_origin": {
+    "path": "data/phase362-independent-capture-preparation/contract.json",
+    "sha256": "98166923c6e3a0217b39c54319a77636563d164c14ae3bce989e1af4ee7f4cd1",
+    "size": 20069
+  },
+  "stage": "PREPARATION_ONLY_UNSEALED_SOURCE_UNREAD"
+}

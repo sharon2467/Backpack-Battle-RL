@@ -1,0 +1,12 @@
+{
+  "cleanup": "cleanup_process_group(proc,term_grace_seconds=5.,kill_grace_seconds=.5); own PGID/SID only; leader exit does not skip TERM/KILL",
+  "generic": "monitor_command(argv,cwd,env,output_dir,prefix,wall_seconds,*,scan_callback=None,poll_seconds=.05,term_grace_seconds=.2,kill_grace_seconds=.5,log_limit_bytes=32MiB,phase_markers=(),initial_phase_seconds=None,abort_markers=())",
+  "generic_scope": "GENERIC_SUBPROCESS_MONITOR_ONLY_NOT_ORACLE_OR_CAPTURE; generic subprocess1/oracle0, no capture APIs",
+  "mutable_gate": "regular_target before backup creation and atomic_image rechecks preimage; no inplace truncation",
+  "reporting": "single selector wait plus IO/scan overhead; actual scan samples/max gap; cleanup duration separate; zombies not claimed reaped",
+  "reserved_SOURCE_PASS": "INDEPENDENT363_INSTALLER_MONITOR_SOURCE_ACCEPTED_ROOT_PENDING",
+  "root_config_schema": "phase363-root-oracle-acceptance/1",
+  "schema": "phase363-repaired-monitor-installer-API/1",
+  "wrapper": "execute_process(source_root,task,run,project,check_only=False); no argv override, actual native count only here",
+  "write_policy": "bounded-writers-and-monitored-process/1"
+}
