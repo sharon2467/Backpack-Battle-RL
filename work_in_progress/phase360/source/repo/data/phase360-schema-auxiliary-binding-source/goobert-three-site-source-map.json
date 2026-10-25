@@ -1,0 +1,87 @@
+{
+  "argument_policy": "Actual original unannotated event stays typed Variant; no new primitive ABI or domain added",
+  "delegate_paths": [
+    "_base_validate_record",
+    "validate_record",
+    "_validate_call_pairs",
+    "validate_observation_records",
+    "schema.MATRIX"
+  ],
+  "repairs": [
+    {
+      "event_type": "Unannotated original GD Variant; actual typed event_ref preserved, no invented Node/Timer annotation",
+      "function": {
+        "sha256": "b5a5407daa6a508b01d4c4f538f3245d553d19d7018b42e6e86ff6f1e65d882c",
+        "size": 274
+      },
+      "line_end": 25,
+      "line_start": 16,
+      "partition": "EXPECTED_RUNTIME_ONLY_NOT_NEW_INPUT_CHANNEL",
+      "signature": "func prepare():",
+      "site": "Items/Goobert.gd::prepare",
+      "source": {
+        "path": "data/phase298-native68-source/before-source/Items/Goobert.gd",
+        "sha256": "8fda35f3740fe787231d4c69c38eaab1938127c1a01e076df70252cc4212e723",
+        "size": 1076
+      },
+      "spec": {
+        "argument_types": {},
+        "arguments_exact": [],
+        "channel": "runtime",
+        "explicit_returns": [],
+        "state_schema": "goobert"
+      }
+    },
+    {
+      "event_type": "Unannotated original GD Variant; actual typed event_ref preserved, no invented Node/Timer annotation",
+      "function": {
+        "sha256": "eda4eb31de386cba520edba3af415e41f957a69ff1862fa93dde682c92da936f",
+        "size": 520
+      },
+      "line_end": 57,
+      "line_start": 29,
+      "partition": "EXPECTED_RUNTIME_ONLY_NOT_NEW_INPUT_CHANNEL",
+      "signature": "func onItemActivated(event):",
+      "site": "Items/Goobert.gd::onItemActivated",
+      "source": {
+        "path": "data/phase298-native68-source/before-source/Items/Goobert.gd",
+        "sha256": "8fda35f3740fe787231d4c69c38eaab1938127c1a01e076df70252cc4212e723",
+        "size": 1076
+      },
+      "spec": {
+        "argument_types": {},
+        "arguments_exact": [
+          "event"
+        ],
+        "channel": "runtime",
+        "explicit_returns": [],
+        "state_schema": "goobert"
+      }
+    },
+    {
+      "event_type": "Unannotated original GD Variant; actual typed event_ref preserved, no invented Node/Timer annotation",
+      "function": {
+        "sha256": "2b94780d3bfba8b4417e9fe37ea091aff2765c260f477645470a25148279d66d",
+        "size": 34
+      },
+      "line_end": 28,
+      "line_start": 26,
+      "partition": "EXPECTED_RUNTIME_ONLY_NOT_NEW_INPUT_CHANNEL",
+      "signature": "func doCooldownEffect():",
+      "site": "Items/Goobert.gd::doCooldownEffect",
+      "source": {
+        "path": "data/phase298-native68-source/before-source/Items/Goobert.gd",
+        "sha256": "8fda35f3740fe787231d4c69c38eaab1938127c1a01e076df70252cc4212e723",
+        "size": 1076
+      },
+      "spec": {
+        "argument_types": {},
+        "arguments_exact": [],
+        "channel": "runtime",
+        "explicit_returns": [],
+        "state_schema": "goobert"
+      }
+    }
+  ],
+  "source_sites_are_not_coverage": true
+}
