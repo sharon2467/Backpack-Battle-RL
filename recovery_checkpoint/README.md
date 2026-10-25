@@ -72,7 +72,14 @@ python3 -I -B -S recovery_checkpoint/check_restored75.py \
   --destination "$RECOVERED" --help-only
 ```
 
-This reads the current15 source identities and actual promotion/package owners, then invokes CLI help only. It does not initialize or run a battle. The historical68 checker and validation remain in the earlier commit/history; the official runtime bytes are unchanged. Future oracle collection uses a newly initialized pool from the recovered baseline and a separately reviewed collection plan. No old running process or private user account is restored.
+This reads the current15 source identities and actual promotion/package owners, then invokes CLI help only. It does not initialize or run a battle. To read back the cumulative352 King work, failed cases and accepted finite-component evidence owners without executing any engine code, also run:
+
+```bash
+python3 -I -B -S recovery_checkpoint/check_restored_work.py \
+  --destination /tmp/backpack-recovered
+```
+
+Use the same destination supplied to restore. The historical68 checker and validation remain in the earlier commit/history; the official runtime bytes are unchanged. Future oracle collection uses a newly initialized pool from the recovered baseline and a separately reviewed collection plan. No old running process or private user account is restored.
 
 ## Integrity and validation level
 
@@ -82,6 +89,6 @@ Each part has its own size/SHA-256, every reconstructed archive has its whole si
 
 The original remote-clone verification is retained under `history/phase347-*`. The current work-cut remote recovery result is recorded in `VALIDATION.md`. Distinguish full archive/hash verification, actual active working-set materialization, a pure-Python smoke run, and a runtime version probe from a **fresh operating-system** or **full physical** restore. No new cloud environment is created by this procedure. Full historical oracle comparisons are retained as evidence, not rerun during publication.
 
-The inherited `coverage.owner_closure_paths` is the base347 planning statistic. All current cumulative payloads are active; current complete logical/physical counts are recomputed in the coverage fields. Current source/material review receipts are `progress348-source-review.json` and `progress348-material-review.json`.
+The inherited `coverage.owner_closure_paths` is the base347 planning statistic. All current cumulative payloads are active; current complete logical/physical counts are recomputed in the coverage fields. Current source/material review receipts are `progress-current-source-review.json` and `progress-current-material-review.json`; the348 receipts remain historical evidence. Cumulative352 remote active recovery and both output-only checkers passed; see `VALIDATION.md` and `validation.json` for exact identities, counts and validation limits.
 
 Current work remains a single complete logical index: ten fixed historical/original/runtime archives plus one cumulative progress archive. Earlier progress part files and manifests are retained as history. They are not a sequential patch chain. The active formal entry remains75; use the staged King source only within its documented experimental domain and validation gates.
