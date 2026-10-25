@@ -1,0 +1,91 @@
+{
+  "attempt": 1,
+  "audit": {
+    "blocked": 0,
+    "enforcement": "hookstayedactive through late own-auditread/jointsealwrite;stdoutfinalblocked0",
+    "no_claim_of_explicit_network_or_third_party_attack_test": true,
+    "pin": {
+      "path": "data/phase358-independent-schema-review/controls-first-001/open-audit.json",
+      "sha256": "89ce9f54197288cd0837906afb0df3d66993567317fd6eb1fbc001c89e2813f7",
+      "size": 1445
+    },
+    "recorded_reads_through_cut": 4,
+    "recorded_writes_through_cut": 3,
+    "recording_cut": "After journal/report actual readback through opening thisaudit file. Later only itsreadback, jointseal/stdout;hook remains enforcing.",
+    "trusted_bootstrap": "Stdlib,script and manifested SOURCE/metadata pins read beforehook;actual two SOURCE modules loaded afterhook"
+  },
+  "command": "python3 -I -B -S tests/phase358_independent_schema_controls.py",
+  "counts": {
+    "Engine_constructions": 0,
+    "RNG_constructions": 0,
+    "RuntimeDTO_instances": 0,
+    "candidate_imports": 0,
+    "capture_reads": 0,
+    "control_first_exit": 0,
+    "control_processes": 1,
+    "expected_file_reads": 0,
+    "failures": 0,
+    "initializations": 0,
+    "input_builds": 0,
+    "matched": 80,
+    "models": 0,
+    "native": 0,
+    "necessary_changed_version_regressions": 12,
+    "new_unique_cases": 68,
+    "positives": 26,
+    "public_schema_top_calls": 79,
+    "pure_mapper_module_imports": 1,
+    "pure_mapper_top_calls": 2,
+    "recursive_internal_calls": "NOT_COUNTED",
+    "rejections": 54,
+    "schema_module_imports": 1,
+    "steps": 0,
+    "total_top_calls": 81,
+    "unique_logical_cases": 80
+  },
+  "execution_boundary": "Onlyactualstandalone schema/puremapper loadedsource-only underhook;synthetic schemaobjects,no external businesspayload",
+  "exit_code": 0,
+  "joint_seal": {
+    "path": "data/phase358-independent-schema-review/controls-first-001/joint-seal.json",
+    "sha256": "107bfd94fd14630e11bea0ce218632f5a95a66482017a783808810072fb48523",
+    "size": 899
+  },
+  "old357_control_outputs_unchanged": true,
+  "output_owner": {
+    "path": "data/phase358-independent-schema-review/output-owner.json",
+    "sha256": "cb1f5ad83e6ed58efb55e81b105781abc9cb193d5d4fabe934f7513ec476a881",
+    "size": 1299
+  },
+  "previous_successful_controls_rerun_for_metadata": 0,
+  "schema": "phase358-independent-first-execution/1",
+  "source_owner": {
+    "path": "data/phase358-independent-schema-review/source-owner.json",
+    "sha256": "d5f60eebcaf517e89694fd9aeeb2e3b8d93d5f65bb0fba17d6cfd62f2fa5fd8e",
+    "size": 3179
+  },
+  "source_preparation_exit": 0,
+  "stderr": {
+    "path": "data/phase358-independent-schema-review/controls-first.stderr.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size": 0
+  },
+  "stdout": {
+    "path": "data/phase358-independent-schema-review/controls-first.stdout.txt",
+    "sha256": "f2967228b4f79cd77fa469602089e0d53c09ba704cfac6b76b1352a6a5a06ade",
+    "size": 102
+  },
+  "top_level_calls": {
+    "SOURCE_MAPPER.arguments": 2,
+    "decode_clock": 6,
+    "decode_sources": 4,
+    "validate_cache": 4,
+    "validate_observation_records": 3,
+    "validate_primitive": 2,
+    "validate_record": 19,
+    "validate_resources": 1,
+    "validate_single_king_ui_authority": 3,
+    "validate_state": 15,
+    "validate_terminal_evidence": 2,
+    "validate_typed": 20
+  }
+}

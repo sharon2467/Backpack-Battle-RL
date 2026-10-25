@@ -1,0 +1,897 @@
+{
+  "Engine_constructions": 0,
+  "RNG_constructions": 0,
+  "RuntimeDTO_instances": 0,
+  "actual_native_evidence": false,
+  "candidate_imports": 0,
+  "capture_reads": 0,
+  "controls": [
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "bool"
+      },
+      "expected": "accept",
+      "id": 1,
+      "label": "real-module-API-and-native-not-authorized",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 2,
+      "label": "plain-state-ID1-positive",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "item descriptor outside fixed six IDs",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 3,
+      "label": "public-plain-state-unknown-ID999-must-reject",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "closed source Item subtype",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 4,
+      "label": "public-plain-state-King-without-private-fields-must-reject",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 5,
+      "label": "normal-item-ID1-positive",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "item descriptor outside fixed six IDs",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 6,
+      "label": "normal-item-unknown-ID999-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 7,
+      "label": "fixed-O19-role-positive",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "unknown fixed A native reference role",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 8,
+      "label": "deleted-O12-role-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 9,
+      "label": "actual-Timer-parameter-native-ref-positive",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "actual GD entry declared type Utility/Util.gd::changeTimer:timer",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 10,
+      "label": "actual-Timer-parameter-INT-must-reject",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 11,
+      "label": "actual-Node-parameter-native-ref-positive",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "actual GD entry declared type Utility/EventBus.gd::emitAndLog:emitter",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 12,
+      "label": "actual-Node-parameter-INT-must-reject",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 13,
+      "label": "connectEvent-two-Node-ref-positive",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "actual GD entry declared type Utility/EventBus.gd::connectEvent:emitter",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 14,
+      "label": "connectEvent-emitter-INT-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "actual GD entry declared type Utility/EventBus.gd::connectEvent:receiver",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 15,
+      "label": "connectEvent-receiver-INT-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 16,
+      "label": "Node-nullable-entry",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 17,
+      "label": "Timer-nullable-entry",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 18,
+      "label": "Bag11-plain-positive",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "item descriptor INT",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 19,
+      "label": "descriptor-BOOL-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "item descriptor INT",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 20,
+      "label": "descriptor-REAL-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "tuple"
+      },
+      "expected": "accept",
+      "id": 21,
+      "label": "mapper-Node-Timer-declarations",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "unsupported explicit GD annotation UnrecognizedExplicitType",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 22,
+      "label": "mapper-unknown-explicit-annotation",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 23,
+      "label": "typed-BOOL-positive",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 24,
+      "label": "typed-INT64max-positive",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 25,
+      "label": "typed-REAL-negativezero-positive",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "canonical decimal required",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 26,
+      "label": "typed-INT-BOOL-decimal-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "bool required",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 27,
+      "label": "typed-BOOL-numeric-value-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "canonical decimal required",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 28,
+      "label": "typed-INT-noncanonical-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "integer range/type",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 29,
+      "label": "typed-INT64overflow-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "finite BE64 required",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 30,
+      "label": "REAL-width-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "finite BE64 required",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 31,
+      "label": "REAL-uppercase-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "finite BE64 required",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 32,
+      "label": "REAL-NaN-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "integer range/type",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 33,
+      "label": "native-id-zero-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "unknown typed value",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 34,
+      "label": "unknown-typed-kind-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "exact object keys required: ['type']",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 35,
+      "label": "typed-extra-field-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "duplicate typed key",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 36,
+      "label": "duplicate-typed-dictionary-key-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "typed depth cap",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 37,
+      "label": "typed-depth-cap-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "array cap/type",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 38,
+      "label": "typed-array-cap-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "string type/UTF8 cap",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 39,
+      "label": "typed-string-cap-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "dictionary cap/type",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 40,
+      "label": "typed-dictionary-cap-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 41,
+      "label": "King-complete-private-state",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "exact raw property type king.protectedBuffs",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 42,
+      "label": "King-protectedBuffs-wrong-raw-type",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "exact raw property type king.invuCharges",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 43,
+      "label": "King-invuCharges-wrong-raw-type",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 44,
+      "label": "Character-protection-INT-and-null-origin",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "exact raw property type character.buffProtectStacks",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 45,
+      "label": "Character-buffProtectStacks-wrong-type",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "exact raw property type character.invulnerabilityItem",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 46,
+      "label": "Character-invulnerabilityItem-wrong-type",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 47,
+      "label": "Character-useMana-INT-entry",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "actual GD entry declared type Core/Character.gd::useMana:amount",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 48,
+      "label": "Character-useMana-REAL-entry-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 49,
+      "label": "King-Item-useMana-REAL-callsite",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "King Item.useMana keeps REAL4 before Character INT coercion",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 50,
+      "label": "King-Item-useMana-INT-callsite-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "integer range/type",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 51,
+      "label": "Timer-mode-BOOL-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 52,
+      "label": "cache-four-actual-colors",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "cache color must be actual INT, never BOOL/REAL alias",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 53,
+      "label": "cache-BOOL-primary-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "missing SOURCE affected color",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 54,
+      "label": "cache-missing-color-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "duplicate typed key",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 55,
+      "label": "cache-duplicate-native-ref-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 56,
+      "label": "generic-ready-owner-only",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "exact object keys required: {'native_id': 'id'}",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 57,
+      "label": "fake-full-ready-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "unknown record site",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 58,
+      "label": "unknown-record-site-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "exact object keys required: ['schema', 'sequence', 'channel', 'site', 'edge', 'subject', 'stamp', 'payload']",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 59,
+      "label": "extra-record-envelope-field-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "unknown site edge",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 60,
+      "label": "unknown-record-edge-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "generic ready/receiver owner identity",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 61,
+      "label": "generic-ready-owner-mismatch-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 62,
+      "label": "King-pitch-typed-return-only",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "original randPitch0.1 exact REAL endpoints",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 63,
+      "label": "King-pitch-endpoint-type-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "ClockSchedule"
+      },
+      "expected": "accept",
+      "id": 64,
+      "label": "clock-typed-schedule-only",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "closed clock keys required",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 65,
+      "label": "clock-header-extra-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "fixed60 physics required",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 66,
+      "label": "clock-BOOL-fps-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "missing/duplicate/reordered source frame counters",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 67,
+      "label": "clock-row-reversal-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 68,
+      "label": "expected-shape-two-future-cut",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "first eligible idle-preinternal only; EOF/trailing rejected",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 69,
+      "label": "expected-shape-trailing-idle-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 70,
+      "label": "expected-shape-Timer-pair",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "source stream EOF inside method/API call",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 71,
+      "label": "expected-shape-Timer-EOF-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "unknown/unproven observed Timer owner",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 72,
+      "label": "expected-shape-unknown-Timer-owner-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 73,
+      "label": "UI-independent-sequence-foreign-source-shape",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "schema/sequence",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 74,
+      "label": "UI-self-sequence-reversal-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "complete selected binding",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 75,
+      "label": "UI-missing-close-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 76,
+      "label": "eleven-synthetic-transport-four-typed-rows-NOT-sourceproof",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "physical source channel/order/global sequence observer7-input.jsonl",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 77,
+      "label": "four-stream-filename-channel-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "physical source channel/order/global sequence observer7-lineage.jsonl",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 78,
+      "label": "four-stream-global-duplicate-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "exact eleven lawful source names; no expected files",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 79,
+      "label": "expected-file-outside-eleven-rejected",
+      "pass_": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "checkpoint SOURCE current/permanent/temporary ledger invariant",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 80,
+      "label": "source-Mana-ledger-current-without-permanent-rejected",
+      "pass_": true
+    }
+  ],
+  "executed": 80,
+  "expected_file_reads": 0,
+  "expected_shape_data": "Presealed synthetic Timer/terminal objects only;no external expected data",
+  "failures": [],
+  "full_source_carriers_or_bundle_positive": false,
+  "input_builds": 0,
+  "models": 0,
+  "native": 0,
+  "new_unique_cases": 68,
+  "pure_mapper_module_imports": 1,
+  "recursive_internal_calls": "NOT_COUNTED",
+  "required_version_regression_cases": 12,
+  "schema": "phase358-independent-real-schema-controls/1",
+  "schema_module_imports": 1,
+  "scope": "stdlib+manifested metadata read/pin beforehook;actual two SOURCE module imports only afterhook",
+  "status": "BOUNDED_SCHEMA_CONTROLS_PASS",
+  "synthetic_only": true,
+  "top_level_call_total": 81,
+  "top_level_calls": {
+    "SOURCE_MAPPER.arguments": 2,
+    "decode_clock": 6,
+    "decode_sources": 4,
+    "validate_cache": 4,
+    "validate_observation_records": 3,
+    "validate_primitive": 2,
+    "validate_record": 19,
+    "validate_resources": 1,
+    "validate_single_king_ui_authority": 3,
+    "validate_state": 15,
+    "validate_terminal_evidence": 2,
+    "validate_typed": 20
+  },
+  "unique_cases": 80
+}
