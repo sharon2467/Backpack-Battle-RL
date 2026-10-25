@@ -1,3 +1,5 @@
+Current engineering status and active limitations: [CURRENT-WORK.md](CURRENT-WORK.md). This takes precedence over older status text inside immutable cuts.
+
 # Self-contained engineering recovery checkpoint
 
 This directory is the complete **GitHub-hosted recovery route**, not just the small Python demonstration. It contains the received original game code/resources/imports, the complete 243 base and support, the complete 343 work overlay, the final347 pause metadata plus the current cumulative354 engineering progress, fixed Linux runtime/dependency artifacts, and a standard-library restore tool. No Library file, old cloud workspace, old cache, or external checkpoint is needed to obtain the engineering files.
