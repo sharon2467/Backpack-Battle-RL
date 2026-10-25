@@ -1,0 +1,27 @@
+func source_same_slot_value(actual, expected):
+	# Native JSON numbers are REAL; accepting exact integral values here is a
+	# SOURCE fixture representation rule, never a cast of observed typed values.
+	match typeof(expected):
+		TYPE_ARRAY:
+			if typeof(actual) != TYPE_ARRAY or actual.size() != expected.size():
+				return false
+			for index in range(expected.size()):
+				if not source_same_slot_value(actual[index], expected[index]):
+					return false
+		TYPE_DICTIONARY:
+			if typeof(actual) != TYPE_DICTIONARY or actual.size() != expected.size():
+				return false
+			for key in expected:
+				if not actual.has(key) or not source_same_slot_value(actual[key], expected[key]):
+					return false
+		TYPE_INT:
+			if (typeof(actual) != TYPE_INT and typeof(actual) != TYPE_REAL) or actual != expected:
+				return false
+		TYPE_STRING:
+			if typeof(actual) != TYPE_STRING or actual != expected:
+				return false
+		_:
+			return false
+	return true
+
+

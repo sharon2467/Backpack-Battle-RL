@@ -129,3 +129,7 @@ done
 Adjacent FILES.json inventories and frozen owners preserve exact stage identities. Reading later SOURCE snapshots never implies production promotion.
 
 Generated observation-producer SOURCE and its independent preparation are preserved at [phase359](../work_in_progress/phase359/README.md), with explicit schema/auxiliary-proof gaps. No runtime or original-game validation is implied.
+
+## First original027 startup failure capsule
+
+The first actual attempt and independent BOOL-domain diagnosis are preserved in [phase364](../work_in_progress/phase364/README.md). Its standalone capsule has a per-member manifest and [explicit extraction instructions](../work_in_progress/phase364/failure_capsule/README.md); it is outside archival354 counts. Actualbattle never started; recovery/attempt02/models remain separate gates.

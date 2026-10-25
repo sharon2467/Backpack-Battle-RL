@@ -1,0 +1,169 @@
+{
+  "Godot_internal_RNG_calls": "NOT_INSTRUMENTED",
+  "Godot_language_probes": 1,
+  "Python_CombatEngine_instances": 0,
+  "SOURCE_module_imports": 3,
+  "actual_Game_processes": 0,
+  "actual_Godot_engine_programs": 1,
+  "after_sources": {
+    "actual-config.json": {
+      "sha256": "dbded47b0896eb3efa859b75aacab673da495a32b845c1e795090969ad76f2c8",
+      "size": 229
+    },
+    "probe.gd": {
+      "sha256": "c5180d4c3a21ed23739fa40006b9408ab26111956998ce135c946b15e77f6ebf",
+      "size": 4390
+    },
+    "project.godot": {
+      "sha256": "9a72a505c44ab6448022df410d30374df77dbd941d74dd8e4572ecb51a6d6048",
+      "size": 198
+    }
+  },
+  "automatic_retry": false,
+  "before": {
+    "actual-config.json": {
+      "sha256": "dbded47b0896eb3efa859b75aacab673da495a32b845c1e795090969ad76f2c8",
+      "size": 229
+    },
+    "probe.gd": {
+      "sha256": "c5180d4c3a21ed23739fa40006b9408ab26111956998ce135c946b15e77f6ebf",
+      "size": 4390
+    },
+    "project.godot": {
+      "sha256": "9a72a505c44ab6448022df410d30374df77dbd941d74dd8e4572ecb51a6d6048",
+      "size": 198
+    }
+  },
+  "explicit_probe_RNG_calls": 0,
+  "first_exit": 0,
+  "generic_monitor_calls": 1,
+  "models": 0,
+  "monitor": {
+    "abort_reason": null,
+    "active_duration_seconds": 2.4540079680009512,
+    "actual_oracle_processes": 0,
+    "cleanup": {
+      "after": [
+        {
+          "live": false,
+          "pid": 12884,
+          "state": "Z"
+        }
+      ],
+      "before": [
+        {
+          "live": true,
+          "pid": 12884,
+          "state": "R"
+        }
+      ],
+      "duration_seconds": 0.007734897000773344,
+      "kill_grace_seconds": 0.5,
+      "kill_sent": false,
+      "leader_returncode": 0,
+      "live_remaining": [],
+      "pgid": 12874,
+      "term_grace_seconds": 0.2,
+      "term_sent": true,
+      "zombies_not_claimed_reaped": [
+        12884
+      ]
+    },
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "/workspace/python-original-engine/repo/tests/godotsteam_offline_exec.py",
+      "/workspace/godotsteam-startup-20261013/debian/usr/bin/xvfb-run",
+      "-a",
+      "-s",
+      "-screen 0 640x480x24 -nolisten tcp",
+      "-e",
+      "/workspace/python-original-engine/repo/data/phase364-independent-startup-diagnosis/language-run/output/xvfb.log",
+      "/workspace/godotsteam-startup-20261013/engine/godotsteam.362.editor.x86_64",
+      "--path",
+      "/workspace/python-original-engine/repo/data/phase364-independent-startup-diagnosis/empty-project",
+      "--audio-driver",
+      "Dummy",
+      "--time-scale",
+      "1.0",
+      "--script",
+      "res://probe.gd"
+    ],
+    "duration_seconds": 2.4618603109993273,
+    "enforcement": "POLLING_NOT_KERNEL_AGGREGATE_QUOTA",
+    "exit_code": 0,
+    "generic_subprocesses": 1,
+    "limits": {
+      "log_bytes": 2097152,
+      "wall": 18.0
+    },
+    "policy": "bounded-writers-and-monitored-process/1",
+    "polling": {
+      "extra_timed_wait": false,
+      "max_observed_scan_gap_seconds": 0.053712793000158854,
+      "model": "ONE_SELECTOR_WAIT_PLUS_IO_SCAN_OVERHEAD",
+      "samples_truncated": false,
+      "scan_count": 50,
+      "scan_times_seconds": [
+        0.050799554999684915,
+        0.10306687599950237,
+        0.15432211000006646,
+        0.2048065669951029,
+        0.21622660499997437,
+        0.26679985499504255,
+        0.3172238990009646,
+        0.3694787080021342,
+        0.42180223100149306,
+        0.45618579499569023,
+        0.5097490859989193,
+        0.5630108049954288,
+        0.6164903710014187,
+        0.6694665140021243,
+        0.7216957560012816,
+        0.7737593259953428,
+        0.8274721189955017,
+        0.8686773239969625,
+        0.9207444579951698,
+        0.9728582960015046,
+        1.0251946529970155,
+        1.0771347929985495,
+        1.1291458900013822,
+        1.1812372889980907,
+        1.2337377459989511,
+        1.2858084389954456,
+        1.2952505499997642,
+        1.347171672998229,
+        1.3991867789954995,
+        1.4511479069988127,
+        1.5031948749965522,
+        1.5552465229993686,
+        1.6080087250011275,
+        1.659942033002153,
+        1.7120412369986298,
+        1.7641664589973516,
+        1.816138119000243,
+        1.868113477998122,
+        1.9211388449984952,
+        1.9731460949988104,
+        2.0251093080005376,
+        2.077083728996513,
+        2.1290689739980735,
+        2.181009087995335,
+        2.232999893996748,
+        2.2850268149995827,
+        2.3369860259990674,
+        2.388969752995763,
+        2.440937938001298,
+        2.4519251929959864
+      ],
+      "single_selector_wait_seconds": 0.05
+    },
+    "process_clean_exit": true,
+    "scope": "GENERIC_SUBPROCESS_MONITOR_ONLY_NOT_ORACLE_OR_CAPTURE",
+    "timed_out": false
+  },
+  "native_battles": 0,
+  "oracle_wrapper_calls": 0,
+  "projection_calls": 0,
+  "report_exists": true,
+  "schema": "phase364-one-language-probe-receipt/1"
+}

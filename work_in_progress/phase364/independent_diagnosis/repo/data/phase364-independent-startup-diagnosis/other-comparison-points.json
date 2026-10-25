@@ -1,0 +1,51 @@
+{
+  "collector": {
+    "path": "data/phase362-oracle-capture-source/collector.gd",
+    "sha256": "35676e172400f079dfd3415eafc42103e130bdb1efcfe8fdaad6428faf4854ca",
+    "size": 44575
+  },
+  "points": [
+    {
+      "line": 74,
+      "point": "config",
+      "source": "source_same_slot_value(config, SOURCE_CONFIG)"
+    },
+    {
+      "line": 99,
+      "point": "fixedO",
+      "source": "source_same_slot_value(opponent_fixture, SOURCE_O)"
+    },
+    {
+      "line": 210,
+      "point": "fixedP",
+      "source": "source_same_slot_value(value, SOURCE_P)"
+    },
+    {
+      "actual_Godot_P_O_comparisons": "NOT_EXECUTED",
+      "current_expected_BOOL_leaves": false,
+      "inference": "Current fixed P/O literals lie within helper INT/STRING/ARRAY/DICT domain; no automatic claim of native success. Future BOOL schema leaf would hit same unsupported-type branch.",
+      "leaf_kinds": [
+        "ARRAY",
+        "DICT",
+        "int",
+        "str"
+      ],
+      "point": "SOURCE_P-leaf-scope"
+    },
+    {
+      "actual_Godot_P_O_comparisons": "NOT_EXECUTED",
+      "current_expected_BOOL_leaves": false,
+      "inference": "Current fixed P/O literals lie within helper INT/STRING/ARRAY/DICT domain; no automatic claim of native success. Future BOOL schema leaf would hit same unsupported-type branch.",
+      "leaf_kinds": [
+        "ARRAY",
+        "DICT",
+        "int",
+        "str"
+      ],
+      "point": "SOURCE_O-leaf-scope"
+    }
+  ],
+  "remedy": "Use explicit supported recursive SOURCE literal comparator with strict BOOL branch; never replace whole containers by builtin Dictionary==. Keep observation typed values/coercions unchanged. Frozen359 helper had noBOOL domain;362 new config caller exceeded it.",
+  "root_next_gate": "New SOURCE version/precise descriptor rebind/independent regression, then separate failedpool recovery and new originalattempt release. No current mutation/retry.",
+  "schema": "phase364-fixed-comparison-SOURCE-followup/1"
+}

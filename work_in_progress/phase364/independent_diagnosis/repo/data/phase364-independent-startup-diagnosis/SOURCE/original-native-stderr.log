@@ -1,0 +1,18 @@
+[S_API] SteamAPI_Init(): SteamAPI_IsSteamRunning() did not locate a running instance of Steam.
+dlopen failed trying to load:
+(null)/.steam/sdk64/steamclient.so
+with error:
+(null)/.steam/sdk64/steamclient.so: cannot open shared object file: No such file or directory
+[S_API] SteamAPI_Init(): Failed to load module '(null)/.steam/sdk64/steamclient.so'
+ERROR: Condition "_first != nullptr" is true.
+   at: ~List (./core/self_list.h:108)
+ERROR: Condition "_first != nullptr" is true.
+   at: ~List (./core/self_list.h:108)
+ERROR: Condition "_first != nullptr" is true.
+   at: ~List (./core/self_list.h:108)
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+     at: cleanup (core/object.cpp:2077)
+ERROR: Resources still in use at exit (run with --verbose for details).
+   at: clear (core/resource.cpp:417)
+ERROR: There are still MemoryPool allocs in use at exit!
+   at: cleanup (core/pool_vector.cpp:63)
