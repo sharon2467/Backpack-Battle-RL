@@ -1,0 +1,419 @@
+{
+  "Engine": 0,
+  "RNG": 0,
+  "RuntimeDTO": 0,
+  "accepted": 9,
+  "actual12_positive": false,
+  "actual_input_builds": 0,
+  "candidate_imports": 0,
+  "capture_reads": 0,
+  "controls": [
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "PosixPath"
+      },
+      "expected": "accept",
+      "id": 1,
+      "label": "actual-accepted-SOURCE-controls",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "capture_release_open_calls": 0,
+        "message": "PENDING_COLLECTOR_HOST_SHARED_CANDIDATE_CLOSURE: no actual12 capture release admitted",
+        "type": "ValueError"
+      },
+      "expected": "pending",
+      "id": 2,
+      "label": "reader-pending-before-release-capture-read",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "missing/incorrect pinned SOURCE file",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 3,
+      "label": "reader-missing-source-control-refusal",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "str"
+      },
+      "expected": "accept",
+      "id": 4,
+      "label": "Buff-Mana105-symbol",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "str"
+      },
+      "expected": "accept",
+      "id": 5,
+      "label": "Buff-Vamp103-symbol",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "SOURCE buff category",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 6,
+      "label": "Buff-unknown-category-refusal",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "list"
+      },
+      "expected": "accept",
+      "id": 7,
+      "label": "ordered39-native-alias-O-hole",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "unknown fixed A native reference role",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 8,
+      "label": "reject-order-O-renumber",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "complete39 source order",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 9,
+      "label": "reject-order-duplicate",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 10,
+      "label": "randf-negative-zero-bits",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 11,
+      "label": "King-pitch-range-exactbits",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 12,
+      "label": "roll-only-INT0-to-REAL0",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 13,
+      "label": "singleton-randi-row-kept",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "integer primitive raw type",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 14,
+      "label": "reject-BOOL-randi-endpoint",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "original randPitch0.1 exact REAL endpoints",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 15,
+      "label": "reject-unknown-INT-to-REAL",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "K1 forbids global_u32 and unknown primitive",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 16,
+      "label": "K1-global-u32-refused",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "unknown primitive label",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 17,
+      "label": "reject-unknown-primitive-label",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "finite BE64 required",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 18,
+      "label": "reject-NaN-return",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "exact object keys required: ('kind', 'label', 'args', 'value')",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 19,
+      "label": "reject-extra-Tape-key",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "integer range/type",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 20,
+      "label": "reject-BOOL-Tape-return",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "exact object keys required: ('schema_version', 'game_version', 'class', 'health', 'stamina', 'items')",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 21,
+      "label": "full-runtime-projection-incomplete-source-refusal",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "exact object keys required: ('schema_version', 'game_version', 'class', 'health', 'stamina', 'items')",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 22,
+      "label": "full-Tape-projection-incomplete-source-refusal",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": true,
+      "detail": {
+        "codec_only_not_a_valid_model_bundle": true,
+        "return_type": "dict"
+      },
+      "expected": "accept",
+      "id": 23,
+      "label": "engineering-codec-invalid-runtime-fixture-only",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "new output directory only; no overwrite/retry",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 24,
+      "label": "existing-output-refusal-no-overwrite",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "new output directory only; no overwrite/retry",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 25,
+      "label": "symlink-output-refusal",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "failed_partial_preserved": true,
+        "message": "Out of range float values are not JSON compliant: nan",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 26,
+      "label": "failed-proof-encoding-keeps-partial",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "exact object keys required: ('schema', 'fixture', 'runtime', 'draws', 'synthetic_seed')",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 27,
+      "label": "bundle-extra-key-refusal",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "missing/incorrect pinned SOURCE file",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 28,
+      "label": "bad-SOURCE-root-refusal",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "genuine five-key bundle, no synthetic seed",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 29,
+      "label": "synthetic-seed-refusal",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "exact object keys required: ('schema', 'mode', 'profile_id', 'checkpoint', 'environment', 'nodes', 'timer_lineage', 'initial_items', 'prepare_order', 'activate_order', 'terminal_profile', 'frame_clock', 'king_particles', 'root_node', 'processing_nodes', 'inactive_auxiliaries', 'ui_authority')",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 30,
+      "label": "runtime-extra-key-refusal",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "engineering proof/before objects",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 31,
+      "label": "proof-object-type-refusal",
+      "pass_": true,
+      "unchanged": true
+    },
+    {
+      "accepted": false,
+      "detail": {
+        "message": "canonical relative SOURCE path",
+        "type": "ValueError"
+      },
+      "expected": "reject",
+      "id": 32,
+      "label": "pinned-path-traversal-refusal",
+      "pass_": true,
+      "unchanged": true
+    }
+  ],
+  "engineering_codec_positive_not_a_valid_model_bundle": true,
+  "executed": 32,
+  "expected_reads": 0,
+  "failures": [],
+  "full_projection_API_positive": false,
+  "internal_schema_calls": "NOT_COUNTED",
+  "models": 0,
+  "native": 0,
+  "pure_projector_imports": 1,
+  "pure_schema_imports": 1,
+  "reader_pending": true,
+  "rejected": 23,
+  "schema": "phase361-independent-unit-controls/1",
+  "status": "BOUNDED_UNITS_PASS_FULL_PROJECTION_POSITIVE_NOT_TESTED",
+  "synthetic_only": true,
+  "top_level_call_total": 32,
+  "top_level_projector_calls": {
+    "_check_tape_row": 2,
+    "_file": 1,
+    "_order": 3,
+    "_primitive_projection": 9,
+    "_role": 3,
+    "_verify_source_controls": 1,
+    "project_fixture_and_runtime": 1,
+    "project_primitives": 1,
+    "read_and_validate_sources": 2,
+    "seal_once": 9
+  },
+  "unique_cases": 32
+}
