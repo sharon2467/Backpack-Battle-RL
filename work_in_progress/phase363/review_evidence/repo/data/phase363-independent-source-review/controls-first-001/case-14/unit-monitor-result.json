@@ -1,0 +1,78 @@
+{
+  "abort_reason": "wall_timeout:startup",
+  "active_duration_seconds": 0.3006497819987999,
+  "actual_oracle_processes": 0,
+  "cleanup": {
+    "after": [
+      {
+        "live": false,
+        "pid": 12363,
+        "state": "Z"
+      }
+    ],
+    "before": [
+      {
+        "live": true,
+        "pid": 12363,
+        "state": "S"
+      }
+    ],
+    "duration_seconds": 0.09568626200052677,
+    "kill_grace_seconds": 0.35,
+    "kill_sent": true,
+    "leader_returncode": 0,
+    "live_remaining": [],
+    "pgid": 12362,
+    "term_grace_seconds": 0.08,
+    "term_sent": true,
+    "zombies_not_claimed_reaped": [
+      12363
+    ]
+  },
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-I",
+    "-B",
+    "-S",
+    "-c",
+    "import os,signal,time,json\nfrom pathlib import Path\nchild=os.fork()\nif child==0:\n signal.signal(signal.SIGTERM,signal.SIG_IGN)\n Path('descendant.json').write_text(json.dumps({'pid':os.getpid(),'pgid':os.getpgrp(),'sid':os.getsid(0)}))\n time.sleep(2)\n os._exit(0)\nwhile not Path('descendant.json').exists():time.sleep(.005)\nprint('UNIT_DESCENDANT_READY',flush=True)\nos._exit(0)\n"
+  ],
+  "duration_seconds": 0.3963703759982309,
+  "enforcement": "POLLING_NOT_KERNEL_AGGREGATE_QUOTA",
+  "exit_code": 0,
+  "generic_subprocesses": 1,
+  "limits": {
+    "log_bytes": 4096,
+    "wall": 0.3
+  },
+  "policy": "bounded-writers-and-monitored-process/1",
+  "polling": {
+    "extra_timed_wait": false,
+    "max_observed_scan_gap_seconds": 0.020170548999885796,
+    "model": "ONE_SELECTOR_WAIT_PLUS_IO_SCAN_OVERHEAD",
+    "samples_truncated": false,
+    "scan_count": 16,
+    "scan_times_seconds": [
+      0.02069653400030802,
+      0.02514886900098645,
+      0.04523991200039745,
+      0.06534555499820272,
+      0.08543980999820633,
+      0.10553765199802001,
+      0.125631639999483,
+      0.1457244509983866,
+      0.1658106789982412,
+      0.185899263000465,
+      0.2060167809977429,
+      0.22613213099975837,
+      0.24628266400031862,
+      0.2664532130002044,
+      0.2865459540007578,
+      0.3006463519996032
+    ],
+    "single_selector_wait_seconds": 0.02
+  },
+  "process_clean_exit": false,
+  "scope": "GENERIC_SUBPROCESS_MONITOR_ONLY_NOT_ORACLE_OR_CAPTURE",
+  "timed_out": true
+}

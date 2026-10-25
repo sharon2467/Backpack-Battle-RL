@@ -1,0 +1,558 @@
+{
+  "files": [
+    {
+      "path": "docs/phase363_independent_repair_validation_spec.md",
+      "sha256": "10c25fec264086ccc38677e4d6d53e310575321b666d4ead9f150a2b636785e1",
+      "size": 3063
+    },
+    {
+      "path": "tests/phase363_prepare_independent_controls.py",
+      "sha256": "7b18fadd26daf940e47e9116ffe8831adf14b7fd86ecfa9d6cea7a50521fae33",
+      "size": 6520
+    },
+    {
+      "path": "tests/phase363_independent_repair_controls.py",
+      "sha256": "42b020d5c0c5946a77337c427425098d5eacc0e3d1c7aff34a883e1a26ebe770",
+      "size": 22868
+    },
+    {
+      "path": "tests/phase363_finalize_independent_review.py",
+      "sha256": "8edccc9cdcf4c97d88f39f507c3a2ce31a06a555517b4171e6a6a012314ff435",
+      "size": 10065
+    },
+    {
+      "path": "data/phase363-independent-source-review/SOURCE/compaction.py",
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260",
+      "size": 27304
+    },
+    {
+      "path": "data/phase363-independent-source-review/SOURCE/guard-identities.json",
+      "sha256": "ff446284208246dae25d00057d4395815c770a36bd1a37f1aba1e7d6846fde1f",
+      "size": 515
+    },
+    {
+      "path": "data/phase363-independent-source-review/SOURCE/host.py",
+      "sha256": "c803d0160e600ca298b2ac916d4cb90872f6870e2050598a99c665217b8254ed",
+      "size": 13778
+    },
+    {
+      "path": "data/phase363-independent-source-review/SOURCE/process.py",
+      "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f",
+      "size": 13665
+    },
+    {
+      "path": "data/phase363-independent-source-review/SOURCE/storage.py",
+      "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc",
+      "size": 15496
+    },
+    {
+      "path": "data/phase363-independent-source-review/cases.json",
+      "sha256": "b0426f6d00e9db4c1f2720e6bf500653d538ab09f0c923644788d22e226b817a",
+      "size": 3668
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-1/alias",
+      "sha256": "651bfd3081c760b7f17b85ff7e634f9f6e4fe16c692e4cc98bfafc446930f487",
+      "size": 9
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-1/source/one-after.txt",
+      "sha256": "7f659edf0f9deaede300f08667d65e76310027f87b814306726271083cca0233",
+      "size": 9
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-1/target/one.txt",
+      "sha256": "651bfd3081c760b7f17b85ff7e634f9f6e4fe16c692e4cc98bfafc446930f487",
+      "size": 9
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-10/backup/preimages.json",
+      "sha256": "4439bfb84ceb8a61562e6a4864d982533008509c5d4bfc84a9bc11735d847f0d",
+      "size": 196
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-10/source/one-after.txt",
+      "sha256": "7f659edf0f9deaede300f08667d65e76310027f87b814306726271083cca0233",
+      "size": 9
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-10/target/one.txt",
+      "sha256": "7f659edf0f9deaede300f08667d65e76310027f87b814306726271083cca0233",
+      "size": 9
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-11/owned.txt",
+      "sha256": "40df78a3ba0e4f320e87017d99ed0cd7a31a4ef68263d3235ea53d7f5b89aec5",
+      "size": 9
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-11/unit-monitor-result.json",
+      "sha256": "2a3be85789864c60b5ac399ff3ec18c9c91f3ba7cef0a9fa100f872809656fe4",
+      "size": 1474
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-11/unit-stderr.log",
+      "sha256": "d0ec6984f62231388a0ea96377eae10e38b1efba0df92953d7cdcd729ceec981",
+      "size": 12
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-11/unit-stdout.log",
+      "sha256": "c71d72db9b9387843d17d35c0f3788b056b576cce5cba3402cb591c485e829e4",
+      "size": 12
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-12/unit-first-log-overflow.bin",
+      "sha256": "c422e7070cb1cb455b5de9afee0d975e303d0239c72030cd7414ab5c382d3ae8",
+      "size": 64
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-12/unit-monitor-result.json",
+      "sha256": "a4ba83d3a863b982f3738a1d517e99ef9e117ea8436bc51fc1b4bcd5305f3682",
+      "size": 1409
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-12/unit-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-12/unit-stdout.log",
+      "sha256": "d53eda7a637c99cc7fb566d96e9fa109bf15c478410a3f5eb4d4c4e26cd081f6",
+      "size": 64
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-13/unit-monitor-result.json",
+      "sha256": "f7995ba2ccb6345bb98991e7dcb07f8794cd22065bd33934e6bebd9da8570eed",
+      "size": 1668
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-13/unit-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-13/unit-stdout.log",
+      "sha256": "1c6b558cb52b3dab52f055e37ac70c4ade536904defed718f283b62a4d4409fc",
+      "size": 20
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-14/descendant.json",
+      "sha256": "aadcf26cd86bf11f3181c85738987e38143f6f3efba043eaf16ea1cb0f3d4d14",
+      "size": 43
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-14/unit-monitor-result.json",
+      "sha256": "285a60db9c91f9b42e547a9dfe0bc3ab707042fcb0c95a34b70d13c99e45fed6",
+      "size": 2266
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-14/unit-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-14/unit-stdout.log",
+      "sha256": "c56adcb8a58412e7c86b05b6120b516ba012f7f1d3c51b8ae848f2df2bf0c865",
+      "size": 22
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-15/descendant.json",
+      "sha256": "5387173e83106f4ac2e42ba58cf48f9baea17af2dde8303213d562e6ffdeba02",
+      "size": 43
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-15/unit-monitor-result.json",
+      "sha256": "6e94dc7f1565d4c5fde440a2e4fcefab16b6947591fc2d52e641a27e43341e21",
+      "size": 2406
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-15/unit-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-15/unit-stdout.log",
+      "sha256": "c56adcb8a58412e7c86b05b6120b516ba012f7f1d3c51b8ae848f2df2bf0c865",
+      "size": 22
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-16/unit-monitor-result.json",
+      "sha256": "dc2041982a37366a502b68164a6609e87f5f799022aad2af067a0c995a36af5d",
+      "size": 1584
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-16/unit-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-16/unit-stdout.log",
+      "sha256": "49334fc66ce9d4308657d3524bc602e5e2993da88cb3b70823154537f5f875e8",
+      "size": 11
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-16/user/cache/owned.bin",
+      "sha256": "27d926a6708d6769d97d065e7a5a860ab496eab272c03d1cebc55ec71b954fa2",
+      "size": 64
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-17/unit-monitor-result.json",
+      "sha256": "a035ec586305b91a5984e9f3e00c2dc13fec1711f6ee9a613401f84e0d2e3045",
+      "size": 1622
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-17/unit-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-17/unit-stdout.log",
+      "sha256": "aecae9e16e84807a70fa29ad1ca3e72bb731a7d1bbc06279c51920fca603b0d5",
+      "size": 18
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-17/user/data/UNKNOWN_UNIT_ROOT/file",
+      "sha256": "7dddd485a36525592843f1c1f98d89127740f04064cd1f757117d23a21cdbb38",
+      "size": 12
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-19/trigger",
+      "sha256": "30dc80dc2d5eec1bd385c5e3a6778bffcac5a865deb08e479e380e493f5751b7",
+      "size": 4
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-19/unit-monitor-result.json",
+      "sha256": "356e8fce7cee6160337c27780a588b7e194d2568979dfc4f98e8d8ba3a252b3d",
+      "size": 1524
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-19/unit-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-19/unit-stdout.log",
+      "sha256": "88b8410bf694039f6e381d3c04c07174abf62c7c284ec7b98c562eaad6ea22f5",
+      "size": 21
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-2/alias",
+      "sha256": "ea79966b823f2210c21379900e1a4993c8d5cdaf2948961ee1d0c8bbf4d0bad4",
+      "size": 7
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-2/source/one-after.txt",
+      "sha256": "7f659edf0f9deaede300f08667d65e76310027f87b814306726271083cca0233",
+      "size": 9
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-2/source/two-after.txt",
+      "sha256": "7752580cd397ba84f0f4627b57a154ddd3f7879e50436521d2568e4b907cafd6",
+      "size": 7
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-2/target/one.txt",
+      "sha256": "651bfd3081c760b7f17b85ff7e634f9f6e4fe16c692e4cc98bfafc446930f487",
+      "size": 9
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-2/target/two.txt",
+      "sha256": "ea79966b823f2210c21379900e1a4993c8d5cdaf2948961ee1d0c8bbf4d0bad4",
+      "size": 7
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-22/neutral-base/old.txt",
+      "sha256": "099d90cbee62f89e6478e153eb3240efcbe4ac2231bedc3e84549bbeaaba87e8",
+      "size": 3
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-22/neutral-base/removed.txt",
+      "sha256": "70fa71f874684cd56f6de1ac2ab322eeddf3bd1ef00fa0cf82e617dbd28925c3",
+      "size": 7
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-22/neutral-base/same.txt",
+      "sha256": "b578ccfaab77fd4c03aca825d1872f524971451fdcae17d5061602203dbc25df",
+      "size": 9
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-22/neutral-layout/.lock",
+      "sha256": "9f79c74f929010acf67bb1d21ab85cf49e1066ef7787a1d36d5dfb3420ae3752",
+      "size": 9
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-22/neutral-layout/data/unit.txt",
+      "sha256": "7972656152b1c0587e37a2aafc9f98a9073da5e217edf77ebb379081be0660e7",
+      "size": 10
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-22/neutral-layout/project/added.txt",
+      "sha256": "b45616416cafffcd0e84102064ce56545d7221176155b23aa3c1348a5eeb18c8",
+      "size": 5
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-22/neutral-layout/project/old.txt",
+      "sha256": "3a6e351b6aa6629d464404ea52708596c09b72c4574d76378e6d76d94006b081",
+      "size": 7
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-22/neutral-layout/project/same.txt",
+      "sha256": "b578ccfaab77fd4c03aca825d1872f524971451fdcae17d5061602203dbc25df",
+      "size": 9
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-22/neutral-layout/state.json",
+      "sha256": "e3bab0ddc9e38a930077aa24ef2ec640e39f4498caf197bc8b8c079aec091d7f",
+      "size": 3727
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-22/neutral-run/data/unit.txt",
+      "sha256": "7972656152b1c0587e37a2aafc9f98a9073da5e217edf77ebb379081be0660e7",
+      "size": 10
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-22/neutral-run/output/compaction/RESTORE-PROJECT.md",
+      "sha256": "3cfc0b9b4210f96a00e9791ce1d6ab295dec02699ada25e77af8293fc273b4bb",
+      "size": 158
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-22/neutral-run/output/compaction/baseline-files.json",
+      "sha256": "3044c9695a7258923698dfc9558d0d739376e589eaca69b2a5144006f04e11e9",
+      "size": 842
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-22/neutral-run/output/compaction/bundle-manifest.json",
+      "sha256": "6a1d41916ba4cea28de0996a51b5f193958156cc0d7c4cff5b4d0a2e5e95de03",
+      "size": 1204
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-22/neutral-run/output/compaction/driver-files.json",
+      "sha256": "5009454c3213634143f674e8ed088d9ee90ee3efddc5dc86ed954c09e844e1f7",
+      "size": 406
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-22/neutral-run/output/compaction/eligibility.json",
+      "sha256": "67f04335868d81ff27910060afc294670cb753374a5775dc09e14d9415df8a4b",
+      "size": 59
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-22/neutral-run/output/compaction/inputs/unit.txt",
+      "sha256": "7972656152b1c0587e37a2aafc9f98a9073da5e217edf77ebb379081be0660e7",
+      "size": 10
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-22/neutral-run/output/compaction/overlay-manifest.json",
+      "sha256": "e85fdc8ed80db931c03b2a3544ebd6694ea180be06cfad1b4bab428e8fe2139b",
+      "size": 196
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-22/neutral-run/output/compaction/overlay.zip",
+      "sha256": "cdbc874ca018770504685996618afffb4348096d053d8f409774f6d46680cf95",
+      "size": 222
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-22/neutral-run/output/compaction/pool-roundtrip.json",
+      "sha256": "aa94fd68023c30fd9dfe12f4894496f985a6f3a33b99ca8f4cbfa5c259413540",
+      "size": 614
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-22/neutral-run/output/compaction/project-files.json",
+      "sha256": "7a9d0ec93f3165457ed4625289b4a313225e9e22b878b51f2af926e2a7374f1e",
+      "size": 840
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-22/neutral-run/output/compaction/retained-evidence.json",
+      "sha256": "dc594ad780e7e3d95d9165a3f773b3757aaac4aaea9b5d927d918b98337dcb9b",
+      "size": 1090
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-22/neutral-run/output/compaction/source-identities.json",
+      "sha256": "b8a34c2834695ce180a1f647999a684627123e03c25349ea0f2053a13ca39451",
+      "size": 1850
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-22/neutral-run/output/compaction/staged-inputs.json",
+      "sha256": "e99e0e3ba4b99bf622893ddb9dab6327b8cf27e73980f8e74b39e5dbc14354f5",
+      "size": 403
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-22/neutral-run/output/driver/unit.py.txt",
+      "sha256": "d0da6177656554e93a922839a89e471dc4574b9f7e795eab58be38809f55808d",
+      "size": 26
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-22/neutral-run/output/pool-provenance.json",
+      "sha256": "121345bb3e4ba5c4bc9234d870dde0e723f62b6760a463842c5094ec544037f4",
+      "size": 67
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-23/invalid.zip",
+      "sha256": "718675cf0eeb68ce52c96b473f351c68302c97adea7c6bfeec7bd09bd05523e9",
+      "size": 237
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-24/invalid.zip",
+      "sha256": "1a5eacc1a5518e6af47e106cb03031702780d409752d095706d3bb3d21869a97",
+      "size": 323
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-3/backup/0",
+      "sha256": "651bfd3081c760b7f17b85ff7e634f9f6e4fe16c692e4cc98bfafc446930f487",
+      "size": 9
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-3/backup/preimages.json",
+      "sha256": "f78429f15c5739f418fdc580393da0925be41a88038806be081cf03b9374cf46",
+      "size": 388
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-3/source/one-after.txt",
+      "sha256": "7f659edf0f9deaede300f08667d65e76310027f87b814306726271083cca0233",
+      "size": 9
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-3/target/one.txt",
+      "sha256": "651bfd3081c760b7f17b85ff7e634f9f6e4fe16c692e4cc98bfafc446930f487",
+      "size": 9
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-31/source/unit-invalid-config.json",
+      "sha256": "6a6fc1452fe3def8ad83e335453a814996859c9735f9c73a6631e8645820b637",
+      "size": 79
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-4/source/one-after.txt",
+      "sha256": "7f659edf0f9deaede300f08667d65e76310027f87b814306726271083cca0233",
+      "size": 9
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-4/target/one.txt",
+      "sha256": "651bfd3081c760b7f17b85ff7e634f9f6e4fe16c692e4cc98bfafc446930f487",
+      "size": 9
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-5/source/one-after.txt",
+      "sha256": "7f659edf0f9deaede300f08667d65e76310027f87b814306726271083cca0233",
+      "size": 9
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-5/target/one.txt",
+      "sha256": "651bfd3081c760b7f17b85ff7e634f9f6e4fe16c692e4cc98bfafc446930f487",
+      "size": 9
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-6/source/one-after.txt",
+      "sha256": "7f659edf0f9deaede300f08667d65e76310027f87b814306726271083cca0233",
+      "size": 9
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-6/target/one.txt",
+      "sha256": "651bfd3081c760b7f17b85ff7e634f9f6e4fe16c692e4cc98bfafc446930f487",
+      "size": 9
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-7/source/one-after.txt",
+      "sha256": "7f659edf0f9deaede300f08667d65e76310027f87b814306726271083cca0233",
+      "size": 9
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-7/target/one.txt",
+      "sha256": "651bfd3081c760b7f17b85ff7e634f9f6e4fe16c692e4cc98bfafc446930f487",
+      "size": 9
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-8/backup/existing.txt",
+      "sha256": "b578ccfaab77fd4c03aca825d1872f524971451fdcae17d5061602203dbc25df",
+      "size": 9
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-8/source/one-after.txt",
+      "sha256": "7f659edf0f9deaede300f08667d65e76310027f87b814306726271083cca0233",
+      "size": 9
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/case-8/target/one.txt",
+      "sha256": "651bfd3081c760b7f17b85ff7e634f9f6e4fe16c692e4cc98bfafc446930f487",
+      "size": 9
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/joint-seal.json",
+      "sha256": "bdd51c57dd6ac75206d1dadd2024c36554c8fd98c9c7f24f52986464e96a5c7e",
+      "size": 892
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/journal.jsonl",
+      "sha256": "d01fae555115482cecc740a203c83eaed354b710352740943ae6ab77a591ae88",
+      "size": 21385
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/open-audit.json",
+      "sha256": "17cf9a7af524c506bef147bd39c6a2d133f83816bb9a18a78251cff177c4e14c",
+      "size": 184550
+    },
+    {
+      "path": "data/phase363-independent-source-review/controls-first-001/report.json",
+      "sha256": "c9b303dc0e0e30c5178801ec735bc9213e4d171a0c75cbb48aaa272d8cc0e35f",
+      "size": 48922
+    },
+    {
+      "path": "data/phase363-independent-source-review/coverage.json",
+      "sha256": "05878d448abb8e727a31c903b460946db4b01b358656820455790fb59c9250f2",
+      "size": 8815
+    },
+    {
+      "path": "data/phase363-independent-source-review/execution-contract.json",
+      "sha256": "8450c4a832026ab06d034c31dcc0bfca735ece585bc88bf6b5d237a76715aa74",
+      "size": 2635
+    },
+    {
+      "path": "data/phase363-independent-source-review/execution-receipt.json",
+      "sha256": "2323d83bec587069b5133745d70ff8a84b2cf55b9d92372a5770812d07e9797e",
+      "size": 2955
+    },
+    {
+      "path": "data/phase363-independent-source-review/first-stderr.txt",
+      "sha256": "83c471bb507a0b5a771ee98d42267d107406cfeb2f51f41da083c08f46889dc9",
+      "size": 205
+    },
+    {
+      "path": "data/phase363-independent-source-review/first-stdout.txt",
+      "sha256": "0ef3e33858edba160f1e866a6e72ab571e89498868c00a5c1fd9b10482ec7db2",
+      "size": 129
+    },
+    {
+      "path": "data/phase363-independent-source-review/output-finalization-first-failure.json",
+      "sha256": "f0551c56d388ba76ac68cc6f46e7335733345471fa5ccfa84f136194db9956f6",
+      "size": 326
+    },
+    {
+      "path": "data/phase363-independent-source-review/process-measurements.json",
+      "sha256": "5f8e48b5463a5229fdd9fe978acff793ffd10ae36f3c1ee33323e0c577369108",
+      "size": 2954
+    },
+    {
+      "path": "data/phase363-independent-source-review/review.json",
+      "sha256": "b8f0c38aa468cafed2b0ee0e4a5ea33cbd21cf5dea19222b41777484518ba456",
+      "size": 3841
+    },
+    {
+      "path": "data/phase363-independent-source-review/source-owner.json",
+      "sha256": "f1b837303d03f89e205b5b9dee87862510d8ea64b5a20b0074b8f6af5b479c23",
+      "size": 2222
+    },
+    {
+      "path": "data/phase363-independent-source-review/source-review.json",
+      "sha256": "c6852bb13680d3f9e70d858e20c75a4585e00f3eae763d7a5ae24f0892931e4c",
+      "size": 2255
+    },
+    {
+      "path": "data/phase363-independent-source-review/synthetic-link-facts.json",
+      "sha256": "50706407c70e64a96be9541710e3346c58eddf011be5c66b9f68e1921f43aa9e",
+      "size": 623
+    }
+  ],
+  "hardlink_note": "Current owned refusal aliases retain inode relation; byte pins do not assert inode independence.",
+  "no_more_writes": true,
+  "repository_only": true,
+  "schema": "phase363-independent-final-owner/1"
+}

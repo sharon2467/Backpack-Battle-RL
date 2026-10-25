@@ -1,0 +1,108 @@
+{
+  "child_results": [
+    {
+      "abort_reason": null,
+      "active_seconds": 0.020569003998389235,
+      "cleanup_seconds": 0.017757366000296315,
+      "exit_code": 0,
+      "kill_sent": false,
+      "pgid": 12359,
+      "timed_out": false
+    },
+    {
+      "abort_reason": "controlled_log_cap",
+      "active_seconds": 0.009520640000118874,
+      "cleanup_seconds": 0.0176112799999828,
+      "exit_code": -15,
+      "kill_sent": false,
+      "pgid": 12360,
+      "timed_out": false
+    },
+    {
+      "abort_reason": "wall_timeout:startup",
+      "active_seconds": 0.1508360920015548,
+      "cleanup_seconds": 0.017611493000003975,
+      "exit_code": -15,
+      "kill_sent": false,
+      "pgid": 12361,
+      "timed_out": true
+    },
+    {
+      "abort_reason": "wall_timeout:startup",
+      "active_seconds": 0.3006497819987999,
+      "cleanup_seconds": 0.09568626200052677,
+      "exit_code": 0,
+      "kill_sent": true,
+      "pgid": 12362,
+      "timed_out": true
+    },
+    {
+      "abort_reason": "wall_timeout:startup",
+      "active_seconds": 0.3011067949992139,
+      "cleanup_seconds": 0.09600862200022675,
+      "exit_code": -9,
+      "kill_sent": true,
+      "pgid": 12364,
+      "timed_out": true
+    },
+    {
+      "abort_reason": null,
+      "active_seconds": 0.10062636300062877,
+      "cleanup_seconds": 0.017660033001448028,
+      "exit_code": 0,
+      "kill_sent": false,
+      "pgid": 12366,
+      "timed_out": false
+    },
+    {
+      "abort_reason": "scan_rejected:outside declared native user roots: data/UNKNOWN_UNIT_ROOT/file",
+      "active_seconds": 0.02060463900124887,
+      "cleanup_seconds": 0.01761901399731869,
+      "exit_code": -15,
+      "kill_sent": false,
+      "pgid": 12367,
+      "timed_out": false
+    },
+    {
+      "abort_reason": "scan_rejected:UNIT_ACCOUNTING_IO_FAILURE",
+      "active_seconds": 0.019628932001069188,
+      "cleanup_seconds": 0.01756001300236676,
+      "exit_code": -15,
+      "kill_sent": false,
+      "pgid": 12368,
+      "timed_out": false
+    }
+  ],
+  "emergency_cleanup_groups": [],
+  "hard50ms_gap_claim": false,
+  "kernel_aggregate_quota": false,
+  "live_remaining": 0,
+  "max_active_duration_seconds": 0.3011067949992139,
+  "max_cleanup_duration_seconds": 0.09600862200022675,
+  "max_observed_unit_scan_gap_seconds": 0.02043879399934667,
+  "max_total_unit_duration_seconds": 0.397150081997097,
+  "observed_fork_descendants": [
+    {
+      "pgid": 12362,
+      "pid": 12363,
+      "sid": 12362
+    },
+    {
+      "pgid": 12364,
+      "pid": 12365,
+      "sid": 12364
+    }
+  ],
+  "oracle_processes": 0,
+  "policy": "bounded-writers-and-monitored-process/1",
+  "production_poll_seconds_SOURCE": 0.05,
+  "sampling": "ONE_SELECTOR_WAIT_PLUS_IO_SCAN_OVERHEAD",
+  "schema": "phase363-independent-process-measurements/1",
+  "synthetic_direct_children": 8,
+  "total_known_child_processes": 10,
+  "unit_poll_seconds": 0.02,
+  "zombies_not_claimed_reaped": [
+    12363,
+    12365
+  ]
+}

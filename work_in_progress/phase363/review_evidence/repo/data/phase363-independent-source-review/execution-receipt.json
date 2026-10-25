@@ -1,0 +1,86 @@
+{
+  "Godot": 0,
+  "SOURCE_module_imports": 4,
+  "actual12_builds": 0,
+  "actual_Game_or_pool_operations": 0,
+  "attempts": 1,
+  "audit": {
+    "Popen_events": 8,
+    "blocked": 0,
+    "reads_at_cut": 4540,
+    "signals": 10,
+    "writes_at_cut": 137
+  },
+  "command": [
+    "python3",
+    "-I",
+    "-B",
+    "-S",
+    "tests/phase363_independent_repair_controls.py"
+  ],
+  "executed": 36,
+  "failures": 0,
+  "first_exit": 0,
+  "internal_calls": "NOT_COUNTED",
+  "internal_host_plan_entry_attempts": 1,
+  "jointseal": {
+    "path": "data/phase363-independent-source-review/controls-first-001/joint-seal.json",
+    "sha256": "bdd51c57dd6ac75206d1dadd2024c36554c8fd98c9c7f24f52986464e96a5c7e",
+    "size": 892
+  },
+  "metadata_firstfailure": {
+    "path": "data/phase363-independent-source-review/output-finalization-first-failure.json",
+    "sha256": "f0551c56d388ba76ac68cc6f46e7335733345471fa5ccfa84f136194db9956f6",
+    "size": 326
+  },
+  "metadata_fix": "Ignore the existing function docstring when checking sole unconditional raise. No helper/control/child rerun.",
+  "models": 0,
+  "native": 0,
+  "parse": 0,
+  "passed": 36,
+  "planned": 36,
+  "projection_calls": 0,
+  "rejected_host_execute_calls": 1,
+  "report": {
+    "path": "data/phase363-independent-source-review/controls-first-001/report.json",
+    "sha256": "c9b303dc0e0e30c5178801ec735bc9213e4d171a0c75cbb48aaa272d8cc0e35f",
+    "size": 48922
+  },
+  "schema": "phase363-independent-first-execution/1",
+  "stderr": {
+    "path": "data/phase363-independent-source-review/first-stderr.txt",
+    "sha256": "83c471bb507a0b5a771ee98d42267d107406cfeb2f51f41da083c08f46889dc9",
+    "size": 205
+  },
+  "stderr_note": "Expected zipfile duplicate-added.txt warning while creating negative control24; not source/control failure.",
+  "stdout": {
+    "path": "data/phase363-independent-source-review/first-stdout.txt",
+    "sha256": "0ef3e33858edba160f1e866a6e72ab571e89498868c00a5c1fd9b10482ec7db2",
+    "size": 129
+  },
+  "successful_actual_hostplans": 0,
+  "synthetic_direct_Python_children": 8,
+  "synthetic_fork_descendants": 2,
+  "tiny_archive_streaming_calls": 1,
+  "tiny_check_ready_calls": 5,
+  "tiny_install_calls": 11,
+  "tiny_state_write_top_level_calls": 3,
+  "top_level_call_total": 45,
+  "top_level_helper_calls": {
+    "native_run_compaction.load_bundle": 1,
+    "native_run_compaction.validate_archive": 2,
+    "phase363_oracle_host.execute": 1,
+    "phase363_oracle_host.source_gate": 1,
+    "phase363_oracle_process.monitor_command": 8,
+    "phase363_oracle_process.usage": 7,
+    "phase363_oracle_storage.archive_streaming": 1,
+    "phase363_oracle_storage.atomic_image": 1,
+    "phase363_oracle_storage.budget": 1,
+    "phase363_oracle_storage.check_ready": 5,
+    "phase363_oracle_storage.install": 11,
+    "phase363_oracle_storage.lease": 2,
+    "phase363_oracle_storage.map_recorded": 1,
+    "phase363_oracle_storage.state_write": 3
+  },
+  "total_known_synthetic_processes": 10
+}

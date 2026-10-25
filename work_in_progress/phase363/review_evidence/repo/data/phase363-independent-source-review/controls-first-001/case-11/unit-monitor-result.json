@@ -1,0 +1,50 @@
+{
+  "abort_reason": null,
+  "active_duration_seconds": 0.020569003998389235,
+  "actual_oracle_processes": 0,
+  "cleanup": {
+    "after": [],
+    "before": [],
+    "duration_seconds": 0.017757366000296315,
+    "kill_grace_seconds": 0.35,
+    "kill_sent": false,
+    "leader_returncode": 0,
+    "live_remaining": [],
+    "pgid": 12359,
+    "term_grace_seconds": 0.08,
+    "term_sent": false,
+    "zombies_not_claimed_reaped": []
+  },
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-I",
+    "-B",
+    "-S",
+    "-c",
+    "from pathlib import Path\nimport sys\nPath('owned.txt').write_text('UNIT_FILE')\nprint('UNIT_STDOUT',flush=True)\nprint('UNIT_STDERR',file=sys.stderr,flush=True)\n"
+  ],
+  "duration_seconds": 0.038383824001357425,
+  "enforcement": "POLLING_NOT_KERNEL_AGGREGATE_QUOTA",
+  "exit_code": 0,
+  "generic_subprocesses": 1,
+  "limits": {
+    "log_bytes": 4096,
+    "wall": 2.0
+  },
+  "policy": "bounded-writers-and-monitored-process/1",
+  "polling": {
+    "extra_timed_wait": false,
+    "max_observed_scan_gap_seconds": 0.0029008239980612416,
+    "model": "ONE_SELECTOR_WAIT_PLUS_IO_SCAN_OVERHEAD",
+    "samples_truncated": false,
+    "scan_count": 2,
+    "scan_times_seconds": [
+      0.017636060001677833,
+      0.020536883999739075
+    ],
+    "single_selector_wait_seconds": 0.02
+  },
+  "process_clean_exit": true,
+  "scope": "GENERIC_SUBPROCESS_MONITOR_ONLY_NOT_ORACLE_OR_CAPTURE",
+  "timed_out": false
+}

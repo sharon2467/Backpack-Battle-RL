@@ -1,0 +1,78 @@
+{
+  "actual50ms": "Configured selector timeout plus IO/scan/cleanup; no hard scan bound claim",
+  "author_bytes": 186679,
+  "author_leaves": 13,
+  "cleanup": "TERM/grace/KILL uses own pgid/sid membership independent of leader; dynamic controls pending",
+  "deltas": {
+    "host": {
+      "changed": [
+        "execute",
+        "plan",
+        "source_gate"
+      ],
+      "inverse": "PASS",
+      "new_functions": []
+    },
+    "process": {
+      "changed": [
+        "execute_process"
+      ],
+      "inverse": "PASS",
+      "new_functions": [
+        "_group_members",
+        "_seconds",
+        "_signal_group",
+        "cleanup_process_group",
+        "monitor_command"
+      ]
+    },
+    "storage": {
+      "changed": [
+        "install",
+        "lease",
+        "reset_previous",
+        "state_write"
+      ],
+      "inverse": "PASS",
+      "new_functions": [
+        "atomic_image",
+        "regular_target"
+      ]
+    }
+  },
+  "helper_imports": 0,
+  "inherited_collector": {
+    "path": "data/phase362-oracle-capture-source/collector.gd",
+    "sha256": "35676e172400f079dfd3415eafc42103e130bdb1efcfe8fdaad6428faf4854ca",
+    "size": 44575
+  },
+  "inherited_paths75_exact": true,
+  "inherited_three_configs": [
+    {
+      "path": "data/phase362-oracle-capture-source/case-A/custom_opponent.json",
+      "sha256": "9c57f7781c8ae58027296004262cc0b2b691c25084ea29d8f4171ff44828a689",
+      "size": 1597
+    },
+    {
+      "path": "data/phase362-oracle-capture-source/case-A/custom_player.json",
+      "sha256": "a42675c3fedb0651e4309754403d5658edcce869f85edb07963e7a2f87391c56",
+      "size": 1676
+    },
+    {
+      "path": "data/phase362-oracle-capture-source/case-A/native_capture_config.json",
+      "sha256": "dbded47b0896eb3efa859b75aacab673da495a32b845c1e795090969ad76f2c8",
+      "size": 229
+    }
+  ],
+  "kernel_quota": false,
+  "operations": 0,
+  "reused_not_rerun": true,
+  "reused_seven_static": {
+    "path": "data/phase362-independent-source-review/static-first-001/report.json",
+    "sha256": "34a0dc3e7c1421405b802d8ca0f1443dd0df2690f149898800d6ad766251edb3",
+    "size": 2153
+  },
+  "schema": "phase363-independent-delta-review/1",
+  "single_selector_no_extra_wait": true,
+  "status": "SOURCE_DELTA_REVIEWED_CONTROLS_PENDING"
+}

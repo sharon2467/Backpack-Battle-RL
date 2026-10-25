@@ -1,0 +1,104 @@
+{
+  "schema": "phase363-root-oracle-acceptance/1",
+  "status": "ROOT_ACCEPTED_SOURCE_ORACLE_ONLY_REQUIRES_PLAN_AND_PARSE",
+  "root_oracle_authorized": true,
+  "models_allowed": 0,
+  "input_builds_allowed": 0,
+  "expected_comparison_allowed": 0,
+  "write_policy": "bounded-writers-and-monitored-process/1",
+  "source_freeze": {
+    "path": "data/phase363-oracle-repair-source/combined-source-freeze.json",
+    "size": 52020,
+    "sha256": "b86bb6181e38d19d74aff7b163723f247f467b1a3e4ca9715c41171b7f5358af"
+  },
+  "source_owner": {
+    "path": "data/phase363-oracle-repair-source/source-owner.json",
+    "size": 2546,
+    "sha256": "0806b38ffd797a16feee0a14d4ed7538d79997e32cc8b27dca2314eb0d400d51"
+  },
+  "host": {
+    "path": "tests/phase363_oracle_host.py",
+    "size": 13778,
+    "sha256": "c803d0160e600ca298b2ac916d4cb90872f6870e2050598a99c665217b8254ed"
+  },
+  "reviews": [
+    {
+      "receipt": {
+        "path": "data/phase363-independent-source-review/review.json",
+        "size": 3841,
+        "sha256": "b8f0c38aa468cafed2b0ee0e4a5ea33cbd21cf5dea19222b41777484518ba456"
+      },
+      "owner": {
+        "path": "data/phase363-independent-source-review/owned-files.json",
+        "size": 23958,
+        "sha256": "cb28c65953856ba226aa4432e04ef937462bf16f091b02c0adbcf799667f2626"
+      }
+    }
+  ],
+  "resources": [
+    {
+      "root": "source",
+      "path": "tests/godotsteam_offline_exec.py",
+      "size": 4218,
+      "sha256": "78beb697959d28b45c40f7a93174d22c67f711c077f5f7dcfb22ca10e69dd961"
+    },
+    {
+      "root": "source",
+      "path": "tests/native_run_compaction.py",
+      "size": 27304,
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260"
+    },
+    {
+      "root": "task",
+      "path": "engine/godotsteam.362.editor.x86_64",
+      "size": 77646552,
+      "sha256": "09d1de6c4f97289c018556666c13c1d81093a5df5c2255725d464a87f40a8ea1"
+    },
+    {
+      "root": "task",
+      "path": "engine/libsteam_api.so",
+      "size": 388288,
+      "sha256": "0f2c41c20644503c17e13498203986493332fc8296dbd78493bc1fed352ec0cc"
+    },
+    {
+      "root": "task",
+      "path": "debian/usr/bin/xvfb-run",
+      "size": 6082,
+      "sha256": "97e86a102eee7212bfa3bf87d452b27dd4f16ef6e68658eeae20bca63db2ceee"
+    },
+    {
+      "root": "task",
+      "path": "debian/usr/bin/Xvfb",
+      "size": 2131520,
+      "sha256": "16667b1eaafbe0b09527c2152e45f81b4b8e977012281062fc2fb2427afa66ce"
+    }
+  ],
+  "relocations": {},
+  "root_source_acceptance": {
+    "path": "data/phase364-root-oracle-preparation/source-accepted.json",
+    "size": 1424,
+    "sha256": "2861c4eb824078f5de9a8c641b1abc33a904bdbd8db8429fd018e7d62a64c8ff"
+  },
+  "intent": {
+    "path": "data/phase362-root-plan/intent.json",
+    "size": 1546,
+    "sha256": "ff5234e3a47b4a98b3faae357d167f24267509a6ae89645b15f96501c9c65376"
+  },
+  "resource_policy_decision": {
+    "path": "data/phase362-root-plan/resource-policy-decision.json",
+    "size": 1685,
+    "sha256": "703675b921427c0149ce62281e3668bea4a5a37d382b03647662e7a5ccd2eb3a"
+  },
+  "case_id": "NATIVE-027-KING-A",
+  "timeouts": {
+    "battle": 120,
+    "collector": 295,
+    "runner": 300
+  },
+  "limitations": [
+    "not kernel aggregate filesystem quota; polling may overshoot",
+    "SOURCE/unit gate is not actual signal-order/native/full12/fullprojection evidence",
+    "only fixed originalA capture, no Python model or expected semantic comparison",
+    "no automatic retry or reseed"
+  ]
+}

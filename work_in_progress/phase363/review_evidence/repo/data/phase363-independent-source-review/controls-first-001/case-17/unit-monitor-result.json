@@ -1,0 +1,55 @@
+{
+  "abort_reason": "scan_rejected:outside declared native user roots: data/UNKNOWN_UNIT_ROOT/file",
+  "active_duration_seconds": 0.02060463900124887,
+  "actual_oracle_processes": 0,
+  "cleanup": {
+    "after": [],
+    "before": [
+      {
+        "live": true,
+        "pid": 12367,
+        "state": "S"
+      }
+    ],
+    "duration_seconds": 0.01761901399731869,
+    "kill_grace_seconds": 0.35,
+    "kill_sent": false,
+    "leader_returncode": -15,
+    "live_remaining": [],
+    "pgid": 12367,
+    "term_grace_seconds": 0.08,
+    "term_sent": true,
+    "zombies_not_claimed_reaped": []
+  },
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-I",
+    "-B",
+    "-S",
+    "-c",
+    "from pathlib import Path\nimport time\np=Path('user/data/UNKNOWN_UNIT_ROOT/file');p.parent.mkdir(parents=True);p.write_text('UNRECOGNIZED')\nprint('UNIT_UNKNOWN_ROOT',flush=True)\ntime.sleep(2)\n"
+  ],
+  "duration_seconds": 0.03824773000087589,
+  "enforcement": "POLLING_NOT_KERNEL_AGGREGATE_QUOTA",
+  "exit_code": -15,
+  "generic_subprocesses": 1,
+  "limits": {
+    "log_bytes": 4096,
+    "wall": 2.0
+  },
+  "policy": "bounded-writers-and-monitored-process/1",
+  "polling": {
+    "extra_timed_wait": false,
+    "max_observed_scan_gap_seconds": 0.0,
+    "model": "ONE_SELECTOR_WAIT_PLUS_IO_SCAN_OVERHEAD",
+    "samples_truncated": false,
+    "scan_count": 1,
+    "scan_times_seconds": [
+      0.020319179999205517
+    ],
+    "single_selector_wait_seconds": 0.02
+  },
+  "process_clean_exit": false,
+  "scope": "GENERIC_SUBPROCESS_MONITOR_ONLY_NOT_ORACLE_OR_CAPTURE",
+  "timed_out": false
+}
