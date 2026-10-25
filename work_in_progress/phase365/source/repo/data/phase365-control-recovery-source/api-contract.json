@@ -1,0 +1,70 @@
+{
+  "host": {
+    "attempt": 2,
+    "case_id": "NATIVE-027-KING-A",
+    "decoded_controls_only": [
+      "collector-first-failure.json",
+      "validation.json"
+    ],
+    "partition_keys": [
+      "lawful_inputs_present",
+      "lawful_inputs_missing",
+      "expected_observations_opaque",
+      "partial_files_opaque",
+      "primary_failure",
+      "secondary_errors",
+      "capture_complete"
+    ],
+    "review_status": "INDEPENDENT365_CONTROL_RECOVERY_SOURCE_ACCEPTED_ROOT_PENDING",
+    "root_config_schema": "phase365-root-oracle-acceptance/1",
+    "run_name": "original027-king-single-A-20261025-attempt02",
+    "seeds": {
+      "global_seed": 35301,
+      "util_seed": 35302
+    }
+  },
+  "no_current_execution_permission": true,
+  "recovery": {
+    "actions": [
+      "restore",
+      "commit_ready"
+    ],
+    "commit_extra": [
+      "restore_receipt",
+      "independent_readback:{receipt,owner}",
+      "root_commit_ready_authorized:true"
+    ],
+    "current_actual_source_review": null,
+    "current_independent_physical_readback": null,
+    "independent_required": [
+      "roots",
+      "restore_map",
+      "source_freeze",
+      "project_target",
+      "staged_target",
+      "restore_receipt",
+      "failed_state",
+      "project_readback",
+      "staged_readback"
+    ],
+    "independent_status": "INDEPENDENT365_RESTORED_POOL_EXACT_TARGET_READBACK_PASS",
+    "required_config": [
+      "source_freeze",
+      "source_owner",
+      "reviews",
+      "restore_map",
+      "input_pins",
+      "roots"
+    ],
+    "restore": "recover(...,action=restore,output=new external dir): full evidence gate then78+2 atomic payloads, metadata, double tree readback; failed state retained",
+    "root_config_schema": "phase365-root-pool-recovery/1",
+    "roots": [
+      "source_root",
+      "pool",
+      "baseline",
+      "failed_run",
+      "previous_run"
+    ]
+  },
+  "schema": "phase365-source-interfaces/1"
+}

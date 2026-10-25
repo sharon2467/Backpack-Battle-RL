@@ -1,0 +1,74 @@
+{
+  "collector": {
+    "after": {
+      "path": "data/phase365-control-recovery-source/collector.gd",
+      "sha256": "7421a1cb15894d78a560bc96bbabea72eeae6e3f96ca621fd2df75e9a25fd818",
+      "size": 45177
+    },
+    "before": {
+      "path": "data/phase362-oracle-capture-source/collector.gd",
+      "sha256": "35676e172400f079dfd3415eafc42103e130bdb1efcfe8fdaad6428faf4854ca",
+      "size": 44575
+    },
+    "inverse": "EXACT_BYTES_REMOVE_CONFIG_HELPER_RAW_PARSED_INPUT_AND_SINGLE_CALLER_GATE"
+  },
+  "compile_text_only": [
+    {
+      "path": "tests/phase365_oracle_host.py",
+      "sha256": "08b291458ea25ccb001b8f8d4e7ef7284c483a57b445dfebeceaacff8346c28d",
+      "size": 16816
+    },
+    {
+      "path": "tests/phase365_pool_recovery.py",
+      "sha256": "58d10d838a57ec61c0a66ad3acb4ffe08f6777b1728022cca45a0f94523308b5",
+      "size": 16890
+    },
+    {
+      "path": "tests/phase365_prepare_source.py",
+      "sha256": "230e3df76cfac8c612d46a8aeb3d035cea46b6e615768c1f41c0a7c5db752c8a",
+      "size": 9831
+    }
+  ],
+  "generated_modules_imported": false,
+  "host": {
+    "added_functions": [
+      "collect_capture_metadata",
+      "read_control"
+    ],
+    "after": {
+      "path": "tests/phase365_oracle_host.py",
+      "sha256": "08b291458ea25ccb001b8f8d4e7ef7284c483a57b445dfebeceaacff8346c28d",
+      "size": 16816
+    },
+    "before": {
+      "path": "tests/phase363_oracle_host.py",
+      "sha256": "c803d0160e600ca298b2ac916d4cb90872f6870e2050598a99c665217b8254ed",
+      "size": 13778
+    },
+    "changed_functions": [
+      "execute",
+      "plan",
+      "source_gate"
+    ],
+    "inverse": "EXACT_MODULE_AST_AFTER_DECLARED_PROTOCOL_AND_FUNCTION_REPLACEMENTS",
+    "unchanged_functions": [
+      "descriptor",
+      "main",
+      "resource_gate",
+      "verify_owner"
+    ]
+  },
+  "old_successful_science_rerun": false,
+  "original75patch_paths_unchanged": true,
+  "process_byte_reused": {
+    "path": "tests/phase363_oracle_process.py",
+    "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f",
+    "size": 13665
+  },
+  "schema": "phase365-narrow-delta/1",
+  "storage_byte_reused": {
+    "path": "tests/phase363_oracle_storage.py",
+    "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc",
+    "size": 15496
+  }
+}
