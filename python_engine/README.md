@@ -4,30 +4,27 @@ This directory packages the existing Python reconstruction of Backpack Battles 1
 
 | Snapshot | Default item ingress | Status |
 | --- | ---: | --- |
-| `formal68/` | 68 | Accepted, current formal entry point |
-| `candidate75/` | 75 | Independent bounded validation passed; **not promoted** |
+| `formal68/` | 68 | Accepted historical checkpoint |
+| `candidate75/` | 75 | Current accepted bounded runtime; promoted344 and independently verified348/346 |
 
-The snapshots are deliberately separate. Publishing the candidate does not promote it or complete its planned portable-package validation. The underlying migration remains paused. This publication changes packaging and documentation, not battle rules.
+The directory name `candidate75/` is retained from the pre-promotion snapshot; its exact fifteen source files are now the accepted bounded75 runtime. The user explicitly resumed the migration on2026-10-25. Exact promotion, independent readback and one isolated package CLI run succeeded; King production work and the full engine/RL are still incomplete.
 
 ## Run the formal checkpoint
 
 Python 3.12 is the tested interpreter. No pip packages are required.
 
-From the repository root:
+From the repository root, run the current accepted75 runtime:
 
 ```sh
-python3 -B -S python_engine/formal68/headless.py \
-  --layout python_engine/examples/formal68.json \
-  --seed 32001 --output /tmp/backpack-formal68-result.json
-python3 -B -S -m unittest discover -s python_engine/tests -v
+python3 -B -S python_engine/candidate75/headless.py \
+  --layout python_engine/examples/formal75.json \
+  --seed 34401 --output /tmp/backpack-formal75-result.json
 python3 -B -S python_engine/tools/verify_manifest.py
 ```
 
-`--max-seconds` defaults to 120 simulated seconds. The output includes events, event references, histories, final state, RNG inputs and scheduling information. The supplied formal example at seed 32001 has a recorded regression result of 681 events, 842 random inputs, 2340 frames and winner `O`; this is a reproducibility fixture, not a performance benchmark.
+The separate isolated package validation retained873 events,784 random returns,2760 frames and winnerO at seed34401. Complete same-instance final/RNG/Timer/cache and read-boundary checks passed. This is one reproducibility example, not a throughput benchmark or proof of arbitrary75 interactions. The full raw evidence is under the complete recovery checkpoint.
 
-For the API, add `python_engine/formal68` to the module search path and import `headless.initialize`. `initialize(layout, seed)` prepares and starts combat; the returned object exposes `step()`, `snapshot()` and `run(max_seconds=120)`. There is no complete Gym/RL environment or reset/batch/throughput guarantee.
-
-The experimental snapshot can be inspected separately under `candidate75/`; `examples/candidate75.json` is its synthetic layout. Its new admissions are indices 74, 169, 219, 220, 401, 416 and 469. Do not put the candidate directory and formal directory on the same Python import path. The publication smoke run uses formal68 only.
+`initialize(layout, seed)` prepares and starts combat, followed by `step()`, `snapshot()` and `run(max_seconds=120)`. No complete Gym/reset/batch/throughput guarantee is claimed. Keep the two snapshot directories on separate Python import paths. Existing unittest tests target the historical68 snapshot; running them does not validate the new75 scope or rerun original-game comparisons.
 
 ## Inputs and boundaries
 
@@ -42,7 +39,7 @@ Production seeds use the recorded `headless-sha256-domains/1` policy to derive d
 The curated historical record is [evidence/validation-summary.json](evidence/validation-summary.json). It preserves counters, scope and receipt hashes, without private raw records:
 
 - Formal68: an original-game case matched 672 events/allocations, 120 parent references, 827 random inputs, 61 Timer API pairs and 34210 callbacks, with complete histories and supported typed final state. A separate isolated standard-library-only package run succeeded.
-- Candidate75: bounded source/component and mixed Python validation plus an original-game case matched 400 events, 401 allocations, 30 parent references, 505 random inputs, 56 Timer API calls and 26120 callbacks. Seven pollution controls rejected modified outputs.
+- Accepted75 (historical candidate): bounded source/component and mixed Python validation plus an original-game case matched 400 events, 401 allocations, 30 parent references, 505 random inputs, 56 Timer API calls and 26120 callbacks. Seven pollution controls rejected modified outputs.
 - In that candidate original-game case, effects 219/220/416/469 occurred; **74/169/401 did not naturally trigger**. Their component and Python mixed-layout evidence is not an original-game hit. Both observed Mirror calls had zero sum and zero random draws.
 - Both historical original processes reported exit code zero and complete captures, but **`process_clean_exit=false`**. That diagnostic is retained. Four candidate audit-checker failures were preserved and corrected; successful models were not rerun.
 

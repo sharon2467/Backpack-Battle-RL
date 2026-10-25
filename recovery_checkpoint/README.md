@@ -1,8 +1,8 @@
 # Self-contained engineering recovery checkpoint
 
-This directory is the complete **GitHub-hosted recovery route**, not just the small Python demonstration. It contains the received original game code/resources/imports, the complete 243 base and support, the complete 343 work overlay, the final 347 pause metadata, fixed Linux runtime/dependency artifacts, and a standard-library restore tool. No Library file, old cloud workspace, old cache, or external checkpoint is needed to obtain the engineering files.
+This directory is the complete **GitHub-hosted recovery route**, not just the small Python demonstration. It contains the received original game code/resources/imports, the complete 243 base and support, the complete 343 work overlay, the final347 pause metadata plus348 resumed75 progress, fixed Linux runtime/dependency artifacts, and a standard-library restore tool. No Library file, old cloud workspace, old cache, or external checkpoint is needed to obtain the engineering files.
 
-The implementation remains paused: **formal68; candidate75 independently accepted but not promoted**. Restoring is not permission to resume migration, collection, training or promotion.
+The user explicitly resumed work on2026-10-25. **Formal bounded75 has now been promoted and independently verified**, including one actual isolated package CLI run. King and the complete engine/RL remain unfinished. This stable348 recovery cut includes the349 implementation/review plans; the separately running King candidate is not included in this cut. Restore never automatically executes development, collection or training.
 
 ## Recovery commands
 
@@ -36,11 +36,11 @@ RECOVERED=/absolute/path/to/NEW-recovered-directory
 cd "$RECOVERED/workspace/python-original-engine/repo"
 python3 -B -S headless.py --help
 python3 -B -S headless.py \
-  --layout data/phase320-independent-postcheck/runtime/example-layout.json \
-  --seed 32001 --output /tmp/backpack-recovered-result.json
+  --layout data/phase321-rainbow-king-source-plan/layout-drafts/Rainbow-B.json \
+  --seed 34401 --output /tmp/backpack-recovered-result.json
 ```
 
-The API and bounds are documented in `../`'s versioned work records and the repository's `python_engine/README.md`. The exact formal15 files and accepted candidate source remain intact. Read `docs/current-task-brief.md`, `data/phase024-root/current-task-state.json`, the 340 FINAL and 344 PARTIAL handoff before any later explicitly authorized engineering continuation. The 346 files are SOURCE preparation only, not evidence that its planned runtime run happened.
+The API and bounds are documented in `../`'s versioned work records and the repository's `python_engine/README.md`. The exact formal75 fifteen files and the historical68 snapshot remain intact. Read `docs/current-task-brief.md`, `data/phase024-root/current-task-state.json`, the340 FINAL, actual344 promotion receipt and actual346 independent package review. The historical344 PARTIAL and346 SOURCE records remain present, followed by real348/346 completion evidence; they must not be mistaken for current status.
 
 Legacy absolute paths beginning `/workspace` map to `RECOVERED/workspace`. The receipt records this mapping. Do not interpret a historical Library URL or an old local path as a new dependency. In a genuinely empty replacement workspace, the recovered directories can be installed at their original `/workspace/...` locations after checking those destinations are absent; do not overwrite an existing workspace. In a nested isolation test, use the recorded relocation map and relative paths. Frozen historical owners are not silently edited.
 
@@ -52,7 +52,7 @@ The full original baseline is reconstructed at:
 
 Original game layers cover 15,418 original files / 616,167,851 bytes. The public offline baseline has **15,416 files**: two API credential literals are replaced by same-length placeholders, and the two corresponding encrypted `.gde` copies are omitted so they cannot reintroduce the secrets. Every change is listed with original/published hashes in `sanitization.json`. This is a documented sanitized copy, **not a byte-identical complete original source archive**. The graphics, audio, fonts, scenes, import cache and other original code are retained; original local files were not modified. Unredacted credentials are neither required nor provided for offline engineering, and online backend access is not a supported restore feature.
 
-The four engineering checkpoint archives (243 main/support, 343, 347) remain **byte-exact**, with their original whole-archive SHA-256 identities. Necessary failures, raw structured validation evidence, old source snapshots, 344 unfinished files, 346 preparations and historical metadata are retained. 319 is already flattened into 343 and is not a restore dependency. The final merged logical index applies 243 support under `repo/`, 343 as the full overlay, and the latest 347 metadata last; archive snapshots themselves remain unchanged.
+The four historical engineering checkpoint archives (243 main/support,343,347) remain **byte-exact**, with their original whole-archive SHA-256 identities. Necessary failures, raw structured validation evidence, old source snapshots, 344 unfinished files, 346 preparations and historical metadata are retained. 319 is already flattened into 343 and is not a restore dependency. The final merged logical index applies 243 support under `repo/`, 343 as the full overlay, and the latest347 metadata then the stable348 progress; archive snapshots themselves remain unchanged. The supplied logical index is the complete final map, so one restore command is sufficient; no incremental script chain or old cloud file is required.
 
 The official GodotSteam Linux distribution is pinned at **GodotSteam 3.30.2 / Godot 3.6.2 / Steamworks 1.62**, SHA-256 `9420fea9124c396fadd4366cb96cdada44d7642e2496b78c46c3929597a88a8d`. It is bundled, including the editor, templates and Steam library. The original four `.deb` packages and installed runtime support files are included too. Versions and official Codeberg / Debian snapshot URLs are in `MANIFEST.json`; no runtime download from an old cloud environment is used. Host system libraries still require a compatible Linux distribution, preferably Debian 13/trixie. No system packages or security settings are changed by the restore tool.
 
@@ -68,11 +68,11 @@ LD_LIBRARY_PATH="$RUNTIME/engine:$RUNTIME/debian/usr/lib/x86_64-linux-gnu${LD_LI
 Or run the packaged minimal check against the recovered directory:
 
 ```sh
-python3 -I -B -S recovery_checkpoint/check_restored.py \
-  --destination "$RECOVERED" --smoke --runtime-version
+python3 -I -B -S recovery_checkpoint/check_restored75.py \
+  --destination "$RECOVERED" --help-only
 ```
 
-This runs one pure-Python historical example and probes the executable version; it does not run an original-game battle. Future oracle collection requires a newly initialized pool from the recovered baseline and explicit user permission to resume. No old running process or private user account is restored.
+This reads the current15 source identities and actual promotion/package owners, then invokes CLI help only. It does not initialize or run a battle. The historical68 checker and validation remain in the earlier commit/history; the official runtime bytes are unchanged. Future oracle collection uses a newly initialized pool from the recovered baseline and a separately reviewed collection plan. No old running process or private user account is restored.
 
 ## Integrity and validation level
 
@@ -80,4 +80,6 @@ Each part has its own size/SHA-256, every reconstructed archive has its whole si
 
 `security-scan.json` records recursive, hash-deduplicated ZIP/tar.xz inspection of the checkpoint payloads and targeted handling of intentionally damaged codec fixtures. Their invalid archive bytes are preserved as test inputs, never automatically extracted or executed. Pattern scans are bounded checks, not proof against every unknown secret representation. Unrelated home/auth folders and external personal material are outside this backup scope.
 
-The remote-clone recovery check is recorded in `VALIDATION.md` when complete. Distinguish full archive/hash verification, actual active working-set materialization, a pure-Python smoke run, and a runtime version probe from a **fresh operating-system** or **full physical** restore. No new cloud environment is created by this procedure. Full historical oracle comparisons are retained as evidence, not rerun during publication.
+The original remote-clone verification is retained under `history/phase347-*`. The current75 remote recovery result is recorded in `VALIDATION.md`. Distinguish full archive/hash verification, actual active working-set materialization, a pure-Python smoke run, and a runtime version probe from a **fresh operating-system** or **full physical** restore. No new cloud environment is created by this procedure. Full historical oracle comparisons are retained as evidence, not rerun during publication.
+
+The inherited `coverage.owner_closure_paths` is the base347 planning statistic. All111 new stable348 payloads are active; current complete logical/physical counts are recomputed in the coverage fields. Current source/material review receipts are `progress348-source-review.json` and `progress348-material-review.json`.
