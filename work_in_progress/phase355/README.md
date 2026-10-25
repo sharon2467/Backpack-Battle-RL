@@ -10,7 +10,7 @@ cp -rn work_in_progress/phase355/repo/. "$RECOVERED/workspace/python-original-en
 
 Run that command from this Git clone root. Existing files are not overwritten. Read `docs/phase355_king_finite_source_implementation_spec.md` and `data/phase355-king-finite-source/remaining-dependencies.json` in the recovered source. The freeze is 2744B/SHA30dfb7e97f037b9eee070498012bedcb269e96556d3f71e76e9ad2cf9f2a3085. Do not replace formal engine files with staged candidates before the remaining review/runtime gates.
 
-The original SOURCE is preserved unchanged. Independent review, the52-control procedure, first counterexample and static-checker diagnosis are preserved under `review_evidence/repo/`, separately inventoried in `review_evidence/FILES.json`. This is not a complete capture or Engine counterexample. Corrected356 source is in the adjacent [phase356](../phase356/README.md), pending independent regression.
+The original SOURCE is preserved unchanged. Independent review, the52-control procedure, first counterexample and static-checker diagnosis are preserved under `review_evidence/repo/`, separately inventoried in `review_evidence/FILES.json`. This is not a complete capture or Engine counterexample. Corrected356 source is in the adjacent [phase356](../phase356/README.md), independently accepted SOURCE regression68/68 with native admission still closed.
 
 To recover the preserved independent failure records as additive paths, run from the Git clone root:
 

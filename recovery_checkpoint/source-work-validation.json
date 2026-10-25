@@ -1,0 +1,75 @@
+{
+  "independently_accepted_repair_recovery": {
+    "bytes": 1225047,
+    "files": 30,
+    "independent_status": "SOURCE_REPAIR_ACCEPTED_NATIVE_CLOSED",
+    "models": 0,
+    "native": 0,
+    "new_files_copied": 30,
+    "old_cloud_files_used": [],
+    "owner_leaves": 28,
+    "payload_commit": "fc414646d7c61e65666196766ca04127074cc214",
+    "schema": "remote-source-repair-acceptance-readback/1",
+    "source_inventory": {
+      "sha256": "8fb9179f405f969ae3121291c24762005fefd85ec2b1b6a7376437a9ad25256a",
+      "size": 5690
+    },
+    "status": "PASS"
+  },
+  "initial_source_failure_and_repair_recovery": {
+    "full_OS_verified": false,
+    "models": 0,
+    "native": 0,
+    "old_cloud_files_used": [],
+    "remote_commit": "01a4b654b302cb8bef4e2f587d002df60b152f60",
+    "schema": "remote-flat-source-failure-and-repair-recovery/1",
+    "source355_status": "INDEPENDENT_SOURCE_BLOCKED",
+    "source356_status": "INDEPENDENT_SOURCE_REGRESSION_PENDING",
+    "status": "PASS",
+    "supplements": {
+      "helper_verification": {
+        "all_SHA_readback": true,
+        "bytes": 92808,
+        "files": 14,
+        "manifest": {
+          "sha256": "adca11fc8aee6363521fce7b52398d49a92a0e9165b04ef7a0dbd698f110ddd4",
+          "size": 2693
+        }
+      },
+      "source355": {
+        "all_SHA_readback": true,
+        "bytes": 709749,
+        "files": 28,
+        "manifest": {
+          "sha256": "4a0292410eafb5ee550d3bf056bb9e1a7dc2743207813008007a8dda1d0e24d4",
+          "size": 5398
+        }
+      },
+      "source355_failure": {
+        "all_SHA_readback": true,
+        "bytes": 752119,
+        "files": 28,
+        "manifest": {
+          "sha256": "ec93f2461288be83c78cb42aa5da28516287bca017caf26a19dfca535969c621",
+          "size": 5342
+        }
+      },
+      "source356_repair": {
+        "all_SHA_readback": true,
+        "bytes": 628402,
+        "files": 25,
+        "manifest": {
+          "sha256": "87ad819152887612068c1443f579ac5ce19069b9efca81800d37eed725857e36",
+          "size": 5003
+        }
+      }
+    },
+    "unique_bytes": 2183078,
+    "unique_files": 95
+  },
+  "new_models": 0,
+  "new_native": 0,
+  "note": "SOURCE recovery and SOURCE admission-guard correctness;new native profile remains closed;schema/producer/collector/host unfinished",
+  "old_cloud_files_required": [],
+  "schema": "remote-post-cut-source-recovery-validation/1"
+}
