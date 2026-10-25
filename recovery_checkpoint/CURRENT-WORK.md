@@ -1,4 +1,4 @@
-# Current engineering status after SOURCE358
+# Current engineering status after SOURCE359
 
 This current status supplements the immutable archival354 cut. Complete original-engine/RL migration remains IN_PROGRESS. Formal bounded75 is accepted; King262 is not production-admitted. Python is the production engine and Godot is only the oracle. Pure combat scope excludes GUI, shop/economy and out-of-battle logic.
 
@@ -18,3 +18,5 @@ Only hash-verified duplicate recovery-test payloads were released; all receipts/
 Stop condition persists:save and pause all work/subtasks if a trusted current remaining-quota reading reaches30% or below, or the parent sends that trigger. The Oct20 reading is historical; current trusted quota is unknown. Explicit Oct25 resume overrides the old paused status. Library401 is not bypassed or described as a remote backup. GitHub's public checkpoint branch is authorized; never change master, force-push, open a PR or buy resources for this task.
 
 The359 producer preserves three Goobert sites not in358 and proposes a12th auxiliary slot-binding proof. Those explicit schema/adapter gaps are not yet accepted inputs or runtime authorization.
+
+SOURCE359 and its independent preparation were actually fetched from GitHub payload `2f704d22a6c40dbc770d14b85b3b737b8e857358` and copied into the independent source-only recovery directory:107 files/6,746,952 bytes and105 owner leaves all size/SHA checked. No schema API/GD/model/native execution occurred. See producer-source-work-validation.json. Independent producer review is still pending.
