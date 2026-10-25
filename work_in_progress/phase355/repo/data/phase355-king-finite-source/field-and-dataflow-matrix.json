@@ -1,0 +1,129 @@
+{
+  "cardinality_note": "SOURCE shape only; not functional coverage",
+  "complete_bundle_projection_and_pollution_controls": "PENDING_FUTURE_ADAPTER_SOURCE_NO_BUILD_THIS_BLOCK",
+  "model_fields_not_added": [
+    "prepared Mana/HP/buff resources",
+    "observed charges/crown as setter",
+    "native RNG state seed",
+    "observed end time",
+    "native private Timer countdown"
+  ],
+  "profile": "observer7-355-native-single-king-A/1",
+  "rows": [
+    {
+      "fields": {
+        "activations": "INT0",
+        "activationsToTrigger": "REAL6.0",
+        "descriptorIndex": "INT262",
+        "invuCharges": "pre INT0 / act INT3",
+        "manaCost": "REAL4.0",
+        "protectedBuffs": "REAL3.0"
+      },
+      "flow": "validate_single_king_source_defaults -> PROOF ONLY; internal model starts charge0 and real prepare assigns3",
+      "source": "KingGoobert.gd vars/onready/prepare + Goobert.gd defaults + frozen CATALOG",
+      "subject": "King fields pre/act"
+    },
+    {
+      "fields": {
+        "activations": "INT actual",
+        "activationsToTrigger": "REAL6",
+        "invuCharges": "INT actual",
+        "manaCost": "REAL4",
+        "protectedBuffs": "REAL3"
+      },
+      "flow": "computed output; never initial input",
+      "source": "state.native_rule_state unconditional item262 branch; unchanged349",
+      "subject": "King computed final/native_rule_state"
+    },
+    {
+      "fields": {
+        "crown": "INT enum 0/1/2 from original setState snapshot + onStateChanged arg; no native stored field assumed",
+        "light_self_modulate": "RGBA REALbits",
+        "light_visible": "BOOL"
+      },
+      "flow": "output/expected source trace + same-instance sidecar; no runtime setter",
+      "source": "KingGoobert.onStateChanged; engine.king_states + _integration_fx_snapshot existing",
+      "subject": "crown/light"
+    },
+    {
+      "fields": {
+        "Mana": "INT current/permanent/temporary amounts; source cost REAL callsite -> INT useMana event",
+        "buffProtectStacks": "INT0 fresh; original += protectedBuffs REAL may promote to REAL",
+        "invulBubbleVisible": "BOOL false fresh; actual final",
+        "invulnerabilityItem": "NULL fresh; selected native_ref -> role origin final",
+        "invulnerable": "BOOL false fresh; actual computed final"
+      },
+      "flow": "fresh source initial; postprepare resources and ledger observers PROOF ONLY; final computed output",
+      "source": "Character vars/cleanse/makeInvulnerable/combatEnd; Buff gain/lose SOURCE; state.native_rule_state king_mode conditional unchanged",
+      "subject": "Character fresh/final"
+    },
+    {
+      "fields": {
+        "autostart/paused": "BOOL false",
+        "one_shot": "BOOL true configured; AutoHide birth before configure false",
+        "private_left": "model constructor -1 SOURCE proof, not native direct observation",
+        "process_mode": "INT0 invu/buff; INT1 hide/drag",
+        "public_time_left": "REAL+0 (not private countdown)",
+        "roles": "invu:P/O king_buff:P:12 king_hide:P:12 king_drag:P:12",
+        "stopped": "BOOL true",
+        "wait_time": "REAL1"
+      },
+      "flow": "node fresh configs only; no observed running countdown injection",
+      "source": "Character.tscn/KingGoobert.tscn/AutoHide._ready; existing TimerRuntime/old111 proof",
+      "subject": "five selected Timer fresh"
+    },
+    {
+      "fields": {
+        "explosiveness": "REAL+0",
+        "lifetime": "REALbits3fe6666660000000 promoted f32(.7)",
+        "node/Timer": "distinct actual native identity/path/positions/owner",
+        "one_shot/visible/emitting": "BOOLfalse",
+        "speed_scale": "REAL1"
+      },
+      "flow": "legal fresh getter topology inputs; mutable final flags output only",
+      "source": "KingGoobert.tscn and AutoHide._ready SOURCE",
+      "subject": "Particles fresh"
+    },
+    {
+      "fields": {
+        "activationsThisFrame/triggersThisFrame": "INT0",
+        "cache_fresh": "BOOLtrue SOURCE no prior preparation",
+        "dragged/moveback_running": "BOOLfalse",
+        "lastActivationTime_bits/lastTriggerTime_bits": "REAL+0"
+      },
+      "flow": "legal fresh initial only; native generic ready owner-only",
+      "source": "Item vars/new lineage; _validate_single_king_initials new closed-profile gate",
+      "subject": "initial limiter"
+    },
+    {
+      "fields": {
+        "Util.time/clockTime": "actual nonnegative REALbits",
+        "frame/Util counters": "strictINT actual offsets",
+        "idle_delta": "actual positive finite promoted f32",
+        "passes": "actual ordered finite physics/idle; no expected endpoint field",
+        "physics_delta": "f32(1/60) bits",
+        "physics_fps": "INT60",
+        "scale_bits": "REAL1"
+      },
+      "flow": "external schedule inputs; engine computes death/cleanup/twofuturephysics/idle-preinternal; strict EOF/trailing unchanged",
+      "source": "unchanged FrameDriver.decode_clock/step/run + old154 source signal collector obligation",
+      "subject": "clock and terminal"
+    },
+    {
+      "fields": {
+        "68/75 private": "unchanged",
+        "five old private/potion/Broom/Collar/Staff/BurningTorch": "no added profile literal"
+      },
+      "flow": "not applicable to fixed A; no broad allowlist",
+      "source": "state.py byte-identical; K1 six IDs do not contain those fields/items",
+      "subject": "unchanged old profile field gates"
+    }
+  ],
+  "schema": "phase355-finite-field-matrix/1",
+  "source_role_cardinality": {
+    "item_guards": 39,
+    "raw_processing_roles": 80,
+    "runtime_roles": 74,
+    "selected_and_inactive_public_timers": 35
+  }
+}

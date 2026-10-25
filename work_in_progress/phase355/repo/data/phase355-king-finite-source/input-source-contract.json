@@ -1,0 +1,115 @@
+{
+  "additional_stream_order": "clock strict counter progression via unchanged decode_clock; UI independent contiguous sequence and complete window",
+  "case": "KING-K1-A-353",
+  "channel_map": {
+    "observer7-input.jsonl": "input",
+    "observer7-lineage.jsonl": "lineage",
+    "observer7-metadata.jsonl": "metadata",
+    "observer7-primitives.jsonl": "primitive"
+  },
+  "expected_names_never_allowed": [
+    "events.jsonl",
+    "histories.json",
+    "final_state.json",
+    "observer7-runtime.jsonl",
+    "observer7-allocations.jsonl",
+    "observer7-registration.jsonl",
+    "king-capture-endpoint.json"
+  ],
+  "files": [
+    {
+      "actual_pin": null,
+      "max_bytes": 268435456,
+      "name": "fixture.json",
+      "schema": "native-fixture/1; schema_version INT1 game_version 1.1.8 exact A typed inventory"
+    },
+    {
+      "actual_pin": null,
+      "max_bytes": 268435456,
+      "name": "player_fixture.json",
+      "schema": "native-fixture/1; schema_version INT1 game_version 1.1.8 exact A typed inventory"
+    },
+    {
+      "actual_pin": null,
+      "max_bytes": 268435456,
+      "name": "observer7-input.jsonl",
+      "schema": "observer7-record/1; complete future typed observer schema required"
+    },
+    {
+      "actual_pin": null,
+      "max_bytes": 268435456,
+      "name": "observer7-lineage.jsonl",
+      "schema": "observer7-record/1; complete future typed observer schema required"
+    },
+    {
+      "actual_pin": null,
+      "max_bytes": 268435456,
+      "name": "observer7-metadata.jsonl",
+      "schema": "observer7-record/1; complete future typed observer schema required"
+    },
+    {
+      "actual_pin": null,
+      "max_bytes": 268435456,
+      "name": "observer7-primitives.jsonl",
+      "schema": "observer7-record/1; complete future typed observer schema required"
+    },
+    {
+      "actual_pin": null,
+      "max_bytes": 2097152,
+      "name": "king-clock-checkpoint.json",
+      "schema": "phase105-exogenous-frame-clock/1; fresh_activate_idle_tail; header only"
+    },
+    {
+      "actual_pin": null,
+      "max_bytes": 67108864,
+      "name": "king-clock-passes.jsonl",
+      "schema": "FramePass {kind,delta_bits,physics_frame,idle_frame}; original decode_clock"
+    },
+    {
+      "actual_pin": null,
+      "max_bytes": 2097152,
+      "name": "king-input-facts.json",
+      "schema": "phase355-king-input-facts/1; exact five selected Timer/source facts"
+    },
+    {
+      "actual_pin": null,
+      "max_bytes": 8388608,
+      "name": "king-ui-authority.jsonl",
+      "schema": "phase355-king-ui-authority/1; exact case/sites and 39 guards"
+    },
+    {
+      "actual_pin": null,
+      "max_bytes": 16384,
+      "name": "king-rng-checkpoint.json",
+      "schema": "phase355-util-rng-checkpoint/1; initial source-cut proof only"
+    }
+  ],
+  "future_source_schema_required": true,
+  "input_bundle_builder_implemented": false,
+  "observer_version": "7-king-single-A-355",
+  "profile": "observer7-355-native-single-king-A/1",
+  "raw_input_reads": 0,
+  "raw_primitive_order": "preserved; no sorting/conversion; no Mirror/global_u32 in K1",
+  "runtime_keys": [
+    "schema",
+    "mode",
+    "profile_id",
+    "checkpoint",
+    "environment",
+    "nodes",
+    "timer_lineage",
+    "initial_items",
+    "prepare_order",
+    "activate_order",
+    "terminal_profile",
+    "frame_clock",
+    "king_particles",
+    "root_node",
+    "processing_nodes",
+    "inactive_auxiliaries",
+    "ui_authority"
+  ],
+  "schema": "phase355-lawful-eleven-source-contract/1",
+  "sequence_gate": "strictINT nonBOOL; each physical channel monotonic; all four channel sequences globally unique; filename/channel exact before filtering/group/delegate",
+  "total_cap": 268435456
+}

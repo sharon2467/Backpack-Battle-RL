@@ -1,0 +1,580 @@
+--- 349/native_replay_v8/engine.py
++++ 355/native_replay_v8/engine.py
+@@ -581,7 +581,7 @@
+ 
+ 
+ # Reviewed profiles are HOST CODE, never caller-supplied readiness assertions.
+-from .genuine import PROFILE as GENUINE_PROFILE, TERMINAL as GENUINE_TERMINAL, PROFILES as GENUINE_PROFILES, observer_label, KING_GENUINE_PROFILE
++from .genuine import PROFILE as GENUINE_PROFILE, TERMINAL as GENUINE_TERMINAL, PROFILES as GENUINE_PROFILES, observer_label, KING_GENUINE_PROFILE, SINGLE_KING_GENUINE_PROFILE
+ GENUINE_TERMINAL_PROFILES = frozenset({GENUINE_TERMINAL, 'source-two-physics-idle-pre-internal/1'})
+ SYNTHETIC_PROFILE = 'synthetic-fixed60-physics-tail/1'
+ SYNTHETIC_TERMINAL = 'synthetic-after-ordinary/1'
+@@ -817,10 +817,12 @@
+ 
+ 
+ def _integration_domain(data):
+-    return data.get('profile_id') in (KING_INTEGRATION_PROFILE, KING_GENUINE_PROFILE)
++    return data.get('profile_id') in (KING_INTEGRATION_PROFILE, KING_GENUINE_PROFILE, SINGLE_KING_GENUINE_PROFILE)
+ 
+ 
+ def _validate_processing_inputs(data,fixture):
++    if data.get('profile_id') == SINGLE_KING_GENUINE_PROFILE:
++        return _validate_single_king_processing_inputs(data, fixture)
+     from .genuine import validate_ui_authority
+     authority=validate_ui_authority(data['ui_authority'])
+     # No guessed flags or caller-supplied verified booleans: raw complete carrier is revalidated.
+@@ -952,6 +954,9 @@
+     data = deepcopy(runtime.data if isinstance(runtime, RuntimeDTO) else runtime)
+     if _source_king_profile(data):
+         return _validate_source_king_runtime(data, fixture, runtime)
++    if _single_king_genuine_profile(data):
++        from .genuine import validate_single_king_fixture
++        validate_single_king_fixture(fixture)
+     king = _has_king(fixture)
+     if king and _has_rage(fixture):
+         raise ValueError("combined King/rage runtime topology not admitted in this increment")
+@@ -959,7 +964,7 @@
+     _keys(data, ('schema','mode','profile_id','checkpoint','environment','nodes','timer_lineage','initial_items',
+                  'prepare_order','activate_order','terminal_profile') + (('frame_clock','king_particles') if king else ()) + (('root_node','processing_nodes','inactive_auxiliaries','ui_authority')if integration else()), 'runtime')
+     if king:
+-        if not ((data['mode']=='synthetic' and data['profile_id'] in (KING_PROFILE,KING_INTEGRATION_PROFILE)) or (data['mode']=='genuine' and data['profile_id']==KING_GENUINE_PROFILE)) or data['terminal_profile']!=KING_TERMINAL:
++        if not ((data['mode']=='synthetic' and data['profile_id'] in (KING_PROFILE,KING_INTEGRATION_PROFILE)) or (data['mode']=='genuine' and data['profile_id'] in (KING_GENUINE_PROFILE, SINGLE_KING_GENUINE_PROFILE))) or data['terminal_profile']!=KING_TERMINAL:
+             raise ValueError('King requires an exact code-approved finite or explicit synthetic profile')
+         frame_clock=decode_clock(data['frame_clock'])
+         kings={i['instance_id'] for side in fixture['sides'] for i in side['items'] if i['item_index']==262}
+@@ -1013,6 +1018,8 @@
+                 raise ValueError('invalid limiter counter')
+         if values['dragged'] is not False or values['moveback_running'] is not False or values['cache_fresh'] is not True:
+             raise ValueError('unknown picking/tween/cache lineage')
++    if _single_king_genuine_profile(data):
++        _validate_single_king_initials(data)
+     _validate_runtime_nodes(data,fixture,king)
+     if integration:_validate_processing_inputs(data,fixture)
+     if isinstance(runtime, RuntimeDTO):
+@@ -1176,7 +1183,7 @@
+         self.model_source_sha256 = assert_model_source_stable()
+         self.fixture = deepcopy(fixture if fixture is not None else starter_fixture())
+         validate_fixture(self.fixture)
+-        source_runtime = validate_runtime_inputs(runtime, self.fixture) if _source_king_profile(runtime) else None
++        source_runtime = validate_runtime_inputs(runtime, self.fixture) if _source_king_profile(runtime) or _single_king_genuine_profile(runtime) else None
+         self.random = random_source if random_source is not None else SeededRandom(0)
+         self.runtime_inputs = source_runtime if source_runtime is not None else validate_runtime_inputs(runtime, self.fixture)
+         self.physics_order = ["explicit_runtime_roles"]
+@@ -3443,3 +3450,108 @@
+                 raise TimeoutError(f"native_replay combat exceeded {max_seconds} seconds")
+             self.step(delta)
+         return self.result()
++
++
++#355 actual finite runtime: private defaults never come from outcome observations.
++def _single_king_genuine_profile(runtime):
++    data = runtime.data if isinstance(runtime, RuntimeDTO) else runtime
++    return type(data) is dict and data.get('profile_id') == SINGLE_KING_GENUINE_PROFILE
++
++
++def _validate_single_king_initials(data):
++    zero = _float_bits(0.0)
++    for fields in data['initial_items'].values():
++        if any(fields[k] != zero for k in ('lastActivationTime_bits', 'lastTriggerTime_bits')):
++            raise ValueError('single King fresh constructor limiter times required')
++        if any(type(fields[k]) is not int or fields[k] != 0 for k in ('activationsThisFrame', 'triggersThisFrame')):
++            raise ValueError('single King fresh constructor limiter counters required')
++
++
++def _validate_single_king_topology(data, table):
++    def child(role, parent, suffix):
++        node, owner = table[role], table[parent]
++        if (node['positions'] != owner['positions'] + suffix or node['priority'] != 0
++                or not node['path'].startswith(owner['path'] + '/')):
++            raise ValueError('single King SOURCE relative Timer topology ' + role)
++    for side in ('P', 'O'):
++        child('tick:' + side, 'character:' + side, [3])
++        child('invu:' + side, 'character:' + side, [5])
++    child('king_buff:P:12', 'item:P:12', [7])
++    owner = table['item:P:12']
++    parts = data['king_particles']['P:12']
++    for kind, suffix, timer in (('activation', [8], 'king_hide:P:12'), ('drag', [1, 2], 'king_drag:P:12')):
++        node = parts[kind]['node']
++        if node['positions'] != owner['positions'] + suffix or not node['path'].startswith(owner['path'] + '/'):
++            raise ValueError('single King SOURCE particle ancestry ' + kind)
++        t = table[timer]
++        if t['positions'] != node['positions'] + [0] or t['priority'] != 0:
++            raise ValueError('single King ready-created Timer child0 ' + kind)
++
++def _validate_single_king_processing_inputs(data,fixture):
++    from .genuine import validate_single_king_ui_authority, validate_single_king_fixture
++    authority=validate_single_king_ui_authority(data['ui_authority'])
++    # No guessed flags or caller-supplied verified booleans: raw complete carrier is revalidated.
++    if authority['unsupported']!=0:raise ValueError('NOT_ADMITTED: unsupported UI entry')
++    required=set(_required_roles(fixture))|AUX_ROLES|{'root_viewport','game'}
++    rows=data['processing_nodes']
++    if type(rows)is not list or len(rows)!=len(required):raise ValueError('single King processing association roles')
++    validate_single_king_fixture(fixture)
++    table={};native_ids=set();paths=set();positions=set();prefixes={}
++    for n in rows:
++        _keys(n,NODE_INPUT_KEYS,'processing node')
++        if n['role']not in required or n['role']in table or type(n['native_id'])is not str or re.fullmatch('[1-9][0-9]*',n['native_id'])is None or n['native_id']in native_ids:
++            raise ValueError('processing identity/role')
++        if n['inside_tree']is not True or type(n['path'])is not str or n['path']in paths or type(n['positions'])is not list or tuple(n['positions'])in positions:
++            raise ValueError('processing actual path/index')
++        names=n['path'].split('/')[1:]
++        if not(n['path']=='/root' or n['path'].startswith('/root/')) or len(names)!=len(n['positions']) or n['positions'][0]!=-1 or any(type(x)is not int or not 0<=x<=4096 for x in n['positions'][1:]) or n['name']!=names[-1]:raise ValueError('processing node coordinates')
++        if type(n['priority'])is not int or type(n['class'])is not str:raise ValueError('processing scalar types')
++        for flag in ('ordinary_physics','internal_physics','ordinary_idle','internal_idle'):
++            if type(n[flag])is not bool:raise ValueError('actual independent processing flags')
++        for j in range(1,len(names)+1):
++            key=tuple(n['positions'][:j]);value=tuple(names[:j])
++            if key in prefixes and prefixes[key]!=value:raise ValueError('raw processing prefix conflict')
++            prefixes[key]=value
++        table[n['role']]=n;native_ids.add(n['native_id']);paths.add(n['path']);positions.add(tuple(n['positions']))
++    root=table['root_viewport']
++    if data['root_node']!=root or root['path']!='/root' or root['positions']!=[-1] or root['priority']!=0 or root['class']!='Viewport' or not root['internal_physics'] or root['ordinary_physics'] or root['ordinary_idle']:
++        raise ValueError('unsupported actual root flags')
++    for node in data['nodes']:
++        actual=table[node['role']]
++        if any(node[k]!=actual[k]for k in ('path','positions','priority')):raise ValueError('model/raw topology mismatch')
++        if node['kind']=='timer' and actual['class']!='Timer':raise ValueError('Timer class')
++    for role,n in table.items():
++        if role=='root_viewport':continue
++        if n['internal_physics'] or n['internal_idle']:raise ValueError('nonroot initial internal callback')
++        flags=(n['ordinary_physics'],n['ordinary_idle'])
++        expected=(True,True)if role in ('util','game')else (True,False)if role.startswith('character:')else (False,True)if role.startswith('item:')else(False,False)
++        if flags!=expected:raise ValueError('unsupported initial ordinary membership '+role)
++    _keys(data['inactive_auxiliaries'],AUX_ROLES,'inactive auxiliary table')
++    for role,x in data['inactive_auxiliaries'].items():
++        _keys(x,('source_lemma','lineage','wait_time_bits','one_shot','process_mode'),'auxiliary fact')
++        if x['source_lemma']!=AUX_LEMMA or x['lineage']!='fresh_configured' or x['one_shot']is not True or type(x['process_mode'])is not int or x['process_mode']!=0 or table[role]['class']!='Timer':raise ValueError('source inactive auxiliary')
++        wait=_be_float(x['wait_time_bits'])
++        if wait<=0 or f32(wait)!=wait:raise ValueError('aux wait getter')
++    for identity,parts in data['king_particles'].items():
++        king=table['item:'+identity]
++        binds=[r['payload']for r in data['ui_authority']if r['kind']=='bind' and r['payload']['item_id']==king['native_id']]
++        if len(binds)!=1:raise ValueError('particle source binding')
++        for kind,part in parts.items():
++            n=part['node'];_keys(n,NODE_INPUT_KEYS,'actual particle node')
++            timer=table[('king_hide:'if kind=='activation'else'king_drag:')+identity]
++            if n['class']!='Particles2D' or n['role']is not None or n['native_id']!=binds[0][kind+'_id'] or timer['path'].rsplit('/',1)[0]!=n['path'] or timer['positions'][:-1]!=n['positions'] or n['name']!=n['path'].rsplit('/',1)[1] or n['inside_tree']is not True or type(n['priority'])is not int:
++                raise ValueError('distinct actual particle identity')
++            if n['native_id']in native_ids or any(n[k]is not False for k in ('ordinary_physics','internal_physics','ordinary_idle','internal_idle')):raise ValueError('continuous particle source inactive callback flags')
++            native_ids.add(n['native_id'])
++    first=data['ui_authority'][0];last=data['ui_authority'][-1];controls=last['payload']['controls']
++    if controls['root_id']!=root['native_id'] or any(controls[k]!=root[k]for k in ('ordinary_physics','internal_physics','ordinary_idle','internal_idle')):raise ValueError('UI/root flags disagree')
++    roles=next(r['payload']for r in data['ui_authority']if r['kind']=='roles')
++    for guard in roles['selected_guards']:
++        node=table.get('item:'+guard['role'])
++        if node is None or node['native_id']!=guard['item_id'] or guard['viewport_id']!=root['native_id']:raise ValueError('UI selected native association')
++    clock=decode_clock(data['frame_clock'])
++    if not(first['physics_frame']<=clock.physics_frame<=last['physics_frame'] and first['idle_frame']<=clock.idle_frame<=last['idle_frame']):raise ValueError('activation outside complete UI window')
++    # Source UI footer is authority only: it never ends the model or configures pass consumption.
++    _validate_single_king_topology(data, table)
++    return table
++
+--- 349/native_replay_v8/genuine.py
++++ 355/native_replay_v8/genuine.py
+@@ -40,7 +40,15 @@
+ SUPPORT68_ITEMS = LOGIC_GOOBERT_ITEMS | {62,179,332,351,374}
+ RAINBOW75_PROFILE = 'observer7-324-headless-rainbow75-layout/1'
+ RAINBOW75_ITEMS = SUPPORT68_ITEMS | {74,169,219,220,401,416,469}
+-PROFILES = frozenset(DOMAINS) | {RAINBOW75_PROFILE,SUPPORT68_PROFILE,HEADLESS_PROFILE, SHORTBOW_PROFILE, WEAPON_START_PROFILE, ARMOR_PROFILE,POTION_PROFILE,EXISTING_WEAPON_PROFILE,START_COLLAR_PROFILE,CARROT_BURNING_PROFILE,MANA_PAIR_PROFILE,BASIC_GOOBERT_PROFILE,SECONDARY_GOOBERT_PROFILE,LOGIC_GOOBERT_PROFILE}
++
++SINGLE_KING_GENUINE_PROFILE = 'observer7-355-native-single-king-A/1'
++SINGLE_KING_OBSERVER_VERSION = '7-king-single-A-355'
++SINGLE_KING_CASE = 'KING-K1-A-353'
++SINGLE_KING_TERMINAL = 'source-two-physics-idle-pre-internal/1'
++SINGLE_KING_ITEMS = frozenset({1, 4, 11, 19, 22, 262})
++SINGLE_KING_FIXTURE_SHA256 = '4b6846bf30afb39da8b6ba56507efb074c6cff102c3b9d7ab2dc44b2936f70cf'
++SINGLE_KING_ROLES = frozenset(['P:0', 'P:1', 'P:2', 'P:3', 'P:4', 'P:5', 'P:6', 'P:7', 'P:8', 'P:9', 'P:10', 'P:11', 'P:12', 'P:13', 'P:14', 'P:15', 'P:16', 'P:17', 'P:18', 'P:19', 'O:0', 'O:1', 'O:2', 'O:3', 'O:4', 'O:5', 'O:6', 'O:7', 'O:8', 'O:9', 'O:10', 'O:11', 'O:13', 'O:14', 'O:15', 'O:16', 'O:17', 'O:18', 'O:19'])
++PROFILES = frozenset(DOMAINS) | {SINGLE_KING_GENUINE_PROFILE} | {RAINBOW75_PROFILE,SUPPORT68_PROFILE,HEADLESS_PROFILE, SHORTBOW_PROFILE, WEAPON_START_PROFILE, ARMOR_PROFILE,POTION_PROFILE,EXISTING_WEAPON_PROFILE,START_COLLAR_PROFILE,CARROT_BURNING_PROFILE,MANA_PAIR_PROFILE,BASIC_GOOBERT_PROFILE,SECONDARY_GOOBERT_PROFILE,LOGIC_GOOBERT_PROFILE}
+ PATCHES = [{'version': '7-typed-temporary-lifecycle-passive-048-no-eager-gameclass', 'report': '4b24e0eb4a16a2570a0a3e974e9cf374718924d37af3793ec987361a3bd3e245', 'diff': '3e5de40afc2db38126130969b05922aa1d10ab7a3f701dabe7e17d1a5ea03cf2'}, {'version': '7-typed-temporary-lifecycle-passive-054-family48', 'report': '298e0e759bab40495de62c3950a8c36620f9456a9f52e38dc4d81f9fc2df4352', 'diff': '197ded5052878f8b9b5585ca1c178d6a5f04a9fcec697f8eb7aa93a93a8ba677'}, {'version': '7-typed-temporary-lifecycle-passive-060-family51', 'report': '4b17e234941c9a12fcaa40a3ee11532fe732352350038fdd53b35d97f45ab901', 'diff': '460a0f4840e44b4581782eb362674c3884d4fda8794ab967713cd4a9a57d82dd'}, {'version': '7-typed-temporary-lifecycle-passive-074-family53', 'report': '4f53d14c901c0185417b556b9a913b49a0a7e785d76eaae4f3b766789c7eaf77', 'diff': '5b475f726a376019c898a452977ed80482e60b393ccc150afd39d7e06427fbfe'}, {'version': '7-typed-temporary-lifecycle-passive-085-family58', 'report': '6cbe762b864397e7f0479a9a54ecb6c8dcedc50fe873db58716bca125fbb7ede', 'diff': 'd02259bb4f41ff3da5600aa9907ee6dccdc66490435ef98bd148786e68221b6c'}, {'version': '7-typed-temporary-lifecycle-passive-095-family62', 'report': '3055e5f3a0f1c1784aabb4884c7a256c14d8dc8aea51535834bb03db9d846933', 'diff': 'c97430b46b419909abed1074dd658928639399d090a7d6a227c2ea07a9c3c794'}]
+ 
+ PATCHES.append({'version': '7-king-rng-initial-148-family63', 'report': 'ec28e04c48c739b18434155ff1a52f6315e0a9b517418ad76673c1175a80beed', 'diff': 'a9c6b6a72af93d332c31c5ba8ea6c86db5b45327194abc5c66fa206ae019357d'})
+@@ -65,6 +73,11 @@
+ 
+ 
+ def validate_profile(data, fixture):
++    if data.get('profile_id') == SINGLE_KING_GENUINE_PROFILE:
++        if data.get('mode') != 'genuine' or data.get('terminal_profile') != SINGLE_KING_TERMINAL:
++            raise ValueError('single King finite genuine runtime/terminal required')
++        validate_single_king_fixture(fixture)
++        return
+     if data.get('profile_id') == RAINBOW75_PROFILE:
+         if data.get('mode') != 'genuine' or data.get('terminal_profile') != TERMINAL:raise ValueError('Rainbow75 finite source runtime/terminal required')
+         validate_headless_fixture(fixture,RAINBOW75_ITEMS)
+@@ -132,6 +145,11 @@
+         raise ValueError('genuine input outside code-approved finite source/lineage domain')
+ 
+ def validate_result_profile(runtime,fixture):
++    if runtime.get('profile') == SINGLE_KING_GENUINE_PROFILE:
++        if runtime.get('mode') != 'genuine' or runtime.get('terminal_profile') != SINGLE_KING_TERMINAL:
++            raise ValueError('single King finite genuine result/terminal required')
++        validate_single_king_fixture(fixture)
++        return
+     if runtime.get('profile') == RAINBOW75_PROFILE:
+         if runtime.get('mode') != 'genuine' or runtime.get('terminal_profile') != TERMINAL:raise ValueError('Rainbow75 finite source runtime/terminal required')
+         validate_headless_fixture(fixture,RAINBOW75_ITEMS)
+@@ -197,6 +215,7 @@
+         raise ValueError('BLOCKED_INHERITED_INPUT: completed genuine finite-profile result required')
+ 
+ def observer_label(data):
++    if data.get('profile_id') == SINGLE_KING_GENUINE_PROFILE:return 'observer7-355-single-king-A'
+     if data.get('profile_id') == RAINBOW75_PROFILE:return 'observer7-324-headless-rainbow75-battle'
+     if data.get('profile_id') == SUPPORT68_PROFILE:return 'observer7-298-headless-support68-battle'
+     if data.get('profile_id') == LOGIC_GOOBERT_PROFILE:return 'observer7-270-headless-logic-random-goobert-battle'
+@@ -660,3 +679,357 @@
+     return dict(schema='phase153-input-provenance/1', ui_authority=ui,
+                 initial_rng=rng, shared_consumption_closed=False,
+                 genuine_enabled=False)
++
++
++#355 new finite source domain. These helpers do not authenticate a capture or run a model.
++def validate_single_king_fixture(fixture):
++    if type(fixture) is not dict or canonical_sha(fixture) != SINGLE_KING_FIXTURE_SHA256:
++        raise ValueError('single King outside predeclared fixed A fixture')
++    if any(type(s['character_class']) is not int or s['character_class'] != 0 for s in fixture['sides']):
++        raise ValueError('single King class0 only before RNG')
++    kings = [i['instance_id'] for s in fixture['sides'] for i in s['items'] if i['item_index'] == 262]
++    if kings != ['P:12'] or any(type(i['item_index']) is not int or i['item_index'] not in SINGLE_KING_ITEMS for s in fixture['sides'] for i in s['items']):
++        raise ValueError('single unsocketed P King/six item source domain')
++    return True
++
++
++def _single_king_keys(value, keys, label):
++    if type(value) is not dict or set(value) != set(keys):
++        raise ValueError('unknown/missing single King ' + label + ' keys')
++
++def _single_king_validate_ui(rows):
++ _ui_need(type(rows)is list and 2<=len(rows)<=_ui_MAX_ROWS,'rows')
++ bindings={};particles={};ready=set();rolemap={};unsupported=0;entries=0;last=(0,0);closed=False;opened=None;rolebound=False;stack=[];nonking_particles=set();item_ids=set();auto_ids=set()
++ for seq,row in enumerate(rows):
++  _ui_exact(row,('schema','sequence','kind','site','physics_frame','idle_frame','in_physics','payload'))
++  _ui_need(row['schema']=='phase355-king-ui-authority/1' and type(row['sequence'])is int and row['sequence']==seq,'schema/sequence')
++  p=_ui_integer(row['physics_frame']);i=_ui_integer(row['idle_frame']);_ui_need(p>=last[0] and i>=last[1],'counter reversal');last=(p,i)
++  _ui_need(type(row['in_physics'])is bool and not closed,'closed/phase');kind=row['kind'];v=row['payload']
++  if seq==0:
++   _ui_need(kind=='open' and row['site']=='sink._ready','open first')
++   _ui_exact(v,('case','sites','before','after','drop_mouse_setting','window','limits'))
++   _ui_need(v['case']==SINGLE_KING_CASE and v['sites']==list(_ui_SITES) and v['window']=='before_selected_birth_to_final_preinternal','closed coverage/window')
++   _ui_need(v['limits']==dict(bytes=_ui_MAX_BYTES,rows=_ui_MAX_ROWS,record=_ui_MAX_RECORD),'limits')
++   _ui_controls(v['before']);_ui_controls(v['after']);_ui_need(type(v['drop_mouse_setting'])is bool,'setting bool')
++   _ui_need(v['after']['disable_input']is True and v['after']['physics_object_picking']is False,'public controls')
++   _ui_need(all(v['before'][k]==v['after'][k]for k in ('root_id','ordinary_physics','ordinary_idle','internal_physics','internal_idle')),'processing preserved')
++   opened=v;continue
++  _ui_need(kind!='open','duplicate open')
++  if kind=='bind':
++   _ui_need(row['site']=='scene_instance','bind site');_ui_exact(v,('item_id','activation_id','drag_id','script','scene','pooled','inside_tree','generation'))
++   ids=[_ui_ident(v[k])for k in ('item_id','activation_id','drag_id')]
++   _ui_need(len(set(ids))==3 and opened['after']['root_id']not in ids,'distinct bound identities')
++   _ui_need(ids[0]not in auto_ids and not set(ids[1:])&item_ids,'bound native identity kind')
++   _ui_need(v['script']==_ui_KING_SCRIPT and v['scene']==_ui_KING_SCENE and type(v['pooled'])is bool and v['inside_tree']is False,'exact detached scene')
++   _ui_need(type(v['generation'])is int and 1<=v['generation']<=65536,'bounded binding generation')
++   previous=bindings.get(ids[0])
++   if previous is None:
++    _ui_need(v['generation']==1 and len(bindings)<128 and not set(ids)&(set(bindings)|set(particles)|ready),'distinct first binding')
++   else:
++    _ui_need(v['pooled']is True and previous['pooled']is True and v['generation']==previous['generation']+1,'pooled generation increment')
++    _ui_need(all(v[k]==previous[k]for k in ('item_id','activation_id','drag_id','script','scene','inside_tree')),'same pooled identities')
++   item_ids.add(ids[0]);auto_ids.update(ids[1:]);bindings[ids[0]]=v;particles[ids[1]]=(ids[0],'activation');particles[ids[2]]=(ids[0],'drag')
++  elif kind=='ready':
++   _ui_need(row['site']=='Utility/AutoHideParticles.gd::_ready','ready site');_ui_exact(v,('receiver_id','ancestry','script','viewport_id'))
++   rid=_ui_ident(v['receiver_id']);_ui_need(rid not in item_ids and rid!=opened['after']['root_id'],'AutoHide identity kind');auto_ids.add(rid);_ui_need(v['script']==_ui_AUTO_SCRIPT and rid not in ready,'ready source/duplicate');_ui_need(v['viewport_id']==opened['after']['root_id'],'actual guarded viewport');ready.add(rid)
++   ancestry=v['ancestry'];_ui_need(type(ancestry)is list and 1<=len(ancestry)<=32,'ancestry cap');seen=set();has_king=False
++   for a in ancestry:
++    _ui_exact(a,('native_id','king_source'));aid=_ui_ident(a['native_id']);_ui_need(aid not in seen and type(a['king_source'])is bool,'ancestry identity');seen.add(aid);has_king=has_king or a['king_source']
++   _ui_need(ancestry[-1]['native_id']==opened['after']['root_id'],'root-ended ancestry')
++   if rid in particles:_ui_need(has_king and any(a['native_id']==particles[rid][0] and a['king_source']is True for a in ancestry),'actual King parent identity')
++   elif not has_king:nonking_particles.add(rid)
++  elif kind=='roles':
++   _ui_need(row['site']=='configure' and not rolebound,'roles one-time');_ui_exact(v,('kings','selected_guards','using_controller'))
++   _ui_need(v['using_controller']is False,'controller initial domain');_ui_need(type(v['kings'])is list and len(v['kings'])==1,'one selected King')
++   for r in v['kings']:
++    _ui_exact(r,('item_id','role'));oid=_ui_ident(r['item_id']);_ui_need(oid in bindings and re.fullmatch('[PO]:[0-9]+',r['role'])is not None,'bound selected role')
++    _ui_need(bindings[oid]['pooled']is False and bindings[oid]['generation']==1,'selected fresh nonpooled King')
++    _ui_need(bindings[oid]['activation_id']in ready and bindings[oid]['drag_id']in ready,'both ready before configure');rolemap[oid]=r['role']
++   guards=v['selected_guards'];_ui_need(type(guards)is list and len(guards)==len(SINGLE_KING_ROLES),'single A actual selected guards')
++   guard_ids=set();guard_roles=set();guard_map={}
++   for g in guards:
++    _ui_exact(g,('item_id','role','focus','hovered','dragged','mode','viewport_id'));oid=_ui_ident(g['item_id'])
++    _ui_need(oid not in auto_ids and oid!=opened['after']['root_id'],'selected Item identity kind');item_ids.add(oid)
++    _ui_need(oid not in guard_ids and g['role']not in guard_roles and re.fullmatch('[PO]:[0-9]+',g['role'])is not None,'unique selected guards')
++    guard_ids.add(oid);guard_roles.add(g['role']);guard_map[oid]=g['role']
++    _ui_need(all(g[k]is False for k in ('focus','hovered','dragged'))and type(g['mode'])is int and g['mode']==1 and g['viewport_id']==opened['after']['root_id'],'fresh static unhovered selected input')
++   _ui_need(all(guard_map.get(oid)==role for oid,role in rolemap.items()) and guard_roles==SINGLE_KING_ROLES,'fixed selected role guards');rolebound=True
++  elif kind=='entry':
++   _ui_need(row['site']in _ui_SITES,'unknown site');_ui_exact(v,('token','receiver_id','king_source','arguments','classification','source_phase'))
++   rid=_ui_ident(v['receiver_id']);_ui_need(type(v['source_phase'])is str and 0<len(v['source_phase'])<=256,'source phase')
++   _ui_need(type(v['king_source'])is bool and (rid not in bindings or v['king_source']is True),'receiver source identity')
++   if row['site'].startswith('Utility/'):
++    _ui_need(rid not in item_ids and rid!=opened['after']['root_id'],'AutoHide entry identity kind');auto_ids.add(rid)
++   else:
++    _ui_need(rid not in auto_ids and rid!=opened['after']['root_id'],'Item entry identity kind');item_ids.add(rid)
++   args=v['arguments'];method=row['site'].split('::')[1]
++   if method.startswith('_process:'):
++    _ui_exact(args,('delta_bits',));_ui_need(type(args['delta_bits'])is str and re.fullmatch('[0-9a-f]{16}',args['delta_bits'])is not None,'typed delta bits');delta=struct.unpack('>d',bytes.fromhex(args['delta_bits']))[0];_ui_need(math.isfinite(delta)and delta>0,'direct positive finite delta')
++   else:_ui_need(args=={},'no-argument source entry')
++   classification='unsupported_item'
++   if row['site'].startswith('Utility/'):
++    classification='unsupported_unbound'
++    if rid in nonking_particles:classification='supported_nonking_auto'
++    elif rid in particles:
++     if bindings[particles[rid][0]]['pooled']:classification='unsupported_nonselected_pooled_auto'
++     elif rid in ready:classification='supported_activation' if particles[rid][1]=='activation' else 'unsupported_drag'
++   elif method in _ui_ITEM_KING:
++    # Non-King direct calls are retained conservatively too; no prebinding skip.
++    classification=('unsupported_king_item' if rid in bindings else 'unsupported_unbound_item') if v['king_source'] else 'supported_nonking_item'
++   _ui_need(v['classification']==classification,'classification must derive from earlier input bindings')
++   _ui_need(type(v['token'])is int and v['token']==seq,'entry token');stack.append((seq,row['site'],rid))
++   entries+=1
++   if not classification.startswith('supported_'):unsupported+=1
++  elif kind=='exit':
++   _ui_exact(v,('token','receiver_id'));_ui_need(type(v['token'])is int and stack and stack[-1]==(v['token'],row['site'],v['receiver_id']),'matching source exit');stack.pop()
++  elif kind=='close':
++   _ui_need(seq==len(rows)-1 and row['site']=='finish_capture' and row['in_physics']is False and rolebound and not stack,'fixed final close')
++   _ui_exact(v,('phase','completed','failed','overflow','dropped','entries','unsupported','rows_before_close','sites','controls','king_clock_closed','active_buff_calls'))
++   _ui_need(v['phase']=='idle_pre_internal_flush' and v['completed']is True and v['failed']is False and v['overflow']is False and v['dropped']==0,'complete window')
++   _ui_need(type(v['dropped'])is int and v['entries']==entries and v['unsupported']==unsupported and v['rows_before_close']==seq,'exact counts')
++   _ui_need(all(type(v[k])is int for k in ('entries','unsupported','rows_before_close')),'typed counts')
++   _ui_controls(v['controls'])
++   _ui_need(all(v['controls'][k]==opened['after'][k]for k in ('root_id','disable_input','physics_object_picking','ordinary_physics','ordinary_idle','internal_idle')) and (opened['after']['internal_physics']is False or v['controls']['internal_physics']is True),'source-ready end controls')
++   _ui_need(v['sites']==list(_ui_SITES) and v['king_clock_closed']is True and type(v['active_buff_calls'])is int and v['active_buff_calls']==0,'coverage/controls/closed source barrier')
++   closed=True
++  else:raise ValueError('unknown kind')
++ _ui_need(closed and len(rolemap)==1,'complete selected binding')
++ return dict(status='COMPLETE_INPUT_EVIDENCE',admission='NOT_ADMITTED_UNSUPPORTED_ENTRIES' if unsupported else 'ELIGIBLE_EMPTY_UNSUPPORTED',unsupported=unsupported,entries=entries,rows=len(rows),king_roles=rolemap,model_acceptance=False)
++
++
++def _single_king_rng_checkpoint(data,records):
++    _rng_keys(data,('schema','case','source_cut','source_profile','snapshot_complete','observed_count','checkpoint_sequence','game_id','util','rng','stamp','current_seed','state'),'initial checkpoint')
++    if data['schema']!='phase355-util-rng-checkpoint/1' or data['case']!=SINGLE_KING_CASE or data['source_cut']!=_rng_SITE+':enter.before_original_body' or data['source_profile']!=SINGLE_KING_OBSERVER_VERSION or data['snapshot_complete']is not True or type(data['observed_count'])is not int or data['observed_count']!=1:raise ValueError('initial checkpoint contract')
++    seq=data['checkpoint_sequence']
++    if type(seq)is not int or not 0<=seq<1000000:raise ValueError('checkpoint sequence')
++    _rng_decimal(data['game_id'],True)
++    u=data['util'];r=data['rng'];s=data['stamp']
++    _rng_keys(u,('native_id','path','class','script'),'Util identity');_rng_keys(r,('native_id','class'),'RNG identity')
++    _rng_decimal(u['native_id'],True);_rng_decimal(r['native_id'],True)
++    if len({u['native_id'],r['native_id'],data['game_id']})!=3 or u['path']!='/root/Util' or u['class']!='Node2D' or u['script']!='res://Utility/Util.gd' or r['class']!='RandomNumberGenerator':raise ValueError('source identity')
++    _rng_keys(s,('physics_frame','idle_frame','in_physics','util_frame_counter','util_time_bits','util_clock_time_bits'),'source stamp')
++    for k in ('physics_frame','idle_frame','util_frame_counter'):_rng_decimal(s[k])
++    if type(s['in_physics'])is not bool:raise ValueError('source physics flag')
++    _rng_real(s['util_time_bits']);_rng_real(s['util_clock_time_bits']);_rng_int64(data['current_seed']);_rng_int64(data['state'])
++    if type(records)is not list or any(type(x)is not dict or x.get('channel')!='input' for x in records):raise ValueError('input-only records')
++    cps=[x for x in records if x.get('site')==_rng_SITE and x.get('edge')=='checkpoint'];enters=[x for x in records if x.get('site')==_rng_SITE and x.get('edge')=='enter']
++    if len(cps)!=1 or len(enters)!=1:raise ValueError('unique preparation checkpoint/enter')
++    cp,en=cps[0],enters[0]
++    if cp['sequence']!=seq or en['sequence']!=seq+1 or type(cp['sequence'])is not int or type(en['sequence'])is not int:raise ValueError('source checkpoint association')
++    for row in (cp,en):
++        if row['schema']!='observer7-record/1' or row['subject']['type']!='native_ref' or row['subject']['native_id']!=data['game_id']:raise ValueError('Game join')
++        stamp=row['stamp']
++        if stamp['physics_frame']!=s['physics_frame']or stamp['idle_frame']!=s['idle_frame']or stamp['phase']!=_rng_SITE+':enter' or stamp['util_time']!={'type':'float','binary64_be':s['util_time_bits']}:raise ValueError('source stamp join')
++    nodes=[x['node']for x in cp['payload']['nodes']if x['role']=='util']
++    if len(nodes)!=1 or any(nodes[0].get(k)!=u[k]for k in ('native_id','path','class')):raise ValueError('Util node join')
++    return dict(schema='phase355-util-rng-checkpoint/1',status='PASS_INITIAL_CONDITION_ONLY',checkpoint=data,consumption_closed=False,genuine_enabled=False)
++
++
++def _single_king_typed(value,kind,bits=None):
++    keys={'float':('type','binary64_be'),'bool':('type','value'),'dictionary':('type','entries'),'null':('type',)}
++    _single_king_keys(value,keys[kind],'typed '+kind)
++    if value['type']!=kind:raise ValueError('raw type '+kind)
++    if kind=='float':_single_king_real(value['binary64_be'])
++    if bits is not None and value.get('binary64_be')!=bits:raise ValueError('source promoted getter bits')
++    if kind=='bool' and type(value['value'])is not bool:raise ValueError('raw boolean')
++    return value
++
++
++def _single_king_node(value):
++    _single_king_keys(value,('native_id','role','path','name','class','positions','priority','inside_tree','ordinary_physics','internal_physics','ordinary_idle','internal_idle'),'actual Node')
++    if not isinstance(value['native_id'],str) or re.fullmatch('[1-9][0-9]*',value['native_id'])is None:raise ValueError('native identity')
++    for field in ('inside_tree','ordinary_physics','internal_physics','ordinary_idle','internal_idle'):
++        if type(value[field])is not bool:raise ValueError('actual independent group flags')
++    if type(value['priority'])is not int or not -(1<<31)<=value['priority']<(1<<31):raise ValueError('priority')
++    if type(value['positions'])is not list or not 1<=len(value['positions'])<=32 or any(type(v)is not int or v< -1 for v in value['positions']):raise ValueError('positions')
++    for field in ('name','class'):
++        if type(value[field])is not str:raise ValueError('node text')
++    for field in ('path','role'):
++        if value[field]is not None and type(value[field])is not str:raise ValueError('nullable node text')
++    if value['inside_tree'] and (not value['path'] or not value['path'].startswith('/root')):raise ValueError('actual tree path')
++    return value
++
++
++def _single_king_timer(value):
++    _single_king_keys(value,('node','process_mode','wait_time','time_left','one_shot','autostart','paused','stopped'),'actual Timer')
++    _single_king_node(value['node'])
++    if value['node']['class']!='Timer' or type(value['process_mode'])is not int or value['process_mode']not in (0,1):raise ValueError('Timer mode/class')
++    for field in ('one_shot','autostart','paused','stopped'):
++        if type(value[field])is not bool:raise ValueError('Timer bool')
++    _single_king_typed(value['wait_time'],'float');_single_king_typed(value['time_left'],'float')
++    return value
++
++
++def _single_king_particle(value):
++    _single_king_keys(value,('node','visible','emitting','one_shot','lifetime','explosiveness','speed_scale','timer'),'actual AutoHide')
++    _single_king_node(value['node']);_single_king_timer(value['timer'])
++    for field in ('visible','emitting','one_shot'):
++        if _single_king_typed(value[field],'bool')['value']:raise ValueError('fresh hidden continuous AutoHide required')
++    for field,bits in [('lifetime','3fe6666660000000'),('explosiveness','0000000000000000'),('speed_scale','3ff0000000000000')]:_single_king_typed(value[field],'float',bits)
++    return value
++
++
++def validate_single_king_fresh_facts(facts):
++    _single_king_keys(facts,('schema','root_viewport','timers','kings','delayed_activation'),'King input facts')
++    if facts['schema']!='phase355-king-input-facts/1':raise ValueError('facts schema')
++    root=_single_king_node(facts['root_viewport'])
++    if root['path']!='/root' or not root['inside_tree']:raise ValueError('root identity')
++    # Each root flag is retained independently. No assumed idle/physics equality.
++    kings=facts['kings']
++    if type(kings)is not list or len(kings)!=1:raise ValueError('one fixed King')
++    king=kings[0]
++    _single_king_keys(king,('instance','node','sockets','gem_count','persistent','paramMult','paramAdd','doubleActivationChance','doubleAttackEffectChance','activation','drag'),'King facts')
++    if king['instance']!='P:12' or _single_king_node(king['node'])['role']!='P:12':raise ValueError('fixed King identity')
++    if type(king['gem_count'])is not int or king['gem_count']!=0 or king['persistent']is not False:raise ValueError('unsocketed/nonpersistent domain')
++    if type(king['sockets'])is not list or len(king['sockets'])!=2:raise ValueError('exactly two empty sockets')
++    ids=set()
++    for socket in king['sockets']:
++        _single_king_keys(socket,('node','gem'),'socket');n=_single_king_node(socket['node']);_single_king_typed(socket['gem'],'null')
++        if n['native_id']in ids or not n['path'].startswith(king['node']['path']+'/Icon/Sockets/'):raise ValueError('distinct owned sockets')
++        ids.add(n['native_id'])
++    for field in ('paramMult','paramAdd'):
++        if _single_king_typed(king[field],'dictionary')['entries']!=[]:raise ValueError('no modifiers')
++    for field in ('doubleActivationChance','doubleAttackEffectChance'):_single_king_typed(king[field],'float','0000000000000000')
++    for field in ('activation','drag'):_single_king_particle(king[field])
++    expected={'invu:P':(0,'Character.scene.ready'),'invu:O':(0,'Character.scene.ready'),'king_buff:P:12':(0,'King.scene.instance'),'king_hide:P:12':(1,'AutoHide.Timer.new'),'king_drag:P:12':(1,'AutoHide.Timer.new')}
++    _single_king_keys(facts['timers'],expected,'five selected Timer facts');timer_ids=set()
++    for role,(mode,kind)in expected.items():
++        fact=facts['timers'][role];_single_king_keys(fact,('lineage','current','private_provenance'),'fresh Timer fact')
++        lineage=fact['lineage'];_single_king_keys(lineage,('timer_id','owner_id','kind','starts','stops','birth'),'birth lineage')
++        birth=_single_king_timer(lineage['birth']);current=_single_king_timer(fact['current']);n=current['node']
++        if lineage['kind']!=kind or type(lineage['starts'])is not int or lineage['starts']!=0 or type(lineage['stops'])is not int or lineage['stops']<0:raise ValueError('source no-start lineage')
++        if lineage['timer_id']!=n['native_id'] or birth['node']['native_id']!=n['native_id'] or n['native_id']in timer_ids or n['role']!=role:raise ValueError('stable distinct Timer identity')
++        timer_ids.add(n['native_id'])
++        if type(lineage['owner_id'])is not str or re.fullmatch('[1-9][0-9]*',lineage['owner_id'])is None:raise ValueError('source owner')
++        if fact['private_provenance']!='source_constructor_minus_one_no_start_not_public_zero_inference':raise ValueError('no invented private observation')
++        for t in (birth,current):
++            if t['process_mode']!=mode or t['autostart'] or t['paused'] or not t['stopped']:raise ValueError('fresh source Timer')
++            _single_king_typed(t['wait_time'],'float','3ff0000000000000');_single_king_typed(t['time_left'],'float','0000000000000000')
++            if any(t['node'][flag]for flag in ('ordinary_physics','internal_physics','ordinary_idle','internal_idle')):raise ValueError('fresh inactive Timer flags')
++        if not current['one_shot'] or not n['inside_tree']:raise ValueError('configured in-tree Timer')
++        if birth['one_shot']!=(kind!='AutoHide.Timer.new'):raise ValueError('actual birth flags, not configured defaults')
++        if role.startswith('king_'):
++            owner=king['node'] if role=='king_buff:P:12' else king['activation' if role=='king_hide:P:12' else 'drag']['node']
++            if lineage['owner_id']!=owner['native_id'] or not n['path'].startswith(owner['path']+'/'):raise ValueError('Timer owner path')
++            if role!='king_buff:P:12' and king['activation' if role=='king_hide:P:12' else 'drag']['timer']!=current:raise ValueError('particle Timer identity')
++    delayed=facts['delayed_activation'];_single_king_keys(delayed,('target_id','method','delay','tree_timer_id','source','physics_frame','idle_frame'),'actual activation schedule')
++    if delayed['method']!='activateItems' or delayed['source']!='Utility/Util.gd::callDelayed':raise ValueError('actual activation lineage')
++    _single_king_typed(delayed['delay'],'float','4004000000000000');_single_king_counter(delayed['physics_frame']);_single_king_counter(delayed['idle_frame'])
++    return facts
++
++
++
++def validate_single_king_ui_authority(rows):
++    return _ui_require_admission(_single_king_validate_ui(rows))
++
++def _single_king_counter(value):
++    if type(value) is not int or not 0 <= value <= ((1 << 63) - 1):
++        raise ValueError('nonnegative bounded integer counter required')
++    return value
++
++
++def _single_king_real(bits):
++    if type(bits) is not str or re.fullmatch('[0-9a-f]{16}', bits) is None:
++        raise ValueError('BE64 lowercase hex required')
++    value = struct.unpack('>d', bytes.fromhex(bits))[0]
++    if not math.isfinite(value):
++        raise ValueError('finite BE64 required')
++    return value
++
++
++
++def validate_single_king_source_defaults(pre, act):
++    """Proof-only observed fields. Never return these as model resource/charge state."""
++    for record, charges in ((pre, 0), (act, 3)):
++        rows = record['payload']['items']
++        if type(rows) is not list:
++            raise ValueError('single King source item rows required')
++        matches = [row for row in rows if row.get('instance') == 'P:12']
++        if len(matches) != 1:
++            raise ValueError('one selected King source item state')
++        fields = matches[0]['fields']
++        for key, expected in (('descriptorIndex', 262), ('activations', 0), ('invuCharges', charges)):
++            if fields.get(key) != dict(type='int', decimal=str(expected)):
++                raise ValueError('single King source INT ' + key)
++        for key, expected in (('activationsToTrigger', 6.0), ('protectedBuffs', 3.0), ('manaCost', 4.0)):
++            if fields.get(key) != dict(type='float', binary64_be=struct.pack('>d', expected).hex()):
++                raise ValueError('single King source REAL ' + key)
++    return dict(kind='SOURCE_DEFAULTS_PROOF_ONLY_NOT_RUNTIME', phases=['pre_prepare', 'pre_activate'])
++
++
++def validate_single_king_input_provenance(ui_rows, rng_checkpoint, input_records, lineage_records, facts, clock):
++    """Validate lawful source joins; no bundle, no RNG restoration, no terminal command."""
++    ui = validate_single_king_ui_authority(ui_rows)
++    rng = _single_king_rng_checkpoint(rng_checkpoint, input_records)
++    validate_single_king_fresh_facts(facts)
++    def checkpoint(site):
++        rows = [r for r in input_records if r.get('site') == site and r.get('edge') == 'checkpoint']
++        if len(rows) != 1:
++            raise ValueError('unique single King source checkpoint ' + site)
++        return rows[0]
++    pre = checkpoint('Core/Game.gd::prepareItems')
++    act = checkpoint('Core/Game.gd::activateItems')
++    if not pre['sequence'] < act['sequence']:
++        raise ValueError('single King preparation before activation')
++    defaults = validate_single_king_source_defaults(pre, act)
++    byrole = {}
++    for row in act['payload']['nodes']:
++        if row['role'] in byrole:
++            raise ValueError('duplicate raw activation envelope role')
++        byrole[row['role']] = row
++    selected = {}
++    for role in SINGLE_KING_ROLES:
++        raw = byrole['item:' + role]['node']
++        if raw['role'] != role:
++            raise ValueError('raw item node role differs from envelope item prefix')
++        native = raw['native_id']
++        if native in selected:
++            raise ValueError('selected native item ID aliases')
++        selected[native] = role
++    root = byrole['root_viewport']['node']
++    controls = ui_rows[0]['payload']['after']
++    if facts['root_viewport'] != root or controls['root_id'] != root['native_id']:
++        raise ValueError('single King fresh/UI/root source join')
++    for flag in ('ordinary_physics', 'ordinary_idle', 'internal_physics', 'internal_idle'):
++        if controls[flag] != root[flag]:
++            raise ValueError('single King actual root processing join')
++    guards = next(r['payload']['selected_guards'] for r in ui_rows if r['kind'] == 'roles')
++    if {g['item_id']: g['role'] for g in guards} != selected:
++        raise ValueError('complete selected UI/actual item join')
++    king = facts['kings'][0]
++    kid = king['node']['native_id']
++    if king['node'] != byrole['item:P:12']['node'] or ui['king_roles'] != {kid: 'P:12'}:
++        raise ValueError('single fresh King actual item join')
++    binds = [r['payload'] for r in ui_rows if r['kind'] == 'bind' and r['payload']['item_id'] == kid]
++    if len(binds) != 1 or any(binds[0][part + '_id'] != king[part]['node']['native_id'] for part in ('activation', 'drag')):
++        raise ValueError('single King source particle join')
++    for native, role in selected.items():
++        scenes = [r for r in lineage_records if r.get('edge') == 'scene_instance' and r['payload']['item_id'] == native]
++        ready = [r for r in lineage_records if r.get('site') == 'Items/Item.gd::_ready' and r.get('edge') == 'enter' and r['subject']['native_id'] == native]
++        if len(scenes) != 1 or len(ready) != 1:
++            raise ValueError('one selected scene and generic ready owner ' + role)
++        scene, event = scenes[0], ready[0]
++        if (scene['payload']['pooled'] is not False or event['payload']['state'] != {'native_id': native}
++                or not scene['sequence'] < event['sequence'] < pre['sequence']):
++            raise ValueError('fresh scene/ready/pre source owner chain ' + role)
++    for role, fact in facts['timers'].items():
++        if fact['current'] != byrole[role]['timer']:
++            raise ValueError('single King fresh/activation direct Timer join ' + role)
++        if role.startswith('invu:') and fact['lineage']['owner_id'] != byrole['character:' + role[-1]]['node']['native_id']:
++            raise ValueError('single King invulnerability Timer owner join')
++    if (rng_checkpoint['util']['native_id'] != byrole['util']['node']['native_id']
++            or rng_checkpoint['game_id'] != byrole['game']['node']['native_id']):
++        raise ValueError('single King prepare/activate identity continuity')
++    if facts['delayed_activation']['target_id'] != rng_checkpoint['game_id']:
++        raise ValueError('single King actual delayed activation target')
++    first, last = ui_rows[0], ui_rows[-1]
++    for key, initial in (('physics_frame', clock.physics_frame), ('idle_frame', clock.idle_frame)):
++        if not first[key] <= int(rng_checkpoint['stamp'][key]) <= initial <= last[key]:
++            raise ValueError('single King source preparation/clock UI window')
++    if (not clock.passes or clock.passes[-1].kind != 'idle'
++            or (last['physics_frame'], last['idle_frame']) != (clock.passes[-1].physics_frame, clock.passes[-1].idle_frame)):
++        raise ValueError('single King complete source UI/finite clock close')
++    return dict(schema='phase355-input-source-provenance/1', source_defaults=defaults,
++                ready='READY_OWNER_ONLY_NOT_TIMER', private_origin='SOURCE_CONSTRUCTOR_NO_START_NOT_PUBLIC_ZERO',
++                initial_rng=rng, ui_authority=ui, dataflow='PROOF_ONLY_STRIP_BEFORE_MODEL_RUNTIME',
++                shared_consumption_closed=False, genuine_capture_accepted=False)

@@ -1,0 +1,25 @@
+{
+  "candidate_calls": 0,
+  "old_findings": [
+    "v1 materializer receipt leaf symlink guard fixed by one no_links before read",
+    "v1 work receipt provenance not bound; v2 now binds mapping/artifacts/manifest/destination/strict0 and no_links all reads"
+  ],
+  "old_materializer_v1_not_executed": true,
+  "old_work_reader_v1_not_executed": true,
+  "public_provenance": "/workspace/backpack-python-publish-20261025/recovery_checkpoint",
+  "snapshots": {
+    "check_restored_work.py": {
+      "sha256": "78d891e5b9bcec5cd0961f5fe3fc1d58cb1527ab48e4f96043a7554615102aea",
+      "size": 6589
+    },
+    "materialize_owner_artifacts.py": {
+      "sha256": "31ad372e1671c5509c23bf79d0e6ee5b7bcfb98c36bc368ead8b9955a7a81378",
+      "size": 5217
+    },
+    "owner-relocations.json": {
+      "sha256": "b0bda4030b885d125937fa4e098ba1b168c5bb346e2d61afbacb0d2b08681886",
+      "size": 488
+    }
+  },
+  "test_plan": "28 tiny controls:2positive/26negative; only exact core/load_aliases and exact AST leaf resolver; no full work main/hardcoded354 forgery"
+}

@@ -1,0 +1,213 @@
+{
+  "blocked": [],
+  "cases": [
+    {
+      "label": "materializer-positive",
+      "passed": true,
+      "positive": true
+    },
+    {
+      "exception": "ValueError",
+      "label": "materializer-existing-target",
+      "positive": false,
+      "reason": "artifact destination already exists",
+      "rejected": true
+    },
+    {
+      "exception": "ValueError",
+      "label": "materializer-existing-receipt",
+      "positive": false,
+      "reason": "artifact receipt already exists",
+      "rejected": true
+    },
+    {
+      "exception": "ValueError",
+      "label": "materializer-recovery-receipt-symlink",
+      "positive": false,
+      "reason": "symlink ancestor",
+      "rejected": true
+    },
+    {
+      "exception": "ValueError",
+      "label": "materializer-source-symlink",
+      "positive": false,
+      "reason": "symlink ancestor",
+      "rejected": true
+    },
+    {
+      "exception": "ValueError",
+      "label": "materializer-source-hash",
+      "positive": false,
+      "reason": "source part identity",
+      "rejected": true
+    },
+    {
+      "exception": "ValueError",
+      "label": "materializer-source-not-historical",
+      "positive": false,
+      "reason": "artifact not exact public whole archive",
+      "rejected": true
+    },
+    {
+      "exception": "ValueError",
+      "label": "materializer-multipart",
+      "positive": false,
+      "reason": "artifact not exact public whole archive",
+      "rejected": true
+    },
+    {
+      "exception": "ValueError",
+      "label": "materializer-singlepart-whole-mismatch",
+      "positive": false,
+      "reason": "single part must equal whole archive",
+      "rejected": true
+    },
+    {
+      "exception": "ValueError",
+      "label": "materializer-destination-escape",
+      "positive": false,
+      "reason": "unsafe path",
+      "rejected": true
+    },
+    {
+      "exception": "ValueError",
+      "label": "materializer-source-escape",
+      "positive": false,
+      "reason": "unsafe path",
+      "rejected": true
+    },
+    {
+      "exception": "ValueError",
+      "label": "materializer-recovery-manifest",
+      "positive": false,
+      "reason": "recovery and current manifest mismatch",
+      "rejected": true
+    },
+    {
+      "exception": "ValueError",
+      "label": "materializer-unverified-receipt",
+      "positive": false,
+      "reason": "verified recovery required",
+      "rejected": true
+    },
+    {
+      "exception": "ValueError",
+      "label": "materializer-target-parent-symlink",
+      "positive": false,
+      "reason": "symlink ancestor",
+      "rejected": true
+    },
+    {
+      "label": "work-positive-whitelist-newdest",
+      "passed": true,
+      "positive": true
+    },
+    {
+      "exception": "AssertionError",
+      "label": "work-receipt-mapping-pin",
+      "positive": false,
+      "reason": "receipt mapping identity",
+      "rejected": true
+    },
+    {
+      "exception": "AssertionError",
+      "label": "work-receipt-artifact-declaration",
+      "positive": false,
+      "reason": "receipt artifact declarations",
+      "rejected": true
+    },
+    {
+      "exception": "AssertionError",
+      "label": "work-receipt-manifest",
+      "positive": false,
+      "reason": "",
+      "rejected": true
+    },
+    {
+      "exception": "AssertionError",
+      "label": "work-receipt-destination",
+      "positive": false,
+      "reason": "receipt destination",
+      "rejected": true
+    },
+    {
+      "exception": "AssertionError",
+      "label": "work-receipt-oldcloud",
+      "positive": false,
+      "reason": "",
+      "rejected": true
+    },
+    {
+      "exception": "AssertionError",
+      "label": "work-receipt-BOOL-models",
+      "positive": false,
+      "reason": "",
+      "rejected": true
+    },
+    {
+      "exception": "AssertionError",
+      "label": "work-receipt-symlink",
+      "positive": false,
+      "reason": "symlink ancestor",
+      "rejected": true
+    },
+    {
+      "exception": "AssertionError",
+      "label": "work-materialized-bytes",
+      "positive": false,
+      "reason": "materialized artifact identity",
+      "rejected": true
+    },
+    {
+      "exception": "AssertionError",
+      "label": "work-public-source-bytes",
+      "positive": false,
+      "reason": "public artifact identity",
+      "rejected": true
+    },
+    {
+      "exception": "AssertionError",
+      "label": "work-relative-owner-symlink",
+      "positive": false,
+      "reason": "symlink ancestor",
+      "rejected": true
+    },
+    {
+      "exception": "AssertionError",
+      "label": "work-unknown-absolute-owner",
+      "positive": false,
+      "reason": "/workspace/checkpoints/unknown-owner.zip",
+      "rejected": true
+    },
+    {
+      "exception": "AssertionError",
+      "label": "work-relative-owner-escape",
+      "positive": false,
+      "reason": "",
+      "rejected": true
+    },
+    {
+      "exception": "AssertionError",
+      "label": "work-plan-path-escape",
+      "positive": false,
+      "reason": "",
+      "rejected": true
+    }
+  ],
+  "failure": null,
+  "fixture_body_bytes": 58,
+  "models": 0,
+  "native": 0,
+  "negative_cases": 26,
+  "no_more_writes": true,
+  "positive_cases": 2,
+  "read_count": 302,
+  "real20MB_copies": 0,
+  "real_archive_payloads_executed": 0,
+  "status": "INDEPENDENT354_OWNER_HELPER_TINY_CONTROLS_PASS",
+  "temporary_fixture_root": "/tmp/phase354-owner-helper-independent-_wkes669",
+  "training": 0,
+  "work_exact_AST_leaf_block": true,
+  "work_full_main_executed": false,
+  "write_count": 191
+}

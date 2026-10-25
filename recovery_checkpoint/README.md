@@ -95,3 +95,13 @@ The original remote-clone verification is retained under `history/phase347-*`. T
 The inherited `coverage.owner_closure_paths` is the base347 planning statistic. All current cumulative payloads are active; current complete logical/physical counts are recomputed in the coverage fields. Current source/material review receipts are `progress-current-source-review.json` and `progress-current-material-review.json`; the348 receipts remain historical evidence. Cumulative352 remote active recovery and both output-only checkers passed; current354 verification is recorded separately; see `VALIDATION.md` and `validation.json` for exact identities, counts and validation limits.
 
 Current work remains a single complete logical index: ten fixed historical/original/runtime archives plus one cumulative progress archive. Earlier progress part files and manifests are retained as history. They are not a sequential patch chain. The active formal entry remains75; use the staged King source only within its documented experimental domain and validation gates.
+
+## Work preserved after the archival cut
+
+The complete helper SOURCE, frozen tiny-control procedure and actual evidence are preserved as a small flat tree at `verification_evidence/repo/`, with `verification_evidence/FILES.json` identities. To make these post-cut records available at their original repo-relative paths after main restoration, run from the Git clone root:
+
+```sh
+cp -rn recovery_checkpoint/verification_evidence/repo/. "$RECOVERED/workspace/python-original-engine/repo/"
+```
+
+The additive355 SOURCE-only candidate and its27 owner leaves are independently inventoried at [work_in_progress/phase355](../work_in_progress/phase355/README.md). Its remaining dependencies and pending independent status are explicit; it is not part of production75. Copying either flat tree does not replace the formal engine. These are direct GitHub files, not a sequential archive chain. Current actual remote verification is in `VALIDATION.md`.
