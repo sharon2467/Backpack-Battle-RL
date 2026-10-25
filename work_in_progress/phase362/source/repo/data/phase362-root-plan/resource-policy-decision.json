@@ -1,0 +1,35 @@
+{
+  "schema": "root-native-resource-policy-decision/1",
+  "policy": "bounded-writers-and-monitored-process/1",
+  "status": "SOURCE_REQUIREMENTS_DELTA_NOT_EXECUTION_RELEASE",
+  "user_constraints": [
+    "check space budget",
+    "reuse single pool/read-only baseline",
+    "no percase fullGame copies",
+    "preserve unique source/assets/evidence",
+    "release only verified recoverable duplicates"
+  ],
+  "decision": "Do not require an unrequested kernel aggregate filesystem quota proof as a permanent execution blocker. Review and use bounded own writers plus explicitly monitored process/cache roots with honest polling limitations.",
+  "required": [
+    "observer/collector strict byte caps",
+    "controlled stdout/stderr cap",
+    "explicit isolated permitted user/cache roots",
+    "50ms polling with cap/unknown-root/free-floor stop",
+    "4GiB free floor",
+    "fresh startup reserve4GiB plus conservative attempt1.5GiB recalc",
+    "wall budget300seconds",
+    "full process-group termination and durable partial/failure preservation",
+    "no caller ready/riskaccept switch",
+    "independent SOURCE review and real root accepted execution descriptor before plan/prepare/parse/native"
+  ],
+  "known_limit": "Polling is not a kernel aggregate quota and cannot guarantee no overshoot between samples; report this, not a mathematical background write upper bound.",
+  "prohibited": [
+    "installing paid/kernel quota/security changes for this task",
+    "changing HOME/platform security settings",
+    "cleaning unique files or original243343347checkpoints",
+    "claiming enforced kernel-hard bound"
+  ],
+  "native_allowed": 0,
+  "parse_allowed": 0,
+  "models_allowed": 0
+}

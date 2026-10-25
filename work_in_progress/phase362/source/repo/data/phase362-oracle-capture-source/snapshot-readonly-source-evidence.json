@@ -1,0 +1,1523 @@
+{
+  "actual_getter_calls": 0,
+  "fields": {
+    "BalancedRange": [
+      {
+        "declarations": [
+          {
+            "line": 4,
+            "path": "Utility/BalancedRange.gd",
+            "text": "var acc = 0.0"
+          }
+        ],
+        "field": "acc"
+      }
+    ],
+    "Buff": [
+      {
+        "declarations": [
+          {
+            "line": 4,
+            "path": "Core/Buff.gd",
+            "text": "var type: int"
+          }
+        ],
+        "field": "type"
+      },
+      {
+        "declarations": [
+          {
+            "line": 7,
+            "path": "Core/Buff.gd",
+            "text": "var current: int = 0"
+          }
+        ],
+        "field": "current"
+      },
+      {
+        "declarations": [
+          {
+            "line": 8,
+            "path": "Core/Buff.gd",
+            "text": "var permanentStacks: int = 0"
+          }
+        ],
+        "field": "permanentStacks"
+      },
+      {
+        "declarations": [
+          {
+            "line": 12,
+            "path": "Core/Buff.gd",
+            "text": "var resistChancePercent: float = 0.0"
+          }
+        ],
+        "field": "resistChancePercent"
+      },
+      {
+        "declarations": [
+          {
+            "line": 13,
+            "path": "Core/Buff.gd",
+            "text": "var resistStacks: int = 0"
+          }
+        ],
+        "field": "resistStacks"
+      },
+      {
+        "declarations": [
+          {
+            "line": 15,
+            "path": "Core/Buff.gd",
+            "text": "var reflectChancePercent: float = 0.0"
+          }
+        ],
+        "field": "reflectChancePercent"
+      },
+      {
+        "declarations": [
+          {
+            "line": 17,
+            "path": "Core/Buff.gd",
+            "text": "var cleanseProtectionChancePercent: float = 0.0"
+          }
+        ],
+        "field": "cleanseProtectionChancePercent"
+      },
+      {
+        "declarations": [
+          {
+            "line": 21,
+            "path": "Core/Buff.gd",
+            "text": "var temporaryStacks: Array"
+          }
+        ],
+        "field": "temporaryStacks"
+      },
+      {
+        "declarations": [
+          {
+            "line": 22,
+            "path": "Core/Buff.gd",
+            "text": "var nextTemporaryTimeout: int"
+          }
+        ],
+        "field": "nextTemporaryTimeout"
+      }
+    ],
+    "CHAR_FIELDS": [
+      {
+        "declarations": [
+          {
+            "line": 50,
+            "path": "Core/Character.gd",
+            "text": "var playerId: int"
+          }
+        ],
+        "field": "playerId"
+      },
+      {
+        "declarations": [
+          {
+            "line": 51,
+            "path": "Core/Character.gd",
+            "text": "var characterClass = Game.Classes.Ranger"
+          }
+        ],
+        "field": "characterClass"
+      },
+      {
+        "declarations": [
+          {
+            "line": 52,
+            "path": "Core/Character.gd",
+            "text": "var characterName: String"
+          }
+        ],
+        "field": "characterName"
+      },
+      {
+        "declarations": [
+          {
+            "line": 53,
+            "path": "Core/Character.gd",
+            "text": "var chibi = false"
+          }
+        ],
+        "field": "chibi"
+      },
+      {
+        "declarations": [
+          {
+            "line": 55,
+            "path": "Core/Character.gd",
+            "text": "var isDead: bool"
+          }
+        ],
+        "field": "isDead"
+      },
+      {
+        "declarations": [
+          {
+            "line": 57,
+            "path": "Core/Character.gd",
+            "text": "var maxHealth: float = 30.0"
+          }
+        ],
+        "field": "maxHealth"
+      },
+      {
+        "declarations": [
+          {
+            "line": 58,
+            "path": "Core/Character.gd",
+            "text": "var curHealth: float"
+          }
+        ],
+        "field": "curHealth"
+      },
+      {
+        "declarations": [
+          {
+            "line": 59,
+            "path": "Core/Character.gd",
+            "text": "var temporaryMaxHealth: float = 0.0"
+          }
+        ],
+        "field": "temporaryMaxHealth"
+      },
+      {
+        "declarations": [
+          {
+            "line": 60,
+            "path": "Core/Character.gd",
+            "text": "var temporaryMaxHealthGain: float = 1.0"
+          }
+        ],
+        "field": "temporaryMaxHealthGain"
+      },
+      {
+        "declarations": [
+          {
+            "line": 61,
+            "path": "Core/Character.gd",
+            "text": "var baseMaxStamina: float"
+          }
+        ],
+        "field": "baseMaxStamina"
+      },
+      {
+        "declarations": [
+          {
+            "line": 62,
+            "path": "Core/Character.gd",
+            "text": "var maxStamina: float = 5.0"
+          }
+        ],
+        "field": "maxStamina"
+      },
+      {
+        "declarations": [
+          {
+            "line": 63,
+            "path": "Core/Character.gd",
+            "text": "var curStamina: float"
+          }
+        ],
+        "field": "curStamina"
+      },
+      {
+        "declarations": [
+          {
+            "line": 64,
+            "path": "Core/Character.gd",
+            "text": "var temporaryMaxStamina: float = 0.0"
+          }
+        ],
+        "field": "temporaryMaxStamina"
+      },
+      {
+        "declarations": [
+          {
+            "line": 65,
+            "path": "Core/Character.gd",
+            "text": "var baseStaminaRegen: float = 1.0"
+          }
+        ],
+        "field": "baseStaminaRegen"
+      },
+      {
+        "declarations": [
+          {
+            "line": 66,
+            "path": "Core/Character.gd",
+            "text": "var staminaRegen: float = baseStaminaRegen"
+          }
+        ],
+        "field": "staminaRegen"
+      },
+      {
+        "declarations": [
+          {
+            "line": 67,
+            "path": "Core/Character.gd",
+            "text": "var allowStaminaOverflow: bool = false"
+          }
+        ],
+        "field": "allowStaminaOverflow"
+      },
+      {
+        "declarations": [
+          {
+            "line": 68,
+            "path": "Core/Character.gd",
+            "text": "var stunnedDuration: float"
+          }
+        ],
+        "field": "stunnedDuration"
+      },
+      {
+        "declarations": [
+          {
+            "line": 69,
+            "path": "Core/Character.gd",
+            "text": "var invulnerable: bool = false"
+          }
+        ],
+        "field": "invulnerable"
+      },
+      {
+        "declarations": [
+          {
+            "line": 71,
+            "path": "Core/Character.gd",
+            "text": "var unhealingAmount: float = 0.0"
+          }
+        ],
+        "field": "unhealingAmount"
+      },
+      {
+        "declarations": [
+          {
+            "line": 72,
+            "path": "Core/Character.gd",
+            "text": "var healingEfficiency: float = 1.0"
+          }
+        ],
+        "field": "healingEfficiency"
+      },
+      {
+        "declarations": [
+          {
+            "line": 73,
+            "path": "Core/Character.gd",
+            "text": "var damageResistance: float = 0.0"
+          }
+        ],
+        "field": "damageResistance"
+      },
+      {
+        "declarations": [
+          {
+            "line": 74,
+            "path": "Core/Character.gd",
+            "text": "var damageReduction: int"
+          }
+        ],
+        "field": "damageReduction"
+      },
+      {
+        "declarations": [
+          {
+            "line": 75,
+            "path": "Core/Character.gd",
+            "text": "var dodgeStacks: int = 0"
+          }
+        ],
+        "field": "dodgeStacks"
+      },
+      {
+        "declarations": [
+          {
+            "line": 76,
+            "path": "Core/Character.gd",
+            "text": "var critResistance: float = 0.0"
+          }
+        ],
+        "field": "critResistance"
+      },
+      {
+        "declarations": [
+          {
+            "line": 77,
+            "path": "Core/Character.gd",
+            "text": "var critResistStacks: int = 0"
+          }
+        ],
+        "field": "critResistStacks"
+      },
+      {
+        "declarations": [
+          {
+            "line": 78,
+            "path": "Core/Character.gd",
+            "text": "var stunResistance: float = 0.0"
+          }
+        ],
+        "field": "stunResistance"
+      },
+      {
+        "declarations": [
+          {
+            "line": 79,
+            "path": "Core/Character.gd",
+            "text": "var debuffResistStacks: int = 0"
+          }
+        ],
+        "field": "debuffResistStacks"
+      },
+      {
+        "declarations": [
+          {
+            "line": 81,
+            "path": "Core/Character.gd",
+            "text": "var debuffReflectStacks: int = 0"
+          }
+        ],
+        "field": "debuffReflectStacks"
+      },
+      {
+        "declarations": [
+          {
+            "line": 82,
+            "path": "Core/Character.gd",
+            "text": "var buffProtectStacks: int = 0"
+          }
+        ],
+        "field": "buffProtectStacks"
+      },
+      {
+        "declarations": [
+          {
+            "line": 83,
+            "path": "Core/Character.gd",
+            "text": "var critTokens: int = 0"
+          }
+        ],
+        "field": "critTokens"
+      },
+      {
+        "declarations": [
+          {
+            "line": 70,
+            "path": "Core/Character.gd",
+            "text": "var invulnerabilityItem = null"
+          }
+        ],
+        "field": "invulnerabilityItem"
+      },
+      {
+        "declarations": [
+          {
+            "line": 105,
+            "path": "Core/Character.gd",
+            "text": "var invulBubbleVisible: = false"
+          }
+        ],
+        "field": "invulBubbleVisible"
+      },
+      {
+        "declarations": [
+          {
+            "line": 84,
+            "path": "Core/Character.gd",
+            "text": "var battleRageBonusDur: float = 0.0"
+          }
+        ],
+        "field": "battleRageBonusDur"
+      },
+      {
+        "declarations": [
+          {
+            "line": 85,
+            "path": "Core/Character.gd",
+            "text": "var bonusFatigueDamage: = 0"
+          }
+        ],
+        "field": "bonusFatigueDamage"
+      },
+      {
+        "declarations": [
+          {
+            "line": 86,
+            "path": "Core/Character.gd",
+            "text": "var meleeSpikesLimit: = 1.0"
+          }
+        ],
+        "field": "meleeSpikesLimit"
+      },
+      {
+        "declarations": [
+          {
+            "line": 87,
+            "path": "Core/Character.gd",
+            "text": "var rangedSpikesLimit: = 0.0"
+          }
+        ],
+        "field": "rangedSpikesLimit"
+      },
+      {
+        "declarations": [
+          {
+            "line": 88,
+            "path": "Core/Character.gd",
+            "text": "var effectSpikesLimit: = 0.0"
+          }
+        ],
+        "field": "effectSpikesLimit"
+      },
+      {
+        "declarations": [
+          {
+            "line": 89,
+            "path": "Core/Character.gd",
+            "text": "var meleeVampirismLimit: = 1.0"
+          }
+        ],
+        "field": "meleeVampirismLimit"
+      },
+      {
+        "declarations": [
+          {
+            "line": 90,
+            "path": "Core/Character.gd",
+            "text": "var rangedVampirismLimit: = 0.0"
+          }
+        ],
+        "field": "rangedVampirismLimit"
+      },
+      {
+        "declarations": [
+          {
+            "line": 91,
+            "path": "Core/Character.gd",
+            "text": "var empowerDamage: = 1.0"
+          }
+        ],
+        "field": "empowerDamage"
+      },
+      {
+        "declarations": [
+          {
+            "line": 92,
+            "path": "Core/Character.gd",
+            "text": "var typedDamageFactors = {}"
+          }
+        ],
+        "field": "typedDamageFactors"
+      },
+      {
+        "declarations": [
+          {
+            "line": 109,
+            "path": "Core/Character.gd",
+            "text": "var tickCounter: int"
+          }
+        ],
+        "field": "tickCounter"
+      }
+    ],
+    "CombatTimer": [
+      {
+        "declarations": [
+          {
+            "line": 21,
+            "path": "Interface/CombatTimer/CombatTimer.gd",
+            "text": "var combatTime: float"
+          }
+        ],
+        "field": "combatTime"
+      },
+      {
+        "declarations": [
+          {
+            "line": 22,
+            "path": "Interface/CombatTimer/CombatTimer.gd",
+            "text": "var timeAdvance: float"
+          }
+        ],
+        "field": "timeAdvance"
+      },
+      {
+        "declarations": [
+          {
+            "line": 19,
+            "path": "Interface/CombatTimer/CombatTimer.gd",
+            "text": "var fatigueCounter: int"
+          }
+        ],
+        "field": "fatigueCounter"
+      }
+    ],
+    "Game": [
+      {
+        "declarations": [
+          {
+            "line": 317,
+            "path": "Core/Game.gd",
+            "text": "var curMode = Mode.Unselected"
+          }
+        ],
+        "field": "curMode"
+      },
+      {
+        "declarations": [
+          {
+            "line": 316,
+            "path": "Core/Game.gd",
+            "text": "var curClass = Classes.Ranger"
+          }
+        ],
+        "field": "curClass"
+      },
+      {
+        "declarations": [
+          {
+            "line": 298,
+            "path": "Core/Game.gd",
+            "text": "var curRound: int = 1"
+          }
+        ],
+        "field": "curRound"
+      },
+      {
+        "declarations": [
+          {
+            "line": 299,
+            "path": "Core/Game.gd",
+            "text": "var wins: int"
+          }
+        ],
+        "field": "wins"
+      },
+      {
+        "declarations": [
+          {
+            "line": 300,
+            "path": "Core/Game.gd",
+            "text": "var losses: int"
+          }
+        ],
+        "field": "losses"
+      },
+      {
+        "declarations": [
+          {
+            "line": 301,
+            "path": "Core/Game.gd",
+            "text": "var tries: int"
+          }
+        ],
+        "field": "tries"
+      },
+      {
+        "declarations": [
+          {
+            "line": 303,
+            "path": "Core/Game.gd",
+            "text": "var survivalMode: bool"
+          }
+        ],
+        "field": "survivalMode"
+      },
+      {
+        "declarations": [
+          {
+            "line": 314,
+            "path": "Core/Game.gd",
+            "text": "var fightEnded: bool = true"
+          }
+        ],
+        "field": "fightEnded"
+      },
+      {
+        "declarations": [
+          {
+            "line": 318,
+            "path": "Core/Game.gd",
+            "text": "var roundResults = []"
+          }
+        ],
+        "field": "roundResults"
+      },
+      {
+        "declarations": [
+          {
+            "line": 361,
+            "path": "Core/Game.gd",
+            "text": "var ropeSpeedups: Dictionary"
+          }
+        ],
+        "field": "ropeSpeedups"
+      },
+      {
+        "declarations": [
+          {
+            "line": 362,
+            "path": "Core/Game.gd",
+            "text": "var cubeAdvanced: Dictionary"
+          }
+        ],
+        "field": "cubeAdvanced"
+      },
+      {
+        "declarations": [
+          {
+            "line": 363,
+            "path": "Core/Game.gd",
+            "text": "var sandbagActive: = false"
+          }
+        ],
+        "field": "sandbagActive"
+      },
+      {
+        "declarations": [
+          {
+            "line": 332,
+            "path": "Core/Game.gd",
+            "text": "var numTimesOutOfStamina: int"
+          }
+        ],
+        "field": "numTimesOutOfStamina"
+      }
+    ],
+    "HIST_FIELDS": [
+      {
+        "declarations": [
+          {
+            "line": 5,
+            "path": "Core/CombatStatLogger.gd",
+            "text": "var playerId: int"
+          }
+        ],
+        "field": "playerId"
+      },
+      {
+        "declarations": [
+          {
+            "line": 6,
+            "path": "Core/CombatStatLogger.gd",
+            "text": "var characterStatHistories = {}"
+          }
+        ],
+        "field": "characterStatHistories"
+      },
+      {
+        "declarations": [
+          {
+            "line": 7,
+            "path": "Core/CombatStatLogger.gd",
+            "text": "var stackHistories = {}"
+          }
+        ],
+        "field": "stackHistories"
+      },
+      {
+        "declarations": [
+          {
+            "line": 8,
+            "path": "Core/CombatStatLogger.gd",
+            "text": "var itemTooltipHistories = {}"
+          }
+        ],
+        "field": "itemTooltipHistories"
+      },
+      {
+        "declarations": [
+          {
+            "line": 9,
+            "path": "Core/CombatStatLogger.gd",
+            "text": "var itemMetricHistories = {}"
+          }
+        ],
+        "field": "itemMetricHistories"
+      },
+      {
+        "declarations": [
+          {
+            "line": 10,
+            "path": "Core/CombatStatLogger.gd",
+            "text": "var itemStateHistories = {}"
+          }
+        ],
+        "field": "itemStateHistories"
+      },
+      {
+        "declarations": [
+          {
+            "line": 11,
+            "path": "Core/CombatStatLogger.gd",
+            "text": "var metricHistories = []"
+          }
+        ],
+        "field": "metricHistories"
+      }
+    ],
+    "ITEM_FIELDS": [
+      {
+        "declarations": [
+          {
+            "line": 385,
+            "path": "Items/Item.gd",
+            "text": "var ownerType: int"
+          }
+        ],
+        "field": "ownerType"
+      },
+      {
+        "declarations": [
+          {
+            "line": 386,
+            "path": "Items/Item.gd",
+            "text": "var placed: = false"
+          }
+        ],
+        "field": "placed"
+      },
+      {
+        "declarations": [
+          {
+            "line": 387,
+            "path": "Items/Item.gd",
+            "text": "var occupiedCells: = []"
+          }
+        ],
+        "field": "occupiedCells"
+      },
+      {
+        "declarations": [
+          {
+            "line": 404,
+            "path": "Items/Item.gd",
+            "text": "var faceDirection = FaceDirection.UP"
+          }
+        ],
+        "field": "faceDirection"
+      },
+      {
+        "declarations": [
+          {
+            "line": 449,
+            "path": "Items/Item.gd",
+            "text": "var consumed: bool"
+          }
+        ],
+        "field": "consumed"
+      },
+      {
+        "declarations": [
+          {
+            "line": 464,
+            "path": "Items/Item.gd",
+            "text": "var lastActivationTime: float = 0.0"
+          }
+        ],
+        "field": "lastActivationTime"
+      },
+      {
+        "declarations": [
+          {
+            "line": 465,
+            "path": "Items/Item.gd",
+            "text": "var activationsThisFrame: int = 0"
+          }
+        ],
+        "field": "activationsThisFrame"
+      },
+      {
+        "declarations": [
+          {
+            "line": 466,
+            "path": "Items/Item.gd",
+            "text": "var lastTriggerTime: float = 0.0"
+          }
+        ],
+        "field": "lastTriggerTime"
+      },
+      {
+        "declarations": [
+          {
+            "line": 467,
+            "path": "Items/Item.gd",
+            "text": "var triggersThisFrame: int = 0"
+          }
+        ],
+        "field": "triggersThisFrame"
+      },
+      {
+        "declarations": [
+          {
+            "line": 469,
+            "path": "Items/Item.gd",
+            "text": "var triggerTime: float"
+          }
+        ],
+        "field": "triggerTime"
+      },
+      {
+        "declarations": [
+          {
+            "line": 470,
+            "path": "Items/Item.gd",
+            "text": "var iterationCooldown: float"
+          }
+        ],
+        "field": "iterationCooldown"
+      },
+      {
+        "declarations": [
+          {
+            "line": 471,
+            "path": "Items/Item.gd",
+            "text": "var baseCooldownOverride: float"
+          }
+        ],
+        "field": "baseCooldownOverride"
+      },
+      {
+        "declarations": [
+          {
+            "line": 474,
+            "path": "Items/Item.gd",
+            "text": "var speedScale: float = 0.0"
+          }
+        ],
+        "field": "speedScale"
+      },
+      {
+        "declarations": [
+          {
+            "line": 475,
+            "path": "Items/Item.gd",
+            "text": "var bonusMaxDam: float = 0.0"
+          }
+        ],
+        "field": "bonusMaxDam"
+      },
+      {
+        "declarations": [
+          {
+            "line": 476,
+            "path": "Items/Item.gd",
+            "text": "var bonusMinDam: float = 0.0"
+          }
+        ],
+        "field": "bonusMinDam"
+      },
+      {
+        "declarations": [
+          {
+            "line": 477,
+            "path": "Items/Item.gd",
+            "text": "var removableDam: float = 0.0"
+          }
+        ],
+        "field": "removableDam"
+      },
+      {
+        "declarations": [
+          {
+            "line": 478,
+            "path": "Items/Item.gd",
+            "text": "var bonusDamageFactor: float = 1.0"
+          }
+        ],
+        "field": "bonusDamageFactor"
+      },
+      {
+        "declarations": [
+          {
+            "line": 479,
+            "path": "Items/Item.gd",
+            "text": "var staminaFactor: float = 1.0"
+          }
+        ],
+        "field": "staminaFactor"
+      },
+      {
+        "declarations": [
+          {
+            "line": 480,
+            "path": "Items/Item.gd",
+            "text": "var critChancePercent: float = 0.0"
+          }
+        ],
+        "field": "critChancePercent"
+      },
+      {
+        "declarations": [
+          {
+            "line": 481,
+            "path": "Items/Item.gd",
+            "text": "var critTokens: int = 0"
+          }
+        ],
+        "field": "critTokens"
+      },
+      {
+        "declarations": [
+          {
+            "line": 483,
+            "path": "Items/Item.gd",
+            "text": "var critSeverity: float = BASE_CRIT_SEVERITY"
+          }
+        ],
+        "field": "critSeverity"
+      },
+      {
+        "declarations": [
+          {
+            "line": 484,
+            "path": "Items/Item.gd",
+            "text": "var bonusChancePercent_mult: float = 0.0"
+          }
+        ],
+        "field": "bonusChancePercent_mult"
+      },
+      {
+        "declarations": [
+          {
+            "line": 485,
+            "path": "Items/Item.gd",
+            "text": "var bonusChancePercent_additive1: float = 0.0"
+          }
+        ],
+        "field": "bonusChancePercent_additive1"
+      },
+      {
+        "declarations": [
+          {
+            "line": 486,
+            "path": "Items/Item.gd",
+            "text": "var bonusChancePercent_additive2: float = 0.0"
+          }
+        ],
+        "field": "bonusChancePercent_additive2"
+      },
+      {
+        "declarations": [
+          {
+            "line": 487,
+            "path": "Items/Item.gd",
+            "text": "var bonusAccuracy: float = 0.0"
+          }
+        ],
+        "field": "bonusAccuracy"
+      },
+      {
+        "declarations": [
+          {
+            "line": 488,
+            "path": "Items/Item.gd",
+            "text": "var buffPowers: Dictionary"
+          }
+        ],
+        "field": "buffPowers"
+      },
+      {
+        "declarations": [
+          {
+            "line": 489,
+            "path": "Items/Item.gd",
+            "text": "var buffAmplificationChances: Dictionary"
+          }
+        ],
+        "field": "buffAmplificationChances"
+      },
+      {
+        "declarations": [
+          {
+            "line": 491,
+            "path": "Items/Item.gd",
+            "text": "var doubleActivationChance: float"
+          }
+        ],
+        "field": "doubleActivationChance"
+      },
+      {
+        "declarations": [
+          {
+            "line": 492,
+            "path": "Items/Item.gd",
+            "text": "var doubleAttackEffectChance: float"
+          }
+        ],
+        "field": "doubleAttackEffectChance"
+      },
+      {
+        "declarations": [
+          {
+            "line": 493,
+            "path": "Items/Item.gd",
+            "text": "var paramMult: Dictionary"
+          }
+        ],
+        "field": "paramMult"
+      },
+      {
+        "declarations": [
+          {
+            "line": 494,
+            "path": "Items/Item.gd",
+            "text": "var paramAdd: Dictionary"
+          }
+        ],
+        "field": "paramAdd"
+      },
+      {
+        "declarations": [
+          {
+            "line": 495,
+            "path": "Items/Item.gd",
+            "text": "var numCharges: = 0"
+          }
+        ],
+        "field": "numCharges"
+      },
+      {
+        "declarations": [
+          {
+            "line": 257,
+            "path": "Items/Item.gd",
+            "text": "var itemMetrics = []"
+          }
+        ],
+        "field": "itemMetrics"
+      }
+    ],
+    "King": [
+      {
+        "declarations": [
+          {
+            "line": 7,
+            "path": "Items/Goobert.gd",
+            "text": "var activations: int"
+          }
+        ],
+        "field": "activations"
+      },
+      {
+        "declarations": [
+          {
+            "line": 5,
+            "path": "Items/Goobert.gd",
+            "text": "onready var activationsToTrigger = getP1()"
+          }
+        ],
+        "field": "activationsToTrigger"
+      },
+      {
+        "declarations": [
+          {
+            "line": 11,
+            "path": "Items/Exclusive/KingGoobert.gd",
+            "text": "var invuCharges: int"
+          }
+        ],
+        "field": "invuCharges"
+      },
+      {
+        "declarations": [
+          {
+            "line": 5,
+            "path": "Items/Exclusive/KingGoobert.gd",
+            "text": "onready var protectedBuffs = getP(\"buffs\")"
+          }
+        ],
+        "field": "protectedBuffs"
+      },
+      {
+        "declarations": [
+          {
+            "line": 6,
+            "path": "Items/Exclusive/KingGoobert.gd",
+            "text": "onready var manaCost = getP(\"mana\")"
+          }
+        ],
+        "field": "manaCost"
+      }
+    ],
+    "LOG_FIELDS": [
+      {
+        "declarations": [
+          {
+            "line": 58,
+            "path": "Core/CombatLog.gd",
+            "text": "var eventNum: = - 1"
+          }
+        ],
+        "field": "eventNum"
+      },
+      {
+        "declarations": [
+          {
+            "line": 59,
+            "path": "Core/CombatLog.gd",
+            "text": "var timestamps: = []"
+          }
+        ],
+        "field": "timestamps"
+      },
+      {
+        "declarations": [
+          {
+            "line": 64,
+            "path": "Core/CombatLog.gd",
+            "text": "var globalStatHistories: = []"
+          }
+        ],
+        "field": "globalStatHistories"
+      },
+      {
+        "declarations": [
+          {
+            "line": 65,
+            "path": "Core/CombatLog.gd",
+            "text": "var activeItemState: = {}"
+          }
+        ],
+        "field": "activeItemState"
+      },
+      {
+        "declarations": [
+          {
+            "line": 66,
+            "path": "Core/CombatLog.gd",
+            "text": "var activeCharacterStats: = [[], []]"
+          }
+        ],
+        "field": "activeCharacterStats"
+      },
+      {
+        "declarations": [
+          {
+            "line": 67,
+            "path": "Core/CombatLog.gd",
+            "text": "var itemsWithCooldown: = [[], []]"
+          }
+        ],
+        "field": "itemsWithCooldown"
+      },
+      {
+        "declarations": [
+          {
+            "line": 69,
+            "path": "Core/CombatLog.gd",
+            "text": "var electricalCharges: = []"
+          }
+        ],
+        "field": "electricalCharges"
+      },
+      {
+        "declarations": [
+          {
+            "line": 70,
+            "path": "Core/CombatLog.gd",
+            "text": "var emitterEventToChargeInstance: = {}"
+          }
+        ],
+        "field": "emitterEventToChargeInstance"
+      },
+      {
+        "declarations": [
+          {
+            "line": 71,
+            "path": "Core/CombatLog.gd",
+            "text": "var numPlayerCharges: = 0"
+          }
+        ],
+        "field": "numPlayerCharges"
+      }
+    ],
+    "RNG_FIELDS": [
+      {
+        "declarations": [
+          {
+            "line": 4,
+            "path": "Utility/BalancedRandom.gd",
+            "text": "var expectedWins = Util.rng.randf_range(0.2, - 0.2)"
+          }
+        ],
+        "field": "expectedWins"
+      },
+      {
+        "declarations": [
+          {
+            "line": 5,
+            "path": "Utility/BalancedRandom.gd",
+            "text": "var wins = 0"
+          }
+        ],
+        "field": "wins"
+      },
+      {
+        "declarations": [
+          {
+            "line": 6,
+            "path": "Utility/BalancedRandom.gd",
+            "text": "var balancedness = 3.0"
+          }
+        ],
+        "field": "balancedness"
+      },
+      {
+        "declarations": [
+          {
+            "line": 7,
+            "path": "Utility/BalancedRandom.gd",
+            "text": "var lastResult = false"
+          }
+        ],
+        "field": "lastResult"
+      },
+      {
+        "declarations": [
+          {
+            "line": 55,
+            "path": "Utility/BalancedRandom.gd",
+            "text": "var extraLuck = 0.0"
+          }
+        ],
+        "field": "extraLuck"
+      },
+      {
+        "declarations": [
+          {
+            "line": 56,
+            "path": "Utility/BalancedRandom.gd",
+            "text": "var lastTarget = 0.0"
+          }
+        ],
+        "field": "lastTarget"
+      },
+      {
+        "declarations": [
+          {
+            "line": 57,
+            "path": "Utility/BalancedRandom.gd",
+            "text": "var accChance = 0.0"
+          }
+        ],
+        "field": "accChance"
+      }
+    ],
+    "Rules": [
+      {
+        "declarations": [
+          {
+            "line": 73,
+            "path": "Utility/CustomRules.gd",
+            "text": "var customRulesActive: = false"
+          }
+        ],
+        "field": "customRulesActive"
+      },
+      {
+        "declarations": [
+          {
+            "line": 75,
+            "path": "Utility/CustomRules.gd",
+            "text": "var values: Dictionary"
+          }
+        ],
+        "field": "values"
+      }
+    ],
+    "Settings": [
+      {
+        "declarations": [
+          {
+            "line": 61,
+            "path": "Utility/Settings.gd",
+            "text": "var settings: Array"
+          }
+        ],
+        "field": "settings"
+      }
+    ],
+    "StatHistory": [
+      {
+        "declarations": [
+          {
+            "line": 4,
+            "path": "Core/StatHistory.gd",
+            "text": "var eventNumbers = []"
+          }
+        ],
+        "field": "eventNumbers"
+      },
+      {
+        "declarations": [
+          {
+            "line": 5,
+            "path": "Core/StatHistory.gd",
+            "text": "var values = []"
+          }
+        ],
+        "field": "values"
+      }
+    ]
+  },
+  "inherited_readonly_evidence": [
+    {
+      "path": "data/phase359-king-producer-source/field-getter-source-matrix.json",
+      "sha256": "a25db479e6d8424c60d1d9d14eed6b53770d1c226f7a0b960be0ea63f08e8bff",
+      "size": 64061
+    },
+    {
+      "path": "data/phase359-king-producer-source/binding-query-source.json",
+      "sha256": "bd9d64692db92bd0414e972a68e6d39ab7e6fe35f68eb081669c40c0589609d5",
+      "size": 2402
+    }
+  ],
+  "methods": [
+    {
+      "body": "func getStat(stat):\n\tmatch stat:\n\t\tStat.StaminaRegen:\n\t\t\treturn (getStaminaRegeneration() - 1) * 100.0\n\t\tStat.Health:\n\t\t\treturn getCurrentHealth()\n\t\tStat.MaxHealth:\n\t\t\treturn getTemporaryMaxHealth()\n\t\tStat.Stamina:\n\t\t\treturn getCurrentStamina()\n\t\tStat.MaxStamina:\n\t\t\treturn getMaxStamina()\n\t\tStat.Stunned:\n\t\t\treturn stunnedDuration\n\t\tStat.Invulnerable:\n\t\t\treturn invulnerable\n\t\tStat.BattleRage:\n\t\t\treturn isBattleRaging()\n\t\t\n\t\tStat.ReflectStacks:\n\t\t\treturn debuffReflectStacks\n\t\tStat.DebuffResistStacks:\n\t\t\treturn debuffResistStacks\n\t\tStat.CritStacks:\n\t\t\treturn getCritTokens()\n\t\tStat.DodgeStacks:\n\t\t\treturn dodgeStacks\n\t\tStat.CritResistStacks:\n\t\t\treturn critResistStacks\n\t\tStat.CritResistance:\n\t\t\treturn critResistance\n\t\tStat.StunResistance:\n\t\t\treturn stunResistance\n\t\tStat.HealEfficiency:\n\t\t\treturn (getHealingEfficiency() - 1) * 100\n\t\tStat.DamageResistance:\n\t\t\treturn damageResistance\n\t\tStat.MeleeDmgFactor:\n\t\t\treturn typedDamageFactors[DamageSource.Type.Melee] * 100\n\t\tStat.RangedDmgFactor:\n\t\t\treturn typedDamageFactors[DamageSource.Type.Ranged] * 100\n\t\tStat.EffectDmgFactor:\n\t\t\treturn typedDamageFactors[DamageSource.Type.Effect] * 100\n\t\tStat.Unhealing:\n\t\t\treturn getUnhealing() * 100\n\t\tStat.MaxHealthGain:\n\t\t\treturn (temporaryMaxHealthGain - 1.0) * 100\n\n",
+      "method": "getStat",
+      "path": "Core/Character.gd",
+      "sha256": "0d9c726274759df73d49896003ed6feeb4ee2fe69e08c8468399befcc0960e59",
+      "size": 1260
+    },
+    {
+      "body": "func getStaminaRegeneration():\n\treturn staminaRegen\n\n",
+      "method": "getStaminaRegeneration",
+      "path": "Core/Character.gd",
+      "sha256": "6f088c63e092cb08efe5def8cddf50cb23a6ecadc04fbf246eb76e76f4614fb7",
+      "size": 53
+    },
+    {
+      "body": "func getCurrentHealth():\n\treturn curHealth\n\n",
+      "method": "getCurrentHealth",
+      "path": "Core/Character.gd",
+      "sha256": "5edd85eb0fb97502ee823a152c35963386a250dddace063f457e0f206816dc1c",
+      "size": 44
+    },
+    {
+      "body": "func getTemporaryMaxHealth():\n\treturn temporaryMaxHealth\n\t\n",
+      "method": "getTemporaryMaxHealth",
+      "path": "Core/Character.gd",
+      "sha256": "d4e201e14f2a72635a5ff2a28ad98f0ef001c3e5b3003d3c988b0140925f71ff",
+      "size": 59
+    },
+    {
+      "body": "func getCurrentStamina() -> float:\n\treturn curStamina\n\n",
+      "method": "getCurrentStamina",
+      "path": "Core/Character.gd",
+      "sha256": "0063b73777bd8c15814b5d0da4a028dbf8623a5c9319132bcaf7c6d9d8f6bf7d",
+      "size": 55
+    },
+    {
+      "body": "func getMaxStamina():\n\treturn maxStamina + temporaryMaxStamina\n\n",
+      "method": "getMaxStamina",
+      "path": "Core/Character.gd",
+      "sha256": "8521bf38a2786e0b50f082030e6fe0607e204e3a4a28e3f9e67eaa88cde06ee0",
+      "size": 64
+    },
+    {
+      "body": "func isBattleRaging():\n\treturn not battleRageTimer.is_stopped()\n\n",
+      "method": "isBattleRaging",
+      "path": "Core/Character.gd",
+      "sha256": "975f02fb2478e6e9c837e63c2aa17278aee1ec77b42da6da48ce3b6c80660025",
+      "size": 65
+    },
+    {
+      "body": "func getCritTokens():\n\treturn critTokens\n\n",
+      "method": "getCritTokens",
+      "path": "Core/Character.gd",
+      "sha256": "4664bd4a344ec27a68006bcc107c9e0308f60bceacfa6cdc754b8e76c81379fa",
+      "size": 42
+    },
+    {
+      "body": "func getHealingEfficiency():\n\treturn max(0.0, healingEfficiency)\n\n",
+      "method": "getHealingEfficiency",
+      "path": "Core/Character.gd",
+      "sha256": "2760fae2a0de5f5cc4b834b3b42ae4cefb50f9ceed15eb59db9370e8fda0246b",
+      "size": 66
+    },
+    {
+      "body": "func getUnhealing():\n\treturn unhealingAmount\n\n",
+      "method": "getUnhealing",
+      "path": "Core/Character.gd",
+      "sha256": "10f3b0b5e770d4bc98e8f3445820267813c39c6cb9516f0d89b1ec7e34578e05",
+      "size": 46
+    }
+  ],
+  "not_VM_test": true,
+  "original_files": {
+    "Core/Buff.gd": {
+      "sha256": "3efabb72eb0b337e30ebc924347aba40bd1039a3c5f718b761b0ee78b48ab8bb",
+      "size": 8827
+    },
+    "Core/Character.gd": {
+      "sha256": "dc372965eaa048657caa1646d70aba85ff9b4b9677565eaa480bc195de027496",
+      "size": 48033
+    },
+    "Core/CombatEvent.gd": {
+      "sha256": "a20b0ab26aabd6c4ee4d4830bdb7c24bc8166c1878eb323d99cdf5b9ecc94142",
+      "size": 4641
+    },
+    "Core/CombatLog.gd": {
+      "sha256": "502ba9802874c189798001a59c4135ca6591efaec80b007559760b12dc0bf638",
+      "size": 35028
+    },
+    "Core/CombatStatLogger.gd": {
+      "sha256": "20f6f088c7debf727e8de538eeff71cbbdf7562e46ecbea1e90860436334e831",
+      "size": 4681
+    },
+    "Core/Game.gd": {
+      "sha256": "f3688bfdf39b95a8ed6a77d9a7ad058a95a0aaa4bcb6d297bc953425add4b9c9",
+      "size": 145148
+    },
+    "Core/StatHistory.gd": {
+      "sha256": "5ae1f194e97dd6e1657e4266864f10448504026f91713a2dc9a1b61021bc498b",
+      "size": 832
+    },
+    "Interface/CombatTimer/CombatTimer.gd": {
+      "sha256": "3e1bb3ac33ae78b399d98cfd7bdd6ddb35a337d3afa9f3347af660757cd3b7fd",
+      "size": 5769
+    },
+    "Items/Exclusive/KingGoobert.gd": {
+      "sha256": "2f852255072386a57757bceea38a9f5825e0d1299b6fa8ce2c55b14827385d0f",
+      "size": 1581
+    },
+    "Items/Goobert.gd": {
+      "sha256": "8fda35f3740fe787231d4c69c38eaab1938127c1a01e076df70252cc4212e723",
+      "size": 1076
+    },
+    "Items/Item.gd": {
+      "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f",
+      "size": 170717
+    },
+    "Items/Potion.gd": {
+      "sha256": "b4c0c7026fec662f50cd159f6f363cf78ab8abcc89c20bc770a97d02ee614a1a",
+      "size": 4922
+    },
+    "Utility/BalancedRandom.gd": {
+      "sha256": "cfd5d34cd03bd915aab84999862a1ca63f9bebaf519c8ec067241b921170266a",
+      "size": 1643
+    },
+    "Utility/BalancedRange.gd": {
+      "sha256": "3e54446c0a88186313170ca19275afbf9b75595bb9bb6b59c364dede4216cb3b",
+      "size": 493
+    },
+    "Utility/CustomRules.gd": {
+      "sha256": "88e368b8ff7b360fb534e2933a0474cd3ec2241700e2fd4a3f68826164fc3133",
+      "size": 5026
+    },
+    "Utility/Settings.gd": {
+      "sha256": "b408b2851e41ca8eb8718d734fac7c1a3f1ac9a6b0e9f7d01d07d9f67026da5a",
+      "size": 6480
+    }
+  },
+  "source_reads": "direct declared members; referenced native getters only; no property-list, cache refresh or business writer"
+}

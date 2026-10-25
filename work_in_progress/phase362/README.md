@@ -1,3 +1,5 @@
 # Collector/host SOURCE integration design
 
 The frozen broad design is under design/repo/. Root selected the oracle-capture-only dependency lane for implementation:collector, small installer/combined patch, explicit-path host, and stream overlay/live-tree archive verification. The shared Python model admission candidate remains a later source gate after real12carriers/fullprojection.356/361 stay closed. No pool modification, parse or original run is claimed. A separate implementation addendum will record this scope; the design is not silently edited.
+
+Frozen oracle-only implementation is now under source/repo/, independent48-obligation preparation under independent_preparation/repo/. It has never run operational tools/hostplan/pool/parse/Godot/native/model. SOURCE review is pending with installer/link and process-monitor boundaries under investigation; do not treat source existence as capture readiness. The root intent and monitored-write requirements decision are included, with all execution permissions0. Historical broad design is supplemented by the actual oracle-only implementation SPEC.

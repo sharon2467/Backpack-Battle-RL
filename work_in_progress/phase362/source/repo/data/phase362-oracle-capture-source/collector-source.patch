@@ -1,0 +1,493 @@
+--- frozen298/collector.gd
++++ oracle362/collector.gd
+@@ -5,10 +5,14 @@
+ # Source anchors: Game finishSwitchingToCombat/activateItems/combatEndDeferred,
+ # CombatLog createEvent/logEvent/onCombatEnd; Inventory canAddItemOrBag.
+ 
++const SOURCE_P = {"schema_version": 1, "game_version": "1.1.8", "class": 0, "health": 360, "stamina": 5, "items": [{"f": 0, "item_index": 11, "x": 0, "y": 0}, {"f": 0, "item_index": 11, "x": 2, "y": 0}, {"f": 0, "item_index": 11, "x": 4, "y": 0}, {"f": 0, "item_index": 11, "x": 6, "y": 0}, {"f": 0, "item_index": 11, "x": 0, "y": 2}, {"f": 0, "item_index": 11, "x": 2, "y": 2}, {"f": 0, "item_index": 11, "x": 4, "y": 2}, {"f": 0, "item_index": 11, "x": 6, "y": 2}, {"f": 0, "item_index": 11, "x": 0, "y": 4}, {"f": 0, "item_index": 11, "x": 2, "y": 4}, {"f": 0, "item_index": 11, "x": 4, "y": 4}, {"f": 0, "item_index": 11, "x": 6, "y": 4}, {"f": 0, "item_index": 262, "x": 2, "y": 1}, {"f": 0, "item_index": 22, "x": 1, "y": 1}, {"f": 0, "item_index": 22, "x": 1, "y": 2}, {"f": 0, "item_index": 22, "x": 1, "y": 3}, {"f": 0, "item_index": 1, "x": 4, "y": 1}, {"f": 0, "item_index": 22, "x": 4, "y": 3}, {"f": 0, "item_index": 19, "x": 6, "y": 0}, {"f": 0, "item_index": 4, "x": 6, "y": 4}]}
++const SOURCE_O = {"schema_version": 1, "game_version": "1.1.8", "class": 0, "health": 380, "stamina": 5, "items": [{"f": 0, "item_index": 11, "x": 0, "y": 0}, {"f": 0, "item_index": 11, "x": 2, "y": 0}, {"f": 0, "item_index": 11, "x": 4, "y": 0}, {"f": 0, "item_index": 11, "x": 6, "y": 0}, {"f": 0, "item_index": 11, "x": 0, "y": 2}, {"f": 0, "item_index": 11, "x": 2, "y": 2}, {"f": 0, "item_index": 11, "x": 4, "y": 2}, {"f": 0, "item_index": 11, "x": 6, "y": 2}, {"f": 0, "item_index": 11, "x": 0, "y": 4}, {"f": 0, "item_index": 11, "x": 2, "y": 4}, {"f": 0, "item_index": 11, "x": 4, "y": 4}, {"f": 0, "item_index": 11, "x": 6, "y": 4}, {"f": 0, "item_index": 22, "x": 1, "y": 1}, {"f": 0, "item_index": 22, "x": 1, "y": 2}, {"f": 0, "item_index": 22, "x": 1, "y": 3}, {"f": 0, "item_index": 1, "x": 4, "y": 1}, {"f": 0, "item_index": 22, "x": 4, "y": 3}, {"f": 0, "item_index": 19, "x": 6, "y": 0}, {"f": 0, "item_index": 4, "x": 6, "y": 4}]}
++const SOURCE_CONFIG = {"schema": "native-combat-capture/1", "case_id": "NATIVE-027-KING-A", "global_seed": 35301, "util_seed": 35302, "player_fixture_enabled": true, "timeouts": {"battle_seconds": 120, "total_seconds": 295}}
++
+ const OUT = "user://native-capture"
+-const PLAYER_ITEM_WHITELIST = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 26, 27, 28, 29, 30, 32, 34, 35, 36, 37, 38, 39, 46, 48, 50, 52, 53, 54, 62, 67, 74, 82, 83, 84, 117, 124, 129, 168, 169, 172, 179, 182, 204, 205, 208, 209, 219, 220, 233, 234, 235, 296, 332, 340, 351, 374, 400, 401, 405, 416, 468, 469]
++const PLAYER_ITEM_WHITELIST = [1, 4, 11, 19, 22, 262]
+ const STARTERS = [[67, 3, 2], [11, 5, 3], [11, 1, 3], [24, 4, 4], [1, 3, 3]]
+-const CHAR_FIELDS = ["playerId", "characterClass", "characterName", "chibi", "isDead", "maxHealth", "curHealth", "temporaryMaxHealth", "temporaryMaxHealthGain", "baseMaxStamina", "maxStamina", "curStamina", "temporaryMaxStamina", "baseStaminaRegen", "staminaRegen", "allowStaminaOverflow", "stunnedDuration", "invulnerable", "unhealingAmount", "healingEfficiency", "damageResistance", "damageReduction", "dodgeStacks", "critResistance", "critResistStacks", "stunResistance", "debuffResistStacks", "debuffReflectStacks", "buffProtectStacks", "critTokens", "battleRageBonusDur", "bonusFatigueDamage", "meleeSpikesLimit", "rangedSpikesLimit", "effectSpikesLimit", "meleeVampirismLimit", "rangedVampirismLimit", "empowerDamage", "typedDamageFactors", "tickCounter"]
++const CHAR_FIELDS = ["playerId", "characterClass", "characterName", "chibi", "isDead", "maxHealth", "curHealth", "temporaryMaxHealth", "temporaryMaxHealthGain", "baseMaxStamina", "maxStamina", "curStamina", "temporaryMaxStamina", "baseStaminaRegen", "staminaRegen", "allowStaminaOverflow", "stunnedDuration", "invulnerable", "unhealingAmount", "healingEfficiency", "damageResistance", "damageReduction", "dodgeStacks", "critResistance", "critResistStacks", "stunResistance", "debuffResistStacks", "debuffReflectStacks", "buffProtectStacks", "critTokens", "invulnerabilityItem", "invulBubbleVisible", "battleRageBonusDur", "bonusFatigueDamage", "meleeSpikesLimit", "rangedSpikesLimit", "effectSpikesLimit", "meleeVampirismLimit", "rangedVampirismLimit", "empowerDamage", "typedDamageFactors", "tickCounter"]
+ const ITEM_FIELDS = ["ownerType", "placed", "occupiedCells", "faceDirection", "consumed", "lastActivationTime", "activationsThisFrame", "lastTriggerTime", "triggersThisFrame", "triggerTime", "iterationCooldown", "baseCooldownOverride", "speedScale", "bonusMaxDam", "bonusMinDam", "removableDam", "bonusDamageFactor", "staminaFactor", "critChancePercent", "critTokens", "critSeverity", "bonusChancePercent_mult", "bonusChancePercent_additive1", "bonusChancePercent_additive2", "bonusAccuracy", "buffPowers", "buffAmplificationChances", "doubleActivationChance", "doubleAttackEffectChance", "paramMult", "paramAdd", "numCharges", "itemMetrics"]
+ const RNG_FIELDS = ["expectedWins", "wins", "balancedness", "lastResult", "extraLuck", "lastTarget", "accChance"]
+ const LOG_FIELDS = ["eventNum", "timestamps", "globalStatHistories", "activeItemState", "activeCharacterStats", "itemsWithCooldown", "electricalCharges", "emitterEventToChargeInstance", "numPlayerCharges"]
+@@ -45,6 +49,14 @@
+ var barrier_ok = false
+ var stable_ok = false
+ 
++# SOURCE template merged into the frozen298 collector. No business methods here.
++var source_cut_frozen = false
++var source_listener_attached = false
++var source_write_bytes = 0
++var source_file_bytes = {}
++var source_connection_order = []
++
++
+ func _initialize():
+ 	started = OS.get_ticks_msec()
+ 	stage_started = started
+@@ -59,6 +71,9 @@
+ 			return
+ 		for key in parsed.result:
+ 			config[key] = parsed.result[key]
++	if not get_root().get_node("NativeRandomObserver").source_same_slot_value(config, SOURCE_CONFIG):
++		fail("fixed config differs")
++		return
+ 	if not timeout_budget_selftest():
+ 		fail("timeout budget validator selftest failed")
+ 		return
+@@ -81,6 +96,9 @@
+ 		fail("invalid controlled opponent fixture")
+ 		return
+ 	opponent_fixture = fixture_parsed.result
++	if not get_root().get_node("NativeRandomObserver").source_same_slot_value(opponent_fixture, SOURCE_O):
++		fail("fixed O SOURCE fixture differs")
++		return
+ 	write_json("fixture.json", opponent_fixture)
+ 	if not serializer_selftest():
+ 		fail("serializer selftest")
+@@ -189,28 +207,7 @@
+ 	return true
+ 
+ func player_input_valid(value):
+-	if not exact_keys(value, ["schema_version", "game_version", "class", "health", "stamina", "items"]):
+-		return false
+-	if not integer_between(value.schema_version, 1, 1) or value.game_version != "1.1.8" or (not integer_between(value["class"], 0, 2) or not int(value["class"]) in [0, 2]) or not integer_between(value.health, 1, 999) or not integer_between(value.stamina, 5, 5):
+-		return false
+-	if typeof(value.items) != TYPE_ARRAY or value.items.empty():
+-		return false
+-	var ordinary_seen = false
+-	var slots = {}
+-	for spec in value.items:
+-		if not exact_keys(spec, ["item_index", "x", "y", "f"]):
+-			return false
+-		if not integer_between(spec.item_index, 0, 469) or not int(spec.item_index) in PLAYER_ITEM_WHITELIST or not integer_between(spec.x, 0, 8) or not integer_between(spec.y, 0, 6) or not integer_between(spec.f, 0, 3):
+-			return false
+-		var bag = int(spec.item_index) in [11, 26, 67, 129, 405]
+-		if bag and ordinary_seen:
+-			return false
+-		ordinary_seen = ordinary_seen or not bag
+-		var key = str(bag) + ":" + str(int(spec.x)) + ":" + str(int(spec.y))
+-		if slots.has(key):
+-			return false
+-		slots[key] = true
+-	return true
++	return get_root().get_node("NativeRandomObserver").source_same_slot_value(value, SOURCE_P)
+ 
+ func read_player_fixture():
+ 	var input_path = ProjectSettings.globalize_path("res://project.godot").get_base_dir().get_base_dir().plus_file("data/custom_player.json")
+@@ -338,6 +335,8 @@
+ 	return true
+ 
+ func place_player_items():
++	if not ensure_source_window():
++		return false
+ 	var book = get_root().get_node("ItemBook")
+ 	var inventory = game.PLAYER.INVENTORY
+ 	for slot in range(player_fixture.items.size()):
+@@ -353,7 +352,7 @@
+ 			errors.append("player fixture illegal placement at input slot " + str(slot))
+ 			return false
+ 		inventory.addItemByTopLeft(item, Vector2(spec.x, spec.y))
+-		player_setup_evidence.new_items.append({"stable_id": "P:" + str(slot), "native_object_id": str(item.get_instance_id()), "input_slot": slot, "item_index": descriptor.itemIndex})
++		player_setup_evidence.new_items.append({"stable_id": slot_spec("P", slot).instance_id, "native_object_id": str(item.get_instance_id()), "input_slot": slot, "item_index": descriptor.itemIndex})
+ 	return true
+ 
+ func native_ids(items):
+@@ -380,19 +379,9 @@
+ func player_spatial_evidence():
+ 	var rows = []
+ 	for item in game.PLAYER.INVENTORY.getItems():
+-		var row = {"stable_id": registry[item.get_instance_id()], "node_order": item.get_position_in_parent(), "inventory_order": game.PLAYER.INVENTORY.getItems().find(item), "owner_type": item.ownerType, "placed": item.placed, "position": encode(item.getTopLeftCell()), "orientation": item.faceDirection, "occupied_cells": encode(item.occupiedCells), "stars": []}
+-		for color in item.Affected.values():
+-			var raw_ids = native_ids(item.getAffectedItems_nocache(color))
+-			var getter_ids = native_ids(item.getAffectedItems(color))
+-			var current_ids = native_ids(item.currentAffectedItems[color].keys())
+-			var consistent = same_id_set(raw_ids, getter_ids) and same_id_set(raw_ids, current_ids)
+-			row.stars.append({"color": color, "uncached": raw_ids, "getter": getter_ids, "current": current_ids, "consistent": consistent})
+-			if not consistent:
+-				errors.append("native player star association mismatch: " + row.stable_id)
+-		if item.isBag():
+-			row["items_inside"] = native_ids(item.getItemsInside())
+-		rows.append(row)
+-	return {"frame": frames(), "items": rows, "util_rng_state": encode(util.rng.state)}
++		rows.append({"stable_id": registry[item.get_instance_id()], "node_order": item.get_position_in_parent(), "position": encode(item.getTopLeftCell()), "orientation": encode(item.faceDirection), "occupied_cells": encode(item.occupiedCells), "descriptor_index": encode(item.descriptor.itemIndex), "current_affected": encode(item.currentAffectedItems), "cached_affected": encode(item.cachedAffectedItems)})
++	return {"frame": frames(), "items": rows, "source": "DIRECT_MEMBERS_NO_AFFECTED_GETTER_OR_CACHE_REFRESH"}
++
+ 
+ func player_membership_unchanged():
+ 	var inventory = game.PLAYER.INVENTORY
+@@ -410,47 +399,27 @@
+ 
+ func observer7_precondition():
+ 	var observer = get_root().get_node_or_null("NativeRandomObserver")
+-	if observer == null or not observer.metadata_ready:
+-		return false
+-	# Existing fixture registry is extended using ONLY direct known references.
+-	var known = registry.duplicate()
+-	known[game.get_instance_id()] = "game"
+-	known[util.get_instance_id()] = "util"
+-	known[get_root().get_instance_id()] = "root_viewport"
+-	known[game.combatTimer.get_instance_id()] = "combat_timer"
+-	known[game.combatTimer.fatigueStartTimer.get_instance_id()] = "fatigue:start"
+-	known[game.combatTimer.fatigueTickTimer.get_instance_id()] = "fatigue:tick"
+-	var selected = []
+-	for character in [game.PLAYER, game.OPPONENT]:
+-		var label = registry[character.get_instance_id()]
+-		known[character.tickTimer.get_instance_id()] = "tick:" + label
+-		for timer_name in ["battleRageTimer", "autoRageTimer", "invulnerabilityTimer"]:
+-			known[character.get(timer_name).get_instance_id()] = "aux:" + label + ":" + timer_name
+-		for buff in character.buffs.values():
+-			known[buff.get_instance_id()] = "buff_object:" + label + ":" + str(buff.type)
+-			known[buff.timer.get_instance_id()] = "buff:" + label + ":" + str(buff.type)
+-		for item in character.INVENTORY.getItems():
+-			selected.append(item)
+-			if item.descriptor.itemIndex in [53, 168]:
+-				known[item.particleTimer.get_instance_id()] = "particle:" + registry[item.get_instance_id()]
+-	if not observer.configure(known) or not observer.selected_lineage(selected, [game.PLAYER, game.OPPONENT]):
+-		return false
++	if observer == null or not observer.metadata_ready or not check_source_listener_order():
++		return false
++	if not observer.bind_fixed_inventory(observer.SOURCE_SLOT_TABLE.duplicate(true)):
++		return false
++	for id in registry:
++		if observer.ids.get(id, "") != registry[id]:
++			return false
+ 	return not observer.failed
+ 
++
+ func start_controlled_combat(player_registered = false):
+-	if not player_registered and not register_inventory(game.PLAYER, "P"):
+-		fail("player layout invalid")
+-		return
+-	var observer = get_root().get_node_or_null("NativeRandomObserver")
+-	if observer == null or not observer.metadata(PLAYER_ITEM_WHITELIST):
+-		fail("observer7 loaded metadata PRECONDITION_UNSUPPORTED")
++	if not player_registered or not ensure_source_window():
++		fail("single King requires controlled fresh player and actual SOURCE window")
+ 		return
+ 	phase("shop_ready")
+ 	set_stage("combat_wait")
+ 	game.switchToCombat()
+ 
++
+ func preflight():
+-	var checks = {"editor": game.EDITOR, "offline": not steam.IS_INIT and not steam.IS_ONLINE and not steam.STATS_RECEIVED, "version": game.VERSION == "1.1.8", "rules_inactive": not rules.customRulesActive, "rules_default": rules_are_default(), "normal_time": Engine.time_scale == 1.0, "normal_speed": settings.getVal(settings.Setting.combat_speed) == 1.0}
++	var checks = {"editor": game.EDITOR, "offline": not steam.IS_INIT and not steam.IS_ONLINE and not steam.STATS_RECEIVED, "version": game.VERSION == "1.1.8", "rules_inactive": not rules.customRulesActive, "rules_default": rules_are_default(), "normal_time": Engine.time_scale == 1.0, "normal_speed": settings.settings[settings.Setting.combat_speed] == 1.0}
+ 	for key in ["randomCharacter", "DEVCHEATS", "winNextRound", "winNextRun", "loseNextRound", "loseNextRun"]:
+ 		checks[key + "_off"] = not game.get(key)
+ 	write_json("preflight.json", checks)
+@@ -500,7 +469,7 @@
+ 			valid = false
+ 			continue
+ 		matched[slot] = true
+-		var stable = side + ":" + str(slot)
++		var stable = slot_spec(side, slot).instance_id
+ 		registry[item.get_instance_id()] = stable
+ 		if expected[slot].has("persistent_data") or item.has_method("getDataPersistent"):
+ 			errors.append("persistent item not supported by this bounded capture: " + stable)
+@@ -551,16 +520,12 @@
+ 		set_stage("combat_active")
+ 
+ func on_combat_end(result):
+-	if done:
++	if done or source_cut_frozen:
+ 		return
+ 	result_value = result
+ 	set_stage("finalizing")
+-	barrier_ok = check_barrier()
+-	var before = stable_snapshot()
+-	yield(self, "physics_frame")
+-	yield(self, "physics_frame")
+-	yield(self, "idle_frame")
+-	call_deferred("finish_capture", before)
++	# No snapshot/yield/deferred finish. Producer closes on actual first idle cut.
++
+ 
+ func check_barrier():
+ 	var combat_log = game.combatLog
+@@ -586,62 +551,26 @@
+ func stable_snapshot():
+ 	return {"events": freeze_events(), "histories": histories(), "state": state_snapshot()}
+ 
+-func finish_capture(before):
+-	var observer = get_root().get_node_or_null("NativeRandomObserver")
+-	if observer == null or observer.failed:
+-		fail("observer7 failed; capture cannot complete")
+-		return
+-	write_json("observer7-status.json", observer.export_data())
+-	if done:
+-		return
+-	var after = stable_snapshot()
+-	stable_ok = JSON.print(before) == JSON.print(after)
+-	barrier_ok = barrier_ok and check_barrier()
+-	phase("final_after_cleanup")
+-	write_json("instances.json", instance_rows)
+-	write_json("phases.json", phases)
+-	write_json("event_references.json", event_references)
+-	write_json("histories.json", after.histories)
+-	write_json("final_state.json", after.state)
+-	write_json("stability_before.json", before)
+-	write_jsonl("events.jsonl", after.events)
+-	var native_manifest = {"schema": "native-combat-capture/1", "case_id": config.case_id, "entry": "migrated_custom_opponent_with_native_player_fixture_v1" if config.player_fixture_enabled else "migrated_custom_opponent", "config": config, "version": game.VERSION, "engine": Engine.get_version_info(), "main_scene": ProjectSettings.get_setting("application/run/main_scene"), "physics_fps": Engine.iterations_per_second, "time_scale": Engine.time_scale, "combat_speed": settings.getVal(settings.Setting.combat_speed), "settings": encode(settings.settings), "run_context": run_context(), "locale": TranslationServer.get_locale(), "display_size": encode(OS.window_size), "viewport_size": encode(get_root().size), "steam": fields(steam, ["IS_INIT", "IS_ONLINE", "STATS_RECEIVED"]), "can_unlock": steam.canUnlock(), "global_rng_state": "unavailable_without_instrumentation", "rng_consumption": "unavailable_without_instrumentation", "source_trigger_order": "local shuffled array inaccessible without source instrumentation"}
+-	if config.player_fixture_enabled:
+-		native_manifest["player_fixture_sha256"] = player_fixture_sha256
+-	write_json("native_manifest.json", native_manifest)
+-	var success = errors.empty() and barrier_ok and stable_ok
+-	write_json("validation.json", {"native_capture_written": true, "capture_complete": false, "host_validation_required": true, "native_checks_pass": success, "end_barrier": barrier_ok, "stable_two_physics_boundaries": stable_ok, "layout": legal_checks, "errors": errors, "events": game.combatLog.events.size(), "result": result_value, "elapsed_ms": OS.get_ticks_msec() - started})
+-	done = true
+-	print("NATIVE_CAPTURE_WRITTEN " + JSON.print({"success": success, "events": after.events.size(), "path": ProjectSettings.globalize_path(OUT)}))
+-	event_objects.clear()
+-	quit(0 if success else 2)
+-
+ func frames():
+ 	return {"idle": str(Engine.get_idle_frames()), "physics": str(Engine.get_physics_frames()), "elapsed_ms": OS.get_ticks_msec() - started}
+ 
+ func phase(name):
+-	phases.append({"name": name, "frame": frames(), "util_rng_state": encode(util.rng.state), "state": state_snapshot(), "event_count": game.combatLog.events.size(), "time_scale": Engine.time_scale})
++	# Phase bookkeeping no longer repeatedly walks full live state.
++	phases.append({"name": name, "frame": frames(), "event_count": game.combatLog.events.size(), "time_scale": Engine.time_scale})
+ 	print("NATIVE_PHASE " + name)
++
+ 
+ func fields(obj, names):
+ 	var values = {}
+ 	for key in names:
+-		var oid = obj.get_instance_id()
+-		if not property_cache.has(oid):
+-			var names_present = {}
+-			for prop in obj.get_property_list():
+-				names_present[prop.name] = true
+-			property_cache[oid] = names_present
+-		if not property_cache[oid].has(key):
+-			errors.append("missing required property: " + key)
++		# SOURCE generator closes each script member read; no property-list hook.
+ 		values[key] = obj.get(key)
+ 	return encode(values)
+ 
++
+ func run_context():
+-	var skins = []
+-	for slot in range(game.SkinSlot.size()):
+-		skins.append(game.getSelectedSkin(slot))
+-	return {"league": game.getLeague(game.curClass), "runs_started": encode(game.persistent["runsStarted"]), "build_flags": fields(game, ["FULLVERSION", "DEMO", "PLAYTEST", "EDITOR"]), "player_selected_skin_ids": skins, "opponent_input_skin_ids": encode(game.curOpponentData.get("skins", [])), "skins_observation": "native selected/input IDs; renderer does not expose applied skin ID storage"}
++	return {"scope": "FIXED_SINGLE_KING_ORACLE_ONLY_NO_SKIN_LEAGUE_OR_STEAM_GETTERS"}
++
+ 
+ func state_snapshot():
+ 	var characters = []
+@@ -694,6 +623,8 @@
+ 				observer7_fields = fields(item, ["activations", "activationsToTrigger", "vampirism", "regen", "stamina", "blind", "dambonus"])
+ 			elif item.descriptor.itemIndex == 468:
+ 				observer7_fields = fields(item, ["activations", "activationsToTrigger", "staminaThreshold", "stamina", "regen"])
++			if item.descriptor.itemIndex == 262:
++				observer7_fields = fields(item, ["activations", "activationsToTrigger", "invuCharges", "protectedBuffs", "manaCost"])
+ 			var observer7_timers = {}
+ 			if item.descriptor.itemIndex in [53, 168]:
+ 				var observer = get_root().get_node("NativeRandomObserver")
+@@ -806,42 +737,36 @@
+ 	return encode(0).type == "int" and encode(null).type == "null" and encode(9223372036854775807).decimal == "9223372036854775807" and encode(-0.0).binary64_be == "8000000000000000" and encode(1.0).binary64_be == "3ff0000000000000" and zero.get_double() == 0.0
+ 
+ func write_json(name, value):
+-	var f = File.new()
+-	var path = OUT.plus_file(name)
+-	if f.open(path + ".partial", File.WRITE) != OK:
+-		errors.append("cannot open output " + name)
+-		return
+-	f.store_string(JSON.print(value, "  "))
+-	f.close()
+-	if Directory.new().rename(path + ".partial", path) != OK:
+-		errors.append("cannot finalize output " + name)
++	if source_cut_frozen and done:
++		return
++	write_source_bytes(name, (JSON.print(value) + "\n").to_utf8())
++
+ 
+ func write_jsonl(name, rows):
+-	var f = File.new()
+-	var path = OUT.plus_file(name)
+-	if f.open(path + ".partial", File.WRITE) != OK:
+-		errors.append("cannot open output " + name)
+-		return
++	var bytes = PoolByteArray()
+ 	for row in rows:
+-		f.store_line(JSON.print(row))
+-	f.close()
+-	if Directory.new().rename(path + ".partial", path) != OK:
+-		errors.append("cannot finalize output " + name)
++		var line = (JSON.print(row) + "\n").to_utf8()
++		if line.size() > 2097152 or bytes.size() + line.size() > 67108864:
++			fail_write_cap(name)
++			return
++		bytes.append_array(line)
++	write_source_bytes(name, bytes)
++
+ 
+ func fail(message):
+ 	if done:
+ 		return
++	errors.append(message.substr(0, 512))
+ 	done = true
+-	errors.append(message)
+-	if config.player_fixture_enabled:
+-		player_setup_evidence.errors = errors.duplicate()
+-		write_json("player_setup_evidence.json", player_setup_evidence)
+-	write_json("validation.json", {"native_capture_written": false, "capture_complete": false, "stage": stage, "errors": errors, "elapsed_ms": OS.get_ticks_msec() - started})
+-	write_json("phases.json", phases)
+-	print("NATIVE_CAPTURE_FAILED " + message)
++	var f = File.new()
++	var path = OUT.plus_file("collector-first-failure.json")
++	if not f.file_exists(path) and f.open(path, File.WRITE) == OK:
++		f.store_string(JSON.print({"schema": "phase362-failure/1", "code": message.substr(0, 512), "stage": stage, "cut_frozen": source_cut_frozen, "capture_complete": false}) + "\n")
++		f.flush()
++		f.close()
++	print("NATIVE_CAPTURE_FAILED " + message.substr(0, 512))
+ 	quit(2)
+ 
+-# Same source-identity predicate as048 sink; builtin Script reads only.
+ func source_is(value, expected_path):
+ 	if value == null or not is_instance_valid(value):
+ 		return false
+@@ -854,3 +779,136 @@
+ 		script = script.get_base_script()
+ 	errors.append("script inheritance exceeds bounded16")
+ 	return false
++
++func slot_spec(side, slot):
++	var observer = get_root().get_node("NativeRandomObserver")
++	for spec in observer.SOURCE_SLOT_TABLE:
++		if spec.side == side and spec.input_slot == slot:
++			return spec
++	return null
++
++
++func ensure_source_window():
++	var observer = get_root().get_node_or_null("NativeRandomObserver")
++	if observer == null or observer.failed or not observer.ui_opened:
++		return false
++	if not source_listener_attached and not attach_source_listener():
++		return false
++	if not observer.source_fixture_window:
++		return observer.begin_fixture_window(observer.SOURCE_SLOT_TABLE.duplicate(true))
++	return true
++
++
++func source_connection_target(row):
++	var target = row.get("target", null)
++	if typeof(target) == TYPE_OBJECT and is_instance_valid(target):
++		return target.get_instance_id()
++	if typeof(target) == TYPE_INT:
++		return target
++	return -1
++
++
++func check_source_listener_order():
++	var observer = get_root().get_node("NativeRandomObserver")
++	var rows = get_signal_connection_list("idle_frame")
++	var seen = []
++	var sink_index = -1
++	var collector_index = -1
++	for i in range(rows.size()):
++		var target = source_connection_target(rows[i])
++		var method = rows[i].get("method", "")
++		seen.append({"target_native_id": str(target), "method": method, "flags": rows[i].get("flags", -1)})
++		if target == observer.get_instance_id() and method == "clock_idle_signal":
++			if sink_index != -1:
++				return false
++			sink_index = i
++		if target == get_instance_id() and method == "on_idle_source_cut":
++			if collector_index != -1:
++				return false
++			collector_index = i
++	if sink_index < 0 or collector_index != sink_index + 1:
++		return false # unknown intervening callbacks are not declared pure
++	if seen[sink_index].flags != 0 or seen[collector_index].flags != 0:
++		return false
++	source_connection_order = seen
++	return true
++
++
++func attach_source_listener():
++	if source_listener_attached:
++		return false
++	var observer = get_root().get_node("NativeRandomObserver")
++	if not is_connected("idle_frame", observer, "clock_idle_signal"):
++		return false
++	if connect("idle_frame", self, "on_idle_source_cut") != OK:
++		return false
++	source_listener_attached = true
++	return check_source_listener_order()
++
++
++func on_idle_source_cut():
++	if done or source_cut_frozen:
++		return
++	var observer = get_root().get_node_or_null("NativeRandomObserver")
++	if observer == null or observer.failed:
++		fail("SOURCE observer failure before same-idle cut")
++		return
++	var receipt = observer.source_completion_receipt()
++	if not receipt.source_window_complete:
++		return
++	if not check_source_listener_order() or Engine.is_in_physics_frame() or not receipt.clock_closed or not receipt.ui_closed or result_value == null:
++		fail("same idle preinternal completion identity/order")
++		return
++	if Engine.get_physics_frames() != receipt.cleanup.physics_frame + 2:
++		fail("not exactly two future physics at collector cut")
++		return
++	source_cut_frozen = true
++	barrier_ok = check_barrier()
++	var snapshot = stable_snapshot() # Exactly one full terminal sampling.
++	var king_final = observer.source_runtime_snapshot() # same idle, adjacent to sink
++	var count = snapshot.events.size()
++	var native_manifest = {"schema": "native-combat-capture/1", "case_id": config.case_id, "config": config, "version": game.VERSION, "engine": Engine.get_version_info(), "main_scene": ProjectSettings.get_setting("application/run/main_scene"), "physics_fps": Engine.iterations_per_second, "time_scale": Engine.time_scale, "collector_source": "phase362-single-King-oracle-only", "clean_exit": "HOST_RECORD_SEPARATELY", "native_model_admission": false}
++	var validation = {"native_capture_written": true, "capture_complete": false, "host_validation_required": true, "native_checks_pass": errors.empty() and barrier_ok and not observer.failed, "end_barrier": barrier_ok, "layout": legal_checks, "errors": errors.duplicate(), "events": count, "result": result_value, "elapsed_ms": OS.get_ticks_msec() - started, "cut": {"physics": Engine.get_physics_frames(), "idle": Engine.get_idle_frames(), "preinternal": true}, "full_snapshot_reads": 1}
++	# Everything below uses only the just-frozen primitive DTOs, never resamples.
++	write_json("instances.json", instance_rows)
++	write_json("phases.json", phases)
++	write_json("event_references.json", event_references)
++	write_json("histories.json", snapshot.histories)
++	write_json("final_state.json", snapshot.state)
++	write_jsonl("events.jsonl", snapshot.events)
++	write_json("native_manifest.json", native_manifest)
++	write_json("observer7-status.json", receipt)
++	write_json("king-collector-cut.json", {"receipt": receipt, "connection_order": source_connection_order, "actual_final": king_final, "source": "SAME_IDLE_AFTER_SINK_BEFORE_NODE_INTERNAL"})
++	write_json("validation.json", validation)
++	done = true
++	print("NATIVE_CAPTURE_WRITTEN " + JSON.print({"success": errors.empty() and barrier_ok and not observer.failed, "events": count, "path": ProjectSettings.globalize_path(OUT)}))
++	event_objects.clear()
++	quit(0 if errors.empty() and barrier_ok and not observer.failed else 2)
++
++
++func write_source_bytes(name, bytes):
++	if done:
++		return
++	var previous = source_file_bytes.get(name, 0)
++	if bytes.size() > 67108864 or source_write_bytes - previous + bytes.size() > 209715200:
++		fail_write_cap(name)
++		return
++	var f = File.new()
++	var path = OUT.plus_file(name)
++	if f.open(path + ".partial", File.WRITE) != OK:
++		fail_write_cap(name)
++		return
++	f.store_buffer(bytes)
++	f.flush()
++	var error = f.get_error()
++	f.close()
++	if error != OK or Directory.new().rename(path + ".partial", path) != OK:
++		fail_write_cap(name)
++		return
++	source_write_bytes += bytes.size() - previous
++	source_file_bytes[name] = bytes.size()
++
++
++func fail_write_cap(name):
++	fail("WRITE_CAP_OR_IO:" + name)
++
