@@ -1,0 +1,15 @@
+{
+  "SUT_calls": 0,
+  "actual_main_heading_count": 4,
+  "actual_substring_count": 7,
+  "cause": "Substring count also includes the three level3 subsection headings",
+  "correction": "Count only lines starting with exactly two hashes plus space",
+  "failed_expression": "text.count('## ')==4",
+  "generated_summary_or_owner_before_failure": false,
+  "map_generation": 0,
+  "original_traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 12, in <module>\nAssertionError",
+  "restore": 0,
+  "source_drift": false,
+  "status": "DESIGN_METADATA_CHECK_FAILED_NO_OPERATION",
+  "tool": "author inline stdlib document checker"
+}

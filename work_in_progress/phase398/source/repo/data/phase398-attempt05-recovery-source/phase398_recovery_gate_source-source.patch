@@ -1,0 +1,50 @@
+--- tests/phase395_recovery_gate_source.py
++++ tests/phase398_recovery_gate_source.py
+@@ -2,10 +2,14 @@
+ 
+ 
+ def recovery_source_leaf(root, row):
+-    path = descriptor(root, row)
++    require(type(row) is dict and set(row) == {'path','size','sha256'}, 'closed exact SOURCE descriptor')
++    require(type(row['path']) is str and bool(row['path']) and '\\' not in row['path'] and '\0' not in row['path'] and
++            all(part not in ('', '.', '..') for part in row['path'].split('/')), 'canonical SOURCE path field')
++    require(type(row['size']) is int and row['size'] >= 0 and type(row['sha256']) is str and len(row['sha256']) == 64 and
++            all(char in '0123456789abcdef' for char in row['sha256']), 'strict SOURCE size/SHA fields')
++    path = member(root, row['path'])
+     regular_target(path)
+-    return path
+-
++    return descriptor(root, row)
+ 
+ def recovery_source_owner(root, row):
+     path = recovery_source_leaf(root, row)
+@@ -44,13 +48,13 @@
+ def source_gate(source_root, config_descriptor, action):
+     root = directory(source_root)
+     config = read(recovery_source_leaf(root, config_descriptor))
+-    require(config.get('schema') == 'phase395-root-pool-recovery/1' and config.get('action') == action and action in ('restore','commit_ready'), 'separate exact395 recovery action')
++    require(config.get('schema') == 'phase398-root-pool-recovery/1' and config.get('action') == action and action in ('restore','commit_ready'), 'separate exact398 recovery action')
+     require(config.get('root_'+action+'_authorized') is True, 'explicit Root action required')
+     require(all(type(config.get(k)) is int and config[k] == 0 for k in ('native_allowed','models_allowed','projection_allowed')), 'strictINT0 non-recovery permissions')
+     freeze_path = recovery_source_leaf(root, config['source_freeze'])
+-    require(config['source_freeze']['path'] == SOURCE+'/combined-source-freeze.json', 'separate395 recovery freeze')
++    require(config['source_freeze']['path'] == SOURCE+'/combined-source-freeze.json', 'separate398 recovery freeze')
+     freeze = read(freeze_path)
+-    require(freeze.get('schema') == 'phase395-complete-install-recovery-SOURCE/1', 'closed complete-install SOURCE family')
++    require(freeze.get('schema') == 'phase398-complete-install-recovery-SOURCE/1', 'closed complete-install SOURCE family')
+     declared = {}
+     for row in freeze['files']:
+         require(row['path'] not in declared, 'unique recovery freeze leaves')
+@@ -60,10 +64,10 @@
+     for row in freeze['import_closure']:
+         require(declared.get(row['path']) == row and leaves.get(row['path']) == {k:row[k] for k in ('size','sha256')}, 'all actual import sources owned/frozen')
+     reviews = config.get('reviews')
+-    require(type(reviews) is list and bool(reviews), 'independent396 recovery SOURCE review required')
++    require(type(reviews) is list and bool(reviews), 'independent399 recovery SOURCE review required')
+     for review in reviews:
+         path = recovery_source_leaf(root, review['receipt']); owned = recovery_source_owner(root, review['owner']); value = read(path)
+-        require(owned.get(review['receipt']['path']) == pin(path) and value.get('status') == REVIEW_STATUS and value.get('source_freeze') == config['source_freeze'], 'actual owned396 recovery SOURCE closure')
++        require(owned.get(review['receipt']['path']) == pin(path) and value.get('status') == REVIEW_STATUS and value.get('source_freeze') == config['source_freeze'], 'actual owned399 recovery SOURCE closure')
+         require(all(type(value.get(k)) is int and value[k] == 0 for k in ('native','models')), 'recovery SOURCE review grants no native/model')
+     for key,name in (('restore_map',MAP),('input_pins',INPUT_PINS)):
+         require(config.get(key) == declared.get(name) and config[key]['path'] == name, 'exact actual map/input binding')

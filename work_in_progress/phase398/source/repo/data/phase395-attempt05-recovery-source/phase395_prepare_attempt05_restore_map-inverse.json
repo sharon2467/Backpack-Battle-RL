@@ -1,0 +1,118 @@
+{
+  "added_functions": [],
+  "after": {
+    "path": "tests/phase395_prepare_attempt05_restore_map.py",
+    "sha256": "4a36131641bd28f5372214b4f3cd7a3a779b96ced42a6144eafca2635926817f",
+    "size": 9566
+  },
+  "before": {
+    "path": "tests/phase375_prepare_attempt03_restore_map_v2.py",
+    "sha256": "c1ce564a422b2a324c344e67aef6915b3c82e3d28a50b3f23d142cd0a1c1f1f3",
+    "size": 9184
+  },
+  "changed_functions": [
+    "generate"
+  ],
+  "conserved_functions": [
+    "main",
+    "pin",
+    "read",
+    "rooted",
+    "saved",
+    "write"
+  ],
+  "edits": [
+    {
+      "after": "RECEIPT = {'size': 492, 'sha256': '6f2d5199b5e733973038e75b86c75edf691cd070c8828e2c6a17e523ee9e0e30'}",
+      "before": "RECEIPT = {'size': 335, 'sha256': '355d5615d3d0ef86a79cd0ea9f7460eb9dd24bb9d7b30c07bd872f36db360e03'}",
+      "positions": [
+        220
+      ]
+    },
+    {
+      "after": "OVERLAY = {'size': 203005, 'sha256': 'c39cebdeaf2cd7c34e490574018fce22fe8e96e758f804bec9e69d477529e071'}",
+      "before": "OVERLAY = dict(size=202992,sha256='6ed9cf9be0afe81938e552c2623ff141fd978b8162ef61f2e5dd18b181fdd0b9')",
+      "positions": [
+        322
+      ]
+    },
+    {
+      "after": "attempt05",
+      "before": "attempt03",
+      "positions": [
+        15,
+        2146,
+        2243,
+        2875,
+        2887,
+        6617,
+        7901,
+        8010
+      ]
+    },
+    {
+      "after": "attempt05-installed-failed-pool-preservation/1",
+      "before": "attempt05-failed-pool-preservation/1",
+      "positions": [
+        2243
+      ]
+    },
+    {
+      "after": "phase395-attempt05-complete-restore-source-map/1",
+      "before": "phase375-attempt05-exact-restore-source-map/1",
+      "positions": [
+        6618
+      ]
+    },
+    {
+      "after": "phase395-attempt05-saved-control-pins/1",
+      "before": "phase375-attempt05-saved-control-pins/1",
+      "positions": [
+        7905
+      ]
+    },
+    {
+      "after": "phase395-attempt05-map-derivation/1",
+      "before": "phase375-attempt05-map-derivation/1",
+      "positions": [
+        8014
+      ]
+    },
+    {
+      "after": "import sys\nsys.dont_write_bytecode=True\nimport native_run_compaction as c\nfrom phase395_saved_complete_evidence import validate_complete_saved",
+      "before": "import native_run_compaction as c",
+      "positions": [
+        185
+      ]
+    },
+    {
+      "after": "        completed=validate_complete_saved(roots)\n        failed,previous=roots['failed_run'],roots['previous_run'];pres=failed/'output/failed-pool-preservation'",
+      "before": "        failed,previous=roots['failed_run'],roots['previous_run'];pres=failed/'output/failed-pool-preservation'",
+      "positions": [
+        1985
+      ]
+    },
+    {
+      "after": "        files=completed['files'] # Every consumed saved leaf, including all backups and actual archived drivers.\n        mapping=dict(schema=",
+      "before": "        mapping=dict(schema=",
+      "positions": [
+        6747
+      ]
+    },
+    {
+      "after": "        mapping['roots']={k:str(v) for k,v in mapping['roots'].items()}\n        mapping['complete_install']=completed['summary']",
+      "before": "        mapping['roots']={k:str(v) for k,v in mapping['roots'].items()}",
+      "positions": [
+        7996
+      ]
+    },
+    {
+      "after": "checked_install_backups=checked_install,checked_previous_patch_backups=len(oldpatch),complete_install=completed['summary'],",
+      "before": "checked_install_backups=checked_install,checked_previous_patch_backups=len(oldpatch),",
+      "positions": [
+        8639
+      ]
+    }
+  ],
+  "inverse": "EXACT_BYTES"
+}

@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/workspace/python-original-engine/repo/tests/phase380_oracle_host.py", line 334, in <module>
+    if __name__=='__main__': main()
+                             ^^^^^^
+  File "/workspace/python-original-engine/repo/tests/phase380_oracle_host.py", line 331, in main
+    print(json.dumps(function(args.source_root,value,args.task_root,args.baseline,args.pool,args.runs_root),indent=2),flush=True)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/python-original-engine/repo/tests/phase380_oracle_host.py", line 171, in execute
+    if not complete: raise RuntimeError('first original027 failed/partial; preserve, no retry')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: first original027 failed/partial; preserve, no retry

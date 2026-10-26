@@ -1,0 +1,138 @@
+{
+  "after": {
+    "path": "tests/phase398_pool_recovery.py",
+    "sha256": "67c2aae7881e3b9debe9af608dc4fc3d4b8d644c8ad0aeb2c2375e99d2875ada",
+    "size": 21337
+  },
+  "before": {
+    "path": "tests/phase395_pool_recovery.py",
+    "sha256": "208e09fbd93d03a83b82d3af14e4efa5a8eba9626d9ff1a60afecbc5ea391ca3",
+    "size": 20754
+  },
+  "byte_inverse": "EXACT_COMPLETE_BYTES",
+  "changed_functions": [
+    "recovery_source_leaf",
+    "source_gate"
+  ],
+  "conserved_functions": [
+    "actual_targets",
+    "check_failed_state",
+    "check_roots",
+    "commit_ready",
+    "directory_metadata",
+    "evidence_path",
+    "locked_pool",
+    "main",
+    "recover",
+    "recovery_source_owner",
+    "require",
+    "restore_exact",
+    "validate_terminal_component_context",
+    "verify_evidence"
+  ],
+  "edits": [
+    {
+      "after": "def recovery_source_leaf(root, row):\n    require(type(row) is dict and set(row) == {'path','size','sha256'}, 'closed exact SOURCE descriptor')\n    require(type(row['path']) is str and bool(row['path']) and '\\\\' not in row['path'] and '\\0' not in row['path'] and\n            all(part not in ('', '.', '..') for part in row['path'].split('/')), 'canonical SOURCE path field')\n    require(type(row['size']) is int and row['size'] >= 0 and type(row['sha256']) is str and len(row['sha256']) == 64 and\n            all(char in '0123456789abcdef' for char in row['sha256']), 'strict SOURCE size/SHA fields')\n    path = member(root, row['path'])\n    regular_target(path)\n    return descriptor(root, row)",
+      "before": "def recovery_source_leaf(root, row):\n    path = descriptor(root, row)\n    regular_target(path)\n    return path\n",
+      "kind": "semantic",
+      "positions": [
+        17857
+      ]
+    },
+    {
+      "after": "phase398-root-pool-recovery/1",
+      "before": "phase395-root-pool-recovery/1",
+      "kind": "protocol",
+      "positions": [
+        1460
+      ]
+    },
+    {
+      "after": "phase398-complete-install-recovery-SOURCE/1",
+      "before": "phase395-complete-install-recovery-SOURCE/1",
+      "kind": "protocol",
+      "positions": [
+        2124
+      ]
+    },
+    {
+      "after": "separate exact398 recovery action",
+      "before": "separate exact395 recovery action",
+      "kind": "protocol",
+      "positions": [
+        1569
+      ]
+    },
+    {
+      "after": "separate398 recovery freeze",
+      "before": "separate395 recovery freeze",
+      "kind": "protocol",
+      "positions": [
+        2026
+      ]
+    },
+    {
+      "after": "independent399 recovery SOURCE review required",
+      "before": "independent396 recovery SOURCE review required",
+      "kind": "protocol",
+      "positions": [
+        2980
+      ]
+    },
+    {
+      "after": "actual owned399 recovery SOURCE closure",
+      "before": "actual owned396 recovery SOURCE closure",
+      "kind": "protocol",
+      "positions": [
+        3358
+      ]
+    },
+    {
+      "after": "SOURCE = 'data/phase398-attempt05-recovery-source'",
+      "before": "SOURCE = 'data/phase395-attempt05-recovery-source'",
+      "kind": "protocol",
+      "positions": [
+        489
+      ]
+    },
+    {
+      "after": "INDEPENDENT399_ATTEMPT05_COMPLETE_RECOVERY_SOURCE_ACCEPTED_ROOT_PENDING",
+      "before": "INDEPENDENT396_ATTEMPT05_COMPLETE_RECOVERY_SOURCE_ACCEPTED_ROOT_PENDING",
+      "kind": "protocol",
+      "positions": [
+        557
+      ]
+    },
+    {
+      "after": "INDEPENDENT398_ATTEMPT05_RESTORED_POOL_EXACT_TARGET_READBACK_PASS",
+      "before": "INDEPENDENT395_ATTEMPT05_RESTORED_POOL_EXACT_TARGET_READBACK_PASS",
+      "kind": "protocol",
+      "positions": [
+        801
+      ]
+    }
+  ],
+  "protocol_only_functions": [
+    "source_gate"
+  ],
+  "semantic_changed_functions": [
+    "recovery_source_leaf"
+  ],
+  "semantically_conserved_functions": [
+    "actual_targets",
+    "check_failed_state",
+    "check_roots",
+    "commit_ready",
+    "directory_metadata",
+    "evidence_path",
+    "locked_pool",
+    "main",
+    "recover",
+    "recovery_source_owner",
+    "require",
+    "restore_exact",
+    "source_gate",
+    "validate_terminal_component_context",
+    "verify_evidence"
+  ]
+}

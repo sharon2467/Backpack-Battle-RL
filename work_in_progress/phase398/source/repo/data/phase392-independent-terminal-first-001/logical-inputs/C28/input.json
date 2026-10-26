@@ -1,0 +1,338 @@
+{
+  "clock": {
+    "checkpoint": {
+      "idle_frame": 10,
+      "phase": "activate_items_idle_tail",
+      "physics_frame": 100,
+      "util_clock_time_bits": "0000000000000000",
+      "util_frame_counter": 100,
+      "util_time_bits": "0000000000000000"
+    },
+    "environment": {
+      "paused": false,
+      "physics_fps": 60,
+      "scale_bits": "3ff0000000000000"
+    },
+    "lineage": "fresh_activate_idle_tail",
+    "passes": [
+      {
+        "delta_bits": "3f91111120000000",
+        "idle_frame": 11,
+        "kind": "physics",
+        "physics_frame": 101
+      },
+      {
+        "delta_bits": "3f91111120000000",
+        "idle_frame": 11,
+        "kind": "physics",
+        "physics_frame": 102
+      },
+      {
+        "delta_bits": "3f91111120000000",
+        "idle_frame": 11,
+        "kind": "physics",
+        "physics_frame": 103
+      },
+      {
+        "delta_bits": "3f91111120000000",
+        "idle_frame": 11,
+        "kind": "idle",
+        "physics_frame": 103
+      }
+    ],
+    "schema": "phase105-exogenous-frame-clock/1"
+  },
+  "control": {
+    "ack": {
+      "idle": 11,
+      "physics": 103,
+      "receiver_id": "1001",
+      "serial": 1
+    },
+    "clock_closed": true,
+    "closed": true,
+    "complete": true,
+    "diagnostic_error": null,
+    "dispatching": false,
+    "emit_count": 1,
+    "failed": false,
+    "finish_return": true,
+    "first_error": null,
+    "idle": 11,
+    "native_emit_error": null,
+    "native_emit_error_available": false,
+    "phase": "FINALIZED",
+    "physics": 103,
+    "ready_connect": {
+      "idle": 0,
+      "physics": 0
+    },
+    "receiver_available": true,
+    "receiver_id": "1001",
+    "script_emit_return": null,
+    "script_emit_return_observed": true,
+    "terminal_cut": {
+      "cleanup_anchor_pass": 1,
+      "first_eligible_idle_pass": 4,
+      "minimum_future_physics_signals": 2,
+      "observed_future_physics_signals": 2,
+      "schema": "phase390-terminal-cut-control/1",
+      "terminal_policy": "first-actual-idle-after-at-least-two-future-physics/1"
+    },
+    "ui_closed": true
+  },
+  "diagnostics": [
+    {
+      "clock_passes": 4,
+      "control_sequence": 0,
+      "idle": 11,
+      "in_physics": false,
+      "observer_sequence": 50,
+      "payload": {
+        "control": {
+          "ack": null,
+          "clock_closed": true,
+          "closed": true,
+          "complete": true,
+          "diagnostic_error": null,
+          "dispatching": true,
+          "emit_count": 1,
+          "failed": false,
+          "finish_return": null,
+          "first_error": null,
+          "idle": 11,
+          "native_emit_error": null,
+          "native_emit_error_available": false,
+          "phase": "EMITTING",
+          "physics": 103,
+          "ready_connect": {
+            "idle": 0,
+            "physics": 0
+          },
+          "receiver_available": true,
+          "receiver_id": "1001",
+          "script_emit_return": null,
+          "script_emit_return_observed": false,
+          "terminal_cut": {
+            "cleanup_anchor_pass": 1,
+            "first_eligible_idle_pass": 4,
+            "minimum_future_physics_signals": 2,
+            "observed_future_physics_signals": 2,
+            "schema": "phase390-terminal-cut-control/1",
+            "terminal_policy": "first-actual-idle-after-at-least-two-future-physics/1"
+          },
+          "ui_closed": true
+        },
+        "private_connections": {
+          "complete_seen": true,
+          "reason": null,
+          "row_count": 1,
+          "rows": [
+            {
+              "binds": [],
+              "binds_count": 0,
+              "flags": 0,
+              "method": "on_idle_source_cut",
+              "ordinal": 0,
+              "source_available": true,
+              "source_has_key": true,
+              "source_native_id": "1002",
+              "source_variant_type": 2,
+              "target_available": true,
+              "target_has_key": true,
+              "target_native_id": "1001",
+              "target_variant_type": 2
+            }
+          ]
+        },
+        "tree_connections": {
+          "complete_seen": true,
+          "reason": null,
+          "row_count": 1,
+          "rows": [
+            {
+              "binds": [],
+              "binds_count": 0,
+              "flags": 0,
+              "method": "clock_idle_signal",
+              "ordinal": 0,
+              "source_available": true,
+              "source_has_key": true,
+              "source_native_id": "1001",
+              "source_variant_type": 2,
+              "target_available": true,
+              "target_has_key": true,
+              "target_native_id": "1002",
+              "target_variant_type": 2
+            }
+          ]
+        }
+      },
+      "physics": 103,
+      "reason": "EMITTING",
+      "schema": "phase391-source-control/1",
+      "site": "emit_source_idle_cut_once",
+      "ui_sequence": 20
+    },
+    {
+      "clock_passes": 4,
+      "control_sequence": 1,
+      "idle": 11,
+      "in_physics": false,
+      "observer_sequence": 50,
+      "payload": {
+        "control": {
+          "ack": {
+            "idle": 11,
+            "physics": 103,
+            "receiver_id": "1001",
+            "serial": 1
+          },
+          "clock_closed": true,
+          "closed": true,
+          "complete": true,
+          "diagnostic_error": null,
+          "dispatching": false,
+          "emit_count": 1,
+          "failed": false,
+          "finish_return": null,
+          "first_error": null,
+          "idle": 11,
+          "native_emit_error": null,
+          "native_emit_error_available": false,
+          "phase": "RETURNED",
+          "physics": 103,
+          "ready_connect": {
+            "idle": 0,
+            "physics": 0
+          },
+          "receiver_available": true,
+          "receiver_id": "1001",
+          "script_emit_return": null,
+          "script_emit_return_observed": true,
+          "terminal_cut": {
+            "cleanup_anchor_pass": 1,
+            "first_eligible_idle_pass": 4,
+            "minimum_future_physics_signals": 2,
+            "observed_future_physics_signals": 2,
+            "schema": "phase390-terminal-cut-control/1",
+            "terminal_policy": "first-actual-idle-after-at-least-two-future-physics/1"
+          },
+          "ui_closed": true
+        }
+      },
+      "physics": 103,
+      "reason": "RETURNED_ACK_CHECKED",
+      "schema": "phase391-source-control/1",
+      "site": "emit_source_idle_cut_once",
+      "ui_sequence": 20
+    },
+    {
+      "clock_passes": 4,
+      "control_sequence": 2,
+      "idle": 11,
+      "in_physics": false,
+      "observer_sequence": 50,
+      "payload": {
+        "control": {
+          "ack": {
+            "idle": 11,
+            "physics": 103,
+            "receiver_id": "1001",
+            "serial": 1
+          },
+          "clock_closed": true,
+          "closed": true,
+          "complete": true,
+          "diagnostic_error": null,
+          "dispatching": false,
+          "emit_count": 1,
+          "failed": false,
+          "finish_return": true,
+          "first_error": null,
+          "idle": 11,
+          "native_emit_error": null,
+          "native_emit_error_available": false,
+          "phase": "FINALIZED",
+          "physics": 103,
+          "ready_connect": {
+            "idle": 0,
+            "physics": 0
+          },
+          "receiver_available": true,
+          "receiver_id": "1001",
+          "script_emit_return": null,
+          "script_emit_return_observed": true,
+          "terminal_cut": {
+            "cleanup_anchor_pass": 1,
+            "first_eligible_idle_pass": 4,
+            "minimum_future_physics_signals": 2,
+            "observed_future_physics_signals": 2,
+            "schema": "phase390-terminal-cut-control/1",
+            "terminal_policy": "first-actual-idle-after-at-least-two-future-physics/1"
+          },
+          "ui_closed": true
+        }
+      },
+      "physics": 103,
+      "reason": "FINALIZED",
+      "schema": "phase391-source-control/1",
+      "site": "emit_source_idle_cut_once",
+      "ui_sequence": 20
+    }
+  ],
+  "endpoint": {
+    "cleanup_anchor_pass": 5,
+    "first_eligible_idle_pass": 4,
+    "fx_exact_comparison": "NOT_EVALUATED_REQUIRES_MODEL",
+    "idle_frame": 11,
+    "minimum_future_physics_signals": 2,
+    "observed_future_physics_signals": 2,
+    "passes": 4,
+    "phase": "idle_pre_internal_flush",
+    "physics_frame": 103,
+    "schema": "phase390-first-eligible-idle-endpoint/1",
+    "terminal_policy": "first-actual-idle-after-at-least-two-future-physics/1"
+  },
+  "provenance": "SYNTHETIC_SOURCE_UNIT_NOT_NATIVE",
+  "receipt": {
+    "cleanup": {
+      "idle_frame": 11,
+      "is_in_physics_frame": true,
+      "physics_frame": 101
+    },
+    "clock_closed": true,
+    "clock_passes": 4,
+    "collector_archive_pending": true,
+    "failed": false,
+    "native_capture_accepted": false,
+    "source_window_complete": true,
+    "terminal_cut": {
+      "cleanup_anchor_pass": 1,
+      "first_eligible_idle_pass": 4,
+      "minimum_future_physics_signals": 2,
+      "observed_future_physics_signals": 2,
+      "schema": "phase390-terminal-cut-control/1",
+      "terminal_policy": "first-actual-idle-after-at-least-two-future-physics/1"
+    },
+    "ui_closed": true
+  },
+  "validation": {
+    "cut": {
+      "idle": 11,
+      "physics": 103,
+      "preinternal": true
+    },
+    "end_barrier": true,
+    "full_snapshot_reads": 1,
+    "native_checks_pass": true,
+    "terminal_cut": {
+      "cleanup_anchor_pass": 1,
+      "first_eligible_idle_pass": 4,
+      "minimum_future_physics_signals": 2,
+      "observed_future_physics_signals": 2,
+      "schema": "phase390-terminal-cut-control/1",
+      "terminal_policy": "first-actual-idle-after-at-least-two-future-physics/1"
+    }
+  }
+}

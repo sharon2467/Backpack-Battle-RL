@@ -1,0 +1,96 @@
+{
+  "files": [
+    {
+      "path": "tests/phase398_pool_recovery.py",
+      "sha256": "67c2aae7881e3b9debe9af608dc4fc3d4b8d644c8ad0aeb2c2375e99d2875ada",
+      "size": 21337
+    },
+    {
+      "path": "tests/phase395_saved_complete_evidence.py",
+      "sha256": "cfff1675c2b56659ea60158994c289a3b0f3d3da00be6e51d01e50ef86968a96",
+      "size": 11246
+    },
+    {
+      "path": "tests/phase375_oracle_host.py",
+      "sha256": "e4a0438f6fccde911bd88307d09c16fbb460d33caa3ea946cc94c9533af8b910",
+      "size": 18031
+    },
+    {
+      "path": "tests/phase363_oracle_storage.py",
+      "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc",
+      "size": 15496
+    },
+    {
+      "path": "tests/phase363_oracle_process.py",
+      "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f",
+      "size": 13665
+    },
+    {
+      "path": "tests/native_run_compaction.py",
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260",
+      "size": 27304
+    }
+  ],
+  "inventory": [
+    {
+      "local_imports": [
+        "phase363_oracle_storage",
+        "phase375_oracle_host",
+        "phase395_saved_complete_evidence"
+      ],
+      "path": "tests/phase398_pool_recovery.py"
+    },
+    {
+      "local_imports": [],
+      "path": "tests/phase395_saved_complete_evidence.py"
+    },
+    {
+      "local_imports": [
+        "phase363_oracle_process",
+        "phase363_oracle_storage"
+      ],
+      "path": "tests/phase375_oracle_host.py"
+    },
+    {
+      "local_imports": [
+        "native_run_compaction"
+      ],
+      "path": "tests/phase363_oracle_storage.py"
+    },
+    {
+      "local_imports": [
+        "phase363_oracle_storage"
+      ],
+      "path": "tests/phase363_oracle_process.py"
+    },
+    {
+      "local_imports": [],
+      "path": "tests/native_run_compaction.py"
+    },
+    {
+      "local_imports": [],
+      "path": "tests/phase398_prepare_source.py"
+    },
+    {
+      "local_imports": [],
+      "path": "tests/phase398_recovery_gate_source.py"
+    },
+    {
+      "local_imports": [
+        "phase363_oracle_storage",
+        "phase375_oracle_host",
+        "phase395_saved_complete_evidence"
+      ],
+      "path": "tests/phase398_pool_recovery.py"
+    },
+    {
+      "local_imports": [],
+      "path": "tests/phase398_independent_restored_readback.py"
+    },
+    {
+      "local_imports": [],
+      "path": "data/phase398-independent-readback-source/readonly-process-inspector.py"
+    }
+  ],
+  "pre_import_requirement": "Root verifies actual ordinary source payloads before interpreter;398 consumer independently gates before content reads"
+}

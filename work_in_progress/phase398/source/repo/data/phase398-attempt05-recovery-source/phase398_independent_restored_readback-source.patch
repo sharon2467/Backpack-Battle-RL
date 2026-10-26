@@ -1,0 +1,75 @@
+--- tests/phase395_independent_restored_readback.py
++++ tests/phase398_independent_restored_readback.py
+@@ -1,4 +1,4 @@
+-"""Read-only physical395 complete-install restored target validation. No recovery, READY or process execution."""
++"""Read-only physical398 complete-install restored target validation. No recovery, READY or process execution."""
+ import ast
+ import argparse
+ import datetime
+@@ -14,10 +14,10 @@
+ import zipfile
+ 
+ R=Path(__file__).resolve().parents[1]
+-D=R/'data/phase395-independent-actual-readback-first-001'
+-SD=R/'data/phase395-independent-readback-source'
++D=R/'data/phase398-independent-actual-readback-first-001'
++SD=R/'data/phase398-independent-readback-source'
+ AUDIT=dict(write_attempts=0,blocked=[],subprocesses=0,network=0)
+-READBACK_STATUS = 'INDEPENDENT395_ATTEMPT05_RESTORED_POOL_EXACT_TARGET_READBACK_PASS'
++READBACK_STATUS = 'INDEPENDENT398_ATTEMPT05_RESTORED_POOL_EXACT_TARGET_READBACK_PASS'
+ 
+ def pin(path):
+     h=hashlib.sha256()
+@@ -115,18 +115,19 @@
+     parser.add_argument('--source-owner-size',required=True,type=int)
+     parser.add_argument('--source-owner-sha256',required=True)
+     args=parser.parse_args()
+-    require(pin(SD/'source-owner.json')==dict(size=args.source_owner_size,sha256=args.source_owner_sha256),'actual frozen readback Source owner pin')
+-    owner=read(SD/'source-owner.json')
++    owner_descriptor=dict(path=str((SD/'source-owner.json').relative_to(R)),size=args.source_owner_size,sha256=args.source_owner_sha256)
++    owner_path=verify_descriptor(R,owner_descriptor)
++    owner=read(owner_path)
+     for row in owner['files']:verify_descriptor(R,row)
+     require(any(row['path']==str(Path(__file__).relative_to(R)) and pin(Path(__file__))=={k:row[k] for k in ('size','sha256')} for row in owner['files']),'owned executing readback')
+     authorization=dict(path=args.authorization,size=args.authorization_size,sha256=args.authorization_sha256)
+     restore_receipt=dict(path=args.restore_receipt,size=args.restore_receipt_size,sha256=args.restore_receipt_sha256)
+     config=read(verify_descriptor(R,authorization));verify_descriptor(R,restore_receipt)
+     source=read(SD/'source-contract.json')
+-    require(config.get('schema')=='phase395-root-pool-recovery/1' and config.get('action')=='restore' and config.get('root_restore_authorized') is True,'ROOT exact395 restore-only source')
++    require(config.get('schema')=='phase398-root-pool-recovery/1' and config.get('action')=='restore' and config.get('root_restore_authorized') is True,'ROOT exact398 restore-only source')
+     require(all(type(config.get(k)) is int and config[k]==0 for k in ('native_allowed','models_allowed','projection_allowed')),'restore did not grant native/model/projection')
+     for key in ('source_freeze','restore_map','input_pins'):require(config[key]==source[key],'current exact source/map/pins '+key)
+-    require(source['readback_status']==READBACK_STATUS,'exact395 API readback status')
++    require(source['readback_status']==READBACK_STATUS,'exact398 API readback status')
+     require(config.get('source_owner')==source['recovery_source_owner'],'actual recovery SOURCE owner binding')
+     require(config.get('terminal_component_context')==source['terminal_component_context'],'actual Root bounded component context')
+     context=read(verify_descriptor(R,source['terminal_component_context']))
+@@ -136,7 +137,7 @@
+         review=read(verify_descriptor(R,item['receipt']));owned=read(verify_descriptor(R,item['owner']))
+         for row in owned['files']:verify_descriptor(R,row)
+         require(any(row==item['receipt'] for row in owned['files']),'owned actual SOURCE review')
+-        require(review.get('status')==source['SOURCE_review_status'] and review.get('source_freeze')==config['source_freeze'],'actual395 recovery SOURCE accepted closure')
++        require(review.get('status')==source['SOURCE_review_status'] and review.get('source_freeze')==config['source_freeze'],'actual398 recovery SOURCE accepted closure')
+         require(all(type(review.get(key))is int and review[key]==0 for key in ('native','models')),'SOURCE review not native/model acceptance')
+     mapping=read(verify_descriptor(R,config['restore_map']))
+     require(mapping['schema']=='phase395-attempt05-complete-restore-source-map/1','actual395 complete05 map schema')
+@@ -252,7 +253,7 @@
+     finally:
+         if lock is not None:fcntl.flock(lock,fcntl.LOCK_UN);lock.close()
+     save(D/'audit.json',dict(AUDIT,read_scope='Actual direct tree bytes/metadata; business observations opaque, no business expected decoding.',no_external_write_attempts=not AUDIT['blocked']))
+-    value=dict(schema='phase395-independent-physical-readback/1',status=READBACK_STATUS if failure is None else 'BLOCKED_INDEPENDENT395_RESTORED_POOL_READBACK',
++    value=dict(schema='phase398-independent-physical-readback/1',status=READBACK_STATUS if failure is None else 'BLOCKED_INDEPENDENT398_RESTORED_POOL_READBACK',
+         **{key:receipt[key] for key in ('roots','restore_map','source_freeze','project_target','staged_target','failed_state')},
+         restore_receipt=contract['restore_receipt'],observations=result,failure=failure,
+         native=0,models=0,Godot=0,processes_launched=0,actual_restore_calls=0,READY_commits=0,projection_calls=0,
+@@ -263,8 +264,8 @@
+     save(D/'review.json',value)
+     selected=[p for p in D.rglob('*') if p.is_file()]
+     selected += [SD/'CAPSULE385.json',SD/'source-contract.json',SD/'source-owner.json',SD/'readonly-process-inspector.py']
+-    selected+=[R/'docs/phase395_complete_restore_source_implementation_addendum.md',R/'tests/phase395_independent_restored_readback.py']
+-    save(D/'owned-files.json',dict(schema='phase395-independent-readback-owner/1',files=[desc(p) for p in sorted(selected)],no_more_writes=True,external_paths_provenance_only=True))
++    selected+=[R/'docs/phase398_source_leaf_before_read_and_reader_owner_bootstrap_spec.md',R/'tests/phase398_independent_restored_readback.py']
++    save(D/'owned-files.json',dict(schema='phase398-independent-readback-owner/1',files=[desc(p) for p in sorted(selected)],no_more_writes=True,external_paths_provenance_only=True))
+     for row in read(D/'owned-files.json')['files']:verify_descriptor(R,row)
+     print(json.dumps(dict(status=value['status'],review=desc(D/'review.json'),owner=desc(D/'owned-files.json'),observations=result,failure=failure)))
+     return 0 if failure is None else 1

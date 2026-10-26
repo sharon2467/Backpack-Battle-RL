@@ -1,0 +1,793 @@
+{
+  "baseline_notation_only": {
+    "B3": {
+      "checkpoint_counter_notation": {
+        "idle_frame": 10,
+        "physics_frame": 100
+      },
+      "cleanup_clock": {
+        "idle_frame": 11,
+        "is_in_physics_frame": true,
+        "physics_frame": 101
+      },
+      "expected": {
+        "cleanup_anchor_pass": 1,
+        "first_eligible_idle_pass": 5,
+        "minimum_future_physics_signals": 2,
+        "observed_future_physics_signals": 3
+      },
+      "rows_notation": [
+        {
+          "idle_frame": 11,
+          "kind": "physics",
+          "physics_frame": 101
+        },
+        {
+          "idle_frame": 11,
+          "kind": "physics",
+          "physics_frame": 102
+        },
+        {
+          "idle_frame": 11,
+          "kind": "physics",
+          "physics_frame": 103
+        },
+        {
+          "idle_frame": 11,
+          "kind": "physics",
+          "physics_frame": 104
+        },
+        {
+          "idle_frame": 11,
+          "kind": "idle",
+          "physics_frame": 104
+        }
+      ],
+      "synthetic_only": true
+    },
+    "E8": {
+      "checkpoint_counter_notation": {
+        "idle_frame": 340,
+        "physics_frame": 2723
+      },
+      "cleanup_clock": {
+        "idle_frame": 341,
+        "is_in_physics_frame": true,
+        "physics_frame": 2724
+      },
+      "expected": {
+        "cleanup_anchor_pass": 1,
+        "first_eligible_idle_pass": 11,
+        "minimum_future_physics_signals": 2,
+        "observed_future_physics_signals": 8
+      },
+      "provenance_limit": "Actual388 cleanup/tail counters only. Short synthetic checkpoint2723/340 replaces no actual checkpoint; original385 checkpoint444/56 and full2574 rows remain untouched. This is not a shortened lawful replay or actual12 positive.",
+      "rows_notation": [
+        {
+          "idle_frame": 341,
+          "kind": "physics",
+          "physics_frame": 2724
+        },
+        {
+          "idle_frame": 341,
+          "kind": "idle",
+          "physics_frame": 2724
+        },
+        {
+          "idle_frame": 342,
+          "kind": "physics",
+          "physics_frame": 2725
+        },
+        {
+          "idle_frame": 342,
+          "kind": "physics",
+          "physics_frame": 2726
+        },
+        {
+          "idle_frame": 342,
+          "kind": "physics",
+          "physics_frame": 2727
+        },
+        {
+          "idle_frame": 342,
+          "kind": "physics",
+          "physics_frame": 2728
+        },
+        {
+          "idle_frame": 342,
+          "kind": "physics",
+          "physics_frame": 2729
+        },
+        {
+          "idle_frame": 342,
+          "kind": "physics",
+          "physics_frame": 2730
+        },
+        {
+          "idle_frame": 342,
+          "kind": "physics",
+          "physics_frame": 2731
+        },
+        {
+          "idle_frame": 342,
+          "kind": "physics",
+          "physics_frame": 2732
+        },
+        {
+          "idle_frame": 342,
+          "kind": "idle",
+          "physics_frame": 2732
+        }
+      ],
+      "synthetic_only": true
+    },
+    "G2": {
+      "checkpoint_counter_notation": {
+        "idle_frame": 10,
+        "physics_frame": 100
+      },
+      "cleanup_clock": {
+        "idle_frame": 11,
+        "is_in_physics_frame": false,
+        "physics_frame": 100
+      },
+      "expected": {
+        "cleanup_anchor_pass": 1,
+        "first_eligible_idle_pass": 8,
+        "minimum_future_physics_signals": 2,
+        "observed_future_physics_signals": 2
+      },
+      "rows_notation": [
+        {
+          "idle_frame": 11,
+          "kind": "idle",
+          "physics_frame": 100
+        },
+        {
+          "idle_frame": 12,
+          "kind": "idle",
+          "physics_frame": 100
+        },
+        {
+          "idle_frame": 13,
+          "kind": "idle",
+          "physics_frame": 100
+        },
+        {
+          "idle_frame": 14,
+          "kind": "physics",
+          "physics_frame": 101
+        },
+        {
+          "idle_frame": 14,
+          "kind": "idle",
+          "physics_frame": 101
+        },
+        {
+          "idle_frame": 15,
+          "kind": "idle",
+          "physics_frame": 101
+        },
+        {
+          "idle_frame": 16,
+          "kind": "physics",
+          "physics_frame": 102
+        },
+        {
+          "idle_frame": 16,
+          "kind": "idle",
+          "physics_frame": 102
+        }
+      ],
+      "synthetic_only": true
+    },
+    "H0": {
+      "checkpoint_counter_notation": {
+        "idle_frame": 10,
+        "physics_frame": 100
+      },
+      "cleanup_clock": {
+        "idle_frame": 10,
+        "is_in_physics_frame": false,
+        "physics_frame": 100
+      },
+      "domain_limit": "Schema association unit only if exact checkpoint API can represent it. Not a natural Game/activation-death positive and no expansion of349 request_end phases.",
+      "expected": {
+        "cleanup_anchor_pass": 0,
+        "first_eligible_idle_pass": 3,
+        "minimum_future_physics_signals": 2,
+        "observed_future_physics_signals": 2
+      },
+      "rows_notation": [
+        {
+          "idle_frame": 11,
+          "kind": "physics",
+          "physics_frame": 101
+        },
+        {
+          "idle_frame": 11,
+          "kind": "physics",
+          "physics_frame": 102
+        },
+        {
+          "idle_frame": 11,
+          "kind": "idle",
+          "physics_frame": 102
+        }
+      ],
+      "synthetic_only": true
+    },
+    "I2": {
+      "checkpoint_counter_notation": {
+        "idle_frame": 10,
+        "physics_frame": 100
+      },
+      "cleanup_clock": {
+        "idle_frame": 11,
+        "is_in_physics_frame": false,
+        "physics_frame": 101
+      },
+      "expected": {
+        "cleanup_anchor_pass": 2,
+        "first_eligible_idle_pass": 6,
+        "minimum_future_physics_signals": 2,
+        "observed_future_physics_signals": 2
+      },
+      "rows_notation": [
+        {
+          "idle_frame": 11,
+          "kind": "physics",
+          "physics_frame": 101
+        },
+        {
+          "idle_frame": 11,
+          "kind": "idle",
+          "physics_frame": 101
+        },
+        {
+          "idle_frame": 12,
+          "kind": "physics",
+          "physics_frame": 102
+        },
+        {
+          "idle_frame": 12,
+          "kind": "idle",
+          "physics_frame": 102
+        },
+        {
+          "idle_frame": 13,
+          "kind": "physics",
+          "physics_frame": 103
+        },
+        {
+          "idle_frame": 13,
+          "kind": "idle",
+          "physics_frame": 103
+        }
+      ],
+      "synthetic_only": true
+    },
+    "T2": {
+      "checkpoint_counter_notation": {
+        "idle_frame": 10,
+        "physics_frame": 100
+      },
+      "cleanup_clock": {
+        "idle_frame": 11,
+        "is_in_physics_frame": true,
+        "physics_frame": 101
+      },
+      "expected": {
+        "cleanup_anchor_pass": 1,
+        "first_eligible_idle_pass": 4,
+        "minimum_future_physics_signals": 2,
+        "observed_future_physics_signals": 2
+      },
+      "rows_notation": [
+        {
+          "idle_frame": 11,
+          "kind": "physics",
+          "physics_frame": 101
+        },
+        {
+          "idle_frame": 11,
+          "kind": "physics",
+          "physics_frame": 102
+        },
+        {
+          "idle_frame": 11,
+          "kind": "physics",
+          "physics_frame": 103
+        },
+        {
+          "idle_frame": 11,
+          "kind": "idle",
+          "physics_frame": 103
+        }
+      ],
+      "synthetic_only": true
+    }
+  },
+  "basis_generic_plan": {
+    "path": "data/phase390-first-eligible-idle-source-design/finite-acceptance-plan.json",
+    "sha256": "2cc329fcf8db8d4fd565906a8e858c4d754396dd43688a9a1580e45a2fe4bd33",
+    "size": 5719
+  },
+  "basis_spec": {
+    "path": "docs/phase390_first_actual_eligible_idle_terminal_contract_design_spec.md",
+    "sha256": "031ec9b18082f987546465c329cbf281f2d749cf9b2d1cd8f46f9cb93c1192bf",
+    "size": 21042
+  },
+  "case_mapping": "C01..C32 retain390 logical identities; all concrete mutations and single-case expectations predeclared here. No unreported parameter sweeps.",
+  "cases": [
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "T2",
+      "concrete_input_or_mutation": "Use exact T2 and matching new closed endpoint/terminal_cut/receipt/control.",
+      "expected_outcome": "ACCEPT_ANCHOR1_FIRST4_OBSERVED2",
+      "id": "C01",
+      "obligation": "old two-tail physics cleanup",
+      "planned_layer": "SCHEMA_UNIT_AND_SOURCE_DELTA",
+      "required_evidence": "Exclude anchor physics101; only102/103 count. Old-version validator/source preserved, not rerun.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "I2",
+      "concrete_input_or_mutation": "Use exact I2; retain intermediate idle102 with count1.",
+      "expected_outcome": "ACCEPT_ANCHOR2_FIRST6_OBSERVED2",
+      "id": "C02",
+      "obligation": "old two-tail idle cleanup",
+      "planned_layer": "SCHEMA_UNIT_AND_SOURCE_DELTA",
+      "required_evidence": "No premature cut at row4; preserve actual idle sequence and current phase.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "E8",
+      "concrete_input_or_mutation": "Use E8 bounded diagnostic counter pattern and matching new endpoint.",
+      "expected_outcome": "ACCEPT_ANCHOR1_FIRST11_OBSERVED8",
+      "id": "C03",
+      "obligation": "388 eight-physics first actual idle",
+      "planned_layer": "SCHEMA_UNIT",
+      "required_evidence": "No idle2726 is invented, no8-to2 relabel/trim. Min2 differs from observed8; not actual12.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "G2",
+      "concrete_input_or_mutation": "Use G2 with repeated idle rows before future count2.",
+      "expected_outcome": "ACCEPT_ANCHOR1_FIRST8_OBSERVED2",
+      "id": "C04",
+      "obligation": "zero/one gaps are retained",
+      "planned_layer": "SCHEMA_UNIT",
+      "required_evidence": "Rows2/3 have0 futurephysics,5/6 have1; all retained and ineligible.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "B3",
+      "concrete_input_or_mutation": "Use B3 with no intermediate idle.",
+      "expected_outcome": "ACCEPT_ANCHOR1_FIRST5_OBSERVED3",
+      "id": "C05",
+      "obligation": "three-physics burst",
+      "planned_layer": "SCHEMA_UNIT",
+      "required_evidence": "Latch at actual idle104 rather than absent idle103; no fixed two-tail assertion.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "H0",
+      "concrete_input_or_mutation": "Use C exactly matching checkpoint100/10/idle; no matching pass is invented.",
+      "expected_outcome": "ACCEPT_ANCHOR0_FIRST3_OBSERVED2_IF_API_REPRESENTABLE",
+      "id": "C06",
+      "obligation": "exact idle-checkpoint association",
+      "planned_layer": "SCHEMA_UNIT_WITH_SOURCE_PRECONDITION",
+      "required_evidence": "If producer/API cannot represent this exact association, report that limitation; never fabricate a natural activation-death case.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "T2",
+      "concrete_input_or_mutation": "Invoke real cleanup tracker twice for the same anchor101/11/physics before cut.",
+      "expected_outcome": "REJECT_SECOND_MARKER_PRESERVE_FIRST",
+      "id": "C07",
+      "obligation": "duplicate cleanup marker",
+      "planned_layer": "PRODUCER_SOURCE_OR_FUTURE_LANGUAGE",
+      "required_evidence": "No second snapshot/cleanup replacement; no success on duplicate; record diagnostic without sharedseq advance.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "T2",
+      "concrete_input_or_mutation": "Change cleanup.is_in_physics_frame fromtrue tofalse; no idle101/11 exists.",
+      "expected_outcome": "REJECT_NO_MATCHING_IDLE_ANCHOR",
+      "id": "C08",
+      "obligation": "wrong cleanup phase",
+      "planned_layer": "SCHEMA_UNIT",
+      "required_evidence": "No coercion ofphase or fallback to counters alone.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "T2",
+      "concrete_input_or_mutation": "Append physics104/12 then idle104/12; claim first_eligible_idle_pass6/count3.",
+      "expected_outcome": "REJECT_FIRST_ELIGIBLE_WAS4",
+      "id": "C09",
+      "obligation": "later eligible after intervening physics",
+      "planned_layer": "SCHEMA_UNIT",
+      "required_evidence": "Count/final max alone cannot accept later idle; original first row4 remains.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "T2",
+      "concrete_input_or_mutation": "Append idle103/12; claim first_eligible_idle_pass5/count2.",
+      "expected_outcome": "REJECT_FIRST_ELIGIBLE_WAS4",
+      "id": "C10",
+      "obligation": "later eligible with no new physics",
+      "planned_layer": "SCHEMA_UNIT",
+      "required_evidence": "Even identical terminal physics/count cannot hide skipped first idle.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "T2",
+      "concrete_input_or_mutation": "Endpoint still claims row4, but pass file appends physics104/12.",
+      "expected_outcome": "REJECT_TRAILING_ROW",
+      "id": "C11",
+      "obligation": "trailing record after legal cut",
+      "planned_layer": "SCHEMA_UNIT",
+      "required_evidence": "EOF must coincide with first eligible idle, not an arbitrary prefix.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "T2",
+      "concrete_input_or_mutation": "Pass list becomes physics101/11,physics102/11,idle102/11; claim endpoint row3/count1.",
+      "expected_outcome": "REJECT_NO_ELIGIBLE_IDLE",
+      "id": "C12",
+      "obligation": "EOF with only one future physics",
+      "planned_layer": "SCHEMA_UNIT",
+      "required_evidence": "No EOF-as-success or implicit future pass.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "T2",
+      "concrete_input_or_mutation": "Remove final idle, retain physics101/102/103.",
+      "expected_outcome": "REJECT_NO_IDLE_TERMINAL",
+      "id": "C13",
+      "obligation": "EOF after enough physics but no idle",
+      "planned_layer": "SCHEMA_UNIT",
+      "required_evidence": "Count2 at physics does not authorize sampling/finalization.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "T2",
+      "concrete_input_or_mutation": "Replace row2 physics102/11 by physics103/11; leave remaining bytes/rows unchanged.",
+      "expected_outcome": "REJECT_CLOCK_GAP_OR_DUPLICATE",
+      "id": "C14",
+      "obligation": "noncontiguous existing clock counter",
+      "planned_layer": "SCHEMA_UNIT_ONLY_IF_NEEDED_FOR_NEW_COMPOSITION",
+      "required_evidence": "Old decoder identity may discharge unchanged strictclock implementation; no old negative family rerun. Future report actual call vs reuse separately.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "T2",
+      "concrete_input_or_mutation": "Set endpoint.cleanup_anchor_pass=true instead ofINT1; all other objects remain correct.",
+      "expected_outcome": "REJECT_STRICT_INT_ALIAS",
+      "id": "C15",
+      "obligation": "BOOL alias for INT anchor",
+      "planned_layer": "SCHEMA_UNIT",
+      "required_evidence": "Value equality True==1 is insufficient. SOURCE review must also retain strictREAL-vsINT rejection for minimum/observed/pass counters, with no claim of an unrun REAL subcase.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "E8",
+      "concrete_input_or_mutation": "Only endpoint.observed_future_physics_signals=INT2; actual tail count8.",
+      "expected_outcome": "REJECT_COUNT_MISMATCH",
+      "id": "C16",
+      "obligation": "wrong observed count on burst",
+      "planned_layer": "SCHEMA_UNIT",
+      "required_evidence": "Do not normalize actual8 to required minimum2.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "T2",
+      "concrete_input_or_mutation": "Only receipt.terminal_cut.first_eligible_idle_pass=INT5, endpoint/control/proof remain4.",
+      "expected_outcome": "REJECT_RECEIPT_JOIN",
+      "id": "C17",
+      "obligation": "receipt join differs from endpoint/proof",
+      "planned_layer": "ACTUAL_NEW_RECEIPT_JOIN_UNIT",
+      "required_evidence": "Actual real join API, not equality in test code. Closed keys/all redundant frame/phase/count identities also reviewed at consumers.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "T2",
+      "concrete_input_or_mutation": "New endpoint/policy with old observer7-355/375 SOURCE profile/schema tuple.",
+      "expected_outcome": "REJECT_MIXED_VERSION",
+      "id": "C18",
+      "obligation": "mixed source version tuple",
+      "planned_layer": "SOURCE_CONSUMER_AND_REAL_PURE_UNIT_IF_AVAILABLE",
+      "required_evidence": "Inventory every actual source consumer/export/host-control path and descriptor pin. Do not substitute helper test for wholehost or invent Root review/pin.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "T2",
+      "concrete_input_or_mutation": "After one accepted current latch dispatch, call exact emit path again with unchanged frames.",
+      "expected_outcome": "REJECT_SECOND_DISPATCH",
+      "id": "C19",
+      "obligation": "duplicate dedicated emit",
+      "planned_layer": "PRODUCER_SOURCE_OR_FUTURE_LANGUAGE",
+      "required_evidence": "First dispatch one ack/one snapshot/one finalizer; second cannot add success/overwrite latch.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "T2",
+      "concrete_input_or_mutation": "Within genuine EMITTING callback after once is set, attempt second oncut.",
+      "expected_outcome": "REJECT_REENTRY_BEFORE_SNAPSHOT",
+      "id": "C20",
+      "obligation": "reentrant callback once guard",
+      "planned_layer": "COLLECTOR_SOURCE_OR_FUTURE_LANGUAGE",
+      "required_evidence": "Guard order before getter; preserve first failure and separate diagnostic/shared sequence.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "T2",
+      "concrete_input_or_mutation": "Call oncut while source phase isnot EMITTING and no dispatch exists.",
+      "expected_outcome": "REJECT_DIRECT_CALL",
+      "id": "C21",
+      "obligation": "direct callback outside bracket",
+      "planned_layer": "COLLECTOR_SOURCE_OR_FUTURE_LANGUAGE",
+      "required_evidence": "No forged dispatcher, caller-ready flag, or fake full native context.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "T2",
+      "concrete_input_or_mutation": "Set native_error_available=true and native_error=INT0 in cut control.",
+      "expected_outcome": "REJECT_UNAVAILABLE_NATIVE_ERROR",
+      "id": "C22",
+      "obligation": "fabricated native Error OK",
+      "planned_layer": "REAL_CUT_VALIDATOR_OR_SOURCE",
+      "required_evidence": "Actual script emit remains observed NIL; no inference of native OK from NIL/dispatch.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": null,
+      "concrete_input_or_mutation": "Inspect changed callback/finalizer call graph and exact old17-getter origins; forbid added snapshot/getStats after frozen DTO.",
+      "expected_outcome": "SOURCE_CONFORMANCE_REQUIRED",
+      "id": "C23",
+      "obligation": "frozen snapshot is sampled only once",
+      "planned_layer": "SOURCE_ONLY",
+      "required_evidence": "Once guard before snapshot; finish serializes frozen primitive DTO only. No extra sampling, deferred hop, GUI/gameplay call, event retention, RNG or processing flags.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "T2",
+      "concrete_input_or_mutation": "Only cut control.physics_frame=INT104 while actual latch/endpoint/receipt have103.",
+      "expected_outcome": "REJECT_STALE_FRAME",
+      "id": "C24",
+      "obligation": "current frame join is stale",
+      "planned_layer": "REAL_CUT_JOIN_OR_SOURCE",
+      "required_evidence": "Same current physics/idle/ordinal, actual receiver IDs/methods/flags0/no binds/unique receiver at real callsites.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "G2",
+      "concrete_input_or_mutation": "Select row2 idle100/12 as terminal with observed0.",
+      "expected_outcome": "REJECT_ZERO_FUTURE",
+      "id": "C25",
+      "obligation": "zero-future idle cannot cut",
+      "planned_layer": "SCHEMA_UNIT",
+      "required_evidence": "Do not count anchor or an idle as a future physics signal; no hidden tail trimming.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "T2",
+      "concrete_input_or_mutation": "Latch row4 and skip close; attempt next physics104/12.",
+      "expected_outcome": "REJECT_MISSED_FIRST_CUT_LATCH_UNCHANGED",
+      "id": "C26",
+      "obligation": "unconsumed first latch cannot be replaced",
+      "planned_layer": "PRODUCER_SOURCE_OR_FUTURE_LANGUAGE",
+      "required_evidence": "First latch immutable and no later success; if failure leaves partial bytes they remain failure evidence, not a successful later endpoint.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "T2",
+      "concrete_input_or_mutation": "Set cleanup counters101/99/physics; no row or checkpoint has thatpair.",
+      "expected_outcome": "REJECT_UNRECORDED_ANCHOR",
+      "id": "C27",
+      "obligation": "no actual cleanup association",
+      "planned_layer": "SCHEMA_UNIT",
+      "required_evidence": "No closest-row search, ordinal invention or fallback. Source association uniqueness/counter strictness must be inspected.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "T2",
+      "concrete_input_or_mutation": "Only endpoint.cleanup_anchor_pass=INT5 while terminal row4 and actual anchor1.",
+      "expected_outcome": "REJECT_FUTURE_ANCHOR",
+      "id": "C28",
+      "obligation": "anchor after endpoint",
+      "planned_layer": "SCHEMA_UNIT",
+      "required_evidence": "Range and actual matching row both required.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "T2",
+      "concrete_input_or_mutation": "oncut EMITTING sees script_emit_return_observed=true before call return.",
+      "expected_outcome": "REJECT_EARLY_RETURN_MARKER",
+      "id": "C29",
+      "obligation": "return observed too early",
+      "planned_layer": "SOURCE_OR_FUTURE_LANGUAGE",
+      "required_evidence": "Successful real path must instead observe NIL only after emit returns, then exact ack and RETURNED->FINALIZING; native Error remains unavailable.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": "T2",
+      "concrete_input_or_mutation": "Exact finish result isINT1 rather thanBOOLtrue.",
+      "expected_outcome": "REJECT_NONBOOL_FINISH",
+      "id": "C30",
+      "obligation": "finalizer INT masquerades as BOOL",
+      "planned_layer": "SOURCE_OR_FUTURE_LANGUAGE",
+      "required_evidence": "Do not accept truthiness; FINALIZED/once/ack/frame identity retained. ActualBOOL return behavior may need new language unit, not old370 rerun.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": null,
+      "concrete_input_or_mutation": "Review full inverse ledger/actual execute payload descriptors and all changed protocol consumers against frozen tuple.",
+      "expected_outcome": "SOURCE_CONFORMANCE_REQUIRED",
+      "id": "C31",
+      "obligation": "joint tuple and conserved source closure",
+      "planned_layer": "SOURCE_ONLY",
+      "required_evidence": "Only enumerated terminal/source-identification changes allowed: old107/FoodINT22/75business/clock raw writer/17UI/getters/RNG/Timer/installer/monitor/actualpath consumer pins remain exact where claimed. Real byte/rowcaps and unknownkey/version guards pinned, not fabricated. No wholehost run.",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "API_binding": "DEFERRED_UNTIL_REAL_FREEZE; no stub/monkeypatch/full-host substitute",
+      "baseline": null,
+      "concrete_input_or_mutation": "Trace writer and consumers: cleanupC/anchor/firstidle/endpoint/receipt/control/terminal result/proof RNGstate/resource corrections mustnot enter Engine/driver/stop/crop/reseed.",
+      "expected_outcome": "SOURCE_DATAFLOW_REQUIRED_FULL_PROJECTION_OPEN",
+      "id": "C32",
+      "obligation": "oracle terminal evidence cannot drive model",
+      "planned_layer": "SOURCE_ONLY",
+      "required_evidence": "349 own death/finish/request_end/saturating barrier AST origin only. Current356/361 closed; no poison actualbundle/model positive, no activation-death or wider King admission.",
+      "status": "PLANNED_NOT_EXECUTED"
+    }
+  ],
+  "current_counts": {
+    "Engine_constructions": 0,
+    "Game": 0,
+    "Godot": 0,
+    "RNG_constructions": 0,
+    "SUT_calls": 0,
+    "actualpool_reads": 0,
+    "expected_semantic_reads": 0,
+    "inputbuilds": 0,
+    "models": 0,
+    "native": 0,
+    "projection": 0,
+    "schema_API_calls": 0,
+    "schema_imports": 0,
+    "semantic_controls_executed": 0,
+    "unsealed391_reads": 0
+  },
+  "endpoint_keys": [
+    "schema",
+    "terminal_policy",
+    "phase",
+    "physics_frame",
+    "idle_frame",
+    "passes",
+    "minimum_future_physics_signals",
+    "observed_future_physics_signals",
+    "cleanup_anchor_pass",
+    "first_eligible_idle_pass",
+    "fx_exact_comparison"
+  ],
+  "future_binding_requirements": [
+    "391 source-owner/freeze all actual descriptors verified before reading/importing implementation",
+    "SOURCE delta and real producer/collector/schema/tuple/hostcontrol consumers consistent; no unexplained old+new mix",
+    "Fix exact public API signatures/closed keys/transport framing/byte-rowcaps without inventing acceptance or runtime values",
+    "Freeze executable checker/source/SOURCE-unit inputs/expected outcomes before first API/language execution",
+    "Actual schema and real join functions only; no validator/wholehost stubs or monkeypatch",
+    "Any unrepresentable synthetic positive or inaccessible fullhost path explicitly OPEN/NOT_EXECUTED, not static-as-dynamic PASS",
+    "Separate SOURCE reuse, numberlogical cases, actual API calls, synthetic objects/outputfiles and actual processes; preserve firstfailure",
+    "Root new gate required; no actualpool/originalGame/model/projection/expected comparison"
+  ],
+  "language_probe_proposal": {
+    "max_future_processes": 1,
+    "permission_now": false,
+    "reason": "Actual GDScript Variant/call-stack/latch/once/ack/finalizer cannot be established by Python schema units; only genuinely changed methods, load exact scripts if safe.",
+    "scope": "Owned empty project/no Game/autoload/capture/native marker; synthetic<=32rows; exact method extraction provenance if full script not safe; Root separate gate; no old370 language15 replay",
+    "static_alternative": "Text/fullinverse/callgraph and typed guards only; explicitly NOT dynamic proof."
+  },
+  "largest_baseline_rows": 11,
+  "lawful_names_unchanged": [
+    "fixture.json",
+    "player_fixture.json",
+    "observer7-input.jsonl",
+    "observer7-lineage.jsonl",
+    "observer7-metadata.jsonl",
+    "observer7-primitives.jsonl",
+    "king-clock-checkpoint.json",
+    "king-clock-passes.jsonl",
+    "king-input-facts.json",
+    "king-ui-authority.jsonl",
+    "king-rng-checkpoint.json",
+    "king-slot-bindings.json"
+  ],
+  "logical_obligation_limit": 32,
+  "model_dataflow": {
+    "King_production_admitted": false,
+    "RNG_checkpoint": "proof only, never seed/internal-state correction",
+    "activation_death_domain_expansion": false,
+    "actual12_positive": false,
+    "cleanup_endpoint_control": "EXPECTED_ONLY; never an input to own cleanup, request_end, frame advancement, EOF trimming or forced stop",
+    "current356_closed": true,
+    "current361_closed": true,
+    "full_projection_positive": false,
+    "lawful_clock": "All actual exogenous rows preserved; stream availability not a model stop command",
+    "model_result": "must be independently produced and sealed before expected comparison; no current run or new admission",
+    "resources_caches_defaults": "proof only where source-defined; no postprepare endogenous injection"
+  },
+  "notation_contract": {
+    "checkpoint_idle_semantics": "Rows begin with checkpoint.idle_frame+1; idle consumes that counter and next row idle counter increases by1; physics increments physics only. Actual rawdelta bits/frozen schema fields remain pending binding.",
+    "cleanup_phase_labels": "Synthetic SOURCE phase preconditions; never natural HIT; repeated idles retained.",
+    "omitted_fields": "All binary32-promoted delta bits/environment/source-specific carrier headers require real frozen schema binding before execution. No fake full observer/carrier.",
+    "reference_algorithm_execution": 0,
+    "row_positions": "1-based; anchor0 only genuine matching activation idle checkpoint"
+  },
+  "planned_logical_obligations": 32,
+  "proposed_literals": {
+    "proposed_endpoint_schema": "phase390-first-eligible-idle-endpoint/1",
+    "proposed_observer_version": "7-king-single-A-390",
+    "proposed_policy": "first-actual-idle-after-at-least-two-future-physics/1",
+    "proposed_profile": "observer7-390-native-single-king-A/1"
+  },
+  "runtime_UI_key_count": 17,
+  "schema": "phase392-independent-firsteligible-preparation-contract/1",
+  "source_evidence": {
+    "path": "data/phase392-independent-preparation/source-evidence.json",
+    "sha256": "cd5e5f24db9c01a12640d0ed40b9b7281582537f1c050682a286b90ee4befb78",
+    "size": 11664
+  },
+  "status": "PREPARATION_ONLY_NOT_EXECUTED",
+  "synthetic_clock_row_limit": 32,
+  "terminal_cut_keys": [
+    "schema",
+    "terminal_policy",
+    "cleanup_anchor_pass",
+    "first_eligible_idle_pass",
+    "minimum_future_physics_signals",
+    "observed_future_physics_signals"
+  ],
+  "tuple_required": [
+    "profile",
+    "observer_version",
+    "terminal_policy",
+    "fixture_descriptor",
+    "actual_patch_producer_sink_descriptors",
+    "collector_descriptor",
+    "schema_descriptor",
+    "projector_origin_descriptor"
+  ]
+}

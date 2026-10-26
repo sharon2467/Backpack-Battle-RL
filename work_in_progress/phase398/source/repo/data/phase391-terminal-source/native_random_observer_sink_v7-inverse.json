@@ -1,0 +1,262 @@
+{
+  "added_functions": [
+    "source_tail_begin",
+    "source_tail_mark_cleanup",
+    "source_tail_note_pass",
+    "source_terminal_current",
+    "source_terminal_cut"
+  ],
+  "after": {
+    "path": "data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
+    "sha256": "999e0043a653067a962819cf81340b0dad745fa2148bbfab7724d7948a6a21ea",
+    "size": 104333
+  },
+  "before": {
+    "path": "data/phase375-food-hook-source/after-source/native_random_observer_sink_v7.gd",
+    "sha256": "cf48505d757f013d0f0fedd8cb212ec0005979427ea19f0070228e268b91c064",
+    "size": 99858
+  },
+  "changed_functions": [
+    "ack_source_idle_cut",
+    "begin_king_clock",
+    "clock_idle_signal",
+    "clock_pass",
+    "close_king_clock",
+    "emit_source_idle_cut_once",
+    "source_completion_receipt",
+    "source_cut_control",
+    "source_diagnostic",
+    "source_mark_cleanup"
+  ],
+  "check": "GD_FUNCTION_SOURCE_BYTES",
+  "conserved_functions": [
+    "_ready",
+    "append_node",
+    "auto_hide_state",
+    "begin_encoding",
+    "begin_fixture_window",
+    "bind_fixed_inventory",
+    "buff_label",
+    "buff_name",
+    "capture_delayed",
+    "checkpoint",
+    "clock_physics_signal",
+    "configure",
+    "context",
+    "cooldown",
+    "damage_label",
+    "encode",
+    "entry",
+    "estimated_bytes",
+    "event_data",
+    "export_data",
+    "fail",
+    "float_bits",
+    "fraction_context",
+    "fraction_shuffle",
+    "identity",
+    "is_temporary",
+    "item_id",
+    "king_runtime_snapshot",
+    "king_timer_fact",
+    "leave",
+    "metadata",
+    "middle",
+    "most_buff_label",
+    "native_id",
+    "node_state",
+    "primitive",
+    "reference",
+    "reflect_label",
+    "reserve_encoding",
+    "rng_initial_capture",
+    "rng_initial_continuity",
+    "rng_initial_write",
+    "rng_int64",
+    "scene_instance",
+    "selected_king_facts",
+    "selected_lineage",
+    "shortbow_debuff_label",
+    "side",
+    "source_control_bound_value",
+    "source_control_rows",
+    "source_control_target",
+    "source_cut_receiver",
+    "source_cut_reject",
+    "source_diag_secondary",
+    "source_diag_valid",
+    "source_is",
+    "source_observable",
+    "source_register",
+    "source_resources",
+    "source_runtime_snapshot",
+    "source_same_slot_value",
+    "source_selected_auto",
+    "source_write_diagnostic",
+    "source_write_row",
+    "stack_pick_label",
+    "stamp",
+    "state",
+    "temporary",
+    "timer_after",
+    "timer_before",
+    "timer_birth",
+    "timer_state",
+    "track_king_timer_api",
+    "ui_bind_roles",
+    "ui_bind_scene",
+    "ui_check_controls",
+    "ui_check_pooled_timer_reuse",
+    "ui_close",
+    "ui_controls",
+    "ui_entry",
+    "ui_leave",
+    "ui_open",
+    "ui_ready",
+    "ui_write",
+    "write_king_json",
+    "write_record"
+  ],
+  "edits": [
+    {
+      "after": "const RNG_INITIAL_PROFILE = \"7-king-single-A-390\"",
+      "after_positions": [
+        72861
+      ],
+      "before": "const RNG_INITIAL_PROFILE = \"7-king-single-A-355\"",
+      "occurrences": 1
+    },
+    {
+      "after": "\"phase391-source-control/1\"",
+      "after_positions": [
+        90610
+      ],
+      "before": "\"phase368-source-control/1\"",
+      "occurrences": 1
+    },
+    {
+      "after": "\tsource_tail_begin()\n\tking_clock_active = true\n\treturn true",
+      "after_positions": [
+        57394
+      ],
+      "before": "\tking_clock_active = true\n\treturn true",
+      "occurrences": 1
+    },
+    {
+      "after": "\t\tif source_tail_first_idle != null:\n\t\t\tif not source_terminal_current():\n\t\t\t\tsource_cut_reject(\"SOURCE_FIRST_ELIGIBLE_IDLE_CONTEXT\", \"clock_idle_signal\")\n\t\t\t\treturn",
+      "after_positions": [
+        57890
+      ],
+      "before": "\t\tif source_cleanup != null and Engine.get_physics_frames() >= source_cleanup.physics_frame + 2:\n\t\t\tif Engine.get_physics_frames() != source_cleanup.physics_frame + 2:\n\t\t\t\tsource_cut_reject(\"SOURCE_MISSED_FIRST_IDLE_CUT\", \"clock_idle_signal\")\n\t\t\t\treturn",
+      "occurrences": 1
+    },
+    {
+      "after": "\tif failed or not king_clock_active or king_clock_closed:\n\t\treturn\n\tif source_tail_first_idle != null:\n\t\tfail(\"SOURCE_MISSED_FIRST_ELIGIBLE_IDLE\", \"clock_pass\")\n\t\treturn\n",
+      "after_positions": [
+        58546
+      ],
+      "before": "\tif failed or not king_clock_active or king_clock_closed:\n\t\treturn\n",
+      "occurrences": 1
+    },
+    {
+      "after": "\t\tking_clock_i += 1\n\tsource_tail_note_pass(kind, Engine.get_physics_frames(), Engine.get_idle_frames(), king_clock_count)\n",
+      "after_positions": [
+        60122
+      ],
+      "before": "\t\tking_clock_i += 1\n",
+      "occurrences": 1
+    },
+    {
+      "after": "if not king_clock_active or king_clock_closed or king_clock_last_kind != \"idle\" or not source_terminal_current():",
+      "after_positions": [
+        60271
+      ],
+      "before": "if not king_clock_active or king_clock_closed or king_clock_last_kind != \"idle\":",
+      "occurrences": 1
+    },
+    {
+      "after": "\"schema\": \"phase390-first-eligible-idle-endpoint/1\", \"terminal_policy\": TERMINAL_POLICY, \"phase\":",
+      "after_positions": [
+        60548
+      ],
+      "before": "\"schema\": \"phase111-fixed-endpoint/1\", \"phase\":",
+      "occurrences": 1
+    },
+    {
+      "after": "\"minimum_future_physics_signals\": 2, \"observed_future_physics_signals\": source_tail_count, \"cleanup_anchor_pass\": source_tail_anchor, \"first_eligible_idle_pass\": source_tail_first_idle.ordinal",
+      "after_positions": [
+        60787
+      ],
+      "before": "\"two_future_physics_signals\": 2",
+      "occurrences": 1
+    },
+    {
+      "after": "\tif not source_tail_mark_cleanup():\n\t\treturn false\n\treturn write_king_json(\"king-post-cleanup-source.json\", source_runtime_snapshot())",
+      "after_positions": [
+        86672
+      ],
+      "before": "\treturn write_king_json(\"king-post-cleanup-source.json\", source_runtime_snapshot())",
+      "occurrences": 1
+    },
+    {
+      "after": "func source_completion_receipt():\n\tif source_window_complete and not source_terminal_current():\n\t\tfail(\"SOURCE_RECEIPT_TERMINAL_CONTEXT\", \"source_completion_receipt\")\n",
+      "after_positions": [
+        87906
+      ],
+      "before": "func source_completion_receipt():\n",
+      "occurrences": 1
+    },
+    {
+      "after": "\"collector_archive_pending\": true, \"terminal_cut\": source_terminal_cut()}",
+      "after_positions": [
+        88304
+      ],
+      "before": "\"collector_archive_pending\": true}",
+      "occurrences": 1
+    },
+    {
+      "after": "\"diagnostic_error\": source_diag_error, \"terminal_cut\": source_terminal_cut()}",
+      "after_positions": [
+        95937
+      ],
+      "before": "\"diagnostic_error\": source_diag_error}",
+      "occurrences": 1
+    },
+    {
+      "after": "or Engine.get_idle_frames() != idle_frame or failed or not source_terminal_current():",
+      "after_positions": [
+        97229
+      ],
+      "before": "or Engine.get_idle_frames() != idle_frame or failed:",
+      "occurrences": 1
+    },
+    {
+      "after": "or not source_terminal_current():",
+      "after_positions": [
+        97727
+      ],
+      "before": "or source_cleanup == null or Engine.is_in_physics_frame() or Engine.get_physics_frames() != source_cleanup.physics_frame + 2:",
+      "occurrences": 1
+    },
+    {
+      "after": "or source_cut_receiver() != receiver or not source_terminal_current():",
+      "after_positions": [
+        99435
+      ],
+      "before": "or source_cut_receiver() != receiver:",
+      "occurrences": 1
+    },
+    {
+      "after": "or Engine.get_idle_frames() != source_cut_idle or not source_terminal_current():\n\t\treturn source_cut_reject(\"CUT_FINALIZER_RETURN\"",
+      "after_positions": [
+        100022
+      ],
+      "before": "or Engine.get_idle_frames() != source_cut_idle:\n\t\treturn source_cut_reject(\"CUT_FINALIZER_RETURN\"",
+      "occurrences": 1
+    },
+    {
+      "suffix": "\n# SOURCE template: appended primitive-only terminal tracker, not an executable project.\nconst TERMINAL_POLICY = \"first-actual-idle-after-at-least-two-future-physics/1\"\nconst TERMINAL_CONTROL_SCHEMA = \"phase390-terminal-cut-control/1\"\nvar source_tail_checkpoint_p = -1\nvar source_tail_checkpoint_i = -1\nvar source_tail_last = null\nvar source_tail_anchor = -1\nvar source_tail_count = 0\nvar source_tail_first_idle = null\n\nfunc source_tail_begin():\n\tsource_tail_checkpoint_p = Engine.get_physics_frames()\n\tsource_tail_checkpoint_i = Engine.get_idle_frames()\n\tsource_tail_last = null\n\tsource_tail_anchor = -1\n\tsource_tail_count = 0\n\tsource_tail_first_idle = null\n\nfunc source_tail_mark_cleanup():\n\tif source_cleanup == null or source_tail_anchor != -1 or source_tail_first_idle != null:\n\t\treturn fail(\"SOURCE_CLEANUP_CLOCK_ASSOCIATION\", \"source_tail_mark_cleanup\")\n\tif king_clock_count == 0:\n\t\tif source_tail_last != null or source_cleanup.is_in_physics_frame or source_cleanup.physics_frame != source_tail_checkpoint_p or source_cleanup.idle_frame != source_tail_checkpoint_i:\n\t\t\treturn fail(\"SOURCE_CLEANUP_CHECKPOINT_ASSOCIATION\", \"source_tail_mark_cleanup\")\n\t\tsource_tail_anchor = 0\n\telse:\n\t\tvar kind = \"physics\" if source_cleanup.is_in_physics_frame else \"idle\"\n\t\tif source_tail_last == null or source_tail_last.ordinal != king_clock_count or source_tail_last.kind != kind or source_tail_last.physics != source_cleanup.physics_frame or source_tail_last.idle != source_cleanup.idle_frame:\n\t\t\treturn fail(\"SOURCE_CLEANUP_PASS_ASSOCIATION\", \"source_tail_mark_cleanup\")\n\t\tsource_tail_anchor = king_clock_count\n\treturn true\n\nfunc source_tail_note_pass(kind, physics_frame, idle_frame, ordinal):\n\tif source_tail_first_idle != null:\n\t\treturn fail(\"SOURCE_MISSED_FIRST_ELIGIBLE_IDLE\", \"source_tail_note_pass\")\n\tsource_tail_last = {\"kind\": kind, \"physics\": physics_frame, \"idle\": idle_frame, \"ordinal\": ordinal}\n\tif source_cleanup == null:\n\t\treturn true\n\tif source_tail_anchor < 0 or ordinal <= source_tail_anchor:\n\t\treturn fail(\"SOURCE_FUTURE_PASS_ASSOCIATION\", \"source_tail_note_pass\")\n\tif kind == \"physics\":\n\t\tif physics_frame <= source_cleanup.physics_frame:\n\t\t\treturn fail(\"SOURCE_NOT_STRICTLY_FUTURE_PHYSICS\", \"source_tail_note_pass\")\n\t\tsource_tail_count += 1\n\telif kind != \"idle\":\n\t\treturn fail(\"SOURCE_FUTURE_PASS_KIND\", \"source_tail_note_pass\")\n\tif physics_frame - source_cleanup.physics_frame != source_tail_count:\n\t\treturn fail(\"SOURCE_FUTURE_PHYSICS_CONTINUITY\", \"source_tail_note_pass\")\n\tif kind == \"idle\" and source_tail_count >= 2:\n\t\tsource_tail_first_idle = {\"ordinal\": ordinal, \"physics\": physics_frame, \"idle\": idle_frame, \"count\": source_tail_count}\n\treturn true\n\nfunc source_terminal_cut():\n\tif source_tail_first_idle == null:\n\t\treturn null\n\treturn {\"schema\": TERMINAL_CONTROL_SCHEMA, \"terminal_policy\": TERMINAL_POLICY, \"cleanup_anchor_pass\": source_tail_anchor, \"first_eligible_idle_pass\": source_tail_first_idle.ordinal, \"minimum_future_physics_signals\": 2, \"observed_future_physics_signals\": source_tail_first_idle.count}\n\nfunc source_terminal_current():\n\tif source_cleanup == null or source_tail_anchor < 0 or source_tail_first_idle == null or source_tail_last == null or Engine.is_in_physics_frame():\n\t\treturn false\n\tif source_tail_first_idle.count < 2 or source_tail_count != source_tail_first_idle.count or source_tail_first_idle.ordinal != king_clock_count or source_tail_last.ordinal != king_clock_count or source_tail_last.kind != \"idle\":\n\t\treturn false\n\tif source_tail_first_idle.physics != Engine.get_physics_frames() or source_tail_first_idle.idle != Engine.get_idle_frames() or source_tail_last.physics != source_tail_first_idle.physics or source_tail_last.idle != source_tail_first_idle.idle:\n\t\treturn false\n\treturn Engine.get_physics_frames() - source_cleanup.physics_frame == source_tail_count\n"
+    }
+  ],
+  "inverse": "EXACT_COMPLETE_BYTES"
+}

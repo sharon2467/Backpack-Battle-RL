@@ -1,0 +1,225 @@
+{
+  "files": [
+    {
+      "path": "tests/phase395_pool_recovery.py",
+      "sha256": "208e09fbd93d03a83b82d3af14e4efa5a8eba9626d9ff1a60afecbc5ea391ca3",
+      "size": 20754
+    },
+    {
+      "path": "tests/phase395_saved_complete_evidence.py",
+      "sha256": "cfff1675c2b56659ea60158994c289a3b0f3d3da00be6e51d01e50ef86968a96",
+      "size": 11246
+    },
+    {
+      "path": "tests/phase375_oracle_host.py",
+      "sha256": "e4a0438f6fccde911bd88307d09c16fbb460d33caa3ea946cc94c9533af8b910",
+      "size": 18031
+    },
+    {
+      "path": "tests/phase363_oracle_storage.py",
+      "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc",
+      "size": 15496
+    },
+    {
+      "path": "tests/phase363_oracle_process.py",
+      "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f",
+      "size": 13665
+    },
+    {
+      "path": "tests/native_run_compaction.py",
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260",
+      "size": 27304
+    }
+  ],
+  "imports": [
+    {
+      "all_imports": [
+        "argparse",
+        "ast",
+        "copy",
+        "difflib",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "stat",
+        "traceback"
+      ],
+      "local_imports": [],
+      "path": "tests/phase395_prepare_source.py"
+    },
+    {
+      "all_imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "native_run_compaction",
+        "os",
+        "pathlib",
+        "phase395_saved_complete_evidence",
+        "stat",
+        "sys"
+      ],
+      "local_imports": [
+        "native_run_compaction",
+        "phase395_saved_complete_evidence"
+      ],
+      "path": "tests/phase395_prepare_attempt05_restore_map.py"
+    },
+    {
+      "all_imports": [],
+      "local_imports": [],
+      "path": "tests/phase395_recovery_gate_source.py"
+    },
+    {
+      "all_imports": [],
+      "local_imports": [],
+      "path": "tests/phase395_reader_complete_source.py"
+    },
+    {
+      "all_imports": [
+        "argparse",
+        "ast",
+        "datetime",
+        "fcntl",
+        "hashlib",
+        "json",
+        "os",
+        "pathlib",
+        "stat",
+        "sys",
+        "time",
+        "traceback",
+        "zipfile"
+      ],
+      "local_imports": [],
+      "path": "tests/phase395_independent_restored_readback.py"
+    },
+    {
+      "all_imports": [
+        "argparse",
+        "contextlib",
+        "fcntl",
+        "json",
+        "os",
+        "pathlib",
+        "phase363_oracle_storage",
+        "phase375_oracle_host",
+        "phase395_saved_complete_evidence",
+        "shutil",
+        "stat"
+      ],
+      "local_imports": [
+        "phase363_oracle_storage",
+        "phase375_oracle_host",
+        "phase395_saved_complete_evidence"
+      ],
+      "path": "tests/phase395_pool_recovery.py"
+    },
+    {
+      "all_imports": [
+        "hashlib",
+        "json",
+        "pathlib",
+        "stat"
+      ],
+      "local_imports": [],
+      "path": "tests/phase395_saved_complete_evidence.py"
+    },
+    {
+      "all_imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "os",
+        "pathlib",
+        "phase363_oracle_process",
+        "phase363_oracle_storage",
+        "re",
+        "shutil"
+      ],
+      "local_imports": [
+        "phase363_oracle_process",
+        "phase363_oracle_storage"
+      ],
+      "path": "tests/phase375_oracle_host.py"
+    },
+    {
+      "all_imports": [
+        "contextlib",
+        "fcntl",
+        "hashlib",
+        "json",
+        "native_run_compaction",
+        "os",
+        "pathlib",
+        "shutil",
+        "stat",
+        "zipfile"
+      ],
+      "local_imports": [
+        "native_run_compaction"
+      ],
+      "path": "tests/phase363_oracle_storage.py"
+    },
+    {
+      "all_imports": [
+        "math",
+        "os",
+        "pathlib",
+        "phase363_oracle_storage",
+        "selectors",
+        "shutil",
+        "signal",
+        "subprocess",
+        "sys",
+        "time"
+      ],
+      "local_imports": [
+        "phase363_oracle_storage"
+      ],
+      "path": "tests/phase363_oracle_process.py"
+    },
+    {
+      "all_imports": [
+        "__future__",
+        "argparse",
+        "contextlib",
+        "ctypes",
+        "datetime",
+        "fcntl",
+        "hashlib",
+        "json",
+        "os",
+        "pathlib",
+        "shutil",
+        "stat",
+        "tempfile",
+        "zipfile"
+      ],
+      "local_imports": [],
+      "path": "tests/native_run_compaction.py"
+    },
+    {
+      "all_imports": [
+        "__future__",
+        "argparse",
+        "contextlib",
+        "ctypes",
+        "datetime",
+        "fcntl",
+        "hashlib",
+        "json",
+        "os",
+        "pathlib",
+        "shutil",
+        "stat",
+        "tempfile",
+        "zipfile"
+      ],
+      "local_imports": [],
+      "path": "data/phase395-independent-readback-source/readonly-process-inspector.py"
+    }
+  ],
+  "pre_import_requirement": "Root must verify ordinary source descriptors before starting interpreter; runtime gate rechecks; imported operational modules not executed by author"
+}

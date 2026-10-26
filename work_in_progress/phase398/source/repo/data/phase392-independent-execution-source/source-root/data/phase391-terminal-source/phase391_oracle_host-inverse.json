@@ -1,0 +1,167 @@
+{
+  "added_functions": [
+    "load_terminal_schema",
+    "read_terminal_expected_controls",
+    "validate_active_source_tuple"
+  ],
+  "after": {
+    "path": "tests/phase391_oracle_host.py",
+    "sha256": "49df9df290a1c595a9a2acf69f1d3e1b81af889913d531d5327ed0ba9b16b0ef",
+    "size": 31092
+  },
+  "before": {
+    "path": "tests/phase380_oracle_host.py",
+    "sha256": "588486979f0887abea6ed35e0e66762684e7b416303294fc3fc1eb045b39e92a",
+    "size": 23859
+  },
+  "changed_functions": [
+    "collect_capture_metadata",
+    "execute",
+    "plan",
+    "source_gate"
+  ],
+  "check": "PYTHON_AST",
+  "conserved_functions": [
+    "_payload_rows",
+    "descriptor",
+    "execute_driver_descriptors",
+    "main",
+    "read_control",
+    "resolve_execute_payloads",
+    "resource_gate",
+    "verify_execute_payloads",
+    "verify_owner"
+  ],
+  "edits": [
+    {
+      "after": "from phase391_oracle_storage import",
+      "after_positions": [
+        189
+      ],
+      "before": "from phase380_oracle_storage import",
+      "occurrences": 1
+    },
+    {
+      "after": "SOURCE = 'data/phase391-terminal-source'",
+      "after_positions": [
+        511
+      ],
+      "before": "SOURCE = 'data/phase380-payload-source'",
+      "occurrences": 1
+    },
+    {
+      "after": "INDEPENDENT392_FIRST_ELIGIBLE_IDLE_SOURCE_ACCEPTED_ROOT_PENDING",
+      "after_positions": [
+        699
+      ],
+      "before": "INDEPENDENT380_PAYLOAD_PREFLIGHT_PARTIAL_SOURCE_ACCEPTED_ROOT_PENDING",
+      "occurrences": 1
+    },
+    {
+      "after": "phase391-root-oracle-acceptance/1",
+      "after_positions": [
+        2308
+      ],
+      "before": "phase380-root-oracle-acceptance/1",
+      "occurrences": 1
+    },
+    {
+      "after": "original027-king-single-A-20261026-attempt06",
+      "after_positions": [
+        636
+      ],
+      "before": "original027-king-single-A-20261025-attempt05",
+      "occurrences": 1
+    },
+    {
+      "after": "attempt=6",
+      "after_positions": [
+        6765,
+        11369
+      ],
+      "before": "attempt=5",
+      "occurrences": 2
+    },
+    {
+      "after": "phase391-oracle-single-King",
+      "after_positions": [
+        8915
+      ],
+      "before": "phase362-oracle-single-King",
+      "occurrences": 1
+    },
+    {
+      "after": "phase391-oracle-host/1",
+      "after_positions": [
+        9520
+      ],
+      "before": "phase362-oracle-host/1",
+      "occurrences": 1
+    },
+    {
+      "after": "phase391-oracle-readonly-plan/1",
+      "after_positions": [
+        6633
+      ],
+      "before": "phase362-oracle-readonly-plan/1",
+      "occurrences": 1
+    },
+    {
+      "after": "    if config.get('active_source_tuple') != freeze['active_source_tuple']:\n        raise ValueError('Root must pin actual391 source tuple')\n    validate_active_source_tuple(root,freeze)\n    if freeze['accepted_source_controls'] != []:\n        raise ValueError('historical controls cannot approve new SOURCE')\n    for row in freeze['historical_source_controls']: check_source_descriptor(root,row)",
+      "after_positions": [
+        4004
+      ],
+      "before": "    for row in freeze['accepted_source_controls']: descriptor(root,row)",
+      "occurrences": 1
+    },
+    {
+      "after": "partition=collect_capture_metadata(run,result,root,freeze)",
+      "after_positions": [
+        11911
+      ],
+      "before": "partition=collect_capture_metadata(run,result)",
+      "occurrences": 1
+    },
+    {
+      "after": "def collect_capture_metadata(run,result,source_root,freeze):",
+      "after_positions": [
+        13268
+      ],
+      "before": "def collect_capture_metadata(run,result):",
+      "occurrences": 1
+    },
+    {
+      "after": "secondary=[]; primary=None; capture=None; present={}; expected={}; validation=None; partial={}; control_files={}; terminal=None",
+      "after_positions": [
+        13418
+      ],
+      "before": "secondary=[]; primary=None; capture=None; present={}; expected={}; validation=None; partial={}; control_files={}",
+      "occurrences": 1
+    },
+    {
+      "after": "    if capture is not None:\n        try: terminal=read_terminal_expected_controls(source_root,freeze,capture)\n        except Exception as exc:\n            secondary.append(dict(code='terminal_expected_control_failure',error=repr(exc)))\n            if primary is None: primary=dict(kind='terminal_expected_control_failure',error=repr(exc))\n    complete=process_ok and primary is None and not missing and validation is not None and validation.get('native_checks_pass') is True and terminal is not None and not secondary",
+      "after_positions": [
+        16959
+      ],
+      "before": "    complete=process_ok and primary is None and not missing and validation is not None and validation.get('native_checks_pass') is True and not secondary",
+      "occurrences": 1
+    },
+    {
+      "after": "expected_semantics_read=False,terminal_expected_control=terminal,models=0,projection=0)",
+      "after_positions": [
+        17857
+      ],
+      "before": "expected_semantics_read=False,models=0,projection=0)",
+      "occurrences": 1
+    },
+    {
+      "after": "\n\"\"\"Expected/control SOURCE helpers; loaded by the actual391 host after descriptor checks.\"\"\"\n\nTERMINAL_POLICY = 'first-actual-idle-after-at-least-two-future-physics/1'\nOBSERVER_VERSION = '7-king-single-A-390'\nOBSERVER_PROFILE = 'observer7-390-native-single-king-A/1'\n\n\ndef validate_active_source_tuple(root, freeze):\n    row = freeze['active_source_tuple']\n    value = read(check_source_descriptor(root, row))\n    keys = {'schema', 'profile', 'observer_version', 'terminal_policy', 'fixed_fixture',\n            'native_patch', 'producer', 'sink', 'collector', 'schema_module', 'projector_source_origin'}\n    if type(value) is not dict or set(value) != keys or value['schema'] != 'phase391-terminal-source-tuple/1':\n        raise ValueError('closed actual391 source tuple')\n    if (value['profile'], value['observer_version'], value['terminal_policy']) != (OBSERVER_PROFILE, OBSERVER_VERSION, TERMINAL_POLICY):\n        raise ValueError('mixed terminal source policy/version')\n    if (freeze['profile'], freeze['observer_version'], freeze['terminal_policy'], freeze['run_name']) != (OBSERVER_PROFILE, OBSERVER_VERSION, TERMINAL_POLICY, RUN_NAME):\n        raise ValueError('host/freeze terminal policy/version/attempt mismatch')\n    declared = _payload_rows(freeze['files'])\n    for key in keys - {'schema', 'profile', 'observer_version', 'terminal_policy'}:\n        source = value[key]\n        if declared.get(source['path']) != source:\n            raise ValueError('tuple source outside frozen descriptor graph')\n        check_source_descriptor(root, source)\n    if value['collector'] != freeze['collector'] or value['schema_module'] != freeze['schema_module']:\n        raise ValueError('actual collector/schema tuple binding')\n    sink = freeze['paths']['native_random_observer_sink_v7.gd']\n    if value['sink'] != dict(path=sink['after_path'], **sink['after']):\n        raise ValueError('actual terminal sink tuple binding')\n    patch = read(check_source_descriptor(root, value['native_patch']))\n    if type(patch) is not dict or set(patch) != {'schema', 'paths', 'producer', 'sink', 'profile', 'observer_version', 'terminal_policy'}:\n        raise ValueError('closed actual patch declaration')\n    if patch != dict(schema='phase391-native-patch-source/1', paths=freeze['paths'], producer=value['producer'],\n                     sink=value['sink'], profile=OBSERVER_PROFILE, observer_version=OBSERVER_VERSION, terminal_policy=TERMINAL_POLICY):\n        raise ValueError('actual75 patch tuple disagreement')\n    return value\n\n\ndef load_terminal_schema(source_root, freeze):\n    \"\"\"Verify actual regular source bytes before executing this exact schema module.\"\"\"\n    import sys\n    from types import ModuleType\n    root = directory(source_root)\n    validate_active_source_tuple(root, freeze)\n    row = freeze['schema_module']\n    path = check_source_descriptor(root, row)\n    raw = path.read_bytes()\n    if len(raw) != row['size'] or hashlib.sha256(raw).hexdigest() != row['sha256']:\n        raise ValueError('schema changed between descriptor and read')\n    name = '_phase391_terminal_schema_' + row['sha256']\n    if name in sys.modules:\n        raise ValueError('terminal schema already loaded; no cached foreign module')\n    module = ModuleType(name)\n    module.__file__ = str(path)\n    sys.modules[name] = module\n    try:\n        exec(compile(raw, str(path), 'exec'), module.__dict__)\n        if (module.VERSION, module.PROFILE, module.TERMINAL_POLICY) != (OBSERVER_VERSION, OBSERVER_PROFILE, TERMINAL_POLICY):\n            raise ValueError('actual executed terminal module version')\n        for api in ('validate_terminal_evidence', 'validate_terminal_receipt', 'validate_terminal_diagnostics'):\n            if getattr(module.schema, api) is not getattr(module, api):\n                raise ValueError('actual module export/delegate identity')\n        return module\n    finally:\n        del sys.modules[name]\n\n\ndef read_terminal_expected_controls(source_root, freeze, capture):\n    \"\"\"Direct actual schema join; twelve lawful names remain unchanged, no model output.\"\"\"\n    module = load_terminal_schema(source_root, freeze)\n    identities = {}\n    def bounded(name, limit):\n        path = member(capture, name)\n        info = path.lstat()\n        import stat\n        if not stat.S_ISREG(info.st_mode) or info.st_nlink != 1 or info.st_size > limit:\n            raise ValueError('bounded ordinary expected/control leaf required: ' + name)\n        raw = path.read_bytes()\n        if len(raw) != info.st_size or len(raw) > limit:\n            raise ValueError('control read size drift')\n        identities[name] = dict(size=len(raw), sha256=hashlib.sha256(raw).hexdigest())\n        return raw.decode('utf-8')\n    def obj(name, limit=1048576):\n        value = module.strict_json_loads(bounded(name, limit))\n        if type(value) is not dict:\n            raise ValueError('actual expected/control object')\n        return value\n    def rows(name, limit, row_cap, row_bytes):\n        text = bounded(name, limit)\n        if not text.endswith('\\n'):\n            raise ValueError('complete physical JSONL newline required')\n        lines = text.splitlines()\n        if not 1 <= len(lines) <= row_cap or any(not line or len(line.encode('utf-8')) + 1 > row_bytes for line in lines):\n            raise ValueError('bounded nonblank physical JSONL rows')\n        return [module.strict_json_loads(line) for line in lines]\n    endpoint = obj('king-capture-endpoint.json')\n    receipt = obj('observer7-status.json')\n    validation = obj('validation.json')\n    header = obj('king-clock-checkpoint.json')\n    module.exact(header, ('schema', 'lineage', 'environment', 'checkpoint'))\n    passes = rows('king-clock-passes.jsonl', 67108864, module.MAX_PASSES, 1048576)\n    clock = module.decode_clock(dict(header, passes=passes))\n    diagnostics = rows('source-window-diagnostic.jsonl', 1048576, 64, 262144)\n    control = module.schema.validate_terminal_diagnostics(diagnostics)\n    proof = module.schema.validate_terminal_receipt(endpoint, clock, receipt, control, validation)\n    if diagnostics[-1]['clock_passes'] != proof['passes']:\n        raise ValueError('FINALIZED header/full actual clock mismatch')\n    return dict(schema='phase391-host-terminal-control-proof/1', proof=proof, source_schema=freeze['schema_module'],\n                source_tuple=freeze['active_source_tuple'], files=identities, expected_control_only=True,\n                model_calls=0, input_bundle_created=False)\n\ndef main():\n",
+      "after_positions": [
+        23604
+      ],
+      "before": "\ndef main():\n",
+      "occurrences": 1
+    }
+  ],
+  "inverse": "EXACT_COMPLETE_BYTES"
+}

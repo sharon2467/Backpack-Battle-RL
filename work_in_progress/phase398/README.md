@@ -1,0 +1,5 @@
+# Source physical-before-read and reader owner-bootstrap repair
+
+This immutable398version repairs only396F01andF02:recovery source descriptors pass pure shape/canonical path and unchanged regular_target before any content hash; reader bootstrap routes its fixed source-owner descriptor through its existing strict verify_descriptor before reading. Templates and generated consumers agree. Eleven recovery and ten reader safety methods are conserved; full byte inverse and433ordinary-source leaf pins passed.
+
+The original395map68985B and524pins102475B are reused at their actual original paths/hashes, with the original map schema. No map generation, saved helper/SUT/reader import, actualcapture/livepool/proc, restoration,READY,Godot/model or newnative occurred during398Source preparation. NewRoot/review/physical authority versions are separate and must be actually accepted before any operation. Add source/repo after main recovery and previous flat supplements;395and396failure evidence stay immutable.

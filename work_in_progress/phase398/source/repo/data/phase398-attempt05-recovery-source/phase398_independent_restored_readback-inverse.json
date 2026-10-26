@@ -1,0 +1,170 @@
+{
+  "after": {
+    "path": "tests/phase398_independent_restored_readback.py",
+    "sha256": "4887e63ddae5ee9008a2073df1c23743b8a2e47fa58d925c454a024546682bac",
+    "size": 33042
+  },
+  "before": {
+    "path": "tests/phase395_independent_restored_readback.py",
+    "sha256": "25aa33b1db96d7a40d0ea6072744e03db6b00cb93a295abbedc58b7cd77b42e3",
+    "size": 33006
+  },
+  "byte_inverse": "EXACT_COMPLETE_BYTES",
+  "changed_functions": [
+    "main",
+    "prepare_contract"
+  ],
+  "conserved_functions": [
+    "attempt05_process_controls",
+    "audit",
+    "canonical",
+    "counts",
+    "desc",
+    "inventory",
+    "pin",
+    "read",
+    "require",
+    "save",
+    "verify_capsule385",
+    "verify_complete_saved_contract",
+    "verify_descriptor",
+    "verify_overlay_archive"
+  ],
+  "edits": [
+    {
+      "after": "    owner_descriptor=dict(path=str((SD/'source-owner.json').relative_to(R)),size=args.source_owner_size,sha256=args.source_owner_sha256)\n    owner_path=verify_descriptor(R,owner_descriptor)\n    owner=read(owner_path)",
+      "before": "    require(pin(SD/'source-owner.json')==dict(size=args.source_owner_size,sha256=args.source_owner_sha256),'actual frozen readback Source owner pin')\n    owner=read(SD/'source-owner.json')",
+      "kind": "semantic",
+      "positions": [
+        6992
+      ]
+    },
+    {
+      "after": "physical398 complete-install",
+      "before": "physical395 complete-install",
+      "kind": "protocol",
+      "positions": [
+        13
+      ]
+    },
+    {
+      "after": "data/phase398-independent-actual-readback-first-001",
+      "before": "data/phase395-independent-actual-readback-first-001",
+      "kind": "protocol",
+      "positions": [
+        343
+      ]
+    },
+    {
+      "after": "data/phase398-independent-readback-source",
+      "before": "data/phase395-independent-readback-source",
+      "kind": "protocol",
+      "positions": [
+        402
+      ]
+    },
+    {
+      "after": "INDEPENDENT398_ATTEMPT05_RESTORED_POOL_EXACT_TARGET_READBACK_PASS",
+      "before": "INDEPENDENT395_ATTEMPT05_RESTORED_POOL_EXACT_TARGET_READBACK_PASS",
+      "kind": "protocol",
+      "positions": [
+        529
+      ]
+    },
+    {
+      "after": "phase398-root-pool-recovery/1",
+      "before": "phase395-root-pool-recovery/1",
+      "kind": "protocol",
+      "positions": [
+        7841
+      ]
+    },
+    {
+      "after": "ROOT exact398 restore-only source",
+      "before": "ROOT exact395 restore-only source",
+      "kind": "protocol",
+      "positions": [
+        7959
+      ]
+    },
+    {
+      "after": "exact398 API readback status",
+      "before": "exact395 API readback status",
+      "kind": "protocol",
+      "positions": [
+        8358
+      ]
+    },
+    {
+      "after": "actual398 recovery SOURCE accepted closure",
+      "before": "actual395 recovery SOURCE accepted closure",
+      "kind": "protocol",
+      "positions": [
+        9492
+      ]
+    },
+    {
+      "after": "phase398-independent-physical-readback/1",
+      "before": "phase395-independent-physical-readback/1",
+      "kind": "protocol",
+      "positions": [
+        20604
+      ]
+    },
+    {
+      "after": "BLOCKED_INDEPENDENT398_RESTORED_POOL_READBACK",
+      "before": "BLOCKED_INDEPENDENT395_RESTORED_POOL_READBACK",
+      "kind": "protocol",
+      "positions": [
+        20694
+      ]
+    },
+    {
+      "after": "phase398-independent-readback-owner/1",
+      "before": "phase395-independent-readback-owner/1",
+      "kind": "protocol",
+      "positions": [
+        21833
+      ]
+    },
+    {
+      "after": "docs/phase398_source_leaf_before_read_and_reader_owner_bootstrap_spec.md",
+      "before": "docs/phase395_complete_restore_source_implementation_addendum.md",
+      "kind": "protocol",
+      "positions": [
+        21671
+      ]
+    },
+    {
+      "after": "tests/phase398_independent_restored_readback.py",
+      "before": "tests/phase395_independent_restored_readback.py",
+      "kind": "protocol",
+      "positions": [
+        21748
+      ]
+    }
+  ],
+  "protocol_only_functions": [
+    "main"
+  ],
+  "semantic_changed_functions": [
+    "prepare_contract"
+  ],
+  "semantically_conserved_functions": [
+    "attempt05_process_controls",
+    "audit",
+    "canonical",
+    "counts",
+    "desc",
+    "inventory",
+    "main",
+    "pin",
+    "read",
+    "require",
+    "save",
+    "verify_capsule385",
+    "verify_complete_saved_contract",
+    "verify_descriptor",
+    "verify_overlay_archive"
+  ]
+}

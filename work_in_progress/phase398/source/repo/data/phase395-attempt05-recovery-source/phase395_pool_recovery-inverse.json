@@ -1,0 +1,107 @@
+{
+  "added_functions": [
+    "recovery_source_leaf",
+    "recovery_source_owner",
+    "validate_terminal_component_context"
+  ],
+  "after": {
+    "path": "tests/phase395_pool_recovery.py",
+    "sha256": "208e09fbd93d03a83b82d3af14e4efa5a8eba9626d9ff1a60afecbc5ea391ca3",
+    "size": 20754
+  },
+  "before": {
+    "path": "tests/phase375_pool_recovery_v2.py",
+    "sha256": "d6aa6c9823e89359905f5c97240d827faf825d39fed6cd9e7158e08c7c9f5ec4",
+    "size": 16980
+  },
+  "changed_functions": [
+    "source_gate",
+    "verify_evidence"
+  ],
+  "conserved_functions": [
+    "actual_targets",
+    "check_failed_state",
+    "check_roots",
+    "commit_ready",
+    "directory_metadata",
+    "evidence_path",
+    "locked_pool",
+    "main",
+    "recover",
+    "require",
+    "restore_exact"
+  ],
+  "edits": [
+    {
+      "after": "from phase375_oracle_host import descriptor, verify_owner\nfrom phase395_saved_complete_evidence import validate_complete_saved\n\nSOURCE = 'data/phase395-attempt05-recovery-source'\nREVIEW_STATUS = 'INDEPENDENT396_ATTEMPT05_COMPLETE_RECOVERY_SOURCE_ACCEPTED_ROOT_PENDING'",
+      "before": "from phase375_oracle_host import descriptor, verify_owner, REVIEW_STATUS, SOURCE",
+      "positions": [
+        361
+      ]
+    },
+    {
+      "after": "data/phase395-attempt05-recovery-source/map/restore-map.json",
+      "before": "data/phase375-attempt03-recovery-source-v2/restore-map.json",
+      "positions": [
+        638
+      ]
+    },
+    {
+      "after": "data/phase395-attempt05-recovery-source/map/source-input-pins.json",
+      "before": "data/phase375-attempt03-recovery-source-v2/source-input-pins.json",
+      "positions": [
+        714
+      ]
+    },
+    {
+      "after": "INDEPENDENT395_ATTEMPT05_RESTORED_POOL_EXACT_TARGET_READBACK_PASS",
+      "before": "INDEPENDENT375_RESTORED_POOL_EXACT_TARGET_READBACK_PASS",
+      "positions": [
+        801
+      ]
+    },
+    {
+      "after": "def source_gate(source_root, config_descriptor, action):\n    root = directory(source_root)\n    config = read(recovery_source_leaf(root, config_descriptor))\n    require(config.get('schema') == 'phase395-root-pool-recovery/1' and config.get('action') == action and action in ('restore','commit_ready'), 'separate exact395 recovery action')\n    require(config.get('root_'+action+'_authorized') is True, 'explicit Root action required')\n    require(all(type(config.get(k)) is int and config[k] == 0 for k in ('native_allowed','models_allowed','projection_allowed')), 'strictINT0 non-recovery permissions')\n    freeze_path = recovery_source_leaf(root, config['source_freeze'])\n    require(config['source_freeze']['path'] == SOURCE+'/combined-source-freeze.json', 'separate395 recovery freeze')\n    freeze = read(freeze_path)\n    require(freeze.get('schema') == 'phase395-complete-install-recovery-SOURCE/1', 'closed complete-install SOURCE family')\n    declared = {}\n    for row in freeze['files']:\n        require(row['path'] not in declared, 'unique recovery freeze leaves')\n        recovery_source_leaf(root, row); declared[row['path']] = row\n    leaves = recovery_source_owner(root, config['source_owner'])\n    require(leaves.get(str(Path(__file__).absolute().relative_to(root))) == pin(Path(__file__)) and leaves.get(config['source_freeze']['path']) == pin(freeze_path), 'owner covers executing recovery and its freeze')\n    for row in freeze['import_closure']:\n        require(declared.get(row['path']) == row and leaves.get(row['path']) == {k:row[k] for k in ('size','sha256')}, 'all actual import sources owned/frozen')\n    reviews = config.get('reviews')\n    require(type(reviews) is list and bool(reviews), 'independent396 recovery SOURCE review required')\n    for review in reviews:\n        path = recovery_source_leaf(root, review['receipt']); owned = recovery_source_owner(root, review['owner']); value = read(path)\n        require(owned.get(review['receipt']['path']) == pin(path) and value.get('status') == REVIEW_STATUS and value.get('source_freeze') == config['source_freeze'], 'actual owned396 recovery SOURCE closure')\n        require(all(type(value.get(k)) is int and value[k] == 0 for k in ('native','models')), 'recovery SOURCE review grants no native/model')\n    for key,name in (('restore_map',MAP),('input_pins',INPUT_PINS)):\n        require(config.get(key) == declared.get(name) and config[key]['path'] == name, 'exact actual map/input binding')\n    context = freeze['terminal_component_context']\n    require(config.get('terminal_component_context') == context and declared.get(context['path']) == context, 'Root/freeze actual component context descriptor')\n    validate_terminal_component_context(root, context)\n    if action == 'commit_ready':\n        recovery_source_leaf(root, config['restore_receipt'])\n        recovery_source_leaf(root, config['independent_readback']['receipt'])\n        recovery_source_owner(root, config['independent_readback']['owner'])\n    return root,config\n",
+      "before": "def source_gate(source_root, config_descriptor, action):\n    root=directory(source_root); config=read(descriptor(root,config_descriptor))\n    require(config.get('schema')=='phase375-root-pool-recovery/1' and config.get('action')==action,\n            'separate exact root recovery action')\n    require(config.get('root_'+action+'_authorized') is True, 'explicit root action required')\n    require(all(type(config.get(k)) is int and config[k]==0 for k in\n        ('native_allowed','models_allowed','projection_allowed')), 'strictINT0 non-recovery permissions')\n    freeze_path=descriptor(root,config['source_freeze'])\n    require(config['source_freeze']['path']==SOURCE+'/combined-source-freeze.json','exact365 SOURCE freeze')\n    freeze=read(freeze_path)\n    for row in freeze['files']: descriptor(root,row)\n    leaves=verify_owner(root,config['source_owner'])\n    require(leaves.get(str(Path(__file__).absolute().relative_to(root)))==pin(Path(__file__)) and\n        leaves.get(config['source_freeze']['path'])==pin(freeze_path),'owned executing recovery and freeze')\n    reviews=config.get('reviews')\n    require(type(reviews) is list and bool(reviews),'actual independent SOURCE review required')\n    for review in reviews:\n        receipt=descriptor(root,review['receipt']); owned=verify_owner(root,review['owner']); value=read(receipt)\n        require(owned.get(review['receipt']['path'])==pin(receipt) and value.get('status')==REVIEW_STATUS and\n            value.get('source_freeze')==config['source_freeze'],'owned actual reviewed365 closure')\n        require(all(type(value.get(k)) is int and value[k]==0 for k in ('native','models')),'review zero native/models')\n    require(config.get('restore_map')==next(row for row in freeze['files'] if row['path']==MAP), 'exact map binding')\n    require(config.get('input_pins')==next(row for row in freeze['files'] if row['path']==INPUT_PINS), 'exact input evidence binding')\n    return root,config\n",
+      "positions": [
+        1267
+      ]
+    },
+    {
+      "after": "\n\"\"\"New recovery gate only; complete-install mutator stays the frozen375 algorithm.\"\"\"\n\n\ndef recovery_source_leaf(root, row):\n    path = descriptor(root, row)\n    regular_target(path)\n    return path\n\n\ndef recovery_source_owner(root, row):\n    path = recovery_source_leaf(root, row)\n    value = read(path)\n    rows = value['files']\n    require(type(rows) is list and bool(rows), 'nonempty actual owner')\n    result = {}\n    for leaf in rows:\n        require(leaf['path'] not in result, 'unique owned source leaves')\n        result[leaf['path']] = pin(recovery_source_leaf(root, leaf))\n    return result\n\n\ndef validate_terminal_component_context(root, context_descriptor):\n    context = read(recovery_source_leaf(root, context_descriptor))\n    require(context.get('schema') == 'root391-bounded-component-context/1' and\n            context.get('status') == 'ROOT_391_BOUNDED_COMPONENT_ACCEPTED_LANGUAGE_AND_NATIVE_PENDING', 'real bounded component Root context')\n    for key in ('READY_allowed','inputbuilds_allowed','models','native','restore_allowed'):\n        require(type(context.get(key)) is int and context[key] == 0, 'component context grants no operations')\n    sf = recovery_source_leaf(root, context['source_freeze'])\n    so = recovery_source_owner(root, context['source_owner'])\n    require(so.get(context['source_freeze']['path']) == pin(sf), 'owned actual391 freeze')\n    freeze = read(sf)\n    require(freeze['active_source_tuple'] == context['source_tuple'], 'actual391 terminal tuple context')\n    recovery_source_leaf(root, context['source_tuple'])\n    review_path = recovery_source_leaf(root, context['independent_review'])\n    owned = recovery_source_owner(root, context['independent_owner'])\n    review = read(review_path)\n    require(owned.get(context['independent_review']['path']) == pin(review_path) and\n            review.get('status') == 'INDEPENDENT392_FIRST_ELIGIBLE_IDLE_SOURCE_ACCEPTED_ROOT_PENDING' and\n            review.get('source_freeze') == context['source_freeze'], 'owned real392 reviewed391 component')\n    require(all(type(review.get(key)) is int and review[key] == 0 for key in ('native','models')), 'bounded component zero native/model')\n    return context\n\n\n\ndef main():\n",
+      "before": "\ndef main():\n",
+      "positions": [
+        17453
+      ]
+    },
+    {
+      "after": "phase395-attempt05-complete-restore-source-map/1",
+      "before": "phase375-attempt03-exact-restore-source-map/1",
+      "positions": [
+        5905
+      ]
+    },
+    {
+      "after": "attempt05-installed-failed-pool-preservation/1",
+      "before": "attempt03-failed-pool-preservation/1",
+      "positions": [
+        5983
+      ]
+    },
+    {
+      "after": "    for row in input_pins['files']: evidence_path(roots,row)\n    completed=validate_complete_saved(roots)\n    require(input_pins.get('schema')=='phase395-attempt05-saved-control-pins/1' and input_pins['files']==completed['files'] and mapping.get('complete_install')==completed['summary'],'complete saved evidence ledger/association/counts')",
+      "before": "    for row in input_pins['files']: evidence_path(roots,row)",
+      "positions": [
+        5738
+      ]
+    },
+    {
+      "after": "complete manifest-derived file/directory differences",
+      "before": "complete exact78/7 differences",
+      "positions": [
+        9164
+      ]
+    }
+  ],
+  "inverse": "EXACT_BYTES"
+}
