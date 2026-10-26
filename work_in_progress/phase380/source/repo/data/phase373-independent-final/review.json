@@ -1,0 +1,184 @@
+{
+  "status": "BLOCKED373_SELECTED_INHERITED_FOOD_PREPARE_HOOK_UNDECLARED",
+  "finding": {
+    "path": "data/phase373-independent-attempt03-triage-v2/finding.json",
+    "size": 4145,
+    "sha256": "c81b85232acb8b172cf4d7a8489f152c95a4ed706b7b5e2adb15686645accd5b"
+  },
+  "direct_control_evidence": {
+    "parse-process-result.json": {
+      "exit_code": 0,
+      "duration_seconds": 2.5538246460055234,
+      "process_clean_exit": true,
+      "timed_out": false,
+      "cleanup": {
+        "after": [
+          {
+            "live": false,
+            "pid": 17749,
+            "state": "Z"
+          }
+        ],
+        "before": [
+          {
+            "live": false,
+            "pid": 17749,
+            "state": "Z"
+          }
+        ],
+        "duration_seconds": 0.009299944002123084,
+        "kill_grace_seconds": 0.5,
+        "kill_sent": false,
+        "leader_returncode": 0,
+        "live_remaining": [],
+        "pgid": 17739,
+        "term_grace_seconds": 5.0,
+        "term_sent": true,
+        "zombies_not_claimed_reaped": [
+          17749
+        ]
+      },
+      "parse_only": true
+    },
+    "native-process-result.json": {
+      "exit_code": 2,
+      "duration_seconds": 21.448831558001984,
+      "process_clean_exit": false,
+      "timed_out": false,
+      "cleanup": {
+        "after": [
+          {
+            "live": false,
+            "pid": 17808,
+            "state": "Z"
+          }
+        ],
+        "before": [
+          {
+            "live": false,
+            "pid": 17808,
+            "state": "Z"
+          }
+        ],
+        "duration_seconds": 0.008681269995577168,
+        "kill_grace_seconds": 0.5,
+        "kill_sent": false,
+        "leader_returncode": 2,
+        "live_remaining": [],
+        "pgid": 17798,
+        "term_grace_seconds": 5.0,
+        "term_sent": true,
+        "zombies_not_claimed_reaped": [
+          17808
+        ]
+      },
+      "parse_only": false
+    },
+    "observer_failure": {
+      "schema": "observer7-failure/1",
+      "code": "SOURCE_UNKNOWN_SELECTED_HOOK",
+      "site": "Items/Food.gd::prepare",
+      "sequence": 159,
+      "detail": null,
+      "capture_complete": false
+    },
+    "collector_failure": {
+      "schema": "phase362-failure/1",
+      "code": "observer7 durable failure; stopped by existing idle driver",
+      "stage": "combat_wait",
+      "cut_frozen": false,
+      "capture_complete": false
+    },
+    "lawful_inputs_missing": [
+      "observer7-primitives.jsonl",
+      "king-clock-checkpoint.json",
+      "king-clock-passes.jsonl",
+      "king-input-facts.json"
+    ],
+    "lawful_inputs_present": [
+      "fixture.json",
+      "king-rng-checkpoint.json",
+      "king-slot-bindings.json",
+      "king-ui-authority.jsonl",
+      "observer7-input.jsonl",
+      "observer7-lineage.jsonl",
+      "observer7-metadata.jsonl",
+      "player_fixture.json"
+    ]
+  },
+  "source_derived": {
+    "frozen75_paths_all_sha_verified": true,
+    "literal_emitted_sites": 200,
+    "sink_declared_sites": 106,
+    "schema_declared_sites": 106,
+    "selected_ancestor_literal_sites": 38,
+    "selected_emitted_not_declared": [
+      "Items/Food.gd::prepare"
+    ],
+    "all_emitted_not_declared": 94,
+    "fixed_selected_ids": [
+      1,
+      4,
+      11,
+      19,
+      22,
+      262
+    ],
+    "actual_source_itemIndex_policy": "ItemBook reads CSV id, not row position. id22 is Blueberries, extends Food.",
+    "fixed_selected_food_roles": [
+      "P:13",
+      "P:14",
+      "P:15",
+      "P:17",
+      "O:13",
+      "O:14",
+      "O:15",
+      "O:17"
+    ],
+    "dispatch": "Entry invokes source_observable after source_fixture_bound. Unknown SITES on selected native ID writes SOURCE_UNKNOWN_SELECTED_HOOK and false; entry returns; original Food method then delegates Item.prepare and adds getNumAffectedItems()*0.1 speed. fail() guards subsequent observer writes, not the original GD body.",
+    "schema_consequence": "Food site is absent in both sink SITES and360 MATRIX. Adding sink only leaves downstream schema undeclared-site rejection; coordinated exact SOURCE delta required.",
+    "original_preserved": "Removing two Food observer calls yields original SOURCE bytes plus one extra trailing LF; all business statements identical.",
+    "ancestry_supplement": {
+      "path": "data/phase373-independent-final/ancestry-source-supplement.json",
+      "size": 910,
+      "sha256": "d7f9929c56712c03e097cdf7300a1ffdb73dd0b6417d5de4d7edb4b035907953"
+    },
+    "unselected_difference_scope": "Other93 missing hooks are outside selected ancestor files; not admitted, not runtime HIT and not a claim about arbitrary item closure."
+  },
+  "evidence_boundaries": {
+    "failure_nativeID_or_role_recorded": false,
+    "failure_sequence": "observer counter159, not event ordinal or coverage count",
+    "runtime_registration_player_cachedfields_semantics_read": false,
+    "lawful_payload_semantics_used_as_expected": false,
+    "missing_payload_reconstructed": false,
+    "battle_positive": false,
+    "complete12positive": false,
+    "terminal_or_fullsnapshot_accepted": false,
+    "earlypartial_initialization": "present files do not authorize accepted inputbuild or King native admission"
+  },
+  "minimum_repair": [
+    "Declare exact Items/Food.gd::prepare runtime/item entry empty arguments and implicit NIL return in sink/schema/source matrix; original Food inheritance and speed calculation stay byte/statement conserved.",
+    "Retain strict selected-ID/unknown-hook failclosed; no wildcard skip, no fixture/seed change.",
+    "Source-only emitted-selected-family table/record conformance regression before any separate Root retry/restore gate.",
+    "No need to add all94 domain-external hooks to this fixed-A profile."
+  ],
+  "actual_analysis_runs": {
+    "readonly_static_analysis": 2,
+    "v1_exit": 1,
+    "v2_exit": 0,
+    "v1_failure": "auxiliary exact byte inverse assumed no extra terminal LF; source statements were conserved. First tool/file/diff retained.",
+    "successful_semantic_SUT_controls_repeated": 0,
+    "stderr_preservation": "first error stderr file is explicitly a traceback transcription from tool result, not claimed separately redirected raw stream"
+  },
+  "native": 0,
+  "models": 0,
+  "Godot_probes": 0,
+  "candidate_imports": 0,
+  "projection_builds": 0,
+  "restores": 0,
+  "READY_changes": 0,
+  "pool_writes": 0,
+  "expected_semantics_read": false,
+  "scope": "Independent readonly control/SOURCE triage only; native356 and input361 gates remain CLOSED/PENDING. Formal75 unchanged; no next attempt authorized by this review.",
+  "no_more_writes": true
+}
