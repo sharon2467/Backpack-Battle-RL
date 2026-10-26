@@ -1,0 +1,21 @@
+{
+  "schema": "independent402-binding-association-failure/1",
+  "status": "STOPPED_BEFORE_SUT_IMPORT_OR_CALL",
+  "failed_script": "tests/phase402_bind_completed_control_execution.py",
+  "line": 101,
+  "exit_code": 1,
+  "assertion": "all(p[k] == v for k, v in monitor.items())",
+  "case": "A05 parse saved monitor/process association",
+  "cause_not_yet_investigated": true,
+  "pre_failure_completed_checks": ["Root release and completed host identity", "23 metadata exact byte pins", "6 control byte pins", "196 source/driver-map/archive byte associations", "source archive-before-process static call ordering", "partition success controls", "33 opaque capture identities", "12 lawful byte identities", "7 opaque log identities"],
+  "no_acceptance_claim": true,
+  "automatic_retry": false,
+  "SUT_imports": 0,
+  "terminal_helper_calls": 0,
+  "native": 0,
+  "models": 0,
+  "inputbuild": 0,
+  "current_pool_reads": 0,
+  "new_proc_scans": 0,
+  "next_action": "Await Root; preserve exact failing binder and trace."
+}

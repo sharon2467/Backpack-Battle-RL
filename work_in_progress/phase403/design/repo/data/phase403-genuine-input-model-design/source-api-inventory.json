@@ -1,0 +1,911 @@
+{
+  "extraction": "ast.parse source text only; no import, exec, compile or SUT call",
+  "function_count": 90,
+  "modules": [
+    {
+      "functions": [
+        {
+          "end_line": 71,
+          "line": 62,
+          "name": "_read_pinned",
+          "sha256": "fb139857f559e84d43d72a7e343e1838553d2180d3f8c52435b3ae7b0f87d89e",
+          "signature": "(root, row)",
+          "size": 460
+        },
+        {
+          "end_line": 85,
+          "line": 74,
+          "name": "_verify_source_controls",
+          "sha256": "c9a3df0d79a5d7636c57620c7cf418085fa1babf7e537c9de0d31214ecb5579e",
+          "signature": "(source_root)",
+          "size": 650
+        },
+        {
+          "end_line": 92,
+          "line": 88,
+          "name": "_require_future_capture_closure",
+          "sha256": "42c1ada3f0f69c894f24b19b2d3d1c7da844ba3b983f392441c680c7633be9b8",
+          "signature": "()",
+          "size": 388
+        },
+        {
+          "end_line": 105,
+          "line": 95,
+          "name": "_validate_sources",
+          "sha256": "ea009f7eb4defe6be59a59e1d2da6756b3977772376f405b0996c01fe3bffcf7",
+          "signature": "(source_bytes, aliases=None)",
+          "size": 666
+        },
+        {
+          "end_line": 134,
+          "line": 108,
+          "name": "read_and_validate_sources",
+          "sha256": "cbe8442b5700c4cafc823bdf2caff3f37850f60274925d54281c3aeae1310b59",
+          "signature": "(source_root, lawful_dir, release_descriptor)",
+          "size": 1702
+        },
+        {
+          "end_line": 267,
+          "line": 174,
+          "name": "project_fixture_and_runtime",
+          "sha256": "a9522f4337c88fe0673d5c92a61b6887250e6878b535d640dbe3a5a26b220039",
+          "signature": "(source_bytes, aliases)",
+          "size": 6708
+        },
+        {
+          "end_line": 299,
+          "line": 270,
+          "name": "_primitive_projection",
+          "sha256": "7043e7c2924b249bbd013bc218e90fb3af98b9e21319eaa8d73eefc951e2b094",
+          "signature": "(row)",
+          "size": 1379
+        },
+        {
+          "end_line": 336,
+          "line": 326,
+          "name": "project_primitives",
+          "sha256": "6a0d6b2fda8865ee750a7262add3e6c0d0dc679fe0c4682d7d51c0c0e45e8a8b",
+          "signature": "(source_bytes, aliases)",
+          "size": 712
+        },
+        {
+          "end_line": 405,
+          "line": 351,
+          "name": "seal_once",
+          "sha256": "86639ce6ab329c75cc2f350790f1bada142a56d2e8a9ded5e77c0efa91625ba2",
+          "signature": "(bundle, proof, before, output_dir, source_root)",
+          "size": 3402
+        }
+      ],
+      "module": {
+        "path": "tests/phase361_king_projection_sealer.py",
+        "sha256": "4f840a2f3a9e04d4d6f646e8490b0e60545a79bf0f0e8b091dee4b6147bc5bb3",
+        "size": 26582
+      },
+      "top_level_imports": [
+        "import hashlib",
+        "import json",
+        "import os",
+        "from copy import deepcopy",
+        "from pathlib import Path, PurePosixPath",
+        "import phase360_king_observer_schema as schema"
+      ]
+    },
+    {
+      "functions": [
+        {
+          "end_line": 809,
+          "line": 801,
+          "name": "validate_single_king_fixture",
+          "sha256": "e2b0229dc2204756599ee708c01f915a0749127ebcf49b778e6df50f766a7ffb",
+          "signature": "(fixture)",
+          "size": 730
+        },
+        {
+          "end_line": 945,
+          "line": 920,
+          "name": "_single_king_rng_checkpoint",
+          "sha256": "17d445bf6a165db0fa3ef1f40e81f55561e15ce93c0a2f4ea3b92b2d059ce22a",
+          "signature": "(data, records)",
+          "size": 3101
+        },
+        {
+          "end_line": 1043,
+          "line": 997,
+          "name": "validate_single_king_fresh_facts",
+          "sha256": "b10eb26414d46b610a87bf0e4861edb835732107b22b81850778a5bd1d68c1ab",
+          "signature": "(facts)",
+          "size": 4976
+        },
+        {
+          "end_line": 1048,
+          "line": 1047,
+          "name": "validate_single_king_ui_authority",
+          "sha256": "cd58d6f0a9fd4788985ea32446a38089d9f1d40b51a046c25a92f0856463ad4f",
+          "signature": "(rows)",
+          "size": 110
+        },
+        {
+          "end_line": 1085,
+          "line": 1069,
+          "name": "validate_single_king_source_defaults",
+          "sha256": "409e4f2cefc755a6a9fd9d9d3b25bba9d5fab68b4b0074aeea6c571cb35a51e5",
+          "signature": "(pre, act)",
+          "size": 1167
+        },
+        {
+          "end_line": 1164,
+          "line": 1089,
+          "name": "validate_single_king_input_provenance",
+          "sha256": "ab072c80e433904307fbbb7604491198b642f9651314c19d54d3d868605cfc82",
+          "signature": "(ui_rows, rng_checkpoint, input_records, lineage_records, facts, clock)",
+          "size": 5145
+        },
+        {
+          "end_line": 1288,
+          "line": 1230,
+          "name": "decode_clock",
+          "sha256": "000643507ca7c370b0800bfcfe249f10e38680c5088090376a056cbd34425c70",
+          "signature": "(carrier)",
+          "size": 3161
+        },
+        {
+          "end_line": 1709,
+          "line": 1704,
+          "name": "decode_sources",
+          "sha256": "0b1126ecfbae0318d189e32acbc1997dea1bc8e814a0e2287a73df8487f6f847",
+          "signature": "(raw_by_name)",
+          "size": 200
+        },
+        {
+          "end_line": 1757,
+          "line": 1712,
+          "name": "validate_source_carriers",
+          "sha256": "8d6ba088285386e29a0da1e32af1fe5f8b431a568852fad3d9561f95676ecd0e",
+          "signature": "(raw_by_name)",
+          "size": 3311
+        },
+        {
+          "end_line": 1779,
+          "line": 1760,
+          "name": "validate_observation_records",
+          "sha256": "f789c4e069ac6a666e2f37f4b36368c0990e67fd50c4c12b70290bfa5ed1523e",
+          "signature": "(records, source_identity)",
+          "size": 1245
+        },
+        {
+          "end_line": 1878,
+          "line": 1826,
+          "name": "validate_terminal_evidence",
+          "sha256": "ccb478a700926a03d4636349d8d21e444518167880d460cdfc606d7025787b6d",
+          "signature": "(endpoint, clock, cleanup)",
+          "size": 3240
+        },
+        {
+          "end_line": 1939,
+          "line": 1890,
+          "name": "validate_terminal_receipt",
+          "sha256": "837b52cdb9a03e311082f864871a7c81bc8cb66bc8e96cc111a6db7da62c2b51",
+          "signature": "(endpoint, clock, receipt, control, validation)",
+          "size": 3620
+        },
+        {
+          "end_line": 1991,
+          "line": 1942,
+          "name": "validate_terminal_diagnostics",
+          "sha256": "4b57d5b1bce4e64e9dd48a5a1134b00c92fff0da420457abb213602c856af42b",
+          "signature": "(rows)",
+          "size": 3799
+        },
+        {
+          "end_line": 2380,
+          "line": 2362,
+          "name": "validate_sources_with_binding",
+          "sha256": "065c908788a95aacb75e60d05aa9ae7261a309457f2a219b57265a72e4292d6a",
+          "signature": "(raw11, binding_bytes, source_contract)",
+          "size": 1560
+        }
+      ],
+      "module": {
+        "path": "tests/phase391_king_observer_schema.py",
+        "sha256": "ffcddfd2cbe58307f7258c1aefad5586a9179c6c452dc59c3342f9047f31457c",
+        "size": 208243
+      },
+      "top_level_imports": [
+        "import hashlib, json, math, re, struct",
+        "from copy import deepcopy",
+        "from dataclasses import dataclass",
+        "from types import SimpleNamespace"
+      ]
+    },
+    {
+      "functions": [
+        {
+          "end_line": 199,
+          "line": 191,
+          "name": "timer_check",
+          "sha256": "c166766869ed9513f7f1ea360c0ed246e0ad5d76b462469e973b5a1e20e89455",
+          "signature": "(c)",
+          "size": 797
+        },
+        {
+          "end_line": 224,
+          "line": 202,
+          "name": "terminal_check",
+          "sha256": "fed8b97c92453edc5cb09b7674dd1898426382bc19c95585e8658cc2aeb6f6dd",
+          "signature": "(c)",
+          "size": 2546
+        }
+      ],
+      "module": {
+        "path": "tests/phase351_independent_check_pure.py",
+        "sha256": "7b7c57385c0b291f4e303feaea980058290e5d19a348044a10282d13846c7b0b",
+        "size": 37352
+      },
+      "top_level_imports": [
+        "from pathlib import Path",
+        "from copy import deepcopy",
+        "import argparse",
+        "import gc",
+        "import gzip",
+        "import hashlib",
+        "import importlib.util",
+        "import json",
+        "import math",
+        "import os",
+        "import struct",
+        "import sys",
+        "import sysconfig",
+        "import traceback"
+      ]
+    },
+    {
+      "functions": [
+        {
+          "end_line": 146,
+          "line": 75,
+          "name": "validate_profile",
+          "sha256": "6ffe294c71ddb5b4501031a4a4a34bc680b659bfb88a31713081fe60dfc5c4ef",
+          "signature": "(data, fixture)",
+          "size": 4614
+        },
+        {
+          "end_line": 217,
+          "line": 148,
+          "name": "validate_result_profile",
+          "sha256": "7ae8b043dcc106c5b76c18714d07974ca77cf0faf4043f02601979c4917fe95a",
+          "signature": "(runtime, fixture)",
+          "size": 4608
+        },
+        {
+          "end_line": 235,
+          "line": 219,
+          "name": "observer_label",
+          "sha256": "2d8aff7cd498f05cf385037bf6011fab90f49ac1fdb24592f0a2fef299f3e597",
+          "signature": "(data)",
+          "size": 1689
+        },
+        {
+          "end_line": 458,
+          "line": 269,
+          "name": "validate_patch",
+          "sha256": "e267d7e39084fc116331d8547fa2c7f92963c241959605153eb0848c736ab412",
+          "signature": "(report, diff)",
+          "size": 13344
+        },
+        {
+          "end_line": 695,
+          "line": 687,
+          "name": "validate_single_king_fixture",
+          "sha256": "e2b0229dc2204756599ee708c01f915a0749127ebcf49b778e6df50f766a7ffb",
+          "signature": "(fixture)",
+          "size": 730
+        },
+        {
+          "end_line": 827,
+          "line": 802,
+          "name": "_single_king_rng_checkpoint",
+          "sha256": "17d445bf6a165db0fa3ef1f40e81f55561e15ce93c0a2f4ea3b92b2d059ce22a",
+          "signature": "(data, records)",
+          "size": 3101
+        },
+        {
+          "end_line": 920,
+          "line": 874,
+          "name": "validate_single_king_fresh_facts",
+          "sha256": "b10eb26414d46b610a87bf0e4861edb835732107b22b81850778a5bd1d68c1ab",
+          "signature": "(facts)",
+          "size": 4976
+        },
+        {
+          "end_line": 925,
+          "line": 924,
+          "name": "validate_single_king_ui_authority",
+          "sha256": "cd58d6f0a9fd4788985ea32446a38089d9f1d40b51a046c25a92f0856463ad4f",
+          "signature": "(rows)",
+          "size": 110
+        },
+        {
+          "end_line": 959,
+          "line": 943,
+          "name": "validate_single_king_source_defaults",
+          "sha256": "409e4f2cefc755a6a9fd9d9d3b25bba9d5fab68b4b0074aeea6c571cb35a51e5",
+          "signature": "(pre, act)",
+          "size": 1167
+        },
+        {
+          "end_line": 1037,
+          "line": 962,
+          "name": "validate_single_king_input_provenance",
+          "sha256": "ab072c80e433904307fbbb7604491198b642f9651314c19d54d3d868605cfc82",
+          "signature": "(ui_rows, rng_checkpoint, input_records, lineage_records, facts, clock)",
+          "size": 5145
+        },
+        {
+          "end_line": 1048,
+          "line": 1040,
+          "name": "require_single_king_admission",
+          "sha256": "5ddd1b44015a9d6b29161ac7e30ecc3eeb70e6ecf78762d457de45bc417280c0",
+          "signature": "()",
+          "size": 520
+        }
+      ],
+      "module": {
+        "path": "data/phase356-king-admission-source-repair/staged/native_replay_v8/genuine.py",
+        "sha256": "fc7730527d1ef45a50811b6b019825c82979e2b5cfb460fad24130ec4a7ba7e3",
+        "size": 244592
+      },
+      "top_level_imports": [
+        "import hashlib",
+        "import json",
+        "import re, math, struct"
+      ]
+    },
+    {
+      "functions": [
+        {
+          "end_line": 820,
+          "line": 819,
+          "name": "_integration_domain",
+          "sha256": "f38e0d50832aace3865d528452c565250d9a2987e446a710a8739c92c937ca56",
+          "signature": "(data)",
+          "size": 146
+        },
+        {
+          "end_line": 1030,
+          "line": 953,
+          "name": "validate_runtime_inputs",
+          "sha256": "9cdcff06d7eed1ef22a67912154890efc48907589e05589bbef251df97a5afaf",
+          "signature": "(runtime, fixture)",
+          "size": 5913
+        },
+        {
+          "end_line": 1123,
+          "line": 1121,
+          "name": "EngineFrameDriver.__init__",
+          "sha256": "0c338f73bae729bb618a7d130538886baad73b42886f62643f643c52183c7920",
+          "signature": "(self, engine)",
+          "size": 176
+        },
+        {
+          "end_line": 1140,
+          "line": 1136,
+          "name": "EngineFrameDriver.snapshot",
+          "sha256": "966da96c5d7736bbacb9390e29e6c00fbeb5bd7cd9ae89b34a4351424ecb91fd",
+          "signature": "(self)",
+          "size": 224
+        },
+        {
+          "end_line": 1171,
+          "line": 1168,
+          "name": "HeadlessKingFrameDriver.__init__",
+          "sha256": "6ade424ec849e231344d002c1900368d8395440b255c2eb4c85be4fdbf2f01b1",
+          "signature": "(self, engine)",
+          "size": 245
+        },
+        {
+          "end_line": 1266,
+          "line": 1183,
+          "name": "CombatEngine.__init__",
+          "sha256": "2ada5862ca9ac0adda497685e4bfc1ed21425ff68ced936c4d210b473f833ef4",
+          "signature": "(self, fixture, random_source, runtime)",
+          "size": 5029
+        },
+        {
+          "end_line": 1321,
+          "line": 1307,
+          "name": "CombatEngine._integration_fx_snapshot",
+          "sha256": "47adee2ca6ca7b7d7e2873775957b49cd7ac75880ffc13397ff1a5d335b5b69a",
+          "signature": "(self)",
+          "size": 1956
+        },
+        {
+          "end_line": 1413,
+          "line": 1409,
+          "name": "CombatEngine.king_prepare",
+          "sha256": "6846c1fa42c43761e268f09c6564266578785d9555d68d398da7577f3e7ed0f8",
+          "signature": "(self, item)",
+          "size": 267
+        },
+        {
+          "end_line": 1431,
+          "line": 1415,
+          "name": "CombatEngine.king_set_state",
+          "sha256": "8259a6f8b02ad5d1db3d1a1419658decb76cefe14a0ee292e48495e14a9a5467",
+          "signature": "(self, item, state, next_event=False)",
+          "size": 1020
+        },
+        {
+          "end_line": 1444,
+          "line": 1433,
+          "name": "CombatEngine.king_effect",
+          "sha256": "319c43a76a47e57ef781d5dd0f9767ae37f68dfddc44bd7eb4ae5229e84dfe91",
+          "signature": "(self, item)",
+          "size": 877
+        },
+        {
+          "end_line": 1458,
+          "line": 1446,
+          "name": "CombatEngine.make_invulnerable",
+          "sha256": "4b1970893087aea433c5677d2ab2cecf1a67213a883d3eb14cf3af92b9323a7c",
+          "signature": "(self, item, duration)",
+          "size": 917
+        },
+        {
+          "end_line": 1464,
+          "line": 1460,
+          "name": "CombatEngine.invu_timeout",
+          "sha256": "f72202d02a1a7e70df5c60018b198636126343433288ade57aae8deeb3604ecf",
+          "signature": "(self, side)",
+          "size": 279
+        },
+        {
+          "end_line": 1467,
+          "line": 1466,
+          "name": "CombatEngine.king_buff_timeout",
+          "sha256": "3a1a27c62a1e9fe32e4a465b85be54a3bb7301fe8412a505c7fb17fbed078f56",
+          "signature": "(self, item)",
+          "size": 141
+        },
+        {
+          "end_line": 1614,
+          "line": 1603,
+          "name": "CombatEngine._runtime_projection",
+          "sha256": "46d3229cb9190e6fa71bd14600f278b850b5bb4ddcd2a0b5f06d9d3c30df22de",
+          "signature": "(self)",
+          "size": 1027
+        },
+        {
+          "end_line": 2676,
+          "line": 2655,
+          "name": "CombatEngine.activate",
+          "sha256": "8aa408f246a8836f16b06c93fd932cabd641a4fc4968fa1348e90e093ecc9caf",
+          "signature": "(self, item)",
+          "size": 1023
+        },
+        {
+          "end_line": 3228,
+          "line": 3222,
+          "name": "CombatEngine.death",
+          "sha256": "83b1f7bae453d47415ea1373fe24c3bb609214ab96723872bd0f8d6e6dbc0460",
+          "signature": "(self, character)",
+          "size": 320
+        },
+        {
+          "end_line": 3295,
+          "line": 3259,
+          "name": "CombatEngine.step",
+          "sha256": "1aba741b23ade4984ceddde0fb648563e2095a43be0ec73b7da98a64fb0b901f",
+          "signature": "(self, delta=NATIVE_PHYSICS_DELTA)",
+          "size": 2260
+        },
+        {
+          "end_line": 3341,
+          "line": 3297,
+          "name": "CombatEngine.finish",
+          "sha256": "f1ea3db24bd290d7f22b5a1cc1291f6edfa5eed4492e892d77bd8ec06bda72af",
+          "signature": "(self)",
+          "size": 2677
+        },
+        {
+          "end_line": 3366,
+          "line": 3343,
+          "name": "CombatEngine.snapshot",
+          "sha256": "ea915366315a8584b33887c137fdc741f53867a3b1ec530808d100a0f1b065d9",
+          "signature": "(self)",
+          "size": 1917
+        },
+        {
+          "end_line": 3409,
+          "line": 3382,
+          "name": "CombatEngine.result",
+          "sha256": "3b36c539d3f61c8b48cd7f2eb20da692d0c3970171e9ebbccf3e3ae5c10fdd68",
+          "signature": "(self)",
+          "size": 2149
+        },
+        {
+          "end_line": 3453,
+          "line": 3442,
+          "name": "CombatEngine.run",
+          "sha256": "628ce70964b94493bd16e1d4180a9b30bbb03754704cd78678ac7ff92c633088",
+          "signature": "(self, max_seconds=120.0, delta=NATIVE_PHYSICS_DELTA)",
+          "size": 578
+        },
+        {
+          "end_line": 3459,
+          "line": 3457,
+          "name": "_single_king_genuine_profile",
+          "sha256": "f15fd09d03f10294cbbccf13b1106865ce5457cd636f3e8205f436f92f350723",
+          "signature": "(runtime)",
+          "size": 203
+        },
+        {
+          "end_line": 3468,
+          "line": 3462,
+          "name": "_validate_single_king_initials",
+          "sha256": "301117633a648a0b9ab17828b9088993a4c33bea9819d950f6bf96b3c4a9f5af",
+          "signature": "(data)",
+          "size": 506
+        },
+        {
+          "end_line": 3557,
+          "line": 3491,
+          "name": "_validate_single_king_processing_inputs",
+          "sha256": "dcfc83b7abebfb545d76761c00a6c6f605a3a02960c801b0684b272796fd7c46",
+          "signature": "(data, fixture)",
+          "size": 6094
+        }
+      ],
+      "module": {
+        "path": "data/phase356-king-admission-source-repair/staged/native_replay_v8/engine.py",
+        "sha256": "9efd7b63729bcc9ab3086ec2edbb8919e4e589a670bc5858a1232fec386dca6d",
+        "size": 206349
+      },
+      "top_level_imports": [
+        "from copy import deepcopy",
+        "from dataclasses import asdict, dataclass, field, replace",
+        "import math",
+        "import struct",
+        "import hashlib",
+        "import re",
+        "from native_replay_v7.timer_runtime import TimerRuntime, TimerRecord, f32",
+        "import native_replay_v7.timer_runtime as timer_component",
+        "from native_replay_v7.frame_driver import FrameDriver, FramePass, decode_clock",
+        "from types import SimpleNamespace",
+        "from pathlib import Path",
+        "from .randomness import BalancedRange, BalancedRng, SeededRandom",
+        "from .histories import CombatHistories",
+        "from .state import native_rule_state",
+        "from .genuine import PROFILE as GENUINE_PROFILE, TERMINAL as GENUINE_TERMINAL, PROFILES as GENUINE_PROFILES, observer_label, KING_GENUINE_PROFILE, SINGLE_KING_GENUINE_PROFILE"
+      ]
+    },
+    {
+      "functions": [
+        {
+          "end_line": 28,
+          "line": 12,
+          "name": "run_input_bundle",
+          "sha256": "5d5e07b19c3ce0e88028efe3bf823852df1be7d62bfba149f193f07e0c4b5301",
+          "signature": "(bundle)",
+          "size": 1025
+        },
+        {
+          "end_line": 32,
+          "line": 31,
+          "name": "load_input_bundle",
+          "sha256": "6b2456b48705db4c453b4d033a3eb44370e49101251472f115210be0bb726805",
+          "signature": "(path)",
+          "size": 82
+        }
+      ],
+      "module": {
+        "path": "data/phase356-king-admission-source-repair/staged/native_replay_v8/observed.py",
+        "sha256": "0a04fb2b03e48cd1cd9a3e43425deddef56c7906105dadeaefafa81ac84a6fd1",
+        "size": 2323
+      },
+      "top_level_imports": [
+        "from pathlib import Path",
+        "import json",
+        "from .engine import CombatEngine, validate_fixture, validate_runtime_inputs, GENUINE_PROFILES",
+        "from .randomness import TapeRandom, SeededRandom",
+        "from .state import strict_json_loads"
+      ]
+    },
+    {
+      "functions": [
+        {
+          "end_line": 64,
+          "line": 55,
+          "name": "project_events",
+          "sha256": "be15ebe30738e8a792c17bb196f40891cb85cbd170f40c846c84bd9a888959f6",
+          "signature": "(rows, include_sequence=True)",
+          "size": 421
+        },
+        {
+          "end_line": 97,
+          "line": 67,
+          "name": "first_difference",
+          "sha256": "2cef9b59ee63a5a88e98e0a8c8c9f7d370ab04d1b78a79a149bcf467da67b764",
+          "signature": "(left, right, path='$')",
+          "size": 1807
+        },
+        {
+          "end_line": 221,
+          "line": 161,
+          "name": "project_final",
+          "sha256": "dd94340d852d90fc8785d63676dda8f6471eb96121609de7ff20691b0831c3df",
+          "signature": "(native_final, engine_final)",
+          "size": 4409
+        },
+        {
+          "end_line": 328,
+          "line": 240,
+          "name": "validate_provenance",
+          "sha256": "6ec47c0783067e3c46a2b05bc2ddadca15867c1a3b831faae31a85b4db235af2",
+          "signature": "(capture_dir)",
+          "size": 6391
+        },
+        {
+          "end_line": 394,
+          "line": 331,
+          "name": "compare_callback_schedule",
+          "sha256": "9003ef1bd6a9fded1bb0f072693524dccac747e03217fe58cff8579dc82ccbe3",
+          "signature": "(capture_dir, result)",
+          "size": 5032
+        },
+        {
+          "end_line": 457,
+          "line": 397,
+          "name": "compare_capture",
+          "sha256": "2b48adfdfbf4f3737686ba9cc219c41f8ebbad40a0dcaec0390ad193235cbef2",
+          "signature": "(capture_dir, engine_result)",
+          "size": 5239
+        },
+        {
+          "end_line": 559,
+          "line": 530,
+          "name": "project_king_fx",
+          "sha256": "681598f10df7adcdfce8a4d7271e3f4a0c8a8cb72934b4a84d761b1641af8739",
+          "signature": "(native)",
+          "size": 2757
+        },
+        {
+          "end_line": 571,
+          "line": 562,
+          "name": "compare_king_fx_snapshots",
+          "sha256": "664ca2207adec37605c744c0805f8f4030fb110d28ede29e77b81a2beb84faa1",
+          "signature": "(native_before, native_after, model_before, model_after)",
+          "size": 976
+        },
+        {
+          "end_line": 579,
+          "line": 574,
+          "name": "compare_king_observations",
+          "sha256": "06cf090266bbf2a63711ca280f3390b83eea88ae110423bf2bc34a24ab42b604",
+          "signature": "(native_projection, model_projection)",
+          "size": 596
+        }
+      ],
+      "module": {
+        "path": "data/phase356-king-admission-source-repair/staged/native_replay_v8/compare.py",
+        "sha256": "4af52ee400acf1460c9e28faf5a760d05753d1de7218a00d4a740712a40fdd22",
+        "size": 38087
+      },
+      "top_level_imports": [
+        "from .state import strict_json_loads",
+        "import argparse",
+        "import hashlib",
+        "import json",
+        "from pathlib import Path",
+        "import re",
+        "import struct",
+        "from .engine import fixture_from_custom_opponent, GENUINE_PROFILES",
+        "from .state import project_native_rule_state, restore_state_json_keys, restore_integer_table"
+      ]
+    },
+    {
+      "functions": [
+        {
+          "end_line": 34,
+          "line": 33,
+          "name": "SeededRandom.__init__",
+          "sha256": "62d97d8072caad576f76d7333e4d655067721ebde437dc3fa553b31885699ece",
+          "signature": "(self, seed=0)",
+          "size": 104
+        },
+        {
+          "end_line": 53,
+          "line": 49,
+          "name": "TapeRandom.__init__",
+          "sha256": "d1dd32fff5d69562842f2a29e1b3ab9fc78aa20f439937bd2b0a02a46056ce06",
+          "signature": "(self, records)",
+          "size": 274
+        },
+        {
+          "end_line": 75,
+          "line": 70,
+          "name": "TapeRandom._take",
+          "sha256": "6e1bfc9d72db843e4e354ad9bbaa28b22b0a84f2be6f297870ba9b02bda7f2ba",
+          "signature": "(self, kind, label, args, extra=None)",
+          "size": 543
+        },
+        {
+          "end_line": 85,
+          "line": 84,
+          "name": "TapeRandom.assert_consumed",
+          "sha256": "a93416d44e89fb47610e0fa633aa6ed6d2107556e1cdbbd0410701f5453b3c54",
+          "signature": "(self)",
+          "size": 128
+        }
+      ],
+      "module": {
+        "path": "data/phase356-king-admission-source-repair/staged/native_replay_v8/randomness.py",
+        "sha256": "676d42a69937394dc1bd8ff23268a08dc41fe9604f7e56213bb968ab331b9139",
+        "size": 7063
+      },
+      "top_level_imports": [
+        "from dataclasses import dataclass",
+        "import random",
+        "import re",
+        "import struct",
+        "import math"
+      ]
+    },
+    {
+      "functions": [
+        {
+          "end_line": 127,
+          "line": 69,
+          "name": "decode_clock",
+          "sha256": "000643507ca7c370b0800bfcfe249f10e38680c5088090376a056cbd34425c70",
+          "signature": "(carrier)",
+          "size": 3161
+        },
+        {
+          "end_line": 173,
+          "line": 132,
+          "name": "FrameDriver.__init__",
+          "sha256": "33d33c2bdf294e4bfc52647340a278a129d1f537cb0dbaffe7d83d2322c47704",
+          "signature": "(self, runtime, carrier, util_node)",
+          "size": 2386
+        },
+        {
+          "end_line": 194,
+          "line": 186,
+          "name": "FrameDriver.activate",
+          "sha256": "a2c4d653659a90764d1d5f70ac312410435ce9bba33a7e439c537fd195c5259a",
+          "signature": "(self, callback)",
+          "size": 342
+        },
+        {
+          "end_line": 206,
+          "line": 196,
+          "name": "FrameDriver.request_end",
+          "sha256": "78dc33ed022196a4c1d8ad126a53e1abd73b55238dec76b9704a0972e5aba16e",
+          "signature": "(self, cleanup)",
+          "size": 541
+        },
+        {
+          "end_line": 216,
+          "line": 208,
+          "name": "FrameDriver._flush_cleanup",
+          "sha256": "bf09c085ff05ad638dc6632e8b1cf19a4346199b9ea59006a2334094fc8cd8fa",
+          "signature": "(self)",
+          "size": 311
+        },
+        {
+          "end_line": 253,
+          "line": 218,
+          "name": "FrameDriver.step",
+          "sha256": "4018f24f4ae1599d76efcb955d58ac4851093732d43cf942dc9c970ef7871621",
+          "signature": "(self)",
+          "size": 1891
+        },
+        {
+          "end_line": 266,
+          "line": 255,
+          "name": "FrameDriver.snapshot",
+          "sha256": "17a0ef10a727a522136fbc9088a928d1d60f3240989d753b8cb9de6e2c9c510e",
+          "signature": "(self)",
+          "size": 838
+        },
+        {
+          "end_line": 275,
+          "line": 268,
+          "name": "FrameDriver.run",
+          "sha256": "cac9c141c2af9fbe18d01e9293c9eec6e3fb6d209705c096afcdf31bb0ffbc5a",
+          "signature": "(self)",
+          "size": 440
+        }
+      ],
+      "module": {
+        "path": "data/phase349-king-fresh-source/staged/native_replay_v7/frame_driver.py",
+        "sha256": "9d8e361144e353a8d944e4490502c5301e7a92451771d35f22ab48f6277f64fd",
+        "size": 12318
+      },
+      "top_level_imports": [
+        "from dataclasses import dataclass",
+        "import json",
+        "import math",
+        "import re",
+        "import struct",
+        "from .timer_runtime import TimerRecord, TimerRuntime, UnsupportedTransition, f32, typed"
+      ]
+    },
+    {
+      "functions": [
+        {
+          "end_line": 117,
+          "line": 103,
+          "name": "TimerRuntime.__init__",
+          "sha256": "a5c351a9435fe2793c412adc6c0b9954fb61c526a4fee6f91f9d7610e215c8d7",
+          "signature": "(self, root_internal_idle=False)",
+          "size": 850
+        },
+        {
+          "end_line": 335,
+          "line": 320,
+          "name": "TimerRuntime.start",
+          "sha256": "6e9b14e6f51e3fb0dc2ef25bfa7d1fc84f029730cad9ec999b3b849e5c0a056a",
+          "signature": "(self, timer, value=0.0)",
+          "size": 701
+        },
+        {
+          "end_line": 344,
+          "line": 337,
+          "name": "TimerRuntime.stop",
+          "sha256": "c91f31f7a4c06355c3e1cd57f49181ff0c09b5e61768503994d4069a4f7d5515",
+          "signature": "(self, timer)",
+          "size": 307
+        },
+        {
+          "end_line": 348,
+          "line": 346,
+          "name": "TimerRuntime.time_left",
+          "sha256": "c4965d3ec458bec4ef6f14fe797d0ea50ed3115f9a4e4b8147c0a2293b1fe37d",
+          "signature": "(self, timer)",
+          "size": 114
+        },
+        {
+          "end_line": 351,
+          "line": 350,
+          "name": "TimerRuntime.is_stopped",
+          "sha256": "28554522dc17481451e8d11bf7113ff1876ac6878c4f4607e2f1fe8733339882",
+          "signature": "(self, timer)",
+          "size": 75
+        },
+        {
+          "end_line": 445,
+          "line": 401,
+          "name": "TimerRuntime._dispatch",
+          "sha256": "5130502fb4b4df911d09ce1eabce49d60381d4f283015491484230d53991d78c",
+          "signature": "(self, delta, mode, ordinary)",
+          "size": 2216
+        },
+        {
+          "end_line": 479,
+          "line": 459,
+          "name": "_FixedProgram.__init__",
+          "sha256": "dedaaa12b9b5743787a4203a48ee67b04df0ac9ea532ee9211b3368ce8f2ac66",
+          "signature": "(self, config, schema)",
+          "size": 1090
+        }
+      ],
+      "module": {
+        "path": "data/phase349-king-fresh-source/staged/native_replay_v7/timer_runtime.py",
+        "sha256": "5b7c14ebb7c7511aa05a3411752c7f3341b925c00de31eedfacf4f9345f4a109",
+        "size": 38705
+      },
+      "top_level_imports": [
+        "from dataclasses import dataclass, field",
+        "import hashlib",
+        "import json",
+        "import math",
+        "import re",
+        "import struct",
+        "from typing import Callable"
+      ]
+    }
+  ],
+  "schema": "phase403-actual-source-api-inventory/1"
+}

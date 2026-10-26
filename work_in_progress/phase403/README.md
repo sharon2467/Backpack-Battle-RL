@@ -1,0 +1,5 @@
+# Genuine input and independent model comparison design only
+
+403 freezes a four-section design,68actual source pins and90actual API signatures/function hashes. It proposes a new391-bound reader/candidate/comparator closure while preserving349Timer/FrameDriver kernels.351 alternating/exact2clock checker and older callback reconstruction cannot be reused for actual batched clock. Four new outer snapshot groups must be compared rather than discarded.
+
+Character initial invulnerability fields,crown/light and allTimer fresh source chains require lawful initial evidence; missing evidence must block,never be supplied from final/postcleanup output or guessed defaults. Private native Timer values are not directly observed;RNG Tape is conditional primitive-return replay,not independent same-seed reconstruction.20finite future obligations are a plan,not executed tests. No run/capture/EXPECTED/SUT/import/model/inputbuild was read or run during design. Independent design review and new source implementation remain pending. Formal75 and closed356/361/King gates unchanged.

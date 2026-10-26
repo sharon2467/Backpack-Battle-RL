@@ -1,0 +1,2055 @@
+{
+  "import_events": [
+    "argparse",
+    "gettext",
+    "shutil",
+    "zlib",
+    "bz2",
+    "_compression",
+    "_bz2",
+    "lzma",
+    "_lzma",
+    "phase391_oracle_storage",
+    "fcntl",
+    "zipfile",
+    "binascii",
+    "struct",
+    "_struct",
+    "threading",
+    "_weakrefset",
+    "zipfile._path",
+    "zipfile._path.glob",
+    "native_run_compaction",
+    "__future__",
+    "ctypes",
+    "_ctypes",
+    "ctypes._endian",
+    "datetime",
+    "_datetime",
+    "tempfile",
+    "random",
+    "bisect",
+    "_bisect",
+    "_random",
+    "_sha2",
+    "weakref",
+    "phase363_oracle_process",
+    "signal",
+    "selectors",
+    "select",
+    "subprocess",
+    "locale",
+    "_locale",
+    "msvcrt",
+    "_posixsubprocess",
+    "phase363_oracle_storage",
+    "copy",
+    "dataclasses",
+    "inspect",
+    "ast",
+    "_ast",
+    "dis",
+    "opcode",
+    "_opcode",
+    "importlib.machinery"
+  ],
+  "reads": [
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase391_oracle_host.py",
+      "stage": "import"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase391_oracle_storage.py",
+      "stage": "import"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/native_run_compaction.py",
+      "stage": "import"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase363_oracle_process.py",
+      "stage": "import"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py",
+      "stage": "import"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/source-tuple.json",
+      "stage": "helper"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/source-tuple.json",
+      "stage": "helper"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
+      "stage": "helper"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase361_king_projection_sealer.py",
+      "stage": "helper"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase391_king_observer_schema.py",
+      "stage": "helper"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase391_prepare_source.py",
+      "stage": "helper"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/collector.gd",
+      "stage": "helper"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/native-patch-source.json",
+      "stage": "helper"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase355-king-finite-source/fixed-A-v8-fixture.json",
+      "stage": "helper"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/native-patch-source.json",
+      "stage": "helper"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/native-patch-source.json",
+      "stage": "helper"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase391_king_observer_schema.py",
+      "stage": "helper"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase391_king_observer_schema.py",
+      "stage": "helper"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-capture-endpoint.json",
+      "stage": "helper"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-status.json",
+      "stage": "helper"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/validation.json",
+      "stage": "helper"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-clock-checkpoint.json",
+      "stage": "helper"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-clock-passes.jsonl",
+      "stage": "helper"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/source-window-diagnostic.jsonl",
+      "stage": "helper"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/source-partition.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture-relocation.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/event_references.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/events.jsonl",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/final_state.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/fixture.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/histories.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/instances.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-capture-endpoint.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-clock-checkpoint.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-clock-passes.jsonl",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-collector-cut.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-final-source.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-input-facts.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-post-cleanup-source.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-rng-checkpoint.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-slot-bindings.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-ui-authority.jsonl",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/native_manifest.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-allocations.jsonl",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-input.jsonl",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-lineage.jsonl",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-metadata.jsonl",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-primitives.jsonl",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-registration.jsonl",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-runtime.jsonl",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-status.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/phases.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/player_fixture.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/player_setup_evidence.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/preflight.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/rules_preflight.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/source-window-diagnostic.jsonl",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/unselected-source-lineage.jsonl",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/validation.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/compaction/baseline-files.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/compaction/bundle-manifest.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/compaction/driver-files.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/compaction/eligibility.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/compaction/overlay-manifest.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/compaction/pool-roundtrip.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/compaction/project-files.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/compaction/retained-evidence.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/compaction/source-identities.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/compaction/staged-inputs.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/0",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/1",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/10",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/100",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/101",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/102",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/103",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/104",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/105",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/106",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/107",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/108",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/109",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/11",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/110",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/111",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/112",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/113",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/114",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/115",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/116",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/117",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/118",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/119",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/12",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/120",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/121",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/122",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/123",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/124",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/125",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/126",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/127",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/128",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/129",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/13",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/130",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/131",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/132",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/133",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/134",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/135",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/136",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/137",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/138",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/139",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/14",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/140",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/141",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/142",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/143",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/144",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/145",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/146",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/147",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/148",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/149",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/15",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/150",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/151",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/152",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/153",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/154",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/155",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/156",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/157",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/158",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/159",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/16",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/160",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/161",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/162",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/163",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/164",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/165",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/166",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/167",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/168",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/169",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/17",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/170",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/171",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/172",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/173",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/174",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/175",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/176",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/177",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/178",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/179",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/18",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/180",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/181",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/182",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/183",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/184",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/185",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/186",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/187",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/188",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/189",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/19",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/190",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/191",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/192",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/193",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/194",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/195",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/2",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/20",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/21",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/22",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/23",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/24",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/25",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/26",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/27",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/28",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/29",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/3",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/30",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/31",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/32",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/33",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/34",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/35",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/36",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/37",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/38",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/39",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/4",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/40",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/41",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/42",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/43",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/44",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/45",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/46",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/47",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/48",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/49",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/5",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/50",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/51",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/52",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/53",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/54",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/55",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/56",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/57",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/58",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/59",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/6",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/60",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/61",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/62",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/63",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/64",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/65",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/66",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/67",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/68",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/69",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/7",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/70",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/71",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/72",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/73",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/74",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/75",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/76",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/77",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/78",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/79",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/8",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/80",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/81",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/82",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/83",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/84",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/85",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/86",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/87",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/88",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/89",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/9",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/90",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/91",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/92",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/93",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/94",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/95",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/96",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/97",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/98",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/99",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/driver/source-map.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/host_manifest.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/native-monitor-result.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/native-process-result.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/native-stderr.log",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/native-stdout.log",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/one-shot-launch.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/parse-monitor-result.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/parse-process-result.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/parse-stderr.log",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/parse-stdout.log",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/pool-provenance.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/process-returned.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/process_result.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/readonly-plan.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/source-partition.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/xvfb.log",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/user/data/godot/app_userdata/Backpack Battles/logs/godot.log",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/user/data/godot/app_userdata/Backpack Battles/logs/godot2026-10-26T09.41.27.log",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase355-king-finite-source/fixed-A-v8-fixture.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Core/Buff.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Core/Character.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Core/CombatLog.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Core/Game.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Interface/CombatTimer/CombatTimer.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/AcornCollar.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/BloodAmulet.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/BloodGoobert.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Broom.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/BurningTorch.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Carrot.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/CarrotGoobert.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Crossblades.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Dagger.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/BerserkerBag.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/BookofIce.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/BroccoliGoobert.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/CheeseGoobert.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/ChiliGoobert.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/CupcakeGoobert.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/KingGoobert.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/LuckyShortbow.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/MagicMirror.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/PoisonShortbow.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertAdventurer.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertBerserker.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertEngineer.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertMage.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertPyromancer.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/Shelly.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/ShepherdsCrook.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/ThornShortbow.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/ToastGoobert.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/FalconBlade.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Food.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/GlovesofHaste.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Goobert.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Hammer.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/HealingHerbs.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/HealthPotion.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/HeroLongsword.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/HeroSword.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/HungryBlade.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Item.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/ItemDescriptor.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/LeatherArmor.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/LeatherBoots.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/LightGoobert.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/MagicStaff.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/ManaPotion.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/PestilenceFlask.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/PocketSand.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/PoisonGoobert.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Potion.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/RainbowGoobert.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/RainbowGoobertRanger.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/RangerCollar.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/RubyEgg.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/SteelGoobert.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/StoneSkinPotion.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/StrongHealthPotion.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/StrongStoneSkinPotion.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/ThornWhip.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/VampiricArmor.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/WalrusTusk.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Weapon.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Sheets/ItemBook.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/AutoHideParticles.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/BalancedRandom.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/BalancedRange.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/DamageSource.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/EventBus.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/Util.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/project.godot",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/producer-source-freeze.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase362-oracle-capture-source/case-A/custom_opponent.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase362-oracle-capture-source/case-A/custom_player.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase362-oracle-capture-source/case-A/native_capture_config.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase362-oracle-capture-source/disposable-marker.txt",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase363-oracle-repair-source/source-owner.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase364-independent-startup-diagnosis/finding.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase364-independent-startup-diagnosis/owned-files.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase365-source-recovery-plan/control-source-finding.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase365-source-recovery-plan/restore-map.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase365-source-recovery-plan/source-input-pins.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase365-source-recovery-plan/source-owner.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase368-independent-source-review/first-static-counterexample.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase368-independent-source-review/owned-files.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase368-independent-source-review/review.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase369-independent-execution/first-source-block.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase369-independent-execution/owned-files.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase369-independent-execution/review.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase369-oracle-source/first-source-failure/failure.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase369-oracle-source/first-source-failure/owned-files.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase369-oracle-source/first-source-failure/preparer-first.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase369-oracle-source/first-source-failure/stderr.txt",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase373-independent-final/owned-files.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase373-independent-final/review.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase375-attempt03-recovery-source/first-source-failure/diagnosis.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase375-attempt03-recovery-source/first-source-failure/owned-files.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase375-attempt03-recovery-source/first-source-failure/phase375_pool_recovery.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase375-attempt03-recovery-source/first-source-failure/phase375_prepare_attempt03_restore_map.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase375-attempt03-recovery-source/first-source-failure/phase375_prepare_source.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase375-attempt03-recovery-source/first-source-failure/protocol-and-map-derivation-first.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase375-attempt03-recovery-source/first-source-failure/stderr-transcription.txt",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase375-attempt03-recovery-source/map-first-failure.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase378-independent-installer-triage/finding.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase378-independent-installer-triage/owned-files.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase380-attempt04-partial-recovery-source/derivation.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase380-attempt04-partial-recovery-source/restore-map.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase380-attempt04-partial-recovery-source/source-input-pins.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/api-contract.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/collector-inverse.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/collector-source.patch",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/collector.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/combined-source-freeze.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/inherited-unsealed-templates/phase391_collector_terminal_source.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/inherited-unsealed-templates/phase391_schema_terminal_source.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/inherited-unsealed-templates/phase391_sink_terminal_source.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/inherited-unsealed-templates/phase391_terminal_contract_implementation_addendum.md",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/inherited-unsealed-templates/snapshot.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/install-bytecap.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/native-patch-source.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/native_random_observer_sink_v7-inverse.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/native_random_observer_sink_v7-source.patch",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/old-source-before.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/old-source-readback.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/phase391_king_observer_schema-inverse.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/phase391_king_observer_schema-source.patch",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/phase391_oracle_host-inverse.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/phase391_oracle_host-source.patch",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/phase391_oracle_storage-inverse.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/phase391_oracle_storage-source.patch",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/preparation-failure-001/phase391_collector_terminal_source.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/preparation-failure-001/phase391_host_terminal_source.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/preparation-failure-001/phase391_prepare_source.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/preparation-failure-001/phase391_schema_terminal_source.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/preparation-failure-001/phase391_sink_terminal_source.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/preparation-failure-001/traceback.txt",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/preparation-failure-002/old-source-before.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/preparation-failure-002/phase391_collector_terminal_source.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/preparation-failure-002/phase391_host_terminal_source.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/preparation-failure-002/phase391_prepare_source.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/preparation-failure-002/phase391_schema_terminal_source.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/preparation-failure-002/phase391_sink_terminal_source.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/preparation-failure-002/traceback.txt",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/protocol-consumer-inventory.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/source-constraints.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/source-owner.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/source-tuple.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/summary.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase392-independent-final/owned-files.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase392-independent-final/review.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase397-root-native-execution-closure/execution-source-owner.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase401-root-native-attempt06/execute-invocation.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase401-root-native-attempt06/execute.stderr",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase401-root-native-attempt06/execute.stdout",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase401-root-native-attempt06/independent402-completed-control-read-release.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase401-root-native-attempt06/independent402-process-association-scope-supplement.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase401-root-native-attempt06/oracle-acceptance.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase402-binding-association-first-failure/owned-files.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase402-independent-attempt06-preparation/contract.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase402-independent-attempt06-preparation/owned-files.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase402-independent-attempt06-preparation/source-evidence.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase404-root-monitor-wrapper-association/finding.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase363_installer_monitor_source_repair_spec.md",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase365_control_and_recovery_source_implementation_spec.md",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase368_same_idle_source_implementation_addendum.md",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase369_scenetree_collector_api_source_repair_spec.md",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase370_script_signal_return_source_repair_spec.md",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase375_food_hook_source_implementation_addendum.md",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase380_payload_preflight_and_partial_restore_implementation_addendum.md",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase391_terminal_contract_implementation_addendum.md",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase404_monitor_wrapper_association_narrow_review_spec.md",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/godotsteam_offline_exec.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/native_run_compaction.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase361_king_projection_sealer.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase362_collector_extension.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase362_prepare_oracle_source.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase363_oracle_process.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase363_prepare_repair_source.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase365_prepare_source.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase368_prepare_attempt02_restore_map.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase368_prepare_source.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase369_prepare_source.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase370_collector_control_delta.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase370_prepare_source.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase370_sink_control_delta.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase375_prepare_attempt03_restore_map_v2.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase375_prepare_source.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase380_host_payload_source.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase380_partial_map.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase380_partial_recovery_source.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase380_pool_recovery.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase380_prepare_source.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase380_storage_preflight_source.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase391_collector_terminal_source.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase391_host_terminal_source.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase391_king_observer_schema.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase391_oracle_host.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase391_oracle_storage.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase391_prepare_source.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase391_schema_terminal_source.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase391_sink_terminal_source.gd",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase402-completed-control-execution-binding-final/actual-source-owner.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase402-completed-control-execution-binding-final/expected.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase402-completed-control-execution-binding-final/pre-helper-evidence.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase402-completed-control-execution-binding-final/readallowset.json",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase402_completed_attempt06_control_execution_spec.md",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase402_source_defined_process_binding_continuation_spec.md",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase402_bind_completed_control_execution_final.py",
+      "stage": "postcheck"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase402_execute_terminal_controls_once.py",
+      "stage": "postcheck"
+    }
+  ],
+  "violations": []
+}

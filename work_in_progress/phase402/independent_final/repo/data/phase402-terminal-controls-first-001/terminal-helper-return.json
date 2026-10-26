@@ -1,0 +1,60 @@
+{
+  "expected_control_only": true,
+  "files": {
+    "king-capture-endpoint.json": {
+      "sha256": "b44b9de0e55405b0604c711c5a3c493ad39f482110d340d1621d6a538314baae",
+      "size": 396
+    },
+    "king-clock-checkpoint.json": {
+      "sha256": "21ce432a668fb4406b27bbb4f4ff623a4cbb54f0c0695fb4c2bdf53a28629c73",
+      "size": 352
+    },
+    "king-clock-passes.jsonl": {
+      "sha256": "660cff32026b6cd0b5942081e6c279fc0076ff6c95fee4ce1e8f7cf2d5a86526",
+      "size": 227219
+    },
+    "observer7-status.json": {
+      "sha256": "1511d082d65e3be6af4d4c74246167272b747fff5237363a03f2e75f2b8e1531",
+      "size": 510
+    },
+    "source-window-diagnostic.jsonl": {
+      "sha256": "dd4062a377d2f1d3cc308c71189fc6da9f2a45e49ca3ef8aa589b0545b98093a",
+      "size": 16293
+    },
+    "validation.json": {
+      "sha256": "4bb7d34dda79c714e461611eb3d2dbcb2408156899db9a4c8a479030cc741535",
+      "size": 748
+    }
+  },
+  "input_bundle_created": false,
+  "model_calls": 0,
+  "proof": {
+    "cleanup": {
+      "idle_frame": 341,
+      "is_in_physics_frame": true,
+      "physics_frame": 2726
+    },
+    "cleanup_anchor_pass": 2564,
+    "first_eligible_idle_pass": 2574,
+    "idle_frame": 342,
+    "minimum_future_physics_signals": 2,
+    "no_model_stop_command": true,
+    "observed_future_physics_signals": 8,
+    "passes": 2574,
+    "physics_frame": 2734,
+    "schema": "phase391-expected-terminal-proof/1",
+    "status": "EXPECTED_ONLY_FIRST_ACTUAL_ELIGIBLE_IDLE",
+    "terminal_policy": "first-actual-idle-after-at-least-two-future-physics/1"
+  },
+  "schema": "phase391-host-terminal-control-proof/1",
+  "source_schema": {
+    "path": "tests/phase391_king_observer_schema.py",
+    "sha256": "ffcddfd2cbe58307f7258c1aefad5586a9179c6c452dc59c3342f9047f31457c",
+    "size": 208243
+  },
+  "source_tuple": {
+    "path": "data/phase391-terminal-source/source-tuple.json",
+    "sha256": "883e9b20dfb4c268cd265910ad7adedc403aac785287f2f39f859cdcdac8f8e6",
+    "size": 1551
+  }
+}

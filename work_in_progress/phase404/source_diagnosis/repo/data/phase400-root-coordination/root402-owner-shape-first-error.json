@@ -1,0 +1,10 @@
+{
+  "schema": "root-metadata-checker-first-error/1",
+  "input": "data/phase402-binding-inspection-first-failure/owned-files.json",
+  "actual_shape": "files dictionary",
+  "failed_expression": "for x in o['files']: p=r/x['path']",
+  "error": "TypeError: string indices must be integers, not 'str'",
+  "traceback": "File <stdin>, line5",
+  "SUT_calls": 0,
+  "correction": "Normalize dictionary/list owner descriptors before verification; no source/inputs changed"
+}

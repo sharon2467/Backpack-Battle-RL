@@ -1,0 +1,47 @@
+{
+  "SUT_imports": 0,
+  "business_semantics_read": false,
+  "findings": {
+    "native": {
+      "differing_keys": [
+        "actual_oracle_processes",
+        "limits",
+        "process_clean_exit",
+        "scope"
+      ],
+      "exact_frozen_writer_transformations": true,
+      "generic_clean_exit": true,
+      "parse_stdout_collector_markers": null,
+      "stderr_ERROR_marker_present": true,
+      "wrapper_clean_exit": false
+    },
+    "parse": {
+      "differing_keys": [
+        "limits",
+        "scope"
+      ],
+      "exact_frozen_writer_transformations": true,
+      "generic_clean_exit": true,
+      "parse_stdout_collector_markers": {
+        "NATIVE_CAPTURE_": false,
+        "NATIVE_PHASE": false,
+        "NATIVE_PLAYER_SETUP": false
+      },
+      "stderr_ERROR_marker_present": false,
+      "wrapper_clean_exit": true
+    }
+  },
+  "inputbuilds": 0,
+  "log_semantics_scope": "Only ERROR presence booleans and three parse collector-marker booleans; no log lines/business values",
+  "models": 0,
+  "original402_binder_failure_retained": true,
+  "root_permits_only_exact_source_defined_binder_correction": true,
+  "schema": "root404-source-defined-monitor-wrapper-association/1",
+  "source": {
+    "path": "tests/phase363_oracle_process.py",
+    "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f",
+    "size": 13665
+  },
+  "terminal_helper_calls": 0,
+  "utc": "2026-10-26T10:02:25.841390+00:00"
+}
