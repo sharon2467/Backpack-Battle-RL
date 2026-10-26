@@ -1,0 +1,203 @@
+{
+  "status": "PASS",
+  "exit": 0,
+  "abort_reason": null,
+  "cleanup": {
+    "pgid": 40615,
+    "group_origin": "this Popen start_new_session=True",
+    "leader_returncode": 0,
+    "signals": [
+      {
+        "signal": "SIGTERM",
+        "sent": true
+      },
+      {
+        "signal": "SIGKILL",
+        "sent": true
+      }
+    ],
+    "before": {
+      "members": [
+        {
+          "pid": 40625,
+          "state": "Z",
+          "live": false
+        }
+      ],
+      "numeric_stat_files_examined": 313,
+      "metadata_errors": 0,
+      "scan_complete_within_limits": true
+    },
+    "after_TERM": {
+      "members": [
+        {
+          "pid": 40625,
+          "state": "Z",
+          "live": false
+        }
+      ],
+      "numeric_stat_files_examined": 313,
+      "metadata_errors": 0,
+      "scan_complete_within_limits": true
+    },
+    "after": {
+      "members": [
+        {
+          "pid": 40625,
+          "state": "Z",
+          "live": false
+        }
+      ],
+      "numeric_stat_files_examined": 313,
+      "metadata_errors": 0,
+      "scan_complete_within_limits": true
+    },
+    "live_remaining": [],
+    "zombies_observed_not_claimed_reaped": [
+      40625
+    ],
+    "only_leader_poll_reaped": true,
+    "all_descendants_reaped_claimed": false,
+    "metadata_scope": "limited numeric/proc stat only; no cmdline/environ/memory/capture/process-control outside own pgid",
+    "elapsed_seconds": 0.620664072004729,
+    "cleanup_deadline_from_launch": 19.5
+  },
+  "elapsed_seconds": 2.8087802569934865,
+  "payload": {
+    "status": "PASS",
+    "subcases": 19,
+    "external_calls": 56,
+    "results": [
+      {
+        "id": "G01",
+        "pass": true,
+        "external_calls": 2,
+        "expected_calls": 2
+      },
+      {
+        "id": "G02",
+        "pass": true,
+        "external_calls": 4,
+        "expected_calls": 4
+      },
+      {
+        "id": "G03-wrong_class",
+        "pass": true,
+        "external_calls": 2,
+        "expected_calls": 2
+      },
+      {
+        "id": "G03-wrong_name",
+        "pass": true,
+        "external_calls": 2,
+        "expected_calls": 2
+      },
+      {
+        "id": "G03-target_script",
+        "pass": true,
+        "external_calls": 2,
+        "expected_calls": 2
+      },
+      {
+        "id": "G03-wrong_parent",
+        "pass": true,
+        "external_calls": 2,
+        "expected_calls": 2
+      },
+      {
+        "id": "G03-already_inside",
+        "pass": true,
+        "external_calls": 2,
+        "expected_calls": 2
+      },
+      {
+        "id": "G03-wrong_scene",
+        "pass": true,
+        "external_calls": 2,
+        "expected_calls": 2
+      },
+      {
+        "id": "G04",
+        "pass": true,
+        "external_calls": 5,
+        "expected_calls": 5
+      },
+      {
+        "id": "G05-before",
+        "pass": true,
+        "external_calls": 1,
+        "expected_calls": 1
+      },
+      {
+        "id": "G05-duplicate",
+        "pass": true,
+        "external_calls": 3,
+        "expected_calls": 3
+      },
+      {
+        "id": "G06-unknown",
+        "pass": true,
+        "external_calls": 3,
+        "expected_calls": 3
+      },
+      {
+        "id": "G06-overflow",
+        "pass": true,
+        "external_calls": 3,
+        "expected_calls": 3
+      },
+      {
+        "id": "G07",
+        "pass": true,
+        "external_calls": 3,
+        "expected_calls": 3
+      },
+      {
+        "id": "G08",
+        "pass": true,
+        "external_calls": 4,
+        "expected_calls": 4
+      },
+      {
+        "id": "G09",
+        "pass": true,
+        "external_calls": 4,
+        "expected_calls": 4
+      },
+      {
+        "id": "G10",
+        "pass": true,
+        "external_calls": 2,
+        "expected_calls": 2
+      },
+      {
+        "id": "G11",
+        "pass": true,
+        "external_calls": 7,
+        "expected_calls": 7
+      },
+      {
+        "id": "G12",
+        "pass": true,
+        "external_calls": 3,
+        "expected_calls": 3
+      }
+    ],
+    "original_Game": 0,
+    "capture": 0
+  },
+  "expected": {
+    "status": "PASS",
+    "subcases": 19,
+    "external_calls": 56,
+    "original_Game": 0,
+    "capture": 0
+  },
+  "engine_processes": 1,
+  "original_Game": 0,
+  "capture": 0,
+  "native_language_probe": 1,
+  "models": 0,
+  "automatic_retry": false,
+  "interpretation": "Exact helper/getter/fixture language controls only; no original Game/bootstrap/filewriter/private-value/data admission."
+}

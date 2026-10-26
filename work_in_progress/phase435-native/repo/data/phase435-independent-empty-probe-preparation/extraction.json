@@ -1,0 +1,70 @@
+{
+  "schema": "independent435-EMPTY-exact-source-extraction/1",
+  "source": {
+    "path": "data/phase434-early-invu-source/after-source/native_random_observer_sink_v7.gd",
+    "size": 113189,
+    "sha256": "ef768f2ac10f97ea7aaef40bd843245fb5cd83c31a2ae718df6001b57a8c1600"
+  },
+  "records": [
+    {
+      "kind": "exact_full_function",
+      "name": "_invu_memory_error",
+      "size": 442,
+      "sha256": "ceabf2521954498d291d695e3ef3c50d7caf9991ae235ea95403de8576640d78"
+    },
+    {
+      "kind": "exact_full_function",
+      "name": "_invu_raw_snapshot",
+      "size": 1954,
+      "sha256": "6e15feac629b8954e1034d6841d7ff115300bbdc90eea7e88285b78a528f0278"
+    },
+    {
+      "kind": "exact_full_function",
+      "name": "invu_first_enter_memory",
+      "size": 1650,
+      "sha256": "db7b6d9d9d02d8009aa007ba0575ceb8b24e96e5ab27f6980b878dca81ba613c"
+    },
+    {
+      "kind": "exact_full_function",
+      "name": "invu_parent_ready_memory",
+      "size": 1434,
+      "sha256": "c07580fc10c694f76dcbdab6c6cb52d274f7165aca9c60ebcc5f1b31d60ff002"
+    },
+    {
+      "kind": "exact_full_function",
+      "name": "track_king_timer_api",
+      "size": 810,
+      "sha256": "3d5173d96b8192ef856c162e76283f7611e6803b3e0a707bddbbb94e0e32320f"
+    },
+    {
+      "kind": "exact_full_function",
+      "name": "float_bits",
+      "size": 153,
+      "sha256": "2caa239e240f13a2b1b41d5a3f0643c13aa21e2e2920f42c92427627c34ee70a"
+    },
+    {
+      "kind": "exact_added_ready_tail",
+      "size": 130,
+      "sha256": "e7d8cf7651fd2eb1402adf0aaa49db9557decc020f3688d218861939c3d91a05"
+    }
+  ],
+  "exact_declarations": [
+    "const CAPS = {\"array\": 8192, \"depth\": 16, \"descriptors\": 6, \"dictionary\": 512, \"failure_file_bytes\": 4096, \"file_bytes\": 268435456, \"first_error_bytes\": 1024, \"flush_bytes\": 4194304, \"host_capture_files\": 64, \"native_ids\": 8192, \"observer_files\": 8, \"pending_rows\": 64, \"record_bytes\": 2097152, \"records\": 300000, \"roles\": 1024, \"sparse_nodes\": 16384, \"string_utf8\": 4096, \"total_bytes\": 268435456}\n",
+    "var ids = {} # integer native IDs -> immutable role strings only\n",
+    "var king_timer_births = {}\n",
+    "var invu_early_timers = {}\n",
+    "var invu_early_owners = {}\n",
+    "var invu_early_ordinal = 0\n",
+    "var invu_early_error = null\n",
+    "var invu_observer_ready = false\n"
+  ],
+  "fixture_only": [
+    "Core/Character.gd callback wrappers and return capture",
+    "ProbeMain harness",
+    "IntervalChild intentional native activity",
+    "WrongTimer script",
+    "fail firsterror routing double",
+    "readytail synthetic successful-bootstrap entry"
+  ],
+  "production_body_modified": false
+}

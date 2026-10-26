@@ -1,0 +1,11 @@
+{
+  "schema": "phase435-root-probe-plan-clarification/1",
+  "utc": "2026-10-26T17:06:57.605823+00:00",
+  "original_plan_preserved": "data/phase435-independent-early-invu-source-review/empty-godot-probe-plan.json",
+  "issue": "G09 phrase allhelperreturnsTYPE_NIL is overbroad for snapshot/float_bits APIs. Found during preparation before any native run.",
+  "actual_source_basis": "Root has read exact four helper bodies: _invu_memory_error/invu_first_enter_memory/invu_parent_ready_memory have implicit NIL returns; _invu_raw_snapshot returns primitiveDictionary on success and null on guarded failure. float_bits retains actual original scalar-encoding return API.",
+  "decision": "New presealed fixture expectations must reflect actual APIs, preserving original plan bytes and explicit clarification. No Source change, no post-test expected adaptation. Report exact subcases/outer calls separately from12logicalgroups.",
+  "runtime_native": 0,
+  "source_bug": false,
+  "new_execution_authority": false
+}

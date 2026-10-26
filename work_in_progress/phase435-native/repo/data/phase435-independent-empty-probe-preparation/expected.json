@@ -1,0 +1,131 @@
+{
+  "schema": "independent435-EMPTY-presealed-expected/1",
+  "groups": 12,
+  "actual_subcases": 19,
+  "external_scheduled_Source_or_extracted_tail_entries": 56,
+  "internal_callees_not_claimed_counted": true,
+  "subcases": [
+    {
+      "id": "G01",
+      "external_calls": 2,
+      "expect": "fresh pre-ready memory/getter/native NIL",
+      "pass": true
+    },
+    {
+      "id": "G02",
+      "external_calls": 4,
+      "expect": "entry\u2192child ready start+stop\u2192parent checkpoint truthful counters",
+      "pass": true
+    },
+    {
+      "id": "G03-wrong_class",
+      "external_calls": 2,
+      "expect": "exact memory domain error; no pre-ready fail",
+      "pass": true
+    },
+    {
+      "id": "G03-wrong_name",
+      "external_calls": 2,
+      "expect": "exact memory domain error; no pre-ready fail",
+      "pass": true
+    },
+    {
+      "id": "G03-target_script",
+      "external_calls": 2,
+      "expect": "exact memory domain error; no pre-ready fail",
+      "pass": true
+    },
+    {
+      "id": "G03-wrong_parent",
+      "external_calls": 2,
+      "expect": "exact memory domain error; no pre-ready fail",
+      "pass": true
+    },
+    {
+      "id": "G03-already_inside",
+      "external_calls": 2,
+      "expect": "exact memory domain error; no pre-ready fail",
+      "pass": true
+    },
+    {
+      "id": "G03-wrong_scene",
+      "external_calls": 2,
+      "expect": "exact memory domain error; no pre-ready fail",
+      "pass": true
+    },
+    {
+      "id": "G04",
+      "external_calls": 5,
+      "expect": "reentry preserves first map/counters",
+      "pass": true
+    },
+    {
+      "id": "G05-before",
+      "external_calls": 1,
+      "expect": "ready_without_entry",
+      "pass": true
+    },
+    {
+      "id": "G05-duplicate",
+      "external_calls": 3,
+      "expect": "duplicate checkpoint unchanged",
+      "pass": true
+    },
+    {
+      "id": "G06-unknown",
+      "external_calls": 3,
+      "expect": "unknown op does not count stop",
+      "pass": true
+    },
+    {
+      "id": "G06-overflow",
+      "external_calls": 3,
+      "expect": "counter cap no increment",
+      "pass": true
+    },
+    {
+      "id": "G07",
+      "external_calls": 3,
+      "expect": "preerror + successful-bootstrap-tail twice; one publication effect",
+      "pass": true
+    },
+    {
+      "id": "G08",
+      "external_calls": 4,
+      "expect": "initialized error twice; failcalls2/publicationeffects1",
+      "pass": true
+    },
+    {
+      "id": "G09",
+      "external_calls": 4,
+      "expect": "three NIL-returning helper APIs; rawsnapshot failure null, firsterror stable",
+      "pass": true
+    },
+    {
+      "id": "G10",
+      "external_calls": 2,
+      "expect": "ancestry cap",
+      "pass": true
+    },
+    {
+      "id": "G11",
+      "external_calls": 7,
+      "expect": "native REAL/deepcopy/rawsnapshot dict/actualfloatbits; includes interval start+stop",
+      "pass": true
+    },
+    {
+      "id": "G12",
+      "external_calls": 3,
+      "expect": "global RNG no-consumption around raw snapshot",
+      "pass": true
+    }
+  ],
+  "final": {
+    "status": "PASS",
+    "subcases": 19,
+    "external_calls": 56,
+    "original_Game": 0,
+    "capture": 0
+  },
+  "no_original_Game_or_private_observation": true
+}

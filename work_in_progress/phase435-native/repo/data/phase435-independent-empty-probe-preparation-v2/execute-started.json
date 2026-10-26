@@ -1,0 +1,44 @@
+{
+  "Root_release": {
+    "path": "data/phase435-root-empty-probe-release/execution-release.json",
+    "size": 2083,
+    "sha256": "5dd8003725f6dd41b34eed1f5f1cfa615f566654827cd37fe1bc641df75122b3"
+  },
+  "args": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "/workspace/python-original-engine/repo/tests/godotsteam_offline_exec.py",
+    "/workspace/godotsteam-startup-20261013/debian/usr/bin/xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 320x240x24 -nolisten tcp",
+    "-e",
+    "/workspace/python-original-engine/repo/data/phase435-independent-empty-probe-preparation-v2/runtime/xvfb.log",
+    "/workspace/godotsteam-startup-20261013/engine/godotsteam.362.editor.x86_64",
+    "--path",
+    "/workspace/python-original-engine/repo/data/phase435-independent-empty-probe-preparation-v2/empty-project",
+    "--audio-driver",
+    "Dummy",
+    "--time-scale",
+    "1.0"
+  ],
+  "environment": {
+    "PATH": "/workspace/godotsteam-startup-20261013/debian/usr/bin:/usr/bin:/bin",
+    "LANG": "C.UTF-8",
+    "USER": "agent",
+    "LOGNAME": "agent",
+    "LIBGL_ALWAYS_SOFTWARE": "1",
+    "GALLIUM_DRIVER": "llvmpipe",
+    "LD_LIBRARY_PATH": "/workspace/godotsteam-startup-20261013/debian/usr/lib/x86_64-linux-gnu",
+    "HOME": "/workspace/python-original-engine/repo/data/phase435-independent-empty-probe-preparation-v2/runtime/home",
+    "XDG_DATA_HOME": "/workspace/python-original-engine/repo/data/phase435-independent-empty-probe-preparation-v2/runtime/data",
+    "XDG_CONFIG_HOME": "/workspace/python-original-engine/repo/data/phase435-independent-empty-probe-preparation-v2/runtime/config",
+    "XDG_CACHE_HOME": "/workspace/python-original-engine/repo/data/phase435-independent-empty-probe-preparation-v2/runtime/cache",
+    "XDG_RUNTIME_DIR": "/workspace/python-original-engine/repo/data/phase435-independent-empty-probe-preparation-v2/runtime/run",
+    "TMPDIR": "/workspace/python-original-engine/repo/data/phase435-independent-empty-probe-preparation-v2/runtime/tmp"
+  },
+  "engine_processes": 1,
+  "original_Game": 0,
+  "capture": 0,
+  "timeout_seconds": 20,
+  "automatic_retry": false
+}

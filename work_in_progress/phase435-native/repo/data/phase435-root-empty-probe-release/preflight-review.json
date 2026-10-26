@@ -1,0 +1,31 @@
+{
+  "schema": "phase435-root-empty-probe-preflight-review/1",
+  "utc": "2026-10-26T17:14:46.073024+00:00",
+  "preparation_owner": {
+    "path": "data/phase435-independent-empty-probe-preparation/owned-files.json",
+    "size": 4136,
+    "sha256": "83545727cd098757296a6399b473d35e8cfa61f13908f3a89d903eeb34120fd4"
+  },
+  "readback": "18ordinary leaves35388B allSHA/size verified. Read expected/extraction/full launcher/ProbeMain/Character/IntervalChild/selectedMemoryObserver.",
+  "status": "TWO_PRE_EXECUTION_FIXTURE_GAPS_NATIVE_NOT_RELEASED",
+  "findings": [
+    {
+      "id": "R01",
+      "file": "launcher.py",
+      "issue": "finally kills own group only when leader still running. Leaderalreadyexited plus descendants retaining pipes may hit deadline without cleaning own group.",
+      "minimal_repair": "new successor launcher always bounded cleanup own start_new_session group; record limited visible/proc live/zombie observations without universal reap claim; total<=20seconds."
+    },
+    {
+      "id": "R02",
+      "file": "empty-project/ProbeMain.gd::G09",
+      "issue": "expected mentions firsterror stable but actual ok checks only NIL returns.",
+      "minimal_repair": "add invu_early_error.code==NIL-string and primitive latch assertions, no extra Sourcecall, preserve19subcases/56entries."
+    }
+  ],
+  "authorized": "Prepare new unique successor directory only, preserve old preparation bytes. No434Source edits or expectation weakening, no native until new owner and Root onceexecutionrelease.",
+  "dynamic_limits": "Player fixture only; Opponent inherited scene exists but not directly dynamically instantiated; disclose rather than expanding cases.",
+  "native": 0,
+  "original_Game": 0,
+  "capture": 0,
+  "counts": "6proved82missing unchanged"
+}

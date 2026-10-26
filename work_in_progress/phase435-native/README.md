@@ -1,0 +1,13 @@
+# Independent435 finite native helper validation
+
+434 early InvulnerabilityTimer observation Source is independently accepted and Root accepted for its bounded scope. Static221pins/9inverses passed; Python27controls passed in one tested module load/26API. One EMPTY Godot engine passed19subcases/56external helper or extracted-tail entries,exit0,2.8087802569934865s including cleanup,empty stderr. Internal callees are not included in the56 external-entry count. No original Game/oracle battle/capture/model/pool install ran.
+
+The legacy review native=0 field counts original Game/oracle capture only, following preserved394 convention. Actual all-native-engine count is1 and explicitly recorded. The single EMPTY run had a separate pinned Root release; the legacy0 host gate does not authorize it.
+
+Tests directly exercised only the Player inherited empty scene. Opponent is not directly dynamically covered. Fixture callbacks/faildouble/extracted ready tail are explicit; no full original bootstrap/UI/Filewriter/fullencode/wholeOS purity or private countdown claim. Dedicated memory helpers remain memory-only under reviewed getters; initialized error publication may use the old fail path. Limited cleanup reported no live remaining own-group member, but zombie40625 was observed and all-descendant reaping is NOT claimed.
+
+Both original preparation and correctedv2 are retained. Root found groupcleanup and G09firstlatch-assertion gaps before any native execution; only fixture/launcher/metadata changed, not434Source or19/56 expected table. Python first missingrunner failure is preserved in phase435-python; all actual controls ran once. Root's separate hash-checker newline-normalization assertion is diagnosed; exactsize byte checks passed all six functions.
+
+Restore the main checkpoint and prior additive trees, then overlay the repo-relative leaves from phase434-source/repo,phase435-static/repo,phase435-python/repo,and this repo tree. Verify every FILES.json/owner SHA before use. Retained absolute paths and spent release receipts are historical evidence, not portable new execution authority. Existing source/probe launchers require explicitly current paths/resources and new authorization; do not replay the spent once-run.
+
+1479 targets remain1391DIRECT+6SOURCE_DERIVED+82MISSING, six per-target recipes/two families. Formal bounded75 unchanged; King not production admitted; full engine/RL incomplete. No new INITIAL, no recipe migration, no original event comparison. Next original fixedKingA capture needs separate decision with live quota,disk,sourcepreimages and installation cap. This checkpoint authorizes no new batch.
