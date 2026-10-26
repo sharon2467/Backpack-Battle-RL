@@ -1,0 +1,11 @@
+--- data/phase391-terminal-source/collector.gd
++++ data/phase434-early-invu-source/collector.gd
+@@ -916,7 +916,7 @@
+ 	if done or observer.failed:
+ 		return source_cut_reject_collector("CUT_SAMPLING_FAILURE")
+ 	var count = snapshot.events.size()
+-	var native_manifest = {"schema": "native-combat-capture/1", "case_id": config.case_id, "config": config, "version": game.VERSION, "engine": Engine.get_version_info(), "main_scene": ProjectSettings.get_setting("application/run/main_scene"), "physics_fps": Engine.iterations_per_second, "time_scale": Engine.time_scale, "collector_source": "phase391-single-King-oracle-only", "clean_exit": "HOST_RECORD_SEPARATELY", "native_model_admission": false}
++	var native_manifest = {"schema": "native-combat-capture/1", "case_id": config.case_id, "config": config, "version": game.VERSION, "engine": Engine.get_version_info(), "main_scene": ProjectSettings.get_setting("application/run/main_scene"), "physics_fps": Engine.iterations_per_second, "time_scale": Engine.time_scale, "collector_source": "phase434-single-King-oracle-only", "clean_exit": "HOST_RECORD_SEPARATELY", "native_model_admission": false}
+ 	var validation = {"native_capture_written": true, "capture_complete": false, "host_validation_required": true, "native_checks_pass": errors.empty() and barrier_ok and not observer.failed, "end_barrier": barrier_ok, "layout": legal_checks, "errors": errors.duplicate(), "events": count, "result": result_value, "elapsed_ms": OS.get_ticks_msec() - started, "cut": {"physics": Engine.get_physics_frames(), "idle": Engine.get_idle_frames(), "preinternal": true}, "full_snapshot_reads": 1, "terminal_cut": receipt.terminal_cut.duplicate(true)}
+ 	source_cut_payload = {"instances": instance_rows.duplicate(true), "phases": phases.duplicate(true), "event_references": event_references.duplicate(true), "snapshot": snapshot, "native_manifest": native_manifest, "receipt": receipt, "king_cut": {"receipt": receipt, "connection_order": source_connection_order.duplicate(true), "actual_final": king_final, "source": "SAME_IDLE_INSIDE_SINK_AFTER_WRITE_BEFORE_NODE_INTERNAL"}, "validation": validation, "success": errors.empty() and barrier_ok and not observer.failed, "count": count}
+ 	if not source_control_record("on_idle_source_cut", "FROZEN_BEFORE_ACK"):

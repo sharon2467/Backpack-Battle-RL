@@ -1,0 +1,409 @@
+"""434 offline author TEXT generator. Never imports or calls generated project code."""
+from pathlib import Path
+import ast
+import copy
+import difflib
+import hashlib
+import json
+import re
+import stat
+import traceback
+
+R = Path(__file__).resolve().parents[1]
+D = R / 'data/phase434-early-invu-source'
+SCOPE = 'data/phase434-early-invu-source-preparation/preimage-scope.json'
+RELEASE = 'data/phase434-root-offline-generation-release/release.json'
+PREFIX = 'data/phase434-early-invu-source/'
+VERSION = '7-king-single-A-434'
+PROFILE = 'observer7-434-native-single-king-A/1'
+RUN = 'original027-king-single-A-434-attempt07'
+REVIEW = 'INDEPENDENT435_EARLY_INVU_SOURCE_ACCEPTED_ROOT_PENDING'
+TEMPLATE = PREFIX + 'early-memory-helpers-template.gd.txt'
+CONSERVATION = []
+
+
+def raw(path):
+    relative = Path(path)
+    assert not relative.is_absolute() and '..' not in relative.parts
+    leaf = R / relative
+    assert not any(p.is_symlink() for p in (leaf, *leaf.parents))
+    info = leaf.lstat()
+    assert stat.S_ISREG(info.st_mode) and info.st_nlink == 1
+    value = leaf.read_bytes()
+    after = leaf.lstat()
+    assert (info.st_dev, info.st_ino, info.st_size, info.st_mtime_ns, info.st_ctime_ns) == (after.st_dev, after.st_ino, after.st_size, after.st_mtime_ns, after.st_ctime_ns)
+    return value
+
+
+def descriptor(path):
+    value = raw(path)
+    return dict(path=path, size=len(value), sha256=hashlib.sha256(value).hexdigest())
+
+
+def checked(row):
+    assert descriptor(row['path']) == row, row['path']
+    return raw(row['path'])
+
+
+def save(path, value):
+    text = json.dumps(value, indent=2, sort_keys=True, ensure_ascii=False, allow_nan=False) + '\n'
+    write(path, text)
+    return descriptor(path)
+
+
+def write(path, text):
+    assert path.startswith(PREFIX) or path in {'tests/phase434_king_observer_schema.py', 'tests/phase434_oracle_host.py', 'tests/phase434_oracle_storage.py'}
+    leaf = R / path
+    leaf.parent.mkdir(parents=True, exist_ok=True)
+    with leaf.open('x', encoding='utf-8', newline='') as stream:
+        stream.write(text)
+    assert raw(path) == text.encode('utf-8')
+
+
+def replace(text, before, after, count=1):
+    assert text.count(before) == count, (before[:120], text.count(before), count)
+    return text.replace(before, after)
+
+
+def functions(text, python):
+    if python:
+        lines = text.splitlines(True)
+        return {n.name: (ast.dump(n, include_attributes=False), ''.join(lines[n.lineno - 1:n.end_lineno]))
+                for n in ast.parse(text).body if isinstance(n, (ast.FunctionDef, ast.ClassDef))}
+    matches = list(re.finditer(r'^func (\w+)\([^\n]*\)(?:\s*->[^:\n]+)?\s*:\n(?:[\t ][^\n]*\n|\n)*', text, re.M))
+    assert len(matches) == len(re.findall(r'^func ', text, re.M))
+    return {m.group(1): (m.group(0).rstrip(), m.group(0).rstrip()) for m in matches}
+
+
+def successor(before_path, after_path, text, changed=(), added=()):
+    before = raw(before_path).decode('utf-8')
+    assert before.encode('utf-8') == raw(before_path)
+    python = before_path.endswith('.py')
+    code = python or before_path.endswith('.gd')
+    if code:
+        old_funcs, new_funcs = functions(before, python), functions(text, python)
+        assert not set(old_funcs) - set(new_funcs)
+        actual_changes = sorted(n for n in old_funcs if old_funcs[n] != new_funcs[n])
+        assert actual_changes == sorted(changed), (after_path, actual_changes, changed)
+        assert sorted(set(new_funcs) - set(old_funcs)) == sorted(added)
+        conserved = sorted(set(old_funcs) - set(changed))
+        if python:
+            compile(text, after_path, 'exec')  # compile only, no import/exec
+    else:
+        actual_changes, conserved = [], []
+    old_lines, new_lines = before.splitlines(True), text.splitlines(True)
+    offsets = [0]
+    for line in new_lines:
+        offsets.append(offsets[-1] + len(line))
+    edits = []
+    for tag, a, b, c, d in difflib.SequenceMatcher(None, old_lines, new_lines, autojunk=False).get_opcodes():
+        if tag != 'equal':
+            edits.append(dict(new_text_offset=offsets[c], old=''.join(old_lines[a:b]), new=''.join(new_lines[c:d])))
+    inverse = text
+    for edit in reversed(edits):
+        i = edit['new_text_offset']
+        assert inverse[i:i + len(edit['new'])] == edit['new']
+        inverse = inverse[:i] + edit['old'] + inverse[i + len(edit['new']):]
+    assert inverse.encode('utf-8') == raw(before_path)
+    write(after_path, text)
+    stem = Path(after_path).stem
+    record = dict(before=descriptor(before_path), after=descriptor(after_path),
+                  changed_functions=actual_changes, added_functions=list(added), conserved_functions=conserved,
+                  inverse='EXACT_COMPLETE_UTF8_BYTES', offset_unit='unicode-text-index; final byte equality checked', edits=edits,
+                  python_compile_only=python, project_executions=0)
+    save(PREFIX + stem + '-inverse.json', record)
+    write(PREFIX + stem + '-source.patch', ''.join(difflib.unified_diff(old_lines, new_lines, fromfile=before_path, tofile=after_path)))
+    CONSERVATION.append({k: v for k, v in record.items() if k != 'edits'})
+    return descriptor(after_path)
+
+
+EARLY_VALIDATOR = '''def validate_early_invu_fact(fact, role):
+    """Closed INITIAL observation validation only; never derive private countdown."""
+    if type(role) is not str or role not in ('invu:P', 'invu:O'):
+        raise ValueError('exact early Invu role')
+    _single_king_keys(fact, ('lineage', 'current', 'entry', 'parent_ready', 'private_provenance'), 'early Invu fact')
+    lineage, entry, ready = fact['lineage'], fact['entry'], fact['parent_ready']
+    _single_king_keys(lineage, ('timer_id', 'owner_id', 'kind', 'starts', 'stops', 'birth'), 'early lineage')
+    _single_king_keys(entry, ('schema', 'ordinal', 'owner_inside_tree', 'owner_script', 'owner_scene', 'observer_ready_at_entry'), 'first entry')
+    _single_king_keys(ready, ('schema', 'ordinal', 'starts', 'stops', 'state'), 'parent ready')
+    if lineage['kind'] != 'Character.first_enter_tree/434' or entry['schema'] != 'phase434-invu-first-enter/1' or ready['schema'] != 'phase434-invu-parent-ready/1':
+        raise ValueError('mixed early Invu protocol')
+    if fact['private_provenance'] != 'pending-source-rule-first-enter-seed/1':
+        raise ValueError('early observations are not private proof')
+    for field in ('timer_id', 'owner_id'):
+        value = lineage[field]
+        if type(value) is not str or re.fullmatch('[1-9][0-9]{0,18}', value) is None or int(value) > (1 << 63) - 1:
+            raise ValueError('early native identity')
+    if lineage['timer_id'] == lineage['owner_id']:
+        raise ValueError('Timer/owner alias')
+    if entry['owner_inside_tree'] is not True or type(entry['observer_ready_at_entry']) is not bool:
+        raise ValueError('actual entry readiness booleans')
+    scene = 'res://Core/Player.tscn' if role == 'invu:P' else 'res://Core/Opponent.tscn'
+    if entry['owner_script'] != 'res://Core/Character.gd' or entry['owner_scene'] != scene:
+        raise ValueError('fixed Character source domain')
+    if any(type(x['ordinal']) is not int or not 1 <= x['ordinal'] <= CAPS['native_ids'] * 2 for x in (entry, ready)) or entry['ordinal'] >= ready['ordinal']:
+        raise ValueError('ordered local entry/ready ordinals')
+    for phase in (lineage, ready):
+        for field in ('starts', 'stops'):
+            if type(phase[field]) is not int or not 0 <= phase[field] < (1 << 53):
+                raise ValueError('strict bounded lifetime counter')
+    if any(ready[field] > lineage[field] for field in ('starts', 'stops')):
+        raise ValueError('lifetime counter reset')
+    birth = _single_king_timer(lineage['birth'])
+    checkpoint = _single_king_timer(ready['state'])
+    current = _single_king_timer(fact['current'])
+    for snapshot in (birth, checkpoint, current):
+        node = snapshot['node']
+        if node['native_id'] != lineage['timer_id'] or node['name'] != 'InvulnerabilityTimer' or node['role'] not in (None, role):
+            raise ValueError('stable early native Timer identity')
+        if _single_king_real(snapshot['wait_time']['binary64_be']) <= 0 or _single_king_real(snapshot['time_left']['binary64_be']) < 0:
+            raise ValueError('native public Timer numeric domain')
+        if len(node['positions']) > CAPS['depth']:
+            raise ValueError('bounded early ancestry')
+        for name in ('role', 'path', 'name', 'class'):
+            if node[name] is not None and len(node[name].encode('utf-8')) > CAPS['string_utf8']:
+                raise ValueError('bounded early node text')
+    if birth['node']['inside_tree'] is not False or birth['node']['path'] is not None:
+        raise ValueError('actual first child outside tree')
+    if checkpoint['node']['inside_tree'] is not True or current['node']['inside_tree'] is not True or current['node']['role'] != role:
+        raise ValueError('ready/current selected in-tree Timer')
+    if any(not x['node']['path'].endswith('/InvulnerabilityTimer') for x in (checkpoint, current)):
+        raise ValueError('direct named Timer path')
+    # Counts and public states, including nonzero counts, are retained unchanged.
+    # Constructor seed / NO_START eligibility is a separate SOURCE recipe gate.
+    return fact
+
+
+'''
+
+
+def generate(attempt):
+    scope = json.loads(raw(SCOPE))
+    release = json.loads(raw(RELEASE))
+    assert release['schema'] == 'root434-exact-offline-source-generation-release/1'
+    assert release['scope'] == descriptor(SCOPE) and release['capture_release'] is False
+    assert release['approved_future_interface_literals'] == dict(review_status=REVIEW, run_name=RUN)
+    for row in scope['files']:
+        checked(row['preimage'])
+        assert not (R / row['proposed_output']).exists(), row['proposed_output']
+    for row in scope['control_pins'] + scope['unchanged_execution_imports']:
+        checked(row)
+    assert not (D / 'source-owner.json').exists()
+    oldfreeze = json.loads(checked(scope['actual_base_freeze']))
+    frozen = {row['path']: row for row in oldfreeze['files']}
+    assert len(frozen) == len(oldfreeze['files'])
+    # SOURCE-only descriptors, no source path is followed recursively to any run.
+    for row in frozen.values():
+        checked(row)
+    by_output = {row['proposed_output']: row['preimage']['path'] for row in scope['files']}
+    char_path = PREFIX + 'after-source/Core/Character.gd'
+    before = raw(by_output[char_path]).decode('utf-8')
+    hook = 'func _enter_tree() -> void :\n\tNativeRandomObserver.invu_first_enter_memory(get_node("InvulnerabilityTimer"), self)\n\n'
+    char = replace(before, 'func _ready() -> void :\n', hook + 'func _ready() -> void :\n')
+    char = replace(char, 'NativeRandomObserver.timer_birth(invulnerabilityTimer, self, "Character.scene.ready")', 'NativeRandomObserver.invu_parent_ready_memory(invulnerabilityTimer, self)')
+    character = successor(by_output[char_path], char_path, char, ['_ready'], ['_enter_tree'])
+
+    sink_path = PREFIX + 'after-source/native_random_observer_sink_v7.gd'
+    sink = raw(by_output[sink_path]).decode('utf-8')
+    declarations = 'var invu_early_timers = {}\nvar invu_early_owners = {}\nvar invu_early_ordinal = 0\nvar invu_early_error = null\nvar invu_observer_ready = false\n'
+    sink = replace(sink, 'var king_timer_births = {}\n', 'var king_timer_births = {}\n' + declarations)
+    sink = replace(sink, '\tui_open()\n\nfunc fail(', '\tui_open()\n\tif failed:\n\t\treturn\n\tinvu_observer_ready = true\n\tif invu_early_error != null:\n\t\tfail(invu_early_error.code, "invu_early_memory")\n\nfunc fail(')
+    old_track = 'func track_king_timer_api(timer, operation):\n\tvar key = timer.get_instance_id()\n\tif king_timer_births.has(key):\n\t\tking_timer_births[key]["starts" if operation == "start" else "stops"] += 1\n'
+    new_track = '''func track_king_timer_api(timer, operation):
+\tvar key = timer.get_instance_id()
+\tif invu_early_timers.has(key):
+\t\tvar born = invu_early_timers[key]
+\t\tif king_timer_births.has(key) or typeof(operation) != TYPE_STRING or not operation in ["start", "stop"]:
+\t\t\t_invu_memory_error("INVU_TIMER_API_DOMAIN", 0, key)
+\t\telif invu_early_error == null:
+\t\t\tvar field = "starts" if operation == "start" else "stops"
+\t\t\tif typeof(born[field]) != TYPE_INT or born[field] < 0 or born[field] >= 9007199254740991:
+\t\t\t\t_invu_memory_error("INVU_TIMER_API_COUNTER", 0, key)
+\t\t\telse:
+\t\t\t\tborn[field] += 1
+\t\tif invu_early_error != null and invu_observer_ready:
+\t\t\tfail(invu_early_error.code, "invu_early_memory")
+\t\treturn
+\tif king_timer_births.has(key):
+\t\tking_timer_births[key]["starts" if operation == "start" else "stops"] += 1
+'''
+    sink = replace(sink, old_track, new_track)
+    sink = replace(sink, '"schema": "phase355-king-input-facts/1"', '"schema": "phase434-king-input-facts/1"')
+    sink = replace(sink, 'king_timer_fact(character.invulnerabilityTimer, character, "Character.scene.ready", 0)', 'invu_early_fact(character.invulnerabilityTimer, character)')
+    sink = replace(sink, '"7-king-single-A-390"', '"' + VERSION + '"')
+    sink += '\n' + raw(TEMPLATE).decode('utf-8')
+    sinkrow = successor(by_output[sink_path], sink_path, sink, ['_ready', 'track_king_timer_api', 'selected_king_facts'],
+                        ['_invu_memory_error', '_invu_raw_snapshot', 'invu_first_enter_memory', 'invu_parent_ready_memory', 'invu_early_fact'])
+
+    collector_path = PREFIX + 'collector.gd'
+    collector = raw(by_output[collector_path]).decode('utf-8')
+    collector = replace(collector, '"phase391-single-King-oracle-only"', '"phase434-single-King-oracle-only"')
+    collectorrow = successor(by_output[collector_path], collector_path, collector, ['on_idle_source_cut'])
+
+    schema_path = 'tests/phase434_king_observer_schema.py'
+    schema_text = raw(by_output[schema_path]).decode('utf-8')
+    schema_ast = ast.parse(schema_text)
+    binding_origin = next(ast.literal_eval(n.value) for n in schema_ast.body if isinstance(n, ast.Assign) and any(isinstance(t, ast.Name) and t.id == 'BINDING_SOURCE_CONTRACT' for t in n.targets))
+    active = dict(schema='phase434-active-input-source-contract/1', profile=PROFILE, observer_version=VERSION,
+                  character=character, sink=sinkrow, collector=collectorrow, binding_origin=binding_origin)
+    schema_text = replace(schema_text, "'7-king-single-A-390'", repr(VERSION), 2)
+    schema_text = replace(schema_text, "'observer7-390-native-single-king-A/1'", repr(PROFILE), 2)
+    schema_text = replace(schema_text, "facts['schema']!='phase355-king-input-facts/1'", "facts['schema']!='phase434-king-input-facts/1'")
+    schema_text = replace(schema_text, "expected={'invu:P':(0,'Character.scene.ready'),'invu:O':(0,'Character.scene.ready'),", "expected={'invu:P':(0,'Character.first_enter_tree/434'),'invu:O':(0,'Character.first_enter_tree/434'),")
+    old_dispatch = "    for role,(mode,kind)in expected.items():\n        fact=facts['timers'][role];_single_king_keys(fact,('lineage','current','private_provenance'),'fresh Timer fact')"
+    new_dispatch = """    for role,(mode,kind)in expected.items():
+        if role in ('invu:P', 'invu:O'):
+            early = validate_early_invu_fact(facts['timers'][role], role)
+            native = early['lineage']['timer_id']
+            if native in timer_ids:raise ValueError('distinct early Timer identity')
+            timer_ids.add(native)
+            continue
+        fact=facts['timers'][role];_single_king_keys(fact,('lineage','current','private_provenance'),'fresh Timer fact')"""
+    schema_text = replace(schema_text, old_dispatch, new_dispatch)
+    schema_text = replace(schema_text, 'def validate_single_king_fresh_facts(facts):', EARLY_VALIDATOR + 'def validate_single_king_fresh_facts(facts):')
+    schema_text = replace(schema_text, "ready='READY_OWNER_ONLY_NOT_TIMER', private_origin='SOURCE_CONSTRUCTOR_NO_START_NOT_PUBLIC_ZERO',",
+                          "ready='INVU_ENTRY_AND_PARENT_READY_OBSERVATIONS_OTHER_READY_OWNER_ONLY', private_origin='INVU_PENDING_SOURCE_RULE_OTHER_FAMILY_UNCHANGED',")
+    old_public = functions(schema_text, True)['validate_sources_with_binding'][1]
+    new_public = replace(old_public, '_binding_same_source(source_contract, BINDING_SOURCE_CONTRACT)', '_binding_same_source(source_contract, ACTIVE_SOURCE_CONTRACT)')
+    new_public = replace(new_public, 'joined = join_binding_provenance(decoded, binding, source_contract)', "joined = join_binding_provenance(decoded, binding, source_contract['binding_origin'])")
+    new_public = replace(new_public, "schema='phase360-twelve-source-proof/1'", "schema='phase434-twelve-source-proof/1'")
+    new_public = replace(new_public, "original_eleven_schema=eleven['schema'], binding_join=joined, raw_sources=pins,", "original_eleven_schema=eleven['schema'], binding_join=joined, raw_sources=pins,\n                active_source_contract=deepcopy(ACTIVE_SOURCE_CONTRACT), early_invu_provenance='PENDING_SOURCE_RULE_NOT_PRIVATE_OBSERVATION',")
+    schema_text = replace(schema_text, old_public, new_public)
+    schema_text = replace(schema_text, '# phase360 auxiliary SOURCE interface; no projection or admission.',
+                          'ACTIVE_SOURCE_CONTRACT = ' + repr(active) + '\n\n# phase360 auxiliary SOURCE interface; no projection or admission.')
+    schema_text += '\nschema.validate_early_invu_fact = validate_early_invu_fact\n'
+    schemarow = successor(by_output[schema_path], schema_path, schema_text,
+                          ['validate_single_king_fresh_facts', 'validate_single_king_input_provenance', 'validate_sources_with_binding'], ['validate_early_invu_fact'])
+
+    paths = copy.deepcopy(oldfreeze['paths'])
+    for target, value in [('Core/Character.gd', character), ('native_random_observer_sink_v7.gd', sinkrow)]:
+        paths[target]['after_path'] = value['path']
+        paths[target]['after'] = {k: value[k] for k in ('size', 'sha256')}
+    artifacts = copy.deepcopy(oldfreeze['artifacts'])
+    artifacts['native_combat_capture.gd'] = collectorrow
+    assert len(paths) == 75 and len(artifacts) == 3
+    assert set(paths).isdisjoint(artifacts)
+    unchanged = [name for name in paths if name not in ('Core/Character.gd', 'native_random_observer_sink_v7.gd')]
+    assert len(unchanged) == 73 and all(paths[name] == oldfreeze['paths'][name] for name in unchanged)
+    cap = sum(x['after']['size'] for x in paths.values()) + sum(x['size'] for x in artifacts.values())
+    assert cap == 815198 - 55679 - 104333 - 64928 + character['size'] + sinkrow['size'] + collectorrow['size']
+    storage_path = 'tests/phase434_oracle_storage.py'
+    storage = replace(raw(by_output[storage_path]).decode('utf-8'), 'MAX_INSTALL_BYTES = 815198', 'MAX_INSTALL_BYTES = ' + str(cap))
+    storagerow = successor(by_output[storage_path], storage_path, storage)
+
+    host_path = 'tests/phase434_oracle_host.py'
+    host = raw(by_output[host_path]).decode('utf-8')
+    literal_pairs = [('from phase391_oracle_storage import', 'from phase434_oracle_storage import'),
+                     ("SOURCE = 'data/phase391-terminal-source'", "SOURCE = 'data/phase434-early-invu-source'"),
+                     ("'original027-king-single-A-20261026-attempt06'", repr(RUN)),
+                     ("'INDEPENDENT392_FIRST_ELIGIBLE_IDLE_SOURCE_ACCEPTED_ROOT_PENDING'", repr(REVIEW)),
+                     ("'phase391-root-oracle-acceptance/1'", "'phase434-root-oracle-acceptance/1'"),
+                     ("'phase391-oracle-readonly-plan/1'", "'phase434-oracle-readonly-plan/1'"),
+                     ("'phase391-oracle-single-King'", "'phase434-oracle-single-King'"),
+                     ("'phase391-oracle-host/1'", "'phase434-oracle-host/1'"),
+                     ("'phase391-terminal-source-tuple/1'", "'phase434-terminal-source-tuple/1'"),
+                     ("'phase391-native-patch-source/1'", "'phase434-native-patch-source/1'"),
+                     ("'_phase391_terminal_schema_'", "'_phase434_terminal_schema_'"),
+                     ("'phase391-host-terminal-control-proof/1'", "'phase434-host-terminal-control-proof/1'"),
+                     ("'7-king-single-A-390'", repr(VERSION)),
+                     ("'observer7-390-native-single-king-A/1'", repr(PROFILE))]
+    for before_literal, after_literal in literal_pairs:
+        host = replace(host, before_literal, after_literal)
+    hostrow = successor(by_output[host_path], host_path, host,
+                        ['source_gate', 'plan', 'execute', 'validate_active_source_tuple', 'load_terminal_schema', 'read_terminal_expected_controls'])
+
+    producer = descriptor('tests/phase434_prepare_source.py')
+    patch = dict(schema='phase434-native-patch-source/1', paths=paths, producer=producer, sink=sinkrow,
+                 profile=PROFILE, observer_version=VERSION, terminal_policy=oldfreeze['terminal_policy'])
+    patchpath = PREFIX + 'native-patch-source.json'
+    patchrow = successor(by_output[patchpath], patchpath, json.dumps(patch, indent=2, sort_keys=True) + '\n')
+    sourcetuple = json.loads(checked(oldfreeze['active_source_tuple']))
+    sourcetuple.update(schema='phase434-terminal-source-tuple/1', profile=PROFILE, observer_version=VERSION,
+                       producer=producer, sink=sinkrow, collector=collectorrow, schema_module=schemarow, native_patch=patchrow)
+    tuplepath = PREFIX + 'source-tuple.json'
+    tuplerow = successor(by_output[tuplepath], tuplepath, json.dumps(sourcetuple, indent=2, sort_keys=True) + '\n')
+    # Retain exact historical SOURCE rows; add new actual leaves, no fake review hash.
+    for row in scope['unchanged_execution_imports'] + [character, sinkrow, collectorrow, schemarow, storagerow, hostrow, producer, descriptor(TEMPLATE), patchrow, tuplerow]:
+        assert row['path'] not in frozen or frozen[row['path']] == row
+        frozen[row['path']] = row
+    freeze = copy.deepcopy(oldfreeze)
+    freeze.update(schema='phase434-early-invu-SOURCE/1', paths=paths, artifacts=artifacts, collector=collectorrow,
+                  schema_module=schemarow, active_source_tuple=tuplerow, profile=PROFILE, observer_version=VERSION,
+                  run_name=RUN, accepted_source_controls=[], current_authorized_operations=0,
+                  install_payload_limits=dict(files=78, bytes=cap, source='actual final75patch+3artifact descriptor sum'),
+                  repair_origin=scope['actual_base_freeze'], repair_finding=descriptor('docs/phase434_early_invu_source_implementation_scope_spec.md'),
+                  files=[frozen[k] for k in sorted(frozen)])
+    freezepath = PREFIX + 'combined-source-freeze.json'
+    freezerow = successor(by_output[freezepath], freezepath, json.dumps(freeze, indent=2, sort_keys=True) + '\n')
+
+    save(PREFIX + 'install-bytecap.json', dict(files=78, bytes=cap, prior_bytes=815198, patches=[dict(target=k, source=dict(path=v['after_path'], **v['after'])) for k, v in sorted(paths.items())], artifacts=artifacts,
+                                             unchanged_patch_targets=unchanged, unchanged_artifacts=['.native-random-observer-disposable', 'native_capture_config.json']))
+    save(PREFIX + 'conservation.json', dict(schema='phase434-static-source-conservation/1', rows=CONSERVATION,
+                                           generator_attempts=attempt, tested_project_execution=0, static_only=True,
+                                           preserved=['107 record sites', 'Food INT22', '75 patch target identities', 'four physical channels/shared sequence', 'business/RNG/listener bodies and order', 'first-actual-eligible-idle terminal algorithms', 'all storage functions']))
+    save(PREFIX + 'source-constraints.json', dict(schema='phase434-source-constraints/1', status='SOURCE_ONLY_AWAITING_INDEPENDENT435', scope=descriptor(SCOPE), root_generation_release=descriptor(RELEASE),
+                                               accepted_recipe_count=6, missing=82, new_invu_recipes=0, native=0, models=0, project_helpers=0, schema_calls=0, raw_capture_reads=0,
+                                               language_runtime_purity='NOT_EXECUTED_OR_ACCEPTED', count_contract='strict INT 0..2^53-1; retained nonzero values; no NO_START derivation',
+                                               source_premises='433 conditional exact fresh Character scene first lifetime and ordinary version-attributed dispatch; not observed private value or bitexact binary build',
+                                               never_do=['run host plan/execute', 'import generated schema', 'pool/baseline install/write', 'native capture', 'inputbuild/model', 'repair fixed06'],
+                                               first_error_policy='author attempts retained; new source-owner only after successful static seal'))
+    api = dict(schema='phase434-actual-api-contract/1', module=schemarow, host=hostrow, storage=storagerow, source_tuple=tuplerow, source_freeze=freezerow,
+               observer_version=VERSION, profile=PROFILE, facts_schema='phase434-king-input-facts/1', active_source_contract=active,
+               functions={'validate_early_invu_fact': '(fact: exact closed dict, role: invu:P|invu:O) -> same fact, no mutation/private inference',
+                          'validate_sources_with_binding': '(raw11: dict[str,bytes], binding_bytes: bytes, source_contract: exact ACTIVE_SOURCE_CONTRACT) -> structural proof, never input bundle/admission',
+                          'validate_terminal_evidence': '(endpoint, clock, cleanup) -> unchanged expected-only proof',
+                          'validate_terminal_receipt': '(endpoint, clock, receipt, control, validation) -> unchanged expected-only proof',
+                          'validate_terminal_diagnostics': '(rows) -> unchanged closed FINALIZED diagnostic'},
+               gd_memory_helpers=['_invu_memory_error(code, owner_id, timer_id) -> NIL', '_invu_raw_snapshot(timer) -> primitive raw snapshot|null', 'invu_first_enter_memory(timer, owner) -> NIL', 'invu_parent_ready_memory(timer, owner) -> NIL'],
+               gd_initial_helper='invu_early_fact(timer, owner) -> exact early fact|null; ordinary initialized INITIAL only',
+               legal_inputs=scope['legal_input_names'], host_root_schema='phase434-root-oracle-acceptance/1', review_status=REVIEW,
+               review_required_fields=['status', 'source_freeze', 'native: strictINT0', 'models: strictINT0'],
+               run_name=RUN, future_interface_not_authority=True, independent_acceptance=None,
+               exports='schema.validate_early_invu_fact and schema.validate_sources_with_binding are same-module functions; terminal exports unchanged',
+               execution_imports=scope['unchanged_execution_imports'], author_generator_attempts=attempt,
+               tested_code_imports=0, tested_code_calls=0, native=0, models=0, inputbuilds=0, capture=0)
+    save(PREFIX + 'api-contract.json', api)
+    consumers = []
+    for p in [sinkrow['path'], collectorrow['path'], schemarow['path'], hostrow['path'], patchrow['path'], tuplerow['path'], freezerow['path']]:
+        for number, line in enumerate(raw(p).decode('utf-8').splitlines(), 1):
+            literals = [s for s in [VERSION, PROFILE, 'phase434-king-input-facts/1', 'phase434-invu-first-enter/1', 'phase434-invu-parent-ready/1', 'Character.first_enter_tree/434', 'phase434-root-oracle-acceptance/1', REVIEW] if s in line]
+            if literals:
+                consumers.append(dict(path=p, line=number, literals=literals))
+    save(PREFIX + 'protocol-consumer-inventory.json', dict(consumers=consumers, terminal_policy=oldfreeze['terminal_policy'], preserved_structural_schemas=scope['protocol']['conserved_terminal_schemas'], legal_input_names=scope['legal_input_names'], old_binding_origin='HISTORICAL_ONLY_UNCHANGED'))
+    # Complete ordinary SOURCE closure: new outputs, exact referenced sources,
+    # control/preimage pins and historical source origins. No recursive run reads.
+    owned = dict(frozen)
+    refs = scope['control_pins'] + scope['unchanged_execution_imports'] + oldfreeze['historical_source_controls']
+    refs += [descriptor(SCOPE), descriptor(RELEASE), descriptor('data/phase434-early-invu-source-preparation/owned-files.json'), oldfreeze['native_source_origin']]
+    refs += [row['preimage'] for row in scope['files']]
+    for row in refs:
+        checked(row)
+        assert row['path'] not in owned or owned[row['path']] == row
+        owned[row['path']] = row
+    for path in sorted(D.rglob('*')):
+        if path.is_file():
+            name = path.relative_to(R).as_posix()
+            owned[name] = descriptor(name)
+    for row in owned.values():
+        checked(row)
+    save(PREFIX + 'source-owner.json', dict(schema='phase434-source-owner/1', status='SEALED_SOURCE_PENDING_INDEPENDENT435', files=[owned[k] for k in sorted(owned)],
+                                           file_count=len(owned), bytes=sum(x['size'] for x in owned.values()), generator_attempts=attempt,
+                                           author_generation_not_project_execution=True, tested_project_imports=0, tested_project_calls=0))
+    print(json.dumps(dict(owner=descriptor(PREFIX + 'source-owner.json'), source_freeze=freezerow,
+                          api=descriptor(PREFIX + 'api-contract.json'), install_bytes=cap, files=len(owned), generator_attempts=attempt), sort_keys=True))
+
+
+if __name__ == '__main__':
+    assert not (D / 'source-owner.json').exists(), 'sealed SOURCE is immutable'
+    D.mkdir(exist_ok=True)
+    attempts = sorted(D.glob('preparation-attempt-*'))
+    attempt = len(attempts) + 1
+    trace = D / ('preparation-attempt-%03d' % attempt)
+    trace.mkdir(exist_ok=False)
+    write(trace.relative_to(R).as_posix() + '/author-source.py.txt', raw('tests/phase434_prepare_source.py').decode('utf-8'))
+    save(trace.relative_to(R).as_posix() + '/invocation.json', dict(author_generator_attempt=attempt, operation='offline author TEXT generation only', tested_project_execution=0))
+    try:
+        generate(attempt)
+    except BaseException:
+        write(trace.relative_to(R).as_posix() + '/traceback.txt', traceback.format_exc())
+        raise

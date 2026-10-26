@@ -1,0 +1,496 @@
+{
+  "schema": "phase434-early-invu-exact-preparation-scope/1",
+  "status": "PREPARATION_ONLY_PENDING_ROOT_OFFLINE_GENERATION_RELEASE",
+  "actual_base_freeze": {
+    "path": "data/phase391-terminal-source/combined-source-freeze.json",
+    "size": 65361,
+    "sha256": "e55a602c9d7087a71a2fe6b78a3a143663fc8f0f659c0fe3fb690019ba8173c9"
+  },
+  "files": [
+    {
+      "preimage": {
+        "path": "data/phase359-king-producer-source/after-source/Core/Character.gd",
+        "size": 55679,
+        "sha256": "4e37b2f5d044e015be5dd75fca37577bdb9fc870dd2e32cad5198c36649df984"
+      },
+      "proposed_output": "data/phase434-early-invu-source/after-source/Core/Character.gd",
+      "kind": "CODE",
+      "allowed_changes": {
+        "_ready": "Replace only first timer_birth observer statement with invu_parent_ready_memory; all remaining bytes unchanged."
+      },
+      "new_functions": [
+        "_enter_tree"
+      ],
+      "function_preimages": [
+        {
+          "name": "_ready",
+          "line": 140,
+          "end": 175,
+          "size": 1460,
+          "sha256": "982607ce01b32654e4b4ca26fd1ad1bb9f2c1ed00e7a2ca886043696265cb00c",
+          "span": "through before next func; declaration-only exceptions separately listed"
+        }
+      ]
+    },
+    {
+      "preimage": {
+        "path": "data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
+        "size": 104333,
+        "sha256": "999e0043a653067a962819cf81340b0dad745fa2148bbfab7724d7948a6a21ea"
+      },
+      "proposed_output": "data/phase434-early-invu-source/after-source/native_random_observer_sink_v7.gd",
+      "kind": "CODE",
+      "allowed_changes": {
+        "_ready": "After successful existing bootstrap only: mark observer-ready and publish earlier memory error once; no reset.",
+        "track_king_timer_api": "Add disjoint early-invu start/stop branch with strict operation and bounded counter checks; conserve old other-map branch.",
+        "selected_king_facts": "Facts schema434; replace only invu dispatch with invu_early_fact.",
+        "declarations": "Add primitive early maps, bijection, ordinal, error/ready state; RNG_INITIAL_PROFILE exact434 literal."
+      },
+      "new_functions": [
+        "_invu_memory_error",
+        "_invu_raw_snapshot",
+        "invu_first_enter_memory",
+        "invu_parent_ready_memory",
+        "invu_early_fact"
+      ],
+      "function_preimages": [
+        {
+          "name": "_ready",
+          "line": 50,
+          "end": 66,
+          "size": 709,
+          "sha256": "202847e2a72b17a91adc8db27adf235c52be102cb16432ef4b1b10c5ba23dfcf",
+          "span": "through before next func; declaration-only exceptions separately listed"
+        },
+        {
+          "name": "track_king_timer_api",
+          "line": 754,
+          "end": 758,
+          "size": 190,
+          "sha256": "0063d2dfec78ab3afc03761e2e287598909a4cf516b116872eba7aa2df02735a",
+          "span": "through before next func; declaration-only exceptions separately listed"
+        },
+        {
+          "name": "selected_king_facts",
+          "line": 782,
+          "end": 815,
+          "size": 2550,
+          "sha256": "bf7645d073bffc1d4b56bf2345c8876eaee65cf10ac7b9eba5ebf115d00a7484",
+          "span": "through before next func; declaration-only exceptions separately listed"
+        }
+      ]
+    },
+    {
+      "preimage": {
+        "path": "tests/phase391_king_observer_schema.py",
+        "size": 208243,
+        "sha256": "ffcddfd2cbe58307f7258c1aefad5586a9179c6c452dc59c3342f9047f31457c"
+      },
+      "proposed_output": "tests/phase434_king_observer_schema.py",
+      "kind": "CODE",
+      "allowed_changes": {
+        "validate_single_king_fresh_facts": "New facts literal; route ONLY invu:P/O to dedicated early validator, add IDs to same uniqueness set, skip old invu zero-start/fresh checks; other three Timer branches conserved.",
+        "validate_single_king_input_provenance": "Retain all joins; return metadata must distinguish pending early seed from old no-start provenance. No private inference.",
+        "validate_sources_with_binding": "Require exact ACTIVE_SOURCE_CONTRACT; pass its unchanged historical binding_origin to existing binding join; result schema434 and pending provenance metadata only. Same signature/raw11+binding API.",
+        "declarations": "VERSION/PROFILE/SINGLE_KING_GENUINE_PROFILE/SINGLE_KING_OBSERVER_VERSION434; new closed ACTIVE_SOURCE_CONTRACT; export dedicated validator on schema namespace."
+      },
+      "new_functions": [
+        "validate_early_invu_fact"
+      ],
+      "function_preimages": [
+        {
+          "name": "validate_single_king_fresh_facts",
+          "line": 997,
+          "end": 1043,
+          "size": 4976,
+          "sha256": "b10eb26414d46b610a87bf0e4861edb835732107b22b81850778a5bd1d68c1ab"
+        },
+        {
+          "name": "validate_single_king_input_provenance",
+          "line": 1089,
+          "end": 1164,
+          "size": 5145,
+          "sha256": "ab072c80e433904307fbbb7604491198b642f9651314c19d54d3d868605cfc82"
+        },
+        {
+          "name": "validate_sources_with_binding",
+          "line": 2362,
+          "end": 2380,
+          "size": 1560,
+          "sha256": "065c908788a95aacb75e60d05aa9ae7261a309457f2a219b57265a72e4292d6a"
+        }
+      ]
+    },
+    {
+      "preimage": {
+        "path": "data/phase391-terminal-source/collector.gd",
+        "size": 64928,
+        "sha256": "f05bbf6b0e7277b5a342553d3a8d3c842f3efa6526f0b85948bd003837ac74ce"
+      },
+      "proposed_output": "data/phase434-early-invu-source/collector.gd",
+      "kind": "CODE",
+      "allowed_changes": {
+        "on_idle_source_cut": "Only collector_source literal phase391-single-King-oracle-only -> phase434-single-King-oracle-only."
+      },
+      "new_functions": [],
+      "function_preimages": [
+        {
+          "name": "on_idle_source_cut",
+          "line": 895,
+          "end": 928,
+          "size": 3857,
+          "sha256": "8116cfa4afb3f762b5ef555a3634f76f3ec79042e0e8752d3d1ec553537683be",
+          "span": "through before next func; declaration-only exceptions separately listed"
+        }
+      ]
+    },
+    {
+      "preimage": {
+        "path": "tests/phase391_oracle_host.py",
+        "size": 31092,
+        "sha256": "49df9df290a1c595a9a2acf69f1d3e1b81af889913d531d5327ed0ba9b16b0ef"
+      },
+      "proposed_output": "tests/phase434_oracle_host.py",
+      "kind": "CODE",
+      "allowed_changes": {
+        "source_gate": "Only exact Root schema/source path/review identity434 literals; preserve permission and descriptor gates.",
+        "plan": "Only returned plan schema434.",
+        "execute": "Only patch_version and host_manifest schema434.",
+        "validate_active_source_tuple": "Only tuple/native-patch schema434 and messages/version identity; exact payload graph algorithm unchanged.",
+        "load_terminal_schema": "Only module cache-name prefix434.",
+        "read_terminal_expected_controls": "Only returned host proof schema434; same actual terminal join.",
+        "declarations": "Import phase434_oracle_storage; SOURCE434, REVIEW_STATUS proposed435 token, RUN_NAME proposed fresh434-attempt07, VERSION/PROFILE434. No resource/process/storage policy changes."
+      },
+      "new_functions": [],
+      "function_preimages": [
+        {
+          "name": "source_gate",
+          "line": 46,
+          "end": 76,
+          "size": 2435,
+          "sha256": "cf7e9823ca4fe0dd80dc8a4e46b21ebb0349a2f6fe1761c2506aaaf934affd18"
+        },
+        {
+          "name": "plan",
+          "line": 95,
+          "end": 115,
+          "size": 1926,
+          "sha256": "326f03b7494b47f9770bc08e64975116b2123a3f6988e4390365a6f1a7bd9af5"
+        },
+        {
+          "name": "execute",
+          "line": 118,
+          "end": 180,
+          "size": 5489,
+          "sha256": "b938f735e368699a37518cb163122ac24eced6476e440bf149d7a43d3aeee577"
+        },
+        {
+          "name": "validate_active_source_tuple",
+          "line": 339,
+          "end": 367,
+          "size": 2255,
+          "sha256": "32c8ceeea6a648d1ed5fbc55fbcf296fc80daef17610e0d1cdd7b1ea495db666"
+        },
+        {
+          "name": "load_terminal_schema",
+          "line": 370,
+          "end": 396,
+          "size": 1384,
+          "sha256": "71f6136ae5125ba456d3b3177f2109940d1d7b8f158291af8397a7649a69d87f"
+        },
+        {
+          "name": "read_terminal_expected_controls",
+          "line": 399,
+          "end": 441,
+          "size": 2556,
+          "sha256": "36705fcd78ebb1a9804164e4a03b37994520711b933885623fcfe29c8ff4a691"
+        }
+      ]
+    },
+    {
+      "preimage": {
+        "path": "tests/phase391_oracle_storage.py",
+        "size": 20410,
+        "sha256": "a443a0e8572e5a079bb106f6940d1d0d5b1e8a6fe59ab0bf9e85212d20e21718"
+      },
+      "proposed_output": "tests/phase434_oracle_storage.py",
+      "kind": "CODE",
+      "allowed_changes": {
+        "declarations": "MAX_INSTALL_BYTES only, computed from final75+3; MAX_INSTALL_PAYLOADS remains78. All functions byte/AST identical."
+      },
+      "new_functions": [],
+      "function_preimages": []
+    },
+    {
+      "preimage": {
+        "path": "data/phase391-terminal-source/native-patch-source.json",
+        "size": 30584,
+        "sha256": "e889a9faf1669706732ceb72937011d5867f3094ca503b7997ff311b7c1002de"
+      },
+      "proposed_output": "data/phase434-early-invu-source/native-patch-source.json",
+      "kind": "METADATA",
+      "allowed_changes": {
+        "metadata": "Replace only Character/sink after descriptors and producer/profile/version/schema434."
+      },
+      "new_functions": [],
+      "function_preimages": []
+    },
+    {
+      "preimage": {
+        "path": "data/phase391-terminal-source/source-tuple.json",
+        "size": 1551,
+        "sha256": "883e9b20dfb4c268cd265910ad7adedc403aac785287f2f39f859cdcdac8f8e6"
+      },
+      "proposed_output": "data/phase434-early-invu-source/source-tuple.json",
+      "kind": "METADATA",
+      "allowed_changes": {
+        "metadata": "Actual new sink/collector/schema/producer/native-patch descriptors; profile/version/schema434. Fixture and historical projector origin unchanged."
+      },
+      "new_functions": [],
+      "function_preimages": []
+    },
+    {
+      "preimage": {
+        "path": "data/phase391-terminal-source/combined-source-freeze.json",
+        "size": 65361,
+        "sha256": "e55a602c9d7087a71a2fe6b78a3a143663fc8f0f659c0fe3fb690019ba8173c9"
+      },
+      "proposed_output": "data/phase434-early-invu-source/combined-source-freeze.json",
+      "kind": "METADATA",
+      "allowed_changes": {
+        "metadata": "Replace exact changed payload bindings, direct driver closure, identity/output metadata and computed bytecap. Historical controls remain historical; accepted_source_controls empty until actual independent acceptance."
+      },
+      "new_functions": [],
+      "function_preimages": []
+    }
+  ],
+  "legal_input_names": [
+    "fixture.json",
+    "player_fixture.json",
+    "observer7-input.jsonl",
+    "observer7-lineage.jsonl",
+    "observer7-metadata.jsonl",
+    "observer7-primitives.jsonl",
+    "king-clock-checkpoint.json",
+    "king-clock-passes.jsonl",
+    "king-input-facts.json",
+    "king-ui-authority.jsonl",
+    "king-rng-checkpoint.json",
+    "king-slot-bindings.json"
+  ],
+  "unchanged_execution_imports": [
+    {
+      "path": "tests/phase363_oracle_process.py",
+      "size": 13665,
+      "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f"
+    },
+    {
+      "path": "tests/phase363_oracle_storage.py",
+      "size": 15496,
+      "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc"
+    },
+    {
+      "path": "tests/native_run_compaction.py",
+      "size": 27304,
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260"
+    }
+  ],
+  "control_pins": [
+    {
+      "path": "data/phase391-terminal-source/combined-source-freeze.json",
+      "size": 65361,
+      "sha256": "e55a602c9d7087a71a2fe6b78a3a143663fc8f0f659c0fe3fb690019ba8173c9"
+    },
+    {
+      "path": "data/phase391-terminal-source/source-owner.json",
+      "size": 9902,
+      "sha256": "091b59305608472bc41f3f9a51445dd765c62df25315de7dd1d0fb2363ce195e"
+    },
+    {
+      "path": "data/phase391-terminal-source/api-contract.json",
+      "size": 2471,
+      "sha256": "c8ef98ca7a39a0d97d85e5744da96d5730867b13ddfe8a40ac08452b61197ef5"
+    },
+    {
+      "path": "data/phase391-terminal-source/install-bytecap.json",
+      "size": 6673,
+      "sha256": "6b4f9980fb0cc03d99bed36e571d2e37a10f35fb6e172c3d99e23b3222f37e1b"
+    },
+    {
+      "path": "data/phase391-terminal-source/protocol-consumer-inventory.json",
+      "size": 5356,
+      "sha256": "3a63af0a0c562f73fa6813c6ed984984e7404bf4c18d737363de0a38ed307803"
+    },
+    {
+      "path": "docs/phase432_early_invu_memory_hook_source_spec.md",
+      "size": 15411,
+      "sha256": "719a1c2bbb07afa252390f4c5341da4bb3d83d201b4b69e506ca7d18109964e4"
+    },
+    {
+      "path": "data/phase432-early-invu-source-design/source-change-rule.json",
+      "size": 13162,
+      "sha256": "0e98c5591fc831c88f9cf5f1a6b063659843a4c316324bbda7accc00b323a62a"
+    },
+    {
+      "path": "data/phase433-independent-early-invu-design-review/review.json",
+      "size": 9150,
+      "sha256": "5cce91c4485b11e52abd657153c63823e876f1753824bc1715036bbe3025756d"
+    },
+    {
+      "path": "data/phase433-independent-early-invu-design-review/owned-files.json",
+      "size": 762,
+      "sha256": "b5d22956dfaadfda905356602c5c00746bcb2f3e02d890b942dae9d48f435bb5"
+    }
+  ],
+  "installed_payload": {
+    "patch_targets": [
+      "Core/Buff.gd",
+      "Core/Character.gd",
+      "Core/CombatLog.gd",
+      "Core/Game.gd",
+      "Interface/CombatTimer/CombatTimer.gd",
+      "Items/AcornCollar.gd",
+      "Items/BloodAmulet.gd",
+      "Items/BloodGoobert.gd",
+      "Items/Broom.gd",
+      "Items/BurningTorch.gd",
+      "Items/Carrot.gd",
+      "Items/CarrotGoobert.gd",
+      "Items/Crossblades.gd",
+      "Items/Dagger.gd",
+      "Items/Exclusive/BerserkerBag.gd",
+      "Items/Exclusive/BookofIce.gd",
+      "Items/Exclusive/BroccoliGoobert.gd",
+      "Items/Exclusive/CheeseGoobert.gd",
+      "Items/Exclusive/ChiliGoobert.gd",
+      "Items/Exclusive/CupcakeGoobert.gd",
+      "Items/Exclusive/KingGoobert.gd",
+      "Items/Exclusive/LuckyShortbow.gd",
+      "Items/Exclusive/MagicMirror.gd",
+      "Items/Exclusive/PoisonShortbow.gd",
+      "Items/Exclusive/RainbowGoobertAdventurer.gd",
+      "Items/Exclusive/RainbowGoobertBerserker.gd",
+      "Items/Exclusive/RainbowGoobertEngineer.gd",
+      "Items/Exclusive/RainbowGoobertMage.gd",
+      "Items/Exclusive/RainbowGoobertPyromancer.gd",
+      "Items/Exclusive/Shelly.gd",
+      "Items/Exclusive/ShepherdsCrook.gd",
+      "Items/Exclusive/ThornShortbow.gd",
+      "Items/Exclusive/ToastGoobert.gd",
+      "Items/FalconBlade.gd",
+      "Items/Food.gd",
+      "Items/GlovesofHaste.gd",
+      "Items/Goobert.gd",
+      "Items/Hammer.gd",
+      "Items/HealingHerbs.gd",
+      "Items/HealthPotion.gd",
+      "Items/HeroLongsword.gd",
+      "Items/HeroSword.gd",
+      "Items/HungryBlade.gd",
+      "Items/Item.gd",
+      "Items/ItemDescriptor.gd",
+      "Items/LeatherArmor.gd",
+      "Items/LeatherBoots.gd",
+      "Items/LightGoobert.gd",
+      "Items/MagicStaff.gd",
+      "Items/ManaPotion.gd",
+      "Items/PestilenceFlask.gd",
+      "Items/PocketSand.gd",
+      "Items/PoisonGoobert.gd",
+      "Items/Potion.gd",
+      "Items/RainbowGoobert.gd",
+      "Items/RainbowGoobertRanger.gd",
+      "Items/RangerCollar.gd",
+      "Items/RubyEgg.gd",
+      "Items/SteelGoobert.gd",
+      "Items/StoneSkinPotion.gd",
+      "Items/StrongHealthPotion.gd",
+      "Items/StrongStoneSkinPotion.gd",
+      "Items/ThornWhip.gd",
+      "Items/VampiricArmor.gd",
+      "Items/WalrusTusk.gd",
+      "Items/Weapon.gd",
+      "Sheets/ItemBook.gd",
+      "Utility/AutoHideParticles.gd",
+      "Utility/BalancedRandom.gd",
+      "Utility/BalancedRange.gd",
+      "Utility/DamageSource.gd",
+      "Utility/EventBus.gd",
+      "Utility/Util.gd",
+      "native_random_observer_sink_v7.gd",
+      "project.godot"
+    ],
+    "artifact_targets": [
+      ".native-random-observer-disposable",
+      "native_capture_config.json",
+      "native_combat_capture.gd"
+    ],
+    "files": 78,
+    "old_bytes": 815198,
+    "new_bytes": null,
+    "method": "sum final checked after.size for each of the exact75 targets + size of exact3 artifacts; assert unique targets and actual size/SHA; storage cap, freeze cap, install-bytecap must equal computed sum",
+    "crosscheck": "815198 - 55679 - 104333 - 64928 + len(newCharacter) + len(newSink) + len(newCollector)",
+    "unchanged73": "All patch targets other than Core/Character.gd and native_random_observer_sink_v7.gd retain exact391 after descriptors; marker/config unchanged"
+  },
+  "protocol": {
+    "version": "7-king-single-A-434",
+    "profile": "observer7-434-native-single-king-A/1",
+    "facts": "phase434-king-input-facts/1",
+    "entry": "phase434-invu-first-enter/1",
+    "parent_ready": "phase434-invu-parent-ready/1",
+    "kind": "Character.first_enter_tree/434",
+    "private_provenance": "pending-source-rule-first-enter-seed/1",
+    "root_authority": "phase434-root-oracle-acceptance/1",
+    "source_tuple": "phase434-terminal-source-tuple/1",
+    "native_patch": "phase434-native-patch-source/1",
+    "freeze": "phase434-early-invu-SOURCE/1",
+    "proposed_review_status": "INDEPENDENT435_EARLY_INVU_SOURCE_ACCEPTED_ROOT_PENDING",
+    "proposed_run_name": "original027-king-single-A-434-attempt07",
+    "terminal_policy": "first-actual-idle-after-at-least-two-future-physics/1",
+    "conserved_terminal_schemas": [
+      "phase390-first-eligible-idle-endpoint/1",
+      "phase390-terminal-cut-control/1",
+      "phase391-source-control/1",
+      "phase391-expected-terminal-proof/1"
+    ],
+    "conserved_record_schema": "observer7-record/1",
+    "real_review_or_Root_receipt": null
+  },
+  "active_contract": {
+    "schema": "phase434-active-input-source-contract/1",
+    "fields": [
+      "schema",
+      "profile",
+      "observer_version",
+      "character",
+      "sink",
+      "collector",
+      "binding_origin"
+    ],
+    "binding_origin": "Existing BINDING_SOURCE_CONTRACT byte-identical historical360/359 origin, never promoted to new acceptance.",
+    "acyclic": "character/sink/collector actual generated descriptors only; no schema selfhash/tuple hash or future reviewhash in schema constant"
+  },
+  "new_author_outputs": [
+    "tests/phase434_prepare_source.py",
+    "data/phase434-early-invu-source/api-contract.json",
+    "data/phase434-early-invu-source/source-constraints.json",
+    "data/phase434-early-invu-source/install-bytecap.json",
+    "data/phase434-early-invu-source/protocol-consumer-inventory.json",
+    "data/phase434-early-invu-source/conservation.json",
+    "data/phase434-early-invu-source/source-owner.json",
+    "data/phase434-early-invu-source/*-source.patch",
+    "data/phase434-early-invu-source/*-inverse.json"
+  ],
+  "new_author_outputs_scope": "Finite author text generator and named Source evidence only; no project runtime helper. Any separate template must be specifically enumerated in Root generation release; none proposed here.",
+  "operational_counts": {
+    "project_helper_schema_API_native_model_capture": 0,
+    "raw_EXPECTED_reads": 0,
+    "implementation_files_created": 0
+  },
+  "counts_unchanged": {
+    "DIRECT": 1391,
+    "SOURCE_DERIVED": 6,
+    "MISSING": 82
+  },
+  "next_gate": "Root must approve this exact scope before any generated implementation bytes; fresh capture requires later distinct release."
+}

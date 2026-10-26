@@ -1,0 +1,122 @@
+func _invu_memory_error(code, owner_id, timer_id):
+	if invu_early_error == null:
+		var safe_code = code if typeof(code) == TYPE_STRING and code.length() <= 64 else "INVU_MEMORY_ERROR"
+		var safe_owner = owner_id if typeof(owner_id) == TYPE_INT and owner_id > 0 else 0
+		var safe_timer = timer_id if typeof(timer_id) == TYPE_INT and timer_id > 0 else 0
+		invu_early_error = {"code": safe_code, "owner_id": safe_owner, "timer_id": safe_timer}
+
+func _invu_raw_snapshot(timer):
+	if timer == null or not is_instance_valid(timer) or not timer is Timer:
+		_invu_memory_error("INVU_NATIVE_TIMER", 0, 0)
+		return null
+	if timer.get_class() != "Timer" or timer.get_script() != null or str(timer.get_name()) != "InvulnerabilityTimer":
+		_invu_memory_error("INVU_NATIVE_TIMER_DOMAIN", 0, timer.get_instance_id())
+		return null
+	var positions = []
+	var cursor = timer
+	while cursor != null:
+		if positions.size() >= CAPS.depth:
+			_invu_memory_error("INVU_ANCESTOR_DEPTH", 0, timer.get_instance_id())
+			return null
+		positions.push_front(cursor.get_index())
+		cursor = cursor.get_parent()
+	var inside = timer.is_inside_tree()
+	var path = str(timer.get_path()) if inside else null
+	var key = timer.get_instance_id()
+	var role = ids.get(key, null)
+	if typeof(key) != TYPE_INT or key <= 0 or (path != null and path.to_utf8().size() > CAPS.string_utf8) or (role != null and (typeof(role) != TYPE_STRING or role.to_utf8().size() > CAPS.string_utf8)):
+		_invu_memory_error("INVU_NATIVE_ID_OR_TEXT", 0, 0)
+		return null
+	var wait = timer.wait_time
+	var left = timer.time_left
+	if typeof(wait) != TYPE_REAL or typeof(left) != TYPE_REAL or is_nan(wait) or is_inf(wait) or is_nan(left) or is_inf(left) or wait <= 0.0 or left < 0.0:
+		_invu_memory_error("INVU_NATIVE_REAL", 0, key)
+		return null
+	var node = {"native_id": str(key), "role": role, "path": path, "name": str(timer.get_name()), "class": timer.get_class(), "positions": positions, "priority": timer.get_process_priority(), "inside_tree": inside, "ordinary_physics": timer.is_physics_processing(), "internal_physics": timer.is_physics_processing_internal(), "ordinary_idle": timer.is_processing(), "internal_idle": timer.is_processing_internal()}
+	return {"node": node, "process_mode": timer.process_mode, "wait_time": wait, "time_left": left, "one_shot": timer.one_shot, "autostart": timer.autostart, "paused": timer.paused, "stopped": timer.is_stopped()}
+
+func invu_first_enter_memory(timer, owner):
+	if invu_early_error != null:
+		return
+	if owner == null or not is_instance_valid(owner) or not owner is Node2D:
+		_invu_memory_error("INVU_OWNER", 0, 0)
+		return
+	var raw = _invu_raw_snapshot(timer)
+	if raw == null:
+		return
+	var key = timer.get_instance_id()
+	var owner_key = owner.get_instance_id()
+	var script = owner.get_script()
+	var scene = owner.get_filename()
+	if script == null or script.resource_path != "res://Core/Character.gd" or not scene in ["res://Core/Player.tscn", "res://Core/Opponent.tscn"] or not owner.is_inside_tree() or raw.node.inside_tree or timer.get_parent() != owner:
+		_invu_memory_error("INVU_FIRST_ENTRY_DOMAIN", owner_key, key)
+		return
+	if typeof(owner_key) != TYPE_INT or owner_key <= 0 or owner_key == key or invu_early_timers.has(key) or invu_early_owners.has(owner_key) or king_timer_births.has(key):
+		_invu_memory_error("INVU_FIRST_ENTRY_REUSED", owner_key, key)
+		return
+	if invu_early_timers.size() >= CAPS.native_ids or invu_early_owners.size() >= CAPS.native_ids or invu_early_ordinal >= CAPS.native_ids * 2:
+		_invu_memory_error("INVU_FIRST_ENTRY_CAP", owner_key, key)
+		return
+	invu_early_ordinal += 1
+	invu_early_owners[owner_key] = key
+	invu_early_timers[key] = {"timer_id": str(key), "owner_id": str(owner_key), "kind": "Character.first_enter_tree/434", "starts": 0, "stops": 0, "birth_raw": raw, "entry": {"schema": "phase434-invu-first-enter/1", "ordinal": invu_early_ordinal, "owner_inside_tree": owner.is_inside_tree(), "owner_script": script.resource_path, "owner_scene": scene, "observer_ready_at_entry": invu_observer_ready}, "parent_ready": null}
+
+func invu_parent_ready_memory(timer, owner):
+	if invu_early_error != null:
+		return
+	if owner == null or not is_instance_valid(owner) or not owner is Node2D:
+		_invu_memory_error("INVU_READY_OWNER", 0, 0)
+		return
+	var raw = _invu_raw_snapshot(timer)
+	if raw == null:
+		return
+	var key = timer.get_instance_id()
+	var owner_key = owner.get_instance_id()
+	if not invu_early_timers.has(key) or invu_early_owners.get(owner_key, 0) != key or king_timer_births.has(key):
+		_invu_memory_error("INVU_READY_WITHOUT_ENTRY", owner_key, key)
+		return
+	var born = invu_early_timers[key]
+	var script = owner.get_script()
+	if born.owner_id != str(owner_key) or born.parent_ready != null or timer.get_parent() != owner or not owner.is_inside_tree() or not raw.node.inside_tree or script == null or script.resource_path != born.entry.owner_script or owner.get_filename() != born.entry.owner_scene:
+		_invu_memory_error("INVU_READY_IDENTITY_OR_REUSED", owner_key, key)
+		return
+	if typeof(born.starts) != TYPE_INT or typeof(born.stops) != TYPE_INT or born.starts < 0 or born.stops < 0 or born.starts > 9007199254740991 or born.stops > 9007199254740991 or invu_early_ordinal >= CAPS.native_ids * 2:
+		_invu_memory_error("INVU_READY_COUNTER_OR_CAP", owner_key, key)
+		return
+	invu_early_ordinal += 1
+	born.parent_ready = {"schema": "phase434-invu-parent-ready/1", "ordinal": invu_early_ordinal, "starts": born.starts, "stops": born.stops, "state": raw}
+
+func invu_early_fact(timer, owner):
+	if not invu_observer_ready or invu_early_error != null:
+		fail("INVU_EARLY_MEMORY_FAILED", "invu_early_fact")
+		return null
+	if timer == null or not is_instance_valid(timer) or not timer is Timer or owner == null or not is_instance_valid(owner) or not owner is Node2D:
+		fail("INVU_SELECTED_IDENTITY", "invu_early_fact")
+		return null
+	var key = timer.get_instance_id()
+	var owner_key = owner.get_instance_id()
+	var side = ids.get(owner_key, null)
+	if not side in ["P", "O"] or ids.get(key, null) != "invu:" + side or invu_early_owners.get(owner_key, 0) != key or not invu_early_timers.has(key) or king_timer_births.has(key) or timer.get_parent() != owner or not owner.is_inside_tree() or not timer.is_inside_tree():
+		fail("INVU_SELECTED_BINDING", "invu_early_fact")
+		return null
+	var born = invu_early_timers[key]
+	if born.timer_id != str(key) or born.owner_id != str(owner_key) or born.kind != "Character.first_enter_tree/434" or born.parent_ready == null or born.entry.owner_scene != ("res://Core/Player.tscn" if side == "P" else "res://Core/Opponent.tscn"):
+		fail("INVU_SELECTED_ENTRY_READY", "invu_early_fact")
+		return null
+	var ready = born.parent_ready
+	if typeof(born.starts) != TYPE_INT or typeof(born.stops) != TYPE_INT or typeof(ready.starts) != TYPE_INT or typeof(ready.stops) != TYPE_INT or ready.starts < 0 or ready.stops < 0 or born.starts < ready.starts or born.stops < ready.stops or born.starts > 9007199254740991 or born.stops > 9007199254740991 or typeof(born.entry.ordinal) != TYPE_INT or typeof(ready.ordinal) != TYPE_INT or born.entry.ordinal < 1 or born.entry.ordinal >= ready.ordinal or ready.ordinal > CAPS.native_ids * 2:
+		fail("INVU_SELECTED_COUNTER_ORDER", "invu_early_fact")
+		return null
+	var birth = born.birth_raw.duplicate(true)
+	var ready_copy = ready.duplicate(true)
+	for snapshot in [birth, ready_copy.state]:
+		if typeof(snapshot.wait_time) != TYPE_REAL or typeof(snapshot.time_left) != TYPE_REAL:
+			fail("INVU_RETAINED_REAL_TYPE", "invu_early_fact")
+			return null
+		snapshot.wait_time = encode(snapshot.wait_time)
+		snapshot.time_left = encode(snapshot.time_left)
+	var current = timer_state(timer)
+	if failed:
+		return null
+	return {"lineage": {"timer_id": born.timer_id, "owner_id": born.owner_id, "kind": born.kind, "starts": born.starts, "stops": born.stops, "birth": birth}, "current": current, "entry": born.entry.duplicate(true), "parent_ready": ready_copy, "private_provenance": "pending-source-rule-first-enter-seed/1"}
+

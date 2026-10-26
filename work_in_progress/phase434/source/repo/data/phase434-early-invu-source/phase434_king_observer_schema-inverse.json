@@ -1,0 +1,173 @@
+{
+  "added_functions": [
+    "validate_early_invu_fact"
+  ],
+  "after": {
+    "path": "tests/phase434_king_observer_schema.py",
+    "sha256": "f02198461fba739ff5f716c678d44412ba6ed6d9fe18869cc4d66352442694f0",
+    "size": 214523
+  },
+  "before": {
+    "path": "tests/phase391_king_observer_schema.py",
+    "sha256": "ffcddfd2cbe58307f7258c1aefad5586a9179c6c452dc59c3342f9047f31457c",
+    "size": 208243
+  },
+  "changed_functions": [
+    "validate_single_king_fresh_facts",
+    "validate_single_king_input_provenance",
+    "validate_sources_with_binding"
+  ],
+  "conserved_functions": [
+    "ClockSchedule",
+    "FramePass",
+    "_base_primitive_context",
+    "_base_validate_primitive",
+    "_base_validate_record",
+    "_base_validate_state",
+    "_binding_cells",
+    "_binding_check_channels",
+    "_binding_checkpoint",
+    "_binding_id",
+    "_binding_integer_value",
+    "_binding_one",
+    "_binding_real_value",
+    "_binding_same_source",
+    "_binding_validate_value",
+    "_counter",
+    "_keys",
+    "_nonnegative_real",
+    "_real",
+    "_rng_decimal",
+    "_rng_int64",
+    "_rng_keys",
+    "_rng_real",
+    "_single_king_counter",
+    "_single_king_keys",
+    "_single_king_node",
+    "_single_king_particle",
+    "_single_king_real",
+    "_single_king_rng_checkpoint",
+    "_single_king_timer",
+    "_single_king_typed",
+    "_single_king_validate_ui",
+    "_terminal_clock_rows",
+    "_terminal_connection_table",
+    "_terminal_cut_matches",
+    "_terminal_dispatch_shape",
+    "_terminal_emitting_connections",
+    "_terminal_native_id",
+    "_transport_only_decode",
+    "_ui_controls",
+    "_ui_exact",
+    "_ui_ident",
+    "_ui_integer",
+    "_ui_need",
+    "_ui_require_admission",
+    "_validate_call_pairs",
+    "argument_fields",
+    "canonical_sha",
+    "decimal",
+    "decode_clock",
+    "decode_sources",
+    "exact",
+    "f32",
+    "integer",
+    "join_binding_provenance",
+    "primitive_context",
+    "scalar_number",
+    "strict_json",
+    "strict_json_loads",
+    "text",
+    "validate_binding_carrier",
+    "validate_cache",
+    "validate_observation_records",
+    "validate_primitive",
+    "validate_record",
+    "validate_resources",
+    "validate_single_king_fixture",
+    "validate_single_king_source_defaults",
+    "validate_single_king_ui_authority",
+    "validate_source_carriers",
+    "validate_state",
+    "validate_terminal_diagnostics",
+    "validate_terminal_evidence",
+    "validate_terminal_receipt",
+    "validate_typed"
+  ],
+  "edits": [
+    {
+      "new": "VERSION='7-king-single-A-434'\nPROFILE='observer7-434-native-single-king-A/1'\n",
+      "new_text_offset": 224,
+      "old": "VERSION='7-king-single-A-390'\nPROFILE='observer7-390-native-single-king-A/1'\n"
+    },
+    {
+      "new": "SINGLE_KING_GENUINE_PROFILE = 'observer7-434-native-single-king-A/1'\n",
+      "new_text_offset": 100143,
+      "old": "SINGLE_KING_GENUINE_PROFILE = 'observer7-390-native-single-king-A/1'\n"
+    },
+    {
+      "new": "SINGLE_KING_OBSERVER_VERSION = '7-king-single-A-434'\n",
+      "new_text_offset": 100214,
+      "old": "SINGLE_KING_OBSERVER_VERSION = '7-king-single-A-390'\n"
+    },
+    {
+      "new": "def validate_early_invu_fact(fact, role):\n    \"\"\"Closed INITIAL observation validation only; never derive private countdown.\"\"\"\n    if type(role) is not str or role not in ('invu:P', 'invu:O'):\n        raise ValueError('exact early Invu role')\n    _single_king_keys(fact, ('lineage', 'current', 'entry', 'parent_ready', 'private_provenance'), 'early Invu fact')\n    lineage, entry, ready = fact['lineage'], fact['entry'], fact['parent_ready']\n    _single_king_keys(lineage, ('timer_id', 'owner_id', 'kind', 'starts', 'stops', 'birth'), 'early lineage')\n    _single_king_keys(entry, ('schema', 'ordinal', 'owner_inside_tree', 'owner_script', 'owner_scene', 'observer_ready_at_entry'), 'first entry')\n    _single_king_keys(ready, ('schema', 'ordinal', 'starts', 'stops', 'state'), 'parent ready')\n    if lineage['kind'] != 'Character.first_enter_tree/434' or entry['schema'] != 'phase434-invu-first-enter/1' or ready['schema'] != 'phase434-invu-parent-ready/1':\n        raise ValueError('mixed early Invu protocol')\n    if fact['private_provenance'] != 'pending-source-rule-first-enter-seed/1':\n        raise ValueError('early observations are not private proof')\n    for field in ('timer_id', 'owner_id'):\n        value = lineage[field]\n        if type(value) is not str or re.fullmatch('[1-9][0-9]{0,18}', value) is None or int(value) > (1 << 63) - 1:\n            raise ValueError('early native identity')\n    if lineage['timer_id'] == lineage['owner_id']:\n        raise ValueError('Timer/owner alias')\n    if entry['owner_inside_tree'] is not True or type(entry['observer_ready_at_entry']) is not bool:\n        raise ValueError('actual entry readiness booleans')\n    scene = 'res://Core/Player.tscn' if role == 'invu:P' else 'res://Core/Opponent.tscn'\n    if entry['owner_script'] != 'res://Core/Character.gd' or entry['owner_scene'] != scene:\n        raise ValueError('fixed Character source domain')\n    if any(type(x['ordinal']) is not int or not 1 <= x['ordinal'] <= CAPS['native_ids'] * 2 for x in (entry, ready)) or entry['ordinal'] >= ready['ordinal']:\n        raise ValueError('ordered local entry/ready ordinals')\n    for phase in (lineage, ready):\n        for field in ('starts', 'stops'):\n            if type(phase[field]) is not int or not 0 <= phase[field] < (1 << 53):\n                raise ValueError('strict bounded lifetime counter')\n    if any(ready[field] > lineage[field] for field in ('starts', 'stops')):\n        raise ValueError('lifetime counter reset')\n    birth = _single_king_timer(lineage['birth'])\n    checkpoint = _single_king_timer(ready['state'])\n    current = _single_king_timer(fact['current'])\n    for snapshot in (birth, checkpoint, current):\n        node = snapshot['node']\n        if node['native_id'] != lineage['timer_id'] or node['name'] != 'InvulnerabilityTimer' or node['role'] not in (None, role):\n            raise ValueError('stable early native Timer identity')\n        if _single_king_real(snapshot['wait_time']['binary64_be']) <= 0 or _single_king_real(snapshot['time_left']['binary64_be']) < 0:\n            raise ValueError('native public Timer numeric domain')\n        if len(node['positions']) > CAPS['depth']:\n            raise ValueError('bounded early ancestry')\n        for name in ('role', 'path', 'name', 'class'):\n            if node[name] is not None and len(node[name].encode('utf-8')) > CAPS['string_utf8']:\n                raise ValueError('bounded early node text')\n    if birth['node']['inside_tree'] is not False or birth['node']['path'] is not None:\n        raise ValueError('actual first child outside tree')\n    if checkpoint['node']['inside_tree'] is not True or current['node']['inside_tree'] is not True or current['node']['role'] != role:\n        raise ValueError('ready/current selected in-tree Timer')\n    if any(not x['node']['path'].endswith('/InvulnerabilityTimer') for x in (checkpoint, current)):\n        raise ValueError('direct named Timer path')\n    # Counts and public states, including nonzero counts, are retained unchanged.\n    # Constructor seed / NO_START eligibility is a separate SOURCE recipe gate.\n    return fact\n\n\n",
+      "new_text_offset": 120920,
+      "old": ""
+    },
+    {
+      "new": "    if facts['schema']!='phase434-king-input-facts/1':raise ValueError('facts schema')\n",
+      "new_text_offset": 125188,
+      "old": "    if facts['schema']!='phase355-king-input-facts/1':raise ValueError('facts schema')\n"
+    },
+    {
+      "new": "    expected={'invu:P':(0,'Character.first_enter_tree/434'),'invu:O':(0,'Character.first_enter_tree/434'),'king_buff:P:12':(0,'King.scene.instance'),'king_hide:P:12':(1,'AutoHide.Timer.new'),'king_drag:P:12':(1,'AutoHide.Timer.new')}\n",
+      "new_text_offset": 126910,
+      "old": "    expected={'invu:P':(0,'Character.scene.ready'),'invu:O':(0,'Character.scene.ready'),'king_buff:P:12':(0,'King.scene.instance'),'king_hide:P:12':(1,'AutoHide.Timer.new'),'king_drag:P:12':(1,'AutoHide.Timer.new')}\n"
+    },
+    {
+      "new": "        if role in ('invu:P', 'invu:O'):\n            early = validate_early_invu_fact(facts['timers'][role], role)\n            native = early['lineage']['timer_id']\n            if native in timer_ids:raise ValueError('distinct early Timer identity')\n            timer_ids.add(native)\n            continue\n",
+      "new_text_offset": 127281,
+      "old": ""
+    },
+    {
+      "new": "                ready='INVU_ENTRY_AND_PARENT_READY_OBSERVATIONS_OTHER_READY_OWNER_ONLY', private_origin='INVU_PENDING_SOURCE_RULE_OTHER_FAMILY_UNCHANGED',\n",
+      "new_text_offset": 136978,
+      "old": "                ready='READY_OWNER_ONLY_NOT_TIMER', private_origin='SOURCE_CONSTRUCTOR_NO_START_NOT_PUBLIC_ZERO',\n"
+    },
+    {
+      "new": "ACTIVE_SOURCE_CONTRACT = {'schema': 'phase434-active-input-source-contract/1', 'profile': 'observer7-434-native-single-king-A/1', 'observer_version': '7-king-single-A-434', 'character': {'path': 'data/phase434-early-invu-source/after-source/Core/Character.gd', 'size': 55783, 'sha256': 'cad58957b2babfe48fab3d1e1498cf9f7cf866bfbabed90798a64e39489b6d7d'}, 'sink': {'path': 'data/phase434-early-invu-source/after-source/native_random_observer_sink_v7.gd', 'size': 113189, 'sha256': 'ef768f2ac10f97ea7aaef40bd843245fb5cd83c31a2ae718df6001b57a8c1600'}, 'collector': {'path': 'data/phase434-early-invu-source/collector.gd', 'size': 64928, 'sha256': 'fcf479bb205325a087b5d1e1f98b2b2902804e9a29064a1d1a1cf3e4e2ccf817'}, 'binding_origin': {'schema': 'phase360-binding-source-contract/1', 'schema_origin': {'path': 'tests/phase358_king_observer_schema.py', 'size': 259033, 'sha256': 'd8dabd87ffe0352ceb886ad3f25c2548d1e4412d13538da813ba77f8115947a7'}, 'producer_source_origin': {'path': 'data/phase359-king-producer-source/producer-source-freeze.json', 'size': 43099, 'sha256': '419a79c51f9a5c92c56edc4a2fd0ca7fd829f0471f747652015a39e26035204a'}, 'fixed_slot_map': {'path': 'data/phase359-king-producer-source/fixed-slot-map.json', 'size': 10715, 'sha256': '3511ea812052dfa636d09b4e1d4e00bb5aa904d39d8d042c3e5be7ca634ddafa'}, 'fixed_fixture': {'path': 'data/phase355-king-finite-source/fixed-A-v8-fixture.json', 'size': 5636, 'sha256': 'e969df30573a01e1ce7a0efa65a90b7f153d3e32636492cb6832ad705ee8c627'}, 'evidence_policy': 'SOURCE_ORIGIN_ONLY_NOT_INDEPENDENT_ACCEPTANCE_OR_RUNTIME_ADMISSION'}}\n\n",
+      "new_text_offset": 189537,
+      "old": ""
+    },
+    {
+      "new": "    _binding_same_source(source_contract, ACTIVE_SOURCE_CONTRACT)\n",
+      "new_text_offset": 212714,
+      "old": "    _binding_same_source(source_contract, BINDING_SOURCE_CONTRACT)\n"
+    },
+    {
+      "new": "    joined = join_binding_provenance(decoded, binding, source_contract['binding_origin'])\n",
+      "new_text_offset": 213403,
+      "old": "    joined = join_binding_provenance(decoded, binding, source_contract)\n"
+    },
+    {
+      "new": "    return dict(schema='phase434-twelve-source-proof/1', status='SOURCE_PROOF_ONLY_NOT_INPUT_BUNDLE_OR_NATIVE_ACCEPTANCE',\n",
+      "new_text_offset": 213721,
+      "old": "    return dict(schema='phase360-twelve-source-proof/1', status='SOURCE_PROOF_ONLY_NOT_INPUT_BUNDLE_OR_NATIVE_ACCEPTANCE',\n"
+    },
+    {
+      "new": "                active_source_contract=deepcopy(ACTIVE_SOURCE_CONTRACT), early_invu_provenance='PENDING_SOURCE_RULE_NOT_PRIVATE_OBSERVATION',\n",
+      "new_text_offset": 213940,
+      "old": ""
+    },
+    {
+      "new": "\nschema.validate_early_invu_fact = validate_early_invu_fact\n",
+      "new_text_offset": 214463,
+      "old": ""
+    }
+  ],
+  "inverse": "EXACT_COMPLETE_UTF8_BYTES",
+  "offset_unit": "unicode-text-index; final byte equality checked",
+  "project_executions": 0,
+  "python_compile_only": true
+}

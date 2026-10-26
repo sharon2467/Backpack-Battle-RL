@@ -1,0 +1,161 @@
+--- tests/phase391_king_observer_schema.py
++++ tests/phase434_king_observer_schema.py
+@@ -7,8 +7,8 @@
+ from types import SimpleNamespace
+ 
+ 
+-VERSION='7-king-single-A-390'
+-PROFILE='observer7-390-native-single-king-A/1'
++VERSION='7-king-single-A-434'
++PROFILE='observer7-434-native-single-king-A/1'
+ CASE='KING-K1-A-353'
+ NATIVE_AUTHORIZED=False
+ 
+@@ -656,10 +656,10 @@
+ 
+ 
+ 
+-SINGLE_KING_GENUINE_PROFILE = 'observer7-390-native-single-king-A/1'
+-
+-
+-SINGLE_KING_OBSERVER_VERSION = '7-king-single-A-390'
++SINGLE_KING_GENUINE_PROFILE = 'observer7-434-native-single-king-A/1'
++
++
++SINGLE_KING_OBSERVER_VERSION = '7-king-single-A-434'
+ 
+ 
+ SINGLE_KING_CASE = 'KING-K1-A-353'
+@@ -994,9 +994,66 @@
+ 
+ 
+ 
++def validate_early_invu_fact(fact, role):
++    """Closed INITIAL observation validation only; never derive private countdown."""
++    if type(role) is not str or role not in ('invu:P', 'invu:O'):
++        raise ValueError('exact early Invu role')
++    _single_king_keys(fact, ('lineage', 'current', 'entry', 'parent_ready', 'private_provenance'), 'early Invu fact')
++    lineage, entry, ready = fact['lineage'], fact['entry'], fact['parent_ready']
++    _single_king_keys(lineage, ('timer_id', 'owner_id', 'kind', 'starts', 'stops', 'birth'), 'early lineage')
++    _single_king_keys(entry, ('schema', 'ordinal', 'owner_inside_tree', 'owner_script', 'owner_scene', 'observer_ready_at_entry'), 'first entry')
++    _single_king_keys(ready, ('schema', 'ordinal', 'starts', 'stops', 'state'), 'parent ready')
++    if lineage['kind'] != 'Character.first_enter_tree/434' or entry['schema'] != 'phase434-invu-first-enter/1' or ready['schema'] != 'phase434-invu-parent-ready/1':
++        raise ValueError('mixed early Invu protocol')
++    if fact['private_provenance'] != 'pending-source-rule-first-enter-seed/1':
++        raise ValueError('early observations are not private proof')
++    for field in ('timer_id', 'owner_id'):
++        value = lineage[field]
++        if type(value) is not str or re.fullmatch('[1-9][0-9]{0,18}', value) is None or int(value) > (1 << 63) - 1:
++            raise ValueError('early native identity')
++    if lineage['timer_id'] == lineage['owner_id']:
++        raise ValueError('Timer/owner alias')
++    if entry['owner_inside_tree'] is not True or type(entry['observer_ready_at_entry']) is not bool:
++        raise ValueError('actual entry readiness booleans')
++    scene = 'res://Core/Player.tscn' if role == 'invu:P' else 'res://Core/Opponent.tscn'
++    if entry['owner_script'] != 'res://Core/Character.gd' or entry['owner_scene'] != scene:
++        raise ValueError('fixed Character source domain')
++    if any(type(x['ordinal']) is not int or not 1 <= x['ordinal'] <= CAPS['native_ids'] * 2 for x in (entry, ready)) or entry['ordinal'] >= ready['ordinal']:
++        raise ValueError('ordered local entry/ready ordinals')
++    for phase in (lineage, ready):
++        for field in ('starts', 'stops'):
++            if type(phase[field]) is not int or not 0 <= phase[field] < (1 << 53):
++                raise ValueError('strict bounded lifetime counter')
++    if any(ready[field] > lineage[field] for field in ('starts', 'stops')):
++        raise ValueError('lifetime counter reset')
++    birth = _single_king_timer(lineage['birth'])
++    checkpoint = _single_king_timer(ready['state'])
++    current = _single_king_timer(fact['current'])
++    for snapshot in (birth, checkpoint, current):
++        node = snapshot['node']
++        if node['native_id'] != lineage['timer_id'] or node['name'] != 'InvulnerabilityTimer' or node['role'] not in (None, role):
++            raise ValueError('stable early native Timer identity')
++        if _single_king_real(snapshot['wait_time']['binary64_be']) <= 0 or _single_king_real(snapshot['time_left']['binary64_be']) < 0:
++            raise ValueError('native public Timer numeric domain')
++        if len(node['positions']) > CAPS['depth']:
++            raise ValueError('bounded early ancestry')
++        for name in ('role', 'path', 'name', 'class'):
++            if node[name] is not None and len(node[name].encode('utf-8')) > CAPS['string_utf8']:
++                raise ValueError('bounded early node text')
++    if birth['node']['inside_tree'] is not False or birth['node']['path'] is not None:
++        raise ValueError('actual first child outside tree')
++    if checkpoint['node']['inside_tree'] is not True or current['node']['inside_tree'] is not True or current['node']['role'] != role:
++        raise ValueError('ready/current selected in-tree Timer')
++    if any(not x['node']['path'].endswith('/InvulnerabilityTimer') for x in (checkpoint, current)):
++        raise ValueError('direct named Timer path')
++    # Counts and public states, including nonzero counts, are retained unchanged.
++    # Constructor seed / NO_START eligibility is a separate SOURCE recipe gate.
++    return fact
++
++
+ def validate_single_king_fresh_facts(facts):
+     _single_king_keys(facts,('schema','root_viewport','timers','kings','delayed_activation'),'King input facts')
+-    if facts['schema']!='phase355-king-input-facts/1':raise ValueError('facts schema')
++    if facts['schema']!='phase434-king-input-facts/1':raise ValueError('facts schema')
+     root=_single_king_node(facts['root_viewport'])
+     if root['path']!='/root' or not root['inside_tree']:raise ValueError('root identity')
+     # Each root flag is retained independently. No assumed idle/physics equality.
+@@ -1016,9 +1073,15 @@
+         if _single_king_typed(king[field],'dictionary')['entries']!=[]:raise ValueError('no modifiers')
+     for field in ('doubleActivationChance','doubleAttackEffectChance'):_single_king_typed(king[field],'float','0000000000000000')
+     for field in ('activation','drag'):_single_king_particle(king[field])
+-    expected={'invu:P':(0,'Character.scene.ready'),'invu:O':(0,'Character.scene.ready'),'king_buff:P:12':(0,'King.scene.instance'),'king_hide:P:12':(1,'AutoHide.Timer.new'),'king_drag:P:12':(1,'AutoHide.Timer.new')}
++    expected={'invu:P':(0,'Character.first_enter_tree/434'),'invu:O':(0,'Character.first_enter_tree/434'),'king_buff:P:12':(0,'King.scene.instance'),'king_hide:P:12':(1,'AutoHide.Timer.new'),'king_drag:P:12':(1,'AutoHide.Timer.new')}
+     _single_king_keys(facts['timers'],expected,'five selected Timer facts');timer_ids=set()
+     for role,(mode,kind)in expected.items():
++        if role in ('invu:P', 'invu:O'):
++            early = validate_early_invu_fact(facts['timers'][role], role)
++            native = early['lineage']['timer_id']
++            if native in timer_ids:raise ValueError('distinct early Timer identity')
++            timer_ids.add(native)
++            continue
+         fact=facts['timers'][role];_single_king_keys(fact,('lineage','current','private_provenance'),'fresh Timer fact')
+         lineage=fact['lineage'];_single_king_keys(lineage,('timer_id','owner_id','kind','starts','stops','birth'),'birth lineage')
+         birth=_single_king_timer(lineage['birth']);current=_single_king_timer(fact['current']);n=current['node']
+@@ -1159,7 +1222,7 @@
+             or (last['physics_frame'], last['idle_frame']) != (clock.passes[-1].physics_frame, clock.passes[-1].idle_frame)):
+         raise ValueError('single King complete source UI/finite clock close')
+     return dict(schema='phase355-input-source-provenance/1', source_defaults=defaults,
+-                ready='READY_OWNER_ONLY_NOT_TIMER', private_origin='SOURCE_CONSTRUCTOR_NO_START_NOT_PUBLIC_ZERO',
++                ready='INVU_ENTRY_AND_PARENT_READY_OBSERVATIONS_OTHER_READY_OWNER_ONLY', private_origin='INVU_PENDING_SOURCE_RULE_OTHER_FAMILY_UNCHANGED',
+                 initial_rng=rng, ui_authority=ui, dataflow='PROOF_ONLY_STRIP_BEFORE_MODEL_RUNTIME',
+                 shared_consumption_closed=False, genuine_capture_accepted=False)
+ 
+@@ -2083,6 +2146,8 @@
+     text=text, CAPS=CAPS, CONTRACT=CONTRACT, MATRIX=MATRIX,
+ )
+ 
++
++ACTIVE_SOURCE_CONTRACT = {'schema': 'phase434-active-input-source-contract/1', 'profile': 'observer7-434-native-single-king-A/1', 'observer_version': '7-king-single-A-434', 'character': {'path': 'data/phase434-early-invu-source/after-source/Core/Character.gd', 'size': 55783, 'sha256': 'cad58957b2babfe48fab3d1e1498cf9f7cf866bfbabed90798a64e39489b6d7d'}, 'sink': {'path': 'data/phase434-early-invu-source/after-source/native_random_observer_sink_v7.gd', 'size': 113189, 'sha256': 'ef768f2ac10f97ea7aaef40bd843245fb5cd83c31a2ae718df6001b57a8c1600'}, 'collector': {'path': 'data/phase434-early-invu-source/collector.gd', 'size': 64928, 'sha256': 'fcf479bb205325a087b5d1e1f98b2b2902804e9a29064a1d1a1cf3e4e2ccf817'}, 'binding_origin': {'schema': 'phase360-binding-source-contract/1', 'schema_origin': {'path': 'tests/phase358_king_observer_schema.py', 'size': 259033, 'sha256': 'd8dabd87ffe0352ceb886ad3f25c2548d1e4412d13538da813ba77f8115947a7'}, 'producer_source_origin': {'path': 'data/phase359-king-producer-source/producer-source-freeze.json', 'size': 43099, 'sha256': '419a79c51f9a5c92c56edc4a2fd0ca7fd829f0471f747652015a39e26035204a'}, 'fixed_slot_map': {'path': 'data/phase359-king-producer-source/fixed-slot-map.json', 'size': 10715, 'sha256': '3511ea812052dfa636d09b4e1d4e00bb5aa904d39d8d042c3e5be7ca634ddafa'}, 'fixed_fixture': {'path': 'data/phase355-king-finite-source/fixed-A-v8-fixture.json', 'size': 5636, 'sha256': 'e969df30573a01e1ce7a0efa65a90b7f153d3e32636492cb6832ad705ee8c627'}, 'evidence_policy': 'SOURCE_ORIGIN_ONLY_NOT_INDEPENDENT_ACCEPTANCE_OR_RUNTIME_ADMISSION'}}
+ 
+ # phase360 auxiliary SOURCE interface; no projection or admission.
+ BINDING_MAX_BYTES = 2097152
+@@ -2361,7 +2426,7 @@
+ 
+ def validate_sources_with_binding(raw11, binding_bytes, source_contract):
+     """Full11 checks plus auxiliary relation proof; no projection or admission."""
+-    _binding_same_source(source_contract, BINDING_SOURCE_CONTRACT)
++    _binding_same_source(source_contract, ACTIVE_SOURCE_CONTRACT)
+     if type(raw11) is not dict or set(raw11) != set(INPUT_FILES):
+         raise ValueError('exact original eleven SOURCE names; auxiliary stays separate')
+     if any(type(value) is not bytes for value in raw11.values()) or type(binding_bytes) is not bytes:
+@@ -2371,11 +2436,12 @@
+     binding = validate_binding_carrier(binding_bytes, BINDING_FIXED_PLAN)
+     eleven = validate_source_carriers(raw11)
+     decoded = decode_sources(raw11)
+-    joined = join_binding_provenance(decoded, binding, source_contract)
++    joined = join_binding_provenance(decoded, binding, source_contract['binding_origin'])
+     pins = {name: dict(size=len(raw), sha256=hashlib.sha256(raw).hexdigest()) for name, raw in raw11.items()}
+     pins['king-slot-bindings.json'] = dict(size=len(binding_bytes), sha256=hashlib.sha256(binding_bytes).hexdigest())
+-    return dict(schema='phase360-twelve-source-proof/1', status='SOURCE_PROOF_ONLY_NOT_INPUT_BUNDLE_OR_NATIVE_ACCEPTANCE',
++    return dict(schema='phase434-twelve-source-proof/1', status='SOURCE_PROOF_ONLY_NOT_INPUT_BUNDLE_OR_NATIVE_ACCEPTANCE',
+                 original_eleven_schema=eleven['schema'], binding_join=joined, raw_sources=pins,
++                active_source_contract=deepcopy(ACTIVE_SOURCE_CONTRACT), early_invu_provenance='PENDING_SOURCE_RULE_NOT_PRIVATE_OBSERVATION',
+                 producer_independent_acceptance='PENDING_NOT_ASSERTED_BY_SCHEMA', input_bundle_created=False,
+                 native_admitted=False, model_calls=0, projection_implemented=False)
+ 
+@@ -2383,3 +2449,5 @@
+ schema.validate_binding_carrier = validate_binding_carrier
+ schema.join_binding_provenance = join_binding_provenance
+ schema.validate_sources_with_binding = validate_sources_with_binding
++
++schema.validate_early_invu_fact = validate_early_invu_fact

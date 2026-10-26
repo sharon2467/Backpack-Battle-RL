@@ -1,0 +1,139 @@
+{
+  "active_source_contract": {
+    "binding_origin": {
+      "evidence_policy": "SOURCE_ORIGIN_ONLY_NOT_INDEPENDENT_ACCEPTANCE_OR_RUNTIME_ADMISSION",
+      "fixed_fixture": {
+        "path": "data/phase355-king-finite-source/fixed-A-v8-fixture.json",
+        "sha256": "e969df30573a01e1ce7a0efa65a90b7f153d3e32636492cb6832ad705ee8c627",
+        "size": 5636
+      },
+      "fixed_slot_map": {
+        "path": "data/phase359-king-producer-source/fixed-slot-map.json",
+        "sha256": "3511ea812052dfa636d09b4e1d4e00bb5aa904d39d8d042c3e5be7ca634ddafa",
+        "size": 10715
+      },
+      "producer_source_origin": {
+        "path": "data/phase359-king-producer-source/producer-source-freeze.json",
+        "sha256": "419a79c51f9a5c92c56edc4a2fd0ca7fd829f0471f747652015a39e26035204a",
+        "size": 43099
+      },
+      "schema": "phase360-binding-source-contract/1",
+      "schema_origin": {
+        "path": "tests/phase358_king_observer_schema.py",
+        "sha256": "d8dabd87ffe0352ceb886ad3f25c2548d1e4412d13538da813ba77f8115947a7",
+        "size": 259033
+      }
+    },
+    "character": {
+      "path": "data/phase434-early-invu-source/after-source/Core/Character.gd",
+      "sha256": "cad58957b2babfe48fab3d1e1498cf9f7cf866bfbabed90798a64e39489b6d7d",
+      "size": 55783
+    },
+    "collector": {
+      "path": "data/phase434-early-invu-source/collector.gd",
+      "sha256": "fcf479bb205325a087b5d1e1f98b2b2902804e9a29064a1d1a1cf3e4e2ccf817",
+      "size": 64928
+    },
+    "observer_version": "7-king-single-A-434",
+    "profile": "observer7-434-native-single-king-A/1",
+    "schema": "phase434-active-input-source-contract/1",
+    "sink": {
+      "path": "data/phase434-early-invu-source/after-source/native_random_observer_sink_v7.gd",
+      "sha256": "ef768f2ac10f97ea7aaef40bd843245fb5cd83c31a2ae718df6001b57a8c1600",
+      "size": 113189
+    }
+  },
+  "author_generator_attempts": 2,
+  "capture": 0,
+  "execution_imports": [
+    {
+      "path": "tests/phase363_oracle_process.py",
+      "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f",
+      "size": 13665
+    },
+    {
+      "path": "tests/phase363_oracle_storage.py",
+      "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc",
+      "size": 15496
+    },
+    {
+      "path": "tests/native_run_compaction.py",
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260",
+      "size": 27304
+    }
+  ],
+  "exports": "schema.validate_early_invu_fact and schema.validate_sources_with_binding are same-module functions; terminal exports unchanged",
+  "facts_schema": "phase434-king-input-facts/1",
+  "functions": {
+    "validate_early_invu_fact": "(fact: exact closed dict, role: invu:P|invu:O) -> same fact, no mutation/private inference",
+    "validate_sources_with_binding": "(raw11: dict[str,bytes], binding_bytes: bytes, source_contract: exact ACTIVE_SOURCE_CONTRACT) -> structural proof, never input bundle/admission",
+    "validate_terminal_diagnostics": "(rows) -> unchanged closed FINALIZED diagnostic",
+    "validate_terminal_evidence": "(endpoint, clock, cleanup) -> unchanged expected-only proof",
+    "validate_terminal_receipt": "(endpoint, clock, receipt, control, validation) -> unchanged expected-only proof"
+  },
+  "future_interface_not_authority": true,
+  "gd_initial_helper": "invu_early_fact(timer, owner) -> exact early fact|null; ordinary initialized INITIAL only",
+  "gd_memory_helpers": [
+    "_invu_memory_error(code, owner_id, timer_id) -> NIL",
+    "_invu_raw_snapshot(timer) -> primitive raw snapshot|null",
+    "invu_first_enter_memory(timer, owner) -> NIL",
+    "invu_parent_ready_memory(timer, owner) -> NIL"
+  ],
+  "host": {
+    "path": "tests/phase434_oracle_host.py",
+    "sha256": "bbff2ec0c6e1d2b6ecc5fb37cf20734e5e8dd9cebb6d75fce30ca2510ae20655",
+    "size": 31080
+  },
+  "host_root_schema": "phase434-root-oracle-acceptance/1",
+  "independent_acceptance": null,
+  "inputbuilds": 0,
+  "legal_inputs": [
+    "fixture.json",
+    "player_fixture.json",
+    "observer7-input.jsonl",
+    "observer7-lineage.jsonl",
+    "observer7-metadata.jsonl",
+    "observer7-primitives.jsonl",
+    "king-clock-checkpoint.json",
+    "king-clock-passes.jsonl",
+    "king-input-facts.json",
+    "king-ui-authority.jsonl",
+    "king-rng-checkpoint.json",
+    "king-slot-bindings.json"
+  ],
+  "models": 0,
+  "module": {
+    "path": "tests/phase434_king_observer_schema.py",
+    "sha256": "f02198461fba739ff5f716c678d44412ba6ed6d9fe18869cc4d66352442694f0",
+    "size": 214523
+  },
+  "native": 0,
+  "observer_version": "7-king-single-A-434",
+  "profile": "observer7-434-native-single-king-A/1",
+  "review_required_fields": [
+    "status",
+    "source_freeze",
+    "native: strictINT0",
+    "models: strictINT0"
+  ],
+  "review_status": "INDEPENDENT435_EARLY_INVU_SOURCE_ACCEPTED_ROOT_PENDING",
+  "run_name": "original027-king-single-A-434-attempt07",
+  "schema": "phase434-actual-api-contract/1",
+  "source_freeze": {
+    "path": "data/phase434-early-invu-source/combined-source-freeze.json",
+    "sha256": "584185e44faa9492f46b415fb00c64033b33e1e4d530329b68b5e21771e723c7",
+    "size": 67345
+  },
+  "source_tuple": {
+    "path": "data/phase434-early-invu-source/source-tuple.json",
+    "sha256": "8692d89f13de2b3449d40834e6178031ac8db909eb531bf81eade712fe835680",
+    "size": 1557
+  },
+  "storage": {
+    "path": "tests/phase434_oracle_storage.py",
+    "sha256": "9f1411679884a0b94f78100dfb1a09babe0bd3b54553134e244b3f51fe7526c4",
+    "size": 20410
+  },
+  "tested_code_calls": 0,
+  "tested_code_imports": 0
+}

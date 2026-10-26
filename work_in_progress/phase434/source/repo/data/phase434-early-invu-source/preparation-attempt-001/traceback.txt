@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/workspace/python-original-engine/repo/tests/phase434_prepare_source.py", line 406, in <module>
+    generate(attempt)
+  File "/workspace/python-original-engine/repo/tests/phase434_prepare_source.py", line 204, in generate
+    character = successor(by_output[char_path], char_path, char, ['_ready'], ['_enter_tree'])
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/python-original-engine/repo/tests/phase434_prepare_source.py", line 84, in successor
+    old_funcs, new_funcs = functions(before, python), functions(text, python)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/python-original-engine/repo/tests/phase434_prepare_source.py", line 74, in functions
+    assert len(matches) == len(re.findall(r'^func ', text, re.M))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

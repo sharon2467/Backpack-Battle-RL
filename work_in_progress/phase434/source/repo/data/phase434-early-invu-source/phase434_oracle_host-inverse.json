@@ -1,0 +1,99 @@
+{
+  "added_functions": [],
+  "after": {
+    "path": "tests/phase434_oracle_host.py",
+    "sha256": "bbff2ec0c6e1d2b6ecc5fb37cf20734e5e8dd9cebb6d75fce30ca2510ae20655",
+    "size": 31080
+  },
+  "before": {
+    "path": "tests/phase391_oracle_host.py",
+    "sha256": "49df9df290a1c595a9a2acf69f1d3e1b81af889913d531d5327ed0ba9b16b0ef",
+    "size": 31092
+  },
+  "changed_functions": [
+    "execute",
+    "load_terminal_schema",
+    "plan",
+    "read_terminal_expected_controls",
+    "source_gate",
+    "validate_active_source_tuple"
+  ],
+  "conserved_functions": [
+    "_payload_rows",
+    "collect_capture_metadata",
+    "descriptor",
+    "execute_driver_descriptors",
+    "main",
+    "read_control",
+    "resolve_execute_payloads",
+    "resource_gate",
+    "verify_execute_payloads",
+    "verify_owner"
+  ],
+  "edits": [
+    {
+      "new": "from phase434_oracle_storage import (directory,member,pin,read,write_new,sync,budget,check_ready,lease,\n",
+      "new_text_offset": 189,
+      "old": "from phase391_oracle_storage import (directory,member,pin,read,write_new,sync,budget,check_ready,lease,\n"
+    },
+    {
+      "new": "SOURCE = 'data/phase434-early-invu-source'\n",
+      "new_text_offset": 511,
+      "old": "SOURCE = 'data/phase391-terminal-source'\n"
+    },
+    {
+      "new": "RUN_NAME = 'original027-king-single-A-434-attempt07'\nREVIEW_STATUS = 'INDEPENDENT435_EARLY_INVU_SOURCE_ACCEPTED_ROOT_PENDING'\n",
+      "new_text_offset": 626,
+      "old": "RUN_NAME = 'original027-king-single-A-20261026-attempt06'\nREVIEW_STATUS = 'INDEPENDENT392_FIRST_ELIGIBLE_IDLE_SOURCE_ACCEPTED_ROOT_PENDING'\n"
+    },
+    {
+      "new": "    if config.get('schema')!='phase434-root-oracle-acceptance/1' or config.get('root_oracle_authorized') is not True:\n",
+      "new_text_offset": 2266,
+      "old": "    if config.get('schema')!='phase391-root-oracle-acceptance/1' or config.get('root_oracle_authorized') is not True:\n"
+    },
+    {
+      "new": "    return dict(schema='phase434-oracle-readonly-plan/1',paths={k:str(v) for k,v in paths.items()},source_root=str(root),\n",
+      "new_text_offset": 6921,
+      "old": "    return dict(schema='phase391-oracle-readonly-plan/1',paths={k:str(v) for k,v in paths.items()},source_root=str(root),\n"
+    },
+    {
+      "new": "        report=dict(schema='observer7-patch/1',patch_version='phase434-oracle-single-King',added_files=['native_random_observer_sink_v7.gd'],\n",
+      "new_text_offset": 9165,
+      "old": "        report=dict(schema='observer7-patch/1',patch_version='phase391-oracle-single-King',added_files=['native_random_observer_sink_v7.gd'],\n"
+    },
+    {
+      "new": "        write_new(out/'host_manifest.json',dict(schema='phase434-oracle-host/1',case_id=CASE,\n",
+      "new_text_offset": 9776,
+      "old": "        write_new(out/'host_manifest.json',dict(schema='phase391-oracle-host/1',case_id=CASE,\n"
+    },
+    {
+      "new": "OBSERVER_VERSION = '7-king-single-A-434'\nOBSERVER_PROFILE = 'observer7-434-native-single-king-A/1'\n",
+      "new_text_offset": 23761,
+      "old": "OBSERVER_VERSION = '7-king-single-A-390'\nOBSERVER_PROFILE = 'observer7-390-native-single-king-A/1'\n"
+    },
+    {
+      "new": "    if type(value) is not dict or set(value) != keys or value['schema'] != 'phase434-terminal-source-tuple/1':\n",
+      "new_text_offset": 24197,
+      "old": "    if type(value) is not dict or set(value) != keys or value['schema'] != 'phase391-terminal-source-tuple/1':\n"
+    },
+    {
+      "new": "    if patch != dict(schema='phase434-native-patch-source/1', paths=freeze['paths'], producer=value['producer'],\n",
+      "new_text_offset": 25789,
+      "old": "    if patch != dict(schema='phase391-native-patch-source/1', paths=freeze['paths'], producer=value['producer'],\n"
+    },
+    {
+      "new": "    name = '_phase434_terminal_schema_' + row['sha256']\n",
+      "new_text_offset": 26646,
+      "old": "    name = '_phase391_terminal_schema_' + row['sha256']\n"
+    },
+    {
+      "new": "    return dict(schema='phase434-host-terminal-control-proof/1', proof=proof, source_schema=freeze['schema_module'],\n",
+      "new_text_offset": 29779,
+      "old": "    return dict(schema='phase391-host-terminal-control-proof/1', proof=proof, source_schema=freeze['schema_module'],\n"
+    }
+  ],
+  "inverse": "EXACT_COMPLETE_UTF8_BYTES",
+  "offset_unit": "unicode-text-index; final byte equality checked",
+  "project_executions": 0,
+  "python_compile_only": true
+}

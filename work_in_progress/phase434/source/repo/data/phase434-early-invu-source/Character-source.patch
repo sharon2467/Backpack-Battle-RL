@@ -1,0 +1,15 @@
+--- data/phase359-king-producer-source/after-source/Core/Character.gd
++++ data/phase434-early-invu-source/after-source/Core/Character.gd
+@@ -137,8 +137,11 @@
+ onready var clickArea = $Mirroring / Sprite / Button
+ onready var levelUpParticles = get_node_or_null("Mirroring/Sprite/LevelUpParticles")
+ 
++func _enter_tree() -> void :
++	NativeRandomObserver.invu_first_enter_memory(get_node("InvulnerabilityTimer"), self)
++
+ func _ready() -> void :
+-	NativeRandomObserver.timer_birth(invulnerabilityTimer, self, "Character.scene.ready")
++	NativeRandomObserver.invu_parent_ready_memory(invulnerabilityTimer, self)
+ 	NativeRandomObserver.entry("Core/Character.gd::_ready", self, {})
+ 	Util.localizeFonts(self)
+ 	

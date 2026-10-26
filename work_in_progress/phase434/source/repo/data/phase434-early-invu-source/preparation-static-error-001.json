@@ -1,0 +1,12 @@
+{
+  "schema": "phase434-author-static-preparation-error/1",
+  "stage": "pre-generator static AST inspection",
+  "generator_attempts_so_far": 0,
+  "project_imports_or_calls": 0,
+  "author_generator_compile": "PASSED before inspection error",
+  "inspection": "ast.literal_eval(n.value) for assignment CAPS in tests/phase391_king_observer_schema.py",
+  "error": "ValueError: malformed node or string on line 324: ast.Subscript",
+  "cause": "Existing CAPS is CONTRACT['caps'], not a literal AST node. The author inspection attempted literal_eval on that subscript.",
+  "correction": "Read the literal CONTRACT and its caps member statically; do not import or evaluate the schema module.",
+  "source_modified_to_fix_this": false
+}

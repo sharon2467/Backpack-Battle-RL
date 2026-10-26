@@ -1,0 +1,64 @@
+--- data/phase391-terminal-source/native-patch-source.json
++++ data/phase434-early-invu-source/native-patch-source.json
+@@ -1,5 +1,5 @@
+ {
+-  "observer_version": "7-king-single-A-390",
++  "observer_version": "7-king-single-A-434",
+   "paths": {
+     "Core/Buff.gd": {
+       "after": {
+@@ -14,10 +14,10 @@
+     },
+     "Core/Character.gd": {
+       "after": {
+-        "sha256": "4e37b2f5d044e015be5dd75fca37577bdb9fc870dd2e32cad5198c36649df984",
+-        "size": 55679
+-      },
+-      "after_path": "data/phase359-king-producer-source/after-source/Core/Character.gd",
++        "sha256": "cad58957b2babfe48fab3d1e1498cf9f7cf866bfbabed90798a64e39489b6d7d",
++        "size": 55783
++      },
++      "after_path": "data/phase434-early-invu-source/after-source/Core/Character.gd",
+       "before": {
+         "sha256": "dc372965eaa048657caa1646d70aba85ff9b4b9677565eaa480bc195de027496",
+         "size": 48033
+@@ -806,10 +806,10 @@
+     },
+     "native_random_observer_sink_v7.gd": {
+       "after": {
+-        "sha256": "999e0043a653067a962819cf81340b0dad745fa2148bbfab7724d7948a6a21ea",
+-        "size": 104333
+-      },
+-      "after_path": "data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
++        "sha256": "ef768f2ac10f97ea7aaef40bd843245fb5cd83c31a2ae718df6001b57a8c1600",
++        "size": 113189
++      },
++      "after_path": "data/phase434-early-invu-source/after-source/native_random_observer_sink_v7.gd",
+       "before": null
+     },
+     "project.godot": {
+@@ -825,16 +825,16 @@
+     }
+   },
+   "producer": {
+-    "path": "tests/phase391_prepare_source.py",
+-    "sha256": "a62c0fbfb8c9931ecad37dc41c3d5dc7ef7aea2e84992b94f468fa1e0714fb98",
+-    "size": 24723
++    "path": "tests/phase434_prepare_source.py",
++    "sha256": "c719a9506392c6a4f6417b0fd1da918e30af7a39d9b42e66666983d10dfaf8dc",
++    "size": 30119
+   },
+-  "profile": "observer7-390-native-single-king-A/1",
+-  "schema": "phase391-native-patch-source/1",
++  "profile": "observer7-434-native-single-king-A/1",
++  "schema": "phase434-native-patch-source/1",
+   "sink": {
+-    "path": "data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
+-    "sha256": "999e0043a653067a962819cf81340b0dad745fa2148bbfab7724d7948a6a21ea",
+-    "size": 104333
++    "path": "data/phase434-early-invu-source/after-source/native_random_observer_sink_v7.gd",
++    "sha256": "ef768f2ac10f97ea7aaef40bd843245fb5cd83c31a2ae718df6001b57a8c1600",
++    "size": 113189
+   },
+   "terminal_policy": "first-actual-idle-after-at-least-two-future-physics/1"
+ }

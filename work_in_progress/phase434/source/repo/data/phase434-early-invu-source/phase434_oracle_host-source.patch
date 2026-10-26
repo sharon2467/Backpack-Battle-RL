@@ -1,0 +1,102 @@
+--- tests/phase391_oracle_host.py
++++ tests/phase434_oracle_host.py
+@@ -6,15 +6,15 @@
+ import os
+ import re
+ import shutil
+-from phase391_oracle_storage import (directory,member,pin,read,write_new,sync,budget,check_ready,lease,
++from phase434_oracle_storage import (directory,member,pin,read,write_new,sync,budget,check_ready,lease,
+                                      reset_previous,install,archive_streaming,c,check_source_descriptor,MAX_INSTALL_PAYLOADS,MAX_INSTALL_BYTES)
+ from phase363_oracle_process import execute_process,rename_capture,usage
+ 
+-SOURCE = 'data/phase391-terminal-source'
++SOURCE = 'data/phase434-early-invu-source'
+ DATA = 'data/phase362-oracle-capture-source'
+ CASE = 'NATIVE-027-KING-A'
+-RUN_NAME = 'original027-king-single-A-20261026-attempt06'
+-REVIEW_STATUS = 'INDEPENDENT392_FIRST_ELIGIBLE_IDLE_SOURCE_ACCEPTED_ROOT_PENDING'
++RUN_NAME = 'original027-king-single-A-434-attempt07'
++REVIEW_STATUS = 'INDEPENDENT435_EARLY_INVU_SOURCE_ACCEPTED_ROOT_PENDING'
+ POLICY = 'bounded-writers-and-monitored-process/1'
+ NAMES = ('custom_player.json','custom_opponent.json','native_capture_config.json')
+ LAWFUL = ('fixture.json','player_fixture.json','observer7-input.jsonl','observer7-lineage.jsonl',
+@@ -45,7 +45,7 @@
+ 
+ def source_gate(source_root,config_descriptor):
+     root=directory(source_root); config_path=descriptor(root,config_descriptor); config=read(config_path)
+-    if config.get('schema')!='phase391-root-oracle-acceptance/1' or config.get('root_oracle_authorized') is not True:
++    if config.get('schema')!='phase434-root-oracle-acceptance/1' or config.get('root_oracle_authorized') is not True:
+         raise ValueError('actual root oracle-only authorization required')
+     if any(type(config.get(k)) is not int or config[k]!=0 for k in ('models_allowed','input_builds_allowed','expected_comparison_allowed')):
+         raise ValueError('strictINT0 model/inputbuild/expected permissions')
+@@ -107,7 +107,7 @@
+     if native_config!=dict(schema='native-combat-capture/1',case_id=CASE,global_seed=35301,util_seed=35302,
+                           player_fixture_enabled=True,timeouts=dict(battle_seconds=120,total_seconds=295)):
+         raise ValueError('fixed SOURCE config/seeds/timeouts')
+-    return dict(schema='phase391-oracle-readonly-plan/1',paths={k:str(v) for k,v in paths.items()},source_root=str(root),
++    return dict(schema='phase434-oracle-readonly-plan/1',paths={k:str(v) for k,v in paths.items()},source_root=str(root),
+         run=str(run),case_id=CASE,attempt=6,previous_run=str(previous),budget=capacity,
+         root_config=config_descriptor,freeze=config['source_freeze'],source_owner=config['source_owner'],
+         reviews=config['reviews'],config=native_config,policy=POLICY,execute_payloads=payloads,
+@@ -135,12 +135,12 @@
+         artifacts=payloads['artifacts']
+         journal=install(root,project,freeze,artifacts,out/'source-preimages')
+         for name in NAMES[:2]: shutil.copy2(run/'data'/name,paths['pool']/'data'/name)
+-        report=dict(schema='observer7-patch/1',patch_version='phase391-oracle-single-King',added_files=['native_random_observer_sink_v7.gd'],
++        report=dict(schema='observer7-patch/1',patch_version='phase434-oracle-single-King',added_files=['native_random_observer_sink_v7.gd'],
+                     patches=[dict(path=name,before_size=None if row['before'] is None else row['before']['size'],
+                         before_sha256=None if row['before'] is None else row['before']['sha256'],
+                         after_size=row['after']['size'],after_sha256=row['after']['sha256']) for name,row in freeze['paths'].items()])
+         (out/'observer-patch').mkdir(); write_new(out/'observer-patch/native_random_observer_patch_manifest.json',report)
+-        write_new(out/'host_manifest.json',dict(schema='phase391-oracle-host/1',case_id=CASE,
++        write_new(out/'host_manifest.json',dict(schema='phase434-oracle-host/1',case_id=CASE,
+             audited_runtime_observation_patch=report,source_freeze=config['source_freeze'],collector=pin(project/'native_combat_capture.gd'),models=0))
+         # Archive the exact SOURCE actually used before any Godot command.
+         copies=payloads['driver_sources']
+@@ -332,8 +332,8 @@
+ """Expected/control SOURCE helpers; loaded by the actual391 host after descriptor checks."""
+ 
+ TERMINAL_POLICY = 'first-actual-idle-after-at-least-two-future-physics/1'
+-OBSERVER_VERSION = '7-king-single-A-390'
+-OBSERVER_PROFILE = 'observer7-390-native-single-king-A/1'
++OBSERVER_VERSION = '7-king-single-A-434'
++OBSERVER_PROFILE = 'observer7-434-native-single-king-A/1'
+ 
+ 
+ def validate_active_source_tuple(root, freeze):
+@@ -341,7 +341,7 @@
+     value = read(check_source_descriptor(root, row))
+     keys = {'schema', 'profile', 'observer_version', 'terminal_policy', 'fixed_fixture',
+             'native_patch', 'producer', 'sink', 'collector', 'schema_module', 'projector_source_origin'}
+-    if type(value) is not dict or set(value) != keys or value['schema'] != 'phase391-terminal-source-tuple/1':
++    if type(value) is not dict or set(value) != keys or value['schema'] != 'phase434-terminal-source-tuple/1':
+         raise ValueError('closed actual391 source tuple')
+     if (value['profile'], value['observer_version'], value['terminal_policy']) != (OBSERVER_PROFILE, OBSERVER_VERSION, TERMINAL_POLICY):
+         raise ValueError('mixed terminal source policy/version')
+@@ -361,7 +361,7 @@
+     patch = read(check_source_descriptor(root, value['native_patch']))
+     if type(patch) is not dict or set(patch) != {'schema', 'paths', 'producer', 'sink', 'profile', 'observer_version', 'terminal_policy'}:
+         raise ValueError('closed actual patch declaration')
+-    if patch != dict(schema='phase391-native-patch-source/1', paths=freeze['paths'], producer=value['producer'],
++    if patch != dict(schema='phase434-native-patch-source/1', paths=freeze['paths'], producer=value['producer'],
+                      sink=value['sink'], profile=OBSERVER_PROFILE, observer_version=OBSERVER_VERSION, terminal_policy=TERMINAL_POLICY):
+         raise ValueError('actual75 patch tuple disagreement')
+     return value
+@@ -378,7 +378,7 @@
+     raw = path.read_bytes()
+     if len(raw) != row['size'] or hashlib.sha256(raw).hexdigest() != row['sha256']:
+         raise ValueError('schema changed between descriptor and read')
+-    name = '_phase391_terminal_schema_' + row['sha256']
++    name = '_phase434_terminal_schema_' + row['sha256']
+     if name in sys.modules:
+         raise ValueError('terminal schema already loaded; no cached foreign module')
+     module = ModuleType(name)
+@@ -436,7 +436,7 @@
+     proof = module.schema.validate_terminal_receipt(endpoint, clock, receipt, control, validation)
+     if diagnostics[-1]['clock_passes'] != proof['passes']:
+         raise ValueError('FINALIZED header/full actual clock mismatch')
+-    return dict(schema='phase391-host-terminal-control-proof/1', proof=proof, source_schema=freeze['schema_module'],
++    return dict(schema='phase434-host-terminal-control-proof/1', proof=proof, source_schema=freeze['schema_module'],
+                 source_tuple=freeze['active_source_tuple'], files=identities, expected_control_only=True,
+                 model_calls=0, input_bundle_created=False)
+ 

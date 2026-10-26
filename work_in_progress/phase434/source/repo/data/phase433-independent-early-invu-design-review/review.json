@@ -1,0 +1,124 @@
+{
+  "schema": "independent433-early-invu-memory-hook-source-design-review/1",
+  "status": "INDEPENDENT433_EARLY_INVU_MEMORY_HOOK_DESIGN_ACCEPTED_ROOT_PENDING",
+  "final_seal": true,
+  "author_owner": {
+    "path": "data/phase432-early-invu-source-design/owned-files.json",
+    "size": 659,
+    "sha256": "90a4da818af73eb981e5c06a0fd5abfbbad2c7a19b873492a0590087ac146079"
+  },
+  "source_rule": {
+    "path": "data/phase432-early-invu-source-design/source-change-rule.json",
+    "size": 13162,
+    "sha256": "0e98c5591fc831c88f9cf5f1a6b063659843a4c316324bbda7accc00b323a62a"
+  },
+  "evidence": {
+    "path": "data/phase433-independent-early-invu-design-review/evidence.json",
+    "size": 16881,
+    "sha256": "2bb2fc4dcf1e25b48e5664169f8a80f0f437f04b6bd80a22c494baa7fe107a47"
+  },
+  "decision": "432 is a sufficiently bounded implementable SOURCE design for prospective first-enter Invu memory observations. Accept design only; no implemented SOURCE, runtime purity, capture or four-target recipe acceptance.",
+  "findings": [
+    {
+      "edge": "Autoload initialization",
+      "disposition": "SUPPORTED_UNDER_EXPLICIT_ORDINARY_SCRIPT_INITIALIZATION",
+      "basis": "main.cpp first adds null globals, then constructs every autoload, calls set_script and publishes object globals, then separately adds nodes to root. Member primitive dictionaries initialize with script-instance construction under the stated normal-language premise. Game has no root_init creatingPLAYER; known ready_deferred→instanceCharacter route is after autoload object assembly. Do not infer ordering solely from project text or treat placeholder availability as valid object availability."
+    },
+    {
+      "edge": "Observer readiness separation",
+      "disposition": "ACCEPTED_DESIGN_BOUNDARY",
+      "basis": "Existing observer_ready performs tree-clock connections, directory/file checks and ui_open. Oldtimer_birth calls begin_encoding/native_id/timer_state; old fail may write files. Therefore early helper must not use those old helpers, regardless of whether the observer object exists. New primitive maps/errors persist through_ready; bootstrap success and error publication remain separate."
+    },
+    {
+      "edge": "First parent entry and seed",
+      "disposition": "ACCEPTED_CONDITIONAL_RULE_FOR_PROSPECTIVE_EXACT_CHARACTER_ROUTE",
+      "basis": "Existing complete PackedScene child is available via literal get_node before onready. Parent nativeENTER precedes script_enter_tree; child entry/READY follows it. Under exact fresh native scene allocation, no target script/declared early reparent route, unconditional hook installation before selected instances and no prior target tree entry, constructor-1/processingfalse is preserved: outside-tree start returns before countdown write, stop preserves-1, setters cannot activate processingfalse, manual internal notification returns. This does not infer never-entered from outside_tree/current map insertion."
+    },
+    {
+      "edge": "Primitive memory protocol",
+      "disposition": "SUFFICIENTLY_SPECIFIED_FOR_IMPLEMENTATION",
+      "basis": "TimerINT-key/ownerINT-key bijection; only primitive retained IDs/BOOL/INT/REAL/state and localordinal. First-error latch/cap/unknownoperation failure without File/tree/RNG/encoding or sharedseq changes. Reentry/collision/overlap blocks without overwriting early observation or counters; no normalization of Timer state."
+    },
+    {
+      "edge": "Ready checkpoint and lifetime counters",
+      "disposition": "ACCEPTED_DESIGN",
+      "basis": "Replace only oldCharacter parent-readybirth with one consistency checkpoint; onready reference then valid. Capture actual counters/public state without zero assertion. New early map is disjoint from oldmap; count-before-fixture-gate remains, original other-family branch preserved. EarliestP record survives later PLAYER inventory reuse."
+    },
+    {
+      "edge": "Truthful INITIAL protocol",
+      "disposition": "ACCEPTED_DESIGN_PENDING_EXACT_SOURCE_CONSUMER_BINDINGS",
+      "basis": "Materialize raw REAL through canonical encoder only in ordinary INITIAL, preserving nonzero counters. Exact newVERSION/PROFILE/facts/entry/ready schemas and pending provenance literal; no private/fresh/proof assertions. Retain twelve legal inputs and existing sharedrecord/channel/terminal timing policy. Parent-ready localordinal/counters must precede/not exceed later values; no comparison against shared/UI ordinal spaces."
+    }
+  ],
+  "explicit_limits": [
+    "Known selected startup route and standard script-member/native dispatch semantics, not a recursive guarantee for every autoload or custom binary bit-exact build.",
+    "Fresh first-lifetime detached route is a named SOURCE premise to bind to exact new code/profile and real fresh selected instances. An already-existing unobserved poolPLAYER cannot be relabeled fresh.",
+    "No actual new early observations exist; existing fixed06 fourInvu remainMISSING. Earlier hook does not itself measure private countdown.",
+    "Raw readonly getter purity, actualNIL/error behavior and REAL bit roundtrip have not been run or accepted by433. Design allowance is not empirical runtime validation.",
+    "No ClassDB/Object/startup/UI subtree expansion or new native build/download is requested."
+  ],
+  "mandatory_implementation_acceptance": [
+    "Root implementation-only release must enumerate concrete consumer files/preimages (observer/Character/schema/collector/host/freezes) and allowed exact protocol identity edits. Generic future-consumer wording is not permission for arbitrary files.",
+    "Character inverse removes new_enter_tree method and restores its first_readyobserver call to exact executed bytes. All business/listener/RNG code/order and non-invu helpers conserve exact bytes or explicit approved inverse.",
+    "Early newhelpers transitivecall graph contains only bounded native getter/primitive operations and memory error latch. No indirect oldfail/native_id/encoder/UI/file/treeclock/Game/Util/RNG route; no targetsetter/start/stop/connect/emit/yield/deferred.",
+    "observer_ready mark occurs only after successful existing bootstrap; earlier errors publish once through initialized normalfailure channel. Missing/null observer cannot silently yield an admitted capture; missing first-entry records failclosed.",
+    "Once/bijection/no-reset caps persist across_ready/reuse; old/newmap overlap and unknown operations reject; nonzero counter data is truthful and disables NO_START derivation, not capture retry or workload changes.",
+    "Freeze exactnewsource tuple, profile and closedshape schema; enumerate all twelve literal lawfulinputpaths and recompute installation/payloadcaps from actual implemented bytes. Mixed old/new kind or stale source identity must reject.",
+    "Independent finite controls must check pre-ready memory stage, observerunavailable, once/reentry/replacedTimer, starts/stops before_ready, actualNIL, type/countercaps, errors without earlyI/O, otherfamily/sharedseq conservation and nativeREAL roundtrip. No old59/42 batch rerun merely by default."
+  ],
+  "staged_authority": [
+    {
+      "stage": "Design",
+      "status": "ACCEPTED_ROOT_PENDING_BY433",
+      "effect": "Parent may separately authorize bounded implementation."
+    },
+    {
+      "stage": "SOURCE code/inverse acceptance",
+      "status": "NOT_IMPLEMENTED_NOT_ACCEPTED",
+      "effect": "Independent actualnewbytes review required."
+    },
+    {
+      "stage": "Purity/language-runtime controls",
+      "status": "NOT_EXECUTED_NOT_ACCEPTED",
+      "effect": "Separately authorized meaningful controls; Python mocks alone cannot establish GDScript/native getter semantics."
+    },
+    {
+      "stage": "Fresh capture",
+      "status": "NOT_AUTHORIZED",
+      "effect": "Parent must separately release one actual run after live quota/disk/time/process/archive/sourcepreimage checks. No historical budget assumption."
+    },
+    {
+      "stage": "New data/recipes",
+      "status": "NOT_ACCEPTED",
+      "effect": "Independent INITIAL/control binding and actualnewowner/counter/phase evidence needed. No fixed06 repair or automatic migration of six old-capture chains."
+    }
+  ],
+  "next_action": "Return to Parent for implementation-only release with exact changed-file/preimage scope; no further Source forest or capture by reviewer.",
+  "counts_unchanged": {
+    "DIRECT": 1391,
+    "SOURCE_DERIVED": 6,
+    "MISSING": 82,
+    "accepted_target_chains": 6,
+    "accepted_rule_families": 2,
+    "new_invu_promotions": 0
+  },
+  "operational_counts": {
+    "new_hooks": 0,
+    "Source_scripts_or_helpers_or_API_schema_execution": 0,
+    "raw_carrier_EXPECTED_reads": 0,
+    "old59_42_N3_423_429_reexecutions": 0,
+    "new_native_model_oldSUT": 0,
+    "new_source_downloads": 0
+  },
+  "gates": {
+    "fullschema": "NOT_VALIDATED",
+    "genuine_input": false,
+    "genuine_bundle": false,
+    "King_admitted": false,
+    "formal75_existing_support_unchanged": true,
+    "model356": "CLOSED",
+    "reader361": "CLOSED"
+  },
+  "blocking_design_gap": null,
+  "stop": "Sealed and stopped. No code modification, new capture or input/model admission."
+}
