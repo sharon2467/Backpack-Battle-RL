@@ -1,0 +1,2920 @@
+{
+  "schema": "independent435-materialized-P01-P27/1",
+  "plan": {
+    "path": "data/phase435-independent-early-invu-source-review/python-controls-plan.json",
+    "size": 12884,
+    "sha256": "4d9067bcd0a1bd77e1681bd0a2f853e9ff2312bc2b8692b70068d824a3573ee6"
+  },
+  "cases": [
+    {
+      "id": "P01",
+      "name": "same-module-export-identity",
+      "operation": "identity",
+      "expected": "schema.validate_early_invu_fact is module.validate_early_invu_fact"
+    },
+    {
+      "id": "P02",
+      "name": "baselinePpreObserverReady",
+      "operation": "early_fact",
+      "expected": "return same object; bytes unchanged; no private inference",
+      "input_fact": {
+        "lineage": {
+          "timer_id": "91001",
+          "owner_id": "91002",
+          "kind": "Character.first_enter_tree/434",
+          "starts": 0,
+          "stops": 0,
+          "birth": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": null,
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": false,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "current": {
+          "node": {
+            "native_id": "91001",
+            "role": "invu:P",
+            "path": "/root/Probe/Character/InvulnerabilityTimer",
+            "name": "InvulnerabilityTimer",
+            "class": "Timer",
+            "positions": [
+              -1,
+              0
+            ],
+            "priority": 0,
+            "inside_tree": true,
+            "ordinary_physics": false,
+            "internal_physics": false,
+            "ordinary_idle": false,
+            "internal_idle": false
+          },
+          "process_mode": 0,
+          "wait_time": {
+            "type": "float",
+            "binary64_be": "3ff0000000000000"
+          },
+          "time_left": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "one_shot": true,
+          "autostart": false,
+          "paused": false,
+          "stopped": true
+        },
+        "entry": {
+          "schema": "phase434-invu-first-enter/1",
+          "ordinal": 1,
+          "owner_inside_tree": true,
+          "owner_script": "res://Core/Character.gd",
+          "owner_scene": "res://Core/Player.tscn",
+          "observer_ready_at_entry": false
+        },
+        "parent_ready": {
+          "schema": "phase434-invu-parent-ready/1",
+          "ordinal": 2,
+          "starts": 0,
+          "stops": 0,
+          "state": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": "/root/Probe/Character/InvulnerabilityTimer",
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": true,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "private_provenance": "pending-source-rule-first-enter-seed/1"
+      },
+      "input_role": "invu:P"
+    },
+    {
+      "id": "P03",
+      "name": "OtruthfulNonzero",
+      "operation": "early_fact",
+      "expected": "return same object; bytes unchanged",
+      "changes": [
+        [
+          "entry",
+          "owner_scene",
+          "res://Core/Opponent.tscn"
+        ],
+        [
+          "current",
+          "node",
+          "role",
+          "invu:O"
+        ],
+        [
+          "lineage",
+          "starts",
+          5
+        ],
+        [
+          "lineage",
+          "stops",
+          3
+        ],
+        [
+          "parent_ready",
+          "starts",
+          2
+        ],
+        [
+          "parent_ready",
+          "stops",
+          1
+        ]
+      ],
+      "input_fact": {
+        "lineage": {
+          "timer_id": "91001",
+          "owner_id": "91002",
+          "kind": "Character.first_enter_tree/434",
+          "starts": 5,
+          "stops": 3,
+          "birth": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": null,
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": false,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "current": {
+          "node": {
+            "native_id": "91001",
+            "role": "invu:O",
+            "path": "/root/Probe/Character/InvulnerabilityTimer",
+            "name": "InvulnerabilityTimer",
+            "class": "Timer",
+            "positions": [
+              -1,
+              0
+            ],
+            "priority": 0,
+            "inside_tree": true,
+            "ordinary_physics": false,
+            "internal_physics": false,
+            "ordinary_idle": false,
+            "internal_idle": false
+          },
+          "process_mode": 0,
+          "wait_time": {
+            "type": "float",
+            "binary64_be": "3ff0000000000000"
+          },
+          "time_left": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "one_shot": true,
+          "autostart": false,
+          "paused": false,
+          "stopped": true
+        },
+        "entry": {
+          "schema": "phase434-invu-first-enter/1",
+          "ordinal": 1,
+          "owner_inside_tree": true,
+          "owner_script": "res://Core/Character.gd",
+          "owner_scene": "res://Core/Opponent.tscn",
+          "observer_ready_at_entry": false
+        },
+        "parent_ready": {
+          "schema": "phase434-invu-parent-ready/1",
+          "ordinal": 2,
+          "starts": 2,
+          "stops": 1,
+          "state": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": "/root/Probe/Character/InvulnerabilityTimer",
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": true,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "private_provenance": "pending-source-rule-first-enter-seed/1"
+      },
+      "input_role": "invu:O"
+    },
+    {
+      "id": "P04",
+      "name": "mixedKind",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "lineage",
+          "kind"
+        ],
+        "value": "Character.scene.ready"
+      },
+      "input_fact": {
+        "lineage": {
+          "timer_id": "91001",
+          "owner_id": "91002",
+          "kind": "Character.scene.ready",
+          "starts": 0,
+          "stops": 0,
+          "birth": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": null,
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": false,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "current": {
+          "node": {
+            "native_id": "91001",
+            "role": "invu:P",
+            "path": "/root/Probe/Character/InvulnerabilityTimer",
+            "name": "InvulnerabilityTimer",
+            "class": "Timer",
+            "positions": [
+              -1,
+              0
+            ],
+            "priority": 0,
+            "inside_tree": true,
+            "ordinary_physics": false,
+            "internal_physics": false,
+            "ordinary_idle": false,
+            "internal_idle": false
+          },
+          "process_mode": 0,
+          "wait_time": {
+            "type": "float",
+            "binary64_be": "3ff0000000000000"
+          },
+          "time_left": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "one_shot": true,
+          "autostart": false,
+          "paused": false,
+          "stopped": true
+        },
+        "entry": {
+          "schema": "phase434-invu-first-enter/1",
+          "ordinal": 1,
+          "owner_inside_tree": true,
+          "owner_script": "res://Core/Character.gd",
+          "owner_scene": "res://Core/Player.tscn",
+          "observer_ready_at_entry": false
+        },
+        "parent_ready": {
+          "schema": "phase434-invu-parent-ready/1",
+          "ordinal": 2,
+          "starts": 0,
+          "stops": 0,
+          "state": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": "/root/Probe/Character/InvulnerabilityTimer",
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": true,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "private_provenance": "pending-source-rule-first-enter-seed/1"
+      },
+      "input_role": "invu:P"
+    },
+    {
+      "id": "P05",
+      "name": "BOOLcounter",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "lineage",
+          "starts"
+        ],
+        "value": false
+      },
+      "input_fact": {
+        "lineage": {
+          "timer_id": "91001",
+          "owner_id": "91002",
+          "kind": "Character.first_enter_tree/434",
+          "starts": false,
+          "stops": 0,
+          "birth": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": null,
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": false,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "current": {
+          "node": {
+            "native_id": "91001",
+            "role": "invu:P",
+            "path": "/root/Probe/Character/InvulnerabilityTimer",
+            "name": "InvulnerabilityTimer",
+            "class": "Timer",
+            "positions": [
+              -1,
+              0
+            ],
+            "priority": 0,
+            "inside_tree": true,
+            "ordinary_physics": false,
+            "internal_physics": false,
+            "ordinary_idle": false,
+            "internal_idle": false
+          },
+          "process_mode": 0,
+          "wait_time": {
+            "type": "float",
+            "binary64_be": "3ff0000000000000"
+          },
+          "time_left": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "one_shot": true,
+          "autostart": false,
+          "paused": false,
+          "stopped": true
+        },
+        "entry": {
+          "schema": "phase434-invu-first-enter/1",
+          "ordinal": 1,
+          "owner_inside_tree": true,
+          "owner_script": "res://Core/Character.gd",
+          "owner_scene": "res://Core/Player.tscn",
+          "observer_ready_at_entry": false
+        },
+        "parent_ready": {
+          "schema": "phase434-invu-parent-ready/1",
+          "ordinal": 2,
+          "starts": 0,
+          "stops": 0,
+          "state": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": "/root/Probe/Character/InvulnerabilityTimer",
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": true,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "private_provenance": "pending-source-rule-first-enter-seed/1"
+      },
+      "input_role": "invu:P"
+    },
+    {
+      "id": "P06",
+      "name": "negativeCounter",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "lineage",
+          "stops"
+        ],
+        "value": -1
+      },
+      "input_fact": {
+        "lineage": {
+          "timer_id": "91001",
+          "owner_id": "91002",
+          "kind": "Character.first_enter_tree/434",
+          "starts": 0,
+          "stops": -1,
+          "birth": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": null,
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": false,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "current": {
+          "node": {
+            "native_id": "91001",
+            "role": "invu:P",
+            "path": "/root/Probe/Character/InvulnerabilityTimer",
+            "name": "InvulnerabilityTimer",
+            "class": "Timer",
+            "positions": [
+              -1,
+              0
+            ],
+            "priority": 0,
+            "inside_tree": true,
+            "ordinary_physics": false,
+            "internal_physics": false,
+            "ordinary_idle": false,
+            "internal_idle": false
+          },
+          "process_mode": 0,
+          "wait_time": {
+            "type": "float",
+            "binary64_be": "3ff0000000000000"
+          },
+          "time_left": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "one_shot": true,
+          "autostart": false,
+          "paused": false,
+          "stopped": true
+        },
+        "entry": {
+          "schema": "phase434-invu-first-enter/1",
+          "ordinal": 1,
+          "owner_inside_tree": true,
+          "owner_script": "res://Core/Character.gd",
+          "owner_scene": "res://Core/Player.tscn",
+          "observer_ready_at_entry": false
+        },
+        "parent_ready": {
+          "schema": "phase434-invu-parent-ready/1",
+          "ordinal": 2,
+          "starts": 0,
+          "stops": 0,
+          "state": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": "/root/Probe/Character/InvulnerabilityTimer",
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": true,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "private_provenance": "pending-source-rule-first-enter-seed/1"
+      },
+      "input_role": "invu:P"
+    },
+    {
+      "id": "P07",
+      "name": "overflowCounter",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "lineage",
+          "starts"
+        ],
+        "value": 9007199254740992
+      },
+      "input_fact": {
+        "lineage": {
+          "timer_id": "91001",
+          "owner_id": "91002",
+          "kind": "Character.first_enter_tree/434",
+          "starts": 9007199254740992,
+          "stops": 0,
+          "birth": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": null,
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": false,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "current": {
+          "node": {
+            "native_id": "91001",
+            "role": "invu:P",
+            "path": "/root/Probe/Character/InvulnerabilityTimer",
+            "name": "InvulnerabilityTimer",
+            "class": "Timer",
+            "positions": [
+              -1,
+              0
+            ],
+            "priority": 0,
+            "inside_tree": true,
+            "ordinary_physics": false,
+            "internal_physics": false,
+            "ordinary_idle": false,
+            "internal_idle": false
+          },
+          "process_mode": 0,
+          "wait_time": {
+            "type": "float",
+            "binary64_be": "3ff0000000000000"
+          },
+          "time_left": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "one_shot": true,
+          "autostart": false,
+          "paused": false,
+          "stopped": true
+        },
+        "entry": {
+          "schema": "phase434-invu-first-enter/1",
+          "ordinal": 1,
+          "owner_inside_tree": true,
+          "owner_script": "res://Core/Character.gd",
+          "owner_scene": "res://Core/Player.tscn",
+          "observer_ready_at_entry": false
+        },
+        "parent_ready": {
+          "schema": "phase434-invu-parent-ready/1",
+          "ordinal": 2,
+          "starts": 0,
+          "stops": 0,
+          "state": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": "/root/Probe/Character/InvulnerabilityTimer",
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": true,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "private_provenance": "pending-source-rule-first-enter-seed/1"
+      },
+      "input_role": "invu:P"
+    },
+    {
+      "id": "P08",
+      "name": "counterReset",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "parent_ready",
+          "starts"
+        ],
+        "value": 1
+      },
+      "input_fact": {
+        "lineage": {
+          "timer_id": "91001",
+          "owner_id": "91002",
+          "kind": "Character.first_enter_tree/434",
+          "starts": 0,
+          "stops": 0,
+          "birth": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": null,
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": false,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "current": {
+          "node": {
+            "native_id": "91001",
+            "role": "invu:P",
+            "path": "/root/Probe/Character/InvulnerabilityTimer",
+            "name": "InvulnerabilityTimer",
+            "class": "Timer",
+            "positions": [
+              -1,
+              0
+            ],
+            "priority": 0,
+            "inside_tree": true,
+            "ordinary_physics": false,
+            "internal_physics": false,
+            "ordinary_idle": false,
+            "internal_idle": false
+          },
+          "process_mode": 0,
+          "wait_time": {
+            "type": "float",
+            "binary64_be": "3ff0000000000000"
+          },
+          "time_left": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "one_shot": true,
+          "autostart": false,
+          "paused": false,
+          "stopped": true
+        },
+        "entry": {
+          "schema": "phase434-invu-first-enter/1",
+          "ordinal": 1,
+          "owner_inside_tree": true,
+          "owner_script": "res://Core/Character.gd",
+          "owner_scene": "res://Core/Player.tscn",
+          "observer_ready_at_entry": false
+        },
+        "parent_ready": {
+          "schema": "phase434-invu-parent-ready/1",
+          "ordinal": 2,
+          "starts": 1,
+          "stops": 0,
+          "state": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": "/root/Probe/Character/InvulnerabilityTimer",
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": true,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "private_provenance": "pending-source-rule-first-enter-seed/1"
+      },
+      "input_role": "invu:P"
+    },
+    {
+      "id": "P09",
+      "name": "ordinalReversed",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "parent_ready",
+          "ordinal"
+        ],
+        "value": 1
+      },
+      "input_fact": {
+        "lineage": {
+          "timer_id": "91001",
+          "owner_id": "91002",
+          "kind": "Character.first_enter_tree/434",
+          "starts": 0,
+          "stops": 0,
+          "birth": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": null,
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": false,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "current": {
+          "node": {
+            "native_id": "91001",
+            "role": "invu:P",
+            "path": "/root/Probe/Character/InvulnerabilityTimer",
+            "name": "InvulnerabilityTimer",
+            "class": "Timer",
+            "positions": [
+              -1,
+              0
+            ],
+            "priority": 0,
+            "inside_tree": true,
+            "ordinary_physics": false,
+            "internal_physics": false,
+            "ordinary_idle": false,
+            "internal_idle": false
+          },
+          "process_mode": 0,
+          "wait_time": {
+            "type": "float",
+            "binary64_be": "3ff0000000000000"
+          },
+          "time_left": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "one_shot": true,
+          "autostart": false,
+          "paused": false,
+          "stopped": true
+        },
+        "entry": {
+          "schema": "phase434-invu-first-enter/1",
+          "ordinal": 1,
+          "owner_inside_tree": true,
+          "owner_script": "res://Core/Character.gd",
+          "owner_scene": "res://Core/Player.tscn",
+          "observer_ready_at_entry": false
+        },
+        "parent_ready": {
+          "schema": "phase434-invu-parent-ready/1",
+          "ordinal": 1,
+          "starts": 0,
+          "stops": 0,
+          "state": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": "/root/Probe/Character/InvulnerabilityTimer",
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": true,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "private_provenance": "pending-source-rule-first-enter-seed/1"
+      },
+      "input_role": "invu:P"
+    },
+    {
+      "id": "P10",
+      "name": "BOOLordinal",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "entry",
+          "ordinal"
+        ],
+        "value": true
+      },
+      "input_fact": {
+        "lineage": {
+          "timer_id": "91001",
+          "owner_id": "91002",
+          "kind": "Character.first_enter_tree/434",
+          "starts": 0,
+          "stops": 0,
+          "birth": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": null,
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": false,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "current": {
+          "node": {
+            "native_id": "91001",
+            "role": "invu:P",
+            "path": "/root/Probe/Character/InvulnerabilityTimer",
+            "name": "InvulnerabilityTimer",
+            "class": "Timer",
+            "positions": [
+              -1,
+              0
+            ],
+            "priority": 0,
+            "inside_tree": true,
+            "ordinary_physics": false,
+            "internal_physics": false,
+            "ordinary_idle": false,
+            "internal_idle": false
+          },
+          "process_mode": 0,
+          "wait_time": {
+            "type": "float",
+            "binary64_be": "3ff0000000000000"
+          },
+          "time_left": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "one_shot": true,
+          "autostart": false,
+          "paused": false,
+          "stopped": true
+        },
+        "entry": {
+          "schema": "phase434-invu-first-enter/1",
+          "ordinal": true,
+          "owner_inside_tree": true,
+          "owner_script": "res://Core/Character.gd",
+          "owner_scene": "res://Core/Player.tscn",
+          "observer_ready_at_entry": false
+        },
+        "parent_ready": {
+          "schema": "phase434-invu-parent-ready/1",
+          "ordinal": 2,
+          "starts": 0,
+          "stops": 0,
+          "state": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": "/root/Probe/Character/InvulnerabilityTimer",
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": true,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "private_provenance": "pending-source-rule-first-enter-seed/1"
+      },
+      "input_role": "invu:P"
+    },
+    {
+      "id": "P11",
+      "name": "ownerTimerAlias",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "lineage",
+          "owner_id"
+        ],
+        "value": "91001"
+      },
+      "input_fact": {
+        "lineage": {
+          "timer_id": "91001",
+          "owner_id": "91001",
+          "kind": "Character.first_enter_tree/434",
+          "starts": 0,
+          "stops": 0,
+          "birth": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": null,
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": false,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "current": {
+          "node": {
+            "native_id": "91001",
+            "role": "invu:P",
+            "path": "/root/Probe/Character/InvulnerabilityTimer",
+            "name": "InvulnerabilityTimer",
+            "class": "Timer",
+            "positions": [
+              -1,
+              0
+            ],
+            "priority": 0,
+            "inside_tree": true,
+            "ordinary_physics": false,
+            "internal_physics": false,
+            "ordinary_idle": false,
+            "internal_idle": false
+          },
+          "process_mode": 0,
+          "wait_time": {
+            "type": "float",
+            "binary64_be": "3ff0000000000000"
+          },
+          "time_left": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "one_shot": true,
+          "autostart": false,
+          "paused": false,
+          "stopped": true
+        },
+        "entry": {
+          "schema": "phase434-invu-first-enter/1",
+          "ordinal": 1,
+          "owner_inside_tree": true,
+          "owner_script": "res://Core/Character.gd",
+          "owner_scene": "res://Core/Player.tscn",
+          "observer_ready_at_entry": false
+        },
+        "parent_ready": {
+          "schema": "phase434-invu-parent-ready/1",
+          "ordinal": 2,
+          "starts": 0,
+          "stops": 0,
+          "state": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": "/root/Probe/Character/InvulnerabilityTimer",
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": true,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "private_provenance": "pending-source-rule-first-enter-seed/1"
+      },
+      "input_role": "invu:P"
+    },
+    {
+      "id": "P12",
+      "name": "phaseTimerConflict",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "parent_ready",
+          "state",
+          "node",
+          "native_id"
+        ],
+        "value": "91003"
+      },
+      "input_fact": {
+        "lineage": {
+          "timer_id": "91001",
+          "owner_id": "91002",
+          "kind": "Character.first_enter_tree/434",
+          "starts": 0,
+          "stops": 0,
+          "birth": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": null,
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": false,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "current": {
+          "node": {
+            "native_id": "91001",
+            "role": "invu:P",
+            "path": "/root/Probe/Character/InvulnerabilityTimer",
+            "name": "InvulnerabilityTimer",
+            "class": "Timer",
+            "positions": [
+              -1,
+              0
+            ],
+            "priority": 0,
+            "inside_tree": true,
+            "ordinary_physics": false,
+            "internal_physics": false,
+            "ordinary_idle": false,
+            "internal_idle": false
+          },
+          "process_mode": 0,
+          "wait_time": {
+            "type": "float",
+            "binary64_be": "3ff0000000000000"
+          },
+          "time_left": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "one_shot": true,
+          "autostart": false,
+          "paused": false,
+          "stopped": true
+        },
+        "entry": {
+          "schema": "phase434-invu-first-enter/1",
+          "ordinal": 1,
+          "owner_inside_tree": true,
+          "owner_script": "res://Core/Character.gd",
+          "owner_scene": "res://Core/Player.tscn",
+          "observer_ready_at_entry": false
+        },
+        "parent_ready": {
+          "schema": "phase434-invu-parent-ready/1",
+          "ordinal": 2,
+          "starts": 0,
+          "stops": 0,
+          "state": {
+            "node": {
+              "native_id": "91003",
+              "role": null,
+              "path": "/root/Probe/Character/InvulnerabilityTimer",
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": true,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "private_provenance": "pending-source-rule-first-enter-seed/1"
+      },
+      "input_role": "invu:P"
+    },
+    {
+      "id": "P13",
+      "name": "birthInsideTree",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "lineage",
+          "birth",
+          "node",
+          "inside_tree"
+        ],
+        "value": true
+      },
+      "input_fact": {
+        "lineage": {
+          "timer_id": "91001",
+          "owner_id": "91002",
+          "kind": "Character.first_enter_tree/434",
+          "starts": 0,
+          "stops": 0,
+          "birth": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": null,
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": true,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "current": {
+          "node": {
+            "native_id": "91001",
+            "role": "invu:P",
+            "path": "/root/Probe/Character/InvulnerabilityTimer",
+            "name": "InvulnerabilityTimer",
+            "class": "Timer",
+            "positions": [
+              -1,
+              0
+            ],
+            "priority": 0,
+            "inside_tree": true,
+            "ordinary_physics": false,
+            "internal_physics": false,
+            "ordinary_idle": false,
+            "internal_idle": false
+          },
+          "process_mode": 0,
+          "wait_time": {
+            "type": "float",
+            "binary64_be": "3ff0000000000000"
+          },
+          "time_left": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "one_shot": true,
+          "autostart": false,
+          "paused": false,
+          "stopped": true
+        },
+        "entry": {
+          "schema": "phase434-invu-first-enter/1",
+          "ordinal": 1,
+          "owner_inside_tree": true,
+          "owner_script": "res://Core/Character.gd",
+          "owner_scene": "res://Core/Player.tscn",
+          "observer_ready_at_entry": false
+        },
+        "parent_ready": {
+          "schema": "phase434-invu-parent-ready/1",
+          "ordinal": 2,
+          "starts": 0,
+          "stops": 0,
+          "state": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": "/root/Probe/Character/InvulnerabilityTimer",
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": true,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "private_provenance": "pending-source-rule-first-enter-seed/1"
+      },
+      "input_role": "invu:P"
+    },
+    {
+      "id": "P14",
+      "name": "birthPath",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "lineage",
+          "birth",
+          "node",
+          "path"
+        ],
+        "value": "/root/InvulnerabilityTimer"
+      },
+      "input_fact": {
+        "lineage": {
+          "timer_id": "91001",
+          "owner_id": "91002",
+          "kind": "Character.first_enter_tree/434",
+          "starts": 0,
+          "stops": 0,
+          "birth": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": "/root/InvulnerabilityTimer",
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": false,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "current": {
+          "node": {
+            "native_id": "91001",
+            "role": "invu:P",
+            "path": "/root/Probe/Character/InvulnerabilityTimer",
+            "name": "InvulnerabilityTimer",
+            "class": "Timer",
+            "positions": [
+              -1,
+              0
+            ],
+            "priority": 0,
+            "inside_tree": true,
+            "ordinary_physics": false,
+            "internal_physics": false,
+            "ordinary_idle": false,
+            "internal_idle": false
+          },
+          "process_mode": 0,
+          "wait_time": {
+            "type": "float",
+            "binary64_be": "3ff0000000000000"
+          },
+          "time_left": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "one_shot": true,
+          "autostart": false,
+          "paused": false,
+          "stopped": true
+        },
+        "entry": {
+          "schema": "phase434-invu-first-enter/1",
+          "ordinal": 1,
+          "owner_inside_tree": true,
+          "owner_script": "res://Core/Character.gd",
+          "owner_scene": "res://Core/Player.tscn",
+          "observer_ready_at_entry": false
+        },
+        "parent_ready": {
+          "schema": "phase434-invu-parent-ready/1",
+          "ordinal": 2,
+          "starts": 0,
+          "stops": 0,
+          "state": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": "/root/Probe/Character/InvulnerabilityTimer",
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": true,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "private_provenance": "pending-source-rule-first-enter-seed/1"
+      },
+      "input_role": "invu:P"
+    },
+    {
+      "id": "P15",
+      "name": "wrongCurrentRole",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "current",
+          "node",
+          "role"
+        ],
+        "value": "invu:O"
+      },
+      "input_fact": {
+        "lineage": {
+          "timer_id": "91001",
+          "owner_id": "91002",
+          "kind": "Character.first_enter_tree/434",
+          "starts": 0,
+          "stops": 0,
+          "birth": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": null,
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": false,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "current": {
+          "node": {
+            "native_id": "91001",
+            "role": "invu:O",
+            "path": "/root/Probe/Character/InvulnerabilityTimer",
+            "name": "InvulnerabilityTimer",
+            "class": "Timer",
+            "positions": [
+              -1,
+              0
+            ],
+            "priority": 0,
+            "inside_tree": true,
+            "ordinary_physics": false,
+            "internal_physics": false,
+            "ordinary_idle": false,
+            "internal_idle": false
+          },
+          "process_mode": 0,
+          "wait_time": {
+            "type": "float",
+            "binary64_be": "3ff0000000000000"
+          },
+          "time_left": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "one_shot": true,
+          "autostart": false,
+          "paused": false,
+          "stopped": true
+        },
+        "entry": {
+          "schema": "phase434-invu-first-enter/1",
+          "ordinal": 1,
+          "owner_inside_tree": true,
+          "owner_script": "res://Core/Character.gd",
+          "owner_scene": "res://Core/Player.tscn",
+          "observer_ready_at_entry": false
+        },
+        "parent_ready": {
+          "schema": "phase434-invu-parent-ready/1",
+          "ordinal": 2,
+          "starts": 0,
+          "stops": 0,
+          "state": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": "/root/Probe/Character/InvulnerabilityTimer",
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": true,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "private_provenance": "pending-source-rule-first-enter-seed/1"
+      },
+      "input_role": "invu:P"
+    },
+    {
+      "id": "P16",
+      "name": "wrongOwnerScene",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "entry",
+          "owner_scene"
+        ],
+        "value": "res://Core/Character.tscn"
+      },
+      "input_fact": {
+        "lineage": {
+          "timer_id": "91001",
+          "owner_id": "91002",
+          "kind": "Character.first_enter_tree/434",
+          "starts": 0,
+          "stops": 0,
+          "birth": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": null,
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": false,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "current": {
+          "node": {
+            "native_id": "91001",
+            "role": "invu:P",
+            "path": "/root/Probe/Character/InvulnerabilityTimer",
+            "name": "InvulnerabilityTimer",
+            "class": "Timer",
+            "positions": [
+              -1,
+              0
+            ],
+            "priority": 0,
+            "inside_tree": true,
+            "ordinary_physics": false,
+            "internal_physics": false,
+            "ordinary_idle": false,
+            "internal_idle": false
+          },
+          "process_mode": 0,
+          "wait_time": {
+            "type": "float",
+            "binary64_be": "3ff0000000000000"
+          },
+          "time_left": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "one_shot": true,
+          "autostart": false,
+          "paused": false,
+          "stopped": true
+        },
+        "entry": {
+          "schema": "phase434-invu-first-enter/1",
+          "ordinal": 1,
+          "owner_inside_tree": true,
+          "owner_script": "res://Core/Character.gd",
+          "owner_scene": "res://Core/Character.tscn",
+          "observer_ready_at_entry": false
+        },
+        "parent_ready": {
+          "schema": "phase434-invu-parent-ready/1",
+          "ordinal": 2,
+          "starts": 0,
+          "stops": 0,
+          "state": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": "/root/Probe/Character/InvulnerabilityTimer",
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": true,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "private_provenance": "pending-source-rule-first-enter-seed/1"
+      },
+      "input_role": "invu:P"
+    },
+    {
+      "id": "P17",
+      "name": "readinessInt",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "entry",
+          "observer_ready_at_entry"
+        ],
+        "value": 0
+      },
+      "input_fact": {
+        "lineage": {
+          "timer_id": "91001",
+          "owner_id": "91002",
+          "kind": "Character.first_enter_tree/434",
+          "starts": 0,
+          "stops": 0,
+          "birth": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": null,
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": false,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "current": {
+          "node": {
+            "native_id": "91001",
+            "role": "invu:P",
+            "path": "/root/Probe/Character/InvulnerabilityTimer",
+            "name": "InvulnerabilityTimer",
+            "class": "Timer",
+            "positions": [
+              -1,
+              0
+            ],
+            "priority": 0,
+            "inside_tree": true,
+            "ordinary_physics": false,
+            "internal_physics": false,
+            "ordinary_idle": false,
+            "internal_idle": false
+          },
+          "process_mode": 0,
+          "wait_time": {
+            "type": "float",
+            "binary64_be": "3ff0000000000000"
+          },
+          "time_left": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "one_shot": true,
+          "autostart": false,
+          "paused": false,
+          "stopped": true
+        },
+        "entry": {
+          "schema": "phase434-invu-first-enter/1",
+          "ordinal": 1,
+          "owner_inside_tree": true,
+          "owner_script": "res://Core/Character.gd",
+          "owner_scene": "res://Core/Player.tscn",
+          "observer_ready_at_entry": 0
+        },
+        "parent_ready": {
+          "schema": "phase434-invu-parent-ready/1",
+          "ordinal": 2,
+          "starts": 0,
+          "stops": 0,
+          "state": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": "/root/Probe/Character/InvulnerabilityTimer",
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": true,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "private_provenance": "pending-source-rule-first-enter-seed/1"
+      },
+      "input_role": "invu:P"
+    },
+    {
+      "id": "P18",
+      "name": "rawREALinsteadOfEncoded",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "current",
+          "wait_time"
+        ],
+        "value": 1.0
+      },
+      "input_fact": {
+        "lineage": {
+          "timer_id": "91001",
+          "owner_id": "91002",
+          "kind": "Character.first_enter_tree/434",
+          "starts": 0,
+          "stops": 0,
+          "birth": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": null,
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": false,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "current": {
+          "node": {
+            "native_id": "91001",
+            "role": "invu:P",
+            "path": "/root/Probe/Character/InvulnerabilityTimer",
+            "name": "InvulnerabilityTimer",
+            "class": "Timer",
+            "positions": [
+              -1,
+              0
+            ],
+            "priority": 0,
+            "inside_tree": true,
+            "ordinary_physics": false,
+            "internal_physics": false,
+            "ordinary_idle": false,
+            "internal_idle": false
+          },
+          "process_mode": 0,
+          "wait_time": 1.0,
+          "time_left": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "one_shot": true,
+          "autostart": false,
+          "paused": false,
+          "stopped": true
+        },
+        "entry": {
+          "schema": "phase434-invu-first-enter/1",
+          "ordinal": 1,
+          "owner_inside_tree": true,
+          "owner_script": "res://Core/Character.gd",
+          "owner_scene": "res://Core/Player.tscn",
+          "observer_ready_at_entry": false
+        },
+        "parent_ready": {
+          "schema": "phase434-invu-parent-ready/1",
+          "ordinal": 2,
+          "starts": 0,
+          "stops": 0,
+          "state": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": "/root/Probe/Character/InvulnerabilityTimer",
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": true,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "private_provenance": "pending-source-rule-first-enter-seed/1"
+      },
+      "input_role": "invu:P"
+    },
+    {
+      "id": "P19",
+      "name": "nonfiniteREAL",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "current",
+          "time_left",
+          "binary64_be"
+        ],
+        "value": "7ff8000000000000"
+      },
+      "input_fact": {
+        "lineage": {
+          "timer_id": "91001",
+          "owner_id": "91002",
+          "kind": "Character.first_enter_tree/434",
+          "starts": 0,
+          "stops": 0,
+          "birth": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": null,
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": false,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "current": {
+          "node": {
+            "native_id": "91001",
+            "role": "invu:P",
+            "path": "/root/Probe/Character/InvulnerabilityTimer",
+            "name": "InvulnerabilityTimer",
+            "class": "Timer",
+            "positions": [
+              -1,
+              0
+            ],
+            "priority": 0,
+            "inside_tree": true,
+            "ordinary_physics": false,
+            "internal_physics": false,
+            "ordinary_idle": false,
+            "internal_idle": false
+          },
+          "process_mode": 0,
+          "wait_time": {
+            "type": "float",
+            "binary64_be": "3ff0000000000000"
+          },
+          "time_left": {
+            "type": "float",
+            "binary64_be": "7ff8000000000000"
+          },
+          "one_shot": true,
+          "autostart": false,
+          "paused": false,
+          "stopped": true
+        },
+        "entry": {
+          "schema": "phase434-invu-first-enter/1",
+          "ordinal": 1,
+          "owner_inside_tree": true,
+          "owner_script": "res://Core/Character.gd",
+          "owner_scene": "res://Core/Player.tscn",
+          "observer_ready_at_entry": false
+        },
+        "parent_ready": {
+          "schema": "phase434-invu-parent-ready/1",
+          "ordinal": 2,
+          "starts": 0,
+          "stops": 0,
+          "state": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": "/root/Probe/Character/InvulnerabilityTimer",
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": true,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "private_provenance": "pending-source-rule-first-enter-seed/1"
+      },
+      "input_role": "invu:P"
+    },
+    {
+      "id": "P20",
+      "name": "negativePublicLeft",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "current",
+          "time_left",
+          "binary64_be"
+        ],
+        "value": "bff0000000000000"
+      },
+      "input_fact": {
+        "lineage": {
+          "timer_id": "91001",
+          "owner_id": "91002",
+          "kind": "Character.first_enter_tree/434",
+          "starts": 0,
+          "stops": 0,
+          "birth": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": null,
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": false,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "current": {
+          "node": {
+            "native_id": "91001",
+            "role": "invu:P",
+            "path": "/root/Probe/Character/InvulnerabilityTimer",
+            "name": "InvulnerabilityTimer",
+            "class": "Timer",
+            "positions": [
+              -1,
+              0
+            ],
+            "priority": 0,
+            "inside_tree": true,
+            "ordinary_physics": false,
+            "internal_physics": false,
+            "ordinary_idle": false,
+            "internal_idle": false
+          },
+          "process_mode": 0,
+          "wait_time": {
+            "type": "float",
+            "binary64_be": "3ff0000000000000"
+          },
+          "time_left": {
+            "type": "float",
+            "binary64_be": "bff0000000000000"
+          },
+          "one_shot": true,
+          "autostart": false,
+          "paused": false,
+          "stopped": true
+        },
+        "entry": {
+          "schema": "phase434-invu-first-enter/1",
+          "ordinal": 1,
+          "owner_inside_tree": true,
+          "owner_script": "res://Core/Character.gd",
+          "owner_scene": "res://Core/Player.tscn",
+          "observer_ready_at_entry": false
+        },
+        "parent_ready": {
+          "schema": "phase434-invu-parent-ready/1",
+          "ordinal": 2,
+          "starts": 0,
+          "stops": 0,
+          "state": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": "/root/Probe/Character/InvulnerabilityTimer",
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": true,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "private_provenance": "pending-source-rule-first-enter-seed/1"
+      },
+      "input_role": "invu:P"
+    },
+    {
+      "id": "P21",
+      "name": "wrongClass",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "current",
+          "node",
+          "class"
+        ],
+        "value": "Node"
+      },
+      "input_fact": {
+        "lineage": {
+          "timer_id": "91001",
+          "owner_id": "91002",
+          "kind": "Character.first_enter_tree/434",
+          "starts": 0,
+          "stops": 0,
+          "birth": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": null,
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": false,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "current": {
+          "node": {
+            "native_id": "91001",
+            "role": "invu:P",
+            "path": "/root/Probe/Character/InvulnerabilityTimer",
+            "name": "InvulnerabilityTimer",
+            "class": "Node",
+            "positions": [
+              -1,
+              0
+            ],
+            "priority": 0,
+            "inside_tree": true,
+            "ordinary_physics": false,
+            "internal_physics": false,
+            "ordinary_idle": false,
+            "internal_idle": false
+          },
+          "process_mode": 0,
+          "wait_time": {
+            "type": "float",
+            "binary64_be": "3ff0000000000000"
+          },
+          "time_left": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "one_shot": true,
+          "autostart": false,
+          "paused": false,
+          "stopped": true
+        },
+        "entry": {
+          "schema": "phase434-invu-first-enter/1",
+          "ordinal": 1,
+          "owner_inside_tree": true,
+          "owner_script": "res://Core/Character.gd",
+          "owner_scene": "res://Core/Player.tscn",
+          "observer_ready_at_entry": false
+        },
+        "parent_ready": {
+          "schema": "phase434-invu-parent-ready/1",
+          "ordinal": 2,
+          "starts": 0,
+          "stops": 0,
+          "state": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": "/root/Probe/Character/InvulnerabilityTimer",
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": true,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "private_provenance": "pending-source-rule-first-enter-seed/1"
+      },
+      "input_role": "invu:P"
+    },
+    {
+      "id": "P22",
+      "name": "extraClosedField",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "entry",
+          "fresh"
+        ],
+        "value": true
+      },
+      "input_fact": {
+        "lineage": {
+          "timer_id": "91001",
+          "owner_id": "91002",
+          "kind": "Character.first_enter_tree/434",
+          "starts": 0,
+          "stops": 0,
+          "birth": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": null,
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": false,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "current": {
+          "node": {
+            "native_id": "91001",
+            "role": "invu:P",
+            "path": "/root/Probe/Character/InvulnerabilityTimer",
+            "name": "InvulnerabilityTimer",
+            "class": "Timer",
+            "positions": [
+              -1,
+              0
+            ],
+            "priority": 0,
+            "inside_tree": true,
+            "ordinary_physics": false,
+            "internal_physics": false,
+            "ordinary_idle": false,
+            "internal_idle": false
+          },
+          "process_mode": 0,
+          "wait_time": {
+            "type": "float",
+            "binary64_be": "3ff0000000000000"
+          },
+          "time_left": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "one_shot": true,
+          "autostart": false,
+          "paused": false,
+          "stopped": true
+        },
+        "entry": {
+          "schema": "phase434-invu-first-enter/1",
+          "ordinal": 1,
+          "owner_inside_tree": true,
+          "owner_script": "res://Core/Character.gd",
+          "owner_scene": "res://Core/Player.tscn",
+          "observer_ready_at_entry": false,
+          "fresh": true
+        },
+        "parent_ready": {
+          "schema": "phase434-invu-parent-ready/1",
+          "ordinal": 2,
+          "starts": 0,
+          "stops": 0,
+          "state": {
+            "node": {
+              "native_id": "91001",
+              "role": null,
+              "path": "/root/Probe/Character/InvulnerabilityTimer",
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                0
+              ],
+              "priority": 0,
+              "inside_tree": true,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        },
+        "private_provenance": "pending-source-rule-first-enter-seed/1"
+      },
+      "input_role": "invu:P"
+    },
+    {
+      "id": "P23",
+      "name": "callerBoolNotActiveContract",
+      "operation": "validate_sources_with_binding",
+      "expected": "ValueError before parsing input",
+      "changes": {
+        "source_contract": true,
+        "raw11": {},
+        "binding_bytes": "empty bytes"
+      }
+    },
+    {
+      "id": "P24",
+      "name": "historicalOriginNotActiveContract",
+      "operation": "validate_sources_with_binding",
+      "expected": "ValueError before parsing input",
+      "changes": {
+        "source_contract": "module.BINDING_SOURCE_CONTRACT",
+        "raw11": {},
+        "binding_bytes": "empty bytes"
+      }
+    },
+    {
+      "id": "P25",
+      "name": "changedActualSinkPin",
+      "operation": "validate_sources_with_binding",
+      "expected": "ValueError before parsing input",
+      "changes": {
+        "source_contract": "copy(module.ACTIVE_SOURCE_CONTRACT) with sink.sha256=64 zero hex",
+        "raw11": {},
+        "binding_bytes": "empty bytes"
+      }
+    },
+    {
+      "id": "P26",
+      "name": "exactActiveButMissingNames",
+      "operation": "validate_sources_with_binding",
+      "expected": "ValueError before parsing input",
+      "changes": {
+        "source_contract": "module.ACTIVE_SOURCE_CONTRACT",
+        "raw11": {},
+        "binding_bytes": "empty bytes"
+      }
+    },
+    {
+      "id": "P27",
+      "name": "exactNamesButMutableBinding",
+      "operation": "validate_sources_with_binding",
+      "expected": "ValueError before parsing input",
+      "changes": {
+        "source_contract": "module.ACTIVE_SOURCE_CONTRACT",
+        "raw11": "module.INPUT_FILES mapped to empty bytes",
+        "binding_bytes": "bytearray()"
+      }
+    }
+  ],
+  "expected_counts": {
+    "controls": 27,
+    "identity": 1,
+    "early_fact_returns": 2,
+    "ValueError_rejections": 24,
+    "top_API_calls": 26,
+    "module_loads": 1
+  }
+}

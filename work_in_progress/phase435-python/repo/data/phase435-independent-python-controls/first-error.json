@@ -1,0 +1,76 @@
+{
+  "schema": "independent435-Python27-first-harness-error/1",
+  "status": "BLOCKED_MECHANICAL_BEFORE_TESTED_MODULE",
+  "cause": "Traceback safety revision inserted while into one-line exception clause with wrong indentation. compile-only failed before revised runner/preparation write; launcher then attempted nonexistent execution-runner.py.",
+  "compile_error": {
+    "type": "IndentationError",
+    "line": 46,
+    "message": "unexpected indent",
+    "attempted_text": {
+      "path": "data/phase435-independent-python-controls/failed-execution-runner-source.py.txt",
+      "size": 5183,
+      "sha256": "52bec4a37a9bc61bc07a42b5e4dab1fd345acd942b01896d9cfb1558b457d008"
+    },
+    "traceback": "File <stdin>, line5; File data/phase435-independent-python-controls/execution-runner.py, line46: while walk is not None: IndentationError: unexpected indent"
+  },
+  "actual_child": {
+    "args": [
+      "python",
+      "-B",
+      "data/phase435-independent-python-controls/execution-runner.py"
+    ],
+    "cwd": "/workspace/python-original-engine/repo",
+    "elapsed": 0.014332460006698966,
+    "exit": 2,
+    "timeout": false,
+    "timeout_seconds": 15,
+    "subprocesses": 1,
+    "retry": false,
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "stderr": {
+    "path": "data/phase435-independent-python-controls/stderr.txt",
+    "size": 164,
+    "sha256": "9ef11bc3b532e7b70ae05d1b690d9743ec4b7b6b58083df6eb97eb1414ae0698"
+  },
+  "secondary_seal_error": {
+    "type": "AttributeError",
+    "cause": "Archive descriptor helper received str rather than Path before first-error/owner writes; corrected by Path conversion, no tested execution."
+  },
+  "module_loads": 0,
+  "API_calls": 0,
+  "executed_controls": 0,
+  "unexecuted_controls": [
+    "P01",
+    "P02",
+    "P03",
+    "P04",
+    "P05",
+    "P06",
+    "P07",
+    "P08",
+    "P09",
+    "P10",
+    "P11",
+    "P12",
+    "P13",
+    "P14",
+    "P15",
+    "P16",
+    "P17",
+    "P18",
+    "P19",
+    "P20",
+    "P21",
+    "P22",
+    "P23",
+    "P24",
+    "P25",
+    "P26",
+    "P27"
+  ],
+  "Source_semantic_failure": false,
+  "Source_changed": false,
+  "automatic_retry": false,
+  "EMPTY_prepared": false
+}
