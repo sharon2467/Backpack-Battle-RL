@@ -1,0 +1,59 @@
+# Phase430 — Four Character invulnerability Timer targets
+
+## 1. Requirements
+
+Decide feasibility only for Timer.private_left / invu:P and invu:O at pre_prepare/pre_activate. No implementation, helper/schema/audit/model/native execution, raw carrier/EXPECTED read, or reconsideration of the six accepted chains. Current totals remain1391 DIRECT +6 SOURCE_DERIVED +82 MISSING, six chains/two families. This design changes none of them.
+
+Use the frozen411 index, saved accepted provenance/overlay and fixed Character/Game/scenes/animations/native Timer/Node/PackedScene source. Child-ready precedes the existing Character.parent-ready birth: do not apply either accepted outside-tree KingBuff or immediate Timer.new AutoHide rule to this family. Stop at a concrete source boundary instead of auditing the whole Character/UI tree.
+
+## 2. Design: observations and decision
+
+**All four targets remain MISSING/UNPROVEN. The observed identity/configuration and post-birth interval exist; the pre-birth state proof is not established.** This is not evidence that private state was wrong, that a child actually started the Timer, or that raw inputs necessarily lack every useful observation.
+
+P uses Timer47767/Character47611; O uses Timer84961/Character84805 at both checkpoints138/1231. Facts carry kind Character.scene.ready and strictINT starts0/stops0. Both births are already inside_tree=true, modeINT0, one_shottrue, autostartfalse, pausedfalse, stoppedtrue, public+0/wait+1, and inactive ordinary/internal flags. P's birth positions[-1,19,3,0,7] differ from current[-1,18,3,0,7]; native IDs/path remain fixed. This tree-layout change must not be mislabeled new Timer allocation. O's birth/current positions[-1,18,1,4,0,5] agree. Position equality is not proof of fresh allocation either.
+
+Game.instanceCharacter2251+ instantiates PLAYER only if not PLAYER; its reuse branch resets inventory, not InvulnerabilityTimer. The initial fixture uses the existing P as given by the accepted task context. The O path2637+ explicitly instances opponentScene, sets owner identity and adds it to opponentNode. Those are different lifetime routes. The saved King-only provenance does not contain a Character allocation/child-ready trace and cannot supply a missing Character birth boundary. The six-chain accepted overlay retains these four rows MISSING; no accepted result transfers automatically to them.
+
+### Exact ordering and covered source
+
+Character.gd onready references InvulnerabilityTimer, then its _ready first line records timer_birth at141. Node._propagate_ready188–202 recursively readies every child before notifying the parent. Therefore the target Timer's native READY and all descendant script-ready callbacks precede its ledger birth. Observer timer_birth initializes counters once; track_king_timer_api counts only when a birth already exists. A start/stop before that point is not represented by the observed0/0. Counter placement before fixture-bound gating does cover later reuse/history, but cannot retroactively cover child-ready.
+
+Character.tscn1639–1642 declares a bare native InvulnerabilityTimer, process_mode0/one_shottrue, no autostart override or script. Player/Opponent inherit it without overriding that target. The autostart=true at Character.tscn1052 belongs to the separate AnimationSpeedTimer, not InvulnerabilityTimer. Its timeout callback randAnimationSpeed is a separate route, not proof of a selected Timer start. Known four Player animation resources contain only visual/position/visibility tracks and no method tracks or InvulnerabilityTimer property tracks; they do not establish purity of every child script. Character._ready plays StartOnTitle/OpponentInit only AFTER the existing birth line, so those explicit parent-ready plays are outside the missing pre-birth interval.
+
+Known Character Timer writers are makeInvulnerable's wrapped start, its Util.changeTimer branch, and combatEnd's wrapped stop. There is no Character._enter_tree, root _init, or _notification body in the inspected executed Character source. The inspected Character/Game bodies contain no explicit manual Timer notification or internal-process setter. This bounded finding does not cover child scripts. Character.tscn explicitly attaches, for example, Interface/Combat/CharacterStatsDisplay.gd and Interface/Healthbar.gd, plus other child scripts/nested scenes. Their native enter/script-ready callbacks happen before parent birth. They are concrete unreviewed callback edges, not presumed Timer writers; reading only those two would not establish closure for the whole subtree. No new child-source expansion is requested by430.
+
+### Shorter invariant considered, not established
+
+A potentially cheaper proof than “no pre-birth start” is: from native construction to parent birth, private countdown writes are constructor/stop=-1 and start=positive finite wait, with no native countdown subtraction, manually delivered internal Timer notification, reentrant clock advancement or other countdown writer. With that COMPLETE premise and valid wait history, birth public0 could exclude positive start-state and leave-1. This would tolerate pre-birth starts/stops and avoid falsely treating0 counters as history.
+
+Timer.cpp supports the conditional write-set: constructor, start, stop and internal-process branches are the countdown writers; normal Timer READY starts only under autostart. Native add_child/_set_tree/ready calls are synchronous. But synchronous native traversal alone does not prove that invoked script callbacks cannot explicitly notify a Timer or enter a path that advances clock processing. The currently fixed source does not close those descendant callback routes, nor a complete target wait/flag mutation domain during that interval. Thus the no-subtraction/no-reentry/manual-notification premise is unproven. Birth public0/stopped/flagsfalse alone must not be inverted to-1. This special constructor→parent-birth invariant also cannot be extended across P's later lifecycle from the same argument.
+
+## 3. Smallest next alternatives — design only
+
+### A. First Character parent _enter_tree hook (preferred prospective observation boundary)
+
+Pinned SceneState::instance creates the complete selected child tree before Game adds the Character. Node._propagate_enter_tree249+ sets the parent's inside_tree flag, delivers native NOTIFICATION_ENTER_TREE, then calls the parent's script _enter_tree; only afterward does it emit tree_entered/parent child-entered signals and recursively enter children. A new Character _enter_tree first statement can obtain get_node("InvulnerabilityTimer") directly; its onready field is not initialized yet and MUST NOT be used. The child already exists but has not entered tree or received READY. This moves the ledger before the concrete missing subtree window without enumerating all descendant ready methods.
+
+The hook must record the FIRST entry of each native Timer/owner, before any fixture reuse. P's current instanceCharacter reuse branch is too late; first entry at initial P creation is the necessary observation. Retain identity/lifetime counters thereafter. Reentry must never reset counters or manufacture freshness: record/check it separately or reject the bounded domain. The old parent-ready hook cannot remain as a second timer_birth; it may become a versioned consistency checkpoint. Do not silently weaken the existing duplicate-birth rejection. No target stop/reset/start may be introduced to normalize state.
+
+Finite prerequisites for a new SOURCE design: observer singleton and its birth ledger must exist before first P entry; pin actual autoload/initialization order rather than assume it. The target child lookup and existing readonly Timer snapshot must be shown not to emit business listeners, consume RNG or alter target flags; owner native ID/class, target name/class/outside-tree and once binding must be recorded. Native parent notification before script _enter_tree remains an explicit narrow native-dispatch premise, not an unexamined claim about every script; Character has no _notification override in the current source. An inherited/new _enter_tree callback contract and any reentry case need explicit SOURCE review. Existing version-attributed native semantics may be proposed for this route, never automatically inherited as a third accepted family.
+
+This is one new pure-hook method plus moved/versioned birth protocol and collector/schema/source tuple updates. It requires SOURCE byte-inverse/business/RNG conservation checks, independent synthetic once/reentry/late-observer/domain tests, then a separately released fresh native capture if chosen. It cannot repair the already sealed fixed06 record. Prior six accepted chains remain attached to their original capture; a new capture does not inherit their admission without its own binding review.
+
+### B. Two Game allocation hooks
+
+Alternative: immediately after playerScene.instance() at2258 and opponentScene.instance() at2637, before add_child, capture target Timer/owner with the same outside-tree/once checks. This is analogous to the accepted sceneTimer boundary and avoids adding Character _enter_tree. It needs two allocation sites and proof that all selected Characters came through them. The PLAYER reuse branch must keep the original first-allocation ledger; it cannot create a new birth for an existing P. Observer availability must cover the earliest allocation, and old parent-ready birth must be reconciled without reset. It has the same new SOURCE/protocol/capture cost; it is less route-general thanA but may have a smaller callback-insertion review.
+
+### C. Current-data source-only continuation
+
+Retain both pairs MISSING while independently deciding whether the conditional no-subtraction invariant can be justified within a SHORT accepted callback domain. The immediate unresolved examples are CharacterStatsDisplay.gd and Healthbar.gd ready/enter callbacks; they are not a sufficient two-file allowset by themselves because sibling/nested callbacks remain. No blanket whole-UI scan is recommended. If a short concrete closure is unavailable, A gives a direct missing observation boundary with bounded implementation rather than an expanding purity audit.
+
+A private getter is not available for this C++ field in current GDScript. Direct private sampling would require separate native instrumentation/build attribution and is more expensive; changing Timer state to make it known is not an observation. No new capture or Source implementation is authorized by this comparison.
+
+## 4. Acceptance and stopping rule
+
+Independent review of430 should verify four exact identities/phase indices, inside-tree birth and0/0 facts, P/O distinction, child-before-parent ready, no target autostart override, and correct identification of the unrelated AnimationSpeedTimer. It should verify the conditional invariant's missing premise is stated rather than assumed, and A/B entry boundaries against fixed Node/PackedScene/Game/Character source. Do not rerun passed59/42/N3/423/429 or projection helpers.
+
+No four-target implementation follows automatically. Root/independent chooses either a truly finite source lemma or a separately scoped earlier-birth observation design. Future controls must include starts before legacy parent birth, manual internal notification/reentry, caller proof flags, observer not yet initialized, P reused without first-entry ledger, Timer/owner reuse, repeated entry with counter reset, and wrong scene/field/getter side effects. Missing proof is not a rejected original domain; conflicting actual IDs/types are rejected. All four current private targets stay MISSING with PARENT_READY_PREBIRTH_INTERVAL_UNPROVEN.
+
+Deliver only this SPEC, one short decision table with finite exact pins and an owner. No implementation, fresh observation, new recipe, admission or operational replay occurs in430.

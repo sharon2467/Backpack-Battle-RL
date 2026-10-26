@@ -1,0 +1,400 @@
+{
+  "schema": "phase430-four-invu-timer-feasibility/1",
+  "status": "DESIGN_SEALED_FOUR_TARGETS_REMAIN_MISSING",
+  "counts_unchanged": {
+    "DIRECT": 1391,
+    "SOURCE_DERIVED": 6,
+    "MISSING": 82,
+    "accepted_target_chains": 6,
+    "accepted_rule_families": 2
+  },
+  "decisions": [
+    {
+      "role": "invu:P",
+      "timer_id": "47767",
+      "owner_id": "47611",
+      "targets": [
+        {
+          "index": 1430,
+          "phase": "pre_prepare",
+          "shared_checkpoint": 138,
+          "input_line": 1,
+          "public_indices": [
+            577,
+            595
+          ],
+          "node_pointer": "/payload/nodes/10/timer",
+          "current_classification": "MISSING",
+          "validation": "UNPROVEN",
+          "reason": "PARENT_READY_PREBIRTH_INTERVAL_UNPROVEN"
+        },
+        {
+          "index": 1474,
+          "phase": "pre_activate",
+          "shared_checkpoint": 1231,
+          "input_line": 4,
+          "public_indices": [
+            1249,
+            1267
+          ],
+          "node_pointer": "/payload/nodes/10/timer",
+          "current_classification": "MISSING",
+          "validation": "UNPROVEN",
+          "reason": "PARENT_READY_PREBIRTH_INTERVAL_UNPROVEN"
+        }
+      ],
+      "fact_indices": [
+        1356,
+        1361
+      ],
+      "birth": {
+        "autostart": false,
+        "node": {
+          "class": "Timer",
+          "inside_tree": true,
+          "internal_idle": false,
+          "internal_physics": false,
+          "name": "InvulnerabilityTimer",
+          "native_id": "47767",
+          "ordinary_idle": false,
+          "ordinary_physics": false,
+          "path": "/root/Main/Player/Character/InvulnerabilityTimer",
+          "positions": [
+            -1,
+            19,
+            3,
+            0,
+            7
+          ],
+          "priority": 0,
+          "role": null
+        },
+        "one_shot": true,
+        "paused": false,
+        "process_mode": 0,
+        "stopped": true,
+        "time_left": {
+          "binary64_be": "0000000000000000",
+          "type": "float"
+        },
+        "wait_time": {
+          "binary64_be": "3ff0000000000000",
+          "type": "float"
+        }
+      },
+      "strict_integer_starts": 0,
+      "strict_integer_stops": 0,
+      "birth_kind": "Character.scene.ready",
+      "lifetime_distinction": "Existing PLAYER reuse branch; first birth long before selected fixture; tree positions changed without nativeID change.",
+      "current_positions": [
+        -1,
+        18,
+        3,
+        0,
+        7
+      ],
+      "prebirth_proof": "NOT_ESTABLISHED",
+      "postbirth_zero_scope": "Birth to facts only, subject to accepted complete selected writer coverage; cannot supply prebirth missing state.",
+      "new_original_observation_proven_absent": false,
+      "recommended_next": "Review finite no-subtraction premise; otherwise prospective first-parent-enter boundary. Do not implement a private-value rule now."
+    },
+    {
+      "role": "invu:O",
+      "timer_id": "84961",
+      "owner_id": "84805",
+      "targets": [
+        {
+          "index": 1431,
+          "phase": "pre_prepare",
+          "shared_checkpoint": 138,
+          "input_line": 1,
+          "public_indices": [
+            596,
+            614
+          ],
+          "node_pointer": "/payload/nodes/26/timer",
+          "current_classification": "MISSING",
+          "validation": "UNPROVEN",
+          "reason": "PARENT_READY_PREBIRTH_INTERVAL_UNPROVEN"
+        },
+        {
+          "index": 1475,
+          "phase": "pre_activate",
+          "shared_checkpoint": 1231,
+          "input_line": 4,
+          "public_indices": [
+            1268,
+            1286
+          ],
+          "node_pointer": "/payload/nodes/26/timer",
+          "current_classification": "MISSING",
+          "validation": "UNPROVEN",
+          "reason": "PARENT_READY_PREBIRTH_INTERVAL_UNPROVEN"
+        }
+      ],
+      "fact_indices": [
+        1363,
+        1368
+      ],
+      "birth": {
+        "autostart": false,
+        "node": {
+          "class": "Timer",
+          "inside_tree": true,
+          "internal_idle": false,
+          "internal_physics": false,
+          "name": "InvulnerabilityTimer",
+          "native_id": "84961",
+          "ordinary_idle": false,
+          "ordinary_physics": false,
+          "path": "/root/Main/Combat/Opponent/Character/InvulnerabilityTimer",
+          "positions": [
+            -1,
+            18,
+            1,
+            4,
+            0,
+            5
+          ],
+          "priority": 0,
+          "role": null
+        },
+        "one_shot": true,
+        "paused": false,
+        "process_mode": 0,
+        "stopped": true,
+        "time_left": {
+          "binary64_be": "0000000000000000",
+          "type": "float"
+        },
+        "wait_time": {
+          "binary64_be": "3ff0000000000000",
+          "type": "float"
+        }
+      },
+      "strict_integer_starts": 0,
+      "strict_integer_stops": 0,
+      "birth_kind": "Character.scene.ready",
+      "lifetime_distinction": "Separate opponentScene instance/add_child source route; inside-tree parent-ready birth still follows descendant ready.",
+      "current_positions": [
+        -1,
+        18,
+        1,
+        4,
+        0,
+        5
+      ],
+      "prebirth_proof": "NOT_ESTABLISHED",
+      "postbirth_zero_scope": "Birth to facts only, subject to accepted complete selected writer coverage; cannot supply prebirth missing state.",
+      "new_original_observation_proven_absent": false,
+      "recommended_next": "Review finite no-subtraction premise; otherwise prospective first-parent-enter boundary. Do not implement a private-value rule now."
+    }
+  ],
+  "source_timing": [
+    {
+      "source": "character:121,140-142",
+      "fact": "onready target reference; parent _ready first statement records existing child."
+    },
+    {
+      "source": "node_cpp:188-202",
+      "fact": "All child _propagate_ready before parent READY; target and sibling callbacks are prebirth."
+    },
+    {
+      "source": "sink:744-757",
+      "fact": "First birth initializes ledger0/0; tracking absent birth does nothing."
+    },
+    {
+      "source": "character_scene:1639-1642",
+      "fact": "InvulnerabilityTimer mode0/one_shottrue, no script/autostart. autostarttrue at1052 is distinct AnimationSpeedTimer."
+    },
+    {
+      "source": "game:2251-2266;2637-2645",
+      "fact": "PLAYER fresh branch or existing inventory reset versus explicit OPPONENT new allocation/add_child."
+    },
+    {
+      "source": "node_cpp:249-297;packed_scene:74-388",
+      "fact": "Scene child tree exists before add_child; parent script _enter_tree before tree_entered/child recursion/READY. Native parent ENTER notification precedes script callback."
+    }
+  ],
+  "observations_vs_proof": {
+    "available": "Actual timer/owner/current/birth identities/configuration,zero postbirth counters,accepted saved6-target overlay.",
+    "not_established": "Pre-parent-ready private state; descendant callback no-subtraction/no-manual-notification/no-reentry and finite valid wait/writer domain.",
+    "not_claimed": "No claim that a child actually writesTimer or that original raw inputs necessarily lack every needed carrier. Current saved projection has noCharacter child-ready history.",
+    "public_zero": "Corroborates state only; never alone determinesprivate-1."
+  },
+  "conditional_invariant": {
+    "hypothesis": "Betweenconstructor andparent birth onlyconstructor/stop=-1 orstart=finitepositivewait writeprivate; no native countdown subtraction/manualinternalnotification/reentrantclock orotherwriter.",
+    "conditional_conclusion": "With complete hypotheses,birthpublic0 excludespositiveprivate; could derive-1 withoutno-start.",
+    "actual_status": "PREMISE_NOT_CLOSED_BY_CURRENT_FINITE_SOURCE",
+    "do_not_extend": "Does not prove laterP lifecycle by synchronous construction argument."
+  },
+  "concrete_unread_frontier_examples": [
+    {
+      "path": "res://Interface/Combat/CharacterStatsDisplay.gd",
+      "binding": "Character.tscn ExtResource3 on CombatUI/StatsDisplay; descendant enter/ready beforeparentbirth",
+      "role": "Example concrete unreviewed callback,not assertedTimerwriter."
+    },
+    {
+      "path": "res://Interface/Healthbar.gd",
+      "binding": "Character.tscn ExtResource13; inherited childcallback beforeparentbirth",
+      "role": "Example only; two leaves alone would not close sibling/nested callback domain."
+    }
+  ],
+  "additional_source_read_requested_now": [],
+  "alternatives": [
+    {
+      "id": "A",
+      "action": "Design firstCharacter._enter_tree entry observer hook via get_node(\"InvulnerabilityTimer\"),not onready field.",
+      "advantages": "One hook boundary beforedescendant enter/ready;firstP creation surviveslaterreuse;avoidswholeUIproof.",
+      "required": "Observeravailableatfirstentry;readonlynativegetters/IDs/noRNGorbusinesssignals;targetoutside_tree;once/reentrynopretendfresh;nativeparentnotificationpremise;newsourceinverse/protocol/independentreview.",
+      "cost": "Newsourceversion andfuture separatelyreleased capture;cannotrepairfixed06;noexistingaccepted6migrationwithoutbindingreview."
+    },
+    {
+      "id": "B",
+      "action": "Design two hooks directlyafterGame.playerScene.instance/opponentScene.instance beforeadd_child.",
+      "advantages": "Explicit outside-tree sceneTimer boundary,samelevelasKingBuff;noCharactercallbackmethodaddition.",
+      "required": "Coverageofearliestactualallocation;reuseusesoriginledger;observeravailability;targetidentity;move/reconcileoldparentbirthwithoutreset.",
+      "cost": "Twoallocationsites +newsource/protocol/capture;routecoveragecostversusA."
+    },
+    {
+      "id": "C",
+      "action": "Retain4MISSING;independentdecisiononshortno-subtractionSourcepremise.",
+      "advantages": "Couldreusecurrentdata withoutcapture ifactuallyclosed.",
+      "required": "Concrete no-manualnotification/reentry/otherwriter proof;not merelysynchronous nativecalls.",
+      "cost": "Unboundedchild/UI expansionnotrecommended;stopifnotfinite."
+    }
+  ],
+  "preservation": "Current4targets remainMISSING inaccepted429overlay;no6chainreview/rerun. Newcaptureifchosen cannotbackfillimmutableoldcapture orautomaticallycarry6acceptedchains.",
+  "operational_counts": {
+    "implementation": 0,
+    "new_source_hooks": 0,
+    "projection_helpers_audit_schema_old_SUT_Model_FrameDriver_native_calls": 0,
+    "raw_capture_EXPECTED_reads": 0,
+    "target_promotions": 0,
+    "reexecutions_of_passed_controls_or_chain_reviews": 0
+  },
+  "gates": {
+    "fullschema": "NOT_VALIDATED",
+    "genuine_input": false,
+    "King_admitted": false,
+    "model356": "CLOSED",
+    "reader361": "CLOSED"
+  },
+  "pins": {
+    "index": {
+      "path": "data/phase408-initial-audit-first-001/rawtyped-field-index.json",
+      "size": 1494877,
+      "sha256": "27f4a859ba9144314bb25764d6787e07c8c929e96b44c37a077c4437c47cd46b"
+    },
+    "accepted_provenance": {
+      "path": "data/phase420-initial-partial-projection-first-001/initial-provenance.json",
+      "size": 16959,
+      "sha256": "63b29245d0923d5c9300026deda701dd8ebcf61c5e2bfe2e943c77b10138305f"
+    },
+    "accepted_overlay": {
+      "path": "data/phase426-king-buff-overlay-first-001/overlay-report.json",
+      "size": 128799,
+      "sha256": "18460c39e42a3e8254aafd59d7980fc846bd3efcb9419eaf0d6383c4dd6a58aa"
+    },
+    "overlay_owner": {
+      "path": "data/phase426-king-buff-overlay-first-001/owned-files.json",
+      "size": 537,
+      "sha256": "8107d2c66303f6b1e3d592a8d370073aa2e1c87936a7d15a4189b48c5e7247d4"
+    },
+    "independent429": {
+      "path": "data/phase429-independent-actual-kingbuff-review/review.json",
+      "size": 4740,
+      "sha256": "bc0d2562600b26d7b2c44542a4b65b042ca36213240d4b7b397ea24282d27d43"
+    },
+    "root429": {
+      "path": "data/phase429-root-actual-target-acceptance/acceptance.json",
+      "size": 1635,
+      "sha256": "0ac5b534a50f65245aee31d3f0704fc4d631781b7402ce921896b6a59a768a68"
+    },
+    "character": {
+      "path": "data/phase359-king-producer-source/after-source/Core/Character.gd",
+      "size": 55679,
+      "sha256": "4e37b2f5d044e015be5dd75fca37577bdb9fc870dd2e32cad5198c36649df984"
+    },
+    "game": {
+      "path": "data/phase359-king-producer-source/after-source/Core/Game.gd",
+      "size": 145943,
+      "sha256": "fafe9612858a25b95d8d6149531b50869dbd9709719bd5d2ab6b070b6b8283b1"
+    },
+    "character_scene": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Character.tscn",
+      "size": 49260,
+      "sha256": "5a6e1a99539975a7664e651fa32ed078f1017ba157ce1247a75fecd8266c97e9"
+    },
+    "player_scene": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Player.tscn",
+      "size": 55125,
+      "sha256": "c49f1989b14b22cc8a8a3c4c9cd47847bc39e91b3aa4d974fa4f4eb2ffb1a319"
+    },
+    "opponent_scene": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Opponent.tscn",
+      "size": 17815,
+      "sha256": "8a0921e01f1bb0103a93b720b8402fe9b1691eb0b624a6e24443c36e11ae4104"
+    },
+    "sink": {
+      "path": "data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
+      "size": 104333,
+      "sha256": "999e0043a653067a962819cf81340b0dad745fa2148bbfab7724d7948a6a21ea"
+    },
+    "timer_cpp": {
+      "path": "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/timer.cpp",
+      "size": 7999,
+      "sha256": "79e2ce272fd56465d8ccc2a5077bf6dc39422cbc588e71ddfab482eb7a33d862"
+    },
+    "node_cpp": {
+      "path": "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/node.cpp",
+      "size": 95163,
+      "sha256": "0c2e3230b37644c8496f5b1aee59f428de6a497a380c247613c489e44cd508a9"
+    },
+    "packed_scene": {
+      "path": "data/phase424-root-packedscene-supplement/Godot3.6.2/scene/resources/packed_scene.cpp",
+      "size": 51377,
+      "sha256": "0080123ccd2c9e26e4b04608e82175812a60222b18f5e95c286654cda3c7f3ed"
+    },
+    "packed_scene_receipt": {
+      "path": "data/phase424-root-packedscene-supplement/source-supplement.json",
+      "size": 1015,
+      "sha256": "d5640b593746e029f5399a63ff990a63fea9b357c4675126dc09c5a98a801b90"
+    },
+    "executed391_binding": {
+      "path": "data/phase391-terminal-source/native-patch-source.json",
+      "size": 30584,
+      "sha256": "e889a9faf1669706732ceb72937011d5867f3094ca503b7997ff311b7c1002de"
+    },
+    "scene_read_authority": {
+      "path": "data/phase411-root-initial-audit-release/phase412-two-inherited-scene-source-supplement.json",
+      "size": 884,
+      "sha256": "16b3fadf56b204b4f13ef3dcf7b3951fcdffb7cfdf797a5320e7f8a881f4731c"
+    },
+    "animation_read_authority": {
+      "path": "data/phase411-root-initial-audit-release/phase412-six-writer-source-supplement.json",
+      "size": 2347,
+      "sha256": "ff9f3da5d4f1068625015284d2f78679221998fe62d28d05751c353901b9048e"
+    },
+    "StartOnTitle": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/CharacterClasses/Animations/StartOnTitle.tres",
+      "size": 2213,
+      "sha256": "06b107f22e8b5a88efaae10c9174e7d3a7f0bf21f06a81181bd1773a0d28e4b7"
+    },
+    "EnterShopFromTitle": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/CharacterClasses/Animations/EnterShopFromTitle.tres",
+      "size": 1925,
+      "sha256": "a1e62e47cd7abcd68bf26a0a660de0aa3c0a97067c95457193b271f0cbfae1fb"
+    },
+    "RESET": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/CharacterClasses/Animations/RESET.tres",
+      "size": 3173,
+      "sha256": "2bbeef3edc3d1d86b21cc2e2b13fbf93dcfd481c382a15dccc1dd6f36d1659ef"
+    },
+    "EnterCombatFromShop": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/CharacterClasses/Animations/EnterCombatFromShop.tres",
+      "size": 1730,
+      "sha256": "e7d6aaa2f5ed8776718fdc14f7a4e5ae9401a8fccd72245b3e99e21d879ba371"
+    }
+  }
+}

@@ -15,3 +15,5 @@ Preserve originals andindependent acceptance. No master/force/PR/newenvironment 
 428 update:oneactualsaved-onlyKingBuffoverlay completed(exit0,0.114s),proposing2newchains/total6SOURCE_DERIVED/82missing.429actualreviewpending;accepted4/84unchanged.Three savedinputsunchanged,no rawcarrier/420helper/oracle/model. Do notrepeatspent426release.
 
 429 update:KingBuff2actualchainsindependentlyaccepted,A4/all86nonpairrowsunchanged,total6/82.430nowassessesonlyinvuP/O4prebirthfeasibility. Parent-readybirth occursafterchildREADY andPwasreused;zero postbirthcountercannot byitselfproveprebirthno-start. No newcapture/modelorbroadaudit implied.
+
+430 update:invu4feasibilitydesignsealed,pending431. PrebirthchildREADY/manualnotification/reentrantclockwindowisunproved. Earlierfirst-entry/allocationobservationsareproposalsonly;noimplementation/captureornewproof. Current6/82unchanged.
