@@ -1,0 +1,2016 @@
+{
+  "schema": "phase391-oracle-readonly-plan/1",
+  "paths": {
+    "task_root": "/workspace/godotsteam-startup-20261013",
+    "baseline": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles",
+    "pool": "/workspace/native-combat-20261013/pool",
+    "runs_root": "/workspace/native-combat-20261013/runs"
+  },
+  "source_root": "/workspace/python-original-engine/repo",
+  "run": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06",
+  "case_id": "NATIVE-027-KING-A",
+  "attempt": 6,
+  "previous_run": "/workspace/native-combat-20261013/runs/native-v7-026-rainbow75-N-327",
+  "budget": {
+    "reserve": 4294967296,
+    "attempt": 1610612736,
+    "free": 6561099776,
+    "required": 5905580032
+  },
+  "root_config": {
+    "path": "data/phase401-root-native-attempt06/oracle-acceptance.json",
+    "size": 4460,
+    "sha256": "6b8d469256489175d7e30a503caf21c7209b567c6b18f4ae436cb465d2730f2c"
+  },
+  "freeze": {
+    "path": "data/phase391-terminal-source/combined-source-freeze.json",
+    "sha256": "e55a602c9d7087a71a2fe6b78a3a143663fc8f0f659c0fe3fb690019ba8173c9",
+    "size": 65361
+  },
+  "source_owner": {
+    "path": "data/phase397-root-native-execution-closure/execution-source-owner.json",
+    "sha256": "e7d8b87673eb56ca432e3d8c3401c4c44b5f3c60f6b4a10de5c99b673fd1876a",
+    "size": 10755
+  },
+  "reviews": [
+    {
+      "owner": {
+        "path": "data/phase392-independent-final/owned-files.json",
+        "sha256": "33bffb30051a21a58f54f0aa60a807503f898b30701d702a566dfb024256ed66",
+        "size": 62001
+      },
+      "receipt": {
+        "path": "data/phase392-independent-final/review.json",
+        "sha256": "8e76269101c23e4e5143f0520f85ac1386336a9502abb98897c6e28656cbc3a2",
+        "size": 9159
+      }
+    }
+  ],
+  "config": {
+    "case_id": "NATIVE-027-KING-A",
+    "global_seed": 35301,
+    "player_fixture_enabled": true,
+    "schema": "native-combat-capture/1",
+    "timeouts": {
+      "battle_seconds": 120,
+      "total_seconds": 295
+    },
+    "util_seed": 35302
+  },
+  "policy": "bounded-writers-and-monitored-process/1",
+  "execute_payloads": {
+    "schema": "phase380-execute-payloads/1",
+    "patches": [
+      {
+        "target": "Core/Buff.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Core/Buff.gd",
+          "sha256": "a1bfe97c556bfa3b3110988ec7d4f78cbefb7a1ddc2e2d80f31fcb968e817916",
+          "size": 13374
+        },
+        "before": {
+          "sha256": "3efabb72eb0b337e30ebc924347aba40bd1039a3c5f718b761b0ee78b48ab8bb",
+          "size": 8827
+        }
+      },
+      {
+        "target": "Core/Character.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Core/Character.gd",
+          "sha256": "4e37b2f5d044e015be5dd75fca37577bdb9fc870dd2e32cad5198c36649df984",
+          "size": 55679
+        },
+        "before": {
+          "sha256": "dc372965eaa048657caa1646d70aba85ff9b4b9677565eaa480bc195de027496",
+          "size": 48033
+        }
+      },
+      {
+        "target": "Core/CombatLog.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Core/CombatLog.gd",
+          "sha256": "4850aa479e6a6615a1833f469147a23b3c88ccb9cfc35c519c4de90aa1984a31",
+          "size": 38792
+        },
+        "before": {
+          "sha256": "502ba9802874c189798001a59c4135ca6591efaec80b007559760b12dc0bf638",
+          "size": 35028
+        }
+      },
+      {
+        "target": "Core/Game.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Core/Game.gd",
+          "sha256": "fafe9612858a25b95d8d6149531b50869dbd9709719bd5d2ab6b070b6b8283b1",
+          "size": 145943
+        },
+        "before": {
+          "sha256": "f3688bfdf39b95a8ed6a77d9a7ad058a95a0aaa4bcb6d297bc953425add4b9c9",
+          "size": 145148
+        }
+      },
+      {
+        "target": "Interface/CombatTimer/CombatTimer.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Interface/CombatTimer/CombatTimer.gd",
+          "sha256": "70d396e088ac50aac7bd16165cc264ad8917a633fec9fa00d383f911f9936dd0",
+          "size": 8469
+        },
+        "before": {
+          "sha256": "3e1bb3ac33ae78b399d98cfd7bdd6ddb35a337d3afa9f3347af660757cd3b7fd",
+          "size": 5769
+        }
+      },
+      {
+        "target": "Items/AcornCollar.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/AcornCollar.gd",
+          "sha256": "e8ad55cf3ebfc0f6fd0e86ae37eb5d201b38612ce3dd1e09fa8fc9f27d42c256",
+          "size": 694
+        },
+        "before": {
+          "sha256": "c5f20b31974472c7726a9ea7222844670edd2b4521e16428cf5a9d347fc595f0",
+          "size": 315
+        }
+      },
+      {
+        "target": "Items/BloodAmulet.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/BloodAmulet.gd",
+          "sha256": "3aa65c5e4177b1e7e13ca333000c2e5d6dfb11d9735cb13039b52a107331861b",
+          "size": 265
+        },
+        "before": {
+          "sha256": "e6d651cc850dae13f16290561a79ee40f5e49ba952cadc3b115a1d576e49d563",
+          "size": 89
+        }
+      },
+      {
+        "target": "Items/BloodGoobert.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/BloodGoobert.gd",
+          "sha256": "a1d0698d58ad1098a443bc1d6f0243219026e65417e0e356a6c7e8dac888d981",
+          "size": 618
+        },
+        "before": {
+          "sha256": "8501b1b9d2f957ff2576df7f2bff488399df51267b06e9f644db1b6e955a387b",
+          "size": 257
+        }
+      },
+      {
+        "target": "Items/Broom.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Broom.gd",
+          "sha256": "9377c41d5ebfc044d1f7dedb05b356792ef4d869eb0e018933e49a32cd2dcab9",
+          "size": 1504
+        },
+        "before": {
+          "sha256": "bfaa9831117d21df5981c43ed5ce25aef7e8e1bfd9180279dfe04b09d1365d5f",
+          "size": 826
+        }
+      },
+      {
+        "target": "Items/BurningTorch.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/BurningTorch.gd",
+          "sha256": "dcfa4b28cbad820c765d3fce199cf729ce7bd892ddfe3f0896124a0a76175508",
+          "size": 838
+        },
+        "before": {
+          "sha256": "e4ec16db82e7c88a466eeaf1da0c69229968a879768c542c97e849de853809f4",
+          "size": 445
+        }
+      },
+      {
+        "target": "Items/Carrot.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Carrot.gd",
+          "sha256": "bff5b767f527cf8bbf28c80b0cba61a92cb57fae21c6149d794274028983a406",
+          "size": 326
+        },
+        "before": {
+          "sha256": "a9e67dccd2fbb8d60cfcf69f1d9b44ce49877398c82f2f2f382875e079aef0bb",
+          "size": 154
+        }
+      },
+      {
+        "target": "Items/CarrotGoobert.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/CarrotGoobert.gd",
+          "sha256": "b15f1a3028c48de02f02d6fa538d4d667ea56dc6cd4b6bc1b5bf6e47f06c3262",
+          "size": 2071
+        },
+        "before": {
+          "sha256": "c782d3e3fb531ee7403d4432bdd2fda3f6eac3e6a90d072461b7101f96724ec6",
+          "size": 712
+        }
+      },
+      {
+        "target": "Items/Crossblades.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Crossblades.gd",
+          "sha256": "bad61e36a5a4a0d667844d7ec840b75cea220b91f20155ede095fb81944adafb",
+          "size": 1115
+        },
+        "before": {
+          "sha256": "eccfad5532f04766d31db6a5aea6773974e263c066a29cea4186f053d8482ebd",
+          "size": 727
+        }
+      },
+      {
+        "target": "Items/Dagger.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Dagger.gd",
+          "sha256": "c987180883ee797dcdc2858402ac0e35b6718384bdcdc8567a6863c18e9f9853",
+          "size": 353
+        },
+        "before": {
+          "sha256": "7e658abe88aa49f8bf6a842061ff7cbc15a5ce44f107362358fe81fbd107d2f1",
+          "size": 173
+        }
+      },
+      {
+        "target": "Items/Exclusive/BerserkerBag.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/BerserkerBag.gd",
+          "sha256": "76c9ab63fd16b9d72e8216ec79aa3bf8a4195f6e460072d374ffa37f8af174dd",
+          "size": 2012
+        },
+        "before": {
+          "sha256": "97a3c6bea9075f3e34bd40ccc8f74c308852ec0ddb25876e73c6ffb12e5ad322",
+          "size": 1154
+        }
+      },
+      {
+        "target": "Items/Exclusive/BookofIce.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/BookofIce.gd",
+          "sha256": "59893771895efe36d3efc995d71adc036657a9959751fb45725ea498d92f75ab",
+          "size": 899
+        },
+        "before": {
+          "sha256": "8c4b46afcd679f093869b63f402584c8c1c5322b0a71621fb6f941367072bc17",
+          "size": 518
+        }
+      },
+      {
+        "target": "Items/Exclusive/BroccoliGoobert.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/BroccoliGoobert.gd",
+          "sha256": "ad1d9f056c4f6a3094daef4cfb984ce2a3f2590ce020cec61a5322f44fa3fa01",
+          "size": 469
+        },
+        "before": {
+          "sha256": "89470ce24475ad4b7683f8f8ff1d746d2b38160ae964b4e184ee7a6e07f924f3",
+          "size": 259
+        }
+      },
+      {
+        "target": "Items/Exclusive/CheeseGoobert.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/CheeseGoobert.gd",
+          "sha256": "cb2160eca99f7c30c08f624b59c38bcd0960ff384ec93e71f034617bf6af2b26",
+          "size": 291
+        },
+        "before": {
+          "sha256": "2f337e13266b4fe70c9a800643f195b26c5063e524aed350bb02b348c176c2cd",
+          "size": 85
+        }
+      },
+      {
+        "target": "Items/Exclusive/ChiliGoobert.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/ChiliGoobert.gd",
+          "sha256": "53b19c9a63b688b61b641378398ab481e03205218292d988717b94f972bad0c9",
+          "size": 273
+        },
+        "before": {
+          "sha256": "5b9dc90b01fdc37e8ecbb9c1df13242b1b3453d9cd97ce448798345d9ebc517b",
+          "size": 69
+        }
+      },
+      {
+        "target": "Items/Exclusive/CupcakeGoobert.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/CupcakeGoobert.gd",
+          "sha256": "2651a63a441db7f83f91fb2ced2a1cc309a4c1de6a7895a3a87e8bef392f1b22",
+          "size": 327
+        },
+        "before": {
+          "sha256": "341e3670bb0ecfbecdf765ce288b90e10fc8e605dd08650cb10485e35ff45bde",
+          "size": 140
+        }
+      },
+      {
+        "target": "Items/Exclusive/KingGoobert.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/KingGoobert.gd",
+          "sha256": "d40b72f75f8455c407fb0425520396139f6e8f9213449c9a86368ad21eb4fcf5",
+          "size": 3101
+        },
+        "before": {
+          "sha256": "2f852255072386a57757bceea38a9f5825e0d1299b6fa8ce2c55b14827385d0f",
+          "size": 1581
+        }
+      },
+      {
+        "target": "Items/Exclusive/LuckyShortbow.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/LuckyShortbow.gd",
+          "sha256": "e75d49b40ed1ec7662936a5b8a8983398136b918bd3da8a494d1178bfcc394b6",
+          "size": 519
+        },
+        "before": {
+          "sha256": "b0a89ba570340e0ee8e10dd0879c36429b48a3daa08e4c9a5b26bd996e1b3f2a",
+          "size": 281
+        }
+      },
+      {
+        "target": "Items/Exclusive/MagicMirror.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/MagicMirror.gd",
+          "sha256": "145deace8efacaf3bc269cdc35b0790cdb75411b51742bef3be989c2d9ea7d48",
+          "size": 787
+        },
+        "before": {
+          "sha256": "a841a129b60215e66d78ff65434825dfa2191c66dd9b6b30e3def57fe5c0e087",
+          "size": 399
+        }
+      },
+      {
+        "target": "Items/Exclusive/PoisonShortbow.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/PoisonShortbow.gd",
+          "sha256": "218a981c14e7eb1e6cd3e1c88e7a34de1fcc74d0a6e59b2c6253ee20a4d26283",
+          "size": 806
+        },
+        "before": {
+          "sha256": "ec04639ee3771a124f66a3a8abae2038de73229abc6b4f275d42d8eee8edb19a",
+          "size": 516
+        }
+      },
+      {
+        "target": "Items/Exclusive/RainbowGoobertAdventurer.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertAdventurer.gd",
+          "sha256": "a9ca94a4eaa83983ee6463692c1fdd45dc8277264cc5ac91c4e8ceefd98dfd61",
+          "size": 460
+        },
+        "before": {
+          "sha256": "1460de96b329698a0044416b82a24ed608a398831165b3252d08412160282f71",
+          "size": 232
+        }
+      },
+      {
+        "target": "Items/Exclusive/RainbowGoobertBerserker.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertBerserker.gd",
+          "sha256": "35a83c9b53dbd605267f068459baeaeec02579ed9c134dafc7382097ca898e77",
+          "size": 472
+        },
+        "before": {
+          "sha256": "04850d634668367514661ef114d2248be4ef8c9f81fc5f1a33191cca2d1aae0d",
+          "size": 246
+        }
+      },
+      {
+        "target": "Items/Exclusive/RainbowGoobertEngineer.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertEngineer.gd",
+          "sha256": "05b9d469d8d24e985a9218850e8fe36f9d318df900a2755151956ce7b9d8c2dd",
+          "size": 686
+        },
+        "before": {
+          "sha256": "8b2f707cd3435c95b9491463fcd5e75c28ac3b754b7c860fc62f8e9328ddfa19",
+          "size": 462
+        }
+      },
+      {
+        "target": "Items/Exclusive/RainbowGoobertMage.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertMage.gd",
+          "sha256": "9ae16d18c386718fd4ffa8bcd4abb6c0e2fcd9b64a0d3bb89277714aa25ef0d3",
+          "size": 445
+        },
+        "before": {
+          "sha256": "5d0114122c75a1c4b711fdbc5ed173031756d08394cdbf358f0e86c22104e1b8",
+          "size": 229
+        }
+      },
+      {
+        "target": "Items/Exclusive/RainbowGoobertPyromancer.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertPyromancer.gd",
+          "sha256": "a7176ae6dc44c905fa62bf14d2d8f5a07900c3e96698ee975e55f2a16b5d8d28",
+          "size": 458
+        },
+        "before": {
+          "sha256": "8434c2b05b866a798182b9689f77732666ac3ae29fd256d51bffa483b6ac65f1",
+          "size": 230
+        }
+      },
+      {
+        "target": "Items/Exclusive/Shelly.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/Shelly.gd",
+          "sha256": "f1136f326bc12bd3d5dc59718d34531f1e043030055ddeb3d11400009f14bd26",
+          "size": 792
+        },
+        "before": {
+          "sha256": "f54c5410aa4c83649bee2007558a73bbef7eb208b126a6631bff9e73263465c6",
+          "size": 424
+        }
+      },
+      {
+        "target": "Items/Exclusive/ShepherdsCrook.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/ShepherdsCrook.gd",
+          "sha256": "df8752d79d3f3521907cf908f05fd0cd1eb0f364c440d97b90d0cea6a1c2a638",
+          "size": 767
+        },
+        "before": {
+          "sha256": "95cb5457f674ebfd556014d55a1d2bc64a8af06a4fd07a88d6774217ef827d80",
+          "size": 372
+        }
+      },
+      {
+        "target": "Items/Exclusive/ThornShortbow.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/ThornShortbow.gd",
+          "sha256": "3a15e80d1e8793b5fd5637520f5e724aa305131ed5452b6021328587cb9f0162",
+          "size": 513
+        },
+        "before": {
+          "sha256": "4571fc8e2b13a9be0a8a2e64f9f68866df913c8b083356a28d0c0d39365a6a5e",
+          "size": 291
+        }
+      },
+      {
+        "target": "Items/Exclusive/ToastGoobert.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/ToastGoobert.gd",
+          "sha256": "4c3c98ae1d9050ae18e574d843d63c5d97954b978583e46296aa6a5945122a5a",
+          "size": 487
+        },
+        "before": {
+          "sha256": "9aee3f0b40c928b7a720f20b77b496a04dde9eebaa76cb673aee0ad72dbd0825",
+          "size": 285
+        }
+      },
+      {
+        "target": "Items/FalconBlade.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/FalconBlade.gd",
+          "sha256": "bd314a100ad7d430391e1a2cf1e7be8d0682051173cbb4a48281fd5f806ed8c3",
+          "size": 1255
+        },
+        "before": {
+          "sha256": "49fdefbe1d945718846c54270991e7740122e79e253e18600c0010473e03ce06",
+          "size": 899
+        }
+      },
+      {
+        "target": "Items/Food.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Food.gd",
+          "sha256": "07a477dc16365fa0d5e8cfaca3cf9aacaca76eaef4b9d3d05740b5f874340d37",
+          "size": 337
+        },
+        "before": {
+          "sha256": "e0ff858b55f1f5a2d8e1b06ee155a4f7444ba7f4cd903bbee2b09780bfb20a23",
+          "size": 187
+        }
+      },
+      {
+        "target": "Items/GlovesofHaste.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/GlovesofHaste.gd",
+          "sha256": "f691f2b91cba3f47b4f206ee90ddd6e6abbbc8b3559d7be05964d495ee15bd2f",
+          "size": 381
+        },
+        "before": {
+          "sha256": "364a36db81b4a7c1f07d465aa3422eb3091dc61265c210d60276ab28cc2f8274",
+          "size": 201
+        }
+      },
+      {
+        "target": "Items/Goobert.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Goobert.gd",
+          "sha256": "7a7b70e9a230b551feca7e00df2fe5e241b97c7aeb15f060e792c15ff4015ebb",
+          "size": 1579
+        },
+        "before": {
+          "sha256": "8fda35f3740fe787231d4c69c38eaab1938127c1a01e076df70252cc4212e723",
+          "size": 1076
+        }
+      },
+      {
+        "target": "Items/Hammer.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Hammer.gd",
+          "sha256": "677319b42f42ac16969e1f06b1bd288c8bb7a6c81cd7f5164765d1f806e234cf",
+          "size": 613
+        },
+        "before": {
+          "sha256": "398026354c8abb77f3a58118449f0c8bcff22e1b911ee72981f791f8cd9b0bac",
+          "size": 426
+        }
+      },
+      {
+        "target": "Items/HealingHerbs.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/HealingHerbs.gd",
+          "sha256": "7b58d615f6b5f34072398c007be55f5b4e3e014c67e4c2d68e671061546a8848",
+          "size": 252
+        },
+        "before": {
+          "sha256": "b3d217ddde35584372fe7daf320c1adb873443663c2f2e7921f4056117ce9f39",
+          "size": 74
+        }
+      },
+      {
+        "target": "Items/HealthPotion.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/HealthPotion.gd",
+          "sha256": "2aee9abd515cf5f8f2b6cf0df860ea1fef5399c11a8e38e506d4dc03dfcc6e4f",
+          "size": 1226
+        },
+        "before": {
+          "sha256": "0b535483c8832de65ca689d42184d8d650699dd38897bf2e2c719e15edd153e6",
+          "size": 489
+        }
+      },
+      {
+        "target": "Items/HeroLongsword.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/HeroLongsword.gd",
+          "sha256": "af9c32d88f42e1b6ca80d9df9e5ac5f0368204c2a8c2fd9ff708e68434147696",
+          "size": 603
+        },
+        "before": {
+          "sha256": "25960dff77790260dc90a55ce1d03481508a4099e016ae2e94bc9f0bf557be2e",
+          "size": 424
+        }
+      },
+      {
+        "target": "Items/HeroSword.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/HeroSword.gd",
+          "sha256": "fb408bfb575560a94420ec19214d018c7ab5f7762c4f3dbad2399a236e04af7c",
+          "size": 377
+        },
+        "before": {
+          "sha256": "a7db8746cab812fb19d16de2961dfaabc9a7e5263facf0c8725d5e12ab8bfff0",
+          "size": 205
+        }
+      },
+      {
+        "target": "Items/HungryBlade.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/HungryBlade.gd",
+          "sha256": "1a979542490be1f9ec1c8a5e3af6cbe3ba35975f79809443f07a7461254c4c20",
+          "size": 1580
+        },
+        "before": {
+          "sha256": "27951e7b636db455edb044da777332292ad794daac3d468b601b72ad86e396ee",
+          "size": 809
+        }
+      },
+      {
+        "target": "Items/Item.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Item.gd",
+          "sha256": "2fc1d658db352a7ecae8c2bfb60640a019284992a9c5f9a14c87baea50721631",
+          "size": 178363
+        },
+        "before": {
+          "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f",
+          "size": 170717
+        }
+      },
+      {
+        "target": "Items/ItemDescriptor.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/ItemDescriptor.gd",
+          "sha256": "710a3dd4cf4d172d46771ed04b743fa9e0d8ab266715443e2c4907b459b7f032",
+          "size": 8740
+        },
+        "before": {
+          "sha256": "5c4959baed459c1981bf0fb9c2d39ace7f99f916925b03b05e3359cd55694794",
+          "size": 8254
+        }
+      },
+      {
+        "target": "Items/LeatherArmor.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/LeatherArmor.gd",
+          "sha256": "c77be3f5ac7cf97683c5dcc4dc3b365c9e91cf48adc891aa8b44796ee4180a47",
+          "size": 495
+        },
+        "before": {
+          "sha256": "30b446a809322ee27e348ed6678baee6f03ccc36f85e6bf9b36d257e89ba8ebd",
+          "size": 134
+        }
+      },
+      {
+        "target": "Items/LeatherBoots.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/LeatherBoots.gd",
+          "sha256": "36cfc2e0a8ea70acdbe4817c91444f9feeb9606cd9ff48355c21c7b8eb20409f",
+          "size": 1047
+        },
+        "before": {
+          "sha256": "1841675b9e83afc29e740ef54221dc5b8362ade68cab5fe954610a54ba0e885c",
+          "size": 531
+        }
+      },
+      {
+        "target": "Items/LightGoobert.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/LightGoobert.gd",
+          "sha256": "1a7a8fa4968c3753dbf57047bcac2f12f7df98287c63e1ba30f70f2187805274",
+          "size": 2147
+        },
+        "before": {
+          "sha256": "e117cce691addbef0dbbe90d7f4828900e1050bb5d056621b930ba31957a3290",
+          "size": 802
+        }
+      },
+      {
+        "target": "Items/MagicStaff.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/MagicStaff.gd",
+          "sha256": "607a380bc9654e72523aba0583dc33c5a726c331db54a908d43869393c8c6f49",
+          "size": 770
+        },
+        "before": {
+          "sha256": "bdc6aa5d90109e66f492af8d8808c268a638d0714a425d736411a0e337c67344",
+          "size": 558
+        }
+      },
+      {
+        "target": "Items/ManaPotion.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/ManaPotion.gd",
+          "sha256": "24a4bdd4c9da2adcfc4eda0fe6e5e49cf0949c7701bc53c8bc7a7a46d3e4ddcf",
+          "size": 1731
+        },
+        "before": {
+          "sha256": "ba964cb923f464a555383ba66c6cd55a3e6bd802060ead7544859888c7bc9d47",
+          "size": 670
+        }
+      },
+      {
+        "target": "Items/PestilenceFlask.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/PestilenceFlask.gd",
+          "sha256": "cb93c0033c02aa540ed7eb53dbba9ce86c2e80351e1acfc0220956958fb5dffa",
+          "size": 1224
+        },
+        "before": {
+          "sha256": "4057c77eb3f23041caacf3070ca36631c95ef1c5f78b96aecd073648a6fa29ad",
+          "size": 463
+        }
+      },
+      {
+        "target": "Items/PocketSand.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/PocketSand.gd",
+          "sha256": "d65605b604be96ab73af306b1fe068ab33fb11e7881c8ece79832839ffe60a80",
+          "size": 244
+        },
+        "before": {
+          "sha256": "aaa6ed7c772ac1af8567f85754902f85e8246dca2edb7cfe7b67aaecc9c33425",
+          "size": 70
+        }
+      },
+      {
+        "target": "Items/PoisonGoobert.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/PoisonGoobert.gd",
+          "sha256": "04204af1e3eccc7f1edace5aefa0317db4da1f58a71ef802a8442b285f0acdfa",
+          "size": 260
+        },
+        "before": {
+          "sha256": "03cc9c92ad2f2bc1d05ee680ae9f0554026df58269521abbdc036607bfd7342b",
+          "size": 74
+        }
+      },
+      {
+        "target": "Items/Potion.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Potion.gd",
+          "sha256": "c7561edf1dce2cc8ce48c8b15edd5cf63be765668287d9a80b504e458b118f70",
+          "size": 5914
+        },
+        "before": {
+          "sha256": "b4c0c7026fec662f50cd159f6f363cf78ab8abcc89c20bc770a97d02ee614a1a",
+          "size": 4922
+        }
+      },
+      {
+        "target": "Items/RainbowGoobert.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/RainbowGoobert.gd",
+          "sha256": "1075d5eaf882e54de5c319f4af03e79a0d6293c2360ad6fde0e7d13b68a0e2b0",
+          "size": 417
+        },
+        "before": {
+          "sha256": "76f13fe96cb5bcf56379314d09901b5368ece434367d29a965b08651eef7880e",
+          "size": 229
+        }
+      },
+      {
+        "target": "Items/RainbowGoobertRanger.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/RainbowGoobertRanger.gd",
+          "sha256": "4da6e8f24a700f1bdc64ced76a706e21b40c62181ec6b11b0707dae5c45c87c5",
+          "size": 427
+        },
+        "before": {
+          "sha256": "b30e1774409b76720be53771f83444f3df168cc56e711794dd0447f94b529e93",
+          "size": 227
+        }
+      },
+      {
+        "target": "Items/RangerCollar.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/RangerCollar.gd",
+          "sha256": "d00b1af3e3898d87c12902d5fb51f659fd0a41212944c8d889a5633f6cc0e674",
+          "size": 582
+        },
+        "before": {
+          "sha256": "b1e5989edb310ca502988f66dd2a4ec502d487bbbef2e2d1fae367916878509a",
+          "size": 416
+        }
+      },
+      {
+        "target": "Items/RubyEgg.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/RubyEgg.gd",
+          "sha256": "13b9833b3cd200c4d936fdc60b552d81000c5a2ebfc405f2a3dda509c0f57557",
+          "size": 881
+        },
+        "before": {
+          "sha256": "96bb4db10885913fe6815bb63028e3e0aa82c646bf98e4a0fcd041afe1101b49",
+          "size": 330
+        }
+      },
+      {
+        "target": "Items/SteelGoobert.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/SteelGoobert.gd",
+          "sha256": "597cefc918621feeed7a470386615fbfc30ec302a1f4b2f7e2d59a3badd73991",
+          "size": 881
+        },
+        "before": {
+          "sha256": "e54aad5c3b097023e222cfcee7f3e5c0eeeb06b615b3f2c5596b1f5faa03adeb",
+          "size": 355
+        }
+      },
+      {
+        "target": "Items/StoneSkinPotion.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/StoneSkinPotion.gd",
+          "sha256": "d0188088fa83f31b471ba1b032c5786b0b68606d588926e223661879def0702d",
+          "size": 1088
+        },
+        "before": {
+          "sha256": "82d5cc87a25c04b992e4372983704f3e27ad8871fd0b79dfef658d91bfcf4a51",
+          "size": 326
+        }
+      },
+      {
+        "target": "Items/StrongHealthPotion.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/StrongHealthPotion.gd",
+          "sha256": "888db1bc9f7c8ee7db2c9ec6010914c033c05ef012c61c56fa33995f2c8d45d5",
+          "size": 437
+        },
+        "before": {
+          "sha256": "a8c56715527b84607ea4525a71ab039989d22f538126e36c312f8268f94d86cb",
+          "size": 216
+        }
+      },
+      {
+        "target": "Items/StrongStoneSkinPotion.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/StrongStoneSkinPotion.gd",
+          "sha256": "1ad294e75bdbc8ddb50571413f6a9bff2192fb7ec15a6967e6829b626ec53768",
+          "size": 485
+        },
+        "before": {
+          "sha256": "715187b3bb5734b79acd73b1af96123190317c098f3ea8b672f50941db8de420",
+          "size": 257
+        }
+      },
+      {
+        "target": "Items/ThornWhip.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/ThornWhip.gd",
+          "sha256": "79f80f3eeb360641cfe8806a341c3b327a10e035e62c01456dca146bfe1ab84d",
+          "size": 1020
+        },
+        "before": {
+          "sha256": "fce0b91011cad7a295aee43a89b0531fff2eaeae43064d224131cfc47d240ef6",
+          "size": 438
+        }
+      },
+      {
+        "target": "Items/VampiricArmor.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/VampiricArmor.gd",
+          "sha256": "f2759c81f610153550b06d27ca8581e5470607397e899819665ee47ac6c8ccf7",
+          "size": 544
+        },
+        "before": {
+          "sha256": "fb9008f6e56b6f4e965cd3466848552c743283d69c2e41552e267f661a975325",
+          "size": 180
+        }
+      },
+      {
+        "target": "Items/WalrusTusk.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/WalrusTusk.gd",
+          "sha256": "ce66c530124d007a6007e74456bcbdb46f1bda94cab75f405b4745b946aded70",
+          "size": 242
+        },
+        "before": {
+          "sha256": "5dfc859b22775138ce9a8b2ff12787fe83c9261c06137426cc599a49cef5cf8b",
+          "size": 68
+        }
+      },
+      {
+        "target": "Items/Weapon.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Items/Weapon.gd",
+          "sha256": "e1870f0dd5c8c23b84aca154ffbdfec8f4418b37c740d7bd94f7764ec8bd5295",
+          "size": 649
+        },
+        "before": {
+          "sha256": "6acd1030b6e29521647df3718d48a865bdaeaced19f3190cb310f63e890253a2",
+          "size": 298
+        }
+      },
+      {
+        "target": "Sheets/ItemBook.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Sheets/ItemBook.gd",
+          "sha256": "e13f74aaeb9fb8837abcc16034f68700414c9cc8f86a45c6ff7c13df27335d72",
+          "size": 48895
+        },
+        "before": {
+          "sha256": "6b0f0b78c0ee1a0529e7740b424b157837b614cbd74c3e8f22886f9509cb9d84",
+          "size": 48708
+        }
+      },
+      {
+        "target": "Utility/AutoHideParticles.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Utility/AutoHideParticles.gd",
+          "sha256": "be98d47071983af16d9cb044ab54834336025522298e07dba65eadcf1d63771b",
+          "size": 3282
+        },
+        "before": {
+          "sha256": "c18ceb3f6a489fd1fc69329155a182e1a658804c36e14651ecc546b450c53503",
+          "size": 531
+        }
+      },
+      {
+        "target": "Utility/BalancedRandom.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Utility/BalancedRandom.gd",
+          "sha256": "f7a8be7df85bb8cae2162cfc685c6420dc12905c7c8ef5bfb83449bbca880fe6",
+          "size": 1717
+        },
+        "before": {
+          "sha256": "cfd5d34cd03bd915aab84999862a1ca63f9bebaf519c8ec067241b921170266a",
+          "size": 1643
+        }
+      },
+      {
+        "target": "Utility/BalancedRange.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Utility/BalancedRange.gd",
+          "sha256": "411c1c69781adaf9484edc321214aec275b7f6747efed5852d6c89aee7406857",
+          "size": 636
+        },
+        "before": {
+          "sha256": "3e54446c0a88186313170ca19275afbf9b75595bb9bb6b59c364dede4216cb3b",
+          "size": 493
+        }
+      },
+      {
+        "target": "Utility/DamageSource.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Utility/DamageSource.gd",
+          "sha256": "0a4ee286ec2ad447c63af0bd6e65ce57f8861a50c807d5eb8cbada67de38e3ba",
+          "size": 4003
+        },
+        "before": {
+          "sha256": "6e0848d001b6cb62d9720bc2f56e35fb72d6ef4378fa6fe391a2e8bb4baf3378",
+          "size": 3790
+        }
+      },
+      {
+        "target": "Utility/EventBus.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Utility/EventBus.gd",
+          "sha256": "777aaaef92f93020c537df46d1ac5c52f495a1e43f713ae797bb83c958c57802",
+          "size": 4674
+        },
+        "before": {
+          "sha256": "ff9a8424cacd109104dc1598c4d0fee8a285f125f3c89c54fb0f11c479b4f788",
+          "size": 2321
+        }
+      },
+      {
+        "target": "Utility/Util.gd",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/Utility/Util.gd",
+          "sha256": "d437e9338c8c4587c0cddd29e848bef54e8b621169dd364ceaa341fbc7a1e507",
+          "size": 46276
+        },
+        "before": {
+          "sha256": "596e7f7a9308ea03957e5c9f6e5cb43aa1591e1e0fd13217e2f2c70368970a36",
+          "size": 44381
+        }
+      },
+      {
+        "target": "native_random_observer_sink_v7.gd",
+        "source": {
+          "path": "data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
+          "sha256": "999e0043a653067a962819cf81340b0dad745fa2148bbfab7724d7948a6a21ea",
+          "size": 104333
+        },
+        "before": null
+      },
+      {
+        "target": "project.godot",
+        "source": {
+          "path": "data/phase359-king-producer-source/after-source/project.godot",
+          "sha256": "feacc964aad20cd8c7734c4b269d31a0c3946c6231c6910fe3e6942c4751164d",
+          "size": 34801
+        },
+        "before": {
+          "sha256": "2bac91bcf55a46a2ff8527a2b672692cb26c67ca38780e129eebc5b5d6a707dd",
+          "size": 34736
+        }
+      }
+    ],
+    "artifacts": {
+      "native_combat_capture.gd": {
+        "path": "data/phase391-terminal-source/collector.gd",
+        "sha256": "f05bbf6b0e7277b5a342553d3a8d3c842f3efa6526f0b85948bd003837ac74ce",
+        "size": 64928
+      },
+      "native_capture_config.json": {
+        "path": "data/phase362-oracle-capture-source/case-A/native_capture_config.json",
+        "sha256": "dbded47b0896eb3efa859b75aacab673da495a32b845c1e795090969ad76f2c8",
+        "size": 229
+      },
+      ".native-random-observer-disposable": {
+        "path": "data/phase362-oracle-capture-source/disposable-marker.txt",
+        "sha256": "3135fd7d3ad7e72d218ca18c0782bc69a437f38e76013cc7ee224100e9b76fc1",
+        "size": 28
+      }
+    },
+    "case_inputs": {
+      "custom_player.json": {
+        "path": "data/phase362-oracle-capture-source/case-A/custom_player.json",
+        "sha256": "a42675c3fedb0651e4309754403d5658edcce869f85edb07963e7a2f87391c56",
+        "size": 1676
+      },
+      "custom_opponent.json": {
+        "path": "data/phase362-oracle-capture-source/case-A/custom_opponent.json",
+        "sha256": "9c57f7781c8ae58027296004262cc0b2b691c25084ea29d8f4171ff44828a689",
+        "size": 1597
+      },
+      "native_capture_config.json": {
+        "path": "data/phase362-oracle-capture-source/case-A/native_capture_config.json",
+        "sha256": "dbded47b0896eb3efa859b75aacab673da495a32b845c1e795090969ad76f2c8",
+        "size": 229
+      }
+    },
+    "source_bindings": {
+      "collector": {
+        "path": "data/phase391-terminal-source/collector.gd",
+        "sha256": "f05bbf6b0e7277b5a342553d3a8d3c842f3efa6526f0b85948bd003837ac74ce",
+        "size": 64928
+      },
+      "schema_module": {
+        "path": "tests/phase391_king_observer_schema.py",
+        "sha256": "ffcddfd2cbe58307f7258c1aefad5586a9179c6c452dc59c3342f9047f31457c",
+        "size": 208243
+      },
+      "active_source_tuple": {
+        "path": "data/phase391-terminal-source/source-tuple.json",
+        "sha256": "883e9b20dfb4c268cd265910ad7adedc403aac785287f2f39f859cdcdac8f8e6",
+        "size": 1551
+      },
+      "native_source_origin": {
+        "path": "data/phase359-king-producer-source/producer-source-freeze.json",
+        "sha256": "419a79c51f9a5c92c56edc4a2fd0ca7fd829f0471f747652015a39e26035204a",
+        "size": 43099
+      }
+    },
+    "driver_sources": [
+      {
+        "path": "data/phase355-king-finite-source/fixed-A-v8-fixture.json",
+        "sha256": "e969df30573a01e1ce7a0efa65a90b7f153d3e32636492cb6832ad705ee8c627",
+        "size": 5636
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Core/Buff.gd",
+        "sha256": "a1bfe97c556bfa3b3110988ec7d4f78cbefb7a1ddc2e2d80f31fcb968e817916",
+        "size": 13374
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Core/Character.gd",
+        "sha256": "4e37b2f5d044e015be5dd75fca37577bdb9fc870dd2e32cad5198c36649df984",
+        "size": 55679
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Core/CombatLog.gd",
+        "sha256": "4850aa479e6a6615a1833f469147a23b3c88ccb9cfc35c519c4de90aa1984a31",
+        "size": 38792
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Core/Game.gd",
+        "sha256": "fafe9612858a25b95d8d6149531b50869dbd9709719bd5d2ab6b070b6b8283b1",
+        "size": 145943
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Interface/CombatTimer/CombatTimer.gd",
+        "sha256": "70d396e088ac50aac7bd16165cc264ad8917a633fec9fa00d383f911f9936dd0",
+        "size": 8469
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/AcornCollar.gd",
+        "sha256": "e8ad55cf3ebfc0f6fd0e86ae37eb5d201b38612ce3dd1e09fa8fc9f27d42c256",
+        "size": 694
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/BloodAmulet.gd",
+        "sha256": "3aa65c5e4177b1e7e13ca333000c2e5d6dfb11d9735cb13039b52a107331861b",
+        "size": 265
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/BloodGoobert.gd",
+        "sha256": "a1d0698d58ad1098a443bc1d6f0243219026e65417e0e356a6c7e8dac888d981",
+        "size": 618
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Broom.gd",
+        "sha256": "9377c41d5ebfc044d1f7dedb05b356792ef4d869eb0e018933e49a32cd2dcab9",
+        "size": 1504
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/BurningTorch.gd",
+        "sha256": "dcfa4b28cbad820c765d3fce199cf729ce7bd892ddfe3f0896124a0a76175508",
+        "size": 838
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Carrot.gd",
+        "sha256": "bff5b767f527cf8bbf28c80b0cba61a92cb57fae21c6149d794274028983a406",
+        "size": 326
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/CarrotGoobert.gd",
+        "sha256": "b15f1a3028c48de02f02d6fa538d4d667ea56dc6cd4b6bc1b5bf6e47f06c3262",
+        "size": 2071
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Crossblades.gd",
+        "sha256": "bad61e36a5a4a0d667844d7ec840b75cea220b91f20155ede095fb81944adafb",
+        "size": 1115
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Dagger.gd",
+        "sha256": "c987180883ee797dcdc2858402ac0e35b6718384bdcdc8567a6863c18e9f9853",
+        "size": 353
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/BerserkerBag.gd",
+        "sha256": "76c9ab63fd16b9d72e8216ec79aa3bf8a4195f6e460072d374ffa37f8af174dd",
+        "size": 2012
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/BookofIce.gd",
+        "sha256": "59893771895efe36d3efc995d71adc036657a9959751fb45725ea498d92f75ab",
+        "size": 899
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/BroccoliGoobert.gd",
+        "sha256": "ad1d9f056c4f6a3094daef4cfb984ce2a3f2590ce020cec61a5322f44fa3fa01",
+        "size": 469
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/CheeseGoobert.gd",
+        "sha256": "cb2160eca99f7c30c08f624b59c38bcd0960ff384ec93e71f034617bf6af2b26",
+        "size": 291
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/ChiliGoobert.gd",
+        "sha256": "53b19c9a63b688b61b641378398ab481e03205218292d988717b94f972bad0c9",
+        "size": 273
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/CupcakeGoobert.gd",
+        "sha256": "2651a63a441db7f83f91fb2ced2a1cc309a4c1de6a7895a3a87e8bef392f1b22",
+        "size": 327
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/KingGoobert.gd",
+        "sha256": "d40b72f75f8455c407fb0425520396139f6e8f9213449c9a86368ad21eb4fcf5",
+        "size": 3101
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/LuckyShortbow.gd",
+        "sha256": "e75d49b40ed1ec7662936a5b8a8983398136b918bd3da8a494d1178bfcc394b6",
+        "size": 519
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/MagicMirror.gd",
+        "sha256": "145deace8efacaf3bc269cdc35b0790cdb75411b51742bef3be989c2d9ea7d48",
+        "size": 787
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/PoisonShortbow.gd",
+        "sha256": "218a981c14e7eb1e6cd3e1c88e7a34de1fcc74d0a6e59b2c6253ee20a4d26283",
+        "size": 806
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertAdventurer.gd",
+        "sha256": "a9ca94a4eaa83983ee6463692c1fdd45dc8277264cc5ac91c4e8ceefd98dfd61",
+        "size": 460
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertBerserker.gd",
+        "sha256": "35a83c9b53dbd605267f068459baeaeec02579ed9c134dafc7382097ca898e77",
+        "size": 472
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertEngineer.gd",
+        "sha256": "05b9d469d8d24e985a9218850e8fe36f9d318df900a2755151956ce7b9d8c2dd",
+        "size": 686
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertMage.gd",
+        "sha256": "9ae16d18c386718fd4ffa8bcd4abb6c0e2fcd9b64a0d3bb89277714aa25ef0d3",
+        "size": 445
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertPyromancer.gd",
+        "sha256": "a7176ae6dc44c905fa62bf14d2d8f5a07900c3e96698ee975e55f2a16b5d8d28",
+        "size": 458
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/Shelly.gd",
+        "sha256": "f1136f326bc12bd3d5dc59718d34531f1e043030055ddeb3d11400009f14bd26",
+        "size": 792
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/ShepherdsCrook.gd",
+        "sha256": "df8752d79d3f3521907cf908f05fd0cd1eb0f364c440d97b90d0cea6a1c2a638",
+        "size": 767
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/ThornShortbow.gd",
+        "sha256": "3a15e80d1e8793b5fd5637520f5e724aa305131ed5452b6021328587cb9f0162",
+        "size": 513
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/ToastGoobert.gd",
+        "sha256": "4c3c98ae1d9050ae18e574d843d63c5d97954b978583e46296aa6a5945122a5a",
+        "size": 487
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/FalconBlade.gd",
+        "sha256": "bd314a100ad7d430391e1a2cf1e7be8d0682051173cbb4a48281fd5f806ed8c3",
+        "size": 1255
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Food.gd",
+        "sha256": "07a477dc16365fa0d5e8cfaca3cf9aacaca76eaef4b9d3d05740b5f874340d37",
+        "size": 337
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/GlovesofHaste.gd",
+        "sha256": "f691f2b91cba3f47b4f206ee90ddd6e6abbbc8b3559d7be05964d495ee15bd2f",
+        "size": 381
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Goobert.gd",
+        "sha256": "7a7b70e9a230b551feca7e00df2fe5e241b97c7aeb15f060e792c15ff4015ebb",
+        "size": 1579
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Hammer.gd",
+        "sha256": "677319b42f42ac16969e1f06b1bd288c8bb7a6c81cd7f5164765d1f806e234cf",
+        "size": 613
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/HealingHerbs.gd",
+        "sha256": "7b58d615f6b5f34072398c007be55f5b4e3e014c67e4c2d68e671061546a8848",
+        "size": 252
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/HealthPotion.gd",
+        "sha256": "2aee9abd515cf5f8f2b6cf0df860ea1fef5399c11a8e38e506d4dc03dfcc6e4f",
+        "size": 1226
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/HeroLongsword.gd",
+        "sha256": "af9c32d88f42e1b6ca80d9df9e5ac5f0368204c2a8c2fd9ff708e68434147696",
+        "size": 603
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/HeroSword.gd",
+        "sha256": "fb408bfb575560a94420ec19214d018c7ab5f7762c4f3dbad2399a236e04af7c",
+        "size": 377
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/HungryBlade.gd",
+        "sha256": "1a979542490be1f9ec1c8a5e3af6cbe3ba35975f79809443f07a7461254c4c20",
+        "size": 1580
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Item.gd",
+        "sha256": "2fc1d658db352a7ecae8c2bfb60640a019284992a9c5f9a14c87baea50721631",
+        "size": 178363
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/ItemDescriptor.gd",
+        "sha256": "710a3dd4cf4d172d46771ed04b743fa9e0d8ab266715443e2c4907b459b7f032",
+        "size": 8740
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/LeatherArmor.gd",
+        "sha256": "c77be3f5ac7cf97683c5dcc4dc3b365c9e91cf48adc891aa8b44796ee4180a47",
+        "size": 495
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/LeatherBoots.gd",
+        "sha256": "36cfc2e0a8ea70acdbe4817c91444f9feeb9606cd9ff48355c21c7b8eb20409f",
+        "size": 1047
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/LightGoobert.gd",
+        "sha256": "1a7a8fa4968c3753dbf57047bcac2f12f7df98287c63e1ba30f70f2187805274",
+        "size": 2147
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/MagicStaff.gd",
+        "sha256": "607a380bc9654e72523aba0583dc33c5a726c331db54a908d43869393c8c6f49",
+        "size": 770
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/ManaPotion.gd",
+        "sha256": "24a4bdd4c9da2adcfc4eda0fe6e5e49cf0949c7701bc53c8bc7a7a46d3e4ddcf",
+        "size": 1731
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/PestilenceFlask.gd",
+        "sha256": "cb93c0033c02aa540ed7eb53dbba9ce86c2e80351e1acfc0220956958fb5dffa",
+        "size": 1224
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/PocketSand.gd",
+        "sha256": "d65605b604be96ab73af306b1fe068ab33fb11e7881c8ece79832839ffe60a80",
+        "size": 244
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/PoisonGoobert.gd",
+        "sha256": "04204af1e3eccc7f1edace5aefa0317db4da1f58a71ef802a8442b285f0acdfa",
+        "size": 260
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Potion.gd",
+        "sha256": "c7561edf1dce2cc8ce48c8b15edd5cf63be765668287d9a80b504e458b118f70",
+        "size": 5914
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/RainbowGoobert.gd",
+        "sha256": "1075d5eaf882e54de5c319f4af03e79a0d6293c2360ad6fde0e7d13b68a0e2b0",
+        "size": 417
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/RainbowGoobertRanger.gd",
+        "sha256": "4da6e8f24a700f1bdc64ced76a706e21b40c62181ec6b11b0707dae5c45c87c5",
+        "size": 427
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/RangerCollar.gd",
+        "sha256": "d00b1af3e3898d87c12902d5fb51f659fd0a41212944c8d889a5633f6cc0e674",
+        "size": 582
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/RubyEgg.gd",
+        "sha256": "13b9833b3cd200c4d936fdc60b552d81000c5a2ebfc405f2a3dda509c0f57557",
+        "size": 881
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/SteelGoobert.gd",
+        "sha256": "597cefc918621feeed7a470386615fbfc30ec302a1f4b2f7e2d59a3badd73991",
+        "size": 881
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/StoneSkinPotion.gd",
+        "sha256": "d0188088fa83f31b471ba1b032c5786b0b68606d588926e223661879def0702d",
+        "size": 1088
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/StrongHealthPotion.gd",
+        "sha256": "888db1bc9f7c8ee7db2c9ec6010914c033c05ef012c61c56fa33995f2c8d45d5",
+        "size": 437
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/StrongStoneSkinPotion.gd",
+        "sha256": "1ad294e75bdbc8ddb50571413f6a9bff2192fb7ec15a6967e6829b626ec53768",
+        "size": 485
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/ThornWhip.gd",
+        "sha256": "79f80f3eeb360641cfe8806a341c3b327a10e035e62c01456dca146bfe1ab84d",
+        "size": 1020
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/VampiricArmor.gd",
+        "sha256": "f2759c81f610153550b06d27ca8581e5470607397e899819665ee47ac6c8ccf7",
+        "size": 544
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/WalrusTusk.gd",
+        "sha256": "ce66c530124d007a6007e74456bcbdb46f1bda94cab75f405b4745b946aded70",
+        "size": 242
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Items/Weapon.gd",
+        "sha256": "e1870f0dd5c8c23b84aca154ffbdfec8f4418b37c740d7bd94f7764ec8bd5295",
+        "size": 649
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Sheets/ItemBook.gd",
+        "sha256": "e13f74aaeb9fb8837abcc16034f68700414c9cc8f86a45c6ff7c13df27335d72",
+        "size": 48895
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Utility/AutoHideParticles.gd",
+        "sha256": "be98d47071983af16d9cb044ab54834336025522298e07dba65eadcf1d63771b",
+        "size": 3282
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Utility/BalancedRandom.gd",
+        "sha256": "f7a8be7df85bb8cae2162cfc685c6420dc12905c7c8ef5bfb83449bbca880fe6",
+        "size": 1717
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Utility/BalancedRange.gd",
+        "sha256": "411c1c69781adaf9484edc321214aec275b7f6747efed5852d6c89aee7406857",
+        "size": 636
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Utility/DamageSource.gd",
+        "sha256": "0a4ee286ec2ad447c63af0bd6e65ce57f8861a50c807d5eb8cbada67de38e3ba",
+        "size": 4003
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Utility/EventBus.gd",
+        "sha256": "777aaaef92f93020c537df46d1ac5c52f495a1e43f713ae797bb83c958c57802",
+        "size": 4674
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/Utility/Util.gd",
+        "sha256": "d437e9338c8c4587c0cddd29e848bef54e8b621169dd364ceaa341fbc7a1e507",
+        "size": 46276
+      },
+      {
+        "path": "data/phase359-king-producer-source/after-source/project.godot",
+        "sha256": "feacc964aad20cd8c7734c4b269d31a0c3946c6231c6910fe3e6942c4751164d",
+        "size": 34801
+      },
+      {
+        "path": "data/phase359-king-producer-source/producer-source-freeze.json",
+        "sha256": "419a79c51f9a5c92c56edc4a2fd0ca7fd829f0471f747652015a39e26035204a",
+        "size": 43099
+      },
+      {
+        "path": "data/phase362-oracle-capture-source/case-A/custom_opponent.json",
+        "sha256": "9c57f7781c8ae58027296004262cc0b2b691c25084ea29d8f4171ff44828a689",
+        "size": 1597
+      },
+      {
+        "path": "data/phase362-oracle-capture-source/case-A/custom_player.json",
+        "sha256": "a42675c3fedb0651e4309754403d5658edcce869f85edb07963e7a2f87391c56",
+        "size": 1676
+      },
+      {
+        "path": "data/phase362-oracle-capture-source/case-A/native_capture_config.json",
+        "sha256": "dbded47b0896eb3efa859b75aacab673da495a32b845c1e795090969ad76f2c8",
+        "size": 229
+      },
+      {
+        "path": "data/phase362-oracle-capture-source/disposable-marker.txt",
+        "sha256": "3135fd7d3ad7e72d218ca18c0782bc69a437f38e76013cc7ee224100e9b76fc1",
+        "size": 28
+      },
+      {
+        "path": "data/phase363-oracle-repair-source/source-owner.json",
+        "sha256": "0806b38ffd797a16feee0a14d4ed7538d79997e32cc8b27dca2314eb0d400d51",
+        "size": 2546
+      },
+      {
+        "path": "data/phase364-independent-startup-diagnosis/finding.json",
+        "sha256": "5e4e6b54b51414a5bc8145cd06c12cfb89591956b0e491edc496ebe9c2339634",
+        "size": 3438
+      },
+      {
+        "path": "data/phase364-independent-startup-diagnosis/owned-files.json",
+        "sha256": "41682054edf38da71648cca16317b5c93c31ddf19895622903fc185e57702ccc",
+        "size": 31317
+      },
+      {
+        "path": "data/phase365-source-recovery-plan/control-source-finding.json",
+        "sha256": "1d94a2a3b5817f373f8a5b1dedcbf13f0a127d6203b47eab2f51d9bec8ea5dc6",
+        "size": 1889
+      },
+      {
+        "path": "data/phase365-source-recovery-plan/restore-map.json",
+        "sha256": "67d11fd66bb9120a7dbcd85aef9db6d68745ac26c01ba6d1ff85c54e79ed5547",
+        "size": 68242
+      },
+      {
+        "path": "data/phase365-source-recovery-plan/source-input-pins.json",
+        "sha256": "46bc6bd56fe3a76e401eeb10e51101983f69730e0615b74f8f6987f71a8af273",
+        "size": 4913
+      },
+      {
+        "path": "data/phase365-source-recovery-plan/source-owner.json",
+        "sha256": "fa68edab309c12496d3bb81c417e566a785877e2e5199eceb92adc71aefbbd13",
+        "size": 1136
+      },
+      {
+        "path": "data/phase368-independent-source-review/first-static-counterexample.json",
+        "sha256": "40d783ee998f5c7439f5a8431c9e7e6fb2f79cb7b2f3673add81e8c8e92de41d",
+        "size": 8666
+      },
+      {
+        "path": "data/phase368-independent-source-review/owned-files.json",
+        "sha256": "6294a826d33563e21ccda18d1106ac9f0830231150a46b93a612849bb9425f54",
+        "size": 3233
+      },
+      {
+        "path": "data/phase368-independent-source-review/review.json",
+        "sha256": "1c76fdd85fa570425a76afe7dfadf5f79a1a82efbb8b3dbac86ddd658844b82c",
+        "size": 2492
+      },
+      {
+        "path": "data/phase369-independent-execution/first-source-block.json",
+        "sha256": "afcc1979c916733ba6558038d486886ea4e2202ef00fcd68eb7e5d33e217e4bf",
+        "size": 7856
+      },
+      {
+        "path": "data/phase369-independent-execution/owned-files.json",
+        "sha256": "66894a758ad062585c80a4600f18ebba03dc18208b546f87571ec0b833be4eb4",
+        "size": 5285
+      },
+      {
+        "path": "data/phase369-independent-execution/review.json",
+        "sha256": "ebde1ab9059f7caf670eed5438ad79f93a0f59ce20c861f6b4611617ec7d8327",
+        "size": 1433
+      },
+      {
+        "path": "data/phase369-oracle-source/first-source-failure/failure.json",
+        "sha256": "de7054ff05b0b6176f9282414d7da805d1136bd2bc16c930e1477cca3719f07e",
+        "size": 1258
+      },
+      {
+        "path": "data/phase369-oracle-source/first-source-failure/owned-files.json",
+        "sha256": "b2c7e97b2e72b7ccd8b895c34eec56fee939d75e5851839e0979ef4ed99d75c6",
+        "size": 661
+      },
+      {
+        "path": "data/phase369-oracle-source/first-source-failure/preparer-first.py",
+        "sha256": "37c936dda59257c1afec3745baed0683bd2a138ed3ee7088f7b95cefe43a89dd",
+        "size": 11247
+      },
+      {
+        "path": "data/phase369-oracle-source/first-source-failure/stderr.txt",
+        "sha256": "a71927b07d3376b6a9a8b42a42883706f4170c3e026d4ba0416638ef47ea149c",
+        "size": 398
+      },
+      {
+        "path": "data/phase373-independent-final/owned-files.json",
+        "sha256": "cb488e78b817809741d2141de3b563cd44ce59237796f88c21e58e1dbf3f88d6",
+        "size": 26092
+      },
+      {
+        "path": "data/phase373-independent-final/review.json",
+        "sha256": "b41db8d6ac125e824db04155f9bbc995f47961db1ae91540ecc418bc99e16d2e",
+        "size": 6586
+      },
+      {
+        "path": "data/phase375-attempt03-recovery-source/first-source-failure/diagnosis.json",
+        "sha256": "b2ac81060ef22b33783b2fc3a18ed154473aa80a4fbc66e80557e9339141492e",
+        "size": 395
+      },
+      {
+        "path": "data/phase375-attempt03-recovery-source/first-source-failure/owned-files.json",
+        "sha256": "8655923bb63dfa2a359ff3becb3611d26da27accc60472df7648b42c0bb4cb83",
+        "size": 1197
+      },
+      {
+        "path": "data/phase375-attempt03-recovery-source/first-source-failure/phase375_pool_recovery.py",
+        "sha256": "d99f61981b7371faa129ab2726689bfd83f6ee974c9c6525abd1234c352e3a05",
+        "size": 16974
+      },
+      {
+        "path": "data/phase375-attempt03-recovery-source/first-source-failure/phase375_prepare_attempt03_restore_map.py",
+        "sha256": "a7df21ffc8a062e52eb5711bc4d339df6d885da2be1e33b3f0135b5482438181",
+        "size": 9191
+      },
+      {
+        "path": "data/phase375-attempt03-recovery-source/first-source-failure/phase375_prepare_source.py",
+        "sha256": "4f639ee761297a370a26b5111db065bba6702a2a5299a7e88baadf5dc1338f0d",
+        "size": 16309
+      },
+      {
+        "path": "data/phase375-attempt03-recovery-source/first-source-failure/protocol-and-map-derivation-first.json",
+        "sha256": "93e5ae9742e7b8e49c39864a8d15764bb03ca37d63861ad1372bd071f01db2e2",
+        "size": 4015
+      },
+      {
+        "path": "data/phase375-attempt03-recovery-source/first-source-failure/stderr-transcription.txt",
+        "sha256": "15c550866bb29f3bd689a4764c8db6a08225d78c28bbc6d799db619740aac71d",
+        "size": 382
+      },
+      {
+        "path": "data/phase375-attempt03-recovery-source/map-first-failure.json",
+        "sha256": "fef95b8428477c5de1de56c87728692f6e2c52a06f1a7de8530e9a01c42b20b2",
+        "size": 135
+      },
+      {
+        "path": "data/phase378-independent-installer-triage/finding.json",
+        "sha256": "5e7f3dc815d4429881a76925cb7c85db56e839673eefcd4df2bc55f1df1375b3",
+        "size": 7026
+      },
+      {
+        "path": "data/phase378-independent-installer-triage/owned-files.json",
+        "sha256": "90e6f0d72db2add4e1f1f107400da8f694b3dfda48e3b1463e72275fa08edd3e",
+        "size": 4354
+      },
+      {
+        "path": "data/phase380-attempt04-partial-recovery-source/derivation.json",
+        "sha256": "ede46f309370b46dbbc7c54f106bf10a35d7dade952b3d3e1caabbe0d74cf65e",
+        "size": 700
+      },
+      {
+        "path": "data/phase380-attempt04-partial-recovery-source/restore-map.json",
+        "sha256": "0b6d50d732c386ca79575841b90b57256b779826f8a3e3e0442661e4bc4e4844",
+        "size": 93104
+      },
+      {
+        "path": "data/phase380-attempt04-partial-recovery-source/source-input-pins.json",
+        "sha256": "c2fb5cbc6af66b2b2ee1ecd910f29c181094044016dfb4181a56c01e331e10f8",
+        "size": 3638
+      },
+      {
+        "path": "data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
+        "sha256": "999e0043a653067a962819cf81340b0dad745fa2148bbfab7724d7948a6a21ea",
+        "size": 104333
+      },
+      {
+        "path": "data/phase391-terminal-source/api-contract.json",
+        "sha256": "c8ef98ca7a39a0d97d85e5744da96d5730867b13ddfe8a40ac08452b61197ef5",
+        "size": 2471
+      },
+      {
+        "path": "data/phase391-terminal-source/collector-inverse.json",
+        "sha256": "ef5202cff052433d43bf95d1024d7c2ebb8f0d575b5ac52a40a56a9b657b2a01",
+        "size": 6973
+      },
+      {
+        "path": "data/phase391-terminal-source/collector-source.patch",
+        "sha256": "952f0525707c67b073f015e454ff93266ceba7d6d0c92097b18ad12d925f3f61",
+        "size": 8722
+      },
+      {
+        "path": "data/phase391-terminal-source/collector.gd",
+        "sha256": "f05bbf6b0e7277b5a342553d3a8d3c842f3efa6526f0b85948bd003837ac74ce",
+        "size": 64928
+      },
+      {
+        "path": "data/phase391-terminal-source/combined-source-freeze.json",
+        "sha256": "e55a602c9d7087a71a2fe6b78a3a143663fc8f0f659c0fe3fb690019ba8173c9",
+        "size": 65361
+      },
+      {
+        "path": "data/phase391-terminal-source/inherited-unsealed-templates/phase391_collector_terminal_source.gd",
+        "sha256": "4cb26b1dcaef6b2073325c1cf1440ed90dbbd9374a4fe9af75ac5cc22d1d544b",
+        "size": 2275
+      },
+      {
+        "path": "data/phase391-terminal-source/inherited-unsealed-templates/phase391_schema_terminal_source.py",
+        "sha256": "cbef0d4a970c64413bc1302ca55de7913cbffd985b4484cfef712d99974ba925",
+        "size": 13132
+      },
+      {
+        "path": "data/phase391-terminal-source/inherited-unsealed-templates/phase391_sink_terminal_source.gd",
+        "sha256": "cc9bf9ce018caf8885eb6fb2ef3c93ef712e780459d22b6a774cf97ec50dfa66",
+        "size": 3823
+      },
+      {
+        "path": "data/phase391-terminal-source/inherited-unsealed-templates/phase391_terminal_contract_implementation_addendum.md",
+        "sha256": "480b2b6a9460d358b0512354df945afe040139e8653c9c7fa6abe2e26d2c34eb",
+        "size": 7652
+      },
+      {
+        "path": "data/phase391-terminal-source/inherited-unsealed-templates/snapshot.json",
+        "sha256": "04b9565ea0bb805d606c5a1236ce1240ef231a72612db4ed65b98cd563170e8d",
+        "size": 996
+      },
+      {
+        "path": "data/phase391-terminal-source/install-bytecap.json",
+        "sha256": "6b4f9980fb0cc03d99bed36e571d2e37a10f35fb6e172c3d99e23b3222f37e1b",
+        "size": 6673
+      },
+      {
+        "path": "data/phase391-terminal-source/native-patch-source.json",
+        "sha256": "e889a9faf1669706732ceb72937011d5867f3094ca503b7997ff311b7c1002de",
+        "size": 30584
+      },
+      {
+        "path": "data/phase391-terminal-source/native_random_observer_sink_v7-inverse.json",
+        "sha256": "c9df8cbe87cab8f479f1035d6c36678609772ce165b0ecc5f0c96ca830869f57",
+        "size": 12066
+      },
+      {
+        "path": "data/phase391-terminal-source/native_random_observer_sink_v7-source.patch",
+        "sha256": "12052698d30db2201b05b12901cdb0a6649204e240c459fccffc7ae70edfcd99",
+        "size": 16130
+      },
+      {
+        "path": "data/phase391-terminal-source/old-source-before.json",
+        "sha256": "3213719e6172bb5a5c26e4434227eae0f280992f60c481d5fe4b61d9efd6316f",
+        "size": 133953
+      },
+      {
+        "path": "data/phase391-terminal-source/old-source-readback.json",
+        "sha256": "15d5888bdf89aede284cc3c740b1c7284fa675749439ef417f97cc0bf8c3b5ac",
+        "size": 134006
+      },
+      {
+        "path": "data/phase391-terminal-source/phase391_king_observer_schema-inverse.json",
+        "sha256": "f38f858fbb8dce0edf7d7a01383553ec7c7d0a12e207dd8f50c388a3001c6653",
+        "size": 25367
+      },
+      {
+        "path": "data/phase391-terminal-source/phase391_king_observer_schema-source.patch",
+        "sha256": "49fecf1e4f7fa2d7a3858b83cc4816d049d75965bee18a408bf108d7bf9b4906",
+        "size": 22896
+      },
+      {
+        "path": "data/phase391-terminal-source/phase391_oracle_host-inverse.json",
+        "sha256": "d55d912b8b22b4b315060223b943ddf3cb454ce26afcf937a885db6c588e309d",
+        "size": 11858
+      },
+      {
+        "path": "data/phase391-terminal-source/phase391_oracle_host-source.patch",
+        "sha256": "d172f33b732feacb18ac04668743af806cccbe1da1a6bac3a2a5d782ee0d6143",
+        "size": 15576
+      },
+      {
+        "path": "data/phase391-terminal-source/phase391_oracle_storage-inverse.json",
+        "sha256": "d21a6c95a7423bc353d6a05f0a9c3b88161e260faf4e0dc49fcdc3f0845ac8e6",
+        "size": 1127
+      },
+      {
+        "path": "data/phase391-terminal-source/phase391_oracle_storage-source.patch",
+        "sha256": "336e31975ef6eb834c5437a00d54ab7ad27616e5b6cbbe25b68045707f93b92f",
+        "size": 291
+      },
+      {
+        "path": "data/phase391-terminal-source/preparation-failure-001/phase391_collector_terminal_source.gd",
+        "sha256": "8ce0001eb3b0b40f9d8ada1183d8af8c0684d89e8431d28164ede0dd4b3bb1f8",
+        "size": 3265
+      },
+      {
+        "path": "data/phase391-terminal-source/preparation-failure-001/phase391_host_terminal_source.py",
+        "sha256": "4c75b47bb16f0f1f6e9a456feaf091847ca4a0847d89a8e425b313fa1bf0dd7f",
+        "size": 6468
+      },
+      {
+        "path": "data/phase391-terminal-source/preparation-failure-001/phase391_prepare_source.py",
+        "sha256": "5f096a395997a0d03ee8e7afd609ebd044a1a6a9528fa086fdbaba90bc41308f",
+        "size": 23800
+      },
+      {
+        "path": "data/phase391-terminal-source/preparation-failure-001/phase391_schema_terminal_source.py",
+        "sha256": "3787338a1604b8f3f1f37a3b23d150485ac127e7eab1ccaf83370e2e59cfa24f",
+        "size": 19202
+      },
+      {
+        "path": "data/phase391-terminal-source/preparation-failure-001/phase391_sink_terminal_source.gd",
+        "sha256": "cc9bf9ce018caf8885eb6fb2ef3c93ef712e780459d22b6a774cf97ec50dfa66",
+        "size": 3823
+      },
+      {
+        "path": "data/phase391-terminal-source/preparation-failure-001/traceback.txt",
+        "sha256": "87d7cc04c21a2f993382048abe6d730bc81104a0426e94c5520f50b7e2c17bbf",
+        "size": 649
+      },
+      {
+        "path": "data/phase391-terminal-source/preparation-failure-002/old-source-before.json",
+        "sha256": "3213719e6172bb5a5c26e4434227eae0f280992f60c481d5fe4b61d9efd6316f",
+        "size": 133953
+      },
+      {
+        "path": "data/phase391-terminal-source/preparation-failure-002/phase391_collector_terminal_source.gd",
+        "sha256": "8ce0001eb3b0b40f9d8ada1183d8af8c0684d89e8431d28164ede0dd4b3bb1f8",
+        "size": 3265
+      },
+      {
+        "path": "data/phase391-terminal-source/preparation-failure-002/phase391_host_terminal_source.py",
+        "sha256": "4c75b47bb16f0f1f6e9a456feaf091847ca4a0847d89a8e425b313fa1bf0dd7f",
+        "size": 6468
+      },
+      {
+        "path": "data/phase391-terminal-source/preparation-failure-002/phase391_prepare_source.py",
+        "sha256": "18643654b1d97b6e33ac2d6d45fbf459e5e121840751e2cfda4dbac09d932c76",
+        "size": 24370
+      },
+      {
+        "path": "data/phase391-terminal-source/preparation-failure-002/phase391_schema_terminal_source.py",
+        "sha256": "3787338a1604b8f3f1f37a3b23d150485ac127e7eab1ccaf83370e2e59cfa24f",
+        "size": 19202
+      },
+      {
+        "path": "data/phase391-terminal-source/preparation-failure-002/phase391_sink_terminal_source.gd",
+        "sha256": "cc9bf9ce018caf8885eb6fb2ef3c93ef712e780459d22b6a774cf97ec50dfa66",
+        "size": 3823
+      },
+      {
+        "path": "data/phase391-terminal-source/preparation-failure-002/traceback.txt",
+        "sha256": "859da320c29b664335979edd6ba6b092f50717e7f66653bc8a51f5ce78ba8d9c",
+        "size": 1164
+      },
+      {
+        "path": "data/phase391-terminal-source/protocol-consumer-inventory.json",
+        "sha256": "3a63af0a0c562f73fa6813c6ed984984e7404bf4c18d737363de0a38ed307803",
+        "size": 5356
+      },
+      {
+        "path": "data/phase391-terminal-source/source-constraints.json",
+        "sha256": "05adc9c0a599911d1224f98d926fcbb6c746dbe4c5037b45c634f25012f539be",
+        "size": 1049
+      },
+      {
+        "path": "data/phase391-terminal-source/source-owner.json",
+        "sha256": "091b59305608472bc41f3f9a51445dd765c62df25315de7dd1d0fb2363ce195e",
+        "size": 9902
+      },
+      {
+        "path": "data/phase391-terminal-source/source-tuple.json",
+        "sha256": "883e9b20dfb4c268cd265910ad7adedc403aac785287f2f39f859cdcdac8f8e6",
+        "size": 1551
+      },
+      {
+        "path": "data/phase391-terminal-source/summary.json",
+        "sha256": "8cee6e7bd9fec61387dce462afb108536437583a58c57a75f5c38a3824931b97",
+        "size": 1123
+      },
+      {
+        "path": "data/phase392-independent-final/owned-files.json",
+        "sha256": "33bffb30051a21a58f54f0aa60a807503f898b30701d702a566dfb024256ed66",
+        "size": 62001
+      },
+      {
+        "path": "data/phase392-independent-final/review.json",
+        "sha256": "8e76269101c23e4e5143f0520f85ac1386336a9502abb98897c6e28656cbc3a2",
+        "size": 9159
+      },
+      {
+        "path": "data/phase397-root-native-execution-closure/execution-source-owner.json",
+        "sha256": "e7d8b87673eb56ca432e3d8c3401c4c44b5f3c60f6b4a10de5c99b673fd1876a",
+        "size": 10755
+      },
+      {
+        "path": "data/phase401-root-native-attempt06/oracle-acceptance.json",
+        "size": 4460,
+        "sha256": "6b8d469256489175d7e30a503caf21c7209b567c6b18f4ae436cb465d2730f2c"
+      },
+      {
+        "path": "docs/phase363_installer_monitor_source_repair_spec.md",
+        "sha256": "6732c4d428f37a7e5a365140f38231850bcfb4b2a7cb4b27a785833d16daa688",
+        "size": 4014
+      },
+      {
+        "path": "docs/phase365_control_and_recovery_source_implementation_spec.md",
+        "sha256": "932dec19ff8ddb1cdd8f1a8f8a1bbd3626d466c21ab8c2bf3e89c94aaf07128e",
+        "size": 5961
+      },
+      {
+        "path": "docs/phase368_same_idle_source_implementation_addendum.md",
+        "sha256": "40a9de923bf264c95661c8a3458ac6a1d0a8cfb8480dfd1e8f7aeb77dc8889e8",
+        "size": 6287
+      },
+      {
+        "path": "docs/phase369_scenetree_collector_api_source_repair_spec.md",
+        "sha256": "097d75d9b2cfde930a8f96f6d7dc31a07d717b9ea3da2fa9043ef6656601a8e5",
+        "size": 3552
+      },
+      {
+        "path": "docs/phase370_script_signal_return_source_repair_spec.md",
+        "sha256": "c677cda6f88dd5d0027d7a612a6f7891cdd67405ad015d32a565e5b59794b2b8",
+        "size": 4618
+      },
+      {
+        "path": "docs/phase375_food_hook_source_implementation_addendum.md",
+        "sha256": "d3fb03852a5fee48d0a7420a3d86c65f6e089357263a9d9c734bea20d0a6c0fd",
+        "size": 5901
+      },
+      {
+        "path": "docs/phase380_payload_preflight_and_partial_restore_implementation_addendum.md",
+        "sha256": "6a1ed54016fe356e0dba9d0304b881c8f61248c8b23a5b18bb7cc84adca712a3",
+        "size": 5648
+      },
+      {
+        "path": "docs/phase391_terminal_contract_implementation_addendum.md",
+        "sha256": "cf806c0dd609df46a86300c65b7967ba66d4f7cd83c523f2b13d65df8529fa24",
+        "size": 12101
+      },
+      {
+        "path": "tests/godotsteam_offline_exec.py",
+        "sha256": "78beb697959d28b45c40f7a93174d22c67f711c077f5f7dcfb22ca10e69dd961",
+        "size": 4218
+      },
+      {
+        "path": "tests/native_run_compaction.py",
+        "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260",
+        "size": 27304
+      },
+      {
+        "path": "tests/phase361_king_projection_sealer.py",
+        "sha256": "4f840a2f3a9e04d4d6f646e8490b0e60545a79bf0f0e8b091dee4b6147bc5bb3",
+        "size": 26582
+      },
+      {
+        "path": "tests/phase362_collector_extension.gd",
+        "sha256": "1317adc950780427097cab901636fab65275fe951ac53318cbdcd0ff8ae34e18",
+        "size": 8896
+      },
+      {
+        "path": "tests/phase362_prepare_oracle_source.py",
+        "sha256": "696eb3e3984f7e36a03dbaad584915f151404bd11ce387de31ca4b1f5e5be273",
+        "size": 16095
+      },
+      {
+        "path": "tests/phase363_oracle_process.py",
+        "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f",
+        "size": 13665
+      },
+      {
+        "path": "tests/phase363_oracle_storage.py",
+        "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc",
+        "size": 15496
+      },
+      {
+        "path": "tests/phase363_prepare_repair_source.py",
+        "sha256": "6144ebb293e96d8244227569e4eae7a6b5436841c4bbc5a5889d2051fdd512ff",
+        "size": 10652
+      },
+      {
+        "path": "tests/phase365_prepare_source.py",
+        "sha256": "230e3df76cfac8c612d46a8aeb3d035cea46b6e615768c1f41c0a7c5db752c8a",
+        "size": 9831
+      },
+      {
+        "path": "tests/phase368_prepare_attempt02_restore_map.py",
+        "sha256": "3c62cc02ac194bcad28910d4bf2002a668375b916ad2d093cc63e77b34af40fe",
+        "size": 9188
+      },
+      {
+        "path": "tests/phase368_prepare_source.py",
+        "sha256": "5998557ef2691a390730e14bee7773eaaa3786f2936bef5a88247a0d3f8630e4",
+        "size": 20752
+      },
+      {
+        "path": "tests/phase369_prepare_source.py",
+        "sha256": "a9e73109121a2dd3ee0540752b819b2de5ef0577aecd462751ecb3a9edde1ffa",
+        "size": 11692
+      },
+      {
+        "path": "tests/phase370_collector_control_delta.gd",
+        "sha256": "4ba91ec71e5ec795396f287bc18e7e83e3bdf7ebee6f1e14dad4fa7844dadc0c",
+        "size": 17016
+      },
+      {
+        "path": "tests/phase370_prepare_source.py",
+        "sha256": "1d213101028524b0e103baeb897821995bfdb228732744b4e1b21b491ed0d35a",
+        "size": 12766
+      },
+      {
+        "path": "tests/phase370_sink_control_delta.gd",
+        "sha256": "f3de3736a685c9e9ac55d93aa72d19684f193ab721abdddcaf0c39fed423c27f",
+        "size": 12040
+      },
+      {
+        "path": "tests/phase375_prepare_attempt03_restore_map_v2.py",
+        "sha256": "c1ce564a422b2a324c344e67aef6915b3c82e3d28a50b3f23d142cd0a1c1f1f3",
+        "size": 9184
+      },
+      {
+        "path": "tests/phase375_prepare_source.py",
+        "sha256": "e704cafe2597628dcb76ed9bbf146d2343e29089498ef7ff001ea8205ce47f2f",
+        "size": 16634
+      },
+      {
+        "path": "tests/phase380_host_payload_source.py",
+        "sha256": "141193f4230966f172dde3375c443de83103c9cd955031eaa83d517086ea4ab6",
+        "size": 5657
+      },
+      {
+        "path": "tests/phase380_partial_map.py",
+        "sha256": "aaf1c0917fcdc7b24ab1719a0531f7412a1b7145e03e6c3d4cecda3f723e7526",
+        "size": 11706
+      },
+      {
+        "path": "tests/phase380_partial_recovery_source.py",
+        "sha256": "9526125c4a368eba6ab648463f7669a6391d8d5b5f5c222b4c44e8d55177dbec",
+        "size": 2591
+      },
+      {
+        "path": "tests/phase380_pool_recovery.py",
+        "sha256": "edf68ef1c9dbbfbf6c66b6275a4534065df32ea96a3d12c55d1720e062a2a5c7",
+        "size": 15081
+      },
+      {
+        "path": "tests/phase380_prepare_source.py",
+        "sha256": "0beef3c00948eb83e97e29918f42f618ddb5964d97a269413eb42c6a75671903",
+        "size": 16356
+      },
+      {
+        "path": "tests/phase380_storage_preflight_source.py",
+        "sha256": "da2d2d46c3514f8d5c32d10a0f7d892d06b921b0b3cc4347354116561ac44a2d",
+        "size": 6956
+      },
+      {
+        "path": "tests/phase391_collector_terminal_source.gd",
+        "sha256": "8ce0001eb3b0b40f9d8ada1183d8af8c0684d89e8431d28164ede0dd4b3bb1f8",
+        "size": 3265
+      },
+      {
+        "path": "tests/phase391_host_terminal_source.py",
+        "sha256": "4c75b47bb16f0f1f6e9a456feaf091847ca4a0847d89a8e425b313fa1bf0dd7f",
+        "size": 6468
+      },
+      {
+        "path": "tests/phase391_king_observer_schema.py",
+        "sha256": "ffcddfd2cbe58307f7258c1aefad5586a9179c6c452dc59c3342f9047f31457c",
+        "size": 208243
+      },
+      {
+        "path": "tests/phase391_oracle_host.py",
+        "sha256": "49df9df290a1c595a9a2acf69f1d3e1b81af889913d531d5327ed0ba9b16b0ef",
+        "size": 31092
+      },
+      {
+        "path": "tests/phase391_oracle_storage.py",
+        "sha256": "a443a0e8572e5a079bb106f6940d1d0d5b1e8a6fe59ab0bf9e85212d20e21718",
+        "size": 20410
+      },
+      {
+        "path": "tests/phase391_prepare_source.py",
+        "sha256": "a62c0fbfb8c9931ecad37dc41c3d5dc7ef7aea2e84992b94f468fa1e0714fb98",
+        "size": 24723
+      },
+      {
+        "path": "tests/phase391_schema_terminal_source.py",
+        "sha256": "3787338a1604b8f3f1f37a3b23d150485ac127e7eab1ccaf83370e2e59cfa24f",
+        "size": 19202
+      },
+      {
+        "path": "tests/phase391_sink_terminal_source.gd",
+        "sha256": "cc9bf9ce018caf8885eb6fb2ef3c93ef712e780459d22b6a774cf97ec50dfa66",
+        "size": 3823
+      }
+    ],
+    "labels": {
+      "profile": "observer7-390-native-single-king-A/1",
+      "schema_case": "KING-K1-A-353"
+    },
+    "install_limits": {
+      "files": 78,
+      "bytes": 815198
+    }
+  },
+  "oracle_processes": 0,
+  "models": 0,
+  "projection_calls": 0,
+  "Game_copies": 0,
+  "source_profile": "observer7-390-native-single-king-A/1",
+  "schema_case": "KING-K1-A-353",
+  "native_scope": "FIXED_A_SINGLE_KING_ORACLE_ONLY"
+}

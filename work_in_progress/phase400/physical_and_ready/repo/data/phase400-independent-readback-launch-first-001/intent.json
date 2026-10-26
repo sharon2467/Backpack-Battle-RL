@@ -1,0 +1,40 @@
+{
+  "READY": 0,
+  "args": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py",
+    "--execute",
+    "--authorization",
+    "data/phase400-root-attempt05-complete-restore/restore-authorization.json",
+    "--authorization-size",
+    "2051",
+    "--authorization-sha256",
+    "980f43d19a6cc96583f0d925dc314824892e4dc66b4c83cd632a745120ad2d00",
+    "--restore-receipt",
+    "data/phase400-root-attempt05-complete-restore/actual-restore/restore-receipt.json",
+    "--restore-receipt-size",
+    "1619",
+    "--restore-receipt-sha256",
+    "d53934bd8ca7514bbc2607bebc2da6e46e17a2c0cb7bb7ac3730fa2323526f66",
+    "--source-owner-size",
+    "96725",
+    "--source-owner-sha256",
+    "7a5cf72b88b3ab374fe8e7d3cd5a91fdf0ccedca3d29d849c6f77cc01541652b"
+  ],
+  "automatic_retry": false,
+  "cwd": "/workspace/python-original-engine/repo",
+  "environment_overrides": {
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "models": 0,
+  "native": 0,
+  "outer_timeout_seconds": 180,
+  "reader_calls_allowed": 1,
+  "restore": 0,
+  "root_release": {
+    "path": "data/phase400-root-attempt05-complete-restore/independent-readback-execution-release.json",
+    "sha256": "82ae0ffa5fa60f0c4d74cc8c702b0465ceea4ff4904c14b22d90e79891ebdb79",
+    "size": 1532
+  },
+  "schema": "phase400-independent-reader-once-intent/1"
+}

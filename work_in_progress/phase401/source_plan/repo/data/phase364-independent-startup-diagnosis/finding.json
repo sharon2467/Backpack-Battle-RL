@@ -1,0 +1,69 @@
+{
+  "actual_config_sources_equal": true,
+  "container_scope": "Actual tested Dictionary instances with equal {value:1} contents comparefalse unless alias; tested separately allocated scalar arrays[1,2] comparetrue. Do not generalize to arbitrary nested arrays/dictionaries.",
+  "evidence": [
+    {
+      "path": "data/phase364-independent-startup-diagnosis/empty-project/language-report.json",
+      "sha256": "74f300bb7d5b8c91f39f85ed2922c6d33f415ee83d20abbbaccc31d601dacede",
+      "size": 2908
+    },
+    {
+      "path": "data/phase364-independent-startup-diagnosis/language-run/language-execution-receipt.json",
+      "sha256": "b75a2af6461e90d472f92abae10f5f66ee313f6ad7a8ff5fbb9e96bfd0aa7c55",
+      "size": 4930
+    },
+    {
+      "path": "data/phase364-independent-startup-diagnosis/SOURCE/original-comparator.gd.txt",
+      "sha256": "16a2f06447fae2ff7b092fa689929d6b93c7ee9e346d5173f6b149515536423c",
+      "size": 940
+    },
+    {
+      "path": "data/phase364-independent-startup-diagnosis/other-comparison-points.json",
+      "sha256": "fc722c87b3bf3c715bbfd9afcddbaf0e08c0cfd277d0b3ea63f28993c0737a60",
+      "size": 1970
+    }
+  ],
+  "host_secondary": "363 execute reads capture/validation.json before classifying nonzero native exit/collector-first-failure. Its FileNotFound is secondary and hides the original control in the raised exception.",
+  "language_observations": {
+    "BOOLfalse_false_original_helper": false,
+    "BOOLtrue_true_native_equal": true,
+    "BOOLtrue_true_original_helper": false,
+    "JSON_types": [
+      "REAL",
+      "REAL",
+      "REAL",
+      "BOOL",
+      "BOOL",
+      "NIL"
+    ],
+    "container_operators": {
+      "array_alias_equal": true,
+      "array_distinct_equal_content": true,
+      "array_original_recursive_helper": true,
+      "dict_alias_equal": true,
+      "dict_distinct_equal_content": false,
+      "dict_original_recursive_helper": true
+    },
+    "only_failed_config_key": [
+      "player_fixture_enabled"
+    ],
+    "original_helper_whole_result": false
+  },
+  "minimal_source_changes": [
+    "Collector-local recursive literal comparator or narrowly new helper supports BOOL strictly and retains exact keys/types/INT-vs-REAL fixture representation. Do not relax observed typed ABI or update unrelated gameplay.",
+    "Apply consistent comparison to config/P/O callers, keeping current literals and role geometry fixed.",
+    "Host records original process/control failure first; missing validation is explicit incompletecapture, never an unguarded substitute primary error."
+  ],
+  "no_attempt_to_fix_SOURCE": true,
+  "numeric_explanation": "JSON.parse numeric tokens including1 and1.0 are REAL; expected constant seeds are INT. Existing helper explicitly permits exact REAL/INT numeric equality, and both seed comparisons plus timeout recursion passed. Numbers are not this rejection cause.",
+  "primary_cause": "The original source_same_slot_value has no TYPE_BOOL branch.362 newly applied it to SOURCE_CONFIG.player_fixture_enabled=true. Identical actual BOOLtrue/constant BOOLtrue therefore returnsfalse, causing fixed config differs before startup observe/battle.",
+  "primary_control": {
+    "capture_complete": false,
+    "code": "fixed config differs",
+    "cut_frozen": false,
+    "schema": "phase362-failure/1",
+    "stage": "startup"
+  },
+  "schema": "phase364-independent-startup-finding/1",
+  "status": "CONFIRMED_COLLECTOR_COMPARATOR_BOOL_DOMAIN_ERROR"
+}

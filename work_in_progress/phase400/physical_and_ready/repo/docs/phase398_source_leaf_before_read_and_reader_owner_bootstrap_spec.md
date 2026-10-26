@@ -1,0 +1,47 @@
+# 398 narrow SOURCE IO-contract repair
+
+## 1. Requirements
+
+Root authorized only the two blocking396 SOURCE findings F01/F02 plus jointly versioned398 authority/path/status metadata.395 and all earlier source/evidence remain immutable. Formal396 report17867B/SHA a3125598a959000943079e2c3b37c79bae66db07f83cfb89fff07dcd8df3d46f records18 SOURCE-PASS and2 BLOCKED of20 obligations; no dynamic SUT execution occurred. These findings concern the promised physical gate before content reading, not a proven write or operational authorization bypass.
+
+F01:395 `recovery_source_leaf` calls the old375 `descriptor`, which hashes the leaf before `regular_target` rejects unsafe file type/link count. New398 must validate descriptor primitive fields and canonical path without reading file content, call unchanged363 `regular_target`, then call the unchanged exact375 descriptor/hash verifier. Repair both the author gate template and actual generated recovery module. Do not edit either old helper or any storage/writer/lock/state function.
+
+F02:395 reader `prepare_contract` directly hashes/reads its source-owner bootstrap. Because an owner never owns itself, its physical type/link count is never checked through the strengthened leaf verifier. New398 must form a descriptor from the fixed SD-relative source-owner path plus actual CLI size/SHA, call its existing strict `verify_descriptor`, then decode only the returned verified path. No owner self-reference or weaker inspector check is allowed.
+
+This author may generate SOURCE, compile Python text without import, compare AST/complete byte inverses and read ordinary SOURCE descriptors. No SUT/recovery/reader/schema/model/FrameDriver/Godot, live pool/proc, restore/READY/native/inputbuild/projection or actual saved-map execution. Do not create another restore map or reread original capture. Reuse395 map68985B/SHA b9fae3743994c3f5a3b3e590a4b849b914cf0422343fd42738e4d639b6b13dc1 and524-row pins102475B/SHA b1eae13cfcc3094a38c965cedc8785226a92c54ed9b87e86e6487509b1081510 at their existing paths.
+
+## 2. Design
+
+New authority is `phase398-root-pool-recovery/1`; new recovery freeze schema `phase398-complete-install-recovery-SOURCE/1`; actual SOURCE root `data/phase398-attempt05-recovery-source`. Independent review status is `INDEPENDENT399_ATTEMPT05_COMPLETE_RECOVERY_SOURCE_ACCEPTED_ROOT_PENDING`; physical readback status `INDEPENDENT398_ATTEMPT05_RESTORED_POOL_EXACT_TARGET_READBACK_PASS`. These are interface literals, not fabricated reviews. Actual future review, Root restore config/receipt and READY release remain absent until separately produced.
+
+`MAP` and `INPUT_PINS` deliberately remain the original395 paths. Their schema `phase395-attempt05-complete-restore-source-map/1`, saved helper and complete380/failed05 provenance remain395/380/05. This truthful reuse prevents relabelling the old map as a newly generated398 result. No map-generation entrypoint is added. The full original78/7/2/80 semantics,76 install/73 prior backups,73+1+4 payload routes,524 saved descriptors,13 non-run sources,367 run files and380-member capsule logic are unchanged.
+
+F01 ordering is: validate exact dict keys -> strict path/INT size/lowercase64hex SHA fields -> unchanged `member(root,path)` canonical metadata resolution -> unchanged `regular_target(path)` -> unchanged `descriptor(root,row)` content hash/identity. The first three operations perform no content read. The existing canonical resolver may inspect path metadata; the type/link gate precedes hashing. Root's external pre-import pin remains an additional safeguard, not a substitute. This is not a new race-proof filesystem abstraction.
+
+F02 ordering is: parse CLI -> construct `{path: fixed SD/source-owner relative to R, size: CLI integer, sha256: CLI string}` -> existing `verify_descriptor(R,descriptor)` (canonical path, lstat regular/nlink1, then hash) -> `read(verified_owner_path)` -> unchanged owned-leaf validation. Owner non-self-reference and source hash DAG remain intact.
+
+New reader source directory/output paths and manifest/report labels use398. Its strict `verify_descriptor`, independent inventory/audit/CRC/kernel helpers, process controls and capsule functions retain exact395 AST/source. Copy only the existing inspector mirror and CAPSULE385 manifest into the new reader SOURCE directory; do not open the original capsule archive or run/capture. Source contracts refer to actual new recovery freeze/owner/API and preserve all old external evidence descriptors and actual bounded391/392/Root395 component context.
+
+The freeze/owners close the actual imports:398 recovery -> unchanged395 saved helper plus375host ->363process ->363storage ->native_run_compaction. Old source files/owners/findings are retained as historical provenance, not as new399 acceptance. New enclosing owners cover all actual generated source, inverse evidence, new contracts and inherited references, without self-hash cycles. Root supplies actual owner pins before import; runtime398 consumers enforce their own physical order.
+
+## 3. Realize — exact functions and metadata exceptions
+
+| Component | Exact change | Required conservation |
+| --- | --- | --- |
+|New `tests/phase398_recovery_gate_source.py::recovery_source_leaf(root,row)` | Check `type(row) is dict` and exact3keys; require path STRING, nonempty canonical slash components/no NUL/backslash, size strictINT>=0, SHA STRING of64 lowercasehex; resolve with `member`; call `regular_target`; return `descriptor(root,row)`. | No `pin`, `read` or descriptor call before regular_target. Old375 descriptor and363 member/regular_target bytes untouched. |
+|New `tests/phase398_pool_recovery.py::recovery_source_leaf` | Embed the exact new template function source. | Identical template/actual function text and AST; no other semantic recovery change. |
+|New recovery template/module `source_gate` |398 Root/freeze/review diagnostic literals only; module SOURCE/review/readback constants updated. | Control flow, review-owner/source-map bindings and context checks unchanged. MAP/INPUT_PINS stay395. Eleven original375 conserved recovery functions, including restore_exact/commit_ready/lock, remain byte/AST exact. |
+|New `tests/phase398_independent_restored_readback.py::prepare_contract` | Replace two direct bootstrap pin/read statements with fixed-path owner descriptor, existing strict verifier call, and read of returned path. Update398 Root/path/status diagnostic literals. | Existing verifier and all later leaf/review/receipt/inspector checks unchanged. No fabricated owner record or self-owned row. |
+|New reader module constants and `main` |398 SD/output/source filenames/doc/report/owner/status literals only. | All main execution logic and independent complete journal/process/capsule methods conserved after inverse literal normalization; original10 reader safety functions unchanged. |
+|New SOURCE preparer | Derive from exact395 sources by explicit edits, compile without import, record byte inverse and AST exceptions, inventory active versus reused protocol literals, readback old395/396 pins, create new freeze/owners/contracts/API. | No map/SUT import, no archive/run/capture read, no dependency or control-algorithm expansion. Preserve any preparation firsterror before correction. |
+|New API/source contracts | Bind398 recovery/reader owners andfreeze; keep original map/pins descriptors, external targets, inspector/capsule bytes and context. | Future399 review/Root restore/physical/READY descriptors remain null or required-at-runtime, never invented. |
+
+The preparer proves two layers: (a) reversing all semantic plus protocol edits reconstructs exact395 bytes; (b) reversing protocol literals alone leaves only recovery_source_leaf and reader prepare_contract semantic AST differences. The395 original method inventories establish all11 recovery and10 reader conserved functions. The actual gate template and generated module must agree for both gate functions.
+
+## 4. Acceptance criteria and independent gates
+
+Author checks are SOURCE-only: compile all new Python without import; verify exact two semantic function exceptions and complete byte inverse; inspect AST call ordering (metadata validation/member -> regular_target -> descriptor; reader verify_descriptor -> read owner_path); verify exact old map/pins identities and524 count without invoking helpers; old395/396 source-owner readback; ordinary+nlink1 new owner closure; real fixed inspector bytes and unchanged consumer verify-before-AST; noncyclic owner links and protocol inventory. No author dynamic substitute for399 controls is permitted.
+
+Independent399 should freeze concrete finite cases before execution: ordinary correct descriptor passes the isolated F01 wrapper; hardlink/symlink/special/noncanonical/wrong field cases reject before content hash/read; normal reader source-owner bootstrap passes only strict verifier; hardlinked/symlinked owner rejects before content read, irrespective of matching bytes/CLI pin; invalid size/SHA remains rejected. The original unexecuted395 bounded controls and two findings remain independently tracked; any full source acceptance must use actual new398 descriptors. These future checks are not claimed run here.
+
+After Sourceowner sealing, stop for Root/399 review. Operational recovery, independent actual full-tree reader, READY and native attempt remain separate gates. Original combat, King admission,356/361 and model boundaries are unchanged.

@@ -1,0 +1,126 @@
+{
+  "READY_commit": {
+    "path": "data/phase400-root-attempt05-complete-restore/commit-ready-invocation.json",
+    "sha256": "1d17a5a0182a3dd3982132b5367392a5982ac69c6a19b2e822fd8537773eeead",
+    "size": 1056
+  },
+  "active_source_tuple": {
+    "path": "data/phase391-terminal-source/source-tuple.json",
+    "sha256": "883e9b20dfb4c268cd265910ad7adedc403aac785287f2f39f859cdcdac8f8e6",
+    "size": 1551
+  },
+  "attempt": 6,
+  "case_id": "NATIVE-027-KING-A",
+  "expected_comparison_allowed": 0,
+  "host": {
+    "path": "tests/phase391_oracle_host.py",
+    "sha256": "49df9df290a1c595a9a2acf69f1d3e1b81af889913d531d5327ed0ba9b16b0ef",
+    "size": 31092
+  },
+  "independent_physical_readback": {
+    "path": "data/phase398-independent-actual-readback-first-001/review.json",
+    "sha256": "189d6347329c6f59d4c44c684fb4c558284beef1233b54ce3c910d10abe1e769",
+    "size": 4972
+  },
+  "input_builds_allowed": 0,
+  "intent": {
+    "path": "data/phase401-root-native-attempt06/intent.json",
+    "sha256": "217a0e058490775ba0f7d2daa1992a385da14a6d0cb04ac154b85ef14d96c9d3",
+    "size": 807
+  },
+  "limitations": [
+    "polling is notkernelaggregatequota and may overshoot betweenpolls",
+    "SOURCE/language/helper acceptance is notoriginalKing/full12/fullprojection/production fullsnapshot acceptance",
+    "onlyfixedA oraclecapture, noPythonmodel/inputbuild/expectedsemanticcomparison",
+    "noautomaticretry/reseed/relayout"
+  ],
+  "models_allowed": 0,
+  "relocations": {},
+  "resource_policy_decision": {
+    "path": "data/phase362-root-plan/resource-policy-decision.json",
+    "sha256": "703675b921427c0149ce62281e3668bea4a5a37d382b03647662e7a5ccd2eb3a",
+    "size": 1685
+  },
+  "resources": [
+    {
+      "path": "tests/godotsteam_offline_exec.py",
+      "root": "source",
+      "sha256": "78beb697959d28b45c40f7a93174d22c67f711c077f5f7dcfb22ca10e69dd961",
+      "size": 4218
+    },
+    {
+      "path": "tests/native_run_compaction.py",
+      "root": "source",
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260",
+      "size": 27304
+    },
+    {
+      "path": "engine/godotsteam.362.editor.x86_64",
+      "root": "task",
+      "sha256": "09d1de6c4f97289c018556666c13c1d81093a5df5c2255725d464a87f40a8ea1",
+      "size": 77646552
+    },
+    {
+      "path": "engine/libsteam_api.so",
+      "root": "task",
+      "sha256": "0f2c41c20644503c17e13498203986493332fc8296dbd78493bc1fed352ec0cc",
+      "size": 388288
+    },
+    {
+      "path": "debian/usr/bin/xvfb-run",
+      "root": "task",
+      "sha256": "97e86a102eee7212bfa3bf87d452b27dd4f16ef6e68658eeae20bca63db2ceee",
+      "size": 6082
+    },
+    {
+      "path": "debian/usr/bin/Xvfb",
+      "root": "task",
+      "sha256": "16667b1eaafbe0b09527c2152e45f81b4b8e977012281062fc2fb2427afa66ce",
+      "size": 2131520
+    }
+  ],
+  "restoration_invocation": {
+    "path": "data/phase400-root-attempt05-complete-restore/restore-invocation.json",
+    "sha256": "fa12fc9d53f1210b0f36fe798d1964fba9751f2a20f45b43f08f6f272217d5ec",
+    "size": 1163
+  },
+  "reviews": [
+    {
+      "owner": {
+        "path": "data/phase392-independent-final/owned-files.json",
+        "sha256": "33bffb30051a21a58f54f0aa60a807503f898b30701d702a566dfb024256ed66",
+        "size": 62001
+      },
+      "receipt": {
+        "path": "data/phase392-independent-final/review.json",
+        "sha256": "8e76269101c23e4e5143f0520f85ac1386336a9502abb98897c6e28656cbc3a2",
+        "size": 9159
+      }
+    }
+  ],
+  "root_oracle_authorized": true,
+  "root_source_acceptance": {
+    "path": "data/phase401-root-native-attempt06/source-accepted.json",
+    "sha256": "c85bf2a11fd82c60609a25460d3f8a8122453c3f9cf4ac1ae0f9d4c5b245aa64",
+    "size": 1305
+  },
+  "run_name": "original027-king-single-A-20261026-attempt06",
+  "schema": "phase391-root-oracle-acceptance/1",
+  "source_freeze": {
+    "path": "data/phase391-terminal-source/combined-source-freeze.json",
+    "sha256": "e55a602c9d7087a71a2fe6b78a3a143663fc8f0f659c0fe3fb690019ba8173c9",
+    "size": 65361
+  },
+  "source_owner": {
+    "path": "data/phase397-root-native-execution-closure/execution-source-owner.json",
+    "sha256": "e7d8b87673eb56ca432e3d8c3401c4c44b5f3c60f6b4a10de5c99b673fd1876a",
+    "size": 10755
+  },
+  "status": "ROOT_FIXED_ATTEMPT06_AFTER_ACTUAL80_RESTORE_INDEPENDENT398_PHYSICAL_AND_ACTUAL_READY",
+  "timeouts": {
+    "battle": 120,
+    "collector": 295,
+    "runner": 300
+  },
+  "write_policy": "bounded-writers-and-monitored-process/1"
+}
