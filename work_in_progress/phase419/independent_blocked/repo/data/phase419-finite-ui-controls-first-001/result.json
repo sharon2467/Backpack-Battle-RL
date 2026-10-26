@@ -1,0 +1,79 @@
+{
+  "EXPECTED_reads": 0,
+  "actual_projection_calls": 0,
+  "audit_calls": 0,
+  "automatic_retry": false,
+  "controls": [
+    {
+      "API": "project_ui",
+      "cut": {
+        "byte_offset_after": 1723,
+        "line": 5,
+        "ui_sequence": 4
+      },
+      "expected": "RETURN; both roles gaps[]; firstroles ui_sequence4; poison suffix ignored",
+      "id": "valid_prefix_opaque_suffix",
+      "outcome": "RETURN",
+      "passed": true,
+      "per_role_gaps": {
+        "king_drag:P:12": [],
+        "king_hide:P:12": []
+      }
+    },
+    {
+      "API": "project_ui",
+      "cut": {
+        "byte_offset_after": 2038,
+        "line": 6,
+        "ui_sequence": 5
+      },
+      "expected": "REJECTED or activation-role UNSUPPORTED_INITIAL_UI_PATH; never nogap for unknown selected site",
+      "id": "unknown_selected_site",
+      "outcome": "RETURN",
+      "passed": false,
+      "per_role_gaps": {
+        "king_drag:P:12": [],
+        "king_hide:P:12": []
+      }
+    }
+  ],
+  "elapsed_seconds": 0.009607247993699275,
+  "failed_controls": 1,
+  "first_failure": {
+    "API": "project_ui",
+    "cut": {
+      "byte_offset_after": 2038,
+      "line": 6,
+      "ui_sequence": 5
+    },
+    "expected": "REJECTED or activation-role UNSUPPORTED_INITIAL_UI_PATH; never nogap for unknown selected site",
+    "id": "unknown_selected_site",
+    "outcome": "RETURN",
+    "passed": false,
+    "per_role_gaps": {
+      "king_drag:P:12": [],
+      "king_hide:P:12": []
+    }
+  },
+  "models": 0,
+  "native": 0,
+  "new_module_instances": 1,
+  "observed_rejections": 0,
+  "old_SUT_calls": 0,
+  "passing_controls": 1,
+  "private_verified_gate_constructed": false,
+  "raw_carrier_reads": 0,
+  "remaining_controls_unexecuted": "Role/counter/slot/lineage boundary/authority/filesystem controls pending behind first blocker; no actual run",
+  "schema": "independent419-first-finite-ui-controls/1",
+  "schema_calls": 0,
+  "source_module": {
+    "path": "tests/phase418_initial_autohide_projection.py",
+    "sha256": "c94e869d71ae105c6fc3f0d216303869651486ea8cd501d30274a124042d0281",
+    "size": 31698
+  },
+  "status": "FIRST_FUNCTIONAL_COUNTEREXAMPLE_STOP",
+  "successful_returns": 2,
+  "top_level_API_calls": 2,
+  "trusted_stdlib_startup": "before complete pinned418 load; no exhaustive startup-preload claim",
+  "whole_Root_positive_fabricated": false
+}

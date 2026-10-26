@@ -1,0 +1,3 @@
+# Independent BLOCKED functional evidence
+
+One real test process loaded the complete418 module once and called project_ui twice. The valid initial-prefix/opaque-invalid-suffix control passed. An unknown selected activation site with classification supported_activation incorrectly returned empty gaps; the second control failed and testing stopped. Other planned controls were not executed. Exact presealed inputs, expected result, runner, first-failure outputs and independent SOURCE intermediate conclusion are retained. No raw capture/EXPECTED/SUT/model/native or real projection was invoked. This review supplies no accepted runtime token.

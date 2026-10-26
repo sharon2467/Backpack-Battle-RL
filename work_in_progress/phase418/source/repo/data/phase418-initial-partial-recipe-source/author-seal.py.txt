@@ -1,0 +1,125 @@
+# SOURCE author preparation only. Never imports or calls the projection module.
+import ast
+import hashlib
+import json
+import os
+from pathlib import Path
+import stat
+
+R = Path('/workspace/python-original-engine/repo')
+D = R/'data/phase418-initial-partial-recipe-source'
+B = Path('/workspace/godotsteam-startup-20261013/baseline/Backpack Battles')
+
+def read(path):
+    p = Path(path)
+    if not p.is_absolute(): p = R/p
+    for q in reversed((p,) + tuple(p.parents)):
+        s = q.lstat()
+        assert not stat.S_ISLNK(s.st_mode), str(q)
+        assert stat.S_ISDIR(s.st_mode) if q != p else stat.S_ISREG(s.st_mode) and s.st_nlink == 1, str(q)
+    return p.read_bytes()
+
+def pin(path):
+    raw = read(path)
+    return {'path': str(path), 'size': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()}
+
+def load(path): return json.loads(read(path))
+def write(name, obj):
+    p = D/name
+    raw = (json.dumps(obj,ensure_ascii=False,indent=2)+'\n').encode()
+    with p.open('xb') as f: f.write(raw)
+    assert read(p) == raw
+    return pin(str(p.relative_to(R)))
+
+assert not (D/'source-owner.json').exists()
+supp = load('data/phase418-root-finite-source-supplement/source-supplement.json')
+socket = load('data/phase418-root-finite-source-supplement/socket-member-supplement.json')
+# Explicit finite source set; descriptor strings below are not followed recursively.
+paths = [x['path'] for x in supp['files'] + socket['files']]
+paths += [
+ 'data/phase359-king-producer-source/after-source/Utility/AutoHideParticles.gd',
+ 'data/phase359-king-producer-source/after-source/Utility/Util.gd',
+ 'data/phase359-king-producer-source/after-source/Items/Item.gd',
+ 'data/phase359-king-producer-source/after-source/Items/Exclusive/KingGoobert.gd',
+ str(B/'Items/Exclusive/KingGoobert.tscn'), str(B/'Items/Item.tscn'),
+ 'data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd',
+ 'data/phase391-terminal-source/native-patch-source.json',
+ *['data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/'+n for n in ('timer.cpp','timer.h','node.cpp','scene_tree.cpp')],
+ 'data/phase418-root-finite-source-supplement/source-supplement.json',
+ 'data/phase418-root-finite-source-supplement/socket-member-supplement.json',
+ 'data/phase418-root-finite-source-supplement/native-timer-attribution-proposal.json',
+ 'data/phase417-independent-minimal-partial-recipe-review/review.json',
+ 'data/phase419-independent-autohide-projection-review/source-intermediate-review.json',
+ 'data/phase411-root-initial-audit-release/input-audit-release.json',
+]
+# Verify known source pins against existing authorized finite metadata, no referenced run reads.
+catalog = {}
+def collect(obj):
+    if isinstance(obj,dict):
+        if {'path','size','sha256'} <= obj.keys():
+            d = {k:obj[k] for k in ('path','size','sha256')}
+            if d['path'] in catalog: assert catalog[d['path']] == d
+            catalog[d['path']] = d
+        for v in obj.values(): collect(v)
+    elif isinstance(obj,list):
+        for v in obj: collect(v)
+for meta in [supp,socket,
+ load('data/phase405-initial-source-feasibility-design/finite-source-allowset.json'),
+ load('data/phase412-initial-source-chain-design/finite-read-scope.json'),
+ load('data/phase412-initial-source-chain-design/scope-supplement-002.json')]: collect(meta)
+pins = [pin(p) for p in paths]
+checked = []
+for d in pins:
+    if d['path'] in catalog:
+        assert d == catalog[d['path']], d['path']
+        checked.append(d['path'])
+assert len(checked) >= 19, len(checked)
+edge = load('data/phase418-initial-partial-recipe-source/source-edge-list.json')
+edge['schema'] = 'phase418-finite-autohide-source-rule/1'
+edge['status'] = 'SOURCE_IMPLEMENTED_PENDING_FINAL419_AND_SEPARATE_ROOT_RELEASE'
+edge['new_source_count'] = 7
+edge['new_source_bytes'] = 6376
+edge['socket_member_edge'] = {'supplement': pin('data/phase418-root-finite-source-supplement/socket-member-supplement.json'), 'files': [{k:x[k] for k in ('path','size','sha256')} for x in socket['files']], 'chain': 'KingGoobert scene -> GemSocket.tscn -> GemSocket.gd plain var item=null without setget; Item.initSockets assignment invokes no script setter.', 'excluded_scope': 'No optional Gem callback/resource recursion.'}
+edge['417_design_review'] = pin('data/phase417-independent-minimal-partial-recipe-review/review.json')
+edge['419_source_intermediate'] = pin('data/phase419-independent-autohide-projection-review/source-intermediate-review.json')
+edge['intermediate_is_final_permission'] = False
+edge['rule'] = {'name':'AUTOHIDE_IMMEDIATE_CONSTRUCTOR_NO_START/1', 'roles':['king_hide:P:12','king_drag:P:12'], 'phases':['pre_prepare','pre_activate'], 'premises':['Exact final419 accepted SOURCE/runtime dispositions and fresh Root release','Selected fresh scene/generation/owner/Timer domain from initial-only projection','Immediate birth before add_child with autostartfalse and inactive flags','Same Timer/owner through both checkpoints and facts','Zero monotone starts/stops over lifetime with exact bounded writer coverage'], 'conclusion':'Conditionally deduce binary64-1, never direct private measurement or inference from public0.', 'other_targets_disabled':84}
+# This preparation file is intentionally unsealed until this author run completes.
+(D/'source-edge-list.json').write_text(json.dumps(edge,ensure_ascii=False,indent=2)+'\n')
+edgepin = pin('data/phase418-initial-partial-recipe-source/source-edge-list.json')
+pins.append(edgepin)
+release = load('data/phase411-root-initial-audit-release/input-audit-release.json')
+data = {'index': {'path':'data/phase408-initial-audit-first-001/rawtyped-field-index.json','size':1494877,'sha256':'27f4a859ba9144314bb25764d6787e07c8c929e96b44c37a077c4437c47cd46b'}}
+for name, file in [('slots','king-slot-bindings.json'),('lineage','observer7-lineage.jsonl'),('ui','king-ui-authority.jsonl')]:
+    data[name] = {'path':release['input_directory']+'/'+file, **release['input_files'][file]}
+sink = read('data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd').decode()
+slotlines = [line for line in sink.splitlines() if line.startswith('const SOURCE_SLOT_TABLE = ')]
+assert len(slotlines) == 1
+slots = json.loads(slotlines[0].split(' = ',1)[1]); assert len(slots) == 39
+context = {'schema':'phase418-fixed-source-context/1','data':data,'slot_table':slots,'source_pins':pins,'owner_domain_rule':edgepin,'native_attribution_proposal':pin('data/phase418-root-finite-source-supplement/native-timer-attribution-proposal.json'),'scope':'Exact finite SOURCE/control pins only. Data are deferred Root-authorized descriptors; author never opens three carriers. No recursive path following. Stdlib startup is outside module I/O gate.'}
+contextpin = write('context.json',context)
+module = 'tests/phase418_initial_autohide_projection.py'
+raw = read(module)
+compile(raw,module,'exec')
+tree = ast.parse(raw)
+imports = [ast.unparse(n) for n in tree.body if isinstance(n,(ast.Import,ast.ImportFrom))]
+assert imports == ['import argparse','import hashlib','import json','import os','from pathlib import Path','import re','import stat','import struct'], imports
+functions = [{'name':n.name,'signature':ast.unparse(n.args),'line':n.lineno,'end_line':n.end_lineno} for n in tree.body if isinstance(n,ast.FunctionDef)]
+api = {'schema':'phase418-actual-source-api/1','module':pin(module),'functions':functions,
+ 'CLI':'python tests/phase418_initial_autohide_projection.py --release data/phase418-root-initial-partial-projection-release/release.json --release-size ACTUAL_BYTES --release-sha256 ACTUAL_SHA',
+ 'Root_release':{'path':'data/phase418-root-initial-partial-projection-release/release.json','schema':'root418-initial-autohide-projection/1','action':'ONE_INITIAL_AUTOHIDE_PROJECTION','required_fields':['schema','action','source_owner','source_review','review_owner','context','data','output'],'context':contextpin,'data':data,'output':str(R/'data/phase418-initial-partial-projection-first-001'),'descriptors':'Exactly path,size,sha256; future real Root/review descriptors are not fabricated.'},
+ 'final419_review':{'schema':'independent419-autohide-partial-recipe-final-review/1','status':'INDEPENDENT419_AUTOHIDE_PARTIAL_RECIPE_SOURCE_AND_FUNCTIONAL_ACCEPTED_ROOT_PENDING','final_seal':True,'required_bindings':['source_owner exact descriptor matching release','owner_domain_rule exact context descriptor','native_attribution_proposal exact context descriptor'],'G01':{'status':'ACCEPTED_FOR_EXACT_FIXED_AUTOHIDE_SOURCE_DOMAIN'},'G02':{'status':'ACCEPTED_BOUNDED_VERSION_ATTRIBUTED_NATIVE_SEMANTICS_FOR_RULE_A'},'note':'Interface values only, not a review receipt; only final independent SOURCE+functional acceptance can supply them. Pending/absent G01/G02 produces MISSING; intermediate schema never accepted.'},
+ 'owner_shape':{'files':'List of ordinary exact path,size,sha256 descriptors. source_owner must own context and module; review_owner must own source_review. Owner excludes itself.'},
+ 'synthetic_boundary':'Pure parsers and check_autohide_role may be independently tested on synthetic bytes/rows. check_autohide_role has no actual_value/admission. A dictionary/caller bool cannot satisfy derive gate. Real verify_release/run requires actual Root/final review; do not fabricate positive authority.',
+ 'startup':'External launcher pins source owner/module before import; interpreter stdlib startup is explicitly outside module-level I/O gate.',
+ 'outputs':['initial-provenance.json','delta-report.json','owned-files.json','first-error.json only after failure'],
+ 'author_execution':{'imports':0,'function_calls':0,'actual_projection':0,'old_SUT_schema_model_native':0,'raw_carrier_EXPECTED_reads':0}}
+write('api-contract.json',api)
+write('author-static-checks.json',{'schema':'phase418-author-source-checks/1','status':'COMPILE_AST_AND_FINITE_PINS_ONLY_NOT_FUNCTIONAL_ACCEPTANCE','module':pin(module),'compile':'PASS_WITHOUT_EXECUTION','imports':imports,'top_level_functions':len(functions),'known_prior_pins_checked':checked,'source_pin_count':len(pins),'source_pin_bytes':sum(d['size'] for d in pins),'source_slot_count':39,'source_slot_extraction':'Literal JSON const SOURCE_SLOT_TABLE from pinned391 sink; no module import/inputbuild.','first_errors_observed':[],'actual_calls':api['author_execution'],'constraints':'No dynamic tests, no author positive carrier control, no future receipt hash, no old file writes.'})
+local = ['docs/phase418_autohide_partial_recipe_implementation_spec.md',module] + [str((D/n).relative_to(R)) for n in ('author-seal.py.txt','source-edge-list.json','context.json','api-contract.json','author-static-checks.json')]
+freeze = write('source-freeze.json',{'schema':'phase418-initial-partial-source-freeze/1','status':'SEALED_SOURCE_PENDING_INDEPENDENT419','local_files':[pin(p) for p in local], 'source_dependencies':[d for d in pins if d['path'] not in local],'deferred_data_descriptors':data,'runtime_imports':imports,'actual_calls':api['author_execution'],'immutable_old_sources':True,'actual_promotions':0,'remaining_missing':88,'fullschema':'NOT_VALIDATED','King_admitted':False})
+allfiles = {d['path']:d for d in pins}
+for p in local: allfiles[p] = pin(p)
+allfiles[freeze['path']] = freeze
+owner = write('source-owner.json',{'schema':'phase418-initial-partial-source-owner/1','status':'SEALED_PENDING_INDEPENDENT419_SOURCE_FUNCTIONAL_REVIEW','files':list(allfiles.values()),'file_count':len(allfiles),'bytes':sum(d['size'] for d in allfiles.values()),'deferred_data_are_not_source_owned':True,'no_further_writes':True})
+print(json.dumps({'owner':owner,'file_count':len(allfiles),'bytes':sum(d['size'] for d in allfiles.values()),'module':pin(module),'context':contextpin,'api':pin('data/phase418-initial-partial-recipe-source/api-contract.json'),'freeze':freeze},indent=2))

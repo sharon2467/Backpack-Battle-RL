@@ -1,0 +1,23 @@
+{
+  "schema": "root418-two-leaf-socket-member-supplement/1",
+  "scope": "KingGoobert.tscn selects Items/GemSocket.tscn in its two Socket nodes;scene selects Items/GemSocket.gd. Check the actual Socket.item declaration and any item setter only,plus scene binding. No unrelated optional Gem callbacks or recursive resources.",
+  "reason": "419 identified Item.initSockets direct assignment socket.item=self;determine whether actual member has setget setter.",
+  "files": [
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/GemSocket.tscn",
+      "size": 700,
+      "sha256": "5d84160b169b7bf0602098028adcb00f503e53027a6e1556ae11d9864b5e5d89",
+      "patch_overlay": false
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/GemSocket.gd",
+      "size": 1117,
+      "sha256": "cc98f6294227b10e2113b8d10cd3bf4037b1d361815b738fb2ff0ae6dbb76814",
+      "patch_overlay": false
+    }
+  ],
+  "authority": "Matches401 baseline snapshot and absent391patch;read only supplemental exact two leaves",
+  "new_native": 0,
+  "new_projection": 0,
+  "target_promotions": 0
+}
