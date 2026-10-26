@@ -1,0 +1,42 @@
+# Phase426 — Saved-artifact KingBuff pair overlay
+
+## 1. Requirements
+
+Implement only425's accepted SCENE_TIMER_CONFIGURED_NO_START/1 for Timer.private_left / king_buff:P:12 at pre_prepare and pre_activate. The two targets are native81717/owner81679, index1432/1476. Current accepted accounting remains1391 DIRECT +4 AutoHide SOURCE_DERIVED +84 MISSING, four chains/one family. Author implementation changes no accounting and executes no module/helper/synthetic/actual rule.
+
+Only three saved data files are allowed:411 rawtyped index, accepted initial-provenance and acceptedA4 delta. SOURCE/control pins are a separate fixed list. No original carrier/EXPECTED read,420 helper import/call, prior59/N3/423 rerun, oldSUT/schema/model/native or Timer/business changes. Immutable prior files are reused by descriptor. Author uses compile/AST and finite physical pins only.
+
+## 2. Design
+
+A new Root release, final independent427 SOURCE+functional review and the actual425 scene-rule acceptance precede any actual candidate value output. The spent420 release is not accepted. New fixed relative output is data/phase426-king-buff-overlay-first-001. Root schema root426-saved-kingbuff-overlay/1, action ONE_SAVED_KINGBUFF_PAIR_OVERLAY. Independent final schema independent427-kingbuff-overlay-source-functional-review/1 and status INDEPENDENT427_KINGBUFF_OVERLAY_SOURCE_AND_FUNCTIONAL_ACCEPTED_ROOT_PENDING, final_seal=true, bind source_owner/context/design_review/Root423 acceptance. These are interface definitions, not invented future receipts.
+
+Source context fixes exactly three saved data descriptors and actual Root423/independent423/output-owner/425 review descriptors. It reuses424 source-rule pins (including the one packed_scene.cpp bridge and explicit standard ClassDB/setter/scene-loading premises) without re-auditing them. Runtime checks Root423's review ownership and the acceptedA4 output ownership, and425's exact accepted status/scope. Independent427 must accept the exact implementation plus inherited rule. Missing review/pin authority rejects before data access; missing actual proof support makes the KingBuff pair MISSING. No caller Boolean or intermediate review supplies a gate. External launcher must pin code before Python import; interpreter/stdlib startup remains outside module-level I/O checks.
+
+Strict read_regular helpers are copied as SOURCE text from420, not imported. Canonical ancestor/no-symlink/regular nlink1/size gates precede content access, with O_NOFOLLOW/inode/stable metadata/SHA and readback. Runtime source/data paths come only from fixed context/real release; metadata strings in the input are not followed. Three saved JSON objects are parsed with strict duplicate-key/nonfinite checks. Fresh directory/files are exclusive; first error and partial outputs remain without retry. Invalid authority before output reservation is left for the launcher's preserved stderr/exit receipt.
+
+Index: retain the original1479-row/1391DIRECT/88MISSING layout without constructing runtime objects. Require unique fixed keys and strict proof flags. Inspect exactly19 public fields perphase plus six birth-ledger facts for KingBuff, retaining index/input_refs. Reference pointers, native IDs and checkpoints138/1231, line1/4, node57 are exact. Missing required support yields a paired gap; wrong types, conflicting IDs or forged references reject. Scene mode must be INT0, one_shottrue at birth/current; autostart/pausedfalse, wait binary64+1, public+0, stoppedtrue, correct class/name/path/positions and inactive flags. A typed but nonmatching configuration or nonzero integer count is unsupported/MISSING, never a default value; bool/negative counters reject. Birth kind must be King.scene.instance; an AutoHide kind cannot inherit this rule. Both phases must be complete before either is promoted.
+
+Saved provenance: require one first selected fresh scene record, normal Item._ready pair and their actual shared order36/37/38, exact slot P:12/King81679/item262/descriptor12018/Character47611/inventory48429. Require exactly one UI generation1/nonpooled/outside-tree King binding with exact script/scene and matching first roles payload. UI1029/1076 is a separate ordering space. A missing record yields a pair gap; duplicates/foreign/contradictory identities reject. This does not rerun raw prefix parsing or claim later suffix semantics.
+
+A4 delta: require exactly88 unique target keys, exactly four accepted AutoHide rows with correct index/value/rule/strict proof, and other84 MISSING without actual_value. Runtime raw hash and actual423 acceptance bind the entire A4 document, including all evidence. The result preserves all86 non-KingBuff row objects exactly; no field is changed in acceptedA4. A4 count/status/identity mismatches reject. Overlay is a full88-row list, with only KingBuff's two rows replaced by either paired gap rows or paired SOURCE_DERIVED candidates. The original1391DIRECT rows are referenced unchanged by exact index pin, not rewritten. Check disjoint union,0or2 new chains and4or6 total; other82 remain MISSING. A successful overlay remains pending independent actual two-chain acceptance and keeps fullschema NOT_VALIDATED, genuine input/King/model CLOSED.
+
+## 3. Realize — exact planned APIs
+
+Module tests/phase426_king_buff_overlay.py. No generic storage/proof framework.
+
+- Reuse SOURCE-identical `require`, `integer`, `same`, `strict_json`, `canonical_path`, `physical_path`, `descriptor`, `read_regular`, `target_keys`, `load_initial_index`, `save_new`; constants and target role are426-specific. Their compile/AST identity to420 is recorded, no import.
+- `row_key(row)`: strict field/phase/role tuple. `validate_a4(delta,index)`: exact88-key fixedA4 domain and original-index join; returns rows unchanged. No source admission from this helper.
+- `collect_kingbuff_initial(index,provenance)`: returns typed evidence and paired gaps only, no derived private value. Twophase public fields and six facts checked individually. Missing support and unsupported configuration are reasons; invalid types/IDs/duplicates reject. Validate selected provenance in this same bounded function.
+- `_VerifiedGate(token,receipts)`: internal gate created only after `verify_kingbuff_release(release_descriptor,io)` binds fresh Root/final427/context and actual423/425 controls. Returns context/gate; no data reads before verification.
+- `derive_kingbuff_pair(index,a4,evidence,gate)`: require verified internal gate, form exactly two new rows, preserve other86 rows by JSON-value identity, and verify counts. Only a gap-free pair emits binary64 bff0000000000000 with exact source/control/evidence references. Pure helper outputs before this contain no actual candidate value/admission.
+- `run(release_descriptor)`: reserve output once; read three saved objects, collect/derive and write overlay-report.json with full88 rows, proof-evidence.json and owned-files.json; first-error on failure. `main()` requires release path/size/SHA; no optional role or raw-carrier mode.
+
+Final signatures and actual line ranges are in api-contract.json. context stores no future reviewSHA. Source owner includes all new code/metadata plus finite actual SOURCE/control leaves; deferred data descriptors are not copied into SOURCE closure.
+
+## 4. Acceptance Criteria / Tests
+
+Author: compile without executing; AST import inventory limited to stdlib; reused helper byte/AST comparison; fixed source/control descriptors and three saved descriptor metadata; no module import/API run. Preserve preparation errors rather than overwrite them.
+
+Independent427, without replaying old59/N3/423, checks the minimum425 controls: correct sceneTimer mode0/one_shottrue; AutoHide kind/mode substitution; wrong scene/script/pool/generation/owner/Timer/phase; missing/duplicate support; exact pointer and typed-wrapper mismatch; bool/negative/nonzero counters; active flags/autostart; missing/forged rule/Root/final427 authority; intermediate/stale420 rejection; unchangedA4 evidence and disjoint88-key union; attempted one-row promotion; raw path/link/hash/freshoutput boundaries. Pure synthetic helper checks cannot forge a positive Root gate. Record which controls actually execute and stop/preserve first unexpected result.
+
+After independent SOURCE+functional acceptance, Root may separately release one saved-only actual overlay. Independent actual review must verify both new chains and immutableA4 before changing counts. Author stops at SOURCE seal; no actual candidate or model admission is claimed.

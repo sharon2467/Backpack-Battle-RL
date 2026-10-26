@@ -1,0 +1,183 @@
+{
+  "schema": "independent425-king-buff-scene-rule-design-review/1",
+  "status": "INDEPENDENT425_KINGBUFF_TWO_TARGET_SCENE_RULE_DESIGN_ACCEPTED_ROOT_PENDING",
+  "final_seal": true,
+  "decision": "Accept the bounded SOURCE/design for SCENE_TIMER_CONFIGURED_NO_START/1, with the explicit native-dispatch and version-attribution premises below. It is sufficiently concrete for a separately authorized small saved-artifact overlay implementation. No actual KingBuff target is accepted here.",
+  "independent_role": "Reviewer is not the424 design author or a subsequent implementation author.",
+  "author_owner": {
+    "path": "data/phase424-king-buff-rule-design/owned-files.json",
+    "sha256": "350e41c35aea287a74c7c67a9ee766ddb8614ed4e54f218f0d4589149c4b34d9",
+    "size": 643
+  },
+  "author_leaves": [
+    {
+      "path": "docs/phase424_king_buff_initial_rule_spec.md",
+      "size": 12653,
+      "sha256": "f099abc0c9cf5569d570d295f469c64176105f110303e014f4e8291a5d322edf"
+    },
+    {
+      "path": "data/phase424-king-buff-rule-design/rule-table.json",
+      "size": 16242,
+      "sha256": "84a553e9635686be9902fa7020aa724c65d4a3000482f843a44f1ecd09fe5b10"
+    }
+  ],
+  "evidence": {
+    "path": "data/phase425-independent-king-buff-design-review/evidence.json",
+    "size": 35040,
+    "sha256": "afd2c8b154ce5711aae8c3a8aabab519190c32bc69f14d540c18bb37fcade0e5"
+  },
+  "scope": {
+    "rule_family": "SCENE_TIMER_CONFIGURED_NO_START/1",
+    "role": "king_buff:P:12",
+    "native_timer": "81717",
+    "owner": "81679",
+    "target_chains": 2,
+    "phases": [
+      "pre_prepare",
+      "pre_activate"
+    ],
+    "index_targets": [
+      1432,
+      1476
+    ],
+    "candidate_private_binary64": "bff0000000000000",
+    "is_private_measurement": false,
+    "new_promotions": 0
+  },
+  "independent_findings": [
+    {
+      "edge": "Saved public/fact identity",
+      "result": "PASS",
+      "evidence": "Exactly19 public rows per phase (615..633 and1287..1305), plus6 lineage facts1370..1375, match424 field IDs, values, strict types, phases, role and exact411 input pointers. These44 are the necessary selected subset, not all1391 DIRECT fields. Both missing private targets are still UNPROVEN."
+    },
+    {
+      "edge": "Selected owner and independent sequence spaces",
+      "result": "PASS",
+      "evidence": "Saved selected slotP:12 binds King81679/item262/descriptor12018/Character47611/inventory48429. Nonpooled scene instance and completed Item._ready records have shared sequences36,37,38. The independent UI generation1 bind1029 and roles1076 bind the same King/scene/script; they are not compared numerically to shared checkpoint138/1231."
+    },
+    {
+      "edge": "Scene-created Timer, distinct from Timer.new",
+      "result": "PASS_UNDER_EXPLICIT_NATIVE_DISPATCH_PREMISES",
+      "evidence": "King scene declares new builtin BuffTimer child with process_mode0 and one_shottrue only; no Timer script/autostart/private field. Base scene declares no Timer. PackedScene selects ClassDB native allocation, applies scalar properties by node->set, attaches child then completes scene construction before descriptor-return birth hook. Fresh detached parent has no tree; child attachment cannot enter tree on this path."
+    },
+    {
+      "edge": "Setter/construction preservation",
+      "result": "PASS_UNDER_EXPLICIT_NATIVE_DISPATCH_PREMISES",
+      "evidence": "Pinned Timer constructor initializes private double-1 and processingfalse/autostartfalse. Registered one_shot and process_mode setters preserve private countdown; mode switch cannot activate inactive fresh registrations. Source node->set valid variable is not checked by PackedScene: this review does not claim such a check. Known native property bindings plus exact observed configured birth are required."
+    },
+    {
+      "edge": "Birth, READY and selected writer coverage",
+      "result": "PASS_WITHIN_EXACT_PREVIOUSLY_ACCEPTED_SOURCE_DOMAIN",
+      "evidence": "Descriptor assignment is plain. Observer records actual BuffTimer under ownerKing before ordinary selection gating. Birth is outside-tree Timer81717 with modeINT0/one_shottrue/autostartfalse/stoppedtrue/flagsfalse. Native child READY cannot autostart; target has no Timer script. King selected starts/stops remain hooked; counter updates precede fixture gating and are monotone from unique birth. This reuses accepted concrete N3 callback exclusions without a new N3 review or arbitrary-alias theorem."
+    },
+    {
+      "edge": "Interval and counter inference",
+      "result": "PASS_AS_DESIGN_PREMISES_NOT_NEW_ACTUAL_RECIPE",
+      "evidence": "Same Timer/owner in both checkpoints, strictINT0 lifetime starts/stops at later pre_activate, with no reset and complete selected writer-domain premise, covers birth through both phases. A nonzero lifetime count cannot be assigned to a convenient phase. Public+0 alone never implies private-1."
+    },
+    {
+      "edge": "Accepted A4 and new pair union",
+      "result": "PASS",
+      "evidence": "Root423 acceptance actually binds saved projection ownership and four accepted AutoHide target chains. Independent reading of prior delta verifies those four keys and disjointness from the proposed KingBuff pair. Existing4 remain unchanged; design must not replace them or reinterpret88 unresolved targets."
+    }
+  ],
+  "native_semantics_disposition": {
+    "accepted_for_this_bounded_design": true,
+    "premises": [
+      "ClassDB::instance of the selected registered builtin Timer invokes the pinned version-attributed native Timer constructor; observed classTimer excludes native-allocation placeholder fallback.",
+      "Object::set dispatches known process_mode/one_shot properties to their registered native setters. The loaded pinned scene and scalar property declarations are the selected declarations.",
+      "Ordinary builtin resource loading, connection installation and detached parenting on this exact scene path do not directly write an unrelated private Timer countdown. Source-connected script initialization/notification/ready routes remain in the selected reviewed domain."
+    ],
+    "attribution": {
+      "path": "data/phase418-root-finite-source-supplement/native-timer-attribution-proposal.json",
+      "size": 3221,
+      "sha256": "63961997bce4391e79a5a9fd6fe657fc66121e839949c91a0da21e9a15206297"
+    },
+    "previous_independent_disposition": {
+      "path": "data/phase419-independent-autohide-projection-review/source-intermediate-review.json",
+      "size": 4937,
+      "sha256": "01e7fdc3dcfb17a8f8f792395682b442abfb488915dfb9f92593c4f3402198e0"
+    },
+    "new_native_scene_bridge": {
+      "path": "data/phase424-root-packedscene-supplement/Godot3.6.2/scene/resources/packed_scene.cpp",
+      "size": 51377,
+      "sha256": "0080123ccd2c9e26e4b04608e82175812a60222b18f5e95c286654cda3c7f3ed"
+    },
+    "official_source_receipt": {
+      "path": "data/phase424-root-packedscene-supplement/source-supplement.json",
+      "size": 1015,
+      "sha256": "d5640b593746e029f5399a63ff990a63fea9b357c4675126dc09c5a98a801b90"
+    },
+    "runtime_engine": {
+      "size": 77646552,
+      "sha256": "09d1de6c4f97289c018556666c13c1d81093a5df5c2255725d464a87f40a8ea1"
+    },
+    "limitations": [
+      "No bit-exact custom binary build/source reproduction.",
+      "No direct private countdown measurement.",
+      "Finite026 public/API numeric acceptance is not universal native conformance.",
+      "Standard native factory/setter premises are explicit; ClassDB/Object/resource internals were not recursively audited.",
+      "Contrary runtime/native evidence invalidates use of the rule; this review cannot override it."
+    ],
+    "minimum_new_source_or_native_collection_required_now": [],
+    "reason_no_new_build_or_capture": "Existing exact-runtime/version association and observed configured outside-tree birth support the explicit narrow semantic premises. A build/download or new capture would add cost without a concrete currently missing initial-state edge."
+  },
+  "minimum_implementation_gates": [
+    "Consume only the three exact saved data objects (411 index, accepted provenance, accepted A4 delta), plus pinned SOURCE/authority controls; no raw carrier parsing or420 helper import.",
+    "Verify canonical ordinary nlink1 paths and exact size/SHA before data read; bind actual Root423 acceptance/output owner, independent scene-rule review and later independent implementation review. Caller booleans/intermediate reviews are not authorities.",
+    "Require exact role/phase/native81717/owner81679/selected descriptor-scene-script/generation/nonpooled birth and completed ready binding; keep UI and shared sequence spaces independent and checkpoint identities exact.",
+    "Require scene-born King kind, mode strictINT0, one_shottrue, no autostart, stoppedtrue, inactive flags, exact binary64 wrappers and strictINT0 lifetime start/stop domain; unsupported foreign/pool/rebind/writer routes cannot inherit this rule.",
+    "Emit0or2 KingBuff candidates with precise SOURCE-derived premises. Missing proof leaves the pair MISSING with a reason; contradictions/bad strict types must reject rather than coerce or fabricate defaults.",
+    "Preserve accepted A4 rows and1391 DIRECT verbatim; exact disjoint two-key union and all84 unresolved keys retained except the authorized pair. No claim of4items: existing4 are four target chains in one rule family.",
+    "New exclusive relative output only after a real fresh Root saved-overlay release. Later independent actual-output review must bind produced owner/provenance/delta and verify both promoted chains before any accounting change."
+  ],
+  "minimum_functional_counterexamples": [
+    "AutoHide birth kind/mode1/one_shotfalse substituted for sceneKing mode0/true; wrong owner/Timer/class/script or pooled/reused generation.",
+    "First selected binding invalid, duplicate/foreign binding or cross-phase native/owner mismatch; no search forward for a convenient good record.",
+    "Counter bool/nonzero/negative or reset/coverage ambiguity; autostart/processing flags or birth configuration mismatch.",
+    "Missing or substituted scene-dispatch attribution/independent rule/implementation acceptance; fake caller flags or intermediate review.",
+    "A4 stale identity, changed old row, overlap/duplicate target, missing one phase or attempted one-target promotion.",
+    "Path/link/hash mismatch before payload read, existing output, or attempt to open raw capture/EXPECTED."
+  ],
+  "remaining_authorities": [
+    "Root may now separately authorize the small implementation overlay.",
+    "Independent implementation and finite functional acceptance remain required.",
+    "A separate actual saved-artifact execution release and independent two-chain actual review remain required."
+  ],
+  "counts_unchanged": {
+    "DIRECT": 1391,
+    "accepted_SOURCE_DERIVED_target_chains": 4,
+    "accepted_rule_families": 1,
+    "MISSING_UNPROVEN": 84,
+    "new_kingbuff_actual_target_chains": 0
+  },
+  "scope_accounting": {
+    "author_owned_leaves_verified": 2,
+    "author_owned_bytes_verified": 28895,
+    "finite_identity_readback_records": 24,
+    "finite_identity_readback_bytes": 2194890,
+    "readback_is_total_shell_open_trace": false,
+    "note": "24 is the explicitly recorded finite hash/identity verification set; relevant same-file Source/JSON inspection readbacks are not represented as a global OS I/O trace. No raw carrier or EXPECTED was read.",
+    "public_rows_checked": 38,
+    "lineage_facts_checked": 6,
+    "new_project_imports": 0,
+    "projection_or_rule_calls": 0,
+    "audit_schema_old_SUT_calls": 0,
+    "model_calls": 0,
+    "native_calls": 0,
+    "raw_carrier_EXPECTED_reads": 0,
+    "old423_or59_reexecutions": 0,
+    "N3_reaudits": 0
+  },
+  "gates": {
+    "fullschema": "NOT_VALIDATED",
+    "genuine_input": false,
+    "genuine_bundle": false,
+    "King_admitted": false,
+    "formal75_existing_support_unchanged": true,
+    "model356": "CLOSED",
+    "reader361": "CLOSED"
+  },
+  "blocking_source_gap": null,
+  "stop": "Sealed bounded design review only; no implementation/execution authorized or performed by reviewer."
+}

@@ -1,0 +1,245 @@
+{
+  "schema": "phase426-actual-overlay-api/1",
+  "module": {
+    "path": "tests/phase426_king_buff_overlay.py",
+    "size": 27087,
+    "sha256": "473c60a2ea1656ff6c9bd59fcbad2a16eee6739e1affc0bd78bdf6f2704aede0"
+  },
+  "functions": [
+    {
+      "name": "require",
+      "signature": "condition, reason",
+      "line": 34,
+      "end_line": 36
+    },
+    {
+      "name": "integer",
+      "signature": "value, minimum=0",
+      "line": 38,
+      "end_line": 39
+    },
+    {
+      "name": "same",
+      "signature": "left, right",
+      "line": 41,
+      "end_line": 42
+    },
+    {
+      "name": "strict_json",
+      "signature": "raw",
+      "line": 44,
+      "end_line": 60
+    },
+    {
+      "name": "canonical_path",
+      "signature": "value",
+      "line": 62,
+      "end_line": 67
+    },
+    {
+      "name": "physical_path",
+      "signature": "path, leaf_regular=True",
+      "line": 69,
+      "end_line": 78
+    },
+    {
+      "name": "descriptor",
+      "signature": "value",
+      "line": 80,
+      "end_line": 84
+    },
+    {
+      "name": "read_regular",
+      "signature": "value, cap=2097152, io=None",
+      "line": 86,
+      "end_line": 114
+    },
+    {
+      "name": "target_keys",
+      "signature": "",
+      "line": 116,
+      "end_line": 122
+    },
+    {
+      "name": "load_initial_index",
+      "signature": "raw",
+      "line": 124,
+      "end_line": 142
+    },
+    {
+      "name": "save_new",
+      "signature": "path, value",
+      "line": 144,
+      "end_line": 159
+    },
+    {
+      "name": "row_key",
+      "signature": "row",
+      "line": 162,
+      "end_line": 164
+    },
+    {
+      "name": "validate_a4",
+      "signature": "delta, index",
+      "line": 167,
+      "end_line": 189
+    },
+    {
+      "name": "collect_kingbuff_initial",
+      "signature": "index, provenance",
+      "line": 192,
+      "end_line": 292
+    },
+    {
+      "name": "verify_kingbuff_release",
+      "signature": "release_descriptor, io",
+      "line": 301,
+      "end_line": 328
+    },
+    {
+      "name": "derive_kingbuff_pair",
+      "signature": "index, a4, evidence, gate",
+      "line": 331,
+      "end_line": 354
+    },
+    {
+      "name": "run",
+      "signature": "release_descriptor",
+      "line": 357,
+      "end_line": 375
+    },
+    {
+      "name": "main",
+      "signature": "",
+      "line": 378,
+      "end_line": 385
+    }
+  ],
+  "CLI": "python tests/phase426_king_buff_overlay.py --release data/phase426-root-saved-overlay-release/release.json --release-size ACTUAL_BYTES --release-sha256 ACTUAL_SHA",
+  "Root_release": {
+    "schema": "root426-saved-kingbuff-overlay/1",
+    "action": "ONE_SAVED_KINGBUFF_PAIR_OVERLAY",
+    "path": "data/phase426-root-saved-overlay-release/release.json",
+    "output": "data/phase426-king-buff-overlay-first-001",
+    "context": {
+      "path": "data/phase426-king-buff-overlay-source/context.json",
+      "size": 6248,
+      "sha256": "4ef452058cae157709c736efd4b28754903de2a2eb008e90aea1206a876705c9"
+    },
+    "data": {
+      "index": {
+        "path": "data/phase408-initial-audit-first-001/rawtyped-field-index.json",
+        "size": 1494877,
+        "sha256": "27f4a859ba9144314bb25764d6787e07c8c929e96b44c37a077c4437c47cd46b"
+      },
+      "provenance": {
+        "path": "/workspace/python-original-engine/repo/data/phase420-initial-partial-projection-first-001/initial-provenance.json",
+        "size": 16959,
+        "sha256": "63b29245d0923d5c9300026deda701dd8ebcf61c5e2bfe2e943c77b10138305f"
+      },
+      "a4": {
+        "path": "/workspace/python-original-engine/repo/data/phase420-initial-partial-projection-first-001/delta-report.json",
+        "size": 91897,
+        "sha256": "b4f5dcecd79c2f9a501fced3844c8dff989d2c1f4b49b0bc0bdd79a8cb62fb19"
+      }
+    },
+    "required_fields": [
+      "schema",
+      "action",
+      "output",
+      "context",
+      "data",
+      "source_owner",
+      "source_review",
+      "review_owner"
+    ]
+  },
+  "future427_review_contract": {
+    "schema": "independent427-kingbuff-overlay-source-functional-review/1",
+    "status": "INDEPENDENT427_KINGBUFF_OVERLAY_SOURCE_AND_FUNCTIONAL_ACCEPTED_ROOT_PENDING",
+    "final_seal": true,
+    "required_actual_descriptors": [
+      "source_owner exact new426 owner",
+      "context exact426 descriptor",
+      "design_review actual425 descriptor",
+      "root423 actualRoot423 acceptance descriptor"
+    ],
+    "note": "These define required fields, not a fabricated review/receipt. Final independent review only."
+  },
+  "owners": "files list of ordinary exact path,size,sha256 descriptors; review_owner owns actualfinal427 review; source_owner owns module/context",
+  "pure_helper_boundary": "collect_kingbuff_initial emits support/gaps only, no private value. derive requires internal actual verified gate; no caller proofbool. Synthetic source/role/path/authority negatives do not fabricate a whole positive Root gate.",
+  "source_text_reuse": [
+    {
+      "name": "require",
+      "size": 85,
+      "sha256": "5c0bc25b9bc7f4a0aafc29e18889915f4a92f7037a72ed3d188fcc05199b86f1"
+    },
+    {
+      "name": "integer",
+      "size": 82,
+      "sha256": "e3a7f2e6fb12f63a47d70dacd38b280ae0e73d89ee4872e931a02795ba3bae8d"
+    },
+    {
+      "name": "same",
+      "size": 184,
+      "sha256": "39b5b34a180d306564ad54045c70ae1eff3d541dd5e19febac2bec5b333b9fe8"
+    },
+    {
+      "name": "strict_json",
+      "size": 716,
+      "sha256": "69057a0c12ad2359234b44c796ed39699bf12bbfeb6df90ce83557ecc26bd7b2"
+    },
+    {
+      "name": "canonical_path",
+      "size": 299,
+      "sha256": "b7589714481e7208cbbd64e2dd6c5ccb37598a9d2e9ff16edec2782c35021490"
+    },
+    {
+      "name": "physical_path",
+      "size": 522,
+      "sha256": "c203c573ebf24ff2c2bd32f006aae27b1968bcb844be99856c62445e48442617"
+    },
+    {
+      "name": "descriptor",
+      "size": 311,
+      "sha256": "c17072b7db4e2bf866d87a49e8a724d40548275ccd9c9f5cafaf56575f6c9613"
+    },
+    {
+      "name": "read_regular",
+      "size": 1422,
+      "sha256": "a07200b85374be6aa34f6832971b474e00461a734b0e97d2a944bba57692a924"
+    },
+    {
+      "name": "target_keys",
+      "size": 719,
+      "sha256": "a8b22ef5bb2bcb37663196fb92d49f7df6191f5f1d2f5f3e74f5801a2fff9d52"
+    },
+    {
+      "name": "load_initial_index",
+      "size": 1230,
+      "sha256": "464a919d065aa6226626917b1f97c5de7d7f22738b04b3fedba62fad983f51ce"
+    },
+    {
+      "name": "save_new",
+      "size": 730,
+      "sha256": "81e3fa09007cd277d535a9bf1df2f3f6f09fe6fb909e7c9c4ec4bcfab1582848"
+    }
+  ],
+  "outputs": [
+    "proof-evidence.json",
+    "overlay-report.json full88 rows",
+    "owned-files.json",
+    "first-error.json only on postreservation failure"
+  ],
+  "evidence_support_count": 44,
+  "scope": "0or2 KingBuff new candidates; all86 other rows unchanged; raw1391 DIRECT referenced by exact savedindex pin.",
+  "fullschema": "NOT_VALIDATED",
+  "startup": "Launcher prepins code/source owner before interpreter import; module I/O gate is not a stdlib startup monitor.",
+  "author_calls": {
+    "module_imports": 0,
+    "API_or_actual_overlay": 0,
+    "saved_data_payload_reads": 0,
+    "raw_capture_EXPECTED_reads": 0,
+    "old_SUT_schema_model_native": 0
+  }
+}

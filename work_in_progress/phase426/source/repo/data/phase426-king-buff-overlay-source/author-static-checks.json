@@ -1,0 +1,100 @@
+{
+  "schema": "phase426-author-source-checks/1",
+  "status": "COMPILE_AST_REUSE_AND_PINS_ONLY",
+  "module": {
+    "path": "tests/phase426_king_buff_overlay.py",
+    "size": 27087,
+    "sha256": "473c60a2ea1656ff6c9bd59fcbad2a16eee6739e1affc0bd78bdf6f2704aede0"
+  },
+  "compile_without_execution": "PASS",
+  "stdlib_imports": [
+    "import argparse",
+    "import hashlib",
+    "import json",
+    "import os",
+    "from pathlib import Path",
+    "import re",
+    "import stat"
+  ],
+  "reused_source_helpers": [
+    {
+      "name": "require",
+      "size": 85,
+      "sha256": "5c0bc25b9bc7f4a0aafc29e18889915f4a92f7037a72ed3d188fcc05199b86f1"
+    },
+    {
+      "name": "integer",
+      "size": 82,
+      "sha256": "e3a7f2e6fb12f63a47d70dacd38b280ae0e73d89ee4872e931a02795ba3bae8d"
+    },
+    {
+      "name": "same",
+      "size": 184,
+      "sha256": "39b5b34a180d306564ad54045c70ae1eff3d541dd5e19febac2bec5b333b9fe8"
+    },
+    {
+      "name": "strict_json",
+      "size": 716,
+      "sha256": "69057a0c12ad2359234b44c796ed39699bf12bbfeb6df90ce83557ecc26bd7b2"
+    },
+    {
+      "name": "canonical_path",
+      "size": 299,
+      "sha256": "b7589714481e7208cbbd64e2dd6c5ccb37598a9d2e9ff16edec2782c35021490"
+    },
+    {
+      "name": "physical_path",
+      "size": 522,
+      "sha256": "c203c573ebf24ff2c2bd32f006aae27b1968bcb844be99856c62445e48442617"
+    },
+    {
+      "name": "descriptor",
+      "size": 311,
+      "sha256": "c17072b7db4e2bf866d87a49e8a724d40548275ccd9c9f5cafaf56575f6c9613"
+    },
+    {
+      "name": "read_regular",
+      "size": 1422,
+      "sha256": "a07200b85374be6aa34f6832971b474e00461a734b0e97d2a944bba57692a924"
+    },
+    {
+      "name": "target_keys",
+      "size": 719,
+      "sha256": "a8b22ef5bb2bcb37663196fb92d49f7df6191f5f1d2f5f3e74f5801a2fff9d52"
+    },
+    {
+      "name": "load_initial_index",
+      "size": 1230,
+      "sha256": "464a919d065aa6226626917b1f97c5de7d7f22738b04b3fedba62fad983f51ce"
+    },
+    {
+      "name": "save_new",
+      "size": 730,
+      "sha256": "81e3fa09007cd277d535a9bf1df2f3f6f09fe6fb909e7c9c4ec4bcfab1582848"
+    }
+  ],
+  "context_pin": {
+    "path": "data/phase426-king-buff-overlay-source/context.json",
+    "size": 6248,
+    "sha256": "4ef452058cae157709c736efd4b28754903de2a2eb008e90aea1206a876705c9"
+  },
+  "data_descriptors_from_actual_A4_owner_and_424_411pin": true,
+  "saved_data_opened": false,
+  "source_pins_verified": 19,
+  "controls_pins_verified": 6,
+  "first_errors": [],
+  "author_calls": {
+    "module_imports": 0,
+    "API_or_actual_overlay": 0,
+    "saved_data_payload_reads": 0,
+    "raw_capture_EXPECTED_reads": 0,
+    "old_SUT_schema_model_native": 0
+  },
+  "actual_counts_unchanged": {
+    "DIRECT": 1391,
+    "SOURCE_DERIVED": 4,
+    "MISSING": 84,
+    "recipes": 4,
+    "rule_families": 1
+  }
+}
