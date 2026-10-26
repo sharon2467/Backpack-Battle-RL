@@ -1,0 +1,518 @@
+{
+  "schema": "independent435-presealed-python-control-plan/1",
+  "execution": "NOT_RELEASED_NOT_RUN",
+  "source_module": {
+    "path": "tests/phase434_king_observer_schema.py",
+    "sha256": "f02198461fba739ff5f716c678d44412ba6ed6d9fe18869cc4d66352442694f0",
+    "size": 214523
+  },
+  "source_owner": {
+    "path": "data/phase434-early-invu-source/source-owner.json",
+    "size": 43309,
+    "sha256": "328d06e1b5957fb4d6ffa935f33539181ede0efb36378dbd3b53f04c84205993"
+  },
+  "module_loads_proposed": 1,
+  "processes_proposed": 1,
+  "timeout_seconds": 15,
+  "tests": [
+    {
+      "id": "P01",
+      "name": "same-module-export-identity",
+      "operation": "identity",
+      "expected": "schema.validate_early_invu_fact is module.validate_early_invu_fact"
+    },
+    {
+      "id": "P02",
+      "name": "baselinePpreObserverReady",
+      "operation": "early_fact",
+      "expected": "return same object; bytes unchanged; no private inference"
+    },
+    {
+      "id": "P03",
+      "name": "OtruthfulNonzero",
+      "operation": "early_fact",
+      "expected": "return same object; bytes unchanged",
+      "changes": [
+        [
+          "entry",
+          "owner_scene",
+          "res://Core/Opponent.tscn"
+        ],
+        [
+          "current",
+          "node",
+          "role",
+          "invu:O"
+        ],
+        [
+          "lineage",
+          "starts",
+          5
+        ],
+        [
+          "lineage",
+          "stops",
+          3
+        ],
+        [
+          "parent_ready",
+          "starts",
+          2
+        ],
+        [
+          "parent_ready",
+          "stops",
+          1
+        ]
+      ]
+    },
+    {
+      "id": "P04",
+      "name": "mixedKind",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "lineage",
+          "kind"
+        ],
+        "value": "Character.scene.ready"
+      }
+    },
+    {
+      "id": "P05",
+      "name": "BOOLcounter",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "lineage",
+          "starts"
+        ],
+        "value": false
+      }
+    },
+    {
+      "id": "P06",
+      "name": "negativeCounter",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "lineage",
+          "stops"
+        ],
+        "value": -1
+      }
+    },
+    {
+      "id": "P07",
+      "name": "overflowCounter",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "lineage",
+          "starts"
+        ],
+        "value": 9007199254740992
+      }
+    },
+    {
+      "id": "P08",
+      "name": "counterReset",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "parent_ready",
+          "starts"
+        ],
+        "value": 1
+      }
+    },
+    {
+      "id": "P09",
+      "name": "ordinalReversed",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "parent_ready",
+          "ordinal"
+        ],
+        "value": 1
+      }
+    },
+    {
+      "id": "P10",
+      "name": "BOOLordinal",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "entry",
+          "ordinal"
+        ],
+        "value": true
+      }
+    },
+    {
+      "id": "P11",
+      "name": "ownerTimerAlias",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "lineage",
+          "owner_id"
+        ],
+        "value": "91001"
+      }
+    },
+    {
+      "id": "P12",
+      "name": "phaseTimerConflict",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "parent_ready",
+          "state",
+          "node",
+          "native_id"
+        ],
+        "value": "91003"
+      }
+    },
+    {
+      "id": "P13",
+      "name": "birthInsideTree",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "lineage",
+          "birth",
+          "node",
+          "inside_tree"
+        ],
+        "value": true
+      }
+    },
+    {
+      "id": "P14",
+      "name": "birthPath",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "lineage",
+          "birth",
+          "node",
+          "path"
+        ],
+        "value": "/root/InvulnerabilityTimer"
+      }
+    },
+    {
+      "id": "P15",
+      "name": "wrongCurrentRole",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "current",
+          "node",
+          "role"
+        ],
+        "value": "invu:O"
+      }
+    },
+    {
+      "id": "P16",
+      "name": "wrongOwnerScene",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "entry",
+          "owner_scene"
+        ],
+        "value": "res://Core/Character.tscn"
+      }
+    },
+    {
+      "id": "P17",
+      "name": "readinessInt",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "entry",
+          "observer_ready_at_entry"
+        ],
+        "value": 0
+      }
+    },
+    {
+      "id": "P18",
+      "name": "rawREALinsteadOfEncoded",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "current",
+          "wait_time"
+        ],
+        "value": 1.0
+      }
+    },
+    {
+      "id": "P19",
+      "name": "nonfiniteREAL",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "current",
+          "time_left",
+          "binary64_be"
+        ],
+        "value": "7ff8000000000000"
+      }
+    },
+    {
+      "id": "P20",
+      "name": "negativePublicLeft",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "current",
+          "time_left",
+          "binary64_be"
+        ],
+        "value": "bff0000000000000"
+      }
+    },
+    {
+      "id": "P21",
+      "name": "wrongClass",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "current",
+          "node",
+          "class"
+        ],
+        "value": "Node"
+      }
+    },
+    {
+      "id": "P22",
+      "name": "extraClosedField",
+      "operation": "early_fact",
+      "expected": "ValueError",
+      "changes": {
+        "path": [
+          "entry",
+          "fresh"
+        ],
+        "value": true
+      }
+    },
+    {
+      "id": "P23",
+      "name": "callerBoolNotActiveContract",
+      "operation": "validate_sources_with_binding",
+      "expected": "ValueError before parsing input",
+      "changes": {
+        "source_contract": true,
+        "raw11": {},
+        "binding_bytes": "empty bytes"
+      }
+    },
+    {
+      "id": "P24",
+      "name": "historicalOriginNotActiveContract",
+      "operation": "validate_sources_with_binding",
+      "expected": "ValueError before parsing input",
+      "changes": {
+        "source_contract": "module.BINDING_SOURCE_CONTRACT",
+        "raw11": {},
+        "binding_bytes": "empty bytes"
+      }
+    },
+    {
+      "id": "P25",
+      "name": "changedActualSinkPin",
+      "operation": "validate_sources_with_binding",
+      "expected": "ValueError before parsing input",
+      "changes": {
+        "source_contract": "copy(module.ACTIVE_SOURCE_CONTRACT) with sink.sha256=64 zero hex",
+        "raw11": {},
+        "binding_bytes": "empty bytes"
+      }
+    },
+    {
+      "id": "P26",
+      "name": "exactActiveButMissingNames",
+      "operation": "validate_sources_with_binding",
+      "expected": "ValueError before parsing input",
+      "changes": {
+        "source_contract": "module.ACTIVE_SOURCE_CONTRACT",
+        "raw11": {},
+        "binding_bytes": "empty bytes"
+      }
+    },
+    {
+      "id": "P27",
+      "name": "exactNamesButMutableBinding",
+      "operation": "validate_sources_with_binding",
+      "expected": "ValueError before parsing input",
+      "changes": {
+        "source_contract": "module.ACTIVE_SOURCE_CONTRACT",
+        "raw11": "module.INPUT_FILES mapped to empty bytes",
+        "binding_bytes": "bytearray()"
+      }
+    }
+  ],
+  "test_count": 27,
+  "base_fixture": {
+    "lineage": {
+      "timer_id": "91001",
+      "owner_id": "91002",
+      "kind": "Character.first_enter_tree/434",
+      "starts": 0,
+      "stops": 0,
+      "birth": {
+        "node": {
+          "native_id": "91001",
+          "role": null,
+          "path": null,
+          "name": "InvulnerabilityTimer",
+          "class": "Timer",
+          "positions": [
+            -1,
+            0
+          ],
+          "priority": 0,
+          "inside_tree": false,
+          "ordinary_physics": false,
+          "internal_physics": false,
+          "ordinary_idle": false,
+          "internal_idle": false
+        },
+        "process_mode": 0,
+        "wait_time": {
+          "type": "float",
+          "binary64_be": "3ff0000000000000"
+        },
+        "time_left": {
+          "type": "float",
+          "binary64_be": "0000000000000000"
+        },
+        "one_shot": true,
+        "autostart": false,
+        "paused": false,
+        "stopped": true
+      }
+    },
+    "current": {
+      "node": {
+        "native_id": "91001",
+        "role": "invu:P",
+        "path": "/root/Probe/Character/InvulnerabilityTimer",
+        "name": "InvulnerabilityTimer",
+        "class": "Timer",
+        "positions": [
+          -1,
+          0
+        ],
+        "priority": 0,
+        "inside_tree": true,
+        "ordinary_physics": false,
+        "internal_physics": false,
+        "ordinary_idle": false,
+        "internal_idle": false
+      },
+      "process_mode": 0,
+      "wait_time": {
+        "type": "float",
+        "binary64_be": "3ff0000000000000"
+      },
+      "time_left": {
+        "type": "float",
+        "binary64_be": "0000000000000000"
+      },
+      "one_shot": true,
+      "autostart": false,
+      "paused": false,
+      "stopped": true
+    },
+    "entry": {
+      "schema": "phase434-invu-first-enter/1",
+      "ordinal": 1,
+      "owner_inside_tree": true,
+      "owner_script": "res://Core/Character.gd",
+      "owner_scene": "res://Core/Player.tscn",
+      "observer_ready_at_entry": false
+    },
+    "parent_ready": {
+      "schema": "phase434-invu-parent-ready/1",
+      "ordinal": 2,
+      "starts": 0,
+      "stops": 0,
+      "state": {
+        "node": {
+          "native_id": "91001",
+          "role": null,
+          "path": "/root/Probe/Character/InvulnerabilityTimer",
+          "name": "InvulnerabilityTimer",
+          "class": "Timer",
+          "positions": [
+            -1,
+            0
+          ],
+          "priority": 0,
+          "inside_tree": true,
+          "ordinary_physics": false,
+          "internal_physics": false,
+          "ordinary_idle": false,
+          "internal_idle": false
+        },
+        "process_mode": 0,
+        "wait_time": {
+          "type": "float",
+          "binary64_be": "3ff0000000000000"
+        },
+        "time_left": {
+          "type": "float",
+          "binary64_be": "0000000000000000"
+        },
+        "one_shot": true,
+        "autostart": false,
+        "paused": false,
+        "stopped": true
+      }
+    },
+    "private_provenance": "pending-source-rule-first-enter-seed/1"
+  },
+  "fixture_policy": "Hand-authored pure structural object, no raw capture/EXPECTED or complete Root/capture receipt. Every case uses independent deepcopy; O case role argument invu:O; othercases invu:P. Change vectors described by path/value, never normalize actual data.",
+  "runner_preparation_after_release": "Write a small stdlib launcher, prepin source and this plan, preload stdlib, execute full module under independent ModuleType, freeze progress/events snapshot; run only listed exports, no host/storage/process imports or plan/execute. Validate identity and immutability with canonical JSON before/after.",
+  "first_failure": "Write exact fixture/expected/actual/traceback/progress, stop; no automatic retry.",
+  "authority_limits": "No positive full12carrier/capture/model admission. Active-contract negative cases shortcircuit before input parsing; fullsource join algorithms conserved statically, old accepted controls not rerun.",
+  "outputs_proposed": [
+    "python-preparation-owner.json",
+    "python-started.json",
+    "python-progress.jsonl",
+    "python-result.json",
+    "python-stdout.txt",
+    "python-stderr.txt",
+    "python-launcher-result.json"
+  ],
+  "cost": "One <15s Python child, no native processes/host/pool/filemutations except own evidence.",
+  "does_not_prove": "Godot/GDScript actual getter purity, NIL, script-member initialization or REAL bit roundtrip."
+}

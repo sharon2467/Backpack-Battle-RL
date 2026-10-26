@@ -1,0 +1,23 @@
+{
+  "schema": "phase435-root-python-control-release/1",
+  "created_utc": "2026-10-26T16:59:08.469531+00:00",
+  "status": "RELEASED_ONCE",
+  "plan": {
+    "path": "data/phase435-independent-early-invu-source-review/python-controls-plan.json",
+    "size": 12884,
+    "sha256": "4d9067bcd0a1bd77e1681bd0a2f853e9ff2312bc2b8692b70068d824a3573ee6"
+  },
+  "authority": "Root read frozen independent static outcome and exact plan; parent authorizes necessary independent functional checks of isolated434 Source.",
+  "allowed": "Prepare, pin and execute exactly P01-P27 in one Python child, one tested module load, timeout15seconds; independent deepcopies; stop on first unexpected result, preserve all fixtures/expected/actual/traceback/progress; no automatic retry.",
+  "preparation": "Write launcher/fixtures to new independently owned files; seal preparation owner before child launch. Normal stdlib preparation/import permitted; no tested module load during preparation.",
+  "prohibited": [
+    "Godot/native",
+    "hostplan/execute",
+    "pool install",
+    "original capture",
+    "rawcarrier/EXPECTED reads",
+    "old passed test replay",
+    "Source changes"
+  ],
+  "counts": "6proved82missing unchanged; no final435 token from Python alone."
+}

@@ -1,0 +1,239 @@
+{
+  "schema": "independent435-empty-project-gd-purity-probe-plan/1",
+  "status": "PROPOSED_NOT_RELEASED_NOT_PREPARED_NOT_RUN",
+  "purpose": "Actual GDScript/native Timer getter/member-initialization/NIL/primitive-retention behavior for exact new memory helpers, distinct from original Game capture and Python mocks.",
+  "proposed_cost": {
+    "Godot_engine_processes": 1,
+    "original_Game_processes": 0,
+    "original_captures": 0,
+    "outer_timeout_seconds": 20,
+    "soft_probe_finish_seconds": 8,
+    "log_bytes_cap": 262144,
+    "fixture_files_max": 16,
+    "fixture_bytes_max": 131072,
+    "new_download_or_build": 0,
+    "automatic_retry": false
+  },
+  "source_extraction": {
+    "sink": {
+      "path": "data/phase434-early-invu-source/after-source/native_random_observer_sink_v7.gd",
+      "sha256": "ef768f2ac10f97ea7aaef40bd843245fb5cd83c31a2ae718df6001b57a8c1600",
+      "size": 113189
+    },
+    "exact_full_functions": [
+      "_invu_memory_error",
+      "_invu_raw_snapshot",
+      "invu_first_enter_memory",
+      "invu_parent_ready_memory",
+      "track_king_timer_api",
+      "float_bits"
+    ],
+    "helper_body_hashes": [
+      {
+        "name": "_invu_memory_error",
+        "source_bytes": 442,
+        "sha256": "ceabf2521954498d291d695e3ef3c50d7caf9991ae235ea95403de8576640d78",
+        "calls": [
+          "length",
+          "typeof"
+        ],
+        "persistent_values": "primitive snapshots/maps only; temporary native cursor/owner/script references not retained",
+        "runtime_purity": "NOT_TESTED"
+      },
+      {
+        "name": "_invu_raw_snapshot",
+        "source_bytes": 1954,
+        "sha256": "6e15feac629b8954e1034d6841d7ff115300bbdc90eea7e88285b78a528f0278",
+        "calls": [
+          "_invu_memory_error",
+          "and",
+          "get",
+          "get_class",
+          "get_index",
+          "get_instance_id",
+          "get_name",
+          "get_parent",
+          "get_path",
+          "get_process_priority",
+          "get_script",
+          "is_inf",
+          "is_inside_tree",
+          "is_instance_valid",
+          "is_nan",
+          "is_physics_processing",
+          "is_physics_processing_internal",
+          "is_processing",
+          "is_processing_internal",
+          "is_stopped",
+          "or",
+          "push_front",
+          "size",
+          "str",
+          "to_utf8",
+          "typeof"
+        ],
+        "persistent_values": "primitive snapshots/maps only; temporary native cursor/owner/script references not retained",
+        "runtime_purity": "NOT_TESTED"
+      },
+      {
+        "name": "invu_first_enter_memory",
+        "source_bytes": 1650,
+        "sha256": "db7b6d9d9d02d8009aa007ba0575ceb8b24e96e5ab27f6980b878dca81ba613c",
+        "calls": [
+          "_invu_memory_error",
+          "_invu_raw_snapshot",
+          "get_filename",
+          "get_instance_id",
+          "get_parent",
+          "get_script",
+          "has",
+          "is_inside_tree",
+          "is_instance_valid",
+          "size",
+          "str",
+          "typeof"
+        ],
+        "persistent_values": "primitive snapshots/maps only; temporary native cursor/owner/script references not retained",
+        "runtime_purity": "NOT_TESTED"
+      },
+      {
+        "name": "invu_parent_ready_memory",
+        "source_bytes": 1434,
+        "sha256": "c07580fc10c694f76dcbdab6c6cb52d274f7165aca9c60ebcc5f1b31d60ff002",
+        "calls": [
+          "_invu_memory_error",
+          "_invu_raw_snapshot",
+          "get",
+          "get_filename",
+          "get_instance_id",
+          "get_parent",
+          "get_script",
+          "has",
+          "is_inside_tree",
+          "is_instance_valid",
+          "str",
+          "typeof"
+        ],
+        "persistent_values": "primitive snapshots/maps only; temporary native cursor/owner/script references not retained",
+        "runtime_purity": "NOT_TESTED"
+      }
+    ],
+    "declarations": "Extract exact literal CAPS line and ids/king_timer_births/newinvu maps/ordinal/error/ready declarations. No old _ready/bootstrap/UI/source-cut/clock/encoder/helpers or other Game classes loaded.",
+    "tail_exception": "Extract only actual added _ready success/error-publication tail as a named probe entry; unchanged old bootstrap is not executed. _ready-tail/track fail route uses clearly marked primitive test double, not a forged proof of original fail I/O.",
+    "character_callsite": "Source new_enter_tree/first_ready statements independently inverse-reviewed; empty fixture owner uses an instrumented callback to capture returned NIL from the exact helper body. This is not execution of the original Character business body."
+  },
+  "empty_project": {
+    "root": "New independent435 owned directory, exclusive creation after release; no baseline/pool tree copy.",
+    "project_godot": "Minimal new project name Independent435Empty; native memory-observer autoload; main scene res://ProbeMain.tscn. No original project.godot/autoloads/Game/Util/EventBus/UI/collector.",
+    "resources": [
+      "project.godot",
+      "ProbeMain.tscn",
+      "ProbeMain.gd",
+      "MemoryObserver.gd",
+      "Core/Character.gd",
+      "Core/Character.tscn",
+      "Core/Player.tscn",
+      "Core/Opponent.tscn"
+    ],
+    "scene_layout": "Character.tscn is new Node2D with fixture script and one bare native InvulnerabilityTimer(mode0,one_shottrue). Player/Opponent minimal scenes inherit it, exercising actual inherited filename semantics. These res paths resolve solely inside EMPTY directory; no original assets/scripts.",
+    "fixture_owner": "res://Core/Character.gd extends Node2D, probe-only enter/ready wrappers call exact extracted helpers and store their return for assertions; it contains no original Character methods. Fresh memory-observer script instances before tree_ready isolate error cases without production counter resets.",
+    "fail_double": "Primitive guarded counter/error latch with same leading failed guard semantics, explicitly outside tested memory bodies. Checks normalfailure route/effect-once but does not claim to test old file writer.",
+    "REAL_materialization_scope": "Use exact oldfloat_bits body plus actual raw native getter REAL and Dictionary.duplicate(true). Compare 1.25 bits3ff4000000000000 and zero bits. Full old encode/invu_early_fact runtime is not loaded into EMPTY because it has unrelated class dependencies; its unchanged canonical scalar branch and new field assignments are statically reviewed."
+  },
+  "resources_and_launch": {
+    "engine": {
+      "size": 77646552,
+      "sha256": "09d1de6c4f97289c018556666c13c1d81093a5df5c2255725d464a87f40a8ea1",
+      "absolute_path": "Root must resolve to the already accepted existing executor engine in its new explicit probe release; no download or build"
+    },
+    "other_existing_resources": "Root release must pin exact existing offline launcher/Xvfb/Steam shared-library descriptors and absolute paths. This plan reads no unapproved runtime resource; no execution until those bindings exist.",
+    "argv_shape": [
+      "python",
+      "<pinned-existing-offline-exec-wrapper>",
+      "<pinned-existing-xvfb-run>",
+      "-a",
+      "-s",
+      "-screen 0 320x240x24 -nolisten tcp",
+      "-e",
+      "<owned-probe-xvfb.log>",
+      "<pinned-existing-engine>",
+      "--path",
+      "<exclusive-EMPTY-project>",
+      "--audio-driver",
+      "Dummy",
+      "--time-scale",
+      "1.0"
+    ],
+    "environment": "Own XDG_DATA_HOME/CONFIG/CACHE/RUNTIME/TMP; software GL from accepted executor resources. No original user/data/cache/save paths, no Core/Main.tscn or original collector argv.",
+    "monitor": "One bounded stdlib launcher child process group,<=20s timeout/logcap; on failure preserve stdout/stderr/fixture/hash/progress and terminate only own spawned group. No hostplan/execute/pool action."
+  },
+  "finite_controls": [
+    {
+      "id": "G01",
+      "condition": "Fresh owner parent_enter before target childenter/READY, observer object initialized but not_ready",
+      "expect": "primitive maps usable; helper succeeds and returns actualNIL; ownerinside/targetoutside true at birth; actual inherited scene filename/domain accepted."
+    },
+    {
+      "id": "G02",
+      "condition": "Synthetic sibling ready performs wrapped native Timer start(1.25) and stop before parent_ready",
+      "expect": "entry retained, ready checkpoint has truthful1start/1stop, raw REALtype preserved, no zero normalization."
+    },
+    {
+      "id": "G03",
+      "condition": "Wrong target nativeclass/name/script/directparent",
+      "expect": "bounded first-error memory latch; no fail-double call preReady; no Node/Script/Object retained in map."
+    },
+    {
+      "id": "G04",
+      "condition": "Remove/readd same owner or replaced target after firstentry",
+      "expect": "latch reentry/reuse; preserve initial map/identity/counters without reset."
+    },
+    {
+      "id": "G05",
+      "condition": "Ready before entry and duplicate ready checkpoint",
+      "expect": "failclosed memoryerror; no invented birth or overwritten checkpoint."
+    },
+    {
+      "id": "G06",
+      "condition": "Unknown operation or countercap in exact track body before observerready",
+      "expect": "do not coerce tostop; retain counters; latch only; fail-double effects0."
+    },
+    {
+      "id": "G07",
+      "condition": "Preexisting earlyerror then extracted successful-bootstrap tail; repeat publication route",
+      "expect": "set ready only after synthetic successguard; fail-double publicationeffects1 via guarded firsterror, no mapreset. This is routing test, not oldbootstrap/File execution."
+    },
+    {
+      "id": "G08",
+      "condition": "New trackerror after observerready=true",
+      "expect": "normalfail route invoked; first-error publicationeffects1, not universal track-I/O-free claim."
+    },
+    {
+      "id": "G09",
+      "condition": "Capture all helper return values on success and guarded error",
+      "expect": "TYPE_NIL; no Boolean acknowledgement assumed."
+    },
+    {
+      "id": "G10",
+      "condition": "Bounded ancestry and primitive recursive retained-value inspection",
+      "expect": "reject depth overflow; stored values contain only NIL/BOOL/INT/REAL/STRING/ARRAY/DICTIONARY, noObject/FuncRef."
+    },
+    {
+      "id": "G11",
+      "condition": "Raw native wait/publicleft REAL, deepduplicate and exactfloat_bits",
+      "expect": "preserve nativeVariant REAL type and BE64bits; snapshot getter calls leave targetflags/wait/state unchanged."
+    },
+    {
+      "id": "G12",
+      "condition": "Seed EMPTY global RNG immediately before exact helper call; compare next randi with same-seed nohelper control",
+      "expect": "no global RNG consumption; no Util/Game objects loaded. Sourcecallgraph supplies absence of unrelated RNG calls."
+    }
+  ],
+  "first_failure": "Stop entire one-process case loop at first unexpected result and preserve exact helper hashes/fixture/expected/actual; no automatically patched second probe.",
+  "purity_claim_limits": [
+    "Combines exact source callgraph and real selected native getter/NIL/primitive behavior; no universal OS-wide noI/O or custombinary build proof.",
+    "Engine startup may create only isolated owned logs/cache; no original capture paths. Static memory helper graph, not wholeengine startup, is the noFile/treeclock/RNG boundary.",
+    "Does not run original Game or sample private countdown, prove actual future P/O lifetimes, admit new INITIAL data, or migrate old6chains."
+  ],
+  "release_needed": "Root must first receive static result and this plan, resolve/pin existing runtime resource paths and expressly authorize this single EMPTY-project probe. Current status grants no execution."
+}
