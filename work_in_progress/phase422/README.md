@@ -1,0 +1,5 @@
+# One actual initial-only projection: candidates awaiting independent acceptance
+
+The accepted420 standalone Python module executed once against existing411 index and three lawful initial carriers. Exit0,0.172845280s,empty stderr;all four input file identities/metadata stayed unchanged. It reported4SOURCE_DERIVED candidates and84remainingMISSING. No Godot,oldSUT,model,newcapture or old411audit ran. Full raw hashes cover the supplied files;semantic projection is limited to the accepted initial prefixes and opaque suffixes.
+
+Output has not yet received independent423 actual-recipe acceptance at this cut. Current accepted proof count remains0/88unproven;candidate4/84 is separate. The4targets are two AutoHide Timer roles at two cuts using one rule family,not four items. Formal bounded75 remains accepted;King,fullschema,genuine bundle and full engine/RL remain unadmitted/incomplete. Preserve historical Source/counterexamples and current Root controls;do not reexecute the spent one-shot release.
