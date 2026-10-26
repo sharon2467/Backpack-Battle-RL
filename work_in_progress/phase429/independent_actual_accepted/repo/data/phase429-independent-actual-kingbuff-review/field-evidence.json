@@ -1,0 +1,888 @@
+{
+  "schema": "independent429-two-actual-kingbuff-field-evidence/1",
+  "status": "PASS",
+  "targets": [
+    {
+      "key": [
+        "Timer.private_left",
+        "pre_prepare",
+        "king_buff:P:12"
+      ],
+      "original_index": 1432,
+      "native_timer": "81717",
+      "owner": "81679",
+      "shared_checkpoint": 138,
+      "public_support_indices": [
+        615,
+        616,
+        617,
+        618,
+        619,
+        620,
+        621,
+        622,
+        623,
+        624,
+        625,
+        626,
+        627,
+        628,
+        629,
+        630,
+        631,
+        632,
+        633
+      ],
+      "shared_lifetime_fact_indices": [
+        1370,
+        1371,
+        1372,
+        1373,
+        1374,
+        1375
+      ],
+      "value": {
+        "type": "float",
+        "binary64_be": "bff0000000000000"
+      },
+      "rule": "SCENE_TIMER_CONFIGURED_NO_START/1",
+      "receipt_binding": {
+        "root": {
+          "path": "data/phase426-root-saved-overlay-release/release.json",
+          "size": 1680,
+          "sha256": "406f027985881a14e496b48b1b8ece738101b990d685f07e3975a0599adecc7a"
+        },
+        "implementation_review": {
+          "path": "data/phase427-independent-kingbuff-overlay-review/review.json",
+          "size": 9816,
+          "sha256": "503d760ddecf892ee38ee1bc1d008548e6a7111e4e1de1764def219c58ea602f"
+        },
+        "design_review": {
+          "path": "data/phase425-independent-king-buff-design-review/review.json",
+          "size": 12133,
+          "sha256": "99f37a407512f409bb8f5a30882403ddabcf329ef6ea5e7b1fd2dafb437a659a"
+        },
+        "root423": {
+          "path": "data/phase423-root-actual-target-acceptance/acceptance.json",
+          "size": 1543,
+          "sha256": "a738695aade930ec4a6cf57e7b5923ac7c54a6061852047ab9225d28bc7762ab"
+        }
+      }
+    },
+    {
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "king_buff:P:12"
+      ],
+      "original_index": 1476,
+      "native_timer": "81717",
+      "owner": "81679",
+      "shared_checkpoint": 1231,
+      "public_support_indices": [
+        1287,
+        1288,
+        1289,
+        1290,
+        1291,
+        1292,
+        1293,
+        1294,
+        1295,
+        1296,
+        1297,
+        1298,
+        1299,
+        1300,
+        1301,
+        1302,
+        1303,
+        1304,
+        1305
+      ],
+      "shared_lifetime_fact_indices": [
+        1370,
+        1371,
+        1372,
+        1373,
+        1374,
+        1375
+      ],
+      "value": {
+        "type": "float",
+        "binary64_be": "bff0000000000000"
+      },
+      "rule": "SCENE_TIMER_CONFIGURED_NO_START/1",
+      "receipt_binding": {
+        "root": {
+          "path": "data/phase426-root-saved-overlay-release/release.json",
+          "size": 1680,
+          "sha256": "406f027985881a14e496b48b1b8ece738101b990d685f07e3975a0599adecc7a"
+        },
+        "implementation_review": {
+          "path": "data/phase427-independent-kingbuff-overlay-review/review.json",
+          "size": 9816,
+          "sha256": "503d760ddecf892ee38ee1bc1d008548e6a7111e4e1de1764def219c58ea602f"
+        },
+        "design_review": {
+          "path": "data/phase425-independent-king-buff-design-review/review.json",
+          "size": 12133,
+          "sha256": "99f37a407512f409bb8f5a30882403ddabcf329ef6ea5e7b1fd2dafb437a659a"
+        },
+        "root423": {
+          "path": "data/phase423-root-actual-target-acceptance/acceptance.json",
+          "size": 1543,
+          "sha256": "a738695aade930ec4a6cf57e7b5923ac7c54a6061852047ab9225d28bc7762ab"
+        }
+      }
+    }
+  ],
+  "public_support_count": 38,
+  "lifetime_facts_count": 6,
+  "support_index_join": [
+    {
+      "index": 615,
+      "field": "Timer.process_mode",
+      "phase": "pre_prepare",
+      "value": 0,
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 1,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/process_mode",
+        "sequence": 138
+      }
+    },
+    {
+      "index": 616,
+      "field": "Timer.wait_time",
+      "phase": "pre_prepare",
+      "value": {
+        "binary64_be": "3ff0000000000000",
+        "type": "float"
+      },
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 1,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/wait_time",
+        "sequence": 138
+      }
+    },
+    {
+      "index": 617,
+      "field": "Timer.time_left",
+      "phase": "pre_prepare",
+      "value": {
+        "binary64_be": "0000000000000000",
+        "type": "float"
+      },
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 1,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/time_left",
+        "sequence": 138
+      }
+    },
+    {
+      "index": 618,
+      "field": "Timer.one_shot",
+      "phase": "pre_prepare",
+      "value": true,
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 1,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/one_shot",
+        "sequence": 138
+      }
+    },
+    {
+      "index": 619,
+      "field": "Timer.autostart",
+      "phase": "pre_prepare",
+      "value": false,
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 1,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/autostart",
+        "sequence": 138
+      }
+    },
+    {
+      "index": 620,
+      "field": "Timer.paused",
+      "phase": "pre_prepare",
+      "value": false,
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 1,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/paused",
+        "sequence": 138
+      }
+    },
+    {
+      "index": 621,
+      "field": "Timer.stopped",
+      "phase": "pre_prepare",
+      "value": true,
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 1,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/stopped",
+        "sequence": 138
+      }
+    },
+    {
+      "index": 622,
+      "field": "Timer.node.native_id",
+      "phase": "pre_prepare",
+      "value": "81717",
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 1,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/node/native_id",
+        "sequence": 138
+      }
+    },
+    {
+      "index": 623,
+      "field": "Timer.node.role",
+      "phase": "pre_prepare",
+      "value": "king_buff:P:12",
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 1,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/node/role",
+        "sequence": 138
+      }
+    },
+    {
+      "index": 624,
+      "field": "Timer.node.path",
+      "phase": "pre_prepare",
+      "value": "/root/Main/Player/King Goobert/BuffTimer",
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 1,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/node/path",
+        "sequence": 138
+      }
+    },
+    {
+      "index": 625,
+      "field": "Timer.node.name",
+      "phase": "pre_prepare",
+      "value": "BuffTimer",
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 1,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/node/name",
+        "sequence": 138
+      }
+    },
+    {
+      "index": 626,
+      "field": "Timer.node.class",
+      "phase": "pre_prepare",
+      "value": "Timer",
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 1,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/node/class",
+        "sequence": 138
+      }
+    },
+    {
+      "index": 627,
+      "field": "Timer.node.positions",
+      "phase": "pre_prepare",
+      "value": [
+        -1,
+        18,
+        3,
+        14,
+        7
+      ],
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 1,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/node/positions",
+        "sequence": 138
+      }
+    },
+    {
+      "index": 628,
+      "field": "Timer.node.priority",
+      "phase": "pre_prepare",
+      "value": 0,
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 1,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/node/priority",
+        "sequence": 138
+      }
+    },
+    {
+      "index": 629,
+      "field": "Timer.node.inside_tree",
+      "phase": "pre_prepare",
+      "value": true,
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 1,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/node/inside_tree",
+        "sequence": 138
+      }
+    },
+    {
+      "index": 630,
+      "field": "Timer.node.ordinary_physics",
+      "phase": "pre_prepare",
+      "value": false,
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 1,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/node/ordinary_physics",
+        "sequence": 138
+      }
+    },
+    {
+      "index": 631,
+      "field": "Timer.node.internal_physics",
+      "phase": "pre_prepare",
+      "value": false,
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 1,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/node/internal_physics",
+        "sequence": 138
+      }
+    },
+    {
+      "index": 632,
+      "field": "Timer.node.ordinary_idle",
+      "phase": "pre_prepare",
+      "value": false,
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 1,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/node/ordinary_idle",
+        "sequence": 138
+      }
+    },
+    {
+      "index": 633,
+      "field": "Timer.node.internal_idle",
+      "phase": "pre_prepare",
+      "value": false,
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 1,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/node/internal_idle",
+        "sequence": 138
+      }
+    },
+    {
+      "index": 1287,
+      "field": "Timer.process_mode",
+      "phase": "pre_activate",
+      "value": 0,
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 4,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/process_mode",
+        "sequence": 1231
+      }
+    },
+    {
+      "index": 1288,
+      "field": "Timer.wait_time",
+      "phase": "pre_activate",
+      "value": {
+        "binary64_be": "3ff0000000000000",
+        "type": "float"
+      },
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 4,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/wait_time",
+        "sequence": 1231
+      }
+    },
+    {
+      "index": 1289,
+      "field": "Timer.time_left",
+      "phase": "pre_activate",
+      "value": {
+        "binary64_be": "0000000000000000",
+        "type": "float"
+      },
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 4,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/time_left",
+        "sequence": 1231
+      }
+    },
+    {
+      "index": 1290,
+      "field": "Timer.one_shot",
+      "phase": "pre_activate",
+      "value": true,
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 4,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/one_shot",
+        "sequence": 1231
+      }
+    },
+    {
+      "index": 1291,
+      "field": "Timer.autostart",
+      "phase": "pre_activate",
+      "value": false,
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 4,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/autostart",
+        "sequence": 1231
+      }
+    },
+    {
+      "index": 1292,
+      "field": "Timer.paused",
+      "phase": "pre_activate",
+      "value": false,
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 4,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/paused",
+        "sequence": 1231
+      }
+    },
+    {
+      "index": 1293,
+      "field": "Timer.stopped",
+      "phase": "pre_activate",
+      "value": true,
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 4,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/stopped",
+        "sequence": 1231
+      }
+    },
+    {
+      "index": 1294,
+      "field": "Timer.node.native_id",
+      "phase": "pre_activate",
+      "value": "81717",
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 4,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/node/native_id",
+        "sequence": 1231
+      }
+    },
+    {
+      "index": 1295,
+      "field": "Timer.node.role",
+      "phase": "pre_activate",
+      "value": "king_buff:P:12",
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 4,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/node/role",
+        "sequence": 1231
+      }
+    },
+    {
+      "index": 1296,
+      "field": "Timer.node.path",
+      "phase": "pre_activate",
+      "value": "/root/Main/Player/King Goobert/BuffTimer",
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 4,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/node/path",
+        "sequence": 1231
+      }
+    },
+    {
+      "index": 1297,
+      "field": "Timer.node.name",
+      "phase": "pre_activate",
+      "value": "BuffTimer",
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 4,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/node/name",
+        "sequence": 1231
+      }
+    },
+    {
+      "index": 1298,
+      "field": "Timer.node.class",
+      "phase": "pre_activate",
+      "value": "Timer",
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 4,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/node/class",
+        "sequence": 1231
+      }
+    },
+    {
+      "index": 1299,
+      "field": "Timer.node.positions",
+      "phase": "pre_activate",
+      "value": [
+        -1,
+        18,
+        3,
+        14,
+        7
+      ],
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 4,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/node/positions",
+        "sequence": 1231
+      }
+    },
+    {
+      "index": 1300,
+      "field": "Timer.node.priority",
+      "phase": "pre_activate",
+      "value": 0,
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 4,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/node/priority",
+        "sequence": 1231
+      }
+    },
+    {
+      "index": 1301,
+      "field": "Timer.node.inside_tree",
+      "phase": "pre_activate",
+      "value": true,
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 4,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/node/inside_tree",
+        "sequence": 1231
+      }
+    },
+    {
+      "index": 1302,
+      "field": "Timer.node.ordinary_physics",
+      "phase": "pre_activate",
+      "value": false,
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 4,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/node/ordinary_physics",
+        "sequence": 1231
+      }
+    },
+    {
+      "index": 1303,
+      "field": "Timer.node.internal_physics",
+      "phase": "pre_activate",
+      "value": false,
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 4,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/node/internal_physics",
+        "sequence": 1231
+      }
+    },
+    {
+      "index": 1304,
+      "field": "Timer.node.ordinary_idle",
+      "phase": "pre_activate",
+      "value": false,
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 4,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/node/ordinary_idle",
+        "sequence": 1231
+      }
+    },
+    {
+      "index": 1305,
+      "field": "Timer.node.internal_idle",
+      "phase": "pre_activate",
+      "value": false,
+      "input_ref": {
+        "file": "observer7-input.jsonl",
+        "line": 4,
+        "native_owner": "81717",
+        "pointer": "/payload/nodes/57/timer/node/internal_idle",
+        "sequence": 1231
+      }
+    },
+    {
+      "index": 1370,
+      "field": "Timer.lineage.timer_id",
+      "phase": "pre_activate",
+      "value": "81717",
+      "input_ref": {
+        "file": "king-input-facts.json",
+        "pointer": "/timers/king_buff:P:12/lineage/timer_id"
+      }
+    },
+    {
+      "index": 1371,
+      "field": "Timer.lineage.owner_id",
+      "phase": "pre_activate",
+      "value": "81679",
+      "input_ref": {
+        "file": "king-input-facts.json",
+        "pointer": "/timers/king_buff:P:12/lineage/owner_id"
+      }
+    },
+    {
+      "index": 1372,
+      "field": "Timer.lineage.kind",
+      "phase": "pre_activate",
+      "value": "King.scene.instance",
+      "input_ref": {
+        "file": "king-input-facts.json",
+        "pointer": "/timers/king_buff:P:12/lineage/kind"
+      }
+    },
+    {
+      "index": 1373,
+      "field": "Timer.lineage.starts",
+      "phase": "pre_activate",
+      "value": 0,
+      "input_ref": {
+        "file": "king-input-facts.json",
+        "pointer": "/timers/king_buff:P:12/lineage/starts"
+      }
+    },
+    {
+      "index": 1374,
+      "field": "Timer.lineage.stops",
+      "phase": "pre_activate",
+      "value": 0,
+      "input_ref": {
+        "file": "king-input-facts.json",
+        "pointer": "/timers/king_buff:P:12/lineage/stops"
+      }
+    },
+    {
+      "index": 1375,
+      "field": "Timer.lineage.birth",
+      "phase": "pre_activate",
+      "value": {
+        "autostart": false,
+        "node": {
+          "class": "Timer",
+          "inside_tree": false,
+          "internal_idle": false,
+          "internal_physics": false,
+          "name": "BuffTimer",
+          "native_id": "81717",
+          "ordinary_idle": false,
+          "ordinary_physics": false,
+          "path": null,
+          "positions": [
+            -1,
+            7
+          ],
+          "priority": 0,
+          "role": null
+        },
+        "one_shot": true,
+        "paused": false,
+        "process_mode": 0,
+        "stopped": true,
+        "time_left": {
+          "binary64_be": "0000000000000000",
+          "type": "float"
+        },
+        "wait_time": {
+          "binary64_be": "3ff0000000000000",
+          "type": "float"
+        }
+      },
+      "input_ref": {
+        "file": "king-input-facts.json",
+        "pointer": "/timers/king_buff:P:12/lineage/birth"
+      }
+    }
+  ],
+  "birth": {
+    "autostart": false,
+    "node": {
+      "class": "Timer",
+      "inside_tree": false,
+      "internal_idle": false,
+      "internal_physics": false,
+      "name": "BuffTimer",
+      "native_id": "81717",
+      "ordinary_idle": false,
+      "ordinary_physics": false,
+      "path": null,
+      "positions": [
+        -1,
+        7
+      ],
+      "priority": 0,
+      "role": null
+    },
+    "one_shot": true,
+    "paused": false,
+    "process_mode": 0,
+    "stopped": true,
+    "time_left": {
+      "binary64_be": "0000000000000000",
+      "type": "float"
+    },
+    "wait_time": {
+      "binary64_be": "3ff0000000000000",
+      "type": "float"
+    }
+  },
+  "starts_stops": {
+    "starts": 0,
+    "stops": 0,
+    "strict_INT": true
+  },
+  "provenance": {
+    "slot": {
+      "instance_id": "P:12",
+      "input_slot": 12,
+      "native_id": "81679",
+      "descriptor_id": "12018",
+      "item_index": {
+        "type": "int",
+        "decimal": "262"
+      },
+      "top_left": {
+        "x": {
+          "type": "float",
+          "binary64_be": "4000000000000000"
+        },
+        "y": {
+          "type": "float",
+          "binary64_be": "3ff0000000000000"
+        }
+      },
+      "orientation": {
+        "type": "int",
+        "decimal": "0"
+      },
+      "occupiedCells": [
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "inventory_id": "48429",
+      "character_id": "47611",
+      "inventory_encounter_index": 12
+    },
+    "lineage_shared_sequences": [
+      36,
+      37,
+      38
+    ],
+    "UI_bind_sequence": 1029,
+    "UI_roles_sequence": 1076,
+    "UI_generation": 1,
+    "UI_shared_sequences_independent": true,
+    "nonpooled": true,
+    "ready_normal_return": true
+  },
+  "union": {
+    "keys": 88,
+    "nonpair_rows_unchanged": 86,
+    "prior_A4_rows_verbatim": 4,
+    "new_target_chains": 2,
+    "new_rule_families": 1,
+    "SOURCE_DERIVED_candidates": 6,
+    "MISSING": 82,
+    "extra_actual_values": 0
+  },
+  "source_basis": {
+    "design": {
+      "path": "data/phase425-independent-king-buff-design-review/review.json",
+      "size": 12133,
+      "sha256": "99f37a407512f409bb8f5a30882403ddabcf329ef6ea5e7b1fd2dafb437a659a"
+    },
+    "functional": {
+      "path": "data/phase427-independent-kingbuff-overlay-review/review.json",
+      "size": 9816,
+      "sha256": "503d760ddecf892ee38ee1bc1d008548e6a7111e4e1de1764def219c58ea602f"
+    },
+    "rule": "SCENE_TIMER_CONFIGURED_NO_START/1",
+    "source_semantics_reused_not_reaudited": true,
+    "private_values_directly_measured": false,
+    "native_limits": [
+      "No bit-exact custom binary build/source reproduction.",
+      "No direct private countdown measurement.",
+      "Finite026 public/API numeric acceptance is not universal native conformance.",
+      "Standard native factory/setter premises are explicit; ClassDB/Object/resource internals were not recursively audited.",
+      "Contrary runtime/native evidence invalidates use of the rule; this review cannot override it."
+    ]
+  }
+}
