@@ -1,0 +1,37 @@
+--- tests/phase384_prepare_readback_source.py
++++ tests/phase384_prepare_readback_source_v2.py
+@@ -23,7 +23,7 @@
+ def main():
+     review=R/'data/phase381-independent-static-review/review.json';assert pin(review)==dict(size=4409,sha256='fdec12c4774172daa223bc4b23caadce08ccfbe9a2fd0b910eb2486ddfb7b765')
+     reviewed=json.loads(review.read_text());assert [r['id'] for r in reviewed['findings']]==['F01','F02']
+-    D.mkdir(exist_ok=False)
++    D.mkdir(exist_ok=True);assert not any(D.iterdir()),'new SOURCE output must be empty'
+     old={}
+     for name in ('data/phase381-independent-readback-source/source-owner.json','data/phase381-independent-static-review/owned-files.json'):
+         path=R/name;old[name]=desc(path)
+@@ -44,10 +44,10 @@
+     inverse=after
+     for a,b in reversed(pairs):inverse=inverse.replace(b,a)
+     assert inverse==before,'complete checker inverse'
+-    checker=R/'tests/phase384_independent_restored_readback.py';checker.write_text(after);compile(after,str(checker),'exec')
++    checker=R/'tests/phase384_independent_restored_readback.py';assert checker.read_text()==after,'exact existing derived checker';compile(after,str(checker),'exec')
+     oldf={n.name:ast.dump(n,include_attributes=False) for n in ast.parse(before).body if isinstance(n,ast.FunctionDef)}
+     newf={n.name:ast.dump(n,include_attributes=False) for n in ast.parse(after).body if isinstance(n,ast.FunctionDef)}
+-    assert oldf.keys()==newf.keys();changed={k for k in oldf if oldf[k]!=newf[k]};assert changed=={'prepare_contract','main'}
++    assert oldf.keys()==newf.keys();changed={k for k in oldf if oldf[k]!=newf[k]};assert changed=={'main'}
+     # Consumer verification must be in the same expression before read/AST execution.
+     assert "source=verify_descriptor(R,contract['process_inspector_source']).read_text();tree=ast.parse(source)" in after
+     assert "READBACK_STATUS = 'INDEPENDENT380_RESTORED_POOL_EXACT_TARGET_READBACK_PASS'" in after
+@@ -62,9 +62,9 @@
+     save('source-contract.json',contract)
+     (D/'checker-source.patch').write_text(''.join(difflib.unified_diff(before.splitlines(True),after.splitlines(True),fromfile='frozen381/readback.py',tofile='source384/readback.py')))
+     save('source-derivation.json',dict(schema='phase384-source-narrow-repair/1',before=desc(before_path),after=desc(checker),literal_pairs=pairs,
+-        inverse='EXACT_COMPLETE_BYTES',changed_functions=['prepare_contract','main'],unchanged_functions=sorted(oldf.keys()-changed),
+-        exceptions=dict(prepare_contract='D/SD path literals only',main='new paths; actual inspector verify-before-read/exec; exact successful receipt status; mirror included in runtimeowner'),
+-        inspector_origin=origin,inspector_mirror=desc(mirror),mirror_bytes_identical=True,independent_finding=desc(review),
++        inverse='EXACT_COMPLETE_BYTES',changed_functions=['main'],unchanged_functions=sorted(oldf.keys()-changed),
++        module_constants='D/SD path literals only',exceptions=dict(main='new paths; actual inspector verify-before-read/exec; exact successful receipt status; mirror included in runtimeowner'),
++        inspector_origin=origin,inspector_mirror=desc(mirror),mirror_bytes_identical=True,independent_finding=desc(review),source_preparation_failure=desc(R/'data/phase384-source-preparation-first-001/owned-files.json'),
+         compile_only=True,checker_imports=0,checker_calls=0,actualpool_reads=0,proc_reads=0))
+     for name,row in old.items():assert desc(R/name)==row
+     save('old-source-readback.json',dict(status='ALL_REFERENCED_381_AND_REVIEW_LEAVES_IDENTICAL',files=list(old.values())))

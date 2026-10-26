@@ -1,0 +1,86 @@
+{
+  "status": "BLOCKED381_INSPECTOR_CONSUMER_PIN_AND_RECEIPT_STATUS",
+  "checker": {
+    "path": "tests/phase381_independent_restored_readback.py",
+    "size": 22036,
+    "sha256": "f803e25c920fbb7530252186749b0fd8a063613d2ab6ce16afebf3692d5addd7"
+  },
+  "author_source_owner": {
+    "path": "data/phase381-independent-readback-source/source-owner.json",
+    "size": 1664,
+    "sha256": "735dda0260f1f6cec874673455b301e79d20f561ed30373dd2b9ec6ff1c35af0"
+  },
+  "findings": [
+    {
+      "id": "F01",
+      "kind": "UNVERIFIED_EXECUTABLE_SOURCE_CONSUMER",
+      "descriptor": {
+        "path": "data/phase365-independent-source-review/SOURCE/compaction.py",
+        "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260",
+        "size": 27304
+      },
+      "current_actual_identity": {
+        "size": 27304,
+        "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260"
+      },
+      "current_bytes_match": true,
+      "existing_owner_coverage": {
+        "381source": false,
+        "380freeze": false,
+        "382final": false
+      },
+      "evidence": {
+        "function": "main",
+        "line": 166,
+        "text": "        lock=(roots['pool']/'.lock').open('rb');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)\n        # SOURCE-exact read-only process inspector; no staged candidate/module imports.\n        source=(R/contract['process_inspector_source']['path']).read_text();tree=ast.parse(source)\n        selected=[node for node in tree.body if isinstance(node,ast.FunctionDef) and node.name in ('process_check','stamp')]\n        require(len(selected)==2,'exact process inspector functions')\n        ns=dict(Path=Path,os=os,json=json,datetime=datetime,require=require)"
+      },
+      "explanation": "Descriptor is recorded but omitted from owner.files/runtime verify loop; source is read/extracted/executed without actual SHA verification. Current matching bytes and public staging availability do not establish consumer failclosed.",
+      "minimum": "Verify descriptor before reading/exec and include immutable true source or mirror in new SOURCE owner."
+    },
+    {
+      "id": "F02",
+      "kind": "RESTORE_RECEIPT_STATUS_UNCHECKED",
+      "evidence": {
+        "function": "main",
+        "line": 160,
+        "text": "    require(len(mapping['file_differences'])==74 and staged_differences==0 and expected_writes==74,'actual partial74+staged0, not old76')\n    require(mapping['known_absent_creates']==['.native-random-observer-disposable','native_random_observer_sink_v7.gd'],'exact partial2 creates')\n    require(receipt['READY_committed'] is False and receipt['writes']==expected_writes,'partial restore-only actual receipt')\n    sys.addaudithook(audit);started=time.monotonic();result={};failure=None;lock=None\n    try:\n        state=roots['pool']/'state.json';require(pin(state)==contract['failed_state'] and read(state)['status']=='failed','state must remain original failed')"
+      },
+      "explanation": "Wires/failedstate/READY=false/writecount checked; successful restore-only status demanded by SPEC is not checked here. Future commit rejection is separate and cannot fulfill this checker clause.",
+      "minimum": "Require exact status RESTORED_EXACT_TARGET_STATE_REMAINS_FAILED_INDEPENDENT_READBACK_PENDING before issuing readback PASS."
+    }
+  ],
+  "static_pass": {
+    "author8pins": true,
+    "conserved_method_AST": [
+      "audit",
+      "canonical",
+      "counts",
+      "desc",
+      "inventory",
+      "pin",
+      "read",
+      "require",
+      "save",
+      "verify_descriptor"
+    ],
+    "compile_only": true,
+    "status_literal": "INDEPENDENT380_RESTORED_POOL_EXACT_TARGET_READBACK_PASS",
+    "write_logic": "74 project +0 staged differences, not76",
+    "native_PID_PGID_proof": "N/A explicitNone; no fake logs/groups",
+    "capsule173_run_output": 161,
+    "capsule173_run_data": 3,
+    "wholeproc_false_and_gaps_retained": true,
+    "full_target_baseline_oldretained_driver_bundle_overlay_state_checks_retained": true
+  },
+  "scope": "SOURCE only; no physical/PID/overlay execution or physical PASS. Component380/382 acceptance unchanged; Root real restoration/readback remain pending.",
+  "checker_imports": 0,
+  "checker_calls": 0,
+  "physical_inventory_calls": 0,
+  "proc_reads": 0,
+  "actualpool_reads": 0,
+  "native": 0,
+  "models": 0,
+  "Godot": 0,
+  "projection": 0,
+  "no_more_writes": true
+}

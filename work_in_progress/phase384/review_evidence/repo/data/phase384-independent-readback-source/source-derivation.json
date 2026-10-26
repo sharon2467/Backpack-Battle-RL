@@ -1,0 +1,91 @@
+{
+  "actualpool_reads": 0,
+  "after": {
+    "path": "tests/phase384_independent_restored_readback.py",
+    "sha256": "57dce0164d42ef903b3cce33a206d2207d0ffb91dbea2e73829401c908163585",
+    "size": 22241
+  },
+  "before": {
+    "path": "tests/phase381_independent_restored_readback.py",
+    "sha256": "f803e25c920fbb7530252186749b0fd8a063613d2ab6ce16afebf3692d5addd7",
+    "size": 22036
+  },
+  "changed_functions": [
+    "main"
+  ],
+  "checker_calls": 0,
+  "checker_imports": 0,
+  "compile_only": true,
+  "exceptions": {
+    "main": "new paths; actual inspector verify-before-read/exec; exact successful receipt status; mirror included in runtimeowner"
+  },
+  "independent_finding": {
+    "path": "data/phase381-independent-static-review/review.json",
+    "sha256": "fdec12c4774172daa223bc4b23caadce08ccfbe9a2fd0b910eb2486ddfb7b765",
+    "size": 4409
+  },
+  "inspector_mirror": {
+    "path": "data/phase384-independent-readback-source/readonly-process-inspector.py",
+    "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260",
+    "size": 27304
+  },
+  "inspector_origin": {
+    "path": "data/phase365-independent-source-review/SOURCE/compaction.py",
+    "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260",
+    "size": 27304
+  },
+  "inverse": "EXACT_COMPLETE_BYTES",
+  "literal_pairs": [
+    [
+      "data/phase381-independent-actual-readback-first-001",
+      "data/phase384-independent-actual-readback-first-001"
+    ],
+    [
+      "data/phase381-independent-readback-source",
+      "data/phase384-independent-readback-source"
+    ],
+    [
+      "docs/phase381_independent_partial_restore_readback_source_spec.md",
+      "docs/phase384_readback_consumer_pin_and_receipt_status_repair_spec.md"
+    ],
+    [
+      "tests/phase381_independent_restored_readback.py",
+      "tests/phase384_independent_restored_readback.py"
+    ],
+    [
+      "source=(R/contract['process_inspector_source']['path']).read_text();tree=ast.parse(source)",
+      "source=verify_descriptor(R,contract['process_inspector_source']).read_text();tree=ast.parse(source)"
+    ],
+    [
+      "require(receipt['READY_committed'] is False and receipt['writes']==expected_writes,'partial restore-only actual receipt')",
+      "require(receipt.get('status')=='RESTORED_EXACT_TARGET_STATE_REMAINS_FAILED_INDEPENDENT_READBACK_PENDING','exact successful restore-only receipt status')\n    require(receipt['READY_committed'] is False and receipt['writes']==expected_writes,'partial restore-only actual receipt')"
+    ],
+    [
+      "selected += [SD/'CAPSULE377.json',SD/'source-contract.json',SD/'source-owner.json']",
+      "selected += [SD/'CAPSULE377.json',SD/'source-contract.json',SD/'source-owner.json',SD/'readonly-process-inspector.py']"
+    ]
+  ],
+  "mirror_bytes_identical": true,
+  "module_constants": "D/SD path literals only",
+  "proc_reads": 0,
+  "schema": "phase384-source-narrow-repair/1",
+  "source_preparation_failure": {
+    "path": "data/phase384-source-preparation-first-001/owned-files.json",
+    "sha256": "ad4db4ff191d48cc1789220da963c9b66061955ed598db0277a2bfe7f22d5cd2",
+    "size": 639
+  },
+  "unchanged_functions": [
+    "audit",
+    "canonical",
+    "counts",
+    "desc",
+    "inventory",
+    "pin",
+    "prepare_contract",
+    "read",
+    "require",
+    "save",
+    "verify_descriptor",
+    "verify_overlay_archive"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "status": "SOURCE_PREPARATION_AST_EXPECTATION_ERROR",
+  "expected_changed_functions": [
+    "prepare_contract",
+    "main"
+  ],
+  "actual_changed_functions": [
+    "main"
+  ],
+  "cause": "prepare_contract has no replaced literals; D and SD are module constants",
+  "stderr": "Prior direct tool output was truncated; no recovered stderr is claimed",
+  "checker_calls": 0,
+  "actualpool_reads": 0,
+  "proc_reads": 0,
+  "fix": "New preparer v2 only corrects AST exception set and verifies exact existing checker bytes"
+}

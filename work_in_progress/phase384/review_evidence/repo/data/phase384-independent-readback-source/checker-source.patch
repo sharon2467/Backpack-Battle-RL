@@ -1,0 +1,40 @@
+--- frozen381/readback.py
++++ source384/readback.py
+@@ -14,8 +14,8 @@
+ import zipfile
+ 
+ R=Path(__file__).resolve().parents[1]
+-D=R/'data/phase381-independent-actual-readback-first-001'
+-SD=R/'data/phase381-independent-readback-source'
++D=R/'data/phase384-independent-actual-readback-first-001'
++SD=R/'data/phase384-independent-readback-source'
+ AUDIT=dict(write_attempts=0,blocked=[],subprocesses=0,network=0)
+ READBACK_STATUS = 'INDEPENDENT380_RESTORED_POOL_EXACT_TARGET_READBACK_PASS'
+ 
+@@ -157,13 +157,14 @@
+     expected_writes=len(mapping['file_differences'])+staged_differences
+     require(len(mapping['file_differences'])==74 and staged_differences==0 and expected_writes==74,'actual partial74+staged0, not old76')
+     require(mapping['known_absent_creates']==['.native-random-observer-disposable','native_random_observer_sink_v7.gd'],'exact partial2 creates')
++    require(receipt.get('status')=='RESTORED_EXACT_TARGET_STATE_REMAINS_FAILED_INDEPENDENT_READBACK_PENDING','exact successful restore-only receipt status')
+     require(receipt['READY_committed'] is False and receipt['writes']==expected_writes,'partial restore-only actual receipt')
+     sys.addaudithook(audit);started=time.monotonic();result={};failure=None;lock=None
+     try:
+         state=roots['pool']/'state.json';require(pin(state)==contract['failed_state'] and read(state)['status']=='failed','state must remain original failed')
+         lock=(roots['pool']/'.lock').open('rb');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+         # SOURCE-exact read-only process inspector; no staged candidate/module imports.
+-        source=(R/contract['process_inspector_source']['path']).read_text();tree=ast.parse(source)
++        source=verify_descriptor(R,contract['process_inspector_source']).read_text();tree=ast.parse(source)
+         selected=[node for node in tree.body if isinstance(node,ast.FunctionDef) and node.name in ('process_check','stamp')]
+         require(len(selected)==2,'exact process inspector functions')
+         ns=dict(Path=Path,os=os,json=json,datetime=datetime,require=require)
+@@ -260,8 +261,8 @@
+         value.update(project_readback=desc(D/'project-readback.json'),staged_readback=desc(D/'staged-readback.json'))
+     save(D/'review.json',value)
+     selected=[p for p in D.rglob('*') if p.is_file()]
+-    selected += [SD/'CAPSULE377.json',SD/'source-contract.json',SD/'source-owner.json']
+-    selected+=[R/'docs/phase381_independent_partial_restore_readback_source_spec.md',R/'tests/phase381_independent_restored_readback.py']
++    selected += [SD/'CAPSULE377.json',SD/'source-contract.json',SD/'source-owner.json',SD/'readonly-process-inspector.py']
++    selected+=[R/'docs/phase384_readback_consumer_pin_and_receipt_status_repair_spec.md',R/'tests/phase384_independent_restored_readback.py']
+     save(D/'owned-files.json',dict(schema='phase381-independent-readback-owner/1',files=[desc(p) for p in sorted(selected)],no_more_writes=True,external_paths_provenance_only=True))
+     for row in read(D/'owned-files.json')['files']:verify_descriptor(R,row)
+     print(json.dumps(dict(status=value['status'],review=desc(D/'review.json'),owner=desc(D/'owned-files.json'),observations=result,failure=failure)))

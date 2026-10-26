@@ -1,0 +1,83 @@
+{
+  "status": "INDEPENDENT384_READBACK_SOURCE_REPAIR_ACCEPTED_ROOT_EXECUTION_PENDING",
+  "checker": {
+    "path": "tests/phase384_independent_restored_readback.py",
+    "size": 22241,
+    "sha256": "57dce0164d42ef903b3cce33a206d2207d0ffb91dbea2e73829401c908163585"
+  },
+  "author_source_owner": {
+    "path": "data/phase384-independent-readback-source/source-owner.json",
+    "size": 3903,
+    "sha256": "2b3d370c5d64e00e18147659dfda3f8f8a67b8a4dcbc7d340989ce52c8d4ecc7"
+  },
+  "F01": {
+    "closed_SOURCE": true,
+    "actual_consumer": "verify_descriptor(...).read_text -> ast.parse -> selected AST exec",
+    "mirror": {
+      "path": "data/phase384-independent-readback-source/readonly-process-inspector.py",
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260",
+      "size": 27304
+    },
+    "owned_in_source": true,
+    "owned_in_future_runtime": true
+  },
+  "F02": {
+    "closed_SOURCE": true,
+    "exact_success_status": "RESTORED_EXACT_TARGET_STATE_REMAINS_FAILED_INDEPENDENT_READBACK_PENDING",
+    "before_physical_pool_reads": true
+  },
+  "full_source_allowlist_exact": true,
+  "conserved_function_AST": [
+    "pin",
+    "desc",
+    "read",
+    "save",
+    "require",
+    "canonical",
+    "verify_descriptor",
+    "inventory",
+    "counts",
+    "audit",
+    "verify_overlay_archive",
+    "prepare_contract"
+  ],
+  "old381_review_reused": {
+    "path": "data/phase381-independent-static-review/review.json",
+    "size": 4409,
+    "sha256": "fdec12c4774172daa223bc4b23caadce08ccfbe9a2fd0b910eb2486ddfb7b765"
+  },
+  "author_preparer_first_failure": {
+    "status": "SOURCE_PREPARATION_AST_EXPECTATION_ERROR",
+    "expected_changed_functions": [
+      "prepare_contract",
+      "main"
+    ],
+    "actual_changed_functions": [
+      "main"
+    ],
+    "cause": "prepare_contract has no replaced literals; D and SD are module constants",
+    "stderr": "Prior direct tool output was truncated; no recovered stderr is claimed",
+    "checker_calls": 0,
+    "actualpool_reads": 0,
+    "proc_reads": 0,
+    "fix": "New preparer v2 only corrects AST exception set and verifies exact existing checker bytes"
+  },
+  "preparer_failure_scope": "Static SOURCE preparer expectation only; actual checker/physical operation was not run.",
+  "runtime_readback_status": "INDEPENDENT380_RESTORED_POOL_EXACT_TARGET_READBACK_PASS",
+  "source_freeze": {
+    "path": "data/phase380-payload-source/combined-source-freeze.json",
+    "sha256": "0b849df817910a586e9d28548c2942e013cae1f15f7bf085aaf5e9b2a4337cfb",
+    "size": 63604
+  },
+  "checker_imports": 0,
+  "checker_calls": 0,
+  "physical_inventory_calls": 0,
+  "proc_reads": 0,
+  "actualpool_reads": 0,
+  "native": 0,
+  "models": 0,
+  "Godot": 0,
+  "projection": 0,
+  "scope": "Narrow SOURCE acceptance only. Physical readback/READY/actual restore require later Root gates; no existing successful batch repeated.",
+  "no_more_writes": true
+}
