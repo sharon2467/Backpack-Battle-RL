@@ -1,0 +1,335 @@
+{
+  "files": [
+    {
+      "after": {
+        "path": "data/phase370-oracle-source/after-source/native_random_observer_sink_v7.gd",
+        "sha256": "2a665f6d3849b34dee31e5079e58ebf59049d06b9590fb8522e53bfbe0b581ad",
+        "size": 99784
+      },
+      "before": {
+        "path": "data/phase368-oracle-source/after-source/native_random_observer_sink_v7.gd",
+        "sha256": "67620fe55ddcae84efe8a2a4f5ee0cb397d08598395905b324052527106885ae",
+        "size": 99407
+      },
+      "changed_functions": [
+        "emit_source_idle_cut_once",
+        "source_cut_control"
+      ],
+      "inverse": "EXACT_COMPLETE_BYTES",
+      "literal_pairs": [
+        [
+          "source_cut_emit_error",
+          "source_cut_script_return"
+        ],
+        [
+          "var source_cut_script_return = null",
+          "var source_cut_script_return = null\nvar source_cut_script_return_observed = false"
+        ],
+        [
+          "\"emit_error\": source_cut_script_return",
+          "\"script_emit_return\": source_cut_script_return, \"script_emit_return_observed\": source_cut_script_return_observed, \"native_emit_error_available\": false, \"native_emit_error\": null"
+        ],
+        [
+          "if receiver == null or not receiver.has_method(\"finish_source_cut\"):",
+          "if receiver == null or not receiver.has_method(\"on_idle_source_cut\") or not receiver.has_method(\"finish_source_cut\"):"
+        ],
+        [
+          "source_cut_script_return = emit_signal(\"source_idle_cut_ready\")",
+          "source_cut_script_return = emit_signal(\"source_idle_cut_ready\")\n\tsource_cut_script_return_observed = true"
+        ],
+        [
+          "# An OK Error return is not a callback acknowledgement.",
+          "# Script NIL is not a callback acknowledgement; native Error is unavailable."
+        ],
+        [
+          "if typeof(source_cut_script_return) != TYPE_INT or source_cut_script_return != OK or source_cut_ack == null or failed:",
+          "if typeof(source_cut_script_return_observed) != TYPE_BOOL or not source_cut_script_return_observed or typeof(source_cut_script_return) != TYPE_NIL or source_cut_ack == null or failed:"
+        ]
+      ],
+      "unchanged_functions": [
+        "_ready",
+        "ack_source_idle_cut",
+        "append_node",
+        "auto_hide_state",
+        "begin_encoding",
+        "begin_fixture_window",
+        "begin_king_clock",
+        "bind_fixed_inventory",
+        "buff_label",
+        "buff_name",
+        "capture_delayed",
+        "checkpoint",
+        "clock_idle_signal",
+        "clock_pass",
+        "clock_physics_signal",
+        "close_king_clock",
+        "configure",
+        "context",
+        "cooldown",
+        "damage_label",
+        "encode",
+        "entry",
+        "estimated_bytes",
+        "event_data",
+        "export_data",
+        "fail",
+        "float_bits",
+        "fraction_context",
+        "fraction_shuffle",
+        "identity",
+        "is_temporary",
+        "item_id",
+        "king_runtime_snapshot",
+        "king_timer_fact",
+        "leave",
+        "metadata",
+        "middle",
+        "most_buff_label",
+        "native_id",
+        "node_state",
+        "primitive",
+        "reference",
+        "reflect_label",
+        "reserve_encoding",
+        "rng_initial_capture",
+        "rng_initial_continuity",
+        "rng_initial_write",
+        "rng_int64",
+        "scene_instance",
+        "selected_king_facts",
+        "selected_lineage",
+        "shortbow_debuff_label",
+        "side",
+        "source_completion_receipt",
+        "source_control_bound_value",
+        "source_control_rows",
+        "source_control_target",
+        "source_cut_receiver",
+        "source_cut_reject",
+        "source_diag_secondary",
+        "source_diag_valid",
+        "source_diagnostic",
+        "source_is",
+        "source_mark_cleanup",
+        "source_observable",
+        "source_register",
+        "source_resources",
+        "source_runtime_snapshot",
+        "source_same_slot_value",
+        "source_selected_auto",
+        "source_write_diagnostic",
+        "source_write_row",
+        "stack_pick_label",
+        "stamp",
+        "state",
+        "temporary",
+        "timer_after",
+        "timer_before",
+        "timer_birth",
+        "timer_state",
+        "track_king_timer_api",
+        "ui_bind_roles",
+        "ui_bind_scene",
+        "ui_check_controls",
+        "ui_check_pooled_timer_reuse",
+        "ui_close",
+        "ui_controls",
+        "ui_entry",
+        "ui_leave",
+        "ui_open",
+        "ui_ready",
+        "ui_write",
+        "write_king_json",
+        "write_record"
+      ]
+    },
+    {
+      "after": {
+        "path": "tests/phase370_sink_control_delta.gd",
+        "sha256": "f3de3736a685c9e9ac55d93aa72d19684f193ab721abdddcaf0c39fed423c27f",
+        "size": 12040
+      },
+      "before": {
+        "path": "tests/phase368_sink_control_delta.gd",
+        "sha256": "9c7a2ab46ce2a4517b75d83feb6a7e65fee633747368e605836804f3cd551849",
+        "size": 11663
+      },
+      "changed_functions": [
+        "emit_source_idle_cut_once",
+        "source_cut_control"
+      ],
+      "inverse": "EXACT_COMPLETE_BYTES",
+      "literal_pairs": [
+        [
+          "source_cut_emit_error",
+          "source_cut_script_return"
+        ],
+        [
+          "var source_cut_script_return = null",
+          "var source_cut_script_return = null\nvar source_cut_script_return_observed = false"
+        ],
+        [
+          "\"emit_error\": source_cut_script_return",
+          "\"script_emit_return\": source_cut_script_return, \"script_emit_return_observed\": source_cut_script_return_observed, \"native_emit_error_available\": false, \"native_emit_error\": null"
+        ],
+        [
+          "if receiver == null or not receiver.has_method(\"finish_source_cut\"):",
+          "if receiver == null or not receiver.has_method(\"on_idle_source_cut\") or not receiver.has_method(\"finish_source_cut\"):"
+        ],
+        [
+          "source_cut_script_return = emit_signal(\"source_idle_cut_ready\")",
+          "source_cut_script_return = emit_signal(\"source_idle_cut_ready\")\n\tsource_cut_script_return_observed = true"
+        ],
+        [
+          "# An OK Error return is not a callback acknowledgement.",
+          "# Script NIL is not a callback acknowledgement; native Error is unavailable."
+        ],
+        [
+          "if typeof(source_cut_script_return) != TYPE_INT or source_cut_script_return != OK or source_cut_ack == null or failed:",
+          "if typeof(source_cut_script_return_observed) != TYPE_BOOL or not source_cut_script_return_observed or typeof(source_cut_script_return) != TYPE_NIL or source_cut_ack == null or failed:"
+        ]
+      ],
+      "unchanged_functions": [
+        "ack_source_idle_cut",
+        "clock_idle_signal",
+        "source_control_bound_value",
+        "source_control_rows",
+        "source_control_target",
+        "source_cut_receiver",
+        "source_cut_reject",
+        "source_diag_secondary",
+        "source_diag_valid",
+        "source_diagnostic"
+      ]
+    },
+    {
+      "after": {
+        "path": "data/phase370-oracle-source/collector.gd",
+        "sha256": "33f2d20dee6364dd26a89a15a00d506ca96095d8ec661c7c1693aecb58b6acf7",
+        "size": 61404
+      },
+      "before": {
+        "path": "data/phase369-oracle-source/collector.gd",
+        "sha256": "cc1134a833eb1626fbc934b1a4af019489fb26d2c37d2f8ff0108033667237d1",
+        "size": 60930
+      },
+      "changed_functions": [
+        "finish_source_cut",
+        "on_idle_source_cut"
+      ],
+      "inverse": "EXACT_COMPLETE_BYTES",
+      "literal_pairs": [
+        [
+          "control.emit_error != null",
+          "typeof(control.script_emit_return_observed) != TYPE_BOOL or control.script_emit_return_observed or typeof(control.script_emit_return) != TYPE_NIL or typeof(control.native_emit_error_available) != TYPE_BOOL or control.native_emit_error_available or control.native_emit_error != null"
+        ],
+        [
+          "typeof(control.emit_error) != TYPE_INT or control.emit_error != OK",
+          "typeof(control.script_emit_return_observed) != TYPE_BOOL or not control.script_emit_return_observed or typeof(control.script_emit_return) != TYPE_NIL or typeof(control.native_emit_error_available) != TYPE_BOOL or control.native_emit_error_available or control.native_emit_error != null"
+        ]
+      ],
+      "unchanged_functions": [
+        "_initialize",
+        "after_activate",
+        "attach_source_listener",
+        "check_barrier",
+        "check_source_listener_order",
+        "collector_control_bound_value",
+        "collector_control_float_bits",
+        "collector_control_rows",
+        "collector_control_target",
+        "collector_diag_valid",
+        "collector_diagnostic_fallback",
+        "config_matches_source",
+        "encode",
+        "ensure_source_window",
+        "event_row",
+        "exact_keys",
+        "fail",
+        "fail_write_cap",
+        "fields",
+        "frames",
+        "freeze_events",
+        "histories",
+        "integer_between",
+        "native_ids",
+        "observe",
+        "observe_player_setup",
+        "observer7_precondition",
+        "old_player_exit_valid",
+        "on_combat_end",
+        "on_combat_start",
+        "on_shop_closed",
+        "phase",
+        "place_player_items",
+        "player_input_valid",
+        "player_membership_unchanged",
+        "player_setup_settled",
+        "player_spatial_evidence",
+        "preflight",
+        "read_player_fixture",
+        "register_inventory",
+        "rules_are_default",
+        "run_context",
+        "same_id_set",
+        "serializer_selftest",
+        "set_stage",
+        "setup_step",
+        "slot_spec",
+        "source_connection_target",
+        "source_control_record",
+        "source_control_snapshot",
+        "source_cut_reject_collector",
+        "source_is",
+        "source_window_reject",
+        "stable_snapshot",
+        "start_controlled_combat",
+        "state_snapshot",
+        "timeout_budget_selftest",
+        "timeout_budget_valid",
+        "write_json",
+        "write_jsonl",
+        "write_source_bytes"
+      ]
+    },
+    {
+      "after": {
+        "path": "tests/phase370_collector_control_delta.gd",
+        "sha256": "4ba91ec71e5ec795396f287bc18e7e83e3bdf7ebee6f1e14dad4fa7844dadc0c",
+        "size": 17016
+      },
+      "before": {
+        "path": "tests/phase369_collector_control_delta.gd",
+        "sha256": "476b549e08539bb85ebd6163e23a3c04dedb136c226b60b4299033358fa5fc47",
+        "size": 16542
+      },
+      "changed_functions": [
+        "finish_source_cut",
+        "on_idle_source_cut"
+      ],
+      "inverse": "EXACT_COMPLETE_BYTES",
+      "literal_pairs": [
+        [
+          "control.emit_error != null",
+          "typeof(control.script_emit_return_observed) != TYPE_BOOL or control.script_emit_return_observed or typeof(control.script_emit_return) != TYPE_NIL or typeof(control.native_emit_error_available) != TYPE_BOOL or control.native_emit_error_available or control.native_emit_error != null"
+        ],
+        [
+          "typeof(control.emit_error) != TYPE_INT or control.emit_error != OK",
+          "typeof(control.script_emit_return_observed) != TYPE_BOOL or not control.script_emit_return_observed or typeof(control.script_emit_return) != TYPE_NIL or typeof(control.native_emit_error_available) != TYPE_BOOL or control.native_emit_error_available or control.native_emit_error != null"
+        ]
+      ],
+      "unchanged_functions": [
+        "attach_source_listener",
+        "check_source_listener_order",
+        "collector_diagnostic_fallback",
+        "ensure_source_window",
+        "observer7_precondition",
+        "source_control_record",
+        "source_control_snapshot",
+        "source_cut_reject_collector",
+        "source_window_reject"
+      ]
+    }
+  ],
+  "schema": "phase370-script-return-byte-inverse/1"
+}

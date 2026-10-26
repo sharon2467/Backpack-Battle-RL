@@ -1,0 +1,121 @@
+{
+  "ABI12_17key_unchanged": true,
+  "Godot": 0,
+  "SUT_imports": 0,
+  "aggregated_definite_static_blockers": [],
+  "collector_related_branches_read": [
+    "ensure_source_window",
+    "attach_source_listener",
+    "check_source_listener_order",
+    "source_control_snapshot",
+    "source_window_reject",
+    "on_idle_source_cut",
+    "finish_source_cut"
+  ],
+  "finish_resampling": false,
+  "full_native_positive": false,
+  "new_inverse_proofs": [
+    {
+      "after": {
+        "path": "data/phase370-oracle-source/after-source/native_random_observer_sink_v7.gd",
+        "sha256": "2a665f6d3849b34dee31e5079e58ebf59049d06b9590fb8522e53bfbe0b581ad",
+        "size": 99784
+      },
+      "before": {
+        "path": "data/phase368-oracle-source/after-source/native_random_observer_sink_v7.gd",
+        "sha256": "67620fe55ddcae84efe8a2a4f5ee0cb397d08598395905b324052527106885ae",
+        "size": 99407
+      },
+      "exact_new_delta_inverse": true
+    },
+    {
+      "after": {
+        "path": "tests/phase370_sink_control_delta.gd",
+        "sha256": "f3de3736a685c9e9ac55d93aa72d19684f193ab721abdddcaf0c39fed423c27f",
+        "size": 12040
+      },
+      "before": {
+        "path": "tests/phase368_sink_control_delta.gd",
+        "sha256": "9c7a2ab46ce2a4517b75d83feb6a7e65fee633747368e605836804f3cd551849",
+        "size": 11663
+      },
+      "exact_new_delta_inverse": true
+    },
+    {
+      "after": {
+        "path": "data/phase370-oracle-source/collector.gd",
+        "sha256": "33f2d20dee6364dd26a89a15a00d506ca96095d8ec661c7c1693aecb58b6acf7",
+        "size": 61404
+      },
+      "before": {
+        "path": "data/phase369-oracle-source/collector.gd",
+        "sha256": "cc1134a833eb1626fbc934b1a4af019489fb26d2c37d2f8ff0108033667237d1",
+        "size": 60930
+      },
+      "exact_new_delta_inverse": true
+    },
+    {
+      "after": {
+        "path": "tests/phase370_collector_control_delta.gd",
+        "sha256": "4ba91ec71e5ec795396f287bc18e7e83e3bdf7ebee6f1e14dad4fa7844dadc0c",
+        "size": 17016
+      },
+      "before": {
+        "path": "tests/phase369_collector_control_delta.gd",
+        "sha256": "476b549e08539bb85ebd6163e23a3c04dedb136c226b60b4299033358fa5fc47",
+        "size": 16542
+      },
+      "exact_new_delta_inverse": true
+    },
+    {
+      "after": {
+        "path": "tests/phase370_oracle_host.py",
+        "sha256": "04e0707e044b54106b489ae817f04e1624c01edf7745561c2b812e5c778f812e",
+        "size": 18039
+      },
+      "before": {
+        "path": "tests/phase369_oracle_host.py",
+        "sha256": "a22ecabd547234b91fa88e8dc879c1ba5a919b14d192d3f99a5b59ce35760401",
+        "size": 18038
+      },
+      "exact_new_delta_inverse": true
+    },
+    {
+      "after": {
+        "path": "tests/phase370_pool_recovery.py",
+        "sha256": "eabd691cb2474462b7faa01fcb39a8046cdb5c8a170a4995b47b342165d539f9",
+        "size": 16974
+      },
+      "before": {
+        "path": "tests/phase369_pool_recovery.py",
+        "sha256": "4d9c2ca5e4f38a53c099530900a66d82498664ea1f8d743b68deeec385cfe1c6",
+        "size": 16974
+      },
+      "exact_new_delta_inverse": true
+    }
+  ],
+  "old_success_reused": {
+    "path": "data/phase369-independent-execution/static-review.json",
+    "sha256": "9deeaa729670c955f246436181de7058cd5f343d33e3e508659643012d7c0495",
+    "size": 877
+  },
+  "once_before_sampling": true,
+  "original_clock_other_methods_conserved": true,
+  "potential_runtime_questions": [
+    "Complete script parse/load of concrete emit assignment and other control methods",
+    "Actual NIL+observed/BOOL/private receiver/ack state transitions"
+  ],
+  "resource_parse": "NOT_EXECUTED; full script binding/parser assignment validity must be actually loaded, not inferred",
+  "schema": "phase370-independent-static/1",
+  "sink_related_branches_read": [
+    "clock_idle_signal",
+    "source_cut_control",
+    "source_cut_reject",
+    "source_cut_receiver",
+    "ack_source_idle_cut",
+    "emit_source_idle_cut_once",
+    "source_control_rows",
+    "source_diagnostic"
+  ],
+  "status": "NEW_SOURCE_DELTA_NO_DEFINITE_STATIC_BLOCK_LANGUAGE_LOAD_PENDING"
+}

@@ -1,0 +1,20 @@
+--- frozen/collector.gd
++++ source370/collector.gd
+@@ -899,7 +899,7 @@
+ 	if observer == null or not observer.has_method("source_cut_control") or observer.failed:
+ 		return source_cut_reject_collector("CUT_OBSERVER_FAILURE")
+ 	var control = observer.source_cut_control()
+-	if control.phase != "EMITTING" or not control.dispatching or control.emit_count != 1 or control.receiver_id != str(get_instance_id()) or control.ack != null or control.emit_error != null:
++	if control.phase != "EMITTING" or not control.dispatching or control.emit_count != 1 or control.receiver_id != str(get_instance_id()) or control.ack != null or typeof(control.script_emit_return_observed) != TYPE_BOOL or control.script_emit_return_observed or typeof(control.script_emit_return) != TYPE_NIL or typeof(control.native_emit_error_available) != TYPE_BOOL or control.native_emit_error_available or control.native_emit_error != null:
+ 		return source_cut_reject_collector("CUT_NOT_SYNCHRONOUS_DISPATCH")
+ 	if control.physics != Engine.get_physics_frames() or control.idle != Engine.get_idle_frames():
+ 		return source_cut_reject_collector("CUT_DISPATCH_FRAME_MISMATCH")
+@@ -1039,7 +1039,7 @@
+ 	if done or source_cut_finish_entered or not source_cut_frozen or source_cut_payload == null or observer == null or not observer.has_method("source_cut_control"):
+ 		return source_cut_reject_collector("CUT_FINALIZER_ENTRY")
+ 	var control = observer.source_cut_control() # Observation-control primitives only, no business getter.
+-	if control.phase != "FINALIZING" or control.dispatching or control.emit_count != 1 or typeof(control.emit_error) != TYPE_INT or control.emit_error != OK or control.ack == null or control.receiver_id != str(get_instance_id()) or control.physics != source_cut_payload.validation.cut.physics or control.idle != source_cut_payload.validation.cut.idle or Engine.get_physics_frames() != control.physics or Engine.get_idle_frames() != control.idle or control.failed:
++	if control.phase != "FINALIZING" or control.dispatching or control.emit_count != 1 or typeof(control.script_emit_return_observed) != TYPE_BOOL or not control.script_emit_return_observed or typeof(control.script_emit_return) != TYPE_NIL or typeof(control.native_emit_error_available) != TYPE_BOOL or control.native_emit_error_available or control.native_emit_error != null or control.ack == null or control.receiver_id != str(get_instance_id()) or control.physics != source_cut_payload.validation.cut.physics or control.idle != source_cut_payload.validation.cut.idle or Engine.get_physics_frames() != control.physics or Engine.get_idle_frames() != control.idle or control.failed:
+ 		return source_cut_reject_collector("CUT_FINALIZER_CONTEXT")
+ 	source_cut_finish_entered = true
+ 	# Serialization only below: frozen primitive DTOs, no getters/snapshots/getStats/advance.

@@ -1,0 +1,81 @@
+{
+  "actual_models_allowed": 0,
+  "expected": [
+    "observer-only primary fallback",
+    "collector precedence if both controls without time inference",
+    "oversized observer control rejection",
+    "wrong observer schema rejection",
+    "new-schema neutral preflight positive",
+    "actual old365 schema rejects",
+    "BOOL restore zero rejects",
+    "mapped target mtime drift rejects",
+    "new-schema payload hardlink rejects",
+    "bad actual ZIP central CRC rejects",
+    "oldROOT schema rejects before authorization",
+    "neutral failed preimage unchanged",
+    "actual saved attempt02 map/payload/CRC/state identities derive78/7/2"
+  ],
+  "expected_controls": 13,
+  "files": [
+    {
+      "path": "tests/phase370_independent_helpers.py",
+      "sha256": "28b0a3855f594d78a11bd3611981e8624fbc6fe3095b94e053ea281ba71db8b6",
+      "size": 10408
+    },
+    {
+      "path": "data/phase370-independent-execution/language-first-001/interpretation.json",
+      "sha256": "c3436dd236bea888ef27da6bca70455b732112af0ec19e6fc3eb6fa679601d38",
+      "size": 963
+    },
+    {
+      "path": "data/phase368-attempt02-recovery-source/restore-map.json",
+      "sha256": "f07ac2295c90f7a0b0a770a4c71dcb5bee3613cf3b7b9057467fa0d0a605919d",
+      "size": 68355
+    },
+    {
+      "path": "data/phase368-attempt02-recovery-source/source-input-pins.json",
+      "sha256": "03e05ccb91c06f1e09d960c34f3aabc29305192548ac77c74ff43501cd40dec4",
+      "size": 3704
+    },
+    {
+      "path": "data/phase365-source-recovery-plan/restore-map.json",
+      "sha256": "67d11fd66bb9120a7dbcd85aef9db6d68745ac26c01ba6d1ff85c54e79ed5547",
+      "size": 68242
+    },
+    {
+      "path": "data/phase370-independent-execution/SOURCE/compaction.py",
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260",
+      "size": 27304
+    },
+    {
+      "path": "data/phase370-independent-execution/SOURCE/host370.py",
+      "sha256": "04e0707e044b54106b489ae817f04e1624c01edf7745561c2b812e5c778f812e",
+      "size": 18039
+    },
+    {
+      "path": "data/phase370-independent-execution/SOURCE/process.py",
+      "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f",
+      "size": 13665
+    },
+    {
+      "path": "data/phase370-independent-execution/SOURCE/recovery370.py",
+      "sha256": "eabd691cb2474462b7faa01fcb39a8046cdb5c8a170a4995b47b342165d539f9",
+      "size": 16974
+    },
+    {
+      "path": "data/phase370-independent-execution/SOURCE/storage.py",
+      "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc",
+      "size": 15496
+    },
+    {
+      "path": "data/phase370-independent-execution/SOURCE/tiny-evidence.py",
+      "sha256": "1773b9b725180ed8bd85ff6aa7ac1154e7470d32e27cb453aa1e91735ca7e47d",
+      "size": 6083
+    }
+  ],
+  "livepool_mutations_allowed": 0,
+  "livepool_reads_allowed": 0,
+  "positive": "Neutral real finite FS new preservation schema preflight only; no restore/READY; no actual native capture positive",
+  "processes_allowed": 0,
+  "schema": "phase370-independent-helper-contract/1"
+}

@@ -1,0 +1,85 @@
+{
+  "evidence": {
+    "partition": {
+      "capture": "/workspace/python-original-engine/repo/data/phase370-independent-execution/helpers-first-001/OBSERVER_TOO_LARGE/output/capture",
+      "capture_complete": false,
+      "control_failures_opaque": {
+        "observer7_failure.json": {
+          "sha256": "709b02da5c09d9d4fa6109532ece925efc091798e60ff1e6ac51a9299c527aee",
+          "size": 4223
+        }
+      },
+      "expected_observations_opaque": {
+        "opaque-unit.bin": {
+          "sha256": "503959d38c2d6cf386dd58d75b99f47a5ddfa604bfe363a8a38cc25d3c10a13d",
+          "size": 32
+        }
+      },
+      "expected_semantics_read": false,
+      "lawful_inputs_missing": [
+        "fixture.json",
+        "player_fixture.json",
+        "observer7-input.jsonl",
+        "observer7-lineage.jsonl",
+        "observer7-metadata.jsonl",
+        "observer7-primitives.jsonl",
+        "king-clock-checkpoint.json",
+        "king-clock-passes.jsonl",
+        "king-input-facts.json",
+        "king-ui-authority.jsonl",
+        "king-rng-checkpoint.json",
+        "king-slot-bindings.json"
+      ],
+      "lawful_inputs_present": {},
+      "models": 0,
+      "partial_files_opaque": {},
+      "primary_failure": {
+        "identity": {
+          "sha256": "709b02da5c09d9d4fa6109532ece925efc091798e60ff1e6ac51a9299c527aee",
+          "size": 4223
+        },
+        "kind": "invalid_observer_control_failure"
+      },
+      "projection": 0,
+      "schema": "phase365-partial-source-partition/1",
+      "secondary_errors": [
+        {
+          "code": "capture_relocation_failed",
+          "error": "ValueError('exactly one native raw capture')"
+        },
+        {
+          "code": "bad_observer_control",
+          "error": "ValueError('bounded control JSON exceeded cap')",
+          "identity": {
+            "sha256": "709b02da5c09d9d4fa6109532ece925efc091798e60ff1e6ac51a9299c527aee",
+            "size": 4223
+          }
+        },
+        {
+          "code": "missing_required_file",
+          "file": "validation.json"
+        },
+        {
+          "code": "missing_lawful_inputs",
+          "files": [
+            "fixture.json",
+            "player_fixture.json",
+            "observer7-input.jsonl",
+            "observer7-lineage.jsonl",
+            "observer7-metadata.jsonl",
+            "observer7-primitives.jsonl",
+            "king-clock-checkpoint.json",
+            "king-clock-passes.jsonl",
+            "king-input-facts.json",
+            "king-ui-authority.jsonl",
+            "king-rng-checkpoint.json",
+            "king-slot-bindings.json"
+          ]
+        }
+      ]
+    },
+    "scope": "SYNTHETIC_CONTROL_DTO_NOT_NATIVE_CAPTURE"
+  },
+  "label": "OBSERVER_TOO_LARGE",
+  "status": "PASS"
+}

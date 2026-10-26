@@ -1,0 +1,458 @@
+{
+  "cases": [
+    {
+      "evidence": {
+        "partition": {
+          "capture": "/workspace/python-original-engine/repo/data/phase370-independent-execution/helpers-first-001/OBSERVER_ONLY/output/capture",
+          "capture_complete": false,
+          "control_failures_opaque": {
+            "observer7_failure.json": {
+              "sha256": "52f3020539b086a631946891a6c1c8c1df6d2fbd1a906c6d37f17843d02a6dc2",
+              "size": 106
+            }
+          },
+          "expected_observations_opaque": {
+            "opaque-unit.bin": {
+              "sha256": "503959d38c2d6cf386dd58d75b99f47a5ddfa604bfe363a8a38cc25d3c10a13d",
+              "size": 32
+            }
+          },
+          "expected_semantics_read": false,
+          "lawful_inputs_missing": [
+            "fixture.json",
+            "player_fixture.json",
+            "observer7-input.jsonl",
+            "observer7-lineage.jsonl",
+            "observer7-metadata.jsonl",
+            "observer7-primitives.jsonl",
+            "king-clock-checkpoint.json",
+            "king-clock-passes.jsonl",
+            "king-input-facts.json",
+            "king-ui-authority.jsonl",
+            "king-rng-checkpoint.json",
+            "king-slot-bindings.json"
+          ],
+          "lawful_inputs_present": {},
+          "models": 0,
+          "partial_files_opaque": {},
+          "primary_failure": {
+            "control": {
+              "capture_complete": false,
+              "code": "UNIT_OBSERVER_SOURCE_FAIL",
+              "schema": "observer7-failure/1"
+            },
+            "identity": {
+              "sha256": "52f3020539b086a631946891a6c1c8c1df6d2fbd1a906c6d37f17843d02a6dc2",
+              "size": 106
+            },
+            "kind": "observer_control_failure"
+          },
+          "projection": 0,
+          "schema": "phase365-partial-source-partition/1",
+          "secondary_errors": [
+            {
+              "code": "capture_relocation_failed",
+              "error": "ValueError('exactly one native raw capture')"
+            },
+            {
+              "code": "missing_required_file",
+              "file": "validation.json"
+            },
+            {
+              "code": "missing_lawful_inputs",
+              "files": [
+                "fixture.json",
+                "player_fixture.json",
+                "observer7-input.jsonl",
+                "observer7-lineage.jsonl",
+                "observer7-metadata.jsonl",
+                "observer7-primitives.jsonl",
+                "king-clock-checkpoint.json",
+                "king-clock-passes.jsonl",
+                "king-input-facts.json",
+                "king-ui-authority.jsonl",
+                "king-rng-checkpoint.json",
+                "king-slot-bindings.json"
+              ]
+            }
+          ]
+        },
+        "scope": "SYNTHETIC_CONTROL_DTO_NOT_NATIVE_CAPTURE"
+      },
+      "label": "OBSERVER_ONLY",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "partition": {
+          "capture": "/workspace/python-original-engine/repo/data/phase370-independent-execution/helpers-first-001/BOTH/output/capture",
+          "capture_complete": false,
+          "control_failures_opaque": {
+            "collector-first-failure.json": {
+              "sha256": "425ed766596b7eb15fb29ec1ed9c0f1e8bccda5d2fb11653985b2147c0d66057",
+              "size": 72
+            },
+            "observer7_failure.json": {
+              "sha256": "52f3020539b086a631946891a6c1c8c1df6d2fbd1a906c6d37f17843d02a6dc2",
+              "size": 106
+            }
+          },
+          "expected_observations_opaque": {
+            "opaque-unit.bin": {
+              "sha256": "503959d38c2d6cf386dd58d75b99f47a5ddfa604bfe363a8a38cc25d3c10a13d",
+              "size": 32
+            }
+          },
+          "expected_semantics_read": false,
+          "lawful_inputs_missing": [
+            "fixture.json",
+            "player_fixture.json",
+            "observer7-input.jsonl",
+            "observer7-lineage.jsonl",
+            "observer7-metadata.jsonl",
+            "observer7-primitives.jsonl",
+            "king-clock-checkpoint.json",
+            "king-clock-passes.jsonl",
+            "king-input-facts.json",
+            "king-ui-authority.jsonl",
+            "king-rng-checkpoint.json",
+            "king-slot-bindings.json"
+          ],
+          "lawful_inputs_present": {},
+          "models": 0,
+          "partial_files_opaque": {},
+          "primary_failure": {
+            "control": {
+              "capture_complete": false,
+              "code": "UNIT_COLLECTOR_SOURCE_FAIL"
+            },
+            "identity": {
+              "sha256": "425ed766596b7eb15fb29ec1ed9c0f1e8bccda5d2fb11653985b2147c0d66057",
+              "size": 72
+            },
+            "kind": "collector_control_failure"
+          },
+          "projection": 0,
+          "schema": "phase365-partial-source-partition/1",
+          "secondary_errors": [
+            {
+              "code": "capture_relocation_failed",
+              "error": "ValueError('exactly one native raw capture')"
+            },
+            {
+              "code": "additional_observer_control_failure",
+              "failure": {
+                "control": {
+                  "capture_complete": false,
+                  "code": "UNIT_OBSERVER_SOURCE_FAIL",
+                  "schema": "observer7-failure/1"
+                },
+                "identity": {
+                  "sha256": "52f3020539b086a631946891a6c1c8c1df6d2fbd1a906c6d37f17843d02a6dc2",
+                  "size": 106
+                },
+                "kind": "observer_control_failure"
+              },
+              "precedence": "COLLECTOR_IF_PRESENT_NO_TIME_ORDER_INFERRED"
+            },
+            {
+              "code": "missing_required_file",
+              "file": "validation.json"
+            },
+            {
+              "code": "missing_lawful_inputs",
+              "files": [
+                "fixture.json",
+                "player_fixture.json",
+                "observer7-input.jsonl",
+                "observer7-lineage.jsonl",
+                "observer7-metadata.jsonl",
+                "observer7-primitives.jsonl",
+                "king-clock-checkpoint.json",
+                "king-clock-passes.jsonl",
+                "king-input-facts.json",
+                "king-ui-authority.jsonl",
+                "king-rng-checkpoint.json",
+                "king-slot-bindings.json"
+              ]
+            }
+          ]
+        },
+        "scope": "SYNTHETIC_CONTROL_DTO_NOT_NATIVE_CAPTURE"
+      },
+      "label": "BOTH",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "partition": {
+          "capture": "/workspace/python-original-engine/repo/data/phase370-independent-execution/helpers-first-001/OBSERVER_TOO_LARGE/output/capture",
+          "capture_complete": false,
+          "control_failures_opaque": {
+            "observer7_failure.json": {
+              "sha256": "709b02da5c09d9d4fa6109532ece925efc091798e60ff1e6ac51a9299c527aee",
+              "size": 4223
+            }
+          },
+          "expected_observations_opaque": {
+            "opaque-unit.bin": {
+              "sha256": "503959d38c2d6cf386dd58d75b99f47a5ddfa604bfe363a8a38cc25d3c10a13d",
+              "size": 32
+            }
+          },
+          "expected_semantics_read": false,
+          "lawful_inputs_missing": [
+            "fixture.json",
+            "player_fixture.json",
+            "observer7-input.jsonl",
+            "observer7-lineage.jsonl",
+            "observer7-metadata.jsonl",
+            "observer7-primitives.jsonl",
+            "king-clock-checkpoint.json",
+            "king-clock-passes.jsonl",
+            "king-input-facts.json",
+            "king-ui-authority.jsonl",
+            "king-rng-checkpoint.json",
+            "king-slot-bindings.json"
+          ],
+          "lawful_inputs_present": {},
+          "models": 0,
+          "partial_files_opaque": {},
+          "primary_failure": {
+            "identity": {
+              "sha256": "709b02da5c09d9d4fa6109532ece925efc091798e60ff1e6ac51a9299c527aee",
+              "size": 4223
+            },
+            "kind": "invalid_observer_control_failure"
+          },
+          "projection": 0,
+          "schema": "phase365-partial-source-partition/1",
+          "secondary_errors": [
+            {
+              "code": "capture_relocation_failed",
+              "error": "ValueError('exactly one native raw capture')"
+            },
+            {
+              "code": "bad_observer_control",
+              "error": "ValueError('bounded control JSON exceeded cap')",
+              "identity": {
+                "sha256": "709b02da5c09d9d4fa6109532ece925efc091798e60ff1e6ac51a9299c527aee",
+                "size": 4223
+              }
+            },
+            {
+              "code": "missing_required_file",
+              "file": "validation.json"
+            },
+            {
+              "code": "missing_lawful_inputs",
+              "files": [
+                "fixture.json",
+                "player_fixture.json",
+                "observer7-input.jsonl",
+                "observer7-lineage.jsonl",
+                "observer7-metadata.jsonl",
+                "observer7-primitives.jsonl",
+                "king-clock-checkpoint.json",
+                "king-clock-passes.jsonl",
+                "king-input-facts.json",
+                "king-ui-authority.jsonl",
+                "king-rng-checkpoint.json",
+                "king-slot-bindings.json"
+              ]
+            }
+          ]
+        },
+        "scope": "SYNTHETIC_CONTROL_DTO_NOT_NATIVE_CAPTURE"
+      },
+      "label": "OBSERVER_TOO_LARGE",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "partition": {
+          "capture": "/workspace/python-original-engine/repo/data/phase370-independent-execution/helpers-first-001/OBSERVER_BAD_SCHEMA/output/capture",
+          "capture_complete": false,
+          "control_failures_opaque": {
+            "observer7_failure.json": {
+              "sha256": "9e9acc56f8fcf347644ff544b513e39c1146ca87f516dd0c83eede418d350a1a",
+              "size": 97
+            }
+          },
+          "expected_observations_opaque": {
+            "opaque-unit.bin": {
+              "sha256": "503959d38c2d6cf386dd58d75b99f47a5ddfa604bfe363a8a38cc25d3c10a13d",
+              "size": 32
+            }
+          },
+          "expected_semantics_read": false,
+          "lawful_inputs_missing": [
+            "fixture.json",
+            "player_fixture.json",
+            "observer7-input.jsonl",
+            "observer7-lineage.jsonl",
+            "observer7-metadata.jsonl",
+            "observer7-primitives.jsonl",
+            "king-clock-checkpoint.json",
+            "king-clock-passes.jsonl",
+            "king-input-facts.json",
+            "king-ui-authority.jsonl",
+            "king-rng-checkpoint.json",
+            "king-slot-bindings.json"
+          ],
+          "lawful_inputs_present": {},
+          "models": 0,
+          "partial_files_opaque": {},
+          "primary_failure": {
+            "identity": {
+              "sha256": "9e9acc56f8fcf347644ff544b513e39c1146ca87f516dd0c83eede418d350a1a",
+              "size": 97
+            },
+            "kind": "invalid_observer_control_failure"
+          },
+          "projection": 0,
+          "schema": "phase365-partial-source-partition/1",
+          "secondary_errors": [
+            {
+              "code": "capture_relocation_failed",
+              "error": "ValueError('exactly one native raw capture')"
+            },
+            {
+              "code": "bad_observer_control",
+              "error": "ValueError('observer first failure control schema')",
+              "identity": {
+                "sha256": "9e9acc56f8fcf347644ff544b513e39c1146ca87f516dd0c83eede418d350a1a",
+                "size": 97
+              }
+            },
+            {
+              "code": "missing_required_file",
+              "file": "validation.json"
+            },
+            {
+              "code": "missing_lawful_inputs",
+              "files": [
+                "fixture.json",
+                "player_fixture.json",
+                "observer7-input.jsonl",
+                "observer7-lineage.jsonl",
+                "observer7-metadata.jsonl",
+                "observer7-primitives.jsonl",
+                "king-clock-checkpoint.json",
+                "king-clock-passes.jsonl",
+                "king-input-facts.json",
+                "king-ui-authority.jsonl",
+                "king-rng-checkpoint.json",
+                "king-slot-bindings.json"
+              ]
+            }
+          ]
+        },
+        "scope": "SYNTHETIC_CONTROL_DTO_NOT_NATIVE_CAPTURE"
+      },
+      "label": "OBSERVER_BAD_SCHEMA",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "payloads": 80,
+        "restore_calls": 0,
+        "scope": "REAL_NEUTRAL78_7_2_FS_EVIDENCE_ONLY_NO_ROOT_AUTH",
+        "state": "failed"
+      },
+      "label": "NEW_SCHEMA_PREFLIGHT_POSITIVE",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "message": "real preservation receipt required",
+        "type": "ValueError"
+      },
+      "label": "OLD_MAP_REJECT",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "message": "real preservation receipt required",
+        "type": "ValueError"
+      },
+      "label": "BOOL_RESTORE_ZERO_REJECT",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "message": "mapped preimage/target drift",
+        "type": "ValueError"
+      },
+      "label": "TARGET_MTIME_DRIFT_REJECT",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "message": "mutable target must be regular+nlink1: /workspace/python-original-engine/repo/data/phase370-independent-execution/helpers-first-001/neutral/failed_run/payloads/group0/unit00.txt",
+        "type": "ValueError"
+      },
+      "label": "NEW_SCHEMA_PAYLOAD_LINK_REJECT",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "message": "Bad CRC-32 for file 'group0/unit00.txt'",
+        "type": "BadZipFile"
+      },
+      "label": "NEW_SCHEMA_BAD_CRC_REJECT",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "message": "separate exact root recovery action",
+        "type": "ValueError"
+      },
+      "label": "OLD_ROOT_SCHEMA_REJECT",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "READY": 0,
+        "failed_state_same": true,
+        "project_bytes_mode_mtime_same": true,
+        "restore": 0
+      },
+      "label": "NEUTRAL_PREIMAGES_UNCHANGED",
+      "status": "PASS"
+    },
+    {
+      "evidence": {
+        "CRC_SHA": true,
+        "derived_dirs": 7,
+        "derived_files": 78,
+        "derived_staged": 2,
+        "failed_state_source": "saved-only250B/ba1f6e24",
+        "livepool_access": false,
+        "payloads": 80,
+        "restoration": false
+      },
+      "label": "ACTUAL_SAVED_MAP_ONLY",
+      "status": "PASS"
+    }
+  ],
+  "counts": {
+    "Godot": 0,
+    "SOURCE_definition_imports": 6,
+    "actual_pool_mutations": 0,
+    "actual_pool_reads": 0,
+    "host_calls": 4,
+    "models": 0,
+    "native": 0,
+    "processes": 0,
+    "projection": 0,
+    "recovery_calls": 7,
+    "saved_map_reads": 101,
+    "synthetic_restore_calls": 0
+  },
+  "failure": null,
+  "full_actual12_positive": false,
+  "full_projection_positive": false,
+  "schema": "phase370-independent-new-helper-controls/1",
+  "status": "PASS"
+}

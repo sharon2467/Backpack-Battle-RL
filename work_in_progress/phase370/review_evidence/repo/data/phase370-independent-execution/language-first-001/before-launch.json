@@ -1,0 +1,48 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/workspace/python-original-engine/repo/tests/godotsteam_offline_exec.py",
+    "/workspace/godotsteam-startup-20261013/debian/usr/bin/xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 640x480x24 -nolisten tcp",
+    "-e",
+    "/workspace/python-original-engine/repo/data/phase370-independent-execution/language-first-001/output/xvfb.log",
+    "/workspace/godotsteam-startup-20261013/engine/godotsteam.362.editor.x86_64",
+    "--path",
+    "/workspace/python-original-engine/repo/data/phase370-independent-execution/language-project",
+    "--audio-driver",
+    "Dummy",
+    "--time-scale",
+    "1.0",
+    "--script",
+    "res://probe.gd"
+  ],
+  "project_sources": {
+    "extra.gd": {
+      "sha256": "0d87be85bd356e53699d3a31d9a09042d08d85bbd6b7ba0ab933ec1e4e3adae3",
+      "size": 32
+    },
+    "full-collector.gd": {
+      "sha256": "33f2d20dee6364dd26a89a15a00d506ca96095d8ec661c7c1693aecb58b6acf7",
+      "size": 61404
+    },
+    "full-sink.gd": {
+      "sha256": "2a665f6d3849b34dee31e5079e58ebf59049d06b9590fb8522e53bfbe0b581ad",
+      "size": 99784
+    },
+    "probe.gd": {
+      "sha256": "157718866e2d15dee4a0a4b4189e23538dc5ba14ae2319cae4e73a6b0f2ce4c2",
+      "size": 5934
+    },
+    "project.godot": {
+      "sha256": "f2d46716f94a1109f45ce5e0cf2a8d09035d82c0ea2d7b07e9165188fcb8d453",
+      "size": 218
+    },
+    "unit-sink.gd": {
+      "sha256": "e37e77b99690f0ba6901fa094de235e425def620df8473dba7bf6f66282fafd0",
+      "size": 12618
+    }
+  },
+  "scope": "ONE_EMPTY_PROJECT_LANGUAGE_GATE_NOT_GAME"
+}

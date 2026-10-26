@@ -1,0 +1,120 @@
+{
+  "abort_reason": null,
+  "active_duration_seconds": 2.3017226040028618,
+  "actual_oracle_processes": 0,
+  "cleanup": {
+    "after": [
+      {
+        "live": false,
+        "pid": 16935,
+        "state": "Z"
+      }
+    ],
+    "before": [
+      {
+        "live": true,
+        "pid": 16935,
+        "state": "R"
+      }
+    ],
+    "duration_seconds": 0.009928585001034662,
+    "kill_grace_seconds": 0.5,
+    "kill_sent": false,
+    "leader_returncode": 0,
+    "live_remaining": [],
+    "pgid": 16925,
+    "term_grace_seconds": 0.2,
+    "term_sent": true,
+    "zombies_not_claimed_reaped": [
+      16935
+    ]
+  },
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/workspace/python-original-engine/repo/tests/godotsteam_offline_exec.py",
+    "/workspace/godotsteam-startup-20261013/debian/usr/bin/xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 640x480x24 -nolisten tcp",
+    "-e",
+    "/workspace/python-original-engine/repo/data/phase370-independent-execution/language-first-001/output/xvfb.log",
+    "/workspace/godotsteam-startup-20261013/engine/godotsteam.362.editor.x86_64",
+    "--path",
+    "/workspace/python-original-engine/repo/data/phase370-independent-execution/language-project",
+    "--audio-driver",
+    "Dummy",
+    "--time-scale",
+    "1.0",
+    "--script",
+    "res://probe.gd"
+  ],
+  "duration_seconds": 2.311717648000922,
+  "enforcement": "POLLING_NOT_KERNEL_AGGREGATE_QUOTA",
+  "exit_code": 0,
+  "generic_subprocesses": 1,
+  "limits": {
+    "log_bytes": 2097152,
+    "wall": 18.0
+  },
+  "policy": "bounded-writers-and-monitored-process/1",
+  "polling": {
+    "extra_timed_wait": false,
+    "max_observed_scan_gap_seconds": 0.05520857399824308,
+    "model": "ONE_SELECTOR_WAIT_PLUS_IO_SCAN_OVERHEAD",
+    "samples_truncated": false,
+    "scan_count": 47,
+    "scan_times_seconds": [
+      0.05048048100434244,
+      0.10103536100359634,
+      0.13901253000221914,
+      0.19322889899922302,
+      0.24536727500526467,
+      0.29732405400136486,
+      0.3507342759985477,
+      0.36202942700037966,
+      0.41573353500280064,
+      0.4691268810056499,
+      0.5224252769985469,
+      0.5757505000001402,
+      0.6298919840046437,
+      0.6851005580028868,
+      0.7389480140045634,
+      0.7680679000040982,
+      0.8218884980014991,
+      0.8754094680043636,
+      0.9286563400019077,
+      0.9821152139993501,
+      1.03530145699915,
+      1.0884839680002187,
+      1.1419679040045594,
+      1.1951156210052432,
+      1.248285355999542,
+      1.2846663580057793,
+      1.2890215270017507,
+      1.2949347120011225,
+      1.3492154810010106,
+      1.4028625300052227,
+      1.4556317800015677,
+      1.5085875680015306,
+      1.5613848569992115,
+      1.6138099930030876,
+      1.6662409280033899,
+      1.7186625329995877,
+      1.7713650740042794,
+      1.8241031630022917,
+      1.8771908400012762,
+      1.9300512890040409,
+      1.9828869830016629,
+      2.0361103340037516,
+      2.088830726002925,
+      2.14149316700059,
+      2.1943584640030167,
+      2.2472030140052084,
+      2.299045288003981
+    ],
+    "single_selector_wait_seconds": 0.05
+  },
+  "process_clean_exit": true,
+  "scope": "GENERIC_SUBPROCESS_MONITOR_ONLY_NOT_ORACLE_OR_CAPTURE",
+  "timed_out": false
+}

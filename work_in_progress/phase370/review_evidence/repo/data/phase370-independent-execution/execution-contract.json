@@ -1,0 +1,126 @@
+{
+  "actual_Game_allowed": 0,
+  "expected_cases": 15,
+  "expected_scope": "Exact sink control methods plus real SceneTree/Node unit receiver, not production fullsnapshot or fullnative12 positive.",
+  "files": [
+    {
+      "path": "docs/phase370_independent_execution_spec.md",
+      "sha256": "037e02920bfec05206b57776db2cfe5e78457ab2cb70216eeb9f79aea0c0e0f0",
+      "size": 2717
+    },
+    {
+      "path": "tests/phase370_prepare_independent.py",
+      "sha256": "9245cfd777b7e7eaef59e0b7935edb32ae763e12225900ec5c80fc0f0871dad2",
+      "size": 6464
+    },
+    {
+      "path": "tests/phase370_language_probe.gd",
+      "sha256": "157718866e2d15dee4a0a4b4189e23538dc5ba14ae2319cae4e73a6b0f2ce4c2",
+      "size": 5934
+    },
+    {
+      "path": "tests/phase370_run_independent_language.py",
+      "sha256": "377f345f6d35f653f41ee5535fad4c44b5169dd49355e85c5c91781367e71fc6",
+      "size": 5273
+    },
+    {
+      "path": "data/phase370-independent-execution/static-review.json",
+      "sha256": "c26bb8897e39e0900953145757c86559d5ca18793d19869ce04589155cfaee0b",
+      "size": 4094
+    },
+    {
+      "path": "data/phase370-independent-execution/source-unit-boundary.json",
+      "sha256": "b1766bd9ebe18b9fcd7568d2f917db87b1a2d7edc3dcaa732dec32cba919e8c7",
+      "size": 1254
+    },
+    {
+      "path": "data/phase370-oracle-source/source-owner.json",
+      "sha256": "df3cad7102ee63936f4b5d9c870f5829670eb74f858fadb9bcd924a61de42720",
+      "size": 3194
+    },
+    {
+      "path": "data/phase370-oracle-source/combined-source-freeze.json",
+      "sha256": "bd8738bcd75cf0291c2071305e6528363d7ac0e8c48ea554b4f915290f3f1649",
+      "size": 57908
+    },
+    {
+      "path": "data/phase370-independent-execution/language-project/extra.gd",
+      "sha256": "0d87be85bd356e53699d3a31d9a09042d08d85bbd6b7ba0ab933ec1e4e3adae3",
+      "size": 32
+    },
+    {
+      "path": "data/phase370-independent-execution/language-project/full-collector.gd",
+      "sha256": "33f2d20dee6364dd26a89a15a00d506ca96095d8ec661c7c1693aecb58b6acf7",
+      "size": 61404
+    },
+    {
+      "path": "data/phase370-independent-execution/language-project/full-sink.gd",
+      "sha256": "2a665f6d3849b34dee31e5079e58ebf59049d06b9590fb8522e53bfbe0b581ad",
+      "size": 99784
+    },
+    {
+      "path": "data/phase370-independent-execution/language-project/probe.gd",
+      "sha256": "157718866e2d15dee4a0a4b4189e23538dc5ba14ae2319cae4e73a6b0f2ce4c2",
+      "size": 5934
+    },
+    {
+      "path": "data/phase370-independent-execution/language-project/project.godot",
+      "sha256": "f2d46716f94a1109f45ce5e0cf2a8d09035d82c0ea2d7b07e9165188fcb8d453",
+      "size": 218
+    },
+    {
+      "path": "data/phase370-independent-execution/language-project/unit-sink.gd",
+      "sha256": "e37e77b99690f0ba6901fa094de235e425def620df8473dba7bf6f66282fafd0",
+      "size": 12618
+    },
+    {
+      "path": "data/phase370-independent-execution/SOURCE/compaction.py",
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260",
+      "size": 27304
+    },
+    {
+      "path": "data/phase370-independent-execution/SOURCE/process.py",
+      "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f",
+      "size": 13665
+    },
+    {
+      "path": "data/phase370-independent-execution/SOURCE/storage.py",
+      "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc",
+      "size": 15496
+    }
+  ],
+  "first_failure_stop": true,
+  "fullresource_load_first": [
+    "full-collector.gd",
+    "full-sink.gd"
+  ],
+  "language_processes_allowed": 1,
+  "models_allowed": 0,
+  "pool_allowed": 0,
+  "production_lifecycle_calls_allowed": 0,
+  "production_script_instances_allowed": 0,
+  "remaining_helpers": "Only after actual language gate passes, separate source preseal; no result used to derive native inputs.",
+  "runtime_pins": [
+    {
+      "path": "/workspace/godotsteam-startup-20261013/engine/godotsteam.362.editor.x86_64",
+      "sha256": "09d1de6c4f97289c018556666c13c1d81093a5df5c2255725d464a87f40a8ea1",
+      "size": 77646552
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/debian/usr/bin/xvfb-run",
+      "sha256": "97e86a102eee7212bfa3bf87d452b27dd4f16ef6e68658eeae20bca63db2ceee",
+      "size": 6082
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/engine/libsteam_api.so",
+      "sha256": "0f2c41c20644503c17e13498203986493332fc8296dbd78493bc1fed352ec0cc",
+      "size": 388288
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/godotsteam_offline_exec.py",
+      "sha256": "78beb697959d28b45c40f7a93174d22c67f711c077f5f7dcfb22ca10e69dd961",
+      "size": 4218
+    }
+  ],
+  "schema": "phase370-independent-one-language-contract/1"
+}
