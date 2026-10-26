@@ -1,0 +1,816 @@
+{
+  "schema": "independent431-bounded-invu-design-evidence/1",
+  "status": "FINITE_SOURCE_AND_SAVED_FIELD_CHECKS_PASS",
+  "author_owner": {
+    "path": "data/phase430-invu-initial-feasibility-design/owned-files.json",
+    "size": 670,
+    "sha256": "46454cfb3ae4185f5bb300fd9f87628e6baa6e1d642ebfdf079b58ae3ff7ae81"
+  },
+  "author_leaves": 2,
+  "author_bytes": 27914,
+  "targets": [
+    {
+      "target_index": 1430,
+      "key": [
+        "Timer.private_left",
+        "pre_prepare",
+        "invu:P"
+      ],
+      "checkpoint": 138,
+      "timer_id": "47767",
+      "owner_id": "47611",
+      "public_indices": [
+        577,
+        595
+      ],
+      "birth_fact_indices": [
+        1356,
+        1361
+      ],
+      "birth_inside_tree": true,
+      "birth_positions": [
+        -1,
+        19,
+        3,
+        0,
+        7
+      ],
+      "current_positions": [
+        -1,
+        18,
+        3,
+        0,
+        7
+      ],
+      "postbirth_strictINT_starts_stops": [
+        0,
+        0
+      ],
+      "classification": "MISSING",
+      "prebirth_state": "UNPROVEN"
+    },
+    {
+      "target_index": 1474,
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "invu:P"
+      ],
+      "checkpoint": 1231,
+      "timer_id": "47767",
+      "owner_id": "47611",
+      "public_indices": [
+        1249,
+        1267
+      ],
+      "birth_fact_indices": [
+        1356,
+        1361
+      ],
+      "birth_inside_tree": true,
+      "birth_positions": [
+        -1,
+        19,
+        3,
+        0,
+        7
+      ],
+      "current_positions": [
+        -1,
+        18,
+        3,
+        0,
+        7
+      ],
+      "postbirth_strictINT_starts_stops": [
+        0,
+        0
+      ],
+      "classification": "MISSING",
+      "prebirth_state": "UNPROVEN"
+    },
+    {
+      "target_index": 1431,
+      "key": [
+        "Timer.private_left",
+        "pre_prepare",
+        "invu:O"
+      ],
+      "checkpoint": 138,
+      "timer_id": "84961",
+      "owner_id": "84805",
+      "public_indices": [
+        596,
+        614
+      ],
+      "birth_fact_indices": [
+        1363,
+        1368
+      ],
+      "birth_inside_tree": true,
+      "birth_positions": [
+        -1,
+        18,
+        1,
+        4,
+        0,
+        5
+      ],
+      "current_positions": [
+        -1,
+        18,
+        1,
+        4,
+        0,
+        5
+      ],
+      "postbirth_strictINT_starts_stops": [
+        0,
+        0
+      ],
+      "classification": "MISSING",
+      "prebirth_state": "UNPROVEN"
+    },
+    {
+      "target_index": 1475,
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "invu:O"
+      ],
+      "checkpoint": 1231,
+      "timer_id": "84961",
+      "owner_id": "84805",
+      "public_indices": [
+        1268,
+        1286
+      ],
+      "birth_fact_indices": [
+        1363,
+        1368
+      ],
+      "birth_inside_tree": true,
+      "birth_positions": [
+        -1,
+        18,
+        1,
+        4,
+        0,
+        5
+      ],
+      "current_positions": [
+        -1,
+        18,
+        1,
+        4,
+        0,
+        5
+      ],
+      "postbirth_strictINT_starts_stops": [
+        0,
+        0
+      ],
+      "classification": "MISSING",
+      "prebirth_state": "UNPROVEN"
+    }
+  ],
+  "births": {
+    "invu:P": {
+      "autostart": false,
+      "node": {
+        "class": "Timer",
+        "inside_tree": true,
+        "internal_idle": false,
+        "internal_physics": false,
+        "name": "InvulnerabilityTimer",
+        "native_id": "47767",
+        "ordinary_idle": false,
+        "ordinary_physics": false,
+        "path": "/root/Main/Player/Character/InvulnerabilityTimer",
+        "positions": [
+          -1,
+          19,
+          3,
+          0,
+          7
+        ],
+        "priority": 0,
+        "role": null
+      },
+      "one_shot": true,
+      "paused": false,
+      "process_mode": 0,
+      "stopped": true,
+      "time_left": {
+        "binary64_be": "0000000000000000",
+        "type": "float"
+      },
+      "wait_time": {
+        "binary64_be": "3ff0000000000000",
+        "type": "float"
+      }
+    },
+    "invu:O": {
+      "autostart": false,
+      "node": {
+        "class": "Timer",
+        "inside_tree": true,
+        "internal_idle": false,
+        "internal_physics": false,
+        "name": "InvulnerabilityTimer",
+        "native_id": "84961",
+        "ordinary_idle": false,
+        "ordinary_physics": false,
+        "path": "/root/Main/Combat/Opponent/Character/InvulnerabilityTimer",
+        "positions": [
+          -1,
+          18,
+          1,
+          4,
+          0,
+          5
+        ],
+        "priority": 0,
+        "role": null
+      },
+      "one_shot": true,
+      "paused": false,
+      "process_mode": 0,
+      "stopped": true,
+      "time_left": {
+        "binary64_be": "0000000000000000",
+        "type": "float"
+      },
+      "wait_time": {
+        "binary64_be": "3ff0000000000000",
+        "type": "float"
+      }
+    }
+  },
+  "ordering": "Descendant READY precedes current parent-ready birth. Prospective parent script_enter_tree follows native parent ENTER but precedes child entry and READY; child tree already exists.",
+  "scene_declaration": "[node name=\"InvulnerabilityTimer\" type=\"Timer\" parent=\".\"]\nprocess_mode = 0\none_shot = true",
+  "unrelated_autostart_node": "Mirroring/Sprite/AnimationSpeedTimer",
+  "source_ranges": [
+    {
+      "pin_name": "character",
+      "path": "data/phase359-king-producer-source/after-source/Core/Character.gd",
+      "first_line": 1,
+      "last_line": 1,
+      "bytes": 15,
+      "sha256": "8a49c1bc13daf48d1ccf206ba59cb3d5573d38665b6324d4e1017df964436866"
+    },
+    {
+      "pin_name": "character",
+      "path": "data/phase359-king-producer-source/after-source/Core/Character.gd",
+      "first_line": 112,
+      "last_line": 174,
+      "bytes": 2992,
+      "sha256": "292e25115d6bd48fd691d07d2803cb5bb359238a3dfaf7524d9fd5938c366199"
+    },
+    {
+      "pin_name": "character",
+      "path": "data/phase359-king-producer-source/after-source/Core/Character.gd",
+      "first_line": 349,
+      "last_line": 367,
+      "bytes": 1044,
+      "sha256": "3a91585f81915bb9e06ccdc7e057e747ed32d5dd0f17c21f2d8a745dd0421056"
+    },
+    {
+      "pin_name": "character",
+      "path": "data/phase359-king-producer-source/after-source/Core/Character.gd",
+      "first_line": 1074,
+      "last_line": 1090,
+      "bytes": 1011,
+      "sha256": "fe64d38db9fe4d77d1785941c10ea087b5b1667a211af0c3336831e600a40b76"
+    },
+    {
+      "pin_name": "game",
+      "path": "data/phase359-king-producer-source/after-source/Core/Game.gd",
+      "first_line": 182,
+      "last_line": 183,
+      "bytes": 112,
+      "sha256": "31d181f0d1cafa5175dacb1ebd77a08a1124ba6dee533430d1e9f27546e52237"
+    },
+    {
+      "pin_name": "game",
+      "path": "data/phase359-king-producer-source/after-source/Core/Game.gd",
+      "first_line": 2251,
+      "last_line": 2267,
+      "bytes": 542,
+      "sha256": "8ff809fb75dba7850a7a558f2a97ccdc4833a8cc077c28db487f90bd264bdf95"
+    },
+    {
+      "pin_name": "game",
+      "path": "data/phase359-king-producer-source/after-source/Core/Game.gd",
+      "first_line": 2637,
+      "last_line": 2645,
+      "bytes": 290,
+      "sha256": "42db9b564bfa6801b8b976a8b0d66da928b1e3ced21838f69779ff092abd5d43"
+    },
+    {
+      "pin_name": "node_cpp",
+      "path": "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/node.cpp",
+      "first_line": 188,
+      "last_line": 202,
+      "bytes": 384,
+      "sha256": "ff28b7aac998652a6f1b2485f54f10d3fa3394c358226def443b435ae4a49929"
+    },
+    {
+      "pin_name": "node_cpp",
+      "path": "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/node.cpp",
+      "first_line": 249,
+      "last_line": 295,
+      "bytes": 1253,
+      "sha256": "7f80312c2a0cd5924523cb644b4544b1ca55b3ef49c7c89e174f49ff6a4a2213"
+    },
+    {
+      "pin_name": "sink",
+      "path": "data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
+      "first_line": 442,
+      "last_line": 445,
+      "bytes": 148,
+      "sha256": "0d3c05a93bc877520da32704a927fd6d59ccc2898f087d3c2dca7842042aebfd"
+    },
+    {
+      "pin_name": "sink",
+      "path": "data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
+      "first_line": 744,
+      "last_line": 757,
+      "bytes": 602,
+      "sha256": "17009c9cf9122a7e057bf46caefeff0e5cb80058d90243482151429c3c4e8158"
+    },
+    {
+      "pin_name": "timer_cpp",
+      "path": "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/timer.cpp",
+      "first_line": 35,
+      "last_line": 81,
+      "bytes": 1131,
+      "sha256": "53c8ae7682b291bb0724a654a8c22c52f760cf7cea22cba332e066e94d559e4b"
+    },
+    {
+      "pin_name": "timer_cpp",
+      "path": "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/timer.cpp",
+      "first_line": 107,
+      "last_line": 121,
+      "bytes": 332,
+      "sha256": "ef4c0a5dcd44c6d64d4265cf0d2d52a3501cf4bfac850fcef872326b97c34a66"
+    },
+    {
+      "pin_name": "timer_cpp",
+      "path": "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/timer.cpp",
+      "first_line": 136,
+      "last_line": 142,
+      "bytes": 144,
+      "sha256": "08f90add6f40938817276d8da34a5a1e5f7e52de65ffabc35ede74445362fb98"
+    },
+    {
+      "pin_name": "timer_cpp",
+      "path": "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/timer.cpp",
+      "first_line": 231,
+      "last_line": 239,
+      "bytes": 171,
+      "sha256": "9354ad22493e4688a91a220b89ee45668352c3bdc9408ac933fd42b0ead025b4"
+    },
+    {
+      "pin_name": "packed_scene",
+      "path": "data/phase424-root-packedscene-supplement/Godot3.6.2/scene/resources/packed_scene.cpp",
+      "first_line": 178,
+      "last_line": 208,
+      "bytes": 849,
+      "sha256": "b2f8bce29802d1da97c31f509328dcfd1fa694c9d6775ad7368eaf9473e2504a"
+    },
+    {
+      "pin_name": "packed_scene",
+      "path": "data/phase424-root-packedscene-supplement/Godot3.6.2/scene/resources/packed_scene.cpp",
+      "first_line": 288,
+      "last_line": 305,
+      "bytes": 738,
+      "sha256": "8477b84fc47ad10e02087e5b2a7d661f43f2252c5172a29b2ddc5516348e9cf0"
+    },
+    {
+      "pin_name": "packed_scene",
+      "path": "data/phase424-root-packedscene-supplement/Godot3.6.2/scene/resources/packed_scene.cpp",
+      "first_line": 374,
+      "last_line": 388,
+      "bytes": 395,
+      "sha256": "6dcedd2d553d7c23677d28dae40e6f03d8bd13d11e3686e8aa51d77cc34223fc"
+    },
+    {
+      "pin_name": "character_scene",
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Character.tscn",
+      "first_line": 1050,
+      "last_line": 1052,
+      "bytes": 106,
+      "sha256": "113ec947206f7f60007b590cf17d020dbaae382cb86c3eaa244f9182a9c3a8a2"
+    },
+    {
+      "pin_name": "character_scene",
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Character.tscn",
+      "first_line": 1639,
+      "last_line": 1641,
+      "bytes": 92,
+      "sha256": "72395a1f467c0645bf4c40400f210894c8535af1aa1f1d277841418482266fc5"
+    }
+  ],
+  "accepted6_reference": {
+    "path": "data/phase429-root-actual-target-acceptance/acceptance.json",
+    "size": 1635,
+    "sha256": "0ac5b534a50f65245aee31d3f0704fc4d631781b7402ce921896b6a59a768a68"
+  },
+  "saved_provenance_limit": "King-only selected lineage/UI objects contain no Character allocation/child-ready history; no six-chain proof transfer.",
+  "early_seed_lemma": {
+    "native_facts": [
+      "Ctor sets private-1/processingfalse.",
+      "start returns before countdown assignment when !is_inside_tree.",
+      "stop writes-1; internal notifications return while processingfalse."
+    ],
+    "additional_premises_not_established_for_current_capture": [
+      "Exact target fresh constructor-to-first-hook lifetime has no earlier tree entry/reentry, replacement or direct native countdown writer.",
+      "Observer exists before earliest P first entry/allocation, without preexisting unobserved reuse.",
+      "Pinned readonly lookup/snapshot and once/reentry protocol independently accepted."
+    ],
+    "conclusion": "Conditional finite route for prospective SOURCE preparation only; no current private value established."
+  },
+  "read_scope": {
+    "first_verified_pass": {
+      "read_count": 20,
+      "bytes_hashed": 2290424,
+      "ledger": "first-error.json/reads"
+    },
+    "canonical_join_continuation": {
+      "read_count": 20,
+      "bytes_hashed": 2290424,
+      "reads": [
+        {
+          "descriptor": {
+            "path": "data/phase430-invu-initial-feasibility-design/owned-files.json",
+            "size": 670,
+            "sha256": "46454cfb3ae4185f5bb300fd9f87628e6baa6e1d642ebfdf079b58ae3ff7ae81"
+          },
+          "canonical_path": "/workspace/python-original-engine/repo/data/phase430-invu-initial-feasibility-design/owned-files.json",
+          "identity_before_after": [
+            27,
+            2003792,
+            33152,
+            1,
+            670,
+            1793029970667707499,
+            1793029970667707499
+          ],
+          "bytes_hashed": 670
+        },
+        {
+          "descriptor": {
+            "path": "docs/phase430_invu_initial_feasibility_spec.md",
+            "size": 11897,
+            "sha256": "723c1b9adba5149b65e1d09cb8c051712997bda8c2d0c79078a2b58c2e2e8328"
+          },
+          "canonical_path": "/workspace/python-original-engine/repo/docs/phase430_invu_initial_feasibility_spec.md",
+          "identity_before_after": [
+            27,
+            1861770,
+            33152,
+            1,
+            11897,
+            1793029854320202625,
+            1793029854320202625
+          ],
+          "bytes_hashed": 11897
+        },
+        {
+          "descriptor": {
+            "path": "data/phase430-invu-initial-feasibility-design/decision-table.json",
+            "size": 16017,
+            "sha256": "24d73ecb856619d50206eae9521ecd4e403a5149953b53e35cbc8cacac9a1677"
+          },
+          "canonical_path": "/workspace/python-original-engine/repo/data/phase430-invu-initial-feasibility-design/decision-table.json",
+          "identity_before_after": [
+            27,
+            2003154,
+            33152,
+            1,
+            16017,
+            1793029970667296540,
+            1793029970667296540
+          ],
+          "bytes_hashed": 16017
+        },
+        {
+          "descriptor": {
+            "path": "data/phase408-initial-audit-first-001/rawtyped-field-index.json",
+            "size": 1494877,
+            "sha256": "27f4a859ba9144314bb25764d6787e07c8c929e96b44c37a077c4437c47cd46b"
+          },
+          "canonical_path": "/workspace/python-original-engine/repo/data/phase408-initial-audit-first-001/rawtyped-field-index.json",
+          "identity_before_after": [
+            27,
+            2002497,
+            33152,
+            1,
+            1494877,
+            1793016492160802777,
+            1793016492160802777
+          ],
+          "bytes_hashed": 1494877
+        },
+        {
+          "descriptor": {
+            "path": "data/phase420-initial-partial-projection-first-001/initial-provenance.json",
+            "size": 16959,
+            "sha256": "63b29245d0923d5c9300026deda701dd8ebcf61c5e2bfe2e943c77b10138305f"
+          },
+          "canonical_path": "/workspace/python-original-engine/repo/data/phase420-initial-partial-projection-first-001/initial-provenance.json",
+          "identity_before_after": [
+            27,
+            2003595,
+            33152,
+            1,
+            16959,
+            1793025910649615220,
+            1793025910649615220
+          ],
+          "bytes_hashed": 16959
+        },
+        {
+          "descriptor": {
+            "path": "data/phase426-king-buff-overlay-first-001/overlay-report.json",
+            "size": 128799,
+            "sha256": "18460c39e42a3e8254aafd59d7980fc846bd3efcb9419eaf0d6383c4dd6a58aa"
+          },
+          "canonical_path": "/workspace/python-original-engine/repo/data/phase426-king-buff-overlay-first-001/overlay-report.json",
+          "identity_before_after": [
+            27,
+            2000190,
+            33152,
+            1,
+            128799,
+            1793029178898485921,
+            1793029178898485921
+          ],
+          "bytes_hashed": 128799
+        },
+        {
+          "descriptor": {
+            "path": "data/phase426-king-buff-overlay-first-001/owned-files.json",
+            "size": 537,
+            "sha256": "8107d2c66303f6b1e3d592a8d370073aa2e1c87936a7d15a4189b48c5e7247d4"
+          },
+          "canonical_path": "/workspace/python-original-engine/repo/data/phase426-king-buff-overlay-first-001/owned-files.json",
+          "identity_before_after": [
+            27,
+            2000191,
+            33152,
+            1,
+            537,
+            1793029178901271744,
+            1793029178901271744
+          ],
+          "bytes_hashed": 537
+        },
+        {
+          "descriptor": {
+            "path": "data/phase429-independent-actual-kingbuff-review/review.json",
+            "size": 4740,
+            "sha256": "bc0d2562600b26d7b2c44542a4b65b042ca36213240d4b7b397ea24282d27d43"
+          },
+          "canonical_path": "/workspace/python-original-engine/repo/data/phase429-independent-actual-kingbuff-review/review.json",
+          "identity_before_after": [
+            27,
+            2003161,
+            33152,
+            1,
+            4740,
+            1793029321203413034,
+            1793029321203413034
+          ],
+          "bytes_hashed": 4740
+        },
+        {
+          "descriptor": {
+            "path": "data/phase429-root-actual-target-acceptance/acceptance.json",
+            "size": 1635,
+            "sha256": "0ac5b534a50f65245aee31d3f0704fc4d631781b7402ce921896b6a59a768a68"
+          },
+          "canonical_path": "/workspace/python-original-engine/repo/data/phase429-root-actual-target-acceptance/acceptance.json",
+          "identity_before_after": [
+            27,
+            2003347,
+            33152,
+            1,
+            1635,
+            1793029356189936550,
+            1793029356189936550
+          ],
+          "bytes_hashed": 1635
+        },
+        {
+          "descriptor": {
+            "path": "data/phase359-king-producer-source/after-source/Core/Character.gd",
+            "size": 55679,
+            "sha256": "4e37b2f5d044e015be5dd75fca37577bdb9fc870dd2e32cad5198c36649df984"
+          },
+          "canonical_path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Core/Character.gd",
+          "identity_before_after": [
+            27,
+            1986078,
+            33152,
+            1,
+            55679,
+            1792958136786200081,
+            1792958136786200081
+          ],
+          "bytes_hashed": 55679
+        },
+        {
+          "descriptor": {
+            "path": "data/phase359-king-producer-source/after-source/Core/Game.gd",
+            "size": 145943,
+            "sha256": "fafe9612858a25b95d8d6149531b50869dbd9709719bd5d2ab6b070b6b8283b1"
+          },
+          "canonical_path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Core/Game.gd",
+          "identity_before_after": [
+            27,
+            1986080,
+            33152,
+            1,
+            145943,
+            1792958136790744423,
+            1792958136790744423
+          ],
+          "bytes_hashed": 145943
+        },
+        {
+          "descriptor": {
+            "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Character.tscn",
+            "size": 49260,
+            "sha256": "5a6e1a99539975a7664e651fa32ed078f1017ba157ce1247a75fecd8266c97e9"
+          },
+          "canonical_path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Character.tscn",
+          "identity_before_after": [
+            27,
+            1839693,
+            33152,
+            1,
+            49260,
+            1791988580462682126,
+            1793012746911060339
+          ],
+          "bytes_hashed": 49260
+        },
+        {
+          "descriptor": {
+            "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Player.tscn",
+            "size": 55125,
+            "sha256": "c49f1989b14b22cc8a8a3c4c9cd47847bc39e91b3aa4d974fa4f4eb2ffb1a319"
+          },
+          "canonical_path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Player.tscn",
+          "identity_before_after": [
+            27,
+            1839706,
+            33152,
+            1,
+            55125,
+            1791988580468602618,
+            1791988580468602618
+          ],
+          "bytes_hashed": 55125
+        },
+        {
+          "descriptor": {
+            "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Opponent.tscn",
+            "size": 17815,
+            "sha256": "8a0921e01f1bb0103a93b720b8402fe9b1691eb0b624a6e24443c36e11ae4104"
+          },
+          "canonical_path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Opponent.tscn",
+          "identity_before_after": [
+            27,
+            1839704,
+            33152,
+            1,
+            17815,
+            1791988580466911865,
+            1791988580466911865
+          ],
+          "bytes_hashed": 17815
+        },
+        {
+          "descriptor": {
+            "path": "data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
+            "size": 104333,
+            "sha256": "999e0043a653067a962819cf81340b0dad745fa2148bbfab7724d7948a6a21ea"
+          },
+          "canonical_path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
+          "identity_before_after": [
+            27,
+            1990184,
+            33152,
+            1,
+            104333,
+            1792999868557332502,
+            1792999868557332502
+          ],
+          "bytes_hashed": 104333
+        },
+        {
+          "descriptor": {
+            "path": "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/timer.cpp",
+            "size": 7999,
+            "sha256": "79e2ce272fd56465d8ccc2a5077bf6dc39422cbc588e71ddfab482eb7a33d862"
+          },
+          "canonical_path": "/workspace/python-original-engine/repo/data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/timer.cpp",
+          "identity_before_after": [
+            27,
+            531072,
+            33152,
+            1,
+            7999,
+            1792149326219522408,
+            1792149326219522408
+          ],
+          "bytes_hashed": 7999
+        },
+        {
+          "descriptor": {
+            "path": "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/node.cpp",
+            "size": 95163,
+            "sha256": "0c2e3230b37644c8496f5b1aee59f428de6a497a380c247613c489e44cd508a9"
+          },
+          "canonical_path": "/workspace/python-original-engine/repo/data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/node.cpp",
+          "identity_before_after": [
+            27,
+            531074,
+            33152,
+            1,
+            95163,
+            1792149326220459255,
+            1792149326220459255
+          ],
+          "bytes_hashed": 95163
+        },
+        {
+          "descriptor": {
+            "path": "data/phase424-root-packedscene-supplement/Godot3.6.2/scene/resources/packed_scene.cpp",
+            "size": 51377,
+            "sha256": "0080123ccd2c9e26e4b04608e82175812a60222b18f5e95c286654cda3c7f3ed"
+          },
+          "canonical_path": "/workspace/python-original-engine/repo/data/phase424-root-packedscene-supplement/Godot3.6.2/scene/resources/packed_scene.cpp",
+          "identity_before_after": [
+            27,
+            2003687,
+            33152,
+            1,
+            51377,
+            1793027171784337306,
+            1793027171784337306
+          ],
+          "bytes_hashed": 51377
+        },
+        {
+          "descriptor": {
+            "path": "data/phase424-root-packedscene-supplement/source-supplement.json",
+            "size": 1015,
+            "sha256": "d5640b593746e029f5399a63ff990a63fea9b357c4675126dc09c5a98a801b90"
+          },
+          "canonical_path": "/workspace/python-original-engine/repo/data/phase424-root-packedscene-supplement/source-supplement.json",
+          "identity_before_after": [
+            27,
+            2003688,
+            33152,
+            1,
+            1015,
+            1793027171784924990,
+            1793027171784924990
+          ],
+          "bytes_hashed": 1015
+        },
+        {
+          "descriptor": {
+            "path": "data/phase391-terminal-source/native-patch-source.json",
+            "size": 30584,
+            "sha256": "e889a9faf1669706732ceb72937011d5867f3094ca503b7997ff311b7c1002de"
+          },
+          "canonical_path": "/workspace/python-original-engine/repo/data/phase391-terminal-source/native-patch-source.json",
+          "identity_before_after": [
+            27,
+            1990200,
+            33152,
+            1,
+            30584,
+            1792999868796846033,
+            1792999868796846033
+          ],
+          "bytes_hashed": 30584
+        }
+      ]
+    },
+    "preliminary_inspection_read_calls": 25,
+    "preliminary_note": "21 initial allowed inspections plus4 allowed diagnostic reads after canonical descriptor mismatch; own report reads excluded. All content within the same20 verified paths.",
+    "mechanical_first_error": "Relative430 overlay descriptor versus absolute outputowner descriptor compared as raw dict. Corrected join uses exact canonical absolute path,size,SHA; no basename fallback/Source/data changes.",
+    "descendant_script_reads": 0,
+    "animation_subtree_semantic_review": 0,
+    "project_API_or_helper_execution": 0,
+    "raw_carrier_EXPECTED_reads": 0,
+    "native_model_oldSUT_calls": 0,
+    "new_source_download": 0
+  }
+}
