@@ -20,3 +20,5 @@ python3 -I -B -S work_in_progress/phase367/restore.py \
 The script validates both ZIPs before writing, then reads every extracted member back. It executes no archived source, starts no Game and changes no pool. `control_and_triage/` retains original repo-relative paths and can be inspected/copied additively into the recovered repository. Keep `failure_capsule/run/` as the immutable failed-attempt evidence. Historical absolute-path references are provenance, not a claim of relocated checker execution. Future oracle recovery/launch requires its own current-root configuration and reviewed plan.
 
 These supplements are outside archival354 logical counts. Verification here is same-host isolated GitHub-only extraction, not freshOS, new battle or full engine acceptance.
+
+Actual remote verification at `22ca1a4f64a3e0b0efc13e65faa2d2ba569916a0`:474 extracted files/47,891,392 payload bytes, two full hash readbacks, no old cloud data used. [Receipts](../../recovery_checkpoint/verification_phase367/REMOTE-VERIFICATION.json) record this level. The duplicate extraction was released only after the second readback; local originals remain.
