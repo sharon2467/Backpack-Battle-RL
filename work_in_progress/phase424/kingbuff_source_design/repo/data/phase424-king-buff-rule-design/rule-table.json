@@ -1,0 +1,446 @@
+{
+  "schema": "phase424-king-buff-two-target-design/1",
+  "status": "FINITE_SOURCE_CHAIN_FEASIBLE_PENDING_INDEPENDENT_DESIGN_REVIEW",
+  "actual_counts_unchanged": {
+    "DIRECT_SUPPORTED": 1391,
+    "SOURCE_DERIVED": 4,
+    "MISSING_UNPROVEN": 84,
+    "accepted_target_recipes": 4,
+    "accepted_rule_families": 1,
+    "actual420_projection_runs": 1
+  },
+  "rule_name": "SCENE_TIMER_CONFIGURED_NO_START/1",
+  "scope": {
+    "role": "king_buff:P:12",
+    "native_timer": "81717",
+    "owner": "81679",
+    "candidate_targets": 2,
+    "other82_not_addressed": true
+  },
+  "targets": [
+    {
+      "index": 1432,
+      "field_id": "Timer.private_left",
+      "phase": "pre_prepare",
+      "side_or_role": "king_buff:P:12",
+      "current_classification": "MISSING",
+      "current_validation": "UNPROVEN",
+      "source_derived_candidate": "SCENE_TIMER_CONFIGURED_NO_START/1",
+      "public_support_indices": [
+        615,
+        616,
+        617,
+        618,
+        619,
+        620,
+        621,
+        622,
+        623,
+        624,
+        625,
+        626,
+        627,
+        628,
+        629,
+        630,
+        631,
+        632,
+        633
+      ],
+      "public_pointer": "/payload/nodes/57/timer",
+      "checkpoint": {
+        "line": 1,
+        "sequence": 138
+      },
+      "rule_disposition": "FEASIBLE_BOUNDED_SOURCE_CHAIN_PENDING_INDEPENDENT_REVIEW_NOT_ACTUAL_PROMOTION"
+    },
+    {
+      "index": 1476,
+      "field_id": "Timer.private_left",
+      "phase": "pre_activate",
+      "side_or_role": "king_buff:P:12",
+      "current_classification": "MISSING",
+      "current_validation": "UNPROVEN",
+      "source_derived_candidate": "SCENE_TIMER_CONFIGURED_NO_START/1",
+      "public_support_indices": [
+        1287,
+        1288,
+        1289,
+        1290,
+        1291,
+        1292,
+        1293,
+        1294,
+        1295,
+        1296,
+        1297,
+        1298,
+        1299,
+        1300,
+        1301,
+        1302,
+        1303,
+        1304,
+        1305
+      ],
+      "public_pointer": "/payload/nodes/57/timer",
+      "checkpoint": {
+        "line": 4,
+        "sequence": 1231
+      },
+      "rule_disposition": "FEASIBLE_BOUNDED_SOURCE_CHAIN_PENDING_INDEPENDENT_REVIEW_NOT_ACTUAL_PROMOTION"
+    }
+  ],
+  "shared_observed_configuration": {
+    "process_mode": 0,
+    "one_shot": true,
+    "autostart": false,
+    "paused": false,
+    "wait_time_binary64": "3ff0000000000000",
+    "public_time_left_binary64": "0000000000000000",
+    "stopped": true,
+    "class": "Timer",
+    "name": "BuffTimer",
+    "native_id": "81717",
+    "current_inside_tree": true,
+    "current_path": "/root/Main/Player/King Goobert/BuffTimer",
+    "current_positions": [
+      -1,
+      18,
+      3,
+      14,
+      7
+    ],
+    "all_four_processing_flags": false,
+    "type_policy": "BOOL distinct from INT; binary64 wrappers exact, no public0-to-private inference"
+  },
+  "facts": [
+    {
+      "index": 1370,
+      "field": "Timer.lineage.timer_id",
+      "phase": "pre_activate",
+      "value": "81717",
+      "input_ref": {
+        "file": "king-input-facts.json",
+        "pointer": "/timers/king_buff:P:12/lineage/timer_id"
+      }
+    },
+    {
+      "index": 1371,
+      "field": "Timer.lineage.owner_id",
+      "phase": "pre_activate",
+      "value": "81679",
+      "input_ref": {
+        "file": "king-input-facts.json",
+        "pointer": "/timers/king_buff:P:12/lineage/owner_id"
+      }
+    },
+    {
+      "index": 1372,
+      "field": "Timer.lineage.kind",
+      "phase": "pre_activate",
+      "value": "King.scene.instance",
+      "input_ref": {
+        "file": "king-input-facts.json",
+        "pointer": "/timers/king_buff:P:12/lineage/kind"
+      }
+    },
+    {
+      "index": 1373,
+      "field": "Timer.lineage.starts",
+      "phase": "pre_activate",
+      "value": 0,
+      "input_ref": {
+        "file": "king-input-facts.json",
+        "pointer": "/timers/king_buff:P:12/lineage/starts"
+      }
+    },
+    {
+      "index": 1374,
+      "field": "Timer.lineage.stops",
+      "phase": "pre_activate",
+      "value": 0,
+      "input_ref": {
+        "file": "king-input-facts.json",
+        "pointer": "/timers/king_buff:P:12/lineage/stops"
+      }
+    },
+    {
+      "index": 1375,
+      "field": "Timer.lineage.birth",
+      "phase": "pre_activate",
+      "value": {
+        "autostart": false,
+        "node": {
+          "class": "Timer",
+          "inside_tree": false,
+          "internal_idle": false,
+          "internal_physics": false,
+          "name": "BuffTimer",
+          "native_id": "81717",
+          "ordinary_idle": false,
+          "ordinary_physics": false,
+          "path": null,
+          "positions": [
+            -1,
+            7
+          ],
+          "priority": 0,
+          "role": null
+        },
+        "one_shot": true,
+        "paused": false,
+        "process_mode": 0,
+        "stopped": true,
+        "time_left": {
+          "binary64_be": "0000000000000000",
+          "type": "float"
+        },
+        "wait_time": {
+          "binary64_be": "3ff0000000000000",
+          "type": "float"
+        }
+      },
+      "input_ref": {
+        "file": "king-input-facts.json",
+        "pointer": "/timers/king_buff:P:12/lineage/birth"
+      }
+    }
+  ],
+  "accepted_saved_provenance_refs": {
+    "slot": "/slots/binding",
+    "lineage": "/lineage/selected/0..2 = original lines37/38/39 sharedseq36/37/38",
+    "scene": "res://Items/Exclusive/KingGoobert.tscn; nonpooled; descriptor12018",
+    "ui_bind": "/ui/bind/0 = line1030/ui_sequence1029;generation1;outside_tree;exactKing script",
+    "ui_roles": "/ui/roles = line1077/ui_sequence1076;P:12/81679",
+    "note": "Saved accepted object read only. No raw prefixes or420 helper execution; UI/shared sequences independent."
+  },
+  "proof_edges": [
+    {
+      "edge": "scene declaration",
+      "source": [
+        "king_scene:105-108",
+        "base_scene:whole node/property declarations"
+      ],
+      "finding": "New native Timer child BuffTimer, mode0/one_shottrue only; base has no Timer; no Timer script/autostart/private property."
+    },
+    {
+      "edge": "native allocation and configured birth",
+      "source": [
+        "packedscene:74-388,especially182,217-278,292,371,388",
+        "node:1304-1321,3300-3315",
+        "timer:constructor and set_timer_process_mode/set_one_shot/_bind_methods"
+      ],
+      "finding": "ClassDB allocates native Timer; two scalar native setters preserve constructor countdown/processing; detached-parent attach does not enter tree; connect does not emit; observed birth matches configured child."
+    },
+    {
+      "edge": "descriptor return to unique birth",
+      "source": [
+        "descriptor:89-95",
+        "item:383",
+        "sink:leave392-396,scene_instance593-615,timer_birth744-753"
+      ],
+      "finding": "Plain descriptor assignment then observer captures get_node BuffTimer under ownerKing before ordinary selection gating; one birth identity."
+    },
+    {
+      "edge": "READY no-autostart",
+      "source": [
+        "node:188-202",
+        "timer:NOTIFICATION_READY and no script inking_scene"
+      ],
+      "finding": "Child native READY before Item ready; autostartfalse excludes native start; no Timer scriptready. Onready King field references existing child."
+    },
+    {
+      "edge": "selected writer set",
+      "source": [
+        "king:8,18-28,30-45,47-60,65-80",
+        "goobert:16-26,34-52",
+        "item:_ready510-628,prepare3360-3375,_notification5828-5835"
+      ],
+      "finding": "Explicit King start doCooldownEffect and stop onCombatEnd hooked; inherited virtual cooldown routes still hit same start. Prepare/crown/ready concrete routes do not rebind or set BuffTimer. Named N3 callbacks reused, no arbitrary-global-alias theorem."
+    },
+    {
+      "edge": "counter span and two-phase identity",
+      "source": [
+        "sink:timer_before442-446,track_king_timer_api755-758,king_timer_fact768-776",
+        "index:facts1370-1375/current615-633,1287-1305",
+        "provenance:sharedseq36-38 then checkpoints138/1231"
+      ],
+      "finding": "Counter update precedes fixture-bound early return; both checkpoints useTimer81717/owner81679; strict0 lifetime starts/stops gives no intervening counted target API. Nonzero cannot be localized by phase."
+    },
+    {
+      "edge": "deduced result only after accepted rule",
+      "source": [
+        "timer:private double declaration/constructor/internal notification guards"
+      ],
+      "finding": "Inactive constructor-1 remains unchanged through native no-autostart and no-start interval. Proposed binary64bff0000000000000; no actual promotion in424."
+    }
+  ],
+  "explicit_native_semantic_premises": [
+    "ClassDB::instance dispatches registered nativeTimer constructor;Object::set invokes registered native setter. No recursive ClassDB/Object audit.",
+    "Pinned scene declarations are the loaded native scene properties; ordinary builtin resource loading and connection installation do not directly write unrelated Timer countdown.",
+    "Reuse exact-runtime/version-attributed native association, not custombinary build reproduction or direct private observation. New sceneTimer-specific rule still needs independent acceptance."
+  ],
+  "unclosed_observation_gaps": [],
+  "pending_authority": [
+    "Independent acceptance of this sceneTimer construction/writer rule and explicit native dispatch premises",
+    "Separate SOURCE implementation authorization and independent functional review",
+    "Separate one-time saved-artifact overlay execution release; independent actual two-chain review"
+  ],
+  "additional_SOURCE_requested": [],
+  "new_capture_required_by_current_evidence": false,
+  "next_module_data_allowset": {
+    "index": {
+      "path": "data/phase408-initial-audit-first-001/rawtyped-field-index.json",
+      "size": 1494877,
+      "sha256": "27f4a859ba9144314bb25764d6787e07c8c929e96b44c37a077c4437c47cd46b"
+    },
+    "provenance": {
+      "path": "data/phase420-initial-partial-projection-first-001/initial-provenance.json",
+      "size": 16959,
+      "sha256": "63b29245d0923d5c9300026deda701dd8ebcf61c5e2bfe2e943c77b10138305f"
+    },
+    "accepted_A4_delta": {
+      "path": "/workspace/python-original-engine/repo/data/phase420-initial-partial-projection-first-001/delta-report.json",
+      "size": 91897,
+      "sha256": "b4f5dcecd79c2f9a501fced3844c8dff989d2c1f4b49b0bc0bdd79a8cb62fb19"
+    }
+  },
+  "delta_was_opened_in_design": false,
+  "proposed_API": [
+    "verify_kingbuff_release(release_descriptor)->scope",
+    "collect_kingbuff_initial(index,provenance,accepted_delta)->evidence",
+    "derive_kingbuff_pair(evidence,verified_rule)->two_rows",
+    "write_overlay_new(scope,two_rows)->receipt"
+  ],
+  "minimum_controls": [
+    "freshscene0/one_shottrue versusAutoHide1/false",
+    "pooled/wrongscene/owner/Timer/duplicate/crossphase",
+    "autostart/flags/birthclass/counterBOOL/nonzero",
+    "missingrule/runtime/freshRootauthority",
+    "indexpointer/A4identity/union corruption",
+    "path-before-read/ordinarynlink1/hash/exclusiveoutput",
+    "0or2 newtargets;immutableA4;no rawcarrier/parsercalls"
+  ],
+  "read_note": {
+    "initial_path_typo": "Read-only rg attempted nonexistent after-source/Items/Exclusive/Goobert.gd; actual fixed allowset path Items/Goobert.gd then used.",
+    "effects": "No source writes/runtime execution; no gap inferred from typo."
+  },
+  "pins": {
+    "index": {
+      "path": "data/phase408-initial-audit-first-001/rawtyped-field-index.json",
+      "size": 1494877,
+      "sha256": "27f4a859ba9144314bb25764d6787e07c8c929e96b44c37a077c4437c47cd46b"
+    },
+    "provenance": {
+      "path": "data/phase420-initial-partial-projection-first-001/initial-provenance.json",
+      "size": 16959,
+      "sha256": "63b29245d0923d5c9300026deda701dd8ebcf61c5e2bfe2e943c77b10138305f"
+    },
+    "projection_owner": {
+      "path": "data/phase420-initial-partial-projection-first-001/owned-files.json",
+      "size": 568,
+      "sha256": "587cddb55c65b5571cb3525e04097ffaa90f6ad8e2a9c3f01c49e484450ab6ec"
+    },
+    "actual_review": {
+      "path": "data/phase423-independent-actual-autohide-review/review.json",
+      "size": 7801,
+      "sha256": "526386ec0606c49381c4f3efccdcc9f38dcd1ce12f0225510d657cbf6e2df10b"
+    },
+    "root_acceptance": {
+      "path": "data/phase423-root-actual-target-acceptance/acceptance.json",
+      "size": 1543,
+      "sha256": "a738695aade930ec4a6cf57e7b5923ac7c54a6061852047ab9225d28bc7762ab"
+    },
+    "king_scene": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/KingGoobert.tscn",
+      "size": 4541,
+      "sha256": "853c83082edf0086f21c518075cf5701d93d88669e712df9094856cee6d89c8c"
+    },
+    "base_scene": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.tscn",
+      "size": 53449,
+      "sha256": "03619762fde0495f61d6e897003286ac0c1a9b1c4b82ebf3ef09dfaf425385f1"
+    },
+    "king": {
+      "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/KingGoobert.gd",
+      "size": 3101,
+      "sha256": "d40b72f75f8455c407fb0425520396139f6e8f9213449c9a86368ad21eb4fcf5"
+    },
+    "goobert": {
+      "path": "data/phase359-king-producer-source/after-source/Items/Goobert.gd",
+      "size": 1579,
+      "sha256": "7a7b70e9a230b551feca7e00df2fe5e241b97c7aeb15f060e792c15ff4015ebb"
+    },
+    "item": {
+      "path": "data/phase359-king-producer-source/after-source/Items/Item.gd",
+      "size": 178363,
+      "sha256": "2fc1d658db352a7ecae8c2bfb60640a019284992a9c5f9a14c87baea50721631"
+    },
+    "descriptor": {
+      "path": "data/phase359-king-producer-source/after-source/Items/ItemDescriptor.gd",
+      "size": 8740,
+      "sha256": "710a3dd4cf4d172d46771ed04b743fa9e0d8ab266715443e2c4907b459b7f032"
+    },
+    "sink": {
+      "path": "data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
+      "size": 104333,
+      "sha256": "999e0043a653067a962819cf81340b0dad745fa2148bbfab7724d7948a6a21ea"
+    },
+    "timer": {
+      "path": "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/timer.cpp",
+      "size": 7999,
+      "sha256": "79e2ce272fd56465d8ccc2a5077bf6dc39422cbc588e71ddfab482eb7a33d862"
+    },
+    "timer_header": {
+      "path": "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/timer.h",
+      "size": 3305,
+      "sha256": "20a3de2206b528223bd5b1ddf3175dd150e286c305f7ba43857a3dc29e80dd22"
+    },
+    "node": {
+      "path": "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/node.cpp",
+      "size": 95163,
+      "sha256": "0c2e3230b37644c8496f5b1aee59f428de6a497a380c247613c489e44cd508a9"
+    },
+    "packedscene": {
+      "path": "data/phase424-root-packedscene-supplement/Godot3.6.2/scene/resources/packed_scene.cpp",
+      "size": 51377,
+      "sha256": "0080123ccd2c9e26e4b04608e82175812a60222b18f5e95c286654cda3c7f3ed"
+    },
+    "packedscene_receipt": {
+      "path": "data/phase424-root-packedscene-supplement/source-supplement.json",
+      "size": 1015,
+      "sha256": "d5640b593746e029f5399a63ff990a63fea9b357c4675126dc09c5a98a801b90"
+    },
+    "accepted_N3_native": {
+      "path": "data/phase419-independent-autohide-projection-review/source-intermediate-review.json",
+      "size": 4937,
+      "sha256": "01e7fdc3dcfb17a8f8f792395682b442abfb488915dfb9f92593c4f3402198e0"
+    },
+    "native_proposal": {
+      "path": "data/phase418-root-finite-source-supplement/native-timer-attribution-proposal.json",
+      "size": 3221,
+      "sha256": "63961997bce4391e79a5a9fd6fe657fc66121e839949c91a0da21e9a15206297"
+    },
+    "executed_source_bindings": {
+      "path": "data/phase391-terminal-source/native-patch-source.json",
+      "size": 30584,
+      "sha256": "e889a9faf1669706732ceb72937011d5867f3094ca503b7997ff311b7c1002de"
+    }
+  },
+  "operational_counts": {
+    "implementation_files": 0,
+    "module_imports": 0,
+    "projection_or_rule_calls": 0,
+    "old_audit_schema_SUT_Model_FrameDriver_native_calls": 0,
+    "raw_capture_EXPECTED_reads": 0,
+    "actual_target_promotions": 0
+  },
+  "gates": {
+    "fullschema": "NOT_VALIDATED",
+    "genuine_input": false,
+    "King_admitted": false,
+    "model356": "CLOSED",
+    "reader361": "CLOSED"
+  }
+}
