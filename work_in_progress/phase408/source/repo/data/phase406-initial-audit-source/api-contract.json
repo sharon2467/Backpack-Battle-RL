@@ -1,0 +1,272 @@
+{
+  "authority_schema": "root406-lawful12-initial-audit/1",
+  "counters": {
+    "author_audit_calls": 0,
+    "author_audit_import": 0,
+    "capture_reads": 0,
+    "expected_reads": 0,
+    "inputbuild": 0,
+    "models": 0,
+    "old_SUT_calls": 0,
+    "old_SUT_import": 0
+  },
+  "field_classifications": [
+    "DIRECT_OBSERVATION",
+    "SOURCE_DERIVED",
+    "MISSING"
+  ],
+  "fullgate_positive_executed": false,
+  "fullschema": "NOT_VALIDATED",
+  "functions": [
+    {
+      "line": 625,
+      "name": "need",
+      "sha256": "e6e9f98f1bbf2808bd5c87499358d704b4145d35e26177b977d9e7c66ac07001",
+      "signature": "(ok, message)",
+      "size": 82
+    },
+    {
+      "line": 630,
+      "name": "exact",
+      "sha256": "792d0200ff8a0f5598e8c94eb70c4c8190a58496e52194b3fcd47e14f061770b",
+      "signature": "(value, keys, label)",
+      "size": 106
+    },
+    {
+      "line": 634,
+      "name": "same",
+      "sha256": "ac86fa0c06cd3941404231535f826f7458ed207270d076c5be109c4cbabdbd86",
+      "signature": "(left, right)",
+      "size": 430
+    },
+    {
+      "line": 646,
+      "name": "strict_json",
+      "sha256": "1b7ae6a8f223b1a638d2d3acd0b58a10254d1e05b1b05dba8b38a9cbcb17d89d",
+      "signature": "(raw)",
+      "size": 555
+    },
+    {
+      "line": 663,
+      "name": "descriptor",
+      "sha256": "165e9008cacf27c55eb40e585414e46b994be027ab94c2759c5dc26c7006cf85",
+      "signature": "(row)",
+      "size": 357
+    },
+    {
+      "line": 672,
+      "name": "canonical",
+      "sha256": "13961daa7d463784c540743f510c4a5df1eabe9576ad6b93445739fbbbd48361",
+      "signature": "(root, name)",
+      "size": 368
+    },
+    {
+      "line": 681,
+      "name": "unlinked",
+      "sha256": "57a858c0ceab0c44af2e90e162b48b7cb0b8cc10009267874ae4aa45852d5f3e",
+      "signature": "(path)",
+      "size": 108
+    },
+    {
+      "line": 685,
+      "name": "identity",
+      "sha256": "96edc82a47ff077a4d7bf04bce8ff2e126a973834e8b75cc05b90ba782c1adee",
+      "signature": "(info)",
+      "size": 149
+    },
+    {
+      "line": 690,
+      "name": "read_regular",
+      "sha256": "e828c1e427b5da71fbe326930c55a69572c9aa059e47ffb08960f788da884e38",
+      "signature": "(path, row, cap, io)",
+      "size": 1029
+    },
+    {
+      "line": 711,
+      "name": "source_path",
+      "sha256": "b290482816bc5860c66f31c77903566e54e3a9e40cab3a3da35e5fb4bc6f03a3",
+      "signature": "(root, name)",
+      "size": 145
+    },
+    {
+      "line": 717,
+      "name": "metadata",
+      "sha256": "c040183870b207e5dc6f2bb13e49b8cba9126e48220f08c3fd0cc2043a5c5730",
+      "signature": "(root, row, io)",
+      "size": 258
+    },
+    {
+      "line": 723,
+      "name": "owned_index",
+      "sha256": "2bafa997e57f05dee4e73df313a1a0215b2c5fbbe54057e3b012b4f0ef5ca0e5",
+      "signature": "(value)",
+      "size": 297
+    },
+    {
+      "line": 733,
+      "name": "verify_audit_release",
+      "sha256": "a9bccbcdf865165c58d96c94b7d84a634948dd43e8339ff1980feb04b274ab65",
+      "signature": "(root, release_descriptor, io)",
+      "size": 5645
+    },
+    {
+      "line": 811,
+      "name": "install_io_guard",
+      "sha256": "a58288f927ba1a9bccacff43a3b022cae2f2b44c02bf0b5baf9892b250847dc2",
+      "signature": "(allowed_read, output, violations)",
+      "size": 1562
+    },
+    {
+      "line": 834,
+      "name": "read_lawful12_once",
+      "sha256": "335da6dadc36134145afb91734e9c0e303f32ad7e519a930508ea2fd78aa6b18",
+      "signature": "(authority, io)",
+      "size": 1676
+    },
+    {
+      "line": 865,
+      "name": "rawref",
+      "sha256": "c1661577d09a592391ac78daa6cdb6193346978b1ffeabfbbe9af8ba260a2cb9",
+      "signature": "(name, line, row, pointer, owner=None)",
+      "size": 155
+    },
+    {
+      "line": 869,
+      "name": "unique_records",
+      "sha256": "196e3f68d1d0d906b3a804960e331dafd48a494a2b9cd732b1017cda4532f510",
+      "signature": "(rows, site, edge)",
+      "size": 140
+    },
+    {
+      "line": 873,
+      "name": "index_initial_observations",
+      "sha256": "760026373038dcc1eeb2acf92b930492540943facbb5df6b2aba25ac5c01d71b",
+      "signature": "(decoded)",
+      "size": 6440
+    },
+    {
+      "line": 955,
+      "name": "typed_int",
+      "sha256": "23b38605d9cdaa7887a4e3b785d0e0bc6c9df270b2b3684e7b2c51e0b1ef182d",
+      "signature": "(value)",
+      "size": 257
+    },
+    {
+      "line": 959,
+      "name": "typed_real",
+      "sha256": "cbf72922923c4cf93c6e0b5e8fbd2c4ab6bed463625e5660bf9c25b6f11d84e0",
+      "signature": "(value)",
+      "size": 302
+    },
+    {
+      "line": 963,
+      "name": "direct_row",
+      "sha256": "2b57910a52ad673fc48acd1fab2ddb9a515e2d9af1c4e4381e765d17c98c1204",
+      "signature": "(field, phase, role, actual, present, constraint, refs, supported)",
+      "size": 607
+    },
+    {
+      "line": 973,
+      "name": "audit_direct_fields",
+      "sha256": "ec998b1cde929e17a9cc8bfcfbd684e907e58b2f839b714cd58a1f8e5a409b88",
+      "signature": "(index, decoded)",
+      "size": 8294
+    },
+    {
+      "line": 1035,
+      "name": "audit_source_chain",
+      "sha256": "e12b04fa1da0c5d03098babb7ec878092612ad309e9e9341c7ff9f857992fb76",
+      "signature": "(index, direct, source_controls)",
+      "size": 1797
+    },
+    {
+      "line": 1053,
+      "name": "assess_initial_feasibility",
+      "sha256": "46abff0e1358a666dcab7bef0472adcd9f36b299f95869a99620c91970ef650d",
+      "signature": "(rows, findings)",
+      "size": 970
+    },
+    {
+      "line": 1066,
+      "name": "save_new",
+      "sha256": "c5a2a917bac1d7aef3ff544eccbae993bd97ce2346e43d69090a4dfc499ed97a",
+      "signature": "(path, value)",
+      "size": 492
+    },
+    {
+      "line": 1076,
+      "name": "seal_audit_once",
+      "sha256": "5f923d816ef2c019f8c0af585192704c35a2c127b5741a44e5d0dd7389940b80",
+      "signature": "(authority, report, rows, findings, io, error, violations)",
+      "size": 1638
+    },
+    {
+      "line": 1100,
+      "name": "run_audit",
+      "sha256": "91c7e14dc30b21a02191297018b36a82e21b18c8c2deee4e10a5f3c168f13de9",
+      "signature": "(root, release_descriptor)",
+      "size": 1003
+    },
+    {
+      "line": 1121,
+      "name": "main",
+      "sha256": "6845a23da5285582e88fa1e9295f3d93467bcc99b0f9f3a00f4daaa5a8ca127e",
+      "signature": "()",
+      "size": 519
+    }
+  ],
+  "future_release": null,
+  "future_review": null,
+  "input_files": [
+    "fixture.json",
+    "player_fixture.json",
+    "observer7-input.jsonl",
+    "observer7-lineage.jsonl",
+    "observer7-metadata.jsonl",
+    "observer7-primitives.jsonl",
+    "king-clock-checkpoint.json",
+    "king-clock-passes.jsonl",
+    "king-input-facts.json",
+    "king-ui-authority.jsonl",
+    "king-rng-checkpoint.json",
+    "king-slot-bindings.json"
+  ],
+  "module": {
+    "path": "tests/phase406_initial_source_audit.py",
+    "sha256": "87b65f6df2cadc01b2855a79c127f072c0574a39900210beee6eff3b207a2473",
+    "size": 68511
+  },
+  "optional391_job_implemented": false,
+  "output_statuses": [
+    "FEASIBLE_PENDING_FULL_STRUCTURAL_VALIDATION",
+    "BLOCKED_INITIAL_SOURCE_GAPS",
+    "REJECTED_INITIAL_DOMAIN",
+    "FAILED_SOURCE_INTEGRITY"
+  ],
+  "permissions_zero": [
+    "models",
+    "inputbuild",
+    "projection",
+    "expected_reads",
+    "new_native",
+    "SUT_calls",
+    "schema_calls",
+    "restore",
+    "READY"
+  ],
+  "required_review_status": "INDEPENDENT407_STDLIB_INITIAL_AUDIT_SOURCE_ACCEPTED_ROOT_PENDING",
+  "schema": "phase406-actual-audit-source-api/1",
+  "source_derived_recipes_implemented": 0,
+  "source_freeze_path": "data/phase406-initial-audit-source/source-freeze.json",
+  "source_owner_path": "data/phase406-initial-audit-source/source-owner.json",
+  "source_review_required_fields": [
+    "status",
+    "source_freeze",
+    "source_owner",
+    "models:strictINT0",
+    "native:strictINT0",
+    "inputbuild:strictINT0",
+    "old_SUT_calls:strictINT0",
+    "schema_calls:strictINT0"
+  ]
+}

@@ -1,0 +1,261 @@
+{
+  "excerpts": [
+    {
+      "function": "prepare",
+      "line_end": 27,
+      "line_start": 19,
+      "path": "Items/Exclusive/KingGoobert.gd",
+      "sha256": "d732b2cb14b31f8ead8cddc774aa8c6b1cbdbae257a432148604d22f4d9126eb",
+      "size": 194,
+      "text": "func prepare():\n\tvar gemPower = getP(\"gempower\") / 100.0\n\tfor gem in getGemsNoNull():\n\t\tgem.changeGemPower(gemPower)\n\t\n\tinvuCharges = getP(\"charges\")\n\tsetState(CrownState.Inactive)\n\t.prepare()\n\n"
+    },
+    {
+      "function": "doCooldownEffect",
+      "line_end": 39,
+      "line_start": 28,
+      "path": "Items/Exclusive/KingGoobert.gd",
+      "sha256": "7ca0ea8804edf50b655a63b0235047c9d4ec37d3255f52a759e52d105a885d06",
+      "size": 424,
+      "text": "func doCooldownEffect():\n\tcharacter().changeBuffProtectStacks(protectedBuffs)\n\theal()\n\tif invuCharges > 0 and character().isVulnerable() and checkMana(manaCost):\n\t\tinvuCharges -= 1\n\t\tsetState(CrownState.Active, true)\n\t\tvar invuDur = getP_m(\"dur_invu\")\n\t\tvar event = character().makeInvulnerable(invuDur, self)\n\t\tbuffTimer.start(invuDur)\n\t\tuseMana(manaCost, event)\n\t\tUtil.createPulse(activationPulse, self, global_position)\n\n"
+    },
+    {
+      "function": "buffEnded",
+      "line_end": 45,
+      "line_start": 40,
+      "path": "Items/Exclusive/KingGoobert.gd",
+      "sha256": "7c3e5c532f217be7d7973bbc05425283c954b3a47192049cfec0bf46165f52a3",
+      "size": 119,
+      "text": "func buffEnded():\n\tif invuCharges > 0:\n\t\tsetState(CrownState.Inactive, true)\n\telse:\n\t\tsetState(CrownState.Used, true)\n\n"
+    },
+    {
+      "function": "onCombatEnd",
+      "line_end": 48,
+      "line_start": 46,
+      "path": "Items/Exclusive/KingGoobert.gd",
+      "sha256": "cb4d2e988e55f6314144692754a5946c80a94b6ca68139b3d048f10f751b268a",
+      "size": 39,
+      "text": "func onCombatEnd():\n\tbuffTimer.stop()\n\n"
+    },
+    {
+      "function": "onStateChanged",
+      "line_end": 65,
+      "line_start": 52,
+      "path": "Items/Exclusive/KingGoobert.gd",
+      "sha256": "993238cc74512c55e127af50f16f06b8f73a76c17221f50f63ae4888e16eb832",
+      "size": 357,
+      "text": "func onStateChanged(_crownState):\n\tif _crownState == CrownState.Inactive:\n\t\tactivationParticles.deactivate()\n\t\tlight.self_modulate = Color.white\n\t\tlight.show()\n\t\n\telif _crownState == CrownState.Active:\n\t\tactivationParticles.activate()\n\t\tlight.self_modulate = Color(1.3, 1.3, 1.3, 1)\n\t\tlight.show()\n\t\n\telse:\n\t\tactivationParticles.deactivate()\n\t\tlight.hide()\n"
+    },
+    {
+      "function": "_ready",
+      "line_end": 11,
+      "line_start": 5,
+      "path": "Utility/AutoHideParticles.gd",
+      "sha256": "d61ce41f83dbd67a68542ecc43dd4ff6f60dade16e5e375b476470d41c121df4",
+      "size": 138,
+      "text": "func _ready() -> void :\n\ttimer = Timer.new()\n\ttimer.one_shot = true\n\ttimer.connect(\"timeout\", self, \"timeout\")\n\tadd_child(timer)\n\thide()\n\n"
+    },
+    {
+      "function": "activate",
+      "line_end": 23,
+      "line_start": 12,
+      "path": "Utility/AutoHideParticles.gd",
+      "sha256": "4636d54ff7261bec186cbd1edb03901e7c83c56626823463ddf417fe1380714e",
+      "size": 112,
+      "text": "func activate():\n\ttimer.stop()\n\t\n\t\n\tshow()\n\t\n\tif one_shot:\n\t\trestart()\n\t\tstartTimer()\n\telse:\n\t\temitting = true\n\n"
+    },
+    {
+      "function": "deactivate",
+      "line_end": 28,
+      "line_start": 24,
+      "path": "Utility/AutoHideParticles.gd",
+      "sha256": "1776d7de4697954853786be485f7dbdd25274783083d8de54471ef919b15f2e3",
+      "size": 67,
+      "text": "func deactivate():\n\tif visible:\n\t\temitting = false\n\t\tstartTimer()\n\n"
+    },
+    {
+      "function": "startTimer",
+      "line_end": 31,
+      "line_start": 29,
+      "path": "Utility/AutoHideParticles.gd",
+      "sha256": "ba517d49297a3358880fac6c99090401750e93612a0f12a9d8a4cca8cfd67012",
+      "size": 85,
+      "text": "func startTimer():\n\ttimer.start(lifetime * (1 + (1 - explosiveness) / speed_scale))\n\n"
+    },
+    {
+      "function": "timeout",
+      "line_end": 34,
+      "line_start": 32,
+      "path": "Utility/AutoHideParticles.gd",
+      "sha256": "4d657f60dac6ffeb051838560618815a134f317e53031fa0f6a5b6321e55d4a9",
+      "size": 25,
+      "text": "func timeout():\n\thide()\n\n"
+    },
+    {
+      "function": "combatEnd",
+      "line_end": 348,
+      "line_start": 338,
+      "path": "Core/Character.gd",
+      "sha256": "aaa57772d5227b3b11696abad5932e103472eede591f8887a5427604ef4fcac1",
+      "size": 217,
+      "text": "func combatEnd():\n\tset_physics_process(false)\n\ttickTimer.stop()\n\tattackMovingForward = false\n\t\n\tfor buff in buffs:\n\t\tbuffs[buff].combatEnd()\n\tbattleRageTimer.stop()\n\tautoRageTimer.stop()\n\tinvulnerabilityTimer.stop()\n\n"
+    },
+    {
+      "function": "cleanse",
+      "line_end": 400,
+      "line_start": 349,
+      "path": "Core/Character.gd",
+      "sha256": "ce044e3f32110ee68abc4042e6d63424ecdda0a4d6b12fca64d6985f2f1d8553",
+      "size": 1207,
+      "text": "func cleanse():\n\tisDead = false\n\ttemporaryMaxHealth = 0\n\ttemporaryMaxHealthGain = 1.0\n\tstaminaRegen = baseStaminaRegen\n\thealToFull()\n\temit_signal(\"max_health_changed_ui\")\n\tsetTemporaryMaxStamina(0)\n\tfillUpStamina()\n\tendStun()\n\tsetBlock(0)\n\n\tfor buffType in buffs:\n\t\tbuffs[buffType].reset()\n\t\n\tif invulBubbleVisible:\n\t\tplayInvulnerableAnimation(false)\n\t\n\tinvulnerable = false\n\tinvulnerabilityItem = null\n\t\n\tdamageResistance = 0.0\n\tdamageReduction = 0\n\tdodgeStacks = 0\n\tcritResistance = 0.0\n\tcritResistStacks = 0\n\tstunResistance = 0.0\n\tunhealingAmount = 0.0\n\thealingEfficiency = 1.0\n\tcritTokens = 0\n\tdebuffResistStacks = 0\n\tdebuffReflectStacks = 0\n\tbuffProtectStacks = 0\n\tUtil.killTween(attackTween)\n\tif battleRageAura.visible:\n\t\tbattleRageAnimation.play(\"BattleRageEnded\")\n\tbattleRageParticles.deactivate()\n\tbattleRageBonusDur = 0.0\n\tbonusFatigueDamage = 0\n\tblindingLightActive = false\n\tmeleeSpikesLimit = 1.0\n\trangedSpikesLimit = 0.0\n\teffectSpikesLimit = 0.0\n\tmeleeVampirismLimit = 1.0\n\trangedVampirismLimit = 0.0\n\tempowerDamage = 1.0\n\tfor damageType in DamageSource.Type.values():\n\t\ttypedDamageFactors[damageType] = 0.0\n\t\n\tpoisonDamageSource.critChancePercent = 0\n\tspikeDamageSource.critChancePercent = 0\n\n"
+    },
+    {
+      "function": "makeInvulnerable",
+      "line_end": 1052,
+      "line_start": 1037,
+      "path": "Core/Character.gd",
+      "sha256": "47163864b019a85a607bbb99023902aa60460eea46cd27fe53d4e13fe6551bf4",
+      "size": 580,
+      "text": "func makeInvulnerable(invuDur, item, triggerEvent = null):\n\tinvulnerabilityItem = item\n\t\n\tif not invulnerable:\n\t\tinvulnerabilityTimer.start(invuDur)\n\t\tinvulnerable = true\n\t\tplayInvulnerableAnimation(true)\n\t\tSound.playSound(invuSound, 4, Util.randPitch(0.1))\n\telse:\n\t\tUtil.changeTimer(invulnerabilityTimer, invuDur)\n\t\n\tvar event = Game.combatLog.createEvent_InvulnerableStart(item, invuDur, playerId, triggerEvent)\n\tEventBus.emitEvent(self, \"character_invulnerable_start\", event, [event])\n\tGame.combatLog.snapshotCharacterStat(self, Stat.Invulnerable, false, event)\n\treturn event\n\n"
+    },
+    {
+      "function": "invulnerabilityEnded",
+      "line_end": 1062,
+      "line_start": 1056,
+      "path": "Core/Character.gd",
+      "sha256": "028c568b230d0835d4c9fda6dd415bed40db963d0e23bd379cf33ba432cf5add",
+      "size": 323,
+      "text": "func invulnerabilityEnded():\n\tinvulnerable = false\n\tvar event = Game.combatLog.createEvent_InvulnerableEnd(invulnerabilityItem, playerId)\n\tEventBus.emitEvent(self, \"character_invulnerable_end\", event, [event])\n\tGame.combatLog.snapshotCharacterStat(self, Stat.Invulnerable, false, event)\n\tplayInvulnerableAnimation(false)\n\t\n"
+    },
+    {
+      "function": "activateItems",
+      "line_end": 3083,
+      "line_start": 3066,
+      "path": "Core/Game.gd",
+      "sha256": "007c1feade10ee128decb34393cf1b44d5da5871fc195497b102816fac9f8431",
+      "size": 266,
+      "text": "func activateItems(items):\n\t\n\t\n\temit_signal(\"combat_start\")\n\tcombatTimer.start()\n\t\n\tPLAYER.combatStart()\n\tOPPONENT.combatStart()\n\t\n\tfor item in items:\n\t\titem.preCombatStart()\n\t\n\tfor item in items:\n\t\titem.combatStart()\n\t\n\tfor item in items:\n\t\titem.postCombatStart()\n\n"
+    },
+    {
+      "function": "endCombat",
+      "line_end": 3113,
+      "line_start": 3084,
+      "path": "Core/Game.gd",
+      "sha256": "12bc1c002707660c489a1251d1361c0e101aceea404f378fc80889c986985643",
+      "size": 816,
+      "text": "func endCombat():\n\tif fightEnded:\n\t\treturn\n\t\n\tEngine.time_scale = 1\n\tfightEnded = true\n\ttriesBeforeFight = tries\n\t\n\tif ( not loseNextRound and not loseNextRun and \n\t\t(OPPONENT.curHealth <= 0 or winNextRun or winNextRound)):\n\t\troundResults[curRound - 1] = RoundResult.Win\n\t\twins += 1\n\t\tPLAYER.playSound(classResources[curClass].getWinRoundSound(), 4, 1.0, true)\n\t\tPLAYER.win()\n\t\tSound.playSound(winSound)\n\t\tOPPONENT.lose()\n\t\n\telse:\n\t\troundResults[curRound - 1] = RoundResult.Loss\n\t\tlosses += 1\n\t\ttries = max(0, tries - 1)\n\t\tPLAYER.playSound(classResources[curClass].getLoseRoundSound(), 4, 1.0, true)\n\t\tOPPONENT.win()\n\t\tPLAYER.lose()\n\t\tSound.playSound(loseSound, 3)\n\t\n\tprint(\"Round \", curRound, \" Battle ended with \", Util.enumToString(RoundResult, roundResults[curRound - 1]))\n\t\n\tcall_deferred(\"combatEndDeferred\")\n\n"
+    },
+    {
+      "function": "combatEndDeferred",
+      "line_end": 3180,
+      "line_start": 3114,
+      "path": "Core/Game.gd",
+      "sha256": "f1b66ade553d36af1b25448dd0c70419de354bdceee06a267b22f091e96d9e41",
+      "size": 1713,
+      "text": "func combatEndDeferred():\n\temit_signal(\"combat_end\", roundResults[curRound - 1])\n\t\n\tEventBus.disconnectAll()\n\tPLAYER.combatEnd()\n\tOPPONENT.combatEnd()\n\tcombatTimer.combatEnd()\n\t\n\tif roundResults[curRound - 1] == RoundResult.Win:\n\t\tOPPONENT.setCurrentHealth(0)\n\t\tPLAYER.setCurrentHealth(max(1, PLAYER.getCurrentHealth()))\n\telse:\n\t\tPLAYER.setCurrentHealth(0)\n\t\tOPPONENT.setCurrentHealth(max(1, OPPONENT.getCurrentHealth()))\n\t\n\tfor item in PLAYER.INVENTORY.getItems() + OPPONENT.INVENTORY.getItems():\n\t\titem.combatEnd()\n\t\n\tropeSpeedups.clear()\n\tcubeAdvanced.clear()\n\tsandbagActive = false\n\t\n\tcurRound += 1\n\tif curMode != Mode.History:\n\t\temit_signal(\"round_result\")\n\t\n\t\n\tif SteamHelper.canUnlock():\n\t\tif getLastRoundResult() == RoundResult.Win:\n\t\t\tif combatTimer.combatTime < 3:\n\t\t\t\tSteamHelper.unlockAchievement(\"FastBattle\")\n\t\t\telif combatTimer.combatTime >= 45:\n\t\t\t\tSteamHelper.unlockAchievement(\"SlowBattle\")\n\t\t\t\n\t\t\tvar noWeapon = true\n\t\t\tfor item in PLAYER.INVENTORY.getItems():\n\t\t\t\tif item.hasType(Item.Type.Weapon):\n\t\t\t\t\tnoWeapon = false\n\t\t\t\t\tbreak\n\t\t\tif noWeapon:\n\t\t\t\tSteamHelper.unlockAchievement(\"NoWeapon\")\n\t\t\t\n\t\t\tif PLAYER.getRelativeHealth() == 1:\n\t\t\t\tSteamHelper.unlockAchievement(\"FullHealth\")\n\t\t\telif PLAYER.getCurrentHealth() == 1:\n\t\t\t\tSteamHelper.unlockAchievement(\"1Health\")\n\t\t\t\n\t\t\tcheckForInventoryAchievements()\n\t\t\t\n\t\tif PLAYER.getBuffStacks() >= 100:\n\t\t\tSteamHelper.unlockAchievement(\"ManyBuffs\")\n\t\telif OPPONENT.getDebuffStacks() >= 100:\n\t\t\tSteamHelper.unlockAchievement(\"ManyDebuffs\")\n\t\t\n\t\tif numTimesOutOfStamina >= 10:\n\t\t\tSteamHelper.unlockAchievement(\"OutOfStamina\")\n\t\n\t\n\t\n\tSound.fadeOutBGM(1)\n\t\n\tif runOver():\n\t\tif curMode == Mode.Lobbies:\n\t\t\tendRun_lobby()\n\t\telse:\n\t\t\tendRun(true, true)\n\n"
+    },
+    {
+      "function": "_process",
+      "line_end": 147,
+      "line_start": 145,
+      "path": "Utility/Util.gd",
+      "sha256": "ca4a153a8e560cdccb3b8cdbac07125c98fd33474e894909dfc2b277637e3e5f",
+      "size": 43,
+      "text": "func _process(delta):\n\tclockTime += delta\n\n"
+    },
+    {
+      "function": "_physics_process",
+      "line_end": 157,
+      "line_start": 148,
+      "path": "Utility/Util.gd",
+      "sha256": "b4ec0241f8378ad4a17ad957ad6edc56d1b48f4f191d4df6f2a677c69b61f967",
+      "size": 213,
+      "text": "func _physics_process(delta):\n\t\n\tif not get_tree().paused:\n\t\tframeCounter += 1\n\t\ttime += delta\n\t\n\tvar curMousePos = getMousePosInWindow()\n\tmouseVelocity = (curMousePos - lastMousePos)\n\tlastMousePos = curMousePos\n\n"
+    },
+    {
+      "block": "[node name=\"TickTimer\" type=\"Timer\" parent=\".\"]",
+      "line_end": 1634,
+      "line_start": 1632,
+      "path": "Core/Character.tscn",
+      "sha256": "a82083eb672ed80bd11beefb4c5a8c6f7ffb20e07bcca6cc4c24a292eecce32d",
+      "text": "[node name=\"TickTimer\" type=\"Timer\" parent=\".\"]\nprocess_mode = 0\n\n"
+    },
+    {
+      "block": "[node name=\"InvulnerabilityTimer\" type=\"Timer\" parent=\".\"]",
+      "line_end": 1642,
+      "line_start": 1639,
+      "path": "Core/Character.tscn",
+      "sha256": "91b7dd4080cfbd661feba9c2493e5181eb4637710f1e9037a38255baa94e65a0",
+      "text": "[node name=\"InvulnerabilityTimer\" type=\"Timer\" parent=\".\"]\nprocess_mode = 0\none_shot = true\n\n"
+    },
+    {
+      "block": "[node name=\"CircleLight\" type=\"Sprite\" parent=\"Icon\" index=\"0\"]",
+      "line_end": 73,
+      "line_start": 67,
+      "path": "Items/Exclusive/KingGoobert.tscn",
+      "sha256": "abf35fd5f4377c8fcfe27e672b5d605bed78bc36a55cfef964846e440583c080",
+      "text": "[node name=\"CircleLight\" type=\"Sprite\" parent=\"Icon\" index=\"0\"]\nmodulate = Color( 1, 0.94902, 0.670588, 0.317647 )\nmaterial = ExtResource( 3 )\nposition = Vector2( 0, -114 )\nscale = Vector2( 0.9, 0.862613 )\ntexture = ExtResource( 8 )\n\n"
+    },
+    {
+      "block": "[node name=\"SpecificDragParticles\" type=\"Particles2D\" parent=\"Icon\" index=\"2\"]",
+      "line_end": 94,
+      "line_start": 83,
+      "path": "Items/Exclusive/KingGoobert.tscn",
+      "sha256": "ec2ac70e517617a4b9c264221553fc08bf2f73d40685d192d1b8c2f05271ca2c",
+      "text": "[node name=\"SpecificDragParticles\" type=\"Particles2D\" parent=\"Icon\" index=\"2\"]\nmodulate = Color( 1.2, 1.2, 1.2, 1 )\nself_modulate = Color( 1.6, 1.5, 1, 0.82 )\nposition = Vector2( 0, 24 )\nemitting = false\namount = 12\nlifetime = 0.7\nlocal_coords = false\nprocess_material = ExtResource( 5 )\ntexture = ExtResource( 7 )\nscript = ExtResource( 6 )\n\n"
+    },
+    {
+      "block": "[node name=\"BuffTimer\" type=\"Timer\" parent=\".\" index=\"7\"]",
+      "line_end": 108,
+      "line_start": 105,
+      "path": "Items/Exclusive/KingGoobert.tscn",
+      "sha256": "f72f694556dda3dcfc0d2c10b00f14c2962b617e8166f575737e4100023681bb",
+      "text": "[node name=\"BuffTimer\" type=\"Timer\" parent=\".\" index=\"7\"]\nprocess_mode = 0\none_shot = true\n\n"
+    },
+    {
+      "block": "[node name=\"ActivationParticles\" type=\"Particles2D\" parent=\".\" index=\"8\"]",
+      "line_end": 118,
+      "line_start": 109,
+      "path": "Items/Exclusive/KingGoobert.tscn",
+      "sha256": "166d0788aec9d306d24f3b6cb76e3b8c7b7544bf8b2d5c5551b93cafdf4d0a2b",
+      "text": "[node name=\"ActivationParticles\" type=\"Particles2D\" parent=\".\" index=\"8\"]\nmodulate = Color( 1.2, 1.2, 1.2, 1 )\nself_modulate = Color( 1.6, 1.5, 1, 0.82 )\nemitting = false\namount = 17\nlifetime = 0.7\nprocess_material = ExtResource( 9 )\ntexture = ExtResource( 7 )\nscript = ExtResource( 6 )\n\n"
+    }
+  ],
+  "original_sources": {
+    "Core/Character.gd": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Character.gd",
+      "sha256": "dc372965eaa048657caa1646d70aba85ff9b4b9677565eaa480bc195de027496",
+      "size": 48033
+    },
+    "Core/Character.tscn": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Character.tscn",
+      "sha256": "5a6e1a99539975a7664e651fa32ed078f1017ba157ce1247a75fecd8266c97e9",
+      "size": 49260
+    },
+    "Core/Game.gd": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Game.gd",
+      "sha256": "f3688bfdf39b95a8ed6a77d9a7ad058a95a0aaa4bcb6d297bc953425add4b9c9",
+      "size": 145148
+    },
+    "Items/Exclusive/KingGoobert.gd": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/KingGoobert.gd",
+      "sha256": "2f852255072386a57757bceea38a9f5825e0d1299b6fa8ce2c55b14827385d0f",
+      "size": 1581
+    },
+    "Items/Exclusive/KingGoobert.tscn": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/KingGoobert.tscn",
+      "sha256": "853c83082edf0086f21c518075cf5701d93d88669e712df9094856cee6d89c8c",
+      "size": 4541
+    },
+    "Utility/AutoHideParticles.gd": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Utility/AutoHideParticles.gd",
+      "sha256": "c18ceb3f6a489fd1fc69329155a182e1a658804c36e14651ecc546b450c53503",
+      "size": 531
+    },
+    "Utility/Util.gd": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Utility/Util.gd",
+      "sha256": "596e7f7a9308ea03957e5c9f6e5cb43aa1591e1e0fd13217e2f2c70368970a36",
+      "size": 44381
+    }
+  },
+  "purpose": "necessary known SOURCE only; no source investigation/census or executable capsule"
+}

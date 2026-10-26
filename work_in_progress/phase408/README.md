@@ -1,0 +1,5 @@
+# Narrow initial-audit SOURCE repair, independent409 pending
+
+408 repairs only406 owned_index actuallist/dict compatibility,strict output readback via the unchanged physical read gate,and fixed required field/phase/role completeness with strict supported/proof status checks. A pure required_initial_targets helper adds the exact summary obligation set. All other semantics and49static controls are conserved after inverse protocol normalization. No SOURCE_DERIVED success recipe added;88unproven source-chain rows remain conservative. Fullschema NOT_VALIDATED,optional391job absent.
+
+Root verified83ordinary leaves2282824B;module74685B SHAc572cdbb35f44a3e696b0fa5ab3df539e9e985c5d88770d73e1f3bb9afe6977d. Author compile/AST/pins only,firstprepareexit0,no audit imports/calls or actual12read. Source review409 is pending. Exact future schema/status literals are not real authority. Absolute13baseline dependencies are safely stored in source/external_baseline,relative engineering files in source/repo. Baseline13mtime repair is independently verified in406,with ctime/atime historical restoration explicitly unclaimed. Formal75,King/full12/genuine356/361 unchanged.

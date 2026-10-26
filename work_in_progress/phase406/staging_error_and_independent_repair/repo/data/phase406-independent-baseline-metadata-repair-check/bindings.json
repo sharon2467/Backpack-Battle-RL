@@ -1,0 +1,84 @@
+{
+  "FSchecker_calls_so_far": 0,
+  "Git_outer_association": {
+    "descriptor": {
+      "sha256": "f12fd0eadad4a5857913532adc4cbe3373ffd08f0c801dd220353b5e5b84337d",
+      "size": 4099473
+    },
+    "member": "run/output/compaction/baseline-files.json",
+    "remote_fetch_performed_by_this_reviewer": false
+  },
+  "absolute_input_pins": {
+    "/workspace/backpack-github-source-clone-20261025/work_in_progress/phase401/host_capture/CAPSULE.json": {
+      "sha256": "c7564f5aa83b5b34f942abc2910cc8af900dae286cd14ea9e674dfcb8f8e091b",
+      "size": 84477
+    },
+    "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/compaction/baseline-files.json": {
+      "sha256": "f12fd0eadad4a5857913532adc4cbe3373ffd08f0c801dd220353b5e5b84337d",
+      "size": 4099473
+    },
+    "/workspace/python-original-engine/repo/data/phase400-root-coordination/staging406-absolute-path-first-error/before-repair.json": {
+      "sha256": "5059e7524b34c8b6289add03bb7b282651228a65d14c59204429c66155430fec",
+      "size": 10840
+    },
+    "/workspace/python-original-engine/repo/data/phase400-root-coordination/staging406-absolute-path-first-error/independent-full-baseline-release.json": {
+      "sha256": "d9d8768ef645a825a8d6bee23ed1859c0f2b1223448ec8159f711bad21e26291",
+      "size": 1990
+    },
+    "/workspace/python-original-engine/repo/data/phase400-root-coordination/staging406-absolute-path-first-error/repair-result.json": {
+      "sha256": "0ee0c5ccc93a47cff0103e3afe18c87cc92d7b8aadc7d535afeb52a84cfced40",
+      "size": 5693
+    },
+    "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py": {
+      "sha256": "4887e63ddae5ee9008a2073df1c23743b8a2e47fa58d925c454a024546682bac",
+      "size": 33042
+    }
+  },
+  "actual_call_arguments": {
+    "exclude": [],
+    "relaxed": false,
+    "root": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles"
+  },
+  "expected": {
+    "GD": 11,
+    "bytes": 616167851,
+    "directories": 247,
+    "exact_every_row": true,
+    "files": 15418,
+    "repair_targets": 13,
+    "scenes": 2
+  },
+  "historical_ctime_or_atime_claim": false,
+  "inventory_definition": {
+    "end_line": 73,
+    "line": 44,
+    "path": "tests/phase398_independent_restored_readback.py",
+    "sha256": "5021929f8f1c21b6d5950816df18cc06bfe1f167eeaf7b90b9c7620a61493a9e",
+    "signature": "(root, exclude=(), relaxed=False)",
+    "size": 1934,
+    "source": "def inventory(root,exclude=(),relaxed=False):\n    require(root.is_dir() and not any(p.is_symlink() for p in (root,*root.parents)),'unlinked inventory root')\n    device=root.stat().st_dev;rows=[]\n    def visit(path):\n        name=path.relative_to(root).as_posix()\n        if name!='.' and name.split('/')[0] in exclude:return\n        before=path.lstat();mode=stat.S_IMODE(before.st_mode)\n        require(before.st_dev==device,'cross device')\n        if not relaxed:\n            require(not mode&0o7000 and not os.listxattr(path,follow_symlinks=False),'unsupported permissions/xattrs')\n        row=dict(path=name,mode=mode,mtime_ns=before.st_mtime_ns)\n        if stat.S_ISDIR(before.st_mode):\n            row['kind']='directory';rows.append(row)\n            for child in sorted(path.iterdir()):visit(child)\n        elif stat.S_ISREG(before.st_mode):\n            require(relaxed or before.st_nlink==1,'hardlinked strict file')\n            h=hashlib.sha256();fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW)\n            with os.fdopen(fd,'rb') as stream:\n                opened=os.fstat(stream.fileno())\n                for block in iter(lambda:stream.read(1024*1024),b''):h.update(block)\n                closed=os.fstat(stream.fileno())\n            identity=lambda s:(s.st_dev,s.st_ino,s.st_mode,s.st_size,s.st_mtime_ns,s.st_ctime_ns)\n            require(identity(before)==identity(opened)==identity(closed)==identity(path.lstat()),'file changed while reading')\n            row.update(kind='file',size=before.st_size,sha256=h.hexdigest());rows.append(row)\n        else:\n            require(relaxed,'unsupported strict special node')\n            row.update(kind='symlink' if stat.S_ISLNK(before.st_mode) else 'special',type_bits=stat.S_IFMT(before.st_mode))\n            if stat.S_ISLNK(before.st_mode):row['target']=os.readlink(path)\n            rows.append(row)\n    visit(root);return dict(schema='native-run-project-manifest/1',entries=rows)\n"
+  },
+  "maximum_inventory_calls": 1,
+  "module_imports": [
+    "import ast",
+    "import argparse",
+    "import datetime",
+    "import fcntl",
+    "import hashlib",
+    "import json",
+    "import os",
+    "from pathlib import Path",
+    "import stat",
+    "import sys",
+    "import time",
+    "import traceback",
+    "import zipfile"
+  ],
+  "no_other_operational_reader_calls": true,
+  "release": "/workspace/python-original-engine/repo/data/phase400-root-coordination/staging406-absolute-path-first-error/independent-full-baseline-release.json",
+  "require_helper_definition": {
+    "line": 31,
+    "source": "def require(value,message):\n    if not value:raise ValueError(message)"
+  },
+  "schema": "independent406-baseline-metadata-check-binding/1"
+}

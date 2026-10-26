@@ -1,0 +1,248 @@
+--- tests/phase406_initial_source_audit.py
++++ tests/phase408_initial_source_audit.py
+@@ -1,14 +1,39 @@
+-"""406 readonly presence/source-route audit. Fullschema and all engine execution remain closed."""
+-SOURCE = 'data/phase406-initial-audit-source'
+-MODULE = 'tests/phase406_initial_source_audit.py'
+-SOURCE_ARTIFACTS = ['docs/phase406_readonly_initial_audit_implementation_spec.md',
++"""408 readonly presence/source-route audit. Fullschema and all engine execution remain closed."""
++SOURCE = 'data/phase408-initial-audit-source'
++MODULE = 'tests/phase408_initial_source_audit.py'
++SOURCE_ARTIFACTS = ['docs/phase408_owner_readback_assessment_repair_spec.md',
++ 'tests/phase408_initial_audit_template.py',
++ 'tests/phase408_initial_source_audit.py',
++ 'tests/phase408_prepare_audit_repair_source.py',
++ 'data/phase408-initial-audit-source/api-contract.json',
++ 'data/phase408-initial-audit-source/static-author-checks.json',
++ 'data/phase408-initial-audit-source/source-constraints.json',
++ 'data/phase408-initial-audit-source/required-target-inventory.json',
++ 'data/phase408-initial-audit-source/phase408_initial_audit_template-inverse.json',
++ 'data/phase408-initial-audit-source/phase408_initial_source_audit-inverse.json',
++ 'data/phase408-initial-audit-source/phase408_initial_audit_template-source.patch',
++ 'data/phase408-initial-audit-source/phase408_initial_source_audit-source.patch',
++ 'docs/phase406_readonly_initial_audit_implementation_spec.md',
+  'tests/phase406_initial_audit_template.py',
+  'tests/phase406_prepare_audit_source.py',
+  'tests/phase406_initial_source_audit.py',
+  'data/phase406-initial-audit-source/api-contract.json',
+  'data/phase406-initial-audit-source/static-author-checks.json',
+- 'data/phase406-initial-audit-source/source-constraints.json']
+-REVIEW_STATUS = 'INDEPENDENT407_STDLIB_INITIAL_AUDIT_SOURCE_ACCEPTED_ROOT_PENDING'
++ 'data/phase406-initial-audit-source/source-constraints.json',
++ 'data/phase406-initial-audit-source/source-freeze.json',
++ 'data/phase406-initial-audit-source/summary.json',
++ 'data/phase406-initial-audit-source/source-owner.json',
++ 'data/phase407-frozen406-static-review/review.json',
++ 'data/phase407-frozen406-static-review/source-identity-and-static-evidence.json',
++ 'data/phase407-independent-source-preparation/contract.json',
++ 'data/phase407-independent-source-preparation/owned-files.json',
++ 'data/phase407-independent-source-preparation/summary.json',
++ 'docs/phase407_frozen406_static_review_execution_spec.md',
++ 'docs/phase407_frozen406_static_review_findings.md',
++ 'docs/phase407_independent_initial_audit_source_preparation_spec.md',
++ 'tests/phase407_verify_frozen406_source_static.py',
++ 'data/phase407-frozen406-static-review/owned-files.json']
++REVIEW_STATUS = 'INDEPENDENT409_STDLIB_INITIAL_AUDIT_SOURCE_ACCEPTED_ROOT_PENDING'
+ ROOT402 = 'data/phase401-root-native-attempt06/independent402-accepted.json'
+ REVIEW402 = 'data/phase402-independent-final/review.json'
+ OWNER402 = 'data/phase402-independent-final/owned-files.json'
+@@ -721,12 +746,29 @@
+ 
+ 
+ def owned_index(value):
+-    need(type(value) is dict and type(value.get('files')) is list, 'owner files')
++    need(type(value) is dict and type(value.get('files')) in (list, dict), 'owner list or path-map files')
++    files = value['files']
++    rows = []
++    if type(files) is dict:
++        for name, content in files.items():
++            exact(content, ('size', 'sha256'), 'path-map owner value; no path override')
++            rows.append(dict(path=name, size=content['size'], sha256=content['sha256']))
++    else:
++        rows = files
+     result = {}
+-    for row in value['files']:
++    for row in rows:
+         descriptor(row)
+-        need(row['path'] not in result, 'unique owned source path')
+-        result[row['path']] = row
++        name = row['path']
++        need(bool(name) and '\\' not in name and '\0' not in name, 'owner path string')
++        if PurePosixPath(name).is_absolute():
++            need(name in STATIC_PINS and name == PurePosixPath(name).as_posix() and
++                 all(part not in ('', '.', '..') for part in name.split('/')[1:]), 'exact approved absolute SOURCE owner path')
++            normalized = name
++        else:
++            normalized = canonical(Path('.'), name).as_posix()
++            need(normalized == name, 'canonical relative owner path')
++        need(normalized not in result, 'unique normalized owned source path')
++        result[normalized] = dict(path=normalized, size=row['size'], sha256=row['sha256'])
+     return result
+ 
+ 
+@@ -738,7 +780,7 @@
+     exact(release, ('schema','action','authorized','run','input_directory','output_directory',
+                    'permissions','source_freeze','source_owner','source_review','source_review_owner',
+                    'root402','design405_review','input_files'), 'Root audit release')
+-    need(release['schema'] == 'root406-lawful12-initial-audit/1' and
++    need(release['schema'] == 'root408-lawful12-initial-audit/1' and
+          release['action'] == 'initial_presence_source_chain_audit' and release['authorized'] is True,
+          'explicit Root initial-audit authority')
+     exact(release['permissions'], PERMISSION_KEYS, 'permissions')
+@@ -746,7 +788,7 @@
+     need(release['run'] == FIXED_RUN and release['input_directory'] == FIXED_RUN+'/output/capture',
+          'exact fixed06 capture root')
+     out_name = release['output_directory']
+-    need(type(out_name) is str and re.fullmatch(r'data/phase406-initial-audit-[A-Za-z0-9_-]+', out_name) is not None,
++    need(type(out_name) is str and re.fullmatch(r'data/phase408-initial-audit-[A-Za-z0-9_-]+', out_name) is not None,
+          'new bounded audit output root')
+     output = canonical(root, out_name)
+     unlinked(output)
+@@ -769,19 +811,19 @@
+          'actual405 limited design review')
+     need(owned_index(strict_json(controls[OWNER405])).get(REVIEW405) == STATIC_PINS[REVIEW405], 'owned405 review')
+     need(release['source_freeze']['path'] == SOURCE+'/source-freeze.json' and
+-         release['source_owner']['path'] == SOURCE+'/source-owner.json', 'fixed406 authority paths')
++         release['source_owner']['path'] == SOURCE+'/source-owner.json', 'fixed408 authority paths')
+     freeze = metadata(root, release['source_freeze'], io)
+     owner = owned_index(metadata(root, release['source_owner'], io))
+     exact(freeze, ('schema','module','files','static_pins','fullschema','derived_recipes','old_SUT_calls'), 'SOURCE freeze')
+-    need(freeze['schema'] == 'phase406-readonly-initial-audit-SOURCE/1' and
++    need(freeze['schema'] == 'phase408-readonly-initial-audit-SOURCE/1' and
+          freeze['static_pins'] == STATIC_PINS and freeze['derived_recipes'] == [] and
+          freeze['fullschema'] == 'NOT_VALIDATED' and type(freeze['old_SUT_calls']) is int and freeze['old_SUT_calls'] == 0,
+-         'exact406 source scope')
++         'exact408 source scope')
+     need(freeze['module']['path'] == MODULE and Path(__file__).absolute() == canonical(root, MODULE),
+          'executing exact SOURCE path')
+     declared = owned_index({'files': freeze['files']})
+     need(set(declared) == set(SOURCE_ARTIFACTS) | set(STATIC_PINS), 'closed SOURCE payload set')
+-    need(set(owner) == set(declared) | {SOURCE+'/source-freeze.json', SOURCE+'/summary.json'}, 'closed406 source owner set')
++    need(set(owner) == set(declared) | {SOURCE+'/source-freeze.json', SOURCE+'/summary.json'}, 'closed408 source owner set')
+     need(declared.get(MODULE) == freeze['module'] and owner.get(release['source_freeze']['path']) == release['source_freeze'],
+          'owner covers freeze/module')
+     for name, row in declared.items():
+@@ -792,9 +834,9 @@
+             read_regular(canonical(root, name), row, TOTAL_BYTES, io)
+     review = metadata(root, release['source_review'], io)
+     review_owner = owned_index(metadata(root, release['source_review_owner'], io))
+-    need(review_owner.get(release['source_review']['path']) == release['source_review'], 'actual owned407 review')
++    need(review_owner.get(release['source_review']['path']) == release['source_review'], 'actual owned409 review')
+     need(review.get('status') == REVIEW_STATUS and review.get('source_freeze') == release['source_freeze'] and
+-         review.get('source_owner') == release['source_owner'], '407 binds actual406 freeze and owner')
++         review.get('source_owner') == release['source_owner'], '409 binds actual408 freeze and owner')
+     need(all(type(review.get(k)) is int and review[k] == 0 for k in ('models','native','inputbuild','old_SUT_calls','schema_calls')),
+          'review does not grant engine or schema execution')
+     exact(release['input_files'], INPUT_NAMES, 'exact lawful12 names')
+@@ -1046,18 +1088,69 @@
+                 if ref not in unique:unique.append(ref)
+             rows.append(dict(field_id=field,phase=phase,side_or_role=role,classification='MISSING',validation_result='UNPROVEN',proof_complete=False,
+                              input_refs=unique,source_refs=relevant,unresolved=gaps,
+-                             missing_reason='AUDIT_RECIPE_NOT_ESTABLISHED_NOT_PROOF_ORIGINAL_DATA_ABSENT',explanation='SOURCE route candidates only. No complete reviewed derivation recipe in406. No actual initial value inferred; this does not imply recapture is necessary.'))
++                             missing_reason='AUDIT_RECIPE_NOT_ESTABLISHED_NOT_PROOF_ORIGINAL_DATA_ABSENT',explanation='SOURCE route candidates only. No complete reviewed derivation recipe in408. No actual initial value inferred; this does not imply recapture is necessary.'))
+     return rows
+ 
+ 
++def required_initial_targets():
++    required = {}
++    for phase, unused_site in PHASES:
++        for side in ('P', 'O'):
++            required[('Character.buffProtectStacks', phase, side)] = 'direct'
++            for field in ('invulnerable', 'invulnerabilityItem', 'invulBubbleVisible'):
++                required[('Character.'+field, phase, side)] = 'source'
++        for field in ('invuCharges', 'activations', 'activationsToTrigger', 'protectedBuffs', 'manaCost'):
++            required[('King.'+field, phase, 'P:12')] = 'direct'
++        for field in ('crown', 'light_visible', 'light_modulate'):
++            required[('King.'+field, phase, 'P:12')] = 'source'
++        for role in TIMER_ROLES:
++            for field in ('process_mode', 'wait_time', 'time_left', 'one_shot', 'autostart', 'paused', 'stopped'):
++                required[('Timer.'+field, phase, role)] = 'direct'
++            for field in ('native_id', 'role', 'path', 'name', 'class', 'positions', 'priority', 'inside_tree',
++                          'ordinary_physics', 'internal_physics', 'ordinary_idle', 'internal_idle'):
++                required[('Timer.node.'+field, phase, role)] = 'direct'
++            required[('Timer.private_left', phase, role)] = 'source'
++    for part in ('activation', 'drag'):
++        for field in ('visible', 'emitting', 'one_shot', 'lifetime', 'explosiveness', 'speed_scale'):
++            required[('Particle.'+part+'.'+field, 'pre_activate', 'P:12')] = 'direct'
++    for role in FIVE_TIMER_ROLES:
++        for field in ('timer_id', 'owner_id', 'kind', 'starts', 'stops', 'birth'):
++            required[('Timer.lineage.'+field, 'pre_activate', role)] = 'direct'
++        required[('Timer.private_provenance_label', 'pre_activate', role)] = 'direct'
++    return required
++
++
+ def assess_initial_feasibility(rows, findings):
++    need(type(rows) is list and type(findings) is list, 'assessment row/finding arrays')
++    required = required_initial_targets()
++    seen = set()
++    for row in rows:
++        need(type(row) is dict, 'assessment row object')
++        fields = ('field_id', 'phase', 'side_or_role', 'classification', 'validation_result')
++        need(all(type(row.get(field)) is str for field in fields) and
++             type(row.get('proof_complete')) is bool, 'assessment strict strings/BOOL proof')
++        key = (row['field_id'], row['phase'], row['side_or_role'])
++        need(key in required and key not in seen, 'known unique required assessment target')
++        seen.add(key)
++        classification, validation, complete = row['classification'], row['validation_result'], row['proof_complete']
++        need(classification in ('DIRECT_OBSERVATION', 'SOURCE_DERIVED', 'MISSING') and
++             validation in ('SUPPORTED', 'REJECTED', 'UNPROVEN'), 'allowed assessment states')
++        need(classification != 'SOURCE_DERIVED', 'zero reviewed SOURCE derivation recipes; caller flags cannot prove a chain')
++        need(required[key] == 'direct' or classification == 'MISSING', 'SOURCE-only target cannot be directly observed, including private Timer')
++        if classification == 'MISSING':
++            need(validation == 'UNPROVEN' and complete is False, 'missing target stays unproven/incomplete')
++        need(complete is False or validation == 'SUPPORTED', 'complete proof requires supported validation')
++    need(seen == set(required), 'complete exact required field/phase/role set')
++    for finding in findings:
++        exact(finding, ('kind', 'detail'), 'assessment finding')
++        need(finding['kind'] == 'DOMAIN_REJECTED' and type(finding['detail']) is str, 'known domain rejection finding')
+     if any(row['validation_result']=='REJECTED'for row in rows)or any(x['kind']=='DOMAIN_REJECTED'for x in findings):
+         status='REJECTED_INITIAL_DOMAIN'
+-    elif any(row['classification']=='MISSING'or not row['proof_complete']for row in rows):
++    elif any(row['classification']=='MISSING'or row['validation_result']!='SUPPORTED'or row['proof_complete']is not True for row in rows):
+         status='BLOCKED_INITIAL_SOURCE_GAPS'
+     else:
+         status='FEASIBLE_PENDING_FULL_STRUCTURAL_VALIDATION'
+-    return dict(schema='phase406-initial-source-feasibility/1',status=status,fullschema='NOT_VALIDATED',
++    return dict(schema='phase408-initial-source-feasibility/1',status=status,fullschema='NOT_VALIDATED',
+                 source_derived_recipes_implemented=0,field_count=len(rows),classifications={k:sum(r['classification']==k for r in rows)for k in ('DIRECT_OBSERVATION','SOURCE_DERIVED','MISSING')},
+                 rejected_fields=sum(r['validation_result']=='REJECTED'for r in rows),models=0,inputbuild=0,projection=0,old_SUT_calls=0,schema_calls=0,
+                 genuine_input_accepted=False,King_admitted=False,reader361='CLOSED',model356='CLOSED')
+@@ -1069,8 +1162,10 @@
+     unlinked(path)
+     with path.open('xb') as stream:
+         stream.write(raw);stream.flush();os.fsync(stream.fileno())
+-    need(path.lstat().st_nlink==1 and path.read_bytes()==raw,'new output physical/byte readback')
+-    return dict(path=path.name,size=len(raw),sha256=hashlib.sha256(raw).hexdigest())
++    expected=dict(path=path.name,size=len(raw),sha256=hashlib.sha256(raw).hexdigest())
++    readback=read_regular(path,expected,64*1024*1024,[])
++    need(readback==raw,'strict output physical/byte readback')
++    return expected
+ 
+ 
+ def seal_audit_once(authority, report, rows, findings, io, error, violations):
+@@ -1083,14 +1178,14 @@
+             read_regular(p,dict(path=row['path'],size=row['size'],sha256=row['sha256']),TOTAL_BYTES,after)
+     except Exception:
+         if error is None:error=traceback.format_exc()
+-        report=dict(schema='phase406-initial-source-feasibility/1',status='FAILED_SOURCE_INTEGRITY',fullschema='NOT_VALIDATED')
++        report=dict(schema='phase408-initial-source-feasibility/1',status='FAILED_SOURCE_INTEGRITY',fullschema='NOT_VALIDATED')
+     owner=[]
+     artifacts={'report.json':report,'rawtyped-field-index.json':rows,'identity-domain-findings.json':findings,
+                'io-observations.json':dict(before=before,readback=after,violations=violations),
+                'source-references.json':dict(source_freeze=authority['source_freeze'],source_owner=authority['source_owner'],static_pins=STATIC_PINS),
+                'summary.json':dict(status=report['status'],audit_invocations=1,new_audit_module_execution=1,old_SUT_imports=0,old_SUT_calls=0,schema_calls=0,models=0,inputbuild=0,bundle=0,projection=0,native=0,restore=0,READY=0,fullschema='NOT_VALIDATED',first_error=error,automatic_retry=False,no_more_writes_after_owner=True)}
+     for name,value in artifacts.items():owner.append(save_new(output/name,value))
+-    save_new(output/'owned-files.json',dict(schema='phase406-actual-initial-audit-owner/1',files=owner,no_more_writes=True))
++    save_new(output/'owned-files.json',dict(schema='phase408-actual-initial-audit-owner/1',files=owner,no_more_writes=True))
+     fd=os.open(output,os.O_RDONLY|os.O_DIRECTORY)
+     try:os.fsync(fd)
+     finally:os.close(fd)
+@@ -1112,7 +1207,7 @@
+         report=assess_initial_feasibility(rows,findings)
+     except Exception:
+         error=traceback.format_exc()
+-        report=dict(schema='phase406-initial-source-feasibility/1',status='FAILED_SOURCE_INTEGRITY',fullschema='NOT_VALIDATED')
++        report=dict(schema='phase408-initial-source-feasibility/1',status='FAILED_SOURCE_INTEGRITY',fullschema='NOT_VALIDATED')
+     status=seal_audit_once(authority,report,rows,findings,io,error,violations)
+     print(json.dumps(dict(status=status,output=str(authority['output']),models=0,inputbuild=0)))
+     return 1 if status=='FAILED_SOURCE_INTEGRITY'else 0

@@ -1,0 +1,127 @@
+{
+  "Timer_defaults": {
+    "autostart": false,
+    "inactive": true,
+    "one_shot": "BOOL true except repeating tick false",
+    "paused": false,
+    "private_left_REAL_bits": "bff0000000000000",
+    "processing": false,
+    "wait_REAL_bits": "3ff0000000000000"
+  },
+  "Timer_roles": {
+    "invu:P/O": {
+      "child": 5,
+      "mode_INT": 0
+    },
+    "king_buff": {
+      "mode_INT": 0,
+      "relative_children": [
+        7
+      ]
+    },
+    "king_drag": {
+      "mode_INT": 1,
+      "relative_children": [
+        1,
+        2,
+        0
+      ]
+    },
+    "king_hide": {
+      "mode_INT": 1,
+      "relative_children": [
+        8,
+        0
+      ]
+    },
+    "tick:P/O": {
+      "child": 3,
+      "mode_INT": 0
+    }
+  },
+  "clock": {
+    "fixed_pass_capacity": 14404,
+    "fresh_counters": 0,
+    "hard_seconds": 120,
+    "ordinary_quanta": 7200,
+    "physical_idle_delta_bits": "3f91111120000000",
+    "positive_zero_bits": "0000000000000000",
+    "profile": "source-headless-king-fixed60-idle60/1",
+    "terminal": "cleanup -> two future physics -> idle preinternal cutoff"
+  },
+  "coordinate_semantics": "source-derived local Timer/particle child indices embedded in preexisting combat-relative parent layout; not captured native IDs",
+  "execution": "NOT_RUN",
+  "fresh_King": {
+    "charges_INT": 0,
+    "crown_INT": 0,
+    "light_self_modulate_RGBA_bits": [
+      "3ff0000000000000",
+      "3ff0000000000000",
+      "3ff0000000000000",
+      "3ff0000000000000"
+    ],
+    "light_visible": true,
+    "manaCost_REAL_bits": "4010000000000000",
+    "prepared_charges": "real existing king_prepare sets3, not input",
+    "protectedBuffs_REAL_bits": "4008000000000000"
+  },
+  "fresh_characters": {
+    "bubble": false,
+    "buffProtectStacks": 0,
+    "invulnerable": false,
+    "origin": null
+  },
+  "frozen_excerpts": {
+    "path": "data/phase332-king-fresh-source-interface/source-excerpts.json",
+    "sha256": "868df5608dd48fc0e29c820952fa7eda1c9c6c074a54a2ad70d9a0399e8a5e31",
+    "size": 17330
+  },
+  "original_sources": {
+    "Core/Character.gd": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Character.gd",
+      "sha256": "dc372965eaa048657caa1646d70aba85ff9b4b9677565eaa480bc195de027496",
+      "size": 48033
+    },
+    "Core/Character.tscn": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Character.tscn",
+      "sha256": "5a6e1a99539975a7664e651fa32ed078f1017ba157ce1247a75fecd8266c97e9",
+      "size": 49260
+    },
+    "Core/Game.gd": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Game.gd",
+      "sha256": "f3688bfdf39b95a8ed6a77d9a7ad058a95a0aaa4bcb6d297bc953425add4b9c9",
+      "size": 145148
+    },
+    "Items/Exclusive/KingGoobert.gd": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/KingGoobert.gd",
+      "sha256": "2f852255072386a57757bceea38a9f5825e0d1299b6fa8ce2c55b14827385d0f",
+      "size": 1581
+    },
+    "Items/Exclusive/KingGoobert.tscn": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/KingGoobert.tscn",
+      "sha256": "853c83082edf0086f21c518075cf5701d93d88669e712df9094856cee6d89c8c",
+      "size": 4541
+    },
+    "Utility/AutoHideParticles.gd": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Utility/AutoHideParticles.gd",
+      "sha256": "c18ceb3f6a489fd1fc69329155a182e1a658804c36e14651ecc546b450c53503",
+      "size": 531
+    },
+    "Utility/Util.gd": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Utility/Util.gd",
+      "sha256": "596e7f7a9308ea03957e5c9f6e5cb43aa1591e1e0fd13217e2f2c70368970a36",
+      "size": 44381
+    }
+  },
+  "particle_defaults": {
+    "emitting": false,
+    "explosiveness_REAL_bits": "0000000000000000",
+    "lifetime_REAL_bits": "3fe6666660000000",
+    "one_shot": false,
+    "speed_scale_REAL_bits": "3ff0000000000000",
+    "visible": false
+  },
+  "production_policy_not_session_reconstruction": true,
+  "runtime_validation": "exact type/floatbits tree equality to independent SOURCE reconstruction; no external frame_clock/provider/unknown keys",
+  "terminal_active_invu": "finish stops timers without clearing invulnerable/origin/crown/charges or synthesizing End; old finish AST exact"
+}

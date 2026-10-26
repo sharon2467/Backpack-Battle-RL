@@ -1,0 +1,173 @@
+{
+  "SUT_calls": 0,
+  "SUT_imports": 0,
+  "after": {
+    "path": "tests/phase408_initial_audit_template.py",
+    "sha256": "8b4c2a3c7a68736da402b7ce4d89f5f81e4348b3987269c873de07f3e1664d30",
+    "size": 40377
+  },
+  "before": {
+    "path": "tests/phase406_initial_audit_template.py",
+    "sha256": "18361b52227a8fe1120626755cba7993c01c3f7d3de2eb2cadd68bc58dd157e4",
+    "size": 35779
+  },
+  "conserved": [
+    "SourceIntegrityError",
+    "need",
+    "exact",
+    "same",
+    "strict_json",
+    "descriptor",
+    "canonical",
+    "unlinked",
+    "identity",
+    "read_regular",
+    "source_path",
+    "metadata",
+    "verify_audit_release",
+    "install_io_guard",
+    "read_lawful12_once",
+    "rawref",
+    "unique_records",
+    "index_initial_observations",
+    "typed_int",
+    "typed_real",
+    "direct_row",
+    "audit_direct_fields",
+    "audit_source_chain",
+    "seal_audit_once",
+    "run_audit",
+    "main"
+  ],
+  "edits": [
+    {
+      "after": "def owned_index(value):\n    need(type(value) is dict and type(value.get('files')) in (list, dict), 'owner list or path-map files')\n    files = value['files']\n    rows = []\n    if type(files) is dict:\n        for name, content in files.items():\n            exact(content, ('size', 'sha256'), 'path-map owner value; no path override')\n            rows.append(dict(path=name, size=content['size'], sha256=content['sha256']))\n    else:\n        rows = files\n    result = {}\n    for row in rows:\n        descriptor(row)\n        name = row['path']\n        need(bool(name) and '\\\\' not in name and '\\0' not in name, 'owner path string')\n        if PurePosixPath(name).is_absolute():\n            need(name in STATIC_PINS and name == PurePosixPath(name).as_posix() and\n                 all(part not in ('', '.', '..') for part in name.split('/')[1:]), 'exact approved absolute SOURCE owner path')\n            normalized = name\n        else:\n            normalized = canonical(Path('.'), name).as_posix()\n            need(normalized == name, 'canonical relative owner path')\n        need(normalized not in result, 'unique normalized owned source path')\n        result[normalized] = dict(path=normalized, size=row['size'], sha256=row['sha256'])\n    return result\n",
+      "before": "def owned_index(value):\n    need(type(value) is dict and type(value.get('files')) is list, 'owner files')\n    result = {}\n    for row in value['files']:\n        descriptor(row)\n        need(row['path'] not in result, 'unique owned source path')\n        result[row['path']] = row\n    return result\n",
+      "kind": "semantic",
+      "positions": [
+        3905
+      ]
+    },
+    {
+      "after": "def save_new(path, value):\n    raw=(json.dumps(value,indent=2,sort_keys=True,ensure_ascii=False,allow_nan=False)+'\\n').encode()\n    need(len(raw)<=64*1024*1024,'bounded report artifact')\n    unlinked(path)\n    with path.open('xb') as stream:\n        stream.write(raw);stream.flush();os.fsync(stream.fileno())\n    expected=dict(path=path.name,size=len(raw),sha256=hashlib.sha256(raw).hexdigest())\n    readback=read_regular(path,expected,64*1024*1024,[])\n    need(readback==raw,'strict output physical/byte readback')\n    return expected\n",
+      "before": "def save_new(path, value):\n    raw=(json.dumps(value,indent=2,sort_keys=True,ensure_ascii=False,allow_nan=False)+'\\n').encode()\n    need(len(raw)<=64*1024*1024,'bounded report artifact')\n    unlinked(path)\n    with path.open('xb') as stream:\n        stream.write(raw);stream.flush();os.fsync(stream.fileno())\n    need(path.lstat().st_nlink==1 and path.read_bytes()==raw,'new output physical/byte readback')\n    return dict(path=path.name,size=len(raw),sha256=hashlib.sha256(raw).hexdigest())\n",
+      "kind": "semantic",
+      "positions": [
+        33027
+      ]
+    },
+    {
+      "after": "def assess_initial_feasibility(rows, findings):\n    need(type(rows) is list and type(findings) is list, 'assessment row/finding arrays')\n    required = required_initial_targets()\n    seen = set()\n    for row in rows:\n        need(type(row) is dict, 'assessment row object')\n        fields = ('field_id', 'phase', 'side_or_role', 'classification', 'validation_result')\n        need(all(type(row.get(field)) is str for field in fields) and\n             type(row.get('proof_complete')) is bool, 'assessment strict strings/BOOL proof')\n        key = (row['field_id'], row['phase'], row['side_or_role'])\n        need(key in required and key not in seen, 'known unique required assessment target')\n        seen.add(key)\n        classification, validation, complete = row['classification'], row['validation_result'], row['proof_complete']\n        need(classification in ('DIRECT_OBSERVATION', 'SOURCE_DERIVED', 'MISSING') and\n             validation in ('SUPPORTED', 'REJECTED', 'UNPROVEN'), 'allowed assessment states')\n        need(classification != 'SOURCE_DERIVED', 'zero reviewed SOURCE derivation recipes; caller flags cannot prove a chain')\n        need(required[key] == 'direct' or classification == 'MISSING', 'SOURCE-only target cannot be directly observed, including private Timer')\n        if classification == 'MISSING':\n            need(validation == 'UNPROVEN' and complete is False, 'missing target stays unproven/incomplete')\n        need(complete is False or validation == 'SUPPORTED', 'complete proof requires supported validation')\n    need(seen == set(required), 'complete exact required field/phase/role set')\n    for finding in findings:\n        exact(finding, ('kind', 'detail'), 'assessment finding')\n        need(finding['kind'] == 'DOMAIN_REJECTED' and type(finding['detail']) is str, 'known domain rejection finding')\n    if any(row['validation_result']=='REJECTED'for row in rows)or any(x['kind']=='DOMAIN_REJECTED'for x in findings):\n        status='REJECTED_INITIAL_DOMAIN'\n    elif any(row['classification']=='MISSING'or row['validation_result']!='SUPPORTED'or row['proof_complete']is not True for row in rows):\n        status='BLOCKED_INITIAL_SOURCE_GAPS'\n    else:\n        status='FEASIBLE_PENDING_FULL_STRUCTURAL_VALIDATION'\n    return dict(schema='phase406-initial-source-feasibility/1',status=status,fullschema='NOT_VALIDATED',\n                source_derived_recipes_implemented=0,field_count=len(rows),classifications={k:sum(r['classification']==k for r in rows)for k in ('DIRECT_OBSERVATION','SOURCE_DERIVED','MISSING')},\n                rejected_fields=sum(r['validation_result']=='REJECTED'for r in rows),models=0,inputbuild=0,projection=0,old_SUT_calls=0,schema_calls=0,\n                genuine_input_accepted=False,King_admitted=False,reader361='CLOSED',model356='CLOSED')\n",
+      "before": "def assess_initial_feasibility(rows, findings):\n    if any(row['validation_result']=='REJECTED'for row in rows)or any(x['kind']=='DOMAIN_REJECTED'for x in findings):\n        status='REJECTED_INITIAL_DOMAIN'\n    elif any(row['classification']=='MISSING'or not row['proof_complete']for row in rows):\n        status='BLOCKED_INITIAL_SOURCE_GAPS'\n    else:\n        status='FEASIBLE_PENDING_FULL_STRUCTURAL_VALIDATION'\n    return dict(schema='phase406-initial-source-feasibility/1',status=status,fullschema='NOT_VALIDATED',\n                source_derived_recipes_implemented=0,field_count=len(rows),classifications={k:sum(r['classification']==k for r in rows)for k in ('DIRECT_OBSERVATION','SOURCE_DERIVED','MISSING')},\n                rejected_fields=sum(r['validation_result']=='REJECTED'for r in rows),models=0,inputbuild=0,projection=0,old_SUT_calls=0,schema_calls=0,\n                genuine_input_accepted=False,King_admitted=False,reader361='CLOSED',model356='CLOSED')\n",
+      "kind": "semantic",
+      "positions": [
+        32055
+      ]
+    },
+    {
+      "after": "def required_initial_targets():\n    required = {}\n    for phase, unused_site in PHASES:\n        for side in ('P', 'O'):\n            required[('Character.buffProtectStacks', phase, side)] = 'direct'\n            for field in ('invulnerable', 'invulnerabilityItem', 'invulBubbleVisible'):\n                required[('Character.'+field, phase, side)] = 'source'\n        for field in ('invuCharges', 'activations', 'activationsToTrigger', 'protectedBuffs', 'manaCost'):\n            required[('King.'+field, phase, 'P:12')] = 'direct'\n        for field in ('crown', 'light_visible', 'light_modulate'):\n            required[('King.'+field, phase, 'P:12')] = 'source'\n        for role in TIMER_ROLES:\n            for field in ('process_mode', 'wait_time', 'time_left', 'one_shot', 'autostart', 'paused', 'stopped'):\n                required[('Timer.'+field, phase, role)] = 'direct'\n            for field in ('native_id', 'role', 'path', 'name', 'class', 'positions', 'priority', 'inside_tree',\n                          'ordinary_physics', 'internal_physics', 'ordinary_idle', 'internal_idle'):\n                required[('Timer.node.'+field, phase, role)] = 'direct'\n            required[('Timer.private_left', phase, role)] = 'source'\n    for part in ('activation', 'drag'):\n        for field in ('visible', 'emitting', 'one_shot', 'lifetime', 'explosiveness', 'speed_scale'):\n            required[('Particle.'+part+'.'+field, 'pre_activate', 'P:12')] = 'direct'\n    for role in FIVE_TIMER_ROLES:\n        for field in ('timer_id', 'owner_id', 'kind', 'starts', 'stops', 'birth'):\n            required[('Timer.lineage.'+field, 'pre_activate', role)] = 'direct'\n        required[('Timer.private_provenance_label', 'pre_activate', role)] = 'direct'\n    return required\n\n\ndef assess_initial_feasibility(rows, findings):",
+      "before": "def assess_initial_feasibility(rows, findings):",
+      "kind": "helper",
+      "positions": [
+        32055
+      ]
+    },
+    {
+      "after": "root408-lawful12-initial-audit/1",
+      "before": "root406-lawful12-initial-audit/1",
+      "kind": "protocol",
+      "positions": [
+        5673
+      ]
+    },
+    {
+      "after": "data/phase408-initial-audit-[A-Za-z0-9_-]+",
+      "before": "data/phase406-initial-audit-[A-Za-z0-9_-]+",
+      "kind": "protocol",
+      "positions": [
+        6281
+      ]
+    },
+    {
+      "after": "fixed408 authority paths",
+      "before": "fixed406 authority paths",
+      "kind": "protocol",
+      "positions": [
+        8006
+      ]
+    },
+    {
+      "after": "phase408-readonly-initial-audit-SOURCE/1",
+      "before": "phase406-readonly-initial-audit-SOURCE/1",
+      "kind": "protocol",
+      "positions": [
+        8315
+      ]
+    },
+    {
+      "after": "exact408 source scope",
+      "before": "exact406 source scope",
+      "kind": "protocol",
+      "positions": [
+        8581
+      ]
+    },
+    {
+      "after": "closed408 source owner set",
+      "before": "closed406 source owner set",
+      "kind": "protocol",
+      "positions": [
+        8995
+      ]
+    },
+    {
+      "after": "actual owned409 review",
+      "before": "actual owned407 review",
+      "kind": "protocol",
+      "positions": [
+        9717
+      ]
+    },
+    {
+      "after": "409 binds actual408 freeze and owner",
+      "before": "407 binds actual406 freeze and owner",
+      "kind": "protocol",
+      "positions": [
+        9918
+      ]
+    },
+    {
+      "after": "No complete reviewed derivation recipe in408.",
+      "before": "No complete reviewed derivation recipe in406.",
+      "kind": "protocol",
+      "positions": [
+        31910
+      ]
+    },
+    {
+      "after": "phase408-initial-source-feasibility/1",
+      "before": "phase406-initial-source-feasibility/1",
+      "kind": "protocol",
+      "positions": [
+        36093,
+        37672,
+        39476
+      ]
+    },
+    {
+      "after": "phase408-actual-initial-audit-owner/1",
+      "before": "phase406-actual-initial-audit-owner/1",
+      "kind": "protocol",
+      "positions": [
+        38606
+      ]
+    }
+  ],
+  "full_byte_inverse": "EXACT",
+  "new_pure_helper": "required_initial_targets",
+  "semantic_changed": [
+    "owned_index",
+    "assess_initial_feasibility",
+    "save_new"
+  ]
+}

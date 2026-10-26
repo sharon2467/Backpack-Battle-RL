@@ -1,0 +1,41 @@
+# 407 frozen406 static review: blocked
+
+The original eight-obligation SOURCE frame is complete.406 is not accepted: three bounded contract findings remain. All58 owned leaves (1720413 bytes), the actual module and28 API source spans/signatures passed byte/AST identity checks. No new audit module import or API call occurred; no dynamic controls or actual12/run/EXPECTED reads occurred. This report does not authorize a genuine audit or a future Root-positive release.
+
+## F01 — Real accepted receipt owner formats cannot be consumed
+
+**Unconditional real authority-path blocker.** New406 `owned_index`, lines723–730, requires `value['files']` to be a list, then expects each row to include path/size/SHA. Actual pinned `data/phase402-independent-final/owned-files.json` has a dict with40 path keys, and actual pinned `data/phase405-independent-design-review/owned-files.json` has a dict with4 path keys. Their values are size/SHA descriptors, with path supplied by the dictionary key. These are the genuine immutable accepted records, not hypothetical fixtures.
+
+Actual call order is `run_audit:1102 → verify_audit_release:733 → metadata(release):737 → read all STATIC_PINS:757–758 → parse/check Root402:759–764 → owned_index(OWNER402):765`. The list test fails at724 before405/freezes/407 authority/input acquisition. If only402 were bypassed, the same error recurs at the405 owner call770. A later407 review-owner call794 must also consume the actually delivered owner representation. There was no runtime test; the contradiction is established from the exact frozen consumer and actual pinned metadata shapes.
+
+**Narrow repair boundary:** in a separately frozen version, normalize the actual accepted receipt-owner formats strictly to a path→full descriptor index, reconstructing path from map keys and validating exact size/SHA types, unique/canonical paths and shape. Keep list handling for406 freeze/source-owner strict. A separate receipt-owner consumer or explicit supported-shape branch is sufficient; do not loosen arbitrary authority checks, rewrite402/405 evidence, fabricate replacement receipts or pretend an owner helper positive is whole authority acceptance. Existing physical-before-content gates must still cover each owner body.
+
+## F02 — New output readback skips its promised physical gate
+
+**New output-consumer contract gap; no replacement event observed.** `save_new:1066–1073` checks ancestry at1069, creates exclusively at1070, writes/fsyncs, then at1072 checks only `path.lstat().st_nlink == 1` before `path.read_bytes()`. It does not recheck regular type, ancestry, opened identity or O_NOFOLLOW at this content read. A symlink itself can have nlink1, and the later path-based read can follow it if the output path has been replaced after creation. The I/O hook permits reads whose lexical parent is output, so it does not establish the physical identity of that readback target. This is not a claim that ordinary exclusive creation currently fails, that406 is malicious, or that an actual filesystem race occurred.
+
+Actual call order is `seal_audit_once:1092/1093 → save_new → unlinked → xb create/write/fsync → lstat nlink → following read_bytes`. The main input/SOURCE consumer `read_regular:690–708` already provides the missing gate: ordinary+nlink1 before content, O_NOFOLLOW|O_NONBLOCK, fstat identity before reading and stable physical identity/hash afterward.
+
+**Narrow repair boundary:** reuse that strict physical reader for the newly created output with the known serialized byte descriptor and64MiB cap, or apply its identical gate around this one readback. Preserve exclusive creation/fsync and write-once ownership. Do not rerun398/399 or change their source. This finding is about the new406 output consumer only.
+
+## F03 — Public assessment can label incomplete rows feasible
+
+**Public summary-contract gap; not a demonstrated fixed-run false positive.** `assess_initial_feasibility:1053–1063` rejects only a row labelled REJECTED or a DOMAIN_REJECTED finding, then blocks only MISSING or falsey proof_complete. It never checks the fixed required field/phase/role set, duplicates, allowed classification/validation labels or strictBOOL proof_complete. Static control-flow evaluation therefore shows empty rows/findings fall through to FEASIBLE at1059. A row with an unsupported validation label but truthy proof_complete can also reach that branch. No such input was passed to the SUT and no fixture was created.
+
+This violates405's fixed mandatory-row collection and “all rows supported with complete proof” aggregation requirement, carried into407 cases5/6/8. The current frozen `run_audit` does unconditionally append the88 conservative MISSING rows produced by `audit_source_chain`, so its normal intact path cannot currently produce FEASIBLE. This important limitation is retained: the finding concerns the exposed assessment function's contract and completeness validation, not an allegation of an actual06 result falsely passing.
+
+**Narrow repair boundary:** validate the exact version-bound required field/phase/role key set and uniqueness, permitted row states and strictBOOL proof_complete before aggregation. FEASIBLE must require every required row to be SUPPORTED with complete permitted proof.406 has zero reviewed derived recipes; the new version must not accept caller-asserted SOURCE_DERIVED proof or fabricate chains just to make a positive. Preserve conservative MISSING/UNPROVEN behavior and its explicit “not proof that original data is absent” explanation. This needs no generic recipe framework, model or new test family.
+
+## Other bounded findings and unexecuted work
+
+- The new module imports only the11 declared stdlib modules. No old schema/reader/Engine import or optional391 fallback is implemented. Actual/new audit execution counters must remain distinct from old SUT counters.
+- Root schema/status literals, exact run/input path, exact12 names, strictINT0 permissions, frozen SOURCE membership and module path are explicit. The current real release path is nevertheless blocked by F01. No positive release was fabricated or called.
+- `read_regular` correctly places regular/nlink1/type/size/ancestor checks before content and uses a no-follow nonblocking descriptor. Descriptor, release, SOURCE-owner and input consumption flow through it; F02 is its new output exception.
+- JSON parsing rejects duplicate/nonfinite values and invalid UTF8; row and file caps/physical channel sequence checks are explicit. This is a limited consumed-field audit, not full391-schema acceptance. No dynamic parser rejection claim is made.
+- Direct Character/King/Timer/particle rows keep constraints separate from actual observations. Missing versus direct rejected values are represented separately. The indexing/identity checks are intentionally a subset of full391 binding validation; actual12 validity is unestablished.
+- The fixed35 Timer enumeration and selected5 are retained. Selected activation facts are not backdated to pre_prepare. `audit_source_chain` constructs88 MISSING/UNPROVEN rows (12 Character,6 crown/light,70 private Timer) and has no successful SOURCE_DERIVED path. This conservative scope is acceptable and does not mandate recapture or prove original evidence absent.
+- Full gate success, actual input read, output-sealing runtime behavior and every planned new-consumer dynamic variant remain NOT_EXECUTED. After a separately frozen repair, only necessary new consumer controls should be bound in the existing eight obligations. No392/394/399/402 acceptance family was rerun.
+
+## Root coordination notice outside this SOURCE frame
+
+After the58-leaf/28-API static check and finite aggregation had completed, Root reported a packaging mistake that rewrote identical bytes of11 absolute baseline GD files and changed their mtimes. Root stated that it was restoring only those metadata values and would separately release independent verification. This reviewer stopped additional baseline/run/input/API reads on that notice and sealed only existing own evidence. The earlier SOURCE size/SHA and consumer-contract findings are not a metadata-restoration verdict. No restoration or whole-baseline verification is claimed here.

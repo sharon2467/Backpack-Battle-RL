@@ -1,0 +1,300 @@
+{
+  "TOTAL_BYTES": 268435456,
+  "actual_SUT_calls": 0,
+  "actual_SUT_imports": 0,
+  "clock_MAX_JSON_BYTES": 67108864,
+  "clock_MAX_PASSES": 200000,
+  "extraction": "stdlib AST/regex/hash only; APIs not imported/called",
+  "future_lawful_names": [
+    "fixture.json",
+    "player_fixture.json",
+    "observer7-input.jsonl",
+    "observer7-lineage.jsonl",
+    "observer7-metadata.jsonl",
+    "observer7-primitives.jsonl",
+    "king-clock-checkpoint.json",
+    "king-clock-passes.jsonl",
+    "king-input-facts.json",
+    "king-ui-authority.jsonl",
+    "king-rng-checkpoint.json",
+    "king-slot-bindings.json"
+  ],
+  "independent403_owner": {
+    "path": "data/phase403-independent-design-review/owned-files.json",
+    "sha256": "887761ee0c4e01109702a692042746daab7c8b1fef8dd4fa45c05cda2911233c",
+    "size": 1819
+  },
+  "independent403_review": {
+    "path": "data/phase403-independent-design-review/review.json",
+    "sha256": "854e23cf12a63a2f7a8dbecc85730dbd99dae7f58a20afef405c7e7b30e44108",
+    "size": 8295
+  },
+  "initial_audit_SUT_budget": 0,
+  "optional_separate_structural_job_max_top_calls": 1,
+  "producer_functions": [
+    {
+      "functions": [
+        {
+          "declaration": "func checkpoint(site, game, items):",
+          "line": 670,
+          "name": "checkpoint",
+          "range_rule": "func declaration through bytes before next top-level func (may include intervening declarations)",
+          "sha256": "fdd9f9fd903bfedbadc4852a9be6cbc5622d5f9727da7018e6d87d2544435b2d",
+          "size": 2405
+        },
+        {
+          "declaration": "func append_node(rows, role, node):",
+          "line": 706,
+          "name": "append_node",
+          "range_rule": "func declaration through bytes before next top-level func (may include intervening declarations)",
+          "sha256": "e527152e40caf1effafac6dac90c2594e1ef0db746d80ce8eabefebd7ec6bff5",
+          "size": 368
+        },
+        {
+          "declaration": "func timer_birth(timer, owner, kind):",
+          "line": 744,
+          "name": "timer_birth",
+          "range_rule": "func declaration through bytes before next top-level func (may include intervening declarations)",
+          "sha256": "19cdd70f4b8da9a6319d7953ed46aa1412491dc1ec2a0786e4aa89e24a0f4d92",
+          "size": 413
+        },
+        {
+          "declaration": "func track_king_timer_api(timer, operation):",
+          "line": 754,
+          "name": "track_king_timer_api",
+          "range_rule": "func declaration through bytes before next top-level func (may include intervening declarations)",
+          "sha256": "0063d2dfec78ab3afc03761e2e287598909a4cf516b116872eba7aa2df02735a",
+          "size": 190
+        },
+        {
+          "declaration": "func king_timer_fact(timer, owner, kind, mode):",
+          "line": 768,
+          "name": "king_timer_fact",
+          "range_rule": "func declaration through bytes before next top-level func (may include intervening declarations)",
+          "sha256": "ccd46e6c65c5c3948d3f2ebbc27f505c0d422ffa3d22631821521c3ca13d0be5",
+          "size": 661
+        },
+        {
+          "declaration": "func selected_king_facts(items, characters):",
+          "line": 782,
+          "name": "selected_king_facts",
+          "range_rule": "func declaration through bytes before next top-level func (may include intervening declarations)",
+          "sha256": "bf7645d073bffc1d4b56bf2345c8876eaee65cf10ac7b9eba5ebf115d00a7484",
+          "size": 2550
+        },
+        {
+          "declaration": "func begin_king_clock(game, items):",
+          "line": 833,
+          "name": "begin_king_clock",
+          "range_rule": "func declaration through bytes before next top-level func (may include intervening declarations)",
+          "sha256": "565392accd311f85ce08e043272d85840068411b77fb70e2d973e26191cb54c3",
+          "size": 1307
+        },
+        {
+          "declaration": "func source_resources(game):",
+          "line": 1388,
+          "name": "source_resources",
+          "range_rule": "func declaration through bytes before next top-level func (may include intervening declarations)",
+          "sha256": "143e35b786659e3cf7959d1801c7bc3b8123fae1e9c2ffd0b1a262481e6fc496",
+          "size": 470
+        },
+        {
+          "declaration": "func source_runtime_snapshot():",
+          "line": 1407,
+          "name": "source_runtime_snapshot",
+          "range_rule": "func declaration through bytes before next top-level func (may include intervening declarations)",
+          "sha256": "f31fafcff0c2723c56c1f3a7c2a028264289611c579d1287f1c77e46025699a3",
+          "size": 1097
+        }
+      ],
+      "module": {
+        "path": "data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
+        "sha256": "999e0043a653067a962819cf81340b0dad745fa2148bbfab7724d7948a6a21ea",
+        "size": 104333
+      }
+    },
+    {
+      "functions": [
+        {
+          "declaration": "func start_controlled_combat(player_registered = false):",
+          "line": 439,
+          "name": "start_controlled_combat",
+          "range_rule": "func declaration through bytes before next top-level func (may include intervening declarations)",
+          "sha256": "8928c8bb01ca85e02461640f8c607fffed92ce0b5fcd08ac35e43361b070971c",
+          "size": 403
+        },
+        {
+          "declaration": "func register_inventory(character, side):",
+          "line": 468,
+          "name": "register_inventory",
+          "range_rule": "func declaration through bytes before next top-level func (may include intervening declarations)",
+          "sha256": "71d9158b633c1bdc8d11098a09d040c56f553fad408970cc9ccca41e127aae18",
+          "size": 2804
+        },
+        {
+          "declaration": "func ensure_source_window():",
+          "line": 819,
+          "name": "ensure_source_window",
+          "range_rule": "func declaration through bytes before next top-level func (may include intervening declarations)",
+          "sha256": "6e53b1d723d01b717358719ece89707581666f860952e09349c59f0e715b50bd",
+          "size": 1189
+        }
+      ],
+      "module": {
+        "path": "data/phase391-terminal-source/collector.gd",
+        "sha256": "f05bbf6b0e7277b5a342553d3a8d3c842f3efa6526f0b85948bd003837ac74ce",
+        "size": 64928
+      }
+    }
+  ],
+  "python_functions": [
+    {
+      "calls_in405_design": 0,
+      "end_line": 341,
+      "line": 330,
+      "name": "strict_json_loads",
+      "sha256": "bacf46a20d93b76132a21708b92a13c0f23c908a97ba357ae6c6baeccc4e462e",
+      "signature": "(text)",
+      "size": 507
+    },
+    {
+      "calls_in405_design": 0,
+      "end_line": 1043,
+      "line": 997,
+      "name": "validate_single_king_fresh_facts",
+      "sha256": "b10eb26414d46b610a87bf0e4861edb835732107b22b81850778a5bd1d68c1ab",
+      "signature": "(facts)",
+      "size": 4976
+    },
+    {
+      "calls_in405_design": 0,
+      "end_line": 1048,
+      "line": 1047,
+      "name": "validate_single_king_ui_authority",
+      "sha256": "cd58d6f0a9fd4788985ea32446a38089d9f1d40b51a046c25a92f0856463ad4f",
+      "signature": "(rows)",
+      "size": 110
+    },
+    {
+      "calls_in405_design": 0,
+      "end_line": 1085,
+      "line": 1069,
+      "name": "validate_single_king_source_defaults",
+      "sha256": "409e4f2cefc755a6a9fd9d9d3b25bba9d5fab68b4b0074aeea6c571cb35a51e5",
+      "signature": "(pre, act)",
+      "size": 1167
+    },
+    {
+      "calls_in405_design": 0,
+      "end_line": 1164,
+      "line": 1089,
+      "name": "validate_single_king_input_provenance",
+      "sha256": "ab072c80e433904307fbbb7604491198b642f9651314c19d54d3d868605cfc82",
+      "signature": "(ui_rows, rng_checkpoint, input_records, lineage_records, facts, clock)",
+      "size": 5145
+    },
+    {
+      "calls_in405_design": 0,
+      "end_line": 1288,
+      "line": 1230,
+      "name": "decode_clock",
+      "sha256": "000643507ca7c370b0800bfcfe249f10e38680c5088090376a056cbd34425c70",
+      "signature": "(carrier)",
+      "size": 3161
+    },
+    {
+      "calls_in405_design": 0,
+      "end_line": 1554,
+      "line": 1527,
+      "name": "validate_resources",
+      "sha256": "399deef5915f72254e12844efbb2b2bb0e65bf1b6da77c6c693da85db072cab6",
+      "signature": "(rows, nodes)",
+      "size": 1853
+    },
+    {
+      "calls_in405_design": 0,
+      "end_line": 1626,
+      "line": 1557,
+      "name": "validate_record",
+      "sha256": "2defe2bba6f17f72496bf20076896b172668ec10e5839bbc042bd24683f15ebf",
+      "signature": "(row)",
+      "size": 5091
+    },
+    {
+      "calls_in405_design": 0,
+      "end_line": 1709,
+      "line": 1704,
+      "name": "decode_sources",
+      "sha256": "0b1126ecfbae0318d189e32acbc1997dea1bc8e814a0e2287a73df8487f6f847",
+      "signature": "(raw_by_name)",
+      "size": 200
+    },
+    {
+      "calls_in405_design": 0,
+      "end_line": 1757,
+      "line": 1712,
+      "name": "validate_source_carriers",
+      "sha256": "8d6ba088285386e29a0da1e32af1fe5f8b431a568852fad3d9561f95676ecd0e",
+      "signature": "(raw_by_name)",
+      "size": 3311
+    },
+    {
+      "calls_in405_design": 0,
+      "end_line": 2225,
+      "line": 2218,
+      "name": "validate_binding_carrier",
+      "sha256": "df501f48372644b71e736712903f43c91c72443ded3a9c6296d105578d050baa",
+      "signature": "(binding_bytes, fixed_plan)",
+      "size": 516
+    },
+    {
+      "calls_in405_design": 0,
+      "end_line": 2359,
+      "line": 2278,
+      "name": "join_binding_provenance",
+      "sha256": "682d9472036686fbf9f2c9723f09b78add853b50da3069d7cde9667c3f723f20",
+      "signature": "(decoded11, binding, source_contract)",
+      "size": 6156
+    },
+    {
+      "calls_in405_design": 0,
+      "end_line": 2380,
+      "line": 2362,
+      "name": "validate_sources_with_binding",
+      "sha256": "065c908788a95aacb75e60d05aa9ae7261a309457f2a219b57265a72e4292d6a",
+      "signature": "(raw11, binding_bytes, source_contract)",
+      "size": 1560
+    }
+  ],
+  "root402_acceptance": {
+    "path": "data/phase401-root-native-attempt06/independent402-accepted.json",
+    "sha256": "cabf6a704ec10e4fa1322ed3051e280ade500186b938de33bb6ddf4704812021",
+    "size": 993
+  },
+  "schema": "phase405-actual-source-api-pins/1",
+  "schema_module": {
+    "path": "tests/phase391_king_observer_schema.py",
+    "sha256": "ffcddfd2cbe58307f7258c1aefad5586a9179c6c452dc59c3342f9047f31457c",
+    "size": 208243
+  },
+  "source_caps": {
+    "array": 8192,
+    "depth": 16,
+    "descriptors": 6,
+    "dictionary": 512,
+    "failure_file_bytes": 4096,
+    "file_bytes": 268435456,
+    "first_error_bytes": 1024,
+    "flush_bytes": 4194304,
+    "host_capture_files": 64,
+    "native_ids": 8192,
+    "observer_files": 8,
+    "pending_rows": 64,
+    "record_bytes": 2097152,
+    "records": 300000,
+    "roles": 1024,
+    "sparse_nodes": 16384,
+    "string_utf8": 4096,
+    "total_bytes": 268435456
+  }
+}
