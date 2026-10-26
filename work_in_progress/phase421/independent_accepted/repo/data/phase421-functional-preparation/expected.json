@@ -1,0 +1,259 @@
+{
+  "authority_spent411_release": {
+    "expected_opens": 0,
+    "kind": "reject",
+    "reason": "FRESH_ROOT_RELEASE_PATH"
+  },
+  "canonical_parent_escape": {
+    "expected_opens": 0,
+    "kind": "reject",
+    "reason": "PATH_COMPONENT"
+  },
+  "gate_caller_bool": {
+    "kind": "reject",
+    "reason": "VERIFIED_RULE_GATE_REQUIRED"
+  },
+  "gate_caller_proof_dict": {
+    "kind": "reject",
+    "reason": "VERIFIED_RULE_GATE_REQUIRED"
+  },
+  "gate_intermediate_review_dict": {
+    "kind": "reject",
+    "reason": "VERIFIED_RULE_GATE_REQUIRED"
+  },
+  "lineage_EOF_initial_cut": {
+    "cut": "EOF",
+    "kind": "lineage"
+  },
+  "lineage_cut_duplicate_sequence": {
+    "kind": "reject",
+    "reason": "DUPLICATE_ENVELOPE_KEY"
+  },
+  "lineage_duplicate_shared_sequence": {
+    "kind": "reject",
+    "reason": "LINEAGE_SEQUENCE_ORDER"
+  },
+  "lineage_gaps_cut_opaque_suffix": {
+    "cut": "FIRST_SEQUENCE_AT_OR_AFTER_CUT",
+    "kind": "lineage"
+  },
+  "lineage_pooled_scene": {
+    "kind": "reject",
+    "reason": "KING_SCENE_DOMAIN"
+  },
+  "lineage_reversed_shared_sequence": {
+    "kind": "reject",
+    "reason": "LINEAGE_SEQUENCE_ORDER"
+  },
+  "read_FIFO_before_content": {
+    "expected_opens": 0,
+    "kind": "reject",
+    "reason": "NONORDINARY_FILE"
+  },
+  "read_bool_size_before_content": {
+    "expected_opens": 0,
+    "kind": "reject",
+    "reason": "DESCRIPTOR_TYPE"
+  },
+  "read_hardlink_before_content": {
+    "expected_opens": 0,
+    "kind": "reject",
+    "reason": "NONORDINARY_FILE"
+  },
+  "read_ordinary_owned": {
+    "expected_opens": 1,
+    "kind": "read",
+    "sha256": "2d0d43d634b04e561635e1cd7506de9b2b5aefdf968d1747f91c18af64b9ee67",
+    "size": 9
+  },
+  "read_symlink_ancestor_before_content": {
+    "expected_opens": 0,
+    "kind": "reject",
+    "reason": "SYMLINK_PATH"
+  },
+  "read_symlink_leaf_before_content": {
+    "expected_opens": 0,
+    "kind": "reject",
+    "reason": "SYMLINK_PATH"
+  },
+  "read_wrong_sha": {
+    "expected_opens": 1,
+    "kind": "reject",
+    "reason": "READBACK_PIN"
+  },
+  "read_wrong_size_before_content": {
+    "expected_opens": 0,
+    "kind": "reject",
+    "reason": "SIZE_BEFORE_READ"
+  },
+  "role_birth_autostart": {
+    "kind": "role_gap",
+    "reason": "BIRTH_CONSTRUCTOR_CONFIGURATION"
+  },
+  "role_birth_inside_tree": {
+    "kind": "role_gap",
+    "reason": "BIRTH_NOT_IMMEDIATE_OUTSIDE_TREE"
+  },
+  "role_bool_starts": {
+    "kind": "reject",
+    "reason": "COUNTER_TYPE"
+  },
+  "role_cross_role_timer_reuse": {
+    "kind": "reject",
+    "reason": "CROSS_PHASE_TIMER_ID"
+  },
+  "role_nonzero_starts": {
+    "kind": "role_gap",
+    "reason": "NONZERO_LIFETIME_STARTS"
+  },
+  "role_one_valid_one_missing": {
+    "kind": "role_pair"
+  },
+  "role_positive_king_drag:P:12": {
+    "kind": "role_clean"
+  },
+  "role_positive_king_hide:P:12": {
+    "kind": "role_clean"
+  },
+  "role_public_mode_bool": {
+    "kind": "reject",
+    "reason": "PUBLIC_VALUE_TYPE"
+  },
+  "role_wrong_fact_owner": {
+    "kind": "reject",
+    "reason": "FACT_OWNER_ID"
+  },
+  "role_wrong_phase_timer": {
+    "kind": "reject",
+    "reason": "CROSS_PHASE_TIMER_ID"
+  },
+  "save_existing_reject": {
+    "expected_opens": 0,
+    "kind": "reject",
+    "reason": "OUTPUT_EXISTS"
+  },
+  "save_new_and_readback": {
+    "expected_opens": 2,
+    "kind": "saved"
+  },
+  "sequence_bool_not_int": {
+    "kind": "reject",
+    "reason": "ENVELOPE_SEQUENCE_TYPE"
+  },
+  "sequence_duplicate_after_first138": {
+    "kind": "reject",
+    "reason": "DUPLICATE_ENVELOPE_KEY"
+  },
+  "sequence_duplicate_before_later138": {
+    "kind": "reject",
+    "reason": "DUPLICATE_ENVELOPE_KEY"
+  },
+  "sequence_escaped_duplicate_key": {
+    "kind": "reject",
+    "reason": "DUPLICATE_ENVELOPE_KEY"
+  },
+  "sequence_float_not_int": {
+    "kind": "reject",
+    "reason": "ENVELOPE_SEQUENCE_TYPE"
+  },
+  "sequence_nested_only_sequence": {
+    "kind": "reject",
+    "reason": "ENVELOPE_SEQUENCE_ABSENT"
+  },
+  "sequence_opaque_payload_unique_int": {
+    "kind": "integer",
+    "value": 138
+  },
+  "sequence_trailing_envelope_bytes": {
+    "kind": "reject",
+    "reason": "ENVELOPE_TRAILING_BYTES"
+  },
+  "slots_bool_input_slot": {
+    "kind": "reject",
+    "reason": "SLOT_ORDINAL"
+  },
+  "slots_duplicate_native": {
+    "kind": "reject",
+    "reason": "SLOT_DUPLICATE_ID"
+  },
+  "slots_fixed39_synthetic": {
+    "kind": "slot"
+  },
+  "slots_wrong_character": {
+    "kind": "reject",
+    "reason": "SLOT_CHARACTER_JOIN"
+  },
+  "strict_json_duplicate": {
+    "kind": "reject",
+    "reason": "DUPLICATE_JSON_KEY"
+  },
+  "strict_json_nonfinite": {
+    "kind": "reject",
+    "reason": "NONFINITE_JSON_CONSTANT"
+  },
+  "ui_419_unknown_site_regression": {
+    "affected": [
+      "king_hide:P:12"
+    ],
+    "kind": "ui_gap"
+  },
+  "ui_bad_first_roles_binding_no_forward_search": {
+    "kind": "reject",
+    "reason": "FIRST_UI_ROLES_BINDING"
+  },
+  "ui_bad_first_roles_site_no_forward_search": {
+    "kind": "reject",
+    "reason": "FIRST_UI_ROLES_SITE"
+  },
+  "ui_bool_sequence": {
+    "kind": "reject",
+    "reason": "UI_SEQUENCE_SCHEMA"
+  },
+  "ui_duplicate_selected_bind": {
+    "kind": "reject",
+    "reason": "UI_DUPLICATE_KING_BIND"
+  },
+  "ui_missing_drag_ready_only": {
+    "kind": "ui_missing_role",
+    "role": "king_drag:P:12"
+  },
+  "ui_selected_King_wrong_support": {
+    "affected": [
+      "king_hide:P:12",
+      "king_drag:P:12"
+    ],
+    "kind": "ui_gap"
+  },
+  "ui_selected_activation_wrong_kingflag": {
+    "affected": [
+      "king_hide:P:12"
+    ],
+    "kind": "ui_gap"
+  },
+  "ui_selected_drag_wrong_support": {
+    "affected": [
+      "king_drag:P:12"
+    ],
+    "kind": "ui_gap"
+  },
+  "ui_selected_entry_before_ready": {
+    "affected": [
+      "king_hide:P:12"
+    ],
+    "kind": "ui_gap"
+  },
+  "ui_valid_prefix_opaque_suffix_regression": {
+    "cut": 4,
+    "kind": "ui_clean"
+  },
+  "ui_valid_selected_activation": {
+    "cut": 5,
+    "kind": "ui_clean"
+  },
+  "ui_wrong_selected_classification": {
+    "affected": [
+      "king_hide:P:12"
+    ],
+    "kind": "ui_gap"
+  }
+}

@@ -1,0 +1,365 @@
+{
+  "API_counts": {
+    "project_ui": 13
+  },
+  "EXPECTED_reads": 0,
+  "actual_projection_calls": 0,
+  "audit_calls": 0,
+  "automatic_retry": false,
+  "controls": [
+    {
+      "expected": {
+        "cut": 4,
+        "kind": "ui_clean"
+      },
+      "id": "ui_valid_prefix_opaque_suffix_regression",
+      "kind": "ui",
+      "open_events": [],
+      "outcome": "RETURN",
+      "passed": true,
+      "summary": {
+        "cut": {
+          "byte_offset_after": 1723,
+          "line": 5,
+          "ui_sequence": 4
+        },
+        "gaps": {
+          "king_drag:P:12": [],
+          "king_hide:P:12": []
+        }
+      }
+    },
+    {
+      "expected": {
+        "affected": [
+          "king_hide:P:12"
+        ],
+        "kind": "ui_gap"
+      },
+      "id": "ui_419_unknown_site_regression",
+      "kind": "ui",
+      "open_events": [],
+      "outcome": "RETURN",
+      "passed": true,
+      "summary": {
+        "cut": {
+          "byte_offset_after": 2038,
+          "line": 6,
+          "ui_sequence": 5
+        },
+        "gaps": {
+          "king_drag:P:12": [],
+          "king_hide:P:12": [
+            "UNSUPPORTED_INITIAL_UI_PATH"
+          ]
+        }
+      }
+    },
+    {
+      "expected": {
+        "cut": 5,
+        "kind": "ui_clean"
+      },
+      "id": "ui_valid_selected_activation",
+      "kind": "ui",
+      "open_events": [],
+      "outcome": "RETURN",
+      "passed": true,
+      "summary": {
+        "cut": {
+          "byte_offset_after": 2049,
+          "line": 6,
+          "ui_sequence": 5
+        },
+        "gaps": {
+          "king_drag:P:12": [],
+          "king_hide:P:12": []
+        }
+      }
+    },
+    {
+      "expected": {
+        "affected": [
+          "king_hide:P:12"
+        ],
+        "kind": "ui_gap"
+      },
+      "id": "ui_wrong_selected_classification",
+      "kind": "ui",
+      "open_events": [],
+      "outcome": "RETURN",
+      "passed": true,
+      "summary": {
+        "cut": {
+          "byte_offset_after": 2051,
+          "line": 6,
+          "ui_sequence": 5
+        },
+        "gaps": {
+          "king_drag:P:12": [],
+          "king_hide:P:12": [
+            "UNSUPPORTED_INITIAL_UI_PATH"
+          ]
+        }
+      }
+    },
+    {
+      "expected": {
+        "affected": [
+          "king_drag:P:12"
+        ],
+        "kind": "ui_gap"
+      },
+      "id": "ui_selected_drag_wrong_support",
+      "kind": "ui",
+      "open_events": [],
+      "outcome": "RETURN",
+      "passed": true,
+      "summary": {
+        "cut": {
+          "byte_offset_after": 2049,
+          "line": 6,
+          "ui_sequence": 5
+        },
+        "gaps": {
+          "king_drag:P:12": [
+            "UNSUPPORTED_INITIAL_UI_PATH"
+          ],
+          "king_hide:P:12": []
+        }
+      }
+    },
+    {
+      "expected": {
+        "affected": [
+          "king_hide:P:12",
+          "king_drag:P:12"
+        ],
+        "kind": "ui_gap"
+      },
+      "id": "ui_selected_King_wrong_support",
+      "kind": "ui",
+      "open_events": [],
+      "outcome": "RETURN",
+      "passed": true,
+      "summary": {
+        "cut": {
+          "byte_offset_after": 2048,
+          "line": 6,
+          "ui_sequence": 5
+        },
+        "gaps": {
+          "king_drag:P:12": [
+            "UNSUPPORTED_INITIAL_UI_PATH"
+          ],
+          "king_hide:P:12": [
+            "UNSUPPORTED_INITIAL_UI_PATH"
+          ]
+        }
+      }
+    },
+    {
+      "expected": {
+        "affected": [
+          "king_hide:P:12"
+        ],
+        "kind": "ui_gap"
+      },
+      "id": "ui_selected_activation_wrong_kingflag",
+      "kind": "ui",
+      "open_events": [],
+      "outcome": "RETURN",
+      "passed": true,
+      "summary": {
+        "cut": {
+          "byte_offset_after": 2048,
+          "line": 6,
+          "ui_sequence": 5
+        },
+        "gaps": {
+          "king_drag:P:12": [],
+          "king_hide:P:12": [
+            "UNSUPPORTED_INITIAL_UI_PATH"
+          ]
+        }
+      }
+    },
+    {
+      "expected": {
+        "affected": [
+          "king_hide:P:12"
+        ],
+        "kind": "ui_gap"
+      },
+      "id": "ui_selected_entry_before_ready",
+      "kind": "ui",
+      "open_events": [],
+      "outcome": "RETURN",
+      "passed": true,
+      "summary": {
+        "cut": {
+          "byte_offset_after": 2049,
+          "line": 6,
+          "ui_sequence": 5
+        },
+        "gaps": {
+          "king_drag:P:12": [],
+          "king_hide:P:12": [
+            "UNSUPPORTED_INITIAL_UI_PATH"
+          ]
+        }
+      }
+    },
+    {
+      "exception": "FIRST_UI_ROLES_SITE",
+      "expected": {
+        "kind": "reject",
+        "reason": "FIRST_UI_ROLES_SITE"
+      },
+      "id": "ui_bad_first_roles_site_no_forward_search",
+      "kind": "ui",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "FIRST_UI_ROLES_BINDING",
+      "expected": {
+        "kind": "reject",
+        "reason": "FIRST_UI_ROLES_BINDING"
+      },
+      "id": "ui_bad_first_roles_binding_no_forward_search",
+      "kind": "ui",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "UI_SEQUENCE_SCHEMA",
+      "expected": {
+        "kind": "reject",
+        "reason": "UI_SEQUENCE_SCHEMA"
+      },
+      "id": "ui_bool_sequence",
+      "kind": "ui",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "expected": {
+        "kind": "ui_missing_role",
+        "role": "king_drag:P:12"
+      },
+      "id": "ui_missing_drag_ready_only",
+      "kind": "ui",
+      "open_events": [],
+      "outcome": "RETURN",
+      "passed": true,
+      "summary": {
+        "cut": {
+          "byte_offset_after": 1324,
+          "line": 4,
+          "ui_sequence": 3
+        },
+        "gaps": {
+          "king_drag:P:12": [
+            "INITIAL_OWNER_READY_MISSING"
+          ],
+          "king_hide:P:12": []
+        }
+      }
+    },
+    {
+      "exception": "UI_SEQUENCE_SCHEMA",
+      "expected": {
+        "kind": "reject",
+        "reason": "UI_DUPLICATE_KING_BIND"
+      },
+      "id": "ui_duplicate_selected_bind",
+      "kind": "ui",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": false
+    }
+  ],
+  "elapsed_seconds": 0.001255538998520933,
+  "expected_rejections": 3,
+  "failed_controls": 1,
+  "first_failure": {
+    "exception": "UI_SEQUENCE_SCHEMA",
+    "expected": {
+      "kind": "reject",
+      "reason": "UI_DUPLICATE_KING_BIND"
+    },
+    "id": "ui_duplicate_selected_bind",
+    "kind": "ui",
+    "open_events": [],
+    "outcome": "REJECTED",
+    "passed": false
+  },
+  "models": 0,
+  "module_instances": 1,
+  "native": 0,
+  "nested_utility_calls": "not profiled",
+  "old_SUT_calls": 0,
+  "passing_controls": 12,
+  "planned_controls": 59,
+  "private_gate_constructed": false,
+  "raw_actual_carrier_reads": 0,
+  "schema": "independent421-finite-functional-controls/1",
+  "schema_calls": 0,
+  "status": "FIRST_FUNCTIONAL_FAILURE_STOP",
+  "successful_returns": 9,
+  "top_level_API_calls": 13,
+  "trusted_stdlib_startup": "preloaded before full pinned420 load; outside case measurement",
+  "unexecuted_controls": [
+    "sequence_opaque_payload_unique_int",
+    "sequence_duplicate_after_first138",
+    "sequence_duplicate_before_later138",
+    "sequence_escaped_duplicate_key",
+    "sequence_bool_not_int",
+    "sequence_float_not_int",
+    "sequence_nested_only_sequence",
+    "sequence_trailing_envelope_bytes",
+    "lineage_gaps_cut_opaque_suffix",
+    "lineage_EOF_initial_cut",
+    "lineage_cut_duplicate_sequence",
+    "lineage_duplicate_shared_sequence",
+    "lineage_reversed_shared_sequence",
+    "lineage_pooled_scene",
+    "slots_fixed39_synthetic",
+    "slots_duplicate_native",
+    "slots_wrong_character",
+    "slots_bool_input_slot",
+    "role_positive_king_hide:P:12",
+    "role_positive_king_drag:P:12",
+    "role_nonzero_starts",
+    "role_bool_starts",
+    "role_wrong_phase_timer",
+    "role_wrong_fact_owner",
+    "role_birth_inside_tree",
+    "role_birth_autostart",
+    "role_public_mode_bool",
+    "role_cross_role_timer_reuse",
+    "role_one_valid_one_missing",
+    "gate_caller_bool",
+    "gate_caller_proof_dict",
+    "gate_intermediate_review_dict",
+    "authority_spent411_release",
+    "strict_json_duplicate",
+    "strict_json_nonfinite",
+    "read_ordinary_owned",
+    "read_symlink_leaf_before_content",
+    "read_symlink_ancestor_before_content",
+    "read_hardlink_before_content",
+    "read_FIFO_before_content",
+    "read_wrong_size_before_content",
+    "read_wrong_sha",
+    "read_bool_size_before_content",
+    "canonical_parent_escape",
+    "save_new_and_readback",
+    "save_existing_reject"
+  ],
+  "whole_Root_positive_fabricated": false
+}

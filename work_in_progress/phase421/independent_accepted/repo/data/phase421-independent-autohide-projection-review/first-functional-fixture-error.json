@@ -1,0 +1,36 @@
+{
+  "actual_prefix_sequences": [
+    0,
+    2,
+    2,
+    3,
+    4,
+    5
+  ],
+  "automatic_retry": false,
+  "cause": "The preparation list inserted the same bind dict twice. deepcopy preserves shared references; numbering the later alias changed the earlier sequence too.",
+  "changed_bytes": 1,
+  "classification": "INDEPENDENT_FIXTURE_CONSTRUCTION_ERROR",
+  "expectation_relaxed": false,
+  "first_case": "ui_duplicate_selected_bind",
+  "intended_sequences": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "new_SUT_calls_during_diagnosis": 0,
+  "observed_source_rejection": "UI_SEQUENCE_SCHEMA",
+  "original_expected_rejection": "UI_DUPLICATE_KING_BIND",
+  "original_inputs_outputs_source_modified": false,
+  "original_raw_sha256": "83bd129d6fe73518262b014991c48ce67a1f6b88d5f2e02583e1367199c61a2e",
+  "original_raw_size": 2111,
+  "proposed_corrected_raw_sha256": "78b06f73819ff342a10fcc3bf5215e0d3da57768154167478ab7965b0568b425",
+  "proposed_corrected_raw_size": 2111,
+  "proposed_minimum": "New presealed copy: fix one ASCII sequence digit on only first bind, retain expected UI_DUPLICATE_KING_BIND. Continue only this corrected case+46previously unexecuted, if Root separately authorizes; no repeated first12 controls.",
+  "schema": "independent421-first-fixture-error-diagnosis/1",
+  "source_bug_demonstrated": false,
+  "stage": "FIRST_FUNCTIONAL_PROCESS_STOPPED"
+}

@@ -1,0 +1,5 @@
+# Independent initial-projection SOURCE and functional acceptance
+
+421 accepts the frozen420 module after59 valid unique controls:21 normal returns and38 expected rejections. An additional first-process fixture alias error is preserved and is not counted as a passing control or a420 semantic failure. Root authorized one narrowly corrected continuation; prior12passed controls were not rerun. Two module loads and61top-level API calls are recorded; nested calls were not profiled. Reused Source G01/G02 were not re-audited. Synthetic symlink/hardlink/FIFO fixtures are retained as reconstruction metadata rather than committed nonordinary nodes.
+
+Actual original-carrier projection is not yet completed at this cut. Root has now issued one real initial-only release bound to the final report, owner and exact four data descriptors. It does not authorize native/model/inputbuild or bypass independent actual-recipe acceptance. Current1391DIRECT+88MISSING,recipes0;formal bounded75 accepted,King unadmitted,full engine/RL incomplete. Historical Root paths/releases require current-environment validation rather than automatic reuse after migration.

@@ -1,0 +1,34 @@
+{
+  "schema": "root421-single-mechanical-fixture-continuation/1",
+  "utc": "2026-10-26T14:32:04.273364+00:00",
+  "source_420_unchanged": true,
+  "preserve_first_execution": [
+    {
+      "path": "data/phase421-functional-first-001/result.json",
+      "size": 8685,
+      "sha256": "b2ac0099d768cb8a9ede0f4b2d2cb4ce2c62248dbb6527785788634c91330d65"
+    },
+    {
+      "path": "data/phase421-functional-launcher/exit.json",
+      "size": 132,
+      "sha256": "74ae2e2eedf115565e547346bac153f8c763263df549636aceb9eba7c17e4e4a"
+    },
+    {
+      "path": "data/phase421-functional-preparation/owned-files.json",
+      "size": 2466,
+      "sha256": "eab0aa1d1a57bcc173e3e8900c76dfdece6070aff1020a7ebd5335fac20cb83f"
+    }
+  ],
+  "finding": "The13th synthetic duplicate-bind input shares one Python object alias;renumbering produces duplicate sequence.420 correctly rejected earlier UI_SEQUENCE_SCHEMA. This is fixture construction failure,not a new420 semantic counterexample.",
+  "authorized_fix": "New separately sealed fixture creates independent bind objects with distinct contiguous sequences;preserve previous inputs/expectations/runner/result.",
+  "allowed_execution": "One new process<=30s;corrected duplicate-bind control plus exactly46previouslyunexecuted controls;first failure stops",
+  "already_passed12_controls": "Do not rerun",
+  "Source_G01_G02": "Do not rerun",
+  "actual_original_projection": 0,
+  "new_native": 0,
+  "old_SUT_model": 0,
+  "counts_current": {
+    "missing": 88,
+    "recipes": 0
+  }
+}

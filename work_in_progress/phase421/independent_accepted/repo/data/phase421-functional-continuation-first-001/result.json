@@ -1,0 +1,4110 @@
+{
+  "API_counts": {
+    "canonical_path": 1,
+    "check_autohide_role": 12,
+    "derive_autohide_pair": 3,
+    "envelope_sequence": 8,
+    "project_lineage": 6,
+    "project_slots": 4,
+    "project_ui": 1,
+    "read_regular": 8,
+    "save_new": 2,
+    "strict_json": 2,
+    "verify_release": 1
+  },
+  "EXPECTED_reads": 0,
+  "actual_projection_calls": 0,
+  "audit_calls": 0,
+  "automatic_retry": false,
+  "controls": [
+    {
+      "exception": "UI_DUPLICATE_KING_BIND",
+      "expected": {
+        "kind": "reject",
+        "reason": "UI_DUPLICATE_KING_BIND"
+      },
+      "id": "ui_duplicate_selected_bind",
+      "kind": "ui",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "expected": {
+        "kind": "integer",
+        "value": 138
+      },
+      "id": "sequence_opaque_payload_unique_int",
+      "kind": "sequence",
+      "open_events": [],
+      "outcome": "RETURN",
+      "passed": true,
+      "summary": 138
+    },
+    {
+      "exception": "DUPLICATE_ENVELOPE_KEY",
+      "expected": {
+        "kind": "reject",
+        "reason": "DUPLICATE_ENVELOPE_KEY"
+      },
+      "id": "sequence_duplicate_after_first138",
+      "kind": "sequence",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "DUPLICATE_ENVELOPE_KEY",
+      "expected": {
+        "kind": "reject",
+        "reason": "DUPLICATE_ENVELOPE_KEY"
+      },
+      "id": "sequence_duplicate_before_later138",
+      "kind": "sequence",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "DUPLICATE_ENVELOPE_KEY",
+      "expected": {
+        "kind": "reject",
+        "reason": "DUPLICATE_ENVELOPE_KEY"
+      },
+      "id": "sequence_escaped_duplicate_key",
+      "kind": "sequence",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "ENVELOPE_SEQUENCE_TYPE",
+      "expected": {
+        "kind": "reject",
+        "reason": "ENVELOPE_SEQUENCE_TYPE"
+      },
+      "id": "sequence_bool_not_int",
+      "kind": "sequence",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "ENVELOPE_SEQUENCE_TYPE",
+      "expected": {
+        "kind": "reject",
+        "reason": "ENVELOPE_SEQUENCE_TYPE"
+      },
+      "id": "sequence_float_not_int",
+      "kind": "sequence",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "ENVELOPE_SEQUENCE_ABSENT",
+      "expected": {
+        "kind": "reject",
+        "reason": "ENVELOPE_SEQUENCE_ABSENT"
+      },
+      "id": "sequence_nested_only_sequence",
+      "kind": "sequence",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "ENVELOPE_TRAILING_BYTES",
+      "expected": {
+        "kind": "reject",
+        "reason": "ENVELOPE_TRAILING_BYTES"
+      },
+      "id": "sequence_trailing_envelope_bytes",
+      "kind": "sequence",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "expected": {
+        "cut": "FIRST_SEQUENCE_AT_OR_AFTER_CUT",
+        "kind": "lineage"
+      },
+      "id": "lineage_gaps_cut_opaque_suffix",
+      "kind": "lineage",
+      "open_events": [],
+      "outcome": "RETURN",
+      "passed": true,
+      "summary": {
+        "cut": {
+          "byte_offset": 760,
+          "kind": "FIRST_SEQUENCE_AT_OR_AFTER_CUT",
+          "line": 4,
+          "sequence": 138
+        },
+        "gaps": [],
+        "selected": [
+          {
+            "edge": "scene_instance",
+            "line": 1,
+            "payload": {
+              "descriptor_id": "7777",
+              "item_id": "81679",
+              "item_index": {
+                "decimal": "262",
+                "type": "int"
+              },
+              "pooled": false,
+              "scene_path": "res://Items/Exclusive/KingGoobert.tscn"
+            },
+            "sequence": 1,
+            "site": "Items/ItemDescriptor.gd::instantiate",
+            "subject": {
+              "native_id": "81679",
+              "type": "native_ref"
+            }
+          },
+          {
+            "edge": "enter",
+            "line": 2,
+            "payload": {
+              "arguments": {}
+            },
+            "sequence": 7,
+            "site": "Items/Item.gd::_ready",
+            "subject": {
+              "native_id": "81679",
+              "type": "native_ref"
+            }
+          },
+          {
+            "edge": "return_implicit",
+            "line": 3,
+            "payload": {
+              "return_value": {
+                "type": "null"
+              }
+            },
+            "sequence": 10,
+            "site": "Items/Item.gd::_ready",
+            "subject": {
+              "native_id": "81679",
+              "type": "native_ref"
+            }
+          }
+        ],
+        "suffix_semantics": "NOT_DECODED_OR_VALIDATED"
+      }
+    },
+    {
+      "expected": {
+        "cut": "EOF",
+        "kind": "lineage"
+      },
+      "id": "lineage_EOF_initial_cut",
+      "kind": "lineage",
+      "open_events": [],
+      "outcome": "RETURN",
+      "passed": true,
+      "summary": {
+        "cut": {
+          "byte_offset": 760,
+          "kind": "EOF"
+        },
+        "gaps": [],
+        "selected": [
+          {
+            "edge": "scene_instance",
+            "line": 1,
+            "payload": {
+              "descriptor_id": "7777",
+              "item_id": "81679",
+              "item_index": {
+                "decimal": "262",
+                "type": "int"
+              },
+              "pooled": false,
+              "scene_path": "res://Items/Exclusive/KingGoobert.tscn"
+            },
+            "sequence": 1,
+            "site": "Items/ItemDescriptor.gd::instantiate",
+            "subject": {
+              "native_id": "81679",
+              "type": "native_ref"
+            }
+          },
+          {
+            "edge": "enter",
+            "line": 2,
+            "payload": {
+              "arguments": {}
+            },
+            "sequence": 7,
+            "site": "Items/Item.gd::_ready",
+            "subject": {
+              "native_id": "81679",
+              "type": "native_ref"
+            }
+          },
+          {
+            "edge": "return_implicit",
+            "line": 3,
+            "payload": {
+              "return_value": {
+                "type": "null"
+              }
+            },
+            "sequence": 10,
+            "site": "Items/Item.gd::_ready",
+            "subject": {
+              "native_id": "81679",
+              "type": "native_ref"
+            }
+          }
+        ],
+        "suffix_semantics": "NOT_DECODED_OR_VALIDATED"
+      }
+    },
+    {
+      "exception": "DUPLICATE_ENVELOPE_KEY",
+      "expected": {
+        "kind": "reject",
+        "reason": "DUPLICATE_ENVELOPE_KEY"
+      },
+      "id": "lineage_cut_duplicate_sequence",
+      "kind": "lineage",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "LINEAGE_SEQUENCE_ORDER",
+      "expected": {
+        "kind": "reject",
+        "reason": "LINEAGE_SEQUENCE_ORDER"
+      },
+      "id": "lineage_duplicate_shared_sequence",
+      "kind": "lineage",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "LINEAGE_SEQUENCE_ORDER",
+      "expected": {
+        "kind": "reject",
+        "reason": "LINEAGE_SEQUENCE_ORDER"
+      },
+      "id": "lineage_reversed_shared_sequence",
+      "kind": "lineage",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "KING_SCENE_DOMAIN",
+      "expected": {
+        "kind": "reject",
+        "reason": "KING_SCENE_DOMAIN"
+      },
+      "id": "lineage_pooled_scene",
+      "kind": "lineage",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "expected": {
+        "kind": "slot"
+      },
+      "id": "slots_fixed39_synthetic",
+      "kind": "slots",
+      "open_events": [],
+      "outcome": "RETURN",
+      "passed": true,
+      "summary": {
+        "binding": {
+          "character_id": "47611",
+          "descriptor_id": "7012",
+          "input_slot": 12,
+          "instance_id": "P:12",
+          "inventory_encounter_index": 12,
+          "inventory_id": "9001",
+          "item_index": {
+            "decimal": "262",
+            "type": "int"
+          },
+          "native_id": "81679",
+          "occupiedCells": [
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              3
+            ]
+          ],
+          "orientation": {
+            "decimal": "0",
+            "type": "int"
+          },
+          "top_left": {
+            "x": {
+              "binary64_be": "4000000000000000",
+              "type": "float"
+            },
+            "y": {
+              "binary64_be": "3ff0000000000000",
+              "type": "float"
+            }
+          }
+        },
+        "pointer": "/actual_bindings/12",
+        "row": 12
+      }
+    },
+    {
+      "exception": "SLOT_DUPLICATE_ID",
+      "expected": {
+        "kind": "reject",
+        "reason": "SLOT_DUPLICATE_ID"
+      },
+      "id": "slots_duplicate_native",
+      "kind": "slots",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "SLOT_CHARACTER_JOIN",
+      "expected": {
+        "kind": "reject",
+        "reason": "SLOT_CHARACTER_JOIN"
+      },
+      "id": "slots_wrong_character",
+      "kind": "slots",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "SLOT_ORDINAL",
+      "expected": {
+        "kind": "reject",
+        "reason": "SLOT_ORDINAL"
+      },
+      "id": "slots_bool_input_slot",
+      "kind": "slots",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "expected": {
+        "kind": "role_clean"
+      },
+      "id": "role_positive_king_hide:P:12",
+      "kind": "role",
+      "open_events": [],
+      "outcome": "RETURN",
+      "passed": true,
+      "summary": {
+        "conditional_input_match": true,
+        "evidence": [
+          {
+            "index": 0,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/native_id",
+                "sequence": 138
+              }
+            ],
+            "value": "81740"
+          },
+          {
+            "index": 1,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/process_mode",
+                "sequence": 138
+              }
+            ],
+            "value": 1
+          },
+          {
+            "index": 2,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/wait_time",
+                "sequence": 138
+              }
+            ],
+            "value": {
+              "binary64_be": "3ff0000000000000",
+              "type": "float"
+            }
+          },
+          {
+            "index": 3,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/time_left",
+                "sequence": 138
+              }
+            ],
+            "value": {
+              "binary64_be": "0000000000000000",
+              "type": "float"
+            }
+          },
+          {
+            "index": 4,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/one_shot",
+                "sequence": 138
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 5,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/autostart",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 6,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/paused",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 7,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/stopped",
+                "sequence": 138
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 8,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/class",
+                "sequence": 138
+              }
+            ],
+            "value": "Timer"
+          },
+          {
+            "index": 9,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/inside_tree",
+                "sequence": 138
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 10,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/internal_idle",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 11,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/internal_physics",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 12,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/ordinary_idle",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 13,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/ordinary_physics",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 14,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/native_id",
+                "sequence": 1231
+              }
+            ],
+            "value": "81740"
+          },
+          {
+            "index": 15,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/process_mode",
+                "sequence": 1231
+              }
+            ],
+            "value": 1
+          },
+          {
+            "index": 16,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/wait_time",
+                "sequence": 1231
+              }
+            ],
+            "value": {
+              "binary64_be": "3ff0000000000000",
+              "type": "float"
+            }
+          },
+          {
+            "index": 17,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/time_left",
+                "sequence": 1231
+              }
+            ],
+            "value": {
+              "binary64_be": "0000000000000000",
+              "type": "float"
+            }
+          },
+          {
+            "index": 18,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/one_shot",
+                "sequence": 1231
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 19,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/autostart",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 20,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/paused",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 21,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/stopped",
+                "sequence": 1231
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 22,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/class",
+                "sequence": 1231
+              }
+            ],
+            "value": "Timer"
+          },
+          {
+            "index": 23,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/inside_tree",
+                "sequence": 1231
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 24,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/internal_idle",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 25,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/internal_physics",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 26,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/ordinary_idle",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 27,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/ordinary_physics",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 28,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_hide:P:12/lineage/timer_id"
+              }
+            ],
+            "value": "81740"
+          },
+          {
+            "index": 29,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_hide:P:12/lineage/owner_id"
+              }
+            ],
+            "value": "81718"
+          },
+          {
+            "index": 30,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_hide:P:12/lineage/kind"
+              }
+            ],
+            "value": "AutoHide.Timer.new"
+          },
+          {
+            "index": 31,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_hide:P:12/lineage/starts"
+              }
+            ],
+            "value": 0
+          },
+          {
+            "index": 32,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_hide:P:12/lineage/stops"
+              }
+            ],
+            "value": 0
+          },
+          {
+            "index": 33,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_hide:P:12/lineage/birth"
+              }
+            ],
+            "value": {
+              "autostart": false,
+              "node": {
+                "class": "Timer",
+                "inside_tree": false,
+                "internal_idle": false,
+                "internal_physics": false,
+                "native_id": "81740",
+                "ordinary_idle": false,
+                "ordinary_physics": false,
+                "path": null
+              },
+              "one_shot": false,
+              "paused": false,
+              "process_mode": 1,
+              "stopped": true,
+              "time_left": {
+                "binary64_be": "0000000000000000",
+                "type": "float"
+              },
+              "wait_time": {
+                "binary64_be": "3ff0000000000000",
+                "type": "float"
+              }
+            }
+          }
+        ],
+        "gaps": [],
+        "meaning": "Local input premises only; not a SOURCE_DERIVED admission or real Root release.",
+        "role": "king_hide:P:12"
+      }
+    },
+    {
+      "expected": {
+        "kind": "role_clean"
+      },
+      "id": "role_positive_king_drag:P:12",
+      "kind": "role",
+      "open_events": [],
+      "outcome": "RETURN",
+      "passed": true,
+      "summary": {
+        "conditional_input_match": true,
+        "evidence": [
+          {
+            "index": 34,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/node/native_id",
+                "sequence": 138
+              }
+            ],
+            "value": "81732"
+          },
+          {
+            "index": 35,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/process_mode",
+                "sequence": 138
+              }
+            ],
+            "value": 1
+          },
+          {
+            "index": 36,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/wait_time",
+                "sequence": 138
+              }
+            ],
+            "value": {
+              "binary64_be": "3ff0000000000000",
+              "type": "float"
+            }
+          },
+          {
+            "index": 37,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/time_left",
+                "sequence": 138
+              }
+            ],
+            "value": {
+              "binary64_be": "0000000000000000",
+              "type": "float"
+            }
+          },
+          {
+            "index": 38,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/one_shot",
+                "sequence": 138
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 39,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/autostart",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 40,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/paused",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 41,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/stopped",
+                "sequence": 138
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 42,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/node/class",
+                "sequence": 138
+              }
+            ],
+            "value": "Timer"
+          },
+          {
+            "index": 43,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/node/inside_tree",
+                "sequence": 138
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 44,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/node/internal_idle",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 45,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/node/internal_physics",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 46,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/node/ordinary_idle",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 47,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/node/ordinary_physics",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 48,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/node/native_id",
+                "sequence": 1231
+              }
+            ],
+            "value": "81732"
+          },
+          {
+            "index": 49,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/process_mode",
+                "sequence": 1231
+              }
+            ],
+            "value": 1
+          },
+          {
+            "index": 50,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/wait_time",
+                "sequence": 1231
+              }
+            ],
+            "value": {
+              "binary64_be": "3ff0000000000000",
+              "type": "float"
+            }
+          },
+          {
+            "index": 51,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/time_left",
+                "sequence": 1231
+              }
+            ],
+            "value": {
+              "binary64_be": "0000000000000000",
+              "type": "float"
+            }
+          },
+          {
+            "index": 52,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/one_shot",
+                "sequence": 1231
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 53,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/autostart",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 54,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/paused",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 55,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/stopped",
+                "sequence": 1231
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 56,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/node/class",
+                "sequence": 1231
+              }
+            ],
+            "value": "Timer"
+          },
+          {
+            "index": 57,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/node/inside_tree",
+                "sequence": 1231
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 58,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/node/internal_idle",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 59,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/node/internal_physics",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 60,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/node/ordinary_idle",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 61,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81732",
+                "pointer": "/payload/nodes/1/timer/node/ordinary_physics",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 62,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_drag:P:12/lineage/timer_id"
+              }
+            ],
+            "value": "81732"
+          },
+          {
+            "index": 63,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_drag:P:12/lineage/owner_id"
+              }
+            ],
+            "value": "81714"
+          },
+          {
+            "index": 64,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_drag:P:12/lineage/kind"
+              }
+            ],
+            "value": "AutoHide.Timer.new"
+          },
+          {
+            "index": 65,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_drag:P:12/lineage/starts"
+              }
+            ],
+            "value": 0
+          },
+          {
+            "index": 66,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_drag:P:12/lineage/stops"
+              }
+            ],
+            "value": 0
+          },
+          {
+            "index": 67,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_drag:P:12/lineage/birth"
+              }
+            ],
+            "value": {
+              "autostart": false,
+              "node": {
+                "class": "Timer",
+                "inside_tree": false,
+                "internal_idle": false,
+                "internal_physics": false,
+                "native_id": "81732",
+                "ordinary_idle": false,
+                "ordinary_physics": false,
+                "path": null
+              },
+              "one_shot": false,
+              "paused": false,
+              "process_mode": 1,
+              "stopped": true,
+              "time_left": {
+                "binary64_be": "0000000000000000",
+                "type": "float"
+              },
+              "wait_time": {
+                "binary64_be": "3ff0000000000000",
+                "type": "float"
+              }
+            }
+          }
+        ],
+        "gaps": [],
+        "meaning": "Local input premises only; not a SOURCE_DERIVED admission or real Root release.",
+        "role": "king_drag:P:12"
+      }
+    },
+    {
+      "expected": {
+        "kind": "role_gap",
+        "reason": "NONZERO_LIFETIME_STARTS"
+      },
+      "id": "role_nonzero_starts",
+      "kind": "role",
+      "open_events": [],
+      "outcome": "RETURN",
+      "passed": true,
+      "summary": {
+        "conditional_input_match": false,
+        "evidence": [
+          {
+            "index": 0,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/native_id",
+                "sequence": 138
+              }
+            ],
+            "value": "81740"
+          },
+          {
+            "index": 1,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/process_mode",
+                "sequence": 138
+              }
+            ],
+            "value": 1
+          },
+          {
+            "index": 2,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/wait_time",
+                "sequence": 138
+              }
+            ],
+            "value": {
+              "binary64_be": "3ff0000000000000",
+              "type": "float"
+            }
+          },
+          {
+            "index": 3,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/time_left",
+                "sequence": 138
+              }
+            ],
+            "value": {
+              "binary64_be": "0000000000000000",
+              "type": "float"
+            }
+          },
+          {
+            "index": 4,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/one_shot",
+                "sequence": 138
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 5,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/autostart",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 6,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/paused",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 7,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/stopped",
+                "sequence": 138
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 8,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/class",
+                "sequence": 138
+              }
+            ],
+            "value": "Timer"
+          },
+          {
+            "index": 9,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/inside_tree",
+                "sequence": 138
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 10,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/internal_idle",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 11,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/internal_physics",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 12,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/ordinary_idle",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 13,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/ordinary_physics",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 14,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/native_id",
+                "sequence": 1231
+              }
+            ],
+            "value": "81740"
+          },
+          {
+            "index": 15,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/process_mode",
+                "sequence": 1231
+              }
+            ],
+            "value": 1
+          },
+          {
+            "index": 16,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/wait_time",
+                "sequence": 1231
+              }
+            ],
+            "value": {
+              "binary64_be": "3ff0000000000000",
+              "type": "float"
+            }
+          },
+          {
+            "index": 17,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/time_left",
+                "sequence": 1231
+              }
+            ],
+            "value": {
+              "binary64_be": "0000000000000000",
+              "type": "float"
+            }
+          },
+          {
+            "index": 18,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/one_shot",
+                "sequence": 1231
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 19,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/autostart",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 20,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/paused",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 21,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/stopped",
+                "sequence": 1231
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 22,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/class",
+                "sequence": 1231
+              }
+            ],
+            "value": "Timer"
+          },
+          {
+            "index": 23,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/inside_tree",
+                "sequence": 1231
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 24,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/internal_idle",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 25,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/internal_physics",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 26,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/ordinary_idle",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 27,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/ordinary_physics",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 28,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_hide:P:12/lineage/timer_id"
+              }
+            ],
+            "value": "81740"
+          },
+          {
+            "index": 29,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_hide:P:12/lineage/owner_id"
+              }
+            ],
+            "value": "81718"
+          },
+          {
+            "index": 30,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_hide:P:12/lineage/kind"
+              }
+            ],
+            "value": "AutoHide.Timer.new"
+          },
+          {
+            "index": 31,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_hide:P:12/lineage/starts"
+              }
+            ],
+            "value": 1
+          },
+          {
+            "index": 32,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_hide:P:12/lineage/stops"
+              }
+            ],
+            "value": 0
+          },
+          {
+            "index": 33,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_hide:P:12/lineage/birth"
+              }
+            ],
+            "value": {
+              "autostart": false,
+              "node": {
+                "class": "Timer",
+                "inside_tree": false,
+                "internal_idle": false,
+                "internal_physics": false,
+                "native_id": "81740",
+                "ordinary_idle": false,
+                "ordinary_physics": false,
+                "path": null
+              },
+              "one_shot": false,
+              "paused": false,
+              "process_mode": 1,
+              "stopped": true,
+              "time_left": {
+                "binary64_be": "0000000000000000",
+                "type": "float"
+              },
+              "wait_time": {
+                "binary64_be": "3ff0000000000000",
+                "type": "float"
+              }
+            }
+          }
+        ],
+        "gaps": [
+          "NONZERO_LIFETIME_STARTS"
+        ],
+        "meaning": "Local input premises only; not a SOURCE_DERIVED admission or real Root release.",
+        "role": "king_hide:P:12"
+      }
+    },
+    {
+      "exception": "COUNTER_TYPE",
+      "expected": {
+        "kind": "reject",
+        "reason": "COUNTER_TYPE"
+      },
+      "id": "role_bool_starts",
+      "kind": "role",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "CROSS_PHASE_TIMER_ID",
+      "expected": {
+        "kind": "reject",
+        "reason": "CROSS_PHASE_TIMER_ID"
+      },
+      "id": "role_wrong_phase_timer",
+      "kind": "role",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "FACT_OWNER_ID",
+      "expected": {
+        "kind": "reject",
+        "reason": "FACT_OWNER_ID"
+      },
+      "id": "role_wrong_fact_owner",
+      "kind": "role",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "expected": {
+        "kind": "role_gap",
+        "reason": "BIRTH_NOT_IMMEDIATE_OUTSIDE_TREE"
+      },
+      "id": "role_birth_inside_tree",
+      "kind": "role",
+      "open_events": [],
+      "outcome": "RETURN",
+      "passed": true,
+      "summary": {
+        "conditional_input_match": false,
+        "evidence": [
+          {
+            "index": 0,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/native_id",
+                "sequence": 138
+              }
+            ],
+            "value": "81740"
+          },
+          {
+            "index": 1,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/process_mode",
+                "sequence": 138
+              }
+            ],
+            "value": 1
+          },
+          {
+            "index": 2,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/wait_time",
+                "sequence": 138
+              }
+            ],
+            "value": {
+              "binary64_be": "3ff0000000000000",
+              "type": "float"
+            }
+          },
+          {
+            "index": 3,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/time_left",
+                "sequence": 138
+              }
+            ],
+            "value": {
+              "binary64_be": "0000000000000000",
+              "type": "float"
+            }
+          },
+          {
+            "index": 4,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/one_shot",
+                "sequence": 138
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 5,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/autostart",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 6,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/paused",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 7,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/stopped",
+                "sequence": 138
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 8,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/class",
+                "sequence": 138
+              }
+            ],
+            "value": "Timer"
+          },
+          {
+            "index": 9,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/inside_tree",
+                "sequence": 138
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 10,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/internal_idle",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 11,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/internal_physics",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 12,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/ordinary_idle",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 13,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/ordinary_physics",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 14,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/native_id",
+                "sequence": 1231
+              }
+            ],
+            "value": "81740"
+          },
+          {
+            "index": 15,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/process_mode",
+                "sequence": 1231
+              }
+            ],
+            "value": 1
+          },
+          {
+            "index": 16,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/wait_time",
+                "sequence": 1231
+              }
+            ],
+            "value": {
+              "binary64_be": "3ff0000000000000",
+              "type": "float"
+            }
+          },
+          {
+            "index": 17,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/time_left",
+                "sequence": 1231
+              }
+            ],
+            "value": {
+              "binary64_be": "0000000000000000",
+              "type": "float"
+            }
+          },
+          {
+            "index": 18,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/one_shot",
+                "sequence": 1231
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 19,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/autostart",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 20,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/paused",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 21,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/stopped",
+                "sequence": 1231
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 22,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/class",
+                "sequence": 1231
+              }
+            ],
+            "value": "Timer"
+          },
+          {
+            "index": 23,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/inside_tree",
+                "sequence": 1231
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 24,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/internal_idle",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 25,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/internal_physics",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 26,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/ordinary_idle",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 27,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/ordinary_physics",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 28,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_hide:P:12/lineage/timer_id"
+              }
+            ],
+            "value": "81740"
+          },
+          {
+            "index": 29,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_hide:P:12/lineage/owner_id"
+              }
+            ],
+            "value": "81718"
+          },
+          {
+            "index": 30,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_hide:P:12/lineage/kind"
+              }
+            ],
+            "value": "AutoHide.Timer.new"
+          },
+          {
+            "index": 31,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_hide:P:12/lineage/starts"
+              }
+            ],
+            "value": 0
+          },
+          {
+            "index": 32,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_hide:P:12/lineage/stops"
+              }
+            ],
+            "value": 0
+          },
+          {
+            "index": 33,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_hide:P:12/lineage/birth"
+              }
+            ],
+            "value": {
+              "autostart": false,
+              "node": {
+                "class": "Timer",
+                "inside_tree": true,
+                "internal_idle": false,
+                "internal_physics": false,
+                "native_id": "81740",
+                "ordinary_idle": false,
+                "ordinary_physics": false,
+                "path": null
+              },
+              "one_shot": false,
+              "paused": false,
+              "process_mode": 1,
+              "stopped": true,
+              "time_left": {
+                "binary64_be": "0000000000000000",
+                "type": "float"
+              },
+              "wait_time": {
+                "binary64_be": "3ff0000000000000",
+                "type": "float"
+              }
+            }
+          }
+        ],
+        "gaps": [
+          "BIRTH_NOT_IMMEDIATE_OUTSIDE_TREE"
+        ],
+        "meaning": "Local input premises only; not a SOURCE_DERIVED admission or real Root release.",
+        "role": "king_hide:P:12"
+      }
+    },
+    {
+      "expected": {
+        "kind": "role_gap",
+        "reason": "BIRTH_CONSTRUCTOR_CONFIGURATION"
+      },
+      "id": "role_birth_autostart",
+      "kind": "role",
+      "open_events": [],
+      "outcome": "RETURN",
+      "passed": true,
+      "summary": {
+        "conditional_input_match": false,
+        "evidence": [
+          {
+            "index": 0,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/native_id",
+                "sequence": 138
+              }
+            ],
+            "value": "81740"
+          },
+          {
+            "index": 1,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/process_mode",
+                "sequence": 138
+              }
+            ],
+            "value": 1
+          },
+          {
+            "index": 2,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/wait_time",
+                "sequence": 138
+              }
+            ],
+            "value": {
+              "binary64_be": "3ff0000000000000",
+              "type": "float"
+            }
+          },
+          {
+            "index": 3,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/time_left",
+                "sequence": 138
+              }
+            ],
+            "value": {
+              "binary64_be": "0000000000000000",
+              "type": "float"
+            }
+          },
+          {
+            "index": 4,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/one_shot",
+                "sequence": 138
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 5,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/autostart",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 6,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/paused",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 7,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/stopped",
+                "sequence": 138
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 8,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/class",
+                "sequence": 138
+              }
+            ],
+            "value": "Timer"
+          },
+          {
+            "index": 9,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/inside_tree",
+                "sequence": 138
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 10,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/internal_idle",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 11,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/internal_physics",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 12,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/ordinary_idle",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 13,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 1,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/ordinary_physics",
+                "sequence": 138
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 14,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/native_id",
+                "sequence": 1231
+              }
+            ],
+            "value": "81740"
+          },
+          {
+            "index": 15,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/process_mode",
+                "sequence": 1231
+              }
+            ],
+            "value": 1
+          },
+          {
+            "index": 16,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/wait_time",
+                "sequence": 1231
+              }
+            ],
+            "value": {
+              "binary64_be": "3ff0000000000000",
+              "type": "float"
+            }
+          },
+          {
+            "index": 17,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/time_left",
+                "sequence": 1231
+              }
+            ],
+            "value": {
+              "binary64_be": "0000000000000000",
+              "type": "float"
+            }
+          },
+          {
+            "index": 18,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/one_shot",
+                "sequence": 1231
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 19,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/autostart",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 20,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/paused",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 21,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/stopped",
+                "sequence": 1231
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 22,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/class",
+                "sequence": 1231
+              }
+            ],
+            "value": "Timer"
+          },
+          {
+            "index": 23,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/inside_tree",
+                "sequence": 1231
+              }
+            ],
+            "value": true
+          },
+          {
+            "index": 24,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/internal_idle",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 25,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/internal_physics",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 26,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/ordinary_idle",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 27,
+            "input_refs": [
+              {
+                "file": "observer7-input.jsonl",
+                "line": 4,
+                "native_owner": "81740",
+                "pointer": "/payload/nodes/0/timer/node/ordinary_physics",
+                "sequence": 1231
+              }
+            ],
+            "value": false
+          },
+          {
+            "index": 28,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_hide:P:12/lineage/timer_id"
+              }
+            ],
+            "value": "81740"
+          },
+          {
+            "index": 29,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_hide:P:12/lineage/owner_id"
+              }
+            ],
+            "value": "81718"
+          },
+          {
+            "index": 30,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_hide:P:12/lineage/kind"
+              }
+            ],
+            "value": "AutoHide.Timer.new"
+          },
+          {
+            "index": 31,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_hide:P:12/lineage/starts"
+              }
+            ],
+            "value": 0
+          },
+          {
+            "index": 32,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_hide:P:12/lineage/stops"
+              }
+            ],
+            "value": 0
+          },
+          {
+            "index": 33,
+            "input_refs": [
+              {
+                "file": "king-input-facts.json",
+                "pointer": "/timers/king_hide:P:12/lineage/birth"
+              }
+            ],
+            "value": {
+              "autostart": true,
+              "node": {
+                "class": "Timer",
+                "inside_tree": false,
+                "internal_idle": false,
+                "internal_physics": false,
+                "native_id": "81740",
+                "ordinary_idle": false,
+                "ordinary_physics": false,
+                "path": null
+              },
+              "one_shot": false,
+              "paused": false,
+              "process_mode": 1,
+              "stopped": true,
+              "time_left": {
+                "binary64_be": "0000000000000000",
+                "type": "float"
+              },
+              "wait_time": {
+                "binary64_be": "3ff0000000000000",
+                "type": "float"
+              }
+            }
+          }
+        ],
+        "gaps": [
+          "BIRTH_CONSTRUCTOR_CONFIGURATION"
+        ],
+        "meaning": "Local input premises only; not a SOURCE_DERIVED admission or real Root release.",
+        "role": "king_hide:P:12"
+      }
+    },
+    {
+      "exception": "PUBLIC_VALUE_TYPE",
+      "expected": {
+        "kind": "reject",
+        "reason": "PUBLIC_VALUE_TYPE"
+      },
+      "id": "role_public_mode_bool",
+      "kind": "role",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "CROSS_PHASE_TIMER_ID",
+      "expected": {
+        "kind": "reject",
+        "reason": "CROSS_PHASE_TIMER_ID"
+      },
+      "id": "role_cross_role_timer_reuse",
+      "kind": "role",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "expected": {
+        "kind": "role_pair"
+      },
+      "id": "role_one_valid_one_missing",
+      "kind": "role_pair",
+      "open_events": [],
+      "outcome": "RETURN",
+      "passed": true,
+      "summary": {
+        "king_drag:P:12": {
+          "conditional_input_match": false,
+          "evidence": [
+            {
+              "index": 34,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/node/native_id",
+                  "sequence": 138
+                }
+              ],
+              "value": "81732"
+            },
+            {
+              "index": 35,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/process_mode",
+                  "sequence": 138
+                }
+              ],
+              "value": 1
+            },
+            {
+              "index": 36,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/wait_time",
+                  "sequence": 138
+                }
+              ],
+              "value": {
+                "binary64_be": "3ff0000000000000",
+                "type": "float"
+              }
+            },
+            {
+              "index": 37,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/time_left",
+                  "sequence": 138
+                }
+              ],
+              "value": {
+                "binary64_be": "0000000000000000",
+                "type": "float"
+              }
+            },
+            {
+              "index": 38,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/one_shot",
+                  "sequence": 138
+                }
+              ],
+              "value": true
+            },
+            {
+              "index": 39,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/autostart",
+                  "sequence": 138
+                }
+              ],
+              "value": false
+            },
+            {
+              "index": 40,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/paused",
+                  "sequence": 138
+                }
+              ],
+              "value": false
+            },
+            {
+              "index": 41,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/stopped",
+                  "sequence": 138
+                }
+              ],
+              "value": true
+            },
+            {
+              "index": 42,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/node/class",
+                  "sequence": 138
+                }
+              ],
+              "value": "Timer"
+            },
+            {
+              "index": 43,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/node/inside_tree",
+                  "sequence": 138
+                }
+              ],
+              "value": true
+            },
+            {
+              "index": 44,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/node/internal_idle",
+                  "sequence": 138
+                }
+              ],
+              "value": false
+            },
+            {
+              "index": 45,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/node/internal_physics",
+                  "sequence": 138
+                }
+              ],
+              "value": false
+            },
+            {
+              "index": 46,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/node/ordinary_idle",
+                  "sequence": 138
+                }
+              ],
+              "value": false
+            },
+            {
+              "index": 47,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/node/ordinary_physics",
+                  "sequence": 138
+                }
+              ],
+              "value": false
+            },
+            {
+              "index": 48,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/node/native_id",
+                  "sequence": 1231
+                }
+              ],
+              "value": "81732"
+            },
+            {
+              "index": 49,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/process_mode",
+                  "sequence": 1231
+                }
+              ],
+              "value": 1
+            },
+            {
+              "index": 50,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/wait_time",
+                  "sequence": 1231
+                }
+              ],
+              "value": {
+                "binary64_be": "3ff0000000000000",
+                "type": "float"
+              }
+            },
+            {
+              "index": 51,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/time_left",
+                  "sequence": 1231
+                }
+              ],
+              "value": {
+                "binary64_be": "0000000000000000",
+                "type": "float"
+              }
+            },
+            {
+              "index": 52,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/one_shot",
+                  "sequence": 1231
+                }
+              ],
+              "value": true
+            },
+            {
+              "index": 53,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/autostart",
+                  "sequence": 1231
+                }
+              ],
+              "value": false
+            },
+            {
+              "index": 54,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/paused",
+                  "sequence": 1231
+                }
+              ],
+              "value": false
+            },
+            {
+              "index": 55,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/stopped",
+                  "sequence": 1231
+                }
+              ],
+              "value": true
+            },
+            {
+              "index": 56,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/node/class",
+                  "sequence": 1231
+                }
+              ],
+              "value": "Timer"
+            },
+            {
+              "index": 57,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/node/inside_tree",
+                  "sequence": 1231
+                }
+              ],
+              "value": true
+            },
+            {
+              "index": 58,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/node/internal_idle",
+                  "sequence": 1231
+                }
+              ],
+              "value": false
+            },
+            {
+              "index": 59,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/node/internal_physics",
+                  "sequence": 1231
+                }
+              ],
+              "value": false
+            },
+            {
+              "index": 60,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/node/ordinary_idle",
+                  "sequence": 1231
+                }
+              ],
+              "value": false
+            },
+            {
+              "index": 61,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81732",
+                  "pointer": "/payload/nodes/1/timer/node/ordinary_physics",
+                  "sequence": 1231
+                }
+              ],
+              "value": false
+            },
+            {
+              "index": 62,
+              "input_refs": [
+                {
+                  "file": "king-input-facts.json",
+                  "pointer": "/timers/king_drag:P:12/lineage/timer_id"
+                }
+              ],
+              "value": "81732"
+            },
+            {
+              "index": 63,
+              "input_refs": [
+                {
+                  "file": "king-input-facts.json",
+                  "pointer": "/timers/king_drag:P:12/lineage/owner_id"
+                }
+              ],
+              "value": "81714"
+            },
+            {
+              "index": 64,
+              "input_refs": [
+                {
+                  "file": "king-input-facts.json",
+                  "pointer": "/timers/king_drag:P:12/lineage/kind"
+                }
+              ],
+              "value": "AutoHide.Timer.new"
+            },
+            {
+              "index": 65,
+              "input_refs": [
+                {
+                  "file": "king-input-facts.json",
+                  "pointer": "/timers/king_drag:P:12/lineage/starts"
+                }
+              ],
+              "value": 0
+            },
+            {
+              "index": 66,
+              "input_refs": [
+                {
+                  "file": "king-input-facts.json",
+                  "pointer": "/timers/king_drag:P:12/lineage/stops"
+                }
+              ],
+              "value": 0
+            },
+            {
+              "index": 67,
+              "input_refs": [
+                {
+                  "file": "king-input-facts.json",
+                  "pointer": "/timers/king_drag:P:12/lineage/birth"
+                }
+              ],
+              "value": {
+                "autostart": false,
+                "node": {
+                  "class": "Timer",
+                  "inside_tree": false,
+                  "internal_idle": false,
+                  "internal_physics": false,
+                  "native_id": "81732",
+                  "ordinary_idle": false,
+                  "ordinary_physics": false,
+                  "path": null
+                },
+                "one_shot": false,
+                "paused": false,
+                "process_mode": 1,
+                "stopped": true,
+                "time_left": {
+                  "binary64_be": "0000000000000000",
+                  "type": "float"
+                },
+                "wait_time": {
+                  "binary64_be": "3ff0000000000000",
+                  "type": "float"
+                }
+              }
+            }
+          ],
+          "gaps": [
+            "INITIAL_OWNER_READY_MISSING"
+          ],
+          "meaning": "Local input premises only; not a SOURCE_DERIVED admission or real Root release.",
+          "role": "king_drag:P:12"
+        },
+        "king_hide:P:12": {
+          "conditional_input_match": true,
+          "evidence": [
+            {
+              "index": 0,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/node/native_id",
+                  "sequence": 138
+                }
+              ],
+              "value": "81740"
+            },
+            {
+              "index": 1,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/process_mode",
+                  "sequence": 138
+                }
+              ],
+              "value": 1
+            },
+            {
+              "index": 2,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/wait_time",
+                  "sequence": 138
+                }
+              ],
+              "value": {
+                "binary64_be": "3ff0000000000000",
+                "type": "float"
+              }
+            },
+            {
+              "index": 3,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/time_left",
+                  "sequence": 138
+                }
+              ],
+              "value": {
+                "binary64_be": "0000000000000000",
+                "type": "float"
+              }
+            },
+            {
+              "index": 4,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/one_shot",
+                  "sequence": 138
+                }
+              ],
+              "value": true
+            },
+            {
+              "index": 5,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/autostart",
+                  "sequence": 138
+                }
+              ],
+              "value": false
+            },
+            {
+              "index": 6,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/paused",
+                  "sequence": 138
+                }
+              ],
+              "value": false
+            },
+            {
+              "index": 7,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/stopped",
+                  "sequence": 138
+                }
+              ],
+              "value": true
+            },
+            {
+              "index": 8,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/node/class",
+                  "sequence": 138
+                }
+              ],
+              "value": "Timer"
+            },
+            {
+              "index": 9,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/node/inside_tree",
+                  "sequence": 138
+                }
+              ],
+              "value": true
+            },
+            {
+              "index": 10,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/node/internal_idle",
+                  "sequence": 138
+                }
+              ],
+              "value": false
+            },
+            {
+              "index": 11,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/node/internal_physics",
+                  "sequence": 138
+                }
+              ],
+              "value": false
+            },
+            {
+              "index": 12,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/node/ordinary_idle",
+                  "sequence": 138
+                }
+              ],
+              "value": false
+            },
+            {
+              "index": 13,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 1,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/node/ordinary_physics",
+                  "sequence": 138
+                }
+              ],
+              "value": false
+            },
+            {
+              "index": 14,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/node/native_id",
+                  "sequence": 1231
+                }
+              ],
+              "value": "81740"
+            },
+            {
+              "index": 15,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/process_mode",
+                  "sequence": 1231
+                }
+              ],
+              "value": 1
+            },
+            {
+              "index": 16,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/wait_time",
+                  "sequence": 1231
+                }
+              ],
+              "value": {
+                "binary64_be": "3ff0000000000000",
+                "type": "float"
+              }
+            },
+            {
+              "index": 17,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/time_left",
+                  "sequence": 1231
+                }
+              ],
+              "value": {
+                "binary64_be": "0000000000000000",
+                "type": "float"
+              }
+            },
+            {
+              "index": 18,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/one_shot",
+                  "sequence": 1231
+                }
+              ],
+              "value": true
+            },
+            {
+              "index": 19,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/autostart",
+                  "sequence": 1231
+                }
+              ],
+              "value": false
+            },
+            {
+              "index": 20,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/paused",
+                  "sequence": 1231
+                }
+              ],
+              "value": false
+            },
+            {
+              "index": 21,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/stopped",
+                  "sequence": 1231
+                }
+              ],
+              "value": true
+            },
+            {
+              "index": 22,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/node/class",
+                  "sequence": 1231
+                }
+              ],
+              "value": "Timer"
+            },
+            {
+              "index": 23,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/node/inside_tree",
+                  "sequence": 1231
+                }
+              ],
+              "value": true
+            },
+            {
+              "index": 24,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/node/internal_idle",
+                  "sequence": 1231
+                }
+              ],
+              "value": false
+            },
+            {
+              "index": 25,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/node/internal_physics",
+                  "sequence": 1231
+                }
+              ],
+              "value": false
+            },
+            {
+              "index": 26,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/node/ordinary_idle",
+                  "sequence": 1231
+                }
+              ],
+              "value": false
+            },
+            {
+              "index": 27,
+              "input_refs": [
+                {
+                  "file": "observer7-input.jsonl",
+                  "line": 4,
+                  "native_owner": "81740",
+                  "pointer": "/payload/nodes/0/timer/node/ordinary_physics",
+                  "sequence": 1231
+                }
+              ],
+              "value": false
+            },
+            {
+              "index": 28,
+              "input_refs": [
+                {
+                  "file": "king-input-facts.json",
+                  "pointer": "/timers/king_hide:P:12/lineage/timer_id"
+                }
+              ],
+              "value": "81740"
+            },
+            {
+              "index": 29,
+              "input_refs": [
+                {
+                  "file": "king-input-facts.json",
+                  "pointer": "/timers/king_hide:P:12/lineage/owner_id"
+                }
+              ],
+              "value": "81718"
+            },
+            {
+              "index": 30,
+              "input_refs": [
+                {
+                  "file": "king-input-facts.json",
+                  "pointer": "/timers/king_hide:P:12/lineage/kind"
+                }
+              ],
+              "value": "AutoHide.Timer.new"
+            },
+            {
+              "index": 31,
+              "input_refs": [
+                {
+                  "file": "king-input-facts.json",
+                  "pointer": "/timers/king_hide:P:12/lineage/starts"
+                }
+              ],
+              "value": 0
+            },
+            {
+              "index": 32,
+              "input_refs": [
+                {
+                  "file": "king-input-facts.json",
+                  "pointer": "/timers/king_hide:P:12/lineage/stops"
+                }
+              ],
+              "value": 0
+            },
+            {
+              "index": 33,
+              "input_refs": [
+                {
+                  "file": "king-input-facts.json",
+                  "pointer": "/timers/king_hide:P:12/lineage/birth"
+                }
+              ],
+              "value": {
+                "autostart": false,
+                "node": {
+                  "class": "Timer",
+                  "inside_tree": false,
+                  "internal_idle": false,
+                  "internal_physics": false,
+                  "native_id": "81740",
+                  "ordinary_idle": false,
+                  "ordinary_physics": false,
+                  "path": null
+                },
+                "one_shot": false,
+                "paused": false,
+                "process_mode": 1,
+                "stopped": true,
+                "time_left": {
+                  "binary64_be": "0000000000000000",
+                  "type": "float"
+                },
+                "wait_time": {
+                  "binary64_be": "3ff0000000000000",
+                  "type": "float"
+                }
+              }
+            }
+          ],
+          "gaps": [],
+          "meaning": "Local input premises only; not a SOURCE_DERIVED admission or real Root release.",
+          "role": "king_hide:P:12"
+        }
+      }
+    },
+    {
+      "exception": "VERIFIED_RULE_GATE_REQUIRED",
+      "expected": {
+        "kind": "reject",
+        "reason": "VERIFIED_RULE_GATE_REQUIRED"
+      },
+      "id": "gate_caller_bool",
+      "kind": "gate",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "VERIFIED_RULE_GATE_REQUIRED",
+      "expected": {
+        "kind": "reject",
+        "reason": "VERIFIED_RULE_GATE_REQUIRED"
+      },
+      "id": "gate_caller_proof_dict",
+      "kind": "gate",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "VERIFIED_RULE_GATE_REQUIRED",
+      "expected": {
+        "kind": "reject",
+        "reason": "VERIFIED_RULE_GATE_REQUIRED"
+      },
+      "id": "gate_intermediate_review_dict",
+      "kind": "gate",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "FRESH_ROOT_RELEASE_PATH",
+      "expected": {
+        "expected_opens": 0,
+        "kind": "reject",
+        "reason": "FRESH_ROOT_RELEASE_PATH"
+      },
+      "id": "authority_spent411_release",
+      "kind": "spent_release",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "STRICT_JSON: DUPLICATE_JSON_KEY",
+      "expected": {
+        "kind": "reject",
+        "reason": "DUPLICATE_JSON_KEY"
+      },
+      "id": "strict_json_duplicate",
+      "kind": "json",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "STRICT_JSON: NONFINITE_JSON_CONSTANT",
+      "expected": {
+        "kind": "reject",
+        "reason": "NONFINITE_JSON_CONSTANT"
+      },
+      "id": "strict_json_nonfinite",
+      "kind": "json",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "expected": {
+        "expected_opens": 1,
+        "kind": "read",
+        "sha256": "2d0d43d634b04e561635e1cd7506de9b2b5aefdf968d1747f91c18af64b9ee67",
+        "size": 9
+      },
+      "id": "read_ordinary_owned",
+      "kind": "read",
+      "open_events": [
+        {
+          "control": "read_ordinary_owned",
+          "flags": 655360,
+          "mode": null,
+          "path": "/workspace/python-original-engine/repo/data/phase421-functional-preparation/physical/regular.bin"
+        }
+      ],
+      "outcome": "RETURN",
+      "passed": true,
+      "summary": {
+        "io": [
+          {
+            "bytes_hashed": 9,
+            "descriptor": {
+              "path": "/workspace/python-original-engine/repo/data/phase421-functional-preparation/physical/regular.bin",
+              "sha256": "2d0d43d634b04e561635e1cd7506de9b2b5aefdf968d1747f91c18af64b9ee67",
+              "size": 9
+            },
+            "ordinary_nlink1": true
+          }
+        ],
+        "sha256": "2d0d43d634b04e561635e1cd7506de9b2b5aefdf968d1747f91c18af64b9ee67",
+        "size": 9
+      }
+    },
+    {
+      "exception": "SYMLINK_PATH",
+      "expected": {
+        "expected_opens": 0,
+        "kind": "reject",
+        "reason": "SYMLINK_PATH"
+      },
+      "id": "read_symlink_leaf_before_content",
+      "kind": "read",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "SYMLINK_PATH",
+      "expected": {
+        "expected_opens": 0,
+        "kind": "reject",
+        "reason": "SYMLINK_PATH"
+      },
+      "id": "read_symlink_ancestor_before_content",
+      "kind": "read",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "NONORDINARY_FILE",
+      "expected": {
+        "expected_opens": 0,
+        "kind": "reject",
+        "reason": "NONORDINARY_FILE"
+      },
+      "id": "read_hardlink_before_content",
+      "kind": "read",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "NONORDINARY_FILE",
+      "expected": {
+        "expected_opens": 0,
+        "kind": "reject",
+        "reason": "NONORDINARY_FILE"
+      },
+      "id": "read_FIFO_before_content",
+      "kind": "read",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "SIZE_BEFORE_READ",
+      "expected": {
+        "expected_opens": 0,
+        "kind": "reject",
+        "reason": "SIZE_BEFORE_READ"
+      },
+      "id": "read_wrong_size_before_content",
+      "kind": "read",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "READBACK_PIN",
+      "expected": {
+        "expected_opens": 1,
+        "kind": "reject",
+        "reason": "READBACK_PIN"
+      },
+      "id": "read_wrong_sha",
+      "kind": "read",
+      "open_events": [
+        {
+          "control": "read_wrong_sha",
+          "flags": 655360,
+          "mode": null,
+          "path": "/workspace/python-original-engine/repo/data/phase421-functional-preparation/physical/regular.bin"
+        }
+      ],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "DESCRIPTOR_TYPE",
+      "expected": {
+        "expected_opens": 0,
+        "kind": "reject",
+        "reason": "DESCRIPTOR_TYPE"
+      },
+      "id": "read_bool_size_before_content",
+      "kind": "read",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "exception": "PATH_COMPONENT",
+      "expected": {
+        "expected_opens": 0,
+        "kind": "reject",
+        "reason": "PATH_COMPONENT"
+      },
+      "id": "canonical_parent_escape",
+      "kind": "canonical",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    },
+    {
+      "expected": {
+        "expected_opens": 2,
+        "kind": "saved"
+      },
+      "id": "save_new_and_readback",
+      "kind": "save",
+      "open_events": [
+        {
+          "control": "save_new_and_readback",
+          "flags": 655553,
+          "mode": null,
+          "path": "/workspace/python-original-engine/repo/data/phase421-functional-continuation-first-001/ordinary-output.json"
+        },
+        {
+          "control": "save_new_and_readback",
+          "flags": 655360,
+          "mode": null,
+          "path": "/workspace/python-original-engine/repo/data/phase421-functional-continuation-first-001/ordinary-output.json"
+        }
+      ],
+      "outcome": "RETURN",
+      "passed": true,
+      "summary": {
+        "path": "/workspace/python-original-engine/repo/data/phase421-functional-continuation-first-001/ordinary-output.json",
+        "sha256": "efa82530f0281abdf7bff98dbf617ee4427f964100fa5fe3f2e8673792b268cf",
+        "size": 24
+      }
+    },
+    {
+      "exception": "OUTPUT_EXISTS",
+      "expected": {
+        "expected_opens": 0,
+        "kind": "reject",
+        "reason": "OUTPUT_EXISTS"
+      },
+      "id": "save_existing_reject",
+      "kind": "save",
+      "open_events": [],
+      "outcome": "REJECTED",
+      "passed": true
+    }
+  ],
+  "elapsed_seconds": 0.009370439001941122,
+  "expected_rejections": 35,
+  "failed_controls": 0,
+  "models": 0,
+  "module_instances": 1,
+  "native": 0,
+  "nested_utility_calls": "not profiled",
+  "old_SUT_calls": 0,
+  "passing_controls": 47,
+  "planned_controls": 47,
+  "private_gate_constructed": false,
+  "raw_actual_carrier_reads": 0,
+  "schema": "independent421-finite-functional-controls/1",
+  "schema_calls": 0,
+  "status": "FINITE_FUNCTIONAL_CONTROLS_PASS",
+  "successful_returns": 12,
+  "top_level_API_calls": 48,
+  "trusted_stdlib_startup": "preloaded before full pinned420 load; outside case measurement",
+  "unexecuted_controls": [],
+  "whole_Root_positive_fabricated": false
+}

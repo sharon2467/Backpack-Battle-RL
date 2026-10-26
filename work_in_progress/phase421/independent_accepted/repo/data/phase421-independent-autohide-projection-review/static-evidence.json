@@ -1,0 +1,793 @@
+{
+  "API_AST_functions": 24,
+  "AUTO_UI_SITES_exact_four": [
+    "Utility/AutoHideParticles.gd::activate",
+    "Utility/AutoHideParticles.gd::deactivate",
+    "Utility/AutoHideParticles.gd::startTimer",
+    "Utility/AutoHideParticles.gd::instantClear"
+  ],
+  "G01_G02_not_reaudited": true,
+  "conserved_nodes": [
+    {
+      "name": "Rejected",
+      "sha256": "f25f62e4ce25e55b30058aaaa13443d24b229a29a0f8be497cfff9de835aad20",
+      "size": 37
+    },
+    {
+      "name": "require",
+      "sha256": "5c0bc25b9bc7f4a0aafc29e18889915f4a92f7037a72ed3d188fcc05199b86f1",
+      "size": 85
+    },
+    {
+      "name": "integer",
+      "sha256": "e3a7f2e6fb12f63a47d70dacd38b280ae0e73d89ee4872e931a02795ba3bae8d",
+      "size": 82
+    },
+    {
+      "name": "native_id",
+      "sha256": "53d88b75879f11808e7a723985fbb1623ce8ce5f2a8def5c22440caaf3aa8341",
+      "size": 104
+    },
+    {
+      "name": "same",
+      "sha256": "39b5b34a180d306564ad54045c70ae1eff3d541dd5e19febac2bec5b333b9fe8",
+      "size": 184
+    },
+    {
+      "name": "strict_json",
+      "sha256": "69057a0c12ad2359234b44c796ed39699bf12bbfeb6df90ce83557ecc26bd7b2",
+      "size": 716
+    },
+    {
+      "name": "canonical_path",
+      "sha256": "b7589714481e7208cbbd64e2dd6c5ccb37598a9d2e9ff16edec2782c35021490",
+      "size": 299
+    },
+    {
+      "name": "physical_path",
+      "sha256": "c203c573ebf24ff2c2bd32f006aae27b1968bcb844be99856c62445e48442617",
+      "size": 522
+    },
+    {
+      "name": "descriptor",
+      "sha256": "c17072b7db4e2bf866d87a49e8a724d40548275ccd9c9f5cafaf56575f6c9613",
+      "size": 311
+    },
+    {
+      "name": "read_regular",
+      "sha256": "a07200b85374be6aa34f6832971b474e00461a734b0e97d2a944bba57692a924",
+      "size": 1422
+    },
+    {
+      "name": "target_keys",
+      "sha256": "a8b22ef5bb2bcb37663196fb92d49f7df6191f5f1d2f5f3e74f5801a2fff9d52",
+      "size": 719
+    },
+    {
+      "name": "load_initial_index",
+      "sha256": "464a919d065aa6226626917b1f97c5de7d7f22738b04b3fedba62fad983f51ce",
+      "size": 1230
+    },
+    {
+      "name": "observed",
+      "sha256": "3509e71ad45a1d9130d4c2989f635090f582ab0d9d305081182d6bc8c697ceea",
+      "size": 335
+    },
+    {
+      "name": "project_slots",
+      "sha256": "743a2adedfb1b3ab14a38329e02c4908a08907e915281b1c282e2f00ce4bc632",
+      "size": 2770
+    },
+    {
+      "name": "_skip_string",
+      "sha256": "e4bc00a77182b2d356e80847c082fdf43f398b0e53fc71c289f7fb0710a7d960",
+      "size": 312
+    },
+    {
+      "name": "_skip_value",
+      "sha256": "95f9e8ea4d37735bd4043fb8914cea1c77d80f38e803076af84b150715d7cfe4",
+      "size": 627
+    },
+    {
+      "name": "project_lineage",
+      "sha256": "1eec77eef0e0a11714a1f3d62229f505ad9a5f7ee6ace830495a0516fc8df7b9",
+      "size": 3090
+    },
+    {
+      "name": "check_autohide_role",
+      "sha256": "41ca941a68279822ff581b1a5a7359b5fe198ef061fa28f38f91e9ab467ae0a8",
+      "size": 4814
+    },
+    {
+      "name": "_VerifiedGate",
+      "sha256": "7ea9341d1d1d5d744078527a250fede7e4ca8a7d6aaa48a79d0bf99974f89e5e",
+      "size": 224
+    },
+    {
+      "name": "verify_release",
+      "sha256": "66778cd4538bc9fe1b890fe7ac9819ee8cebafe9a0420d7ba423121261a34602",
+      "size": 2738
+    },
+    {
+      "name": "derive_autohide_pair",
+      "sha256": "43d995d8be20edff9fb6678834ffc2485aecf2e0d2ab369dcbcfb32fcf237546",
+      "size": 1020
+    },
+    {
+      "name": "save_new",
+      "sha256": "81e3fa09007cd277d535a9bf1df2f3f6f09fe6fb909e7c9c4ec4bcfab1582848",
+      "size": 730
+    },
+    {
+      "name": "run",
+      "sha256": "8e0748bd6968dbb26b57f66e9989b111fd91241c2931f640e21edf075838ca26",
+      "size": 1844
+    },
+    {
+      "name": "main",
+      "sha256": "7c50f42417042379aeadb91abea425a4ce9c186e5c6abe64cab7cce5a315755c",
+      "size": 405
+    }
+  ],
+  "fixed_UI_SITES_exact_original": [
+    "Items/Item.gd::respondToHover",
+    "Items/Item.gd::respondToHoverEnd",
+    "Items/Item.gd::_process:dragged",
+    "Items/Item.gd::_process:rigid",
+    "Items/Item.gd::activateDragParticles",
+    "Items/Item.gd::deactivateDragParticles",
+    "Items/Item.gd::onAddedToGridStorage",
+    "Items/Item.gd::deactivateParticles",
+    "Utility/AutoHideParticles.gd::activate",
+    "Utility/AutoHideParticles.gd::deactivate",
+    "Utility/AutoHideParticles.gd::startTimer",
+    "Utility/AutoHideParticles.gd::instantClear"
+  ],
+  "full_inverse_to418": {
+    "equal": true,
+    "sha256": "c94e869d71ae105c6fc3f0d216303869651486ea8cd501d30274a124042d0281",
+    "size": 31698
+  },
+  "module_imports": 0,
+  "native_attribution_proposal": {
+    "path": "data/phase418-root-finite-source-supplement/native-timer-attribution-proposal.json",
+    "sha256": "63961997bce4391e79a5a9fd6fe657fc66121e839949c91a0da21e9a15206297",
+    "size": 3221
+  },
+  "old419_BLOCKED_retained": true,
+  "ordinary_bytes": 847678,
+  "ordinary_leaves": 42,
+  "owner_domain_rule": {
+    "path": "data/phase418-initial-partial-recipe-source/source-edge-list.json",
+    "sha256": "ffcba04810f1726c4ef5b4e917a21d4b8f4b1596aaed39f241d4531b266a372e",
+    "size": 8252
+  },
+  "raw_actual_carrier_EXPECTED_reads": 0,
+  "readback": [
+    {
+      "identity": [
+        27,
+        2003267,
+        33152,
+        1,
+        8883,
+        1793024508151396122,
+        1793024508151396122
+      ],
+      "path": "data/phase420-initial-partial-recipe-source/source-owner.json",
+      "sha256": "27c714ba1a8603ff23ff4f14d29b2ca14079f95d194921ab7d85122fa2973ca8",
+      "size": 8883
+    },
+    {
+      "identity": [
+        27,
+        1840818,
+        33152,
+        1,
+        1949,
+        1791988580642049021,
+        1791988580642049021
+      ],
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Animations/SquishySprite.gd",
+      "sha256": "4e118eb4ab9dda7949ecbe5c4a991033762c281dffbebcf6ea73761b7ff7deb3",
+      "size": 1949
+    },
+    {
+      "identity": [
+        27,
+        1843372,
+        33152,
+        1,
+        87,
+        1791988581210351044,
+        1791988581210351044
+      ],
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/SocketsNode.gd",
+      "sha256": "2180827bd7e9f0f380af7e5041343d56d6dc22a6a1e8a42f4d477d00365f69fe",
+      "size": 87
+    },
+    {
+      "identity": [
+        27,
+        1840776,
+        33152,
+        1,
+        864,
+        1791988580639170362,
+        1791988580639170362
+      ],
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Animations/Highlight.tres",
+      "sha256": "49ab44f9a82ccb0ad24634df897ad18469aaaee66615b055d33aea56b772f527",
+      "size": 864
+    },
+    {
+      "identity": [
+        27,
+        1840790,
+        33152,
+        1,
+        508,
+        1791988580640142345,
+        1791988580640142345
+      ],
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Animations/MiniActivate_consumed.tres",
+      "sha256": "221215195cc5bd59ff0bbfb1e79df9cbc2be4b5688f4fc7b9d40ab79586c3c77",
+      "size": 508
+    },
+    {
+      "identity": [
+        27,
+        1840781,
+        33152,
+        1,
+        1151,
+        1791988580639530529,
+        1791988580639530529
+      ],
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Animations/ItemsCrafted.tres",
+      "sha256": "7b9507fc03137a0a8c1140e64135655abfb2e3fa5ba25d011ead3f56d95b37e4",
+      "size": 1151
+    },
+    {
+      "identity": [
+        27,
+        1843112,
+        33152,
+        1,
+        700,
+        1791988581157158878,
+        1791988581157158878
+      ],
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/GemSocket.tscn",
+      "sha256": "5d84160b169b7bf0602098028adcb00f503e53027a6e1556ae11d9864b5e5d89",
+      "size": 700
+    },
+    {
+      "identity": [
+        27,
+        1843111,
+        33152,
+        1,
+        1117,
+        1791988581157118557,
+        1791988581157118557
+      ],
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/GemSocket.gd",
+      "sha256": "cc98f6294227b10e2113b8d10cd3bf4037b1d361815b738fb2ff0ae6dbb76814",
+      "size": 1117
+    },
+    {
+      "identity": [
+        27,
+        1986150,
+        33152,
+        1,
+        3282,
+        1792958136816290763,
+        1792958136816290763
+      ],
+      "path": "data/phase359-king-producer-source/after-source/Utility/AutoHideParticles.gd",
+      "sha256": "be98d47071983af16d9cb044ab54834336025522298e07dba65eadcf1d63771b",
+      "size": 3282
+    },
+    {
+      "identity": [
+        27,
+        1986155,
+        33152,
+        1,
+        46276,
+        1792958136817869563,
+        1792958136817869563
+      ],
+      "path": "data/phase359-king-producer-source/after-source/Utility/Util.gd",
+      "sha256": "d437e9338c8c4587c0cddd29e848bef54e8b621169dd364ceaa341fbc7a1e507",
+      "size": 46276
+    },
+    {
+      "identity": [
+        27,
+        1986124,
+        33152,
+        1,
+        178363,
+        1792958136802172360,
+        1792958136802172360
+      ],
+      "path": "data/phase359-king-producer-source/after-source/Items/Item.gd",
+      "sha256": "2fc1d658db352a7ecae8c2bfb60640a019284992a9c5f9a14c87baea50721631",
+      "size": 178363
+    },
+    {
+      "identity": [
+        27,
+        1986101,
+        33152,
+        1,
+        3101,
+        1792958136800445541,
+        1792958136800445541
+      ],
+      "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/KingGoobert.gd",
+      "sha256": "d40b72f75f8455c407fb0425520396139f6e8f9213449c9a86368ad21eb4fcf5",
+      "size": 3101
+    },
+    {
+      "identity": [
+        27,
+        1841398,
+        33152,
+        1,
+        4541,
+        1791988580723229512,
+        1793012746911060339
+      ],
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/KingGoobert.tscn",
+      "sha256": "853c83082edf0086f21c518075cf5701d93d88669e712df9094856cee6d89c8c",
+      "size": 4541
+    },
+    {
+      "identity": [
+        27,
+        1843146,
+        33152,
+        1,
+        53449,
+        1791988581162537439,
+        1791988581162537439
+      ],
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.tscn",
+      "sha256": "03619762fde0495f61d6e897003286ac0c1a9b1c4b82ebf3ef09dfaf425385f1",
+      "size": 53449
+    },
+    {
+      "identity": [
+        27,
+        1990184,
+        33152,
+        1,
+        104333,
+        1792999868557332502,
+        1792999868557332502
+      ],
+      "path": "data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
+      "sha256": "999e0043a653067a962819cf81340b0dad745fa2148bbfab7724d7948a6a21ea",
+      "size": 104333
+    },
+    {
+      "identity": [
+        27,
+        1990200,
+        33152,
+        1,
+        30584,
+        1792999868796846033,
+        1792999868796846033
+      ],
+      "path": "data/phase391-terminal-source/native-patch-source.json",
+      "sha256": "e889a9faf1669706732ceb72937011d5867f3094ca503b7997ff311b7c1002de",
+      "size": 30584
+    },
+    {
+      "identity": [
+        27,
+        531072,
+        33152,
+        1,
+        7999,
+        1792149326219522408,
+        1792149326219522408
+      ],
+      "path": "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/timer.cpp",
+      "sha256": "79e2ce272fd56465d8ccc2a5077bf6dc39422cbc588e71ddfab482eb7a33d862",
+      "size": 7999
+    },
+    {
+      "identity": [
+        27,
+        531073,
+        33152,
+        1,
+        3305,
+        1792149326219753369,
+        1792149326219753369
+      ],
+      "path": "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/timer.h",
+      "sha256": "20a3de2206b528223bd5b1ddf3175dd150e286c305f7ba43857a3dc29e80dd22",
+      "size": 3305
+    },
+    {
+      "identity": [
+        27,
+        531074,
+        33152,
+        1,
+        95163,
+        1792149326220459255,
+        1792149326220459255
+      ],
+      "path": "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/node.cpp",
+      "sha256": "0c2e3230b37644c8496f5b1aee59f428de6a497a380c247613c489e44cd508a9",
+      "size": 95163
+    },
+    {
+      "identity": [
+        27,
+        531075,
+        33152,
+        1,
+        74268,
+        1792149326222337986,
+        1792149326222337986
+      ],
+      "path": "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/scene_tree.cpp",
+      "sha256": "a1ac9f2da5a1046d1c468fd463de4907f535f124952b137d69fb39ef8b14b3b4",
+      "size": 74268
+    },
+    {
+      "identity": [
+        27,
+        2002955,
+        33152,
+        1,
+        2098,
+        1793021989187204622,
+        1793021989187204622
+      ],
+      "path": "data/phase418-root-finite-source-supplement/source-supplement.json",
+      "sha256": "6ee3f55a81d4e3016e0996a833490c95f506502254bc3af2fc0b20d17a2e2ab9",
+      "size": 2098
+    },
+    {
+      "identity": [
+        27,
+        2003026,
+        33152,
+        1,
+        1145,
+        1793022402585221660,
+        1793022402585221660
+      ],
+      "path": "data/phase418-root-finite-source-supplement/socket-member-supplement.json",
+      "sha256": "14a17488f6b1100f2f4e3e74c00c5b94a5ecdfeafff6fc17d672e2d8d0e51eb8",
+      "size": 1145
+    },
+    {
+      "identity": [
+        27,
+        2002960,
+        33152,
+        1,
+        3221,
+        1793022166758736972,
+        1793022166758736972
+      ],
+      "path": "data/phase418-root-finite-source-supplement/native-timer-attribution-proposal.json",
+      "sha256": "63961997bce4391e79a5a9fd6fe657fc66121e839949c91a0da21e9a15206297",
+      "size": 3221
+    },
+    {
+      "identity": [
+        27,
+        2002958,
+        33152,
+        1,
+        10460,
+        1793022085004756809,
+        1793022085004756809
+      ],
+      "path": "data/phase417-independent-minimal-partial-recipe-review/review.json",
+      "sha256": "8c489c2de5c677d428ff63df596768c0944fda4cd193c6262267596763fa6ee0",
+      "size": 10460
+    },
+    {
+      "identity": [
+        27,
+        2003029,
+        33152,
+        1,
+        4937,
+        1793022545748455940,
+        1793022545748455940
+      ],
+      "path": "data/phase419-independent-autohide-projection-review/source-intermediate-review.json",
+      "sha256": "01e7fdc3dcfb17a8f8f792395682b442abfb488915dfb9f92593c4f3402198e0",
+      "size": 4937
+    },
+    {
+      "identity": [
+        27,
+        2002441,
+        33152,
+        1,
+        3529,
+        1793016068312302444,
+        1793016068312302444
+      ],
+      "path": "data/phase411-root-initial-audit-release/input-audit-release.json",
+      "sha256": "8f5d6386019447576ae04a9457a489bfa0a6a6ae416c23d05eb99ad49097e193",
+      "size": 3529
+    },
+    {
+      "identity": [
+        27,
+        2002978,
+        33152,
+        1,
+        8252,
+        1793023732335375258,
+        1793023732335375258
+      ],
+      "path": "data/phase418-initial-partial-recipe-source/source-edge-list.json",
+      "sha256": "ffcba04810f1726c4ef5b4e917a21d4b8f4b1596aaed39f241d4531b266a372e",
+      "size": 8252
+    },
+    {
+      "identity": [
+        27,
+        1861755,
+        33152,
+        1,
+        12035,
+        1793023617177261297,
+        1793023617177261297
+      ],
+      "path": "docs/phase418_autohide_partial_recipe_implementation_spec.md",
+      "sha256": "0d0d68900dc1b970d2356795f992cb1cc9cd6c37302197dd0cd2e87f34c7f3ec",
+      "size": 12035
+    },
+    {
+      "identity": [
+        27,
+        1861704,
+        33152,
+        1,
+        31698,
+        1793023467791734110,
+        1793023467791734110
+      ],
+      "path": "tests/phase418_initial_autohide_projection.py",
+      "sha256": "c94e869d71ae105c6fc3f0d216303869651486ea8cd501d30274a124042d0281",
+      "size": 31698
+    },
+    {
+      "identity": [
+        27,
+        2003031,
+        33152,
+        1,
+        11784,
+        1793023732302445977,
+        1793023732302445977
+      ],
+      "path": "data/phase418-initial-partial-recipe-source/author-seal.py.txt",
+      "sha256": "cf6a22f1cf7e22af8d025a3efe65b060d86385d1014e4b7ee61e5b09581aab7b",
+      "size": 11784
+    },
+    {
+      "identity": [
+        27,
+        2003032,
+        33152,
+        1,
+        19882,
+        1793023732337014595,
+        1793023732337014595
+      ],
+      "path": "data/phase418-initial-partial-recipe-source/context.json",
+      "sha256": "99b7f0b15a5e7a429d283d3ae1fa6def7710345a80961345dc4e2c5f5c4fc4f5",
+      "size": 19882
+    },
+    {
+      "identity": [
+        27,
+        2003033,
+        33152,
+        1,
+        6934,
+        1793023732352839708,
+        1793023732352839708
+      ],
+      "path": "data/phase418-initial-partial-recipe-source/api-contract.json",
+      "sha256": "970c63389d250dccdc3ea3f8fbf8f40d98dc7f2294a9611c7cdc7526b027fa7f",
+      "size": 6934
+    },
+    {
+      "identity": [
+        27,
+        2003034,
+        33152,
+        1,
+        2883,
+        1793023732353163599,
+        1793023732353163599
+      ],
+      "path": "data/phase418-initial-partial-recipe-source/author-static-checks.json",
+      "sha256": "35887d56551ebfc3e78aceefc2e1f134a509e9199ac55e7b376d9a74e34ee24f",
+      "size": 2883
+    },
+    {
+      "identity": [
+        27,
+        2003035,
+        33152,
+        1,
+        8414,
+        1793023732353877352,
+        1793023732353877352
+      ],
+      "path": "data/phase418-initial-partial-recipe-source/source-freeze.json",
+      "sha256": "6ce962efe6505301088475d8e0abdaa411dbc3e094ac9a640e24435b171a0e38",
+      "size": 8414
+    },
+    {
+      "identity": [
+        27,
+        2003036,
+        33152,
+        1,
+        7148,
+        1793023732354549285,
+        1793023732354549285
+      ],
+      "path": "data/phase418-initial-partial-recipe-source/source-owner.json",
+      "sha256": "c8325cf16594d3883c0a62e1fabf55b7d7a4788c0209aa9d8ff9ea190853144a",
+      "size": 7148
+    },
+    {
+      "identity": [
+        27,
+        2003051,
+        33152,
+        1,
+        7586,
+        1793024210505166723,
+        1793024210505166723
+      ],
+      "path": "data/phase419-independent-autohide-projection-review/review.json",
+      "sha256": "91f1d98cf106b92e93ca0f6737bff9d318a4bb8b11c6aef7e40d539173e74157",
+      "size": 7586
+    },
+    {
+      "identity": [
+        27,
+        1861757,
+        33152,
+        1,
+        5951,
+        1793024394774992125,
+        1793024394774992125
+      ],
+      "path": "docs/phase420_initial_prefix_boundary_repair_spec.md",
+      "sha256": "f5e479b36b87dc541bc185ddc0c6875c96e176ae6d88387d9029b770c474d1f8",
+      "size": 5951
+    },
+    {
+      "identity": [
+        27,
+        1861762,
+        33152,
+        1,
+        33090,
+        1793024507823806163,
+        1793024507823806163
+      ],
+      "path": "tests/phase420_initial_autohide_projection.py",
+      "sha256": "42fa7ca7d44b64ae5045246e02091eb40629dfa900b6e10b0bd51a054b30f64b",
+      "size": 33090
+    },
+    {
+      "identity": [
+        27,
+        2003262,
+        33152,
+        1,
+        11076,
+        1793024507763612534,
+        1793024507763612534
+      ],
+      "path": "data/phase420-initial-partial-recipe-source/author-build.py.txt",
+      "sha256": "8f4ab3c80a7bdccd57e7b33ee8977cbab4c07b53a807b3f816b5027657fb8a62",
+      "size": 11076
+    },
+    {
+      "identity": [
+        27,
+        2003263,
+        33152,
+        1,
+        20430,
+        1793024508148977886,
+        1793024508148977886
+      ],
+      "path": "data/phase420-initial-partial-recipe-source/context.json",
+      "sha256": "ecab9e57df0a8eef0498f567edaa9750ab3a41ea394997c5d26122432e53c950",
+      "size": 20430
+    },
+    {
+      "identity": [
+        27,
+        2003264,
+        33152,
+        1,
+        8068,
+        1793024508149693888,
+        1793024508149693888
+      ],
+      "path": "data/phase420-initial-partial-recipe-source/api-contract.json",
+      "sha256": "02a5f4ee933c96144f5453ebe7d697233f9fe8a089469caef6d47554a61343fb",
+      "size": 8068
+    },
+    {
+      "identity": [
+        27,
+        2003265,
+        33152,
+        1,
+        5562,
+        1793024508150226974,
+        1793024508150226974
+      ],
+      "path": "data/phase420-initial-partial-recipe-source/conservation.json",
+      "sha256": "7c46ef9ff504662a085e2a49194154a46f4a664be802d56022d4cc34ae70a149",
+      "size": 5562
+    },
+    {
+      "identity": [
+        27,
+        2003266,
+        33152,
+        1,
+        10455,
+        1793024508150835114,
+        1793024508150835114
+      ],
+      "path": "data/phase420-initial-partial-recipe-source/source-freeze.json",
+      "sha256": "8bd6e12d0d0cbda4558c14ab1aecee50558136d68407c2932608febcac87e73a",
+      "size": 10455
+    }
+  ],
+  "real_projection_calls": 0,
+  "same_actual_four_data_pins": true,
+  "schema": "independent421-420-static-conservation/1",
+  "semantic_exceptions": [
+    "project_ui",
+    "envelope_sequence"
+  ],
+  "source_freeze": {
+    "path": "data/phase420-initial-partial-recipe-source/source-freeze.json",
+    "sha256": "8bd6e12d0d0cbda4558c14ab1aecee50558136d68407c2932608febcac87e73a",
+    "size": 10455
+  },
+  "source_module": {
+    "path": "tests/phase420_initial_autohide_projection.py",
+    "sha256": "42fa7ca7d44b64ae5045246e02091eb40629dfa900b6e10b0bd51a054b30f64b",
+    "size": 33090
+  },
+  "source_owner": {
+    "path": "data/phase420-initial-partial-recipe-source/source-owner.json",
+    "sha256": "27c714ba1a8603ff23ff4f14d29b2ca14079f95d194921ab7d85122fa2973ca8",
+    "size": 8883
+  },
+  "status": "STATIC_PASS"
+}
