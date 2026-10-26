@@ -1,0 +1,5 @@
+# Independent408 Source acceptance after loader-only scope repair
+
+New phase410 setup ran once0.051829070s exit0:exactly408source open/compile/exec,stdlib/projectpyc/data opens0;API/main/run_audit0. Source bytes unchanged. Reuses immutable409Source static and20functional outcomes without repeating them;old409scope remains NOT_FULLY_SATISFIED and timeout remains BLOCKED. Original timeout cause is Source-only inference,not a fabricated runtime finding. Confirmed completed module instances2,oldtimeout completionunknown,totalattempts3.
+
+Final21ordinary leaves68421B were independently sealed and Root-rehashed. The status token INDEPENDENT409_STDLIB_INITIAL_AUDIT_SOURCE_ACCEPTED_ROOT_PENDING is the unchanged408interface;actualreview schema/phase is410. This accepts Source for a later narrowly released initial audit,not actual12/genuine input/model/King. Existing formal75 remains accepted;the report's false production-admission field denotes no new admission decision by this review and does not revoke75. All engine/schema/native/model/inputbuild/actual12 counts0. Old report/owner/allowset unchanged.

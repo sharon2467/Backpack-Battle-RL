@@ -1,0 +1,958 @@
+{
+  "actual12_reads": 0,
+  "automatic_retry": false,
+  "calls": [
+    {
+      "API": "owned_index",
+      "expected": {
+        "count": 40
+      },
+      "id": "actual402-map",
+      "open_end": 17,
+      "open_start": 17,
+      "outcome": "RETURNED",
+      "profile_after": {
+        "<genexpr>": 150,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "canonical": 40,
+        "descriptor": 40,
+        "exact": 80,
+        "need": 361,
+        "owned_index": 1
+      },
+      "profile_before": {
+        "<module>": 1,
+        "SourceIntegrityError": 1
+      }
+    },
+    {
+      "API": "owned_index",
+      "expected": {
+        "count": 4
+      },
+      "id": "actual405-map",
+      "open_end": 17,
+      "open_start": 17,
+      "outcome": "RETURNED",
+      "profile_after": {
+        "<genexpr>": 164,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "canonical": 44,
+        "descriptor": 44,
+        "exact": 88,
+        "need": 398,
+        "owned_index": 2
+      },
+      "profile_before": {
+        "<genexpr>": 150,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "canonical": 40,
+        "descriptor": 40,
+        "exact": 80,
+        "need": 361,
+        "owned_index": 1
+      }
+    },
+    {
+      "API": "owned_index",
+      "expected": {
+        "count": 83
+      },
+      "id": "actual408-list",
+      "open_end": 17,
+      "open_start": 17,
+      "outcome": "RETURNED",
+      "profile_after": {
+        "<genexpr>": 546,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "canonical": 114,
+        "descriptor": 127,
+        "exact": 171,
+        "need": 1037,
+        "owned_index": 3
+      },
+      "profile_before": {
+        "<genexpr>": 164,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "canonical": 44,
+        "descriptor": 44,
+        "exact": 88,
+        "need": 398,
+        "owned_index": 2
+      }
+    },
+    {
+      "API": "owned_index",
+      "exception_message": "closed path-map owner value; no path override",
+      "exception_type": "SourceIntegrityError",
+      "expected": {
+        "exception_type": "SourceIntegrityError",
+        "message_contains": "closed path-map owner value; no path override"
+      },
+      "id": "owner-path-override",
+      "open_end": 17,
+      "open_start": 17,
+      "outcome": "EXPECTED_REJECTION",
+      "profile_after": {
+        "<genexpr>": 546,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "canonical": 114,
+        "descriptor": 127,
+        "exact": 172,
+        "need": 1039,
+        "owned_index": 4
+      },
+      "profile_before": {
+        "<genexpr>": 546,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "canonical": 114,
+        "descriptor": 127,
+        "exact": 171,
+        "need": 1037,
+        "owned_index": 3
+      }
+    },
+    {
+      "API": "owned_index",
+      "exception_message": "unique normalized owned source path",
+      "exception_type": "SourceIntegrityError",
+      "expected": {
+        "exception_type": "SourceIntegrityError",
+        "message_contains": "unique normalized owned source path"
+      },
+      "id": "owner-duplicate",
+      "open_end": 17,
+      "open_start": 17,
+      "outcome": "EXPECTED_REJECTION",
+      "profile_after": {
+        "<genexpr>": 554,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "canonical": 116,
+        "descriptor": 129,
+        "exact": 174,
+        "need": 1056,
+        "owned_index": 5
+      },
+      "profile_before": {
+        "<genexpr>": 546,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "canonical": 114,
+        "descriptor": 127,
+        "exact": 172,
+        "need": 1039,
+        "owned_index": 4
+      }
+    },
+    {
+      "API": "required_initial_targets",
+      "expected": {
+        "count": 1479
+      },
+      "id": "required-exact-set",
+      "open_end": 17,
+      "open_start": 17,
+      "outcome": "RETURNED",
+      "profile_after": {
+        "<genexpr>": 554,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "canonical": 116,
+        "descriptor": 129,
+        "exact": 174,
+        "need": 1056,
+        "owned_index": 5,
+        "required_initial_targets": 1
+      },
+      "profile_before": {
+        "<genexpr>": 554,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "canonical": 116,
+        "descriptor": 129,
+        "exact": 174,
+        "need": 1056,
+        "owned_index": 5
+      }
+    },
+    {
+      "API": "assess_initial_feasibility",
+      "expected": {
+        "status": "BLOCKED_INITIAL_SOURCE_GAPS"
+      },
+      "id": "conservative-complete-set",
+      "open_end": 17,
+      "open_start": 17,
+      "outcome": "RETURNED",
+      "profile_after": {
+        "<genexpr>": 16831,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 1,
+        "canonical": 116,
+        "descriptor": 129,
+        "exact": 174,
+        "need": 12890,
+        "owned_index": 5,
+        "required_initial_targets": 2
+      },
+      "profile_before": {
+        "<genexpr>": 554,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "canonical": 116,
+        "descriptor": 129,
+        "exact": 174,
+        "need": 1056,
+        "owned_index": 5,
+        "required_initial_targets": 1
+      }
+    },
+    {
+      "API": "assess_initial_feasibility",
+      "exception_message": "complete exact required field/phase/role set",
+      "exception_type": "SourceIntegrityError",
+      "expected": {
+        "exception_type": "SourceIntegrityError",
+        "message_contains": "complete exact required field/phase/role set"
+      },
+      "id": "missing-target",
+      "open_end": 17,
+      "open_start": 17,
+      "outcome": "EXPECTED_REJECTION",
+      "profile_after": {
+        "<genexpr>": 25699,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 2,
+        "canonical": 116,
+        "descriptor": 129,
+        "exact": 174,
+        "need": 24716,
+        "owned_index": 5,
+        "required_initial_targets": 3
+      },
+      "profile_before": {
+        "<genexpr>": 16831,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 1,
+        "canonical": 116,
+        "descriptor": 129,
+        "exact": 174,
+        "need": 12890,
+        "owned_index": 5,
+        "required_initial_targets": 2
+      }
+    },
+    {
+      "API": "assess_initial_feasibility",
+      "exception_message": "known unique required assessment target",
+      "exception_type": "SourceIntegrityError",
+      "expected": {
+        "exception_type": "SourceIntegrityError",
+        "message_contains": "known unique required assessment target"
+      },
+      "id": "duplicate-target",
+      "open_end": 17,
+      "open_start": 17,
+      "outcome": "EXPECTED_REJECTION",
+      "profile_after": {
+        "<genexpr>": 34579,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 3,
+        "canonical": 116,
+        "descriptor": 129,
+        "exact": 174,
+        "need": 36552,
+        "owned_index": 5,
+        "required_initial_targets": 4
+      },
+      "profile_before": {
+        "<genexpr>": 25699,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 2,
+        "canonical": 116,
+        "descriptor": 129,
+        "exact": 174,
+        "need": 24716,
+        "owned_index": 5,
+        "required_initial_targets": 3
+      }
+    },
+    {
+      "API": "assess_initial_feasibility",
+      "exception_message": "assessment strict strings/BOOL proof",
+      "exception_type": "SourceIntegrityError",
+      "expected": {
+        "exception_type": "SourceIntegrityError",
+        "message_contains": "assessment strict strings/BOOL proof"
+      },
+      "id": "BOOL-proof-is-INT",
+      "open_end": 17,
+      "open_start": 17,
+      "outcome": "EXPECTED_REJECTION",
+      "profile_after": {
+        "<genexpr>": 34585,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 4,
+        "canonical": 116,
+        "descriptor": 129,
+        "exact": 174,
+        "need": 36555,
+        "owned_index": 5,
+        "required_initial_targets": 5
+      },
+      "profile_before": {
+        "<genexpr>": 34579,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 3,
+        "canonical": 116,
+        "descriptor": 129,
+        "exact": 174,
+        "need": 36552,
+        "owned_index": 5,
+        "required_initial_targets": 4
+      }
+    },
+    {
+      "API": "assess_initial_feasibility",
+      "exception_message": "complete proof requires supported validation",
+      "exception_type": "SourceIntegrityError",
+      "expected": {
+        "exception_type": "SourceIntegrityError",
+        "message_contains": "complete proof requires supported validation"
+      },
+      "id": "complete-but-unproven",
+      "open_end": 17,
+      "open_start": 17,
+      "outcome": "EXPECTED_REJECTION",
+      "profile_after": {
+        "<genexpr>": 34591,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 5,
+        "canonical": 116,
+        "descriptor": 129,
+        "exact": 174,
+        "need": 36563,
+        "owned_index": 5,
+        "required_initial_targets": 6
+      },
+      "profile_before": {
+        "<genexpr>": 34585,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 4,
+        "canonical": 116,
+        "descriptor": 129,
+        "exact": 174,
+        "need": 36555,
+        "owned_index": 5,
+        "required_initial_targets": 5
+      }
+    },
+    {
+      "API": "assess_initial_feasibility",
+      "exception_message": "SOURCE-only target cannot be directly observed, including private Timer",
+      "exception_type": "SourceIntegrityError",
+      "expected": {
+        "exception_type": "SourceIntegrityError",
+        "message_contains": "SOURCE-only target cannot be directly observed"
+      },
+      "id": "source-target-direct",
+      "open_end": 17,
+      "open_start": 17,
+      "outcome": "EXPECTED_REJECTION",
+      "profile_after": {
+        "<genexpr>": 34603,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 6,
+        "canonical": 116,
+        "descriptor": 129,
+        "exact": 174,
+        "need": 36578,
+        "owned_index": 5,
+        "required_initial_targets": 7
+      },
+      "profile_before": {
+        "<genexpr>": 34591,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 5,
+        "canonical": 116,
+        "descriptor": 129,
+        "exact": 174,
+        "need": 36563,
+        "owned_index": 5,
+        "required_initial_targets": 6
+      }
+    },
+    {
+      "API": "assess_initial_feasibility",
+      "exception_message": "zero reviewed SOURCE derivation recipes; caller flags cannot prove a chain",
+      "exception_type": "SourceIntegrityError",
+      "expected": {
+        "exception_type": "SourceIntegrityError",
+        "message_contains": "zero reviewed SOURCE derivation recipes"
+      },
+      "id": "caller-derived-recipe",
+      "open_end": 17,
+      "open_start": 17,
+      "outcome": "EXPECTED_REJECTION",
+      "profile_after": {
+        "<genexpr>": 34615,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 7,
+        "canonical": 116,
+        "descriptor": 129,
+        "exact": 174,
+        "need": 36592,
+        "owned_index": 5,
+        "required_initial_targets": 8
+      },
+      "profile_before": {
+        "<genexpr>": 34603,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 6,
+        "canonical": 116,
+        "descriptor": 129,
+        "exact": 174,
+        "need": 36578,
+        "owned_index": 5,
+        "required_initial_targets": 7
+      }
+    },
+    {
+      "API": "assess_initial_feasibility",
+      "exception_message": "missing target stays unproven/incomplete",
+      "exception_type": "SourceIntegrityError",
+      "expected": {
+        "exception_type": "SourceIntegrityError",
+        "message_contains": "missing target stays unproven/incomplete"
+      },
+      "id": "missing-but-supported",
+      "open_end": 17,
+      "open_start": 17,
+      "outcome": "EXPECTED_REJECTION",
+      "profile_after": {
+        "<genexpr>": 34621,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 8,
+        "canonical": 116,
+        "descriptor": 129,
+        "exact": 174,
+        "need": 36600,
+        "owned_index": 5,
+        "required_initial_targets": 9
+      },
+      "profile_before": {
+        "<genexpr>": 34615,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 7,
+        "canonical": 116,
+        "descriptor": 129,
+        "exact": 174,
+        "need": 36592,
+        "owned_index": 5,
+        "required_initial_targets": 8
+      }
+    },
+    {
+      "API": "install_io_guard",
+      "expected": {
+        "returns": null
+      },
+      "id": "actual-guard-install",
+      "open_end": 17,
+      "open_start": 17,
+      "outcome": "RETURNED",
+      "profile_after": {
+        "<genexpr>": 34621,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 8,
+        "canonical": 116,
+        "descriptor": 129,
+        "exact": 174,
+        "install_io_guard": 1,
+        "need": 36600,
+        "owned_index": 5,
+        "required_initial_targets": 9
+      },
+      "profile_before": {
+        "<genexpr>": 34621,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 8,
+        "canonical": 116,
+        "descriptor": 129,
+        "exact": 174,
+        "need": 36600,
+        "owned_index": 5,
+        "required_initial_targets": 9
+      }
+    },
+    {
+      "API": "save_new",
+      "expected": {
+        "nested_read_regular_calls": 1
+      },
+      "id": "strict-new-output",
+      "open_end": 20,
+      "open_start": 17,
+      "outcome": "RETURNED",
+      "profile_after": {
+        "<genexpr>": 34645,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 8,
+        "canonical": 116,
+        "descriptor": 130,
+        "exact": 175,
+        "identity": 6,
+        "install_io_guard": 1,
+        "need": 36614,
+        "owned_index": 5,
+        "read_regular": 1,
+        "required_initial_targets": 9,
+        "save_new": 1,
+        "unlinked": 3
+      },
+      "profile_before": {
+        "<genexpr>": 34621,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 8,
+        "canonical": 116,
+        "descriptor": 129,
+        "exact": 174,
+        "install_io_guard": 1,
+        "need": 36600,
+        "owned_index": 5,
+        "required_initial_targets": 9
+      }
+    },
+    {
+      "API": "save_new",
+      "exception_message": "[Errno 17] File exists: '/workspace/python-original-engine/repo/data/phase409-independent408-component-first-001/ordinary-output.json'",
+      "exception_type": "FileExistsError",
+      "expected": {
+        "exception_type": "FileExistsError"
+      },
+      "id": "exclusive-existing-output",
+      "open_end": 21,
+      "open_start": 20,
+      "outcome": "EXPECTED_REJECTION",
+      "profile_after": {
+        "<genexpr>": 34653,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 8,
+        "canonical": 116,
+        "descriptor": 130,
+        "exact": 175,
+        "identity": 6,
+        "install_io_guard": 1,
+        "need": 36616,
+        "owned_index": 5,
+        "read_regular": 1,
+        "required_initial_targets": 9,
+        "save_new": 2,
+        "unlinked": 4
+      },
+      "profile_before": {
+        "<genexpr>": 34645,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 8,
+        "canonical": 116,
+        "descriptor": 130,
+        "exact": 175,
+        "identity": 6,
+        "install_io_guard": 1,
+        "need": 36614,
+        "owned_index": 5,
+        "read_regular": 1,
+        "required_initial_targets": 9,
+        "save_new": 1,
+        "unlinked": 3
+      }
+    },
+    {
+      "API": "read_regular",
+      "exception_message": "no symlink ancestry",
+      "exception_type": "SourceIntegrityError",
+      "expected": {
+        "content_opens": 0,
+        "exception_type": "SourceIntegrityError",
+        "message_contains": "no symlink ancestry"
+      },
+      "id": "physical-symlink",
+      "open_end": 21,
+      "open_start": 21,
+      "outcome": "EXPECTED_REJECTION",
+      "profile_after": {
+        "<genexpr>": 34655,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 8,
+        "canonical": 116,
+        "descriptor": 131,
+        "exact": 176,
+        "identity": 6,
+        "install_io_guard": 1,
+        "need": 36621,
+        "owned_index": 5,
+        "read_regular": 2,
+        "required_initial_targets": 9,
+        "save_new": 2,
+        "unlinked": 5
+      },
+      "profile_before": {
+        "<genexpr>": 34653,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 8,
+        "canonical": 116,
+        "descriptor": 130,
+        "exact": 175,
+        "identity": 6,
+        "install_io_guard": 1,
+        "need": 36616,
+        "owned_index": 5,
+        "read_regular": 1,
+        "required_initial_targets": 9,
+        "save_new": 2,
+        "unlinked": 4
+      }
+    },
+    {
+      "API": "read_regular",
+      "exception_message": "ordinary single-link before read",
+      "exception_type": "SourceIntegrityError",
+      "expected": {
+        "content_opens": 0,
+        "exception_type": "SourceIntegrityError",
+        "message_contains": "ordinary single-link before read"
+      },
+      "id": "physical-hardlink",
+      "open_end": 21,
+      "open_start": 21,
+      "outcome": "EXPECTED_REJECTION",
+      "profile_after": {
+        "<genexpr>": 34664,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 8,
+        "canonical": 116,
+        "descriptor": 132,
+        "exact": 177,
+        "identity": 6,
+        "install_io_guard": 1,
+        "need": 36627,
+        "owned_index": 5,
+        "read_regular": 3,
+        "required_initial_targets": 9,
+        "save_new": 2,
+        "unlinked": 6
+      },
+      "profile_before": {
+        "<genexpr>": 34655,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 8,
+        "canonical": 116,
+        "descriptor": 131,
+        "exact": 176,
+        "identity": 6,
+        "install_io_guard": 1,
+        "need": 36621,
+        "owned_index": 5,
+        "read_regular": 2,
+        "required_initial_targets": 9,
+        "save_new": 2,
+        "unlinked": 5
+      }
+    },
+    {
+      "API": "read_regular",
+      "exception_message": "ordinary single-link before read",
+      "exception_type": "SourceIntegrityError",
+      "expected": {
+        "content_opens": 0,
+        "exception_type": "SourceIntegrityError",
+        "message_contains": "ordinary single-link before read"
+      },
+      "id": "physical-special",
+      "open_end": 21,
+      "open_start": 21,
+      "outcome": "EXPECTED_REJECTION",
+      "profile_after": {
+        "<genexpr>": 34673,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 8,
+        "canonical": 116,
+        "descriptor": 133,
+        "exact": 178,
+        "identity": 6,
+        "install_io_guard": 1,
+        "need": 36633,
+        "owned_index": 5,
+        "read_regular": 4,
+        "required_initial_targets": 9,
+        "save_new": 2,
+        "unlinked": 7
+      },
+      "profile_before": {
+        "<genexpr>": 34664,
+        "<module>": 1,
+        "SourceIntegrityError": 1,
+        "assess_initial_feasibility": 8,
+        "canonical": 116,
+        "descriptor": 132,
+        "exact": 177,
+        "identity": 6,
+        "install_io_guard": 1,
+        "need": 36627,
+        "owned_index": 5,
+        "read_regular": 3,
+        "required_initial_targets": 9,
+        "save_new": 2,
+        "unlinked": 6
+      }
+    }
+  ],
+  "conservative_assessment": {
+    "King_admitted": false,
+    "classifications": {
+      "DIRECT_OBSERVATION": 0,
+      "MISSING": 1479,
+      "SOURCE_DERIVED": 0
+    },
+    "field_count": 1479,
+    "fullschema": "NOT_VALIDATED",
+    "genuine_input_accepted": false,
+    "inputbuild": 0,
+    "model356": "CLOSED",
+    "models": 0,
+    "old_SUT_calls": 0,
+    "projection": 0,
+    "reader361": "CLOSED",
+    "rejected_fields": 0,
+    "schema": "phase408-initial-source-feasibility/1",
+    "schema_calls": 0,
+    "source_derived_recipes_implemented": 0,
+    "status": "BLOCKED_INITIAL_SOURCE_GAPS"
+  },
+  "elapsed_seconds": 0.34598767300485633,
+  "guard_violations": [
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase409-independent408-component-preparation/tinyfs/outside-ordinary.bin"
+    }
+  ],
+  "inputbuild": 0,
+  "io_events": [
+    {
+      "active": null,
+      "event": "open",
+      "flags": 524288,
+      "mode": "r",
+      "path": "/workspace/python-original-engine/repo/tests/__pycache__/phase408_initial_source_audit.cpython-312.pyc"
+    },
+    {
+      "active": null,
+      "event": "open",
+      "flags": 524288,
+      "mode": "r",
+      "path": "/workspace/python-original-engine/repo/tests/phase408_initial_source_audit.py"
+    },
+    {
+      "active": null,
+      "event": "import",
+      "module": "traceback"
+    },
+    {
+      "active": null,
+      "event": "open",
+      "flags": 524288,
+      "mode": "r",
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/__pycache__/traceback.cpython-312.pyc"
+    },
+    {
+      "active": null,
+      "event": "import",
+      "module": "collections.abc"
+    },
+    {
+      "active": null,
+      "event": "open",
+      "flags": 524288,
+      "mode": "r",
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/collections/__pycache__/abc.cpython-312.pyc"
+    },
+    {
+      "active": null,
+      "event": "import",
+      "module": "linecache"
+    },
+    {
+      "active": null,
+      "event": "open",
+      "flags": 524288,
+      "mode": "r",
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/__pycache__/linecache.cpython-312.pyc"
+    },
+    {
+      "active": null,
+      "event": "import",
+      "module": "tokenize"
+    },
+    {
+      "active": null,
+      "event": "open",
+      "flags": 524288,
+      "mode": "r",
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/__pycache__/tokenize.cpython-312.pyc"
+    },
+    {
+      "active": null,
+      "event": "import",
+      "module": "token"
+    },
+    {
+      "active": null,
+      "event": "open",
+      "flags": 524288,
+      "mode": "r",
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/__pycache__/token.cpython-312.pyc"
+    },
+    {
+      "active": null,
+      "event": "import",
+      "module": "_tokenize"
+    },
+    {
+      "active": null,
+      "event": "import",
+      "module": "textwrap"
+    },
+    {
+      "active": null,
+      "event": "open",
+      "flags": 524288,
+      "mode": "r",
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/__pycache__/textwrap.cpython-312.pyc"
+    },
+    {
+      "active": null,
+      "event": "import",
+      "module": "contextlib"
+    },
+    {
+      "active": null,
+      "event": "open",
+      "flags": 524288,
+      "mode": "r",
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/__pycache__/contextlib.cpython-312.pyc"
+    },
+    {
+      "active": "strict-new-output",
+      "event": "open",
+      "flags": 524481,
+      "mode": "x",
+      "path": "/workspace/python-original-engine/repo/data/phase409-independent408-component-first-001/ordinary-output.json"
+    },
+    {
+      "active": "strict-new-output",
+      "event": "open",
+      "flags": 657408,
+      "mode": null,
+      "path": "/workspace/python-original-engine/repo/data/phase409-independent408-component-first-001/ordinary-output.json"
+    },
+    {
+      "active": "strict-new-output",
+      "event": "open",
+      "flags": 524288,
+      "mode": "r",
+      "path": 3
+    },
+    {
+      "active": "exclusive-existing-output",
+      "event": "open",
+      "flags": 524481,
+      "mode": "x",
+      "path": "/workspace/python-original-engine/repo/data/phase409-independent408-component-first-001/ordinary-output.json"
+    },
+    {
+      "active": "guard-denied-owned-outside-read",
+      "event": "open",
+      "flags": 524288,
+      "mode": "r",
+      "path": "/workspace/python-original-engine/repo/data/phase409-independent408-component-preparation/tinyfs/outside-ordinary.bin"
+    },
+    {
+      "active": null,
+      "event": "open",
+      "flags": 524288,
+      "mode": "r",
+      "path": "/workspace/python-original-engine/repo/data/phase409-independent408-component-first-001/ordinary-output.json"
+    },
+    {
+      "active": null,
+      "event": "open",
+      "flags": 524481,
+      "mode": "x",
+      "path": "/workspace/python-original-engine/repo/data/phase409-independent408-component-first-001/result.json"
+    }
+  ],
+  "models": 0,
+  "native": 0,
+  "new_audit_imports": 1,
+  "old_SUT_calls": 0,
+  "old_SUT_imports": 0,
+  "outside_read_control": {
+    "content_read": false,
+    "open_attempts": 1,
+    "status": "EXPECTED_PERMISSION_REJECTION"
+  },
+  "profile_counts": {
+    "<genexpr>": 34673,
+    "<module>": 1,
+    "SourceIntegrityError": 1,
+    "assess_initial_feasibility": 8,
+    "canonical": 116,
+    "descriptor": 133,
+    "exact": 178,
+    "identity": 6,
+    "install_io_guard": 1,
+    "need": 36633,
+    "owned_index": 5,
+    "read_regular": 4,
+    "required_initial_targets": 9,
+    "save_new": 2,
+    "unlinked": 7
+  },
+  "schema_calls": 0,
+  "status": "FINITE_COMPONENTS_PASS",
+  "top_level_API_calls": 20
+}

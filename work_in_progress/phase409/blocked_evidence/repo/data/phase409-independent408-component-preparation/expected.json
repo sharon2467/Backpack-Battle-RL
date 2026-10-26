@@ -1,0 +1,230 @@
+{
+  "actual_audit_positive": false,
+  "builtin_guard_read_attempts": 1,
+  "calls": [
+    {
+      "API": "owned_index",
+      "expected": {
+        "count": 40
+      },
+      "id": "actual402-map",
+      "obligations": [
+        "407-01"
+      ]
+    },
+    {
+      "API": "owned_index",
+      "expected": {
+        "count": 4
+      },
+      "id": "actual405-map",
+      "obligations": [
+        "407-01"
+      ]
+    },
+    {
+      "API": "owned_index",
+      "expected": {
+        "count": 83
+      },
+      "id": "actual408-list",
+      "obligations": [
+        "407-01"
+      ]
+    },
+    {
+      "API": "owned_index",
+      "expected": {
+        "exception_type": "SourceIntegrityError",
+        "message_contains": "closed path-map owner value; no path override"
+      },
+      "id": "owner-path-override",
+      "obligations": [
+        "407-01"
+      ]
+    },
+    {
+      "API": "owned_index",
+      "expected": {
+        "exception_type": "SourceIntegrityError",
+        "message_contains": "unique normalized owned source path"
+      },
+      "id": "owner-duplicate",
+      "obligations": [
+        "407-01"
+      ]
+    },
+    {
+      "API": "required_initial_targets",
+      "expected": {
+        "count": 1479
+      },
+      "id": "required-exact-set",
+      "obligations": [
+        "407-04",
+        "407-06",
+        "407-07"
+      ]
+    },
+    {
+      "API": "assess_initial_feasibility",
+      "expected": {
+        "status": "BLOCKED_INITIAL_SOURCE_GAPS"
+      },
+      "id": "conservative-complete-set",
+      "obligations": [
+        "407-05",
+        "407-06"
+      ]
+    },
+    {
+      "API": "assess_initial_feasibility",
+      "expected": {
+        "exception_type": "SourceIntegrityError",
+        "message_contains": "complete exact required field/phase/role set"
+      },
+      "id": "missing-target",
+      "obligations": [
+        "407-06"
+      ]
+    },
+    {
+      "API": "assess_initial_feasibility",
+      "expected": {
+        "exception_type": "SourceIntegrityError",
+        "message_contains": "known unique required assessment target"
+      },
+      "id": "duplicate-target",
+      "obligations": [
+        "407-06"
+      ]
+    },
+    {
+      "API": "assess_initial_feasibility",
+      "expected": {
+        "exception_type": "SourceIntegrityError",
+        "message_contains": "assessment strict strings/BOOL proof"
+      },
+      "id": "BOOL-proof-is-INT",
+      "obligations": [
+        "407-03"
+      ]
+    },
+    {
+      "API": "assess_initial_feasibility",
+      "expected": {
+        "exception_type": "SourceIntegrityError",
+        "message_contains": "complete proof requires supported validation"
+      },
+      "id": "complete-but-unproven",
+      "obligations": [
+        "407-05"
+      ]
+    },
+    {
+      "API": "assess_initial_feasibility",
+      "expected": {
+        "exception_type": "SourceIntegrityError",
+        "message_contains": "SOURCE-only target cannot be directly observed"
+      },
+      "id": "source-target-direct",
+      "obligations": [
+        "407-05"
+      ]
+    },
+    {
+      "API": "assess_initial_feasibility",
+      "expected": {
+        "exception_type": "SourceIntegrityError",
+        "message_contains": "zero reviewed SOURCE derivation recipes"
+      },
+      "id": "caller-derived-recipe",
+      "obligations": [
+        "407-05"
+      ]
+    },
+    {
+      "API": "assess_initial_feasibility",
+      "expected": {
+        "exception_type": "SourceIntegrityError",
+        "message_contains": "missing target stays unproven/incomplete"
+      },
+      "id": "missing-but-supported",
+      "obligations": [
+        "407-05"
+      ]
+    },
+    {
+      "API": "install_io_guard",
+      "expected": {
+        "returns": null
+      },
+      "id": "actual-guard-install",
+      "obligations": [
+        "407-08"
+      ]
+    },
+    {
+      "API": "save_new",
+      "expected": {
+        "nested_read_regular_calls": 1
+      },
+      "id": "strict-new-output",
+      "obligations": [
+        "407-02",
+        "407-08"
+      ]
+    },
+    {
+      "API": "save_new",
+      "expected": {
+        "exception_type": "FileExistsError"
+      },
+      "id": "exclusive-existing-output",
+      "obligations": [
+        "407-08"
+      ]
+    },
+    {
+      "API": "read_regular",
+      "expected": {
+        "content_opens": 0,
+        "exception_type": "SourceIntegrityError",
+        "message_contains": "no symlink ancestry"
+      },
+      "id": "physical-symlink",
+      "obligations": [
+        "407-02"
+      ]
+    },
+    {
+      "API": "read_regular",
+      "expected": {
+        "content_opens": 0,
+        "exception_type": "SourceIntegrityError",
+        "message_contains": "ordinary single-link before read"
+      },
+      "id": "physical-hardlink",
+      "obligations": [
+        "407-02"
+      ]
+    },
+    {
+      "API": "read_regular",
+      "expected": {
+        "content_opens": 0,
+        "exception_type": "SourceIntegrityError",
+        "message_contains": "ordinary single-link before read"
+      },
+      "id": "physical-special",
+      "obligations": [
+        "407-02"
+      ]
+    }
+  ],
+  "ordinary_output_descriptor": {
+    "path": "ordinary-output.json",
+    "sha256": "fc481669647efe93ae9e5bdbba5987058da90df61e1915a2cf20d8bb908599e7",
+    "size": 98
+  }
+}

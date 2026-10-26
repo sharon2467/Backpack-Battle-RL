@@ -1,0 +1,202 @@
+{
+  "King_admitted": false,
+  "actual12_reads": 0,
+  "actual_phase": 410,
+  "capture_reads": 0,
+  "dynamic": {
+    "automatic_retry": false,
+    "confirmed_completed_module_instances": 2,
+    "new_external_elapsed_seconds": 0.05182906999834813,
+    "new_setup_completed_module_instances": 1,
+    "new_setup_process_invocations": 1,
+    "new_top_level_API_calls": 0,
+    "old_functional_completed_module_instances": 1,
+    "old_timeout_completed_module_instances": null,
+    "original_expected_rejections": 13,
+    "original_successful_returns": 7,
+    "original_top_level_API_calls": 20,
+    "total_process_attempts": 3
+  },
+  "evidence": {
+    "final_proof": {
+      "path": "data/phase410-independent408-source-review/final-proof.json",
+      "sha256": "8996fc812f12059476f6aee29683f69dc57f9baaf34a9e95035a2e0cdd7b738f",
+      "size": 5428
+    },
+    "findings": {
+      "path": "docs/phase410_independent408_source_findings.md",
+      "sha256": "95a95f908102e92fc6491f74f35ff76c496258b3d4c1b86d224f31a2dfd146d7",
+      "size": 3082
+    },
+    "new_setup_launcher_exit": {
+      "path": "data/phase410-setup-only408-launcher/exit.json",
+      "sha256": "d0ecc3b1e7755472d4c5c05e58f896d41e650578d574c392d95f381a3bc99e28",
+      "size": 192
+    },
+    "new_setup_result": {
+      "path": "data/phase410-setup-only408-first-001/result.json",
+      "sha256": "ded5e57a8f167b3d55fab0310e9c7d38a3e99dd828a319ee24689e26f040e087",
+      "size": 1514
+    },
+    "original409_owner": {
+      "path": "data/phase409-independent408-source-review/owned-files.json",
+      "sha256": "ce876a63ee0e6b1c31ad9a78899413588c6766d256156d3407e8202b14eb701f",
+      "size": 6798
+    },
+    "original409_review": {
+      "path": "data/phase409-independent408-source-review/review.json",
+      "sha256": "577a36611885bf97183583ad8f85d0e40a4fdef848396c31c25326b329e51cad",
+      "size": 7517
+    },
+    "original_functional": {
+      "path": "data/phase409-independent408-component-first-001/result.json",
+      "sha256": "df802ec098ae77a5036ad921a8a734e40c633bfaa75bc22058efeae73f468d43",
+      "size": 26168
+    },
+    "original_preload_discrepancy": {
+      "path": "data/phase409-independent408-source-review/runner-preload-discrepancy.json",
+      "sha256": "f855b452c87bccd86ec0627be43eae3237c9235ac54d6daeee7f9e051cb6d364",
+      "size": 5355
+    },
+    "original_static": {
+      "path": "data/phase409-independent408-source-review/static-evidence.json",
+      "sha256": "001d289d5b3e47380a8ae5481cad6e42c25dd9622ba5ab276d6b086d346f234e",
+      "size": 65236
+    },
+    "original_timeout": {
+      "path": "data/phase409-setup-only-launcher/timeout-result.json",
+      "sha256": "881595c21d97586bc7963671b96859177cd6ca7f6eae447c00e1373a97b53945",
+      "size": 854
+    },
+    "preparation_owner": {
+      "path": "data/phase410-setup-only408-preparation/owned-files.json",
+      "sha256": "f92b5978bf6c3e7c0810ac016968c2d7b7dc67d79b3c6da89060f1f2b34915af",
+      "size": 1658
+    }
+  },
+  "expected_reads": 0,
+  "formal75_production_admitted": false,
+  "fullschema": "NOT_VALIDATED",
+  "functional_component_status": "FINITE_COMPONENTS_PASS_REUSED_IMMUTABLE409",
+  "genuine_input_accepted": false,
+  "inputbuild": 0,
+  "main_run_audit_calls": 0,
+  "models": 0,
+  "module": {
+    "path": "tests/phase408_initial_source_audit.py",
+    "sha256": "c572cdbb35f44a3e696b0fa5ab3df539e9e985c5d88770d73e1f3bb9afe6977d",
+    "size": 74685
+  },
+  "native": 0,
+  "no_more_writes_after_owner": true,
+  "obligation08_resolution": "original functional guard evidence retained; separate410 setup scope PASS; original409 scope not retrospectively satisfied",
+  "obligations": [
+    {
+      "component": "three actual owner formats and two strict representations; no whole release",
+      "id": "407-01",
+      "static": "PASS"
+    },
+    {
+      "component": "strict guarded output readback; symlink/hardlink/FIFO before-content rejections; races SOURCE-only",
+      "id": "407-02",
+      "static": "PASS"
+    },
+    {
+      "component": "new assessment strictBOOL control; old raw parser not rerun",
+      "id": "407-03",
+      "static": "PASS_BY_IDENTITY_AND_REVIEW"
+    },
+    {
+      "component": "SOURCE_ONLY actual Character owner/phase/value behavior",
+      "id": "407-04",
+      "static": "PASS_BY_IDENTITY_AND_MEMBERSHIP"
+    },
+    {
+      "component": "incomplete row set BLOCKED and four classification/complete validation rejections; no actual proof",
+      "id": "407-05",
+      "static": "PASS"
+    },
+    {
+      "component": "exact35/5+30 required membership; missing/duplicate target rejections; actual Timer data unexecuted",
+      "id": "407-06",
+      "static": "PASS"
+    },
+    {
+      "component": "SOURCE_ONLY actual King/crown/light/particle values",
+      "id": "407-07",
+      "static": "PASS_BY_IDENTITY_AND_MEMBERSHIP"
+    },
+    {
+      "component": "functional guard/exclusive-output pass; ORIGINAL_READ_SCOPE_NOT_FULLY_SATISFIED; targeted SETUP_TIMEOUT_BLOCK",
+      "id": "407-08",
+      "static": "PASS"
+    }
+  ],
+  "old409_allowset_unchanged": true,
+  "old409_report_unchanged": true,
+  "old_SUT_calls": 0,
+  "old_SUT_imports": 0,
+  "original409_status": "INDEPENDENT409_STDLIB_INITIAL_AUDIT_SOURCE_BLOCKED",
+  "original_read_scope_status": "NOT_FULLY_SATISFIED",
+  "remaining_requirement": "Root all-owner readback then genuine narrowly scoped Root release before any actual audit",
+  "required_targets": {
+    "Timer_roles": 35,
+    "direct": 1391,
+    "other": 30,
+    "selected": 5,
+    "source_only_unproven": 88,
+    "total": 1479
+  },
+  "root_actual_audit_release_granted": false,
+  "run_reads": 0,
+  "schema": "independent410-408-SOURCE-review/1",
+  "schema_calls": 0,
+  "semantic12_audit_invocations": 0,
+  "setup_regression_status": "SETUP_ONLY_READ_SCOPE_PASS",
+  "source_chain_status": "88 MISSING/UNPROVEN; no SOURCE_DERIVED recipe",
+  "source_freeze": {
+    "path": "data/phase408-initial-audit-source/source-freeze.json",
+    "sha256": "38f29ec7829b64805cd5c8cbe09caf59a32d11f75032d29948990878e10eeab8",
+    "size": 29684
+  },
+  "source_identity": {
+    "actual_API_AST_signatures": 29,
+    "bytes": 2282824,
+    "conserved_functions_classes_per_module": 26,
+    "full_byte_inverse_modules": 2,
+    "new_pure_helper": "required_initial_targets",
+    "ordinary_single_link_leaves": 83,
+    "semantic_functions_repaired": [
+      "owned_index",
+      "save_new",
+      "assess_initial_feasibility"
+    ],
+    "unchanged_static_pins": 49
+  },
+  "source_modified": false,
+  "source_owner": {
+    "path": "data/phase408-initial-audit-source/source-owner.json",
+    "sha256": "c188422bd9dfe6d6365465204410f27f7c8ed9d8798afe21b8220ca09236dc88",
+    "size": 16495
+  },
+  "source_static_status": "PASS_REUSED_IMMUTABLE409",
+  "status": "INDEPENDENT409_STDLIB_INITIAL_AUDIT_SOURCE_ACCEPTED_ROOT_PENDING",
+  "status_token_reason": "exact interface token required by unchanged408 REVIEW_STATUS; actual review is phase410",
+  "timeout_cause_provenance": "SOURCE_ONLY_INFERENCE; old process no runtime events",
+  "unexecuted": [
+    "verify_audit_release whole positive",
+    "main",
+    "run_audit",
+    "read_lawful12_once",
+    "seal_audit_once",
+    "actual12 fields/aliases/phases",
+    "complete allocation/prepare/no-intervening-writer proof",
+    "fullschema",
+    "genuine input acceptance",
+    "King admission",
+    "model356",
+    "reader361",
+    "old acceptance batches",
+    "baseline inventory"
+  ]
+}

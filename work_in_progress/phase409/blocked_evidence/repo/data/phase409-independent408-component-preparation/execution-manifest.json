@@ -1,0 +1,132 @@
+{
+  "actual12_reads": 0,
+  "actual_APIs": [
+    {
+      "line": 715,
+      "name": "read_regular",
+      "sha256": "e828c1e427b5da71fbe326930c55a69572c9aa059e47ffb08960f788da884e38",
+      "signature": "(path, row, cap, io)",
+      "size": 1029
+    },
+    {
+      "line": 748,
+      "name": "owned_index",
+      "sha256": "b64210207cd88078d9e9365c3796c920801ca9f6a715f3d138c2b981b1fd5a33",
+      "signature": "(value)",
+      "size": 1251
+    },
+    {
+      "line": 853,
+      "name": "install_io_guard",
+      "sha256": "a58288f927ba1a9bccacff43a3b022cae2f2b44c02bf0b5baf9892b250847dc2",
+      "signature": "(allowed_read, output, violations)",
+      "size": 1562
+    },
+    {
+      "line": 1095,
+      "name": "required_initial_targets",
+      "sha256": "d402c9df4ba8c1ce7e1640a43c35cbeb4a92962008edff4b57ff9eae46311f92",
+      "signature": "()",
+      "size": 1759
+    },
+    {
+      "line": 1123,
+      "name": "assess_initial_feasibility",
+      "sha256": "02aa3ff6d37e050e0959197696701ef87b0076cfc4238397bd98c069a3e3c6e4",
+      "signature": "(rows, findings)",
+      "size": 2809
+    },
+    {
+      "line": 1159,
+      "name": "save_new",
+      "sha256": "8311f72a0d7102ee574e314e7c5a1168e31c825f91e4c7168009d2c7d7ee4015",
+      "signature": "(path, value)",
+      "size": 536
+    }
+  ],
+  "expected": "data/phase409-independent408-component-preparation/expected.json",
+  "first_failure": "preserve_and_stop_no_retry",
+  "inputbuild": 0,
+  "inputs": "data/phase409-independent408-component-preparation/inputs.json",
+  "logical_obligations": 8,
+  "main_run_audit_calls": 0,
+  "models": 0,
+  "native": 0,
+  "old_SUT_calls": 0,
+  "planned_module_imports": 1,
+  "planned_top_level_API_calls": 20,
+  "read_pins": [
+    {
+      "path": "tests/phase408_initial_source_audit.py",
+      "sha256": "c572cdbb35f44a3e696b0fa5ab3df539e9e985c5d88770d73e1f3bb9afe6977d",
+      "size": 74685
+    },
+    {
+      "path": "data/phase402-independent-final/owned-files.json",
+      "sha256": "ec599ca3a5cd803ef918d62007f877f41e121ab276993d123017f5a9abd33456",
+      "size": 7529
+    },
+    {
+      "path": "data/phase405-independent-design-review/owned-files.json",
+      "sha256": "d7dddd89516c7c33ce62c1664a0b6ea48070a3834304c28a6ba7ef2be26aa1cc",
+      "size": 900
+    },
+    {
+      "path": "data/phase408-initial-audit-source/source-owner.json",
+      "sha256": "c188422bd9dfe6d6365465204410f27f7c8ed9d8798afe21b8220ca09236dc88",
+      "size": 16495
+    },
+    {
+      "path": "data/phase409-independent408-component-preparation/inputs.json",
+      "sha256": "7a073185bba69618156c93e2b23bf2e0353b1929cc0a12cf9bd3cf8835d833c1",
+      "size": 549927
+    },
+    {
+      "path": "data/phase409-independent408-component-preparation/expected.json",
+      "sha256": "e4b5fa585de4cc7b518473094697a1fcec39780bf8ddbb03a7580bd2d0d7d8de",
+      "size": 5250
+    }
+  ],
+  "readallowset": {
+    "denied_owned_read": "/workspace/python-original-engine/repo/data/phase409-independent408-component-preparation/tinyfs/outside-ordinary.bin",
+    "guarded_output": "/workspace/python-original-engine/repo/data/phase409-independent408-component-first-001",
+    "guarded_read": [],
+    "module_loader": "only pinned408 source; stdlib preloaded, no bytecode write",
+    "owned_early_physical_checks": [
+      "data/phase409-independent408-component-preparation/tinyfs/symlink-leaf",
+      "data/phase409-independent408-component-preparation/tinyfs/hardlink-alias.bin",
+      "data/phase409-independent408-component-preparation/tinyfs/special-fifo"
+    ],
+    "pre_guard": [
+      "/workspace/python-original-engine/repo/tests/phase408_initial_source_audit.py",
+      "/workspace/python-original-engine/repo/data/phase402-independent-final/owned-files.json",
+      "/workspace/python-original-engine/repo/data/phase405-independent-design-review/owned-files.json",
+      "/workspace/python-original-engine/repo/data/phase408-initial-audit-source/source-owner.json",
+      "/workspace/python-original-engine/repo/data/phase409-independent408-component-preparation/inputs.json",
+      "/workspace/python-original-engine/repo/data/phase409-independent408-component-preparation/expected.json"
+    ]
+  },
+  "runner": {
+    "path": "tests/phase409_run408_finite_components.py",
+    "sha256": "35e694adc9c58a15794a6c7b4f95a3de1096fcef818a9edc482d00d8505b6af8",
+    "size": 8309
+  },
+  "schema": "independent409-finite-component-binding/1",
+  "source_freeze": {
+    "path": "data/phase408-initial-audit-source/source-freeze.json",
+    "sha256": "38f29ec7829b64805cd5c8cbe09caf59a32d11f75032d29948990878e10eeab8",
+    "size": 29684
+  },
+  "source_owner": {
+    "path": "data/phase408-initial-audit-source/source-owner.json",
+    "sha256": "c188422bd9dfe6d6365465204410f27f7c8ed9d8798afe21b8220ca09236dc88",
+    "size": 16495
+  },
+  "static_evidence": {
+    "path": "data/phase409-independent408-source-review/static-evidence.json",
+    "sha256": "001d289d5b3e47380a8ae5481cad6e42c25dd9622ba5ab276d6b086d346f234e",
+    "size": 65236
+  },
+  "static_status": "STATIC_PASS",
+  "whole_gate_calls": 0
+}

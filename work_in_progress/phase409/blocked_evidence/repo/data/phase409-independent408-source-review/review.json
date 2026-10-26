@@ -1,0 +1,227 @@
+{
+  "King_admitted": false,
+  "READY": 0,
+  "Root_read_scope_adjudication": "Explicit Root message retained in findings; no retrospective allowset expansion",
+  "actual12_reads": 0,
+  "api_contract": {
+    "path": "data/phase408-initial-audit-source/api-contract.json",
+    "sha256": "898de46b9acfbed05dbc58dd33c61680c74684c534cbdbb937050bd523474dd3",
+    "size": 8729
+  },
+  "blocking_findings": [
+    {
+      "id": "409-SCOPE-01",
+      "origin": "independent runner contract",
+      "statement": "Original pre_guard/module_loader omitted seven stdlib pyc reads and one absent project pyc lookup. Root adjudicated original read scope not fully satisfied; original allowset retained."
+    },
+    {
+      "id": "409-SETUP-02",
+      "origin": "independent setup-only regression",
+      "statement": "First targeted setup process timed out at60s; no result/events file. No automatic retry or fix; read-scope repair remains unverified."
+    }
+  ],
+  "capture_reads": 0,
+  "dynamic": {
+    "API_counts": {
+      "assess_initial_feasibility": 8,
+      "install_io_guard": 1,
+      "owned_index": 5,
+      "read_regular": 3,
+      "required_initial_targets": 1,
+      "save_new": 2
+    },
+    "additional_setup_completed_instances": null,
+    "additional_setup_observed_API_calls": null,
+    "additional_setup_process_attempts": 1,
+    "additional_setup_source_declared_API_calls": 0,
+    "automatic_retry": false,
+    "completed_module_instances": 1,
+    "expected_rejections": 13,
+    "external_elapsed_seconds": 0.3796248860016931,
+    "external_exit_code": 0,
+    "first_functional_process_invocations": 1,
+    "internal_elapsed_seconds": 0.34598767300485633,
+    "nested_read_regular": 1,
+    "nested_required_initial_targets": 8,
+    "non_API_owned_read_rejection": 1,
+    "successful_returns": 7,
+    "top_level_API_calls": 20
+  },
+  "evidence": {
+    "findings": {
+      "path": "docs/phase409_independent408_source_findings.md",
+      "sha256": "37abb36fd207d943a012ff5afc0e02c0da932fa1bdec93027aa9deae8d00b4f9",
+      "size": 9280
+    },
+    "functional": {
+      "path": "data/phase409-independent408-component-first-001/result.json",
+      "sha256": "df802ec098ae77a5036ad921a8a734e40c633bfaa75bc22058efeae73f468d43",
+      "size": 26168
+    },
+    "original_preparation_owner": {
+      "path": "data/phase409-independent408-component-preparation/owned-files.json",
+      "sha256": "2054148a1ece4622e95e9c660d673330e8e1f8ba82bf85c9fa555deacb1063c1",
+      "size": 2358
+    },
+    "preload_discrepancy": {
+      "path": "data/phase409-independent408-source-review/runner-preload-discrepancy.json",
+      "sha256": "f855b452c87bccd86ec0627be43eae3237c9235ac54d6daeee7f9e051cb6d364",
+      "size": 5355
+    },
+    "setup_preparation_owner": {
+      "path": "data/phase409-setup-only-preparation/owned-files.json",
+      "sha256": "a68fa3f385431e908af0e36185422cba6d1433fa8669f7f33ab2a618b013849d",
+      "size": 867
+    },
+    "setup_timeout": {
+      "path": "data/phase409-setup-only-launcher/timeout-result.json",
+      "sha256": "881595c21d97586bc7963671b96859177cd6ca7f6eae447c00e1373a97b53945",
+      "size": 854
+    },
+    "static": {
+      "path": "data/phase409-independent408-source-review/static-evidence.json",
+      "sha256": "001d289d5b3e47380a8ae5481cad6e42c25dd9622ba5ab276d6b086d346f234e",
+      "size": 65236
+    }
+  },
+  "expected_reads": 0,
+  "fullschema": "NOT_VALIDATED",
+  "functional_component_status": "FINITE_COMPONENTS_PASS",
+  "genuine_input_accepted": false,
+  "inputbuild": 0,
+  "models": 0,
+  "module": {
+    "path": "tests/phase408_initial_source_audit.py",
+    "sha256": "c572cdbb35f44a3e696b0fa5ab3df539e9e985c5d88770d73e1f3bb9afe6977d",
+    "size": 74685
+  },
+  "native": 0,
+  "no_more_writes_after_owner": true,
+  "obligations": [
+    {
+      "component": "three actual owner formats and two strict representations; no whole release",
+      "id": "407-01",
+      "static": "PASS"
+    },
+    {
+      "component": "strict guarded output readback; symlink/hardlink/FIFO before-content rejections; races SOURCE-only",
+      "id": "407-02",
+      "static": "PASS"
+    },
+    {
+      "component": "new assessment strictBOOL control; old raw parser not rerun",
+      "id": "407-03",
+      "static": "PASS_BY_IDENTITY_AND_REVIEW"
+    },
+    {
+      "component": "SOURCE_ONLY actual Character owner/phase/value behavior",
+      "id": "407-04",
+      "static": "PASS_BY_IDENTITY_AND_MEMBERSHIP"
+    },
+    {
+      "component": "incomplete row set BLOCKED and four classification/complete validation rejections; no actual proof",
+      "id": "407-05",
+      "static": "PASS"
+    },
+    {
+      "component": "exact35/5+30 required membership; missing/duplicate target rejections; actual Timer data unexecuted",
+      "id": "407-06",
+      "static": "PASS"
+    },
+    {
+      "component": "SOURCE_ONLY actual King/crown/light/particle values",
+      "id": "407-07",
+      "static": "PASS_BY_IDENTITY_AND_MEMBERSHIP"
+    },
+    {
+      "component": "functional guard/exclusive-output pass; ORIGINAL_READ_SCOPE_NOT_FULLY_SATISFIED; targeted SETUP_TIMEOUT_BLOCK",
+      "id": "407-08",
+      "static": "PASS"
+    }
+  ],
+  "old_SUT_calls": 0,
+  "old_SUT_imports": 0,
+  "original_functional_preparation_modified": false,
+  "original_obligations": 8,
+  "original_read_scope_status": "NOT_FULLY_SATISFIED",
+  "pool": 0,
+  "proc": 0,
+  "required_future_status_not_granted": "INDEPENDENT409_STDLIB_INITIAL_AUDIT_SOURCE_ACCEPTED_ROOT_PENDING",
+  "required_targets": {
+    "Timer_roles": 35,
+    "direct": 1391,
+    "other": 30,
+    "selected": 5,
+    "source_only_unproven": 88,
+    "total": 1479
+  },
+  "restore": 0,
+  "run_reads": 0,
+  "schema": "independent409-408-SOURCE-review/1",
+  "schema_calls": 0,
+  "setup_regression_status": "FIRST_SETUP_FAILURE_STOP",
+  "source_freeze": {
+    "path": "data/phase408-initial-audit-source/source-freeze.json",
+    "sha256": "38f29ec7829b64805cd5c8cbe09caf59a32d11f75032d29948990878e10eeab8",
+    "size": 29684
+  },
+  "source_identity": {
+    "actual_API_AST_signatures": 29,
+    "bytes": 2282824,
+    "conserved_functions_classes_per_module": 26,
+    "full_byte_inverse_modules": 2,
+    "new_pure_helper": "required_initial_targets",
+    "ordinary_single_link_leaves": 83,
+    "semantic_functions_repaired": [
+      "owned_index",
+      "save_new",
+      "assess_initial_feasibility"
+    ],
+    "unchanged_static_pins": 49
+  },
+  "source_modified": false,
+  "source_owner": {
+    "path": "data/phase408-initial-audit-source/source-owner.json",
+    "sha256": "c188422bd9dfe6d6365465204410f27f7c8ed9d8798afe21b8220ca09236dc88",
+    "size": 16495
+  },
+  "source_static_status": "PASS",
+  "static_repairs": [
+    {
+      "function": "owned_index",
+      "id": "407-F01",
+      "line": 748,
+      "status": "REPAIRED"
+    },
+    {
+      "function": "save_new",
+      "id": "407-F02",
+      "line": 1159,
+      "status": "REPAIRED"
+    },
+    {
+      "function": "assess_initial_feasibility",
+      "id": "407-F03",
+      "line": 1123,
+      "status": "REPAIRED"
+    }
+  ],
+  "status": "INDEPENDENT409_STDLIB_INITIAL_AUDIT_SOURCE_BLOCKED",
+  "stop": true,
+  "unexecuted": [
+    "verify_audit_release whole positive",
+    "main",
+    "run_audit",
+    "read_lawful12_once",
+    "seal_audit_once",
+    "actual12 fields/aliases/phases",
+    "complete allocation/prepare/no-intervening-writer proof",
+    "fullschema",
+    "genuine input acceptance",
+    "King admission",
+    "model356",
+    "reader361",
+    "old acceptance batches",
+    "baseline inventory"
+  ]
+}
