@@ -1,0 +1,112 @@
+{
+  "all_module_AST_except_MATRIX_and_one_guard_identical": true,
+  "changed_functions": [
+    "validate_record"
+  ],
+  "delegates": {
+    "_base_validate_record": {
+      "module_global_MATRIX": true,
+      "no_local_MATRIX_binding": true
+    },
+    "_validate_call_pairs": {
+      "module_global_MATRIX": true,
+      "no_local_MATRIX_binding": true
+    },
+    "validate_observation_records": {
+      "module_global_MATRIX": false,
+      "no_local_MATRIX_binding": true
+    },
+    "validate_record": {
+      "module_global_MATRIX": true,
+      "no_local_MATRIX_binding": true
+    }
+  },
+  "export": "SimpleNamespace(MATRIX=MATRIX): exact same module object, no copied/fake table",
+  "guard_source": "        if site == 'Items/Food.gd::prepare' and state['descriptorIndex'] != {'type': 'int', 'decimal': '22'}:\n            raise ValueError('Food.prepare receiver must be original thin-domain Food descriptor INT22')\n",
+  "module": {
+    "path": "tests/phase375_king_observer_schema.py",
+    "sha256": "2544c51513effc0c7a66b98af3f718b4dd4a91fea6bd51a240a2f4c9a194de71",
+    "size": 191051
+  },
+  "old106_entries_identical": true,
+  "old_BindingSourceContract": "Historical358/359 SOURCE origin unchanged; not current375 acceptance",
+  "origin": {
+    "path": "tests/phase360_king_observer_schema.py",
+    "sha256": "d4229ce6d94525b5bc0b93f7ab80617b96041d65fb4cd4f425e0b07a50a4c5f6",
+    "size": 190693
+  },
+  "other_MATRIX_keys_identical": true,
+  "schema": "phase375-minimal-schema-source-delta/1",
+  "strict_owner": "New Foodsite descriptorIndex typedINT22; existing knownrole join and NULLrole lifecycle unchanged",
+  "unchanged_functions_classes": [
+    "ClockSchedule",
+    "FramePass",
+    "_base_primitive_context",
+    "_base_validate_primitive",
+    "_base_validate_record",
+    "_base_validate_state",
+    "_binding_cells",
+    "_binding_check_channels",
+    "_binding_checkpoint",
+    "_binding_id",
+    "_binding_integer_value",
+    "_binding_one",
+    "_binding_real_value",
+    "_binding_same_source",
+    "_binding_validate_value",
+    "_counter",
+    "_keys",
+    "_nonnegative_real",
+    "_real",
+    "_rng_decimal",
+    "_rng_int64",
+    "_rng_keys",
+    "_rng_real",
+    "_single_king_counter",
+    "_single_king_keys",
+    "_single_king_node",
+    "_single_king_particle",
+    "_single_king_real",
+    "_single_king_rng_checkpoint",
+    "_single_king_timer",
+    "_single_king_typed",
+    "_single_king_validate_ui",
+    "_transport_only_decode",
+    "_ui_controls",
+    "_ui_exact",
+    "_ui_ident",
+    "_ui_integer",
+    "_ui_need",
+    "_ui_require_admission",
+    "_validate_call_pairs",
+    "argument_fields",
+    "canonical_sha",
+    "decimal",
+    "decode_clock",
+    "decode_sources",
+    "exact",
+    "f32",
+    "integer",
+    "join_binding_provenance",
+    "primitive_context",
+    "scalar_number",
+    "strict_json",
+    "strict_json_loads",
+    "text",
+    "validate_binding_carrier",
+    "validate_cache",
+    "validate_observation_records",
+    "validate_primitive",
+    "validate_resources",
+    "validate_single_king_fixture",
+    "validate_single_king_fresh_facts",
+    "validate_single_king_input_provenance",
+    "validate_single_king_source_defaults",
+    "validate_single_king_ui_authority",
+    "validate_source_carriers",
+    "validate_sources_with_binding",
+    "validate_state",
+    "validate_terminal_evidence",
+    "validate_typed"
+  ]
+}

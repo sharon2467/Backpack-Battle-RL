@@ -1,0 +1,11 @@
+# Selected Food.prepare declaration/schema repair — tests pending
+
+The original patched Food.prepare hook reached a bound selected Blueberries object, but the106-site sink/schema declarations omitted it. The new sink adds exactly this runtime/item declaration; the new schema adds its empty-arguments, implicit-NULL-only contract. Generic observation code, original Food body,74other patch paths, collector sampling/clock/sequence, fixture and seeds are unchanged.
+
+A new-site-only validator guard requires typed INT22. The existing role→descriptor join then enforces the8Food slots, rejecting even an otherwise legal Sword1/P16 Food record. Old106 declarations/other MATRIX/CONTRACT values are conserved. All actual schema delegate functions and exported MATRIX share the appended real table. The one validate_record function difference is explicitly recorded; old schemas remain unchanged. No Food records are reconstructed from expected observations or used as model initialization/correction.
+
+The source also includes a newly derived attempt03 recovery map with its own exact preservation/failed-state/baseline/preimage pins. The first saved-staged-path assumption error is retained; v2 reads the actual staged-bytes directory and verifies the two files. No live pool was inventoried or restored by the author. Root action gates remain separate.
+
+Copy source/repo and independent_preparation/repo additively after archival354 and previous flat snapshots. Adjacent FILES/owners bind exact bytes. No generator replay or oldcloud file is needed for source/evidence recovery. The old361 projector still pins old360 and is closed; new schema/projector/source-admission proof remains a separate future gate. Binding boundaries explicitly distinguish historical origin from current approval.
+
+Independent36-obligation SOURCE/component validation is in progress, not accepted. Synthetic record controls are not a full actual11/12-input or original King positive. Formal bounded75 remains accepted; King and complete engine/RL remain incomplete.
