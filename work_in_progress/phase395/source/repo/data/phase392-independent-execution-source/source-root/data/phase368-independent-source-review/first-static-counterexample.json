@@ -1,0 +1,91 @@
+{
+  "Godot_error_message": null,
+  "Godot_parse_runs": 0,
+  "SUT_imports": 0,
+  "actual": "New collector diagnostic calls Node-only get_tree() three times without a local helper on a SceneTree script.",
+  "calls": [
+    {
+      "column": 43,
+      "line": 974,
+      "text": "\tvar table = observer.source_control_rows(get_tree(), \"idle_frame\") if available else collector_control_rows(get_tree(), \"idle_frame\")"
+    },
+    {
+      "column": 110,
+      "line": 974,
+      "text": "\tvar table = observer.source_control_rows(get_tree(), \"idle_frame\") if available else collector_control_rows(get_tree(), \"idle_frame\")"
+    },
+    {
+      "column": 131,
+      "line": 985,
+      "text": "\treturn {\"site\": site, \"reason\": reason, \"stage\": stage, \"detail\": detail, \"collector_id\": str(get_instance_id()), \"tree_id\": str(get_tree().get_instance_id()), \"observer_present\": observer != null, \"observer_id\": str(observer.get_instance_id()) if observer != null else null, \"observer_api_available\": available, \"observer_failed\": observer.failed if available else null, \"first_error\": observer.first_error.duplicate(true) if available and typeof(observer.first_error) == TYPE_DICTIONARY else null, \"ui_opened\": observer.ui_opened if available else null, \"ui_closed\": observer.ui_closed if available else null, \"closed\": observer.closed if available else null, \"configured\": observer.configured if available else null, \"metadata_ready\": observer.metadata_ready if available else null, \"source_fixture_window\": observer.source_fixture_window if available else null, \"source_window_complete\": observer.source_window_complete if available else null, \"listener_attached\": source_listener_attached, \"connect_attempted\": source_control_connect_attempted, \"connect_return\": source_control_connect_return, \"clock_is_connected\": is_connected(\"idle_frame\", observer, \"clock_idle_signal\") if available else null, \"private_is_connected\": observer.is_connected(\"source_idle_cut_ready\", self, \"on_idle_source_cut\") if available and observer.has_signal(\"source_idle_cut_ready\") else null, \"tree_connections\": table, \"private_connections\": private_rows, \"match_indices\": match_indices, \"cut\": observer.source_cut_control() if available else null, \"once_guard\": source_cut_frozen, \"finish_entered\": source_cut_finish_entered, \"book_reached\": source_book_reached, \"instantiate_reached\": source_instantiate_reached, \"geometry_reached\": source_geometry_reached}"
+    }
+  ],
+  "classification": "SOURCE_INTERFACE_MISMATCH_NOT_EXECUTED_GD_PARSE",
+  "collector": {
+    "path": "data/phase368-oracle-source/collector.gd",
+    "sha256": "877d580817b6db7da8943d5effada7637d8a4ae310a035860195ba9d6d05bbd9",
+    "size": 60948
+  },
+  "expected": "Use the existing SceneTree self as tree emitter/ID in this collector diagnostic. Node sink get_tree() calls are valid and must remain untouched.",
+  "original_Game_runs": 0,
+  "reachability": "ensure_source_window -> attach_source_listener -> source_control_record -> source_control_snapshot; diagnostic API is required before player fixture/source window admission.",
+  "receiver": "SceneTree collector self, not a Node",
+  "schema": "phase368-independent-static-api-counterexample/1",
+  "source": [
+    {
+      "end": 80,
+      "source": {
+        "path": "data/phase027-implementation-design/full-source/upstream/scene/main/scene_tree.h",
+        "sha256": "1115b7dc14b716284ccbbdaa6b6b0a2096233d572f0b462035df44b543d3242a",
+        "size": 14760
+      },
+      "start": 74,
+      "text": "};\n\nclass SceneTree : public MainLoop {\n\t_THREAD_SAFE_CLASS_\n\n\tGDCLASS(SceneTree, MainLoop);\n\n"
+    },
+    {
+      "end": 48,
+      "source": {
+        "path": "data/phase027-implementation-design/full-source/upstream/scene/main/node.h",
+        "sha256": "9eb5f2d3b2d95792ef8cddc160d302e883422f614430a8be7ff0d049d2ea612e",
+        "size": 20261
+      },
+      "start": 45,
+      "text": "\nclass Node : public Object {\n\tGDCLASS(Node, Object);\n\tOBJ_CATEGORY(\"Nodes\");\n"
+    },
+    {
+      "end": 2061,
+      "source": {
+        "path": "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/scene_tree.cpp",
+        "sha256": "a1ac9f2da5a1046d1c468fd463de4907f535f124952b137d69fb39ef8b14b3b4",
+        "size": 74268
+      },
+      "start": 2057,
+      "text": "void SceneTree::_bind_methods() {\n\tClassDB::bind_method(D_METHOD(\"get_root\"), &SceneTree::get_root);\n\tClassDB::bind_method(D_METHOD(\"has_group\", \"name\"), &SceneTree::has_group);\n\n\tClassDB::bind_method(D_METHOD(\"is_auto_accept_quit\"), &SceneTree::is_auto_accept_quit);\n"
+    },
+    {
+      "end": 3134,
+      "source": {
+        "path": "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/node.cpp",
+        "sha256": "0c2e3230b37644c8496f5b1aee59f428de6a497a380c247613c489e44cd508a9",
+        "size": 95163
+      },
+      "start": 3130,
+      "text": "\tClassDB::bind_method(D_METHOD(\"reset_physics_interpolation\"), &Node::reset_physics_interpolation);\n\n\tClassDB::bind_method(D_METHOD(\"get_tree\"), &Node::get_tree);\n\tClassDB::bind_method(D_METHOD(\"create_tween\"), &Node::create_tween);\n\n"
+    },
+    {
+      "end": 986,
+      "source": {
+        "path": "data/phase368-oracle-source/collector.gd",
+        "sha256": "877d580817b6db7da8943d5effada7637d8a4ae310a035860195ba9d6d05bbd9",
+        "size": 60948
+      },
+      "start": 971,
+      "text": "func source_control_snapshot(site, reason, detail = null):\n\tvar observer = get_root().get_node_or_null(\"NativeRandomObserver\")\n\tvar available = observer != null and observer.has_method(\"source_cut_control\")\n\tvar table = observer.source_control_rows(get_tree(), \"idle_frame\") if available else collector_control_rows(get_tree(), \"idle_frame\")\n\tvar private_rows = observer.source_control_rows(observer, \"source_idle_cut_ready\") if available else {\"complete_seen\": false, \"row_count\": 0, \"rows\": [], \"reason\": \"OBSERVER_UNAVAILABLE\"}\n\tvar match_indices = {\"sink\": [], \"collector_cut\": [], \"private_collector\": []}\n\tfor row in table.rows:\n\t\tif observer != null and row.target_native_id == str(observer.get_instance_id()) and row.method == \"clock_idle_signal\":\n\t\t\tmatch_indices.sink.append(row.ordinal)\n\t\tif row.target_native_id == str(get_instance_id()) and row.method == \"on_idle_source_cut\":\n\t\t\tmatch_indices.collector_cut.append(row.ordinal)\n\tfor row in private_rows.rows:\n\t\tif row.target_native_id == str(get_instance_id()) and row.method == \"on_idle_source_cut\":\n\t\t\tmatch_indices.private_collector.append(row.ordinal)\n\treturn {\"site\": site, \"reason\": reason, \"stage\": stage, \"detail\": detail, \"collector_id\": str(get_instance_id()), \"tree_id\": str(get_tree().get_instance_id()), \"observer_present\": observer != null, \"observer_id\": str(observer.get_instance_id()) if observer != null else null, \"observer_api_available\": available, \"observer_failed\": observer.failed if available else null, \"first_error\": observer.first_error.duplicate(true) if available and typeof(observer.first_error) == TYPE_DICTIONARY else null, \"ui_opened\": observer.ui_opened if available else null, \"ui_closed\": observer.ui_closed if available else null, \"closed\": observer.closed if available else null, \"configured\": observer.configured if available else null, \"metadata_ready\": observer.metadata_ready if available else null, \"source_fixture_window\": observer.source_fixture_window if available else null, \"source_window_complete\": observer.source_window_complete if available else null, \"listener_attached\": source_listener_attached, \"connect_attempted\": source_control_connect_attempted, \"connect_return\": source_control_connect_return, \"clock_is_connected\": is_connected(\"idle_frame\", observer, \"clock_idle_signal\") if available else null, \"private_is_connected\": observer.is_connected(\"source_idle_cut_ready\", self, \"on_idle_source_cut\") if available and observer.has_signal(\"source_idle_cut_ready\") else null, \"tree_connections\": table, \"private_connections\": private_rows, \"match_indices\": match_indices, \"cut\": observer.source_cut_control() if available else null, \"once_guard\": source_cut_frozen, \"finish_entered\": source_cut_finish_entered, \"book_reached\": source_book_reached, \"instantiate_reached\": source_instantiate_reached, \"geometry_reached\": source_geometry_reached}\n\n"
+    }
+  ],
+  "template": {
+    "path": "tests/phase368_collector_control_delta.gd",
+    "sha256": "caa9ade13f90b10230e482f5320f77ca9cf5130d4830b513a82dc761404b1fea",
+    "size": 16560
+  }
+}

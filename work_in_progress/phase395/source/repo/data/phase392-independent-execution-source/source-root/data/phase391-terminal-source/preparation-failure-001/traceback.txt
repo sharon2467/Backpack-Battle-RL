@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/workspace/python-original-engine/repo/tests/phase391_prepare_source.py", line 247, in <module>
+    try:generate()
+        ^^^^^^^^^^
+  File "/workspace/python-original-engine/repo/tests/phase391_prepare_source.py", line 95, in generate
+    assert desc(R/row['path']) == row; old[row['path']] = row
+           ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/python-original-engine/repo/tests/phase391_prepare_source.py", line 22, in desc
+    info = path.stat(); assert stat.S_ISREG(info.st_mode) and info.st_nlink == 1
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

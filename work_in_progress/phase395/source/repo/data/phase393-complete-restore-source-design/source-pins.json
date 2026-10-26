@@ -1,0 +1,242 @@
+{
+  "files": [
+    {
+      "path": "tests/phase375_prepare_attempt03_restore_map_v2.py",
+      "sha256": "c1ce564a422b2a324c344e67aef6915b3c82e3d28a50b3f23d142cd0a1c1f1f3",
+      "size": 9184
+    },
+    {
+      "path": "tests/phase375_pool_recovery_v2.py",
+      "sha256": "d6aa6c9823e89359905f5c97240d827faf825d39fed6cd9e7158e08c7c9f5ec4",
+      "size": 16980
+    },
+    {
+      "path": "tests/phase375_oracle_host.py",
+      "sha256": "e4a0438f6fccde911bd88307d09c16fbb460d33caa3ea946cc94c9533af8b910",
+      "size": 18031
+    },
+    {
+      "path": "tests/phase384_independent_restored_readback.py",
+      "sha256": "57dce0164d42ef903b3cce33a206d2207d0ffb91dbea2e73829401c908163585",
+      "size": 22241
+    },
+    {
+      "path": "tests/phase363_oracle_storage.py",
+      "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc",
+      "size": 15496
+    },
+    {
+      "path": "tests/phase363_oracle_process.py",
+      "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f",
+      "size": 13665
+    },
+    {
+      "path": "tests/native_run_compaction.py",
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260",
+      "size": 27304
+    },
+    {
+      "path": "tests/phase385_preserve_failed_pool.py",
+      "sha256": "859f57bac8c8152dd3c213b9a5e34da846825bbaa04c012112af84794bc05be8",
+      "size": 2441
+    },
+    {
+      "path": "data/phase384-independent-readback-source/source-contract.json",
+      "sha256": "2e099bf3e0b9ac5c57956e16cf3e8120c33c64b8441def5ea8cd7dedbfb08040",
+      "size": 4117
+    },
+    {
+      "path": "data/phase384-independent-readback-source/readonly-process-inspector.py",
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260",
+      "size": 27304
+    },
+    {
+      "path": "data/phase363-oracle-repair-source/source-owner.json",
+      "sha256": "0806b38ffd797a16feee0a14d4ed7538d79997e32cc8b27dca2314eb0d400d51",
+      "size": 2546
+    },
+    {
+      "path": "data/phase363-independent-source-review/review.json",
+      "sha256": "b8f0c38aa468cafed2b0ee0e4a5ea33cbd21cf5dea19222b41777484518ba456",
+      "size": 3841
+    },
+    {
+      "path": "data/phase391-terminal-source/source-owner.json",
+      "sha256": "091b59305608472bc41f3f9a51445dd765c62df25315de7dd1d0fb2363ce195e",
+      "size": 9902
+    },
+    {
+      "path": "data/phase391-terminal-source/combined-source-freeze.json",
+      "sha256": "e55a602c9d7087a71a2fe6b78a3a143663fc8f0f659c0fe3fb690019ba8173c9",
+      "size": 65361
+    },
+    {
+      "path": "data/phase391-terminal-source/source-tuple.json",
+      "sha256": "883e9b20dfb4c268cd265910ad7adedc403aac785287f2f39f859cdcdac8f8e6",
+      "size": 1551
+    },
+    {
+      "path": "data/phase392-independent-final/review.json",
+      "sha256": "8e76269101c23e4e5143f0520f85ac1386336a9502abb98897c6e28656cbc3a2",
+      "size": 9159
+    },
+    {
+      "path": "data/phase392-independent-final/owned-files.json",
+      "sha256": "33bffb30051a21a58f54f0aa60a807503f898b30701d702a566dfb024256ed66",
+      "size": 62001
+    }
+  ],
+  "immutable391": {
+    "all_leaf_pins_readback": true,
+    "leaf_count": 49,
+    "total_bytes": 1279051
+  },
+  "review392": {
+    "models": 0,
+    "native": 0,
+    "scope": "Metadata identity binding only; no independent control expectations consumed",
+    "status": "INDEPENDENT392_FIRST_ELIGIBLE_IDLE_SOURCE_ACCEPTED_ROOT_PENDING"
+  },
+  "schema": "phase393-design-source-pins/1",
+  "scope": "SOURCE bytes and acceptance metadata only; no referenced module imported",
+  "source_functions": {
+    "data/phase384-independent-readback-source/readonly-process-inspector.py": [
+      "require",
+      "digest",
+      "read",
+      "write",
+      "stamp",
+      "safe_path",
+      "inventory",
+      "index",
+      "overlay_plan",
+      "process_check",
+      "scope",
+      "retained",
+      "eligibility",
+      "sources",
+      "archive_overlay",
+      "validate_archive",
+      "load_bundle",
+      "_reconstruct",
+      "check_destination",
+      "sync_tree",
+      "publish_new_directory",
+      "reconstruct",
+      "locked",
+      "pack",
+      "verify",
+      "main"
+    ],
+    "tests/native_run_compaction.py": [
+      "require",
+      "digest",
+      "read",
+      "write",
+      "stamp",
+      "safe_path",
+      "inventory",
+      "index",
+      "overlay_plan",
+      "process_check",
+      "scope",
+      "retained",
+      "eligibility",
+      "sources",
+      "archive_overlay",
+      "validate_archive",
+      "load_bundle",
+      "_reconstruct",
+      "check_destination",
+      "sync_tree",
+      "publish_new_directory",
+      "reconstruct",
+      "locked",
+      "pack",
+      "verify",
+      "main"
+    ],
+    "tests/phase363_oracle_process.py": [
+      "user_kind",
+      "usage",
+      "environment",
+      "command",
+      "_seconds",
+      "_group_members",
+      "_signal_group",
+      "cleanup_process_group",
+      "monitor_command",
+      "execute_process",
+      "rename_capture"
+    ],
+    "tests/phase363_oracle_storage.py": [
+      "regular_target",
+      "atomic_image",
+      "pin",
+      "directory",
+      "member",
+      "write_new",
+      "sync",
+      "read",
+      "budget",
+      "map_recorded",
+      "check_ready",
+      "state_write",
+      "lease",
+      "reset_previous",
+      "install",
+      "archive_streaming"
+    ],
+    "tests/phase375_oracle_host.py": [
+      "descriptor",
+      "verify_owner",
+      "source_gate",
+      "resource_gate",
+      "plan",
+      "execute",
+      "read_control",
+      "collect_capture_metadata",
+      "main"
+    ],
+    "tests/phase375_pool_recovery_v2.py": [
+      "require",
+      "evidence_path",
+      "source_gate",
+      "check_roots",
+      "locked_pool",
+      "check_failed_state",
+      "verify_evidence",
+      "directory_metadata",
+      "actual_targets",
+      "restore_exact",
+      "commit_ready",
+      "recover",
+      "main"
+    ],
+    "tests/phase375_prepare_attempt03_restore_map_v2.py": [
+      "pin",
+      "read",
+      "saved",
+      "rooted",
+      "write",
+      "generate",
+      "main"
+    ],
+    "tests/phase384_independent_restored_readback.py": [
+      "pin",
+      "desc",
+      "read",
+      "save",
+      "require",
+      "canonical",
+      "verify_descriptor",
+      "inventory",
+      "counts",
+      "audit",
+      "verify_overlay_archive",
+      "prepare_contract",
+      "main"
+    ],
+    "tests/phase385_preserve_failed_pool.py": []
+  }
+}

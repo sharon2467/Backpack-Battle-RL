@@ -1,0 +1,53 @@
+{
+  "INPUT_PINS": "data/phase395-attempt05-recovery-source/map/source-input-pins.json",
+  "MAP": "data/phase395-attempt05-recovery-source/map/restore-map.json",
+  "READY_authorization": null,
+  "SOURCE": "data/phase395-attempt05-recovery-source",
+  "actual_restore_authorization": null,
+  "functions": {
+    "generate": "(source_root,failed_run,previous_run,output) -> frozen saved-only map; new output only",
+    "reader": "CLI --execute --authorization/size/sha256 --restore-receipt/size/sha256 --source-owner-size/sha256; actual future receipt required",
+    "recover": "(source_root,config_descriptor,pool,baseline,failed_run,previous_run,action,output=None); actions restore or commit_ready separated",
+    "source_gate": "(source_root,config_descriptor,action) -> root,config; own396 review and true context required",
+    "validate_complete_saved": "(roots: {failed_run,previous_run,...}) -> summary + full saved descriptor ledger; no live tree/proc reads"
+  },
+  "independent_physical_report": null,
+  "map_schema": "phase395-attempt05-complete-restore-source-map/1",
+  "operational_calls": {
+    "Game": 0,
+    "Godot": 0,
+    "READY": 0,
+    "compaction_saved_read_import": 2,
+    "inputbuild": 0,
+    "live_pool_inventory": 0,
+    "models": 0,
+    "proc_inspection": 0,
+    "projection": 0,
+    "reader_calls": 0,
+    "reader_imports": 0,
+    "recovery_calls": 0,
+    "recovery_imports": 0,
+    "restore": 0,
+    "saved_helper_execution": 2,
+    "saved_map_generation": 2,
+    "schema_calls": 0
+  },
+  "readback_status": "INDEPENDENT395_ATTEMPT05_RESTORED_POOL_EXACT_TARGET_READBACK_PASS",
+  "reader_source_contract": "data/phase395-independent-readback-source/source-contract.json",
+  "reader_source_owner": "data/phase395-independent-readback-source/source-owner.json",
+  "restore_receipt": null,
+  "root_schema": "phase395-root-pool-recovery/1",
+  "schema": "phase395-recovery-api-contract/1",
+  "source_freeze": {
+    "path": "data/phase395-attempt05-recovery-source/combined-source-freeze.json",
+    "sha256": "5bd5ad0d6952bb6b5f37748f7414eaf8bbd96ee9abb052f7749cfca2a2912e98",
+    "size": 82219
+  },
+  "source_review": null,
+  "source_review_status": "INDEPENDENT396_ATTEMPT05_COMPLETE_RECOVERY_SOURCE_ACCEPTED_ROOT_PENDING",
+  "terminal_context": {
+    "path": "data/phase395-root-component-context/component-accepted.json",
+    "sha256": "eb8462f1f47fc4f287d486b69498af51647afcb0f4609041db4d706c04a39aae",
+    "size": 1918
+  }
+}

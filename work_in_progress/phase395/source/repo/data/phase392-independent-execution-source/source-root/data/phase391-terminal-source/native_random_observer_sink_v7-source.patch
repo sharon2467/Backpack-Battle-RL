@@ -1,0 +1,200 @@
+--- data/phase375-food-hook-source/after-source/native_random_observer_sink_v7.gd
++++ data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd
+@@ -842,6 +842,7 @@
+ 	var checkpoint = {"schema": "phase105-exogenous-frame-clock/1", "lineage": "fresh_activate_idle_tail", "environment": {"physics_fps": Engine.iterations_per_second, "scale_bits": float_bits(Engine.time_scale), "paused": get_tree().paused}, "checkpoint": {"phase": "activate_items_idle_tail", "physics_frame": Engine.get_physics_frames(), "idle_frame": Engine.get_idle_frames(), "util_frame_counter": util.frameCounter, "util_time_bits": float_bits(util.time), "util_clock_time_bits": float_bits(util.clockTime)}}
+ 	if not write_king_json("king-input-facts.json", king_input_facts) or not write_king_json("king-clock-checkpoint.json", checkpoint):
+ 		return false
++	source_tail_begin()
+ 	king_clock_active = true
+ 	return true
+ 
+@@ -859,9 +860,9 @@
+ 		if failed:
+ 			source_cut_reject("CUT_CLOCK_PASS_FAILURE", "clock_idle_signal")
+ 			return
+-		if source_cleanup != null and Engine.get_physics_frames() >= source_cleanup.physics_frame + 2:
+-			if Engine.get_physics_frames() != source_cleanup.physics_frame + 2:
+-				source_cut_reject("SOURCE_MISSED_FIRST_IDLE_CUT", "clock_idle_signal")
++		if source_tail_first_idle != null:
++			if not source_terminal_current():
++				source_cut_reject("SOURCE_FIRST_ELIGIBLE_IDLE_CONTEXT", "clock_idle_signal")
+ 				return
+ 			if not close_king_clock():
+ 				source_cut_reject("CUT_CLOCK_CLOSE_FAILURE", "clock_idle_signal")
+@@ -878,6 +879,9 @@
+ func clock_pass(kind, delta):
+ 	if failed or not king_clock_active or king_clock_closed:
+ 		return
++	if source_tail_first_idle != null:
++		fail("SOURCE_MISSED_FIRST_ELIGIBLE_IDLE", "clock_pass")
++		return
+ 	if Engine.time_scale != 1.0 or get_tree().paused or Engine.iterations_per_second != 60 or delta <= 0 or is_nan(delta) or is_inf(delta) or king_clock_count >= 200000:
+ 		fail("KING_CLOCK_DOMAIN_OR_CAP", "clock_pass")
+ 		return
+@@ -913,13 +917,14 @@
+ 	king_clock_last_kind = kind
+ 	if kind == "idle":
+ 		king_clock_i += 1
++	source_tail_note_pass(kind, Engine.get_physics_frames(), Engine.get_idle_frames(), king_clock_count)
+ 
+ func close_king_clock():
+-	if not king_clock_active or king_clock_closed or king_clock_last_kind != "idle":
++	if not king_clock_active or king_clock_closed or king_clock_last_kind != "idle" or not source_terminal_current():
+ 		return fail("KING_CLOCK_ENDPOINT", "finish_capture")
+ 	king_clock_active = false
+ 	king_clock_closed = true
+-	return write_king_json("king-capture-endpoint.json", {"schema": "phase111-fixed-endpoint/1", "phase": "idle_pre_internal_flush", "physics_frame": Engine.get_physics_frames(), "idle_frame": Engine.get_idle_frames(), "passes": king_clock_count, "two_future_physics_signals": 2, "fx_exact_comparison": "NOT_EVALUATED_REQUIRES_MODEL"})
++	return write_king_json("king-capture-endpoint.json", {"schema": "phase390-first-eligible-idle-endpoint/1", "terminal_policy": TERMINAL_POLICY, "phase": "idle_pre_internal_flush", "physics_frame": Engine.get_physics_frames(), "idle_frame": Engine.get_idle_frames(), "passes": king_clock_count, "minimum_future_physics_signals": 2, "observed_future_physics_signals": source_tail_count, "cleanup_anchor_pass": source_tail_anchor, "first_eligible_idle_pass": source_tail_first_idle.ordinal, "fx_exact_comparison": "NOT_EVALUATED_REQUIRES_MODEL"})
+ 
+ func king_runtime_snapshot():
+ 	begin_encoding()
+@@ -1137,7 +1142,7 @@
+ var rng_initial_count = 0
+ var rng_initial_util_id = ""
+ var rng_initial_rng_id = ""
+-const RNG_INITIAL_PROFILE = "7-king-single-A-355"
++const RNG_INITIAL_PROFILE = "7-king-single-A-390"
+ const RNG_INITIAL_FILE = "king-rng-checkpoint.json"
+ const RNG_INITIAL_PENDING = "user://king-rng-checkpoint.pending"
+ 
+@@ -1394,6 +1399,8 @@
+ 	if source_cleanup != null or not king_clock_active or failed:
+ 		return fail("SOURCE_CLEANUP_ORDER", "Core/Game.gd::combatEndDeferred")
+ 	source_cleanup = {"physics_frame": Engine.get_physics_frames(), "idle_frame": Engine.get_idle_frames(), "is_in_physics_frame": Engine.is_in_physics_frame()}
++	if not source_tail_mark_cleanup():
++		return false
+ 	return write_king_json("king-post-cleanup-source.json", source_runtime_snapshot())
+ 
+ 
+@@ -1420,7 +1427,9 @@
+ 
+ 
+ func source_completion_receipt():
+-	return {"source_window_complete": source_window_complete, "failed": failed, "clock_closed": king_clock_closed, "ui_closed": ui_closed, "cleanup": source_cleanup, "clock_passes": king_clock_count, "native_capture_accepted": false, "collector_archive_pending": true}
++	if source_window_complete and not source_terminal_current():
++		fail("SOURCE_RECEIPT_TERMINAL_CONTEXT", "source_completion_receipt")
++	return {"source_window_complete": source_window_complete, "failed": failed, "clock_closed": king_clock_closed, "ui_closed": ui_closed, "cleanup": source_cleanup, "clock_passes": king_clock_count, "native_capture_accepted": false, "collector_archive_pending": true, "terminal_cut": source_terminal_cut()}
+ 
+ func source_same_slot_value(actual, expected):
+ 	# Native JSON numbers are REAL; accepting exact integral values here is a
+@@ -1511,7 +1520,7 @@
+ 		return source_diag_secondary("UNSUPPORTED_PRIMITIVE_DIAGNOSTIC")
+ 	if source_diag_records >= 64:
+ 		return source_diag_secondary("DIAGNOSTIC_RECORD_CAP")
+-	var row = {"schema": "phase368-source-control/1", "control_sequence": source_diag_records, "site": site, "reason": reason, "physics": Engine.get_physics_frames(), "idle": Engine.get_idle_frames(), "in_physics": Engine.is_in_physics_frame(), "observer_sequence": sequence, "ui_sequence": ui_sequence, "clock_passes": king_clock_count, "payload": payload}
++	var row = {"schema": "phase391-source-control/1", "control_sequence": source_diag_records, "site": site, "reason": reason, "physics": Engine.get_physics_frames(), "idle": Engine.get_idle_frames(), "in_physics": Engine.is_in_physics_frame(), "observer_sequence": sequence, "ui_sequence": ui_sequence, "clock_passes": king_clock_count, "payload": payload}
+ 	var bytes = (JSON.print(row) + "\n").to_utf8()
+ 	if bytes.size() > 262144 or source_diag_bytes + bytes.size() > 1048576:
+ 		return source_diag_secondary("DIAGNOSTIC_BYTE_CAP")
+@@ -1598,7 +1607,7 @@
+ 
+ 
+ func source_cut_control():
+-	return {"phase": source_cut_phase, "dispatching": source_cut_dispatching, "emit_count": source_cut_emit_count, "receiver_available": source_cut_receiver_id > 0, "receiver_id": str(source_cut_receiver_id) if source_cut_receiver_id > 0 else null, "physics": source_cut_physics if source_cut_physics >= 0 else null, "idle": source_cut_idle if source_cut_idle >= 0 else null, "ack": source_cut_ack, "script_emit_return": source_cut_script_return, "script_emit_return_observed": source_cut_script_return_observed, "native_emit_error_available": false, "native_emit_error": null, "finish_return": source_cut_finish_return, "failed": failed, "closed": closed, "complete": source_window_complete, "clock_closed": king_clock_closed, "ui_closed": ui_closed, "first_error": first_error, "ready_connect": source_cut_ready_connect, "diagnostic_error": source_diag_error}
++	return {"phase": source_cut_phase, "dispatching": source_cut_dispatching, "emit_count": source_cut_emit_count, "receiver_available": source_cut_receiver_id > 0, "receiver_id": str(source_cut_receiver_id) if source_cut_receiver_id > 0 else null, "physics": source_cut_physics if source_cut_physics >= 0 else null, "idle": source_cut_idle if source_cut_idle >= 0 else null, "ack": source_cut_ack, "script_emit_return": source_cut_script_return, "script_emit_return_observed": source_cut_script_return_observed, "native_emit_error_available": false, "native_emit_error": null, "finish_return": source_cut_finish_return, "failed": failed, "closed": closed, "complete": source_window_complete, "clock_closed": king_clock_closed, "ui_closed": ui_closed, "first_error": first_error, "ready_connect": source_cut_ready_connect, "diagnostic_error": source_diag_error, "terminal_cut": source_terminal_cut()}
+ 
+ 
+ func source_cut_reject(code, site, detail = null):
+@@ -1621,14 +1630,14 @@
+ func ack_source_idle_cut(receiver_id, physics_frame, idle_frame):
+ 	if typeof(receiver_id) != TYPE_INT or typeof(physics_frame) != TYPE_INT or typeof(idle_frame) != TYPE_INT:
+ 		return source_cut_reject("CUT_ACK_TYPES", "ack_source_idle_cut")
+-	if source_cut_phase != "EMITTING" or not source_cut_dispatching or source_cut_emit_count != 1 or source_cut_ack != null or receiver_id != source_cut_receiver_id or physics_frame != source_cut_physics or idle_frame != source_cut_idle or Engine.get_physics_frames() != physics_frame or Engine.get_idle_frames() != idle_frame or failed:
++	if source_cut_phase != "EMITTING" or not source_cut_dispatching or source_cut_emit_count != 1 or source_cut_ack != null or receiver_id != source_cut_receiver_id or physics_frame != source_cut_physics or idle_frame != source_cut_idle or Engine.get_physics_frames() != physics_frame or Engine.get_idle_frames() != idle_frame or failed or not source_terminal_current():
+ 		return source_cut_reject("CUT_ACK_CONTEXT", "ack_source_idle_cut")
+ 	source_cut_ack = {"receiver_id": str(receiver_id), "physics": physics_frame, "idle": idle_frame, "serial": 1}
+ 	return true
+ 
+ 
+ func emit_source_idle_cut_once():
+-	if failed or not closed or not source_window_complete or not king_clock_closed or not ui_closed or source_cut_phase != "IDLE" or source_cut_emit_count != 0 or source_cut_dispatching or source_cleanup == null or Engine.is_in_physics_frame() or Engine.get_physics_frames() != source_cleanup.physics_frame + 2:
++	if failed or not closed or not source_window_complete or not king_clock_closed or not ui_closed or source_cut_phase != "IDLE" or source_cut_emit_count != 0 or source_cut_dispatching or not source_terminal_current():
+ 		return source_cut_reject("CUT_DISPATCH_CONTEXT", "emit_source_idle_cut_once")
+ 	var receiver = source_cut_receiver()
+ 	if receiver == null or not receiver.has_method("on_idle_source_cut") or not receiver.has_method("finish_source_cut"):
+@@ -1648,13 +1657,13 @@
+ 	# Script NIL is not a callback acknowledgement; native Error is unavailable.
+ 	if typeof(source_cut_script_return_observed) != TYPE_BOOL or not source_cut_script_return_observed or typeof(source_cut_script_return) != TYPE_NIL or source_cut_ack == null or failed:
+ 		return source_cut_reject("CUT_EMIT_OR_ACK", "emit_source_idle_cut_once")
+-	if source_cut_ack.receiver_id != str(source_cut_receiver_id) or source_cut_ack.physics != source_cut_physics or source_cut_ack.idle != source_cut_idle or source_cut_ack.serial != 1 or Engine.get_physics_frames() != source_cut_physics or Engine.get_idle_frames() != source_cut_idle or source_cut_receiver() != receiver:
++	if source_cut_ack.receiver_id != str(source_cut_receiver_id) or source_cut_ack.physics != source_cut_physics or source_cut_ack.idle != source_cut_idle or source_cut_ack.serial != 1 or Engine.get_physics_frames() != source_cut_physics or Engine.get_idle_frames() != source_cut_idle or source_cut_receiver() != receiver or not source_terminal_current():
+ 		return source_cut_reject("CUT_RETURN_IDENTITY", "emit_source_idle_cut_once")
+ 	if not source_diagnostic("emit_source_idle_cut_once", "RETURNED_ACK_CHECKED", {"control": source_cut_control()}):
+ 		return source_cut_reject("CUT_DIAGNOSTIC_AFTER_RETURN", "emit_source_idle_cut_once")
+ 	source_cut_phase = "FINALIZING"
+ 	source_cut_finish_return = receiver.finish_source_cut()
+-	if typeof(source_cut_finish_return) != TYPE_BOOL or not source_cut_finish_return or failed or Engine.get_physics_frames() != source_cut_physics or Engine.get_idle_frames() != source_cut_idle:
++	if typeof(source_cut_finish_return) != TYPE_BOOL or not source_cut_finish_return or failed or Engine.get_physics_frames() != source_cut_physics or Engine.get_idle_frames() != source_cut_idle or not source_terminal_current():
+ 		return source_cut_reject("CUT_FINALIZER_RETURN", "emit_source_idle_cut_once")
+ 	source_cut_phase = "FINALIZED"
+ 	if not source_diagnostic("emit_source_idle_cut_once", "FINALIZED", {"control": source_cut_control()}):
+@@ -1663,3 +1672,69 @@
+ 
+ 
+ # Replacement of existing functions: all normal clock operations remain in original order.
++
++# SOURCE template: appended primitive-only terminal tracker, not an executable project.
++const TERMINAL_POLICY = "first-actual-idle-after-at-least-two-future-physics/1"
++const TERMINAL_CONTROL_SCHEMA = "phase390-terminal-cut-control/1"
++var source_tail_checkpoint_p = -1
++var source_tail_checkpoint_i = -1
++var source_tail_last = null
++var source_tail_anchor = -1
++var source_tail_count = 0
++var source_tail_first_idle = null
++
++func source_tail_begin():
++	source_tail_checkpoint_p = Engine.get_physics_frames()
++	source_tail_checkpoint_i = Engine.get_idle_frames()
++	source_tail_last = null
++	source_tail_anchor = -1
++	source_tail_count = 0
++	source_tail_first_idle = null
++
++func source_tail_mark_cleanup():
++	if source_cleanup == null or source_tail_anchor != -1 or source_tail_first_idle != null:
++		return fail("SOURCE_CLEANUP_CLOCK_ASSOCIATION", "source_tail_mark_cleanup")
++	if king_clock_count == 0:
++		if source_tail_last != null or source_cleanup.is_in_physics_frame or source_cleanup.physics_frame != source_tail_checkpoint_p or source_cleanup.idle_frame != source_tail_checkpoint_i:
++			return fail("SOURCE_CLEANUP_CHECKPOINT_ASSOCIATION", "source_tail_mark_cleanup")
++		source_tail_anchor = 0
++	else:
++		var kind = "physics" if source_cleanup.is_in_physics_frame else "idle"
++		if source_tail_last == null or source_tail_last.ordinal != king_clock_count or source_tail_last.kind != kind or source_tail_last.physics != source_cleanup.physics_frame or source_tail_last.idle != source_cleanup.idle_frame:
++			return fail("SOURCE_CLEANUP_PASS_ASSOCIATION", "source_tail_mark_cleanup")
++		source_tail_anchor = king_clock_count
++	return true
++
++func source_tail_note_pass(kind, physics_frame, idle_frame, ordinal):
++	if source_tail_first_idle != null:
++		return fail("SOURCE_MISSED_FIRST_ELIGIBLE_IDLE", "source_tail_note_pass")
++	source_tail_last = {"kind": kind, "physics": physics_frame, "idle": idle_frame, "ordinal": ordinal}
++	if source_cleanup == null:
++		return true
++	if source_tail_anchor < 0 or ordinal <= source_tail_anchor:
++		return fail("SOURCE_FUTURE_PASS_ASSOCIATION", "source_tail_note_pass")
++	if kind == "physics":
++		if physics_frame <= source_cleanup.physics_frame:
++			return fail("SOURCE_NOT_STRICTLY_FUTURE_PHYSICS", "source_tail_note_pass")
++		source_tail_count += 1
++	elif kind != "idle":
++		return fail("SOURCE_FUTURE_PASS_KIND", "source_tail_note_pass")
++	if physics_frame - source_cleanup.physics_frame != source_tail_count:
++		return fail("SOURCE_FUTURE_PHYSICS_CONTINUITY", "source_tail_note_pass")
++	if kind == "idle" and source_tail_count >= 2:
++		source_tail_first_idle = {"ordinal": ordinal, "physics": physics_frame, "idle": idle_frame, "count": source_tail_count}
++	return true
++
++func source_terminal_cut():
++	if source_tail_first_idle == null:
++		return null
++	return {"schema": TERMINAL_CONTROL_SCHEMA, "terminal_policy": TERMINAL_POLICY, "cleanup_anchor_pass": source_tail_anchor, "first_eligible_idle_pass": source_tail_first_idle.ordinal, "minimum_future_physics_signals": 2, "observed_future_physics_signals": source_tail_first_idle.count}
++
++func source_terminal_current():
++	if source_cleanup == null or source_tail_anchor < 0 or source_tail_first_idle == null or source_tail_last == null or Engine.is_in_physics_frame():
++		return false
++	if source_tail_first_idle.count < 2 or source_tail_count != source_tail_first_idle.count or source_tail_first_idle.ordinal != king_clock_count or source_tail_last.ordinal != king_clock_count or source_tail_last.kind != "idle":
++		return false
++	if source_tail_first_idle.physics != Engine.get_physics_frames() or source_tail_first_idle.idle != Engine.get_idle_frames() or source_tail_last.physics != source_tail_first_idle.physics or source_tail_last.idle != source_tail_first_idle.idle:
++		return false
++	return Engine.get_physics_frames() - source_cleanup.physics_frame == source_tail_count

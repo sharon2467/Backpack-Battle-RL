@@ -1,0 +1,51 @@
+{
+  "added_functions": [],
+  "after": {
+    "path": "tests/phase391_oracle_storage.py",
+    "sha256": "a443a0e8572e5a079bb106f6940d1d0d5b1e8a6fe59ab0bf9e85212d20e21718",
+    "size": 20410
+  },
+  "before": {
+    "path": "tests/phase380_oracle_storage.py",
+    "sha256": "c5b0cb3ab0ccc2c9865c36da531c050c577b46849c2c6ce763a4cc365813e601",
+    "size": 20410
+  },
+  "changed_functions": [],
+  "check": "PYTHON_AST",
+  "conserved_functions": [
+    "_identity",
+    "_read_source",
+    "_source_descriptor",
+    "_source_signature",
+    "archive_streaming",
+    "atomic_image",
+    "budget",
+    "check_ready",
+    "check_source_descriptor",
+    "directory",
+    "install",
+    "lease",
+    "map_recorded",
+    "member",
+    "pin",
+    "preflight_install_payloads",
+    "read",
+    "read_source_payload",
+    "regular_target",
+    "reset_previous",
+    "state_write",
+    "sync",
+    "write_new"
+  ],
+  "edits": [
+    {
+      "after": "MAX_INSTALL_BYTES = 815198",
+      "after_positions": [
+        15417
+      ],
+      "before": "MAX_INSTALL_BYTES = 807199",
+      "occurrences": 1
+    }
+  ],
+  "inverse": "EXACT_COMPLETE_BYTES"
+}

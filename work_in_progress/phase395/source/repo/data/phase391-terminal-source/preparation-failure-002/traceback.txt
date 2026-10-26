@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/workspace/python-original-engine/repo/tests/phase391_prepare_source.py", line 253, in <module>
+    try:generate()
+        ^^^^^^^^^^
+  File "/workspace/python-original-engine/repo/tests/phase391_prepare_source.py", line 129, in generate
+    sink_desc = sink.finish(D/'after-source/native_random_observer_sink_v7.gd', ['begin_king_clock','clock_idle_signal','clock_pass','close_king_clock','source_mark_cleanup','source_completion_receipt','source_cut_control','ack_source_idle_cut','emit_source_idle_cut_once','source_diagnostic'])
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/python-original-engine/repo/tests/phase391_prepare_source.py", line 76, in finish
+    assert inverse.count(row['after']) == row['occurrences'], row['after'][:100]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: or not source_terminal_current():

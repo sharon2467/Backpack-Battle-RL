@@ -1,0 +1,9 @@
+# Completed attempt05 recovery and independent readback SOURCE
+
+This separate Source closure derives the complete380installed failed05 state back to the exact old026target. Actual saved evidence yields78project differences,7directory metadata differences,2staged files and80writer operations. All76install backups,73priorpatch images,marker and4preimage routes are verified. It uses the375completed-install safety path and does not permit missing-target creation or use380's partial-reset helper.
+
+The immutable391observational Source and392bounded component review are context, not recovery authority. The recovery module has local Root/review/source identifiers and a complete import closure, including the old363storage dependency. The independently owned reader binds the actual05parse/native control records, verified process inspector,385capsule380members including367run/13cross-root originals, and full file hash/mode/mtime evidence; directories without historical targets are only observed. Capsulebusinessbytes remain opaque.
+
+Two saved-only map generations are preserved:the initial successful ledger and a revision adding an explicit consumed old026provenance pin. The map bytes/78-7-2target stayed unchanged. The first Source封口 attempt's four-field capsule versus two-field descriptor shape error, code and trace are retained; the subsequent Source adaptation compares hash descriptors separately from real saved mode/mtime. No runtime recovery/reader or livepool/proc invocation occurred.
+
+Add source/repo after the main restore and all flat supplements. Source was generated/compiled, fully inverted and pinned;387ordinary leaves5956317B were read back. Independent396Source/bounded acceptance, realrestore retainingfailed, owned independentphysicalPASS, separateRootREADY and any native launch remain later gates. Formal75/Kingexclusion/closed356and361 remain unchanged.

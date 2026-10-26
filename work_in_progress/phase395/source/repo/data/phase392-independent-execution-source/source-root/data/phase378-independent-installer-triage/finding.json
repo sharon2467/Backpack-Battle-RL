@@ -1,0 +1,144 @@
+{
+  "status": "BLOCKED378_COLLECTOR_ARTIFACT_DESCRIPTOR_NOT_USED_AND_PREFLIGHT_AFTER_RESET",
+  "direct": {
+    "host_execute": {
+      "command": [
+        "python3",
+        "-B",
+        "-S",
+        "tests/phase375_oracle_host.py",
+        "--source-root",
+        "/workspace/python-original-engine/repo",
+        "--task-root",
+        "/workspace/godotsteam-startup-20261013",
+        "--baseline",
+        "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles",
+        "--pool",
+        "/workspace/native-combat-20261013/pool",
+        "--runs-root",
+        "/workspace/native-combat-20261013/runs",
+        "--config",
+        "data/phase377-root-oracle-attempt04/oracle-acceptance.json",
+        "--config-size",
+        "4198",
+        "--config-sha256",
+        "8e8e61837d7f85bb98f32df409030e65c31c1d06eef13aadbe04d09d890e1ad3",
+        "--execute"
+      ],
+      "exit_code": 1,
+      "duration_seconds": 13.497291286999825,
+      "models": 0,
+      "projection": 0,
+      "expected_semantic_comparison": 0,
+      "automatic_retry": false
+    },
+    "first_error": "FileNotFoundError at storage.install journal after=pin(payload): /workspace/python-original-engine/repo/data/phase375-food-hook-source/collector.gd",
+    "readonlyplan_exit": 0,
+    "source_payload_presence": {
+      "native_combat_capture.gd": {
+        "constructed_relative": "data/phase375-food-hook-source/collector.gd",
+        "constructed_exists": false,
+        "frozen_descriptor": {
+          "path": "data/phase370-oracle-source/collector.gd",
+          "sha256": "33f2d20dee6364dd26a89a15a00d506ca96095d8ec661c7c1693aecb58b6acf7",
+          "size": 61404
+        },
+        "actual_declared_identity": {
+          "size": 61404,
+          "sha256": "33f2d20dee6364dd26a89a15a00d506ca96095d8ec661c7c1693aecb58b6acf7"
+        },
+        "same_declared_path": false
+      },
+      "native_capture_config.json": {
+        "constructed_relative": "data/phase362-oracle-capture-source/case-A/native_capture_config.json",
+        "constructed_exists": true,
+        "frozen_descriptor": {
+          "path": "data/phase362-oracle-capture-source/case-A/native_capture_config.json",
+          "sha256": "dbded47b0896eb3efa859b75aacab673da495a32b845c1e795090969ad76f2c8",
+          "size": 229
+        },
+        "actual_declared_identity": {
+          "size": 229,
+          "sha256": "dbded47b0896eb3efa859b75aacab673da495a32b845c1e795090969ad76f2c8"
+        },
+        "same_declared_path": true
+      },
+      ".native-random-observer-disposable": {
+        "constructed_relative": "data/phase362-oracle-capture-source/disposable-marker.txt",
+        "constructed_exists": true,
+        "frozen_descriptor": {
+          "path": "data/phase362-oracle-capture-source/disposable-marker.txt",
+          "sha256": "3135fd7d3ad7e72d218ca18c0782bc69a437f38e76013cc7ee224100e9b76fc1",
+          "size": 28
+        },
+        "actual_declared_identity": {
+          "size": 28,
+          "sha256": "3135fd7d3ad7e72d218ca18c0782bc69a437f38e76013cc7ee224100e9b76fc1"
+        },
+        "same_declared_path": true
+      }
+    },
+    "saved_run_data_copies_exact": {
+      "custom_player.json": {
+        "size": 1676,
+        "sha256": "a42675c3fedb0651e4309754403d5658edcce869f85edb07963e7a2f87391c56"
+      },
+      "custom_opponent.json": {
+        "size": 1597,
+        "sha256": "9c57f7781c8ae58027296004262cc0b2b691c25084ea29d8f4171ff44828a689"
+      },
+      "native_capture_config.json": {
+        "size": 229,
+        "sha256": "dbded47b0896eb3efa859b75aacab673da495a32b845c1e795090969ad76f2c8"
+      }
+    },
+    "partial_backups": 75,
+    "complete_preimages_json": false,
+    "driver_payloads": 0
+  },
+  "source_derived_timeline": [
+    "lease writes busy state before yielding; failure handling writes failed state",
+    "reset_previous validates/backups old patch and restores its73 paths, deletes old sink and marker, returns full before/after inventory; actual saved reset confirms this completed",
+    "three input files copied to run/data before artifacts/install",
+    "install validates all75 frozen patch source payloads before backup; artifact payloads are merely Path-coerced and target-checked at this preflight",
+    "74 existing patch preimages and existing collector target are copied to numeric backup files",
+    "missing collector source throws while evaluating journal entry after-pin; in-memory journal is not persisted",
+    "preimages.json write, atomic installed-source loop, pool/data copy, patch/driver/provenance snapshots and parse/Game launch are all later and unreachable on this exception"
+  ],
+  "not_claimed": [
+    "No newly installed375 source bytes are inferred from numeric backups. They contain old preimages.",
+    "No actual complete journal can be reconstructed or labeled original.",
+    "No fresh livepool/data equality asserted: SOURCE indicates pool/data copy was not reached; later actual failed-tree recovery/readback must verify bytes/metadata.",
+    "No fourth originalGame process, battle, complete12, projection or model acceptance."
+  ],
+  "same_class_finite_audit": {
+    "execute_artifacts": 3,
+    "missing_constructed": 1,
+    "other_two_current_paths_exact_descriptor": true,
+    "three_copied_case_inputs_exact_current_descriptors": true,
+    "general_gap": "Both plan and source_gate validate freeze declarations, not the execute artifact binding list; directinstall independently lacks full source identity/regularity/root validation for artifact payloads before backup. Similar future alias/missing/changed payload errors can therefore occur after lease/reset or backups."
+  },
+  "minimal_repair": [
+    "Resolve every artifact through exact frozen descriptors, including collector reuse, with one shared plan/execute binding function and expected fixed destinations.",
+    "Preflight every artifact/source/fixture identity, path safety and required metadata before lease/reset; rerun exact identity checks at the actual mutation boundary as necessary.",
+    "Direct installer must independently validate all artifact and patch payloads with expected identities before any backup or target mutation; no caller preflight Boolean shortcut.",
+    "Preserve current partial run/backs/reset/state and derive a new recovery map from actual failed tree, old026 target, reset and preimage evidence; never assume successful installed375 tree or synthesize missing preimages.json."
+  ],
+  "prior_review_limit": "375 independent gate proved exact host binding derivation but missed closure between reused collector descriptor and execute constructed path. The inherited path assumption was not proved by plan/sourcegate.",
+  "actual_counts": {
+    "readonly_analysis": 1,
+    "SUT_imports": 0,
+    "SUT_calls": 0,
+    "Godot": 0,
+    "parse_processes": 0,
+    "original_Game_processes": 0,
+    "native_battles": 0,
+    "models": 0,
+    "projection": 0,
+    "pool_writes": 0,
+    "restores": 0,
+    "READY": 0,
+    "expected_semantics_reads": 0
+  },
+  "no_more_writes": true
+}

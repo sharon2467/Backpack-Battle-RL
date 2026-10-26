@@ -1,0 +1,78 @@
+--- data/phase370-oracle-source/collector.gd
++++ data/phase391-terminal-source/collector.gd
+@@ -906,8 +906,8 @@
+ 	var receipt = observer.source_completion_receipt()
+ 	if not receipt.source_window_complete or not observer.closed or not check_source_listener_order() or Engine.is_in_physics_frame() or not receipt.clock_closed or not receipt.ui_closed or result_value == null:
+ 		return source_cut_reject_collector("CUT_COMPLETION_GUARD")
+-	if receipt.cleanup == null or Engine.get_physics_frames() != receipt.cleanup.physics_frame + 2:
+-		return source_cut_reject_collector("CUT_TWO_FUTURE_PHYSICS")
++	if not source_terminal_receipt_matches(receipt, control) or not observer.source_terminal_current():
++		return source_cut_reject_collector("CUT_FIRST_ACTUAL_ELIGIBLE_IDLE")
+ 	# Atomic synchronous once guard BEFORE any sampling or callback that can reenter.
+ 	source_cut_frozen = true
+ 	barrier_ok = check_barrier()
+@@ -916,8 +916,8 @@
+ 	if done or observer.failed:
+ 		return source_cut_reject_collector("CUT_SAMPLING_FAILURE")
+ 	var count = snapshot.events.size()
+-	var native_manifest = {"schema": "native-combat-capture/1", "case_id": config.case_id, "config": config, "version": game.VERSION, "engine": Engine.get_version_info(), "main_scene": ProjectSettings.get_setting("application/run/main_scene"), "physics_fps": Engine.iterations_per_second, "time_scale": Engine.time_scale, "collector_source": "phase362-single-King-oracle-only", "clean_exit": "HOST_RECORD_SEPARATELY", "native_model_admission": false}
+-	var validation = {"native_capture_written": true, "capture_complete": false, "host_validation_required": true, "native_checks_pass": errors.empty() and barrier_ok and not observer.failed, "end_barrier": barrier_ok, "layout": legal_checks, "errors": errors.duplicate(), "events": count, "result": result_value, "elapsed_ms": OS.get_ticks_msec() - started, "cut": {"physics": Engine.get_physics_frames(), "idle": Engine.get_idle_frames(), "preinternal": true}, "full_snapshot_reads": 1}
++	var native_manifest = {"schema": "native-combat-capture/1", "case_id": config.case_id, "config": config, "version": game.VERSION, "engine": Engine.get_version_info(), "main_scene": ProjectSettings.get_setting("application/run/main_scene"), "physics_fps": Engine.iterations_per_second, "time_scale": Engine.time_scale, "collector_source": "phase391-single-King-oracle-only", "clean_exit": "HOST_RECORD_SEPARATELY", "native_model_admission": false}
++	var validation = {"native_capture_written": true, "capture_complete": false, "host_validation_required": true, "native_checks_pass": errors.empty() and barrier_ok and not observer.failed, "end_barrier": barrier_ok, "layout": legal_checks, "errors": errors.duplicate(), "events": count, "result": result_value, "elapsed_ms": OS.get_ticks_msec() - started, "cut": {"physics": Engine.get_physics_frames(), "idle": Engine.get_idle_frames(), "preinternal": true}, "full_snapshot_reads": 1, "terminal_cut": receipt.terminal_cut.duplicate(true)}
+ 	source_cut_payload = {"instances": instance_rows.duplicate(true), "phases": phases.duplicate(true), "event_references": event_references.duplicate(true), "snapshot": snapshot, "native_manifest": native_manifest, "receipt": receipt, "king_cut": {"receipt": receipt, "connection_order": source_connection_order.duplicate(true), "actual_final": king_final, "source": "SAME_IDLE_INSIDE_SINK_AFTER_WRITE_BEFORE_NODE_INTERNAL"}, "validation": validation, "success": errors.empty() and barrier_ok and not observer.failed, "count": count}
+ 	if not source_control_record("on_idle_source_cut", "FROZEN_BEFORE_ACK"):
+ 		return source_cut_reject_collector("CUT_FROZEN_DIAGNOSTIC_FAILED")
+@@ -1041,6 +1041,8 @@
+ 	var control = observer.source_cut_control() # Observation-control primitives only, no business getter.
+ 	if control.phase != "FINALIZING" or control.dispatching or control.emit_count != 1 or typeof(control.script_emit_return_observed) != TYPE_BOOL or not control.script_emit_return_observed or typeof(control.script_emit_return) != TYPE_NIL or typeof(control.native_emit_error_available) != TYPE_BOOL or control.native_emit_error_available or control.native_emit_error != null or control.ack == null or control.receiver_id != str(get_instance_id()) or control.physics != source_cut_payload.validation.cut.physics or control.idle != source_cut_payload.validation.cut.idle or Engine.get_physics_frames() != control.physics or Engine.get_idle_frames() != control.idle or control.failed:
+ 		return source_cut_reject_collector("CUT_FINALIZER_CONTEXT")
++	if not source_terminal_receipt_matches(source_cut_payload.receipt, control) or not observer.source_terminal_current():
++		return source_cut_reject_collector("CUT_FINALIZER_TERMINAL_IDENTITY")
+ 	source_cut_finish_entered = true
+ 	# Serialization only below: frozen primitive DTOs, no getters/snapshots/getStats/advance.
+ 	var jobs = [["instances.json", source_cut_payload.instances], ["phases.json", source_cut_payload.phases], ["event_references.json", source_cut_payload.event_references], ["histories.json", source_cut_payload.snapshot.histories], ["final_state.json", source_cut_payload.snapshot.state], ["native_manifest.json", source_cut_payload.native_manifest], ["observer7-status.json", source_cut_payload.receipt], ["king-collector-cut.json", source_cut_payload.king_cut]]
+@@ -1164,3 +1166,44 @@
+ 	buffer.put_double(value)
+ 	return buffer.data_array.hex_encode()
+ 
++
++# SOURCE template: control-only checks; SceneTree owner, no Node-only get_tree API.
++func source_terminal_receipt_matches(receipt, control):
++	if typeof(receipt) != TYPE_DICTIONARY or typeof(control) != TYPE_DICTIONARY or not receipt.has("terminal_cut") or not control.has("terminal_cut") or not receipt.has("cleanup") or receipt.cleanup == null:
++		return false
++	if not exact_keys(receipt, ["source_window_complete", "failed", "clock_closed", "ui_closed", "cleanup", "clock_passes", "native_capture_accepted", "collector_archive_pending", "terminal_cut"]) or not exact_keys(control, ["phase", "dispatching", "emit_count", "receiver_available", "receiver_id", "physics", "idle", "ack", "script_emit_return", "script_emit_return_observed", "native_emit_error_available", "native_emit_error", "finish_return", "failed", "closed", "complete", "clock_closed", "ui_closed", "first_error", "ready_connect", "diagnostic_error", "terminal_cut"]):
++		return false
++	for key in ["source_window_complete", "clock_closed", "ui_closed", "collector_archive_pending"]:
++		if typeof(receipt[key]) != TYPE_BOOL or not receipt[key]:
++			return false
++	for key in ["failed", "native_capture_accepted"]:
++		if typeof(receipt[key]) != TYPE_BOOL or receipt[key]:
++			return false
++	for key in ["physics", "idle", "emit_count"]:
++		if typeof(control[key]) != TYPE_INT:
++			return false
++	var keys = ["schema", "terminal_policy", "cleanup_anchor_pass", "first_eligible_idle_pass", "minimum_future_physics_signals", "observed_future_physics_signals"]
++	for value in [receipt.terminal_cut, control.terminal_cut]:
++		if typeof(value) != TYPE_DICTIONARY or value.size() != keys.size():
++			return false
++		for key in keys:
++			if not value.has(key):
++				return false
++		if typeof(value.schema) != TYPE_STRING or value.schema != "phase390-terminal-cut-control/1" or typeof(value.terminal_policy) != TYPE_STRING or value.terminal_policy != "first-actual-idle-after-at-least-two-future-physics/1":
++			return false
++		for key in ["cleanup_anchor_pass", "first_eligible_idle_pass", "minimum_future_physics_signals", "observed_future_physics_signals"]:
++			if typeof(value[key]) != TYPE_INT or value[key] < 0:
++				return false
++		if value.minimum_future_physics_signals != 2 or value.observed_future_physics_signals < 2 or value.cleanup_anchor_pass >= value.first_eligible_idle_pass:
++			return false
++	for key in keys:
++		if typeof(receipt.terminal_cut[key]) != typeof(control.terminal_cut[key]) or receipt.terminal_cut[key] != control.terminal_cut[key]:
++			return false
++	var cleanup = receipt.cleanup
++	if typeof(cleanup) != TYPE_DICTIONARY or cleanup.size() != 3 or not cleanup.has("physics_frame") or not cleanup.has("idle_frame") or not cleanup.has("is_in_physics_frame"):
++		return false
++	if typeof(cleanup.physics_frame) != TYPE_INT or typeof(cleanup.idle_frame) != TYPE_INT or typeof(cleanup.is_in_physics_frame) != TYPE_BOOL or typeof(receipt.clock_passes) != TYPE_INT:
++		return false
++	if receipt.terminal_cut.first_eligible_idle_pass != receipt.clock_passes or receipt.terminal_cut.observed_future_physics_signals != Engine.get_physics_frames() - cleanup.physics_frame or Engine.is_in_physics_frame():
++		return false
++	return control.physics == Engine.get_physics_frames() and control.idle == Engine.get_idle_frames()

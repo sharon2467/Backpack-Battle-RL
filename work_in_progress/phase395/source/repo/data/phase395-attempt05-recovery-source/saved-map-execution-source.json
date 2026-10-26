@@ -1,0 +1,31 @@
+{
+  "schema": "phase395-saved-map-execution-intent/1",
+  "files": [
+    {
+      "path": "tests/phase395_prepare_attempt05_restore_map.py",
+      "size": 9566,
+      "sha256": "4a36131641bd28f5372214b4f3cd7a3a779b96ced42a6144eafca2635926817f"
+    },
+    {
+      "path": "tests/phase395_saved_complete_evidence.py",
+      "size": 11141,
+      "sha256": "62cfeddb7d11c754934715791bb538040fc28aeaab1dfb91db2182c99c0335eb"
+    },
+    {
+      "path": "tests/native_run_compaction.py",
+      "size": 27304,
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260"
+    }
+  ],
+  "allowed": "One actual saved-only map derivation; c saved bundle/index/CRC routines only",
+  "forbidden": [
+    "recovery/reader/schema import",
+    "pool/baseline inventory",
+    "proc",
+    "restore",
+    "READY",
+    "Godot",
+    "model"
+  ],
+  "bytecode_disabled": true
+}
