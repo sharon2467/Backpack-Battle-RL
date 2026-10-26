@@ -1,0 +1,25 @@
+--- frozen368/oracle_host.py
++++ source369/oracle_host.py
+@@ -10,11 +10,11 @@
+                                      reset_previous,install,archive_streaming,c)
+ from phase363_oracle_process import execute_process,rename_capture,usage
+ 
+-SOURCE = 'data/phase368-oracle-source'
++SOURCE = 'data/phase369-oracle-source'
+ DATA = 'data/phase362-oracle-capture-source'
+ CASE = 'NATIVE-027-KING-A'
+ RUN_NAME = 'original027-king-single-A-20261025-attempt03'
+-REVIEW_STATUS = 'INDEPENDENT368_SYNCHRONOUS_CUT_SOURCE_ACCEPTED_ROOT_PENDING'
++REVIEW_STATUS = 'INDEPENDENT369_SCENETREE_COLLECTOR_SOURCE_REPAIR_ACCEPTED_ROOT_PENDING'
+ POLICY = 'bounded-writers-and-monitored-process/1'
+ NAMES = ('custom_player.json','custom_opponent.json','native_capture_config.json')
+ LAWFUL = ('fixture.json','player_fixture.json','observer7-input.jsonl','observer7-lineage.jsonl',
+@@ -45,7 +45,7 @@
+ 
+ def source_gate(source_root,config_descriptor):
+     root=directory(source_root); config_path=descriptor(root,config_descriptor); config=read(config_path)
+-    if config.get('schema')!='phase368-root-oracle-acceptance/1' or config.get('root_oracle_authorized') is not True:
++    if config.get('schema')!='phase369-root-oracle-acceptance/1' or config.get('root_oracle_authorized') is not True:
+         raise ValueError('actual root oracle-only authorization required')
+     if any(type(config.get(k)) is not int or config[k]!=0 for k in ('models_allowed','input_builds_allowed','expected_comparison_allowed')):
+         raise ValueError('strictINT0 model/inputbuild/expected permissions')

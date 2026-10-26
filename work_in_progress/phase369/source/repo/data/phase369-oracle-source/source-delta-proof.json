@@ -1,0 +1,106 @@
+{
+  "Godot": 0,
+  "Python": {
+    "oracle_host": {
+      "after": {
+        "path": "tests/phase369_oracle_host.py",
+        "sha256": "a22ecabd547234b91fa88e8dc879c1ba5a919b14d192d3f99a5b59ce35760401",
+        "size": 18038
+      },
+      "before": {
+        "path": "tests/phase368_oracle_host.py",
+        "sha256": "f896af9f39239451e0f35773ec6b34ae3e85cadc8e78b3e7fbc2e9fc42922bd5",
+        "size": 18027
+      },
+      "changed_functions_binding_only": [
+        "source_gate"
+      ],
+      "exact_inverse": "FULL_BYTES",
+      "literal_pairs": [
+        [
+          "data/phase368-oracle-source",
+          "data/phase369-oracle-source"
+        ],
+        [
+          "INDEPENDENT368_SYNCHRONOUS_CUT_SOURCE_ACCEPTED_ROOT_PENDING",
+          "INDEPENDENT369_SCENETREE_COLLECTOR_SOURCE_REPAIR_ACCEPTED_ROOT_PENDING"
+        ],
+        [
+          "phase368-root-oracle-acceptance/1",
+          "phase369-root-oracle-acceptance/1"
+        ]
+      ],
+      "unchanged_functions": [
+        "collect_capture_metadata",
+        "descriptor",
+        "execute",
+        "main",
+        "plan",
+        "read_control",
+        "resource_gate",
+        "verify_owner"
+      ]
+    },
+    "pool_recovery": {
+      "after": {
+        "path": "tests/phase369_pool_recovery.py",
+        "sha256": "4d9c2ca5e4f38a53c099530900a66d82498664ea1f8d743b68deeec385cfe1c6",
+        "size": 16974
+      },
+      "before": {
+        "path": "tests/phase368_pool_recovery.py",
+        "sha256": "ce1738ff17244a94a534dd0acf474d5242e37db483855b380c2a939c70c3cfe3",
+        "size": 16974
+      },
+      "changed_functions_binding_only": [
+        "source_gate"
+      ],
+      "exact_inverse": "FULL_BYTES",
+      "literal_pairs": [
+        [
+          "from phase368_oracle_host import",
+          "from phase369_oracle_host import"
+        ],
+        [
+          "INDEPENDENT368_RESTORED_POOL_EXACT_TARGET_READBACK_PASS",
+          "INDEPENDENT369_RESTORED_POOL_EXACT_TARGET_READBACK_PASS"
+        ],
+        [
+          "phase368-root-pool-recovery/1",
+          "phase369-root-pool-recovery/1"
+        ]
+      ],
+      "unchanged_functions": [
+        "actual_targets",
+        "check_failed_state",
+        "check_roots",
+        "commit_ready",
+        "directory_metadata",
+        "evidence_path",
+        "locked_pool",
+        "main",
+        "recover",
+        "require",
+        "restore_exact",
+        "verify_evidence"
+      ]
+    }
+  },
+  "actual_pool": 0,
+  "all75_patch_paths_unchanged": true,
+  "changed_GD_function": "source_control_snapshot",
+  "collector_expressions": 3,
+  "map_byte_reused": {
+    "path": "data/phase368-attempt02-recovery-source/restore-map.json",
+    "sha256": "f07ac2295c90f7a0b0a770a4c71dcb5bee3613cf3b7b9057467fa0d0a605919d",
+    "size": 68355
+  },
+  "map_generator_calls": 0,
+  "operational_imports": 0,
+  "schema": "phase369-minimal-delta/1",
+  "sink_byte_reused": {
+    "path": "data/phase368-oracle-source/after-source/native_random_observer_sink_v7.gd",
+    "sha256": "67620fe55ddcae84efe8a2a4f5ee0cb397d08598395905b324052527106885ae",
+    "size": 99407
+  }
+}

@@ -1,0 +1,25 @@
+--- frozen368/pool_recovery.py
++++ source369/pool_recovery.py
+@@ -8,11 +8,11 @@
+ import stat
+ from phase363_oracle_storage import (directory, member, pin, read, write_new, sync,
+     regular_target, atomic_image, state_write, check_ready, map_recorded, c)
+-from phase368_oracle_host import descriptor, verify_owner, REVIEW_STATUS, SOURCE
++from phase369_oracle_host import descriptor, verify_owner, REVIEW_STATUS, SOURCE
+ 
+ MAP = 'data/phase368-attempt02-recovery-source/restore-map.json'
+ INPUT_PINS = 'data/phase368-attempt02-recovery-source/source-input-pins.json'
+-READBACK_STATUS = 'INDEPENDENT368_RESTORED_POOL_EXACT_TARGET_READBACK_PASS'
++READBACK_STATUS = 'INDEPENDENT369_RESTORED_POOL_EXACT_TARGET_READBACK_PASS'
+ 
+ 
+ def require(value, message):
+@@ -29,7 +29,7 @@
+ 
+ def source_gate(source_root, config_descriptor, action):
+     root=directory(source_root); config=read(descriptor(root,config_descriptor))
+-    require(config.get('schema')=='phase368-root-pool-recovery/1' and config.get('action')==action,
++    require(config.get('schema')=='phase369-root-pool-recovery/1' and config.get('action')==action,
+             'separate exact root recovery action')
+     require(config.get('root_'+action+'_authorized') is True, 'explicit root action required')
+     require(all(type(config.get(k)) is int and config[k]==0 for k in

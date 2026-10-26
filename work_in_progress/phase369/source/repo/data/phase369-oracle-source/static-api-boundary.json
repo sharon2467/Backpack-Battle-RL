@@ -1,0 +1,182 @@
+{
+  "Object_implicit": [
+    "get_instance_id",
+    "is_connected"
+  ],
+  "SceneTree_implicit": [
+    "get_root",
+    "quit"
+  ],
+  "audited_functions": [
+    "attach_source_listener",
+    "check_source_listener_order",
+    "collector_control_bound_value",
+    "collector_control_float_bits",
+    "collector_control_rows",
+    "collector_control_target",
+    "collector_diag_valid",
+    "collector_diagnostic_fallback",
+    "ensure_source_window",
+    "finish_source_cut",
+    "observer7_precondition",
+    "on_idle_source_cut",
+    "place_player_items",
+    "source_control_record",
+    "source_control_snapshot",
+    "source_cut_reject_collector",
+    "source_window_reject",
+    "start_controlled_combat"
+  ],
+  "builtins": [
+    "Vector2",
+    "int",
+    "is_instance_valid",
+    "print",
+    "range",
+    "str",
+    "typeof"
+  ],
+  "evidence": [
+    {
+      "end": 80,
+      "source": {
+        "path": "data/phase027-implementation-design/full-source/upstream/scene/main/scene_tree.h",
+        "sha256": "1115b7dc14b716284ccbbdaa6b6b0a2096233d572f0b462035df44b543d3242a",
+        "size": 14760
+      },
+      "start": 74,
+      "text": "};\n\nclass SceneTree : public MainLoop {\n\t_THREAD_SAFE_CLASS_\n\n\tGDCLASS(SceneTree, MainLoop);\n\n"
+    },
+    {
+      "end": 48,
+      "source": {
+        "path": "data/phase027-implementation-design/full-source/upstream/scene/main/node.h",
+        "sha256": "9eb5f2d3b2d95792ef8cddc160d302e883422f614430a8be7ff0d049d2ea612e",
+        "size": 20261
+      },
+      "start": 45,
+      "text": "\nclass Node : public Object {\n\tGDCLASS(Node, Object);\n\tOBJ_CATEGORY(\"Nodes\");\n"
+    },
+    {
+      "end": 2060,
+      "source": {
+        "path": "data/phase027-implementation-design/full-source/upstream/scene/main/scene_tree.cpp",
+        "sha256": "a1ac9f2da5a1046d1c468fd463de4907f535f124952b137d69fb39ef8b14b3b4",
+        "size": 74268
+      },
+      "start": 2057,
+      "text": "void SceneTree::_bind_methods() {\n\tClassDB::bind_method(D_METHOD(\"get_root\"), &SceneTree::get_root);\n\tClassDB::bind_method(D_METHOD(\"has_group\", \"name\"), &SceneTree::has_group);\n\n"
+    },
+    {
+      "end": 2087,
+      "source": {
+        "path": "data/phase027-implementation-design/full-source/upstream/scene/main/scene_tree.cpp",
+        "sha256": "a1ac9f2da5a1046d1c468fd463de4907f535f124952b137d69fb39ef8b14b3b4",
+        "size": 74268
+      },
+      "start": 2083,
+      "text": "\tClassDB::bind_method(D_METHOD(\"get_node_count\"), &SceneTree::get_node_count);\n\tClassDB::bind_method(D_METHOD(\"get_frame\"), &SceneTree::get_frame);\n\tClassDB::bind_method(D_METHOD(\"quit\", \"exit_code\"), &SceneTree::quit, DEFVAL(-1));\n\n\tClassDB::bind_method(D_METHOD(\"set_screen_stretch\", \"mode\", \"aspect\", \"minsize\", \"scale\"), &SceneTree::set_screen_stretch, DEFVAL(1));\n"
+    },
+    {
+      "end": 3134,
+      "source": {
+        "path": "data/phase027-implementation-design/full-source/upstream/scene/main/node.cpp",
+        "sha256": "0c2e3230b37644c8496f5b1aee59f428de6a497a380c247613c489e44cd508a9",
+        "size": 95163
+      },
+      "start": 3130,
+      "text": "\tClassDB::bind_method(D_METHOD(\"reset_physics_interpolation\"), &Node::reset_physics_interpolation);\n\n\tClassDB::bind_method(D_METHOD(\"get_tree\"), &Node::get_tree);\n\tClassDB::bind_method(D_METHOD(\"create_tween\"), &Node::create_tween);\n\n"
+    },
+    {
+      "end": 1686,
+      "source": {
+        "path": "data/phase184-ranger-idle-sync-source/source/object.cpp",
+        "sha256": "7d9bb073fde7ba0c1d7b057fbefcdba292148eeb4cdd58c1c975c9e8f8f3b8c6",
+        "size": 57985
+      },
+      "start": 1682,
+      "text": "\tClassDB::bind_method(D_METHOD(\"notification\", \"what\", \"reversed\"), &Object::notification, DEFVAL(false));\n\tClassDB::bind_method(D_METHOD(\"to_string\"), &Object::to_string);\n\tClassDB::bind_method(D_METHOD(\"get_instance_id\"), &Object::get_instance_id);\n\n\tClassDB::bind_method(D_METHOD(\"set_script\", \"script\"), &Object::set_script);\n"
+    },
+    {
+      "end": 1737,
+      "source": {
+        "path": "data/phase184-ranger-idle-sync-source/source/object.cpp",
+        "sha256": "7d9bb073fde7ba0c1d7b057fbefcdba292148eeb4cdd58c1c975c9e8f8f3b8c6",
+        "size": 57985
+      },
+      "start": 1728,
+      "text": "\tClassDB::bind_method(D_METHOD(\"has_signal\", \"signal\"), &Object::has_signal);\n\tClassDB::bind_method(D_METHOD(\"get_signal_list\"), &Object::_get_signal_list);\n\tClassDB::bind_method(D_METHOD(\"get_signal_connection_list\", \"signal\"), &Object::_get_signal_connection_list);\n\tClassDB::bind_method(D_METHOD(\"get_incoming_connections\"), &Object::_get_incoming_connections);\n\n\tClassDB::bind_method(D_METHOD(\"connect\", \"signal\", \"target\", \"method\", \"binds\", \"flags\"), &Object::connect, DEFVAL(Array()), DEFVAL(0));\n\tClassDB::bind_method(D_METHOD(\"disconnect\", \"signal\", \"target\", \"method\"), &Object::disconnect);\n\tClassDB::bind_method(D_METHOD(\"is_connected\", \"signal\", \"target\", \"method\"), &Object::is_connected);\n\n\tClassDB::bind_method(D_METHOD(\"set_block_signals\", \"enable\"), &Object::set_block_signals);\n"
+    }
+  ],
+  "explicit_receiver_scope": "observer/emitter are actual Node/Object, File/Engine/ProjectSettings/Variant calls keep their real receivers; get_root() returns Node",
+  "implicit_calls": [
+    "Vector2",
+    "attach_source_listener",
+    "check_barrier",
+    "check_source_listener_order",
+    "collector_control_bound_value",
+    "collector_control_float_bits",
+    "collector_control_rows",
+    "collector_control_target",
+    "collector_diag_valid",
+    "collector_diagnostic_fallback",
+    "ensure_source_window",
+    "fail",
+    "finish_source_cut",
+    "get_instance_id",
+    "get_root",
+    "int",
+    "is_connected",
+    "is_instance_valid",
+    "observer7_precondition",
+    "on_idle_source_cut",
+    "phase",
+    "place_player_items",
+    "print",
+    "quit",
+    "range",
+    "set_stage",
+    "slot_spec",
+    "source_control_record",
+    "source_control_snapshot",
+    "source_cut_reject_collector",
+    "source_window_reject",
+    "stable_snapshot",
+    "start_controlled_combat",
+    "str",
+    "typeof",
+    "write_json",
+    "write_jsonl"
+  ],
+  "local_methods": [
+    "attach_source_listener",
+    "check_barrier",
+    "check_source_listener_order",
+    "collector_control_bound_value",
+    "collector_control_float_bits",
+    "collector_control_rows",
+    "collector_control_target",
+    "collector_diag_valid",
+    "collector_diagnostic_fallback",
+    "ensure_source_window",
+    "fail",
+    "finish_source_cut",
+    "observer7_precondition",
+    "on_idle_source_cut",
+    "phase",
+    "place_player_items",
+    "set_stage",
+    "slot_spec",
+    "source_control_record",
+    "source_control_snapshot",
+    "source_cut_reject_collector",
+    "source_window_reject",
+    "stable_snapshot",
+    "start_controlled_combat",
+    "write_json",
+    "write_jsonl"
+  ],
+  "no_language_parse_claim": true,
+  "schema": "phase369-bounded-collector-api-read/1",
+  "unknown_implicit": []
+}
