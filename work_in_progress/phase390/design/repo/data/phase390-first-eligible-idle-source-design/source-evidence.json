@@ -1,0 +1,293 @@
+{
+  "function_excerpts": [
+    {
+      "functions": [
+        {
+          "function": "clock_physics_signal",
+          "line_end": 852,
+          "line_start": 848,
+          "sha256": "a72f0a847a8a0ad5012474c7dacf3375927fa8061a31fcf58456bab312e06605",
+          "size": 132,
+          "text": "func clock_physics_signal():\n\tui_check_controls()\n\tif king_clock_active:\n\t\tclock_pass(\"physics\", get_physics_process_delta_time())\n\n"
+        },
+        {
+          "function": "clock_idle_signal",
+          "line_end": 877,
+          "line_start": 853,
+          "sha256": "af29fa652113b74134d0c381e502f300805593dd717993e49c408d6ca9bd7115",
+          "size": 1017,
+          "text": "func clock_idle_signal():\n\tif not ui_check_controls() or failed:\n\t\tsource_cut_reject(\"CUT_UI_OR_PRIOR_FAILURE\", \"clock_idle_signal\")\n\t\treturn\n\tif king_clock_active:\n\t\tclock_pass(\"idle\", get_process_delta_time())\n\t\tif failed:\n\t\t\tsource_cut_reject(\"CUT_CLOCK_PASS_FAILURE\", \"clock_idle_signal\")\n\t\t\treturn\n\t\tif source_cleanup != null and Engine.get_physics_frames() >= source_cleanup.physics_frame + 2:\n\t\t\tif Engine.get_physics_frames() != source_cleanup.physics_frame + 2:\n\t\t\t\tsource_cut_reject(\"SOURCE_MISSED_FIRST_IDLE_CUT\", \"clock_idle_signal\")\n\t\t\t\treturn\n\t\t\tif not close_king_clock():\n\t\t\t\tsource_cut_reject(\"CUT_CLOCK_CLOSE_FAILURE\", \"clock_idle_signal\")\n\t\t\t\treturn\n\t\t\tif not write_king_json(\"king-final-source.json\", source_runtime_snapshot()):\n\t\t\t\tsource_cut_reject(\"CUT_FINAL_SOURCE_FAILURE\", \"clock_idle_signal\")\n\t\t\t\treturn\n\t\t\tif not ui_close():\n\t\t\t\tsource_cut_reject(\"CUT_UI_CLOSE_FAILURE\", \"clock_idle_signal\")\n\t\t\t\treturn\n\t\t\tsource_window_complete = not failed\n\t\t\tclosed = true\n\t\t\temit_source_idle_cut_once()\n"
+        },
+        {
+          "function": "clock_pass",
+          "line_end": 916,
+          "line_start": 878,
+          "sha256": "4bc78d6bf26ceb9005578982d94ecb6cc2a9e778782a1111bf66bf3f08796096",
+          "size": 1524,
+          "text": "func clock_pass(kind, delta):\n\tif failed or not king_clock_active or king_clock_closed:\n\t\treturn\n\tif Engine.time_scale != 1.0 or get_tree().paused or Engine.iterations_per_second != 60 or delta <= 0 or is_nan(delta) or is_inf(delta) or king_clock_count >= 200000:\n\t\tfail(\"KING_CLOCK_DOMAIN_OR_CAP\", \"clock_pass\")\n\t\treturn\n\tif kind == \"physics\":\n\t\tking_clock_p += 1\n\tif Engine.get_physics_frames() != king_clock_p or Engine.get_idle_frames() != king_clock_i:\n\t\tfail(\"KING_CLOCK_COUNTER_ORDER\", \"clock_pass\")\n\t\treturn\n\tvar row = {\"kind\": kind, \"delta_bits\": float_bits(delta), \"physics_frame\": Engine.get_physics_frames(), \"idle_frame\": Engine.get_idle_frames()}\n\tvar bytes = (JSON.print(row) + \"\\n\").to_utf8()\n\tif king_clock_bytes + bytes.size() > 67108864 or total_bytes + king_input_bytes + bytes.size() > CAPS.total_bytes:\n\t\tfail(\"KING_CLOCK_BYTE_CAP\", \"clock_pass\")\n\t\treturn\n\tvar file = File.new()\n\tvar path = OUT.plus_file(\"king-clock-passes.jsonl\")\n\tif king_clock_count == 0 and file.file_exists(path):\n\t\tfail(\"KING_CLOCK_PREEXISTING\", \"clock_pass\")\n\t\treturn\n\tif file.open(path, File.READ_WRITE if king_clock_count > 0 else File.WRITE) != OK:\n\t\tfail(\"KING_CLOCK_OPEN\", \"clock_pass\")\n\t\treturn\n\tfile.seek_end()\n\tfile.store_buffer(bytes)\n\tfile.flush()\n\tvar ok = file.get_error() == OK\n\tfile.close()\n\tif not ok:\n\t\tfail(\"KING_CLOCK_WRITE\", \"clock_pass\")\n\t\treturn\n\tking_clock_count += 1\n\tking_clock_bytes += bytes.size()\n\tking_input_bytes += bytes.size()\n\tking_clock_last_kind = kind\n\tif kind == \"idle\":\n\t\tking_clock_i += 1\n\n"
+        },
+        {
+          "function": "close_king_clock",
+          "line_end": 923,
+          "line_start": 917,
+          "sha256": "929a3d6ab19f308779b4f16dd7fb3ce67991c365c0680c5a72986f18ff507fb3",
+          "size": 549,
+          "text": "func close_king_clock():\n\tif not king_clock_active or king_clock_closed or king_clock_last_kind != \"idle\":\n\t\treturn fail(\"KING_CLOCK_ENDPOINT\", \"finish_capture\")\n\tking_clock_active = false\n\tking_clock_closed = true\n\treturn write_king_json(\"king-capture-endpoint.json\", {\"schema\": \"phase111-fixed-endpoint/1\", \"phase\": \"idle_pre_internal_flush\", \"physics_frame\": Engine.get_physics_frames(), \"idle_frame\": Engine.get_idle_frames(), \"passes\": king_clock_count, \"two_future_physics_signals\": 2, \"fx_exact_comparison\": \"NOT_EVALUATED_REQUIRES_MODEL\"})\n\n"
+        },
+        {
+          "function": "source_mark_cleanup",
+          "line_end": 1399,
+          "line_start": 1393,
+          "sha256": "06faf5b026f7324039ad42d9cd79b177091548be706c8bc61e128371e22d4e63",
+          "size": 408,
+          "text": "func source_mark_cleanup():\n\tif source_cleanup != null or not king_clock_active or failed:\n\t\treturn fail(\"SOURCE_CLEANUP_ORDER\", \"Core/Game.gd::combatEndDeferred\")\n\tsource_cleanup = {\"physics_frame\": Engine.get_physics_frames(), \"idle_frame\": Engine.get_idle_frames(), \"is_in_physics_frame\": Engine.is_in_physics_frame()}\n\treturn write_king_json(\"king-post-cleanup-source.json\", source_runtime_snapshot())\n\n\n"
+        },
+        {
+          "function": "source_completion_receipt",
+          "line_end": 1424,
+          "line_start": 1422,
+          "sha256": "d536634165b1945e74d044a9528f31848ef879d808229b332f0d8de0aa8a93b8",
+          "size": 301,
+          "text": "func source_completion_receipt():\n\treturn {\"source_window_complete\": source_window_complete, \"failed\": failed, \"clock_closed\": king_clock_closed, \"ui_closed\": ui_closed, \"cleanup\": source_cleanup, \"clock_passes\": king_clock_count, \"native_capture_accepted\": false, \"collector_archive_pending\": true}\n\n"
+        },
+        {
+          "function": "source_cut_control",
+          "line_end": 1603,
+          "line_start": 1600,
+          "sha256": "67de72cc4ae2fdfb0ee72b6094caee3b7c1e5119aa2749081233c72b7ee77e65",
+          "size": 888,
+          "text": "func source_cut_control():\n\treturn {\"phase\": source_cut_phase, \"dispatching\": source_cut_dispatching, \"emit_count\": source_cut_emit_count, \"receiver_available\": source_cut_receiver_id > 0, \"receiver_id\": str(source_cut_receiver_id) if source_cut_receiver_id > 0 else null, \"physics\": source_cut_physics if source_cut_physics >= 0 else null, \"idle\": source_cut_idle if source_cut_idle >= 0 else null, \"ack\": source_cut_ack, \"script_emit_return\": source_cut_script_return, \"script_emit_return_observed\": source_cut_script_return_observed, \"native_emit_error_available\": false, \"native_emit_error\": null, \"finish_return\": source_cut_finish_return, \"failed\": failed, \"closed\": closed, \"complete\": source_window_complete, \"clock_closed\": king_clock_closed, \"ui_closed\": ui_closed, \"first_error\": first_error, \"ready_connect\": source_cut_ready_connect, \"diagnostic_error\": source_diag_error}\n\n\n"
+        },
+        {
+          "function": "ack_source_idle_cut",
+          "line_end": 1629,
+          "line_start": 1621,
+          "sha256": "65e0f3a840beb277fdc214dfd9d19d93a6246daa73bf52c5f238694c81ded173",
+          "size": 771,
+          "text": "func ack_source_idle_cut(receiver_id, physics_frame, idle_frame):\n\tif typeof(receiver_id) != TYPE_INT or typeof(physics_frame) != TYPE_INT or typeof(idle_frame) != TYPE_INT:\n\t\treturn source_cut_reject(\"CUT_ACK_TYPES\", \"ack_source_idle_cut\")\n\tif source_cut_phase != \"EMITTING\" or not source_cut_dispatching or source_cut_emit_count != 1 or source_cut_ack != null or receiver_id != source_cut_receiver_id or physics_frame != source_cut_physics or idle_frame != source_cut_idle or Engine.get_physics_frames() != physics_frame or Engine.get_idle_frames() != idle_frame or failed:\n\t\treturn source_cut_reject(\"CUT_ACK_CONTEXT\", \"ack_source_idle_cut\")\n\tsource_cut_ack = {\"receiver_id\": str(receiver_id), \"physics\": physics_frame, \"idle\": idle_frame, \"serial\": 1}\n\treturn true\n\n\n"
+        },
+        {
+          "function": "emit_source_idle_cut_once",
+          "line_end": 1665,
+          "line_start": 1630,
+          "sha256": "8e8fe27eba565cd0ae0a690921a85355f5c3ad33c7ab7cd9a9bb4aad10e215a0",
+          "size": 3025,
+          "text": "func emit_source_idle_cut_once():\n\tif failed or not closed or not source_window_complete or not king_clock_closed or not ui_closed or source_cut_phase != \"IDLE\" or source_cut_emit_count != 0 or source_cut_dispatching or source_cleanup == null or Engine.is_in_physics_frame() or Engine.get_physics_frames() != source_cleanup.physics_frame + 2:\n\t\treturn source_cut_reject(\"CUT_DISPATCH_CONTEXT\", \"emit_source_idle_cut_once\")\n\tvar receiver = source_cut_receiver()\n\tif receiver == null or not receiver.has_method(\"on_idle_source_cut\") or not receiver.has_method(\"finish_source_cut\"):\n\t\treturn source_cut_reject(\"CUT_PRIVATE_RECEIVER\", \"emit_source_idle_cut_once\")\n\tsource_cut_receiver_id = receiver.get_instance_id()\n\tsource_cut_physics = Engine.get_physics_frames()\n\tsource_cut_idle = Engine.get_idle_frames()\n\tsource_cut_emit_count = 1\n\tsource_cut_phase = \"EMITTING\"\n\tsource_cut_dispatching = true\n\tif not source_diagnostic(\"emit_source_idle_cut_once\", \"EMITTING\", {\"control\": source_cut_control(), \"private_connections\": source_control_rows(self, \"source_idle_cut_ready\"), \"tree_connections\": source_control_rows(get_tree(), \"idle_frame\")}):\n\t\treturn source_cut_reject(\"CUT_DIAGNOSTIC_BEFORE_EMIT\", \"emit_source_idle_cut_once\")\n\tsource_cut_script_return = emit_signal(\"source_idle_cut_ready\")\n\tsource_cut_script_return_observed = true\n\tsource_cut_dispatching = false\n\tsource_cut_phase = \"RETURNED\"\n\t# Script NIL is not a callback acknowledgement; native Error is unavailable.\n\tif typeof(source_cut_script_return_observed) != TYPE_BOOL or not source_cut_script_return_observed or typeof(source_cut_script_return) != TYPE_NIL or source_cut_ack == null or failed:\n\t\treturn source_cut_reject(\"CUT_EMIT_OR_ACK\", \"emit_source_idle_cut_once\")\n\tif source_cut_ack.receiver_id != str(source_cut_receiver_id) or source_cut_ack.physics != source_cut_physics or source_cut_ack.idle != source_cut_idle or source_cut_ack.serial != 1 or Engine.get_physics_frames() != source_cut_physics or Engine.get_idle_frames() != source_cut_idle or source_cut_receiver() != receiver:\n\t\treturn source_cut_reject(\"CUT_RETURN_IDENTITY\", \"emit_source_idle_cut_once\")\n\tif not source_diagnostic(\"emit_source_idle_cut_once\", \"RETURNED_ACK_CHECKED\", {\"control\": source_cut_control()}):\n\t\treturn source_cut_reject(\"CUT_DIAGNOSTIC_AFTER_RETURN\", \"emit_source_idle_cut_once\")\n\tsource_cut_phase = \"FINALIZING\"\n\tsource_cut_finish_return = receiver.finish_source_cut()\n\tif typeof(source_cut_finish_return) != TYPE_BOOL or not source_cut_finish_return or failed or Engine.get_physics_frames() != source_cut_physics or Engine.get_idle_frames() != source_cut_idle:\n\t\treturn source_cut_reject(\"CUT_FINALIZER_RETURN\", \"emit_source_idle_cut_once\")\n\tsource_cut_phase = \"FINALIZED\"\n\tif not source_diagnostic(\"emit_source_idle_cut_once\", \"FINALIZED\", {\"control\": source_cut_control()}):\n\t\treturn source_cut_reject(\"CUT_DIAGNOSTIC_FINALIZED\", \"emit_source_idle_cut_once\")\n\treturn true\n\n\n# Replacement of existing functions: all normal clock operations remain in original order.\n"
+        }
+      ],
+      "source": {
+        "path": "data/phase375-food-hook-source/after-source/native_random_observer_sink_v7.gd",
+        "sha256": "cf48505d757f013d0f0fedd8cb212ec0005979427ea19f0070228e268b91c064",
+        "size": 99858
+      }
+    },
+    {
+      "functions": [
+        {
+          "function": "on_idle_source_cut",
+          "line_end": 928,
+          "line_start": 895,
+          "sha256": "267bc72b50ef0c8f2387c6415286334ee96e09ece4cd2b9c24beb8bb7afb258e",
+          "size": 3791,
+          "text": "func on_idle_source_cut():\n\tif done or source_cut_frozen:\n\t\treturn source_cut_reject_collector(\"CUT_DUPLICATE_OR_DONE\")\n\tvar observer = get_root().get_node_or_null(\"NativeRandomObserver\")\n\tif observer == null or not observer.has_method(\"source_cut_control\") or observer.failed:\n\t\treturn source_cut_reject_collector(\"CUT_OBSERVER_FAILURE\")\n\tvar control = observer.source_cut_control()\n\tif control.phase != \"EMITTING\" or not control.dispatching or control.emit_count != 1 or control.receiver_id != str(get_instance_id()) or control.ack != null or typeof(control.script_emit_return_observed) != TYPE_BOOL or control.script_emit_return_observed or typeof(control.script_emit_return) != TYPE_NIL or typeof(control.native_emit_error_available) != TYPE_BOOL or control.native_emit_error_available or control.native_emit_error != null:\n\t\treturn source_cut_reject_collector(\"CUT_NOT_SYNCHRONOUS_DISPATCH\")\n\tif control.physics != Engine.get_physics_frames() or control.idle != Engine.get_idle_frames():\n\t\treturn source_cut_reject_collector(\"CUT_DISPATCH_FRAME_MISMATCH\")\n\tvar receipt = observer.source_completion_receipt()\n\tif not receipt.source_window_complete or not observer.closed or not check_source_listener_order() or Engine.is_in_physics_frame() or not receipt.clock_closed or not receipt.ui_closed or result_value == null:\n\t\treturn source_cut_reject_collector(\"CUT_COMPLETION_GUARD\")\n\tif receipt.cleanup == null or Engine.get_physics_frames() != receipt.cleanup.physics_frame + 2:\n\t\treturn source_cut_reject_collector(\"CUT_TWO_FUTURE_PHYSICS\")\n\t# Atomic synchronous once guard BEFORE any sampling or callback that can reenter.\n\tsource_cut_frozen = true\n\tbarrier_ok = check_barrier()\n\tvar snapshot = stable_snapshot() # Exactly one full terminal sampling; original getter chain.\n\tvar king_final = observer.source_runtime_snapshot() # Same existing readonly SOURCE sampling.\n\tif done or observer.failed:\n\t\treturn source_cut_reject_collector(\"CUT_SAMPLING_FAILURE\")\n\tvar count = snapshot.events.size()\n\tvar native_manifest = {\"schema\": \"native-combat-capture/1\", \"case_id\": config.case_id, \"config\": config, \"version\": game.VERSION, \"engine\": Engine.get_version_info(), \"main_scene\": ProjectSettings.get_setting(\"application/run/main_scene\"), \"physics_fps\": Engine.iterations_per_second, \"time_scale\": Engine.time_scale, \"collector_source\": \"phase362-single-King-oracle-only\", \"clean_exit\": \"HOST_RECORD_SEPARATELY\", \"native_model_admission\": false}\n\tvar validation = {\"native_capture_written\": true, \"capture_complete\": false, \"host_validation_required\": true, \"native_checks_pass\": errors.empty() and barrier_ok and not observer.failed, \"end_barrier\": barrier_ok, \"layout\": legal_checks, \"errors\": errors.duplicate(), \"events\": count, \"result\": result_value, \"elapsed_ms\": OS.get_ticks_msec() - started, \"cut\": {\"physics\": Engine.get_physics_frames(), \"idle\": Engine.get_idle_frames(), \"preinternal\": true}, \"full_snapshot_reads\": 1}\n\tsource_cut_payload = {\"instances\": instance_rows.duplicate(true), \"phases\": phases.duplicate(true), \"event_references\": event_references.duplicate(true), \"snapshot\": snapshot, \"native_manifest\": native_manifest, \"receipt\": receipt, \"king_cut\": {\"receipt\": receipt, \"connection_order\": source_connection_order.duplicate(true), \"actual_final\": king_final, \"source\": \"SAME_IDLE_INSIDE_SINK_AFTER_WRITE_BEFORE_NODE_INTERNAL\"}, \"validation\": validation, \"success\": errors.empty() and barrier_ok and not observer.failed, \"count\": count}\n\tif not source_control_record(\"on_idle_source_cut\", \"FROZEN_BEFORE_ACK\"):\n\t\treturn source_cut_reject_collector(\"CUT_FROZEN_DIAGNOSTIC_FAILED\")\n\tif not observer.ack_source_idle_cut(get_instance_id(), Engine.get_physics_frames(), Engine.get_idle_frames()):\n\t\treturn source_cut_reject_collector(\"CUT_ACK_REJECTED\")\n\treturn true\n\n\n"
+        },
+        {
+          "function": "finish_source_cut",
+          "line_end": 1067,
+          "line_start": 1037,
+          "sha256": "30d9245ec49e1b960af1576026dac5fcabfa0ed4dfdf8b7d41a3eb9c6f2cac54",
+          "size": 2821,
+          "text": "func finish_source_cut():\n\tvar observer = get_root().get_node_or_null(\"NativeRandomObserver\")\n\tif done or source_cut_finish_entered or not source_cut_frozen or source_cut_payload == null or observer == null or not observer.has_method(\"source_cut_control\"):\n\t\treturn source_cut_reject_collector(\"CUT_FINALIZER_ENTRY\")\n\tvar control = observer.source_cut_control() # Observation-control primitives only, no business getter.\n\tif control.phase != \"FINALIZING\" or control.dispatching or control.emit_count != 1 or typeof(control.script_emit_return_observed) != TYPE_BOOL or not control.script_emit_return_observed or typeof(control.script_emit_return) != TYPE_NIL or typeof(control.native_emit_error_available) != TYPE_BOOL or control.native_emit_error_available or control.native_emit_error != null or control.ack == null or control.receiver_id != str(get_instance_id()) or control.physics != source_cut_payload.validation.cut.physics or control.idle != source_cut_payload.validation.cut.idle or Engine.get_physics_frames() != control.physics or Engine.get_idle_frames() != control.idle or control.failed:\n\t\treturn source_cut_reject_collector(\"CUT_FINALIZER_CONTEXT\")\n\tsource_cut_finish_entered = true\n\t# Serialization only below: frozen primitive DTOs, no getters/snapshots/getStats/advance.\n\tvar jobs = [[\"instances.json\", source_cut_payload.instances], [\"phases.json\", source_cut_payload.phases], [\"event_references.json\", source_cut_payload.event_references], [\"histories.json\", source_cut_payload.snapshot.histories], [\"final_state.json\", source_cut_payload.snapshot.state], [\"native_manifest.json\", source_cut_payload.native_manifest], [\"observer7-status.json\", source_cut_payload.receipt], [\"king-collector-cut.json\", source_cut_payload.king_cut]]\n\tfor job in jobs:\n\t\twrite_json(job[0], job[1])\n\t\tif done:\n\t\t\tsource_control_record(\"finish_source_cut\", \"FROZEN_WRITE_FAILED\", {\"file\": job[0]})\n\t\t\treturn false # Existing writer already preserved primary and requested exit2.\n\twrite_jsonl(\"events.jsonl\", source_cut_payload.snapshot.events)\n\tif done:\n\t\tsource_control_record(\"finish_source_cut\", \"FROZEN_WRITE_FAILED\", {\"file\": \"events.jsonl\"})\n\t\treturn false\n\twrite_json(\"validation.json\", source_cut_payload.validation)\n\tif done:\n\t\tsource_control_record(\"finish_source_cut\", \"FROZEN_WRITE_FAILED\", {\"file\": \"validation.json\"})\n\t\treturn false\n\tif not source_control_record(\"finish_source_cut\", \"SERIALIZED_BEFORE_RETURN\", {\"events\": source_cut_payload.count}):\n\t\treturn source_cut_reject_collector(\"CUT_FINALIZER_DIAGNOSTIC_FAILED\")\n\tdone = true\n\tprint(\"NATIVE_CAPTURE_WRITTEN \" + JSON.print({\"success\": source_cut_payload.success, \"events\": source_cut_payload.count, \"path\": ProjectSettings.globalize_path(OUT)}))\n\tevent_objects.clear()\n\tquit(0 if source_cut_payload.success else 2)\n\treturn source_cut_payload.success\n\n"
+        }
+      ],
+      "source": {
+        "path": "data/phase370-oracle-source/collector.gd",
+        "sha256": "33f2d20dee6364dd26a89a15a00d506ca96095d8ec661c7c1693aecb58b6acf7",
+        "size": 61404
+      }
+    },
+    {
+      "functions": [
+        {
+          "AST_sha256": "dbf6293db1647e8d6e8639abeb636d1f762ffc058bb83ecc6243533098a0e2c3",
+          "function": "decode_clock",
+          "line_end": 1288,
+          "line_start": 1230,
+          "sha256": "000643507ca7c370b0800bfcfe249f10e38680c5088090376a056cbd34425c70",
+          "size": 3161,
+          "text": "def decode_clock(carrier):\n    \"\"\"Validate every record before exposing immutable scalar inputs.\"\"\"\n    if type(carrier) is str:\n        if len(carrier.encode('utf-8')) > MAX_JSON_BYTES:\n            raise ValueError('clock JSON exceeds cap')\n        def pairs(rows):\n            result = {}\n            for key, value in rows:\n                if key in result:\n                    raise ValueError('duplicate JSON clock key')\n                result[key] = value\n            return result\n        def invalid(value):\n            raise ValueError('nonfinite JSON number: ' + value)\n        carrier = json.loads(carrier, object_pairs_hook=pairs, parse_constant=invalid)\n    _keys(carrier, ('schema', 'lineage', 'environment', 'checkpoint', 'passes'), 'clock')\n    if carrier['schema'] != SCHEMA or carrier['lineage'] != 'fresh_activate_idle_tail':\n        raise ValueError('unsupported clock schema/lineage')\n    env = carrier['environment']\n    _keys(env, ('physics_fps', 'scale_bits', 'paused'), 'environment')\n    if type(env['physics_fps']) is not int or env['physics_fps'] != 60:\n        raise ValueError('fixed60 physics required')\n    if env['scale_bits'] != '3ff0000000000000' or env['paused'] is not False:\n        raise ValueError('only exact scale1/unpaused admitted')\n    checkpoint = carrier['checkpoint']\n    _keys(checkpoint, ('phase', 'physics_frame', 'idle_frame', 'util_frame_counter',\n                       'util_time_bits', 'util_clock_time_bits'), 'checkpoint')\n    if checkpoint['phase'] != 'activate_items_idle_tail':\n        raise ValueError('only source activateItems idle-tail checkpoint admitted')\n    physics = _counter(checkpoint['physics_frame'])\n    idle = _counter(checkpoint['idle_frame'])\n    util_frames = _counter(checkpoint['util_frame_counter'])\n    util_time = _nonnegative_real(checkpoint['util_time_bits'])\n    clock_time = _nonnegative_real(checkpoint['util_clock_time_bits'])\n    rows = carrier['passes']\n    if type(rows) is not list or not 1 <= len(rows) <= MAX_PASSES:\n        raise ValueError('bounded nonempty pass list required')\n    next_physics, next_idle = physics, idle + 1\n    decoded = []\n    for row in rows:\n        _keys(row, ('kind', 'delta_bits', 'physics_frame', 'idle_frame'), 'frame pass')\n        kind = row['kind']\n        if type(kind) is not str or kind not in ('physics', 'idle'):\n            raise ValueError('only physics/idle frame pass kinds')\n        delta = _real(row['delta_bits'])\n        if delta <= 0 or f32(delta) != delta:\n            raise ValueError('positive source-promoted float32 delta required')\n        if kind == 'physics':\n            if delta != PHYSICS_DELTA:\n                raise ValueError('non-source fixed60 physics delta')\n            next_physics += 1\n        p = _counter(row['physics_frame'])\n        i = _counter(row['idle_frame'])\n        if p != next_physics or i != next_idle:\n            raise ValueError('missing/duplicate/reordered source frame counters')\n        decoded.append(FramePass(kind, delta, p, i))\n        if kind == 'idle':\n            next_idle += 1\n    return ClockSchedule(physics, idle, util_frames, util_time, clock_time, tuple(decoded))\n"
+        },
+        {
+          "AST_sha256": "b8ad0125fbb906e2ae222f9f10e8f2bc721168fcea45b6182609d39c8cb0da28",
+          "function": "validate_terminal_evidence",
+          "line_end": 1809,
+          "line_start": 1782,
+          "sha256": "4bcd6de666e939ebecd38e673c8719ad330766df30e4b74150877bd564b52690",
+          "size": 2201,
+          "text": "def validate_terminal_evidence(endpoint, clock, cleanup):\n    \"\"\"Expected-only finite-cut proof. Never a model termination input.\"\"\"\n    exact(endpoint, ('schema', 'phase', 'physics_frame', 'idle_frame', 'passes', 'two_future_physics_signals', 'fx_exact_comparison'))\n    if endpoint['schema'] != 'phase111-fixed-endpoint/1' or endpoint['phase'] != 'idle_pre_internal_flush' or type(endpoint['two_future_physics_signals']) is not int or endpoint['two_future_physics_signals'] != 2 or endpoint['fx_exact_comparison'] != 'NOT_EVALUATED_REQUIRES_MODEL':\n        raise ValueError('finite terminal source-cut schema')\n    for name in ('physics_frame', 'idle_frame', 'passes'):\n        _counter(endpoint[name])\n    final = clock.passes[-1]\n    if final.kind != 'idle' or (endpoint['physics_frame'], endpoint['idle_frame'], endpoint['passes']) != (final.physics_frame, final.idle_frame, len(clock.passes)):\n        raise ValueError('terminal last actual idle cut/trailing')\n    exact(cleanup, ('physics_frame', 'idle_frame', 'is_in_physics_frame'))\n    _counter(cleanup['physics_frame']); _counter(cleanup['idle_frame'])\n    if type(cleanup['is_in_physics_frame']) is not bool:\n        raise ValueError('actual cleanup phase BOOL')\n    kind = 'physics' if cleanup['is_in_physics_frame'] else 'idle'\n    positions = [i for i, p in enumerate(clock.passes) if (p.kind, p.physics_frame, p.idle_frame) == (kind, cleanup['physics_frame'], cleanup['idle_frame'])]\n    if len(positions) == 1:\n        tail = clock.passes[positions[0] + 1:]\n    elif not positions and kind == 'idle' and (cleanup['physics_frame'], cleanup['idle_frame']) == (clock.physics_frame, clock.idle_frame):\n        tail = clock.passes\n    else:\n        raise ValueError('cleanup actual clock association')\n    if sum(p.kind == 'physics' for p in tail) != 2:\n        raise ValueError('exactly two future physics signals')\n    second = max(i for i, p in enumerate(tail) if p.kind == 'physics')\n    if len(tail) != second + 2 or tail[-1].kind != 'idle':\n        raise ValueError('first eligible idle-preinternal only; EOF/trailing rejected')\n    return dict(status='EXPECTED_ONLY_TWO_FUTURE_PHYSICS_IDLE_PREINTERNAL', no_model_stop_command=True)\n"
+        }
+      ],
+      "source": {
+        "path": "tests/phase375_king_observer_schema.py",
+        "sha256": "2544c51513effc0c7a66b98af3f718b4dd4a91fea6bd51a240a2f4c9a194de71",
+        "size": 191051
+      }
+    },
+    {
+      "functions": [
+        {
+          "AST_sha256": "36fcf9c21fe819a583a4a0a56d5367d5d26748cc37d7cf0b41b581eba44fbbb7",
+          "function": "request_end",
+          "line_end": 206,
+          "line_start": 196,
+          "sha256": "78dc33ed022196a4c1d8ad126a53e1abd73b55238dec76b9704a0972e5aba16e",
+          "size": 541,
+          "text": "    def request_end(self, cleanup):\n        if self.ending:\n            return False\n        if (not self._stepping or self.phase not in ('internal_physics', 'ordinary_physics',\n                                                    'internal_idle', 'ordinary_idle')):\n            raise UnsupportedTransition('end request requires an executing supported rule phase')\n        if not callable(cleanup):\n            raise ValueError('cleanup must be callable')\n        self.ending = True\n        self.pending_cleanup = cleanup\n        return True\n"
+        },
+        {
+          "AST_sha256": "aba9d67815cfd2f661b8461157b164aa01cf93c527e3cdd53c4599d62a5efac7",
+          "function": "_flush_cleanup",
+          "line_end": 216,
+          "line_start": 208,
+          "sha256": "bf09c085ff05ad638dc6632e8b1cf19a4346199b9ea59006a2334094fc8cd8fa",
+          "size": 311,
+          "text": "    def _flush_cleanup(self):\n        if self.pending_cleanup is None:\n            return\n        cleanup = self.pending_cleanup\n        self.pending_cleanup = None\n        cleanup(self)\n        self.cleaned = True\n        self.physics_signals_remaining = 2\n        self.post_cleanup_snapshot = self.snapshot()\n"
+        },
+        {
+          "AST_sha256": "f401f0d8a615bd30ff3436bd3a7ab658fdfc8662d08cdf0de1ef0d83d1f0e45e",
+          "function": "step",
+          "line_end": 253,
+          "line_start": 218,
+          "sha256": "4018f24f4ae1599d76efcb955d58ac4851093732d43cf942dc9c970ef7871621",
+          "size": 1891,
+          "text": "    def step(self):\n        if not self.activated or self.finalized or self._stepping or self.phase == 'activate_items_idle_tail':\n            raise UnsupportedTransition('step requires activated unfinished non-nested driver')\n        if self.pass_index == len(self.clock.passes):\n            raise IncompleteFrameStream('EOF is not a rule-derived terminal barrier')\n        row = self.clock.passes[self.pass_index]\n        self.pass_index += 1\n        self.physics_frame, self.idle_frame = row.physics_frame, row.idle_frame\n        self._stepping = True\n        try:\n            self.phase = row.kind + '_frame_signal'\n            if row.kind == 'physics':\n                if self.cleaned and self.physics_signals_remaining > 0:\n                    self.physics_signals_remaining -= 1\n                mode = 0\n            else:\n                mode = 1\n                self.phase = 'idle_pre_internal_flush'\n                if self.cleaned and self.physics_signals_remaining == 0:\n                    self.finalized = True\n                    self.final_snapshot = self.snapshot()\n                    self.pass_trace.append({'index': self.pass_index - 1, 'kind': row.kind,\n                                            'end_phase': self.phase, 'completed': False})\n                    return False\n            self.phase = 'internal_' + row.kind\n            self.runtime.dispatch_internal(row.delta, mode)\n            self.phase = 'ordinary_' + row.kind\n            self.runtime.dispatch_ordinary(row.delta, mode)\n            self.phase = row.kind + '_post_ordinary_flush'\n            self._flush_cleanup()\n            self.phase = row.kind + '_tail'\n            self.pass_trace.append({'index': self.pass_index - 1, 'kind': row.kind,\n                                    'end_phase': self.phase, 'completed': True})\n            return True\n        finally:\n            self._stepping = False\n"
+        },
+        {
+          "AST_sha256": "70927c5af3dc78b94caef0045e9baca3ef5f4f4f7afa268b1e6443f81a1af80b",
+          "function": "run",
+          "line_end": 275,
+          "line_start": 268,
+          "sha256": "cac9c141c2af9fbe18d01e9293c9eec6e3fb6d209705c096afcdf31bb0ffbc5a",
+          "size": 440,
+          "text": "    def run(self):\n        while not self.finalized:\n            self.step()\n        if self.pass_index != len(self.clock.passes):\n            raise ValueError('trailing frame records after computed terminal cutoff')\n        return {'status': 'SYNTHETIC_COMPONENT_RESULT_NOT_INDEPENDENTLY_ACCEPTED',\n                'post_cleanup': self.post_cleanup_snapshot, 'final': self.final_snapshot,\n                'passes': self.pass_trace.copy()}\n"
+        }
+      ],
+      "source": {
+        "path": "data/phase349-king-fresh-source/staged/native_replay_v7/frame_driver.py",
+        "sha256": "9d8e361144e353a8d944e4490502c5301e7a92451771d35f22ab48f6277f64fd",
+        "size": 12318
+      }
+    },
+    {
+      "functions": [
+        {
+          "AST_sha256": "d3bd14141bdf3fd9e89a61e5e1d886dd24693c1f3a4f1bcc7028528e72e569fd",
+          "function": "death",
+          "line_end": 3220,
+          "line_start": 3214,
+          "sha256": "83b1f7bae453d47415ea1373fe24c3bb609214ab96723872bd0f8d6e6dbc0460",
+          "size": 320,
+          "text": "    def death(self, character):\n        character.dead = True\n        if not self.ended:\n            self.ended = True\n            self.winner = \"P\" if self.characters[\"O\"].hp <= 0 else \"O\"\n            self.pending_terminal = True\n            if self.king_mode:self.frame_driver.request_end(lambda driver:self.finish())\n"
+        },
+        {
+          "AST_sha256": "2cf0eecfc4a6b2bf74744ac778f6903f005a4656907cf4f76bdf0246b0189769",
+          "function": "finish",
+          "line_end": 3333,
+          "line_start": 3289,
+          "sha256": "f1ea3db24bd290d7f22b5a1cc1291f6edfa5eed4492e892d77bd8ec06bda72af",
+          "size": 2677,
+          "text": "    def finish(self):\n        if not self.ended or self.finalized:\n            raise ValueError(\"finish requires an unfinalized ended combat\")\n        code = \"Win\" if self.winner == \"P\" else \"Loss\"\n        self.emit(EVENT_TYPES[code], code, after_fight=True)\n        # Game's deferred cleanup clears EventBus before Item.combatEnd.\n        self.activation_listeners.clear()\n        self.lucky_listeners.clear()\n        self.rage_listeners.clear()\n        self.pre_cleanup_hp = {side: char.hp for side, char in self.characters.items()}\n        for side in ('P', 'O'):\n            if self.integration_mode:self._set_source_processing('character:'+side,False,'Character.combatEnd')\n            self._stop_timer('tick:' + side)\n            for category in range(100, 111):\n                name = STACK_NAMES_BY_TYPE[category]\n                self._stop_timer('buff:' + side + ':' + name)\n                self.characters[side].buff_fields[category]['temporaryStacks'].clear()\n            if 'rage:' + side in self.runtime_roles:self._stop_timer('rage:' + side)\n            if self.integration_mode:\n                for name in ('battleRageTimer','autoRageTimer'):\n                    role='aux:'+side+':'+name\n                    self.runtime_trace.append(dict(kind='inactive_aux_stop',role=role,source='Character.combatEnd',before=self._integration_aux_timer(role),after=self._integration_aux_timer(role)))\n            if self.king_mode:self._stop_timer('invu:'+side)\n        self.fatigue_counter = 0\n        self._stop_timer('fatigue:start')\n        self._stop_timer('fatigue:tick')\n        self.fatigue_start_left = None\n        self.fatigue_tick_left = None\n        if self.integration_mode:self._set_source_processing('combat_timer',False,'CombatTimer.combatEnd')\n        for side, character in self.characters.items():\n            character.hp = max(1.0, character.hp) if side == self.winner else 0.0\n        for item in self.side_items['P'] + self.side_items['O']:\n            self._set_item_cooldown(item,False,'Item.combatEnd')\n            if item.item_index == 0:\n                item.ammunition = 1\n            if item.item_index in STATE_PARTICLE_IDS:\n                self._stop_timer('particle:' + item.instance_id)\n            if item.item_index == 52:\n                item.steel_affected_weapons.clear()\n            if item.item_index == 262:self._stop_timer('king_buff:'+item.instance_id)\n        if self.king_mode and not self.integration_mode:\n            for role in self.ordinary_roles:\n                if role!='util':self.timer_runtime.set_ordinary_processing(self.runtime_roles[role],False,0)\n        self.pending_terminal=False\n        self.finalized = True\n"
+        }
+      ],
+      "source": {
+        "path": "data/phase349-king-fresh-source/staged/native_replay_v8/engine.py",
+        "sha256": "921056552dca44ac6a15ee4b4a8929b91340bf9c4b85b9e24b43f35bd5c6d327",
+        "size": 197738
+      }
+    },
+    {
+      "functions": [
+        {
+          "excerpt_only": true,
+          "function": "combatEndDeferred",
+          "line_end": 3190,
+          "line_start": 3122,
+          "sha256": "6f166a9e3cd5717f7f664ea7594c79dc7eeac3656eb8787bf0faa50346bc076b",
+          "size": 1880,
+          "text": "func combatEndDeferred():\n\tNativeRandomObserver.entry(\"Core/Game.gd::combatEndDeferred\", self, {})\n\temit_signal(\"combat_end\", roundResults[curRound - 1])\n\t\n[body omitted from this small design excerpt; full-function hash above]\n\t\telse:\n\t\t\tendRun(true, true)\n\tNativeRandomObserver.leave(\"Core/Game.gd::combatEndDeferred\", self, null, \"return_implicit\")\n\n"
+        }
+      ],
+      "source": {
+        "path": "data/phase359-king-producer-source/after-source/Core/Game.gd",
+        "sha256": "fafe9612858a25b95d8d6149531b50869dbd9709719bd5d2ab6b070b6b8283b1",
+        "size": 145943
+      }
+    }
+  ],
+  "model_algorithm_changed": false,
+  "model_cleanup_path": "effect/damage/fatigue -> own HP/death -> FrameDriver.request_end(lambda:self.finish()) -> _flush_cleanup -> own finish/result/cleanup -> physics_remaining=2 -> saturated counter -> first actual idle preinternal",
+  "originals": [
+    {
+      "path": "data/phase375-food-hook-source/after-source/native_random_observer_sink_v7.gd",
+      "sha256": "cf48505d757f013d0f0fedd8cb212ec0005979427ea19f0070228e268b91c064",
+      "size": 99858
+    },
+    {
+      "path": "data/phase370-oracle-source/collector.gd",
+      "sha256": "33f2d20dee6364dd26a89a15a00d506ca96095d8ec661c7c1693aecb58b6acf7",
+      "size": 61404
+    },
+    {
+      "path": "tests/phase375_king_observer_schema.py",
+      "sha256": "2544c51513effc0c7a66b98af3f718b4dd4a91fea6bd51a240a2f4c9a194de71",
+      "size": 191051
+    },
+    {
+      "path": "data/phase349-king-fresh-source/staged/native_replay_v7/frame_driver.py",
+      "sha256": "9d8e361144e353a8d944e4490502c5301e7a92451771d35f22ab48f6277f64fd",
+      "size": 12318
+    },
+    {
+      "path": "data/phase349-king-fresh-source/staged/native_replay_v8/engine.py",
+      "sha256": "921056552dca44ac6a15ee4b4a8929b91340bf9c4b85b9e24b43f35bd5c6d327",
+      "size": 197738
+    },
+    {
+      "path": "data/phase359-king-producer-source/after-source/Core/Game.gd",
+      "sha256": "fafe9612858a25b95d8d6149531b50869dbd9709719bd5d2ab6b070b6b8283b1",
+      "size": 145943
+    },
+    {
+      "path": "tests/phase361_king_projection_sealer.py",
+      "sha256": "4f840a2f3a9e04d4d6f646e8490b0e60545a79bf0f0e8b091dee4b6147bc5bb3",
+      "size": 26582
+    },
+    {
+      "path": "tests/phase380_oracle_host.py",
+      "sha256": "588486979f0887abea6ed35e0e66762684e7b416303294fc3fc1eb045b39e92a",
+      "size": 23859
+    },
+    {
+      "path": "data/phase380-payload-source/combined-source-freeze.json",
+      "sha256": "0b849df817910a586e9d28548c2942e013cae1f15f7bf085aaf5e9b2a4337cfb",
+      "size": 63604
+    },
+    {
+      "path": "data/phase349-king-fresh-source/candidate-source-freeze.json",
+      "sha256": "ffde760c50b576ae8419643eb39dbcef29b35699de6f642e78eb39b51cf0032f",
+      "size": 2937
+    },
+    {
+      "path": "data/phase388-independent-final/finding.json",
+      "sha256": "406e8f48abc230656234dd4d0791f18a93a22634e13e69f6a7cb3f43772ec9d9",
+      "size": 3990
+    },
+    {
+      "path": "data/phase388-independent-final/owned-files.json",
+      "sha256": "638d143bc20f735cbc6be60187a97e79435d33dbb5224b3768d21aa8423ad2c8",
+      "size": 3828
+    }
+  ],
+  "schema": "phase390-readonly-SOURCE-evidence/1",
+  "source_only_not_runtime_execution": true
+}

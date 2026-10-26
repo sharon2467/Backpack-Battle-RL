@@ -1,0 +1,210 @@
+{
+  "Godot": 0,
+  "candidate_calls": 0,
+  "cases": [
+    {
+      "family": "old2-positive",
+      "id": "C01",
+      "pattern": "physics cleanup; P P I",
+      "required_outcome": "ACCEPT"
+    },
+    {
+      "family": "old2-positive",
+      "id": "C02",
+      "pattern": "idle cleanup; P I P I",
+      "required_outcome": "ACCEPT"
+    },
+    {
+      "family": "actual388-control-only-not12",
+      "id": "C03",
+      "pattern": "388C2724/inphysics; I2724 P2725..2732 I2732",
+      "required_outcome": "ACCEPT_OBSERVED8"
+    },
+    {
+      "family": "zero1gaps",
+      "id": "C04",
+      "pattern": "C; I I P I I P I",
+      "required_outcome": "ACCEPT_OBSERVED2"
+    },
+    {
+      "family": "multiPhysics",
+      "id": "C05",
+      "pattern": "C; P P P I",
+      "required_outcome": "ACCEPT_OBSERVED3"
+    },
+    {
+      "family": "bootstrap",
+      "id": "C06",
+      "pattern": "cleanup at exact activation-idle checkpoint0; P P I",
+      "required_outcome": "ACCEPT_IF_EXACT_SOURCE_ASSOCIATION"
+    },
+    {
+      "family": "association",
+      "id": "C07",
+      "pattern": "duplicate cleanup marker",
+      "required_outcome": "REJECT"
+    },
+    {
+      "family": "association",
+      "id": "C08",
+      "pattern": "cleanup kind differs from matching row",
+      "required_outcome": "REJECT"
+    },
+    {
+      "family": "missed-first",
+      "id": "C09",
+      "pattern": "C;P P I P I select last",
+      "required_outcome": "REJECT"
+    },
+    {
+      "family": "missed-first",
+      "id": "C10",
+      "pattern": "C;P P I I select last",
+      "required_outcome": "REJECT"
+    },
+    {
+      "family": "EOFtrailing",
+      "id": "C11",
+      "pattern": "C;P P I then trailingP",
+      "required_outcome": "REJECT"
+    },
+    {
+      "family": "tooearly",
+      "id": "C12",
+      "pattern": "C;P I EOF",
+      "required_outcome": "REJECT"
+    },
+    {
+      "family": "noidle",
+      "id": "C13",
+      "pattern": "C;P P EOF",
+      "required_outcome": "REJECT"
+    },
+    {
+      "family": "existingStrictClock",
+      "id": "C14",
+      "pattern": "omitted/duplicate/reordered clock counter",
+      "required_outcome": "REJECT"
+    },
+    {
+      "family": "strictINT",
+      "id": "C15",
+      "pattern": "minimum BOOL/REAL alias",
+      "required_outcome": "REJECT"
+    },
+    {
+      "family": "actualcount",
+      "id": "C16",
+      "pattern": "actual8 reported observed2",
+      "required_outcome": "REJECT"
+    },
+    {
+      "family": "join",
+      "id": "C17",
+      "pattern": "receipt/control differs from endpoint",
+      "required_outcome": "REJECT"
+    },
+    {
+      "family": "versionjoin",
+      "id": "C18",
+      "pattern": "mixed old/new policy/schema/profile",
+      "required_outcome": "REJECT"
+    },
+    {
+      "family": "once",
+      "id": "C19",
+      "pattern": "duplicate dedicated emit",
+      "required_outcome": "REJECT"
+    },
+    {
+      "family": "once",
+      "id": "C20",
+      "pattern": "synchronous reentrant oncut",
+      "required_outcome": "REJECT"
+    },
+    {
+      "family": "phase",
+      "id": "C21",
+      "pattern": "direct oncut outside actual emit bracket",
+      "required_outcome": "REJECT"
+    },
+    {
+      "family": "bindingreturn",
+      "id": "C22",
+      "pattern": "native Error falsely available0",
+      "required_outcome": "REJECT"
+    },
+    {
+      "family": "readonly",
+      "id": "C23",
+      "pattern": "second snapshot/getStats after frozen DTO",
+      "required_outcome": "REJECT_SOURCE_CONFORMANCE"
+    },
+    {
+      "family": "sameidle",
+      "id": "C24",
+      "pattern": "stale receiver/current-frame mismatch",
+      "required_outcome": "REJECT"
+    },
+    {
+      "family": "minimum",
+      "id": "C25",
+      "pattern": "cut at observed0/1",
+      "required_outcome": "REJECT"
+    },
+    {
+      "family": "missed-first",
+      "id": "C26",
+      "pattern": "firsteligible latch not current pass",
+      "required_outcome": "REJECT"
+    },
+    {
+      "family": "association",
+      "id": "C27",
+      "pattern": "cleanup no unique row or unsupported phase",
+      "required_outcome": "REJECT"
+    },
+    {
+      "family": "association",
+      "id": "C28",
+      "pattern": "cleanup anchor after endpoint",
+      "required_outcome": "REJECT"
+    },
+    {
+      "family": "bindingreturn",
+      "id": "C29",
+      "pattern": "emit return observed beforecall or script nonNIL",
+      "required_outcome": "REJECT"
+    },
+    {
+      "family": "finalizer",
+      "id": "C30",
+      "pattern": "finalizer false/nonBOOL/notFINALIZED",
+      "required_outcome": "REJECT"
+    },
+    {
+      "family": "unchanged",
+      "id": "C31",
+      "pattern": "unchanged raw row/event/shared-seq/RNG/75body identities",
+      "required_outcome": "STATIC_CONFORMANCE"
+    },
+    {
+      "family": "proof-model-boundary",
+      "id": "C32",
+      "pattern": "oracle cleanup/endpoint injection into runtime writer",
+      "required_outcome": "REJECT_SOURCE_DATAFLOW"
+    }
+  ],
+  "executed_controls": 0,
+  "limit_controls": 32,
+  "limit_rows_per_synthetic_clock": 32,
+  "models": 0,
+  "notes": [
+    "Patterns are design notation, not fabricated actual source records. Concrete synthetic carriers require a separately frozen implementation/test contract.",
+    "Different internal/ordinary physics/idle cleanup entry labels must retain artificial-precondition labels, never natural HIT.",
+    "Any empty-project process or schema API execution needs later Root authorization. Old successful science is not rerun.",
+    "C03 references only authorized388 finding control extraction; original failedcapture and all8/12 partial inputs remain unchanged."
+  ],
+  "schema": "phase390-future-finite-controls-plan/1",
+  "status": "PLANNED_NOT_EXECUTED"
+}

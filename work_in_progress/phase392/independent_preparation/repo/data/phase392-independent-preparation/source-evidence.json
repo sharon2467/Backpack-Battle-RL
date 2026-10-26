@@ -1,0 +1,321 @@
+{
+  "388_control_fact": {
+    "cleanup": {
+      "idle_frame": 341,
+      "is_in_physics_frame": true,
+      "physics_frame": 2724
+    },
+    "first_actual_eligible_idle": {
+      "idle_frame": 342,
+      "physics_frame": 2732
+    },
+    "observed_future_physics": 8,
+    "use": "Frozen388 diagnostic only; no new opaque/capture access; no original capture modification"
+  },
+  "SUT_calls": 0,
+  "actual_clock_decode_or_recorrelation": 0,
+  "model_source_fact": "349 request_end/own finish/_flush_cleanup sets remaining2; step saturates at0 and finalizes on next actual idle. AST inspected, never imported/called; no model positive or activation-death admission.",
+  "old_GDScript_byte_origins": [
+    {
+      "function_bytes": [
+        {
+          "name": "clock_pass",
+          "sha256": "4bc78d6bf26ceb9005578982d94ecb6cc2a9e778782a1111bf66bf3f08796096",
+          "size": 1524
+        },
+        {
+          "name": "ui_controls",
+          "sha256": "2ead813fb903a654b0d075ca7bd3afc8e3282c1971d6363629687a65ddd74685",
+          "size": 404
+        },
+        {
+          "name": "ui_check_controls",
+          "sha256": "fac2972bb46a8ac25cb12ce6fa63772708fd4ca572c931e825f4f35e204aa7fc",
+          "size": 439
+        },
+        {
+          "name": "source_runtime_snapshot",
+          "sha256": "f31fafcff0c2723c56c1f3a7c2a028264289611c579d1287f1c77e46025699a3",
+          "size": 1097
+        },
+        {
+          "name": "source_cut_control",
+          "sha256": "67de72cc4ae2fdfb0ee72b6094caee3b7c1e5119aa2749081233c72b7ee77e65",
+          "size": 888
+        },
+        {
+          "name": "ack_source_idle_cut",
+          "sha256": "65e0f3a840beb277fdc214dfd9d19d93a6246daa73bf52c5f238694c81ded173",
+          "size": 771
+        },
+        {
+          "name": "emit_source_idle_cut_once",
+          "sha256": "8e8fe27eba565cd0ae0a690921a85355f5c3ad33c7ab7cd9a9bb4aad10e215a0",
+          "size": 3025
+        }
+      ],
+      "interpretation": "OLD_BYTE_ORIGIN_ONLY; changed terminal functions require later delta review",
+      "source": {
+        "path": "data/phase375-food-hook-source/after-source/native_random_observer_sink_v7.gd",
+        "sha256": "cf48505d757f013d0f0fedd8cb212ec0005979427ea19f0070228e268b91c064",
+        "size": 99858
+      }
+    },
+    {
+      "function_bytes": [
+        {
+          "name": "on_idle_source_cut",
+          "sha256": "267bc72b50ef0c8f2387c6415286334ee96e09ece4cd2b9c24beb8bb7afb258e",
+          "size": 3791
+        },
+        {
+          "name": "finish_source_cut",
+          "sha256": "30d9245ec49e1b960af1576026dac5fcabfa0ed4dfdf8b7d41a3eb9c6f2cac54",
+          "size": 2821
+        }
+      ],
+      "interpretation": "OLD_BYTE_ORIGIN_ONLY; changed terminal functions require later delta review",
+      "source": {
+        "path": "data/phase370-oracle-source/collector.gd",
+        "sha256": "33f2d20dee6364dd26a89a15a00d506ca96095d8ec661c7c1693aecb58b6acf7",
+        "size": 61404
+      }
+    }
+  ],
+  "old_python_AST_origins": [
+    {
+      "functions": [
+        {
+          "AST_sha256": "dbf6293db1647e8d6e8639abeb636d1f762ffc058bb83ecc6243533098a0e2c3",
+          "line": 1230,
+          "name": "decode_clock"
+        },
+        {
+          "AST_sha256": "b8ad0125fbb906e2ae222f9f10e8f2bc721168fcea45b6182609d39c8cb0da28",
+          "line": 1782,
+          "name": "validate_terminal_evidence"
+        }
+      ],
+      "interpretation": "OLD_SOURCE_ORIGIN_ONLY; new391 conservation not yet inspected",
+      "source": {
+        "path": "tests/phase375_king_observer_schema.py",
+        "sha256": "2544c51513effc0c7a66b98af3f718b4dd4a91fea6bd51a240a2f4c9a194de71",
+        "size": 191051
+      }
+    },
+    {
+      "functions": [
+        {
+          "AST_sha256": "36fcf9c21fe819a583a4a0a56d5367d5d26748cc37d7cf0b41b581eba44fbbb7",
+          "line": 196,
+          "name": "request_end"
+        },
+        {
+          "AST_sha256": "aba9d67815cfd2f661b8461157b164aa01cf93c527e3cdd53c4599d62a5efac7",
+          "line": 208,
+          "name": "_flush_cleanup"
+        },
+        {
+          "AST_sha256": "f401f0d8a615bd30ff3436bd3a7ab658fdfc8662d08cdf0de1ef0d83d1f0e45e",
+          "line": 218,
+          "name": "step"
+        }
+      ],
+      "interpretation": "OLD_SOURCE_ORIGIN_ONLY; new391 conservation not yet inspected",
+      "source": {
+        "path": "data/phase349-king-fresh-source/staged/native_replay_v7/frame_driver.py",
+        "sha256": "9d8e361144e353a8d944e4490502c5301e7a92451771d35f22ab48f6277f64fd",
+        "size": 12318
+      }
+    },
+    {
+      "functions": [
+        {
+          "AST_sha256": "d3bd14141bdf3fd9e89a61e5e1d886dd24693c1f3a4f1bcc7028528e72e569fd",
+          "line": 3214,
+          "name": "death"
+        },
+        {
+          "AST_sha256": "2cf0eecfc4a6b2bf74744ac778f6903f005a4656907cf4f76bdf0246b0189769",
+          "line": 3289,
+          "name": "finish"
+        }
+      ],
+      "interpretation": "OLD_SOURCE_ORIGIN_ONLY; new391 conservation not yet inspected",
+      "source": {
+        "path": "data/phase349-king-fresh-source/staged/native_replay_v8/engine.py",
+        "sha256": "921056552dca44ac6a15ee4b4a8929b91340bf9c4b85b9e24b43f35bd5c6d327",
+        "size": 197738
+      }
+    },
+    {
+      "functions": [
+        {
+          "AST_sha256": "606367d3b2fd1af436ca649ca4621c36a015e58b853df7f876cbc596012ed01b",
+          "line": 254,
+          "name": "resolve_execute_payloads"
+        },
+        {
+          "AST_sha256": "216414efa8ed5dd880c979cb04184b157793326e10e5e59c715272e4a45d33c5",
+          "line": 284,
+          "name": "verify_execute_payloads"
+        }
+      ],
+      "interpretation": "OLD_SOURCE_ORIGIN_ONLY; new391 conservation not yet inspected",
+      "source": {
+        "path": "tests/phase380_oracle_host.py",
+        "sha256": "588486979f0887abea6ed35e0e66762684e7b416303294fc3fc1eb045b39e92a",
+        "size": 23859
+      }
+    },
+    {
+      "functions": [
+        {
+          "AST_sha256": "a2e10318a04fa7f5cb43e88ef2902ac4c7d099e73c6e2234c1c76a2c37a0dc66",
+          "line": 17,
+          "name": "regular_target"
+        },
+        {
+          "AST_sha256": "b92fc7de4997462bd22d4c0e13515b2be42d5057db95520e31282bad4e5ec818",
+          "line": 30,
+          "name": "atomic_image"
+        },
+        {
+          "AST_sha256": "8ab8b40f3d9a895e2fa7d77b51858657ea889435bc626706b29f870b272e1258",
+          "line": 214,
+          "name": "install"
+        }
+      ],
+      "interpretation": "OLD_SOURCE_ORIGIN_ONLY; new391 conservation not yet inspected",
+      "source": {
+        "path": "tests/phase380_oracle_storage.py",
+        "sha256": "c5b0cb3ab0ccc2c9865c36da531c050c577b46849c2c6ce763a4cc365813e601",
+        "size": 20410
+      }
+    },
+    {
+      "functions": [
+        {
+          "AST_sha256": "b4aa3001be95f8f0ea64c648767620e239f7e951679a7b05aae0b211500d41c8",
+          "line": 82,
+          "name": "cleanup_process_group"
+        },
+        {
+          "AST_sha256": "4ca176cffe8328c3c33aa414920708d2efe4f8a2c81d792377004ca87e652bc4",
+          "line": 108,
+          "name": "monitor_command"
+        }
+      ],
+      "interpretation": "OLD_SOURCE_ORIGIN_ONLY; new391 conservation not yet inspected",
+      "source": {
+        "path": "tests/phase363_oracle_process.py",
+        "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f",
+        "size": 13665
+      }
+    }
+  ],
+  "old_success_reuse_rule": "After391 freeze, reuse historical accepted layers only if actual source byte/AST identity is proven for the actual consumer. Changes require narrow new review, never an inferred rerun/pass.",
+  "schema": "phase392-preparation-source-evidence/1",
+  "schema_imports": 0,
+  "selected_old_sources_actual_pins": [
+    {
+      "path": "data/phase375-food-hook-source/after-source/native_random_observer_sink_v7.gd",
+      "sha256": "cf48505d757f013d0f0fedd8cb212ec0005979427ea19f0070228e268b91c064",
+      "size": 99858
+    },
+    {
+      "path": "data/phase370-oracle-source/collector.gd",
+      "sha256": "33f2d20dee6364dd26a89a15a00d506ca96095d8ec661c7c1693aecb58b6acf7",
+      "size": 61404
+    },
+    {
+      "path": "tests/phase375_king_observer_schema.py",
+      "sha256": "2544c51513effc0c7a66b98af3f718b4dd4a91fea6bd51a240a2f4c9a194de71",
+      "size": 191051
+    },
+    {
+      "path": "data/phase349-king-fresh-source/staged/native_replay_v7/frame_driver.py",
+      "sha256": "9d8e361144e353a8d944e4490502c5301e7a92451771d35f22ab48f6277f64fd",
+      "size": 12318
+    },
+    {
+      "path": "data/phase349-king-fresh-source/staged/native_replay_v8/engine.py",
+      "sha256": "921056552dca44ac6a15ee4b4a8929b91340bf9c4b85b9e24b43f35bd5c6d327",
+      "size": 197738
+    },
+    {
+      "path": "data/phase359-king-producer-source/after-source/Core/Game.gd",
+      "sha256": "fafe9612858a25b95d8d6149531b50869dbd9709719bd5d2ab6b070b6b8283b1",
+      "size": 145943
+    },
+    {
+      "path": "tests/phase361_king_projection_sealer.py",
+      "sha256": "4f840a2f3a9e04d4d6f646e8490b0e60545a79bf0f0e8b091dee4b6147bc5bb3",
+      "size": 26582
+    },
+    {
+      "path": "tests/phase380_oracle_host.py",
+      "sha256": "588486979f0887abea6ed35e0e66762684e7b416303294fc3fc1eb045b39e92a",
+      "size": 23859
+    },
+    {
+      "path": "data/phase380-payload-source/combined-source-freeze.json",
+      "sha256": "0b849df817910a586e9d28548c2942e013cae1f15f7bf085aaf5e9b2a4337cfb",
+      "size": 63604
+    },
+    {
+      "path": "data/phase349-king-fresh-source/candidate-source-freeze.json",
+      "sha256": "ffde760c50b576ae8419643eb39dbcef29b35699de6f642e78eb39b51cf0032f",
+      "size": 2937
+    },
+    {
+      "path": "data/phase388-independent-final/finding.json",
+      "sha256": "406e8f48abc230656234dd4d0791f18a93a22634e13e69f6a7cb3f43772ec9d9",
+      "size": 3990
+    },
+    {
+      "path": "data/phase388-independent-final/owned-files.json",
+      "sha256": "638d143bc20f735cbc6be60187a97e79435d33dbb5224b3768d21aa8423ad2c8",
+      "size": 3828
+    }
+  ],
+  "unchanged_17_getter_boundary": "Only the old collector full-source identity and old sink snapshot/UI origins are pinned here; no new391 getter chain has been inspected or accepted.",
+  "unsealed391_reads": 0,
+  "verified390_leaves": [
+    {
+      "path": "docs/phase390_first_actual_eligible_idle_terminal_contract_design_spec.md",
+      "sha256": "031ec9b18082f987546465c329cbf281f2d749cf9b2d1cd8f46f9cb93c1192bf",
+      "size": 21042
+    },
+    {
+      "path": "data/phase390-first-eligible-idle-source-design/field-dataflow-and-interface-plan.json",
+      "sha256": "4f255988f09c4a0562be16a898eb945739f004c78886ab6e9010616e788b9719",
+      "size": 8207
+    },
+    {
+      "path": "data/phase390-first-eligible-idle-source-design/finite-acceptance-plan.json",
+      "sha256": "2cc329fcf8db8d4fd565906a8e858c4d754396dd43688a9a1580e45a2fe4bd33",
+      "size": 5719
+    },
+    {
+      "path": "data/phase390-first-eligible-idle-source-design/source-evidence.json",
+      "sha256": "9391f832e6c3ebb22aeedc1914ec8f667a8603f32c703cb72b214c260490e936",
+      "size": 38297
+    },
+    {
+      "path": "data/phase390-first-eligible-idle-source-design/source-preservation-readback.json",
+      "sha256": "569259fdbd506909eb257e95caf1986e17e07d89a9b12ed132ea537b7990b2e7",
+      "size": 2662
+    },
+    {
+      "path": "data/phase390-first-eligible-idle-source-design/summary.json",
+      "sha256": "fc7742efa1a672d5444714682ce2c217c15a2d184decd0f6b946cd8ad6915e58",
+      "size": 1300
+    }
+  ],
+  "verified390_owner": {
+    "path": "data/phase390-first-eligible-idle-source-design/owned-files.json",
+    "sha256": "8058c9f9ed3d17c3a8d46c856e37032c0acbf4abd706add45d0294b207a2653c",
+    "size": 1411
+  }
+}
