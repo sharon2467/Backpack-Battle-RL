@@ -1,0 +1,114 @@
+{
+  "API_calls": 0,
+  "Godot": 0,
+  "SUT_imports": 0,
+  "checks": [
+    {
+      "check": "actual_source_pins",
+      "freeze_leaves": 152,
+      "owner_leaves": 49,
+      "result": "PASS"
+    },
+    {
+      "changed": [
+        "finish_source_cut",
+        "on_idle_source_cut"
+      ],
+      "check": "inverse_and_old_function_identity",
+      "conserved": 61,
+      "ledger": {
+        "path": "data/phase391-terminal-source/collector-inverse.json",
+        "sha256": "ef5202cff052433d43bf95d1024d7c2ebb8f0d575b5ac52a40a56a9b657b2a01",
+        "size": 6973
+      },
+      "result": "PASS"
+    },
+    {
+      "changed": [
+        "ack_source_idle_cut",
+        "begin_king_clock",
+        "clock_idle_signal",
+        "clock_pass",
+        "close_king_clock",
+        "emit_source_idle_cut_once",
+        "source_completion_receipt",
+        "source_cut_control",
+        "source_diagnostic",
+        "source_mark_cleanup"
+      ],
+      "check": "inverse_and_old_function_identity",
+      "conserved": 86,
+      "ledger": {
+        "path": "data/phase391-terminal-source/native_random_observer_sink_v7-inverse.json",
+        "sha256": "c9df8cbe87cab8f479f1035d6c36678609772ce165b0ecc5f0c96ca830869f57",
+        "size": 12066
+      },
+      "result": "PASS"
+    },
+    {
+      "changed": [
+        "validate_terminal_evidence"
+      ],
+      "check": "inverse_and_old_function_identity",
+      "conserved": 69,
+      "ledger": {
+        "path": "data/phase391-terminal-source/phase391_king_observer_schema-inverse.json",
+        "sha256": "f38f858fbb8dce0edf7d7a01383553ec7c7d0a12e207dd8f50c388a3001c6653",
+        "size": 25367
+      },
+      "result": "PASS"
+    },
+    {
+      "changed": [
+        "collect_capture_metadata",
+        "execute",
+        "plan",
+        "source_gate"
+      ],
+      "check": "inverse_and_old_function_identity",
+      "conserved": 9,
+      "ledger": {
+        "path": "data/phase391-terminal-source/phase391_oracle_host-inverse.json",
+        "sha256": "d55d912b8b22b4b315060223b943ddf3cb454ce26afcf937a885db6c588e309d",
+        "size": 11858
+      },
+      "result": "PASS"
+    },
+    {
+      "changed": [],
+      "check": "inverse_and_old_function_identity",
+      "conserved": 23,
+      "ledger": {
+        "path": "data/phase391-terminal-source/phase391_oracle_storage-inverse.json",
+        "sha256": "d21a6c95a7423bc353d6a05f0a9c3b88161e260faf4e0dc49fcdc3f0845ac8e6",
+        "size": 1127
+      },
+      "result": "PASS"
+    },
+    {
+      "check": "C07_C20_C23_C26_producer_once_latch_and_readonly",
+      "result": "SOURCE_PASS_NO_LANGUAGE_EXECUTION"
+    },
+    {
+      "check": "C23_C31_getters_107_sites_matrix_UI_conserved",
+      "result": "SOURCE_PASS_OLD_SUCCESS_NOT_RERUN"
+    },
+    {
+      "check": "C18_C31_real_tuple_host_consumer_paths",
+      "result": "SOURCE_PASS_NOT_WHOLEHOST"
+    },
+    {
+      "check": "author_only_two_historical_aliases_no_active_bypass",
+      "result": "SOURCE_PASS"
+    },
+    {
+      "check": "C32_old_model_driver_and_closed_projection_origins",
+      "result": "SOURCE_ONLY_NO_MODEL_OR_ACTIVATION_DEATH_POSITIVE"
+    }
+  ],
+  "failure": null,
+  "models": 0,
+  "native": 0,
+  "schema": "phase392-actual-static-review/1",
+  "status": "STATIC392_FROZEN391_COMPONENT_BOUNDARY_PASS_DYNAMIC_PENDING"
+}

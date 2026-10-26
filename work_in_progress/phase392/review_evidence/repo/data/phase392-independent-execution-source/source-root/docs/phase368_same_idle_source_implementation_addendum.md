@@ -1,0 +1,31 @@
+# 368 synchronous cut SOURCE implementation addendum
+
+## 1. Requirements
+
+Implement only the accepted368 design in new files. Frozen368 design,359/365 sources,75 effect/getStats/fixture/seed code, standard15 and failedrun01/02 are immutable. SOURCE generation/compile/AST/identity checks only: no Godot/probe/helper/pool/restore/plan/newattempt/model/projection execution. The attempt02 map generator is SOURCE only and must not be invoked this turn.
+
+## 2. Design
+
+New sink emits its private no-argument signal once, solely at the existing successful completion tail, after flushed clock/final/UI writes and complete/closed flags. Its single flags0/nobinds target is the actual SceneTree collector, irrespective of ObjectID order. Original SceneTree connections remain unchanged. Named states are IDLE→EMITTING→RETURNED→FINALIZING→FINALIZED, with failure never treated as finalized. Signal Error and exact callback ack are separate observations.
+
+Root-approved local refinement: `on_idle_source_cut` marks its once guard, samples the original full DTO once, stores primitive frozen output and submits an exact ack; it does not report signal success or quit. After `emit_signal` actually returns, sink verifies Error==OK, ack, current frames, unchanged sole receiver and source success, then calls the same receiver's `finish_source_cut` synchronously. That finalizer reads only frozen DTOs and observation-control state, serializes them and requests quit. It cannot call business getters/snapshot/getStats or advance a frame. Sink then records actual finalizer BOOL return and FINALIZED; requesting quit is not proof of signal or finalizer return.
+
+Primitive diagnostics retain complete actual connection tables before source-window false guards. No event/schema/RNG/clock/UI sequence is changed by diagnostics. They use a separate capped file, no EventBus calls, and no `fail` from the diagnostic writer. If observer is absent/unavailable, collector uses a separately bounded fallback diagnostic file. Each writer allows64 records/256KiB record/1MiB total,1024 rows/table; cap/unsupported evidence is explicit, never truncation claimed as complete. Writer failure is secondary, bounded stderr fallback and in-memory status preserve first primary. No object is stringified or retained by a diagnostic DTO.
+
+New host binds new SOURCE/review/rootschema and attempt03 name. Root additionally authorized one bounded control delta: when collector-first-failure is absent, decode existing observer7_failure.json (max4096B) as primary; if both exist preserve collector-primary precedence explicitly without inferring timestamp order. Both files are control evidence, excluded from expected/input maps. Other operational functions are conserved apart from exact source/protocol paths. Proposed path `original027-king-single-A-20261025-attempt03` is not authorization.
+
+Root subsequently authorized saved-only actual map derivation in this turn. Source map generator reads only attempt02 saved preimages/manifests/oldbundle, emits a distinct map and pins under a new directory, and derives all counts anew; it never inventories actual pool. A thin365-derived recovery module changes only exact new schema/map/preservation/review/root bindings and removes attempt01 hardcoded difference counts in favor of complete manifest-derived sets. It performs no restore/commit here;365 source remains immutable. New identity fields use null+availability for missing source/target IDs, with actual Variant type/has-key retained; unavailable IDs make connection evidence incomplete. Primitive REAL diagnostic values use original bits rather than normalized INT.
+
+## 3. Realize
+
+- New sink source: strict `_ready` connection return capture; primitive table projection and bounded writer; named rejection helper; exact private receiver validator; `ack_source_idle_cut` strict int/frame/phase/once validation; completion-tail dispatcher with separate emit/ack/finalizer evidence. Existing clock normal path is byte-identical except explicit failed-return guards before later control work.
+- New collector source: snapshot/reject helpers on source-window/precondition/cut paths and immediate placement rejection branches; private signal attach records actual Error; subscription check records SceneTree rows without imposing sink adjacency. Once-before-sampling oncut keeps original result/physics+2/receipt/closed/UI/clock guards; finalizer uses frozen DTOs only and stops after any write failure, preventing a later quit0 from masking primary.
+- Text generator derives both GD sources and provides exact inverse per-function/addition ledger. New combinedfreeze replaces only sink/collector/host identities; original74 other patch paths and all old files remain exact. New sink changes one of the75 current patch paths; counts are diff facts rather than coverage.
+- `phase368_prepare_attempt02_restore_map.py` accepts explicit source_root/failed_run/previous_run/output, verifies the exact saved attempt02 receipt/schema and failed state plus old bundle/preimage bytes, derives complete differences and emits rooted payload map. It reads no livepool and performs no mutation. Future invocation needs root authorization; none occurs now.
+- Source freezer compiles Python text without importing generated operational modules, verifies GD exact inverse and host AST, checks all referenced old source/failure identities, emits freeze/contract/delta/owner and reads every new owner leaf.
+
+## 4. Acceptance Criteria / Tests
+
+This turn claims SOURCE identity/compile only. Independent forthcoming tests must cover each no-emit/emit path, one native same-stack callback with separate ack/return, duplicate/direct/reentrant rejection before sampling, missing/extra/deferred/bound receivers, complete diagnostics on every rejected path, writer-failure primary preservation, no new four-stream/UI/clock sequence consumption and no finalizer resampling. Root may authorize a bounded emptyproject language probe separately; no Game retry follows automatically.
+
+Map controls must reject attempt01 receipt/state/map substitutions, stale/bad preimages/bundle/CRC/unknown paths, and derive actual counts; helper binding and realpool recovery stay pending.356/361 gates remain closed. No self-signed independent FINAL.
