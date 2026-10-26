@@ -1,0 +1,37 @@
+{
+  "args": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-B",
+    "tests/phase408_initial_source_audit.py",
+    "--source-root",
+    "/workspace/python-original-engine/repo",
+    "--release",
+    "data/phase411-root-initial-audit-release/input-audit-release.json",
+    "--release-size",
+    "3529",
+    "--release-sha256",
+    "8f5d6386019447576ae04a9457a489bfa0a6a6ae416c23d05eb99ad49097e193"
+  ],
+  "automatic_retry": false,
+  "cwd": "/workspace/python-original-engine/repo",
+  "environment_override": {
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "forbidden": "nonlawful capture/event/history/final/postcleanup/logs; old engine/schema/Tape/361/optional391; model/inputbuild/native",
+  "genuine_release": {
+    "path": "data/phase411-root-initial-audit-release/input-audit-release.json",
+    "sha256": "8f5d6386019447576ae04a9457a489bfa0a6a6ae416c23d05eb99ad49097e193",
+    "size": 3529
+  },
+  "interpreter_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "invocations": 1,
+  "outer_timeout_seconds": 60,
+  "output_previously_absent": true,
+  "setup_boundary": "trusted Python3.12 stdlib initialization allowed before original install_io_guard; no exhaustive startup event trace or preload claim",
+  "source_acceptance": {
+    "path": "data/phase411-root-initial-audit-release/source-accepted.json",
+    "sha256": "730b83eef4ffcb7f1c6c1b2fd08dc04d4b0b14cf51246b506a1d47aea20a0e40",
+    "size": 1121
+  },
+  "timeout_seconds": 50
+}

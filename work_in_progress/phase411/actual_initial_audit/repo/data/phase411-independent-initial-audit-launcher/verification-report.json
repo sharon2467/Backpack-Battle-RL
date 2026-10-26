@@ -1,0 +1,197 @@
+{
+  "King_admitted": false,
+  "Root_release": {
+    "path": "data/phase411-root-initial-audit-release/input-audit-release.json",
+    "sha256": "8f5d6386019447576ae04a9457a489bfa0a6a6ae416c23d05eb99ad49097e193",
+    "size": 3529
+  },
+  "Root_source_acceptance": {
+    "path": "data/phase411-root-initial-audit-release/source-accepted.json",
+    "sha256": "730b83eef4ffcb7f1c6c1b2fd08dc04d4b0b14cf51246b506a1d47aea20a0e40",
+    "size": 1121
+  },
+  "actual_audit_invocations": 1,
+  "actual_phase": 411,
+  "audit_output_owner": {
+    "path": "data/phase408-initial-audit-first-001/owned-files.json",
+    "sha256": "ea47b398391126b5286cb677ec0adf04ac27b86184fdd7a7470fb3990a013c6e",
+    "size": 1022
+  },
+  "audit_output_pins": {
+    "identity-domain-findings.json": {
+      "path": "data/phase408-initial-audit-first-001/identity-domain-findings.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "size": 3
+    },
+    "io-observations.json": {
+      "path": "data/phase408-initial-audit-first-001/io-observations.json",
+      "sha256": "9200b95ed3c9fe3e2530837104546c996d65732807e4ec40b9368fe3f561271b",
+      "size": 76231
+    },
+    "rawtyped-field-index.json": {
+      "path": "data/phase408-initial-audit-first-001/rawtyped-field-index.json",
+      "sha256": "27f4a859ba9144314bb25764d6787e07c8c929e96b44c37a077c4437c47cd46b",
+      "size": 1494877
+    },
+    "report.json": {
+      "path": "data/phase408-initial-audit-first-001/report.json",
+      "sha256": "c840803f17a57dcfec489a0c69806f69c48d3d35b7c57ce42986995218b30fa8",
+      "size": 531
+    },
+    "source-references.json": {
+      "path": "data/phase408-initial-audit-first-001/source-references.json",
+      "sha256": "f614e12e81ce01c64cab9d3b476af580ad2983fbaa47339fd2a468bcfc052492",
+      "size": 13771
+    },
+    "summary.json": {
+      "path": "data/phase408-initial-audit-first-001/summary.json",
+      "sha256": "8d21f41dc4bc2db7cbc458385d29ff5edc70d2902c47b7cb765083db24a8f5fe",
+      "size": 409
+    }
+  },
+  "audit_report_status": "BLOCKED_INITIAL_SOURCE_GAPS",
+  "automatic_retry": false,
+  "before_readback_and_external_identity_stable": true,
+  "continuation_authorized": false,
+  "expected_reads": 0,
+  "feasibility_accepted": false,
+  "field_classifications": {
+    "DIRECT_OBSERVATION": 1391,
+    "MISSING": 88,
+    "SOURCE_DERIVED": 0
+  },
+  "field_domain_verification": "all output DIRECT scalar/configuration domains; exact independent409 field/phase/role coverage; raw capture pointers not separately dereferenced",
+  "field_validation_states": {
+    "SUPPORTED": 1391,
+    "UNPROVEN": 88
+  },
+  "formal75_currently_accepted": true,
+  "fullschema": "NOT_VALIDATED",
+  "genuine_input_accepted": false,
+  "guard_violations": [],
+  "identity_domain_findings": [],
+  "input_content_reads_by_external_launcher_or_verifier": 0,
+  "input_read_accounting": {
+    "audit_invocations": 1,
+    "original_seal_readback_is_second_read_not_retry": true,
+    "phases": {
+      "before": {
+        "all_successful_content_reads": 98,
+        "lawful_capture_content_reads": 12
+      },
+      "readback": {
+        "all_successful_content_reads": 98,
+        "lawful_capture_content_reads": 12
+      }
+    },
+    "successful_capture_content_reads": 24,
+    "unique_lawful_capture_files": 12
+  },
+  "inputbuild": 0,
+  "launcher_receipts": {
+    "args": {
+      "path": "data/phase411-independent-initial-audit-launcher/args.json",
+      "sha256": "9730eba354714a88342251317107d39c4dd089b4b2021cb986e0cec67c0712c0",
+      "size": 1492
+    },
+    "exit": {
+      "path": "data/phase411-independent-initial-audit-launcher/exit.json",
+      "sha256": "0ee11c31b44326c585baefe35e3ae0b746d83ba490100cd98032e1fc552a47e7",
+      "size": 407
+    },
+    "stderr": {
+      "path": "data/phase411-independent-initial-audit-launcher/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "stdout": {
+      "path": "data/phase411-independent-initial-audit-launcher/stdout.txt",
+      "sha256": "b244d636fbb42ccb10a0171691d5622de2783c14f7ab44c44ce959a78c67de8a",
+      "size": 162
+    }
+  },
+  "logical_targets": 1479,
+  "missing_recipe_interpretation": "AUDIT_RECIPE_NOT_ESTABLISHED_NOT_PROOF_ORIGINAL_DATA_ABSENT",
+  "models": 0,
+  "native": 0,
+  "new_audit_call_count_basis": "successful fixed original CLI control flow and original summary; no runtime function profiler; internal utility counts not observed",
+  "new_audit_calls": {
+    "assess_initial_feasibility": 1,
+    "audit_direct_fields": 1,
+    "audit_source_chain": 1,
+    "index_initial_observations": 1,
+    "main": 1,
+    "read_lawful12_once": 1,
+    "run_audit": 1,
+    "seal_audit_once": 1
+  },
+  "next_step": "Root independent evidence review only; no structural/model/native continuation",
+  "old_SUT_calls": 0,
+  "old_SUT_imports": 0,
+  "optional391_calls": 0,
+  "original_summary": {
+    "READY": 0,
+    "audit_invocations": 1,
+    "automatic_retry": false,
+    "bundle": 0,
+    "first_error": null,
+    "fullschema": "NOT_VALIDATED",
+    "inputbuild": 0,
+    "models": 0,
+    "native": 0,
+    "new_audit_module_execution": 1,
+    "no_more_writes_after_owner": true,
+    "old_SUT_calls": 0,
+    "old_SUT_imports": 0,
+    "projection": 0,
+    "restore": 0,
+    "schema_calls": 0,
+    "status": "BLOCKED_INITIAL_SOURCE_GAPS"
+  },
+  "preflight": {
+    "path": "data/phase411-independent-initial-audit-launcher/source-preflight.json",
+    "sha256": "bc9648baaf07f7c402a31af4dbb6fa457f40bc7d5e2af3a59427759d622e6d28",
+    "size": 38857
+  },
+  "preparation_owner": {
+    "path": "data/phase411-independent-initial-audit-launcher/preparation-owner.json",
+    "sha256": "d147de3953791204a0726a91f2e381bcf53060997423123578df5351e25895b0",
+    "size": 1289
+  },
+  "process": {
+    "automatic_retry": false,
+    "child_elapsed_seconds": 0.17498923199309502,
+    "child_exit_code": 0,
+    "child_invocations": 1,
+    "process_scope": "one direct Python child waited; no proc inspection; source forbids subprocess/native spawn; no global process-absence claim",
+    "status": "CHILD_EXITED",
+    "timed_out": false,
+    "timeout_seconds": 50,
+    "total_launcher_elapsed_seconds": 0.19550802299636416
+  },
+  "rejected_fields": 0,
+  "schema": "independent411-first-real-initial-audit-verification/1",
+  "schema_calls": 0,
+  "source_control_input_pin_set_exact": true,
+  "source_freeze": {
+    "path": "data/phase408-initial-audit-source/source-freeze.json",
+    "sha256": "38f29ec7829b64805cd5c8cbe09caf59a32d11f75032d29948990878e10eeab8",
+    "size": 29684
+  },
+  "source_owner": {
+    "path": "data/phase408-initial-audit-source/source-owner.json",
+    "sha256": "c188422bd9dfe6d6365465204410f27f7c8ed9d8798afe21b8220ca09236dc88",
+    "size": 16495
+  },
+  "source_review": {
+    "path": "data/phase410-independent408-source-review/review.json",
+    "sha256": "094215f7a342e18a378dd95fa82bb303544bafaed3c44a66500773ba3e8690a7",
+    "size": 7423
+  },
+  "source_review_owner": {
+    "path": "data/phase410-independent408-source-review/owned-files.json",
+    "sha256": "e5d2a915c95253ebe726c3f5635443cf83824d9bd2af997aa143bf4e342198d6",
+    "size": 4233
+  },
+  "status": "FIRST_REAL_INITIAL_AUDIT_EVIDENCE_VERIFIED_ROOT_PENDING"
+}
