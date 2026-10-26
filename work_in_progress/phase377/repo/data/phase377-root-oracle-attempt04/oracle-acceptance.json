@@ -1,0 +1,121 @@
+{
+  "READY_commit": {
+    "path": "data/phase376-root-attempt03-restore/commit-ready-invocation.json",
+    "sha256": "b53e732c99e2c8bb4732d22d97d422c28e3a38aa7246b17b173b4100b2788f9f",
+    "size": 1055
+  },
+  "attempt": 4,
+  "case_id": "NATIVE-027-KING-A",
+  "expected_comparison_allowed": 0,
+  "host": {
+    "path": "tests/phase375_oracle_host.py",
+    "sha256": "e4a0438f6fccde911bd88307d09c16fbb460d33caa3ea946cc94c9533af8b910",
+    "size": 18031
+  },
+  "independent_physical_readback": {
+    "path": "data/phase375-independent-readback-handoff/review.json",
+    "sha256": "e3f66e382aded299e94eebf04ead84b435e0c926392b0e6d949f1d394a4a8e3b",
+    "size": 5474
+  },
+  "input_builds_allowed": 0,
+  "intent": {
+    "path": "data/phase377-root-oracle-attempt04/intent.json",
+    "sha256": "08a277f44ac89721f50e811aa4cf0e2f116c23cd9c329c163e82610eaeb54a06",
+    "size": 1126
+  },
+  "limitations": [
+    "polling is notkernelaggregatequota and may overshoot betweenpolls",
+    "SOURCE/language/helper acceptance is notoriginalKing/full12/fullprojection/production fullsnapshot acceptance",
+    "onlyfixedA oraclecapture, noPythonmodel/inputbuild/expectedsemanticcomparison",
+    "noautomaticretry/reseed/relayout"
+  ],
+  "models_allowed": 0,
+  "relocations": {},
+  "resource_policy_decision": {
+    "path": "data/phase362-root-plan/resource-policy-decision.json",
+    "sha256": "703675b921427c0149ce62281e3668bea4a5a37d382b03647662e7a5ccd2eb3a",
+    "size": 1685
+  },
+  "resources": [
+    {
+      "path": "tests/godotsteam_offline_exec.py",
+      "root": "source",
+      "sha256": "78beb697959d28b45c40f7a93174d22c67f711c077f5f7dcfb22ca10e69dd961",
+      "size": 4218
+    },
+    {
+      "path": "tests/native_run_compaction.py",
+      "root": "source",
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260",
+      "size": 27304
+    },
+    {
+      "path": "engine/godotsteam.362.editor.x86_64",
+      "root": "task",
+      "sha256": "09d1de6c4f97289c018556666c13c1d81093a5df5c2255725d464a87f40a8ea1",
+      "size": 77646552
+    },
+    {
+      "path": "engine/libsteam_api.so",
+      "root": "task",
+      "sha256": "0f2c41c20644503c17e13498203986493332fc8296dbd78493bc1fed352ec0cc",
+      "size": 388288
+    },
+    {
+      "path": "debian/usr/bin/xvfb-run",
+      "root": "task",
+      "sha256": "97e86a102eee7212bfa3bf87d452b27dd4f16ef6e68658eeae20bca63db2ceee",
+      "size": 6082
+    },
+    {
+      "path": "debian/usr/bin/Xvfb",
+      "root": "task",
+      "sha256": "16667b1eaafbe0b09527c2152e45f81b4b8e977012281062fc2fb2427afa66ce",
+      "size": 2131520
+    }
+  ],
+  "restoration_invocation": {
+    "path": "data/phase376-root-attempt03-restore/restore-invocation.json",
+    "sha256": "7b69ed6ccff620cca7c719894b5d32f73285461ec1d50a4e569ccdb467135bcf",
+    "size": 1065
+  },
+  "reviews": [
+    {
+      "owner": {
+        "path": "data/phase375-independent-final/owned-files.json",
+        "sha256": "726f25ff1ba20f9374c96f20e71bef9d10e85ad197e236f9ed6e838836ee70dc",
+        "size": 25544
+      },
+      "receipt": {
+        "path": "data/phase375-independent-final/review.json",
+        "sha256": "ecc0035180f70564662b38fe50bfb710e3f37f59441ac9192ff9098b0fd5a002",
+        "size": 6099
+      }
+    }
+  ],
+  "root_oracle_authorized": true,
+  "root_source_acceptance": {
+    "path": "data/phase376-root-attempt03-restore/source-accepted.json",
+    "sha256": "156f50a672f4d387673e290a6bb4db316b1dc1ceade8ed7e1af994adfc91243f",
+    "size": 1554
+  },
+  "run_name": "original027-king-single-A-20261025-attempt04",
+  "schema": "phase375-root-oracle-acceptance/1",
+  "source_freeze": {
+    "path": "data/phase375-food-hook-source/combined-source-freeze.json",
+    "sha256": "7fe7f1cf013e06277a75c31ba846283d10221b49ce9c24828e920216e12e6f8d",
+    "size": 61295
+  },
+  "source_owner": {
+    "path": "data/phase375-food-hook-source/source-owner.json",
+    "sha256": "ba936a12627e741a9b581590a6fd7a35b31d46ff7286908fd309da978892cabc",
+    "size": 6004
+  },
+  "status": "ROOT_ORACLE_ATTEMPT04_AFTER_OWNED_FOOD_REPAIR_AND_EXACT_RECOVERY",
+  "timeouts": {
+    "battle": 120,
+    "collector": 295,
+    "runner": 300
+  },
+  "write_policy": "bounded-writers-and-monitored-process/1"
+}

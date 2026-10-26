@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "/workspace/python-original-engine/repo/tests/phase375_oracle_host.py", line 253, in <module>
+    if __name__=='__main__': main()
+                             ^^^^^^
+  File "/workspace/python-original-engine/repo/tests/phase375_oracle_host.py", line 250, in main
+    print(json.dumps(function(args.source_root,value,args.task_root,args.baseline,args.pool,args.runs_root),indent=2),flush=True)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/python-original-engine/repo/tests/phase375_oracle_host.py", line 128, in execute
+    journal=install(root,project,freeze,artifacts,out/'source-preimages')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py", line 241, in install
+    journal.append(dict(path=name, backup=str(i) if old else None, before=old, after=pin(payload)))
+                                                                                     ^^^^^^^^^^^^
+  File "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py", line 55, in pin
+    return dict(size=p.stat().st_size, sha256=c.digest(p))
+                     ^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 840, in stat
+    return os.stat(self, follow_symlinks=follow_symlinks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/python-original-engine/repo/data/phase375-food-hook-source/collector.gd'
