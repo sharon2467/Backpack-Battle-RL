@@ -1,0 +1,42 @@
+from pathlib import Path
+import json,re,hashlib
+out=Path('data/phase412-initial-source-chain-design');root=Path.cwd();files={}
+for n in ['finite-read-scope.json','scope-supplement-001.json','scope-supplement-002.json']:
+ for d in json.loads((out/n).read_text())['files']:
+  p=Path(d['path']);key=str(p.relative_to(root)) if p.is_absolute() and p.is_relative_to(root) else str(p);files[key]=d
+sources={'Character':'Core/Character.gd','Game':'Core/Game.gd','Buff':'Core/Buff.gd','Item':'Items/Item.gd','King':'Items/Exclusive/KingGoobert.gd','Goobert':'Items/Goobert.gd','Descriptor':'Items/ItemDescriptor.gd','AutoHide':'Utility/AutoHideParticles.gd','Util':'Utility/Util.gd','CombatTimer':'Interface/CombatTimer/CombatTimer.gd','CombatLog':'Core/CombatLog.gd'}
+sources={k:'data/phase359-king-producer-source/after-source/'+v for k,v in sources.items()}
+sources.update(Sink='data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd',Collector='data/phase391-terminal-source/collector.gd')
+want={'Character':'_ready prepare combatStart combatEnd cleanse makeInvulnerable invulnerabilityEnded playInvulnerableAnimation setStat startBattleRage endBattleRage startAutoRage titleToShop shopToCombat','Game':'instanceCharacter startFreshRun startRun finishSwitchingToCombat prepareItems activateItems','Buff':'init reset gainTemporary loseStacks onTimeout combatEnd','Item':'_ready prepare setState onShopEntered activateDragParticles deactivateDragParticles resetZ discard','King':'prepare doCooldownEffect buffEnded onCombatEnd onShopEntered onStateChanged','Goobert':'prepare onItemActivated','Descriptor':'instantiate instantiate_pooled','AutoHide':'_ready activate deactivate startTimer timeout instantClear','Util':'changeTimer callDelayed','CombatTimer':'initialize start startFatigue dealFatigueDamage advanceTime combatEnd','CombatLog':'snapshotItemState replayLogLineEvent replayAnimation _physics_process onPrepare clear','Sink':'entry timer_state timer_before timer_birth track_king_timer_api king_timer_fact selected_king_facts begin_king_clock checkpoint source_resources scene_instance ui_bind_scene selected_lineage source_observable','Collector':'observe start_controlled_combat on_shop_closed place_player_items'}
+a={}
+def span(key,path,lines,start,end):
+ raw=b''.join(lines[start:end]);a[key]={'path':path,'file_size':files[path]['size'],'file_sha256':files[path]['sha256'],'first_line':start+1,'last_line':end,'range_size':len(raw),'range_sha256':hashlib.sha256(raw).hexdigest(),'excerpt':raw.decode()}
+for alias,names in want.items():
+ path=sources[alias];lines=Path(path).read_bytes().splitlines(keepends=True)
+ for name in names.split():
+  starts=[i for i,l in enumerate(lines) if re.match(rb'^func '+name.encode()+rb'\(',l)];assert len(starts)==1,(alias,name)
+  start=starts[0];end=start+1
+  while end<len(lines) and (not lines[end].strip() or lines[end][:1] in [b'\t',b' '] or lines[end].startswith(b'#')):end+=1
+  span(alias+'.'+name,path,lines,start,end)
+ if alias=='Character':span('Character.declarations',path,lines,0,140)
+for filename,names in {'timer.cpp':['Timer::_notification','Timer::set_wait_time','Timer::set_one_shot','Timer::set_autostart','Timer::start','Timer::stop','Timer::set_paused','Timer::is_stopped','Timer::get_time_left','Timer::set_timer_process_mode','Timer::_set_process','Timer::_bind_methods','Timer::Timer'],'node.cpp':['Node::_notification','Node::_propagate_ready','Node::set_process_internal','Node::set_physics_process_internal'],'scene_tree.cpp':['SceneTree::iteration','SceneTree::idle','SceneTree::_notify_group_pause']}.items():
+ path='data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/'+filename;lines=Path(path).read_bytes().splitlines(keepends=True)
+ for name in names:
+  starts=[i for i,l in enumerate(lines) if l[:1] not in [b'\t',b' ',b'/'] and re.search(rb'\b'+re.escape(name.encode())+rb'\(',l)];assert len(starts)==1,(filename,name)
+  s=starts[0];e=s+1
+  while e<len(lines) and not lines[e].startswith(b'}'):e+=1
+  assert e<len(lines);span('Cpp.'+name,path,lines,s,e+1)
+path='data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/timer.h';lines=Path(path).read_bytes().splitlines(keepends=True);span('Cpp.Timer.class',path,lines,0,len(lines))
+scene_inventory=[]
+for path,d in files.items():
+ if Path(path).suffix in ['.tscn','.tres']:
+  lines=Path(path).read_bytes().splitlines(keepends=True);key='Scene.'+Path(path).stem
+  span(key,path,lines,0,len(lines));tracks=[]
+  for i,l in enumerate(lines,1):
+   s=l.decode().rstrip()
+   if re.search(r'^tracks/\d+/(type|path) =|"method":|^\[connection|^\[node .*Timer|^autostart|^script =',s):tracks.append({'line':i,'text':s})
+  scene_inventory.append({'anchor':key,'source':d,'syntactic_tracks_only_not_semantic_closure':True,'entries':tracks})
+for k in list(a):
+ if k.startswith('Scene.'):a[k].pop('excerpt')
+(out/'source-anchors.json').write_text(json.dumps({'schema':'phase412-source-function-byte-anchors/1','meaning':'Source text only. Function/range hashes are not execution or writer-closure claims. Original GD pins and executed391 mapping are in finite scope.','anchors':a,'scene_track_inventory':scene_inventory},ensure_ascii=False,indent=2)+'\n')
+print('anchors',len(a),'scenes',len(scene_inventory))

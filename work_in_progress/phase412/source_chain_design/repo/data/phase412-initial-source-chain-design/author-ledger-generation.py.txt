@@ -1,0 +1,106 @@
+from pathlib import Path
+import json
+base=Path('data/phase412-initial-source-chain-design')
+rows=json.loads(Path('data/phase408-initial-audit-first-001/rawtyped-field-index.json').read_text())
+lookup={(r['field_id'],r['phase'],r['side_or_role']):(i,r) for i,r in enumerate(rows)}
+anchors=json.loads((base/'source-anchors.json').read_text())['anchors']
+def supports(field,phase,role):
+ i,r=lookup[(field,phase,role)];return {'index_pointer':'/'+str(i),'field_id':field,'phase':phase,'role':role,'actual_value':r['actual_value'],'input_refs':r['input_refs']}
+phases=['pre_prepare','pre_activate'];selected=['invu:P','invu:O','king_buff:P:12','king_hide:P:12','king_drag:P:12']
+cpp=['Cpp.Timer::Timer','Cpp.Timer::start','Cpp.Timer::stop','Cpp.Timer::set_wait_time','Cpp.Timer::set_autostart','Cpp.Timer::_notification','Cpp.Timer::get_time_left','Cpp.Timer::is_stopped','Cpp.Timer::_set_process','Cpp.Node::_propagate_ready','Cpp.Node::set_process_internal','Cpp.Node::set_physics_process_internal']
+common={
+ 'C0':{'status':'ESTABLISHED_SOURCE','anchors':cpp,'claim':'Constructor starts at private double -1; only checked complete Timer C++ start/stop/notification methods assign private time_left. Public get_time_left clamps and is_stopped uses public clamp. Internal Node registrations remain independently mutable.'},
+ 'I0':{'status':'ESTABLISHED_INITIAL_INDEX','claim':'Two initial checkpoints have same native Timer IDs; source order places facts before activation checkpoint. This is not a full original-input schema validation.'},
+ 'F0':{'status':'ESTABLISHED_SOURCE_AND_INITIAL_COUNTER','anchors':['Sink.timer_birth','Sink.track_king_timer_api','Sink.timer_before','Sink.king_timer_fact'],'claim':'Five retained starts/stops are zero. Counters increment before source_fixture_bound gating, never reset on bind, and duplicate birth fails. Scope covers instrumented calls, not arbitrary C++/reflected calls.'},
+ 'W0':{'status':'UNRESOLVED','claim':'Complete actual owner/alias/scene/callback writer exclusion from allocation/birth through the phase is not established by the saved field index or this finite SOURCE scope. Do not infer no writers from public inactive flags or a syntactic search.'},
+ 'V0':{'status':'UNRESOLVED_ATTRIBUTION_FOR_FUTURE_RECIPE','claim':'Phase251 freeze pins saved Godot3.6.2-labelled files and their phase027 origins; a future accepted derivation must retain an accepted actual executable/version-source binding.412 does not fetch or run native software.'}}
+ledger=[]
+for idx,r in enumerate(rows):
+ if r['classification']!='MISSING':continue
+ f,ph,role=r['field_id'],r['phase'],r['side_or_role']
+ e={'target':{'field_id':f,'phase':ph,'side_or_role':role},'original_index_pointer':'/'+str(idx),'classification':'MISSING','validation_result':'UNPROVEN','proof_complete':False,'direct_carrier_for_target':'NOT_RETAINED_IN_AUTHORIZED_INITIAL_INDEX','data_absence_claim':False,'recapture_required':False,'established_edges':[],'unresolved_edges':[],'source_anchors':[],'actual_support':[],'recipe_complete':False}
+ if f=='Timer.private_left':
+  e['source_anchors']=cpp+['Sink.timer_state','Sink.checkpoint']
+  fields=['Timer.node.native_id','Timer.node.path','Timer.process_mode','Timer.wait_time','Timer.time_left','Timer.one_shot','Timer.autostart','Timer.paused','Timer.stopped','Timer.node.internal_idle','Timer.node.internal_physics','Timer.node.inside_tree']
+  e['actual_support']=[supports(x,ph,role) for x in fields]
+  e['native_timer_id']=supports('Timer.node.native_id',ph,role)['actual_value']
+  e['other_phase_same_id']=supports('Timer.node.native_id',phases[1-phases.index(ph)],role)['actual_value']==e['native_timer_id']
+  e['established_edges']=['C0','I0']
+  e['unresolved_edges']=['W0','V0']
+  if role in selected:
+   e['actual_support'] += [supports('Timer.lineage.'+x,'pre_activate',role) for x in ['timer_id','owner_id','kind','starts','stops','birth']]
+   e['native_owner_id']=supports('Timer.lineage.owner_id','pre_activate',role)['actual_value']
+   e['source_anchors'] += ['Sink.timer_birth','Sink.timer_before','Sink.track_king_timer_api','Sink.king_timer_fact','Sink.selected_king_facts','Sink.begin_king_clock']
+   e['established_edges'].append('F0')
+   if role.startswith('king_hide') or role.startswith('king_drag'):
+    e['allocation']='AutoHide._ready Timer.new -> immediate timer_birth, before property/configuration and add_child. Actual lineage.kind AutoHide.Timer.new and current owner match.'
+    e['constructor_to_birth']='CLOSED_LOCAL_SOURCE_EDGE: no intervening business instruction; actual birth has outside_tree true-negation and fresh mode1/one_shotfalse.'
+    e['writer_methods']=['AutoHide._ready','AutoHide.startTimer','AutoHide.activate','AutoHide.deactivate','AutoHide.instantClear','AutoHide.timeout']
+    e['source_anchors']+=e['writer_methods']+['Scene.KingGoobert','Scene.Item','Item._ready']
+    e['unresolved_detail']='Birth constructor edge is closed; owner exposes timer as a field/child. Current no-start counter covers AutoHide/Util hooked APIs, but complete external/direct Timer.start, autostart and internal-registration mutation coverage has not been established. Base Item _ready invokes sprite.init and initSockets; exact selected ancestor/callback source closure is not in the current index. No claim those callbacks actually mutate the Timer.'
+   elif role.startswith('king_buff'):
+    e['allocation']='King scene instance -> scene_instance hook -> timer_birth outside tree, owner item81679. Base Item scene now reviewed; BuffTimer mode0/one_shottrue in King scene, no Timer script/autostart override in inspected scene bodies.'
+    e['constructor_to_birth']='CLOSED_SCENE_CONFIGURATION_PREFIX: builtin Timer constructor and explicit property assignments preserve private -1 before entering tree; full scene/callback closure through initial phase remains separate.'
+    e['writer_methods']=['King.doCooldownEffect','King.onCombatEnd','King.buffEnded']
+    e['source_anchors']+=e['writer_methods']+['Scene.KingGoobert','Scene.Item','Sink.scene_instance','Sink.ui_bind_scene','Descriptor.instantiate','Item._ready']
+    e['unresolved_detail']='Initial lifetime has no observed hooked starts/stops. Scene object/script exact binding is checked by producer source, but the saved field index does not retain complete successful binding/scene-ready/alias records, and inherited Item callbacks/reflection must be excluded as additional start/autostart/registration paths. A facts label cannot supply this proof.'
+   else:
+    side=role.split(':')[1];e['allocation']='Character parent _ready records Timer birth after child READY; '+('PLAYER reused by collector.instanceCharacter, not a fresh allocation.' if side=='P' else 'OPPONENT allocated by Game.finishSwitchingToCombat.')
+    e['constructor_to_birth']='PARTIAL: Character/Player/Opponent scenes preserve builtin Timer mode0/one_shottrue and do not set autostart. Child/sibling READY callbacks before parent birth not exhaustively covered.'
+    e['writer_methods']=['Character.makeInvulnerable','Util.changeTimer','Character.combatEnd']
+    e['source_anchors']+=e['writer_methods']+['Character._ready','Scene.Character','Scene.'+('Player' if side=='P' else 'Opponent'),'Cpp.Node::_notification']
+    e['unresolved_detail']='Exclude starts/property writes in child/sibling READY before parent timer_birth; autostart=false at birth is insufficient because native READY clears a consumed autostart. Then establish no unhooked alias start/registration writes across reused P or fresh O lifetime. Four authorized Player animation resources contain only visual value tracks and close that particular candidate route.'
+   e['conditional_recipe']='After outstanding writer/version/identity edges close: constructor -1 -> no native autostart and no start since birth -> processing stays false -> notifications cannot subtract -> preserve -1 through the requested phase; use same native ID and monotone zero counter for earlier pre_prepare. This is a conditional proof recipe, not an assigned value.'
+  else:
+   e['native_owner_id']=None
+   if role.startswith('buff:'):
+    _,side,typ=role.split(':');e['allocation']=f'Character {side} _ready Buff.new.init for type INT{typ}; Buff.init Timer.new -> character.add_child -> one_shottrue/mode0. Current Timer {e["native_timer_id"]} must be joined to the exact Buff constructor/owner; no five-Timer ledger for this ID.'
+    e['writer_methods']=['Buff.init','Buff.gainTemporary','Buff.loseStacks','Buff.onTimeout','Buff.combatEnd','Buff.reset']
+    e['source_anchors']+=e['writer_methods']+['Character._ready','Sink.selected_lineage']
+    e['unresolved_detail']=f'Exact {side}/{typ} Buff-to-Timer allocation association and independent start/stop/timeout history not retained by current index; producer unique buff_init is not a zero-start proof. gainTemporary finite positive-duration branch and onTimeout rescheduling can start; reset does not stop. Do not transfer another Buff or five-Timer result.'
+   elif role.startswith('tick:'):
+    side=role.split(':')[1];e['allocation']='Inherited Character TickTimer builtin scene node; '+('P reused Character.' if side=='P' else 'O newly allocated Character.')
+    e['writer_methods']=['Character.combatStart','Character.combatEnd']
+    e['source_anchors']+=e['writer_methods']+['Scene.Character','Scene.'+('Player' if side=='P' else 'Opponent')]
+    e['unresolved_detail']='Repeating Timer has no lifetime start counter. Current flags false/public0 cannot invert private state without excluding direct internal setters and proving actual allocation/previous stop. Current combatStart is after checkpoint; later stop cannot initialize an earlier phase.'
+   elif role.startswith('fatigue:'):
+    e['allocation']='CombatTimer-owned scene Timer; native node ID distinct from Characters. Owning instantiated scene and lifetime birth configuration are not in current SOURCE allowset.'
+    e['writer_methods']=['CombatTimer.initialize','CombatTimer.start','CombatTimer.combatEnd','CombatTimer.advanceTime']+(['CombatTimer.startFatigue','CombatTimer.dealFatigueDamage'] if role.endswith('tick') else [])
+    e['source_anchors']+=e['writer_methods']
+    e['unresolved_detail']='initialize does not stop/recreate Timer; start stops both only after activation checkpoint. advanceTime directly starts/stops fatigueStart without observer timer hooks and may invoke startFatigue. For fatigueTick also close startFatigue/dealFatigueDamage. Need its own scene/lifetime and actual pre-phase writer exclusion, not Character history.'
+   else:
+    _,side,kind=role.split(':');e['allocation']='Inherited Character '+kind+' node; '+('P reuse lifetime.' if side=='P' else 'O allocation lifetime.')
+    e['writer_methods']=['Character.combatEnd']+(['Character.startBattleRage','Character.endBattleRage','Character.startAutoRage'] if kind=='battleRageTimer' else ['Character.combatStart','Character.startAutoRage'])
+    e['source_anchors']+=e['writer_methods']+['Character.prepare','Scene.Character','Scene.'+('Player' if side=='P' else 'Opponent')]
+    e['unresolved_detail']='No birth or count carrier for this aux role. Establish actual prior allocation/stop and every start/timeout path separately; autoRageItem selection in prepare is not a Timer reset and public stopped state does not establish private -1.'
+   e['conditional_recipe']='Either prove this exact role never started from its own constructor, or prove an actually ordered last stop/one-shot stop followed by no start/registration effects before this phase. Inspect existing lawful initial lineage/ledger carriers first; no EXPECTED trace inversion.'
+ elif f.startswith('Character.'):
+  e['native_owner_id']=supports('Character.buffProtectStacks',ph,role)['input_refs'][0]['native_owner']
+  e['actual_support']=[supports('Character.buffProtectStacks',ph,role)]+[supports('Timer.lineage.'+x,'pre_activate','invu:'+role) for x in ['owner_id','timer_id','starts','stops','birth']]
+  e['established_edges']=['Declarations false/null/false are explicit in original GD. Inherited scene root keeps Character script and does not override target properties.','Four newly authorized P animation resources have visual value tracks only; this specific candidate writer route is excluded.','Lifetime instrumented invu starts/stops0 is retained even for P reuse; binding gate does not reset it.']
+  e['source_anchors']=['Character.declarations','Character._ready','Character.prepare','Character.cleanse','Character.makeInvulnerable','Character.invulnerabilityEnded','Util.changeTimer','Game.instanceCharacter','Game.finishSwitchingToCombat','Collector.observe','Scene.Character','Scene.'+('Player' if role=='P' else 'Opponent'),'Sink.timer_before','Sink.timer_birth']
+  if f.endswith('invulBubbleVisible'):
+   e['source_anchors']+=['Character.playInvulnerableAnimation','Character.setStat','CombatLog.replayLogLineEvent'];e['unresolved_detail']='Bubble has a separate concrete uncounted positive writer: CombatLog.replayLogLineEvent -> Character.setStat(Invulnerable,value) -> playInvulnerableAnimation(value), with no invulnerability Timer start. Exclude this invocation during the initial interval and any direct animation/reflection route; zero starts alone is insufficient.'
+  elif f.endswith('invulnerabilityItem'):
+   e['unresolved_detail']='makeInvulnerable assigns item before the counted start/Util.changeTimer branch; need full constructor/ready direct-writer closure and successful path/no error interruption, not just count0. invulnerabilityEnded does not null the item. P inventory reset does not reset it.'
+  else:e['unresolved_detail']='The known true writer makeInvulnerable follows a counted start; false writers include cleanse/timeout. Need actual constructor-to-birth and all external direct/reflected field-writer exclusion before applying no-start induction. P is reused; startFreshRun/prepare are not cleanse.'
+  e['allocation']=('Collector startup requires existing PLAYER and instanceCharacter takes reuse branch; retain same owner47611 and lifetime ledger.' if role=='P' else 'Game.finishSwitchingToCombat creates OPPONENT via opponentScene; retained owner84805 joins both checkpoints, but prephase callback closure remains.')
+  e['unresolved_edges']=['Pre-birth field/configuration and all reachable callback/direct-writer interval not fully closed in finite scope.','No direct initial carrier of this target in the retained index; buffProtectStacks is corroboration of owner only.']
+  e['conditional_recipe']='Prove constructor fields plus owner/scene and no non-preserving writers over the whole lifetime to checkpoint, or prove an actual initial cleanse followed by no writer. For bubble additionally exclude setStat/replay route. Never read final/cleanup to fill this value.'
+ else:
+  e['native_owner_id']='81679';e['owner_evidence']='king_buff lineage owner_id; current King item field rows do not themselves include native_owner.'
+  e['actual_support']=[supports('King.invuCharges',p,role) for p in phases]+[supports('Timer.lineage.'+x,'pre_activate','king_buff:P:12') for x in ['owner_id','timer_id','starts','stops']]
+  e['source_anchors']=['King.prepare','King.onStateChanged','King.onShopEntered','King.doCooldownEffect','King.buffEnded','Item.setState','Goobert.prepare','Game.prepareItems','Game.activateItems','CombatLog.snapshotItemState','CombatLog.replayLogLineEvent','Scene.KingGoobert','Scene.Item','Sink.entry','Sink.source_observable']
+  e['established_edges']=['Actual charges are strict INT0 at seq138 and INT3 at seq1231. This is a different field from crown/light.','King.prepare assigns charges then synchronously calls Item.setState(Inactive), which invokes logging before onStateChanged.','King Inactive branch writes light.self_modulate white and show; complete inspected scene bodies do not animate CircleLight/target Timer paths.']
+  e['unresolved_edges']=['snapshotItemState calls statLoggers[playerId].logItemState; this callee is outside the bounded SOURCE closure.','CombatLog.replayLogLineEvent can invoke item.onStateChanged with history state without a King Timer start; actual interval exclusion is not retained by current index.']
+  if ph=='pre_prepare':
+   e['unresolved_detail']='No complete observed last-state call before prepare is retained. onShopEntered may write Inactive but actual occurrence/return is unobserved here. Crown is not a stored Item member; light constructor self_modulate/visible defaults are not supplied by the four C++ Timer files. Do not use charges0, scene modulate, Python defaults or final source_crowns.'
+  else:e['unresolved_detail']='Charges3 proves the assignment value, not successful return from following logger/onStateChanged nor exclusion of later replay/buffEnded/direct calls before delayed activation. A full source/predicates proof could close this without a new native run, but is not yet complete.'
+  e['conditional_recipe']='For pre_activate, prove completed King.prepare Inactive call and no later non-Inactive/replay/light writers to seq1231; then derive exact INT crown argument and native BOOL/Color properties. For pre_prepare establish actual prior onShopEntered/last-state event or native property constructor and no writers. No default pre-crown member is fabricated.'
+ e['source_anchors']=list(dict.fromkeys(e['source_anchors']));assert all(x in anchors for x in e['source_anchors']),(f,[x for x in e['source_anchors'] if x not in anchors])
+ ledger.append(e)
+assert len(ledger)==88
+assert len({tuple(x['target'].values()) for x in ledger})==88
+obj={'schema':'phase412-initial-source-chain-proof-ledger/1','status':'DESIGN_SOURCE_PREFIXES_ESTABLISHED_COMPLETE_RECIPES_PENDING_INDEPENDENT_REVIEW','classification_policy':'Only complete individual SOURCE recipes may be SOURCE_DERIVED. No recipes are promoted by conditional prefixes or hook counters. MISSING is proof-unresolved, not original-data absence.','original_index':'data/phase408-initial-audit-first-001/rawtyped-field-index.json','target_count':88,'classification_counts':{'DIRECT_OBSERVATION':0,'SOURCE_DERIVED':0,'MISSING':88},'common_edges':common,'targets':ledger}
+(base/'proof-ledger.json').write_text(json.dumps(obj,ensure_ascii=False,indent=2)+'\n')
+print('ledger',len(ledger),'complete recipes',0)

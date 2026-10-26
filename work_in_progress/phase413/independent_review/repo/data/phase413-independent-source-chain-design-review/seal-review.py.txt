@@ -1,0 +1,140 @@
+"""Seal finite413 review evidence after human SOURCE reasoning; no project API."""
+import hashlib
+import json
+import os
+from pathlib import Path
+import stat
+
+ROOT=Path('/workspace/python-original-engine/repo')
+OUT=ROOT/'data/phase413-independent-source-chain-design-review'
+assert not (OUT/'review.json').exists() and not (OUT/'owned-files.json').exists()
+
+
+def identity(info):
+    return [info.st_dev,info.st_ino,info.st_mode,info.st_nlink,info.st_size,info.st_mtime_ns,info.st_ctime_ns]
+
+
+def pin(path):
+    assert path.resolve(strict=True)==path and not any(p.is_symlink()for p in(path,*path.parents))
+    before=path.lstat();assert stat.S_ISREG(before.st_mode)and before.st_nlink==1
+    raw=path.read_bytes();assert identity(path.lstat())==identity(before)and len(raw)==before.st_size
+    return dict(path=str(path.relative_to(ROOT)),size=len(raw),sha256=hashlib.sha256(raw).hexdigest())
+
+
+def save(name,value):
+    with(OUT/name).open('x')as handle:
+        json.dump(value,handle,indent=2,sort_keys=True,allow_nan=False);handle.write('\n')
+        handle.flush();os.fsync(handle.fileno())
+    return pin(OUT/name)
+
+
+mechanical=json.loads((OUT/'mechanical-evidence.json').read_bytes())
+assert mechanical['status']=='FINITE_PINS_ANCHORS_TARGET_CORRESPONDENCE_PASS'
+assert len(mechanical['verified_anchors'])==113 and mechanical['target_count']==88
+for row in mechanical['readback']:
+    path=Path(row['path'])if Path(row['path']).is_absolute()else ROOT/row['path']
+    assert identity(path.lstat())==row['identity']
+root_pin=mechanical['separate_Root_authority_receipt']
+assert pin(ROOT/root_pin['path'])==root_pin
+root411=json.loads((ROOT/root_pin['path']).read_bytes())
+assert root411['status']=='ROOT_ACCEPTS_VERIFIED_411_EVIDENCE_ONLY_FOR_BOUNDED_SOURCE_ANALYSIS'
+assert root411['not_backdated']is True and root411['source_analysis_only']is True
+assert root411['actual_audit_invocations']==1 and root411['actual_result']=='BLOCKED_INITIAL_SOURCE_GAPS'
+assert root411['direct_supported']==1391 and root411['missing_unproven']==88 and root411['source_derived']==0
+assert root411['formal75_existing_accepted']is True and root411['King_admitted']is False
+assert all(root411[key]is False for key in ('bundle_allowed','feasibility_accepted',
+    'genuine_input_accepted','model_allowed','new_native_allowed','structural_schema_allowed'))
+read_index={row['path']:{key:row[key]for key in('path','size','sha256')}for row in mechanical['readback']}
+assert root411['independent_report']==mechanical['unchanged411_verification']
+assert root411['original_output_owner']==read_index['data/phase408-initial-audit-first-001/owned-files.json']
+author_owner=mechanical['author_owner']
+assert pin(ROOT/author_owner['path'])==author_owner
+status='INDEPENDENT413_INITIAL_SOURCE_CHAIN_DESIGN_ACCEPTED_FOR_FINITE_NEXT_EVIDENCE_ROOT_PENDING'
+findings=[
+ dict(id='413-F01',status='SOURCE_ANALYSIS_ACCEPTED',topic='PLAYER reuse and field-specific reset differences',
+      anchors=['Collector.observe','Game.instanceCharacter','Character.prepare','Character.cleanse','Character.invulnerabilityEnded'],
+      limitation='No fresh PLAYER constructor/default claim; downstream interval writers remain unresolved.'),
+ dict(id='413-F02',status='SOURCE_ANALYSIS_ACCEPTED',topic='Public0 is not private-1; native READY and process guards',
+      anchors=['Cpp.Timer::Timer','Cpp.Timer::get_time_left','Cpp.Timer::is_stopped','Cpp.Timer::_notification',
+               'Cpp.Node::_propagate_ready','Cpp.Node::set_process_internal','Cpp.Node::set_physics_process_internal'],
+      limitation='Pinned static source attribution does not establish actual executable/build binding or private value.'),
+ dict(id='413-F03',status='SOURCE_ANALYSIS_ACCEPTED',topic='Five exact lifetime hook ledgers and local birth prefixes',
+      anchors=['Sink.timer_before','Sink.timer_birth','Sink.track_king_timer_api','Sink.king_timer_fact','AutoHide._ready'],
+      limitation='Zero hooked starts/stops is not complete native/direct/reflected/autostart writer coverage.'),
+ dict(id='413-F04',status='SOURCE_ANALYSIS_ACCEPTED',topic='Other30 Timer roles and unhooked fatigue.advanceTime',
+      anchors=['Buff.init','Buff.reset','Buff.gainTemporary','Buff.onTimeout','CombatTimer.initialize','CombatTimer.advanceTime'],
+      limitation='No five-to-thirty transfer or use of later stop to establish an earlier checkpoint.'),
+ dict(id='413-F05',status='SOURCE_ANALYSIS_ACCEPTED',topic='Bounded scene/animation direct-target exclusions',
+      anchors=['Scene.Player','Scene.Opponent','Scene.StartOnTitle','Scene.EnterShopFromTitle','Scene.RESET',
+               'Scene.EnterCombatFromShop','Scene.Item','Scene.Character','Scene.KingGoobert'],
+      limitation='Eight supplement SOURCE leaves comprise seven scene/animation resources plus CombatLog; no universal callback exclusion.'),
+ dict(id='413-F06',status='SOURCE_ANALYSIS_ACCEPTED',topic='Unread logItemState callee and conditional King state completion',
+      anchors=['Item.setState','CombatLog.snapshotItemState','King.prepare','King.onStateChanged'],
+      limitation='CombatStatLogger callee remains unopened; charges and modulate/self_modulate cannot supply crown/light proof.'),
+ dict(id='413-F07',status='SOURCE_ANALYSIS_ACCEPTED',topic='Independent replay bubble/crown/light writer',
+      anchors=['CombatLog.replayLogLineEvent','Character.setStat','Character.playInvulnerableAnimation'],
+      limitation='Replay/caller/UI interval exclusion not retained by current field index; EXPECTED histories not used.'),
+ dict(id='413-F08',status='FINITE_DIRECTION_ACCEPTED_ONLY',topic='N1-N5 finite SOURCE/existing-initial frontier; N6 last resort',
+      anchors=[],limitation='No proposal implemented or new read/runtime release granted; no presumed recapture requirement.')]
+authority=save('authority-and-correspondence.json',dict(schema='independent413-Root411-correspondence/1',
+    status='PASS_FOR_SOURCE_ANALYSIS_ONLY',Root411_receipt=root_pin,
+    recorded_now_not_backdated=True,receipt_not_added_to_frozen412=True,
+    original411_output_owner=root411['original_output_owner'],
+    independent411_report=root411['independent_report'],
+    independent411_owner_declared_by_Root=root411['independent_owner'],
+    independent411_owner_not_dereferenced_in413=True,
+    actual411_status='BLOCKED_INITIAL_SOURCE_GAPS',genuine_input_accepted=False,
+    current413_audit_calls=0,formal75_existing_accepted=True,King_admitted=False))
+report=dict(schema='independent413-finite412-SOURCE-design-review/1',actual_phase=413,status=status,
+    accepted_scope='accuracy of sealed412 SOURCE analysis and finite next-evidence directions only',
+    author_owner=author_owner,author_leaf_count=14,author_bytes=1610520,
+    source_scope_leaves=72,source_scope_bytes=3750534,Root413_extra_receipt=root_pin,
+    source_scope_recursively_followed=False,source_anchor_count=113,
+    function_range_excerpts_verified=104,full_scene_ranges_verified=9,
+    exact88_targets=True,target_groups=mechanical['target_groups'],
+    target_classifications=dict(DIRECT_OBSERVATION=0,SOURCE_DERIVED=0,MISSING=88),
+    target_validation='88 UNPROVEN/incomplete; no assigned actual_value',complete_source_recipes=0,
+    observed_support_rows=1371,target_support_citations=1008,
+    previous411=dict(report=mechanical['unchanged411_report'],index=mechanical['unchanged411_index'],
+        independent_report=mechanical['unchanged411_verification'],actual_status='BLOCKED_INITIAL_SOURCE_GAPS',
+        direct_supported=1391,missing_unproven=88,rejected_fields=0,modified=False,rerun=False),
+    findings=findings,blocking_findings_for_analysis_acceptance=[],
+    unresolved_for_any_future_recipe=['W0 actual owner/alias/callback/writer interval closure',
+        'V0 executable/version-to-source authority','CombatStatLogger.logItemState direct callee',
+        'replay/caller/UI independent writer exclusion','30individual non-five-facts Timer lifetime joins',
+        'fatigue advanceTime direct Timer writes and exact owning scene',
+        'pre-prepare King last-state/native light property carrier'],
+    next_evidence_plan=dict(status='PROPOSALS_ONLY',ids=['N1','N2','N3','N4','N5','N6'],
+        SOURCE_and_existing_lawful_initial_evidence_preferred=True,N6_last_resort=True,
+        new_capture_required=False,steps_implemented=0,steps_authorized_by_this_review=0),
+    mechanical_checker_failures=[dict(path='first-mechanical-error-001',
+        cause='absolute repo scope descriptor versus relative anchor for same CombatLog file'),
+        dict(path='second-mechanical-error-002',cause='nine full-file scene anchors intentionally omit excerpt')],
+    mechanical_corrections='canonical same-file descriptor mapping; full-file range/hash predicate for exactly9named scenes;104 excerpts still exact',
+    semantic_predicates_relaxed=False,semantic_failure_count=0,
+    evidence=dict(mechanical=pin(OUT/'mechanical-evidence.json'),authority=authority,
+        spec=pin(ROOT/'docs/phase413_independent_source_chain_design_review_spec.md'),
+        findings=pin(ROOT/'docs/phase413_independent_source_chain_design_findings.md')),
+    models=0,native=0,inputbuild=0,old_SUT_calls=0,old_SUT_imports=0,schema_calls=0,
+    audit_calls=0,original_capture_reads=0,EXPECTED_reads=0,projection=0,restore=0,READY=0,
+    author_code_executed=False,fullschema='NOT_VALIDATED',genuine_input_feasible=False,
+    genuine_input_accepted=False,bundle_allowed=False,model356='CLOSED',reader361='CLOSED',
+    formal75_existing_accepted=True,King_admitted=False,
+    no_raw_capture_pointer_dereferenced=True,no_new_evidence_step_execution=True,
+    baseline_metadata_explicit_writes=0,source_modified=False,
+    missing_interpretation='unestablished recipe does not prove original data absent, invalid or requiring recapture',
+    Root_next_action='Review finite evidence and separately choose/release any next SOURCE or existing-initial projection step.',
+    no_more_writes_after_owner=True)
+review_pin=save('review.json',report)
+paths=[ROOT/'docs/phase413_independent_source_chain_design_review_spec.md',
+       ROOT/'docs/phase413_independent_source_chain_design_findings.md']
+paths+=sorted(path for path in OUT.rglob('*')if path.is_file())
+assert all(path.is_relative_to(OUT)or path.parent==ROOT/'docs'for path in paths)
+rows=[pin(path)for path in paths]
+owner_pin=save('owned-files.json',dict(schema='independent413-final-source-review-owner/1',
+    actual_phase=413,status=status,files=rows,ordinary_leaves=len(rows),
+    ordinary_bytes=sum(row['size']for row in rows),no_more_writes=True))
+for row in rows:assert pin(ROOT/row['path'])==row
+print(json.dumps(dict(status=status,review=review_pin,owner=owner_pin,
+    ordinary_leaves=len(rows),ordinary_bytes=sum(row['size']for row in rows),
+    all_owned_leaves_readback=True,audit_calls=0,source_derived_recipes=0)))

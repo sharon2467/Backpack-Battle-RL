@@ -1,0 +1,255 @@
+{
+  "EXPECTED_reads": 0,
+  "King_admitted": false,
+  "READY": 0,
+  "Root413_extra_receipt": {
+    "path": "data/phase411-root-initial-audit-release/actual-audit-evidence-accepted-for-source-analysis.json",
+    "sha256": "f762d61ae86f2e9c9a40966d11c23171d3de9500717ec17cf3fe0e3337b86e73",
+    "size": 1390
+  },
+  "Root_next_action": "Review finite evidence and separately choose/release any next SOURCE or existing-initial projection step.",
+  "accepted_scope": "accuracy of sealed412 SOURCE analysis and finite next-evidence directions only",
+  "actual_phase": 413,
+  "audit_calls": 0,
+  "author_bytes": 1610520,
+  "author_code_executed": false,
+  "author_leaf_count": 14,
+  "author_owner": {
+    "path": "data/phase412-initial-source-chain-design/owned-files.json",
+    "sha256": "6ba20faf39368464f7ac3b0923bbb1ce2c7e4eb112dbc6962ccbcebec1c8c40c",
+    "size": 3113
+  },
+  "baseline_metadata_explicit_writes": 0,
+  "blocking_findings_for_analysis_acceptance": [],
+  "bundle_allowed": false,
+  "complete_source_recipes": 0,
+  "evidence": {
+    "authority": {
+      "path": "data/phase413-independent-source-chain-design-review/authority-and-correspondence.json",
+      "sha256": "68fec2a499a65a87a8eed5b210d0d7e2d331c64db820aa03bdfb4c15e71a4b10",
+      "size": 1318
+    },
+    "findings": {
+      "path": "docs/phase413_independent_source_chain_design_findings.md",
+      "sha256": "6398ea722004b29332c7575a772b998188ec989002ac55f371e8adb6904206ee",
+      "size": 7869
+    },
+    "mechanical": {
+      "path": "data/phase413-independent-source-chain-design-review/mechanical-evidence.json",
+      "sha256": "f038a100cff6f06c80ff22ea05afd5577890b6b62941bc8779eda73793d8a7fb",
+      "size": 71237
+    },
+    "spec": {
+      "path": "docs/phase413_independent_source_chain_design_review_spec.md",
+      "sha256": "0af9f4b99f58a9d5d25b4839fe1d839a62bae7186b52e2dc54b7360a362da670",
+      "size": 3068
+    }
+  },
+  "exact88_targets": true,
+  "findings": [
+    {
+      "anchors": [
+        "Collector.observe",
+        "Game.instanceCharacter",
+        "Character.prepare",
+        "Character.cleanse",
+        "Character.invulnerabilityEnded"
+      ],
+      "id": "413-F01",
+      "limitation": "No fresh PLAYER constructor/default claim; downstream interval writers remain unresolved.",
+      "status": "SOURCE_ANALYSIS_ACCEPTED",
+      "topic": "PLAYER reuse and field-specific reset differences"
+    },
+    {
+      "anchors": [
+        "Cpp.Timer::Timer",
+        "Cpp.Timer::get_time_left",
+        "Cpp.Timer::is_stopped",
+        "Cpp.Timer::_notification",
+        "Cpp.Node::_propagate_ready",
+        "Cpp.Node::set_process_internal",
+        "Cpp.Node::set_physics_process_internal"
+      ],
+      "id": "413-F02",
+      "limitation": "Pinned static source attribution does not establish actual executable/build binding or private value.",
+      "status": "SOURCE_ANALYSIS_ACCEPTED",
+      "topic": "Public0 is not private-1; native READY and process guards"
+    },
+    {
+      "anchors": [
+        "Sink.timer_before",
+        "Sink.timer_birth",
+        "Sink.track_king_timer_api",
+        "Sink.king_timer_fact",
+        "AutoHide._ready"
+      ],
+      "id": "413-F03",
+      "limitation": "Zero hooked starts/stops is not complete native/direct/reflected/autostart writer coverage.",
+      "status": "SOURCE_ANALYSIS_ACCEPTED",
+      "topic": "Five exact lifetime hook ledgers and local birth prefixes"
+    },
+    {
+      "anchors": [
+        "Buff.init",
+        "Buff.reset",
+        "Buff.gainTemporary",
+        "Buff.onTimeout",
+        "CombatTimer.initialize",
+        "CombatTimer.advanceTime"
+      ],
+      "id": "413-F04",
+      "limitation": "No five-to-thirty transfer or use of later stop to establish an earlier checkpoint.",
+      "status": "SOURCE_ANALYSIS_ACCEPTED",
+      "topic": "Other30 Timer roles and unhooked fatigue.advanceTime"
+    },
+    {
+      "anchors": [
+        "Scene.Player",
+        "Scene.Opponent",
+        "Scene.StartOnTitle",
+        "Scene.EnterShopFromTitle",
+        "Scene.RESET",
+        "Scene.EnterCombatFromShop",
+        "Scene.Item",
+        "Scene.Character",
+        "Scene.KingGoobert"
+      ],
+      "id": "413-F05",
+      "limitation": "Eight supplement SOURCE leaves comprise seven scene/animation resources plus CombatLog; no universal callback exclusion.",
+      "status": "SOURCE_ANALYSIS_ACCEPTED",
+      "topic": "Bounded scene/animation direct-target exclusions"
+    },
+    {
+      "anchors": [
+        "Item.setState",
+        "CombatLog.snapshotItemState",
+        "King.prepare",
+        "King.onStateChanged"
+      ],
+      "id": "413-F06",
+      "limitation": "CombatStatLogger callee remains unopened; charges and modulate/self_modulate cannot supply crown/light proof.",
+      "status": "SOURCE_ANALYSIS_ACCEPTED",
+      "topic": "Unread logItemState callee and conditional King state completion"
+    },
+    {
+      "anchors": [
+        "CombatLog.replayLogLineEvent",
+        "Character.setStat",
+        "Character.playInvulnerableAnimation"
+      ],
+      "id": "413-F07",
+      "limitation": "Replay/caller/UI interval exclusion not retained by current field index; EXPECTED histories not used.",
+      "status": "SOURCE_ANALYSIS_ACCEPTED",
+      "topic": "Independent replay bubble/crown/light writer"
+    },
+    {
+      "anchors": [],
+      "id": "413-F08",
+      "limitation": "No proposal implemented or new read/runtime release granted; no presumed recapture requirement.",
+      "status": "FINITE_DIRECTION_ACCEPTED_ONLY",
+      "topic": "N1-N5 finite SOURCE/existing-initial frontier; N6 last resort"
+    }
+  ],
+  "formal75_existing_accepted": true,
+  "full_scene_ranges_verified": 9,
+  "fullschema": "NOT_VALIDATED",
+  "function_range_excerpts_verified": 104,
+  "genuine_input_accepted": false,
+  "genuine_input_feasible": false,
+  "inputbuild": 0,
+  "mechanical_checker_failures": [
+    {
+      "cause": "absolute repo scope descriptor versus relative anchor for same CombatLog file",
+      "path": "first-mechanical-error-001"
+    },
+    {
+      "cause": "nine full-file scene anchors intentionally omit excerpt",
+      "path": "second-mechanical-error-002"
+    }
+  ],
+  "mechanical_corrections": "canonical same-file descriptor mapping; full-file range/hash predicate for exactly9named scenes;104 excerpts still exact",
+  "missing_interpretation": "unestablished recipe does not prove original data absent, invalid or requiring recapture",
+  "model356": "CLOSED",
+  "models": 0,
+  "native": 0,
+  "next_evidence_plan": {
+    "N6_last_resort": true,
+    "SOURCE_and_existing_lawful_initial_evidence_preferred": true,
+    "ids": [
+      "N1",
+      "N2",
+      "N3",
+      "N4",
+      "N5",
+      "N6"
+    ],
+    "new_capture_required": false,
+    "status": "PROPOSALS_ONLY",
+    "steps_authorized_by_this_review": 0,
+    "steps_implemented": 0
+  },
+  "no_more_writes_after_owner": true,
+  "no_new_evidence_step_execution": true,
+  "no_raw_capture_pointer_dereferenced": true,
+  "observed_support_rows": 1371,
+  "old_SUT_calls": 0,
+  "old_SUT_imports": 0,
+  "original_capture_reads": 0,
+  "previous411": {
+    "actual_status": "BLOCKED_INITIAL_SOURCE_GAPS",
+    "direct_supported": 1391,
+    "independent_report": {
+      "path": "data/phase411-independent-initial-audit-launcher/verification-report.json",
+      "sha256": "90e4e6314e102ebf980dbca791b321169b10181a69dab5aad9ddeb699d70b96e",
+      "size": 7251
+    },
+    "index": {
+      "path": "data/phase408-initial-audit-first-001/rawtyped-field-index.json",
+      "sha256": "27f4a859ba9144314bb25764d6787e07c8c929e96b44c37a077c4437c47cd46b",
+      "size": 1494877
+    },
+    "missing_unproven": 88,
+    "modified": false,
+    "rejected_fields": 0,
+    "report": {
+      "path": "data/phase408-initial-audit-first-001/report.json",
+      "sha256": "c840803f17a57dcfec489a0c69806f69c48d3d35b7c57ce42986995218b30fa8",
+      "size": 531
+    },
+    "rerun": false
+  },
+  "projection": 0,
+  "reader361": "CLOSED",
+  "restore": 0,
+  "schema": "independent413-finite412-SOURCE-design-review/1",
+  "schema_calls": 0,
+  "semantic_failure_count": 0,
+  "semantic_predicates_relaxed": false,
+  "source_anchor_count": 113,
+  "source_modified": false,
+  "source_scope_bytes": 3750534,
+  "source_scope_leaves": 72,
+  "source_scope_recursively_followed": false,
+  "status": "INDEPENDENT413_INITIAL_SOURCE_CHAIN_DESIGN_ACCEPTED_FOR_FINITE_NEXT_EVIDENCE_ROOT_PENDING",
+  "target_classifications": {
+    "DIRECT_OBSERVATION": 0,
+    "MISSING": 88,
+    "SOURCE_DERIVED": 0
+  },
+  "target_groups": {
+    "Character": 12,
+    "King": 6,
+    "Timer": 70
+  },
+  "target_support_citations": 1008,
+  "target_validation": "88 UNPROVEN/incomplete; no assigned actual_value",
+  "unresolved_for_any_future_recipe": [
+    "W0 actual owner/alias/callback/writer interval closure",
+    "V0 executable/version-to-source authority",
+    "CombatStatLogger.logItemState direct callee",
+    "replay/caller/UI independent writer exclusion",
+    "30individual non-five-facts Timer lifetime joins",
+    "fatigue advanceTime direct Timer writes and exact owning scene",
+    "pre-prepare King last-state/native light property carrier"
+  ]
+}

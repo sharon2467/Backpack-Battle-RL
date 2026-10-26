@@ -1,0 +1,75 @@
+{
+  "schema": "phase412-next-evidence-plan/1",
+  "status": "PROPOSALS_ONLY_NO_READ_OR_EXECUTION_RELEASE",
+  "new_capture_presumed_necessary": false,
+  "ordered_steps": [
+    {
+      "id": "N1",
+      "kind": "SOURCE",
+      "targets": "King pre_activate crown/light;6King state provenance",
+      "exact_edge": "Core/CombatLog.gd::snapshotItemState -> statLoggers[playerId].logItemState; class CombatStatLogger",
+      "required": "Resolve and pin the actual CombatStatLogger class source by its declaration, then inspect only logItemState and its direct called write/callback effects. Its filename is not resolved in the authorized sources; do not fabricate a path/hash.",
+      "reason": "Logging occurs before Item.setState invokes King.onStateChanged. Direct charges3 is not completion evidence.",
+      "read_in_412": false
+    },
+    {
+      "id": "N2",
+      "kind": "SOURCE_PLUS_EXISTING_LAWFUL_INITIAL_EVIDENCE",
+      "targets": "Character.invulBubbleVisible andKing crown/light in both phases",
+      "exact_edge": "CombatLog.replayLogLineEvent -> Character.setStat -> playInvulnerableAnimation; and replayLogLineEvent -> item.onStateChanged",
+      "required": "Pin the finite actual caller/connection/UI exclusion predicates, and if necessary authorize a narrowly scoped projection of already accepted lawful king-ui-authority.jsonl/observer7-lineage.jsonl/king-slot-bindings.json initial records. Preserve owner/phase stamps and exact typed flags. Do not read EXPECTED runtime/replay histories as input.",
+      "reason": "These concrete routes bypass fiveTimer start counters. The retained field index does not contain their complete initial exclusion predicates.",
+      "existing_original_input_reads_in_412": 0
+    },
+    {
+      "id": "N3",
+      "kind": "SOURCE",
+      "targets": "FiveTimer external owner/callback writer closure andKing ready interval",
+      "exact_resources": [
+        "res://Items/Animations/SquishySprite.gd",
+        "res://Items/SocketsNode.gd",
+        "res://Items/Animations/Highlight.tres",
+        "res://Items/Animations/MiniActivate_consumed.tres",
+        "res://Items/Animations/ItemsCrafted.tres"
+      ],
+      "required": "Only if needed for the actual initial path: resolve exact selected callback uses (Item._ready sprite.init/initSockets and inherited scene animation references), pin each source, inspect direct Timer/autostart/internal-registration/target-field effects. Stop at the first unresolved direct callee; no recursive broad package scan.",
+      "reason": "Their references are explicit in newly read Item/King scenes or Item._ready. Embedded scene tracks are checked; referenced bodies are not. This is a finite frontier, not a claim they mutate targets.",
+      "read_in_412": false
+    },
+    {
+      "id": "N4",
+      "kind": "EXISTING_LAWFUL_INITIAL_LINEAGE_PLUS_SOURCE",
+      "targets": "35distinctTimer roles withspecial attentionto30withoutfacts",
+      "exact_edges": [
+        "Buff.init -> Timer.new/character.add_child for eachside/type",
+        "Character inherited scene Tick/BattleRage/AutoRage Timer lifetime",
+        "Game.combatUINode.get_node(\"%CombatTimer\") -> actual owning scene fatigue nodes",
+        "CombatTimer.advanceTime -> fatigueStartTimer.start/stop -> startFatigue"
+      ],
+      "required": "First determine whether existing lawful initial lineage/metadata carriers can supply each exact owner/allocation and bounded writer interval. A finite projection must preserve individual IDs, phase and provenance. Resolve/pin the actual instantiated CombatTimer owning scene from already saved SOURCE metadata; no guessed scene filename. For each role prove constructor-no-start or a lawful ordered last-stop interval. Do not transfer fiveTimer counters to another role.",
+      "reason": "Current field index haspublicnode/config fieldsbut not completeconstructor/writer historyfor30. Initialinactiveflags/public0are not an inverseofprivate state.",
+      "read_or_projection_in_412": false
+    },
+    {
+      "id": "N5",
+      "kind": "SAVED_SOURCE_ATTRIBUTION",
+      "targets": "NativeTimer source-derived values if anylaterrecipecompletes",
+      "exact_saved_origin": "data/phase027-implementation-design/full-source/upstream/scene/main/{timer.cpp,timer.h,node.cpp,scene_tree.cpp} (textual origin recordedby251;notdereferenced)",
+      "required": "Useanexistingacceptedversion/build-to-source receipt if available,or separately authorizeitsfinite saved provenance metadata. No download or binary execution is needed merely to validate these already pinned source bytes.",
+      "reason": "251staticreceipt is not aloneanactual-executable reproductionclaim.",
+      "dereferenced_in_412": false
+    },
+    {
+      "id": "N6",
+      "kind": "LAST_RESORT_NEW_INITIAL_INPUT_OBSERVATION_DESIGN_ONLY",
+      "only_after": "N1-N5 feasibility assessed; separateRoot/source/independentreview/nativeauthorization",
+      "fields": [
+        "Atpre_prepare andpre_activate: Character native_id/side with strict BOOLinvulnerable,NIL-or-referenceinvulnerabilityItem,BOOLinvulBubbleVisible",
+        "King native_id/role with strict BOOLlight.visible and actual Color self_modulate; crown via lawful initial last onStateChanged argument plus initialized/UNSET marker and phase stamp",
+        "Timer private value needs a complete source-derived birth/last-stop ledger with owner, phase, full start/autostart/property/internalregistration coverage;public getter remains insufficient"
+      ],
+      "required": "Do not reset/start/stop gameplay solely to simplify inputs. Prefer extending initial lawful source capture at the exact initial boundary ifexisting provenancecannotclose. No endpoint/final inference,no model-only default.",
+      "not_authorized_or_implemented": true
+    }
+  ]
+}

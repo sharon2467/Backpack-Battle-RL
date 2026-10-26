@@ -1,0 +1,14 @@
+{
+  "schema": "phase412-author-static-extractor-first-error/1",
+  "operation": "SOURCE text range extraction only; no imported or called SUT",
+  "exit_code": 1,
+  "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 24, in <module>\nAssertionError: ('timer.cpp', 'Timer::Timer')\n",
+  "first_expression": "re.match(rb'^[^\\t /].*\\b'+re.escape(name.encode())+rb'\\(',l)",
+  "cause": "Extractor required a preceding character before the qualified method name; constructor signature begins with Timer::Timer at column zero.",
+  "input_file": "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/timer.cpp",
+  "input_sha256": "79e2ce272fd56465d8ccc2a5077bf6dc39422cbc588e71ddfab482eb7a33d862",
+  "partial_disk_outputs": [],
+  "output_write_reached": false,
+  "correction": "Match a qualified method name at column zero or after a return type; retain the column-zero non-indented gate and require exactly one signature.",
+  "audit_SUT_schema_model_native_calls": 0
+}

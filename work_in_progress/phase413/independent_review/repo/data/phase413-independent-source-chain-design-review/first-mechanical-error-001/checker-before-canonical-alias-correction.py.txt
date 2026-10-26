@@ -1,0 +1,171 @@
+"""Finite413 identity/anchor/membership checker; no project imports or calls."""
+import collections
+import hashlib
+import json
+import os
+from pathlib import Path, PurePosixPath
+import stat
+
+ROOT = Path('/workspace/python-original-engine/repo')
+AUTHOR = 'data/phase412-initial-source-chain-design/'
+OUT = ROOT / 'data/phase413-independent-source-chain-design-review'
+OWNER = dict(path=AUTHOR+'owned-files.json', size=3113,
+    sha256='6ba20faf39368464f7ac3b0923bbb1ce2c7e4eb112dbc6962ccbcebec1c8c40c')
+ROOT411 = dict(path='data/phase411-root-initial-audit-release/actual-audit-evidence-accepted-for-source-analysis.json',
+    size=1390, sha256='f762d61ae86f2e9c9a40966d11c23171d3de9500717ec17cf3fe0e3337b86e73')
+readback = []
+raws = {}
+
+
+def identity(info):
+    return [info.st_dev,info.st_ino,info.st_mode,info.st_nlink,info.st_size,
+            info.st_mtime_ns,info.st_ctime_ns]
+
+
+def read(pin):
+    name = pin['path']
+    relative = PurePosixPath(name)
+    if not relative.is_absolute():
+        assert relative.as_posix() == name and all(part not in ('','.','..') for part in name.split('/'))
+    path = Path(name) if relative.is_absolute() else ROOT.joinpath(*relative.parts)
+    assert path.resolve(strict=True) == path
+    assert not any(p.is_symlink() for p in (path,*path.parents))
+    before = path.lstat()
+    assert stat.S_ISREG(before.st_mode) and before.st_nlink == 1 and before.st_size == pin['size']
+    fd = os.open(path,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)
+    try:
+        assert identity(os.fstat(fd)) == identity(before)
+        chunks=[];remaining=pin['size']+1
+        while remaining:
+            chunk=os.read(fd,remaining)
+            if chunk == b'':break
+            chunks.append(chunk);remaining-=len(chunk)
+        raw=b''.join(chunks)
+        assert identity(os.fstat(fd)) == identity(before)
+    finally:
+        os.close(fd)
+    assert identity(path.lstat()) == identity(before)
+    assert len(raw) == pin['size'] and hashlib.sha256(raw).hexdigest() == pin['sha256'],name
+    readback.append(dict(**pin,identity=identity(before)))
+    raws[name]=raw
+    return raw
+
+
+def exact(left,right):
+    return json.dumps(left,sort_keys=True,separators=(',',':')) == json.dumps(right,sort_keys=True,separators=(',',':'))
+
+
+def key(row):
+    return row['field_id'],row['phase'],row['side_or_role']
+
+
+def resolve(pointer,index):
+    assert type(pointer) is str and pointer.startswith('/') and pointer[1:].isdigit()
+    number=int(pointer[1:]);assert pointer=='/'+str(number)
+    return index[number]
+
+
+result=dict(schema='independent413-finite-mechanical-evidence/1',status='BLOCKED',
+    audit_calls=0,old_SUT_calls=0,schema_calls=0,models=0,native=0,inputbuild=0,
+    original_capture_reads=0,EXPECTED_reads=0,author_code_executed=False)
+try:
+    owner=json.loads(read(OWNER))
+    assert len(owner['files']) == owner['file_count'] == 14
+    assert sum(row['size'] for row in owner['files']) == owner['bytes'] == 1610520
+    for pin in owner['files']:read(pin)
+    scopes=[json.loads(raws[AUTHOR+name]) for name in
+            ('finite-read-scope.json','scope-supplement-001.json','scope-supplement-002.json')]
+    pins={}
+    for scope in scopes:
+        for row in scope['files']:
+            if row['path'] in pins:assert pins[row['path']] == row
+            pins[row['path']]=row
+    assert len(pins) == 72 and sum(row['size']for row in pins.values()) == 3750534
+    for pin in pins.values():read(pin)
+    root411=json.loads(read(ROOT411))
+    anchors=json.loads(raws[AUTHOR+'source-anchors.json'])
+    assert len(anchors['anchors']) == 113
+    anchor_checks=[]
+    for name,row in anchors['anchors'].items():
+        pin=pins[row['path']]
+        assert row['file_size'] == pin['size'] and row['file_sha256'] == pin['sha256']
+        lines=raws[row['path']].splitlines(keepends=True)
+        assert type(row['first_line']) is int and type(row['last_line']) is int
+        assert 1 <= row['first_line'] <= row['last_line'] <= len(lines)
+        block=b''.join(lines[row['first_line']-1:row['last_line']])
+        assert len(block) == row['range_size'] and hashlib.sha256(block).hexdigest() == row['range_sha256'],name
+        assert block.decode() == row['excerpt'],name
+        anchor_checks.append(dict(anchor=name,path=row['path'],first_line=row['first_line'],
+            last_line=row['last_line'],range_size=len(block),range_sha256=row['range_sha256']))
+    for inventory in anchors['scene_track_inventory']:
+        pin=inventory['source'];assert pin == pins[pin['path']]
+        lines=raws[pin['path']].decode().splitlines()
+        for row in inventory['entries']:assert lines[row['line']-1].strip() == row['text'].strip()
+    index_name='data/phase408-initial-audit-first-001/rawtyped-field-index.json'
+    index=json.loads(raws[index_name])
+    assert pins[index_name]['size'] == 1494877
+    assert pins[index_name]['sha256'] == '27f4a859ba9144314bb25764d6787e07c8c929e96b44c37a077c4437c47cd46b'
+    report=json.loads(raws['data/phase408-initial-audit-first-001/report.json'])
+    assert report['status'] == 'BLOCKED_INITIAL_SOURCE_GAPS'
+    assert report['classifications'] == {'DIRECT_OBSERVATION':1391,'SOURCE_DERIVED':0,'MISSING':88}
+    assert report['rejected_fields'] == 0
+    verification_name='data/phase411-independent-initial-audit-launcher/verification-report.json'
+    assert pins[verification_name]['size'] == 7251
+    assert pins[verification_name]['sha256'] == '90e4e6314e102ebf980dbca791b321169b10181a69dab5aad9ddeb699d70b96e'
+    actual_owner=json.loads(raws['data/phase408-initial-audit-first-001/owned-files.json'])
+    for pin in actual_owner['files']:
+        scoped=pins['data/phase408-initial-audit-first-001/'+pin['path']]
+        assert (pin['size'],pin['sha256']) == (scoped['size'],scoped['sha256'])
+    ledger=json.loads(raws[AUTHOR+'proof-ledger.json'])
+    missing={key(row):i for i,row in enumerate(index) if row['classification']=='MISSING'}
+    assert len(missing) == len(ledger['targets']) == ledger['target_count'] == 88
+    assert {key(row['target'])for row in ledger['targets']} == set(missing)
+    support_count=0;timer_ids={}
+    for row in ledger['targets']:
+        target=key(row['target'])
+        assert row['original_index_pointer'] == '/'+str(missing[target])
+        assert row['classification'] == 'MISSING' and row['validation_result'] == 'UNPROVEN'
+        assert row['proof_complete'] is False and row['recipe_complete'] is False
+        assert row['data_absence_claim'] is False and row['recapture_required'] is False
+        assert 'actual_value' not in row and row['unresolved_edges'] and row['conditional_recipe']
+        assert all(anchor in anchors['anchors'] for anchor in row['source_anchors'])
+        for support in row['actual_support']:
+            source=resolve(support['index_pointer'],index)
+            assert source['classification'] == 'DIRECT_OBSERVATION' and source['validation_result'] == 'SUPPORTED'
+            assert (support['field_id'],support['phase'],support['role']) == key(source)
+            assert exact(support['actual_value'],source['actual_value']) and exact(support['input_refs'],source['input_refs'])
+            support_count+=1
+        if target[0]=='Timer.private_left':
+            ids=[item for item in row['actual_support'] if item['field_id']=='Timer.node.native_id'and item['phase']==target[1]and item['role']==target[2]]
+            assert len(ids)==1 and ids[0]['actual_value']==row['native_timer_id']
+            timer_ids.setdefault(target[2],{})[target[1]]=row['native_timer_id']
+    assert len(timer_ids)==35 and all(set(value)=={'pre_prepare','pre_activate'}and len(set(value.values()))==1 for value in timer_ids.values())
+    support=json.loads(raws[AUTHOR+'observed-initial-support.json'])['rows']
+    assert len(support)==len({row['index_pointer']for row in support})==1371
+    for row in support:
+        source=resolve(row['index_pointer'],index)
+        assert source['classification']=='DIRECT_OBSERVATION'and source['validation_result']=='SUPPORTED'
+        assert key(row)==key(source)and exact(row['actual_value'],source['actual_value'])and exact(row['input_refs'],source['input_refs'])
+    next_plan=json.loads(raws[AUTHOR+'next-evidence-plan.json'])
+    assert next_plan['new_capture_presumed_necessary'] is False
+    assert [row['id']for row in next_plan['ordered_steps']]==['N1','N2','N3','N4','N5','N6']
+    assert next_plan['ordered_steps'][-1]['not_authorized_or_implemented'] is True
+    groups=dict(collections.Counter(row['target']['field_id'].split('.')[0]for row in ledger['targets']))
+    assert groups=={'Character':12,'King':6,'Timer':70}
+    result.update(status='FINITE_PINS_ANCHORS_TARGET_CORRESPONDENCE_PASS',author_owner=OWNER,
+        author_leaves=14,author_bytes=1610520,source_scope_leaves=72,source_scope_bytes=3750534,
+        separate_Root_authority_receipt=ROOT411,source_scope_not_expanded_recursively=True,
+        verified_anchors=anchor_checks,target_count=88,target_groups=groups,complete_recipes=0,
+        target_actual_support_reference_count=support_count,observed_support_rows=1371,
+        unchanged411_report=pins['data/phase408-initial-audit-first-001/report.json'],
+        unchanged411_index=pins[index_name],unchanged411_verification=pins[verification_name],
+        timer_role_ids_same_across_two_initial_phases=timer_ids,
+        next_evidence_is_proposal_only=True,readback=readback)
+except BaseException as exc:
+    result.update(first_error=dict(type=type(exc).__name__,message=str(exc)),readback=readback,
+                  preserve_and_stop=True)
+with (OUT/'mechanical-evidence.json').open('x')as handle:
+    json.dump(result,handle,indent=2,sort_keys=True);handle.write('\n')
+print(json.dumps(dict(status=result['status'],author_leaves=result.get('author_leaves'),
+    source_leaves=result.get('source_scope_leaves'),anchors=len(result.get('verified_anchors',[])),
+    targets=result.get('target_count'),first_error=result.get('first_error'))))

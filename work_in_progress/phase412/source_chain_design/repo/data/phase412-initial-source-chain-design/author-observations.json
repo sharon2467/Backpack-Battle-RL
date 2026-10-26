@@ -1,0 +1,33 @@
+{
+  "schema": "phase412-author-observations/1",
+  "preparation_failures": [
+    "author-first-error-001/failure.json"
+  ],
+  "warnings": [
+    {
+      "command": "Read two newly authorized inherited scenes with stdlib text filter",
+      "exit_code": 0,
+      "text": "<stdin>:6: SyntaxWarning: invalid escape sequence '\\['",
+      "impact": "Python regex string spelling warning only; exact bytes/size/SHA were printed and matched. No source modification, SUT execution or data inference. Subsequent patterns use raw string literals."
+    },
+    {
+      "command": "Bounded source function-name list piped through head",
+      "exit_code": 0,
+      "text": "cut: write error: Broken pipe",
+      "impact": "Display pipeline only; no source or artifact mutation, no SUT call. Original full files remain pinned and function extraction subsequently used Python byte ranges."
+    }
+  ],
+  "imports_or_calls": {
+    "audit": 0,
+    "schema": 0,
+    "model": 0,
+    "Godot": 0,
+    "FrameDriver": 0
+  },
+  "original_capture_reads": 0,
+  "original_source_writes": 0,
+  "design_author_stdlib_commands": "Nonzero: JSON parsing, byte hashes, text/line extraction and document generation only.",
+  "source_constructor_regex_retry": 1,
+  "author_stdlib_extractor_execution": 2,
+  "design_ledger_writer_execution": 1
+}
