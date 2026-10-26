@@ -119,7 +119,8 @@ for segment in recovery_checkpoint/verification_evidence/repo \
   work_in_progress/phase*/repo work_in_progress/phase*/source/repo \
   work_in_progress/phase*/independent_preparation/repo \
   work_in_progress/phase*/design/repo \
-  work_in_progress/phase*/review_evidence/repo; do
+  work_in_progress/phase*/review_evidence/repo \
+  work_in_progress/phase*/finalization_preparation/repo; do
   if [ -d "$segment" ]; then
     cp -rn "$segment/." "$RECOVERED/workspace/python-original-engine/repo/"
   fi

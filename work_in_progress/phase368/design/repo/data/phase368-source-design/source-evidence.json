@@ -1,0 +1,239 @@
+{
+  "actual_first_false_predicate_available": false,
+  "actual_runtime_ids_available": false,
+  "attempt02_receipt": {
+    "Gamecopies": 0,
+    "baseline_unchanged": true,
+    "models": 0,
+    "overlay_bytes": 197087,
+    "overlay_sha256": "2418e6d2c413e64bc860684d3f20edde223f97343dfd438d9d896d577be85a24",
+    "project_files": 15422,
+    "restore": 0,
+    "schema": "attempt02-failed-pool-preservation/1",
+    "state": "failed",
+    "status": "PRESERVED_NOT_RESTORED"
+  },
+  "attempt02_saved_preservation": [
+    {
+      "path": "output/failed-pool-preservation/baseline-files.json",
+      "root": "attempt02_failed_run",
+      "sha256": "f12fd0eadad4a5857913532adc4cbe3373ffd08f0c801dd220353b5e5b84337d",
+      "size": 4099473
+    },
+    {
+      "path": "output/failed-pool-preservation/failed-pool-state.json",
+      "root": "attempt02_failed_run",
+      "sha256": "ba1f6e24b2943bbd646f85f035e0dd3cebf3008666568e3c589418632282f630",
+      "size": 250
+    },
+    {
+      "path": "output/failed-pool-preservation/failed-project-files.json",
+      "root": "attempt02_failed_run",
+      "sha256": "b962694314680ea3b5961c8717d5026dc719ca3cccbb98563cbb22a36f3411cc",
+      "size": 4100430
+    },
+    {
+      "path": "output/failed-pool-preservation/failed-project-overlay.zip",
+      "root": "attempt02_failed_run",
+      "sha256": "2418e6d2c413e64bc860684d3f20edde223f97343dfd438d9d896d577be85a24",
+      "size": 197087
+    },
+    {
+      "path": "output/failed-pool-preservation/failed-staged-bytes/custom_opponent.json",
+      "root": "attempt02_failed_run",
+      "sha256": "9c57f7781c8ae58027296004262cc0b2b691c25084ea29d8f4171ff44828a689",
+      "size": 1597
+    },
+    {
+      "path": "output/failed-pool-preservation/failed-staged-bytes/custom_player.json",
+      "root": "attempt02_failed_run",
+      "sha256": "a42675c3fedb0651e4309754403d5658edcce869f85edb07963e7a2f87391c56",
+      "size": 1676
+    },
+    {
+      "path": "output/failed-pool-preservation/failed-staged-files.json",
+      "root": "attempt02_failed_run",
+      "sha256": "5edc93be775ab2f84375e71fb4dbcf8f3cc2e9d1a8b0e978ac8427673ae46287",
+      "size": 649
+    },
+    {
+      "path": "output/failed-pool-preservation/overlay-manifest.json",
+      "root": "attempt02_failed_run",
+      "sha256": "dc24be64750d9eb9705ad877d5181ba658afe3fa8562578df2a28bebf7518795",
+      "size": 5184
+    },
+    {
+      "path": "output/failed-pool-preservation/receipt.json",
+      "root": "attempt02_failed_run",
+      "sha256": "f34d7e1f00094f9cfbf99bb8947f8cd69b375b1cff98395b74ab4bff9fe3d4f1",
+      "size": 335
+    }
+  ],
+  "classification": "STATIC_SOURCE_AND_SAVED_CONTROL_METADATA_NOT_NATIVE_ORDER_PROOF",
+  "frozen_old_collector": {
+    "path": "data/phase365-control-recovery-source/collector.gd",
+    "sha256": "7421a1cb15894d78a560bc96bbabea72eeae6e3f96ca621fd2df75e9a25fd818",
+    "size": 45177
+  },
+  "frozen_old_sink": {
+    "path": "data/phase359-king-producer-source/after-source/native_random_observer_sink_v7.gd",
+    "sha256": "963f531d73c38aae6d1e87f48396c90a37cc4497e29a8380d13ca76638f51838",
+    "size": 87752
+  },
+  "independent_finding": {
+    "path": "data/phase366-independent-attempt02-triage/finding.json",
+    "sha256": "a8377c7990cbbe8e0a444d83a035ca0aca4710024064308bf93f38a33df0cc20",
+    "size": 4938
+  },
+  "independent_source_chain": {
+    "path": "data/phase366-independent-attempt02-triage/source-chain.json",
+    "sha256": "324ae2e7d3ab16e8846ea3310e6ec28fa86fe8ef5e80291fb66fe15f17ba52c2",
+    "size": 17418
+  },
+  "independent_triage_all_leaves_readback": 28,
+  "independent_triage_owner": {
+    "path": "data/phase366-independent-attempt02-triage/owned-files.json",
+    "sha256": "9b3955a4b144cb486144240226bf62283b18b8b9ffe7ea2592050c346e9cd3ac",
+    "size": 5911
+  },
+  "live_pool_read_or_modified": false,
+  "old_attempt01_map": {
+    "path": "data/phase365-source-recovery-plan/restore-map.json",
+    "sha256": "67d11fd66bb9120a7dbcd85aef9db6d68745ac26c01ba6d1ff85c54e79ed5547",
+    "size": 68242
+  },
+  "old_map_must_not_be_reused": true,
+  "schema": "phase368-design-source-evidence/1",
+  "source_spans": [
+    {
+      "end": 476,
+      "source": {
+        "path": "data/phase184-ranger-idle-sync-source/source/object.h",
+        "sha256": "47e2e30d76c93182ac6a5900df8a652d01b4b1f8e513c375d6060b869dcb4562",
+        "size": 45882
+      },
+      "start": 450,
+      "text": "\tstruct Signal {\n\t\tstruct Target {\n\t\t\tObjectID _id;\n\t\t\tStringName method;\n\n\t\t\t_FORCE_INLINE_ bool operator<(const Target &p_target) const { return (_id == p_target._id) ? (method < p_target.method) : (_id < p_target._id); }\n\n\t\t\tTarget(const ObjectID &p_id, const StringName &p_method) :\n\t\t\t\t\t_id(p_id),\n\t\t\t\t\tmethod(p_method) {\n\t\t\t}\n\t\t\tTarget() { _id = 0; }\n\t\t};\n\n\t\tstruct Slot {\n\t\t\tint reference_count;\n\t\t\tConnection conn;\n\t\t\tList<Connection>::Element *cE;\n\t\t\tSlot() {\n\t\t\t\treference_count = 0;\n\t\t\t\tcE = nullptr;\n\t\t\t}\n\t\t};\n\n\t\tMethodInfo user;\n\t\tVMap<Target, Slot> slot_map;\n\t\tSignal() {}\n"
+    },
+    {
+      "end": 1250,
+      "source": {
+        "path": "data/phase184-ranger-idle-sync-source/source/object.cpp",
+        "sha256": "7d9bb073fde7ba0c1d7b057fbefcdba292148eeb4cdd58c1c975c9e8f8f3b8c6",
+        "size": 57985
+      },
+      "start": 1190,
+      "text": "\t//copy on write will ensure that disconnecting the signal or even deleting the object will not affect the signal calling.\n\t//this happens automatically and will not change the performance of calling.\n\t//awesome, isn't it?\n\tVMap<Signal::Target, Signal::Slot> slot_map = s->slot_map;\n\n\tint ssize = slot_map.size();\n\n\tOBJ_DEBUG_LOCK\n\n\tVector<const Variant *> bind_mem;\n\n\tError err = OK;\n\n\tfor (int i = 0; i < ssize; i++) {\n\t\tconst Connection &c = slot_map.getv(i).conn;\n\n\t\tObject *target = ObjectDB::get_instance(slot_map.getk(i)._id);\n\t\tif (!target) {\n\t\t\t// Target might have been deleted during signal callback, this is expected and OK.\n\t\t\tcontinue;\n\t\t}\n\n\t\tconst Variant **args = p_args;\n\t\tint argc = p_argcount;\n\n\t\tif (c.binds.size()) {\n\t\t\t//handle binds\n\t\t\tbind_mem.resize(p_argcount + c.binds.size());\n\n\t\t\tfor (int j = 0; j < p_argcount; j++) {\n\t\t\t\tbind_mem.write[j] = p_args[j];\n\t\t\t}\n\t\t\tfor (int j = 0; j < c.binds.size(); j++) {\n\t\t\t\tbind_mem.write[p_argcount + j] = &c.binds[j];\n\t\t\t}\n\n\t\t\targs = (const Variant **)bind_mem.ptr();\n\t\t\targc = bind_mem.size();\n\t\t}\n\n\t\tif (c.flags & CONNECT_DEFERRED) {\n\t\t\tMessageQueue::get_singleton()->push_call(target->get_instance_id(), c.method, args, argc, true);\n\t\t} else {\n\t\t\tVariant::CallError ce;\n\t\t\t_emitting = true;\n\t\t\ttarget->call(c.method, args, argc, ce);\n\t\t\t_emitting = false;\n\n\t\t\tif (ce.error != Variant::CallError::CALL_OK) {\n#ifdef DEBUG_ENABLED\n\t\t\t\tif (c.flags & CONNECT_PERSIST && Engine::get_singleton()->is_editor_hint() && (script.is_null() || !Ref<Script>(script)->is_tool())) {\n\t\t\t\t\tcontinue;\n\t\t\t\t}\n#endif\n\t\t\t\tif (ce.error == Variant::CallError::CALL_ERROR_INVALID_METHOD && !ClassDB::class_exists(target->get_class_name())) {\n\t\t\t\t\t//most likely object is not initialized yet, do not throw error.\n\t\t\t\t} else {\n\t\t\t\t\tERR_PRINT(\"Error calling method from signal '\" + String(p_name) + \"': \" + Variant::get_call_error_text(target, c.method, args, argc, ce) + \".\");\n\t\t\t\t\terr = ERR_METHOD_NOT_FOUND;\n\t\t\t\t}\n\t\t\t}\n"
+    },
+    {
+      "end": 1427,
+      "source": {
+        "path": "data/phase184-ranger-idle-sync-source/source/object.cpp",
+        "sha256": "7d9bb073fde7ba0c1d7b057fbefcdba292148eeb4cdd58c1c975c9e8f8f3b8c6",
+        "size": 57985
+      },
+      "start": 1418,
+      "text": "void Object::get_signal_connection_list(const StringName &p_signal, List<Connection> *p_connections) const {\n\tconst Signal *s = signal_map.getptr(p_signal);\n\tif (!s) {\n\t\treturn; //nothing\n\t}\n\n\tfor (int i = 0; i < s->slot_map.size(); i++) {\n\t\tp_connections->push_back(s->slot_map.getv(i).conn);\n\t}\n}\n"
+    },
+    {
+      "end": 2028,
+      "source": {
+        "path": "data/phase184-ranger-idle-sync-source/source/object.cpp",
+        "sha256": "7d9bb073fde7ba0c1d7b057fbefcdba292148eeb4cdd58c1c975c9e8f8f3b8c6",
+        "size": 57985
+      },
+      "start": 2016,
+      "text": "ObjectID ObjectDB::instance_counter = 1;\nHashMap<Object *, ObjectID, ObjectDB::ObjectPtrHash> ObjectDB::instance_checks;\nObjectID ObjectDB::add_instance(Object *p_object) {\n\tERR_FAIL_COND_V(p_object->get_instance_id() != 0, 0);\n\n\trw_lock.write_lock();\n\tObjectID instance_id = ++instance_counter;\n\tinstances[instance_id] = p_object;\n\tinstance_checks[p_object] = instance_id;\n\n\trw_lock.write_unlock();\n\n\treturn instance_id;\n"
+    },
+    {
+      "end": 1903,
+      "source": {
+        "path": "data/phase027-implementation-design/full-source/upstream/main/main.cpp",
+        "sha256": "20c117f289323e57ae534303274ab2e5769580821756c52126bc5d429e2f0f59",
+        "size": 99000
+      },
+      "start": 1889,
+      "text": "\t\t}\n\n\t\tif (script_res->can_instance()) {\n\t\t\tStringName instance_type = script_res->get_instance_base_type();\n\t\t\tObject *obj = ClassDB::instance(instance_type);\n\t\t\tMainLoop *script_loop = Object::cast_to<MainLoop>(obj);\n\t\t\tif (!script_loop) {\n\t\t\t\tif (obj) {\n\t\t\t\t\tmemdelete(obj);\n\t\t\t\t}\n\t\t\t\tERR_FAIL_V_MSG(false, vformat(\"Can't load the script \\\"%s\\\" as it doesn't inherit from SceneTree or MainLoop.\", script));\n\t\t\t}\n\n\t\t\tscript_loop->set_init_script(script_res);\n\t\t\tmain_loop = script_loop;\n"
+    },
+    {
+      "end": 2044,
+      "source": {
+        "path": "data/phase027-implementation-design/full-source/upstream/main/main.cpp",
+        "sha256": "20c117f289323e57ae534303274ab2e5769580821756c52126bc5d429e2f0f59",
+        "size": 99000
+      },
+      "start": 1995,
+      "text": "\t\t\t\tList<Node *> to_add;\n\t\t\t\tfor (List<PropertyInfo>::Element *E = props.front(); E; E = E->next()) {\n\t\t\t\t\tString s = E->get().name;\n\t\t\t\t\tif (!s.begins_with(\"autoload/\")) {\n\t\t\t\t\t\tcontinue;\n\t\t\t\t\t}\n\t\t\t\t\tString name = s.get_slicec('/', 1);\n\t\t\t\t\tString path = ProjectSettings::get_singleton()->get(s);\n\t\t\t\t\tbool global_var = false;\n\t\t\t\t\tif (path.begins_with(\"*\")) {\n\t\t\t\t\t\tglobal_var = true;\n\t\t\t\t\t\tpath = path.substr(1, path.length() - 1);\n\t\t\t\t\t}\n\n\t\t\t\t\tRES res = ResourceLoader::load(path);\n\t\t\t\t\tERR_CONTINUE_MSG(res.is_null(), \"Can't autoload: \" + path);\n\t\t\t\t\tNode *n = nullptr;\n\t\t\t\t\tif (res->is_class(\"PackedScene\")) {\n\t\t\t\t\t\tRef<PackedScene> ps = res;\n\t\t\t\t\t\tn = ps->instance();\n\t\t\t\t\t} else if (res->is_class(\"Script\")) {\n\t\t\t\t\t\tRef<Script> script_res = res;\n\t\t\t\t\t\tStringName ibt = script_res->get_instance_base_type();\n\t\t\t\t\t\tbool valid_type = ClassDB::is_parent_class(ibt, \"Node\");\n\t\t\t\t\t\tERR_CONTINUE_MSG(!valid_type, \"Script does not inherit from Node: \" + path);\n\n\t\t\t\t\t\tObject *obj = ClassDB::instance(ibt);\n\n\t\t\t\t\t\tERR_CONTINUE_MSG(obj == nullptr, \"Cannot instance script for autoload, expected 'Node' inheritance, got: \" + String(ibt));\n\n\t\t\t\t\t\tn = Object::cast_to<Node>(obj);\n\t\t\t\t\t\tn->set_script(script_res.get_ref_ptr());\n\t\t\t\t\t}\n\n\t\t\t\t\tERR_CONTINUE_MSG(!n, \"Path in autoload not a node or script: \" + path);\n\t\t\t\t\tn->set_name(name);\n\n\t\t\t\t\t//defer so references are all valid on _ready()\n\t\t\t\t\tto_add.push_back(n);\n\n\t\t\t\t\tif (global_var) {\n\t\t\t\t\t\tfor (int i = 0; i < ScriptServer::get_language_count(); i++) {\n\t\t\t\t\t\t\tScriptServer::get_language(i)->add_global_constant(name, n);\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t\tfor (List<Node *>::Element *E = to_add.front(); E; E = E->next()) {\n\t\t\t\t\tsml->get_root()->add_child(E->get());\n\t\t\t\t}\n"
+    },
+    {
+      "end": 647,
+      "source": {
+        "path": "data/phase027-implementation-design/full-source/upstream/scene/main/scene_tree.cpp",
+        "sha256": "a1ac9f2da5a1046d1c468fd463de4907f535f124952b137d69fb39ef8b14b3b4",
+        "size": 74268
+      },
+      "start": 621,
+      "text": "bool SceneTree::idle(float p_time) {\n\t//print_line(\"ram: \"+itos(OS::get_singleton()->get_static_memory_usage())+\" sram: \"+itos(OS::get_singleton()->get_dynamic_memory_usage()));\n\t//print_line(\"node count: \"+itos(get_node_count()));\n\t//print_line(\"TEXTURE RAM: \"+itos(VS::get_singleton()->get_render_info(VS::INFO_TEXTURE_MEM_USED)));\n\n\troot_lock++;\n\n\tif (MainLoop::idle(p_time)) {\n\t\t_quit = true;\n\t}\n\n\tidle_process_time = p_time;\n\n\tif (multiplayer_poll) {\n\t\tmultiplayer->poll();\n\t}\n\n\temit_signal(\"idle_frame\");\n\n\tMessageQueue::get_singleton()->flush(); //small little hack\n\n\tflush_transform_notifications();\n\n\t_notify_group_pause(\"idle_process_internal\", Node::NOTIFICATION_INTERNAL_PROCESS);\n\t_notify_group_pause(\"idle_process\", Node::NOTIFICATION_PROCESS);\n\n\tSize2 win_size = OS::get_singleton()->get_window_size();\n"
+    },
+    {
+      "end": 806,
+      "source": {
+        "path": "data/phase027-implementation-design/full-source/upstream/scene/main/scene_tree.cpp",
+        "sha256": "a1ac9f2da5a1046d1c468fd463de4907f535f124952b137d69fb39ef8b14b3b4",
+        "size": 74268
+      },
+      "start": 795,
+      "text": "void SceneTree::quit(int p_exit_code) {\n\tif (p_exit_code >= 0) {\n\t\t// Override the exit code if a positive argument is given (the default is `-1`).\n\t\t// This is a shorthand for calling `set_exit_code()` on the OS singleton then quitting.\n\t\tOS::get_singleton()->set_exit_code(p_exit_code);\n\t} else if (!OS::get_singleton()->is_custom_exit_code()) {\n\t\t// Must customize exit code, otherwise it will default to a non-zero value\n\t\tOS::get_singleton()->set_exit_code(EXIT_SUCCESS);\n\t}\n\n\t_quit = true;\n}\n"
+    },
+    {
+      "end": 79,
+      "source": {
+        "path": "data/phase359-king-producer-source/after-source/native_random_observer_sink_v7.gd",
+        "sha256": "963f531d73c38aae6d1e87f48396c90a37cc4497e29a8380d13ca76638f51838",
+        "size": 87752
+      },
+      "start": 50,
+      "text": "func _ready():\n\tget_tree().connect(\"physics_frame\", self, \"clock_physics_signal\")\n\tget_tree().connect(\"idle_frame\", self, \"clock_idle_signal\")\n\tvar status = Directory.new().make_dir_recursive(OUT)\n\tif status != OK:\n\t\tfail(\"BOOTSTRAP_DIRECTORY\", \"sink\", status)\n\t\treturn\n\tvar existing = File.new()\n\tfor filename in CHANNEL_FILES.values() + [\"observer7_failure.json\"]:\n\t\tif existing.file_exists(OUT.plus_file(filename)):\n\t\t\tfail(\"PREEXISTING_OBSERVER_FILE\", \"sink\")\n\t\t\treturn\n\tui_open()\n\nfunc fail(code, site, detail = null):\n\tif failed:\n\t\treturn false\n\tfailed = true\n\t# Fixed-size fields only; never stringifies an unknown Object or unbounded detail.\n\tvar safe_detail = detail if typeof(detail) in [TYPE_NIL, TYPE_INT, TYPE_BOOL] else null\n\tfirst_error = {\"schema\": \"observer7-failure/1\", \"code\": code, \"site\": site.substr(0, 256), \"sequence\": sequence, \"detail\": safe_detail, \"capture_complete\": false}\n\tvar message = JSON.print(first_error)\n\tif message.to_utf8().size() > CAPS.first_error_bytes:\n\t\tmessage = '{\"schema\":\"observer7-failure/1\",\"code\":\"FAILURE_ENCODING\",\"capture_complete\":false}'\n\tvar file = File.new()\n\tif not file.file_exists(OUT.plus_file(\"observer7_failure.json\")) and file.open(OUT.plus_file(\"observer7_failure.json\"), File.WRITE) == OK:\n\t\tfile.store_string(message + \"\\n\")\n\t\tfile.flush()\n\t\tfile.close()\n\treturn false\n"
+    },
+    {
+      "end": 830,
+      "source": {
+        "path": "data/phase359-king-producer-source/after-source/native_random_observer_sink_v7.gd",
+        "sha256": "963f531d73c38aae6d1e87f48396c90a37cc4497e29a8380d13ca76638f51838",
+        "size": 87752
+      },
+      "start": 813,
+      "text": "func write_king_json(name, data):\n\tif failed:\n\t\treturn false\n\tvar bytes = (JSON.print(data) + \"\\n\").to_utf8()\n\tif bytes.size() > CAPS.record_bytes or total_bytes + king_input_bytes + bytes.size() > CAPS.total_bytes:\n\t\treturn fail(\"KING_INPUT_BYTE_CAP\", name)\n\tvar file = File.new()\n\tif file.file_exists(OUT.plus_file(name)) or file.open(OUT.plus_file(name), File.WRITE) != OK:\n\t\treturn fail(\"KING_INPUT_EXISTS_OR_OPEN\", name)\n\tfile.store_buffer(bytes)\n\tfile.flush()\n\tvar ok = file.get_error() == OK\n\tfile.close()\n\tif ok:\n\t\tking_input_bytes += bytes.size()\n\treturn ok if ok else fail(\"KING_INPUT_WRITE\", name)\n\nfunc begin_king_clock(game, items):\n"
+    },
+    {
+      "end": 869,
+      "source": {
+        "path": "data/phase359-king-producer-source/after-source/native_random_observer_sink_v7.gd",
+        "sha256": "963f531d73c38aae6d1e87f48396c90a37cc4497e29a8380d13ca76638f51838",
+        "size": 87752
+      },
+      "start": 845,
+      "text": "func clock_physics_signal():\n\tui_check_controls()\n\tif king_clock_active:\n\t\tclock_pass(\"physics\", get_physics_process_delta_time())\n\nfunc clock_idle_signal():\n\tui_check_controls()\n\tif king_clock_active:\n\t\tclock_pass(\"idle\", get_process_delta_time())\n\t\tif source_cleanup != null and Engine.get_physics_frames() >= source_cleanup.physics_frame + 2:\n\t\t\tif Engine.get_physics_frames() != source_cleanup.physics_frame + 2:\n\t\t\t\tfail(\"SOURCE_MISSED_FIRST_IDLE_CUT\", \"clock_idle_signal\")\n\t\t\t\treturn\n\t\t\tif not close_king_clock():\n\t\t\t\treturn\n\t\t\tif not write_king_json(\"king-final-source.json\", source_runtime_snapshot()):\n\t\t\t\treturn\n\t\t\tif not ui_close():\n\t\t\t\treturn\n\t\t\tsource_window_complete = not failed\n\t\t\tclosed = true\n\n\nfunc clock_pass(kind, delta):\n\tif failed or not king_clock_active or king_clock_closed:\n"
+    },
+    {
+      "end": 1127,
+      "source": {
+        "path": "data/phase359-king-producer-source/after-source/native_random_observer_sink_v7.gd",
+        "sha256": "963f531d73c38aae6d1e87f48396c90a37cc4497e29a8380d13ca76638f51838",
+        "size": 87752
+      },
+      "start": 1119,
+      "text": "func ui_close():\n\tif not king_clock_closed or Engine.is_in_physics_frame() or not active_buff_calls.empty() or not ui_stack.empty():\n\t\treturn fail(\"UI_FINAL_SOURCE_BARRIER\", \"finish_capture\")\n\tvar ok = ui_write(\"close\", \"finish_capture\", {\"phase\": \"idle_pre_internal_flush\", \"completed\": true, \"failed\": failed, \"overflow\": false, \"dropped\": 0, \"entries\": ui_entries, \"unsupported\": ui_unsupported, \"rows_before_close\": ui_sequence, \"sites\": UI_SITES, \"controls\": ui_controls(), \"king_clock_closed\": king_clock_closed, \"active_buff_calls\": active_buff_calls.size()})\n\tui_closed = ok\n\treturn ok\n\n#148 one passive initial condition, not shared-stream consumption closure.\nvar rng_initial_count = 0\n"
+    },
+    {
+      "end": 881,
+      "source": {
+        "path": "data/phase365-control-recovery-source/collector.gd",
+        "sha256": "7421a1cb15894d78a560bc96bbabea72eeae6e3f96ca621fd2df75e9a25fd818",
+        "size": 45177
+      },
+      "start": 808,
+      "text": "func ensure_source_window():\n\tvar observer = get_root().get_node_or_null(\"NativeRandomObserver\")\n\tif observer == null or observer.failed or not observer.ui_opened:\n\t\treturn false\n\tif not source_listener_attached and not attach_source_listener():\n\t\treturn false\n\tif not observer.source_fixture_window:\n\t\treturn observer.begin_fixture_window(observer.SOURCE_SLOT_TABLE.duplicate(true))\n\treturn true\n\n\nfunc source_connection_target(row):\n\tvar target = row.get(\"target\", null)\n\tif typeof(target) == TYPE_OBJECT and is_instance_valid(target):\n\t\treturn target.get_instance_id()\n\tif typeof(target) == TYPE_INT:\n\t\treturn target\n\treturn -1\n\n\nfunc check_source_listener_order():\n\tvar observer = get_root().get_node(\"NativeRandomObserver\")\n\tvar rows = get_signal_connection_list(\"idle_frame\")\n\tvar seen = []\n\tvar sink_index = -1\n\tvar collector_index = -1\n\tfor i in range(rows.size()):\n\t\tvar target = source_connection_target(rows[i])\n\t\tvar method = rows[i].get(\"method\", \"\")\n\t\tseen.append({\"target_native_id\": str(target), \"method\": method, \"flags\": rows[i].get(\"flags\", -1)})\n\t\tif target == observer.get_instance_id() and method == \"clock_idle_signal\":\n\t\t\tif sink_index != -1:\n\t\t\t\treturn false\n\t\t\tsink_index = i\n\t\tif target == get_instance_id() and method == \"on_idle_source_cut\":\n\t\t\tif collector_index != -1:\n\t\t\t\treturn false\n\t\t\tcollector_index = i\n\tif sink_index < 0 or collector_index != sink_index + 1:\n\t\treturn false # unknown intervening callbacks are not declared pure\n\tif seen[sink_index].flags != 0 or seen[collector_index].flags != 0:\n\t\treturn false\n\tsource_connection_order = seen\n\treturn true\n\n\nfunc attach_source_listener():\n\tif source_listener_attached:\n\t\treturn false\n\tvar observer = get_root().get_node(\"NativeRandomObserver\")\n\tif not is_connected(\"idle_frame\", observer, \"clock_idle_signal\"):\n\t\treturn false\n\tif connect(\"idle_frame\", self, \"on_idle_source_cut\") != OK:\n\t\treturn false\n\tsource_listener_attached = true\n\treturn check_source_listener_order()\n\n\nfunc on_idle_source_cut():\n\tif done or source_cut_frozen:\n\t\treturn\n\tvar observer = get_root().get_node_or_null(\"NativeRandomObserver\")\n\tif observer == null or observer.failed:\n\t\tfail(\"SOURCE observer failure before same-idle cut\")\n\t\treturn\n\tvar receipt = observer.source_completion_receipt()\n\tif not receipt.source_window_complete:\n\t\treturn\n\tif not check_source_listener_order() or Engine.is_in_physics_frame() or not receipt.clock_closed or not receipt.ui_closed or result_value == null:\n\t\tfail(\"same idle preinternal completion identity/order\")\n\t\treturn\n\tif Engine.get_physics_frames() != receipt.cleanup.physics_frame + 2:\n\t\tfail(\"not exactly two future physics at collector cut\")\n\t\treturn\n"
+    }
+  ]
+}
