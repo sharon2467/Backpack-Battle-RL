@@ -1,0 +1,9 @@
+# First actual eligible idle joint SOURCE repair
+
+The new producer keeps a bounded cleanup anchor, strictly-future-physics count and firsteligible-idle latch. Collector, closed endpoint/receipt/control metadata, Source tuple and schema share the explicit policy:minimum2physics, actualobservedN preserved. Schema independently finds the first eligible idle in the complete ordered clock and rejects skipped candidates, malformed/mixed evidence and EOF/trailing rows. Host reads only bounded expected-control metadata and calls the same public terminal join.
+
+The twelve lawful input names and seventeen getter/UI keys are unchanged. CleanupC/endpoint/control remain expected-only; model state, runtime or forcedstop must not receive them. Runtime15/349FrameDriver,74otherpatches,107sites/MATRIX and FoodINT22 are conserved. The new78payload corpus is815198B; storage's executable functions are unchanged, with only that exact Source-byte cap literal updated.
+
+The previous implementation's capacity interruption retained its four unsealed templates. Two Source-preparation failures are also preserved:historical negative hardlinks rejected by a generic author pin, then an inverse-checker fragment ambiguity. Narrow author-only two-path+nlink2+oldhash handling and offset inverse proof fixed those tooling boundaries; all active Source/owner leaves remain ordinary+nlink1. These Source results do not constitute runtime acceptance.
+
+Add source/repo after main recovery and other flat supplements. The author generated/compiled/checked inverses and pins only; SUT/schema/Godot/Game/model/pool/inputbuild/projection calls are zero. Independent39232control acceptance is pending. No old385capture is relabeled and no new native attempt is authorized by this snapshot. Formal bounded75 remains unchanged; King/fullengine/RL remain incomplete.

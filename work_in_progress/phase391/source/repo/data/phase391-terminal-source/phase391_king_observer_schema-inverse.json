@@ -1,0 +1,142 @@
+{
+  "added_functions": [
+    "_terminal_clock_rows",
+    "_terminal_connection_table",
+    "_terminal_cut_matches",
+    "_terminal_dispatch_shape",
+    "_terminal_emitting_connections",
+    "_terminal_native_id",
+    "validate_terminal_diagnostics",
+    "validate_terminal_receipt"
+  ],
+  "after": {
+    "path": "tests/phase391_king_observer_schema.py",
+    "sha256": "ffcddfd2cbe58307f7258c1aefad5586a9179c6c452dc59c3342f9047f31457c",
+    "size": 208243
+  },
+  "before": {
+    "path": "tests/phase375_king_observer_schema.py",
+    "sha256": "2544c51513effc0c7a66b98af3f718b4dd4a91fea6bd51a240a2f4c9a194de71",
+    "size": 191051
+  },
+  "changed_functions": [
+    "validate_terminal_evidence"
+  ],
+  "check": "PYTHON_AST",
+  "conserved_functions": [
+    "ClockSchedule",
+    "FramePass",
+    "_base_primitive_context",
+    "_base_validate_primitive",
+    "_base_validate_record",
+    "_base_validate_state",
+    "_binding_cells",
+    "_binding_check_channels",
+    "_binding_checkpoint",
+    "_binding_id",
+    "_binding_integer_value",
+    "_binding_one",
+    "_binding_real_value",
+    "_binding_same_source",
+    "_binding_validate_value",
+    "_counter",
+    "_keys",
+    "_nonnegative_real",
+    "_real",
+    "_rng_decimal",
+    "_rng_int64",
+    "_rng_keys",
+    "_rng_real",
+    "_single_king_counter",
+    "_single_king_keys",
+    "_single_king_node",
+    "_single_king_particle",
+    "_single_king_real",
+    "_single_king_rng_checkpoint",
+    "_single_king_timer",
+    "_single_king_typed",
+    "_single_king_validate_ui",
+    "_transport_only_decode",
+    "_ui_controls",
+    "_ui_exact",
+    "_ui_ident",
+    "_ui_integer",
+    "_ui_need",
+    "_ui_require_admission",
+    "_validate_call_pairs",
+    "argument_fields",
+    "canonical_sha",
+    "decimal",
+    "decode_clock",
+    "decode_sources",
+    "exact",
+    "f32",
+    "integer",
+    "join_binding_provenance",
+    "primitive_context",
+    "scalar_number",
+    "strict_json",
+    "strict_json_loads",
+    "text",
+    "validate_binding_carrier",
+    "validate_cache",
+    "validate_observation_records",
+    "validate_primitive",
+    "validate_record",
+    "validate_resources",
+    "validate_single_king_fixture",
+    "validate_single_king_fresh_facts",
+    "validate_single_king_input_provenance",
+    "validate_single_king_source_defaults",
+    "validate_single_king_ui_authority",
+    "validate_source_carriers",
+    "validate_sources_with_binding",
+    "validate_state",
+    "validate_typed"
+  ],
+  "edits": [
+    {
+      "after": "7-king-single-A-390",
+      "after_positions": [
+        233,
+        100246
+      ],
+      "before": "7-king-single-A-355",
+      "occurrences": 2
+    },
+    {
+      "after": "observer7-390-native-single-king-A/1",
+      "after_positions": [
+        263,
+        100174
+      ],
+      "before": "observer7-355-native-single-king-A/1",
+      "occurrences": 2
+    },
+    {
+      "after": "first-actual-idle-after-at-least-two-future-physics/1",
+      "after_positions": [
+        100330
+      ],
+      "before": "source-two-physics-idle-pre-internal/1",
+      "occurrences": 1
+    },
+    {
+      "after": "\"\"\"New terminal helpers appended to the frozen typed schema; expected/control only.\"\"\"\n\nTERMINAL_POLICY = 'first-actual-idle-after-at-least-two-future-physics/1'\nTERMINAL_ENDPOINT_SCHEMA = 'phase390-first-eligible-idle-endpoint/1'\nTERMINAL_CONTROL_SCHEMA = 'phase390-terminal-cut-control/1'\nTERMINAL_CUT_KEYS = ('schema', 'terminal_policy', 'cleanup_anchor_pass', 'first_eligible_idle_pass',\n                     'minimum_future_physics_signals', 'observed_future_physics_signals')\nTERMINAL_ENDPOINT_KEYS = ('schema', 'terminal_policy', 'phase', 'physics_frame', 'idle_frame', 'passes',\n                         'minimum_future_physics_signals', 'observed_future_physics_signals',\n                         'cleanup_anchor_pass', 'first_eligible_idle_pass', 'fx_exact_comparison')\nTERMINAL_RECEIPT_KEYS = ('source_window_complete', 'failed', 'clock_closed', 'ui_closed', 'cleanup',\n                        'clock_passes', 'native_capture_accepted', 'collector_archive_pending', 'terminal_cut')\nTERMINAL_DISPATCH_KEYS = ('phase', 'dispatching', 'emit_count', 'receiver_available', 'receiver_id',\n                        'physics', 'idle', 'ack', 'script_emit_return', 'script_emit_return_observed',\n                        'native_emit_error_available', 'native_emit_error', 'finish_return', 'failed',\n                        'closed', 'complete', 'clock_closed', 'ui_closed', 'first_error', 'ready_connect',\n                        'diagnostic_error', 'terminal_cut')\n\n\ndef _terminal_clock_rows(clock):\n    # The public helper also rejects a manually built, type-contaminated ClockSchedule.\n    if type(clock) is not ClockSchedule or type(clock.passes) is not tuple or not 1 <= len(clock.passes) <= MAX_PASSES:\n        raise ValueError('actual bounded decoded clock required')\n    _counter(clock.util_frame_counter)\n    for value in (clock.util_time, clock.util_clock_time):\n        if type(value) is not float or not math.isfinite(value) or value < 0 or (value == 0 and math.copysign(1.0, value) < 0):\n            raise ValueError('actual checkpoint clock scalar')\n    p, i = _counter(clock.physics_frame), _counter(clock.idle_frame) + 1\n    for row in clock.passes:\n        if type(row) is not FramePass or type(row.kind) is not str or row.kind not in ('physics', 'idle'):\n            raise ValueError('terminal actual frame row kind')\n        if type(row.delta) is not float or not math.isfinite(row.delta) or row.delta <= 0 or f32(row.delta) != row.delta:\n            raise ValueError('terminal actual frame delta')\n        if row.kind == 'physics':\n            if row.delta != PHYSICS_DELTA:\n                raise ValueError('terminal actual fixed60 delta')\n            p += 1\n        if (_counter(row.physics_frame), _counter(row.idle_frame)) != (p, i):\n            raise ValueError('terminal missing/duplicate/reordered actual clock')\n        if row.kind == 'idle':\n            i += 1\n    return clock.passes\n\n\ndef validate_terminal_evidence(endpoint, clock, cleanup):\n    \"\"\"Expected/control proof only; never a model cleanup or stop command.\"\"\"\n    exact(endpoint, TERMINAL_ENDPOINT_KEYS)\n    if (endpoint['schema'] != TERMINAL_ENDPOINT_SCHEMA or endpoint['terminal_policy'] != TERMINAL_POLICY\n            or endpoint['phase'] != 'idle_pre_internal_flush'\n            or endpoint['fx_exact_comparison'] != 'NOT_EVALUATED_REQUIRES_MODEL'):\n        raise ValueError('new exact terminal policy/endpoint required')\n    for key in ('physics_frame', 'idle_frame', 'passes', 'cleanup_anchor_pass', 'first_eligible_idle_pass',\n                'minimum_future_physics_signals', 'observed_future_physics_signals'):\n        _counter(endpoint[key])\n    if endpoint['minimum_future_physics_signals'] != 2 or endpoint['observed_future_physics_signals'] < 2:\n        raise ValueError('minimum2 and actual future count required')\n    rows = _terminal_clock_rows(clock)\n    exact(cleanup, ('physics_frame', 'idle_frame', 'is_in_physics_frame'))\n    cp, ci = _counter(cleanup['physics_frame']), _counter(cleanup['idle_frame'])\n    if type(cleanup['is_in_physics_frame']) is not bool:\n        raise ValueError('actual cleanup phase BOOL')\n    kind = 'physics' if cleanup['is_in_physics_frame'] else 'idle'\n    anchors = [index + 1 for index, row in enumerate(rows)\n               if (row.kind, row.physics_frame, row.idle_frame) == (kind, cp, ci)]\n    if len(anchors) == 1:\n        anchor = anchors[0]\n    elif not anchors and kind == 'idle' and (cp, ci) == (clock.physics_frame, clock.idle_frame):\n        anchor = 0\n    else:\n        raise ValueError('unique actual cleanup row/checkpoint association')\n    count = 0\n    candidate = None\n    for index in range(anchor, len(rows)):\n        row = rows[index]\n        if row.kind == 'physics':\n            if row.physics_frame <= cp:\n                raise ValueError('only strictly future physics signals count')\n            count += 1\n        if row.physics_frame - cp != count:\n            raise ValueError('cleanup/future clock continuity')\n        if row.kind == 'idle' and count >= 2:\n            candidate = index + 1\n            break\n    if candidate is None:\n        raise ValueError('EOF before first actual eligible idle')\n    if candidate != len(rows):\n        raise ValueError('missed first eligible idle or trailing clock records')\n    last = rows[-1]\n    if (endpoint['physics_frame'], endpoint['idle_frame'], endpoint['passes'], endpoint['cleanup_anchor_pass'],\n            endpoint['first_eligible_idle_pass'], endpoint['observed_future_physics_signals']) != (\n            last.physics_frame, last.idle_frame, len(rows), anchor, candidate, count):\n        raise ValueError('actual first-idle frames/ordinals/count mismatch')\n    return dict(schema='phase391-expected-terminal-proof/1', status='EXPECTED_ONLY_FIRST_ACTUAL_ELIGIBLE_IDLE',\n                terminal_policy=TERMINAL_POLICY, cleanup_anchor_pass=anchor, first_eligible_idle_pass=candidate,\n                minimum_future_physics_signals=2, observed_future_physics_signals=count,\n                physics_frame=last.physics_frame, idle_frame=last.idle_frame, passes=len(rows),\n                cleanup=dict(cleanup), no_model_stop_command=True)\n\n\ndef _terminal_cut_matches(value, proof):\n    exact(value, TERMINAL_CUT_KEYS)\n    if value['schema'] != TERMINAL_CONTROL_SCHEMA or value['terminal_policy'] != TERMINAL_POLICY:\n        raise ValueError('terminal receipt/control policy version')\n    for key in TERMINAL_CUT_KEYS[2:]:\n        if _counter(value[key]) != proof[key]:\n            raise ValueError('terminal receipt/control count/ordinal mismatch')\n\n\ndef validate_terminal_receipt(endpoint, clock, receipt, control, validation):\n    \"\"\"Public expected/control join used directly by the actual new host.\"\"\"\n    exact(receipt, TERMINAL_RECEIPT_KEYS)\n    for key in ('source_window_complete', 'clock_closed', 'ui_closed', 'collector_archive_pending'):\n        if receipt[key] is not True:\n            raise ValueError('complete actual source receipt required')\n    if receipt['failed'] is not False or receipt['native_capture_accepted'] is not False:\n        raise ValueError('receipt failure or self native acceptance')\n    proof = validate_terminal_evidence(endpoint, clock, receipt['cleanup'])\n    if _counter(receipt['clock_passes']) != proof['passes']:\n        raise ValueError('receipt actual clock pass count')\n    _terminal_cut_matches(receipt['terminal_cut'], proof)\n    _terminal_dispatch_shape(control, 'FINALIZED')\n    if control['phase'] != 'FINALIZED' or _counter(control['emit_count']) != 1:\n        raise ValueError('actual once FINALIZED dispatch required')\n    for key in ('receiver_available', 'script_emit_return_observed', 'finish_return', 'closed', 'complete', 'clock_closed', 'ui_closed'):\n        if control[key] is not True:\n            raise ValueError('actual terminal BOOL evidence required')\n    for key in ('dispatching', 'native_emit_error_available', 'failed'):\n        if control[key] is not False:\n            raise ValueError('dispatch/native Error/failure evidence')\n    for key in ('script_emit_return', 'native_emit_error', 'first_error', 'diagnostic_error'):\n        if control[key] is not None:\n            raise ValueError('actual NIL/unavailable/no-error evidence')\n    native = control['receiver_id']\n    if type(native) is not str or re.fullmatch('[1-9][0-9]*', native) is None or int(native) > MAX_COUNTER:\n        raise ValueError('actual receiver decimal native identity')\n    if (_counter(control['physics']), _counter(control['idle'])) != (proof['physics_frame'], proof['idle_frame']):\n        raise ValueError('same actual terminal dispatch frames')\n    exact(control['ready_connect'], ('physics', 'idle'))\n    if any(type(control['ready_connect'][key]) is not int or control['ready_connect'][key] != 0 for key in ('physics', 'idle')):\n        raise ValueError('actual SceneTree connection Error values')\n    exact(control['ack'], ('receiver_id', 'physics', 'idle', 'serial'))\n    ack = control['ack']\n    if (ack['receiver_id'] != native or (_counter(ack['physics']), _counter(ack['idle']), _counter(ack['serial']))\n            != (proof['physics_frame'], proof['idle_frame'], 1)):\n        raise ValueError('exact actual acknowledgement identity')\n    _terminal_cut_matches(control['terminal_cut'], proof)\n    # Other collector business fields remain opaque here and are not promoted to input.\n    if type(validation) is not dict or not {'cut', 'full_snapshot_reads', 'terminal_cut', 'native_checks_pass', 'end_barrier'} <= set(validation):\n        raise ValueError('actual collector terminal control subset')\n    exact(validation['cut'], ('physics', 'idle', 'preinternal'))\n    cut = validation['cut']\n    if ((_counter(cut['physics']), _counter(cut['idle'])) != (proof['physics_frame'], proof['idle_frame'])\n            or cut['preinternal'] is not True or type(validation['full_snapshot_reads']) is not int\n            or validation['full_snapshot_reads'] != 1 or validation['native_checks_pass'] is not True\n            or validation['end_barrier'] is not True):\n        raise ValueError('one same-frame preinternal readonly collector cut')\n    _terminal_cut_matches(validation['terminal_cut'], proof)\n    return proof\n\n\ndef validate_terminal_diagnostics(rows):\n    \"\"\"Validate control headers/milestones only; other payloads are opaque.\"\"\"\n    if type(rows) is not list or not 1 <= len(rows) <= 64:\n        raise ValueError('bounded actual source-control rows')\n    keys = ('schema', 'control_sequence', 'site', 'reason', 'physics', 'idle', 'in_physics',\n            'observer_sequence', 'ui_sequence', 'clock_passes', 'payload')\n    milestones = []\n    for index, row in enumerate(rows):\n        exact(row, keys)\n        if row['schema'] != 'phase391-source-control/1' or _counter(row['control_sequence']) != index:\n            raise ValueError('actual diagnostic version/physical sequence')\n        for key in ('physics', 'idle', 'observer_sequence', 'ui_sequence', 'clock_passes'):\n            _counter(row[key])\n        if type(row['in_physics']) is not bool or type(row['site']) is not str or type(row['reason']) is not str:\n            raise ValueError('diagnostic primitive control header')\n        if row['site'] == 'emit_source_idle_cut_once' and row['reason'] in ('EMITTING', 'RETURNED_ACK_CHECKED', 'FINALIZED'):\n            milestones.append(row)\n    if [row['reason'] for row in milestones] != ['EMITTING', 'RETURNED_ACK_CHECKED', 'FINALIZED'] or milestones[-1] is not rows[-1]:\n        raise ValueError('unique ordered terminal milestones and final EOF required')\n    final = rows[-1]\n    exact(final['payload'], ('control',))\n    control = final['payload']['control']\n    _terminal_dispatch_shape(control, 'FINALIZED')\n    if final['clock_passes'] != control['terminal_cut']['first_eligible_idle_pass']:\n        raise ValueError('FINALIZED diagnostic/terminal ordinal')\n    if final['in_physics'] is not False or (final['physics'], final['idle']) != (control['physics'], control['idle']):\n        raise ValueError('actual idle FINALIZED control frame')\n    # Intermediate milestone contexts are SOURCE-control evidence, not business state.\n    for row, phase in zip(milestones[:2], ('EMITTING', 'RETURNED')):\n        payload = row['payload']\n        exact(payload, ('control', 'private_connections', 'tree_connections') if phase == 'EMITTING' else ('control',))\n        value = payload['control']\n        _terminal_dispatch_shape(value, phase)\n        if row['in_physics'] is not False or row['clock_passes'] != final['clock_passes'] or row['observer_sequence'] != final['observer_sequence'] or row['ui_sequence'] != final['ui_sequence']:\n            raise ValueError('same-stack diagnostic phase/counters')\n        _binding_same_source(value['terminal_cut'], control['terminal_cut'])\n        if value['phase'] != phase or value['emit_count'] != 1 or type(value['emit_count']) is not int:\n            raise ValueError('actual synchronous emission phase')\n        if (row['physics'], row['idle'], value['physics'], value['idle'], value['receiver_id'], value['terminal_cut']) != (\n                final['physics'], final['idle'], control['physics'], control['idle'], control['receiver_id'], control['terminal_cut']):\n            raise ValueError('same-stack milestone identities')\n        if value['native_emit_error_available'] is not False or value['native_emit_error'] is not None or value['script_emit_return'] is not None:\n            raise ValueError('actual script NIL, native Error unavailable')\n        if phase == 'EMITTING':\n            _terminal_emitting_connections(payload, value)\n            if value['dispatching'] is not True or value['script_emit_return_observed'] is not False or value['ack'] is not None:\n                raise ValueError('precall synchronous bracket')\n        elif value['dispatching'] is not False or value['script_emit_return_observed'] is not True or value['ack'] != control['ack']:\n            raise ValueError('returned actual NIL/ack bracket')\n    return control\n\n\ndef _terminal_dispatch_shape(control, phase):\n    exact(control, TERMINAL_DISPATCH_KEYS)\n    if control['phase'] != phase or _counter(control['emit_count']) != 1:\n        raise ValueError('exact actual dispatch phase/once')\n    for key in ('receiver_available', 'closed', 'complete', 'clock_closed', 'ui_closed'):\n        if control[key] is not True:\n            raise ValueError('complete actual dispatch BOOL')\n    for key in ('native_emit_error_available', 'failed'):\n        if control[key] is not False:\n            raise ValueError('dispatch failure/native Error')\n    for key in ('native_emit_error', 'script_emit_return', 'first_error', 'diagnostic_error'):\n        if control[key] is not None:\n            raise ValueError('dispatch NIL/clean evidence')\n    _terminal_native_id(control['receiver_id'])\n    _counter(control['physics']); _counter(control['idle'])\n    exact(control['ready_connect'], ('physics', 'idle'))\n    if any(type(v) is not int or v != 0 for v in control['ready_connect'].values()):\n        raise ValueError('actual ready connection return values')\n    exact(control['terminal_cut'], TERMINAL_CUT_KEYS)\n    cut = control['terminal_cut']\n    if cut['schema'] != TERMINAL_CONTROL_SCHEMA or cut['terminal_policy'] != TERMINAL_POLICY:\n        raise ValueError('exact terminal control policy')\n    for key in TERMINAL_CUT_KEYS[2:]:\n        _counter(cut[key])\n    if cut['minimum_future_physics_signals'] != 2 or cut['observed_future_physics_signals'] < 2 or cut['cleanup_anchor_pass'] >= cut['first_eligible_idle_pass']:\n        raise ValueError('terminal control ordinal/count domain')\n    if control['dispatching'] is not (phase == 'EMITTING') or control['script_emit_return_observed'] is not (phase != 'EMITTING'):\n        raise ValueError('actual synchronous dispatch bracket')\n    if phase == 'EMITTING':\n        if control['ack'] is not None:\n            raise ValueError('early acknowledgement')\n    else:\n        exact(control['ack'], ('receiver_id', 'physics', 'idle', 'serial'))\n        ack = control['ack']\n        if ack['receiver_id'] != control['receiver_id'] or (_counter(ack['physics']), _counter(ack['idle']), _counter(ack['serial'])) != (control['physics'], control['idle'], 1):\n            raise ValueError('actual same-frame exact acknowledgement')\n    if phase == 'FINALIZED':\n        if control['finish_return'] is not True:\n            raise ValueError('actual finalizer BOOLtrue')\n    elif control['finish_return'] is not None:\n        raise ValueError('early finalizer return marker')\n\n\ndef _terminal_native_id(value):\n    if type(value) is not str or re.fullmatch('[1-9][0-9]*', value) is None or int(value) > MAX_COUNTER:\n        raise ValueError('actual decimal native identity')\n    return value\n\n\ndef _terminal_connection_table(table):\n    exact(table, ('complete_seen', 'row_count', 'rows', 'reason'))\n    if table['complete_seen'] is not True or table['reason'] is not None or type(table['rows']) is not list or _counter(table['row_count']) != len(table['rows']) or len(table['rows']) > 1024:\n        raise ValueError('complete bounded actual connection table')\n    keys = ('ordinal', 'source_has_key', 'source_variant_type', 'source_available', 'source_native_id',\n            'target_has_key', 'target_variant_type', 'target_available', 'target_native_id', 'method', 'flags', 'binds_count', 'binds')\n    for index, row in enumerate(table['rows']):\n        exact(row, keys)\n        if _counter(row['ordinal']) != index or type(row['method']) is not str:\n            raise ValueError('physical connection ordinal/method')\n        for prefix in ('source', 'target'):\n            if row[prefix + '_has_key'] is not True or row[prefix + '_available'] is not True or type(row[prefix + '_variant_type']) is not int or row[prefix + '_variant_type'] not in (2, 17):\n                raise ValueError('actual connection source/target availability')\n            _terminal_native_id(row[prefix + '_native_id'])\n        _counter(row['flags'])\n        if type(row['binds']) is not list or _counter(row['binds_count']) != len(row['binds']) or len(row['binds']) > 64:\n            raise ValueError('actual connection binds count')\n    return table['rows']\n\n\ndef _terminal_emitting_connections(payload, control):\n    private = _terminal_connection_table(payload['private_connections'])\n    tree = _terminal_connection_table(payload['tree_connections'])\n    if len(private) != 1:\n        raise ValueError('unique private receiver')\n    row = private[0]\n    if row['target_native_id'] != control['receiver_id'] or row['method'] != 'on_idle_source_cut' or row['flags'] != 0 or row['binds_count'] != 0:\n        raise ValueError('private receiver identity/flags/binds')\n    sink = [r for r in tree if r['target_native_id'] == row['source_native_id'] and r['method'] == 'clock_idle_signal']\n    if len(sink) != 1 or sink[0]['source_native_id'] != control['receiver_id'] or sink[0]['flags'] != 0 or sink[0]['binds_count'] != 0:\n        raise ValueError('actual unique SceneTree sink connection')\n    if any(r['target_native_id'] == control['receiver_id'] and r['method'] == 'on_idle_source_cut' for r in tree):\n        raise ValueError('obsolete SceneTree collector callback')",
+      "after_positions": [
+        165326
+      ],
+      "before": "def validate_terminal_evidence(endpoint, clock, cleanup):\n    \"\"\"Expected-only finite-cut proof. Never a model termination input.\"\"\"\n    exact(endpoint, ('schema', 'phase', 'physics_frame', 'idle_frame', 'passes', 'two_future_physics_signals', 'fx_exact_comparison'))\n    if endpoint['schema'] != 'phase111-fixed-endpoint/1' or endpoint['phase'] != 'idle_pre_internal_flush' or type(endpoint['two_future_physics_signals']) is not int or endpoint['two_future_physics_signals'] != 2 or endpoint['fx_exact_comparison'] != 'NOT_EVALUATED_REQUIRES_MODEL':\n        raise ValueError('finite terminal source-cut schema')\n    for name in ('physics_frame', 'idle_frame', 'passes'):\n        _counter(endpoint[name])\n    final = clock.passes[-1]\n    if final.kind != 'idle' or (endpoint['physics_frame'], endpoint['idle_frame'], endpoint['passes']) != (final.physics_frame, final.idle_frame, len(clock.passes)):\n        raise ValueError('terminal last actual idle cut/trailing')\n    exact(cleanup, ('physics_frame', 'idle_frame', 'is_in_physics_frame'))\n    _counter(cleanup['physics_frame']); _counter(cleanup['idle_frame'])\n    if type(cleanup['is_in_physics_frame']) is not bool:\n        raise ValueError('actual cleanup phase BOOL')\n    kind = 'physics' if cleanup['is_in_physics_frame'] else 'idle'\n    positions = [i for i, p in enumerate(clock.passes) if (p.kind, p.physics_frame, p.idle_frame) == (kind, cleanup['physics_frame'], cleanup['idle_frame'])]\n    if len(positions) == 1:\n        tail = clock.passes[positions[0] + 1:]\n    elif not positions and kind == 'idle' and (cleanup['physics_frame'], cleanup['idle_frame']) == (clock.physics_frame, clock.idle_frame):\n        tail = clock.passes\n    else:\n        raise ValueError('cleanup actual clock association')\n    if sum(p.kind == 'physics' for p in tail) != 2:\n        raise ValueError('exactly two future physics signals')\n    second = max(i for i, p in enumerate(tail) if p.kind == 'physics')\n    if len(tail) != second + 2 or tail[-1].kind != 'idle':\n        raise ValueError('first eligible idle-preinternal only; EOF/trailing rejected')\n    return dict(status='EXPECTED_ONLY_TWO_FUTURE_PHYSICS_IDLE_PREINTERNAL', no_model_stop_command=True)\n",
+      "occurrences": 1
+    },
+    {
+      "after": "schema = SimpleNamespace(\n    validate_terminal_evidence=validate_terminal_evidence, validate_terminal_receipt=validate_terminal_receipt,\n    validate_terminal_diagnostics=validate_terminal_diagnostics,\n",
+      "after_positions": [
+        184529
+      ],
+      "before": "schema = SimpleNamespace(\n",
+      "occurrences": 1
+    }
+  ],
+  "inverse": "EXACT_COMPLETE_BYTES"
+}

@@ -1,0 +1,121 @@
+{
+  "added_functions": [
+    "source_terminal_receipt_matches"
+  ],
+  "after": {
+    "path": "data/phase391-terminal-source/collector.gd",
+    "sha256": "f05bbf6b0e7277b5a342553d3a8d3c842f3efa6526f0b85948bd003837ac74ce",
+    "size": 64928
+  },
+  "before": {
+    "path": "data/phase370-oracle-source/collector.gd",
+    "sha256": "33f2d20dee6364dd26a89a15a00d506ca96095d8ec661c7c1693aecb58b6acf7",
+    "size": 61404
+  },
+  "changed_functions": [
+    "finish_source_cut",
+    "on_idle_source_cut"
+  ],
+  "check": "GD_FUNCTION_SOURCE_BYTES",
+  "conserved_functions": [
+    "_initialize",
+    "after_activate",
+    "attach_source_listener",
+    "check_barrier",
+    "check_source_listener_order",
+    "collector_control_bound_value",
+    "collector_control_float_bits",
+    "collector_control_rows",
+    "collector_control_target",
+    "collector_diag_valid",
+    "collector_diagnostic_fallback",
+    "config_matches_source",
+    "encode",
+    "ensure_source_window",
+    "event_row",
+    "exact_keys",
+    "fail",
+    "fail_write_cap",
+    "fields",
+    "frames",
+    "freeze_events",
+    "histories",
+    "integer_between",
+    "native_ids",
+    "observe",
+    "observe_player_setup",
+    "observer7_precondition",
+    "old_player_exit_valid",
+    "on_combat_end",
+    "on_combat_start",
+    "on_shop_closed",
+    "phase",
+    "place_player_items",
+    "player_input_valid",
+    "player_membership_unchanged",
+    "player_setup_settled",
+    "player_spatial_evidence",
+    "preflight",
+    "read_player_fixture",
+    "register_inventory",
+    "rules_are_default",
+    "run_context",
+    "same_id_set",
+    "serializer_selftest",
+    "set_stage",
+    "setup_step",
+    "slot_spec",
+    "source_connection_target",
+    "source_control_record",
+    "source_control_snapshot",
+    "source_cut_reject_collector",
+    "source_is",
+    "source_window_reject",
+    "stable_snapshot",
+    "start_controlled_combat",
+    "state_snapshot",
+    "timeout_budget_selftest",
+    "timeout_budget_valid",
+    "write_json",
+    "write_jsonl",
+    "write_source_bytes"
+  ],
+  "edits": [
+    {
+      "after": "if not source_terminal_receipt_matches(receipt, control) or not observer.source_terminal_current():\n\t\treturn source_cut_reject_collector(\"CUT_FIRST_ACTUAL_ELIGIBLE_IDLE\")",
+      "after_positions": [
+        46685
+      ],
+      "before": "if receipt.cleanup == null or Engine.get_physics_frames() != receipt.cleanup.physics_frame + 2:\n\t\treturn source_cut_reject_collector(\"CUT_TWO_FUTURE_PHYSICS\")",
+      "occurrences": 1
+    },
+    {
+      "after": "\"collector_source\": \"phase391-single-King-oracle-only\"",
+      "after_positions": [
+        47630
+      ],
+      "before": "\"collector_source\": \"phase362-single-King-oracle-only\"",
+      "occurrences": 1
+    },
+    {
+      "after": "\"full_snapshot_reads\": 1, \"terminal_cut\": receipt.terminal_cut.duplicate(true)}",
+      "after_positions": [
+        48219
+      ],
+      "before": "\"full_snapshot_reads\": 1}",
+      "occurrences": 1
+    },
+    {
+      "after": "\tif not source_terminal_receipt_matches(source_cut_payload.receipt, control) or not observer.source_terminal_current():\n\t\treturn source_cut_reject_collector(\"CUT_FINALIZER_TERMINAL_IDENTITY\")\n\tsource_cut_finish_entered = true\n",
+      "after_positions": [
+        56197
+      ],
+      "before": "\tsource_cut_finish_entered = true\n",
+      "occurrences": 1
+    },
+    {
+      "suffix": "\n# SOURCE template: control-only checks; SceneTree owner, no Node-only get_tree API.\nfunc source_terminal_receipt_matches(receipt, control):\n\tif typeof(receipt) != TYPE_DICTIONARY or typeof(control) != TYPE_DICTIONARY or not receipt.has(\"terminal_cut\") or not control.has(\"terminal_cut\") or not receipt.has(\"cleanup\") or receipt.cleanup == null:\n\t\treturn false\n\tif not exact_keys(receipt, [\"source_window_complete\", \"failed\", \"clock_closed\", \"ui_closed\", \"cleanup\", \"clock_passes\", \"native_capture_accepted\", \"collector_archive_pending\", \"terminal_cut\"]) or not exact_keys(control, [\"phase\", \"dispatching\", \"emit_count\", \"receiver_available\", \"receiver_id\", \"physics\", \"idle\", \"ack\", \"script_emit_return\", \"script_emit_return_observed\", \"native_emit_error_available\", \"native_emit_error\", \"finish_return\", \"failed\", \"closed\", \"complete\", \"clock_closed\", \"ui_closed\", \"first_error\", \"ready_connect\", \"diagnostic_error\", \"terminal_cut\"]):\n\t\treturn false\n\tfor key in [\"source_window_complete\", \"clock_closed\", \"ui_closed\", \"collector_archive_pending\"]:\n\t\tif typeof(receipt[key]) != TYPE_BOOL or not receipt[key]:\n\t\t\treturn false\n\tfor key in [\"failed\", \"native_capture_accepted\"]:\n\t\tif typeof(receipt[key]) != TYPE_BOOL or receipt[key]:\n\t\t\treturn false\n\tfor key in [\"physics\", \"idle\", \"emit_count\"]:\n\t\tif typeof(control[key]) != TYPE_INT:\n\t\t\treturn false\n\tvar keys = [\"schema\", \"terminal_policy\", \"cleanup_anchor_pass\", \"first_eligible_idle_pass\", \"minimum_future_physics_signals\", \"observed_future_physics_signals\"]\n\tfor value in [receipt.terminal_cut, control.terminal_cut]:\n\t\tif typeof(value) != TYPE_DICTIONARY or value.size() != keys.size():\n\t\t\treturn false\n\t\tfor key in keys:\n\t\t\tif not value.has(key):\n\t\t\t\treturn false\n\t\tif typeof(value.schema) != TYPE_STRING or value.schema != \"phase390-terminal-cut-control/1\" or typeof(value.terminal_policy) != TYPE_STRING or value.terminal_policy != \"first-actual-idle-after-at-least-two-future-physics/1\":\n\t\t\treturn false\n\t\tfor key in [\"cleanup_anchor_pass\", \"first_eligible_idle_pass\", \"minimum_future_physics_signals\", \"observed_future_physics_signals\"]:\n\t\t\tif typeof(value[key]) != TYPE_INT or value[key] < 0:\n\t\t\t\treturn false\n\t\tif value.minimum_future_physics_signals != 2 or value.observed_future_physics_signals < 2 or value.cleanup_anchor_pass >= value.first_eligible_idle_pass:\n\t\t\treturn false\n\tfor key in keys:\n\t\tif typeof(receipt.terminal_cut[key]) != typeof(control.terminal_cut[key]) or receipt.terminal_cut[key] != control.terminal_cut[key]:\n\t\t\treturn false\n\tvar cleanup = receipt.cleanup\n\tif typeof(cleanup) != TYPE_DICTIONARY or cleanup.size() != 3 or not cleanup.has(\"physics_frame\") or not cleanup.has(\"idle_frame\") or not cleanup.has(\"is_in_physics_frame\"):\n\t\treturn false\n\tif typeof(cleanup.physics_frame) != TYPE_INT or typeof(cleanup.idle_frame) != TYPE_INT or typeof(cleanup.is_in_physics_frame) != TYPE_BOOL or typeof(receipt.clock_passes) != TYPE_INT:\n\t\treturn false\n\tif receipt.terminal_cut.first_eligible_idle_pass != receipt.clock_passes or receipt.terminal_cut.observed_future_physics_signals != Engine.get_physics_frames() - cleanup.physics_frame or Engine.is_in_physics_frame():\n\t\treturn false\n\treturn control.physics == Engine.get_physics_frames() and control.idle == Engine.get_idle_frames()\n"
+    }
+  ],
+  "inverse": "EXACT_COMPLETE_BYTES"
+}
