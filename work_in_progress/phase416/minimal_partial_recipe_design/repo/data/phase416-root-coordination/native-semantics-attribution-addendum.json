@@ -1,0 +1,28 @@
+{
+  "schema": "phase416-root-native-semantics-attribution-addendum/1",
+  "read_pins": [
+    {
+      "path": "data/phase027-implementation-design/source-ledger.json",
+      "size": 339393,
+      "sha256": "fe3371e1f309d3d418e27ecb7045f74b0c4fc36530a2aff3c3aef1df4b111ca2"
+    },
+    {
+      "path": "data/phase027-implementation-design/final-receipt.json",
+      "size": 2549,
+      "sha256": "0473f3bff13a0c8c205ae76c528088efca1490679ed78da6da9dcf8c88437833"
+    },
+    {
+      "path": "data/phase026-timer-numeric-independent-postrun/acceptance-summary.json",
+      "size": 4490,
+      "sha256": "888c3f5b8882dce9d2ca21acebeee6be2cdadb32be2fb607177b69326c80597f"
+    }
+  ],
+  "findings": [
+    "027 Timer.cpp descriptor explicitly VERSION_MATCHED_UPSTREAM_NOT_CUSTOM_BINARY_BUILD_PROOF;URL3.6.2-stable",
+    "026 accepted fixed fresh numeric matrix uses3.6.2stable/custom_build/hashunknown;private countdown not directly observed;supports source arithmetic only"
+  ],
+  "interpretation": "Neither full custom build reproduction nor actual private -1 direct measurement established by these finite metadata. Existing receipt can support bounded native-version/numeric association with its limits. No admission/promotion.",
+  "raw_trajectory_expected_reads": 0,
+  "new_native_calls": 0,
+  "new_model_calls": 0
+}
