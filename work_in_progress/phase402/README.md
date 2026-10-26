@@ -1,0 +1,3 @@
+# Independent attempt06 bounded control review preparation
+
+Eight finite obligations are sealed before new capture reads. Future at most1 actual read_terminal_expected_controls call on exactly six descriptor-bound expected/control files;196 archived source identities, process/partition/compaction controls and12lawful filenames/opaque hashes remain separately scoped. No model/inputbuild/full business decoding, current pool or new process sweep. No assumed tail length. Preparation initial syntax-only sealer error is retained; no SUT ran during preparation. Actual completed-run Root release and review results are distinct, pending at this preparation cut. Formal bounded75;King unadmitted.

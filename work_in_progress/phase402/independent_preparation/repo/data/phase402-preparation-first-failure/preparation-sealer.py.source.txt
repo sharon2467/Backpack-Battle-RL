@@ -1,0 +1,86 @@
+"""Preparation only: repository SOURCE/401 plan metadata, no native run access."""
+import ast,hashlib,json,stat
+from pathlib import Path
+R=Path(__file__).absolute().parents[1];D=R/'data/phase402-independent-attempt06-preparation';consumed={}
+def desc(p):
+ assert p.is_relative_to(R)
+ s=p.lstat();assert stat.S_ISREG(s.st_mode)and s.st_nlink==1 and not any(q.is_symlink()for q in(p,*p.parents))
+ raw=p.read_bytes();t=p.lstat();assert(s.st_dev,s.st_ino,s.st_size,s.st_mtime_ns,s.st_ctime_ns)==(t.st_dev,t.st_ino,t.st_size,t.st_mtime_ns,t.st_ctime_ns)
+ v=dict(path=str(p.relative_to(R)),size=len(raw),sha256=hashlib.sha256(raw).hexdigest());consumed[v['path']]=v;return v
+
+def check(row):assert desc(R/row['path'])=={k:row[k]for k in('path','size','sha256')}
+def load(path):p=R/path;desc(p);return json.loads(p.read_text())
+def save(p,v):
+ with p.open('x')as f:f.write(json.dumps(v,indent=2,sort_keys=True,allow_nan=False)+'\n')
+def main():
+ assert not D.exists()
+ config=load('data/phase401-root-native-attempt06/oracle-acceptance.json');plan=load('data/phase401-root-native-attempt06/plan.stdout');inv=load('data/phase401-root-native-attempt06/plan-invocation.json');accept=load('data/phase401-root-native-attempt06/source-accepted.json');intent=load('data/phase401-root-native-attempt06/intent.json')
+ refs={k:desc(R/path)for k,path in [('config','data/phase401-root-native-attempt06/oracle-acceptance.json'),('plan','data/phase401-root-native-attempt06/plan.stdout'),('plan_invocation','data/phase401-root-native-attempt06/plan-invocation.json'),('plan_stderr','data/phase401-root-native-attempt06/plan.stderr'),('source_accepted','data/phase401-root-native-attempt06/source-accepted.json'),('intent','data/phase401-root-native-attempt06/intent.json')]}
+ assert refs['config']==dict(path=refs['config']['path'],size=4460,sha256='6b8d469256489175d7e30a503caf21c7209b567c6b18f4ae436cb465d2730f2c')
+ assert plan['root_config']==refs['config']and plan['schema']=='phase391-oracle-readonly-plan/1'and inv['mode']=='plan'and inv['returncode']==0 and inv['timeout']is False
+ assert plan['run']=='/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06'and plan['case_id']==config['case_id']=='NATIVE-027-KING-A'and plan['attempt']==config['attempt']==6
+ for key in('models_allowed','input_builds_allowed','expected_comparison_allowed'):assert type(config[key])is int and config[key]==0
+ assert plan['source_owner']==config['source_owner']==accept['source_owner']and plan['freeze']==config['source_freeze']==accept['source_freeze']
+ for key in('source_owner','source_freeze','host','active_source_tuple'):check(config[key])
+ for key in('spec','wrapper'):check(intent[key])
+ freeze=load(config['source_freeze']['path']);owner=load(config['source_owner']['path']);drivers=plan['execute_payloads']['driver_sources']
+ assert len(drivers)==len({r['path']for r in drivers})==196
+ for row in drivers:check(row)
+ source_index={r['path']:r for r in drivers}
+ for path,size,sha in [('tests/phase363_oracle_storage.py',15496,'ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc'),('data/phase363-oracle-repair-source/source-owner.json',2546,'0806b38ffd797a16feee0a14d4ed7538d79997e32cc8b27dca2314eb0d400d51')]:assert source_index[path]==dict(path=path,size=size,sha256=sha)
+ union={r['path']:r for r in freeze['files']}
+ for row in owner['files']:
+  assert row['path']not in union or union[row['path']]==row;union[row['path']]=row
+ assert all(source_index.get(k)==v for k,v in union.items())
+ assert plan['execute_payloads']['install_limits']==dict(files=78,bytes=815198)
+ actual_install=[r['source']for r in plan['execute_payloads']['patches']]+list(plan['execute_payloads']['artifacts'].values())
+ assert len(actual_install)==78 and sum(r['size']for r in actual_install)==815198
+ assert plan['budget']==dict(reserve=4294967296,attempt=1610612736,free=6561099776,required=5905580032)
+ hostpath=config['host']['path'];host=(R/hostpath).read_text();tree=ast.parse(host);functions={n.name:n for n in tree.body if isinstance(n,ast.FunctionDef)}
+ helper=functions['read_terminal_expected_controls'];assert ast.unparse(helper.args)=='source_root, freeze, capture'
+ captures=[]
+ for n in ast.walk(helper):
+  if isinstance(n,ast.Call)and isinstance(n.func,ast.Name)and n.func.id in('obj','rows')and n.args and isinstance(n.args[0],ast.Constant):captures.append((n.lineno,n.args[0].value))
+ names=[name for _,name in sorted(captures)]
+ assert names==['king-capture-endpoint.json','observer7-status.json','validation.json','king-clock-checkpoint.json','king-clock-passes.jsonl','source-window-diagnostic.jsonl']
+ lawful=next(ast.literal_eval(n.value)for n in tree.body if isinstance(n,ast.Assign)and any(isinstance(t,ast.Name)and t.id=='LAWFUL'for t in n.targets));assert len(lawful)==12
+ execute=functions['execute'];calls=[n for n in ast.walk(execute)if isinstance(n,ast.Call)]
+ source_map_line=next(n.lineno for n in calls if isinstance(n.func,ast.Name)and n.func.id=='write_new'and n.args and isinstance(n.args[0],ast.BinOp)and isinstance(n.args[0].right,ast.Constant)and n.args[0].right.value=='driver/source-map.json')
+ process_lines=sorted(n.lineno for n in calls if isinstance(n.func,ast.Name)and n.func.id=='execute_process');assert source_map_line<min(process_lines)
+ check(freeze['schema_module']);schematext=(R/freeze['schema_module']['path']).read_text();schematree=ast.parse(schematext)
+ maxpasses=next(ast.literal_eval(n.value)for n in schematree.body if isinstance(n,ast.Assign)and any(isinstance(t,ast.Name)and t.id=='MAX_PASSES'for t in n.targets));assert maxpasses==200000
+ graph=[];seen=set();todo=[hostpath,freeze['schema_module']['path']]
+ while todo:
+  path=todo.pop()
+  if path in seen:continue
+  seen.add(path);assert path in source_index;check(source_index[path]);st=ast.parse((R/path).read_text());mods=[]
+  for n in ast.walk(st):
+   if isinstance(n,ast.Import):mods.extend(a.name for a in n.names)
+   elif isinstance(n,ast.ImportFrom)and n.module:mods.append(n.module)
+  local=sorted({'tests/'+m+'.py'for m in mods if(R/'tests'/(m+'.py')).is_file()})
+  assert all(p in source_index for p in local);graph.append(dict(path=path,local_imports=local));todo.extend(local)
+ source_functions=[]
+ for name in('read_terminal_expected_controls','load_terminal_schema','execute_driver_descriptors','execute'):
+  n=functions[name];source_functions.append(dict(name=name,line=n.lineno,end_line=n.end_lineno,arguments=ast.unparse(n.args),AST_sha256=hashlib.sha256(ast.dump(n,include_attributes=False).encode()).hexdigest(),text=ast.get_source_segment(host,n)))
+ controls=[dict(name=name,max_bytes=67108864 if name=='king-clock-passes.jsonl'else1048576,format='JSONL'if name.endswith('.jsonl')else'JSON_OBJECT',row_cap=maxpasses if name=='king-clock-passes.jsonl'else64 if name=='source-window-diagnostic.jsonl'else None,row_bytes=1048576 if name=='king-clock-passes.jsonl'else262144 if name=='source-window-diagnostic.jsonl'else None)for name in names]
+ cases=[
+ dict(id='A01',obligation='Completed-run/real Root release and fixed source identity',future_inputs='Genuine completed401 execution result and separately pinned Root bounded-read release; fixed real run/capture paths.',expected='Exact fixed config/plan/source tuple; one completed execute; explicit control-only permission. No current budget/READY/physical claim inferred from old plan.',SUT_calls_max=0),
+ dict(id='A02',obligation='Actual196 driver archive and pre-Godot source association',future_inputs='Actual output/driver/source-map.json, all196 ordinary archived members, saved plan/provenance/host control records.',expected='Exact source descriptor set and archived bytes equal actual plan196; old363storage+owner present. Before-process relationship supported by pinned executed source control-flow plus actual provenance, not mtimes alone.',SUT_calls_max=0),
+ dict(id='A03',obligation='One real six-file expected/control terminal join',future_inputs='Exactly the six declared control leaves at Root-authorized completed capture; pinned actual391 host/freeze/schema.',expected='Actual helper/schema accepts first actual eligible idle after at least2 future physics, jointly matching endpoint/receipt/full clock/FINALIZED/validation. Actual tail length derived, never preset to2or8. First failure preserved, no retry.',SUT_calls_max=1),
+ dict(id='A04',obligation='Lawful12 byte presence and bounded validation meaning',future_inputs='Saved partition identities and actual lawful filename/hash/size only; validation control subset through A03.',expected='All12 exact ordinary byte descriptors and complete required files; no business/event/state/UI/RNG decode or input/model admission. Presence alone never acceptance.',SUT_calls_max=0),
+ dict(id='A05',obligation='Parse/native process controls and lifecycle limits',future_inputs='Actual saved parse/native process results plus actual host invocation result after completion.',expected='Typed exit/abort/timeout/counters and recorded cleanup facts consistent; distinguish process_clean_exit from exit0, TERM, live_remaining, zombies, PID reuse and scoped gaps. No new /proc sweep.',SUT_calls_max=0),
+ dict(id='A06',obligation='Real partition/compaction/READY control outcomes',future_inputs='Actual source-partition/process_result/pool-provenance and success-only compaction bundle-manifest/pool-roundtrip/eligibility; genuine Root state/result receipts if released.',expected='Exact capture_complete/primary/secondary/sourcechanges and successful stored logical-overlay proof bind actualrun/bundle/provenance. Recorded READY separate from fresh physical check. Do not call archival/check_ready or inventory pool.',SUT_calls_max=0),
+ dict(id='A07',obligation='Opaque logs and bounded first failure frame',future_inputs='Actual log/source/capture byte identities; on failed run only released host/process metadata and collector/observer failure controls within source caps.',expected='Hash logs and business bytes without parsing. If execution failed, seal failure-control frame and stop without A03 unless separately authorized; if A03 fails, preserve exact first trace/input and stop. No expanded diagnosis/retry.',SUT_calls_max=0),
+ dict(id='A08',obligation='Final immutable source/input/output closure and explicit limits',future_inputs='Post-read actual source pins, actual consumed-input descriptors and ordinary result owner with invocation/error trace.',expected='Owner covers every new ordinary artifact and exact evidence binding; counters distinguish max1 top helper/nested schema imports, all model/inputbuild/native/restore/READY calls0. King/formal75 and closed356/361 remain unchanged.',SUT_calls_max=0)]
+ counters={k:0 for k in('SUT_imports','SUT_calls','terminal_helper_calls','active_run_reads','actual_capture_reads','run_inventory','pool_reads','proc_inspection','Game','Godot','native','models','FrameDriver','RNG','inputbuild','projection','expected_business_semantic_reads','restore','READY','runner_generated')}
+ D.mkdir()
+ evidence=dict(schema='phase402-preparation-SOURCE-plan-evidence/1',references=refs,source_freeze=config['source_freeze'],execution_source_owner=config['source_owner'],actual_host=config['host'],schema_module=freeze['schema_module'],active_source_tuple=config['active_source_tuple'],plan_driver_descriptors=drivers,plan_driver_count=196,plan_driver_bytes=sum(r['size']for r in drivers),source_union_count=len(union),verified_repository_descriptor_count=len(consumed),verified_repository_descriptors=[consumed[k]for k in sorted(consumed)],actual_local_import_graph=graph,source_functions=source_functions,driver_source_map_line=source_map_line,first_process_call_line=min(process_lines),source_order_only_not_actual_archive_proof=True,plan_observations=dict(case_id=plan['case_id'],attempt=6,run_provenance_only=plan['run'],install_files=78,install_bytes=815198,driver_descriptors=196,free_at_plan=6561099776,required_at_plan=5905580032,plan_elapsed_seconds=inv['elapsed_seconds'],plan_exit_code=0,current_budget_claim=False,actual_archive_read=False),actual_counts=counters)
+ save(D/'source-evidence.json',evidence)
+ contract=dict(schema='phase402-bounded-attempt06-control-preparation/1',status='PREPARED_NOT_EXECUTED_WAIT_ROOT_COMPLETED_ATTEMPT06_RELEASE',spec=desc(R/'docs/phase402_independent_attempt06_control_preparation_spec.md'),source_evidence=desc(D/'source-evidence.json'),logical_cases=8,cases=cases,maximum_terminal_helper_calls=1,actual_API=dict(module=config['host'],function='read_terminal_expected_controls',signature='(source_root, freeze, capture)',return_schema='phase391-host-terminal-control-proof/1',source_freeze=config['source_freeze'],source_schema=freeze['schema_module']),control_read_allowlist=controls,lawful_twelve_names_bytes_only=list(lawful),source_driver_expected_count=196,source_driver_expected_descriptors=drivers,source_plan=refs['plan'],fixed_run_path_provenance_only=plan['run'],actual_run_status_independently_observed=None,actual_Root_read_release=None,actual_capture_path=None,actual_control_descriptors=None,future_bindings_pending=['Real completed Root execute result and separately pinned bounded-read release','Explicit actual capture/control and run metadata descriptors/read allowset','Actual196 archived member map and physical byte identities','Actual process/partition/compaction/READY controls and permitted opaque log identities','One-shot execution code/input/expected/output owner before any helper import/call'],failure_control_caps={'collector-first-failure.json':65536,'observer7_failure.json':4096},failure_branch='Record genuine execution failure first; preserve bounded controls and stop. No automatic data expansion or join of missing files.',success_branch='Only after Root release and eligibility checks, invoke actual helper once; nested schema calls counted separately. Any failure preserves first evidence and stops.',prohibited_calls=['collect_capture_metadata','rename_capture','execute','plan','archive_streaming','check_ready','model/inputbuild/projection functions'],no_tail_length_expected_constant=True,no_model_or_King_admission=True,actual_counts=counters,no_more_writes=True)
+ save(D/'contract.json',contract)
+ save(D/'preparation-result.json',dict(schema='phase402-independent-preparation-result/1',status=contract['status'],contract=desc(D/'contract.json'),source_evidence=desc(D/'source-evidence.json'),logical_cases=8,max_future_terminal_helper_calls=1,actual_counts=counters,active_run_not_opened=True,no_RUNTIME_acceptance_claim=True,no_more_writes=True))
+ leaves=sorted(p for p in D.iterdir()if p.is_file())+[Path(__file__).absolute(),R/'docs/phase402_independent_attempt06_control_preparation_spec.md'];rows=[desc(p)for p in sorted(leaves)]
+ save(D/'owned-files.json',dict(schema='phase402-independent-preparation-owner/1',files=rows,leaf_count=len(rows),byte_count=sum(r['size']for r in rows),no_more_writes=True))
+ for row in rows:check(row)
+ print(json.dumps(dict(status=contract['status'],owner=desc(D/'owned-files.json'),contract=desc(D/'contract.json'),files=len(rows),bytes=sum(r['size']for r in rows),driver_sources=196,logical_cases=8,SUT_calls=0,run_reads=0)))
+if __name__=='__main__':main()
