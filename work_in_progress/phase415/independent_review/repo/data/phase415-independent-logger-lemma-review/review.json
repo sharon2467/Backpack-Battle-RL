@@ -1,0 +1,129 @@
+{
+  "EXPECTED_reads": 0,
+  "King_admitted": false,
+  "accepted_scope": "414 local-body and conditional scalar history-effect lemma only",
+  "actual_phase": 415,
+  "audit_calls": 0,
+  "baseline_metadata_explicit_writes": 0,
+  "bundle_allowed": false,
+  "evidence": {
+    "mechanical": {
+      "path": "data/phase415-independent-logger-lemma-review/mechanical-evidence.json",
+      "sha256": "2ea50b2b2589efaf6d4164b9953d799ad0daabda8ec1f457b54d65bc33b0e00b",
+      "size": 10611
+    },
+    "spec": {
+      "path": "docs/phase415_independent_logger_lemma_review_spec.md",
+      "sha256": "825ebbdee11396512f1b7daeecb30461d67136732ad8ba033e3194ce8063b71b",
+      "size": 1818
+    }
+  },
+  "findings": [
+    {
+      "anchors": [
+        "logger.logItemState"
+      ],
+      "claim": "logItemState reads itemStateHistories[item] and dynamically dispatches addValue(eventNum,state). No assignment, explicit target setter, timer API, yield, signal or deferred call in this local body.",
+      "id": "415-F01",
+      "status": "ACCEPTED_LOCAL_SOURCE_ONLY"
+    },
+    {
+      "anchors": [
+        "StatHistory.addValue",
+        "Util.equals"
+      ],
+      "claim": "addValue short-circuits Util.equals on empty values; otherwise compares last value. Empty or unequal appends eventNum first, state second. Equal does not append. Arguments are retained without cloning/sanitizing; this is not purity.",
+      "id": "415-F02",
+      "status": "ACCEPTED_MUTABLE_HISTORY_EFFECT"
+    },
+    {
+      "anchors": [
+        "Util.equals",
+        "King.prepare"
+      ],
+      "claim": "Pinned exact receiver/ordinary history Arrays/no target-relevant alias/pinned Util dispatch/bounded scalar argument and valid call domain are unresolved actual premises. With new state INT0, Util typeof mismatch short-circuits; equality, when evaluated, compares INTs. No general arbitrary-Variant equality purity or observed normal return is inferred.",
+      "id": "415-F03",
+      "status": "ACCEPTED_CONDITIONAL_BOUNDARY"
+    },
+    {
+      "anchors": [
+        "logger.prepareItem",
+        "logger.clear",
+        "CombatLog.onPrepare",
+        "CombatLog.snapshotItemState",
+        "Item.setState"
+      ],
+      "claim": "prepareItem conditionally stores StatHistory.new; clear can remove slot. Neither is a direct callee of logItemState or observed initialization. snapshotItemState may update activeItemState only after logger returns; Item.setState invokes onStateChanged afterwards. This source order does not prove actual completion.",
+      "id": "415-F04",
+      "status": "ACCEPTED_CONTEXT_SEPARATION"
+    },
+    {
+      "anchors": [],
+      "claim": "1391 whole-audit DIRECT/SUPPORTED differs from1371 documentary support subset;414 preserves both and all88 unresolved targets. This review checks those stated counts and3+3+12+70 impact arithmetic, without rerunning88 membership or rereadingcapture.",
+      "id": "415-F05",
+      "status": "COUNTS_AND_SCOPE_PRESERVED"
+    }
+  ],
+  "formal75_existing_accepted": true,
+  "full_source_recipe_count": 0,
+  "fullschema": "NOT_VALIDATED",
+  "genuine_input_accepted": false,
+  "genuine_input_feasible": false,
+  "identity": {
+    "author_bytes": 31063,
+    "author_leaves": 4,
+    "finite_pin_bytes": 306797,
+    "finite_pins": 10,
+    "logger_history_baseline_bindings": "Root supplements and absence from391 native-patch paths",
+    "verified_anchors": 16
+  },
+  "impact_counts": {
+    "Character_both_phases": 12,
+    "King_pre_activate": 3,
+    "King_pre_prepare": 3,
+    "Timer_both_phases": 70
+  },
+  "inputbuild": 0,
+  "missing_interpretation": "unclosed proof premises do not establish original-data absence or mandatory recapture",
+  "model356": "CLOSED",
+  "models": 0,
+  "native": 0,
+  "new_dynamic_helpers": 0,
+  "new_unread_script_callee_in_pinned_local_addValue_equals_path": false,
+  "next_evidence": "Root may separately release a finite receiver/initialization/alias/normal-return evidence check using existing lawful initial/source carriers. No source/capture read or implementation beyond this review is authorized.",
+  "no_more_writes_after_owner": true,
+  "old412_or414_written_by415": false,
+  "old412_owner": {
+    "path": "data/phase412-initial-source-chain-design/owned-files.json",
+    "sha256": "6ba20faf39368464f7ac3b0923bbb1ce2c7e4eb112dbc6962ccbcebec1c8c40c",
+    "size": 3113
+  },
+  "old412_owner_pin_unchanged": true,
+  "old412_payloads_rehashed_in415": false,
+  "old_SUT_calls": 0,
+  "old_SUT_imports": 0,
+  "original_411_direct_supported": 1391,
+  "original_capture_reads": 0,
+  "phase412_selected_support_rows": 1371,
+  "previous_72_source_or88_target_checks_rerun": false,
+  "projection": 0,
+  "reader361": "CLOSED",
+  "remaining_premises": [
+    "actual selected history receiver and initialization/member types",
+    "target-relevant alias or foreign slot replacement exclusion",
+    "actual valid normal return",
+    "subsequent King onStateChanged completion and initial interval/replay writer exclusion"
+  ],
+  "schema": "independent415-conditional-logger-source-lemma-review/1",
+  "schema_calls": 0,
+  "source_modified": false,
+  "source_owner": {
+    "path": "data/phase414-logger-source-lemma/owned-files.json",
+    "sha256": "f93ee7021c8afc8b00887235fc3ebe15fd4e96f03b253eb41206c7442a43d7d0",
+    "size": 997
+  },
+  "status": "INDEPENDENT415_CONDITIONAL_LOGGER_SOURCE_LEMMA_ACCEPTED_ROOT_PENDING",
+  "subset_scope_note": "The20 unselected direct rows remain supported in411; this count distinction was independently sealed in413 and is preserved here, not re-enumerated.",
+  "target_promotions": 0,
+  "unresolved_targets": 88
+}

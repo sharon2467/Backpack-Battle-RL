@@ -1,0 +1,337 @@
+{
+  "schema": "phase414-logger-source-local-lemma/1",
+  "status": "SEALED_LOCAL_SOURCE_LEMMA_PENDING_INDEPENDENT_REVIEW",
+  "lemma_id": "L414",
+  "conclusion": "Logger/history/equals bodies contain no explicit target-state stores; addValue mutates history arrays. A conditional scalar/receiver/member/alias/domain lemma is established at SOURCE level only; actual premises and normal return remain unproved.",
+  "source_anchors": {
+    "logger.logItemState": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/CombatStatLogger.gd",
+      "file_sha256": "20f6f088c7debf727e8de538eeff71cbbdf7562e46ecbea1e90860436334e831",
+      "signature": "func logItemState(item: Item, state, eventNum: int):",
+      "first_line": 96,
+      "last_line": 98,
+      "range_size": 106,
+      "range_sha256": "e1521a4c517016133340d819cdbec2ba1b2f682e110d5d98a0a4d8fd97a9d8d0",
+      "source": "func logItemState(item: Item, state, eventNum: int):\n\titemStateHistories[item].addValue(eventNum, state)\n\n"
+    },
+    "logger.prepareItem": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/CombatStatLogger.gd",
+      "file_sha256": "20f6f088c7debf727e8de538eeff71cbbdf7562e46ecbea1e90860436334e831",
+      "signature": "func prepareItem(item):",
+      "first_line": 69,
+      "last_line": 86,
+      "range_size": 541,
+      "range_sha256": "ef0a3c50b6fe172192b1bd4b6af596733e84976bb63d21cc874616fe786b03e4",
+      "source": "func prepareItem(item):\n\tvar arr = []\n\tfor metric in Item.getNumItemMetrics():\n\t\tvar statHistory = StatHistory.new()\n\t\tstatHistory.addValue( - 1, item.getMetric(metric))\n\t\tarr.push_back(statHistory)\n\titemMetricHistories[item] = arr\n\t\n\tif item.character().playerId == playerId:\n\t\tvar arr2 = []\n\t\tfor stat in Item.getNumTooltipStats():\n\t\t\tvar statHistory = StatHistory.new()\n\t\t\tstatHistory.addValue( - 1, item.getStat(stat))\n\t\t\tarr2.push_back(statHistory)\n\t\titemTooltipHistories[item] = arr2\n\t\t\n\t\titemStateHistories[item] = StatHistory.new()\n\n"
+    },
+    "logger.clear": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/CombatStatLogger.gd",
+      "file_sha256": "20f6f088c7debf727e8de538eeff71cbbdf7562e46ecbea1e90860436334e831",
+      "signature": "func clear():",
+      "first_line": 41,
+      "last_line": 55,
+      "range_size": 343,
+      "range_sha256": "e11240bfd32272f4443356c71d6fbb8e30074083de10abef3df6180af2c9488d",
+      "source": "func clear():\n\tfor history in characterStatHistories.values():\n\t\thistory.clear()\n\t\n\tfor stackHistory in stackHistories.values():\n\t\tstackHistory.clear()\n\t\n\tfor i in metricHistories.size():\n\t\tfor history in metricHistories[i].values():\n\t\t\thistory.clear()\n\t\n\titemTooltipHistories.clear()\n\titemMetricHistories.clear()\n\titemStateHistories.clear()\n\n"
+    },
+    "Item.character": {
+      "path": "data/phase359-king-producer-source/after-source/Items/Item.gd",
+      "file_sha256": "2fc1d658db352a7ecae8c2bfb60640a019284992a9c5f9a14c87baea50721631",
+      "signature": "func character():",
+      "first_line": 3944,
+      "last_line": 3949,
+      "range_size": 88,
+      "range_sha256": "b12e2e7b843fe2941d857b1a1ff3af7314f98c99596d0be254e7c314761e38b2",
+      "source": "func character():\n\tif placed:\n\t\treturn inventory.character\n\telse:\n\t\treturn Game.PLAYER\n\n"
+    },
+    "Item.setState": {
+      "path": "data/phase359-king-producer-source/after-source/Items/Item.gd",
+      "file_sha256": "2fc1d658db352a7ecae8c2bfb60640a019284992a9c5f9a14c87baea50721631",
+      "signature": "func setState(newState, withNextEvent: bool = false, event = null):",
+      "first_line": 4845,
+      "last_line": 4848,
+      "range_size": 167,
+      "range_sha256": "e5cf93004f5813cd11cbbfea3cb9bb284e1901df880560ec6e9677239def6e15",
+      "source": "func setState(newState, withNextEvent: bool = false, event = null):\n\tGame.combatLog.snapshotItemState(self, newState, withNextEvent, event)\n\tonStateChanged(newState)\n\n"
+    },
+    "CombatLog.snapshotItemState": {
+      "path": "data/phase359-king-producer-source/after-source/Core/CombatLog.gd",
+      "file_sha256": "4850aa479e6a6615a1833f469147a23b3c88ccb9cfc35c519c4de90aa1984a31",
+      "signature": "func snapshotItemState(item, state, withNextEvent: bool, event: CombatEvent):",
+      "first_line": 515,
+      "last_line": 530,
+      "range_size": 631,
+      "range_sha256": "2cd84ae46058bca01a300ce6bee7a167d39c26b768fcf9165d7d2a1cc5ee2d58",
+      "source": "func snapshotItemState(item, state, withNextEvent: bool, event: CombatEvent):\n\tNativeRandomObserver.entry(\"Core/CombatLog.gd::snapshotItemState\", self, {\"item\": item, \"state\": state, \"withNextEvent\": withNextEvent, \"event\": event})\n\tvar playerId = item.character().playerId\n\tvar connectedEventNum = eventNum\n\tif event != null:\n\t\tconnectedEventNum = event.id\n\telif withNextEvent:\n\t\tconnectedEventNum += 1\n\t\n\tstatLoggers[playerId].logItemState(item, state, connectedEventNum)\n\t\n\t\n\tif loggingFinished:\n\t\tactiveItemState[item] = state\n\tNativeRandomObserver.leave(\"Core/CombatLog.gd::snapshotItemState\", self, null, \"return_implicit\")\n\n"
+    },
+    "CombatLog.onPrepare": {
+      "path": "data/phase359-king-producer-source/after-source/Core/CombatLog.gd",
+      "file_sha256": "4850aa479e6a6615a1833f469147a23b3c88ccb9cfc35c519c4de90aa1984a31",
+      "signature": "func onPrepare():",
+      "first_line": 174,
+      "last_line": 193,
+      "range_size": 682,
+      "range_sha256": "d47f098bd925ed926c8f765d0b71ac03e9a62f4ca0278f46bbaf3afb02c25722",
+      "source": "func onPrepare():\n\tvar items = Game.PLAYER.INVENTORY.getItemsAndGems() + Game.OPPONENT.INVENTORY.getItemsAndGems()\n\tfor character in [Game.PLAYER, Game.OPPONENT]:\n\t\tfor stat in Character.Stat:\n\t\t\tsnapshotCharacterStat(character, Character.Stat[stat])\n\t\t\n\t\tfor stackType in Game.getStacks():\n\t\t\tsnapshotStack(character, stackType)\n\t\t\n\t\tvar statLogger: CombatStatLogger = statLoggers[character.playerId]\n\t\tfor item in items:\n\t\t\t\n\t\t\tstatLogger.prepareItem(item)\n\t\t\n\t\tfor metric in Game.ItemMetrics.values():\n\t\t\tfor type in statLogger.metricHistories[metric]:\n\t\t\t\tstatLogger.logMetric(metric, type, 0, eventNum)\n\t\t\n\t\tglobalStatHistories[GlobalStat.TimeAdvance].addValue(0.0, eventNum)\n\n"
+    },
+    "King.prepare": {
+      "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/KingGoobert.gd",
+      "file_sha256": "d40b72f75f8455c407fb0425520396139f6e8f9213449c9a86368ad21eb4fcf5",
+      "signature": "func prepare():",
+      "first_line": 19,
+      "last_line": 29,
+      "range_size": 377,
+      "range_sha256": "0215f618d7d478af04ab8567b60d2a0e86b7322f0232c1f358c502f6ed581293",
+      "source": "func prepare():\n\tNativeRandomObserver.entry(\"Items/Exclusive/KingGoobert.gd::prepare\", self, {})\n\tvar gemPower = getP(\"gempower\") / 100.0\n\tfor gem in getGemsNoNull():\n\t\tgem.changeGemPower(gemPower)\n\t\n\tinvuCharges = getP(\"charges\")\n\tsetState(CrownState.Inactive)\n\t.prepare()\n\tNativeRandomObserver.leave(\"Items/Exclusive/KingGoobert.gd::prepare\", self, null, \"return_implicit\")\n\n"
+    },
+    "King.onShopEntered": {
+      "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/KingGoobert.gd",
+      "file_sha256": "d40b72f75f8455c407fb0425520396139f6e8f9213449c9a86368ad21eb4fcf5",
+      "signature": "func onShopEntered():",
+      "first_line": 62,
+      "last_line": 64,
+      "range_size": 60,
+      "range_sha256": "72c0940e979d4616dd041802fa9eb3796ac5b3722224337c0e42dc22f2ec4df3",
+      "source": "func onShopEntered():\n\tonStateChanged(CrownState.Inactive)\n\n"
+    },
+    "StatHistory.addValue": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/StatHistory.gd",
+      "file_sha256": "5ae1f194e97dd6e1657e4266864f10448504026f91713a2dc9a1b61021bc498b",
+      "signature": "func addValue(eventNum, value):",
+      "first_line": 7,
+      "last_line": 11,
+      "range_size": 154,
+      "range_sha256": "bb74f06b2ed5d56f8ac0d2ac30e388380fde44291766b6323519f9c9450d969c",
+      "source": "func addValue(eventNum, value):\n\tif values.empty() or not Util.equals(values[ - 1], value):\n\t\teventNumbers.push_back(eventNum)\n\t\tvalues.push_back(value)\n\n"
+    },
+    "StatHistory.hasData": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/StatHistory.gd",
+      "file_sha256": "5ae1f194e97dd6e1657e4266864f10448504026f91713a2dc9a1b61021bc498b",
+      "signature": "func hasData() -> bool:",
+      "first_line": 12,
+      "last_line": 14,
+      "range_size": 57,
+      "range_sha256": "86c4024a7b8160206ea3efe7aef01a42e8f30145faf4c1a44540c7b466872b7e",
+      "source": "func hasData() -> bool:\n\treturn eventNumbers.size() > 1\n\n"
+    },
+    "StatHistory.clear": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/StatHistory.gd",
+      "file_sha256": "5ae1f194e97dd6e1657e4266864f10448504026f91713a2dc9a1b61021bc498b",
+      "signature": "func clear():",
+      "first_line": 15,
+      "last_line": 18,
+      "range_size": 53,
+      "range_sha256": "c538c6eeddc26b1c2d91cbadee929fe4e3a6626a26027301891b9e1079eb3d3e",
+      "source": "func clear():\n\teventNumbers.clear()\n\tvalues.clear()\n\n"
+    },
+    "StatHistory.getValueAt": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/StatHistory.gd",
+      "file_sha256": "5ae1f194e97dd6e1657e4266864f10448504026f91713a2dc9a1b61021bc498b",
+      "signature": "func getValueAt(eventNum):",
+      "first_line": 19,
+      "last_line": 29,
+      "range_size": 206,
+      "range_sha256": "28731244ba47cd5f6a200f885c2248b0bc9bb947dcbd448ce5b054ae0abbe02e",
+      "source": "func getValueAt(eventNum):\n\t\n\tif eventNum < 0:\n\t\treturn values[0]\n\t\n\tif eventNumbers[ - 1] <= eventNum:\n\t\treturn values[ - 1]\n\t\n\tvar index = eventNumbers.bsearch(eventNum, false) - 1\n\treturn values[index]\n\n"
+    },
+    "StatHistory.getLastEntryBefore": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/StatHistory.gd",
+      "file_sha256": "5ae1f194e97dd6e1657e4266864f10448504026f91713a2dc9a1b61021bc498b",
+      "signature": "func getLastEntryBefore(eventNum):",
+      "first_line": 30,
+      "last_line": 36,
+      "range_size": 140,
+      "range_sha256": "25ac8787e07227d01c46eaac41486eed9cdf10e739939d100608651ccd485ba0",
+      "source": "func getLastEntryBefore(eventNum):\n\n\n\t\n\tvar index = eventNumbers.bsearch(eventNum, false) - 1\n\treturn [eventNumbers[index], values[index]]\n\n"
+    },
+    "StatHistory.addValueAcc": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/StatHistory.gd",
+      "file_sha256": "5ae1f194e97dd6e1657e4266864f10448504026f91713a2dc9a1b61021bc498b",
+      "signature": "func addValueAcc(eventNum, value):",
+      "first_line": 37,
+      "last_line": 41,
+      "range_size": 141,
+      "range_sha256": "8049580fc485863dba1179235290cd44951aa11bb731ea034b781d6bc2f89ed3",
+      "source": "func addValueAcc(eventNum, value):\n\tvar curValue = 0\n\tif not values.empty():\n\t\tcurValue = values[ - 1]\n\taddValue(eventNum, curValue + value)\n"
+    },
+    "Util.equals": {
+      "path": "data/phase359-king-producer-source/after-source/Utility/Util.gd",
+      "file_sha256": "d437e9338c8c4587c0cddd29e848bef54e8b621169dd364ceaa341fbc7a1e507",
+      "signature": "func equals(val1, val2) -> bool:",
+      "first_line": 265,
+      "last_line": 267,
+      "range_size": 88,
+      "range_sha256": "0f07eb489cef61c0b9f3990d2cb082d0beba88cf959a4e27a910c44f79cb32ab",
+      "source": "func equals(val1, val2) -> bool:\n\treturn typeof(val1) == typeof(val2) and val1 == val2\n\n"
+    }
+  },
+  "local_body_effect_inventory": {
+    "reads": [
+      "self.itemStateHistories",
+      "item as Dictionary key",
+      "eventNum argument",
+      "state argument"
+    ],
+    "explicit_local_assignments": [],
+    "external_dispatch": [
+      {
+        "receiver": "itemStateHistories[item]",
+        "method": "addValue",
+        "arguments": [
+          "eventNum",
+          "state"
+        ],
+        "static_receiver_type": "Not declared at this call expression",
+        "intended_class_evidence": "prepareItem line85 assigns StatHistory.new(); no actual initialization history inspected.",
+        "effects": "Resolved local implementation: StatHistory.addValue conditionally appends to two arrays. Actual dynamic receiver/member/alias premises remain unproved."
+      }
+    ],
+    "explicit_signals_callbacks_deferred_calls": [],
+    "implicit_or_transitive_limits": [
+      "Dictionary slot existence/current exact receiver not observed",
+      "StatHistory members must be ordinary intended history Arrays, with no target-relevant aliases or foreign replacement",
+      "Pinned Util dispatch must apply; scalar King enum argument is a SOURCE call-site premise",
+      "General untyped Variant addValue API is outside the scalar equality/retention claim",
+      "Actual successful return/call domain not established"
+    ]
+  },
+  "context_writes_not_local_callee_effects": [
+    {
+      "function": "prepareItem",
+      "writes": "itemMetricHistories[item], conditional itemTooltipHistories[item] and itemStateHistories[item]",
+      "other_calls": "StatHistory.new/addValue; Item.getNumItemMetrics/getNumTooltipStats; item.getMetric/getStat/character; Array.push_back",
+      "scope": "Not invoked by logItemState; initialization context only"
+    },
+    {
+      "function": "clear",
+      "writes": "itemStateHistories.clear and other history dictionaries",
+      "scope": "Not invoked by logItemState; no initial clear observed"
+    },
+    {
+      "function": "CombatLog.snapshotItemState",
+      "writes": "conditional CombatLog.activeItemState[item]=state",
+      "scope": "Caller bookkeeping, not a native crown field"
+    }
+  ],
+  "target_impact": {
+    "King_pre_activate": {
+      "count": 3,
+      "fields": [
+        "King.crown",
+        "King.light_visible",
+        "King.light_modulate"
+      ],
+      "effect": "Logging bodies now inspected through addValue/equals; actual receiver/member/alias/domain/normal-return and existing interval gaps remain"
+    },
+    "King_pre_prepare": {
+      "count": 3,
+      "effect": "No actual prior setState path or constructor/last-state value established"
+    },
+    "Character_both_phases": {
+      "count": 12,
+      "effect": "No classification/value change; transitive no-writer not proven"
+    },
+    "Timer_both_phases": {
+      "count": 70,
+      "effect": "No classification/value change; no lifetime/private value evidence added"
+    }
+  },
+  "counts_preserved": {
+    "original_required": 1479,
+    "original_direct_supported": 1391,
+    "phase412_selected_support_rows": 1371,
+    "original_unresolved_targets": 88,
+    "new_promotions": 0
+  },
+  "next_minimal_edge": {
+    "new_external_script_callee_unread_in_this_bounded_path": null,
+    "remaining_obligations": [
+      "actual receiver and history initialization/member types",
+      "target-relevant alias/foreign replacement exclusion",
+      "actual valid normal return and subsequent onStateChanged/interval proof"
+    ],
+    "action": "No further read or implementation in414; independent review of conditional local lemma first."
+  },
+  "operational_counts": {
+    "audit": 0,
+    "SUT": 0,
+    "schema": 0,
+    "model": 0,
+    "FrameDriver": 0,
+    "Godot": 0,
+    "native": 0,
+    "inputbuild": 0,
+    "projection": 0,
+    "original_capture": 0,
+    "EXPECTED": 0
+  },
+  "source_preparation_failures": [],
+  "genuine_input_feasible": false,
+  "King_admitted": false,
+  "old_ledger_modified": false,
+  "history_effect_inventory": {
+    "initializers": {
+      "eventNumbers": "[]",
+      "values": "[]",
+      "explicit_constructor": "none",
+      "actual_instance_freshness": "NOT_ESTABLISHED_BY_DECLARATIONS"
+    },
+    "reads": [
+      "values.empty()",
+      "values[-1] on nonempty branch",
+      "eventNum",
+      "value"
+    ],
+    "branches": [
+      {
+        "condition": "values.empty()",
+        "calls": [
+          "eventNumbers.push_back(eventNum)",
+          "values.push_back(value)"
+        ],
+        "Util_equals_called": false
+      },
+      {
+        "condition": "nonempty and not Util.equals(values[-1],value)",
+        "calls": [
+          "Util.equals",
+          "eventNumbers.push_back(eventNum)",
+          "values.push_back(value)"
+        ]
+      },
+      {
+        "condition": "nonempty and Util.equals true",
+        "calls": [
+          "Util.equals"
+        ],
+        "array_appends": 0
+      }
+    ],
+    "write_order": [
+      "eventNumbers append",
+      "values append"
+    ],
+    "copies_values": false,
+    "explicit_target_object_methods_or_signals": [],
+    "other_methods_not_direct_callees": [
+      "clear",
+      "hasData",
+      "getValueAt",
+      "getLastEntryBefore",
+      "addValueAcc"
+    ],
+    "Util_equals": "typeof(val1)==typeof(val2) and val1==val2; no GD write/nested script method. Under INT new-state premise, equality either short-circuits on differing type or compares two INTs."
+  },
+  "conditional_lemma": {
+    "id": "L414-C",
+    "premises": [
+      "exact pinned StatHistory receiver selected by dictionary",
+      "member eventNumbers and values are ordinary Arrays of intended history with no target-relevant external alias/replacement",
+      "exact pinned Util.equals dispatch",
+      "bounded scalar state/event number and valid call/index domain",
+      "no execution-success claim from code presence"
+    ],
+    "effect": "No-op or append two scalar arguments to history arrays; no explicit target-property store or script callback in inspected path. This is not purity or actual execution acceptance."
+  },
+  "supplement_arrival": "StatHistory supplement received before final seal; incorporated without new audit/API or revising old412 artifacts."
+}
