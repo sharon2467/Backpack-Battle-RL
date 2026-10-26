@@ -1,0 +1,249 @@
+{
+  "actual_executions": 0,
+  "logical_cases": 6,
+  "schema": "phase394-fixed-language-unit-inputs/1",
+  "scope": "Primitive tracker test state, not actual clock/12source/activationdeath; source literals retain INT, noJSON.parse",
+  "units": [
+    {
+      "anchor_row": {
+        "idle_frame": 11,
+        "kind": "physics",
+        "physics_frame": 101
+      },
+      "base_reference": "T2",
+      "cleanup": {
+        "idle_frame": 11,
+        "is_in_physics_frame": true,
+        "physics_frame": 101
+      },
+      "expected": {
+        "cleanup_anchor_pass": 1,
+        "first_eligible_idle_pass": 4,
+        "minimum_future_physics_signals": 2,
+        "observed_future_physics_signals": 2
+      },
+      "future_rows": [
+        {
+          "idle_frame": 11,
+          "kind": "physics",
+          "physics_frame": 102
+        },
+        {
+          "idle_frame": 11,
+          "kind": "physics",
+          "physics_frame": 103
+        },
+        {
+          "idle_frame": 11,
+          "kind": "idle",
+          "physics_frame": 103
+        }
+      ],
+      "label": "T01",
+      "mode": "POSITIVE",
+      "synthetic_prestate": true
+    },
+    {
+      "anchor_row": {
+        "idle_frame": 341,
+        "kind": "physics",
+        "physics_frame": 2724
+      },
+      "base_reference": "E8",
+      "cleanup": {
+        "idle_frame": 341,
+        "is_in_physics_frame": true,
+        "physics_frame": 2724
+      },
+      "expected": {
+        "cleanup_anchor_pass": 1,
+        "first_eligible_idle_pass": 11,
+        "minimum_future_physics_signals": 2,
+        "observed_future_physics_signals": 8
+      },
+      "future_rows": [
+        {
+          "idle_frame": 341,
+          "kind": "idle",
+          "physics_frame": 2724
+        },
+        {
+          "idle_frame": 342,
+          "kind": "physics",
+          "physics_frame": 2725
+        },
+        {
+          "idle_frame": 342,
+          "kind": "physics",
+          "physics_frame": 2726
+        },
+        {
+          "idle_frame": 342,
+          "kind": "physics",
+          "physics_frame": 2727
+        },
+        {
+          "idle_frame": 342,
+          "kind": "physics",
+          "physics_frame": 2728
+        },
+        {
+          "idle_frame": 342,
+          "kind": "physics",
+          "physics_frame": 2729
+        },
+        {
+          "idle_frame": 342,
+          "kind": "physics",
+          "physics_frame": 2730
+        },
+        {
+          "idle_frame": 342,
+          "kind": "physics",
+          "physics_frame": 2731
+        },
+        {
+          "idle_frame": 342,
+          "kind": "physics",
+          "physics_frame": 2732
+        },
+        {
+          "idle_frame": 342,
+          "kind": "idle",
+          "physics_frame": 2732
+        }
+      ],
+      "label": "T02",
+      "mode": "POSITIVE",
+      "synthetic_prestate": true
+    },
+    {
+      "anchor_row": {
+        "idle_frame": 11,
+        "kind": "idle",
+        "physics_frame": 100
+      },
+      "base_reference": "G2",
+      "cleanup": {
+        "idle_frame": 11,
+        "is_in_physics_frame": false,
+        "physics_frame": 100
+      },
+      "expected": {
+        "cleanup_anchor_pass": 1,
+        "first_eligible_idle_pass": 8,
+        "minimum_future_physics_signals": 2,
+        "observed_future_physics_signals": 2
+      },
+      "future_rows": [
+        {
+          "idle_frame": 12,
+          "kind": "idle",
+          "physics_frame": 100
+        },
+        {
+          "idle_frame": 13,
+          "kind": "idle",
+          "physics_frame": 100
+        },
+        {
+          "idle_frame": 14,
+          "kind": "physics",
+          "physics_frame": 101
+        },
+        {
+          "idle_frame": 14,
+          "kind": "idle",
+          "physics_frame": 101
+        },
+        {
+          "idle_frame": 15,
+          "kind": "idle",
+          "physics_frame": 101
+        },
+        {
+          "idle_frame": 16,
+          "kind": "physics",
+          "physics_frame": 102
+        },
+        {
+          "idle_frame": 16,
+          "kind": "idle",
+          "physics_frame": 102
+        }
+      ],
+      "label": "T03",
+      "mode": "POSITIVE",
+      "synthetic_prestate": true
+    },
+    {
+      "anchor_row": {
+        "idle_frame": 11,
+        "kind": "physics",
+        "physics_frame": 101
+      },
+      "base_reference": "T2",
+      "cleanup": {
+        "idle_frame": 11,
+        "is_in_physics_frame": true,
+        "physics_frame": 101
+      },
+      "expected": {
+        "cleanup_anchor_pass": 1,
+        "first_eligible_idle_pass": 4,
+        "minimum_future_physics_signals": 2,
+        "observed_future_physics_signals": 2
+      },
+      "future_rows": [
+        {
+          "idle_frame": 11,
+          "kind": "physics",
+          "physics_frame": 102
+        },
+        {
+          "idle_frame": 11,
+          "kind": "physics",
+          "physics_frame": 103
+        },
+        {
+          "idle_frame": 11,
+          "kind": "idle",
+          "physics_frame": 103
+        }
+      ],
+      "label": "T04",
+      "mode": "MISSED",
+      "synthetic_prestate": true
+    },
+    {
+      "anchor_row": {
+        "idle_frame": 11,
+        "kind": "physics",
+        "physics_frame": 101
+      },
+      "base_reference": "T2",
+      "cleanup": {
+        "idle_frame": 11,
+        "is_in_physics_frame": false,
+        "physics_frame": 101
+      },
+      "expected": {
+        "cleanup_anchor_pass": 1,
+        "first_eligible_idle_pass": 4,
+        "minimum_future_physics_signals": 2,
+        "observed_future_physics_signals": 2
+      },
+      "future_rows": [],
+      "label": "T05",
+      "mode": "WRONG_PHASE",
+      "synthetic_prestate": true
+    },
+    {
+      "expected_anchor": 0,
+      "expected_terminal_cut": null,
+      "label": "T06",
+      "mode": "CHECKPOINT",
+      "synthetic_prestate": true
+    }
+  ]
+}

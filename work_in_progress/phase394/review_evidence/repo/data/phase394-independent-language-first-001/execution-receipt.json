@@ -1,0 +1,149 @@
+{
+  "FrameDriver": 0,
+  "Godot_language_launches_requested": 1,
+  "Godot_language_processes_observed": 1,
+  "READY": 0,
+  "RNG_calls_requested": 0,
+  "SOURCE_definition_imports": 3,
+  "actual_Game": 0,
+  "actualpool": 0,
+  "automatic_retry": false,
+  "detached_sink_instances": "READ_ONLY_AFTER_RAW_SEAL",
+  "enforcement": "POLLING_NOT_KERNEL_AGGREGATE_QUOTA; explicit owned roots, not kernel filesystem closure",
+  "first_exit": 0,
+  "generic_monitor_calls": 1,
+  "launcher_failure": null,
+  "models": 0,
+  "monitor": {
+    "abort_reason": null,
+    "active_duration_seconds": 1.9801811369979987,
+    "actual_oracle_processes": 0,
+    "cleanup": {
+      "after": [
+        {
+          "live": false,
+          "pid": 25316,
+          "state": "Z"
+        }
+      ],
+      "before": [
+        {
+          "live": false,
+          "pid": 25316,
+          "state": "Z"
+        }
+      ],
+      "duration_seconds": 0.011696244997438043,
+      "kill_grace_seconds": 0.5,
+      "kill_sent": false,
+      "leader_returncode": 0,
+      "live_remaining": [],
+      "pgid": 25306,
+      "term_grace_seconds": 0.2,
+      "term_sent": true,
+      "zombies_not_claimed_reaped": [
+        25316
+      ]
+    },
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "/workspace/python-original-engine/repo/tests/godotsteam_offline_exec.py",
+      "/workspace/godotsteam-startup-20261013/debian/usr/bin/xvfb-run",
+      "-a",
+      "-s",
+      "-screen 0 640x480x24 -nolisten tcp",
+      "-e",
+      "/workspace/python-original-engine/repo/data/phase394-independent-language-first-001/output/xvfb.log",
+      "/workspace/godotsteam-startup-20261013/engine/godotsteam.362.editor.x86_64",
+      "--path",
+      "/workspace/python-original-engine/repo/data/phase394-independent-language-first-001/project",
+      "--audio-driver",
+      "Dummy",
+      "--time-scale",
+      "1.0",
+      "--script",
+      "res://probe.gd"
+    ],
+    "duration_seconds": 1.9919287109951256,
+    "enforcement": "POLLING_NOT_KERNEL_AGGREGATE_QUOTA",
+    "exit_code": 0,
+    "generic_subprocesses": 1,
+    "limits": {
+      "log_bytes": 2097152,
+      "wall": 30.0
+    },
+    "policy": "bounded-writers-and-monitored-process/1",
+    "polling": {
+      "extra_timed_wait": false,
+      "max_observed_scan_gap_seconds": 0.05258663299900945,
+      "model": "ONE_SELECTOR_WAIT_PLUS_IO_SCAN_OVERHEAD",
+      "samples_truncated": false,
+      "scan_count": 40,
+      "scan_times_seconds": [
+        0.0505210650007939,
+        0.09487634900142439,
+        0.14539921199320816,
+        0.19711835800262634,
+        0.237321720996988,
+        0.2898919500003103,
+        0.34247858299931977,
+        0.39494188799289986,
+        0.44745396700454876,
+        0.49993300999631174,
+        0.5524931700056186,
+        0.6049392860004446,
+        0.6574616260040784,
+        0.7098287190019619,
+        0.7622718640050152,
+        0.8147278399992501,
+        0.8334613479964901,
+        0.8859956369997235,
+        0.9385130599985132,
+        0.9901089839986525,
+        1.0417274560022634,
+        1.0933092000050237,
+        1.144884485998773,
+        1.1964763430005405,
+        1.2481207410019124,
+        1.2997321230068337,
+        1.3514971279946622,
+        1.403092744993046,
+        1.4547404140030267,
+        1.506272546001128,
+        1.5578605299961055,
+        1.6096725959941978,
+        1.6619608360051643,
+        1.7135131969989743,
+        1.7653456580010243,
+        1.8168953510030406,
+        1.8686439680022886,
+        1.9201839339948492,
+        1.9720092799980193,
+        1.9786615210032323
+      ],
+      "single_selector_wait_seconds": 0.05
+    },
+    "process_clean_exit": true,
+    "scope": "GENERIC_SUBPROCESS_MONITOR_ONLY_NOT_ORACLE_OR_CAPTURE",
+    "timed_out": false
+  },
+  "native_battles": 0,
+  "parent_environment_unchanged": true,
+  "process_group_scope": "Leader/process_clean_exit distinct from actual live_remaining/zombies_not_claimed_reaped; no reaping claim inferred",
+  "projection": 0,
+  "release": {
+    "path": "data/phase394-root-language-release/one-process-release.json",
+    "sha256": "fffbf767a861a44c40301826eb3f104b55429da60d03fcd43c05ab190bb95029",
+    "size": 3285
+  },
+  "report_present": true,
+  "restore": 0,
+  "scan_disappearing_temp_paths": 0,
+  "schema": "phase394-actual-language-execution/1",
+  "source_drift": [],
+  "source_owner": {
+    "path": "data/phase394-independent-launcher-source/owned-files.json",
+    "sha256": "7e04b22309d153ba68026b079083f8ec6e4f169b1051eec61f9d22aecf2afe58",
+    "size": 3988
+  }
+}

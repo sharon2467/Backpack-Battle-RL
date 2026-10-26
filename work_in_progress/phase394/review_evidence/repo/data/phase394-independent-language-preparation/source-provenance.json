@@ -1,0 +1,105 @@
+{
+  "exact_methods": [
+    "source_tail_begin",
+    "source_tail_mark_cleanup",
+    "source_tail_note_pass",
+    "source_terminal_cut"
+  ],
+  "full_collector": {
+    "copy": {
+      "path": "data/phase394-independent-language-preparation/project/full-collector.gd",
+      "sha256": "f05bbf6b0e7277b5a342553d3a8d3c842f3efa6526f0b85948bd003837ac74ce",
+      "size": 64928
+    },
+    "origin": {
+      "path": "data/phase391-terminal-source/collector.gd",
+      "sha256": "f05bbf6b0e7277b5a342553d3a8d3c842f3efa6526f0b85948bd003837ac74ce",
+      "size": 64928
+    }
+  },
+  "full_sink": {
+    "copy": {
+      "path": "data/phase394-independent-language-preparation/project/full-sink.gd",
+      "sha256": "999e0043a653067a962819cf81340b0dad745fa2148bbfab7724d7948a6a21ea",
+      "size": 104333
+    },
+    "origin": {
+      "path": "data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
+      "sha256": "999e0043a653067a962819cf81340b0dad745fa2148bbfab7724d7948a6a21ea",
+      "size": 104333
+    }
+  },
+  "inherited_fail": "Original full sink fail unchanged; no method override, no OUT/SUT constant change",
+  "monitor_dependencies": [
+    {
+      "copy": {
+        "path": "data/phase394-independent-language-preparation/SOURCE/compaction.py",
+        "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260",
+        "size": 27304
+      },
+      "origin": {
+        "path": "tests/native_run_compaction.py",
+        "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260",
+        "size": 27304
+      }
+    },
+    {
+      "copy": {
+        "path": "data/phase394-independent-language-preparation/SOURCE/storage.py",
+        "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc",
+        "size": 15496
+      },
+      "origin": {
+        "path": "tests/phase363_oracle_storage.py",
+        "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc",
+        "size": 15496
+      }
+    },
+    {
+      "copy": {
+        "path": "data/phase394-independent-language-preparation/SOURCE/process.py",
+        "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f",
+        "size": 13665
+      },
+      "origin": {
+        "path": "tests/phase363_oracle_process.py",
+        "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f",
+        "size": 13665
+      }
+    }
+  ],
+  "old_language_controls_rerun": false,
+  "old_language_runner_source_origin": {
+    "path": "tests/phase370_run_independent_language.py",
+    "sha256": "377f345f6d35f653f41ee5535fad4c44b5169dd49355e85c5c91781367e71fc6",
+    "size": 5273
+  },
+  "runtime_pins_verified_readonly": [
+    {
+      "path": "/workspace/godotsteam-startup-20261013/engine/godotsteam.362.editor.x86_64",
+      "sha256": "09d1de6c4f97289c018556666c13c1d81093a5df5c2255725d464a87f40a8ea1",
+      "size": 77646552
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/debian/usr/bin/xvfb-run",
+      "sha256": "97e86a102eee7212bfa3bf87d452b27dd4f16ef6e68658eeae20bca63db2ceee",
+      "size": 6082
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/engine/libsteam_api.so",
+      "sha256": "0f2c41c20644503c17e13498203986493332fc8296dbd78493bc1fed352ec0cc",
+      "size": 388288
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/godotsteam_offline_exec.py",
+      "sha256": "78beb697959d28b45c40f7a93174d22c67f711c077f5f7dcfb22ca10e69dd961",
+      "size": 4218
+    }
+  ],
+  "schema": "phase394-real-source-provenance/1",
+  "source_freeze": {
+    "path": "data/phase391-terminal-source/combined-source-freeze.json",
+    "sha256": "e55a602c9d7087a71a2fe6b78a3a143663fc8f0f659c0fe3fb690019ba8173c9",
+    "size": 65361
+  }
+}

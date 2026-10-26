@@ -1,0 +1,270 @@
+{
+  "INT_BOOL_NULL_kept": true,
+  "cases": [
+    {
+      "anchor": 1,
+      "case": "T01",
+      "direct_calls": 6,
+      "first_idle_pass": 4,
+      "future_count": 2,
+      "natural_HIT": false,
+      "ordered_tracker_rows": [
+        {
+          "count_typed": {
+            "decimal": "1",
+            "type": "int"
+          },
+          "latch_absent": true,
+          "ordinal": 2
+        },
+        {
+          "count_typed": {
+            "decimal": "2",
+            "type": "int"
+          },
+          "latch_absent": true,
+          "ordinal": 3
+        },
+        {
+          "count_typed": {
+            "decimal": "2",
+            "type": "int"
+          },
+          "latch_absent": false,
+          "ordinal": 4
+        }
+      ],
+      "status": "DIRECT_LANGUAGE_SOURCE_UNIT_PASS"
+    },
+    {
+      "anchor": 1,
+      "case": "T02",
+      "direct_calls": 13,
+      "first_idle_pass": 11,
+      "future_count": 8,
+      "natural_HIT": false,
+      "ordered_tracker_rows": [
+        {
+          "count_typed": {
+            "decimal": "0",
+            "type": "int"
+          },
+          "latch_absent": true,
+          "ordinal": 2
+        },
+        {
+          "count_typed": {
+            "decimal": "1",
+            "type": "int"
+          },
+          "latch_absent": true,
+          "ordinal": 3
+        },
+        {
+          "count_typed": {
+            "decimal": "2",
+            "type": "int"
+          },
+          "latch_absent": true,
+          "ordinal": 4
+        },
+        {
+          "count_typed": {
+            "decimal": "3",
+            "type": "int"
+          },
+          "latch_absent": true,
+          "ordinal": 5
+        },
+        {
+          "count_typed": {
+            "decimal": "4",
+            "type": "int"
+          },
+          "latch_absent": true,
+          "ordinal": 6
+        },
+        {
+          "count_typed": {
+            "decimal": "5",
+            "type": "int"
+          },
+          "latch_absent": true,
+          "ordinal": 7
+        },
+        {
+          "count_typed": {
+            "decimal": "6",
+            "type": "int"
+          },
+          "latch_absent": true,
+          "ordinal": 8
+        },
+        {
+          "count_typed": {
+            "decimal": "7",
+            "type": "int"
+          },
+          "latch_absent": true,
+          "ordinal": 9
+        },
+        {
+          "count_typed": {
+            "decimal": "8",
+            "type": "int"
+          },
+          "latch_absent": true,
+          "ordinal": 10
+        },
+        {
+          "count_typed": {
+            "decimal": "8",
+            "type": "int"
+          },
+          "latch_absent": false,
+          "ordinal": 11
+        }
+      ],
+      "status": "DIRECT_LANGUAGE_SOURCE_UNIT_PASS"
+    },
+    {
+      "anchor": 1,
+      "case": "T03",
+      "direct_calls": 10,
+      "first_idle_pass": 8,
+      "future_count": 2,
+      "natural_HIT": false,
+      "ordered_tracker_rows": [
+        {
+          "count_typed": {
+            "decimal": "0",
+            "type": "int"
+          },
+          "latch_absent": true,
+          "ordinal": 2
+        },
+        {
+          "count_typed": {
+            "decimal": "0",
+            "type": "int"
+          },
+          "latch_absent": true,
+          "ordinal": 3
+        },
+        {
+          "count_typed": {
+            "decimal": "1",
+            "type": "int"
+          },
+          "latch_absent": true,
+          "ordinal": 4
+        },
+        {
+          "count_typed": {
+            "decimal": "1",
+            "type": "int"
+          },
+          "latch_absent": true,
+          "ordinal": 5
+        },
+        {
+          "count_typed": {
+            "decimal": "1",
+            "type": "int"
+          },
+          "latch_absent": true,
+          "ordinal": 6
+        },
+        {
+          "count_typed": {
+            "decimal": "2",
+            "type": "int"
+          },
+          "latch_absent": true,
+          "ordinal": 7
+        },
+        {
+          "count_typed": {
+            "decimal": "2",
+            "type": "int"
+          },
+          "latch_absent": false,
+          "ordinal": 8
+        }
+      ],
+      "status": "DIRECT_LANGUAGE_SOURCE_UNIT_PASS"
+    },
+    {
+      "case": "T04",
+      "direct_calls": 7,
+      "first_error": "SOURCE_MISSED_FIRST_ELIGIBLE_IDLE",
+      "first_latch_last_count_typed_unchanged": true,
+      "natural_HIT": false,
+      "status": "DIRECT_LANGUAGE_REJECTION_PASS"
+    },
+    {
+      "anchor": -1,
+      "case": "T05",
+      "direct_calls": 3,
+      "first_error": "SOURCE_CLEANUP_PASS_ASSOCIATION",
+      "natural_HIT": false,
+      "status": "DIRECT_LANGUAGE_REJECTION_PASS",
+      "terminal_cut_nil": true
+    },
+    {
+      "activation_death_positive": false,
+      "actual_sampled_checkpoint_typed": {
+        "entries": [
+          {
+            "key": {
+              "type": "string",
+              "value": "physics_frame"
+            },
+            "value": {
+              "decimal": "0",
+              "type": "int"
+            }
+          },
+          {
+            "key": {
+              "type": "string",
+              "value": "idle_frame"
+            },
+            "value": {
+              "decimal": "0",
+              "type": "int"
+            }
+          },
+          {
+            "key": {
+              "type": "string",
+              "value": "is_in_physics_frame"
+            },
+            "value": {
+              "type": "bool",
+              "value": false
+            }
+          }
+        ],
+        "type": "dictionary"
+      },
+      "anchor": 0,
+      "case": "T06",
+      "direct_calls": 3,
+      "natural_HIT": false,
+      "status": "DIRECT_LANGUAGE_CHECKPOINT_SOURCE_UNIT_PASS",
+      "terminal_cut_nil": true
+    }
+  ],
+  "direct_calls": 42,
+  "models": 0,
+  "native": 0,
+  "observation_decode_only": true,
+  "report": {
+    "path": "data/phase394-independent-language-first-001/project/language-report.json",
+    "sha256": "306b22b4407398052fed38c1bf17bbaf8e6115fc60565c9dd40111cc93e22349",
+    "size": 39195
+  },
+  "schema": "phase394-output-only-typed-observations/1",
+  "source": "Only the already raw-jointsealed language report; no new SUT/engine invocation"
+}
