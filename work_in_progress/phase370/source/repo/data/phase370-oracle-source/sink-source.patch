@@ -1,0 +1,46 @@
+--- frozen/sink.gd
++++ source370/sink.gd
+@@ -1464,7 +1464,8 @@
+ var source_cut_physics = -1
+ var source_cut_idle = -1
+ var source_cut_ack = null
+-var source_cut_emit_error = null
++var source_cut_script_return = null
++var source_cut_script_return_observed = false
+ var source_cut_finish_return = null
+ var source_cut_ready_connect = {"physics": null, "idle": null}
+ var source_diag_records = 0
+@@ -1597,7 +1598,7 @@
+ 
+ 
+ func source_cut_control():
+-	return {"phase": source_cut_phase, "dispatching": source_cut_dispatching, "emit_count": source_cut_emit_count, "receiver_available": source_cut_receiver_id > 0, "receiver_id": str(source_cut_receiver_id) if source_cut_receiver_id > 0 else null, "physics": source_cut_physics if source_cut_physics >= 0 else null, "idle": source_cut_idle if source_cut_idle >= 0 else null, "ack": source_cut_ack, "emit_error": source_cut_emit_error, "finish_return": source_cut_finish_return, "failed": failed, "closed": closed, "complete": source_window_complete, "clock_closed": king_clock_closed, "ui_closed": ui_closed, "first_error": first_error, "ready_connect": source_cut_ready_connect, "diagnostic_error": source_diag_error}
++	return {"phase": source_cut_phase, "dispatching": source_cut_dispatching, "emit_count": source_cut_emit_count, "receiver_available": source_cut_receiver_id > 0, "receiver_id": str(source_cut_receiver_id) if source_cut_receiver_id > 0 else null, "physics": source_cut_physics if source_cut_physics >= 0 else null, "idle": source_cut_idle if source_cut_idle >= 0 else null, "ack": source_cut_ack, "script_emit_return": source_cut_script_return, "script_emit_return_observed": source_cut_script_return_observed, "native_emit_error_available": false, "native_emit_error": null, "finish_return": source_cut_finish_return, "failed": failed, "closed": closed, "complete": source_window_complete, "clock_closed": king_clock_closed, "ui_closed": ui_closed, "first_error": first_error, "ready_connect": source_cut_ready_connect, "diagnostic_error": source_diag_error}
+ 
+ 
+ func source_cut_reject(code, site, detail = null):
+@@ -1630,7 +1631,7 @@
+ 	if failed or not closed or not source_window_complete or not king_clock_closed or not ui_closed or source_cut_phase != "IDLE" or source_cut_emit_count != 0 or source_cut_dispatching or source_cleanup == null or Engine.is_in_physics_frame() or Engine.get_physics_frames() != source_cleanup.physics_frame + 2:
+ 		return source_cut_reject("CUT_DISPATCH_CONTEXT", "emit_source_idle_cut_once")
+ 	var receiver = source_cut_receiver()
+-	if receiver == null or not receiver.has_method("finish_source_cut"):
++	if receiver == null or not receiver.has_method("on_idle_source_cut") or not receiver.has_method("finish_source_cut"):
+ 		return source_cut_reject("CUT_PRIVATE_RECEIVER", "emit_source_idle_cut_once")
+ 	source_cut_receiver_id = receiver.get_instance_id()
+ 	source_cut_physics = Engine.get_physics_frames()
+@@ -1640,11 +1641,12 @@
+ 	source_cut_dispatching = true
+ 	if not source_diagnostic("emit_source_idle_cut_once", "EMITTING", {"control": source_cut_control(), "private_connections": source_control_rows(self, "source_idle_cut_ready"), "tree_connections": source_control_rows(get_tree(), "idle_frame")}):
+ 		return source_cut_reject("CUT_DIAGNOSTIC_BEFORE_EMIT", "emit_source_idle_cut_once")
+-	source_cut_emit_error = emit_signal("source_idle_cut_ready")
++	source_cut_script_return = emit_signal("source_idle_cut_ready")
++	source_cut_script_return_observed = true
+ 	source_cut_dispatching = false
+ 	source_cut_phase = "RETURNED"
+-	# An OK Error return is not a callback acknowledgement.
+-	if typeof(source_cut_emit_error) != TYPE_INT or source_cut_emit_error != OK or source_cut_ack == null or failed:
++	# Script NIL is not a callback acknowledgement; native Error is unavailable.
++	if typeof(source_cut_script_return_observed) != TYPE_BOOL or not source_cut_script_return_observed or typeof(source_cut_script_return) != TYPE_NIL or source_cut_ack == null or failed:
+ 		return source_cut_reject("CUT_EMIT_OR_ACK", "emit_source_idle_cut_once")
+ 	if source_cut_ack.receiver_id != str(source_cut_receiver_id) or source_cut_ack.physics != source_cut_physics or source_cut_ack.idle != source_cut_idle or source_cut_ack.serial != 1 or Engine.get_physics_frames() != source_cut_physics or Engine.get_idle_frames() != source_cut_idle or source_cut_receiver() != receiver:
+ 		return source_cut_reject("CUT_RETURN_IDENTITY", "emit_source_idle_cut_once")

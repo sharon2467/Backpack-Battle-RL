@@ -1,0 +1,99 @@
+{
+  "UI17_changed": false,
+  "accepted12_changed": false,
+  "clock_pass_ABI_changed": false,
+  "erratum": "Prior368/369 Error assumption preserved as failed SOURCE. GDScript wrapper returns NIL, native Error unavailable.",
+  "finish_return": {
+    "contract": "ACTUAL_SCRIPT_BOOL",
+    "runtime_observed": false,
+    "source": {
+      "caller": "receiver.finish_source_cut() directly invokes the script method; collector success expression is BOOL and explicit false branches remain BOOL.",
+      "classification": "SOURCE_DERIVED_NOT_RUNTIME_OBSERVED",
+      "conclusion": "No analogous SOURCE return-discard inconsistency identified for finish. Actual returned BOOL and acknowledgement still require the future real language controls.",
+      "distinction": "Object::_call_bind returns Object::call result. Object::call returns script_instance->call Variant on CALL_OK, unlike _emit_signal discarding native Error.",
+      "source": [
+        {
+          "end": 690,
+          "source": {
+            "path": "data/phase184-ranger-idle-sync-source/source/object.cpp",
+            "sha256": "7d9bb073fde7ba0c1d7b057fbefcdba292148eeb4cdd58c1c975c9e8f8f3b8c6",
+            "size": 57985
+          },
+          "start": 673,
+          "text": "Variant Object::_call_bind(const Variant **p_args, int p_argcount, Variant::CallError &r_error) {\n\tif (p_argcount < 1) {\n\t\tr_error.error = Variant::CallError::CALL_ERROR_TOO_FEW_ARGUMENTS;\n\t\tr_error.argument = 0;\n\t\treturn Variant();\n\t}\n\n\tif (p_args[0]->get_type() != Variant::STRING) {\n\t\tr_error.error = Variant::CallError::CALL_ERROR_INVALID_ARGUMENT;\n\t\tr_error.argument = 0;\n\t\tr_error.expected = Variant::STRING;\n\t\treturn Variant();\n\t}\n\n\tStringName method = *p_args[0];\n\n\treturn call(method, &p_args[1], p_argcount - 1, r_error);\n}\n"
+        },
+        {
+          "end": 912,
+          "source": {
+            "path": "data/phase184-ranger-idle-sync-source/source/object.cpp",
+            "sha256": "7d9bb073fde7ba0c1d7b057fbefcdba292148eeb4cdd58c1c975c9e8f8f3b8c6",
+            "size": 57985
+          },
+          "start": 869,
+          "text": "Variant Object::call(const StringName &p_method, const Variant **p_args, int p_argcount, Variant::CallError &r_error) {\n\tr_error.error = Variant::CallError::CALL_OK;\n\n\tif (p_method == CoreStringNames::get_singleton()->_free) {\n//free must be here, before anything, always ready\n#ifdef DEBUG_ENABLED\n\t\tif (p_argcount != 0) {\n\t\t\tr_error.argument = 0;\n\t\t\tr_error.error = Variant::CallError::CALL_ERROR_TOO_MANY_ARGUMENTS;\n\t\t\treturn Variant();\n\t\t}\n\t\tif (Object::cast_to<Reference>(this)) {\n\t\t\tr_error.argument = 0;\n\t\t\tr_error.error = Variant::CallError::CALL_ERROR_INVALID_METHOD;\n\t\t\tERR_FAIL_V_MSG(Variant(), \"Can't 'free' a reference.\");\n\t\t}\n\n\t\tif (_lock_index.get() > 1) {\n\t\t\tr_error.argument = 0;\n\t\t\tr_error.error = Variant::CallError::CALL_ERROR_INVALID_METHOD;\n\t\t\tERR_FAIL_V_MSG(Variant(), \"Object is locked and can't be freed.\");\n\t\t}\n\n#endif\n\t\t//must be here, must be before everything,\n\t\tmemdelete(this);\n\t\tr_error.error = Variant::CallError::CALL_OK;\n\t\treturn Variant();\n\t}\n\n\tVariant ret;\n\tOBJ_DEBUG_LOCK\n\tif (script_instance) {\n\t\tret = script_instance->call(p_method, p_args, p_argcount, r_error);\n\t\t//force jumptable\n\t\tswitch (r_error.error) {\n\t\t\tcase Variant::CallError::CALL_OK:\n\t\t\t\treturn ret;\n\t\t\tcase Variant::CallError::CALL_ERROR_INVALID_METHOD:\n\t\t\t\tbreak;\n\t\t\tcase Variant::CallError::CALL_ERROR_INVALID_ARGUMENT:\n\t\t\tcase Variant::CallError::CALL_ERROR_TOO_MANY_ARGUMENTS:\n\t\t\tcase Variant::CallError::CALL_ERROR_TOO_FEW_ARGUMENTS:\n\t\t\t\treturn ret;\n"
+        },
+        {
+          "end": 1713,
+          "source": {
+            "path": "data/phase184-ranger-idle-sync-source/source/object.cpp",
+            "sha256": "7d9bb073fde7ba0c1d7b057fbefcdba292148eeb4cdd58c1c975c9e8f8f3b8c6",
+            "size": 57985
+          },
+          "start": 1706,
+          "text": "\t{\n\t\tMethodInfo mi;\n\t\tmi.name = \"call\";\n\t\tmi.arguments.push_back(PropertyInfo(Variant::STRING, \"method\"));\n\n\t\tClassDB::bind_vararg_method(METHOD_FLAGS_DEFAULT, \"call\", &Object::_call_bind, mi);\n\t}\n\n"
+        }
+      ]
+    }
+  },
+  "native_error": {
+    "available": false,
+    "provenance": "SOURCE_WRAPPER_DISCARDS_NATIVE_ERROR_NOT_OBSERVED_OK0",
+    "value": null
+  },
+  "references": {
+    "collector": [
+      {
+        "line": 902,
+        "text": "\tif control.phase != \"EMITTING\" or not control.dispatching or control.emit_count != 1 or control.receiver_id != str(get_instance_id()) or control.ack != null or typeof(control.script_emit_return_observed) != TYPE_BOOL or control.script_emit_return_observed or typeof(control.script_emit_return) != TYPE_NIL or typeof(control.native_emit_error_available) != TYPE_BOOL or control.native_emit_error_available or control.native_emit_error != null:"
+      },
+      {
+        "line": 1042,
+        "text": "\tif control.phase != \"FINALIZING\" or control.dispatching or control.emit_count != 1 or typeof(control.script_emit_return_observed) != TYPE_BOOL or not control.script_emit_return_observed or typeof(control.script_emit_return) != TYPE_NIL or typeof(control.native_emit_error_available) != TYPE_BOOL or control.native_emit_error_available or control.native_emit_error != null or control.ack == null or control.receiver_id != str(get_instance_id()) or control.physics != source_cut_payload.validation.cut.physics or control.idle != source_cut_payload.validation.cut.idle or Engine.get_physics_frames() != control.physics or Engine.get_idle_frames() != control.idle or control.failed:"
+      }
+    ],
+    "sink": [
+      {
+        "line": 1467,
+        "text": "var source_cut_script_return = null"
+      },
+      {
+        "line": 1468,
+        "text": "var source_cut_script_return_observed = false"
+      },
+      {
+        "line": 1601,
+        "text": "\treturn {\"phase\": source_cut_phase, \"dispatching\": source_cut_dispatching, \"emit_count\": source_cut_emit_count, \"receiver_available\": source_cut_receiver_id > 0, \"receiver_id\": str(source_cut_receiver_id) if source_cut_receiver_id > 0 else null, \"physics\": source_cut_physics if source_cut_physics >= 0 else null, \"idle\": source_cut_idle if source_cut_idle >= 0 else null, \"ack\": source_cut_ack, \"script_emit_return\": source_cut_script_return, \"script_emit_return_observed\": source_cut_script_return_observed, \"native_emit_error_available\": false, \"native_emit_error\": null, \"finish_return\": source_cut_finish_return, \"failed\": failed, \"closed\": closed, \"complete\": source_window_complete, \"clock_closed\": king_clock_closed, \"ui_closed\": ui_closed, \"first_error\": first_error, \"ready_connect\": source_cut_ready_connect, \"diagnostic_error\": source_diag_error}"
+      },
+      {
+        "line": 1644,
+        "text": "\tsource_cut_script_return = emit_signal(\"source_idle_cut_ready\")"
+      },
+      {
+        "line": 1645,
+        "text": "\tsource_cut_script_return_observed = true"
+      },
+      {
+        "line": 1649,
+        "text": "\tif typeof(source_cut_script_return_observed) != TYPE_BOOL or not source_cut_script_return_observed or typeof(source_cut_script_return) != TYPE_NIL or source_cut_ack == null or failed:"
+      }
+    ]
+  },
+  "schema": "phase370-control-return-ABI/1",
+  "script_return": {
+    "after_call": "ACTUAL_NIL",
+    "after_observed": true,
+    "before_call": null,
+    "before_observed": false
+  },
+  "source": "data/phase369-independent-execution/first-source-block.json"
+}

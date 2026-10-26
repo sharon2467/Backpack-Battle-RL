@@ -1,0 +1,88 @@
+{
+  "files": [
+    {
+      "after": {
+        "path": "tests/phase370_oracle_host.py",
+        "sha256": "04e0707e044b54106b489ae817f04e1624c01edf7745561c2b812e5c778f812e",
+        "size": 18039
+      },
+      "before": {
+        "path": "tests/phase369_oracle_host.py",
+        "sha256": "a22ecabd547234b91fa88e8dc879c1ba5a919b14d192d3f99a5b59ce35760401",
+        "size": 18038
+      },
+      "changed_binding_functions": [
+        "source_gate"
+      ],
+      "inverse": "EXACT_COMPLETE_BYTES",
+      "literal_pairs": [
+        [
+          "data/phase369-oracle-source",
+          "data/phase370-oracle-source"
+        ],
+        [
+          "INDEPENDENT369_SCENETREE_COLLECTOR_SOURCE_REPAIR_ACCEPTED_ROOT_PENDING",
+          "INDEPENDENT370_SCRIPT_SIGNAL_RETURN_SOURCE_REPAIR_ACCEPTED_ROOT_PENDING"
+        ],
+        [
+          "phase369-root-oracle-acceptance/1",
+          "phase370-root-oracle-acceptance/1"
+        ]
+      ],
+      "unchanged_functions": [
+        "collect_capture_metadata",
+        "descriptor",
+        "execute",
+        "main",
+        "plan",
+        "read_control",
+        "resource_gate",
+        "verify_owner"
+      ]
+    },
+    {
+      "after": {
+        "path": "tests/phase370_pool_recovery.py",
+        "sha256": "eabd691cb2474462b7faa01fcb39a8046cdb5c8a170a4995b47b342165d539f9",
+        "size": 16974
+      },
+      "before": {
+        "path": "tests/phase369_pool_recovery.py",
+        "sha256": "4d9c2ca5e4f38a53c099530900a66d82498664ea1f8d743b68deeec385cfe1c6",
+        "size": 16974
+      },
+      "changed_binding_functions": [
+        "source_gate"
+      ],
+      "inverse": "EXACT_COMPLETE_BYTES",
+      "literal_pairs": [
+        [
+          "from phase369_oracle_host import",
+          "from phase370_oracle_host import"
+        ],
+        [
+          "INDEPENDENT369_RESTORED_POOL_EXACT_TARGET_READBACK_PASS",
+          "INDEPENDENT370_RESTORED_POOL_EXACT_TARGET_READBACK_PASS"
+        ],
+        [
+          "phase369-root-pool-recovery/1",
+          "phase370-root-pool-recovery/1"
+        ]
+      ],
+      "unchanged_functions": [
+        "actual_targets",
+        "check_failed_state",
+        "check_roots",
+        "commit_ready",
+        "directory_metadata",
+        "evidence_path",
+        "locked_pool",
+        "main",
+        "recover",
+        "require",
+        "restore_exact",
+        "verify_evidence"
+      ]
+    }
+  ]
+}

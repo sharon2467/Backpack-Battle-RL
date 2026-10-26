@@ -1,0 +1,9 @@
+# Real script signal-return contract — independent controls pending
+
+Godot3's GDScript emit_signal wrapper returns NIL and does not expose native Error. Phase369's INT/OK guard was therefore a source defect; its exact counterexample and successful mechanical checks remain preserved. No dynamic test was run on that blocked source.
+
+This370 source records the actual script NIL return with a separate observed flag, distinguishing it from the not-yet-called state. Native Error is explicitly unavailable/null; it is never synthesized as OK0. Exclusive live receiver/method, flags0/no binds, synchronous dispatch bracket, actual IDs/frames/once, exact callback acknowledgement and actual BOOL finalizer return provide the completion evidence. The callback freezes one DTO; after real emit return/ack checks, the same-stack finalizer only serializes it. Original clock/site/sequence/getter/business logic, other74 patch paths, fixture/seeds and the already derived368 map retain their bytes. The accepted12-input/17-key UI ABI is unchanged; new controls are opaque evidence.
+
+SOURCE is frozen; independent bounded review/regression is active, not accepted. It aggregates related static defects before any dynamic launch. If no block remains, the finite gate permits one empty-project Godot process with full exact script-resource loading first, then necessary return/ack/guard/diagnostic controls, plus bounded tinyFS and saved-map checks. No fake Game/full12 positive is permitted. No real pool recovery/READY/attempt03/model/projection is granted by this snapshot.
+
+After archival354 and other flat supplements, copy source/repo and independent_preparation/repo additively at original repo-relative paths. FILES and owners bind exact bytes; no generator replay is required. Formal bounded75 remains accepted; King is unadmitted and full engine/RL work is incomplete.
