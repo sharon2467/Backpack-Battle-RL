@@ -1,0 +1,137 @@
+{
+  "capture": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261025-attempt03/output/capture",
+  "capture_complete": false,
+  "control_failures_opaque": {
+    "collector-first-failure.json": {
+      "sha256": "9f83430e1a898da9ccf28552c157cf5144c15ff171dde59a2b22ca9b484e7f39",
+      "size": 166
+    },
+    "observer7_failure.json": {
+      "sha256": "a5fbf3ed96b25a6212d8359457fdd54d0976f57a49e0db7f69eab236206c0d4d",
+      "size": 157
+    }
+  },
+  "expected_observations_opaque": {
+    "observer7-registration.jsonl": {
+      "sha256": "abe780a1220be7c287b2ad8a8670f60cc66ddf27cd0b27c95f87717c921cf128",
+      "size": 873
+    },
+    "observer7-runtime.jsonl": {
+      "sha256": "498608889e09128f860c37c74d7292c397a86b9f7f78bf8b3809ef5881c4d17d",
+      "size": 44695
+    },
+    "player_setup_evidence.json": {
+      "sha256": "b6afc461823ba315d4bdfef5bb7b8b8fe582391db23c872785980914cc10aadd",
+      "size": 57038
+    },
+    "preflight.json": {
+      "sha256": "0cb6ac6f3ad3a0878f7193f496757263dae1b541a17cb68dc07b07d1a76d4aaf",
+      "size": 270
+    },
+    "rules_preflight.json": {
+      "sha256": "8cd4cedaa1e129ed57168b99057eb419d16cb380a160ec4e2211d306f7d924ac",
+      "size": 1430
+    },
+    "source-window-diagnostic.jsonl": {
+      "sha256": "7d5d9f8f2f4287ba715da9d089a81870df7758ff1f548e3d16b7d2dd9e56a044",
+      "size": 7424
+    },
+    "unselected-source-lineage.jsonl": {
+      "sha256": "b939c9ecf166ccfc07f3c2dabbb7b958e2deec6f9df958870c345d258065810b",
+      "size": 12582
+    }
+  },
+  "expected_semantics_read": false,
+  "lawful_inputs_missing": [
+    "observer7-primitives.jsonl",
+    "king-clock-checkpoint.json",
+    "king-clock-passes.jsonl",
+    "king-input-facts.json"
+  ],
+  "lawful_inputs_present": {
+    "fixture.json": {
+      "sha256": "98ae29e5cbe3ae60504cee9d994ce76a27bd10d8d372d5281e6d681e500869b1",
+      "size": 771
+    },
+    "king-rng-checkpoint.json": {
+      "sha256": "ab64b1f2fe05521ce91e19a69a9b8f903096a10f2777867c685755cdc5231dd0",
+      "size": 772
+    },
+    "king-slot-bindings.json": {
+      "sha256": "501f9432f687d98853d838d7159126b8044d49d3a5feb651ea027c503d181ca6",
+      "size": 20254
+    },
+    "king-ui-authority.jsonl": {
+      "sha256": "a9025017da5219c1ecd3bec1cd310d358b57eb31f71fa92d1d550f150793c388",
+      "size": 586073
+    },
+    "observer7-input.jsonl": {
+      "sha256": "8784c556c8ef33073a149194cdcf35edbb6d8a900dfc839a46a5faefd2ead30a",
+      "size": 139874
+    },
+    "observer7-lineage.jsonl": {
+      "sha256": "54e9e1990cbec41870ec0d6b92a4271ab05308bf4d54c17209ea0b1a5a515437",
+      "size": 63286
+    },
+    "observer7-metadata.jsonl": {
+      "sha256": "65d873d553dcc461613226e0dec014728342e388fee6d01fdff49ab6f41096d8",
+      "size": 6457
+    },
+    "player_fixture.json": {
+      "sha256": "a42675c3fedb0651e4309754403d5658edcce869f85edb07963e7a2f87391c56",
+      "size": 1676
+    }
+  },
+  "models": 0,
+  "partial_files_opaque": {},
+  "primary_failure": {
+    "control": {
+      "capture_complete": false,
+      "code": "observer7 durable failure; stopped by existing idle driver",
+      "cut_frozen": false,
+      "schema": "phase362-failure/1",
+      "stage": "combat_wait"
+    },
+    "identity": {
+      "sha256": "9f83430e1a898da9ccf28552c157cf5144c15ff171dde59a2b22ca9b484e7f39",
+      "size": 166
+    },
+    "kind": "collector_control_failure"
+  },
+  "projection": 0,
+  "schema": "phase365-partial-source-partition/1",
+  "secondary_errors": [
+    {
+      "code": "additional_observer_control_failure",
+      "failure": {
+        "control": {
+          "capture_complete": false,
+          "code": "SOURCE_UNKNOWN_SELECTED_HOOK",
+          "detail": null,
+          "schema": "observer7-failure/1",
+          "sequence": 159,
+          "site": "Items/Food.gd::prepare"
+        },
+        "identity": {
+          "sha256": "a5fbf3ed96b25a6212d8359457fdd54d0976f57a49e0db7f69eab236206c0d4d",
+          "size": 157
+        },
+        "kind": "observer_control_failure"
+      },
+      "precedence": "COLLECTOR_IF_PRESENT_NO_TIME_ORDER_INFERRED"
+    },
+    {
+      "code": "missing_required_file",
+      "file": "validation.json"
+    },
+    {
+      "code": "missing_lawful_inputs",
+      "files": [
+        "observer7-primitives.jsonl",
+        "king-clock-checkpoint.json",
+        "king-clock-passes.jsonl",
+        "king-input-facts.json"
+      ]
+    }
+  ]
+}

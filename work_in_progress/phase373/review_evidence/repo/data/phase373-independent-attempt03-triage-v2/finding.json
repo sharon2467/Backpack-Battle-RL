@@ -1,0 +1,127 @@
+{
+  "status": "BLOCKED373_SELECTED_INHERITED_FOOD_PREPARE_HOOK_UNDECLARED",
+  "direct": {
+    "parse-process-result.json": {
+      "exit_code": 0,
+      "duration_seconds": 2.5538246460055234,
+      "process_clean_exit": true,
+      "timed_out": false,
+      "cleanup": {
+        "after": [
+          {
+            "live": false,
+            "pid": 17749,
+            "state": "Z"
+          }
+        ],
+        "before": [
+          {
+            "live": false,
+            "pid": 17749,
+            "state": "Z"
+          }
+        ],
+        "duration_seconds": 0.009299944002123084,
+        "kill_grace_seconds": 0.5,
+        "kill_sent": false,
+        "leader_returncode": 0,
+        "live_remaining": [],
+        "pgid": 17739,
+        "term_grace_seconds": 5.0,
+        "term_sent": true,
+        "zombies_not_claimed_reaped": [
+          17749
+        ]
+      },
+      "parse_only": true
+    },
+    "native-process-result.json": {
+      "exit_code": 2,
+      "duration_seconds": 21.448831558001984,
+      "process_clean_exit": false,
+      "timed_out": false,
+      "cleanup": {
+        "after": [
+          {
+            "live": false,
+            "pid": 17808,
+            "state": "Z"
+          }
+        ],
+        "before": [
+          {
+            "live": false,
+            "pid": 17808,
+            "state": "Z"
+          }
+        ],
+        "duration_seconds": 0.008681269995577168,
+        "kill_grace_seconds": 0.5,
+        "kill_sent": false,
+        "leader_returncode": 2,
+        "live_remaining": [],
+        "pgid": 17798,
+        "term_grace_seconds": 5.0,
+        "term_sent": true,
+        "zombies_not_claimed_reaped": [
+          17808
+        ]
+      },
+      "parse_only": false
+    },
+    "observer_failure": {
+      "schema": "observer7-failure/1",
+      "code": "SOURCE_UNKNOWN_SELECTED_HOOK",
+      "site": "Items/Food.gd::prepare",
+      "sequence": 159,
+      "detail": null,
+      "capture_complete": false
+    },
+    "collector_failure": {
+      "schema": "phase362-failure/1",
+      "code": "observer7 durable failure; stopped by existing idle driver",
+      "stage": "combat_wait",
+      "cut_frozen": false,
+      "capture_complete": false
+    },
+    "lawful_inputs_missing": [
+      "observer7-primitives.jsonl",
+      "king-clock-checkpoint.json",
+      "king-clock-passes.jsonl",
+      "king-input-facts.json"
+    ],
+    "lawful_inputs_present": [
+      "fixture.json",
+      "king-rng-checkpoint.json",
+      "king-slot-bindings.json",
+      "king-ui-authority.jsonl",
+      "observer7-input.jsonl",
+      "observer7-lineage.jsonl",
+      "observer7-metadata.jsonl",
+      "player_fixture.json"
+    ]
+  },
+  "source_derived": {
+    "selected_missing_hooks": [
+      "Items/Food.gd::prepare"
+    ],
+    "food_inverse_original": "all original bytes plus one terminal LF; no statement change",
+    "dispatch": "entry/leave -> source_observable: bound selected ID + unknown SITES -> fail; original Food.prepare invokes Item.prepare then speed bonus. Failure writes durable record but does not abort the GD business method.",
+    "identity_limit": "Failure record does not include object ID/role; selected Food ancestry and fixed selected Food roles establish SOURCE reachability, not the exact failing role.",
+    "sequence_limit": "159 is the observer sequence counter at fail, not event index or proof of complete records.",
+    "minimal_repair": "Keep unknown-hook guard. Add exact inherited Food.prepare declaration/typed generic-item state/empty arguments/NIL implicit return consistently to sink/schema/record matrix, with original Food business and fixed fixture/seeds untouched; verify finite selected ancestry dispatch closure before a separate native retry."
+  },
+  "actual12_positive": false,
+  "battle_positive": false,
+  "native": 0,
+  "models": 0,
+  "probes": 0,
+  "pool_changes": 0,
+  "projection_builds": 0,
+  "expected_semantics_read": false,
+  "remaining": [
+    "Four lawful files missing; partial inputs cannot construct accepted input bundle.",
+    "No terminal/clock/fullsnapshot or event/history acceptance.",
+    "Out-of-selected-family hook differences not admitted."
+  ]
+}

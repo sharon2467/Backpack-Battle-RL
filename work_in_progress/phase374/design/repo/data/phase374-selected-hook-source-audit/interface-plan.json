@@ -1,0 +1,57 @@
+{
+  "allowed_method_edges": [
+    "enter",
+    "return_implicit"
+  ],
+  "delegates": [
+    "_base_validate_record",
+    "validate_record",
+    "_validate_call_pairs",
+    "validate_observation_records",
+    "schema.MATRIX"
+  ],
+  "future_changes": [
+    "new sink SITES append1",
+    "new schema MATRIX append1",
+    "new producer/schema/source tuple identity binding"
+  ],
+  "implemented": false,
+  "implicit_return": {
+    "type": "null"
+  },
+  "independent373_finding": {
+    "path": "data/phase373-independent-attempt03-triage-v2/finding.json",
+    "root": "source_root",
+    "sha256": "c81b85232acb8b172cf4d7a8489f152c95a4ed706b7b5e2adb15686645accd5b",
+    "size": 4145
+  },
+  "native_acceptance": false,
+  "next_native_authorization": null,
+  "next_recovery_authorization": null,
+  "schema": "phase374-minimal-proposed-contract/1",
+  "schema_spec": {
+    "argument_types": {},
+    "arguments_exact": [],
+    "channel": "runtime",
+    "explicit_returns": [],
+    "state_schema": "item"
+  },
+  "sink_spec": {
+    "channel": "runtime",
+    "state_schema": "item"
+  },
+  "site": "Items/Food.gd::prepare",
+  "snapshot_subkind": {
+    "item_index": 22,
+    "schema": "plain_item",
+    "sink": "item"
+  },
+  "unchanged": [
+    "old106 routes",
+    "originalFood75patch",
+    "all runtime generic handlers",
+    "accepted12/UI17/auxproof/streams/primitive/Tape/clock ABI",
+    "canonical75/356closed/361closed",
+    "fixture/seeds"
+  ]
+}

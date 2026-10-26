@@ -1,0 +1,132 @@
+{
+  "Food_after": {
+    "source": {
+      "path": "data/phase359-king-producer-source/after-source/Items/Food.gd",
+      "root": "source_root",
+      "sha256": "07a477dc16365fa0d5e8cfaca3cf9aacaca76eaef4b9d3d05740b5f874340d37",
+      "size": 337
+    },
+    "text": "extends Item\nclass_name Food\n\nfunc canAffect(item):\n\treturn item.hasType(Type.Food) and item.descriptor != descriptor\n\t\nfunc prepare():\n\tNativeRandomObserver.entry(\"Items/Food.gd::prepare\", self, {})\n\t.prepare()\n\taddSpeed(getNumAffectedItems() * 0.1)\n\tNativeRandomObserver.leave(\"Items/Food.gd::prepare\", self, null, \"return_implicit\")\n\n"
+  },
+  "Food_before": {
+    "source": {
+      "path": "data/phase298-native68-source/before-source/Items/Food.gd",
+      "root": "source_root",
+      "sha256": "e0ff858b55f1f5a2d8e1b06ee155a4f7444ba7f4cd903bbee2b09780bfb20a23",
+      "size": 187
+    },
+    "text": "extends Item\nclass_name Food\n\nfunc canAffect(item):\n\treturn item.hasType(Type.Food) and item.descriptor != descriptor\n\t\nfunc prepare():\n\t.prepare()\n\taddSpeed(getNumAffectedItems() * 0.1)\n"
+  },
+  "actual_Food_body_or_return_not_claimed": true,
+  "actual_Food_entry_record_emitted": false,
+  "actual_control": {
+    "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261025-attempt03/output/capture/observer7_failure.json",
+    "sha256": "a5fbf3ed96b25a6212d8359457fdd54d0976f57a49e0db7f69eab236206c0d4d",
+    "size": 157,
+    "value": {
+      "capture_complete": false,
+      "code": "SOURCE_UNKNOWN_SELECTED_HOOK",
+      "detail": null,
+      "schema": "observer7-failure/1",
+      "sequence": 159,
+      "site": "Items/Food.gd::prepare"
+    }
+  },
+  "control_copy": {
+    "path": "data/phase374-selected-hook-source-audit/observer7_failure-control.json",
+    "root": "source_root",
+    "sha256": "a5fbf3ed96b25a6212d8359457fdd54d0976f57a49e0db7f69eab236206c0d4d",
+    "size": 157
+  },
+  "exact_failure_role_unknown": true,
+  "independent_finding": {
+    "path": "data/phase373-independent-attempt03-triage-v2/finding.json",
+    "root": "source_root",
+    "sha256": "c81b85232acb8b172cf4d7a8489f152c95a4ed706b7b5e2adb15686645accd5b",
+    "size": 4145
+  },
+  "observer_failure_does_not_abort_original_GD_method": true,
+  "original_source_authority": "GD1.1.8, not output residual inference",
+  "producer_body_must_not_change": true,
+  "schema": "phase374-source-and-first-control-evidence/1",
+  "schema_routes_missing_Food": true,
+  "spans": [
+    {
+      "end": 241,
+      "source": {
+        "path": "data/phase370-oracle-source/after-source/native_random_observer_sink_v7.gd",
+        "root": "source_root",
+        "sha256": "2a665f6d3849b34dee31e5079e58ebf59049d06b9590fb8522e53bfbe0b581ad",
+        "size": 99784
+      },
+      "start": 225,
+      "text": "\tfor key in STATE_SCHEMAS[schema]:\n\t\tif key == \"descriptorIndex\":\n\t\t\tresult[key] = encode(object.descriptor.itemIndex)\n\t\telif key == \"native_id\":\n\t\t\tresult[key] = native_id(object)\n\t\telif key == \"allocation_counter\":\n\t\t\tresult[key] = encode(object.combatLog.eventNum)\n\t\telif key == \"event_count\":\n\t\t\tresult[key] = encode(object.events.size())\n\t\telif key == \"connection_count\":\n\t\t\tvar count = 0\n\t\t\tfor emission in object.connections:\n\t\t\t\tcount += object.connections[emission].size()\n\t\t\tresult[key] = encode(count)\n\t\telif STATE_SCHEMAS[schema][key] in [\"timer\", \"timer|null\"]:\n\t\t\tresult[key] = timer_state(object.get(key))\n\t\telif STATE_SCHEMAS[schema][key] == \"auto_hide\":\n"
+    },
+    {
+      "end": 388,
+      "source": {
+        "path": "data/phase370-oracle-source/after-source/native_random_observer_sink_v7.gd",
+        "root": "source_root",
+        "sha256": "2a665f6d3849b34dee31e5079e58ebf59049d06b9590fb8522e53bfbe0b581ad",
+        "size": 99784
+      },
+      "start": 330,
+      "text": "\nfunc entry(site, object, arguments):\n\tif failed or closed:\n\t\treturn\n\t# Native IDs and primitive constructor counters are captured even before the\n\t# selected inventory can be geometrically associated. No event object is kept.\n\tif site in [\"Core/Buff.gd::init\", \"Core/Buff.gd::TemporaryStacks._init\"]:\n\t\tvar source_id = native_id(object)\n\t\tif source_id == null:\n\t\t\treturn\n\t\tvar source_type = \"temporary\" if site == \"Core/Buff.gd::TemporaryStacks._init\" else \"buff\"\n\t\tvar key = object.get_instance_id()\n\t\tif source_types.has(key) and source_types[key] != source_type:\n\t\t\tfail(\"SOURCE_TYPE_ID_COLLISION\", site)\n\t\t\treturn\n\t\tsource_types[key] = source_type\n\tif site in [\"Items/Item.gd::_ready\", \"Items/Item.gd::prepare\", \"Core/Buff.gd::init\"]:\n\t\tvar id = object.get_instance_id()\n\t\tnative_id(object)\n\t\tif not source_lifetimes.has(id):\n\t\t\tsource_lifetimes[id] = {\"scene\": 0, \"ready\": 0, \"prepare\": 0, \"buff_init\": 0, \"pooled\": false}\n\t\tvar counter = \"ready\" if site == \"Items/Item.gd::_ready\" else (\"prepare\" if site == \"Items/Item.gd::prepare\" else \"buff_init\")\n\t\tsource_lifetimes[id][counter] += 1\n\tif site == \"Core/Game.gd::prepareItems\" and not source_fixture_bound:\n\t\tfail(\"SOURCE_PREPARE_WITHOUT_ACTUAL_SLOT_BINDING\", site)\n\t\treturn\n\tif not source_observable(site, object):\n\t\treturn\n\tif not SITES.has(site):\n\t\tfail(\"SOURCE_UNDECLARED_SELECTED_SITE\", site)\n\t\treturn\n\tbegin_encoding()\n\tsource_phase = site + \":enter\"\n\tif site == \"Core/Game.gd::prepareItems\":\n\t\tif not source_fixture_bound or not selected_lineage(arguments.items, [object.PLAYER, object.OPPONENT]) or not rng_initial_capture(object):\n\t\t\tfail(\"SOURCE_PREPARE_WITHOUT_BOUND_FRESH_PROOF\", site)\n\t\t\treturn\n\t\tenabled = true\n\tif site == \"Core/Game.gd::activateItems\":\n\t\tif not rng_initial_continuity() or not begin_king_clock(object, arguments.items):\n\t\t\treturn\n\t\tactivation_checkpoints += 1\n\t\tif activation_checkpoints != 1:\n\t\t\tfail(\"SOURCE_ACTIVATE_MULTIPLE\", site)\n\tif site == \"Items/Exclusive/KingGoobert.gd::onStateChanged\":\n\t\tif typeof(arguments._crownState) != TYPE_INT:\n\t\t\tfail(\"SOURCE_CROWN_ARGUMENT_TYPE\", site)\n\t\t\treturn\n\t\tsource_crowns[str(object.get_instance_id())] = arguments._crownState\n\tif site == \"Core/Buff.gd::gainTemporary\":\n\t\tif active_buff_calls.size() >= CAPS.depth:\n\t\t\tfail(\"SOURCE_BUFF_CONTEXT_DEPTH\", site)\n\t\telse:\n\t\t\tactive_buff_calls.append({\"target\": ids.get(object.character.get_instance_id(), null), \"stack\": buff_name(object.type), \"reflect\": arguments.reflect})\n\tif site in [\"Core/Game.gd::prepareItems\", \"Core/Game.gd::activateItems\"]:\n\t\tcheckpoint(site, object, arguments.items)\n\tvar spec = SITES[site]\n\twrite_record(spec.channel, site, \"enter\", object, {\"arguments\": encode(arguments), \"state\": state(object, spec.state_schema)})\n\n"
+    },
+    {
+      "end": 1375,
+      "source": {
+        "path": "data/phase370-oracle-source/after-source/native_random_observer_sink_v7.gd",
+        "root": "source_root",
+        "sha256": "2a665f6d3849b34dee31e5079e58ebf59049d06b9590fb8522e53bfbe0b581ad",
+        "size": 99784
+      },
+      "start": 1359,
+      "text": "func source_observable(site, object):\n\tif site == \"Items/Item.gd::_ready\":\n\t\treturn source_fixture_window and (not source_fixture_bound or ids.has(object.get_instance_id()))\n\tif not source_fixture_bound:\n\t\treturn false\n\tif not SITES.has(site):\n\t\tif object != null and ids.has(object.get_instance_id()):\n\t\t\tfail(\"SOURCE_UNKNOWN_SELECTED_HOOK\", site)\n\t\treturn false\n\tif object != null and source_is(object, \"res://Items/Item.gd\"):\n\t\treturn ids.has(object.get_instance_id())\n\tif source_is(object, \"res://Utility/AutoHideParticles.gd\"):\n\t\treturn source_selected_auto(object)\n\treturn true\n\n\nfunc source_selected_auto(object):\n"
+    },
+    {
+      "end": 653,
+      "source": {
+        "path": "tests/phase360_king_observer_schema.py",
+        "root": "source_root",
+        "sha256": "d4229ce6d94525b5bc0b93f7ab80617b96041d65fb4cd4f425e0b07a50a4c5f6",
+        "size": 190693
+      },
+      "start": 634,
+      "text": "    elif site in MATRIX['sites']:\n        spec=MATRIX['sites'][site]\n        if edge in ('enter','return_explicit','return_implicit'):\n            if row['channel']!=spec['channel']:raise ValueError('channel/site mismatch')\n            if edge=='return_explicit' and not spec['explicit_returns']:raise ValueError('nonexistent explicit return')\n            exact(p,['arguments','state'] if edge=='enter' else ['return_value','state'])\n            validate_typed(p['arguments'] if edge=='enter' else p['return_value'])\n            validate_state(p['state'],spec['state_schema'],site.endswith(('::init','::_init')) or site.endswith('TemporaryStacks._init'))\n        elif edge in spec.get('mid',{}):\n            channel='registration' if edge in ('registration','receiver_attempt','receiver_return') else ('allocation' if edge in ('allocation_increment','append') else 'runtime')\n            if row['channel']!=channel:raise ValueError('mid edge channel')\n            exact(p,spec['mid'][edge]['exact_payload'])\n            for key,v in p.items():\n                if key in ('state','buff'):\n                    validate_state(v,'buff' if key=='buff' else spec['state_schema'])\n                elif key=='timer':validate_state(v,'timer')\n                else:validate_typed(v)\n        else:raise ValueError('unknown site edge')\n    else:raise ValueError('unknown record site')\n    encoded=json.dumps(row,ensure_ascii=False,separators=(',',':')).encode()+b'\\n'\n"
+    },
+    {
+      "end": 1606,
+      "source": {
+        "path": "tests/phase360_king_observer_schema.py",
+        "root": "source_root",
+        "sha256": "d4229ce6d94525b5bc0b93f7ab80617b96041d65fb4cd4f425e0b07a50a4c5f6",
+        "size": 190693
+      },
+      "start": 1557,
+      "text": "def validate_record(row):\n    # Full row validation is independent of physical-file sequence validation.\n    if type(row) is dict and row.get('edge') == 'checkpoint':\n        payload = row.get('payload')\n        exact(payload, ('environment', 'nodes', 'items', 'source_resources'))\n        shadow = deepcopy(row)\n        del shadow['payload']['source_resources']\n        _base_validate_record(shadow)\n        validate_resources(payload['source_resources'], payload['nodes'])\n        if payload['environment'] != {\n            'fps': {'type': 'int', 'decimal': '60'},\n            'scale': {'type': 'float', 'binary64_be': '3ff0000000000000'},\n            'paused': {'type': 'bool', 'value': False},\n        }:\n            raise ValueError('fixed60 scale1 unpaused source environment')\n    else:\n        _base_validate_record(row)\n    site, edge, payload = row['site'], row['edge'], row['payload']\n    if site in MATRIX['sites'] and edge == 'enter':\n        fields = argument_fields(payload['arguments'])\n        spec = MATRIX['sites'][site]\n        exact(fields, spec['arguments_exact'])\n        for key, kind in spec['argument_types'].items():\n            if fields[key]['type'] not in kind.split('|'):\n                raise ValueError('actual GD entry declared type ' + site + ':' + key)\n        expected = {\n            'Items/Exclusive/KingGoobert.gd::onStateChanged': {'_crownState': ('int',)},\n            'Core/Character.gd::makeInvulnerable': {'invuDur': ('float',), 'item': ('native_ref',), 'triggerEvent': ('null', 'event_ref')},\n            'Core/Character.gd::changeBuffProtectStacks': {'amount': ('float',)},\n            'Core/CombatLog.gd::createEvent_InvulnerableStart': {'item': ('native_ref',), 'duration': ('float',), 'playerId': ('int',), 'triggerEvent': ('null', 'event_ref')},\n            'Core/CombatLog.gd::createEvent_InvulnerableEnd': {'item': ('native_ref',), 'playerId': ('int',), 'triggerEvent': ('null', 'event_ref')},\n            'Core/Buff.gd::loseStacks': {'amount': ('int',), 'item': ('null', 'native_ref'), 'triggerEvent': ('null', 'event_ref'), 'used': ('bool',)},\n        }.get(site, {})\n        for key, kinds in expected.items():\n            if fields[key]['type'] not in kinds:\n                raise ValueError('specific SOURCE callsite Variant ' + site + ':' + key)\n        if site == 'Items/Item.gd::useMana' and row['subject'].get('role') == 'P:12' and fields['amount'] != {'type': 'float', 'binary64_be': '4010000000000000'}:\n            raise ValueError('King Item.useMana keeps REAL4 before Character INT coercion')\n    if site in MATRIX['sites'] and edge in ('enter', 'return_explicit', 'return_implicit'):\n        if row['subject']['type'] != 'native_ref':\n            raise ValueError('method receiver actual native ref required')\n        if edge == 'return_implicit' and payload['return_value'] != {'type': 'null'}:\n            raise ValueError('original observer implicit return is NULL')\n        state = payload['state']\n        if MATRIX['sites'][site]['state_schema'] == 'character' and row['subject']['role'] is not None:\n            side = row['subject']['role']\n            if side not in ('P', 'O') or state['playerId'] != {'type': 'int', 'decimal': '0' if side == 'P' else '1'}:\n                raise ValueError('actual Character receiver owner/playerId')\n        if MATRIX['sites'][site]['state_schema'] == 'generic' and state['native_id'] != row['subject']['native_id']:\n            raise ValueError('generic ready/receiver owner identity')\n"
+    },
+    {
+      "end": 1654,
+      "source": {
+        "path": "tests/phase360_king_observer_schema.py",
+        "root": "source_root",
+        "sha256": "d4229ce6d94525b5bc0b93f7ab80617b96041d65fb4cd4f425e0b07a50a4c5f6",
+        "size": 190693
+      },
+      "start": 1630,
+      "text": "    for row in records:\n        site, edge = row['site'], row['edge']\n        subject = row['subject']\n        native = subject.get('native_id')\n        if site in MATRIX['sites'] and edge == 'enter':\n            stack.append((site, native))\n        elif site in MATRIX['sites'] and edge in ('return_implicit', 'return_explicit'):\n            if not stack or stack.pop() != (site, native):\n                raise ValueError('source call return/order without matching enter')\n        if edge == 'timer_before':\n            pending.append((site, native, row['payload']['operation'], row['payload']['args']))\n        elif edge == 'timer_after':\n            if not pending or pending.pop() != (site, native, row['payload']['operation'], row['payload']['args']):\n                raise ValueError('Timer API paired source order')\n    if stack or pending:\n        raise ValueError('source stream EOF inside method/API call')\n\n\n# Source transport implementation is copied mechanically from the sealed355\n# framing interface; the public decoder additionally invokes the actual schema.\ndef _transport_only_decode(raw_by_name):\n    \"\"\"Validate framing/order before filtering, grouping or typed delegation.\n\n    The returned lists retain their original physical order and primitive DTOs.\n    They are transport-checked data, not admitted runtime or an input bundle.\n"
+    },
+    {
+      "end": 1816,
+      "source": {
+        "path": "tests/phase360_king_observer_schema.py",
+        "root": "source_root",
+        "sha256": "d4229ce6d94525b5bc0b93f7ab80617b96041d65fb4cd4f425e0b07a50a4c5f6",
+        "size": 190693
+      },
+      "start": 1810,
+      "text": "schema = SimpleNamespace(\n    validate_record=validate_record, validate_state=validate_state, validate_typed=validate_typed,\n    validate_primitive=validate_primitive, primitive_context=primitive_context,\n    strict_json_loads=strict_json_loads, exact=exact, integer=integer, decimal=decimal,\n    text=text, CAPS=CAPS, CONTRACT=CONTRACT, MATRIX=MATRIX,\n)\n\n"
+    }
+  ]
+}
