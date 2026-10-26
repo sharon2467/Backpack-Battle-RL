@@ -1,0 +1,29 @@
+# Phase420 — Two initial-prefix boundary repairs
+
+## 1. Requirements
+
+Preserve418/419 immutably and repair only two parsing decisions in a new420 module. Independent419 actually demonstrated that a selected activation entry with unknown site and classification supported_activation returned no gap. The additional duplicate-sequence cutoff ambiguity is a static finding, not an executed counterexample. Both affect the evidence needed to deduce initial Timer state; neither changes Timer/business semantics or grants a genuine input/model gate.
+
+Only project_ui and envelope_sequence may change semantically, plus fixed UI-site constants. All other functions/classes must retain exact bytes/AST after an explicit version-literal normalization. Author performs compile/AST/byte conservation and pins only: no import, function call, synthetic run, real projection, carrier/EXPECTED read, oldSUT/schema/native/model. Existing G01/G02 source conclusions are reused without re-audit. Four candidates remain conditional, actual88 MISSING/recipe0, other84 disabled.
+
+## 2. Design
+
+Use the pinned391 sink UI_SITES literal (12 sites) and ui_entry classification branches. Only the four Utility/AutoHideParticles methods activate/deactivate/startTimer/instantClear on the selected activation owner81718, after that owner's ready, can carry supported_activation. Selected drag81714 has no supported branch (native classification unsupported_drag after ready). Selected King81679 Item UI routes likewise have no supported branch: the four particle/storage methods classify unsupported_king_item, remaining Item routes default unsupported_item. Do not invent supported_drag or supported King labels. A selected entry with unknown site, wrong receiver/site/classification combination, incorrect king_source flag, or unsupported path adds UNSUPPORTED_INITIAL_UI_PATH to the affected role. A selected King path affects both roles. Nonselected rows do not expand this bounded selected-owner predicate into a full UI validator.
+
+The lineage cutoff scanner must scan the whole top-level envelope before returning its single sequence. Inspect/decode only top-level keys and a strict nonnegative INT sequence token; skip other value bytes without decoding/adopting payload. Require one sequence, unique top-level keys, proper outer separators/end and no trailing non-whitespace bytes. Reject duplicate sequence even if the first value already crosses138. This is an envelope boundary check, not full suffix payload/schema validation. The existing initial-prefix strict JSON parser and first-cut/EOF behavior remain unchanged.
+
+New control paths use420; final independent acceptance uses421. Original phase355/359/391 carrier schemas, old source-rule/proposal descriptors and four actual data descriptors retain their original identities. A blocked419 final review cannot satisfy the new421 token. Root release/output must be fresh420 paths. context420 retains the exact old fixed rule/data/source pins and adds only old418 owner plus actual419 blocked report as provenance. No future review descriptor or acceptance is fabricated.
+
+## 3. Realize
+
+- `project_ui(raw)`: retain the existing parser/open/bind/ready/first-roles code. Replace only the selected entry startswith predicate with membership in the exact Utility four-site subset of UI_SITES, activation receiver identity, classification equality, false king_source and ready-before-entry check. Wrong combinations append the existing per-role gap; malformed classification/king_source types reject. No new candidate, boundary or output field.
+- `envelope_sequence(raw)`: keep raw byte scanning helpers unchanged; iterate every top-level key/value, collect one strict INT sequence, skip opaque values with _skip_value, then require object termination and EOF whitespace. Return only after the envelope is fully scanned. Nested/payload sequence keys are not top-level keys and never become boundaries.
+- Fixed `UI_SITES` and `AUTO_UI_SITES`: literal12 from source, last four are the only supported activation methods. No configurable caller allowlist.
+- Every other function/class: exact conserved source and AST after version normalization. Allowed literals are phase418→phase420 for module/control/schema/output paths and independent419/INDEPENDENT419→421 for final-review protocol. Do not rename actual old provenance paths inside context.
+- `context.json`, `api-contract.json`, `source-freeze.json`, `source-owner.json`: new420 closure, exact source pins, unchanged data descriptors. Actual421 review must bind new owner/context plus original source-edge-list and attribution proposal. CLI signature is unchanged with new420 module/release path.
+
+## 4. Acceptance Criteria / Tests
+
+Author checks: compile without execution; top-level and nested function/class AST and raw-byte conservation outside the two exceptions; full-file inverse reconstructs418 bytes after removing added constants/restoring the two functions/reversing approved literals. Original33 owner leaves and actual419 report pins remain exact ordinary nlink1. Finite source-site literal matches pinned391. Record0 API/import/data/native/model calls and preserve any preparation failure.
+
+Independent421 runs the necessary regression and previously unexecuted controls once under its own release: unknown selected site; known site with wrong receiver/classification; invented supported_drag/King; correct activation after ready; unsupported actual drag/King; entry before ready; unique cutoff sequence regardless key order; duplicate sequence before/after payload; bool/fraction/exponent/negative sequence; nested sequence ignored; malformed outer/trailing envelope; opaque payload/suffix remains undecoded. Then complete the unexecuted lineage/UI/slot/role/path/authority boundary controls from419. No claimed result for an unexecuted test. Actual projection requires a subsequent genuine Root release after421; author stops at SOURCE seal.

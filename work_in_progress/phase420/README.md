@@ -1,0 +1,3 @@
+# Bounded initial-projection repair: independent acceptance pending
+
+420 preserves418/419 and changes only project_ui, envelope_sequence, fixed source site mappings and necessary version/control bindings. The unknown selected-site counterexample must now block; the cutoff envelope must contain one strict INT sequence. Other function/class byte+AST conservation and an inverse to418 are recorded. Independent421 code/functional review is pending. Source G01/G02 acceptance is reused without rerunning it. No original-carrier projection or new recipe has run;all88 remainMISSING,complete recipes0,formal bounded75 accepted,King unadmitted,full engine/RL incomplete. Do not execute the real projection before final independent421 acceptance and a fresh Root release.

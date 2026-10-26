@@ -1,0 +1,163 @@
+# SOURCE generation/compile/AST only. This never imports or calls either projection.
+import ast
+import hashlib
+import json
+from pathlib import Path
+import stat
+import traceback
+
+R = Path('/workspace/python-original-engine/repo')
+D = R/'data/phase420-initial-partial-recipe-source'
+OLD = 'tests/phase418_initial_autohide_projection.py'
+NEW = 'tests/phase420_initial_autohide_projection.py'
+VERSION = [('phase418','phase420'),('root418','root420'),('independent419','independent421'),('INDEPENDENT419','INDEPENDENT421')]
+
+def raw(path):
+    p = Path(path)
+    if not p.is_absolute(): p = R/p
+    for q in reversed((p,) + tuple(p.parents)):
+        s = q.lstat()
+        assert not stat.S_ISLNK(s.st_mode)
+        assert stat.S_ISDIR(s.st_mode) if q != p else stat.S_ISREG(s.st_mode) and s.st_nlink == 1
+    return p.read_bytes()
+
+def desc(path):
+    b = raw(path)
+    return {'path':str(path),'size':len(b),'sha256':hashlib.sha256(b).hexdigest()}
+
+def load(path): return json.loads(raw(path))
+def save(path, value):
+    b = value.encode() if isinstance(value,str) else (json.dumps(value,ensure_ascii=False,indent=2)+'\n').encode()
+    p = Path(path)
+    if not p.is_absolute(): p = R/p
+    with p.open('xb') as f: f.write(b)
+    assert raw(p) == b
+    return desc(str(p.relative_to(R)))
+
+def version(s):
+    for a,b in VERSION: s = s.replace(a,b)
+    return s
+
+def segment(s, name):
+    n = next(n for n in ast.parse(s).body if isinstance(n,(ast.FunctionDef,ast.ClassDef)) and n.name == name)
+    return ''.join(s.splitlines(keepends=True)[n.lineno-1:n.end_lineno])
+
+def replace_segment(s,name,replacement):
+    old = segment(s,name)
+    assert s.count(old) == 1
+    return s.replace(old,replacement,1)
+
+ENVELOPE = '''def envelope_sequence(raw):
+    # Scan all top-level keys; payload values remain opaque bytes, never decoded.
+    pos = 0
+    def ws(i):
+        while i < len(raw) and raw[i:i+1] in b' \\r\\n\\t': i += 1
+        return i
+    pos = ws(pos); require(raw[pos:pos+1] == b'{', 'ENVELOPE_OBJECT'); pos += 1
+    keys, sequence = set(), None
+    while pos < len(raw):
+        pos = ws(pos); end = _skip_string(raw, pos); key = strict_json(raw[pos:end]); pos = ws(end)
+        require(key not in keys, 'DUPLICATE_ENVELOPE_KEY'); keys.add(key)
+        require(raw[pos:pos+1] == b':', 'ENVELOPE_COLON'); pos = ws(pos + 1)
+        if key == 'sequence':
+            match = re.match(rb'(0|[1-9][0-9]*)(?=[,}\\s])', raw[pos:])
+            require(match is not None, 'ENVELOPE_SEQUENCE_TYPE')
+            sequence = int(match.group(1)); pos += len(match.group(1))
+        else:
+            end = _skip_value(raw, pos)
+            require(end > pos, 'ENVELOPE_VALUE_MISSING'); pos = end
+        pos = ws(pos)
+        if raw[pos:pos+1] == b'}':
+            pos = ws(pos + 1)
+            require(pos == len(raw), 'ENVELOPE_TRAILING_BYTES')
+            require(sequence is not None, 'ENVELOPE_SEQUENCE_ABSENT')
+            return sequence
+        require(raw[pos:pos+1] == b',', 'ENVELOPE_SEPARATOR'); pos += 1
+    raise Rejected('UNTERMINATED_ENVELOPE_OBJECT')
+'''
+
+try:
+    assert not (D/'source-owner.json').exists()
+    ownerpath = 'data/phase418-initial-partial-recipe-source/source-owner.json'
+    assert desc(ownerpath) == {'path':ownerpath,'size':7148,'sha256':'c8325cf16594d3883c0a62e1fabf55b7d7a4788c0209aa9d8ff9ea190853144a'}
+    oldowner = load(ownerpath)
+    for d in oldowner['files']: assert desc(d['path']) == d, d['path']
+    reviewpath = 'data/phase419-independent-autohide-projection-review/review.json'
+    assert desc(reviewpath) == {'path':reviewpath,'size':7586,'sha256':'91f1d98cf106b92e93ca0f6737bff9d318a4bb8b11c6aef7e40d539173e74157'}
+    review = load(reviewpath)
+    assert review['status'] == 'INDEPENDENT419_AUTOHIDE_PARTIAL_RECIPE_SOURCE_AND_FUNCTIONAL_BLOCKED'
+    old = raw(OLD).decode()
+    new = version(old)
+    sinkpath = 'data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd'
+    sink = raw(sinkpath).decode()
+    sites = json.loads(next(x for x in sink.splitlines() if x.startswith('const UI_SITES = ')).split(' = ',1)[1])
+    assert len(sites) == 12 and all(x.startswith('Utility/AutoHideParticles.gd::') for x in sites[-4:])
+    constants = 'UI_SITES = ' + repr(tuple(sites)) + '\nAUTO_UI_SITES = UI_SITES[-4:]\n'
+    new = new.replace('_TOKEN = object()\n', constants + '_TOKEN = object()\n',1)
+    new = replace_segment(new,'envelope_sequence',ENVELOPE)
+    ui = segment(new,'project_ui')
+    before = """                require(type(classification) is str, 'UI_ENTRY_CLASSIFICATION_TYPE')
+                if not classification.startswith('supported_'):
+                    gaps.append('UNSUPPORTED_INITIAL_UI_PATH')"""
+    after = """                require(type(classification) is str and type(event['payload'].get('king_source')) is bool, 'UI_ENTRY_CLASSIFICATION_TYPE')
+                supported = (event['site'] in AUTO_UI_SITES and
+                             event['payload']['receiver_id'] == AUTO['king_hide:P:12'][1] and
+                             classification == 'supported_activation' and
+                             event['payload']['king_source'] is False and
+                             len(rr) == 1 and rr[0]['sequence'] < event['sequence'])
+                if not supported:
+                    gaps.append('UNSUPPORTED_INITIAL_UI_PATH')"""
+    assert ui.count(before) == 1
+    new = replace_segment(new,'project_ui',ui.replace(before,after,1))
+    save(NEW,new)
+    compile(new,NEW,'exec')
+    ot, nt = ast.parse(old), ast.parse(new)
+    oldnodes = {n.name:n for n in ot.body if isinstance(n,(ast.FunctionDef,ast.ClassDef))}
+    newnodes = {n.name:n for n in nt.body if isinstance(n,(ast.FunctionDef,ast.ClassDef))}
+    assert oldnodes.keys() == newnodes.keys()
+    conserved = []
+    exceptions = ('project_ui','envelope_sequence')
+    for name, node in oldnodes.items():
+        if name in exceptions: continue
+        a, b = version(segment(old,name)), segment(new,name)
+        assert a == b, name
+        assert ast.dump(ast.parse(a),include_attributes=False) == ast.dump(ast.parse(b),include_attributes=False), name
+        conserved.append({'name':name,'normalized_bytes':len(a.encode()),'sha256':hashlib.sha256(a.encode()).hexdigest()})
+    inverse = new.replace(constants,'',1)
+    for name in exceptions: inverse = replace_segment(inverse,name,version(segment(old,name)))
+    for a,b in reversed(VERSION): inverse = inverse.replace(b,a)
+    assert inverse == old, 'FULL_BYTE_INVERSE'
+    # No semantic source re-audit; keep exact existing source pins/rule/attribution.
+    ctx = load('data/phase418-initial-partial-recipe-source/context.json')
+    ctx['schema'] = 'phase420-fixed-source-context/1'
+    ctx['source_pins'] += [desc(ownerpath),desc(reviewpath)]
+    ctx['scope'] += ' Phase420 changes only selected UI entry predicate and complete top-level sequence envelope scan;419 blocked final is provenance, never final421 authority.'
+    cp = save(D/'context.json',ctx)
+    api = load('data/phase418-initial-partial-recipe-source/api-contract.json')
+    api['schema'] = 'phase420-actual-source-api/1'
+    api['module'] = desc(NEW)
+    api['functions'] = [{'name':n.name,'signature':ast.unparse(n.args),'line':n.lineno,'end_line':n.end_lineno} for n in nt.body if isinstance(n,ast.FunctionDef)]
+    api['CLI'] = version(api['CLI'])
+    for key in ('path','schema','output'): api['Root_release'][key] = version(api['Root_release'][key])
+    api['Root_release']['context'] = cp
+    final = api.pop('final419_review')
+    final['schema'] = version(final['schema']); final['status'] = version(final['status'])
+    api['final421_review'] = final
+    api['repair_contract'] = {'semantic_functions':list(exceptions),'fixed_UI_SITES':sites,'selected_supported_tuple':'four Utility sites + receiver81718 + supported_activation + king_sourcefalse + prior ready','selected_drag_or_King':'No supported classification; affected role(s) MISSING on any selected entry.','sequence':'Unique strict INT top-level sequence after complete envelope scan; other values remain opaque.','old_rule_and_attribution_descriptors_unchanged':True,'419_BLOCKED_is_not_acceptance':True}
+    save(D/'api-contract.json',api)
+    checks = {'schema':'phase420-source-conservation/1','status':'COMPILE_AST_BYTE_INVERSE_ONLY_PENDING_INDEPENDENT421','old_module':desc(OLD),'new_module':desc(NEW),'semantic_exceptions':list(exceptions),'new_constants':['UI_SITES','AUTO_UI_SITES'],'version_literal_replacements':VERSION,'conserved_top_level_functions_and_classes':conserved,'full_byte_inverse':{'equal':True,'size':len(inverse.encode()),'sha256':hashlib.sha256(inverse.encode()).hexdigest()},'old33_source_leaf_pins_verified':len(oldowner['files']),'old_source_bytes':oldowner['bytes'],'source_UI_SITES_pin':desc(sinkpath),'SOURCE_G01_G02_reaudit':False,'findings':{'419_F01':'Actual independent synthetic counterexample; regression pending421','cutoff_duplicate_sequence':'Static ambiguity repaired; first functional test remains pending421'},'author_execution':api['author_execution'],'first_errors':[]}
+    save(D/'conservation.json',checks)
+    # Closed reusable old proof bytes plus new420 artifacts; never include raw data files.
+    local = ['docs/phase420_initial_prefix_boundary_repair_spec.md',NEW] + ['data/phase420-initial-partial-recipe-source/'+x for x in ('author-build.py.txt','context.json','api-contract.json','conservation.json')]
+    deps = oldowner['files'] + [desc(ownerpath),desc(reviewpath)]
+    freeze = save(D/'source-freeze.json',{'schema':'phase420-initial-partial-source-freeze/1','status':'SEALED_PENDING_INDEPENDENT421','files':[desc(p) for p in local],'reused_source_dependencies':deps,'deferred_data_descriptors':ctx['data'],'semantic_exceptions':list(exceptions),'full_inverse_verified':True,'source_rule':ctx['owner_domain_rule'],'native_attribution':ctx['native_attribution_proposal'],'author_execution':api['author_execution'],'actual_promotions':0,'remaining_missing':88,'King_admitted':False,'fullschema':'NOT_VALIDATED'})
+    allfiles = {d['path']:d for d in deps}
+    for p in local: allfiles[p] = desc(p)
+    allfiles[freeze['path']] = freeze
+    own = save(D/'source-owner.json',{'schema':'phase420-initial-partial-source-owner/1','status':'SEALED_PENDING_INDEPENDENT421_SOURCE_FUNCTIONAL_REVIEW','files':list(allfiles.values()),'file_count':len(allfiles),'bytes':sum(x['size'] for x in allfiles.values()),'deferred_data_are_not_source_owned':True,'no_further_writes':True})
+    print(json.dumps({'owner':own,'file_count':len(allfiles),'bytes':sum(x['size'] for x in allfiles.values()),'module':desc(NEW),'freeze':freeze,'api':desc('data/phase420-initial-partial-recipe-source/api-contract.json'),'conservation':desc('data/phase420-initial-partial-recipe-source/conservation.json')},indent=2))
+except Exception:
+    failure = {'schema':'phase420-author-first-error/1','traceback':traceback.format_exc(),'projection_imports_or_calls':0,'raw_capture_reads':0,'automatic_retry':False}
+    p = D/'author-first-error-001.json'
+    if not p.exists(): save(p,failure)
+    raise

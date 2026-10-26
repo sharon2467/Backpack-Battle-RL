@@ -1,0 +1,168 @@
+{
+  "schema": "phase418-finite-autohide-source-rule/1",
+  "status": "SOURCE_IMPLEMENTED_PENDING_FINAL419_AND_SEPARATE_ROOT_RELEASE",
+  "supplement": {
+    "path": "data/phase418-root-finite-source-supplement/source-supplement.json",
+    "size": 2098,
+    "sha256": "6ee3f55a81d4e3016e0996a833490c95f506502254bc3af2fc0b20d17a2e2ab9"
+  },
+  "new_source_count": 7,
+  "new_source_bytes": 6376,
+  "new_source_edges": [
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Animations/SquishySprite.gd",
+      "size": 1949,
+      "sha256": "4e118eb4ab9dda7949ecbe5c4a991033762c281dffbebcf6ea73761b7ff7deb3",
+      "lines": "19-40;42-86",
+      "reads": "item.pooled/ownerType, own pose/motion, item.liesInStorage()",
+      "writes": "sprite scale/motion and ordinary physics flag",
+      "calls": "reset;call_deferred ready_deferred;Util.callDelayed ready_deferred;ordinary set_physics_process;Vector math;item.liesInStorage",
+      "selected_Timer_effect": "No direct selected Timer/start/autostart/internal-registration write in inspected body; fixed scene/receiver binding remains required."
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/SocketsNode.gd",
+      "size": 87,
+      "sha256": "2180827bd7e9f0f380af7e5041343d56d6dc22a6a1e8a42f4d477d00365f69fe",
+      "lines": "4-5",
+      "reads": "parent scale",
+      "writes": "own Node2D scale",
+      "calls": "get_parent;Vector division",
+      "selected_Timer_effect": "No direct selected Timer/start/autostart/internal-registration write in inspected body; fixed scene/receiver binding remains required."
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Animations/Highlight.tres",
+      "size": 864,
+      "sha256": "49ab44f9a82ccb0ad24634df897ad18469aaaee66615b055d33aea56b772f527",
+      "lines": "7-29",
+      "reads": "animation value tracks",
+      "writes": "Icon.modulate;root scale",
+      "calls": "no method tracks",
+      "selected_Timer_effect": "No direct selected Timer/start/autostart/internal-registration write in inspected body; fixed scene/receiver binding remains required."
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Animations/MiniActivate_consumed.tres",
+      "size": 508,
+      "sha256": "221215195cc5bd59ff0bbfb1e79df9cbc2be4b5688f4fc7b9d40ab79586c3c77",
+      "lines": "6-16",
+      "reads": "animation value track",
+      "writes": "Icon.modulate",
+      "calls": "no method tracks",
+      "selected_Timer_effect": "No direct selected Timer/start/autostart/internal-registration write in inspected body; fixed scene/receiver binding remains required."
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Animations/ItemsCrafted.tres",
+      "size": 1151,
+      "sha256": "7b9507fc03137a0a8c1140e64135655abfb2e3fa5ba25d011ead3f56d95b37e4",
+      "lines": "6-40",
+      "reads": "animation value tracks",
+      "writes": "Icon.modulate;Icon.self_modulate;root scale",
+      "calls": "no method tracks",
+      "selected_Timer_effect": "No direct selected Timer/start/autostart/internal-registration write in inspected body; fixed scene/receiver binding remains required."
+    }
+  ],
+  "existing_direct_edges": [
+    {
+      "file": {
+        "path": "data/phase359-king-producer-source/after-source/Utility/Util.gd",
+        "size": 46276,
+        "sha256": "d437e9338c8c4587c0cddd29e848bef54e8b621169dd364ceaa341fbc7a1e507"
+      },
+      "function": "callDelayed",
+      "first_line": 735,
+      "last_line": 739,
+      "range_sha256": "09191142ea58977ebba33bf6208c9402cbb5cd2a94fab75d164840a2f5710884",
+      "source": "func callDelayed(target, methodName, delay, binds = []):\n\tvar timer = get_tree().create_timer(delay, false)\n\ttimer.connect(\"timeout\", target, methodName, binds, CONNECT_ONESHOT)\n\tNativeRandomObserver.capture_delayed(target, methodName, delay, timer)\n\n"
+    },
+    {
+      "file": {
+        "path": "data/phase359-king-producer-source/after-source/Items/Item.gd",
+        "size": 178363,
+        "sha256": "2fc1d658db352a7ecae8c2bfb60640a019284992a9c5f9a14c87baea50721631"
+      },
+      "function": "liesInStorage",
+      "first_line": 1580,
+      "last_line": 1582,
+      "range_sha256": "97b25bddc0d2954dcdc6c24073560216805e64beea68ba129c7bb548ea6ea19e",
+      "source": "func liesInStorage() -> bool:\n\treturn ownerType == Owner.PlayerStorageBox and not dragged\n\n"
+    },
+    {
+      "file": {
+        "path": "data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
+        "size": 104333,
+        "sha256": "999e0043a653067a962819cf81340b0dad745fa2148bbfab7724d7948a6a21ea"
+      },
+      "function": "capture_delayed",
+      "first_line": 759,
+      "last_line": 767,
+      "range_sha256": "77b11b6fdf2b27a453956b5447b74d126bbf63a184ba6ad4afca83dfb28294ce",
+      "source": "func capture_delayed(target, method, delay, timer):\n\tif method != \"activateItems\" or target != get_node_or_null(\"/root/Game\"):\n\t\treturn\n\tif king_delayed != null:\n\t\tfail(\"KING_ACTIVATION_SCHEDULE_REUSED\", \"Utility/Util.gd::callDelayed\")\n\t\treturn\n\tbegin_encoding()\n\tking_delayed = {\"target_id\": native_id(target), \"method\": method, \"delay\": encode(delay), \"tree_timer_id\": native_id(timer), \"source\": \"Utility/Util.gd::callDelayed\", \"physics_frame\": Engine.get_physics_frames(), \"idle_frame\": Engine.get_idle_frames()}\n\n"
+    }
+  ],
+  "target_relevant_new_unread_callee": null,
+  "scope_claim": "Only named direct N3 callbacks/tracks excluded. No global alias/purity/fullUI/runtime-attribution theorem.",
+  "actual_calls": {
+    "module_import": 0,
+    "projection": 0,
+    "old_audit": 0,
+    "SUT_schema": 0,
+    "model": 0,
+    "native": 0,
+    "original_capture_EXPECTED_reads": 0
+  },
+  "target_promotions": 0,
+  "full_recipes": 0,
+  "King_admitted": false,
+  "no_implementation_permission_from_this_artifact": true,
+  "socket_member_edge": {
+    "supplement": {
+      "path": "data/phase418-root-finite-source-supplement/socket-member-supplement.json",
+      "size": 1145,
+      "sha256": "14a17488f6b1100f2f4e3e74c00c5b94a5ecdfeafff6fc17d672e2d8d0e51eb8"
+    },
+    "files": [
+      {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/GemSocket.tscn",
+        "size": 700,
+        "sha256": "5d84160b169b7bf0602098028adcb00f503e53027a6e1556ae11d9864b5e5d89"
+      },
+      {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/GemSocket.gd",
+        "size": 1117,
+        "sha256": "cc98f6294227b10e2113b8d10cd3bf4037b1d361815b738fb2ff0ae6dbb76814"
+      }
+    ],
+    "chain": "KingGoobert scene -> GemSocket.tscn -> GemSocket.gd plain var item=null without setget; Item.initSockets assignment invokes no script setter.",
+    "excluded_scope": "No optional Gem callback/resource recursion."
+  },
+  "417_design_review": {
+    "path": "data/phase417-independent-minimal-partial-recipe-review/review.json",
+    "size": 10460,
+    "sha256": "8c489c2de5c677d428ff63df596768c0944fda4cd193c6262267596763fa6ee0"
+  },
+  "419_source_intermediate": {
+    "path": "data/phase419-independent-autohide-projection-review/source-intermediate-review.json",
+    "size": 4937,
+    "sha256": "01e7fdc3dcfb17a8f8f792395682b442abfb488915dfb9f92593c4f3402198e0"
+  },
+  "intermediate_is_final_permission": false,
+  "rule": {
+    "name": "AUTOHIDE_IMMEDIATE_CONSTRUCTOR_NO_START/1",
+    "roles": [
+      "king_hide:P:12",
+      "king_drag:P:12"
+    ],
+    "phases": [
+      "pre_prepare",
+      "pre_activate"
+    ],
+    "premises": [
+      "Exact final419 accepted SOURCE/runtime dispositions and fresh Root release",
+      "Selected fresh scene/generation/owner/Timer domain from initial-only projection",
+      "Immediate birth before add_child with autostartfalse and inactive flags",
+      "Same Timer/owner through both checkpoints and facts",
+      "Zero monotone starts/stops over lifetime with exact bounded writer coverage"
+    ],
+    "conclusion": "Conditionally deduce binary64-1, never direct private measurement or inference from public0.",
+    "other_targets_disabled": 84
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "schema": "phase418-author-source-checks/1",
+  "status": "COMPILE_AST_AND_FINITE_PINS_ONLY_NOT_FUNCTIONAL_ACCEPTANCE",
+  "module": {
+    "path": "tests/phase418_initial_autohide_projection.py",
+    "size": 31698,
+    "sha256": "c94e869d71ae105c6fc3f0d216303869651486ea8cd501d30274a124042d0281"
+  },
+  "compile": "PASS_WITHOUT_EXECUTION",
+  "imports": [
+    "import argparse",
+    "import hashlib",
+    "import json",
+    "import os",
+    "from pathlib import Path",
+    "import re",
+    "import stat",
+    "import struct"
+  ],
+  "top_level_functions": 24,
+  "known_prior_pins_checked": [
+    "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Animations/SquishySprite.gd",
+    "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/SocketsNode.gd",
+    "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Animations/Highlight.tres",
+    "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Animations/MiniActivate_consumed.tres",
+    "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Animations/ItemsCrafted.tres",
+    "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/GemSocket.tscn",
+    "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/GemSocket.gd",
+    "data/phase359-king-producer-source/after-source/Utility/AutoHideParticles.gd",
+    "data/phase359-king-producer-source/after-source/Utility/Util.gd",
+    "data/phase359-king-producer-source/after-source/Items/Item.gd",
+    "data/phase359-king-producer-source/after-source/Items/Exclusive/KingGoobert.gd",
+    "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/KingGoobert.tscn",
+    "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.tscn",
+    "data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
+    "data/phase391-terminal-source/native-patch-source.json",
+    "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/timer.cpp",
+    "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/timer.h",
+    "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/node.cpp",
+    "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/scene_tree.cpp",
+    "data/phase411-root-initial-audit-release/input-audit-release.json"
+  ],
+  "source_pin_count": 26,
+  "source_pin_bytes": 644682,
+  "source_slot_count": 39,
+  "source_slot_extraction": "Literal JSON const SOURCE_SLOT_TABLE from pinned391 sink; no module import/inputbuild.",
+  "first_errors_observed": [],
+  "actual_calls": {
+    "imports": 0,
+    "function_calls": 0,
+    "actual_projection": 0,
+    "old_SUT_schema_model_native": 0,
+    "raw_carrier_EXPECTED_reads": 0
+  },
+  "constraints": "No dynamic tests, no author positive carrier control, no future receipt hash, no old file writes."
+}
