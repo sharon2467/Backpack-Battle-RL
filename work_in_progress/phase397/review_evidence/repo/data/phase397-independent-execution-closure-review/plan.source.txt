@@ -1,0 +1,21 @@
+def plan(source_root,config_descriptor,task_root,baseline,pool,runs_root):
+    root,config,freeze=source_gate(source_root,config_descriptor)
+    paths={name:directory(value) for name,value in dict(task_root=task_root,baseline=baseline,pool=pool,runs_root=runs_root).items()}
+    if paths['baseline'] != paths['task_root']/'baseline/Backpack Battles': raise ValueError('explicit task/baseline relation')
+    if paths['pool'].is_relative_to(root) or root.is_relative_to(paths['pool']): raise ValueError('SOURCE and pool disjoint')
+    resource_gate(root,config,paths)
+    payloads=resolve_execute_payloads(root,freeze,execute_driver_descriptors(root,config_descriptor,config,freeze))
+    previous=check_ready(paths['pool'],paths['baseline'],config['relocations'])
+    capacity=budget(paths['pool'],paths['runs_root'])
+    run=paths['runs_root']/RUN_NAME
+    if run.exists(): raise ValueError('fixed unique attempt path already exists')
+    native_config=read(check_source_descriptor(root,payloads['case_inputs']['native_capture_config.json']))
+    if native_config!=dict(schema='native-combat-capture/1',case_id=CASE,global_seed=35301,util_seed=35302,
+                          player_fixture_enabled=True,timeouts=dict(battle_seconds=120,total_seconds=295)):
+        raise ValueError('fixed SOURCE config/seeds/timeouts')
+    return dict(schema='phase391-oracle-readonly-plan/1',paths={k:str(v) for k,v in paths.items()},source_root=str(root),
+        run=str(run),case_id=CASE,attempt=6,previous_run=str(previous),budget=capacity,
+        root_config=config_descriptor,freeze=config['source_freeze'],source_owner=config['source_owner'],
+        reviews=config['reviews'],config=native_config,policy=POLICY,execute_payloads=payloads,
+        oracle_processes=0,models=0,projection_calls=0,Game_copies=0,
+        source_profile=freeze['profile'],schema_case=freeze['schema_case'],native_scope='FIXED_A_SINGLE_KING_ORACLE_ONLY')

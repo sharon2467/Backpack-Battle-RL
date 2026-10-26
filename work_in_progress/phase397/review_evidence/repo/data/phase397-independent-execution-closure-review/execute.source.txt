@@ -1,0 +1,63 @@
+def execute(source_root,config_descriptor,task_root,baseline,pool,runs_root):
+    launch=plan(source_root,config_descriptor,task_root,baseline,pool,runs_root)
+    root,config,freeze=source_gate(source_root,config_descriptor)
+    paths={key:Path(value) for key,value in launch['paths'].items()}
+    payloads=resolve_execute_payloads(root,freeze,execute_driver_descriptors(root,config_descriptor,config,freeze))
+    if payloads!=launch['execute_payloads']: raise ValueError('plan/execute payload descriptor graph changed before lease')
+    verify_execute_payloads(root,payloads)
+    with lease(paths['pool'],paths['baseline'],paths['runs_root'],RUN_NAME,config['relocations']) as (previous,run):
+        run.mkdir(); (run/'output').mkdir(); (run/'output/driver').mkdir(); (run/'data').mkdir()
+        for name in ('data','config','cache','run','tmp'): (run/'user'/name).mkdir(parents=True,mode=0o700)
+        out=run/'output'; project=paths['pool']/'project'
+        write_new(out/'readonly-plan.json',launch)
+        reset=reset_previous(project,paths['baseline'],previous,out/'previous-source-preimages')
+        write_new(out/'prior-observer-reset.json',reset)
+        for name in NAMES:
+            shutil.copy2(check_source_descriptor(root,payloads['case_inputs'][name]),run/'data'/name)
+            if pin(run/'data'/name)!={k:payloads['case_inputs'][name][k] for k in ('size','sha256')}: raise ValueError('case copy identity')
+        artifacts=payloads['artifacts']
+        journal=install(root,project,freeze,artifacts,out/'source-preimages')
+        for name in NAMES[:2]: shutil.copy2(run/'data'/name,paths['pool']/'data'/name)
+        report=dict(schema='observer7-patch/1',patch_version='phase391-oracle-single-King',added_files=['native_random_observer_sink_v7.gd'],
+                    patches=[dict(path=name,before_size=None if row['before'] is None else row['before']['size'],
+                        before_sha256=None if row['before'] is None else row['before']['sha256'],
+                        after_size=row['after']['size'],after_sha256=row['after']['sha256']) for name,row in freeze['paths'].items()])
+        (out/'observer-patch').mkdir(); write_new(out/'observer-patch/native_random_observer_patch_manifest.json',report)
+        write_new(out/'host_manifest.json',dict(schema='phase391-oracle-host/1',case_id=CASE,
+            audited_runtime_observation_patch=report,source_freeze=config['source_freeze'],collector=pin(project/'native_combat_capture.gd'),models=0))
+        # Archive the exact SOURCE actually used before any Godot command.
+        copies=payloads['driver_sources']
+        saved=[]
+        for index,row in enumerate(copies):
+            source=descriptor(root,row); target=out/'driver'/str(index)
+            shutil.copy2(source,target)
+            if pin(target)!=pin(source): raise ValueError('driver SOURCE readback')
+            saved.append(dict(file=target.name,source=row))
+        write_new(out/'driver/source-map.json',dict(files=saved))
+        write_new(out/'pool-provenance.json',dict(schema='phase362-explicit-pool-provenance/1',plan=launch,
+            installed_preimages=journal,driver_sha256={p.name:c.digest(p) for p in (out/'driver').iterdir()},
+            inputs={name:pin(run/'data'/name) for name in NAMES},full_game_copy=False))
+        before=dict(baseline=c.inventory(paths['baseline']),project=c.inventory(project),staged=c.inventory(paths['pool']/'data'))
+        write_new(out/'pool-before.json',before)
+        parsed=execute_process(root,paths['task_root'],run,project,check_only=True)
+        if not parsed['process_clean_exit'] or parsed['abort_reason']: raise RuntimeError('check-only failed; no native start')
+        if c.inventory(project)!=before['project']: raise ValueError('parse-only changed project tree')
+        if descriptor(root,config_descriptor)!=descriptor(root,launch['root_config']): raise ValueError('config drift')
+        # Preserve the same config identity, no second dynamic plan after mutation.
+        source_gate(root,config_descriptor); resource_gate(root,config,paths); usage(run)
+        write_new(out/'one-shot-launch.json',dict(case_id=CASE,attempt=6,models=0,timeout=dict(battle=120,collector=295,runner=300)))
+        result=execute_process(root,paths['task_root'],run,project,check_only=False)
+        write_new(out/'process-returned.json',result)
+        partition=collect_capture_metadata(run,result,root,freeze)
+        project_changed=c.inventory(project)!=before['project']
+        complete=partition['capture_complete'] and not project_changed
+        write_new(out/'source-partition.json',partition)
+        write_new(out/'process_result.json',dict(result,capture_complete=complete,
+            primary_failure=partition['primary_failure'],secondary_errors=partition['secondary_errors'],
+            source_changes_after_run=['PROJECT_TREE_CHANGED'] if project_changed else [],
+            process_clean_exit=result['process_clean_exit'],model_acceptance=False,automatic_retry=False))
+        if not complete: raise RuntimeError('first original027 failed/partial; preserve, no retry')
+        proof=archive_streaming(paths['baseline'],paths['pool'],run,before)
+        # No write after READY: retained run identity remains stable.
+        return dict(status='ORACLE_CAPTURE_ARCHIVED_MODELS_AND_FULLPROJECTION_PENDING',run=str(run),proof=proof,
+                    process_clean_exit=result['process_clean_exit'],models=0,inputbuilds=0,King_production_admitted=False)

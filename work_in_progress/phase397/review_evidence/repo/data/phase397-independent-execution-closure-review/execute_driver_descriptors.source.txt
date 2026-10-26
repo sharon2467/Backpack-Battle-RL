@@ -1,0 +1,5 @@
+def execute_driver_descriptors(root,config_descriptor,config,freeze):
+    rows=list(freeze['files'])+read(descriptor(root,config['source_owner']))['files']
+    rows += [config_descriptor,config['source_owner'],config['source_freeze']]
+    for review in config['reviews']: rows += [review['receipt'],review['owner']]
+    return list(_payload_rows(rows).values())

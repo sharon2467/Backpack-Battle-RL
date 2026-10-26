@@ -1,0 +1,28 @@
+def resolve_execute_payloads(source_root,freeze,driver_descriptors=()):
+    """Public real resolver, independent of pool/lease/ROOT execution permission."""
+    root=directory(source_root); declared=_payload_rows(freeze['files'])
+    if type(freeze.get('paths')) is not dict or len(freeze['paths'])!=75: raise ValueError('exact75 SOURCE patches')
+    patches=[]
+    for name,row in freeze['paths'].items():
+        c.safe_path(name)
+        source=dict(path=row['after_path'],**row['after'])
+        if declared.get(source['path'])!=source: raise ValueError('patch source not in frozen descriptor closure')
+        patches.append(dict(target=name,source=source,before=row['before']))
+    def frozen(name):
+        if name not in declared: raise ValueError('required fixedDATA descriptor absent')
+        return dict(declared[name])
+    cases={name:frozen(DATA+'/case-A/'+name) for name in NAMES}
+    artifacts={'native_combat_capture.gd':dict(freeze['collector']),
+        'native_capture_config.json':dict(cases['native_capture_config.json']),
+        '.native-random-observer-disposable':frozen(DATA+'/disposable-marker.txt')}
+    if artifacts!=freeze.get('artifacts'): raise ValueError('explicit frozen artifact descriptors differ from fixed authority')
+    for row in artifacts.values():
+        if declared.get(row['path'])!=row: raise ValueError('artifact not in actual frozen descriptor closure')
+    bindings={name:dict(freeze[name]) for name in ('collector','schema_module','active_source_tuple','native_source_origin')}
+    drivers=_payload_rows(list(declared.values())+list(driver_descriptors)+list(bindings.values()))
+    graph=dict(schema='phase380-execute-payloads/1',patches=patches,artifacts=artifacts,case_inputs=cases,
+        source_bindings=bindings,driver_sources=[drivers[k] for k in sorted(drivers)],
+        labels=dict(profile=freeze['profile'],schema_case=freeze['schema_case']),
+        install_limits=dict(files=MAX_INSTALL_PAYLOADS,bytes=MAX_INSTALL_BYTES))
+    verify_execute_payloads(root,graph)
+    return graph

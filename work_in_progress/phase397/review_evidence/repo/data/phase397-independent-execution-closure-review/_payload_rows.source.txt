@@ -1,0 +1,8 @@
+def _payload_rows(rows):
+    if type(rows) not in (list,tuple): raise ValueError('descriptor row list required')
+    result={}
+    for row in rows:
+        if type(row) is not dict or set(row)!={'path','size','sha256'}: raise ValueError('closed descriptor row')
+        if row['path'] in result and result[row['path']]!=row: raise ValueError('same source path has conflicting identities')
+        result[row['path']]=dict(row)
+    return result

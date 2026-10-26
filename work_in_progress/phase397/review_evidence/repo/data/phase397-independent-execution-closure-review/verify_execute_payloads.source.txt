@@ -1,0 +1,30 @@
+def verify_execute_payloads(source_root,graph):
+    """Read every true execute SOURCE descriptor; no ready/preflight bool input."""
+    root=directory(source_root)
+    if type(graph) is not dict or set(graph)!={'schema','patches','artifacts','case_inputs','source_bindings','driver_sources','labels','install_limits'} or graph['schema']!='phase380-execute-payloads/1':
+        raise ValueError('closed real execute payload graph')
+    if graph['install_limits']!=dict(files=MAX_INSTALL_PAYLOADS,bytes=MAX_INSTALL_BYTES): raise ValueError('exact frozen install limits')
+    if type(graph['patches']) is not list or len(graph['patches'])!=75: raise ValueError('exact75 execute patch descriptors')
+    if set(graph['artifacts'])!={'native_combat_capture.gd','native_capture_config.json','.native-random-observer-disposable'} or set(graph['case_inputs'])!=set(NAMES):
+        raise ValueError('complete fixed artifact and case-input destinations')
+    targets=set(); install=[]
+    for row in graph['patches']:
+        if type(row) is not dict or set(row)!={'target','source','before'}: raise ValueError('closed patch payload row')
+        c.safe_path(row['target'])
+        if row['target'] in targets: raise ValueError('duplicate mutable patch destination')
+        targets.add(row['target']); install.append(row['source'])
+    for name,row in graph['artifacts'].items():
+        c.safe_path(name)
+        if name in targets: raise ValueError('overlapping mutable artifact destination')
+        targets.add(name);install.append(row)
+    if len(install)!=MAX_INSTALL_PAYLOADS or sum(row['size'] for row in install)!=MAX_INSTALL_BYTES:
+        raise ValueError('actual complete frozen install corpus count/size differs')
+    if graph['artifacts']['native_combat_capture.gd']!=graph['source_bindings'].get('collector') or graph['artifacts']['native_capture_config.json']!=graph['case_inputs']['native_capture_config.json']:
+        raise ValueError('reused artifact authority mismatch')
+    if set(graph['source_bindings'])!={'collector','schema_module','active_source_tuple','native_source_origin'}: raise ValueError('required explicit source origins')
+    drivers=_payload_rows(graph['driver_sources'])
+    all_rows=install+list(graph['case_inputs'].values())+list(graph['source_bindings'].values())+list(drivers.values())
+    unique=_payload_rows(all_rows)
+    if any(drivers.get(row['path'])!=row for row in all_rows): raise ValueError('driver archive missing execute source binding')
+    for row in unique.values(): check_source_descriptor(root,row)
+    return dict(status='SOURCE_PAYLOAD_IDENTITIES_CHECKED_NOT_EXECUTED',sources=len(unique),install_files=len(install),install_bytes=sum(row['size'] for row in install))
