@@ -1,0 +1,255 @@
+{
+  "schema": "phase436-next-early-observation-decision-plan/1",
+  "status": "PLAN_ONLY_NO_EXECUTION_AUTHORITY",
+  "created_utc": "2026-10-26T17:36:22.437802+00:00",
+  "baseline_remote_commit": "caa209645641c9b1e00215b1e6e1f05e1f86f105",
+  "original_capture_authorized": false,
+  "pool_install_authorized": false,
+  "tests_authorized": false,
+  "new_implementation_authorized": false,
+  "current_counts_unchanged": {
+    "DIRECT": 1391,
+    "SOURCE_DERIVED": 6,
+    "MISSING": 82,
+    "formal_items": 75,
+    "King_admitted": false
+  },
+  "coverage": {
+    "historical_target_references_only": true,
+    "potential_targets": [
+      {
+        "field_id": "Timer.private_left",
+        "phase": "pre_prepare",
+        "side_or_role": "invu:P",
+        "classification": "MISSING",
+        "validation_result": "UNPROVEN",
+        "proof_complete": false,
+        "reasons": [
+          "RULE_DISABLED_OTHER_84"
+        ],
+        "original_index": 1430
+      },
+      {
+        "field_id": "Timer.private_left",
+        "phase": "pre_prepare",
+        "side_or_role": "invu:O",
+        "classification": "MISSING",
+        "validation_result": "UNPROVEN",
+        "proof_complete": false,
+        "reasons": [
+          "RULE_DISABLED_OTHER_84"
+        ],
+        "original_index": 1431
+      },
+      {
+        "field_id": "Timer.private_left",
+        "phase": "pre_activate",
+        "side_or_role": "invu:P",
+        "classification": "MISSING",
+        "validation_result": "UNPROVEN",
+        "proof_complete": false,
+        "reasons": [
+          "RULE_DISABLED_OTHER_84"
+        ],
+        "original_index": 1474
+      },
+      {
+        "field_id": "Timer.private_left",
+        "phase": "pre_activate",
+        "side_or_role": "invu:O",
+        "classification": "MISSING",
+        "validation_result": "UNPROVEN",
+        "proof_complete": false,
+        "reasons": [
+          "RULE_DISABLED_OTHER_84"
+        ],
+        "original_index": 1475
+      }
+    ],
+    "potential_upper_bound": 4,
+    "not_automatic_proofs": true,
+    "unaddressed_count": 78,
+    "unaddressed_by_field": {
+      "Character.invulnerable": 4,
+      "Character.invulnerabilityItem": 4,
+      "Character.invulBubbleVisible": 4,
+      "King.crown": 2,
+      "King.light_visible": 2,
+      "King.light_modulate": 2,
+      "Timer.private_left": 60
+    },
+    "new_capture_reindex_required": true,
+    "old_nativeIDs_indices_checkpoint_numbers_not_new_inputs": true,
+    "old6chains_cannot_auto_migrate": true
+  },
+  "Opponent_limit": "435 direct native EMPTY fixture was Player only. Opponent source/schema path was reviewed but original Opponent lifecycle/observer readiness was not dynamically established. One future fixedA run must supply actualO firstentry+ready+current at both INPUT phases or failclosed; no claim currentP test provesO. No extraO probe authorized here.",
+  "future_scope": {
+    "case": "NATIVE-027-KING-A",
+    "run_name": "original027-king-single-A-434-attempt07",
+    "profile": "observer7-434-native-single-king-A/1",
+    "source_owner": {
+      "path": "data/phase434-early-invu-source/source-owner.json",
+      "size": 43309,
+      "sha256": "328d06e1b5957fb4d6ffa935f33539181ede0efb36378dbd3b53f04c84205993"
+    },
+    "source_freeze": {
+      "path": "data/phase434-early-invu-source/combined-source-freeze.json",
+      "size": 67345,
+      "sha256": "584185e44faa9492f46b415fb00c64033b33e1e4d530329b68b5e21771e723c7"
+    },
+    "inputs": [
+      {
+        "path": "data/phase362-oracle-capture-source/case-A/custom_opponent.json",
+        "sha256": "9c57f7781c8ae58027296004262cc0b2b691c25084ea29d8f4171ff44828a689",
+        "size": 1597
+      },
+      {
+        "path": "data/phase362-oracle-capture-source/case-A/custom_player.json",
+        "sha256": "a42675c3fedb0651e4309754403d5658edcce869f85edb07963e7a2f87391c56",
+        "size": 1676
+      },
+      {
+        "path": "data/phase362-oracle-capture-source/case-A/native_capture_config.json",
+        "sha256": "dbded47b0896eb3efa859b75aacab673da495a32b845c1e795090969ad76f2c8",
+        "size": 229
+      }
+    ],
+    "global_seed": 35301,
+    "util_seed": 35302,
+    "seed_or_layout_changes": false,
+    "Godot_check_only_processes_max": 1,
+    "original_Game_processes_max": 1,
+    "Godot_engine_processes_total_max": 2,
+    "old435_EMPTY_repetitions": 0,
+    "model_inputbuild_expected_comparison": 0,
+    "payload_files": 78,
+    "payload_bytes": 824158,
+    "read_only_resource_baseline_and_single_pool": true
+  },
+  "outputs": {
+    "lawful_input_names": [
+      "fixture.json",
+      "player_fixture.json",
+      "observer7-input.jsonl",
+      "observer7-lineage.jsonl",
+      "observer7-metadata.jsonl",
+      "observer7-primitives.jsonl",
+      "king-clock-checkpoint.json",
+      "king-clock-passes.jsonl",
+      "king-input-facts.json",
+      "king-ui-authority.jsonl",
+      "king-rng-checkpoint.json",
+      "king-slot-bindings.json"
+    ],
+    "early_fields_in_existing_king_input_facts": "actual owner/timer nativeIDs,entry raw state+ordinal/observerready,firstparentready state+ordinal,cumulative actualstartstop,current role/state at lawfulINITIAL windows; rawREAL canonical bits retained, pending provenance only",
+    "separate_controls": "RNG/event/parent/statehistory/final/terminaldiagnostics and EXPECTED staydistinct; never backfillINPUT",
+    "failure_capsule": "exact config+Source/preimages/driver map+stdout/stderr+progress/partialcarriers+cleanup/exit/error+sizeSHAmanifest; checkpoint entry; no wholeGame copy"
+  },
+  "stop_conditions": {
+    "before_launch": [
+      "No current separate Parent/Root one-run release",
+      "trustedremainingquota<=30% or insufficientsaveheadroom",
+      "Source/runtime/input/preimage hash drift; poolnotREADY/leaseconflict; freebudgetgatefailure",
+      "wrongprofile/cap/names/uniqueattemptpath"
+    ],
+    "parse": [
+      "30seconds timeout,uncleanparse,ScriptError,projectdrift => originalGame0"
+    ],
+    "capture": [
+      "300seconds total; phasebudgets existing120initial/30setup/120combat/10finalization/5exit; own-groupcleanup5sTERM+0.5sKILL",
+      "existing1536MiB attempt/4GiBfreefloor/filelogcaps or ScriptError",
+      "earlyobserver unavailable/missingentry/reentry/IDalias/rawtype/ordinal mismatch -> no proof/no retry",
+      "quota<=30 duringrun:stopownedwork with boundedcleanup,savepartialandpause; no finishing-a-batch exception"
+    ],
+    "nonzero_counts": "Keep actual nonzero starts/stops. They do not automatically make capture malformed, but prospective NO_START seed rule is unavailable; preserveMISSING,no normalize/reseed/relayout/recapture.",
+    "post_exit": "exit0 alone notclean; preserveERROR/zombie/cleanflags separately; no promotion until independentcontrols/INPUTreview; failedorpartialrun neverretryautomatically"
+  },
+  "cost": {
+    "historical401_host_seconds": 142.94895949300553,
+    "historical401_Game_seconds": 103.23499413100944,
+    "historical401_parse_seconds_about": 3,
+    "historical401_payload_bytes": 199359156,
+    "historical401_zip_bytes": 14568576,
+    "time_estimate": "Capturebody about2-3min historically; codeallows30sparse+300scapture+cleanup,thenarchive/readback. Reserve10-15min forboundedrun+save,notguaranteed; independentnewdatareviewextra,notincludedautomaticexecution. No percentquotaestimate.",
+    "existing_start_free_requirement_bytes": 5905580032,
+    "existing_reserve_bytes": 4294967296,
+    "existing_attempt_bytes": 1610612736,
+    "planning_free_bytes": 6162894848,
+    "planning_free_observed_utc": "2026-10-26T17:36:22.437802+00:00",
+    "planning_free_not_future_launch_approval": true,
+    "archive_git_clone_space_separate": "Budget actualcapsule+publication+isolatedreadback beforelaunch; keepalluniqueevidence; onlyalreadyverifiedrecoverableduplicatesmaybereleased,nonehere."
+  },
+  "operational_caveat": "Frozen434host RUN_NAME isattempt07 but inherited plan/one-shot-launch numericattempt remains6. Do not use this diagnosticlabel asactualprocesscount. Futuredecision must document authoritative runName/configSHA/profile or separatelyauthorizeanyminimumlabelSourcefix/review; noinlinefrozenSourceedit.",
+  "quota": {
+    "pause_at_or_below_percent": 30,
+    "current_trusted_remaining_read_required_before_future_launch": true,
+    "account_current_remaining_and_measurement_attribution_omitted_from_public_export": true
+  },
+  "decision_recommendation": "Do not launchnow. AfterParentcurrentbudget/resource/one-run decision, preferonefixedAruncoveringP/Owithstrictfailurepreservation. SuccessfultelemetryonlyenablesindependentSource-ruleandnewINITIALbindingreview; nofullschema/King/RL admission. IfO/firstentry/NO_STARTpremise fails,stopandreportconcretecausewithoutauditforestorretry.",
+  "this_turn_actual": {
+    "production_source_edits": 0,
+    "pool_actions": 0,
+    "Godot_processes": 0,
+    "captures": 0,
+    "tests": 0,
+    "new_agents": 0,
+    "only_existing_source_and_saved_evidence_read": true
+  },
+  "evidence_pins": [
+    {
+      "path": "data/phase430-invu-initial-feasibility-design/decision-table.json",
+      "size": 16017,
+      "sha256": "24d73ecb856619d50206eae9521ecd4e403a5149953b53e35cbc8cacac9a1677"
+    },
+    {
+      "path": "data/phase426-king-buff-overlay-first-001/overlay-report.json",
+      "size": 128799,
+      "sha256": "18460c39e42a3e8254aafd59d7980fc846bd3efcb9419eaf0d6383c4dd6a58aa"
+    },
+    {
+      "path": "data/phase434-early-invu-source/source-owner.json",
+      "size": 43309,
+      "sha256": "328d06e1b5957fb4d6ffa935f33539181ede0efb36378dbd3b53f04c84205993"
+    },
+    {
+      "path": "data/phase434-early-invu-source/combined-source-freeze.json",
+      "size": 67345,
+      "sha256": "584185e44faa9492f46b415fb00c64033b33e1e4d530329b68b5e21771e723c7"
+    },
+    {
+      "path": "data/phase434-early-invu-source/api-contract.json",
+      "size": 5560,
+      "sha256": "76b6551c23e437f18d3e98995914986c90aaa81fcd14042a39f9311adeee3a32"
+    },
+    {
+      "path": "data/phase435-independent-final-source-review/review.json",
+      "size": 8538,
+      "sha256": "3e23a658398cbbc41fecafc3801c323237f8e3af5eacc6ce56bd9003a3444f47"
+    },
+    {
+      "path": "data/phase435-root-bounded-source-acceptance/acceptance.json",
+      "size": 2622,
+      "sha256": "798c32a79cb6425a4f0301dc66ee91a4c8f4e6f71e7448e3caf53af842862a9a"
+    },
+    {
+      "path": "data/phase401-root-native-attempt06/host-complete-summary.json",
+      "size": 3665,
+      "sha256": "7ce58dd0046d8ef9acfd1998365c4f108746434027d8122b17da739a9e37542a"
+    },
+    {
+      "path": "tests/phase434_oracle_host.py",
+      "size": 31080,
+      "sha256": "bbff2ec0c6e1d2b6ecc5fb37cf20734e5e8dd9cebb6d75fce30ca2510ae20655"
+    },
+    {
+      "path": "tests/phase434_oracle_storage.py",
+      "size": 20410,
+      "sha256": "9f1411679884a0b94f78100dfb1a09babe0bd3b54553134e244b3f51fe7526c4"
+    },
+    {
+      "path": "tests/phase363_oracle_process.py",
+      "size": 13665,
+      "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f"
+    }
+  ]
+}
