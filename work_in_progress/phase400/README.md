@@ -1,0 +1,5 @@
+# Actual attempt05 complete-install restoration
+
+Root accepted the genuine399 final and rehashed all60 owned leaves. One actual398 recovery CLI restore call completed in12.826279660s with exit0 and80 target writes. Its full engineering readbacks passed; the original failed-state250B/SHA419a93cecf2e7c8ebfff9fe09f94b3ac8d34825c937b123ff1c451a6e039a245 remained unchanged. No READY,Godot or model was executed. Actual independent398 physical readback was separately released and is pending at this cut; engineering checks are not independent acceptance.
+
+The initial config preparation copied four saved-map roots; its prevalidation version and explicit addition of the fifth baseline root are preserved. No recover call used that earlier version. New configs and start markers are historical one-shot authority, not permission to replay in a migrated environment. Restore fixed resources via the main checkpoint and prior supplements, then rebind fresh actual roots and authority if resuming elsewhere. Formal bounded75;King unadmitted;full engine/RL incomplete.

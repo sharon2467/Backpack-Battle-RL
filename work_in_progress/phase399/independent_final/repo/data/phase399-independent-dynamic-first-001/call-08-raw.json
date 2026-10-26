@@ -1,0 +1,152 @@
+{
+  "actual_API": "tests/phase398_independent_restored_readback.py::attempt05_process_controls(roots,contract)",
+  "after": [],
+  "assertions_passed": false,
+  "before": [],
+  "elapsed_seconds": 0.0011511259945109487,
+  "events": [
+    {
+      "event": "open",
+      "flags": 524288,
+      "mode": "r",
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261025-attempt05/output/native-process-result.json",
+      "write": false
+    },
+    {
+      "event": "open",
+      "flags": 524288,
+      "mode": "r",
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261025-attempt05/output/native-process-result.json",
+      "write": false
+    },
+    {
+      "event": "open",
+      "flags": 524288,
+      "mode": "r",
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261025-attempt05/output/parse-process-result.json",
+      "write": false
+    },
+    {
+      "event": "open",
+      "flags": 524288,
+      "mode": "r",
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261025-attempt05/output/parse-process-result.json",
+      "write": false
+    }
+  ],
+  "exception": null,
+  "id": "R15-actual-controls",
+  "logical_case": "R15",
+  "result": [
+    [
+      21970,
+      22029
+    ],
+    [
+      21980,
+      22039
+    ],
+    {
+      "historical_zombies": [
+        21980,
+        22039
+      ],
+      "pid_reuse": "Historical records have no starttime; live matching PID/PGID conservatively blocks, no identity/reaping claim",
+      "records": {
+        "native-process-result.json": {
+          "abort_reason": null,
+          "actual_oracle_processes": 1,
+          "cleanup": {
+            "after": [
+              {
+                "live": false,
+                "pid": 22039,
+                "state": "Z"
+              }
+            ],
+            "before": [
+              {
+                "live": false,
+                "pid": 22039,
+                "state": "Z"
+              }
+            ],
+            "duration_seconds": 0.012262238000403158,
+            "kill_grace_seconds": 0.5,
+            "kill_sent": false,
+            "leader_returncode": 2,
+            "live_remaining": [],
+            "pgid": 22029,
+            "term_grace_seconds": 5.0,
+            "term_sent": true,
+            "zombies_not_claimed_reaped": [
+              22039
+            ]
+          },
+          "exit_code": 2,
+          "identity": {
+            "path": "output/native-process-result.json",
+            "root": "failed_run",
+            "sha256": "6418e120a942019753def61f3c49816e6ec1d21dc61edc8f1db02a41642d48ae",
+            "size": 37821
+          },
+          "parse_only": false,
+          "process_clean_exit": false,
+          "timed_out": false
+        },
+        "parse-process-result.json": {
+          "abort_reason": null,
+          "actual_oracle_processes": 0,
+          "cleanup": {
+            "after": [
+              {
+                "live": false,
+                "pid": 21980,
+                "state": "Z"
+              }
+            ],
+            "before": [
+              {
+                "live": false,
+                "pid": 21980,
+                "state": "Z"
+              }
+            ],
+            "duration_seconds": 0.01239618800173048,
+            "kill_grace_seconds": 0.5,
+            "kill_sent": false,
+            "leader_returncode": 0,
+            "live_remaining": [],
+            "pgid": 21970,
+            "term_grace_seconds": 5.0,
+            "term_sent": true,
+            "zombies_not_claimed_reaped": [
+              21980
+            ]
+          },
+          "exit_code": 0,
+          "identity": {
+            "path": "output/parse-process-result.json",
+            "root": "failed_run",
+            "sha256": "3c66bb1fb4fb499ea32a319a263d6f76acccff6cf76bc670b4dd2482e03f3e63",
+            "size": 3158
+          },
+          "parse_only": true,
+          "process_clean_exit": true,
+          "timed_out": false
+        }
+      }
+    }
+  ],
+  "selected_SUT_function_calls": {
+    "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::<genexpr>": 22,
+    "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::<lambda>": 4,
+    "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::attempt05_process_controls": 1,
+    "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::canonical": 2,
+    "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::pin": 2,
+    "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::read": 2,
+    "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::require": 31,
+    "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::verify_descriptor": 2
+  },
+  "top_level_call_index": 8
+}

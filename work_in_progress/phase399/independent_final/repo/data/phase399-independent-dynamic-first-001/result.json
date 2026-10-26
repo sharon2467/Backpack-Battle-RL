@@ -1,0 +1,195 @@
+{
+  "Godot": 0,
+  "READY": 0,
+  "accept": 4,
+  "actual_pool": 0,
+  "failure": null,
+  "logical_dynamic_cases": 6,
+  "models": 0,
+  "native": 0,
+  "no_more_calls": true,
+  "proc_inspection": 0,
+  "reject": 5,
+  "restore": 0,
+  "results": [
+    {
+      "expected_outcome": "accept",
+      "id": "R10-F01-ordinary",
+      "logical_case": "R10",
+      "raw": "call-01-raw.json",
+      "selected_delegated_SUT_calls": {
+        "/workspace/python-original-engine/repo/tests/native_run_compaction.py::<lambda>": 2,
+        "/workspace/python-original-engine/repo/tests/native_run_compaction.py::digest": 1,
+        "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py::<genexpr>": 56,
+        "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py::directory": 2,
+        "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py::member": 2,
+        "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py::pin": 1,
+        "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py::regular_target": 1,
+        "/workspace/python-original-engine/repo/tests/phase375_oracle_host.py::descriptor": 1,
+        "/workspace/python-original-engine/repo/tests/phase398_pool_recovery.py::<genexpr>": 67,
+        "/workspace/python-original-engine/repo/tests/phase398_pool_recovery.py::recovery_source_leaf": 1,
+        "/workspace/python-original-engine/repo/tests/phase398_pool_recovery.py::require": 3
+      },
+      "status": "PASS",
+      "target_content_open_attempts": 1,
+      "top_level_API_calls": 1,
+      "total_content_open_attempts": 1
+    },
+    {
+      "expected_outcome": "reject",
+      "id": "R10-F01-symlink",
+      "logical_case": "R10",
+      "raw": "call-02-raw.json",
+      "selected_delegated_SUT_calls": {
+        "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py::<genexpr>": 14,
+        "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py::directory": 1,
+        "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py::member": 1,
+        "/workspace/python-original-engine/repo/tests/phase398_pool_recovery.py::<genexpr>": 67,
+        "/workspace/python-original-engine/repo/tests/phase398_pool_recovery.py::recovery_source_leaf": 1,
+        "/workspace/python-original-engine/repo/tests/phase398_pool_recovery.py::require": 3
+      },
+      "status": "PASS",
+      "target_content_open_attempts": 0,
+      "top_level_API_calls": 1,
+      "total_content_open_attempts": 0
+    },
+    {
+      "expected_outcome": "reject",
+      "id": "R10-F01-hardlink",
+      "logical_case": "R10",
+      "raw": "call-03-raw.json",
+      "selected_delegated_SUT_calls": {
+        "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py::<genexpr>": 33,
+        "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py::directory": 1,
+        "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py::member": 1,
+        "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py::regular_target": 1,
+        "/workspace/python-original-engine/repo/tests/phase398_pool_recovery.py::<genexpr>": 67,
+        "/workspace/python-original-engine/repo/tests/phase398_pool_recovery.py::recovery_source_leaf": 1,
+        "/workspace/python-original-engine/repo/tests/phase398_pool_recovery.py::require": 3
+      },
+      "status": "PASS",
+      "target_content_open_attempts": 0,
+      "top_level_API_calls": 1,
+      "total_content_open_attempts": 0
+    },
+    {
+      "expected_outcome": "reject",
+      "id": "R20-F02-symlink",
+      "logical_case": "R20",
+      "raw": "call-04-raw.json",
+      "selected_delegated_SUT_calls": {
+        "/workspace/python-original-engine/repo/data/phase399-independent-execution-preparation/fixtures/reader-symlink/tests/phase398_independent_restored_readback.py::<genexpr>": 6,
+        "/workspace/python-original-engine/repo/data/phase399-independent-execution-preparation/fixtures/reader-symlink/tests/phase398_independent_restored_readback.py::canonical": 1,
+        "/workspace/python-original-engine/repo/data/phase399-independent-execution-preparation/fixtures/reader-symlink/tests/phase398_independent_restored_readback.py::prepare_contract": 1,
+        "/workspace/python-original-engine/repo/data/phase399-independent-execution-preparation/fixtures/reader-symlink/tests/phase398_independent_restored_readback.py::require": 5,
+        "/workspace/python-original-engine/repo/data/phase399-independent-execution-preparation/fixtures/reader-symlink/tests/phase398_independent_restored_readback.py::verify_descriptor": 1
+      },
+      "status": "PASS",
+      "target_content_open_attempts": 0,
+      "top_level_API_calls": 1,
+      "total_content_open_attempts": 0
+    },
+    {
+      "expected_outcome": "reject",
+      "id": "R20-F02-hardlink",
+      "logical_case": "R20",
+      "raw": "call-05-raw.json",
+      "selected_delegated_SUT_calls": {
+        "/workspace/python-original-engine/repo/data/phase399-independent-execution-preparation/fixtures/reader-hardlink/tests/phase398_independent_restored_readback.py::<genexpr>": 16,
+        "/workspace/python-original-engine/repo/data/phase399-independent-execution-preparation/fixtures/reader-hardlink/tests/phase398_independent_restored_readback.py::canonical": 1,
+        "/workspace/python-original-engine/repo/data/phase399-independent-execution-preparation/fixtures/reader-hardlink/tests/phase398_independent_restored_readback.py::prepare_contract": 1,
+        "/workspace/python-original-engine/repo/data/phase399-independent-execution-preparation/fixtures/reader-hardlink/tests/phase398_independent_restored_readback.py::require": 6,
+        "/workspace/python-original-engine/repo/data/phase399-independent-execution-preparation/fixtures/reader-hardlink/tests/phase398_independent_restored_readback.py::verify_descriptor": 1
+      },
+      "status": "PASS",
+      "target_content_open_attempts": 0,
+      "top_level_API_calls": 1,
+      "total_content_open_attempts": 0
+    },
+    {
+      "expected_outcome": "accept",
+      "id": "R13-owner-descriptor-ordinary",
+      "logical_case": "R13",
+      "raw": "call-06-raw.json",
+      "selected_delegated_SUT_calls": {
+        "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::<genexpr>": 12,
+        "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::<lambda>": 2,
+        "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::canonical": 1,
+        "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::pin": 1,
+        "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::require": 7,
+        "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::verify_descriptor": 1
+      },
+      "status": "PASS",
+      "target_content_open_attempts": 1,
+      "top_level_API_calls": 1,
+      "total_content_open_attempts": 1
+    },
+    {
+      "expected_outcome": "accept",
+      "id": "R01-saved-complete",
+      "logical_case": "R01",
+      "raw": "call-07-raw.json",
+      "selected_delegated_SUT_calls": {
+        "/workspace/python-original-engine/repo/tests/phase395_saved_complete_evidence.py::<genexpr>": 29090,
+        "/workspace/python-original-engine/repo/tests/phase395_saved_complete_evidence.py::<lambda>": 2526,
+        "/workspace/python-original-engine/repo/tests/phase395_saved_complete_evidence.py::index": 5,
+        "/workspace/python-original-engine/repo/tests/phase395_saved_complete_evidence.py::leaf": 613,
+        "/workspace/python-original-engine/repo/tests/phase395_saved_complete_evidence.py::load": 18,
+        "/workspace/python-original-engine/repo/tests/phase395_saved_complete_evidence.py::need": 1085,
+        "/workspace/python-original-engine/repo/tests/phase395_saved_complete_evidence.py::pairs": 143351,
+        "/workspace/python-original-engine/repo/tests/phase395_saved_complete_evidence.py::saved_json": 19,
+        "/workspace/python-original-engine/repo/tests/phase395_saved_complete_evidence.py::saved_pin": 1218,
+        "/workspace/python-original-engine/repo/tests/phase395_saved_complete_evidence.py::validate_complete_saved": 1
+      },
+      "status": "PASS",
+      "target_content_open_attempts": 1237,
+      "top_level_API_calls": 1,
+      "total_content_open_attempts": 1237
+    },
+    {
+      "expected_outcome": "accept",
+      "id": "R15-actual-controls",
+      "logical_case": "R15",
+      "raw": "call-08-raw.json",
+      "selected_delegated_SUT_calls": {
+        "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::<genexpr>": 22,
+        "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::<lambda>": 4,
+        "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::attempt05_process_controls": 1,
+        "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::canonical": 2,
+        "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::pin": 2,
+        "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::read": 2,
+        "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::require": 31,
+        "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::verify_descriptor": 2
+      },
+      "status": "PASS",
+      "target_content_open_attempts": 4,
+      "top_level_API_calls": 1,
+      "total_content_open_attempts": 4
+    },
+    {
+      "expected_outcome": "reject",
+      "id": "R16-parse-bool-int",
+      "logical_case": "R16",
+      "raw": "call-09-raw.json",
+      "selected_delegated_SUT_calls": {
+        "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::<genexpr>": 28,
+        "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::<lambda>": 4,
+        "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::attempt05_process_controls": 1,
+        "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::canonical": 2,
+        "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::pin": 2,
+        "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::read": 2,
+        "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::require": 23,
+        "/workspace/python-original-engine/repo/tests/phase398_independent_restored_readback.py::verify_descriptor": 2
+      },
+      "status": "PASS",
+      "target_content_open_attempts": 4,
+      "top_level_API_calls": 1,
+      "total_content_open_attempts": 4
+    }
+  ],
+  "schema": "phase399-real-public-component-results/1",
+  "status": "PASS_NINE_REAL_PUBLIC_COMPONENT_CALLS",
+  "top_level_API_calls": 9,
+  "whole_prepare_positive": false,
+  "whole_recover_positive": false
+}

@@ -1,0 +1,199 @@
+{
+  "F01": "actual metadata/member -> regular_target -> descriptor; template identical",
+  "F02": "fixed own-owner descriptor -> strict verify_descriptor -> read returned path; no owner self-reference",
+  "SUT_calls": 0,
+  "SUT_imports": 0,
+  "actual_pool": 0,
+  "api": {
+    "path": "data/phase398-attempt05-recovery-source/api-contract.json",
+    "sha256": "3e0175ba0f4ef4ccb8916e70b75843afca9c4f9a7f62a1e3d77163b70bfd4755",
+    "size": 2900
+  },
+  "conserved375_functions": [
+    "actual_targets",
+    "check_failed_state",
+    "check_roots",
+    "commit_ready",
+    "directory_metadata",
+    "evidence_path",
+    "locked_pool",
+    "main",
+    "recover",
+    "require",
+    "restore_exact"
+  ],
+  "conserved384_functions": [
+    "audit",
+    "canonical",
+    "counts",
+    "desc",
+    "inventory",
+    "pin",
+    "read",
+    "require",
+    "save",
+    "verify_overlay_archive"
+  ],
+  "handoff_bytes": 7067200,
+  "handoff_files": 433,
+  "handoff_owner": {
+    "path": "data/phase398-source-handoff/owned-files.json",
+    "sha256": "50324ee7a58bae41a156ea742357385c5bb3b7abfd9cb545ff04c946cda77c71",
+    "size": 97066
+  },
+  "import_closure": [
+    {
+      "path": "tests/phase398_pool_recovery.py",
+      "sha256": "67c2aae7881e3b9debe9af608dc4fc3d4b8d644c8ad0aeb2c2375e99d2875ada",
+      "size": 21337
+    },
+    {
+      "path": "tests/phase395_saved_complete_evidence.py",
+      "sha256": "cfff1675c2b56659ea60158994c289a3b0f3d3da00be6e51d01e50ef86968a96",
+      "size": 11246
+    },
+    {
+      "path": "tests/phase375_oracle_host.py",
+      "sha256": "e4a0438f6fccde911bd88307d09c16fbb460d33caa3ea946cc94c9533af8b910",
+      "size": 18031
+    },
+    {
+      "path": "tests/phase363_oracle_storage.py",
+      "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc",
+      "size": 15496
+    },
+    {
+      "path": "tests/phase363_oracle_process.py",
+      "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f",
+      "size": 13665
+    },
+    {
+      "path": "tests/native_run_compaction.py",
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260",
+      "size": 27304
+    }
+  ],
+  "independent_inverse_checks": [
+    {
+      "after": {
+        "path": "tests/phase398_pool_recovery.py",
+        "sha256": "67c2aae7881e3b9debe9af608dc4fc3d4b8d644c8ad0aeb2c2375e99d2875ada",
+        "size": 21337
+      },
+      "before": {
+        "path": "tests/phase395_pool_recovery.py",
+        "sha256": "208e09fbd93d03a83b82d3af14e4efa5a8eba9626d9ff1a60afecbc5ea391ca3",
+        "size": 20754
+      },
+      "complete_inverse": "PASS_IN_FIRST_INDEPENDENT_AUDIT_BEFORE_LINE83",
+      "semantic_changed_functions": [
+        "recovery_source_leaf"
+      ],
+      "unchanged_functions": [
+        "actual_targets",
+        "check_failed_state",
+        "check_roots",
+        "commit_ready",
+        "directory_metadata",
+        "evidence_path",
+        "locked_pool",
+        "main",
+        "recover",
+        "recovery_source_owner",
+        "require",
+        "restore_exact",
+        "validate_terminal_component_context",
+        "verify_evidence"
+      ]
+    },
+    {
+      "after": {
+        "path": "tests/phase398_independent_restored_readback.py",
+        "sha256": "4887e63ddae5ee9008a2073df1c23743b8a2e47fa58d925c454a024546682bac",
+        "size": 33042
+      },
+      "before": {
+        "path": "tests/phase395_independent_restored_readback.py",
+        "sha256": "25aa33b1db96d7a40d0ea6072744e03db6b00cb93a295abbedc58b7cd77b42e3",
+        "size": 33006
+      },
+      "complete_inverse": "PASS_IN_FIRST_INDEPENDENT_AUDIT_BEFORE_LINE83",
+      "semantic_changed_functions": [
+        "prepare_contract"
+      ],
+      "unchanged_functions": [
+        "attempt05_process_controls",
+        "audit",
+        "canonical",
+        "counts",
+        "desc",
+        "inventory",
+        "pin",
+        "read",
+        "require",
+        "save",
+        "verify_capsule385",
+        "verify_complete_saved_contract",
+        "verify_descriptor",
+        "verify_overlay_archive"
+      ]
+    },
+    {
+      "after": {
+        "path": "tests/phase398_recovery_gate_source.py",
+        "sha256": "20afe2349cd8facdd16ef1fd3bd94a206f160982683ea1aaa7e44b9bc30e46ac",
+        "size": 5787
+      },
+      "before": {
+        "path": "tests/phase395_recovery_gate_source.py",
+        "sha256": "90c39c7a5f4d807beb1e9b00206c2f879ba14d0559f1af2ed1511b6ec38c8759",
+        "size": 5204
+      },
+      "complete_inverse": "PASS_IN_FIRST_INDEPENDENT_AUDIT_BEFORE_LINE83",
+      "semantic_changed_functions": [
+        "recovery_source_leaf"
+      ],
+      "unchanged_functions": [
+        "recovery_source_owner",
+        "validate_terminal_component_context"
+      ]
+    }
+  ],
+  "input_pins": {
+    "path": "data/phase395-attempt05-recovery-source/map/source-input-pins.json",
+    "sha256": "b1eae13cfcc3094a38c965cedc8785226a92c54ed9b87e86e6487509b1081510",
+    "size": 102475
+  },
+  "inspector_origin_resolution": {
+    "path": "data/phase399-independent-static/static-finding-resolution.json",
+    "sha256": "fd6660b5334dc47addc5eb2da773b0f50bfb7fe8cf9eefcf70e04fb5f06188bb",
+    "size": 1877
+  },
+  "map": {
+    "path": "data/phase395-attempt05-recovery-source/map/restore-map.json",
+    "sha256": "b9fae3743994c3f5a3b3e590a4b849b914cf0422343fd42738e4d639b6b13dc1",
+    "size": 68985
+  },
+  "models": 0,
+  "native": 0,
+  "proc": 0,
+  "reader_contract_changed_fields": [
+    "SOURCE_review_status",
+    "failed_capsule_manifest",
+    "process_inspector_origin",
+    "process_inspector_source",
+    "readback_status",
+    "recovery_source_owner",
+    "schema",
+    "source_API",
+    "source_freeze"
+  ],
+  "schema": "phase399-independent-frozen398-static-review/1",
+  "source_freeze": {
+    "path": "data/phase398-attempt05-recovery-source/combined-source-freeze.json",
+    "sha256": "5fb02ee64338e3cb87e84f238e42c7ecbb92e212cd52b7385b7757af7f752378",
+    "size": 96911
+  },
+  "static_logical_cases": 20,
+  "status": "STATIC_PASS_CONDITIONAL_NINE_CALL_RELEASE"
+}

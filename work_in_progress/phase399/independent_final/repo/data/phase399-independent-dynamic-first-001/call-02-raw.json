@@ -1,0 +1,68 @@
+{
+  "actual_API": "tests/phase398_pool_recovery.py::recovery_source_leaf(root,row)",
+  "after": [
+    {
+      "device": 27,
+      "inode": 1999257,
+      "kind": "symlink",
+      "link_target": "referent.bin",
+      "mode": 511,
+      "mtime_ns": 1793006496380654663,
+      "nlink": 1,
+      "path": "/workspace/python-original-engine/repo/data/phase399-independent-execution-preparation/fixtures/leaf/symlink/operand.bin"
+    },
+    {
+      "device": 27,
+      "inode": 1999256,
+      "kind": "file",
+      "mode": 384,
+      "mtime_ns": 1793006496380654663,
+      "nlink": 1,
+      "path": "/workspace/python-original-engine/repo/data/phase399-independent-execution-preparation/fixtures/leaf/symlink/referent.bin",
+      "sha256": "176f9342dc32b989771e7db7bbc6f1634006f3931c301ca374b270753eae9259",
+      "size": 33
+    }
+  ],
+  "assertions_passed": false,
+  "before": [
+    {
+      "device": 27,
+      "inode": 1999257,
+      "kind": "symlink",
+      "link_target": "referent.bin",
+      "mode": 511,
+      "mtime_ns": 1793006496380654663,
+      "nlink": 1,
+      "path": "/workspace/python-original-engine/repo/data/phase399-independent-execution-preparation/fixtures/leaf/symlink/operand.bin"
+    },
+    {
+      "device": 27,
+      "inode": 1999256,
+      "kind": "file",
+      "mode": 384,
+      "mtime_ns": 1793006496380654663,
+      "nlink": 1,
+      "path": "/workspace/python-original-engine/repo/data/phase399-independent-execution-preparation/fixtures/leaf/symlink/referent.bin",
+      "sha256": "176f9342dc32b989771e7db7bbc6f1634006f3931c301ca374b270753eae9259",
+      "size": 33
+    }
+  ],
+  "elapsed_seconds": 0.00043035099224653095,
+  "events": [],
+  "exception": {
+    "message": "symlink member/ancestor",
+    "type": "ValueError"
+  },
+  "id": "R10-F01-symlink",
+  "logical_case": "R10",
+  "result": null,
+  "selected_SUT_function_calls": {
+    "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py::<genexpr>": 14,
+    "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py::directory": 1,
+    "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py::member": 1,
+    "/workspace/python-original-engine/repo/tests/phase398_pool_recovery.py::<genexpr>": 67,
+    "/workspace/python-original-engine/repo/tests/phase398_pool_recovery.py::recovery_source_leaf": 1,
+    "/workspace/python-original-engine/repo/tests/phase398_pool_recovery.py::require": 3
+  },
+  "top_level_call_index": 2
+}

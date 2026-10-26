@@ -1,0 +1,58 @@
+{
+  "actual_API": "tests/phase398_pool_recovery.py::recovery_source_leaf(root,row)",
+  "after": [
+    {
+      "device": 27,
+      "inode": 1999254,
+      "kind": "file",
+      "mode": 384,
+      "mtime_ns": 1793006496380573774,
+      "nlink": 1,
+      "path": "/workspace/python-original-engine/repo/data/phase399-independent-execution-preparation/fixtures/leaf/ordinary/operand.bin",
+      "sha256": "176f9342dc32b989771e7db7bbc6f1634006f3931c301ca374b270753eae9259",
+      "size": 33
+    }
+  ],
+  "assertions_passed": false,
+  "before": [
+    {
+      "device": 27,
+      "inode": 1999254,
+      "kind": "file",
+      "mode": 384,
+      "mtime_ns": 1793006496380573774,
+      "nlink": 1,
+      "path": "/workspace/python-original-engine/repo/data/phase399-independent-execution-preparation/fixtures/leaf/ordinary/operand.bin",
+      "sha256": "176f9342dc32b989771e7db7bbc6f1634006f3931c301ca374b270753eae9259",
+      "size": 33
+    }
+  ],
+  "elapsed_seconds": 0.0015355709911091253,
+  "events": [
+    {
+      "event": "open",
+      "flags": 524288,
+      "mode": "r",
+      "path": "/workspace/python-original-engine/repo/data/phase399-independent-execution-preparation/fixtures/leaf/ordinary/operand.bin",
+      "write": false
+    }
+  ],
+  "exception": null,
+  "id": "R10-F01-ordinary",
+  "logical_case": "R10",
+  "result": "/workspace/python-original-engine/repo/data/phase399-independent-execution-preparation/fixtures/leaf/ordinary/operand.bin",
+  "selected_SUT_function_calls": {
+    "/workspace/python-original-engine/repo/tests/native_run_compaction.py::<lambda>": 2,
+    "/workspace/python-original-engine/repo/tests/native_run_compaction.py::digest": 1,
+    "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py::<genexpr>": 56,
+    "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py::directory": 2,
+    "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py::member": 2,
+    "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py::pin": 1,
+    "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py::regular_target": 1,
+    "/workspace/python-original-engine/repo/tests/phase375_oracle_host.py::descriptor": 1,
+    "/workspace/python-original-engine/repo/tests/phase398_pool_recovery.py::<genexpr>": 67,
+    "/workspace/python-original-engine/repo/tests/phase398_pool_recovery.py::recovery_source_leaf": 1,
+    "/workspace/python-original-engine/repo/tests/phase398_pool_recovery.py::require": 3
+  },
+  "top_level_call_index": 1
+}
