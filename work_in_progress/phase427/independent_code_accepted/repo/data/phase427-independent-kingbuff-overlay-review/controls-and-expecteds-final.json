@@ -1,0 +1,528 @@
+{
+  "schema": "independent427-frozen-controls/1",
+  "stop_on_first_failure": true,
+  "cases": [
+    {
+      "id": "C01",
+      "name": "selected44baseline-no-private-inference",
+      "op": "collect",
+      "expect": "complete"
+    },
+    {
+      "id": "C02",
+      "name": "acceptedA4exact88baseline",
+      "op": "a4",
+      "expect": "a4_valid"
+    },
+    {
+      "id": "C03",
+      "name": "sceneMode0-not-AutoHide1",
+      "op": "collect",
+      "expect": "gap",
+      "edit": [
+        "row",
+        615,
+        [
+          "actual_value"
+        ],
+        1
+      ]
+    },
+    {
+      "id": "C04",
+      "name": "sceneBirthKind-not-AutoHide",
+      "op": "collect",
+      "expect": "gap",
+      "edit": [
+        "row",
+        1372,
+        [
+          "actual_value"
+        ],
+        "Item.AutoHideTimer.new"
+      ]
+    },
+    {
+      "id": "C05",
+      "name": "sceneOneShottrue",
+      "op": "collect",
+      "expect": "gap",
+      "edit": [
+        "row",
+        618,
+        [
+          "actual_value"
+        ],
+        false
+      ]
+    },
+    {
+      "id": "C06",
+      "name": "crossphaseTimerIdentity",
+      "op": "collect",
+      "expect": "reject",
+      "reason": "CONFLICTING_TIMER_IDENTITY",
+      "edit": [
+        "row",
+        1294,
+        [
+          "actual_value"
+        ],
+        "81740"
+      ]
+    },
+    {
+      "id": "C07",
+      "name": "supportPhaseNotRelabeled",
+      "op": "collect",
+      "expect": "reject",
+      "reason": "SUPPORT_ORDINAL_KEY",
+      "edit": [
+        "row",
+        615,
+        [
+          "phase"
+        ],
+        "pre_activate"
+      ]
+    },
+    {
+      "id": "C08",
+      "name": "lifetimeCounterBOOL",
+      "op": "collect",
+      "expect": "reject",
+      "reason": "LIFETIME_COUNTER_TYPE",
+      "edit": [
+        "row",
+        1373,
+        [
+          "actual_value"
+        ],
+        false
+      ]
+    },
+    {
+      "id": "C09",
+      "name": "lifetimeStartNonzero",
+      "op": "collect",
+      "expect": "gap",
+      "edit": [
+        "row",
+        1373,
+        [
+          "actual_value"
+        ],
+        1
+      ]
+    },
+    {
+      "id": "C10",
+      "name": "birthMode0",
+      "op": "collect",
+      "expect": "gap",
+      "edit": [
+        "row",
+        1375,
+        [
+          "actual_value",
+          "process_mode"
+        ],
+        1
+      ]
+    },
+    {
+      "id": "C11",
+      "name": "birthTimerIdentity",
+      "op": "collect",
+      "expect": "reject",
+      "reason": "BIRTH_NODE_IDENTITY",
+      "edit": [
+        "row",
+        1375,
+        [
+          "actual_value",
+          "node",
+          "native_id"
+        ],
+        "81740"
+      ]
+    },
+    {
+      "id": "C12",
+      "name": "birthNodeMissing",
+      "op": "collect",
+      "expect": "gap",
+      "edit": [
+        "delete_row_value_key",
+        1375,
+        "node"
+      ]
+    },
+    {
+      "id": "C13",
+      "name": "onePhaseSupportMissing-not-one-target",
+      "op": "collect",
+      "expect": "gap",
+      "edit": [
+        "delete_row",
+        615
+      ]
+    },
+    {
+      "id": "C14",
+      "name": "readyReturnMissing",
+      "op": "collect",
+      "expect": "gap",
+      "edit": [
+        "delete_provenance",
+        [
+          "lineage",
+          "selected",
+          2
+        ]
+      ]
+    },
+    {
+      "id": "C15",
+      "name": "readyNormalReturnOnly",
+      "op": "collect",
+      "expect": "reject",
+      "reason": "READY_NORMAL_RETURN",
+      "edit": [
+        "provenance",
+        [
+          "lineage",
+          "selected",
+          2,
+          "payload",
+          "return_value"
+        ],
+        {
+          "type": "bool",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "C16",
+      "name": "scenePooledFalse",
+      "op": "collect",
+      "expect": "reject",
+      "reason": "SCENE_FRESH_DOMAIN",
+      "edit": [
+        "provenance",
+        [
+          "lineage",
+          "selected",
+          0,
+          "payload",
+          "pooled"
+        ],
+        true
+      ]
+    },
+    {
+      "id": "C17",
+      "name": "selectedOwnerKing",
+      "op": "collect",
+      "expect": "reject",
+      "reason": "SELECTED_SLOT_CONFLICT",
+      "edit": [
+        "provenance",
+        [
+          "slots",
+          "binding",
+          "native_id"
+        ],
+        "81718"
+      ]
+    },
+    {
+      "id": "C18",
+      "name": "UIExactKingScript",
+      "op": "collect",
+      "expect": "reject",
+      "reason": "UI_FRESH_SCENE_DOMAIN",
+      "edit": [
+        "provenance",
+        [
+          "ui",
+          "bind",
+          0,
+          "payload",
+          "script"
+        ],
+        "res://Items/Item.gd"
+      ]
+    },
+    {
+      "id": "C19",
+      "name": "UIgenerationStrictINT",
+      "op": "collect",
+      "expect": "reject",
+      "reason": "UI_FRESH_SCENE_DOMAIN",
+      "edit": [
+        "provenance",
+        [
+          "ui",
+          "bind",
+          0,
+          "payload",
+          "generation"
+        ],
+        true
+      ]
+    },
+    {
+      "id": "C20",
+      "name": "UIFirstRolesWrong-not-search-forward",
+      "op": "collect",
+      "expect": "reject",
+      "reason": "UI_FIRST_ROLES",
+      "edit": [
+        "provenance",
+        [
+          "ui",
+          "roles",
+          "sequence"
+        ],
+        1075
+      ]
+    },
+    {
+      "id": "C21",
+      "name": "checkpointStrictINTcut",
+      "op": "collect",
+      "expect": "reject",
+      "reason": "CHECKPOINT_REFERENCE",
+      "edit": [
+        "row",
+        615,
+        [
+          "input_refs",
+          0,
+          "sequence"
+        ],
+        true
+      ]
+    },
+    {
+      "id": "C22",
+      "name": "birthNoAutostart",
+      "op": "collect",
+      "expect": "gap",
+      "edit": [
+        "row",
+        1375,
+        [
+          "actual_value",
+          "autostart"
+        ],
+        true
+      ]
+    },
+    {
+      "id": "C23",
+      "name": "inactiveProcessingFlag",
+      "op": "collect",
+      "expect": "gap",
+      "edit": [
+        "row",
+        631,
+        [
+          "actual_value"
+        ],
+        true
+      ]
+    },
+    {
+      "id": "C24",
+      "name": "nativeFloatWrapperNoExtras",
+      "op": "collect",
+      "expect": "reject",
+      "reason": "NATIVE_FLOAT_SHAPE_pre_prepare_Timer.wait_time",
+      "edit": [
+        "row",
+        616,
+        [
+          "actual_value"
+        ],
+        {
+          "type": "float",
+          "binary64_be": "3ff0000000000000",
+          "extra": 0
+        }
+      ]
+    },
+    {
+      "id": "C25",
+      "name": "directProofBoolean",
+      "op": "collect",
+      "expect": "reject",
+      "reason": "DIRECT_SUPPORT_REQUIRED",
+      "edit": [
+        "row",
+        615,
+        [
+          "proof_complete"
+        ],
+        false
+      ]
+    },
+    {
+      "id": "C26",
+      "name": "A4DuplicateKey",
+      "op": "a4",
+      "expect": "reject",
+      "reason": "A4_KEY_DOMAIN",
+      "edit": [
+        "duplicate_a4"
+      ]
+    },
+    {
+      "id": "C27",
+      "name": "A4PrivateValuePreserved",
+      "op": "a4",
+      "expect": "reject",
+      "reason": "A4_ACCEPTED_VALUE",
+      "edit": [
+        "a4_private_change"
+      ]
+    },
+    {
+      "id": "C28",
+      "name": "A4CountStrictINT",
+      "op": "a4",
+      "expect": "reject",
+      "reason": "A4_COUNTS",
+      "edit": [
+        "a4_bool_count"
+      ]
+    },
+    {
+      "id": "C29",
+      "name": "A4NoPriorKingBuffPromotion",
+      "op": "a4",
+      "expect": "reject",
+      "reason": "A4_OTHER_MISSING",
+      "edit": [
+        "a4_new_king"
+      ]
+    },
+    {
+      "id": "C30",
+      "name": "deriveCallerTrueNotAuthority",
+      "op": "derive_bool",
+      "expect": "reject",
+      "reason": "VERIFIED_GATE_REQUIRED"
+    },
+    {
+      "id": "C31",
+      "name": "deriveReceiptDictNotAuthority",
+      "op": "derive_dict",
+      "expect": "reject",
+      "reason": "VERIFIED_GATE_REQUIRED"
+    },
+    {
+      "id": "C32",
+      "name": "internalConstructorRejectForeignToken",
+      "op": "gate_ctor",
+      "expect": "reject",
+      "reason": "INTERNAL_GATE_ONLY"
+    },
+    {
+      "id": "C33",
+      "name": "spent420RunGateBeforeAnyReadOutput",
+      "op": "spent_run",
+      "expect": "reject",
+      "reason": "FRESH_ROOT_RELEASE_PATH"
+    },
+    {
+      "id": "C34",
+      "name": "wrongRootActionBeforeOwnerRead",
+      "op": "wrong_action",
+      "expect": "reject",
+      "reason": "ROOT_ACTION_SCHEMA"
+    },
+    {
+      "id": "C35",
+      "name": "intermediateReviewCannotRelease",
+      "op": "intermediate_review",
+      "expect": "reject",
+      "reason": "FINAL427_REVIEW_REQUIRED"
+    },
+    {
+      "id": "C36",
+      "name": "ownerDirectoryBeforeContentRead",
+      "op": "directory_owner",
+      "expect": "reject",
+      "reason": "NONORDINARY_FILE"
+    },
+    {
+      "id": "C37",
+      "name": "ownerSizeBeforeContentRead",
+      "op": "wrongsize_owner",
+      "expect": "reject",
+      "reason": "SIZE_BEFORE_READ"
+    },
+    {
+      "id": "C38",
+      "name": "freshSyntheticOutputReadback",
+      "op": "save_new",
+      "expect": "saved"
+    },
+    {
+      "id": "C39",
+      "name": "existingSyntheticOutputExclusive",
+      "op": "save_existing",
+      "expect": "reject",
+      "reason": "OUTPUT_EXISTS"
+    },
+    {
+      "id": "C40",
+      "name": "missingRoles-not-one-phase",
+      "op": "collect",
+      "expect": "gap",
+      "edit": [
+        "delete_provenance",
+        [
+          "ui",
+          "roles"
+        ]
+      ]
+    },
+    {
+      "id": "C41",
+      "name": "birthUnknownProperty",
+      "op": "collect",
+      "expect": "reject",
+      "reason": "VALUE_EXTRA_KEYS_BIRTH",
+      "edit": [
+        "row",
+        1375,
+        [
+          "actual_value",
+          "unexpected"
+        ],
+        0
+      ]
+    },
+    {
+      "id": "C42",
+      "name": "publicModeBOOL-notINT0",
+      "op": "collect",
+      "expect": "reject",
+      "reason": "VALUE_TYPE_pre_prepare_Timer.process_mode",
+      "edit": [
+        "row",
+        615,
+        [
+          "actual_value"
+        ],
+        false
+      ]
+    }
+  ],
+  "count": 42,
+  "no_positive_authority_forgery": true
+}

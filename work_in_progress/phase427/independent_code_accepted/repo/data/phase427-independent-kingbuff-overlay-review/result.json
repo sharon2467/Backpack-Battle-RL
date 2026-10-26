@@ -1,0 +1,926 @@
+{
+  "schema": "independent427-finite-functional-result/1",
+  "status": "PASS",
+  "module_loads": 1,
+  "top_API_calls": 43,
+  "planned_controls": 42,
+  "executed_controls": 42,
+  "passed_controls": 42,
+  "unexecuted_controls": [],
+  "first_failure": null,
+  "results": [
+    {
+      "id": "C01",
+      "name": "selected44baseline-no-private-inference",
+      "pass": true,
+      "expected": "complete",
+      "actual": "complete",
+      "reason": null,
+      "detail": {
+        "gaps": [],
+        "support": 44,
+        "private_target_promotions": 0
+      },
+      "elapsed": 0.03648471999622416,
+      "observed_events": []
+    },
+    {
+      "id": "C02",
+      "name": "acceptedA4exact88baseline",
+      "pass": true,
+      "expected": "a4_valid",
+      "actual": "a4_valid",
+      "reason": null,
+      "detail": {
+        "rows": 88
+      },
+      "elapsed": 0.03816373599693179,
+      "observed_events": []
+    },
+    {
+      "id": "C03",
+      "name": "sceneMode0-not-AutoHide1",
+      "pass": true,
+      "expected": "gap",
+      "actual": "gap",
+      "reason": null,
+      "detail": {
+        "gaps": [
+          "UNSUPPORTED_pre_prepare_Timer.process_mode"
+        ],
+        "support": 44,
+        "private_target_promotions": 0
+      },
+      "elapsed": 0.0352168840036029,
+      "observed_events": []
+    },
+    {
+      "id": "C04",
+      "name": "sceneBirthKind-not-AutoHide",
+      "pass": true,
+      "expected": "gap",
+      "actual": "gap",
+      "reason": null,
+      "detail": {
+        "gaps": [
+          "UNSUPPORTED_SCENE_BIRTH_KIND"
+        ],
+        "support": 44,
+        "private_target_promotions": 0
+      },
+      "elapsed": 0.03507702700153459,
+      "observed_events": []
+    },
+    {
+      "id": "C05",
+      "name": "sceneOneShottrue",
+      "pass": true,
+      "expected": "gap",
+      "actual": "gap",
+      "reason": null,
+      "detail": {
+        "gaps": [
+          "UNSUPPORTED_pre_prepare_Timer.one_shot"
+        ],
+        "support": 44,
+        "private_target_promotions": 0
+      },
+      "elapsed": 0.03637521500058938,
+      "observed_events": []
+    },
+    {
+      "id": "C06",
+      "name": "crossphaseTimerIdentity",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "CONFLICTING_TIMER_IDENTITY",
+      "detail": {},
+      "elapsed": 0.04315077399951406,
+      "observed_events": []
+    },
+    {
+      "id": "C07",
+      "name": "supportPhaseNotRelabeled",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "SUPPORT_ORDINAL_KEY",
+      "detail": {},
+      "elapsed": 0.0381193479988724,
+      "observed_events": []
+    },
+    {
+      "id": "C08",
+      "name": "lifetimeCounterBOOL",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "LIFETIME_COUNTER_TYPE",
+      "detail": {},
+      "elapsed": 0.03594016299757641,
+      "observed_events": []
+    },
+    {
+      "id": "C09",
+      "name": "lifetimeStartNonzero",
+      "pass": true,
+      "expected": "gap",
+      "actual": "gap",
+      "reason": null,
+      "detail": {
+        "gaps": [
+          "NONZERO_LIFETIME_starts"
+        ],
+        "support": 44,
+        "private_target_promotions": 0
+      },
+      "elapsed": 0.03951779298949987,
+      "observed_events": []
+    },
+    {
+      "id": "C10",
+      "name": "birthMode0",
+      "pass": true,
+      "expected": "gap",
+      "actual": "gap",
+      "reason": null,
+      "detail": {
+        "gaps": [
+          "UNSUPPORTED_BIRTH_process_mode"
+        ],
+        "support": 44,
+        "private_target_promotions": 0
+      },
+      "elapsed": 0.035709850999410264,
+      "observed_events": []
+    },
+    {
+      "id": "C11",
+      "name": "birthTimerIdentity",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "BIRTH_NODE_IDENTITY",
+      "detail": {},
+      "elapsed": 0.03565929099568166,
+      "observed_events": []
+    },
+    {
+      "id": "C12",
+      "name": "birthNodeMissing",
+      "pass": true,
+      "expected": "gap",
+      "actual": "gap",
+      "reason": null,
+      "detail": {
+        "gaps": [
+          "MISSING_BIRTH_node"
+        ],
+        "support": 44,
+        "private_target_promotions": 0
+      },
+      "elapsed": 0.03666646400233731,
+      "observed_events": []
+    },
+    {
+      "id": "C13",
+      "name": "onePhaseSupportMissing-not-one-target",
+      "pass": true,
+      "expected": "gap",
+      "actual": "gap",
+      "reason": null,
+      "detail": {
+        "gaps": [
+          "MISSING_pre_prepare_Timer.process_mode"
+        ],
+        "support": 43,
+        "private_target_promotions": 0
+      },
+      "elapsed": 0.04169142400496639,
+      "observed_events": []
+    },
+    {
+      "id": "C14",
+      "name": "readyReturnMissing",
+      "pass": true,
+      "expected": "gap",
+      "actual": "gap",
+      "reason": null,
+      "detail": {
+        "gaps": [
+          "SCENE_READY_PAIR_MISSING"
+        ],
+        "support": 44,
+        "private_target_promotions": 0
+      },
+      "elapsed": 0.03619285998865962,
+      "observed_events": []
+    },
+    {
+      "id": "C15",
+      "name": "readyNormalReturnOnly",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "READY_NORMAL_RETURN",
+      "detail": {},
+      "elapsed": 0.035540245997253805,
+      "observed_events": []
+    },
+    {
+      "id": "C16",
+      "name": "scenePooledFalse",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "SCENE_FRESH_DOMAIN",
+      "detail": {},
+      "elapsed": 0.03729405799822416,
+      "observed_events": []
+    },
+    {
+      "id": "C17",
+      "name": "selectedOwnerKing",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "SELECTED_SLOT_CONFLICT",
+      "detail": {},
+      "elapsed": 0.035683578011230566,
+      "observed_events": []
+    },
+    {
+      "id": "C18",
+      "name": "UIExactKingScript",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "UI_FRESH_SCENE_DOMAIN",
+      "detail": {},
+      "elapsed": 0.035983572000986896,
+      "observed_events": []
+    },
+    {
+      "id": "C19",
+      "name": "UIgenerationStrictINT",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "UI_FRESH_SCENE_DOMAIN",
+      "detail": {},
+      "elapsed": 0.03606377899996005,
+      "observed_events": []
+    },
+    {
+      "id": "C20",
+      "name": "UIFirstRolesWrong-not-search-forward",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "UI_FIRST_ROLES",
+      "detail": {},
+      "elapsed": 0.042133574999752454,
+      "observed_events": []
+    },
+    {
+      "id": "C21",
+      "name": "checkpointStrictINTcut",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "CHECKPOINT_REFERENCE",
+      "detail": {},
+      "elapsed": 0.04027116899669636,
+      "observed_events": []
+    },
+    {
+      "id": "C22",
+      "name": "birthNoAutostart",
+      "pass": true,
+      "expected": "gap",
+      "actual": "gap",
+      "reason": null,
+      "detail": {
+        "gaps": [
+          "UNSUPPORTED_BIRTH_autostart"
+        ],
+        "support": 44,
+        "private_target_promotions": 0
+      },
+      "elapsed": 0.03713255099137314,
+      "observed_events": []
+    },
+    {
+      "id": "C23",
+      "name": "inactiveProcessingFlag",
+      "pass": true,
+      "expected": "gap",
+      "actual": "gap",
+      "reason": null,
+      "detail": {
+        "gaps": [
+          "UNSUPPORTED_pre_prepare_Timer.node.internal_physics"
+        ],
+        "support": 44,
+        "private_target_promotions": 0
+      },
+      "elapsed": 0.03606577399477828,
+      "observed_events": []
+    },
+    {
+      "id": "C24",
+      "name": "nativeFloatWrapperNoExtras",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "NATIVE_FLOAT_SHAPE_pre_prepare_Timer.wait_time",
+      "detail": {},
+      "elapsed": 0.03546554299828131,
+      "observed_events": []
+    },
+    {
+      "id": "C25",
+      "name": "directProofBoolean",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "DIRECT_SUPPORT_REQUIRED",
+      "detail": {},
+      "elapsed": 0.03497426900139544,
+      "observed_events": []
+    },
+    {
+      "id": "C26",
+      "name": "A4DuplicateKey",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "A4_KEY_DOMAIN",
+      "detail": {},
+      "elapsed": 0.03534544599824585,
+      "observed_events": []
+    },
+    {
+      "id": "C27",
+      "name": "A4PrivateValuePreserved",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "A4_ACCEPTED_VALUE",
+      "detail": {},
+      "elapsed": 0.035701354005141184,
+      "observed_events": []
+    },
+    {
+      "id": "C28",
+      "name": "A4CountStrictINT",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "A4_COUNTS",
+      "detail": {},
+      "elapsed": 0.04047406400786713,
+      "observed_events": []
+    },
+    {
+      "id": "C29",
+      "name": "A4NoPriorKingBuffPromotion",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "A4_OTHER_MISSING",
+      "detail": {},
+      "elapsed": 0.03553150199877564,
+      "observed_events": []
+    },
+    {
+      "id": "C30",
+      "name": "deriveCallerTrueNotAuthority",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "VERIFIED_GATE_REQUIRED",
+      "detail": {},
+      "elapsed": 0.03418645499914419,
+      "observed_events": []
+    },
+    {
+      "id": "C31",
+      "name": "deriveReceiptDictNotAuthority",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "VERIFIED_GATE_REQUIRED",
+      "detail": {},
+      "elapsed": 0.03491385500819888,
+      "observed_events": []
+    },
+    {
+      "id": "C32",
+      "name": "internalConstructorRejectForeignToken",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "INTERNAL_GATE_ONLY",
+      "detail": {},
+      "elapsed": 0.0347881109919399,
+      "observed_events": []
+    },
+    {
+      "id": "C33",
+      "name": "spent420RunGateBeforeAnyReadOutput",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "FRESH_ROOT_RELEASE_PATH",
+      "detail": {},
+      "elapsed": 0.03903445399191696,
+      "observed_events": []
+    },
+    {
+      "id": "C34",
+      "name": "wrongRootActionBeforeOwnerRead",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "ROOT_ACTION_SCHEMA",
+      "detail": {},
+      "elapsed": 0.0378182579879649,
+      "observed_events": [
+        {
+          "event": "open",
+          "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/physical-fixtures/negative-action-release.json",
+          "mode": "None",
+          "flags": 655360
+        }
+      ]
+    },
+    {
+      "id": "C35",
+      "name": "intermediateReviewCannotRelease",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "FINAL427_REVIEW_REQUIRED",
+      "detail": {},
+      "elapsed": 0.04159629999776371,
+      "observed_events": [
+        {
+          "event": "open",
+          "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/physical-fixtures/negative-intermediate-release-v2.json",
+          "mode": "None",
+          "flags": 655360
+        },
+        {
+          "event": "open",
+          "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/physical-fixtures/negative-review-owner.json",
+          "mode": "None",
+          "flags": 655360
+        },
+        {
+          "event": "open",
+          "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/physical-fixtures/intermediate-review.json",
+          "mode": "None",
+          "flags": 655360
+        },
+        {
+          "event": "open",
+          "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/physical-fixtures/negative-review-owner.json",
+          "mode": "None",
+          "flags": 655360
+        }
+      ]
+    },
+    {
+      "id": "C36",
+      "name": "ownerDirectoryBeforeContentRead",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "NONORDINARY_FILE",
+      "detail": {},
+      "elapsed": 0.0361177390004741,
+      "observed_events": [
+        {
+          "event": "open",
+          "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/physical-fixtures/negative-directory-release.json",
+          "mode": "None",
+          "flags": 655360
+        }
+      ]
+    },
+    {
+      "id": "C37",
+      "name": "ownerSizeBeforeContentRead",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "SIZE_BEFORE_READ",
+      "detail": {},
+      "elapsed": 0.039330447994871065,
+      "observed_events": [
+        {
+          "event": "open",
+          "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/physical-fixtures/negative-size-release.json",
+          "mode": "None",
+          "flags": 655360
+        }
+      ]
+    },
+    {
+      "id": "C38",
+      "name": "freshSyntheticOutputReadback",
+      "pass": true,
+      "expected": "saved",
+      "actual": "saved",
+      "reason": null,
+      "detail": {
+        "descriptor": {
+          "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/synthetic-output.json",
+          "size": 32,
+          "sha256": "dcc8f698cc3d4f974b9d27162a0c541652a6ee5f90a4fe6c4634a318e7834322"
+        }
+      },
+      "elapsed": 0.036180864000925794,
+      "observed_events": [
+        {
+          "event": "open",
+          "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/synthetic-output.json",
+          "mode": "None",
+          "flags": 655553
+        },
+        {
+          "event": "open",
+          "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/synthetic-output.json",
+          "mode": "None",
+          "flags": 655360
+        }
+      ]
+    },
+    {
+      "id": "C39",
+      "name": "existingSyntheticOutputExclusive",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "OUTPUT_EXISTS",
+      "detail": {},
+      "elapsed": 0.036796549989958294,
+      "observed_events": []
+    },
+    {
+      "id": "C40",
+      "name": "missingRoles-not-one-phase",
+      "pass": true,
+      "expected": "gap",
+      "actual": "gap",
+      "reason": null,
+      "detail": {
+        "gaps": [
+          "UI_ROLES_MISSING"
+        ],
+        "support": 44,
+        "private_target_promotions": 0
+      },
+      "elapsed": 0.03630147899093572,
+      "observed_events": []
+    },
+    {
+      "id": "C41",
+      "name": "birthUnknownProperty",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "VALUE_EXTRA_KEYS_BIRTH",
+      "detail": {},
+      "elapsed": 0.036209803001838736,
+      "observed_events": []
+    },
+    {
+      "id": "C42",
+      "name": "publicModeBOOL-notINT0",
+      "pass": true,
+      "expected": "reject",
+      "actual": "reject",
+      "reason": "VALUE_TYPE_pre_prepare_Timer.process_mode",
+      "detail": {},
+      "elapsed": 0.03621628400287591,
+      "observed_events": []
+    }
+  ],
+  "events": [
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/physical-fixtures/negative-action-release.json",
+      "mode": "None",
+      "flags": 655360
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/physical-fixtures/negative-intermediate-release-v2.json",
+      "mode": "None",
+      "flags": 655360
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/physical-fixtures/negative-review-owner.json",
+      "mode": "None",
+      "flags": 655360
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/physical-fixtures/intermediate-review.json",
+      "mode": "None",
+      "flags": 655360
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/physical-fixtures/negative-review-owner.json",
+      "mode": "None",
+      "flags": 655360
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/physical-fixtures/negative-directory-release.json",
+      "mode": "None",
+      "flags": 655360
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/physical-fixtures/negative-size-release.json",
+      "mode": "None",
+      "flags": 655360
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/synthetic-output.json",
+      "mode": "None",
+      "flags": 655553
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/synthetic-output.json",
+      "mode": "None",
+      "flags": 655360
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    },
+    {
+      "event": "open",
+      "path": "/workspace/python-original-engine/repo/data/phase427-independent-kingbuff-overlay-review/progress.jsonl",
+      "mode": "a",
+      "flags": 525377
+    }
+  ],
+  "elapsed": 1.6186051219992805,
+  "actual_saved_overlay_calls": 0,
+  "new_private_promotions": 0,
+  "old420_imports_raw_carrier_EXPECTED_old_SUT_model_native": 0,
+  "only_run_invocation": "spent420 negative path gate, rejected before any I/O/output",
+  "no_positive_gate_minted": true
+}

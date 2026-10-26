@@ -1,0 +1,206 @@
+{
+  "schema": "independent427-kingbuff-overlay-source-functional-review/1",
+  "status": "INDEPENDENT427_KINGBUFF_OVERLAY_SOURCE_AND_FUNCTIONAL_ACCEPTED_ROOT_PENDING",
+  "final_seal": true,
+  "source_owner": {
+    "path": "data/phase426-king-buff-overlay-source/source-owner.json",
+    "size": 6809,
+    "sha256": "b7d192bde3caaae4a9be76e8e276b8a14b302b3ee854ce64f25a5a53ad5fe027"
+  },
+  "context": {
+    "path": "data/phase426-king-buff-overlay-source/context.json",
+    "size": 6248,
+    "sha256": "4ef452058cae157709c736efd4b28754903de2a2eb008e90aea1206a876705c9"
+  },
+  "design_review": {
+    "path": "data/phase425-independent-king-buff-design-review/review.json",
+    "size": 12133,
+    "sha256": "99f37a407512f409bb8f5a30882403ddabcf329ef6ea5e7b1fd2dafb437a659a"
+  },
+  "root423": {
+    "path": "data/phase423-root-actual-target-acceptance/acceptance.json",
+    "size": 1543,
+    "sha256": "a738695aade930ec4a6cf57e7b5923ac7c54a6061852047ab9225d28bc7762ab"
+  },
+  "decision": "Accept sealed426 SOURCE and bounded necessary functionality for a separately authorized saved-artifact overlay. This is not actual two-target derivation acceptance.",
+  "independence": "Reviewer is not426 implementation author. No author self-acceptance used.",
+  "static": {
+    "evidence": {
+      "path": "data/phase427-independent-kingbuff-overlay-review/static-evidence.json",
+      "size": 10291,
+      "sha256": "df96e161f86d36f5471eb073dedfa4d163749b246ad73ade85c247d534ec0cea"
+    },
+    "owned_leaves": 33,
+    "owned_bytes": 727035,
+    "reused_helpers": 11,
+    "reused_helper_bytes_and_AST": "PASS versus sealed420 source, never imported",
+    "new_functions_reviewed": [
+      "row_key",
+      "validate_a4",
+      "collect_kingbuff_initial",
+      "_VerifiedGate",
+      "verify_kingbuff_release",
+      "derive_kingbuff_pair",
+      "run",
+      "main"
+    ],
+    "scope": "Only new saved-input collection, rule gate, A4 union, actual review/source ownership and output integration.425 source/N3/A4 actual proof and old59 controls not repeated.",
+    "atomicity_and_preservation": "derive checks internal gate first, validates exact88A4 keys, consumes one global gap set for both phase keys, emits0or2, appends the other86 original rows unchanged and checks no doublecount. run recomputes evidence from verified saved inputs before derive.",
+    "authority_and_data": "Fresh426 release path/action required; final427 status/seal/sourceowner/reviewowner, source module/context ownership, context/design/Root423 bindings, actual423 outputowner and saved A4/provenance owner joins checked before output reservation and data payload reads. Exact saved three-data set; no carrier import/parser.",
+    "limits": "Positive verified-gate branch and final true0or2 output union are statically reviewed, not executed with forged authority. Actual resulting target chains must be independently checked after a fresh real Root saved-overlay release."
+  },
+  "functional": {
+    "preparation_owner": {
+      "path": "data/phase427-independent-kingbuff-overlay-review/preparation-owner.json",
+      "size": 5302,
+      "sha256": "34395e0ed2986f4937e1887072add27fc3ee4bb7e072004d98db557340236ff9"
+    },
+    "expecteds": {
+      "path": "data/phase427-independent-kingbuff-overlay-review/controls-and-expecteds-final.json",
+      "size": 10117,
+      "sha256": "08dc2e81c18b570f2333bf725d6f2ca023837c61cfe7aa8d41b3f86d35d6c034"
+    },
+    "runner": {
+      "path": "data/phase427-independent-kingbuff-overlay-review/runner.py",
+      "size": 7325,
+      "sha256": "d3066ba077aed8e51b7cef32d407a013a30187a94860c7763b12dfba91952cf5"
+    },
+    "result": {
+      "path": "data/phase427-independent-kingbuff-overlay-review/result.json",
+      "size": 26406,
+      "sha256": "3424b71c8c2910a62548702305a2eeb8d2e93173096ebde0cba2a8a1e08c2b1f"
+    },
+    "launcher": {
+      "path": "data/phase427-independent-kingbuff-overlay-review/launcher-result.json",
+      "size": 331,
+      "sha256": "5e19e9232d6d8cd41285ba51f65197900d1656b992cda26b009291ef1c33102d"
+    },
+    "batches": 1,
+    "outer_timeout_seconds": 30,
+    "elapsed_seconds": 1.6758390100003453,
+    "exit": 0,
+    "stderr_empty": true,
+    "planned": 42,
+    "executed": 42,
+    "passed": 42,
+    "unexecuted": 0,
+    "result_counts": {
+      "complete": 1,
+      "a4_valid": 1,
+      "gap": 11,
+      "reject": 28,
+      "saved": 1
+    },
+    "control_operations": {
+      "collect": 27,
+      "a4": 5,
+      "derive_bool": 1,
+      "derive_dict": 1,
+      "gate_ctor": 1,
+      "spent_run": 1,
+      "wrong_action": 1,
+      "intermediate_review": 1,
+      "directory_owner": 1,
+      "wrongsize_owner": 1,
+      "save_new": 1,
+      "save_existing": 1
+    },
+    "module_loads": 1,
+    "top_API_calls": 43,
+    "setup_API_calls": {
+      "load_initial_index": 1
+    },
+    "control_top_API_calls": 42,
+    "no_positive_gate_minted": true,
+    "coverage": [
+      "Exact44 support collection without private-value inference;38 public fields+6 lifecycle facts.",
+      "Scene mode0/one_shottrue/kind, owner81717/81679/phase/reference cuts, BOOL vs INT, public typed floats and inactive flags.",
+      "Missing phase support/scene-ready/roles yields gaps; malformed identity/normal return/slot/UI generation/script/cut/proof reject. Global gap set prevents phase-local inference by construction.",
+      "A4 baseline exact88 and unchanged input, duplicatekey/value/count/newKing corruption reject.",
+      "Callerbool/receipt dict/foreign token cannot derive; spent420 run rejects before any open/output.",
+      "Wrong action rejects before owner read; intermediate final_sealfalse review cannot authorize; nonregular owner and wrong owner size reject before owner content read.",
+      "Small isolated synthetic output write/readback and existing-output rejection; no actual output directory reservation."
+    ]
+  },
+  "read_scope": {
+    "static_source_owner_set": {
+      "leaves": 33,
+      "bytes": 727035
+    },
+    "accepted_saved_payload_descriptors": {
+      "index": {
+        "path": "data/phase408-initial-audit-first-001/rawtyped-field-index.json",
+        "size": 1494877,
+        "sha256": "27f4a859ba9144314bb25764d6787e07c8c929e96b44c37a077c4437c47cd46b"
+      },
+      "provenance": {
+        "path": "/workspace/python-original-engine/repo/data/phase420-initial-partial-projection-first-001/initial-provenance.json",
+        "size": 16959,
+        "sha256": "63b29245d0923d5c9300026deda701dd8ebcf61c5e2bfe2e943c77b10138305f"
+      },
+      "a4": {
+        "path": "/workspace/python-original-engine/repo/data/phase420-initial-partial-projection-first-001/delta-report.json",
+        "size": 91897,
+        "sha256": "b4f5dcecd79c2f9a501fced3844c8dff989d2c1f4b49b0bc0bdd79a8cb62fb19"
+      }
+    },
+    "saved_payload_use": "Fixture construction plus final hash readback only; copied objects used in pure collection/validation. No raw carrier read.",
+    "stdlib_boundary": "Trusted stdlib initialization and runner fixture/prep/source pin reads before audit observation. One complete426 module compiled/executed into independent module name; no420 import. This is not an OS-wide I/O monitor.",
+    "observed_interval": {
+      "events": 51,
+      "open": 51,
+      "import": 0,
+      "progress_opens": 42,
+      "other_opens": 9,
+      "scope": "Only frozen negative authority fixture reads and synthetic output write/readback, all inside independent427 directory. Recording disabled before tuple snapshot/result output."
+    },
+    "negative_run": "One run API call with spent420 descriptor, rejected by path gate with0 observed opens and no output. Not a real overlay attempt.",
+    "actual426_saved_overlay_runs": 0,
+    "new_original_processes": 0,
+    "raw_carrier_EXPECTED_reads": 0,
+    "old420_imports": 0,
+    "old_audit_schema_SUT_calls": 0,
+    "model_calls": 0,
+    "native_calls": 0
+  },
+  "preserved_preparation_errors": [
+    {
+      "evidence": {
+        "path": "data/phase427-independent-kingbuff-overlay-review/static-first-error.json",
+        "size": 342,
+        "sha256": "2e0c0dc69b5d34f69f8a1f72a4442c8e8515e273cfdad065437f5279c22efa7f"
+      },
+      "cause": "ast.get_source_segment excludes terminal newline while the eleven helper pins include it. Corrected extraction to original complete lines; all eleven byte/AST comparisons pass. Before any module load; not426 semantic failure."
+    },
+    {
+      "evidence": {
+        "path": "data/phase427-independent-kingbuff-overlay-review/fixture-preseal-correction.json",
+        "size": 634,
+        "sha256": "8af5247352cc1c3e3a15fa8d17bf9afb4ca54e99dc66823969a758a943d62ce5"
+      },
+      "cause": "Preseal hardlink negative fixture was replaced with a directory nonordinary-owner control to keep retained file ownership ordinary and isolate intermediate-review rejection. Original manifests retained; no functional batch ran on superseded fixtures. One duplicate hardlink endpoint removed before sealing; original bytes retained."
+    }
+  ],
+  "counts_unchanged": {
+    "DIRECT_SUPPORTED": 1391,
+    "accepted_SOURCE_DERIVED_target_chains": 4,
+    "accepted_rule_families": 1,
+    "MISSING_UNPROVEN": 84,
+    "new_kingbuff_actual_target_chains": 0
+  },
+  "remaining": [
+    "Fresh real Root release for one saved-only overlay; no reuse of spent420 release.",
+    "Independent actual two-target chain/output ownership/88-key union review; only that may accept0or2 new KingBuff targets."
+  ],
+  "gates": {
+    "fullschema": "NOT_VALIDATED",
+    "genuine_input": false,
+    "genuine_bundle": false,
+    "King_admitted": false,
+    "formal75_existing_support_unchanged": true,
+    "model356": "CLOSED",
+    "reader361": "CLOSED"
+  },
+  "blocking_source_or_functional_gap": null,
+  "stop": "Sealed and stopped. Source-functional acceptance authorizes no execution by itself."
+}

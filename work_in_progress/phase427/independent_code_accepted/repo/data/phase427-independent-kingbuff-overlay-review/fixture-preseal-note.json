@@ -1,0 +1,7 @@
+{
+  "stage": "before prep sealing and before any module load",
+  "reason": "Hardlink fixture shares negative-owner bytes; its linkcount would intercept the intermediate-review case. That case now uses independent ordinary review-owner object as syntactic owner, still an intentionally invalid whole release. Original fixture maps retained.",
+  "hardlink_endpoint_cleanup_after_measurement": "Unlink only duplicate nonordinary-owner.json after the one batch; original content remains. Record lstat before unlink, no unique bytes deleted.",
+  "expectations_unchanged": true,
+  "project_calls": 0
+}
