@@ -133,3 +133,7 @@ Generated observation-producer SOURCE and its independent preparation are preser
 ## First original027 startup failure capsule
 
 The first actual attempt and independent BOOL-domain diagnosis are preserved in [phase364](../work_in_progress/phase364/README.md). Its standalone capsule has a per-member manifest and [explicit extraction instructions](../work_in_progress/phase364/failure_capsule/README.md); it is outside archival354 counts. Actualbattle never started; recovery/attempt02/models remain separate gates.
+
+## Actual restoration and second startup failure
+
+[Phase367 standalone capsules](../work_in_progress/phase367/README.md) preserve actual366 restoration/independent readbacks/RootREADY, actual367 failed startup and its independent source diagnosis. Follow that README's explicit evidence extraction after the main restore and flat SOURCE supplements. The pool is currently failed again; no battle/model or King acceptance is implied. This supplements the archived354 counts and does not replay a restore chain.
