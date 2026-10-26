@@ -1,0 +1,280 @@
+{
+  "schema": "phase432-early-invu-pure-hook-source-design/1",
+  "status": "SEALED_DESIGN_PENDING_INDEPENDENT433_NO_PATCH",
+  "scope": "First-enter observation protocol forinvu:P/O only; fourfutureprivate targets; noCharacter12/King6/otherTimerexpansion.",
+  "current_counts_unchanged": {
+    "DIRECT": 1391,
+    "SOURCE_DERIVED": 6,
+    "MISSING": 82,
+    "accepted_target_chains": 6,
+    "accepted_rule_families": 2
+  },
+  "initialization": {
+    "object_ledger": "SOURCE_SUPPORTED_UNDER_NORMAL_SCRIPT_INSTANCE_INITIALIZATION_AND_KNOWN_SELECTED_STARTUP_ROUTE",
+    "anchors": [
+      "project:466-488 autoloadglobals;NativeObserverfirstdeclared,Gamealsoautoload",
+      "main_cpp:1970-1993 placeholderpass",
+      "main_cpp:1995-2040 construct/setscript/globalpublish allautoloads",
+      "main_cpp:2042-2044 addnodesafterallobjectsinitialized",
+      "main_cpp:2195-2209 load/addmainsceneafterautoloadassembly",
+      "game:2082+_ready schedules ready_deferred;2168+ready_deferred callsinstanceCharacter;2251-2266 newPLAYER/reuse",
+      "observer:10-40 and740-753 primitiveledgerdeclaration;_ready50-67 doesnotclearledger"
+    ],
+    "not_inferred": "Objectglobal/ledgerexists isnot same asobserver_ready/file/UI/clockarmed. No reliance solelyonprojecttextorder toprove_readyorder.",
+    "early_memory_only": true,
+    "early_gate_uses_no_observer_ready_requirement": true,
+    "placeholder_or_unavailable_observer": "Failcapture/sourceacceptance,never silentlymissbirth. No runtimeevidence claimedin432."
+  },
+  "seed_lemma": {
+    "status": "PROPOSED_CONDITIONAL_SEED_REQUIRING_INDEPENDENT_CHARACTER_ROUTE_ACCEPTANCE",
+    "boundary": "FirstCharacter script_enter_tree statement,ownerinsideTree andnativechildoutsideTree, beforechildrenenter/READY.",
+    "premises": [
+      "FreshnativeTimer configuredbyexactselectedPackedScene route;targetneverenteredtree/reentered/replacedbeforehook.",
+      "Ordinarynativefactory/setter/sceneassembly andunconditionalhookinstallationbeforeanyselectedCharacterinstance;no targetscript ordeclaredpreentryreparentroute in fixedCharacter/Game.",
+      "No directprivatecountdownwriter outsideacceptednativeTimersemantics;do not infer premise fromoutsidetreesnapshotalone."
+    ],
+    "deduction": "constructor=-1/processingfalse;outsideTree start returnsbeforewrites;stop=-1/processingfalse;paused/mode/oneshot settersdo notactivatecountdownfromfalse;internalnotificationsreturnwhileprocessingfalse.",
+    "limits": "Version-attributed,notbitexactbuild/privateobservation;no arbitraryglobalaliasproof. Withoutacceptedpremises,fourearlyrecords stillnotprivaterecipes."
+  },
+  "planned_changes": [
+    {
+      "file": "character",
+      "function": "_enter_tree() -> void (new)",
+      "scope": "One first executable call invu_first_enter_memory(get_node(\"InvulnerabilityTimer\"),self); no onreadyfield/yield/defer/business/RNG operation.",
+      "inverse": "Remove newmethod to recover oldexecuted Character."
+    },
+    {
+      "file": "character",
+      "function": "_ready",
+      "scope": "Replace old timer_birth(...Character.scene.ready) only with invu_parent_ready_memory; existingentry/business/returnorderconserved.",
+      "inverse": "Restore original firstobservercall; rest exactbytes."
+    },
+    {
+      "file": "observer",
+      "function": "member initialization (new primitive state)",
+      "scope": "earlymap,ownermap,localordinal,firsterror,observer_readyfalse; constructed withscriptinstance beforeautoloadtreeadd; never clear at_ready/reuse."
+    },
+    {
+      "file": "observer",
+      "function": "_ready",
+      "scope": "Preserve bootstrap; markreadyafter success; publish latchedearlyerroronce via normalfailureafterpathsetup; neverresetearlyrecords."
+    },
+    {
+      "file": "observer",
+      "function": "_invu_memory_error(code,owner_id,timer_id) (new)",
+      "scope": "First bounded primitive latchonly; no fail/File/tree/clock/getGame/sourcewindowcalls."
+    },
+    {
+      "file": "observer",
+      "function": "_invu_raw_snapshot(timer) (new)",
+      "scope": "Fixednativegetter/primitivecopy; capancestry;rawREAL retained; no oldsnapshot/encode/native_id/errorhelpers. No Objectretention or setters."
+    },
+    {
+      "file": "observer",
+      "function": "invu_first_enter_memory(timer,owner) (new)",
+      "scope": "ownerinsideTree,targetoutsideTree,directchildnativeTimer/noscript,exactCharacterdomain;onceone-to-oneTimer/owner;localordinal;gettersnapshot;reentrylatchesfailurewithoutreset. SuccessNIL."
+    },
+    {
+      "file": "observer",
+      "function": "invu_parent_ready_memory(timer,owner) (new)",
+      "scope": "sameentryidentity,exactlyonecheckpoint,insideTreeboth;capturepublicstate+currentcounters;nozeroassumption/noreset/no doublebirth. SuccessNIL."
+    },
+    {
+      "file": "observer",
+      "function": "track_king_timer_api",
+      "scope": "Disjointearlyinvumapbranch;strictstart/stopoperation;no mapoverlap;existingotherfamiliesbranchconserved. timer_before count-before-fixture-gate unchanged."
+    },
+    {
+      "file": "observer",
+      "function": "invu_early_fact(timer,owner) (new)",
+      "scope": "OnlyINITIAL materialization: validatepair/checkpoints/rawtypes/noearlyerror;encode retainedrawREAL;currentreadonlysnapshot;truthfulnonnegativecountersevennonzero. No privatevalue/admission."
+    },
+    {
+      "file": "observer",
+      "function": "selected_king_facts",
+      "scope": "Only invu:P/O producerdispatch switched;oldking_timer_fact unchanged forotherfamilies."
+    },
+    {
+      "file": "future schema SOURCE",
+      "function": "validate_sources_with_binding + new closedshape early-invu validator",
+      "scope": "Newexactprofile/factsversion;12inputpaths;rejectmixedkind/checkpoint/identity/type/order;preserverawobservations;noEngine DTO. validate_terminal_evidence policyconserved."
+    },
+    {
+      "file": "future collector/host/tuple/freezes",
+      "function": "protocol/sourceidentity consumers only",
+      "scope": "NewVERSION/PROFILE/factsschema/sourcepins;actualbytescaprecompute;no clock/business/listener/RNG semanticchange. Not implemented432."
+    }
+  ],
+  "protocol": {
+    "VERSION": "7-king-single-A-432",
+    "PROFILE": "observer7-432-native-single-king-A/1",
+    "facts_schema": "phase432-king-input-facts/1",
+    "entry_schema": "phase432-invu-first-enter/1",
+    "ready_schema": "phase432-invu-parent-ready/1",
+    "birth_kind": "Character.first_enter_tree/432",
+    "input_file": "king-input-facts.json",
+    "legal_input_count": 12,
+    "new_legal_input_file": false,
+    "shared_sequence": "Unchanged;earlyordinalslocalonly;no UI/sharedordinalnumericcomparison.",
+    "lineage_fields": [
+      "timer_id",
+      "owner_id",
+      "kind",
+      "starts",
+      "stops",
+      "birth"
+    ],
+    "entry_fields": [
+      "schema",
+      "ordinal",
+      "owner_inside_tree",
+      "owner_script",
+      "owner_scene",
+      "observer_ready_at_entry"
+    ],
+    "parent_ready_fields": [
+      "schema",
+      "ordinal",
+      "starts",
+      "stops",
+      "state"
+    ],
+    "fact_fields": [
+      "lineage",
+      "current",
+      "entry",
+      "parent_ready",
+      "private_provenance"
+    ],
+    "private_provenance_literal": "pending-source-rule-first-enter-seed/1",
+    "forbidden_claim_fields": [
+      "private_left",
+      "never_entered=true",
+      "proof_complete=true",
+      "fresh=true"
+    ],
+    "raw_to_materialized": "MemoryrawprimitiveREAL/BOOL/INT/ID states encodedonlylaterinINITIAL selected_king_facts witholdcanonicalencoder;nocounterreset.",
+    "nonzero_counts": "Preserveactual;NO_START proofunavailable;no coercion orautomaticretry. Otherfamiliesproducersconserved."
+  },
+  "early_readonly_allowance": [
+    "Literal get_node target",
+    "nativeget_instance_id/get_class/get_script.resource_path/get_filename/get_parent/get_name",
+    "nativeis_inside_tree/processflags/priority/indexancestry",
+    "nativeTimer mode/wait/publictimeleft/oneshot/autostart/paused/stopped getters",
+    "boundedprimitivecontainers/counters only"
+  ],
+  "early_forbidden_calls": [
+    "oldtimer_birth",
+    "oldnode_state/timer_state",
+    "oldnative_id",
+    "encode/begin_encoding",
+    "fail/File/Directory",
+    "ui_*",
+    "get_tree/frameclock",
+    "Game/Util/RNG",
+    "setters/connect/emit/start/stop/yield/deferred"
+  ],
+  "binding_and_reentry": "Bindroleonlylaterselectedactualowner;duplicateTimer/owner/reentrylatcheserror withoutreset. Parent_readyrequirespriorentryandrecordscheckpointnotbirth. EarliestPentrymandatory;currentreusepointnevernewbirth.",
+  "finite_tests": [
+    "objectinitializedbefore_ready memorysuccess",
+    "nullglobal/observerunavailable",
+    "earlyerrorpublishedonceafterbootstrap",
+    "wrongscript/name/class/directparent orchildalreadyinsideTree",
+    "reentry/replacedTimer/collision/noreset",
+    "readybeforeentry/duplicatecheckpoint/legacydoublebirth",
+    "startstopbetweenentryready retainedandnonzero",
+    "unknownoperationnotstop/boolnegativeoverflow",
+    "noearlyfiletreeclockRNG/businesssignals;actualNILreturns",
+    "mixedversion/sourcepin/closedshape/rawREALroundtrip",
+    "otherfamilybyteinverse/sharedseqbusinessRNGconservation"
+  ],
+  "implementation_acceptance_dependency": "Independent433design thenseparateRootimplementationrelease;independentSOURCE/finitefunctional beforeanycapture.",
+  "capture_dependency": "SeparateParentonce-onlyrelease withfreshoriginalexecutor budget/quota/disk/time/process/archivechecks;actualnewsourcepayloadbytecap/preimages/12inputcontract;no historicalbudgetreuse. Newcapturedoesnotbackfillfixed06orinheritold6chainadmission.",
+  "remaining_direct_callee_source_request": null,
+  "operational_counts": {
+    "hookpatches": 0,
+    "SOURCEscripts_or_helpers_executed": 0,
+    "raw_carrier_EXPECTED_reads": 0,
+    "capture_model_SUT_schema_calls": 0,
+    "poolchanges": 0,
+    "newrecipes": 0,
+    "passedbatchreruns": 0
+  },
+  "pins": {
+    "project": {
+      "path": "data/phase359-king-producer-source/after-source/project.godot",
+      "size": 34801,
+      "sha256": "feacc964aad20cd8c7734c4b269d31a0c3946c6231c6910fe3e6942c4751164d"
+    },
+    "main_cpp": {
+      "path": "data/phase027-implementation-design/full-source/upstream/main/main.cpp",
+      "size": 99000,
+      "sha256": "20c117f289323e57ae534303274ab2e5769580821756c52126bc5d429e2f0f59"
+    },
+    "supplement": {
+      "path": "data/phase432-root-earlybirth-source-preparation/source-supplement.json",
+      "size": 1151,
+      "sha256": "75c4a691c70e6efd1700259791bab70974a5e30a2f826f9d98dbee1cc232e80b"
+    },
+    "independent431": {
+      "path": "data/phase431-independent-invu-design-review/review.json",
+      "size": 8937,
+      "sha256": "c03f00d76aa82ef274fe93833d9f843e63181cf20c833e1243e204cd833c85d0"
+    },
+    "observer": {
+      "path": "data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
+      "size": 104333,
+      "sha256": "999e0043a653067a962819cf81340b0dad745fa2148bbfab7724d7948a6a21ea"
+    },
+    "character": {
+      "path": "data/phase359-king-producer-source/after-source/Core/Character.gd",
+      "size": 55679,
+      "sha256": "4e37b2f5d044e015be5dd75fca37577bdb9fc870dd2e32cad5198c36649df984"
+    },
+    "game": {
+      "path": "data/phase359-king-producer-source/after-source/Core/Game.gd",
+      "size": 145943,
+      "sha256": "fafe9612858a25b95d8d6149531b50869dbd9709719bd5d2ab6b070b6b8283b1"
+    },
+    "timer_cpp": {
+      "path": "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/timer.cpp",
+      "size": 7999,
+      "sha256": "79e2ce272fd56465d8ccc2a5077bf6dc39422cbc588e71ddfab482eb7a33d862"
+    },
+    "node_cpp": {
+      "path": "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/node.cpp",
+      "size": 95163,
+      "sha256": "0c2e3230b37644c8496f5b1aee59f428de6a497a380c247613c489e44cd508a9"
+    },
+    "packedscene": {
+      "path": "data/phase424-root-packedscene-supplement/Godot3.6.2/scene/resources/packed_scene.cpp",
+      "size": 51377,
+      "sha256": "0080123ccd2c9e26e4b04608e82175812a60222b18f5e95c286654cda3c7f3ed"
+    },
+    "packedscene_receipt": {
+      "path": "data/phase424-root-packedscene-supplement/source-supplement.json",
+      "size": 1015,
+      "sha256": "d5640b593746e029f5399a63ff990a63fea9b357c4675126dc09c5a98a801b90"
+    },
+    "previous_spec": {
+      "path": "docs/phase430_invu_initial_feasibility_spec.md",
+      "size": 11897,
+      "sha256": "723c1b9adba5149b65e1d09cb8c051712997bda8c2d0c79078a2b58c2e2e8328"
+    },
+    "previous_table": {
+      "path": "data/phase430-invu-initial-feasibility-design/decision-table.json",
+      "size": 16017,
+      "sha256": "24d73ecb856619d50206eae9521ecd4e403a5149953b53e35cbc8cacac9a1677"
+    },
+    "previous_owner": {
+      "path": "data/phase430-invu-initial-feasibility-design/owned-files.json",
+      "size": 670,
+      "sha256": "46454cfb3ae4185f5bb300fd9f87628e6baa6e1d642ebfdf079b58ae3ff7ae81"
+    },
+    "native_attribution": {
+      "path": "data/phase418-root-finite-source-supplement/native-timer-attribution-proposal.json",
+      "size": 3221,
+      "sha256": "63961997bce4391e79a5a9fd6fe657fc66121e839949c91a0da21e9a15206297"
+    }
+  }
+}
