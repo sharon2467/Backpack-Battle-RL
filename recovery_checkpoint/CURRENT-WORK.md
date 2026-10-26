@@ -22,7 +22,7 @@ Original027 attempt02 parsed cleanly but exited2 during player_setup with `nativ
 
 Independent source diagnosis found that ObjectID-ordered signal targets conflict with the collector's old sink+1 assumption. Actual failure-time connection rows and precise false predicate were not recorded. This is a source-derived control defect, not proof of invalid layout or an observed runtime branch. The fixed layout and35301/35302 seeds remain unchanged.
 
-Phase368 designs/implements a private synchronous observation signal at the existing sink completion tail. The collector freezes one complete primitive DTO and acknowledges within that dispatch; after actual emit return/ack validation, a same-stack finalizer only serializes it. Business listeners are not reordered; no second sampling is permitted. Design and independent33-obligation preparation are preserved. New SOURCE/test acceptance, an attempt02-specific recovery map, independent actual readback and separate READY/new-attempt gates remain pending.
+Phase368 designs/implements a private synchronous observation signal at the existing sink completion tail. The collector freezes one complete primitive DTO and acknowledges within that dispatch; after actual emit return/ack validation, a same-stack finalizer only serializes it. Business listeners are not reordered; no second sampling is permitted. New SOURCE and the distinct attempt02-specific saved-evidence-derived recovery map are frozen; independent33-obligation controls are active. SOURCE acceptance, actual restoration, independent actual readback and separate READY/new-attempt gates remain pending.
 
 ## Recovery and validation level
 

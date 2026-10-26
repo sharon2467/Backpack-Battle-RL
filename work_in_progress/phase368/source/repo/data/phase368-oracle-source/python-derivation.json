@@ -1,0 +1,76 @@
+{
+  "host_control_function": {
+    "after": "def collect_capture_metadata(run,result):\n    \"\"\"Decode controls only; business/expected observations remain opaque hashes.\"\"\"\n    secondary=[]; primary=None; capture=None; present={}; expected={}; validation=None; partial={}; control_files={}\n    try: capture=rename_capture(run)\n    except Exception as exc:\n        secondary.append(dict(code='capture_relocation_failed',error=repr(exc)))\n        if (run/'output/capture').is_dir() and not (run/'output/capture').is_symlink(): capture=run/'output/capture'\n        for root in (run/'user',) if capture is None else ():\n            if root.is_dir() and not root.is_symlink():\n                for path in sorted(root.rglob('*')):\n                    if path.is_symlink(): secondary.append(dict(code='linked_partial_capture',path=str(path.relative_to(run))))\n                    elif path.is_file(): partial[str(path.relative_to(run))]=pin(path)\n    if capture is not None:\n        for path in sorted(capture.iterdir()):\n            if path.is_symlink() or not path.is_file():\n                secondary.append(dict(code='unsupported_capture_leaf',file=path.name)); continue\n            (present if path.name in LAWFUL else expected)[path.name]=pin(path)\n        control_files={name:expected.pop(name) for name in ('collector-first-failure.json','observer7_failure.json') if name in expected}\n        control=capture/'collector-first-failure.json'\n        if control.name in control_files:\n            try: primary=dict(kind='collector_control_failure',identity=pin(control),control=read_control(control,65536))\n            except Exception as exc:\n                primary=dict(kind='invalid_collector_control_failure',identity=pin(control))\n                secondary.append(dict(code='bad_collector_control',error=repr(exc)))\n        observer_failure=capture/'observer7_failure.json'\n        if observer_failure.name in control_files:\n            identity=control_files[observer_failure.name]\n            try:\n                observer_control=read_control(observer_failure,4096)\n                if observer_control.get('schema')!='observer7-failure/1' or type(observer_control.get('code')) is not str:\n                    raise ValueError('observer first failure control schema')\n                observed=dict(kind='observer_control_failure',identity=identity,control=observer_control)\n                if primary is None: primary=observed\n                else: secondary.append(dict(code='additional_observer_control_failure',failure=observed,precedence='COLLECTOR_IF_PRESENT_NO_TIME_ORDER_INFERRED'))\n            except Exception as exc:\n                if primary is None: primary=dict(kind='invalid_observer_control_failure',identity=identity)\n                secondary.append(dict(code='bad_observer_control',identity=identity,error=repr(exc)))\n        path=capture/'validation.json'\n        if path.name not in expected: secondary.append(dict(code='missing_required_file',file='validation.json'))\n        else:\n            try: validation=read_control(path,1024*1024)\n            except Exception as exc: secondary.append(dict(code='bad_validation',identity=pin(path),error=repr(exc)))\n    else: secondary.append(dict(code='missing_required_file',file='validation.json'))\n    missing=[name for name in LAWFUL if name not in present]\n    if missing: secondary.append(dict(code='missing_lawful_inputs',files=missing))\n    process_ok=result['exit_code']==0 and not result['abort_reason'] and not result['timed_out']\n    if primary is None and not process_ok:\n        primary=dict(kind='native_process_failure',exit_code=result['exit_code'],abort_reason=result['abort_reason'],timed_out=result['timed_out'])\n    complete=process_ok and primary is None and not missing and validation is not None and validation.get('native_checks_pass') is True and not secondary\n    return dict(schema='phase365-partial-source-partition/1',capture_complete=complete,\n        capture=None if capture is None else str(capture),lawful_inputs_present=present,lawful_inputs_missing=missing,\n        expected_observations_opaque=expected,control_failures_opaque=control_files,partial_files_opaque=partial,primary_failure=primary,secondary_errors=secondary,\n        expected_semantics_read=False,models=0,projection=0)\n",
+    "before": "def collect_capture_metadata(run,result):\n    \"\"\"Decode controls only; business/expected observations remain opaque hashes.\"\"\"\n    secondary=[]; primary=None; capture=None; present={}; expected={}; validation=None; partial={}\n    try: capture=rename_capture(run)\n    except Exception as exc:\n        secondary.append(dict(code='capture_relocation_failed',error=repr(exc)))\n        if (run/'output/capture').is_dir() and not (run/'output/capture').is_symlink(): capture=run/'output/capture'\n        for root in (run/'user',) if capture is None else ():\n            if root.is_dir() and not root.is_symlink():\n                for path in sorted(root.rglob('*')):\n                    if path.is_symlink(): secondary.append(dict(code='linked_partial_capture',path=str(path.relative_to(run))))\n                    elif path.is_file(): partial[str(path.relative_to(run))]=pin(path)\n    if capture is not None:\n        for path in sorted(capture.iterdir()):\n            if path.is_symlink() or not path.is_file():\n                secondary.append(dict(code='unsupported_capture_leaf',file=path.name)); continue\n            (present if path.name in LAWFUL else expected)[path.name]=pin(path)\n        control=capture/'collector-first-failure.json'\n        if control.name in expected:\n            try: primary=dict(kind='collector_control_failure',identity=pin(control),control=read_control(control,65536))\n            except Exception as exc:\n                primary=dict(kind='invalid_collector_control_failure',identity=pin(control))\n                secondary.append(dict(code='bad_collector_control',error=repr(exc)))\n        path=capture/'validation.json'\n        if path.name not in expected: secondary.append(dict(code='missing_required_file',file='validation.json'))\n        else:\n            try: validation=read_control(path,1024*1024)\n            except Exception as exc: secondary.append(dict(code='bad_validation',identity=pin(path),error=repr(exc)))\n    else: secondary.append(dict(code='missing_required_file',file='validation.json'))\n    missing=[name for name in LAWFUL if name not in present]\n    if missing: secondary.append(dict(code='missing_lawful_inputs',files=missing))\n    process_ok=result['exit_code']==0 and not result['abort_reason'] and not result['timed_out']\n    if primary is None and not process_ok:\n        primary=dict(kind='native_process_failure',exit_code=result['exit_code'],abort_reason=result['abort_reason'],timed_out=result['timed_out'])\n    complete=process_ok and primary is None and not missing and validation is not None and validation.get('native_checks_pass') is True and not secondary\n    return dict(schema='phase365-partial-source-partition/1',capture_complete=complete,\n        capture=None if capture is None else str(capture),lawful_inputs_present=present,lawful_inputs_missing=missing,\n        expected_observations_opaque=expected,partial_files_opaque=partial,primary_failure=primary,secondary_errors=secondary,\n        expected_semantics_read=False,models=0,projection=0)\n"
+  },
+  "host_inverse": "EXACT_BYTES",
+  "host_pairs": [
+    [
+      "SOURCE = 'data/phase365-control-recovery-source'",
+      "SOURCE = 'data/phase368-oracle-source'"
+    ],
+    [
+      "original027-king-single-A-20261025-attempt02",
+      "original027-king-single-A-20261025-attempt03"
+    ],
+    [
+      "INDEPENDENT365_CONTROL_RECOVERY_SOURCE_ACCEPTED_ROOT_PENDING",
+      "INDEPENDENT368_SYNCHRONOUS_CUT_SOURCE_ACCEPTED_ROOT_PENDING"
+    ],
+    [
+      "phase365-root-oracle-acceptance/1",
+      "phase368-root-oracle-acceptance/1"
+    ],
+    [
+      "attempt=2",
+      "attempt=3"
+    ]
+  ],
+  "recovery_inverse": "EXACT_BYTES",
+  "recovery_pairs": [
+    [
+      "from phase365_oracle_host import",
+      "from phase368_oracle_host import"
+    ],
+    [
+      "data/phase365-source-recovery-plan/restore-map.json",
+      "data/phase368-attempt02-recovery-source/restore-map.json"
+    ],
+    [
+      "data/phase365-source-recovery-plan/source-input-pins.json",
+      "data/phase368-attempt02-recovery-source/source-input-pins.json"
+    ],
+    [
+      "INDEPENDENT365_RESTORED_POOL_EXACT_TARGET_READBACK_PASS",
+      "INDEPENDENT368_RESTORED_POOL_EXACT_TARGET_READBACK_PASS"
+    ],
+    [
+      "phase365-root-pool-recovery/1",
+      "phase368-root-pool-recovery/1"
+    ],
+    [
+      "receipt.get('status')=='PASS_PRESERVED_NOT_RESTORED' and receipt.get('physical_restore_performed') is False",
+      "mapping.get('schema')=='phase368-attempt02-exact-restore-source-map/1' and receipt.get('schema')=='attempt02-failed-pool-preservation/1' and receipt.get('status')=='PRESERVED_NOT_RESTORED' and type(receipt.get('restore')) is int and receipt['restore']==0"
+    ],
+    [
+      "    for field,key in (('run','failed_run'),('pool','pool'),('baseline','baseline')):\n        require(map_recorded(receipt[field],relocation)==roots[key],'preservation root identity')\n",
+      ""
+    ],
+    [
+      "receipt['zip_sha256']",
+      "receipt['overlay_sha256']"
+    ],
+    [
+      "receipt['zip_bytes']",
+      "receipt['overlay_bytes']"
+    ],
+    [
+      "len(mapping['file_differences'])==78 and len(mapping['directory_differences'])==7",
+      "len(mapping['file_differences'])==len(changed_files) and len(mapping['directory_differences'])==len(changed_dirs)"
+    ],
+    [
+      "    require(len(mapping['staged_files'])==2,'exact2 staged files')\n",
+      "    require(len(mapping['staged_files'])==sum(row['kind']=='file' for row in c.index(target_data).values()),'exact target staged files')\n"
+    ]
+  ]
+}

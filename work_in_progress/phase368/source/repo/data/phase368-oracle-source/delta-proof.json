@@ -1,0 +1,38 @@
+{
+  "GD_inverse_ledgers": [
+    "sink-inverse-ledger.json",
+    "collector-inverse-ledger.json"
+  ],
+  "changed_patch_paths": [
+    "native_random_observer_sink_v7.gd"
+  ],
+  "finalizer_resampling_calls": false,
+  "generated_modules_imported": false,
+  "host_changed_functions": [
+    "source_gate",
+    "plan",
+    "execute",
+    "collect_capture_metadata"
+  ],
+  "host_observer_control_delta": "bounded observer7_failure primary fallback; no timestamp-order claim",
+  "host_unchanged_functions": [
+    "descriptor",
+    "main",
+    "read_control",
+    "resource_gate",
+    "verify_owner"
+  ],
+  "old_source_readback_leaves": 426,
+  "process": {
+    "path": "tests/phase363_oracle_process.py",
+    "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f",
+    "size": 13665
+  },
+  "schema": "phase368-source-delta-proof/1",
+  "storage": {
+    "path": "tests/phase363_oracle_storage.py",
+    "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc",
+    "size": 15496
+  },
+  "unchanged_patch_paths": 74
+}

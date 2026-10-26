@@ -1,0 +1,24 @@
+{
+  "schema": "phase368-root-source-scope/1",
+  "status": "DESIGN_ACCEPTED_SOURCE_IMPLEMENTATION_AND_CONDITIONAL_INDEPENDENT_CONTROLS_ONLY",
+  "design_spec": "docs/phase368_same_idle_observation_and_attempt02_recovery_design_spec.md",
+  "design_spec_sha256": "974353a95ae87bdb0ce3c0ccbe5ab8871931cfa50193dedbae52dc719c609a1c",
+  "independent_preparation": "data/phase368-independent-source-preparation/contract.json",
+  "finalization_preparation": "data/phase368-independent-finalization-preparation/contract-addendum.json",
+  "signal": "source_idle_cut_ready",
+  "cut": "same synchronous sink idle stack after existing terminal writes; no business listener reordering",
+  "two_stage": "freeze primitive DTO once and ack inside emit; actual emit Error+exactack; same-stack serialization-only finalizer",
+  "diagnostics": "bounded complete primitive rows before guards; absentIDs null/availability; writer failure secondary",
+  "map_generation_authorized": "saved attempt02 manifests/preimages/previous bundle only; no live pool inventory",
+  "conditional_independent_execution": "only after exact SOURCE freeze and contract seal; static gate first; at most1 real emptyproject Godot plus necessary new tinyFS/saved-map controls; stop on first block",
+  "prohibited": [
+    "actualpool write/inventory",
+    "actual restore",
+    "READY",
+    "attempt03",
+    "Game",
+    "Python candidate/RNG/Engine/model/projection",
+    "expected-derived missing inputs"
+  ],
+  "no_scientific_acceptance_from_design": true
+}
