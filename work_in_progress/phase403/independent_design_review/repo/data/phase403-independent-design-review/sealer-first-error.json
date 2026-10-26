@@ -1,0 +1,14 @@
+{
+  "stage": "report reference identity generation; review and owner not yet written",
+  "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 10, in <module>\n  File \"<stdin>\", line 7, in ref\n  File \"<stdin>\", line 6, in pin\nAssertionError\n",
+  "original_helper": "def pin(p):\n s=p.lstat();assert stat.S_ISREG(s.st_mode) and s.st_nlink==1\n b=p.read_bytes();assert s==p.lstat();return {'size':len(b),'sha256':hashlib.sha256(b).hexdigest()}\ndef ref(n):return dict(path=n,**pin(r/n))",
+  "completed_before_failure": "All consumed403 SOURCE/design size/SHA pins reread and matched source-identity-verification; failure arose during new report reference creation.",
+  "cause_assessment": "Full stat_result includes atime, which a read may update. No before/after stat values were logged, so atime is a suspected overly broad stability check, not a proven recorded diff.",
+  "next_action": "Root requested to authorize content/identity metadata stability (dev/ino/mode/nlink/size/mtime/ctime) with atime recorded separately for own new review documents; no weakening of source size/SHA or physical gates.",
+  "SUT_imports": 0,
+  "SUT_calls": 0,
+  "capture_reads": 0,
+  "models": 0,
+  "inputbuild": 0,
+  "native": 0
+}

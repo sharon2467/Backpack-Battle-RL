@@ -1,0 +1,12 @@
+{
+  "stage": "preliminary inventory display, before static identity checker",
+  "error": "KeyError: 'path'",
+  "cause": "Display code used m['path']; actual inventory stores m['module']['path'].",
+  "original_expression": "for m in a['modules']: print(m['path'], [(f['name'], f['line']) for f in m['functions']])",
+  "correction": "Inspect actual keys and print m['module']; no input, assertion, expectation or SUT source changed.",
+  "static_identity_checker_runs": 1,
+  "static_identity_checker_exit_code": 0,
+  "SUT_imports": 0,
+  "SUT_calls": 0,
+  "capture_reads": 0
+}

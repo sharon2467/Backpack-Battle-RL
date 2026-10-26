@@ -1,0 +1,5 @@
+# Lawful12 initial-state feasibility audit design, independently accepted
+
+The accepted small scope is a first stdlib-only presence/source-chain audit,not a new candidate/reader/model. Five design leaves51435B and four independent-review leaves43831B bind41SOURCE/receipt leaves1495334B,13Python APIs/12GD functions,11complete originalGD↔391after identities and2scenes.35Timer roles split5birth-ledger+30separate proof obligations. buffProtectStacks has a lawful direct carrier;the other3Character flags,crown/light and privateTimer states need actual complete source chains. PLAYERreuse cannot be assumed fresh. Missing or unproved evidence blocks;actual field presence is not yet read.
+
+Root authorized only the small406audit SOURCE implementation after this review;no actual12 reads before independentSOURCE acceptance plus new Root release. Optional391structural API is a separate later scope. No bundle/runtime/Tape/Engine/newnative. Formal75/King closed,genuine356/361 unchanged. Add design/repo and independent_review/repo after prior supplements. Both design and review remain immutable.
