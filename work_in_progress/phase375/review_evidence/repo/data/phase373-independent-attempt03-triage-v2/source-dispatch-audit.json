@@ -1,0 +1,866 @@
+{
+  "frozen_paths_verified": 75,
+  "declared_sink_sites": 106,
+  "schema_sites": 106,
+  "literal_entry_leave_sites": 200,
+  "emitted_not_declared_all": [
+    "Items/AcornCollar.gd::onLuckyChanged",
+    "Items/AcornCollar.gd::onPrepare",
+    "Items/BloodAmulet.gd::onCombatStart",
+    "Items/BloodGoobert.gd::doCooldownEffect",
+    "Items/BloodGoobert.gd::onCombatStart",
+    "Items/Broom.gd::attack",
+    "Items/Broom.gd::onAttacked",
+    "Items/Broom.gd::onDealtDamage",
+    "Items/Broom.gd::onPrepare",
+    "Items/BurningTorch.gd::onCombatStart",
+    "Items/BurningTorch.gd::onPreDealDamage_early",
+    "Items/Carrot.gd::doCooldownEffect",
+    "Items/CarrotGoobert.gd::doCooldownEffect",
+    "Items/CarrotGoobert.gd::onCombatEnd",
+    "Items/CarrotGoobert.gd::onParticleTimeout",
+    "Items/CarrotGoobert.gd::onPrepare",
+    "Items/Crossblades.gd::onCombatStart",
+    "Items/Crossblades.gd::onPreDealDamage_early",
+    "Items/Dagger.gd::onStun",
+    "Items/Exclusive/BerserkerBag.gd::onBattleRageEnded",
+    "Items/Exclusive/BerserkerBag.gd::onBattleRageStarted",
+    "Items/Exclusive/BerserkerBag.gd::onDamaged",
+    "Items/Exclusive/BerserkerBag.gd::onPrepare",
+    "Items/Exclusive/BookofIce.gd::doCooldownEffect",
+    "Items/Exclusive/BookofIce.gd::onPrepare",
+    "Items/Exclusive/BroccoliGoobert.gd::doCooldownEffect",
+    "Items/Exclusive/CheeseGoobert.gd::doCooldownEffect",
+    "Items/Exclusive/ChiliGoobert.gd::doCooldownEffect",
+    "Items/Exclusive/CupcakeGoobert.gd::doCooldownEffect",
+    "Items/Exclusive/LuckyShortbow.gd::onPreDealDamage_early",
+    "Items/Exclusive/MagicMirror.gd::doCooldownEffect",
+    "Items/Exclusive/MagicMirror.gd::onPrepare",
+    "Items/Exclusive/PoisonShortbow.gd::onPreDealDamage_early",
+    "Items/Exclusive/RainbowGoobertAdventurer.gd::doCooldownEffect",
+    "Items/Exclusive/RainbowGoobertBerserker.gd::doCooldownEffect",
+    "Items/Exclusive/RainbowGoobertEngineer.gd::doCooldownEffect",
+    "Items/Exclusive/RainbowGoobertMage.gd::doCooldownEffect",
+    "Items/Exclusive/RainbowGoobertPyromancer.gd::doCooldownEffect",
+    "Items/Exclusive/Shelly.gd::doCooldownEffect",
+    "Items/Exclusive/Shelly.gd::onPrepare",
+    "Items/Exclusive/ShepherdsCrook.gd::onCombatStart",
+    "Items/Exclusive/ShepherdsCrook.gd::onPrepare",
+    "Items/Exclusive/ThornShortbow.gd::onDealtDamage",
+    "Items/Exclusive/ToastGoobert.gd::doCooldownEffect",
+    "Items/FalconBlade.gd::doCooldownEffect",
+    "Items/FalconBlade.gd::onCombatStart",
+    "Items/Food.gd::prepare",
+    "Items/GlovesofHaste.gd::onCombatStart",
+    "Items/Hammer.gd::onDealtDamage",
+    "Items/HealingHerbs.gd::onCombatStart",
+    "Items/HeroLongsword.gd::onCombatStart",
+    "Items/HeroSword.gd::onCombatStart",
+    "Items/HungryBlade.gd::onCombatStart",
+    "Items/HungryBlade.gd::onPreDealDamage_early",
+    "Items/HungryBlade.gd::onPrepare",
+    "Items/HungryBlade.gd::onVampirismChanged",
+    "Items/LeatherArmor.gd::onCombatStart",
+    "Items/LeatherArmor.gd::onPreCombatStart",
+    "Items/LeatherBoots.gd::onDamaged",
+    "Items/LeatherBoots.gd::onPrepare",
+    "Items/LightGoobert.gd::doCooldownEffect",
+    "Items/LightGoobert.gd::onCombatEnd",
+    "Items/LightGoobert.gd::onParticleTimeout",
+    "Items/LightGoobert.gd::onPrepare",
+    "Items/MagicStaff.gd::onPreDealDamage_early",
+    "Items/ManaPotion.gd::onDamaged",
+    "Items/ManaPotion.gd::onManaChanged",
+    "Items/ManaPotion.gd::onPrepare",
+    "Items/ManaPotion.gd::onTriggerPotion",
+    "Items/PestilenceFlask.gd::onOpponentHeal",
+    "Items/PestilenceFlask.gd::onPrepare",
+    "Items/PestilenceFlask.gd::onTriggerPotion",
+    "Items/PocketSand.gd::onCombatStart",
+    "Items/PoisonGoobert.gd::doCooldownEffect",
+    "Items/RainbowGoobert.gd::doCooldownEffect",
+    "Items/RainbowGoobertRanger.gd::doCooldownEffect",
+    "Items/RangerCollar.gd::prepare",
+    "Items/RubyEgg.gd::doCooldownEffect",
+    "Items/RubyEgg.gd::onCombatStart",
+    "Items/RubyEgg.gd::onPreCombatStart",
+    "Items/SteelGoobert.gd::doCooldownEffect",
+    "Items/SteelGoobert.gd::onCombatEnd",
+    "Items/SteelGoobert.gd::onPrepare",
+    "Items/StoneSkinPotion.gd::onBlockChanged",
+    "Items/StoneSkinPotion.gd::onPrepare",
+    "Items/StoneSkinPotion.gd::onTriggerPotion",
+    "Items/StrongHealthPotion.gd::onTriggerPotion",
+    "Items/StrongStoneSkinPotion.gd::onTriggerPotion",
+    "Items/ThornWhip.gd::onPreDealDamage_early",
+    "Items/ThornWhip.gd::onPrepare",
+    "Items/ThornWhip.gd::onSpikesChanged",
+    "Items/VampiricArmor.gd::doCooldownEffect",
+    "Items/VampiricArmor.gd::onCombatStart",
+    "Items/WalrusTusk.gd::onCombatStart"
+  ],
+  "selected_items": {
+    "1": {
+      "csv_name": "Wooden Sword",
+      "scene": "Items/WoodenSword.tscn",
+      "script_ancestry": [
+        "Items/Weapon.gd",
+        "Items/Item.gd"
+      ],
+      "roles": [
+        "P:16",
+        "O:16"
+      ]
+    },
+    "4": {
+      "csv_name": "Wooden Buckler",
+      "scene": "Items/WoodenBuckler.tscn",
+      "script_ancestry": [
+        "Items/WoodenBuckler.gd"
+      ],
+      "roles": [
+        "P:19",
+        "O:19"
+      ]
+    },
+    "11": {
+      "csv_name": "Leather Bag",
+      "scene": "Items/LeatherBag.tscn",
+      "script_ancestry": [
+        "Items/Bag.gd",
+        "Items/Item.gd"
+      ],
+      "roles": [
+        "P:0",
+        "P:1",
+        "P:2",
+        "P:3",
+        "P:4",
+        "P:5",
+        "P:6",
+        "P:7",
+        "P:8",
+        "P:9",
+        "P:10",
+        "P:11",
+        "O:0",
+        "O:1",
+        "O:2",
+        "O:3",
+        "O:4",
+        "O:5",
+        "O:6",
+        "O:7",
+        "O:8",
+        "O:9",
+        "O:10",
+        "O:11"
+      ]
+    },
+    "19": {
+      "csv_name": "Health Potion",
+      "scene": "Items/HealthPotion.tscn",
+      "script_ancestry": [
+        "Items/HealthPotion.gd",
+        "Items/Potion.gd",
+        "Items/Item.gd"
+      ],
+      "roles": [
+        "P:18",
+        "O:18"
+      ]
+    },
+    "22": {
+      "csv_name": "Blueberries",
+      "scene": "Items/Blueberries.tscn",
+      "script_ancestry": [
+        "Items/Blueberries.gd",
+        "Items/Food.gd",
+        "Items/Item.gd"
+      ],
+      "roles": [
+        "P:13",
+        "P:14",
+        "P:15",
+        "P:17",
+        "O:13",
+        "O:14",
+        "O:15",
+        "O:17"
+      ]
+    },
+    "262": {
+      "csv_name": "King Goobert",
+      "scene": "Items/Exclusive/KingGoobert.tscn",
+      "script_ancestry": [
+        "Items/Exclusive/KingGoobert.gd",
+        "Items/Goobert.gd",
+        "Items/Item.gd"
+      ],
+      "roles": [
+        "P:12"
+      ]
+    }
+  },
+  "selected_ancestor_files": [
+    "Items/Bag.gd",
+    "Items/Blueberries.gd",
+    "Items/Exclusive/KingGoobert.gd",
+    "Items/Food.gd",
+    "Items/Goobert.gd",
+    "Items/HealthPotion.gd",
+    "Items/Item.gd",
+    "Items/Potion.gd",
+    "Items/Weapon.gd",
+    "Items/WoodenBuckler.gd"
+  ],
+  "selected_literal_sites": {
+    "Items/Exclusive/KingGoobert.gd::prepare": [
+      {
+        "file": "Items/Exclusive/KingGoobert.gd",
+        "line": 20,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Exclusive/KingGoobert.gd::prepare\", self, {})"
+      },
+      {
+        "file": "Items/Exclusive/KingGoobert.gd",
+        "line": 28,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Exclusive/KingGoobert.gd::prepare\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Exclusive/KingGoobert.gd::doCooldownEffect": [
+      {
+        "file": "Items/Exclusive/KingGoobert.gd",
+        "line": 31,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Exclusive/KingGoobert.gd::doCooldownEffect\", self, {})"
+      },
+      {
+        "file": "Items/Exclusive/KingGoobert.gd",
+        "line": 45,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Exclusive/KingGoobert.gd::doCooldownEffect\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Exclusive/KingGoobert.gd::buffEnded": [
+      {
+        "file": "Items/Exclusive/KingGoobert.gd",
+        "line": 48,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Exclusive/KingGoobert.gd::buffEnded\", self, {})"
+      },
+      {
+        "file": "Items/Exclusive/KingGoobert.gd",
+        "line": 53,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Exclusive/KingGoobert.gd::buffEnded\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Exclusive/KingGoobert.gd::onCombatEnd": [
+      {
+        "file": "Items/Exclusive/KingGoobert.gd",
+        "line": 56,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Exclusive/KingGoobert.gd::onCombatEnd\", self, {})"
+      },
+      {
+        "file": "Items/Exclusive/KingGoobert.gd",
+        "line": 60,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Exclusive/KingGoobert.gd::onCombatEnd\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Exclusive/KingGoobert.gd::onStateChanged": [
+      {
+        "file": "Items/Exclusive/KingGoobert.gd",
+        "line": 66,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Exclusive/KingGoobert.gd::onStateChanged\", self, {\"_crownState\": _crownState})"
+      },
+      {
+        "file": "Items/Exclusive/KingGoobert.gd",
+        "line": 80,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Exclusive/KingGoobert.gd::onStateChanged\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Food.gd::prepare": [
+      {
+        "file": "Items/Food.gd",
+        "line": 8,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Food.gd::prepare\", self, {})"
+      },
+      {
+        "file": "Items/Food.gd",
+        "line": 11,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Food.gd::prepare\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Goobert.gd::prepare": [
+      {
+        "file": "Items/Goobert.gd",
+        "line": 17,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Goobert.gd::prepare\", self, {})"
+      },
+      {
+        "file": "Items/Goobert.gd",
+        "line": 26,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Goobert.gd::prepare\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Goobert.gd::doCooldownEffect": [
+      {
+        "file": "Items/Goobert.gd",
+        "line": 29,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Goobert.gd::doCooldownEffect\", self, {})"
+      },
+      {
+        "file": "Items/Goobert.gd",
+        "line": 31,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Goobert.gd::doCooldownEffect\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Goobert.gd::onItemActivated": [
+      {
+        "file": "Items/Goobert.gd",
+        "line": 34,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Goobert.gd::onItemActivated\", self, {\"event\": event})"
+      },
+      {
+        "file": "Items/Goobert.gd",
+        "line": 52,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Goobert.gd::onItemActivated\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/HealthPotion.gd::onTriggerPotion": [
+      {
+        "file": "Items/HealthPotion.gd",
+        "line": 6,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/HealthPotion.gd::onTriggerPotion\", self, {\"triggerEvent\": triggerEvent})"
+      },
+      {
+        "file": "Items/HealthPotion.gd",
+        "line": 9,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/HealthPotion.gd::onTriggerPotion\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/HealthPotion.gd::onPrepare": [
+      {
+        "file": "Items/HealthPotion.gd",
+        "line": 12,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/HealthPotion.gd::onPrepare\", self, {})"
+      },
+      {
+        "file": "Items/HealthPotion.gd",
+        "line": 14,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/HealthPotion.gd::onPrepare\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/HealthPotion.gd::onDamaged": [
+      {
+        "file": "Items/HealthPotion.gd",
+        "line": 17,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/HealthPotion.gd::onDamaged\", self, {\"_healthChange\": _healthChange, \"event\": event})"
+      },
+      {
+        "file": "Items/HealthPotion.gd",
+        "line": 20,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/HealthPotion.gd::onDamaged\", self, observer7_return_0, \"return_explicit\")"
+      },
+      {
+        "file": "Items/HealthPotion.gd",
+        "line": 26,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/HealthPotion.gd::onDamaged\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Item.gd::_ready": [
+      {
+        "file": "Items/Item.gd",
+        "line": 511,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Item.gd::_ready\", self, {})"
+      },
+      {
+        "file": "Items/Item.gd",
+        "line": 628,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Item.gd::_ready\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Item.gd::prepare": [
+      {
+        "file": "Items/Item.gd",
+        "line": 3361,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Item.gd::prepare\", self, {})"
+      },
+      {
+        "file": "Items/Item.gd",
+        "line": 3370,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Item.gd::prepare\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Item.gd::combatEnd": [
+      {
+        "file": "Items/Item.gd",
+        "line": 3432,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Item.gd::combatEnd\", self, {})"
+      },
+      {
+        "file": "Items/Item.gd",
+        "line": 3439,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Item.gd::combatEnd\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Item.gd::addBonusDamage": [
+      {
+        "file": "Items/Item.gd",
+        "line": 4055,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Item.gd::addBonusDamage\", self, {\"damage\": damage, \"removable\": removable})"
+      },
+      {
+        "file": "Items/Item.gd",
+        "line": 4067,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Item.gd::addBonusDamage\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Item.gd::giveMaxHealth": [
+      {
+        "file": "Items/Item.gd",
+        "line": 4240,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Item.gd::giveMaxHealth\", self, {\"amount\": amount, \"triggerEvent\": triggerEvent})"
+      },
+      {
+        "file": "Items/Item.gd",
+        "line": 4246,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Item.gd::giveMaxHealth\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Item.gd::rollChance": [
+      {
+        "file": "Items/Item.gd",
+        "line": 4416,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Item.gd::rollChance\", self, {\"chance\": chance})"
+      },
+      {
+        "file": "Items/Item.gd",
+        "line": 4418,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Item.gd::rollChance\", self, observer7_return_0, \"return_explicit\")"
+      }
+    ],
+    "Items/Item.gd::_physics_process": [
+      {
+        "file": "Items/Item.gd",
+        "line": 4465,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Item.gd::_physics_process\", self, {\"delta\": delta})"
+      },
+      {
+        "file": "Items/Item.gd",
+        "line": 4471,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Item.gd::_physics_process\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Item.gd::miniActivate": [
+      {
+        "file": "Items/Item.gd",
+        "line": 4522,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Item.gd::miniActivate\", self, {})"
+      },
+      {
+        "file": "Items/Item.gd",
+        "line": 4528,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Item.gd::miniActivate\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Item.gd::activate": [
+      {
+        "file": "Items/Item.gd",
+        "line": 4700,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Item.gd::activate\", self, {\"damageRes\": damageRes, \"playCombatAni\": playCombatAni, \"consume\": consume, \"animationOverride\": animationOverride})"
+      },
+      {
+        "file": "Items/Item.gd",
+        "line": 4704,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Item.gd::activate\", self, observer7_return_0, \"return_explicit\")"
+      },
+      {
+        "file": "Items/Item.gd",
+        "line": 4708,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Item.gd::activate\", self, observer7_return_1, \"return_explicit\")"
+      },
+      {
+        "file": "Items/Item.gd",
+        "line": 4723,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Item.gd::activate\", self, observer7_return_2, \"return_explicit\")"
+      },
+      {
+        "file": "Items/Item.gd",
+        "line": 4760,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Item.gd::activate\", self, observer7_return_3, \"return_explicit\")"
+      }
+    ],
+    "Items/Item.gd::consume": [
+      {
+        "file": "Items/Item.gd",
+        "line": 4840,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Item.gd::consume\", self, {\"damageRes\": damageRes, \"playCombatAni\": playCombatAni})"
+      },
+      {
+        "file": "Items/Item.gd",
+        "line": 4843,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Item.gd::consume\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Item.gd::giveMana": [
+      {
+        "file": "Items/Item.gd",
+        "line": 5089,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Item.gd::giveMana\", self, {\"amount\": amount, \"triggerEvent\": triggerEvent})"
+      },
+      {
+        "file": "Items/Item.gd",
+        "line": 5091,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Item.gd::giveMana\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Item.gd::giveMana_capped": [
+      {
+        "file": "Items/Item.gd",
+        "line": 5094,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Item.gd::giveMana_capped\", self, {\"amount\": amount, \"maximum\": maximum, \"triggerEvent\": triggerEvent})"
+      },
+      {
+        "file": "Items/Item.gd",
+        "line": 5102,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Item.gd::giveMana_capped\", self, observer7_return_0, \"return_explicit\")"
+      },
+      {
+        "file": "Items/Item.gd",
+        "line": 5106,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Item.gd::giveMana_capped\", self, observer7_return_1, \"return_explicit\")"
+      }
+    ],
+    "Items/Item.gd::useMana": [
+      {
+        "file": "Items/Item.gd",
+        "line": 5113,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Item.gd::useMana\", self, {\"amount\": amount, \"triggerEvent\": triggerEvent})"
+      },
+      {
+        "file": "Items/Item.gd",
+        "line": 5115,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Item.gd::useMana\", self, observer7_return_0, \"return_explicit\")"
+      }
+    ],
+    "Items/Item.gd::tryUseMana": [
+      {
+        "file": "Items/Item.gd",
+        "line": 5120,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Item.gd::tryUseMana\", self, {\"amount\": amount, \"triggerEvent\": triggerEvent})"
+      },
+      {
+        "file": "Items/Item.gd",
+        "line": 5124,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Item.gd::tryUseMana\", self, observer7_return_0, \"return_explicit\")"
+      },
+      {
+        "file": "Items/Item.gd",
+        "line": 5128,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Item.gd::tryUseMana\", self, observer7_return_1, \"return_explicit\")"
+      }
+    ],
+    "Items/Item.gd::healthToBlock": [
+      {
+        "file": "Items/Item.gd",
+        "line": 5163,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Item.gd::healthToBlock\", self, {\"health\": health, \"block\": block, \"triggerEvent\": triggerEvent})"
+      },
+      {
+        "file": "Items/Item.gd",
+        "line": 5170,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Item.gd::healthToBlock\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Item.gd::stealLife": [
+      {
+        "file": "Items/Item.gd",
+        "line": 5179,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Item.gd::stealLife\", self, {\"damage\": damage, \"lifestealFactor\": lifestealFactor, \"triggerEvent\": triggerEvent})"
+      },
+      {
+        "file": "Items/Item.gd",
+        "line": 5184,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Item.gd::stealLife\", self, observer7_return_0, \"return_explicit\")"
+      }
+    ],
+    "Items/Item.gd::pickRandomStacks": [
+      {
+        "file": "Items/Item.gd",
+        "line": 5468,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Item.gd::pickRandomStacks\", self, {\"stackTypes\": stackTypes, \"numStacks\": numStacks, \"target\": target, \"priorityStack\": priorityStack})"
+      },
+      {
+        "file": "Items/Item.gd",
+        "line": 5491,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Item.gd::pickRandomStacks\", self, observer7_return_0, \"return_explicit\")"
+      }
+    ],
+    "Items/Item.gd::cleanseRandomDebuffs": [
+      {
+        "file": "Items/Item.gd",
+        "line": 5565,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Item.gd::cleanseRandomDebuffs\", self, {\"numDebuffs\": numDebuffs, \"triggerEvent\": triggerEvent})"
+      },
+      {
+        "file": "Items/Item.gd",
+        "line": 5576,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Item.gd::cleanseRandomDebuffs\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Item.gd::getMostStacks": [
+      {
+        "file": "Items/Item.gd",
+        "line": 5612,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Item.gd::getMostStacks\", self, {\"target\": target, \"availableStacks\": availableStacks})"
+      },
+      {
+        "file": "Items/Item.gd",
+        "line": 5628,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Item.gd::getMostStacks\", self, observer7_return_0, \"return_explicit\")"
+      }
+    ],
+    "Items/Item.gd::giveMostBuffs": [
+      {
+        "file": "Items/Item.gd",
+        "line": 5632,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Item.gd::giveMostBuffs\", self, {\"numBuffs\": numBuffs, \"triggerEvent\": triggerEvent, \"availableBuffs\": availableBuffs})"
+      },
+      {
+        "file": "Items/Item.gd",
+        "line": 5636,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Item.gd::giveMostBuffs\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Potion.gd::prepare": [
+      {
+        "file": "Items/Potion.gd",
+        "line": 32,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Potion.gd::prepare\", self, {})"
+      },
+      {
+        "file": "Items/Potion.gd",
+        "line": 35,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Potion.gd::prepare\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Potion.gd::consumePotion": [
+      {
+        "file": "Items/Potion.gd",
+        "line": 60,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Potion.gd::consumePotion\", self, {\"event\": event, \"withActivate\": withActivate})"
+      },
+      {
+        "file": "Items/Potion.gd",
+        "line": 63,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Potion.gd::consumePotion\", self, observer7_return_0, \"return_explicit\")"
+      },
+      {
+        "file": "Items/Potion.gd",
+        "line": 77,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Potion.gd::consumePotion\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Potion.gd::triggerPotion": [
+      {
+        "file": "Items/Potion.gd",
+        "line": 83,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Potion.gd::triggerPotion\", self, {\"triggerEvent\": triggerEvent})"
+      },
+      {
+        "file": "Items/Potion.gd",
+        "line": 87,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Potion.gd::triggerPotion\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Potion.gd::activate": [
+      {
+        "file": "Items/Potion.gd",
+        "line": 99,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Potion.gd::activate\", self, {\"damageRes\": damageRes, \"playCombatAni\": playCombatAni, \"consume\": consume, \"animationOverride\": animationOverride, \"emitSignal\": emitSignal})"
+      },
+      {
+        "file": "Items/Potion.gd",
+        "line": 105,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Potion.gd::activate\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Weapon.gd::attack": [
+      {
+        "file": "Items/Weapon.gd",
+        "line": 8,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Weapon.gd::attack\", self, {\"triggerEvent\": triggerEvent})"
+      },
+      {
+        "file": "Items/Weapon.gd",
+        "line": 11,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Weapon.gd::attack\", self, null, \"return_implicit\")"
+      }
+    ],
+    "Items/Weapon.gd::doCooldownEffect": [
+      {
+        "file": "Items/Weapon.gd",
+        "line": 14,
+        "edge": "entry",
+        "text": "NativeRandomObserver.entry(\"Items/Weapon.gd::doCooldownEffect\", self, {})"
+      },
+      {
+        "file": "Items/Weapon.gd",
+        "line": 17,
+        "edge": "leave",
+        "text": "NativeRandomObserver.leave(\"Items/Weapon.gd::doCooldownEffect\", self, null, \"return_implicit\")"
+      }
+    ]
+  },
+  "selected_emitted_not_declared": [
+    "Items/Food.gd::prepare"
+  ],
+  "sink_schema_missing_selected": [
+    "Items/Food.gd::prepare"
+  ],
+  "food_original_byte_inverse": "original exact bytes plus one terminal LF after removing hooks",
+  "itemBook_index_policy_source": {
+    "path": "Sheets/ItemBook.gd",
+    "lines": [
+      "\t\t\t",
+      "\t\t\t",
+      "\t\t\t",
+      "\t\t",
+      "\t\tvar mainType = table.getStr(\"type\", line)",
+      "\t\tif mainType == \"Melee Weapon\":",
+      "\t\t\titem.types.push_back(Item.Type.Weapon)",
+      "\t\t\tcall_deferred(\"addItemType\", item, Item.Type.Melee)",
+      "\t\telif mainType == \"Ranged Weapon\":",
+      "\t\t\titem.types.push_back(Item.Type.Weapon)",
+      "\t\t\tcall_deferred(\"addItemType\", item, Item.Type.Ranged)",
+      "\t\t\t",
+      "\t\telse:",
+      "\t\t\titem.types.push_back(table.getEnu(\"type\", Item.Type, line))",
+      "\t\t",
+      "\t\tvar extraTypes = table.getStr(\"extraTypes\", line).replace(\" \", \"\").split(\",\")",
+      "\t\tfor type in extraTypes:",
+      "\t\t\tif type != \"\":",
+      "\t\t\t\titem.types.push_back(Item.Type[type])",
+      "\t\t",
+      "\t\tvar itemNameNoSpaces = itemName.replace(\" \", \"\")",
+      "\t\tvar scenePath = \"Items/\" + itemNameNoSpaces + \".tscn\"",
+      "",
+      "\t\tif item.types[0] == Item.Type.Gem:",
+      "\t\t\tscenePath = \"Items/Gems/\" + itemNameNoSpaces + \".tscn\"",
+      "\t\t\t",
+      "",
+      "\t\tif dir.file_exists(scenePath):",
+      "\t\t\titem.scene = load(scenePath)",
+      "\t\telse:",
+      "\t\t\tif Game.loadExclusiveContent():",
+      "\t\t\t\tif item.types[0] == Item.Type.ChessPiece:",
+      "\t\t\t\t\tscenePath = \"Items/Exclusive/Chess/\" + itemNameNoSpaces + \".tscn\"",
+      "\t\t\t\telse:",
+      "\t\t\t\t\tscenePath = \"Items/Exclusive/\" + itemNameNoSpaces + \".tscn\"",
+      "\t\t\t\tif dir.file_exists(scenePath):",
+      "\t\t\t\t\titem.scene = load(scenePath)",
+      "\t\t\t\t\t",
+      "\t\t\t\telif Game.loadUnreleasedContent():",
+      "\t\t\t\t\tscenePath = \"Items/Exclusive/Unreleased/\" + itemNameNoSpaces + \".tscn\"",
+      "\t\t\t\t",
+      "\t\t\t\tclassSpecificItems[classI].push_back(item)",
+      "\t\t\t\taddToShop(classI, item)",
+      "\t\t\t",
+      "\t\t\tif item.hasType(Item.Type.Food):",
+      "\t\t\t\tfoodsForRarity[item.rarity].push_back(item)",
+      "\t\t\t",
+      "\t\t\tif item.hasTag(Item.Tag.Staff):",
+      "\t\t\t\tstaffDescriptors.push_back(item)",
+      "\t\t",
+      "\t\titem.classes = classes",
+      "\t\t",
+      "\t\titems[itemName] = item",
+      "\t\tvar index = table.getInt(\"id\", line)",
+      "\t\titem.itemIndex = index",
+      "",
+      "\t\titem.sheetIndex = sheetList.size()",
+      "\t\tsheetList.push_back(item)",
+      "\t\tif item.types[0] == Item.Type.Gem:",
+      "\t\t\tsheetList.push_back(item)"
+    ]
+  },
+  "limits": "Literal entry/leave audit only; not all dynamic call targets, runtime coverage, or unknown-hook guard relaxation."
+}

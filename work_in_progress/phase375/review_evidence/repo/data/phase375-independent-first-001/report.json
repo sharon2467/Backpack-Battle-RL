@@ -1,0 +1,375 @@
+{
+  "status": "PASS",
+  "results": [
+    {
+      "id": "S01",
+      "status": "PASS",
+      "source_leaves": 30,
+      "frozen_GD_paths": 75
+    },
+    {
+      "id": "S02",
+      "status": "PASS",
+      "sink_inverse": "EXACT_FULL_BYTES_AFTER_SINGLE_CONSTANT_LINE_REPLACEMENT",
+      "other_GD_paths": 74
+    },
+    {
+      "id": "S03",
+      "status": "PASS",
+      "old_entries": 106,
+      "new_entries": 107
+    },
+    {
+      "id": "S04",
+      "status": "PASS",
+      "changed_function": "validate_record",
+      "whole_AST_inverse": true,
+      "guard_line": 1601
+    },
+    {
+      "id": "S05",
+      "status": "PASS",
+      "selected_emitted": 38,
+      "all_declared": true,
+      "other93_not_admitted": true
+    },
+    {
+      "id": "S06",
+      "status": "PASS",
+      "basis": "whole AST inverse + sink methods exact; no projection/runtime change",
+      "actual12positive": false
+    },
+    {
+      "id": "S07",
+      "status": "PASS",
+      "basis": "unchanged real delegates/transport AST plus full module inversion; actual exported identity checked dynamically"
+    },
+    {
+      "id": "S08",
+      "status": "PASS",
+      "host_recovery_full_byte_derivation": true,
+      "saved_pins": 17,
+      "map_generation_calls": 0,
+      "pool_inventory": 0
+    },
+    {
+      "id": "U01",
+      "status": "PASS"
+    },
+    {
+      "id": "U02",
+      "status": "PASS"
+    },
+    {
+      "id": "U03",
+      "status": "PASS",
+      "calls": 2
+    },
+    {
+      "id": "U04",
+      "status": "PASS",
+      "calls": 8
+    },
+    {
+      "id": "U05",
+      "status": "PASS"
+    },
+    {
+      "id": "U06",
+      "status": "PASS"
+    },
+    {
+      "id": "U07",
+      "status": "PASS"
+    },
+    {
+      "id": "U08",
+      "status": "PASS"
+    },
+    {
+      "id": "U09",
+      "status": "PASS"
+    },
+    {
+      "id": "U10",
+      "status": "PASS"
+    },
+    {
+      "id": "U11",
+      "status": "PASS"
+    },
+    {
+      "id": "U12",
+      "status": "PASS"
+    },
+    {
+      "id": "U13",
+      "status": "PASS"
+    },
+    {
+      "id": "U14",
+      "status": "PASS"
+    },
+    {
+      "id": "U15",
+      "status": "PASS"
+    },
+    {
+      "id": "U16",
+      "status": "PASS"
+    },
+    {
+      "id": "U17",
+      "status": "PASS"
+    },
+    {
+      "id": "U18",
+      "status": "PASS"
+    },
+    {
+      "id": "U19",
+      "status": "PASS"
+    },
+    {
+      "id": "U20",
+      "status": "PASS"
+    },
+    {
+      "id": "U21",
+      "status": "PASS"
+    },
+    {
+      "id": "U22",
+      "status": "PASS"
+    },
+    {
+      "id": "U23",
+      "status": "PASS"
+    },
+    {
+      "id": "U24",
+      "status": "PASS"
+    },
+    {
+      "id": "U25",
+      "status": "PASS"
+    },
+    {
+      "id": "U26",
+      "status": "PASS"
+    },
+    {
+      "id": "U27",
+      "status": "PASS"
+    },
+    {
+      "id": "U28",
+      "status": "PASS",
+      "calls": 2
+    }
+  ],
+  "calls": [
+    {
+      "label": "U01",
+      "outcome": "accept",
+      "result_type": "dict"
+    },
+    {
+      "label": "U02",
+      "outcome": "accept",
+      "result_type": "dict"
+    },
+    {
+      "label": "U03.module",
+      "outcome": "accept",
+      "result_type": "dict"
+    },
+    {
+      "label": "U03.export",
+      "outcome": "accept",
+      "result_type": "dict"
+    },
+    {
+      "label": "U04.P:13",
+      "outcome": "accept",
+      "result_type": "dict"
+    },
+    {
+      "label": "U04.P:14",
+      "outcome": "accept",
+      "result_type": "dict"
+    },
+    {
+      "label": "U04.P:15",
+      "outcome": "accept",
+      "result_type": "dict"
+    },
+    {
+      "label": "U04.P:17",
+      "outcome": "accept",
+      "result_type": "dict"
+    },
+    {
+      "label": "U04.O:13",
+      "outcome": "accept",
+      "result_type": "dict"
+    },
+    {
+      "label": "U04.O:14",
+      "outcome": "accept",
+      "result_type": "dict"
+    },
+    {
+      "label": "U04.O:15",
+      "outcome": "accept",
+      "result_type": "dict"
+    },
+    {
+      "label": "U04.O:17",
+      "outcome": "accept",
+      "result_type": "dict"
+    },
+    {
+      "label": "U05",
+      "outcome": "reject",
+      "exception": "exact object keys required: []"
+    },
+    {
+      "label": "U06",
+      "outcome": "reject",
+      "exception": "channel/site mismatch"
+    },
+    {
+      "label": "U07",
+      "outcome": "reject",
+      "exception": "unknown record site"
+    },
+    {
+      "label": "U08",
+      "outcome": "reject",
+      "exception": "nonexistent explicit return"
+    },
+    {
+      "label": "U09",
+      "outcome": "reject",
+      "exception": "original observer implicit return is NULL"
+    },
+    {
+      "label": "U10",
+      "outcome": "reject",
+      "exception": "exact object keys required: ['return_value', 'state']"
+    },
+    {
+      "label": "U11",
+      "outcome": "reject",
+      "exception": "Food.prepare receiver must be original thin-domain Food descriptor INT22"
+    },
+    {
+      "label": "U12",
+      "outcome": "reject",
+      "exception": "Food.prepare receiver must be original thin-domain Food descriptor INT22"
+    },
+    {
+      "label": "U13",
+      "outcome": "reject",
+      "exception": "actual receiver role/source descriptor join"
+    },
+    {
+      "label": "U14",
+      "outcome": "reject",
+      "exception": "unknown fixed A native reference role"
+    },
+    {
+      "label": "U15",
+      "outcome": "reject",
+      "exception": "item descriptor INT"
+    },
+    {
+      "label": "U16",
+      "outcome": "reject",
+      "exception": "item descriptor INT"
+    },
+    {
+      "label": "U17",
+      "outcome": "reject",
+      "exception": "exact raw property type plain_item.speedScale"
+    },
+    {
+      "label": "U18",
+      "outcome": "reject",
+      "exception": "exact raw property type plain_item.cachedAffectedItems"
+    },
+    {
+      "label": "U19",
+      "outcome": "reject",
+      "exception": "exact object keys required: {'activationsThisFrame': 'int', 'cachedAffectedItems': 'dictionary', 'consumed': 'bool', 'currentAffectedItems': 'dictionary', 'descriptorIndex': 'int', 'faceDirection': 'int', 'iterationCooldown': 'float', 'lastActivationTime': 'float', 'lastTriggerTime': 'float', 'ownerType': 'int', 'placed': 'bool', 'speedScale': 'float', 'triggerTime': 'float', 'triggersThisFrame': 'int'}"
+    },
+    {
+      "label": "U20",
+      "outcome": "reject",
+      "exception": "exact object keys required: {'activationsThisFrame': 'int', 'cachedAffectedItems': 'dictionary', 'consumed': 'bool', 'currentAffectedItems': 'dictionary', 'descriptorIndex': 'int', 'faceDirection': 'int', 'iterationCooldown': 'float', 'lastActivationTime': 'float', 'lastTriggerTime': 'float', 'ownerType': 'int', 'placed': 'bool', 'speedScale': 'float', 'triggerTime': 'float', 'triggersThisFrame': 'int'}"
+    },
+    {
+      "label": "U21",
+      "outcome": "accept",
+      "result_type": "dict"
+    },
+    {
+      "label": "U22",
+      "outcome": "accept",
+      "result_type": "dict"
+    },
+    {
+      "label": "U23",
+      "outcome": "reject",
+      "exception": "ordered expected channels only"
+    },
+    {
+      "label": "U24",
+      "outcome": "reject",
+      "exception": "ordered expected channels only"
+    },
+    {
+      "label": "U25",
+      "outcome": "reject",
+      "exception": "source call return/order without matching enter"
+    },
+    {
+      "label": "U26",
+      "outcome": "reject",
+      "exception": "source stream EOF inside method/API call"
+    },
+    {
+      "label": "U27",
+      "outcome": "reject",
+      "exception": "unknown record site"
+    },
+    {
+      "label": "U28.old",
+      "outcome": "accept",
+      "result_type": "dict"
+    },
+    {
+      "label": "U28.new",
+      "outcome": "accept",
+      "result_type": "dict"
+    }
+  ],
+  "failure": null,
+  "actual_source_obligations": 8,
+  "actual_unit_definitions": 28,
+  "top_level_schema_API_calls": 37,
+  "schema_imports": 2,
+  "synthetic_record_fixtures": true,
+  "full12positive": false,
+  "actual_inputbuilds": 0,
+  "models": 0,
+  "native": 0,
+  "Godot": 0,
+  "restore": 0,
+  "pool_writes": 0,
+  "audit": {
+    "blocked": [],
+    "scope": "Hook installed after trusted stdlib bootstrap/static SOURCE reads; dynamic reads only own mirrors/stdlib, writes only own output."
+  }
+}
