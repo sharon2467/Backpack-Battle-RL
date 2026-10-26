@@ -1,0 +1,137 @@
+{
+  "actual_pool_reads": 0,
+  "added_functions": [
+    "verify_overlay_archive"
+  ],
+  "after": {
+    "path": "tests/phase381_independent_restored_readback.py",
+    "sha256": "f803e25c920fbb7530252186749b0fd8a063613d2ab6ce16afebf3692d5addd7",
+    "size": 22036
+  },
+  "before": {
+    "path": "tests/phase375_independent_restored_readback.py",
+    "sha256": "4445f6da9fad0dbc65721cab845820e83e0607b09b75221d0b212c38bbbda1d7",
+    "size": 18457
+  },
+  "body_edits": [
+    [
+      "    for key in ('source_freeze','restore_map','input_pins'):require(config[key]==source[key],'current exact source/map/pins '+key)",
+      "    for key in ('source_freeze','restore_map','input_pins'):require(config[key]==source[key],'current exact source/map/pins '+key)\n    require(source['readback_status']==READBACK_STATUS,'exact380 API readback status')\n    reviews=config.get('reviews');require(type(reviews)is list and bool(reviews),'actual SOURCE review descriptors from ROOT required')\n    for item in reviews:\n        review=read(verify_descriptor(R,item['receipt']));owned=read(verify_descriptor(R,item['owner']))\n        for row in owned['files']:verify_descriptor(R,row)\n        require(any(row==item['receipt'] for row in owned['files']),'owned actual SOURCE review')\n        require(review.get('status')==source['SOURCE_review_status'] and review.get('source_freeze')==config['source_freeze'],'actual380 SOURCE accepted closure')\n        require(all(type(review.get(key))is int and review[key]==0 for key in ('native','models')),'SOURCE review not native/model acceptance')"
+    ],
+    [
+      "    require(receipt['READY_committed'] is False and receipt['writes']==len(mapping['file_differences'])+len(mapping['staged_files']),'restore only receipt')",
+      "    saved_staged=read(roots['failed_run']/'output/failed-pool-preservation/failed-staged-files.json')\n    staged_index={row['path']:row for row in saved_staged['entries']}\n    staged_differences=sum(staged_index[row['target']['path']]!=row['target'] for row in mapping['staged_files'])\n    expected_writes=len(mapping['file_differences'])+staged_differences\n    require(len(mapping['file_differences'])==74 and staged_differences==0 and expected_writes==74,'actual partial74+staged0, not old76')\n    require(mapping['known_absent_creates']==['.native-random-observer-disposable','native_random_observer_sink_v7.gd'],'exact partial2 creates')\n    require(receipt['READY_committed'] is False and receipt['writes']==expected_writes,'partial restore-only actual receipt')"
+    ],
+    [
+      "        for name in ('parse-process-result.json','native-process-result.json'):\n            previous_result=read(roots['failed_run']/'output'/name)\n            require(previous_result['cleanup']['live_remaining']==[],'recorded task cleanup has live remaining')\n            groups.add(previous_result['cleanup']['pgid'])\n            known.update(row['pid'] for key in ('before','after') for row in previous_result['cleanup'][key])\n",
+      "        # This attempt failed before parse/Game; no native cleanup record or PGID exists.\n        for name in ('parse-process-result.json','native-process-result.json'):\n            require(not (roots['failed_run']/'output'/name).exists(),'attempt04 must not invent parse/Game process records')\n"
+    ],
+    [
+      "schema='phase366-task-process-scope/1',known_pgids=sorted(groups),known_pids=sorted(known)",
+      "schema='phase381-task-process-scope/1',attempt04_native_process_records='ABSENT_EXPECTED_PRE_PARSE_GAME',known_pid_group_proof_applicable=False,known_pgids=sorted(groups),known_pids=sorted(known)"
+    ],
+    [
+      "known_task_live=0,live_Godot_Xvfb=0,whole_system_proc_complete=False,",
+      "known_task_live=None,visible_live_Godot_Xvfb=0,whole_system_proc_complete=False,"
+    ],
+    [
+      "restriction='Permission gaps remain explicitly in process-inspection.json; readable task PID/group/command identities and exclusive pool lock are the task gate.'",
+      "restriction='No attempt04 native PID/PGID cleanup record exists; empty known sets are not evidence. Generic scoped matches/visible identities plus readonly flock only; permission gaps remain explicit and wholeproc is not claimed.'"
+    ],
+    [
+      "result['process_inspection']=dict(active_matches=0,inspection_gaps=sum(len(v['inspection_gaps']) for v in inspections.values()),whole_system_proc_complete=False,known_task_live=0,live_Godot_Xvfb=0,exclusive_pool_lock_acquired_readonly=True,processes_launched=0,source_exact_functions=2)",
+      "result['process_inspection']=dict(active_matches=0,inspection_gaps=sum(len(v['inspection_gaps']) for v in inspections.values()),whole_system_proc_complete=False,known_task_live=None,known_native_pid_group_record=False,visible_live_Godot_Xvfb=0,exclusive_pool_lock_acquired_readonly=True,processes_launched=0,source_exact_functions=2)"
+    ],
+    [
+      "        failed=roots['failed_run'];expected_owner=read(R/contract['failed_capsule_manifest']['path'])",
+      "        failed=roots['failed_run'];expected_owner=read(R/contract['failed_capsule_manifest']['path'])\n        require(expected_owner['schema']=='standalone-attempt04-partial-install-failure-capsule/1' and expected_owner['file_count']==173 and len(expected_owner['files'])==173,'real377 capsule manifest')\n        require(all(not name.startswith('run/') or name.startswith(('run/output/','run/data/')) for name in expected_owner['files']),'exact failed output/data member selection')"
+    ],
+    [
+      "        result['previous_retained']={key:counts(value) for key,value in retained.items()};result['previous_driver']=counts(driver)",
+      "        result['previous_retained']={key:counts(value) for key,value in retained.items()};result['previous_driver']=counts(driver)\n        bundle=previous/'output/compaction';bundle_manifest=read(verify_descriptor(previous,contract['previous_bundle_manifest']))\n        for name,sha in bundle_manifest['files'].items():require(pin(canonical(bundle,name))['sha256']==sha,'old026 bundle member SHA')\n        for name,sha in bundle_manifest['driver_sha256'].items():require(pin(canonical(previous/'output/driver',name))['sha256']==sha,'old026 bundle driver SHA')\n        old_overlay=read(bundle/'overlay-manifest.json')\n        result['previous_overlay']=verify_overlay_archive(bundle/'overlay.zip',old_overlay,targets['project'])\n"
+    ]
+  ],
+  "changed_functions": [
+    "main",
+    "prepare_contract"
+  ],
+  "checker_calls": 0,
+  "checker_imports": 0,
+  "compile_only": true,
+  "full_inventory_and_audit_and_descriptor_functions_AST_identical": true,
+  "protocol_pairs": [
+    [
+      "Read-only physical366 target validation.",
+      "Read-only physical380 partial-restored target validation."
+    ],
+    [
+      "data/phase375-independent-actual-readback-first-001",
+      "data/phase381-independent-actual-readback-first-001"
+    ],
+    [
+      "data/phase375-independent-readback-source",
+      "data/phase381-independent-readback-source"
+    ],
+    [
+      "phase375-root-pool-recovery/1",
+      "phase380-root-pool-recovery/1"
+    ],
+    [
+      "phase375-attempt03-exact-restore-source-map/1",
+      "phase380-attempt04-partial-reset-map/1"
+    ],
+    [
+      "endswith('attempt03')",
+      "endswith('attempt04')"
+    ],
+    [
+      "failed source is attempt03, not prior attempt",
+      "failed source is attempt04 partial-install, not prior attempt"
+    ],
+    [
+      "new attempt03 map schema",
+      "new attempt04 partial-reset map schema"
+    ],
+    [
+      "ROOT exact370 restore-only source",
+      "ROOT exact380 restore-only source"
+    ],
+    [
+      "phase375-independent-physical-readback/1",
+      "phase381-independent-physical-readback/1"
+    ],
+    [
+      "status='INDEPENDENT370_RESTORED_POOL_EXACT_TARGET_READBACK_PASS' if failure is None else 'BLOCKED_INDEPENDENT370_RESTORED_POOL_READBACK'",
+      "status=READBACK_STATUS if failure is None else 'BLOCKED_INDEPENDENT380_RESTORED_POOL_READBACK'"
+    ],
+    [
+      "phase375-independent-readback-owner/1",
+      "phase381-independent-readback-owner/1"
+    ],
+    [
+      "CAPSULE372.json",
+      "CAPSULE377.json"
+    ],
+    [
+      "docs/phase375_independent_actual_readback_source_spec.md",
+      "docs/phase381_independent_partial_restore_readback_source_spec.md"
+    ],
+    [
+      "tests/phase375_independent_restored_readback.py",
+      "tests/phase381_independent_restored_readback.py"
+    ]
+  ],
+  "schema": "phase381-source-derivation/1",
+  "unchanged_functions": [
+    "audit",
+    "canonical",
+    "counts",
+    "desc",
+    "inventory",
+    "pin",
+    "read",
+    "require",
+    "save",
+    "verify_descriptor"
+  ]
+}

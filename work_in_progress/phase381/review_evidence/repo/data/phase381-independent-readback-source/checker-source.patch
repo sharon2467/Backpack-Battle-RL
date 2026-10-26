@@ -1,0 +1,156 @@
+--- frozen375/readback.py
++++ source381/readback.py
+@@ -1,4 +1,4 @@
+-"""Read-only physical366 target validation. No recovery, READY or process execution."""
++"""Read-only physical380 partial-restored target validation. No recovery, READY or process execution."""
+ import ast
+ import argparse
+ import datetime
+@@ -14,9 +14,10 @@
+ import zipfile
+ 
+ R=Path(__file__).resolve().parents[1]
+-D=R/'data/phase375-independent-actual-readback-first-001'
+-SD=R/'data/phase375-independent-readback-source'
++D=R/'data/phase381-independent-actual-readback-first-001'
++SD=R/'data/phase381-independent-readback-source'
+ AUDIT=dict(write_attempts=0,blocked=[],subprocesses=0,network=0)
++READBACK_STATUS = 'INDEPENDENT380_RESTORED_POOL_EXACT_TARGET_READBACK_PASS'
+ 
+ def pin(path):
+     h=hashlib.sha256()
+@@ -84,6 +85,22 @@
+         if not isinstance(path,int) and not Path(os.fsdecode(path)).absolute().is_relative_to(D):
+             AUDIT['blocked'].append(dict(event=event,path=os.fsdecode(path)));raise PermissionError('no original metadata mutation')
+ 
++
++def verify_overlay_archive(path,overlay,tree):
++    index={row['path']:row for row in tree['entries']}
++    with zipfile.ZipFile(path) as archive:
++        require(len(archive.infolist())==len(set(archive.namelist())) and set(archive.namelist())==set(overlay['content']),'overlay exact unique member set')
++        for info in archive.infolist():
++            canonical(D,info.filename) # lexical safety; no member is extracted or created.
++            row=index[info.filename]
++            require(stat.S_IFMT(info.external_attr>>16)==stat.S_IFREG and stat.S_IMODE(info.external_attr>>16)==row['mode'],'overlay regular type/mode')
++            h=hashlib.sha256();size=0
++            with archive.open(info) as stream:
++                for block in iter(lambda:stream.read(1024*1024),b''):h.update(block);size+=len(block)
++            require(size==row['size'] and h.hexdigest()==row['sha256'],'overlay CRC/SHA')
++    return dict(members=len(overlay['content']),CRC_SHA_mode_valid=True,extractions=0)
++
++
+ def prepare_contract():
+     parser=argparse.ArgumentParser(description='ROOT-released independent actual readback only; no restore/READY')
+     parser.add_argument('--execute',action='store_true',required=True)
+@@ -102,13 +119,21 @@
+     restore_receipt=dict(path=args.restore_receipt,size=args.restore_receipt_size,sha256=args.restore_receipt_sha256)
+     config=read(verify_descriptor(R,authorization));verify_descriptor(R,restore_receipt)
+     source=read(SD/'source-contract.json')
+-    require(config.get('schema')=='phase375-root-pool-recovery/1' and config.get('action')=='restore' and config.get('root_restore_authorized') is True,'ROOT exact370 restore-only source')
++    require(config.get('schema')=='phase380-root-pool-recovery/1' and config.get('action')=='restore' and config.get('root_restore_authorized') is True,'ROOT exact380 restore-only source')
+     require(all(type(config.get(k)) is int and config[k]==0 for k in ('native_allowed','models_allowed','projection_allowed')),'restore did not grant native/model/projection')
+     for key in ('source_freeze','restore_map','input_pins'):require(config[key]==source[key],'current exact source/map/pins '+key)
++    require(source['readback_status']==READBACK_STATUS,'exact380 API readback status')
++    reviews=config.get('reviews');require(type(reviews)is list and bool(reviews),'actual SOURCE review descriptors from ROOT required')
++    for item in reviews:
++        review=read(verify_descriptor(R,item['receipt']));owned=read(verify_descriptor(R,item['owner']))
++        for row in owned['files']:verify_descriptor(R,row)
++        require(any(row==item['receipt'] for row in owned['files']),'owned actual SOURCE review')
++        require(review.get('status')==source['SOURCE_review_status'] and review.get('source_freeze')==config['source_freeze'],'actual380 SOURCE accepted closure')
++        require(all(type(review.get(key))is int and review[key]==0 for key in ('native','models')),'SOURCE review not native/model acceptance')
+     mapping=read(verify_descriptor(R,config['restore_map']))
+-    require(mapping['schema']=='phase375-attempt03-exact-restore-source-map/1','new attempt03 map schema')
++    require(mapping['schema']=='phase380-attempt04-partial-reset-map/1','new attempt04 partial-reset map schema')
+     for key in ('failed_run','previous_run','pool','source_root'):require(config['roots'][key]==mapping['roots'][key],'actual current roots binding '+key)
+-    require(Path(config['roots']['failed_run']).name.endswith('attempt03'),'failed source is attempt03, not prior attempt')
++    require(Path(config['roots']['failed_run']).name.endswith('attempt04'),'failed source is attempt04 partial-install, not prior attempt')
+     require(source['external_targets']['project']==mapping['project_target'] and source['external_targets']['staged']==mapping['staged_target'],'old026 authoritative targets')
+     require(not D.exists() and not D.is_symlink(),'new independent readback output only')
+     D.mkdir()
+@@ -126,7 +151,13 @@
+     for key in ('roots','source_freeze','restore_map'):require(receipt[key]==config[key],'wire '+key)
+     for key in ('project_target','staged_target'):require(receipt[key]==mapping[key],'wire target '+key)
+     require(receipt['failed_state']==contract['failed_state'],'failed wire state')
+-    require(receipt['READY_committed'] is False and receipt['writes']==len(mapping['file_differences'])+len(mapping['staged_files']),'restore only receipt')
++    saved_staged=read(roots['failed_run']/'output/failed-pool-preservation/failed-staged-files.json')
++    staged_index={row['path']:row for row in saved_staged['entries']}
++    staged_differences=sum(staged_index[row['target']['path']]!=row['target'] for row in mapping['staged_files'])
++    expected_writes=len(mapping['file_differences'])+staged_differences
++    require(len(mapping['file_differences'])==74 and staged_differences==0 and expected_writes==74,'actual partial74+staged0, not old76')
++    require(mapping['known_absent_creates']==['.native-random-observer-disposable','native_random_observer_sink_v7.gd'],'exact partial2 creates')
++    require(receipt['READY_committed'] is False and receipt['writes']==expected_writes,'partial restore-only actual receipt')
+     sys.addaudithook(audit);started=time.monotonic();result={};failure=None;lock=None
+     try:
+         state=roots['pool']/'state.json';require(pin(state)==contract['failed_state'] and read(state)['status']=='failed','state must remain original failed')
+@@ -141,11 +172,9 @@
+         save(D/'process-inspection.json',inspections)
+         # Requirement interpretation: no active task Game/known PGID, not universal proc visibility.
+         process_rows=[];groups=set();known=set()
++        # This attempt failed before parse/Game; no native cleanup record or PGID exists.
+         for name in ('parse-process-result.json','native-process-result.json'):
+-            previous_result=read(roots['failed_run']/'output'/name)
+-            require(previous_result['cleanup']['live_remaining']==[],'recorded task cleanup has live remaining')
+-            groups.add(previous_result['cleanup']['pgid'])
+-            known.update(row['pid'] for key in ('before','after') for row in previous_result['cleanup'][key])
++            require(not (roots['failed_run']/'output'/name).exists(),'attempt04 must not invent parse/Game process records')
+         for proc in Path('/proc').iterdir():
+             if not proc.name.isdecimal():continue
+             try:
+@@ -161,9 +190,9 @@
+                 require(not (comm.lower().startswith(('godot','xvfb')) or Path(executable).name.lower().startswith(('godot','xvfb'))),'live Godot/Xvfb process')
+             process_rows.append(dict(pid=pid,uid=int(uid),state=tail[0],pgid=group,comm=comm,
+                 executable=command[0].decode(errors='replace') if command else '',known_task_pid=pid in known))
+-        save(D/'task-process-scope.json',dict(schema='phase366-task-process-scope/1',known_pgids=sorted(groups),known_pids=sorted(known),
+-            inspected=process_rows,known_task_live=0,live_Godot_Xvfb=0,whole_system_proc_complete=False,
+-            restriction='Permission gaps remain explicitly in process-inspection.json; readable task PID/group/command identities and exclusive pool lock are the task gate.'))
++        save(D/'task-process-scope.json',dict(schema='phase381-task-process-scope/1',attempt04_native_process_records='ABSENT_EXPECTED_PRE_PARSE_GAME',known_pid_group_proof_applicable=False,known_pgids=sorted(groups),known_pids=sorted(known),
++            inspected=process_rows,known_task_live=None,visible_live_Godot_Xvfb=0,whole_system_proc_complete=False,
++            restriction='No attempt04 native PID/PGID cleanup record exists; empty known sets are not evidence. Generic scoped matches/visible identities plus readonly flock only; permission gaps remain explicit and wholeproc is not claimed.'))
+ 
+         targets={key:read(roots[row['root']]/row['path']) for key,row in contract['external_targets'].items()}
+         for name,path,target in [('project',roots['pool']/'project',targets['project']),('staged',roots['pool']/'data',targets['staged']),('baseline',roots['baseline'],targets['baseline'])]:
+@@ -179,7 +208,15 @@
+         driver=inventory(previous/'output/driver');save(D/'previous-driver-readback.json',driver)
+         require(driver==targets['driver'],'oldrun driver differs')
+         result['previous_retained']={key:counts(value) for key,value in retained.items()};result['previous_driver']=counts(driver)
++        bundle=previous/'output/compaction';bundle_manifest=read(verify_descriptor(previous,contract['previous_bundle_manifest']))
++        for name,sha in bundle_manifest['files'].items():require(pin(canonical(bundle,name))['sha256']==sha,'old026 bundle member SHA')
++        for name,sha in bundle_manifest['driver_sha256'].items():require(pin(canonical(previous/'output/driver',name))['sha256']==sha,'old026 bundle driver SHA')
++        old_overlay=read(bundle/'overlay-manifest.json')
++        result['previous_overlay']=verify_overlay_archive(bundle/'overlay.zip',old_overlay,targets['project'])
++
+         failed=roots['failed_run'];expected_owner=read(R/contract['failed_capsule_manifest']['path'])
++        require(expected_owner['schema']=='standalone-attempt04-partial-install-failure-capsule/1' and expected_owner['file_count']==173 and len(expected_owner['files'])==173,'real377 capsule manifest')
++        require(all(not name.startswith('run/') or name.startswith(('run/output/','run/data/')) for name in expected_owner['files']),'exact failed output/data member selection')
+         prefix='run/'
+         expected={name[len(prefix):]:row for name,row in expected_owner['files'].items() if name.startswith(prefix)}
+         actual_failed={name:inventory(failed/name) for name in ('output','data')}
+@@ -207,13 +244,13 @@
+         require(pin(state)==contract['failed_state'] and read(state)['status']=='failed','state changed during independent readback')
+         for row in contract['files']:verify_descriptor(R,row)
+         for row in contract['external_targets'].values():verify_descriptor(roots[row['root']],row)
+-        result['process_inspection']=dict(active_matches=0,inspection_gaps=sum(len(v['inspection_gaps']) for v in inspections.values()),whole_system_proc_complete=False,known_task_live=0,live_Godot_Xvfb=0,exclusive_pool_lock_acquired_readonly=True,processes_launched=0,source_exact_functions=2)
++        result['process_inspection']=dict(active_matches=0,inspection_gaps=sum(len(v['inspection_gaps']) for v in inspections.values()),whole_system_proc_complete=False,known_task_live=None,known_native_pid_group_record=False,visible_live_Godot_Xvfb=0,exclusive_pool_lock_acquired_readonly=True,processes_launched=0,source_exact_functions=2)
+     except BaseException as exc:
+         failure=dict(type=type(exc).__name__,message=str(exc),traceback=traceback.format_exc());save(D/'first-failure.json',failure)
+     finally:
+         if lock is not None:fcntl.flock(lock,fcntl.LOCK_UN);lock.close()
+     save(D/'audit.json',dict(AUDIT,read_scope='Actual direct tree bytes/metadata; business observations opaque, no business expected decoding.',no_external_write_attempts=not AUDIT['blocked']))
+-    value=dict(schema='phase375-independent-physical-readback/1',status='INDEPENDENT370_RESTORED_POOL_EXACT_TARGET_READBACK_PASS' if failure is None else 'BLOCKED_INDEPENDENT370_RESTORED_POOL_READBACK',
++    value=dict(schema='phase381-independent-physical-readback/1',status=READBACK_STATUS if failure is None else 'BLOCKED_INDEPENDENT380_RESTORED_POOL_READBACK',
+         **{key:receipt[key] for key in ('roots','restore_map','source_freeze','project_target','staged_target','failed_state')},
+         restore_receipt=contract['restore_receipt'],observations=result,failure=failure,
+         native=0,models=0,Godot=0,processes_launched=0,actual_restore_calls=0,READY_commits=0,projection_calls=0,
+@@ -223,9 +260,9 @@
+         value.update(project_readback=desc(D/'project-readback.json'),staged_readback=desc(D/'staged-readback.json'))
+     save(D/'review.json',value)
+     selected=[p for p in D.rglob('*') if p.is_file()]
+-    selected += [SD/'CAPSULE372.json',SD/'source-contract.json',SD/'source-owner.json']
+-    selected+=[R/'docs/phase375_independent_actual_readback_source_spec.md',R/'tests/phase375_independent_restored_readback.py']
+-    save(D/'owned-files.json',dict(schema='phase375-independent-readback-owner/1',files=[desc(p) for p in sorted(selected)],no_more_writes=True,external_paths_provenance_only=True))
++    selected += [SD/'CAPSULE377.json',SD/'source-contract.json',SD/'source-owner.json']
++    selected+=[R/'docs/phase381_independent_partial_restore_readback_source_spec.md',R/'tests/phase381_independent_restored_readback.py']
++    save(D/'owned-files.json',dict(schema='phase381-independent-readback-owner/1',files=[desc(p) for p in sorted(selected)],no_more_writes=True,external_paths_provenance_only=True))
+     for row in read(D/'owned-files.json')['files']:verify_descriptor(R,row)
+     print(json.dumps(dict(status=value['status'],review=desc(D/'review.json'),owner=desc(D/'owned-files.json'),observations=result,failure=failure)))
+     return 0 if failure is None else 1

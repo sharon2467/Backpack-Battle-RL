@@ -1,0 +1,46 @@
+{
+  "actual_SOURCE_config_equal_by_readonly_JSON_fields": true,
+  "actual_bool_key": "player_fixture_enabled",
+  "actual_collector_failure": {
+    "path": "output/capture/collector-first-failure.json",
+    "root": "failed_run",
+    "sha256": "e18256bb68f1eb7bf86278b93ab5ebfb96939b20dce008f9f592f3c43c450fcd",
+    "size": 124
+  },
+  "actual_config": {
+    "path": "project/native_capture_config.json",
+    "root": "pool",
+    "sha256": "dbded47b0896eb3efa859b75aacab673da495a32b845c1e795090969ad76f2c8",
+    "size": 229
+  },
+  "cause": "Slot-only helper unsupported BOOL used by collector config caller",
+  "frozen_collector": {
+    "path": "data/phase362-oracle-capture-source/collector.gd",
+    "root": "source_root",
+    "sha256": "35676e172400f079dfd3415eafc42103e130bdb1efcfe8fdaad6428faf4854ca",
+    "size": 44575
+  },
+  "frozen_helper": {
+    "path": "data/phase359-king-producer-source/after-source/native_random_observer_sink_v7.gd",
+    "root": "source_root",
+    "sha256": "963f531d73c38aae6d1e87f48396c90a37cc4497e29a8380d13ca76638f51838",
+    "size": 87752
+  },
+  "helper_BOOL_branch_present": false,
+  "new_processes": 0,
+  "proposed_minimal_repair": "Config-only exact keys and true BOOL gate; local copies remove bool; old slot helper validates rest. No359/P/O/seed change.",
+  "schema": "phase365-control-source-finding/1",
+  "secondary_failure": "Host unconditional validation.json read masks first collector failure",
+  "unique_language_probe": {
+    "Array_native_equal": true,
+    "BOOL_false_false_helper": false,
+    "BOOL_true_true_helper": false,
+    "Dictionary_native_equal": "false for independent dict; true for alias",
+    "JSON_REAL_vs_CONST_INT_helper": true,
+    "clean": true,
+    "config_only_bad_key": "player_fixture_enabled",
+    "evidence_status": "ROOT_REPORTED_FACTS_INDEPENDENT_ARTIFACT_PIN_PENDING",
+    "exit_code": 0,
+    "seconds": 2.46
+  }
+}

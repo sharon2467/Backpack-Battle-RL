@@ -138,3 +138,7 @@ The first actual attempt and independent BOOL-domain diagnosis are preserved in 
 ## Actual restoration and second startup failure
 
 [Phase367 standalone capsules](../work_in_progress/phase367/README.md) preserve actual366 restoration/independent readbacks/RootREADY, actual367 failed startup and its independent source diagnosis. Follow that README's explicit evidence extraction after the main restore and flat SOURCE supplements. The pool is currently failed again; no battle/model or King acceptance is implied. This supplements the archived354 counts and does not replay a restore chain.
+
+## Descriptor preflight and partial-reset recovery work cut
+
+[380](../work_in_progress/phase380/README.md) preserves the descriptor-bound installer/recovery SOURCE and its first independent checker failure. [382](../work_in_progress/phase382/README.md) contains bounded independent component acceptance:9inherited SOURCE checks,26actual dynamic definitions and4explicitly unexecuted negative layers. Full recovery/wholehost/native positives remain separate. [381](../work_in_progress/phase381/README.md) preserves a proposed physical readback checker and its two SOURCE review failures; that version has not been executed. All are flat additive snapshots, with exact FILES/owner manifests. Production remains bounded75; King and the full engine/RL remain incomplete.

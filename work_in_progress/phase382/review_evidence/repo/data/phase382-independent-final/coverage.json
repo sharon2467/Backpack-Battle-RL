@@ -1,0 +1,546 @@
+{
+  "definitions": [
+    {
+      "plan": {
+        "id": "S01",
+        "mode": "SOURCE_AFTER_FREEZE",
+        "subject": "new freeze/write set and conserved authority",
+        "expected": "Verify actual new pins and declared SOURCE deltas only after freeze;375 Food107/INT22/75GD/collector/methods/model15/process policy and356/361 remain exact, no getter/RNG/Engine invocation."
+      },
+      "actual": {
+        "id": "S01",
+        "status": "PASS",
+        "source_owner_leaves": 23,
+        "freeze_files": 143,
+        "runtime_imports": 0
+      }
+    },
+    {
+      "plan": {
+        "id": "S02",
+        "mode": "SOURCE_AFTER_FREEZE",
+        "subject": "complete shared payload graph",
+        "expected": "Exactly75 patch sources,3 artifacts,3 input copy authorities and driver/root/review/schema/source-tuple identities; intentional identical config payload in distinct destinations is explicit, not mistaken for overlap."
+      },
+      "actual": {
+        "id": "S02",
+        "status": "PASS",
+        "expected_install_payloads": 78,
+        "bytes": 807199,
+        "resolver_frozen_graph_only": true
+      }
+    },
+    {
+      "plan": {
+        "id": "S03",
+        "mode": "SOURCE_AFTER_FREEZE",
+        "subject": "actual caller timing",
+        "expected": "Shared actual source validation before plan returns and execute lease/reset; reverify plan graph, no caller preflight Boolean. Do not apply new post-reset target before-images to oldREADY tree before reset."
+      },
+      "actual": {
+        "id": "S03",
+        "status": "PASS",
+        "caller_order": "resolve+freshverify before lease/reset; targetbefore only inside install"
+      }
+    },
+    {
+      "plan": {
+        "id": "S04",
+        "mode": "SOURCE_AFTER_FREEZE",
+        "subject": "direct install independent boundary",
+        "expected": "New public install calls complete source-and-target preflight before backup.mkdir, journal, or atomic_image; no reliance on HOST-only validation."
+      },
+      "actual": {
+        "id": "S04",
+        "status": "PASS",
+        "direct_install_independent_preflight": true
+      }
+    },
+    {
+      "plan": {
+        "id": "S05",
+        "mode": "SOURCE_AFTER_FREEZE",
+        "subject": "old strict writer conservation",
+        "expected": "regular_target/atomic_image/write/fsync/per-file metadata safety exact reused; changed cache/journal routines explicitly listed, not false whole-module identity."
+      },
+      "actual": {
+        "id": "S05",
+        "status": "PASS",
+        "unchanged_functions": [
+          "regular_target",
+          "atomic_image",
+          "pin",
+          "directory",
+          "member",
+          "write_new",
+          "sync",
+          "read",
+          "budget",
+          "map_recorded",
+          "check_ready",
+          "state_write",
+          "lease",
+          "reset_previous",
+          "archive_streaming"
+        ]
+      }
+    },
+    {
+      "plan": {
+        "id": "S06",
+        "mode": "SOURCE_AFTER_FREEZE",
+        "subject": "validated immutable payload bytes",
+        "expected": "Finite verified source bytes feed write loop; no first artifact read/identity derivation occurs during backups or after target writes. Expected identity comes from descriptor, not current arbitrary bytes."
+      },
+      "actual": {
+        "id": "S06",
+        "status": "PASS",
+        "immutable_cachebytes_source": true
+      }
+    },
+    {
+      "plan": {
+        "id": "S07",
+        "mode": "SOURCE_AFTER_FREEZE",
+        "subject": "partial reset provenance",
+        "expected": "New schema current==preserved==reset.after and target==old026==reset.before==previous inventory; exactly2 absences have deletion evidence and exact target payloads, raw75 backups are prefix evidence, no complete journal."
+      },
+      "actual": {
+        "id": "S07",
+        "status": "PASS",
+        "hard_real_saved_proof": true,
+        "full_synthetic_recover_positive": false
+      }
+    },
+    {
+      "plan": {
+        "id": "S08",
+        "mode": "SOURCE_AFTER_FREEZE",
+        "subject": "partial target/write/READY barriers",
+        "expected": "Only evidenced2 before-null creates; other path/kind/payload/metadata strict. Full tiny target readback and failed state required; actual independent report and Root READY are not bypassed."
+      },
+      "actual": {
+        "id": "S08",
+        "status": "PASS",
+        "tiny_mutation_unit_allowed": true,
+        "actual_recover_and_READY_not_run": true
+      }
+    },
+    {
+      "plan": {
+        "id": "S09",
+        "mode": "SOURCE_AFTER_FREEZE",
+        "subject": "scope and firstfailure preservation",
+        "expected": "No old schemas broadened, unknown extra/missing path auto-deleted, failed journal synthesized, actual restore inferred, Game/native admission granted or source read called a full12 positive."
+      },
+      "actual": {
+        "id": "S09",
+        "status": "PASS",
+        "runtime_and_admission_sources_unchanged": true,
+        "dynamic_limits": "No wholehost/actual12/actualpool/parse positive"
+      }
+    },
+    {
+      "plan": {
+        "id": "R01",
+        "mode": "FUTURE_REAL_RESOLVER_UNIT",
+        "subject": "actual reused collector alias positive",
+        "expected": "Resolve real frozen sourceRoot graph using valid collector descriptor elsewhere while guessed SOURCE/collector.gd is absent; no convenience copy. This is a source resolver result, not hostplan/native success."
+      },
+      "actual": {
+        "id": "R01",
+        "status": "PASS",
+        "scope": "real Source resolver only, not hostplan"
+      }
+    },
+    {
+      "plan": {
+        "id": "R02",
+        "mode": "FUTURE_REAL_RESOLVER_UNIT",
+        "subject": "full graph/intentional reuse positive",
+        "expected": "Check returned3 artifacts/3 inputs/75 patches plus schema/driver identities, all expected destinations and deliberate shared config bytes; no inferred aliases."
+      },
+      "actual": {
+        "id": "R02",
+        "status": "PASS",
+        "scope": "actual graph source identity only"
+      }
+    },
+    {
+      "plan": {
+        "id": "R03",
+        "mode": "FUTURE_REAL_RESOLVER_UNIT",
+        "subject": "missing source categories",
+        "expected": "Owned tiny graph: missing patch; each of3 artifacts; input; schema; driver. Each must fail before lease/reset or backup; variant calls counted individually."
+      },
+      "actual": {
+        "id": "R03",
+        "status": "PASS",
+        "variants": 7
+      }
+    },
+    {
+      "plan": {
+        "id": "R04",
+        "mode": "FUTURE_REAL_RESOLVER_UNIT",
+        "subject": "wrong hash or wrong source file",
+        "expected": "Owned tiny graph: patch/artifact/input/schema/driver cases with valid-looking wrong bytes or unrelated same-name payload reject against declared identity."
+      },
+      "actual": {
+        "id": "R04",
+        "status": "PASS",
+        "variants": 5
+      }
+    },
+    {
+      "plan": {
+        "id": "R05",
+        "mode": "FUTURE_REAL_RESOLVER_UNIT",
+        "subject": "strict descriptor scalar/shape",
+        "expected": "BOOL size, wrong size, negative/string size, malformed hash/unknown descriptor keys reject without reading a guessed payload."
+      },
+      "actual": {
+        "id": "R05",
+        "status": "PASS",
+        "variants": 5
+      }
+    },
+    {
+      "plan": {
+        "id": "R06",
+        "mode": "FUTURE_REAL_RESOLVER_UNIT",
+        "subject": "wrong source type",
+        "expected": "Directory/nonregular instead of declared file rejects; no filename-based acceptance."
+      },
+      "actual": {
+        "id": "R06",
+        "status": "PASS"
+      }
+    },
+    {
+      "plan": {
+        "id": "R07",
+        "mode": "FUTURE_REAL_RESOLVER_UNIT",
+        "subject": "source link aliases",
+        "expected": "Symlink and hardlink source leaf/ancestor cases reject according to frozen source safety contract, no traversal to old workspace."
+      },
+      "actual": {
+        "id": "R07",
+        "status": "PASS",
+        "variants": 2
+      }
+    },
+    {
+      "plan": {
+        "id": "R08",
+        "mode": "FUTURE_REAL_RESOLVER_UNIT",
+        "subject": "unsafe source names/root escape",
+        "expected": "Absolute/traversal/noncanonical source paths or unsafe binding roots reject, no copy into the guessed directory."
+      },
+      "actual": {
+        "id": "R08",
+        "status": "PASS",
+        "variants": 2
+      }
+    },
+    {
+      "plan": {
+        "id": "R09",
+        "mode": "FUTURE_REAL_RESOLVER_UNIT",
+        "subject": "duplicate/conflicting identities",
+        "expected": "Duplicate source/destination or same-path conflicting expected identity rejects; distinguish legitimate same immutable source reused in distinct declared destinations."
+      },
+      "actual": {
+        "id": "R09",
+        "status": "PASS"
+      }
+    },
+    {
+      "plan": {
+        "id": "R10",
+        "mode": "FUTURE_REAL_RESOLVER_UNIT",
+        "subject": "patch/artifact destination overlap",
+        "expected": "Reject collision between project patch and artifact destinations; reject aliases resolving to one mutable target."
+      },
+      "actual": {
+        "id": "R10",
+        "status": "PASS"
+      }
+    },
+    {
+      "plan": {
+        "id": "R11",
+        "mode": "FUTURE_REAL_RESOLVER_UNIT",
+        "subject": "missing required source tuple/graph member",
+        "expected": "Collector omitted or schema/active tuple replaced with merely historical native_source_origin cannot satisfy the actual payload graph."
+      },
+      "actual": {
+        "id": "R11",
+        "status": "PASS",
+        "variants": 2
+      }
+    },
+    {
+      "plan": {
+        "id": "R12",
+        "mode": "FUTURE_REAL_RESOLVER_UNIT",
+        "subject": "graph drift before mutation",
+        "expected": "Resolve a valid tiny graph, change a source, call the real reverify boundary; reject before lease/reset. HOST call placement is static plus real helper evidence, not a fake hostplan positive."
+      },
+      "actual": {
+        "id": "R12",
+        "status": "PASS",
+        "scope": "real helper + static prelease caller proof; not hostplan execution"
+      }
+    },
+    {
+      "plan": {
+        "id": "I01",
+        "mode": "FUTURE_REAL_DIRECT_INSTALLER_TINYFS",
+        "subject": "public install success",
+        "expected": "Invoke the actual new public installer once on owned tiny source/project: existing patch + new patch/sink and3 artifacts. Verify full journal persisted before installed loop outcome, exact bytes and preserved metadata, no real Game tree. Count actual install/write calls."
+      },
+      "actual": {
+        "id": "I01",
+        "status": "PASS",
+        "installed_targets": 5
+      }
+    },
+    {
+      "plan": {
+        "id": "I02",
+        "mode": "FUTURE_REAL_DIRECT_INSTALLER_TINYFS",
+        "subject": "missing late artifact direct bypass",
+        "expected": "Bypass HOST intentionally and supply a missing final artifact source; public installer must reject with no backup directory and complete tiny target inventory unchanged."
+      },
+      "actual": {
+        "id": "I02",
+        "status": "PASS",
+        "scope": "real direct public helper, no HOST preflight"
+      }
+    },
+    {
+      "plan": {
+        "id": "I03",
+        "mode": "FUTURE_REAL_DIRECT_INSTALLER_TINYFS",
+        "subject": "wrong patch/artifact identity direct bypass",
+        "expected": "Real direct helper rejects altered patch and artifact payload against declared identity before any backup or target write; parameter calls recorded."
+      },
+      "actual": {
+        "id": "I03",
+        "status": "PASS",
+        "scope": "real direct public helper, no HOST preflight"
+      }
+    },
+    {
+      "plan": {
+        "id": "I04",
+        "mode": "FUTURE_REAL_DIRECT_INSTALLER_TINYFS",
+        "subject": "artifact wrong source type",
+        "expected": "Real direct helper rejects directory/nonregular payload with unchanged tiny source/project/backup state."
+      },
+      "actual": {
+        "id": "I04",
+        "status": "PASS",
+        "scope": "real direct public helper, no HOST preflight"
+      }
+    },
+    {
+      "plan": {
+        "id": "I05",
+        "mode": "FUTURE_REAL_DIRECT_INSTALLER_TINYFS",
+        "subject": "artifact linked source direct bypass",
+        "expected": "Symlink/hardlink source rejection occurs before backup creation even if HOST was never called."
+      },
+      "actual": {
+        "id": "I05",
+        "status": "PASS",
+        "scope": "real direct public helper, no HOST preflight"
+      }
+    },
+    {
+      "plan": {
+        "id": "I06",
+        "mode": "FUTURE_REAL_DIRECT_INSTALLER_TINYFS",
+        "subject": "unsafe destination/overlap direct bypass",
+        "expected": "Actual installer rejects path escape/patch-artifact target overlap before backups/mutation; no trusted HOST list shortcut."
+      },
+      "actual": {
+        "id": "I06",
+        "status": "PASS",
+        "scope": "real direct public helper, no HOST preflight"
+      }
+    },
+    {
+      "plan": {
+        "id": "I07",
+        "mode": "FUTURE_REAL_DIRECT_INSTALLER_TINYFS",
+        "subject": "strict target preimage before backup",
+        "expected": "Wrong existing target before-hash or unsafe target alias rejects during complete preflight before backups. Old writer safety is reused by identity; no repeated old363 standalone batch."
+      },
+      "actual": {
+        "id": "I07",
+        "status": "PASS",
+        "scope": "real direct public helper, no HOST preflight"
+      }
+    },
+    {
+      "plan": {
+        "id": "P01",
+        "mode": "FUTURE_REAL_PARTIAL_RECOVERY_TINYFS",
+        "subject": "known2-create positive",
+        "expected": "Actual new recovery helper on an owned tiny saved-evidence fixture creates only marker+sink proven absent; verifies all target bytes/mode/mtime and leaves original failed-state bytes intact. Full actual pool recovery is not performed."
+      },
+      "actual": {
+        "id": "P01",
+        "status": "PASS",
+        "synthetic_creates": 2,
+        "full_recover_positive": false
+      }
+    },
+    {
+      "plan": {
+        "id": "P02",
+        "mode": "FUTURE_REAL_PARTIAL_RECOVERY_TINYFS",
+        "subject": "old completed-install map",
+        "expected": "Reject old375 completed-installed-tree schema/map under partial-reset protocol; do not make old entrypoint accept new missing paths implicitly."
+      },
+      "actual": {
+        "id": "P02",
+        "status": "SOURCE_AND_ACTUAL_SAVED_POSITIVE_NEGATIVE_NOT_EXECUTED",
+        "reason": "completed-map entrypoint requires genuine Root/source acceptance, not synthesized"
+      }
+    },
+    {
+      "plan": {
+        "id": "P03",
+        "mode": "FUTURE_REAL_PARTIAL_RECOVERY_TINYFS",
+        "subject": "unknown extra path",
+        "expected": "Reject and preserve unknown current extra file, no auto-delete/move or invented target."
+      },
+      "actual": {
+        "id": "P03",
+        "status": "PASS",
+        "scope": "isolated actual restore_exact mutation guards; reset/full-source verification not claimed"
+      }
+    },
+    {
+      "plan": {
+        "id": "P04",
+        "mode": "FUTURE_REAL_PARTIAL_RECOVERY_TINYFS",
+        "subject": "third absent target",
+        "expected": "Reject any additional missing target beyond the two evidenced paths; no broad keys-subset admission."
+      },
+      "actual": {
+        "id": "P04",
+        "status": "PASS",
+        "scope": "isolated actual restore_exact mutation guards; reset/full-source verification not claimed"
+      }
+    },
+    {
+      "plan": {
+        "id": "P05",
+        "mode": "FUTURE_REAL_PARTIAL_RECOVERY_TINYFS",
+        "subject": "fabricated complete journal",
+        "expected": "Presence or substituted complete preimages.json at the claimed no-journal cut rejects, never treated as original recovered evidence."
+      },
+      "actual": {
+        "id": "P05",
+        "status": "SOURCE_AND_ACTUAL_SAVED_POSITIVE_NEGATIVE_NOT_EXECUTED",
+        "reason": "fake-journal negative requires a valid full saved prefix; actual saved positive and explicit SOURCE predicate only"
+      }
+    },
+    {
+      "plan": {
+        "id": "P06",
+        "mode": "FUTURE_REAL_PARTIAL_RECOVERY_TINYFS",
+        "subject": "reset-before/oldtarget mismatch",
+        "expected": "Reject target != reset.before/previous inventory/old026 bundle; metadata origin remains complete target manifest."
+      },
+      "actual": {
+        "id": "P06",
+        "status": "SOURCE_AND_ACTUAL_SAVED_POSITIVE_NEGATIVE_NOT_EXECUTED",
+        "reason": "reset/target tamper negative not accepted via synthetic mutation DTO; actual saved equality checked"
+      }
+    },
+    {
+      "plan": {
+        "id": "P07",
+        "mode": "FUTURE_REAL_PARTIAL_RECOVERY_TINYFS",
+        "subject": "current/reset-after mismatch",
+        "expected": "Reject preserved current != reset.after, including unexpected contents or pathset; no stale preservation receipt acceptance."
+      },
+      "actual": {
+        "id": "P07",
+        "status": "PASS",
+        "scope": "isolated actual restore_exact mutation guards; reset/full-source verification not claimed"
+      }
+    },
+    {
+      "plan": {
+        "id": "P08",
+        "mode": "FUTURE_REAL_PARTIAL_RECOVERY_TINYFS",
+        "subject": "missing creation/deletion proof",
+        "expected": "Reject missing2 deletion evidence, target payload or before-null provenance; no filename-only known2 exception."
+      },
+      "actual": {
+        "id": "P08",
+        "status": "PASS",
+        "scope": "isolated actual restore_exact mutation guards; reset/full-source verification not claimed"
+      }
+    },
+    {
+      "plan": {
+        "id": "P09",
+        "mode": "FUTURE_REAL_PARTIAL_RECOVERY_TINYFS",
+        "subject": "bad restore payload/metadata/staged source",
+        "expected": "Reject corrupted old-after payload, incorrect authoritative mode/mtime, or staged-data identity. Each mutation uses new tiny fixture and has zero writes before full evidence check."
+      },
+      "actual": {
+        "id": "P09",
+        "status": "PASS",
+        "scope": "isolated actual restore_exact mutation guards; reset/full-source verification not claimed"
+      }
+    },
+    {
+      "plan": {
+        "id": "P10",
+        "mode": "FUTURE_REAL_PARTIAL_RECOVERY_TINYFS",
+        "subject": "raw75 prefix corrupted or incomplete",
+        "expected": "Reject missing/hash-bad/index-misassociated numeric backup prefix. Do not use raw original-before bytes as old patched-after payload or derive oldmode/mtime from them."
+      },
+      "actual": {
+        "id": "P10",
+        "status": "SOURCE_AND_ACTUAL_SAVED_POSITIVE_NEGATIVE_NOT_EXECUTED",
+        "reason": "raw75 tamper negative not constructed by copying large preserved trees; actual saved75 proof and SOURCE predicates checked"
+      }
+    },
+    {
+      "plan": {
+        "id": "P11",
+        "mode": "FUTURE_REAL_PARTIAL_RECOVERY_TINYFS",
+        "subject": "READY remains separate",
+        "expected": "With no real owned independent fulltree receipt, actual new helper refuses commit/READY; synthetic successful restore remains failed and never confers actual pool authorization."
+      },
+      "actual": {
+        "id": "P11",
+        "status": "PASS",
+        "scope": "real public recover Root negative; no accepted ROOT/recover positive"
+      }
+    }
+  ],
+  "definition_count": 39,
+  "SOURCE_gates": 9,
+  "actual_dynamic_definition_PASS": 26,
+  "negative_api_layers_NOT_EXECUTED": [
+    "P02",
+    "P05",
+    "P06",
+    "P10"
+  ],
+  "P09_limit": "Corrupt first payload and actual staged mismatch tested; authoritative target-mode/mtime tamper rejection at production verification API not tested by unverified DTO. Tiny known2 success does prove exact target metadata restoration.",
+  "full_public_recover_positive": false,
+  "verify_evidence_positive": false,
+  "full_host_plan_positive": false,
+  "actual12": false
+}

@@ -1,0 +1,562 @@
+{
+  "status": "PASS_BOUNDED_COMPONENT_SCOPE",
+  "results": [
+    {
+      "id": "R01",
+      "status": "PASS",
+      "scope": "real Source resolver only, not hostplan"
+    },
+    {
+      "id": "R02",
+      "status": "PASS",
+      "scope": "actual graph source identity only"
+    },
+    {
+      "id": "R03",
+      "status": "PASS",
+      "variants": 7
+    },
+    {
+      "id": "R04",
+      "status": "PASS",
+      "variants": 5
+    },
+    {
+      "id": "R05",
+      "status": "PASS",
+      "variants": 5
+    },
+    {
+      "id": "R06",
+      "status": "PASS"
+    },
+    {
+      "id": "R07",
+      "status": "PASS",
+      "variants": 2
+    },
+    {
+      "id": "R08",
+      "status": "PASS",
+      "variants": 2
+    },
+    {
+      "id": "R09",
+      "status": "PASS"
+    },
+    {
+      "id": "R10",
+      "status": "PASS"
+    },
+    {
+      "id": "R11",
+      "status": "PASS",
+      "variants": 2
+    },
+    {
+      "id": "R12",
+      "status": "PASS",
+      "scope": "real helper + static prelease caller proof; not hostplan execution"
+    },
+    {
+      "id": "I01",
+      "status": "PASS",
+      "installed_targets": 5
+    },
+    {
+      "id": "I02",
+      "status": "PASS",
+      "scope": "real direct public helper, no HOST preflight"
+    },
+    {
+      "id": "I03",
+      "status": "PASS",
+      "scope": "real direct public helper, no HOST preflight"
+    },
+    {
+      "id": "I04",
+      "status": "PASS",
+      "scope": "real direct public helper, no HOST preflight"
+    },
+    {
+      "id": "I05",
+      "status": "PASS",
+      "scope": "real direct public helper, no HOST preflight"
+    },
+    {
+      "id": "I06",
+      "status": "PASS",
+      "scope": "real direct public helper, no HOST preflight"
+    },
+    {
+      "id": "I07",
+      "status": "PASS",
+      "scope": "real direct public helper, no HOST preflight"
+    },
+    {
+      "id": "P01",
+      "status": "PASS",
+      "synthetic_creates": 2,
+      "full_recover_positive": false
+    },
+    {
+      "id": "P03",
+      "status": "PASS",
+      "scope": "isolated actual restore_exact mutation guards; reset/full-source verification not claimed"
+    },
+    {
+      "id": "P04",
+      "status": "PASS",
+      "scope": "isolated actual restore_exact mutation guards; reset/full-source verification not claimed"
+    },
+    {
+      "id": "P07",
+      "status": "PASS",
+      "scope": "isolated actual restore_exact mutation guards; reset/full-source verification not claimed"
+    },
+    {
+      "id": "P08",
+      "status": "PASS",
+      "scope": "isolated actual restore_exact mutation guards; reset/full-source verification not claimed"
+    },
+    {
+      "id": "P09",
+      "status": "PASS",
+      "scope": "isolated actual restore_exact mutation guards; reset/full-source verification not claimed"
+    },
+    {
+      "id": "P11",
+      "status": "PASS",
+      "scope": "real public recover Root negative; no accepted ROOT/recover positive"
+    },
+    {
+      "id": "P02",
+      "status": "SOURCE_AND_ACTUAL_SAVED_POSITIVE_NEGATIVE_NOT_EXECUTED",
+      "reason": "completed-map entrypoint requires genuine Root/source acceptance, not synthesized"
+    },
+    {
+      "id": "P05",
+      "status": "SOURCE_AND_ACTUAL_SAVED_POSITIVE_NEGATIVE_NOT_EXECUTED",
+      "reason": "fake-journal negative requires a valid full saved prefix; actual saved positive and explicit SOURCE predicate only"
+    },
+    {
+      "id": "P06",
+      "status": "SOURCE_AND_ACTUAL_SAVED_POSITIVE_NEGATIVE_NOT_EXECUTED",
+      "reason": "reset/target tamper negative not accepted via synthetic mutation DTO; actual saved equality checked"
+    },
+    {
+      "id": "P10",
+      "status": "SOURCE_AND_ACTUAL_SAVED_POSITIVE_NEGATIVE_NOT_EXECUTED",
+      "reason": "raw75 tamper negative not constructed by copying large preserved trees; actual saved75 proof and SOURCE predicates checked"
+    }
+  ],
+  "calls": [
+    {
+      "label": "R01.actual-reused-collector",
+      "API": "phase380_oracle_host.resolve_execute_payloads",
+      "outcome": "accept",
+      "return_type": "dict"
+    },
+    {
+      "label": "R02.actual-fullgraph",
+      "API": "phase380_oracle_host.verify_execute_payloads",
+      "outcome": "accept",
+      "return_type": "dict"
+    },
+    {
+      "label": "R03.patch",
+      "API": "phase380_oracle_host.verify_execute_payloads",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "missing mutable regular target: /workspace/python-original-engine/repo/data/phase382-independent-bound-first-001/source-mirror/data/phase359-king-producer-source/after-source/Core/Buff.gd"
+    },
+    {
+      "label": "R03.artifact0",
+      "API": "phase380_oracle_host.verify_execute_payloads",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "missing mutable regular target: /workspace/python-original-engine/repo/data/phase382-independent-bound-first-001/source-mirror/data/phase370-oracle-source/collector.gd"
+    },
+    {
+      "label": "R03.artifact1",
+      "API": "phase380_oracle_host.verify_execute_payloads",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "missing mutable regular target: /workspace/python-original-engine/repo/data/phase382-independent-bound-first-001/source-mirror/data/phase362-oracle-capture-source/case-A/native_capture_config.json"
+    },
+    {
+      "label": "R03.artifact2",
+      "API": "phase380_oracle_host.verify_execute_payloads",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "missing mutable regular target: /workspace/python-original-engine/repo/data/phase382-independent-bound-first-001/source-mirror/data/phase362-oracle-capture-source/disposable-marker.txt"
+    },
+    {
+      "label": "R03.input",
+      "API": "phase380_oracle_host.verify_execute_payloads",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "missing mutable regular target: /workspace/python-original-engine/repo/data/phase382-independent-bound-first-001/source-mirror/data/phase362-oracle-capture-source/case-A/custom_player.json"
+    },
+    {
+      "label": "R03.schema",
+      "API": "phase380_oracle_host.verify_execute_payloads",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "missing mutable regular target: /workspace/python-original-engine/repo/data/phase382-independent-bound-first-001/source-mirror/tests/phase375_king_observer_schema.py"
+    },
+    {
+      "label": "R03.driver",
+      "API": "phase380_oracle_host.verify_execute_payloads",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "missing mutable regular target: /workspace/python-original-engine/repo/data/phase382-independent-bound-first-001/source-mirror/data/phase364-independent-startup-diagnosis/finding.json"
+    },
+    {
+      "label": "R04.patch",
+      "API": "phase380_oracle_host.verify_execute_payloads",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "payload source hash drift"
+    },
+    {
+      "label": "R04.artifact",
+      "API": "phase380_oracle_host.verify_execute_payloads",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "payload source hash drift"
+    },
+    {
+      "label": "R04.input",
+      "API": "phase380_oracle_host.verify_execute_payloads",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "payload source hash drift"
+    },
+    {
+      "label": "R04.schema",
+      "API": "phase380_oracle_host.verify_execute_payloads",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "payload source hash drift"
+    },
+    {
+      "label": "R04.driver",
+      "API": "phase380_oracle_host.verify_execute_payloads",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "payload source hash drift"
+    },
+    {
+      "label": "R05.boolsize",
+      "API": "phase380_oracle_storage.check_source_descriptor",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "strict payload sizeINT/SHA identity"
+    },
+    {
+      "label": "R05.negative",
+      "API": "phase380_oracle_storage.check_source_descriptor",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "strict payload sizeINT/SHA identity"
+    },
+    {
+      "label": "R05.string",
+      "API": "phase380_oracle_storage.check_source_descriptor",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "strict payload sizeINT/SHA identity"
+    },
+    {
+      "label": "R05.badhash",
+      "API": "phase380_oracle_storage.check_source_descriptor",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "strict payload sizeINT/SHA identity"
+    },
+    {
+      "label": "R05.extra",
+      "API": "phase380_oracle_storage.check_source_descriptor",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "exact source-root payload descriptor"
+    },
+    {
+      "label": "R06",
+      "API": "phase380_oracle_host.verify_execute_payloads",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "mutable target must be regular+nlink1: /workspace/python-original-engine/repo/data/phase382-independent-bound-first-001/source-mirror/data/phase370-oracle-source/collector.gd"
+    },
+    {
+      "label": "R07.symlink",
+      "API": "phase380_oracle_host.verify_execute_payloads",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "symlink member/ancestor"
+    },
+    {
+      "label": "R07.hardlink",
+      "API": "phase380_oracle_host.verify_execute_payloads",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "mutable target must be regular+nlink1: /workspace/python-original-engine/repo/data/phase382-independent-bound-first-001/source-mirror/data/phase370-oracle-source/collector.gd"
+    },
+    {
+      "label": "R08.../outside",
+      "API": "phase380_oracle_storage.check_source_descriptor",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "safe canonical relative member"
+    },
+    {
+      "label": "R08./workspace/python-original-engine/repo/data/phase382-independent-bound-first-001/outside",
+      "API": "phase380_oracle_storage.check_source_descriptor",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "safe canonical relative member"
+    },
+    {
+      "label": "R09",
+      "API": "phase380_oracle_host.verify_execute_payloads",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "same source path has conflicting identities"
+    },
+    {
+      "label": "R10",
+      "API": "phase380_oracle_host.verify_execute_payloads",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "overlapping mutable artifact destination"
+    },
+    {
+      "label": "R11.schema",
+      "API": "phase380_oracle_host.verify_execute_payloads",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "required explicit source origins"
+    },
+    {
+      "label": "R11.collector",
+      "API": "phase380_oracle_host.verify_execute_payloads",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "complete fixed artifact and case-input destinations"
+    },
+    {
+      "label": "R12.resolve-before-drift",
+      "API": "phase380_oracle_host.resolve_execute_payloads",
+      "outcome": "accept",
+      "return_type": "dict"
+    },
+    {
+      "label": "R12.verify-after-drift",
+      "API": "phase380_oracle_host.verify_execute_payloads",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "payload source hash drift"
+    },
+    {
+      "label": "I01.publicinstall",
+      "API": "phase380_oracle_storage.install",
+      "outcome": "accept",
+      "return_type": "list"
+    },
+    {
+      "label": "I02",
+      "API": "phase380_oracle_storage.install",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "missing mutable regular target: /workspace/python-original-engine/repo/data/phase382-independent-bound-first-001/installer/I02/source/reused/origin/collector.gd"
+    },
+    {
+      "label": "I03.artifact",
+      "API": "phase380_oracle_storage.install",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "payload source hash drift"
+    },
+    {
+      "label": "I04",
+      "API": "phase380_oracle_storage.install",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "mutable target must be regular+nlink1: /workspace/python-original-engine/repo/data/phase382-independent-bound-first-001/installer/I04/source/reused/origin/collector.gd"
+    },
+    {
+      "label": "I05.symlink",
+      "API": "phase380_oracle_storage.install",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "symlink member/ancestor"
+    },
+    {
+      "label": "I05.hardlink",
+      "API": "phase380_oracle_storage.install",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "mutable target must be regular+nlink1: /workspace/python-original-engine/repo/data/phase382-independent-bound-first-001/installer/I05.hardlink/source/reused/origin/collector.gd"
+    },
+    {
+      "label": "I06.escape",
+      "API": "phase380_oracle_storage.install",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "safe canonical relative member"
+    },
+    {
+      "label": "I03.patch",
+      "API": "phase380_oracle_storage.install",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "payload source hash drift"
+    },
+    {
+      "label": "I06.overlap",
+      "API": "phase380_oracle_storage.install",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "overlapping source/artifact destination"
+    },
+    {
+      "label": "I07.wrongbefore",
+      "API": "phase380_oracle_storage.install",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "strict original source preimage"
+    },
+    {
+      "label": "I07.hardlink",
+      "API": "phase380_oracle_storage.install",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "mutable target must be regular+nlink1: /workspace/python-original-engine/repo/data/phase382-independent-bound-first-001/installer/I07.hardlink/project/Core/A.gd"
+    },
+    {
+      "label": "P.SAVED.actual-analysis",
+      "API": "phase380_partial_map.analyze_saved_partial",
+      "outcome": "accept",
+      "return_type": "dict"
+    },
+    {
+      "label": "P01.restore_exact",
+      "API": "phase380_pool_recovery.restore_exact",
+      "outcome": "accept",
+      "return_type": "dict"
+    },
+    {
+      "label": "P03",
+      "API": "phase380_pool_recovery.restore_exact",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "actual current tree must equal preserved failed tree"
+    },
+    {
+      "label": "P04",
+      "API": "phase380_pool_recovery.restore_exact",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "exact2 partial-map creations only"
+    },
+    {
+      "label": "P07",
+      "API": "phase380_pool_recovery.restore_exact",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "actual current tree must equal preserved failed tree"
+    },
+    {
+      "label": "P08",
+      "API": "phase380_pool_recovery.restore_exact",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "exact2 partial-map creations only"
+    },
+    {
+      "label": "P09.payload",
+      "API": "phase380_pool_recovery.restore_exact",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "payload changed before write"
+    },
+    {
+      "label": "P09.staged",
+      "API": "phase380_pool_recovery.restore_exact",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "actual current tree must equal preserved failed tree"
+    },
+    {
+      "label": "P11.public-recover-unauthorized",
+      "API": "phase380_pool_recovery.recover",
+      "outcome": "reject",
+      "exception": "ValueError",
+      "message": "explicit root action required"
+    }
+  ],
+  "imports": [
+    {
+      "name": "native_run_compaction",
+      "path": "/workspace/python-original-engine/repo/data/phase382-independent-bound-source/SOURCE/compaction.py",
+      "size": 27304,
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260"
+    },
+    {
+      "name": "phase363_oracle_storage",
+      "path": "/workspace/python-original-engine/repo/data/phase382-independent-bound-source/SOURCE/old_storage.py",
+      "size": 15496,
+      "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc"
+    },
+    {
+      "name": "phase363_oracle_process",
+      "path": "/workspace/python-original-engine/repo/data/phase382-independent-bound-source/SOURCE/process.py",
+      "size": 13665,
+      "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f"
+    },
+    {
+      "name": "phase380_oracle_storage",
+      "path": "/workspace/python-original-engine/repo/data/phase382-independent-bound-source/SOURCE/storage.py",
+      "size": 20410,
+      "sha256": "c5b0cb3ab0ccc2c9865c36da531c050c577b46849c2c6ce763a4cc365813e601"
+    },
+    {
+      "name": "phase380_oracle_host",
+      "path": "/workspace/python-original-engine/repo/data/phase382-independent-bound-source/SOURCE/host.py",
+      "size": 23859,
+      "sha256": "588486979f0887abea6ed35e0e66762684e7b416303294fc3fc1eb045b39e92a"
+    },
+    {
+      "name": "phase380_partial_map",
+      "path": "/workspace/python-original-engine/repo/data/phase382-independent-bound-source/SOURCE/partial.py",
+      "size": 11706,
+      "sha256": "aaf1c0917fcdc7b24ab1719a0531f7412a1b7145e03e6c3d4cecda3f723e7526"
+    },
+    {
+      "name": "phase380_pool_recovery",
+      "path": "/workspace/python-original-engine/repo/data/phase382-independent-bound-source/SOURCE/recovery.py",
+      "size": 15081,
+      "sha256": "edf68ef1c9dbbfbf6c66b6275a4534065df32ea96a3d12c55d1720e062a2a5c7"
+    },
+    {
+      "name": "phase380_independent_control_draft",
+      "path": "/workspace/python-original-engine/repo/data/phase382-independent-bound-source/SOURCE/draft.py",
+      "size": 11299,
+      "sha256": "ad0fff9af6c4a6a0affb39d98b5676240d9560f25724341722e88309e7fd545d"
+    }
+  ],
+  "failure": null,
+  "audit": {
+    "blocked": []
+  },
+  "full_host_or_recover_positive": false,
+  "actual12positive": false,
+  "actualpool_reads": 0,
+  "actualpool_writes": 0,
+  "models": 0,
+  "Godot": 0,
+  "original_Game": 0,
+  "projection": 0,
+  "scope": "real Source resolver/public installer + actual saved analysis + synthetic mutation DTO component; no forged Root/production evidence"
+}

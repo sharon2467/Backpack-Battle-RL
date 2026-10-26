@@ -1,0 +1,33 @@
+{
+  "Root_acceptance": null,
+  "Root_attempt05_release": null,
+  "actual_SUT_calls": 0,
+  "actual_live_pool_inventory": 0,
+  "actual_native": 0,
+  "actual_restore": 0,
+  "artifact_declaration": "freeze.artifacts mandatory; exact equal argument; all descriptors must be in freeze.files",
+  "host_root_schema": "phase380-root-oracle-acceptance/1",
+  "installer": "install(source_root,project,freeze,artifacts:dict[target,exact source descriptor],backup): full own preflight before backup",
+  "known_creates": [
+    ".native-random-observer-disposable",
+    "native_random_observer_sink_v7.gd"
+  ],
+  "model356": "CLOSED",
+  "models": 0,
+  "partial_map": {
+    "path": "data/phase380-attempt04-partial-recovery-source/restore-map.json",
+    "sha256": "0b6d50d732c386ca79575841b90b57256b779826f8a3e3e0442661e4bc4e4844",
+    "size": 93104
+  },
+  "preload": {
+    "bytes": 807199,
+    "files": 78
+  },
+  "readback_status": "INDEPENDENT380_RESTORED_POOL_EXACT_TARGET_READBACK_PASS",
+  "reader361": "CLOSED",
+  "recovery_root_schema": "phase380-root-pool-recovery/1",
+  "resolver": "resolve_execute_payloads(source_root,freeze,driver_descriptors=()) -> closed graph; actual SOURCE reads, no pool",
+  "review_status": "INDEPENDENT380_PAYLOAD_PREFLIGHT_PARTIAL_SOURCE_ACCEPTED_ROOT_PENDING",
+  "schema": "phase380-api-contract/1",
+  "verifier": "verify_execute_payloads(source_root,graph) -> fresh actual identities, never boolproof"
+}
