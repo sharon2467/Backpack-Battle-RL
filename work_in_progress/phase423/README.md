@@ -1,0 +1,7 @@
+# Four actual initial target chains independently accepted
+
+423 independently verifies two AutoHide Timer roles at two initial cuts,four target chains using one rule family. Accepted current counts:1391DIRECT+4SOURCE_DERIVED+84MISSING out of1479targets. These are native-private double-1 SOURCE deductions,not direct private measurements or four newly supported items. Formal bounded75 is unchanged;King,fullschema,genuine bundle/fullinput/model and full engine/RL remain unadmitted/incomplete.
+
+Actual420 projection was not reexecuted. Independent verification reads the three original files once each for exact hashes and authorized initial prefixes only;Source G01/G02 and59controls were reused. Lineage117initial rows end beforecutline118/sharedseq348;selectedscene/readyseq36/37/38 precede initial138/1231. UI has1077rows throughfirstroles1076,bind1029,dragready1030/hideready1032 in its own sequence space. No cross-space ordering. Four chains compare eachrole's34supports back to the frozen411index.
+
+Lineage12371bytes labelled not-business-decoded includes530bytes of first-boundary lexical envelope inspection;fullyopaque tail11841. UI opaque tail10381. No suffix business JSON was decoded. The report describes38successful module reader calls,not a whole-OS trace. Custom build bitexact reproduction/private measurement remains explicitly unproved. Root acceptance records these limits. Do not repeat spent420release or infer remaining84inputs from expected/final state.
