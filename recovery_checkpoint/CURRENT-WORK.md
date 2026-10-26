@@ -11,3 +11,5 @@ Original Backpack Battles1.1.8 combat -> standalone Python -> RL remains IN_PROG
 Raw401fixedattempt06 host capture completed butGame exit0 was not clean-exit proof;unresolved ERROR remains.402 accepted terminal/source/process controls,notfullbusiness input. Main recovery instructions plus additive flat SOURCE trees andphase401/phase385case capsules remain required. Same-host isolated verification is notfreshOS validation;documented public baseline redactions/omissions and historical-path authority migration limits remain.
 
 Preserve originals andindependent acceptance. No master/force/PR/newenvironment or unauthorized interruption-note publication. No new oracle capture implied by this checkpoint.
+
+428 update:oneactualsaved-onlyKingBuffoverlay completed(exit0,0.114s),proposing2newchains/total6SOURCE_DERIVED/82missing.429actualreviewpending;accepted4/84unchanged.Three savedinputsunchanged,no rawcarrier/420helper/oracle/model. Do notrepeatspent426release.
