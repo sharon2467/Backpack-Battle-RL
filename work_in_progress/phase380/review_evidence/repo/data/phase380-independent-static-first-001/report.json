@@ -1,0 +1,78 @@
+{
+  "status": "PASS",
+  "rows": [
+    {
+      "id": "S01",
+      "status": "PASS",
+      "source_owner_leaves": 23,
+      "freeze_files": 143,
+      "runtime_imports": 0
+    },
+    {
+      "id": "S02",
+      "status": "PASS",
+      "expected_install_payloads": 78,
+      "bytes": 807199,
+      "resolver_frozen_graph_only": true
+    },
+    {
+      "id": "S03",
+      "status": "PASS",
+      "caller_order": "resolve+freshverify before lease/reset; targetbefore only inside install"
+    },
+    {
+      "id": "S04",
+      "status": "PASS",
+      "direct_install_independent_preflight": true
+    },
+    {
+      "id": "S05",
+      "status": "PASS",
+      "unchanged_functions": [
+        "regular_target",
+        "atomic_image",
+        "pin",
+        "directory",
+        "member",
+        "write_new",
+        "sync",
+        "read",
+        "budget",
+        "map_recorded",
+        "check_ready",
+        "state_write",
+        "lease",
+        "reset_previous",
+        "archive_streaming"
+      ]
+    },
+    {
+      "id": "S06",
+      "status": "PASS",
+      "immutable_cachebytes_source": true
+    },
+    {
+      "id": "S07",
+      "status": "PASS",
+      "hard_real_saved_proof": true,
+      "full_synthetic_recover_positive": false
+    },
+    {
+      "id": "S08",
+      "status": "PASS",
+      "tiny_mutation_unit_allowed": true,
+      "actual_recover_and_READY_not_run": true
+    },
+    {
+      "id": "S09",
+      "status": "PASS",
+      "runtime_and_admission_sources_unchanged": true,
+      "dynamic_limits": "No wholehost/actual12/actualpool/parse positive"
+    }
+  ],
+  "failure": null,
+  "SUT_imports": 0,
+  "SUT_calls": 0,
+  "actualpool_reads": 0,
+  "new_processes": 0
+}

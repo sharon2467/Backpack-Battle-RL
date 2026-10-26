@@ -1,0 +1,106 @@
+{
+  "status": "FAIL_FIRST_STOP",
+  "results": [],
+  "calls": [
+    {
+      "label": "R01.actual-reused-collector",
+      "API": "phase380_oracle_host.resolve_execute_payloads",
+      "outcome": "unexpected_exception",
+      "exception": "PermissionError",
+      "message": "outside frozen Source/unit/saved evidence boundary"
+    }
+  ],
+  "imports": [
+    {
+      "name": "native_run_compaction",
+      "path": "/workspace/python-original-engine/repo/data/phase380-independent-bound-source/SOURCE/compaction.py",
+      "size": 27304,
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260"
+    },
+    {
+      "name": "phase363_oracle_storage",
+      "path": "/workspace/python-original-engine/repo/data/phase380-independent-bound-source/SOURCE/old_storage.py",
+      "size": 15496,
+      "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc"
+    },
+    {
+      "name": "phase363_oracle_process",
+      "path": "/workspace/python-original-engine/repo/data/phase380-independent-bound-source/SOURCE/process.py",
+      "size": 13665,
+      "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f"
+    },
+    {
+      "name": "phase380_oracle_storage",
+      "path": "/workspace/python-original-engine/repo/data/phase380-independent-bound-source/SOURCE/storage.py",
+      "size": 20410,
+      "sha256": "c5b0cb3ab0ccc2c9865c36da531c050c577b46849c2c6ce763a4cc365813e601"
+    },
+    {
+      "name": "phase380_oracle_host",
+      "path": "/workspace/python-original-engine/repo/data/phase380-independent-bound-source/SOURCE/host.py",
+      "size": 23859,
+      "sha256": "588486979f0887abea6ed35e0e66762684e7b416303294fc3fc1eb045b39e92a"
+    },
+    {
+      "name": "phase380_partial_map",
+      "path": "/workspace/python-original-engine/repo/data/phase380-independent-bound-source/SOURCE/partial.py",
+      "size": 11706,
+      "sha256": "aaf1c0917fcdc7b24ab1719a0531f7412a1b7145e03e6c3d4cecda3f723e7526"
+    },
+    {
+      "name": "phase380_pool_recovery",
+      "path": "/workspace/python-original-engine/repo/data/phase380-independent-bound-source/SOURCE/recovery.py",
+      "size": 15081,
+      "sha256": "edf68ef1c9dbbfbf6c66b6275a4534065df32ea96a3d12c55d1720e062a2a5c7"
+    },
+    {
+      "name": "phase380_independent_control_draft",
+      "path": "/workspace/python-original-engine/repo/data/phase380-independent-bound-source/SOURCE/draft.py",
+      "size": 11299,
+      "sha256": "ad0fff9af6c4a6a0affb39d98b5676240d9560f25724341722e88309e7fd545d"
+    }
+  ],
+  "failure": {
+    "type": "PermissionError",
+    "message": "outside frozen Source/unit/saved evidence boundary",
+    "traceback": "Traceback (most recent call last):\n  File \"/workspace/python-original-engine/repo/tests/phase380_independent_bound_controls.py\", line 234, in main\n  File \"/workspace/python-original-engine/repo/tests/phase380_independent_bound_controls.py\", line 95, in resolver_cases\n  File \"/workspace/python-original-engine/repo/tests/phase380_independent_bound_controls.py\", line 45, in call\n  File \"/workspace/python-original-engine/repo/data/phase380-independent-bound-source/SOURCE/host.py\", line 280, in resolve_execute_payloads\n    verify_execute_payloads(root,graph)\n  File \"/workspace/python-original-engine/repo/data/phase380-independent-bound-source/SOURCE/host.py\", line 312, in verify_execute_payloads\n    for row in unique.values(): check_source_descriptor(root,row)\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/data/phase380-independent-bound-source/SOURCE/storage.py\", line 339, in check_source_descriptor\n    return _read_source(source_root,row,False)[0]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/data/phase380-independent-bound-source/SOURCE/storage.py\", line 318, in _read_source\n    fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW)\n       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase380_independent_bound_controls.py\", line 63, in audit\nPermissionError: outside frozen Source/unit/saved evidence boundary\n"
+  },
+  "audit": {
+    "blocked": [
+      {
+        "event": "open",
+        "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/producer-source-freeze.json",
+        "write": false
+      },
+      {
+        "event": "open",
+        "path": "/workspace/python-original-engine/repo/tests/phase380_independent_bound_controls.py",
+        "write": false
+      },
+      {
+        "event": "open",
+        "path": "/workspace/python-original-engine/repo/tests/phase380_independent_bound_controls.py",
+        "write": false
+      },
+      {
+        "event": "open",
+        "path": "/workspace/python-original-engine/repo/tests/phase380_independent_bound_controls.py",
+        "write": false
+      },
+      {
+        "event": "open",
+        "path": "/workspace/python-original-engine/repo/tests/phase380_independent_bound_controls.py",
+        "write": false
+      }
+    ]
+  },
+  "full_host_or_recover_positive": false,
+  "actual12positive": false,
+  "actualpool_reads": 0,
+  "actualpool_writes": 0,
+  "models": 0,
+  "Godot": 0,
+  "original_Game": 0,
+  "projection": 0,
+  "scope": "real Source resolver/public installer + actual saved analysis + synthetic mutation DTO component; no forged Root/production evidence"
+}

@@ -1,0 +1,81 @@
+{
+  "status": "BLOCKED380_INDEPENDENT_AUDIT_SOURCE_BINDING_WHITELIST_FIRST_FAILURE",
+  "source_freeze": {
+    "path": "data/phase380-payload-source/combined-source-freeze.json",
+    "size": 63604,
+    "sha256": "0b849df817910a586e9d28548c2942e013cae1f15f7bf085aaf5e9b2a4337cfb"
+  },
+  "SOURCE9": {
+    "path": "data/phase380-independent-static-first-001/report.json",
+    "size": 1684,
+    "sha256": "79d734d2f99298bcf7c931a4bac6a5fe851b17e2373deac157f42a8cae277f14"
+  },
+  "first_dynamic_report": {
+    "path": "data/phase380-independent-bound-first-001/report.json",
+    "size": 5418,
+    "sha256": "a303b1f2053c5cefc73dfb545175be19b9c27f2c8b8c52735d89269049252c7e"
+  },
+  "first_dynamic_failure": {
+    "path": "data/phase380-independent-bound-first-001/first-failure.json",
+    "size": 1629,
+    "sha256": "4187a4154d89ccc0c587846f8840c382ff69a6601df9c2c98bd7a720c97ac694"
+  },
+  "first_dynamic_owner": {
+    "path": "data/phase380-independent-bound-first-001/owned-files.json",
+    "size": 427,
+    "sha256": "82fce1ebde344e4b22b836215f8aecf7085288a32b6f71a9aff842729837a3c1"
+  },
+  "cause": "Test audit allowed freeze.files but omitted explicit freeze native_source_origin descriptor (historical359 producer-source-freeze). SUT attempted a legitimate declared SOURCE read. Traceback linecache then attempted executing checker source and was also refused. This is checker boundary omission, not established SUT SOURCE defect.",
+  "first_execution": {
+    "exit": 1,
+    "top_level_resolver_API_attempts": 1,
+    "completed_dynamic_definitions": 0,
+    "successful_R01_result": false,
+    "module_imports": 8,
+    "SUT_definition_modules": 7,
+    "test_helper_modules": 1,
+    "installer_calls": 0,
+    "recovery_calls": 0,
+    "source_mirror_creations": 0,
+    "synthetic_fixture_creations": 0,
+    "audit_blocked_attempts": [
+      {
+        "event": "open",
+        "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/producer-source-freeze.json",
+        "write": false
+      },
+      {
+        "event": "open",
+        "path": "/workspace/python-original-engine/repo/tests/phase380_independent_bound_controls.py",
+        "write": false
+      },
+      {
+        "event": "open",
+        "path": "/workspace/python-original-engine/repo/tests/phase380_independent_bound_controls.py",
+        "write": false
+      },
+      {
+        "event": "open",
+        "path": "/workspace/python-original-engine/repo/tests/phase380_independent_bound_controls.py",
+        "write": false
+      },
+      {
+        "event": "open",
+        "path": "/workspace/python-original-engine/repo/tests/phase380_independent_bound_controls.py",
+        "write": false
+      }
+    ]
+  },
+  "preservation": "Old checker, exact Source contract/owner, all cloned actual modules, first raw failure and unchanged9SOURCE PASS kept. No affected science success repeated.",
+  "minimal_next_repair": "Under a separate Root authorization, new checker version only: pin/allow four exact source_bindings descriptor files plus executing checker source for linecache. Freeze.files remains included; no broad repo/pool/capture/expected read permission. No SUT/schema/constants changes.",
+  "remaining": "R01 unfinished and all other resolver/directinstaller/partial dynamic definitions NOT_EXECUTED. Do not issue Source acceptance status or proceed to actual restore/native from this report.",
+  "native": 0,
+  "models": 0,
+  "Godot": 0,
+  "original_Game": 0,
+  "actual_pool_reads": 0,
+  "actual_pool_writes": 0,
+  "projection": 0,
+  "expected_semantics_reads": 0,
+  "no_more_writes": true
+}

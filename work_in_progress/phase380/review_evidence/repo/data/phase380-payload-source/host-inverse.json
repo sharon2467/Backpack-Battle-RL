@@ -1,0 +1,91 @@
+{
+  "after": {
+    "path": "tests/phase380_oracle_host.py",
+    "sha256": "588486979f0887abea6ed35e0e66762684e7b416303294fc3fc1eb045b39e92a",
+    "size": 23859
+  },
+  "before": {
+    "path": "tests/phase375_oracle_host.py",
+    "sha256": "e4a0438f6fccde911bd88307d09c16fbb460d33caa3ea946cc94c9533af8b910",
+    "size": 18031
+  },
+  "body_edits": [
+    [
+      "    resource_gate(root,config,paths)\n    previous=check_ready",
+      "    resource_gate(root,config,paths)\n    payloads=resolve_execute_payloads(root,freeze,execute_driver_descriptors(root,config_descriptor,config,freeze))\n    previous=check_ready"
+    ],
+    [
+      "native_config=read(member(root,DATA+'/case-A/native_capture_config.json'))",
+      "native_config=read(check_source_descriptor(root,payloads['case_inputs']['native_capture_config.json']))"
+    ],
+    [
+      "reviews=config['reviews'],config=native_config,policy=POLICY,",
+      "reviews=config['reviews'],config=native_config,policy=POLICY,execute_payloads=payloads,"
+    ],
+    [
+      "    paths={key:Path(value) for key,value in launch['paths'].items()}\n    with lease",
+      "    paths={key:Path(value) for key,value in launch['paths'].items()}\n    payloads=resolve_execute_payloads(root,freeze,execute_driver_descriptors(root,config_descriptor,config,freeze))\n    if payloads!=launch['execute_payloads']: raise ValueError('plan/execute payload descriptor graph changed before lease')\n    verify_execute_payloads(root,payloads)\n    with lease"
+    ],
+    [
+      "        data=member(root,DATA+'/case-A')\n        for name in NAMES:\n            shutil.copy2(data/name,run/'data'/name)\n        artifacts={'native_combat_capture.gd':member(root,SOURCE+'/collector.gd'),\n                   'native_capture_config.json':data/NAMES[2],'.native-random-observer-disposable':member(root,DATA+'/disposable-marker.txt')}",
+      "        for name in NAMES:\n            shutil.copy2(check_source_descriptor(root,payloads['case_inputs'][name]),run/'data'/name)\n            if pin(run/'data'/name)!={k:payloads['case_inputs'][name][k] for k in ('size','sha256')}: raise ValueError('case copy identity')\n        artifacts=payloads['artifacts']"
+    ],
+    [
+      "collector=pin(artifacts['native_combat_capture.gd'])",
+      "collector=pin(project/'native_combat_capture.gd')"
+    ],
+    [
+      "        source_owned=read(descriptor(root,config['source_owner']))['files']\n        copies=[row for row in freeze['files']]+source_owned+[config_descriptor,config['source_owner'],config['source_freeze']]\n        for review in config['reviews']: copies += [review['receipt'],review['owner']]\n        copies=list({row['path']:row for row in copies}.values())",
+      "        copies=payloads['driver_sources']"
+    ]
+  ],
+  "changed_functions": [
+    "execute",
+    "plan",
+    "source_gate"
+  ],
+  "inserted_source": {
+    "path": "tests/phase380_host_payload_source.py",
+    "sha256": "141193f4230966f172dde3375c443de83103c9cd955031eaa83d517086ea4ab6",
+    "size": 5657
+  },
+  "inverse": "EXACT_COMPLETE_BYTES",
+  "protocol_pairs": [
+    [
+      "from phase363_oracle_storage import",
+      "from phase380_oracle_storage import"
+    ],
+    [
+      "reset_previous,install,archive_streaming,c)",
+      "reset_previous,install,archive_streaming,c,check_source_descriptor,MAX_INSTALL_PAYLOADS,MAX_INSTALL_BYTES)"
+    ],
+    [
+      "SOURCE = 'data/phase375-food-hook-source'",
+      "SOURCE = 'data/phase380-payload-source'"
+    ],
+    [
+      "INDEPENDENT375_FOOD_HOOK_SOURCE_REPAIR_ACCEPTED_ROOT_PENDING",
+      "INDEPENDENT380_PAYLOAD_PREFLIGHT_PARTIAL_SOURCE_ACCEPTED_ROOT_PENDING"
+    ],
+    [
+      "phase375-root-oracle-acceptance/1",
+      "phase380-root-oracle-acceptance/1"
+    ],
+    [
+      "original027-king-single-A-20261025-attempt04",
+      "original027-king-single-A-20261025-attempt05"
+    ],
+    [
+      "attempt=4",
+      "attempt=5"
+    ]
+  ],
+  "unchanged_functions": [
+    "collect_capture_metadata",
+    "descriptor",
+    "main",
+    "read_control",
+    "resource_gate",
+    "verify_owner"
+  ]
+}

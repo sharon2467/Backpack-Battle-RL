@@ -1,0 +1,59 @@
+{
+  "after": {
+    "path": "tests/phase380_pool_recovery.py",
+    "sha256": "edf68ef1c9dbbfbf6c66b6275a4534065df32ea96a3d12c55d1720e062a2a5c7",
+    "size": 15081
+  },
+  "before": {
+    "path": "tests/phase375_pool_recovery_v2.py",
+    "sha256": "d6aa6c9823e89359905f5c97240d827faf825d39fed6cd9e7158e08c7c9f5ec4",
+    "size": 16980
+  },
+  "changed_functions": [
+    "restore_exact",
+    "source_gate",
+    "verify_evidence"
+  ],
+  "import_line": "from phase380_partial_map import analyze_saved_partial,KNOWN_MISSING\n",
+  "inverse": "EXACT_COMPLETE_BYTES",
+  "new_guard": "    require(set(c.index(evidence['target']))-set(c.index(evidence['failed']))==KNOWN_MISSING and not set(c.index(evidence['failed']))-set(c.index(evidence['target'])) and evidence.get('known_absent_creates')==sorted(KNOWN_MISSING),'exact2 partial-map creations only')\n    check_failed_state(roots,evidence['failed_state'])\n    require(c.inventory(roots['pool']/'project')==evidence['failed']",
+  "new_todo": "        path=member(roots['pool']/tree,name)\n        known=tree=='project' and name in KNOWN_MISSING\n        info=regular_target(path,absent=known)\n        if known:\n            require(info is None,'only proven absent targets may be created')\n        else:\n            require(info is not None,'existing target required')\n        todo.append((path,payload,target,None if info is None else dict(identity=pin(path),mode=stat.S_IMODE(info.st_mode),mtime_ns=info.st_mtime_ns)))",
+  "new_verify": "def verify_evidence(roots,mapping,input_pins):\n    for row in input_pins['files']: evidence_path(roots,row)\n    analyzed=analyze_saved_partial(roots['source_root'],roots['failed_run'],roots['previous_run'])\n    core=analyzed['core']\n    require(set(mapping)==set(core)|{'roots','roots_are'} and all(mapping[k]==v for k,v in core.items()),'exact saved partial map, no synthetic journal or unknown fields')\n    require(input_pins==analyzed['input_pins'],'complete exact saved evidence pins')\n    require(mapping['known_absent_creates']==sorted(KNOWN_MISSING),'only two proven absent-target creates')\n    aliases=mapping['roots'];relocation={aliases[k]:str(roots[k]) for k in roots if k in aliases and aliases[k]!=str(roots[k])}\n    failed,failed_data,target,target_data=[analyzed[k] for k in ('failed','failed_data','target','target_data')]\n    require(c.inventory(roots['baseline'])==analyzed['base'],'actual baseline full bytes/mode/mtime drift')\n    bundle=roots['previous_run']/'output/compaction';proof=read(bundle/'pool-roundtrip.json')\n    require(proof.get('status')=='PASS' and map_recorded(proof['run'],relocation)==roots['previous_run'] and map_recorded(proof['pool'],relocation)==roots['pool'] and\n        proof['bundle_sha256']==c.digest(bundle/'bundle-manifest.json') and proof['provenance_sha256']==c.digest(roots['previous_run']/'output/pool-provenance.json'),'old READY proof/run/root identities')\n    require(c.retained(roots['previous_run'])==read(bundle/'retained-evidence.json') and c.inventory(roots['previous_run']/'output/driver')==read(bundle/'driver-files.json'),'old retained/driver evidence')\n    payloads=[]\n    for row in mapping['file_differences']:\n        payload=evidence_path(roots,row['payload']);payloads.append(('project',row['path'],payload,row['target']))\n    before_data=c.index(failed_data)\n    for row in mapping['staged_files']:\n        payload=evidence_path(roots,row['payload'])\n        if before_data[row['target']['path']]!=row['target']:payloads.append(('data',row['target']['path'],payload,row['target']))\n    saved=roots['failed_run']/'output/failed-pool-preservation';state=pin(saved/'failed-pool-state.json')\n    require(map_recorded(read(saved/'failed-pool-state.json')['run'],relocation)==roots['failed_run'],'exact failed state/run binding')\n    return dict(failed=failed,failed_data=failed_data,target=target,target_data=target_data,failed_state=state,payloads=payloads,bundle=bundle,\n        relocations=relocation,known_absent_creates=sorted(KNOWN_MISSING))\n",
+  "old_guard": "    check_failed_state(roots,evidence['failed_state'])\n    require(c.inventory(roots['pool']/'project')==evidence['failed']",
+  "old_todo": "        path=member(roots['pool']/tree,name); info=regular_target(path)\n        todo.append((path,payload,target,dict(identity=pin(path),mode=stat.S_IMODE(info.st_mode),mtime_ns=info.st_mtime_ns)))",
+  "old_verify": "def verify_evidence(roots, mapping, input_pins):\n    \"\"\"Validate saved failed/previous trees and every payload before mutable operations.\"\"\"\n    for row in input_pins['files']: evidence_path(roots,row)\n    receipt=read(evidence_path(roots,mapping['failed_preservation']))\n    require(mapping.get('schema')=='phase375-attempt03-exact-restore-source-map/1' and receipt.get('schema')=='attempt03-failed-pool-preservation/1' and receipt.get('status')=='PRESERVED_NOT_RESTORED' and type(receipt.get('restore')) is int and receipt['restore']==0,\n        'real preservation receipt required')\n    # Receipt historical roots must resolve explicitly to these actual roots.\n    aliases=mapping['roots']; relocation={aliases[k]:str(roots[k]) for k in roots if k in aliases and aliases[k]!=str(roots[k])}\n    saved=roots['failed_run']/'output/failed-pool-preservation'\n    failed=read(evidence_path(roots,mapping['failed_project_inventory']))\n    failed_data=read(member(saved,'failed-staged-files.json'))\n    failed_base=read(member(saved,'baseline-files.json'))\n    target=read(evidence_path(roots,mapping['project_target']))\n    target_data=read(evidence_path(roots,mapping['staged_target']))\n    for tree in (failed,failed_data,failed_base,target,target_data): c.index(tree)\n    require(c.inventory(roots['baseline'])==failed_base,'baseline actual bytes/mode/mtime drift')\n    bundle=roots['previous_run']/'output/compaction'\n    base,old_project,_=c.load_bundle(bundle)\n    require(base==failed_base and old_project==target and read(bundle/'staged-inputs.json')==target_data,'previous bundle exact targets')\n    proof=read(bundle/'pool-roundtrip.json')\n    require(proof.get('status')=='PASS' and map_recorded(proof['run'],relocation)==roots['previous_run'] and\n        map_recorded(proof['pool'],relocation)==roots['pool'] and proof['bundle_sha256']==c.digest(bundle/'bundle-manifest.json') and\n        proof['provenance_sha256']==c.digest(roots['previous_run']/'output/pool-provenance.json'),'actual prior READY proof')\n    require(c.retained(roots['previous_run'])==read(bundle/'retained-evidence.json') and\n        c.inventory(roots['previous_run']/'output/driver')==read(bundle/'driver-files.json'),'prior retained/driver evidence')\n    plan=read(member(saved,'overlay-manifest.json'))\n    require(c.overlay_plan(failed_base,failed)==plan,'failed overlay manifest')\n    c.validate_archive(member(saved,'failed-project-overlay.zip'),failed,plan)\n    require(receipt['overlay_sha256']==c.digest(saved/'failed-project-overlay.zip') and\n        receipt['overlay_bytes']==(saved/'failed-project-overlay.zip').stat().st_size,'preserved failed overlay identity')\n    before,after=c.index(failed),c.index(target)\n    require(before.keys()==after.keys(),'unknown/missing project paths, preserve then BLOCK')\n    changed_files={p for p in before if before[p]!=after[p] and before[p]['kind']=='file'}\n    changed_dirs={p for p in before if before[p]!=after[p] and before[p]['kind']=='directory'}\n    require(len(mapping['file_differences'])==len(changed_files) and len(mapping['directory_differences'])==len(changed_dirs) and\n        changed_files=={row['path'] for row in mapping['file_differences']} and\n        changed_dirs=={row['path'] for row in mapping['directory_differences']},'complete exact78/7 differences')\n    require(len(mapping['staged_files'])==sum(row['kind']=='file' for row in c.index(target_data).values()),'exact target staged files')\n    payloads=[]\n    for row in mapping['file_differences']:\n        require(row['before_preserved']==before[row['path']] and row['target']==after[row['path']],'mapped preimage/target drift')\n        payload=evidence_path(roots,row['payload'])\n        require(pin(payload)=={k:row['target'][k] for k in ('size','sha256')},'project payload target bytes')\n        payloads.append(('project',row['path'],payload,row['target']))\n    for row in mapping['directory_differences']:\n        require(row['before']==before[row['path']] and row['target']==after[row['path']],'directory map drift')\n    fdata,tdata=c.index(failed_data),c.index(target_data)\n    require(fdata.keys()==tdata.keys() and {row['target']['path'] for row in mapping['staged_files']}==\n        {p for p,v in tdata.items() if v['kind']=='file'},'exact staged path sets')\n    for row in mapping['staged_files']:\n        target_row=row['target']; require(target_row==tdata[target_row['path']],'staged target drift')\n        payload=evidence_path(roots,row['payload'])\n        require(pin(payload)=={k:target_row[k] for k in ('size','sha256')},'staged payload bytes')\n        payloads.append(('data',target_row['path'],payload,target_row))\n    state=pin(member(saved,'failed-pool-state.json'))\n    require(map_recorded(read(saved/'failed-pool-state.json')['run'],relocation)==roots['failed_run'],\n        'saved failed state must belong to this failed attempt')\n    return dict(failed=failed,failed_data=failed_data,target=target,target_data=target_data,\n        failed_state=state,payloads=payloads,bundle=bundle,relocations=relocation)\n",
+  "protocol_pairs": [
+    [
+      "from phase363_oracle_storage import",
+      "from phase380_oracle_storage import"
+    ],
+    [
+      "from phase375_oracle_host import",
+      "from phase380_oracle_host import"
+    ],
+    [
+      "data/phase375-attempt03-recovery-source-v2",
+      "data/phase380-attempt04-partial-recovery-source"
+    ],
+    [
+      "INDEPENDENT375_RESTORED_POOL_EXACT_TARGET_READBACK_PASS",
+      "INDEPENDENT380_RESTORED_POOL_EXACT_TARGET_READBACK_PASS"
+    ],
+    [
+      "phase375-root-pool-recovery/1",
+      "phase380-root-pool-recovery/1"
+    ]
+  ],
+  "unchanged_functions": [
+    "actual_targets",
+    "check_failed_state",
+    "check_roots",
+    "commit_ready",
+    "directory_metadata",
+    "evidence_path",
+    "locked_pool",
+    "main",
+    "recover",
+    "require"
+  ]
+}

@@ -9,3 +9,7 @@ Add `source/repo/.` and `independent_preparation/repo/.` to the recovered repo u
 At this cut implementation performed only generation, compilation and one saved-only map derivation. Resolver, verifier, installer, recovery, original Game and models were not run by the implementer. Independent39-obligation controls have been prepared but no independent acceptance is claimed by this SOURCE checkpoint. The draft runner refuses execution pending binding to these actual APIs.
 
 Formal bounded75 remains unchanged. King262 is not admitted; actual12-input projection, complete engine and RL remain incomplete. No native retry or production promotion follows from copying these files.
+
+## First independent trial
+
+The9static SOURCE checks passed. The first resolver trial was blocked by the independent checker's audit whitelist: it omitted the explicitly declared historical source-origin file; traceback then also tried reading the checker itself. No resolver positive completed and no installer/recovery/model ran. The raw failure and all53owned evidence leaves are retained in `review_evidence/repo`. This establishes a test-boundary defect, without establishing a SUT defect. A separate382checker boundary correction must keep these records and the380SOURCE unchanged. No actual restore is released by this failure record.
