@@ -1,0 +1,22 @@
+{
+  "schema": "phase388-output-only-metadata-contract/1",
+  "extraction": {
+    "path": "data/phase388-independent-cleanup-control/cleanup-clock-control.json",
+    "size": 591,
+    "sha256": "74876388a1987afaf1e49b016ed4efbfee7dd7e8e64fdf74fe1e861fb2d74e29"
+  },
+  "correlation": {
+    "path": "data/phase388-independent-cleanup-control/clock-correlation.json",
+    "size": 2140,
+    "sha256": "6fec7cf708dbec15bf5f9c69d3d5c845ac32296a51af39d471a5371c5813969a"
+  },
+  "first_failure_owner": {
+    "path": "data/phase388-independent-cleanup-control/first-metadata-failure/owned-files.json",
+    "size": 693,
+    "sha256": "d984f1d6102e28d55c8c31cb486a7a3979d41fda36511809824fc93135a53d30"
+  },
+  "new_original_opaque_reads": 0,
+  "new_clock_correlations": 0,
+  "allowed_operation": "Only reads sealed control outputs and metadata SOURCE/repo identities; no original capture reads/SUT/state changes",
+  "reason": "Original save returned Path metadata after successful extraction; preserve first partialfinding and finalize new serialized descriptor references."
+}

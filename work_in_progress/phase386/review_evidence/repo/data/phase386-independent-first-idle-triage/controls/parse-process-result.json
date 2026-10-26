@@ -1,0 +1,119 @@
+{
+  "abort_reason": null,
+  "active_duration_seconds": 2.9461210439985734,
+  "actual_oracle_processes": 0,
+  "cleanup": {
+    "after": [
+      {
+        "live": false,
+        "pid": 21980,
+        "state": "Z"
+      }
+    ],
+    "before": [
+      {
+        "live": false,
+        "pid": 21980,
+        "state": "Z"
+      }
+    ],
+    "duration_seconds": 0.01239618800173048,
+    "kill_grace_seconds": 0.5,
+    "kill_sent": false,
+    "leader_returncode": 0,
+    "live_remaining": [],
+    "pgid": 21970,
+    "term_grace_seconds": 5.0,
+    "term_sent": true,
+    "zombies_not_claimed_reaped": [
+      21980
+    ]
+  },
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "/workspace/python-original-engine/repo/tests/godotsteam_offline_exec.py",
+    "/workspace/godotsteam-startup-20261013/debian/usr/bin/xvfb-run",
+    "-a",
+    "-s",
+    "-screen 0 1280x720x24 -nolisten tcp",
+    "-e",
+    "/workspace/native-combat-20261013/runs/original027-king-single-A-20261025-attempt05/output/xvfb.log",
+    "/workspace/godotsteam-startup-20261013/engine/godotsteam.362.editor.x86_64",
+    "--path",
+    "/workspace/native-combat-20261013/pool/project",
+    "--audio-driver",
+    "Dummy",
+    "--time-scale",
+    "1.0",
+    "--check-only",
+    "--script",
+    "res://native_combat_capture.gd"
+  ],
+  "duration_seconds": 2.958574946002045,
+  "enforcement": "POLLING_NOT_KERNEL_AGGREGATE_QUOTA",
+  "exit_code": 0,
+  "generic_subprocesses": 1,
+  "limits": {
+    "attempt_bytes": 1610612736,
+    "free_floor": 4294967296,
+    "log_bytes": 33554432,
+    "wall": 30.0
+  },
+  "parse_only": true,
+  "policy": "bounded-writers-and-monitored-process/1",
+  "polling": {
+    "extra_timed_wait": false,
+    "max_observed_scan_gap_seconds": 0.14158731600036845,
+    "model": "ONE_SELECTOR_WAIT_PLUS_IO_SCAN_OVERHEAD",
+    "samples_truncated": false,
+    "scan_count": 42,
+    "scan_times_seconds": [
+      0.050830077001592144,
+      0.11053562999586575,
+      0.1698555229959311,
+      0.2295611750014359,
+      0.2506437449992518,
+      0.3145199499995215,
+      0.3734679339977447,
+      0.4397088639962021,
+      0.5315335069972207,
+      0.6731208229975891,
+      0.7786808919991017,
+      0.8360963459999766,
+      0.8629240059963195,
+      0.9390108669977053,
+      1.014464993000729,
+      1.0917693529991084,
+      1.1662120830005733,
+      1.2442191439986345,
+      1.325690912999562,
+      1.4062703129966394,
+      1.4836849849962164,
+      1.5319924819996231,
+      1.60780807199626,
+      1.683508615999017,
+      1.7588162739994004,
+      1.8341051719980896,
+      1.910429108000244,
+      1.9861363489981159,
+      2.078346007001528,
+      2.145416433995706,
+      2.213127101997088,
+      2.2797960980024072,
+      2.345939033999457,
+      2.412568055995507,
+      2.4780257099992014,
+      2.545532700001786,
+      2.612684353000077,
+      2.678880280996964,
+      2.7462493109997013,
+      2.817356567000388,
+      2.8838375490013277,
+      2.9294746430023224
+    ],
+    "single_selector_wait_seconds": 0.05
+  },
+  "process_clean_exit": true,
+  "scope": "FIXED_REAL_GODOT_CHECK_ONLY_WRAPPER",
+  "timed_out": false
+}

@@ -1,0 +1,82 @@
+{
+  "King_admitted": false,
+  "actual_original_Game_processes_this_batch": 1,
+  "automatic_retry": false,
+  "capsule": {
+    "archive_sha256": "ab836cc7383dde8a4e8fb9e47ca20a7b4d2fbe10bccd0361cd49ae2b0d9fd7d8",
+    "archive_size": 11762635,
+    "file_count": 380,
+    "payload_bytes": 185529438
+  },
+  "capture_bytes": 151348106,
+  "capture_files": 22,
+  "cumulative_original_Game_processes": 4,
+  "expected_comparison": 0,
+  "formal_bounded_items": 75,
+  "host_exit": 1,
+  "host_seconds": 145.79261389699968,
+  "inputbuilds": 0,
+  "lawful_presence": 12,
+  "lawful_validation": false,
+  "models": 0,
+  "native_clean_exit": false,
+  "native_cleanup": {
+    "after": [
+      {
+        "live": false,
+        "pid": 22039,
+        "state": "Z"
+      }
+    ],
+    "before": [
+      {
+        "live": false,
+        "pid": 22039,
+        "state": "Z"
+      }
+    ],
+    "duration_seconds": 0.012262238000403158,
+    "kill_grace_seconds": 0.5,
+    "kill_sent": false,
+    "leader_returncode": 2,
+    "live_remaining": [],
+    "pgid": 22029,
+    "term_grace_seconds": 5.0,
+    "term_sent": true,
+    "zombies_not_claimed_reaped": [
+      22039
+    ]
+  },
+  "native_exit": 2,
+  "native_seconds": 116.98689345500316,
+  "parse_exit": 0,
+  "parse_seconds": 2.958574946002045,
+  "preservation": "output/failed-pool-preservation/receipt.json",
+  "primary_failure": {
+    "control": {
+      "capture_complete": false,
+      "code": "SOURCE_MISSED_FIRST_IDLE_CUT",
+      "detail": null,
+      "schema": "observer7-failure/1",
+      "sequence": 74346,
+      "site": "clock_idle_signal"
+    },
+    "identity": {
+      "sha256": "e5eb0800eba2ee6d9447632dfdbe16121727d966906114cfa4ba15a2f29a4f92",
+      "size": 154
+    },
+    "kind": "observer_control_failure"
+  },
+  "project_changed": false,
+  "restore": 0,
+  "run": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261025-attempt05",
+  "schema": "root385-first-native-failure-summary/1",
+  "scope": "Metadata/controlonly. Twelve present files do not establish capture/model acceptance. Runtime/registration/postcleanup business states remain opaque; later narrowly authorized cleanup_clock diagnostics never become model inputs.",
+  "secondary_errors": [
+    {
+      "code": "missing_required_file",
+      "file": "validation.json"
+    }
+  ],
+  "status": "FAILED_SOURCE_FIRST_IDLE_CONTROL_NOT_VALIDATED"
+}

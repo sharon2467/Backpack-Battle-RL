@@ -1,0 +1,14 @@
+{
+  "exit": 1,
+  "stage": "finding metadata serialization after successful control extraction/correlation",
+  "exception": "TypeError: Object of type PosixPath is not JSON serializable",
+  "cause": "save returned Path for extracted/correlation metadata fields; json.dump could not serialize it",
+  "completed_control_files": [
+    "cleanup-clock-control.json",
+    "clock-correlation.json"
+  ],
+  "original_opaque_extractions": 1,
+  "control_correlations": 1,
+  "SUT_calls": 0,
+  "retry_performed": false
+}

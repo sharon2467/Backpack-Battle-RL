@@ -1,0 +1,100 @@
+{
+  "status": "DIAGNOSTIC388_FIRST_ELIGIBLE_IDLE_REJECTED_BY_EXACT_TWO_PHYSICS",
+  "diagnostic_source_partition": "Three control fields narrowly authorized from otherwise OPAQUE EXPECTED_ONLY postcleanup file; NOT lawful model input or accepted12 source.",
+  "extraction": {
+    "path": "data/phase388-independent-cleanup-control/cleanup-clock-control.json",
+    "size": 591,
+    "sha256": "74876388a1987afaf1e49b016ed4efbfee7dd7e8e64fdf74fe1e861fb2d74e29"
+  },
+  "correlation": {
+    "path": "data/phase388-independent-cleanup-control/clock-correlation.json",
+    "size": 2140,
+    "sha256": "6fec7cf708dbec15bf5f9c69d3d5c845ac32296a51af39d471a5371c5813969a"
+  },
+  "direct_control": {
+    "cleanup": {
+      "physics_frame": 2724,
+      "idle_frame": 341,
+      "is_in_physics_frame": true
+    },
+    "frame_signal": {
+      "line": 2564,
+      "kind": "physics",
+      "physics_frame": 2724,
+      "idle_frame": 341
+    },
+    "ineligible_idle": [
+      {
+        "line": 2565,
+        "kind": "idle",
+        "physics_frame": 2724,
+        "idle_frame": 341
+      }
+    ],
+    "second_future_physics": {
+      "line": 2567,
+      "kind": "physics",
+      "physics_frame": 2726,
+      "idle_frame": 342
+    },
+    "first_eligible_actual_idle": {
+      "line": 2574,
+      "kind": "idle",
+      "physics_frame": 2732,
+      "idle_frame": 342
+    },
+    "actual_future_physics_count": 8,
+    "actual_idle_at_exact_C_plus_2": false
+  },
+  "SOURCE_derived": "Cleanup is marked after the physics_frame signal in physics2724; idle2724 follows with0futurephysics and is ineligible. The next eightphysics precede the next actual idle2732. That is the first idle meeting>=C+2; exact equality to2726 is false. Current producer rejects this real first eligible idle before endpoint/final/private collector dispatch. This is a scheduling-contract mismatch, not evidence that an earlier eligible idle callback was missed.",
+  "coupled_contracts": [
+    "sink exact2 check/emit guard/endpoint label",
+    "collector exact2 guard",
+    "schema terminal exact2 tail count"
+  ],
+  "future_requirements": [
+    "Explicit Root SOURCE choice/version: first actual idle after>=2 strictly future physics signals, or a separately enforced scheduler domain.",
+    "Preserve actual ordered pass/cleanup/cut relation and actual tail count; do not label8as2 or only relax one layer.",
+    "Keep same-stack/preinternal/once/ack/getter readonly guards; Source producer/collector/schema/endpoint must agree.",
+    "Keep cleanup/terminal diagnostics outside model initial/runtime/stop inputs and never use this extraction to repair old inputs or validation."
+  ],
+  "not_proved": [
+    "Why actualscheduler produced8-step batches (logging overhead hypothesis remains unproved)",
+    "Full12/schema/RNG/history/model equivalence",
+    "All schedules/productionKing/native acceptance or permission to retry"
+  ],
+  "sibling_business_values_decoded": false,
+  "original_capture_modified": false,
+  "old386_unknownC_history_unchanged": true,
+  "execution_counts": {
+    "original_extractions": 1,
+    "original_correlations": 1,
+    "original_process_exit": 1,
+    "original_error": "PosixPath finding serialization metadata",
+    "output_only_finalizer": 1,
+    "new_opaque_reads": 0,
+    "new_clock_correlations": 0,
+    "SUT_calls": 0,
+    "models": 0,
+    "Godot": 0,
+    "new_native": 0,
+    "inputbuilds": 0,
+    "projection": 0,
+    "actualpool_reads": 0,
+    "pool_writes": 0,
+    "restore": 0,
+    "READY": 0,
+    "business_expected_semantics_reads": 0
+  },
+  "preserved_firstfailure": {
+    "path": "data/phase388-independent-cleanup-control/first-metadata-failure/owned-files.json",
+    "size": 693,
+    "sha256": "d984f1d6102e28d55c8c31cb486a7a3979d41fda36511809824fc93135a53d30"
+  },
+  "historical386": {
+    "path": "data/phase386-independent-first-idle-triage/finding.json",
+    "size": 12964,
+    "sha256": "9b8f35cc49a4b6417a4475acdcd168f6a3977aa51d764afba8ed526c56c45594"
+  },
+  "no_more_writes": true
+}

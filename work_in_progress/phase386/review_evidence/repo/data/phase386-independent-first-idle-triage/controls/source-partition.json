@@ -1,0 +1,125 @@
+{
+  "capture": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261025-attempt05/output/capture",
+  "capture_complete": false,
+  "control_failures_opaque": {
+    "observer7_failure.json": {
+      "sha256": "e5eb0800eba2ee6d9447632dfdbe16121727d966906114cfa4ba15a2f29a4f92",
+      "size": 154
+    }
+  },
+  "expected_observations_opaque": {
+    "king-post-cleanup-source.json": {
+      "sha256": "7d30041b5205da977675ac19e0e1f655c1a906f5c7ae17b2b0b0060c0f629b9a",
+      "size": 24942
+    },
+    "observer7-allocations.jsonl": {
+      "sha256": "3dd1316cae0cad67acedfc24e651e844788fbfd6f5af22bbb47f20de27b03ce6",
+      "size": 878318
+    },
+    "observer7-registration.jsonl": {
+      "sha256": "54ca9805b9977647687f68cd0c8e1b2a9c87d414f14f7ca4934b1ec2b8149161",
+      "size": 465680
+    },
+    "observer7-runtime.jsonl": {
+      "sha256": "259be46216969135faab7aa20dd62a8046581769edeec8c2eb9faa908d508042",
+      "size": 148384627
+    },
+    "player_setup_evidence.json": {
+      "sha256": "c2a2bcd2d0ce30258aa06b406311cc8fb06751f5db9a834c3e5bcc1c7dbeb533",
+      "size": 57043
+    },
+    "preflight.json": {
+      "sha256": "0cb6ac6f3ad3a0878f7193f496757263dae1b541a17cb68dc07b07d1a76d4aaf",
+      "size": 270
+    },
+    "rules_preflight.json": {
+      "sha256": "8cd4cedaa1e129ed57168b99057eb419d16cb380a160ec4e2211d306f7d924ac",
+      "size": 1430
+    },
+    "source-window-diagnostic.jsonl": {
+      "sha256": "be853fe9ef1b4c7399d6f82019b791e7dce7ea9780f40a86be1fbdab61d0647e",
+      "size": 7556
+    },
+    "unselected-source-lineage.jsonl": {
+      "sha256": "f03bc02060223f67a25f3d27332b3a51e4136c50fd27a69d7537a314e58adab1",
+      "size": 18931
+    }
+  },
+  "expected_semantics_read": false,
+  "lawful_inputs_missing": [],
+  "lawful_inputs_present": {
+    "fixture.json": {
+      "sha256": "98ae29e5cbe3ae60504cee9d994ce76a27bd10d8d372d5281e6d681e500869b1",
+      "size": 771
+    },
+    "king-clock-checkpoint.json": {
+      "sha256": "38b96c5522839ba4345b06ad7e907a6e5b80b6d46e8bb28bf9d213dc6cd17881",
+      "size": 352
+    },
+    "king-clock-passes.jsonl": {
+      "sha256": "49afe77bc17ad90fee109b8952cba35ac591d46d786448f9a6a11cc2f5e79ed2",
+      "size": 227217
+    },
+    "king-input-facts.json": {
+      "sha256": "0dc695ae35bb88718578e691177ba4a4ed0038814224737686be1713fb06722f",
+      "size": 10082
+    },
+    "king-rng-checkpoint.json": {
+      "sha256": "89a39aab5745818270cf2b71ef4809f4777a02ce2dd7048cd5f66bdeaefcc1c9",
+      "size": 772
+    },
+    "king-slot-bindings.json": {
+      "sha256": "0ca09015dc87232bb9aed29e911d441b4f11d1f8fbc4de47a6e04485aae1044f",
+      "size": 20254
+    },
+    "king-ui-authority.jsonl": {
+      "sha256": "ce6bc16479529dabf7e5e2d413e169b4483087245e63e729bd8dd56e8bfdc36d",
+      "size": 595983
+    },
+    "observer7-input.jsonl": {
+      "sha256": "e0e8cc5844a8454b797e2ae03d2b592db0c256e940ce8ff98a3dd2d903027631",
+      "size": 306081
+    },
+    "observer7-lineage.jsonl": {
+      "sha256": "9598c5fa8496eda28abb67fab539b0a7b3fc1614dea2e7bd8a8af0828db4dc05",
+      "size": 74532
+    },
+    "observer7-metadata.jsonl": {
+      "sha256": "12492e3a769dadc91aacb95cfd344fce5b2b56aa107ca73cc3d3960114836d72",
+      "size": 6457
+    },
+    "observer7-primitives.jsonl": {
+      "sha256": "9eaf85a3f3cb33f0d9e33b4b5a597c14361d035ba1f050028e43be69fe2df012",
+      "size": 264978
+    },
+    "player_fixture.json": {
+      "sha256": "a42675c3fedb0651e4309754403d5658edcce869f85edb07963e7a2f87391c56",
+      "size": 1676
+    }
+  },
+  "models": 0,
+  "partial_files_opaque": {},
+  "primary_failure": {
+    "control": {
+      "capture_complete": false,
+      "code": "SOURCE_MISSED_FIRST_IDLE_CUT",
+      "detail": null,
+      "schema": "observer7-failure/1",
+      "sequence": 74346,
+      "site": "clock_idle_signal"
+    },
+    "identity": {
+      "sha256": "e5eb0800eba2ee6d9447632dfdbe16121727d966906114cfa4ba15a2f29a4f92",
+      "size": 154
+    },
+    "kind": "observer_control_failure"
+  },
+  "projection": 0,
+  "schema": "phase365-partial-source-partition/1",
+  "secondary_errors": [
+    {
+      "code": "missing_required_file",
+      "file": "validation.json"
+    }
+  ]
+}

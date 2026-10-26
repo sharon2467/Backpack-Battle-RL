@@ -1,0 +1,5 @@
+# Narrow cleanup-clock diagnosis of the first eligible idle
+
+Only the three explicitly authorized cleanup_clock control fields were interpreted from the otherwise expected-only postcleanup JSON; sibling business data were not used. Cleanup wasP2724/I341 insidephysics. IdleP2724 had zero futurephysics, then eightphysics passed before idleP2732/I342. The second futurephysicsP2726 had noidle. Thus the exacttwo predicate rejected the real first idle satisfying the minimumtwo condition. This does not establish why scheduling batched, full12validity or model equivalence.
+
+The first extraction/correlation succeeded, then report serialization failed on a Path value. Original script/partial/report/trace are retained; a later output-only finalizer performed no new opaque reads or correlation. The earlier386unknown-cleanup finding remains immutable. This control extraction is diagnostic expected evidence, never model initial/runtime/stop input; it cannot repair oldcapture/input/validation or authorize a retry.

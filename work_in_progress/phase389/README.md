@@ -1,0 +1,5 @@
+# Actual verified duplicate working-file release
+
+Root independently rehashed all1801candidate disk files, streamed their exact original343ZIP members withCRC/SHA, verified the full protected archive and current active descriptor closures, then released only those explicitly listed historical restored-v5 working files. No directories or original reports were removed. Actual free space increased1006067712B to6697250816B. All12adjacent reports/source files and fiveoriginal243343347354archives remain; current source, failed385run and pool were untouched.
+
+The per-file recovery plan is in387:concat the seven overlay343parts at fdefd611, verify wholeSHA1cc74608955df9ea7169f36b018565871d99ed9b5c88529eb416b5f08704f044, then select the exact recorded ZIP members. Main recovery's active profile omits this inactive historical working-copy subtree; its bytes remain in the full logical archives. The actual release receipt records original file identities and retained-source checks. No game, model, restore or READY operation occurred here.
