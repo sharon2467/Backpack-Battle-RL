@@ -32,14 +32,29 @@
       40625
     ]
   },
+  "current_combat_initial_target_counts": {
+    "DIRECT_SUPPORTED": 1289,
+    "MISSING_UNPROVEN": 72,
+    "SOURCE_DERIVED_SUPPORTED": 2,
+    "actual_contract": "work_in_progress/phase437-combat-boundary/repo/data/phase437-combat-initial-first-001/contract.json",
+    "actual_summary": "work_in_progress/phase437-combat-boundary/repo/data/phase437-combat-initial-first-001/summary.json",
+    "excluded_missing": 10,
+    "independent_checks_passed": 51,
+    "new_combat_proofs": 0,
+    "presentation_excluded": 116,
+    "profile": "pure-combat-initial-fixed-king-A/437",
+    "required": 1363
+  },
   "current_initial_target_counts": {
     "DIRECT_SUPPORTED": 1391,
     "MISSING_UNPROVEN": 82,
     "SOURCE_DERIVED_SUPPORTED": 6,
     "complete_target_recipes": 6,
+    "for_active_combat_blockers_use": "current_combat_initial_target_counts",
     "historical411index_unchanged": true,
     "required": 1479,
-    "rule_families": 2
+    "rule_families": 2,
+    "scope": "HISTORICAL_FULL_OBSERVATION_REFERENCE"
   },
   "current_original_run": {
     "attempt": 6,
@@ -66,7 +81,7 @@
     "tested_imports_calls": "Author stage0;independent435onePythonload26API,oneEMPTY56externalentries"
   },
   "current_status_precedes_historical_task_state": true,
-  "current_work": "436nextminimumdecisionplanonlysaved;435acceptedunchanged;noinstall/capture/tests;6/82formal75Kingunadmitted",
+  "current_work": "437minimumcombatinitialcontractactuallycorrected,independent51PASS;1363required/116presentationexcluded/72missing;historicalfull1479+6/82retained",
   "date_utc": "2026-10-26",
   "formal_bounded_items": 75,
   "full_engine_RL_complete": false,
@@ -129,16 +144,18 @@
     "module_loads": 1,
     "top_API_calls": 43
   },
-  "latest_stage": 436,
+  "latest_stage": 437,
   "mission": "Original1.1.8 combat to standalone Python then RL;IN_PROGRESS",
   "next_actions": [
-    "Reviewnextminimumdecisionplan before any separate one-run decision",
-    "Noautomaticnewcapture/install/test:requiresfreshbudget/Sourcepreimages/controlledscope",
-    "Keep6/82formal75Kingunadmitted;savepauseat30threshold"
+    "Use437minimumcombatinitialcontract,72missing;do not require116presentationrows",
+    "Retainstrictlogs/statehistories/RNG/terminalandallrealgameplaytimers;unknownsharedRNGeffectsremainunproven",
+    "435Sourceacceptedbutinvu4stillneedactualevidence;anycaptureseparatedecision;noauto436replay"
   ],
   "phase436": {
     "actual_newtests_capture_implementation_pool": 0,
     "baseline_commit": "caa209645641c9b1e00215b1e6e1f05e1f86f105",
+    "historical_full_contract_only": true,
+    "minimum_combat_counts_superseded_by437": true,
     "other_old_missing_not_addressed": 78,
     "path": "work_in_progress/phase436-plan",
     "potential_old_missing_targets": 4,

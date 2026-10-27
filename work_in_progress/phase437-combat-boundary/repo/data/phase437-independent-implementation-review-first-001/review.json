@@ -1,0 +1,664 @@
+{
+  "schema": "phase437-independent-implementation-review/1",
+  "status": "PASS_BOUNDED_INITIAL_CONTRACT_PROJECTION",
+  "reviewer": "presentation_scope_review_sol",
+  "checks": [
+    {
+      "name": "source_owner_matches_before",
+      "status": "PASS"
+    },
+    {
+      "name": "eight_preserved_core_match_before",
+      "status": "PASS"
+    },
+    {
+      "name": "exact_independent_116_exclusion_set",
+      "status": "PASS"
+    },
+    {
+      "name": "exact_full1479_known_key_set",
+      "status": "PASS"
+    },
+    {
+      "name": "exact1363_required116_excluded_counts",
+      "status": "PASS"
+    },
+    {
+      "name": "exact_required1289_direct2_derived72_missing",
+      "status": "PASS"
+    },
+    {
+      "name": "full_historical_counts_preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "excluded102_direct4_derived10_missing",
+      "status": "PASS"
+    },
+    {
+      "name": "still_blocked_and_king_unadmitted",
+      "status": "PASS"
+    },
+    {
+      "name": "all_retained_rows_values_statuses_order_unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "all_excluded_rows_archived_unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "required1363_alone_partition_succeeds",
+      "status": "PASS"
+    },
+    {
+      "name": "all116_presentation_values_proof_statuses_do_not_block_partition",
+      "status": "PASS"
+    },
+    {
+      "name": "partition_returns_deepcopies",
+      "status": "PASS"
+    },
+    {
+      "name": "required_scope_Character.invulnerable_P",
+      "status": "PASS"
+    },
+    {
+      "name": "required_scope_Character.invulnerabilityItem_O",
+      "status": "PASS"
+    },
+    {
+      "name": "required_scope_King.invuCharges_P:12",
+      "status": "PASS"
+    },
+    {
+      "name": "required_scope_King.protectedBuffs_P:12",
+      "status": "PASS"
+    },
+    {
+      "name": "required_scope_King.manaCost_P:12",
+      "status": "PASS"
+    },
+    {
+      "name": "required_scope_King.activations_P:12",
+      "status": "PASS"
+    },
+    {
+      "name": "required_scope_King.activationsToTrigger_P:12",
+      "status": "PASS"
+    },
+    {
+      "name": "required_scope_Timer.private_left_invu:P",
+      "status": "PASS"
+    },
+    {
+      "name": "required_scope_Timer.private_left_invu:O",
+      "status": "PASS"
+    },
+    {
+      "name": "required_scope_Timer.private_left_king_buff:P:12",
+      "status": "PASS"
+    },
+    {
+      "name": "no_field_or_role_name_heuristic_King.crown_O:12",
+      "status": "PASS"
+    },
+    {
+      "name": "no_field_or_role_name_heuristic_Particle.activation.visible_P:13",
+      "status": "PASS"
+    },
+    {
+      "name": "no_field_or_role_name_heuristic_Timer.time_left_king_hide:P:13",
+      "status": "PASS"
+    },
+    {
+      "name": "no_field_or_role_name_heuristic_Timer.unreviewed_king_hide:P:12",
+      "status": "PASS"
+    },
+    {
+      "name": "delete_required_invulnerable_rejected",
+      "status": "PASS",
+      "rejection": "missing required combat initial target"
+    },
+    {
+      "name": "delete_required_kingbuff_private_rejected",
+      "status": "PASS",
+      "rejection": "missing required combat initial target"
+    },
+    {
+      "name": "unknown_identity_rejected",
+      "status": "PASS",
+      "rejection": "unknown or duplicate initial target"
+    },
+    {
+      "name": "duplicate_required_rejected",
+      "status": "PASS",
+      "rejection": "unknown or duplicate initial target"
+    },
+    {
+      "name": "retained_unsupported_proof_rejected",
+      "status": "PASS",
+      "rejection": "unsupported required proof shape"
+    },
+    {
+      "name": "retained_missing_with_invented_value_rejected",
+      "status": "PASS",
+      "rejection": "invalid missing row"
+    },
+    {
+      "name": "nonlist_rows_rejected",
+      "status": "PASS",
+      "rejection": "initial rows must be a list"
+    },
+    {
+      "name": "full_index_altered_identity_rejected",
+      "status": "PASS",
+      "rejection": "exact full historical initial contract required"
+    },
+    {
+      "name": "overlay_bool_ordinal_rejected",
+      "status": "PASS",
+      "rejection": "overlay target identity/index mismatch"
+    },
+    {
+      "name": "overlay_wrong_ordinal_rejected",
+      "status": "PASS",
+      "rejection": "overlay target identity/index mismatch"
+    },
+    {
+      "name": "overlay_unknown_target_rejected",
+      "status": "PASS",
+      "rejection": "overlay target identity/index mismatch"
+    },
+    {
+      "name": "overlay_duplicate_rejected",
+      "status": "PASS",
+      "rejection": "overlay target identity/index mismatch"
+    },
+    {
+      "name": "overlay_incomplete_rejected",
+      "status": "PASS",
+      "rejection": "incomplete historical source overlay"
+    },
+    {
+      "name": "overlay_invented_direct_proof_rejected",
+      "status": "PASS",
+      "rejection": "overlay may not invent a direct observation"
+    },
+    {
+      "name": "overlay_nonlist_targets_rejected",
+      "status": "PASS",
+      "rejection": "saved overlay targets required"
+    },
+    {
+      "name": "original_inmemory_saved_fixtures_unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "single_actual_saved_audit_main_returned_zero",
+      "status": "PASS"
+    },
+    {
+      "name": "saved_audit_equals_inmemory_projection",
+      "status": "PASS"
+    },
+    {
+      "name": "saved_exact_minimum_contract",
+      "status": "PASS"
+    },
+    {
+      "name": "saved_readback_input_identity_unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "all_saved_audit_output_hashes_match",
+      "status": "PASS"
+    },
+    {
+      "name": "frozen_saved_inputs_source_review_owner_metadata_bytes_unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "eight_preserved_core_hashes_unchanged",
+      "status": "PASS"
+    }
+  ],
+  "checks_passed": 51,
+  "production_module_main_calls": 1,
+  "old_SUT_or_model_calls": 0,
+  "Godot_capture_pool_calls": 0,
+  "subprocesses_spawned_by_control": 0,
+  "saved_audit": "data/phase437-combat-initial-first-001",
+  "saved_audit_summary": {
+    "profile": "pure-combat-initial-fixed-king-A/437",
+    "required_count": 1363,
+    "excluded_present_count": 116,
+    "counts": {
+      "DIRECT": 1289,
+      "SOURCE_DERIVED": 2,
+      "MISSING": 72
+    },
+    "schema": "combat-initial-feasibility/437",
+    "status": "BLOCKED_COMBAT_INITIAL_GAPS",
+    "full_reference_count": 1479,
+    "full_reference_counts": {
+      "DIRECT": 1391,
+      "MISSING": 82,
+      "SOURCE_DERIVED": 6
+    },
+    "excluded_reference_counts": {
+      "DIRECT": 102,
+      "MISSING": 10,
+      "SOURCE_DERIVED": 4
+    },
+    "fullschema": "NOT_VALIDATED",
+    "King_admitted": false,
+    "input_builds": 0,
+    "models": 0,
+    "captures": 0,
+    "events_histories_RNG_terminal_projection": "UNCHANGED_NOT_FILTERED",
+    "shared_render_backend_RNG_purity": "UNPROVEN_NATIVE_CALLS_UNCHANGED_STRICT_RNG_GATE_RETAINED",
+    "notes": "Minimum initial requirement projection only; full original contracts/evidence and strict independent RNG/log/terminal gates retained."
+  },
+  "input_and_core_pins_before": [
+    {
+      "path": "data/phase408-initial-audit-first-001/rawtyped-field-index.json",
+      "sha256": "27f4a859ba9144314bb25764d6787e07c8c929e96b44c37a077c4437c47cd46b",
+      "size": 1494877,
+      "metadata": [
+        27,
+        2002497,
+        1494877,
+        1793016492160802777,
+        1793016492160802777
+      ]
+    },
+    {
+      "path": "data/phase426-king-buff-overlay-first-001/overlay-report.json",
+      "sha256": "18460c39e42a3e8254aafd59d7980fc846bd3efcb9419eaf0d6383c4dd6a58aa",
+      "size": 128799,
+      "metadata": [
+        27,
+        2000190,
+        128799,
+        1793029178898485921,
+        1793029178898485921
+      ]
+    },
+    {
+      "path": "data/phase437-independent-source-review-first-001/source-review.json",
+      "sha256": "e2e50a4eca9359662e6f05790c5bac42d47181ca3e86c06a99b03a16b619be1e",
+      "size": 81336,
+      "metadata": [
+        27,
+        1861785,
+        81336,
+        1793066147862956213,
+        1793066147862956213
+      ]
+    },
+    {
+      "path": "data/phase437-combat-contract-source/source-owner.json",
+      "sha256": "7bf1794f464e4a7b7e0bfa34ccf8423b0e0c2e70631104a6a6d489017274ae92",
+      "size": 1106,
+      "metadata": [
+        27,
+        1861794,
+        1106,
+        1793066411021077964,
+        1793066411021077964
+      ]
+    },
+    {
+      "path": "native_replay_v8/combat_contract.py",
+      "sha256": "03bfdf3084e8d519f111fc7284133281b90b7ffb48a0f934387de0c1c7fec776",
+      "size": 13547,
+      "metadata": [
+        27,
+        655440,
+        13547,
+        1793066410768380785,
+        1793066410768380785
+      ]
+    },
+    {
+      "path": "docs/phase437_combat_presentation_boundary_spec.md",
+      "sha256": "439ae7803083b3f43293a444a7089bd5cf446d6675cff2bb9379d3ca197fab3a",
+      "size": 4019,
+      "metadata": [
+        27,
+        1835050,
+        4019,
+        1793065945251291799,
+        1793065945251291799
+      ]
+    },
+    {
+      "path": "docs/phase437_independent_presentation_source_review.md",
+      "sha256": "8078edfbc86aa194e872d820c5cd25c7317f42c12372ebb282286da6b79460b8",
+      "size": 8277,
+      "metadata": [
+        27,
+        1861787,
+        8277,
+        1793066147862956213,
+        1793066147862956213
+      ]
+    },
+    {
+      "path": "data/phase437-combat-contract-source/preserved-core-files-before.json",
+      "sha256": "35c0b43cd93821cb2d8768371ff866a71aeb52a2952d5b1c87954be79a09ff6a",
+      "size": 1434,
+      "metadata": [
+        27,
+        1861791,
+        1434,
+        1793066411020873641,
+        1793066411020873641
+      ]
+    },
+    {
+      "path": "headless.py",
+      "sha256": "586694b13ab9cf3455b27e43591494f52370c2a72cabbe68bc5f81a9557329d3",
+      "size": 17866,
+      "metadata": [
+        27,
+        1835080,
+        17866,
+        1792936756494612584,
+        1792936756495738280
+      ]
+    },
+    {
+      "path": "native_replay_v8/engine.py",
+      "sha256": "75a234855a8c25d837e36d4aae75164cdf136fcbc335ad8095b7b0dd8e5cc2b3",
+      "size": 184779,
+      "metadata": [
+        27,
+        655388,
+        184779,
+        1792936756498538070,
+        1792936756499784682
+      ]
+    },
+    {
+      "path": "native_replay_v8/state.py",
+      "sha256": "21478fecea4c888f701ff8991fb2cf75519670c602ed2bd9d17874e238c54bd1",
+      "size": 15114,
+      "metadata": [
+        27,
+        655363,
+        15114,
+        1792936756502187911,
+        1792936756502902892
+      ]
+    },
+    {
+      "path": "native_replay_v8/compare.py",
+      "sha256": "4af52ee400acf1460c9e28faf5a760d05753d1de7218a00d4a740712a40fdd22",
+      "size": 38087,
+      "metadata": [
+        27,
+        655382,
+        38087,
+        1792936756496865084,
+        1792936756497870002
+      ]
+    },
+    {
+      "path": "native_replay_v8/genuine.py",
+      "sha256": "e8f38850dd6c70afeafb804a661824f2e83a5087b84a674f835c015d2ff5a260",
+      "size": 213659,
+      "metadata": [
+        27,
+        655404,
+        213659,
+        1792936756500377972,
+        1792936756501532100
+      ]
+    },
+    {
+      "path": "native_replay_v8/histories.py",
+      "sha256": "d9b3f270b53f328f5958647fdaba86532ff3d9db11b272d9a7d0d2aef1db0b05",
+      "size": 8508,
+      "metadata": [
+        27,
+        656589,
+        8508,
+        1792089818549254478,
+        1792089818550125099
+      ]
+    },
+    {
+      "path": "tests/phase408_initial_source_audit.py",
+      "sha256": "c572cdbb35f44a3e696b0fa5ab3df539e9e985c5d88770d73e1f3bb9afe6977d",
+      "size": 74685,
+      "metadata": [
+        27,
+        1861733,
+        74685,
+        1793013550657924752,
+        1793013550657924752
+      ]
+    },
+    {
+      "path": "tests/phase426_king_buff_overlay.py",
+      "sha256": "473c60a2ea1656ff6c9bd59fcbad2a16eee6739e1affc0bd78bdf6f2704aede0",
+      "size": 27087,
+      "metadata": [
+        27,
+        1861767,
+        27087,
+        1793028626612909231,
+        1793028626612909231
+      ]
+    }
+  ],
+  "input_and_core_pins_after": [
+    {
+      "path": "data/phase408-initial-audit-first-001/rawtyped-field-index.json",
+      "sha256": "27f4a859ba9144314bb25764d6787e07c8c929e96b44c37a077c4437c47cd46b",
+      "size": 1494877,
+      "metadata": [
+        27,
+        2002497,
+        1494877,
+        1793016492160802777,
+        1793016492160802777
+      ]
+    },
+    {
+      "path": "data/phase426-king-buff-overlay-first-001/overlay-report.json",
+      "sha256": "18460c39e42a3e8254aafd59d7980fc846bd3efcb9419eaf0d6383c4dd6a58aa",
+      "size": 128799,
+      "metadata": [
+        27,
+        2000190,
+        128799,
+        1793029178898485921,
+        1793029178898485921
+      ]
+    },
+    {
+      "path": "data/phase437-independent-source-review-first-001/source-review.json",
+      "sha256": "e2e50a4eca9359662e6f05790c5bac42d47181ca3e86c06a99b03a16b619be1e",
+      "size": 81336,
+      "metadata": [
+        27,
+        1861785,
+        81336,
+        1793066147862956213,
+        1793066147862956213
+      ]
+    },
+    {
+      "path": "data/phase437-combat-contract-source/source-owner.json",
+      "sha256": "7bf1794f464e4a7b7e0bfa34ccf8423b0e0c2e70631104a6a6d489017274ae92",
+      "size": 1106,
+      "metadata": [
+        27,
+        1861794,
+        1106,
+        1793066411021077964,
+        1793066411021077964
+      ]
+    },
+    {
+      "path": "native_replay_v8/combat_contract.py",
+      "sha256": "03bfdf3084e8d519f111fc7284133281b90b7ffb48a0f934387de0c1c7fec776",
+      "size": 13547,
+      "metadata": [
+        27,
+        655440,
+        13547,
+        1793066410768380785,
+        1793066410768380785
+      ]
+    },
+    {
+      "path": "docs/phase437_combat_presentation_boundary_spec.md",
+      "sha256": "439ae7803083b3f43293a444a7089bd5cf446d6675cff2bb9379d3ca197fab3a",
+      "size": 4019,
+      "metadata": [
+        27,
+        1835050,
+        4019,
+        1793065945251291799,
+        1793065945251291799
+      ]
+    },
+    {
+      "path": "docs/phase437_independent_presentation_source_review.md",
+      "sha256": "8078edfbc86aa194e872d820c5cd25c7317f42c12372ebb282286da6b79460b8",
+      "size": 8277,
+      "metadata": [
+        27,
+        1861787,
+        8277,
+        1793066147862956213,
+        1793066147862956213
+      ]
+    },
+    {
+      "path": "data/phase437-combat-contract-source/preserved-core-files-before.json",
+      "sha256": "35c0b43cd93821cb2d8768371ff866a71aeb52a2952d5b1c87954be79a09ff6a",
+      "size": 1434,
+      "metadata": [
+        27,
+        1861791,
+        1434,
+        1793066411020873641,
+        1793066411020873641
+      ]
+    },
+    {
+      "path": "headless.py",
+      "sha256": "586694b13ab9cf3455b27e43591494f52370c2a72cabbe68bc5f81a9557329d3",
+      "size": 17866,
+      "metadata": [
+        27,
+        1835080,
+        17866,
+        1792936756494612584,
+        1792936756495738280
+      ]
+    },
+    {
+      "path": "native_replay_v8/engine.py",
+      "sha256": "75a234855a8c25d837e36d4aae75164cdf136fcbc335ad8095b7b0dd8e5cc2b3",
+      "size": 184779,
+      "metadata": [
+        27,
+        655388,
+        184779,
+        1792936756498538070,
+        1792936756499784682
+      ]
+    },
+    {
+      "path": "native_replay_v8/state.py",
+      "sha256": "21478fecea4c888f701ff8991fb2cf75519670c602ed2bd9d17874e238c54bd1",
+      "size": 15114,
+      "metadata": [
+        27,
+        655363,
+        15114,
+        1792936756502187911,
+        1792936756502902892
+      ]
+    },
+    {
+      "path": "native_replay_v8/compare.py",
+      "sha256": "4af52ee400acf1460c9e28faf5a760d05753d1de7218a00d4a740712a40fdd22",
+      "size": 38087,
+      "metadata": [
+        27,
+        655382,
+        38087,
+        1792936756496865084,
+        1792936756497870002
+      ]
+    },
+    {
+      "path": "native_replay_v8/genuine.py",
+      "sha256": "e8f38850dd6c70afeafb804a661824f2e83a5087b84a674f835c015d2ff5a260",
+      "size": 213659,
+      "metadata": [
+        27,
+        655404,
+        213659,
+        1792936756500377972,
+        1792936756501532100
+      ]
+    },
+    {
+      "path": "native_replay_v8/histories.py",
+      "sha256": "d9b3f270b53f328f5958647fdaba86532ff3d9db11b272d9a7d0d2aef1db0b05",
+      "size": 8508,
+      "metadata": [
+        27,
+        656589,
+        8508,
+        1792089818549254478,
+        1792089818550125099
+      ]
+    },
+    {
+      "path": "tests/phase408_initial_source_audit.py",
+      "sha256": "c572cdbb35f44a3e696b0fa5ab3df539e9e985c5d88770d73e1f3bb9afe6977d",
+      "size": 74685,
+      "metadata": [
+        27,
+        1861733,
+        74685,
+        1793013550657924752,
+        1793013550657924752
+      ]
+    },
+    {
+      "path": "tests/phase426_king_buff_overlay.py",
+      "sha256": "473c60a2ea1656ff6c9bd59fcbad2a16eee6739e1affc0bd78bdf6f2704aede0",
+      "size": 27087,
+      "metadata": [
+        27,
+        1861767,
+        27087,
+        1793028626612909231,
+        1793028626612909231
+      ]
+    }
+  ],
+  "formal_bounded_items": 75,
+  "formal_bounded_items_status": "EXISTING_ACCEPTED_UNCHANGED",
+  "King_admitted": false,
+  "fullschema": "NOT_VALIDATED",
+  "source_report_status_wording_correction": "The sealed Source review formal75=UNCHANGED_UNADMITTED and Chinese combined 75/King wording were erroneous/ambiguous. The existing formal bounded 75 remain accepted; King remains unadmitted. No sealed Source bytes were changed.",
+  "scope": "Exact minimum initial requirement projection only; no output/event/history/RNG/terminal projection. 72 required initial gaps still block.",
+  "RNG_limit": "No global GPU/backend/shared RNG purity proof; all original native calls/order and independent strict RNG gates remain unchanged.",
+  "remaining_blockers": [
+    "72 required MISSING/UNPROVEN rows",
+    "King not admitted",
+    "fullschema not validated"
+  ],
+  "elapsed_seconds": 0.5915085440000212
+}
