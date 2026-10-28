@@ -1,0 +1,223 @@
+{
+  "schema": "phase440-remaining-consumer-fields/1",
+  "initial_439_missing_count": 0,
+  "meaning": "These are unaccepted runtime/consumer/schema/comparison joins, not claims of absent capture fields.",
+  "groups": [
+    {
+      "id": "G01",
+      "fields": [
+        "fixture.sides[P/O].character_class",
+        "fixture.sides[P/O].hp",
+        "fixture.sides[P/O].stamina",
+        "fixture.sides[*].items[*].instance_id/item_index/x/y/f",
+        "prepare_order[39]",
+        "activate_order[39]"
+      ],
+      "lawful_inputs": [
+        "fixture.json",
+        "player_fixture.json",
+        "king-slot-bindings.json",
+        "observer7-input.jsonl"
+      ],
+      "existing_source_consumers": [
+        "361._order",
+        "391.join_binding_provenance"
+      ],
+      "status": "PENDING_NEW_PURE_CONSUMER_JOINT_ACCEPTANCE",
+      "detail": "Identity/geometry/order join pending; O:12 hole preserved.",
+      "new_observation_gap_asserted": false
+    },
+    {
+      "id": "G02",
+      "fields": [
+        "checkpoint.util_time_bits/combat_time_bits/source_phase",
+        "environment.fps/scale/paused",
+        "frame_clock.checkpoint.*",
+        "frame_clock.passes[*].kind/delta_bits/physics_frame/idle_frame",
+        "processing_nodes[*].role/native_id/path/positions/priority/four_flags/inside_tree"
+      ],
+      "lawful_inputs": [
+        "observer7-input.jsonl",
+        "king-clock-checkpoint.json",
+        "king-clock-passes.jsonl",
+        "king-ui-authority.jsonl"
+      ],
+      "existing_source_consumers": [
+        "391.decode_clock",
+        "356._validate_single_king_topology",
+        "356.EngineFrameDriver"
+      ],
+      "status": "PENDING_NEW_PURE_CONSUMER_JOINT_ACCEPTANCE",
+      "detail": "Native topology P invu child7/O child5 conflicts with old both5 literal; business idle/transform/RNG closure pending.",
+      "new_observation_gap_asserted": false
+    },
+    {
+      "id": "G03",
+      "fields": [
+        "timer_initial[33].wait_time_bits/one_shot/process_mode/autostart/paused/private_left_bits"
+      ],
+      "lawful_inputs": [
+        "observer7-input.jsonl"
+      ],
+      "existing_source_consumers": [
+        "439 accepted ordered1363 audit",
+        "426 KingBuff pair",
+        "356._validate_runtime_nodes",
+        "356.build_runtime_scaffold"
+      ],
+      "status": "PENDING_NEW_PURE_CONSUMER_JOINT_ACCEPTANCE",
+      "detail": "33 business Timer origin consumers absent; do not relabel439 inactive evidence fresh_configured.",
+      "new_observation_gap_asserted": false
+    },
+    {
+      "id": "G04",
+      "fields": [
+        "initial_characters[P/O].invulnerable",
+        "initial_characters[P/O].invulnerabilityItem",
+        "initial_characters[P/O].buffProtectStacks"
+      ],
+      "lawful_inputs": [
+        "observer7-input.jsonl",
+        "king-input-facts.json"
+      ],
+      "existing_source_consumers": [
+        "438 Character8 accepted",
+        "CharacterState",
+        "356.invu_origins"
+      ],
+      "status": "PENDING_NEW_PURE_CONSUMER_JOINT_ACCEPTANCE",
+      "detail": "Values proved; new typed DTO/constructor equality gate not implemented.",
+      "new_observation_gap_asserted": false
+    },
+    {
+      "id": "G05",
+      "fields": [
+        "source_resources[P/O].buffs[100..110].current",
+        "permanentStacks",
+        "temporaryStacks",
+        "nextTemporaryTimeout",
+        "resistStacks",
+        "resistChancePercent",
+        "cleanseProtectionChancePercent",
+        "reflectChancePercent"
+      ],
+      "lawful_inputs": [
+        "observer7-input.jsonl"
+      ],
+      "existing_source_consumers": [
+        "engine.fresh_buff_fields",
+        "CharacterState",
+        "Core/Buff.gd"
+      ],
+      "status": "PENDING_NEW_PURE_CONSUMER_JOINT_ACCEPTANCE",
+      "detail": "Existing lawful state must validate model-read constructor/prepare fields; reset is not stop/clear.",
+      "new_observation_gap_asserted": false
+    },
+    {
+      "id": "G06",
+      "fields": [
+        "initial_items[39].lastActivationTime_bits/lastTriggerTime_bits",
+        "activationsThisFrame/triggersThisFrame/dragged/moveback_running/cache_fresh",
+        "items[*].consumed",
+        "items[HealthPotion].isFull",
+        "items[*].cachedAffectedItems/currentAffectedItems",
+        "items[*].iterationCooldown/triggerTime/speedScale",
+        "King[P:12].activations/invuCharges/protectedBuffs/manaCost/activationsToTrigger"
+      ],
+      "lawful_inputs": [
+        "observer7-input.jsonl",
+        "observer7-lineage.jsonl",
+        "observer7-metadata.jsonl",
+        "king-input-facts.json"
+      ],
+      "existing_source_consumers": [
+        "361.project_fixture_and_runtime",
+        "391.validate_single_king_source_defaults",
+        "356.prepare_only"
+      ],
+      "status": "PENDING_NEW_PURE_CONSUMER_JOINT_ACCEPTANCE",
+      "detail": "Full39 freshness/default/prepare validation pending; prepared charge3/cache never seed constructor.",
+      "new_observation_gap_asserted": false
+    },
+    {
+      "id": "G07",
+      "fields": [
+        "Character.accuracy/critical/crit_resistance_rng/stun_resistance_rng constructor/reset/bias",
+        "Item.chance_rng/damage_range constructor/reset",
+        "below_master bias P-0.2/O+0.2"
+      ],
+      "lawful_inputs": [
+        "king-rng-checkpoint.json",
+        "observer7-lineage.jsonl",
+        "observer7-input.jsonl"
+      ],
+      "existing_source_consumers": [
+        "BalancedRng",
+        "BalancedRange",
+        "356.prepare_only"
+      ],
+      "status": "PENDING_NEW_PURE_CONSUMER_JOINT_ACCEPTANCE",
+      "detail": "Source constructor/prepare proof only; never restore from native final RNG state.",
+      "new_observation_gap_asserted": false
+    },
+    {
+      "id": "G08",
+      "fields": [
+        "draws[*].kind/label/args/value_bits-or-value",
+        "TapeRandom.position/audit/assert_consumed"
+      ],
+      "lawful_inputs": [
+        "observer7-primitives.jsonl",
+        "king-rng-checkpoint.json"
+      ],
+      "existing_source_consumers": [
+        "361._primitive_projection",
+        "TapeRandom._take",
+        "TapeRandom.assert_consumed"
+      ],
+      "status": "PENDING_NEW_PURE_CONSUMER_JOINT_ACCEPTANCE",
+      "detail": "Conditional Tape full stream not yet independently accepted; keep sound/random calls; no seed restoration/global_u32 expansion.",
+      "new_observation_gap_asserted": false
+    },
+    {
+      "id": "G09",
+      "fields": [
+        "event_num/allocated_events/logging_mode/signal_queue initial predicates",
+        "histories.item_state King0/1/2 withNextEvent/eventNum/event.id adjacency"
+      ],
+      "lawful_inputs": [
+        "observer7-input.jsonl",
+        "observer7-lineage.jsonl"
+      ],
+      "existing_source_consumers": [
+        "356.king_set_state",
+        "CombatHistories",
+        "356.emit_event"
+      ],
+      "status": "PENDING_NEW_PURE_CONSUMER_JOINT_ACCEPTANCE",
+      "detail": "Constructor/log initial-source closure and pure history sink split pending, no excluded crown snapshot input.",
+      "new_observation_gap_asserted": false
+    },
+    {
+      "id": "G10",
+      "fields": [
+        "result.events/event_references/histories/final/random_inputs",
+        "business API operation/argc/args/typed actual return",
+        "ordered source callbacks physics+idle+tail",
+        "business Timer[33] cleanup/final public/private/processing flags",
+        "Character invulnerable/origin and King business state",
+        "terminal cleanup C/remaining/future physics/first eligible idle/passes_consumed"
+      ],
+      "lawful_inputs": [],
+      "existing_source_consumers": [
+        "356.result/snapshot",
+        "391.validate_observation_records",
+        "391.validate_terminal_receipt",
+        "compare_king_observations"
+      ],
+      "status": "OUTPUT_ONLY_MAPPING_PENDING",
+      "detail": "OUTPUT_ONLY_CONSUMERS_NOT_IMPLEMENTED; native later private values not directly exposed; no posthoc diagnostic rerun.",
+      "new_observation_gap_asserted": false
+    }
+  ]
+}

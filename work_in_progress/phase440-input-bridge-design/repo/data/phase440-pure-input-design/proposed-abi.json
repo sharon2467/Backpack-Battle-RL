@@ -1,0 +1,46 @@
+{
+  "schema": "phase440-proposed-pure-abi/1",
+  "status": "DESIGN_NOT_IMPLEMENTED",
+  "native_profile": "observer7-390-native-single-king-A/1",
+  "native_observer_version": "7-king-single-A-390",
+  "proposed_candidate_profile": "pure-combat-fixed-king-A-440/1",
+  "bundle_keys": [
+    "schema",
+    "fixture",
+    "runtime",
+    "draws",
+    "synthetic_seed"
+  ],
+  "runtime_keys": [
+    "schema",
+    "mode",
+    "profile_id",
+    "checkpoint",
+    "environment",
+    "nodes",
+    "timer_initial",
+    "initial_items",
+    "initial_characters",
+    "prepare_order",
+    "activate_order",
+    "terminal_profile",
+    "frame_clock",
+    "processing_nodes"
+  ],
+  "runtime_key_count": 14,
+  "business_timer_count": 33,
+  "excluded_runtime_requirements": [
+    "king_particles",
+    "ui_authority",
+    "root_node duplicate",
+    "inactive_auxiliaries synthetic snapshots",
+    "fresh-only timer_lineage",
+    "Character.invulBubbleVisible",
+    "King.crown/light",
+    "king_hide:P:12",
+    "king_drag:P:12"
+  ],
+  "major_choice": "conditional_direct_native_primitive_returns first; independent same-seed/RL later",
+  "source_proofs": "external engineering proof, never Engine state",
+  "implementation_allowed_by_this_artifact": false
+}
