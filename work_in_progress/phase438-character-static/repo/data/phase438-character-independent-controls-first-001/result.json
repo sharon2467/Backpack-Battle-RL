@@ -1,0 +1,233 @@
+{
+  "changes": [
+    {
+      "ordinal": 1289,
+      "key": [
+        "Character.invulnerable",
+        "pre_prepare",
+        "P"
+      ],
+      "actual_value": {
+        "type": "bool",
+        "value": false
+      }
+    },
+    {
+      "ordinal": 1290,
+      "key": [
+        "Character.invulnerabilityItem",
+        "pre_prepare",
+        "P"
+      ],
+      "actual_value": {
+        "type": "null"
+      }
+    },
+    {
+      "ordinal": 1291,
+      "key": [
+        "Character.invulnerable",
+        "pre_prepare",
+        "O"
+      ],
+      "actual_value": {
+        "type": "bool",
+        "value": false
+      }
+    },
+    {
+      "ordinal": 1292,
+      "key": [
+        "Character.invulnerabilityItem",
+        "pre_prepare",
+        "O"
+      ],
+      "actual_value": {
+        "type": "null"
+      }
+    },
+    {
+      "ordinal": 1326,
+      "key": [
+        "Character.invulnerable",
+        "pre_activate",
+        "P"
+      ],
+      "actual_value": {
+        "type": "bool",
+        "value": false
+      }
+    },
+    {
+      "ordinal": 1327,
+      "key": [
+        "Character.invulnerabilityItem",
+        "pre_activate",
+        "P"
+      ],
+      "actual_value": {
+        "type": "null"
+      }
+    },
+    {
+      "ordinal": 1328,
+      "key": [
+        "Character.invulnerable",
+        "pre_activate",
+        "O"
+      ],
+      "actual_value": {
+        "type": "bool",
+        "value": false
+      }
+    },
+    {
+      "ordinal": 1329,
+      "key": [
+        "Character.invulnerabilityItem",
+        "pre_activate",
+        "O"
+      ],
+      "actual_value": {
+        "type": "null"
+      }
+    }
+  ],
+  "non_target_rows_unchanged": 1355,
+  "excluded_unchanged": 116,
+  "old_derived_unchanged": 2,
+  "counts": {
+    "DIRECT": 1289,
+    "SOURCE_DERIVED": 10,
+    "MISSING": 64
+  },
+  "status": "PASS",
+  "pure_project_calls": 1,
+  "actual_run_calls": 0,
+  "negative_controls": [
+    {
+      "name": "starts:False",
+      "reason": "LINEAGE_ZERO_INTEGER_starts"
+    },
+    {
+      "name": "starts:0.0",
+      "reason": "LINEAGE_ZERO_INTEGER_starts"
+    },
+    {
+      "name": "starts:'0'",
+      "reason": "LINEAGE_ZERO_INTEGER_starts"
+    },
+    {
+      "name": "starts:-1",
+      "reason": "LINEAGE_ZERO_INTEGER_starts"
+    },
+    {
+      "name": "starts:1",
+      "reason": "LINEAGE_ZERO_INTEGER_starts"
+    },
+    {
+      "name": "missing_counter",
+      "reason": "LINEAGE_SHAPE"
+    },
+    {
+      "name": "wrong_kind",
+      "reason": "LINEAGE_ID_KIND"
+    },
+    {
+      "name": "owner_alias",
+      "reason": "LINEAGE_ID_KIND"
+    },
+    {
+      "name": "timer_alias",
+      "reason": "LINEAGE_ID_KIND"
+    },
+    {
+      "name": "bool_birth_mode",
+      "reason": "BIRTH_CONFIG"
+    },
+    {
+      "name": "current_mismatch",
+      "reason": "FACT_CURRENT_IDENTITY"
+    },
+    {
+      "name": "wrong_phase",
+      "reason": "CUT_PHASE"
+    },
+    {
+      "name": "wrong_sequence",
+      "reason": "CUT_SITE_SEQUENCE"
+    },
+    {
+      "name": "bool_sequence",
+      "reason": "CUT_SITE_SEQUENCE"
+    },
+    {
+      "name": "wrong_frame",
+      "reason": "CUT_FIXED_FRAME_STAMP"
+    },
+    {
+      "name": "resource_alias",
+      "reason": "CUT_RESOURCE_OWNER"
+    },
+    {
+      "name": "duplicate_node",
+      "reason": "CUT_NODE_BIJECTION"
+    },
+    {
+      "name": "bool_environment",
+      "reason": "CUT_ENVIRONMENT"
+    },
+    {
+      "name": "bool_cut_mode",
+      "reason": "CUT_MODE"
+    },
+    {
+      "name": "foreign_missing_key",
+      "reason": "AUDIT_FIXED_CANONICAL_FINGERPRINT"
+    },
+    {
+      "name": "swap_rows",
+      "reason": "AUDIT_FIXED_CANONICAL_FINGERPRINT"
+    },
+    {
+      "name": "old_derived_shape",
+      "reason": "AUDIT_FIXED_CANONICAL_FINGERPRINT"
+    },
+    {
+      "name": "excluded_payload",
+      "reason": "AUDIT_FIXED_CANONICAL_FINGERPRINT"
+    },
+    {
+      "name": "duplicate_target",
+      "reason": "AUDIT_DUPLICATE"
+    },
+    {
+      "name": "pre_ready_domain_removed",
+      "reason": "CONTEXT_RULE"
+    },
+    {
+      "name": "duplicate_json",
+      "reason": "STRICT_JSON: DUPLICATE_JSON_KEY"
+    },
+    {
+      "name": "nonfinite_json",
+      "reason": "STRICT_JSON: NONFINITE_JSON_CONSTANT"
+    }
+  ],
+  "source_counterexamples": [
+    "prebirth-or-reset-zero-does-not-prove-null",
+    "timeout-false-retains-item"
+  ],
+  "checkpoint_records_parsed": [
+    1,
+    4
+  ],
+  "whole_input_files_hashed": true,
+  "native_runs": 0,
+  "old_controls_run": 0,
+  "Timer_abstract_enumeration_run": 0,
+  "module_sha256": "af6454e043a7118c50a0951d8d78ba34be610359febff8e07a3ca62a1623a34e",
+  "source_owner_sha256": "d65a3143dd70af23ad9be54b4a73edc6a375ed6ebe25799573186b39b3b48111",
+  "elapsed_seconds": 0.3084743100000651,
+  "correction_limit": "Earlier analysis report/owner are RECONSTRUCTED, not archived originals; later v1 adapter remains pinned and preserved."
+}

@@ -1,0 +1,151 @@
+{
+  "schema": "phase438-character-source-api-v2/1",
+  "module": {
+    "path": "tests/phase438_character_initial_overlay_v2.py",
+    "size": 21344,
+    "sha256": "af6454e043a7118c50a0951d8d78ba34be610359febff8e07a3ca62a1623a34e"
+  },
+  "functions": [
+    {
+      "name": "require",
+      "line": 39,
+      "end_line": 41,
+      "arguments": "condition, reason"
+    },
+    {
+      "name": "same",
+      "line": 44,
+      "end_line": 45,
+      "arguments": "left, right"
+    },
+    {
+      "name": "strict_json",
+      "line": 48,
+      "end_line": 65,
+      "arguments": "raw"
+    },
+    {
+      "name": "key",
+      "line": 68,
+      "end_line": 72,
+      "arguments": "row"
+    },
+    {
+      "name": "canonical",
+      "line": 75,
+      "end_line": 79,
+      "arguments": "value"
+    },
+    {
+      "name": "physical",
+      "line": 82,
+      "end_line": 90,
+      "arguments": "path, regular=True"
+    },
+    {
+      "name": "read_pinned",
+      "line": 93,
+      "end_line": 120,
+      "arguments": "descriptor, io"
+    },
+    {
+      "name": "validate_source",
+      "line": 123,
+      "end_line": 142,
+      "arguments": "context, io"
+    },
+    {
+      "name": "validate_audit",
+      "line": 145,
+      "end_line": 176,
+      "arguments": "audit"
+    },
+    {
+      "name": "unique_node",
+      "line": 179,
+      "end_line": 190,
+      "arguments": "nodes, role"
+    },
+    {
+      "name": "validate_cuts",
+      "line": 193,
+      "end_line": 234,
+      "arguments": "records"
+    },
+    {
+      "name": "validate_ledger",
+      "line": 237,
+      "end_line": 259,
+      "arguments": "facts, bindings"
+    },
+    {
+      "name": "project",
+      "line": 262,
+      "end_line": 285,
+      "arguments": "audit, records, facts"
+    },
+    {
+      "name": "save_new",
+      "line": 288,
+      "end_line": 303,
+      "arguments": "path, value"
+    },
+    {
+      "name": "run",
+      "line": 306,
+      "end_line": 337,
+      "arguments": "output_new"
+    },
+    {
+      "name": "main",
+      "line": 340,
+      "end_line": 344,
+      "arguments": "argv=None"
+    }
+  ],
+  "CLI": "python tests/phase438_character_initial_overlay_v2.py --output-new /workspace/python-original-engine/repo/data/NEW-DIRECTORY",
+  "actual_IO_inputs": {
+    "audit": {
+      "path": "data/phase437-combat-initial-first-001/combat-initial-audit.json",
+      "size": 1043440,
+      "sha256": "4ca854a6d050dc573037207a0320f60a0da8f531a0c6dccb7d075aee38ad79a7"
+    },
+    "checkpoints": {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-input.jsonl",
+      "size": 306081,
+      "sha256": "00158549c266456a1b2a29ac14c395a47acb13eb441fc6a4be7056b21bfa6616"
+    },
+    "facts": {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-input-facts.json",
+      "size": 10082,
+      "sha256": "e3b2e6267a6132a53f95fd0f0322ba14fbc22115a1f5ba8dc9411a67ac3f5880"
+    }
+  },
+  "source_domain": {
+    "project_scripts": 815,
+    "scene_dependencies": 19
+  },
+  "audit_fixed_canonical_sha256": "7a176e2a17353305dff5932e09902a4b2757dc867ac48d2d7ceead6c21bb5a72",
+  "expected_after": {
+    "required_rows": 1363,
+    "excluded": 116,
+    "DIRECT": 1289,
+    "SOURCE_DERIVED": 10,
+    "MISSING": 64,
+    "historical_full_reference_counts": {
+      "DIRECT": 1391,
+      "SOURCE_DERIVED": 6,
+      "MISSING": 82
+    },
+    "Buff44_new_proofs": 0
+  },
+  "author_activity": {
+    "compile_only": 1,
+    "module_imports": 0,
+    "module_execution": 0,
+    "actual_saved_overlays": 0,
+    "controls_or_tests": 0
+  },
+  "I_O_semantics": "Whole input files read/hashed and re-read/hashed; checkpoint records parsed only at lines1/4; entire facts JSON syntax decoded, business reads only invu P/O; postcleanup_records_parsed=0; no assertion of zero suffix byte reads.",
+  "independent_review": "Pending new v2 Source/function controls; v1 retained"
+}

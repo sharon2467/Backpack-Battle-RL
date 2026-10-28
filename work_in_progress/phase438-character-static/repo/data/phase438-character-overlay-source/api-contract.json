@@ -1,0 +1,156 @@
+{
+  "schema": "phase438-character-source-api/1",
+  "module": {
+    "path": "tests/phase438_character_initial_overlay.py",
+    "size": 20871,
+    "sha256": "bb69dd1674929c892e60788f9cc269faf80710747e7921719dcf0eed17f32d7b"
+  },
+  "functions": [
+    {
+      "name": "require",
+      "line": 38,
+      "end_line": 40,
+      "arguments": "condition, reason"
+    },
+    {
+      "name": "same",
+      "line": 43,
+      "end_line": 44,
+      "arguments": "left, right"
+    },
+    {
+      "name": "strict_json",
+      "line": 47,
+      "end_line": 64,
+      "arguments": "raw"
+    },
+    {
+      "name": "key",
+      "line": 67,
+      "end_line": 71,
+      "arguments": "row"
+    },
+    {
+      "name": "canonical",
+      "line": 74,
+      "end_line": 78,
+      "arguments": "value"
+    },
+    {
+      "name": "physical",
+      "line": 81,
+      "end_line": 89,
+      "arguments": "path, regular=True"
+    },
+    {
+      "name": "read_pinned",
+      "line": 92,
+      "end_line": 119,
+      "arguments": "descriptor, io"
+    },
+    {
+      "name": "validate_source",
+      "line": 122,
+      "end_line": 141,
+      "arguments": "context, io"
+    },
+    {
+      "name": "validate_audit",
+      "line": 144,
+      "end_line": 173,
+      "arguments": "audit"
+    },
+    {
+      "name": "unique_node",
+      "line": 176,
+      "end_line": 187,
+      "arguments": "nodes, role"
+    },
+    {
+      "name": "validate_cuts",
+      "line": 190,
+      "end_line": 231,
+      "arguments": "records"
+    },
+    {
+      "name": "validate_ledger",
+      "line": 234,
+      "end_line": 256,
+      "arguments": "facts, bindings"
+    },
+    {
+      "name": "project",
+      "line": 259,
+      "end_line": 283,
+      "arguments": "audit, records, facts"
+    },
+    {
+      "name": "save_new",
+      "line": 286,
+      "end_line": 301,
+      "arguments": "path, value"
+    },
+    {
+      "name": "run",
+      "line": 304,
+      "end_line": 333,
+      "arguments": "output_new"
+    },
+    {
+      "name": "main",
+      "line": 336,
+      "end_line": 340,
+      "arguments": "argv=None"
+    }
+  ],
+  "CLI": "python tests/phase438_character_initial_overlay.py --output-new /workspace/python-original-engine/repo/data/NEW-DIRECTORY",
+  "actual_IO_inputs": {
+    "audit": {
+      "path": "data/phase437-combat-initial-first-001/combat-initial-audit.json",
+      "size": 1043440,
+      "sha256": "4ca854a6d050dc573037207a0320f60a0da8f531a0c6dccb7d075aee38ad79a7"
+    },
+    "checkpoints": {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-input.jsonl",
+      "size": 306081,
+      "sha256": "00158549c266456a1b2a29ac14c395a47acb13eb441fc6a4be7056b21bfa6616"
+    },
+    "facts": {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-input-facts.json",
+      "size": 10082,
+      "sha256": "e3b2e6267a6132a53f95fd0f0322ba14fbc22115a1f5ba8dc9411a67ac3f5880"
+    }
+  },
+  "source_domain": {
+    "project_scripts": 815,
+    "scene_dependencies": 19
+  },
+  "expected_after": {
+    "required_rows": 1363,
+    "excluded": 116,
+    "DIRECT": 1289,
+    "SOURCE_DERIVED": 10,
+    "MISSING": 64,
+    "Buff44_new_proofs": 0
+  },
+  "author_activity": {
+    "compile_only": 1,
+    "module_imports": 0,
+    "module_execution": 0,
+    "actual_saved_overlays": 0,
+    "controls_or_tests": 0,
+    "EXPECTED_reads": 0,
+    "postcleanup_reads": 0
+  },
+  "minimum_independent_controls": [
+    "positive pure helper exactly8 changes/all non-target+excluded unchanged",
+    "bool or missing counters/mode/phase/owner/timer/alias/duplicate node/duplicate JSON reject",
+    "positive starts/wrong kind/birth owner/current/checkpoint disagreement reject",
+    "phase/sequence/subject/stamp/config drift reject",
+    "audit counts/duplicates/classification/target removal reject",
+    "Source/input SHA drift and symbolic/hard links reject; no replaced context accepted",
+    "existing/non-data output reject",
+    "Source earliest-call induction and pre-ready receiver/generic-setter closure challenge"
+  ],
+  "acceptance": "NOT_SELF_ACCEPTED; independent Source/function review then one saved overlay"
+}
