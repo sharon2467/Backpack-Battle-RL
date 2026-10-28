@@ -1,0 +1,24 @@
+{
+  "schema": "test-negative-link-fixture-representation/1",
+  "fixtures": [
+    {
+      "path": "data/phase439-independent-controls-first-001/ordinary.dat",
+      "kind": "hardlinked_regular",
+      "original_nlink": 2,
+      "materialized": "regular-byte-copy; topology metadata only"
+    },
+    {
+      "path": "data/phase439-independent-controls-first-001/hard.dat",
+      "kind": "hardlinked_regular",
+      "original_nlink": 2,
+      "materialized": "regular-byte-copy; topology metadata only"
+    },
+    {
+      "path": "data/phase439-independent-controls-first-001/symbolic.dat",
+      "kind": "symlink",
+      "target": "/workspace/python-original-engine/repo/data/phase439-independent-controls-first-001/ordinary.dat",
+      "materialized": false
+    }
+  ],
+  "scope": "Intentional negative test objects only. No actual source/result omissions; symbolic target not followed. Original fixture objects remain unchanged locally."
+}

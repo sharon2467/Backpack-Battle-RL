@@ -1,0 +1,10 @@
+{
+  "schema": "phase439-staging-first-error/1",
+  "utc": "2026-10-28T19:55:32.968789+00:00",
+  "error": "AssertionError on ordinary single-link source staging guard",
+  "cause": "Independent negative controls retain ordinary.dat/hard.dat linked nlink2 and symbolic.dat symlink. They are intentional test fixtures, not production Source.",
+  "preserved_partial_staging": "/workspace/checkpoints/phase439-staging-first-error-20261028",
+  "partial_regular_files": 11,
+  "original_source_and_accepted_results_changed": false,
+  "resolution": "New stage copies ordinary hardlink fixture bytes as regular blobs and records original link topology; symlink represented only in explicit metadata, not followed/published as a live link. No source deletion or test retry."
+}

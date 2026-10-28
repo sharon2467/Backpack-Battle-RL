@@ -1,0 +1,14 @@
+{
+  "schema": "phase439-independent-static-first-finding/1",
+  "status": "PAUSED_SOURCE_PIN_GAP_BEFORE_EXECUTION",
+  "module_sha256": "e64c7ba004bd058718907ab1115949c776bb199c59ee71d14c9659e1b2dc1e69",
+  "source_owner_sha256": "5ec3260026771303feb5b3def12c8eacbc1c62272623228c2da88de72ff3c161",
+  "finding": "Eight direct external Character AnimationPlayer resources are absent from source descriptors; current inspected tracks are visual only, but descriptor-based drift gate cannot reject changes to them.",
+  "minimum_fix": "Pin the eight named CharacterClasses/Animations .tres leaves in a preserved-v1/new-v2 Source context, then release the bounded new controls and actual run.",
+  "module_imports": 0,
+  "function_controls": 0,
+  "actual_runs": 0,
+  "native_runs": 0,
+  "mutated_original_files": 0,
+  "report": "docs/phase439_timer64_independent_static_review.md"
+}

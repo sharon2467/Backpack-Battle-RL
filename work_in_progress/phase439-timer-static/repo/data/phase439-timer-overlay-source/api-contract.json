@@ -1,0 +1,173 @@
+{
+  "schema": "phase439-timer-source-api/1",
+  "module": {
+    "path": "tests/phase439_timer_initial_overlay.py",
+    "size": 24686,
+    "sha256": "e64c7ba004bd058718907ab1115949c776bb199c59ee71d14c9659e1b2dc1e69"
+  },
+  "functions": [
+    {
+      "name": "require",
+      "line": 39,
+      "end_line": 41,
+      "arguments": "condition, reason"
+    },
+    {
+      "name": "same",
+      "line": 44,
+      "end_line": 45,
+      "arguments": "left, right"
+    },
+    {
+      "name": "strict_json",
+      "line": 48,
+      "end_line": 65,
+      "arguments": "raw"
+    },
+    {
+      "name": "key",
+      "line": 68,
+      "end_line": 72,
+      "arguments": "row"
+    },
+    {
+      "name": "canonical",
+      "line": 75,
+      "end_line": 79,
+      "arguments": "value"
+    },
+    {
+      "name": "physical",
+      "line": 82,
+      "end_line": 90,
+      "arguments": "path, regular=True"
+    },
+    {
+      "name": "read_pinned",
+      "line": 93,
+      "end_line": 120,
+      "arguments": "descriptor, io"
+    },
+    {
+      "name": "save_new",
+      "line": 123,
+      "end_line": 138,
+      "arguments": "path, value"
+    },
+    {
+      "name": "fingerprint",
+      "line": 141,
+      "end_line": 142,
+      "arguments": "value"
+    },
+    {
+      "name": "validate_source",
+      "line": 145,
+      "end_line": 169,
+      "arguments": "context, io"
+    },
+    {
+      "name": "validate_audit",
+      "line": 172,
+      "end_line": 193,
+      "arguments": "audit"
+    },
+    {
+      "name": "node_index",
+      "line": 196,
+      "end_line": 206,
+      "arguments": "nodes"
+    },
+    {
+      "name": "field_value",
+      "line": 209,
+      "end_line": 214,
+      "arguments": "timer, name"
+    },
+    {
+      "name": "validate_cuts",
+      "line": 217,
+      "end_line": 293,
+      "arguments": "records, audit, receivers, ordinals"
+    },
+    {
+      "name": "project",
+      "line": 296,
+      "end_line": 321,
+      "arguments": "audit, records, receivers"
+    },
+    {
+      "name": "run",
+      "line": 324,
+      "end_line": 357,
+      "arguments": "output_new"
+    },
+    {
+      "name": "main",
+      "line": 360,
+      "end_line": 364,
+      "arguments": "argv=None"
+    }
+  ],
+  "CLI": "python tests/phase439_timer_initial_overlay.py --output-new /workspace/python-original-engine/repo/data/NEW-DIRECTORY",
+  "actual_inputs": {
+    "audit": {
+      "path": "data/phase438-character-overlay-first-001/overlay-report.json",
+      "size": 1093719,
+      "sha256": "bfc394b12fa094c8e33cf42f0fa1f2f5315fe7c8c1b62b273686569b623c5369"
+    },
+    "checkpoints": {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-input.jsonl",
+      "size": 306081,
+      "sha256": "00158549c266456a1b2a29ac14c395a47acb13eb441fc6a4be7056b21bfa6616"
+    }
+  },
+  "exact_target_domain": {
+    "roles": 32,
+    "cuts": 2,
+    "targets": 64,
+    "public_support_fields_per_target": 19,
+    "Buff_dual_representations": 44
+  },
+  "after_candidates": {
+    "required_rows": 1363,
+    "DIRECT": 1289,
+    "SOURCE_DERIVED": 74,
+    "MISSING": 0,
+    "preserved_other_required_rows": 1299,
+    "preserved_prior_derived": 10,
+    "excluded_unchanged": 116,
+    "historical_full_reference_counts": {
+      "DIRECT": 1391,
+      "SOURCE_DERIVED": 6,
+      "MISSING": 82
+    }
+  },
+  "rule": "NATIVE_TIMER_NONPAUSED_INACTIVE_FLAGS_STANDARD_DOMAIN/439",
+  "shared_native_G02_scope": "Actual pinned438 kernel review and419/425 ordinary registered native domain; excludes invalid historical mode, inherited flag escape, foreign registrar/getter shadow, mid-setter reentry; no generic proof bool parameter.",
+  "limits": [
+    "Accepted ordinary-native G02 Source semantics only; not arbitrary native injection or custom binary identity proof.",
+    "Historical815-script hashes include the disclosed public redaction/migration domain; no newly verified environment-ready state.",
+    "No actual64 promotion in Source block; fullschema/King/inputbuild remain closed."
+  ],
+  "minimum_independent_controls": [
+    "one pure positive64 with all1299/116/ten prior derivations unchanged",
+    "bool versus int / missing flags / pausedtrue / illegal mode reject",
+    "alias/duplicate ID or role / parent path or class / script field / crosscut drift reject",
+    "Buff stack/type/Character/timer duplicate disagreement reject",
+    "all19 public DIRECT values/input_refs must match rawINPUT1/4 exact pointers/owner/phase/sequence",
+    "mutated canonical audit key/order/excluded/old-derived/phase/classification reject",
+    "changed/forged Source/receipt/context pins and incomplete Source domain reject",
+    "invalid historical-mode and inherited-flag counterexamples remain outside accepted domain",
+    "output overwrite/link/nonordinary path reject"
+  ],
+  "author_activity": {
+    "compile_only": 1,
+    "adapter_imports": 0,
+    "adapter_executions": 0,
+    "controls_or_tests": 0,
+    "actual_saved_overlays": 0,
+    "new_captures": 0
+  },
+  "acceptance": "PENDING_INDEPENDENT_SOURCE_FUNCTIONAL_REVIEW"
+}

@@ -1,0 +1,43 @@
+--- tests/phase439_timer_initial_overlay.py
++++ tests/phase439_timer_initial_overlay_v2.py
+@@ -1,4 +1,4 @@
+-"""Fixed-case64 Timer Source overlay. Author must not import or run this module."""
++"""Fixed-case64 Timer Source overlay v2. Author must not import or run this module."""
+ import argparse
+ from copy import deepcopy
+ import hashlib
+@@ -11,8 +11,8 @@
+ 
+ REPO = Path('/workspace/python-original-engine/repo')
+ BASE = Path('/workspace/godotsteam-startup-20261013/baseline/Backpack Battles')
+-CONTEXT = {'path': 'data/phase439-timer-overlay-source/context.json', 'size': 212241, 'sha256': '962aab0cd096fe0c43c6547690763ca7befeb786848be3e3e7687e669f8ada93'}
+-CONTEXT_CANONICAL_SHA256 = 'd8460942df09d733077786e0e76a737a46675d165a48fea21278479344ee6729'
++CONTEXT = {'path': 'data/phase439-timer-overlay-source-v2/context.json', 'size': 214569, 'sha256': '72c4b0f2c2450e723b39d711b32d83f42608216e74d7679ecc7138656ae83a09'}
++CONTEXT_CANONICAL_SHA256 = 'fedf7c88d53ee060c2797d5900b0d0310dd3f1416914abc90c23e79d057e308e'
+ AUDIT_CANONICAL_SHA256 = '370ca835fbc95ba5939d0a42f35b1c2d0c33e2e855b94efc0c1df6d3085f5078'
+ RECEIVERS_CANONICAL_SHA256 = '877bf8fe7fd7b2e092c9fe0b74103beb7fbf53f0f8400d283fb801567728c974'
+ RULE = 'NATIVE_TIMER_NONPAUSED_INACTIVE_FLAGS_STANDARD_DOMAIN/439'
+@@ -144,11 +144,11 @@
+ 
+ def validate_source(context, io):
+     require(fingerprint(context) == CONTEXT_CANONICAL_SHA256, 'FIXED_SOURCE_CONTEXT')
+-    require(context['schema'] == 'phase439-timer-source-context/1' and same(context['premises'], list(PREMISES)), 'SOURCE_SCHEMA_RULE')
+-    require(len(context['project_scripts']) == 815 and len(context['scene_dependencies']) == 19, 'SOURCE_DOMAIN_COUNTS')
++    require(context['schema'] == 'phase439-timer-source-context-v2/1' and same(context['premises'], list(PREMISES)), 'SOURCE_SCHEMA_RULE')
++    require(len(context['project_scripts']) == 815 and len(context['scene_dependencies']) == 19 and len(context['animation_leaves']) == 8, 'SOURCE_DOMAIN_COUNTS')
+     require(fingerprint(context['receivers']) == RECEIVERS_CANONICAL_SHA256, 'RECEIVER_SOURCE_DOMAIN')
+     seen = set()
+-    for group in ('project_scripts', 'scene_dependencies', 'other_source'):
++    for group in ('project_scripts', 'scene_dependencies', 'animation_leaves', 'other_source'):
+         for pin in context[group]:
+             name = str(canonical(pin['path']))
+             require(name not in seen, 'SOURCE_DUPLICATE')
+@@ -165,7 +165,7 @@
+     # Concrete fixed source/receipt identities, not caller-supplied approval flags.
+     return {'context_descriptor': deepcopy(CONTEXT), 'rule': RULE, 'premises': list(PREMISES),
+             'native_source_and_receipt_descriptors': deepcopy(context['receipts']),
+-            'receiver_manifest': deepcopy(context['receivers']), 'source_domain': {'scripts': 815, 'inherited_scenes': 19, 'additional_source': deepcopy(context['other_source'])},
++            'receiver_manifest': deepcopy(context['receivers']), 'source_domain': {'scripts': 815, 'inherited_scenes': 19, 'main_scene_leaves': 1, 'direct_animation_leaves': 8, 'animation_leaf_descriptors': deepcopy(context['animation_leaves']), 'additional_source': deepcopy(context['other_source'])},
+             'attribution_limit': LIMIT}
+ 
+ 
