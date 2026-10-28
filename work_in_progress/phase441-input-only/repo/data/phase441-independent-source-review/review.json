@@ -1,0 +1,110 @@
+{
+  "schema": "phase441-independent-source-review/1",
+  "status": "STATIC_SOURCE_ACCEPTED_CONTROLS_AND_ACTUAL_INPUT_PENDING",
+  "module": {
+    "path": "tests/phase441_fixed_A_input_bridge.py",
+    "size": 36491,
+    "sha256": "e6c3336c5d91e51988d9629eaa779c3a229af5c1cc08d423609062831032f4f9"
+  },
+  "author_owner": {
+    "path": "data/phase441-fixed-A-input-source/source-owner.json",
+    "size": 1996,
+    "sha256": "7184b737c00ca53ac497463c4f038164cdee39875efa5eea13707939b68882ea"
+  },
+  "context": {
+    "path": "data/phase441-fixed-A-input-source/context.json",
+    "size": 7919,
+    "sha256": "4cb8efbb24c78727de9dd3028499524561466e188302f944cd4abe5e4eba88df"
+  },
+  "completed_static_checks": {
+    "author_owned_files": 9,
+    "context_source_pins": 7,
+    "context_receipts": 8,
+    "drift": [],
+    "constant_context_matches": [
+      "INPUT_PINS",
+      "AUDIT_PIN",
+      "SCHEMA_PIN"
+    ],
+    "saved408_metadata_matches": {
+      "names": 12,
+      "unique_before_per_name": 1,
+      "unique_readback_per_name": 1,
+      "all_size_sha_match": true
+    },
+    "accepted439_shape_checks": [
+      "Timer.node.native_id string",
+      "KingBuff Timer.private_left typed REAL-1",
+      "Character.buffProtectStacks typed INT0",
+      "Character.invulnerabilityItem typed NULL"
+    ]
+  },
+  "actual_dependencies": "391 transport, strict JSON, typed records/state/resources, binding DTO/checkpoint/lineage join, and typed clock; no full source-carrier/freshness/UI admission or Engine imports.",
+  "accepted_projection_scope": {
+    "envelope_keys": 5,
+    "runtime_keys": 14,
+    "item_roles": 39,
+    "business_timers": 33,
+    "invu_child_positions": {
+      "P": 7,
+      "O": 5
+    },
+    "O12": "absent; original O13..19 preserved",
+    "timer_origins": "accepted439 private initial values plus actual joined public config; no fresh relabel or publiczero inversion",
+    "RNG": "complete ordered native primitive returns with only declared Util.roll INT0-to-REAL+0 conversion",
+    "excluded": "two UI Timers excluded; display carrier state not emitted;116 membership unchanged"
+  },
+  "entry_boundary_notes": [
+    "Fixed raw/audit hashes are checked by pure-byte entry; physical entry separately pins context and concrete receipts.",
+    "Controller must check actual module/schema bytes before top-level import.",
+    "Typed decoded records can include unused fields; UI/RNG carrier syntax decoding is not full business acceptance.",
+    "Decoded helper is not an independent raw/proof admission boundary.",
+    "Existing G02/history/portability limitations persist."
+  ],
+  "control_script": "tests/phase441_independent_bridge_controls.py",
+  "control_plan": {
+    "permission": "WAIT_ROOT_RELEASE_BEFORE_INVOCATION",
+    "real12_payload_reads": 12,
+    "accepted_audit_payload_reads": 1,
+    "shared_decode_calls": 1,
+    "successful_partial_runtime_projections": 2,
+    "full_project_from_bytes_calls": 0,
+    "full_project_decoded_calls": 0,
+    "actual_build_calls": 0,
+    "negatives": [
+      "strict JSON and scalar typing",
+      "missing/extra/each-byte-mutated fixed raw carrier",
+      "accepted audit byte drift",
+      "Timer mode/type/source/private and P7/O5 topology",
+      "native order alias and fixture slot loss",
+      "activation clock and primitive conversion",
+      "temporary hash drift/symlink/hardlink/FIFO/write-once"
+    ],
+    "excluded_semantics": "partial runtime equality under decoded excluded Timer/display-carrier mutations; real raw SHA guard unchanged",
+    "failure_policy": "first unexpected failure or acceptance stops, records first-error, no fix/retry"
+  },
+  "actual_build_plan": "After separately released helper success, perform the only full positive project_from_bytes inside one actual build; independently check39 identities/orders,33 Timer origins, complete Tape/clock, real reads and owners. Do not duplicate the full projection beforehand.",
+  "deferred_model_blocks": [
+    "constructor/prepare equivalence",
+    "ordinary callbacks/transform/RNG noninterference",
+    "King setState/log behavior",
+    "candidate runtime and same-instance diagnostics",
+    "strict output/comparator mapping"
+  ],
+  "activity_this_static_review": {
+    "actual12_payload_reads": 0,
+    "schema_imports": 0,
+    "schema_calls": 0,
+    "bridge_imports": 0,
+    "bridge_calls": 0,
+    "tests_executed": 0,
+    "actual_bundle_builds": 0,
+    "models": 0,
+    "EXPECTED_reads": 0,
+    "native_operations": 0,
+    "old_controls_or_derivation_replays": 0,
+    "controller_static_AST_parse": 1
+  },
+  "read_disclosure": "Source/module/receipt/descriptor metadata and selected engineering439 audit values were read. Actual12 capture files were not opened. No existing receipt was regenerated.",
+  "remaining_blockers": "No static implementation bug found for fixed INPUT-only scope. Functional controls and actual INPUT projection are not yet executed/accepted; all runtime/model gates remain closed."
+}

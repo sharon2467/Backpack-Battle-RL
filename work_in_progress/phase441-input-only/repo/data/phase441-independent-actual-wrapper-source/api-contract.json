@@ -1,0 +1,51 @@
+{
+  "schema": "phase441-independent-actual-wrapper-api/1",
+  "status": "SOURCE_SEALED_UNEXECUTED_WAIT_ROOT_RELEASE",
+  "entry": "python tests/phase441_independent_actual_build.py --release <root-release.json>",
+  "release_schema": "phase441-root-input-build-release/1",
+  "required_release_fields": {
+    "wrapper_sha256": "8aa6b372366b23230898e8c89354019d7f80cb4fc190d33b4c2146896bb8c89b",
+    "module_sha256": "e6c3336c5d91e51988d9629eaa779c3a229af5c1cc08d423609062831032f4f9",
+    "controls_result_sha256": "894bd9b46477a5a1f95595f465b9820abc0e483539d0e08475b9e2923e0f3321",
+    "output_new": "canonical absolute nonexistent repo/data directory",
+    "review_output_new": "distinct canonical absolute nonexistent repo/data directory",
+    "max_builds": 1,
+    "model_release": false,
+    "EXPECTED_reads": 0
+  },
+  "suggested_output_new": "/workspace/python-original-engine/repo/data/phase441-fixed-A-input-first-001",
+  "suggested_review_output_new": "/workspace/python-original-engine/repo/data/phase441-independent-input-acceptance-first-001",
+  "suggested_timeout_seconds": 20,
+  "expected_calls": {
+    "build_from_files": 1,
+    "project_from_bytes": 1,
+    "project_decoded": 1,
+    "decode_lawful12": 1,
+    "load_accepted_initial": 1,
+    "project_runtime": 1,
+    "project_fixture": 1,
+    "project_primitives": 1,
+    "validate_initial_consumer_coverage": 1,
+    "project_order": 2
+  },
+  "expected_build_reads": {
+    "source_metadata": 34,
+    "lawful12_payloads": 24,
+    "accepted_audit": 2,
+    "own_output_readback": 6,
+    "total_read_pinned": 66
+  },
+  "read_scope": "Guard/trace covers build only; wrapper engineering pre/postflight and6 independent output reads separately disclosed. Independent mapping uses retained first-read bytes; no third original12 read.",
+  "independent_mapping": "39 identities/order,33 Timer public/private initial values,78 business processing nodes if actual fixed data agrees, P7/O5, pre-prepare scalar state, full raw clock and native primitive sequence. No candidate/model constructor.",
+  "controls_replayed": 0,
+  "actual_builds_so_far": 0,
+  "actual12_payload_reads_during_wrapper_source_preparation": 0,
+  "model_release": false,
+  "failure_policy": "First unexpected error stops and preserves receipt; no automatic repair or retry.",
+  "author_checks": {
+    "AST_static_parse": 1,
+    "compile": 0,
+    "imports": 0,
+    "execution": 0
+  }
+}

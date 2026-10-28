@@ -1,0 +1,4656 @@
+{
+  "schema": "phase441-input-only-projection-proof/1",
+  "status": "INPUT_ONLY_NOT_RUNTIME_VALIDATED",
+  "field_origins": {
+    "processing_nodes.root_viewport": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "root_viewport"
+    },
+    "processing_nodes.game": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "game"
+    },
+    "processing_nodes.util": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "util"
+    },
+    "processing_nodes.combat_timer": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "combat_timer"
+    },
+    "processing_nodes.fatigue:start": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "fatigue:start"
+    },
+    "timer_initial.fatigue:start.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1104/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "fatigue:start"
+      ]
+    },
+    "timer_initial.fatigue:start.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1098/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "fatigue:start"
+      ]
+    },
+    "timer_initial.fatigue:start.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1100/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "fatigue:start"
+      ]
+    },
+    "timer_initial.fatigue:start.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1097/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "fatigue:start"
+      ]
+    },
+    "timer_initial.fatigue:start.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1101/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "fatigue:start"
+      ]
+    },
+    "timer_initial.fatigue:start.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1102/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "fatigue:start"
+      ]
+    },
+    "timer_initial.fatigue:start.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1354/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "fatigue:start"
+      ]
+    },
+    "processing_nodes.fatigue:tick": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "fatigue:tick"
+    },
+    "timer_initial.fatigue:tick.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1123/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "fatigue:tick"
+      ]
+    },
+    "timer_initial.fatigue:tick.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1117/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "fatigue:tick"
+      ]
+    },
+    "timer_initial.fatigue:tick.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1119/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "fatigue:tick"
+      ]
+    },
+    "timer_initial.fatigue:tick.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1116/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "fatigue:tick"
+      ]
+    },
+    "timer_initial.fatigue:tick.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1120/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "fatigue:tick"
+      ]
+    },
+    "timer_initial.fatigue:tick.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1121/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "fatigue:tick"
+      ]
+    },
+    "timer_initial.fatigue:tick.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1355/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "fatigue:tick"
+      ]
+    },
+    "processing_nodes.character:P": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "character:P"
+    },
+    "processing_nodes.tick:P": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "tick:P"
+    },
+    "timer_initial.tick:P.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/648/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "tick:P"
+      ]
+    },
+    "timer_initial.tick:P.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/642/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "tick:P"
+      ]
+    },
+    "timer_initial.tick:P.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/644/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "tick:P"
+      ]
+    },
+    "timer_initial.tick:P.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/641/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "tick:P"
+      ]
+    },
+    "timer_initial.tick:P.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/645/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "tick:P"
+      ]
+    },
+    "timer_initial.tick:P.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/646/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "tick:P"
+      ]
+    },
+    "timer_initial.tick:P.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1330/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "tick:P"
+      ]
+    },
+    "processing_nodes.aux:P:battleRageTimer": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "aux:P:battleRageTimer"
+    },
+    "timer_initial.aux:P:battleRageTimer.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1142/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "aux:P:battleRageTimer"
+      ]
+    },
+    "timer_initial.aux:P:battleRageTimer.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1136/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "aux:P:battleRageTimer"
+      ]
+    },
+    "timer_initial.aux:P:battleRageTimer.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1138/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "aux:P:battleRageTimer"
+      ]
+    },
+    "timer_initial.aux:P:battleRageTimer.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1135/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "aux:P:battleRageTimer"
+      ]
+    },
+    "timer_initial.aux:P:battleRageTimer.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1139/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "aux:P:battleRageTimer"
+      ]
+    },
+    "timer_initial.aux:P:battleRageTimer.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1140/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "aux:P:battleRageTimer"
+      ]
+    },
+    "timer_initial.aux:P:battleRageTimer.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1356/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "aux:P:battleRageTimer"
+      ]
+    },
+    "processing_nodes.aux:P:autoRageTimer": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "aux:P:autoRageTimer"
+    },
+    "timer_initial.aux:P:autoRageTimer.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1161/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "aux:P:autoRageTimer"
+      ]
+    },
+    "timer_initial.aux:P:autoRageTimer.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1155/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "aux:P:autoRageTimer"
+      ]
+    },
+    "timer_initial.aux:P:autoRageTimer.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1157/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "aux:P:autoRageTimer"
+      ]
+    },
+    "timer_initial.aux:P:autoRageTimer.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1154/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "aux:P:autoRageTimer"
+      ]
+    },
+    "timer_initial.aux:P:autoRageTimer.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1158/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "aux:P:autoRageTimer"
+      ]
+    },
+    "timer_initial.aux:P:autoRageTimer.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1159/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "aux:P:autoRageTimer"
+      ]
+    },
+    "timer_initial.aux:P:autoRageTimer.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1357/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "aux:P:autoRageTimer"
+      ]
+    },
+    "processing_nodes.invu:P": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "invu:P"
+    },
+    "timer_initial.invu:P.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1218/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "invu:P"
+      ]
+    },
+    "timer_initial.invu:P.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1212/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "invu:P"
+      ]
+    },
+    "timer_initial.invu:P.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1214/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "invu:P"
+      ]
+    },
+    "timer_initial.invu:P.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1211/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "invu:P"
+      ]
+    },
+    "timer_initial.invu:P.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1215/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "invu:P"
+      ]
+    },
+    "timer_initial.invu:P.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1216/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "invu:P"
+      ]
+    },
+    "timer_initial.invu:P.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1360/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "invu:P"
+      ]
+    },
+    "processing_nodes.buff:P:Block": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "buff:P:100"
+    },
+    "timer_initial.buff:P:Block.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/686/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:P:100"
+      ]
+    },
+    "timer_initial.buff:P:Block.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/680/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:P:100"
+      ]
+    },
+    "timer_initial.buff:P:Block.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/682/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:P:100"
+      ]
+    },
+    "timer_initial.buff:P:Block.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/679/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:P:100"
+      ]
+    },
+    "timer_initial.buff:P:Block.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/683/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:P:100"
+      ]
+    },
+    "timer_initial.buff:P:Block.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/684/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:P:100"
+      ]
+    },
+    "timer_initial.buff:P:Block.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1332/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:P:100"
+      ]
+    },
+    "processing_nodes.buff:P:Lucky": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "buff:P:101"
+    },
+    "timer_initial.buff:P:Lucky.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/705/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:P:101"
+      ]
+    },
+    "timer_initial.buff:P:Lucky.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/699/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:P:101"
+      ]
+    },
+    "timer_initial.buff:P:Lucky.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/701/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:P:101"
+      ]
+    },
+    "timer_initial.buff:P:Lucky.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/698/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:P:101"
+      ]
+    },
+    "timer_initial.buff:P:Lucky.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/702/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:P:101"
+      ]
+    },
+    "timer_initial.buff:P:Lucky.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/703/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:P:101"
+      ]
+    },
+    "timer_initial.buff:P:Lucky.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1333/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:P:101"
+      ]
+    },
+    "processing_nodes.buff:P:Regeneration": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "buff:P:102"
+    },
+    "timer_initial.buff:P:Regeneration.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/724/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:P:102"
+      ]
+    },
+    "timer_initial.buff:P:Regeneration.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/718/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:P:102"
+      ]
+    },
+    "timer_initial.buff:P:Regeneration.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/720/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:P:102"
+      ]
+    },
+    "timer_initial.buff:P:Regeneration.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/717/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:P:102"
+      ]
+    },
+    "timer_initial.buff:P:Regeneration.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/721/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:P:102"
+      ]
+    },
+    "timer_initial.buff:P:Regeneration.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/722/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:P:102"
+      ]
+    },
+    "timer_initial.buff:P:Regeneration.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1334/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:P:102"
+      ]
+    },
+    "processing_nodes.buff:P:Vampirism": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "buff:P:103"
+    },
+    "timer_initial.buff:P:Vampirism.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/743/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:P:103"
+      ]
+    },
+    "timer_initial.buff:P:Vampirism.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/737/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:P:103"
+      ]
+    },
+    "timer_initial.buff:P:Vampirism.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/739/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:P:103"
+      ]
+    },
+    "timer_initial.buff:P:Vampirism.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/736/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:P:103"
+      ]
+    },
+    "timer_initial.buff:P:Vampirism.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/740/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:P:103"
+      ]
+    },
+    "timer_initial.buff:P:Vampirism.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/741/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:P:103"
+      ]
+    },
+    "timer_initial.buff:P:Vampirism.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1335/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:P:103"
+      ]
+    },
+    "processing_nodes.buff:P:Spikes": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "buff:P:104"
+    },
+    "timer_initial.buff:P:Spikes.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/762/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:P:104"
+      ]
+    },
+    "timer_initial.buff:P:Spikes.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/756/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:P:104"
+      ]
+    },
+    "timer_initial.buff:P:Spikes.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/758/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:P:104"
+      ]
+    },
+    "timer_initial.buff:P:Spikes.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/755/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:P:104"
+      ]
+    },
+    "timer_initial.buff:P:Spikes.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/759/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:P:104"
+      ]
+    },
+    "timer_initial.buff:P:Spikes.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/760/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:P:104"
+      ]
+    },
+    "timer_initial.buff:P:Spikes.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1336/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:P:104"
+      ]
+    },
+    "processing_nodes.buff:P:Mana": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "buff:P:105"
+    },
+    "timer_initial.buff:P:Mana.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/781/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:P:105"
+      ]
+    },
+    "timer_initial.buff:P:Mana.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/775/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:P:105"
+      ]
+    },
+    "timer_initial.buff:P:Mana.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/777/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:P:105"
+      ]
+    },
+    "timer_initial.buff:P:Mana.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/774/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:P:105"
+      ]
+    },
+    "timer_initial.buff:P:Mana.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/778/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:P:105"
+      ]
+    },
+    "timer_initial.buff:P:Mana.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/779/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:P:105"
+      ]
+    },
+    "timer_initial.buff:P:Mana.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1337/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:P:105"
+      ]
+    },
+    "processing_nodes.buff:P:Empower": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "buff:P:106"
+    },
+    "timer_initial.buff:P:Empower.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/800/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:P:106"
+      ]
+    },
+    "timer_initial.buff:P:Empower.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/794/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:P:106"
+      ]
+    },
+    "timer_initial.buff:P:Empower.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/796/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:P:106"
+      ]
+    },
+    "timer_initial.buff:P:Empower.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/793/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:P:106"
+      ]
+    },
+    "timer_initial.buff:P:Empower.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/797/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:P:106"
+      ]
+    },
+    "timer_initial.buff:P:Empower.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/798/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:P:106"
+      ]
+    },
+    "timer_initial.buff:P:Empower.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1338/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:P:106"
+      ]
+    },
+    "processing_nodes.buff:P:Heat": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "buff:P:107"
+    },
+    "timer_initial.buff:P:Heat.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/819/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:P:107"
+      ]
+    },
+    "timer_initial.buff:P:Heat.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/813/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:P:107"
+      ]
+    },
+    "timer_initial.buff:P:Heat.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/815/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:P:107"
+      ]
+    },
+    "timer_initial.buff:P:Heat.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/812/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:P:107"
+      ]
+    },
+    "timer_initial.buff:P:Heat.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/816/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:P:107"
+      ]
+    },
+    "timer_initial.buff:P:Heat.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/817/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:P:107"
+      ]
+    },
+    "timer_initial.buff:P:Heat.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1339/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:P:107"
+      ]
+    },
+    "processing_nodes.buff:P:Poison": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "buff:P:108"
+    },
+    "timer_initial.buff:P:Poison.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/838/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:P:108"
+      ]
+    },
+    "timer_initial.buff:P:Poison.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/832/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:P:108"
+      ]
+    },
+    "timer_initial.buff:P:Poison.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/834/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:P:108"
+      ]
+    },
+    "timer_initial.buff:P:Poison.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/831/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:P:108"
+      ]
+    },
+    "timer_initial.buff:P:Poison.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/835/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:P:108"
+      ]
+    },
+    "timer_initial.buff:P:Poison.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/836/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:P:108"
+      ]
+    },
+    "timer_initial.buff:P:Poison.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1340/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:P:108"
+      ]
+    },
+    "processing_nodes.buff:P:Blind": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "buff:P:109"
+    },
+    "timer_initial.buff:P:Blind.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/857/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:P:109"
+      ]
+    },
+    "timer_initial.buff:P:Blind.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/851/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:P:109"
+      ]
+    },
+    "timer_initial.buff:P:Blind.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/853/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:P:109"
+      ]
+    },
+    "timer_initial.buff:P:Blind.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/850/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:P:109"
+      ]
+    },
+    "timer_initial.buff:P:Blind.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/854/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:P:109"
+      ]
+    },
+    "timer_initial.buff:P:Blind.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/855/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:P:109"
+      ]
+    },
+    "timer_initial.buff:P:Blind.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1341/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:P:109"
+      ]
+    },
+    "processing_nodes.buff:P:Cold": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "buff:P:110"
+    },
+    "timer_initial.buff:P:Cold.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/876/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:P:110"
+      ]
+    },
+    "timer_initial.buff:P:Cold.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/870/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:P:110"
+      ]
+    },
+    "timer_initial.buff:P:Cold.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/872/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:P:110"
+      ]
+    },
+    "timer_initial.buff:P:Cold.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/869/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:P:110"
+      ]
+    },
+    "timer_initial.buff:P:Cold.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/873/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:P:110"
+      ]
+    },
+    "timer_initial.buff:P:Cold.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/874/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:P:110"
+      ]
+    },
+    "timer_initial.buff:P:Cold.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1342/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:P:110"
+      ]
+    },
+    "processing_nodes.character:O": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "character:O"
+    },
+    "processing_nodes.tick:O": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "tick:O"
+    },
+    "timer_initial.tick:O.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/667/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "tick:O"
+      ]
+    },
+    "timer_initial.tick:O.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/661/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "tick:O"
+      ]
+    },
+    "timer_initial.tick:O.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/663/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "tick:O"
+      ]
+    },
+    "timer_initial.tick:O.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/660/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "tick:O"
+      ]
+    },
+    "timer_initial.tick:O.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/664/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "tick:O"
+      ]
+    },
+    "timer_initial.tick:O.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/665/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "tick:O"
+      ]
+    },
+    "timer_initial.tick:O.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1331/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "tick:O"
+      ]
+    },
+    "processing_nodes.aux:O:battleRageTimer": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "aux:O:battleRageTimer"
+    },
+    "timer_initial.aux:O:battleRageTimer.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1180/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "aux:O:battleRageTimer"
+      ]
+    },
+    "timer_initial.aux:O:battleRageTimer.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1174/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "aux:O:battleRageTimer"
+      ]
+    },
+    "timer_initial.aux:O:battleRageTimer.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1176/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "aux:O:battleRageTimer"
+      ]
+    },
+    "timer_initial.aux:O:battleRageTimer.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1173/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "aux:O:battleRageTimer"
+      ]
+    },
+    "timer_initial.aux:O:battleRageTimer.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1177/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "aux:O:battleRageTimer"
+      ]
+    },
+    "timer_initial.aux:O:battleRageTimer.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1178/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "aux:O:battleRageTimer"
+      ]
+    },
+    "timer_initial.aux:O:battleRageTimer.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1358/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "aux:O:battleRageTimer"
+      ]
+    },
+    "processing_nodes.aux:O:autoRageTimer": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "aux:O:autoRageTimer"
+    },
+    "timer_initial.aux:O:autoRageTimer.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1199/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "aux:O:autoRageTimer"
+      ]
+    },
+    "timer_initial.aux:O:autoRageTimer.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1193/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "aux:O:autoRageTimer"
+      ]
+    },
+    "timer_initial.aux:O:autoRageTimer.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1195/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "aux:O:autoRageTimer"
+      ]
+    },
+    "timer_initial.aux:O:autoRageTimer.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1192/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "aux:O:autoRageTimer"
+      ]
+    },
+    "timer_initial.aux:O:autoRageTimer.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1196/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "aux:O:autoRageTimer"
+      ]
+    },
+    "timer_initial.aux:O:autoRageTimer.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1197/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "aux:O:autoRageTimer"
+      ]
+    },
+    "timer_initial.aux:O:autoRageTimer.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1359/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "aux:O:autoRageTimer"
+      ]
+    },
+    "processing_nodes.invu:O": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "invu:O"
+    },
+    "timer_initial.invu:O.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1237/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "invu:O"
+      ]
+    },
+    "timer_initial.invu:O.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1231/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "invu:O"
+      ]
+    },
+    "timer_initial.invu:O.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1233/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "invu:O"
+      ]
+    },
+    "timer_initial.invu:O.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1230/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "invu:O"
+      ]
+    },
+    "timer_initial.invu:O.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1234/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "invu:O"
+      ]
+    },
+    "timer_initial.invu:O.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1235/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "invu:O"
+      ]
+    },
+    "timer_initial.invu:O.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1361/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "invu:O"
+      ]
+    },
+    "processing_nodes.buff:O:Block": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "buff:O:100"
+    },
+    "timer_initial.buff:O:Block.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/895/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:O:100"
+      ]
+    },
+    "timer_initial.buff:O:Block.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/889/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:O:100"
+      ]
+    },
+    "timer_initial.buff:O:Block.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/891/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:O:100"
+      ]
+    },
+    "timer_initial.buff:O:Block.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/888/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:O:100"
+      ]
+    },
+    "timer_initial.buff:O:Block.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/892/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:O:100"
+      ]
+    },
+    "timer_initial.buff:O:Block.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/893/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:O:100"
+      ]
+    },
+    "timer_initial.buff:O:Block.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1343/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:O:100"
+      ]
+    },
+    "processing_nodes.buff:O:Lucky": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "buff:O:101"
+    },
+    "timer_initial.buff:O:Lucky.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/914/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:O:101"
+      ]
+    },
+    "timer_initial.buff:O:Lucky.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/908/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:O:101"
+      ]
+    },
+    "timer_initial.buff:O:Lucky.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/910/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:O:101"
+      ]
+    },
+    "timer_initial.buff:O:Lucky.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/907/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:O:101"
+      ]
+    },
+    "timer_initial.buff:O:Lucky.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/911/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:O:101"
+      ]
+    },
+    "timer_initial.buff:O:Lucky.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/912/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:O:101"
+      ]
+    },
+    "timer_initial.buff:O:Lucky.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1344/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:O:101"
+      ]
+    },
+    "processing_nodes.buff:O:Regeneration": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "buff:O:102"
+    },
+    "timer_initial.buff:O:Regeneration.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/933/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:O:102"
+      ]
+    },
+    "timer_initial.buff:O:Regeneration.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/927/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:O:102"
+      ]
+    },
+    "timer_initial.buff:O:Regeneration.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/929/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:O:102"
+      ]
+    },
+    "timer_initial.buff:O:Regeneration.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/926/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:O:102"
+      ]
+    },
+    "timer_initial.buff:O:Regeneration.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/930/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:O:102"
+      ]
+    },
+    "timer_initial.buff:O:Regeneration.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/931/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:O:102"
+      ]
+    },
+    "timer_initial.buff:O:Regeneration.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1345/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:O:102"
+      ]
+    },
+    "processing_nodes.buff:O:Vampirism": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "buff:O:103"
+    },
+    "timer_initial.buff:O:Vampirism.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/952/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:O:103"
+      ]
+    },
+    "timer_initial.buff:O:Vampirism.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/946/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:O:103"
+      ]
+    },
+    "timer_initial.buff:O:Vampirism.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/948/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:O:103"
+      ]
+    },
+    "timer_initial.buff:O:Vampirism.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/945/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:O:103"
+      ]
+    },
+    "timer_initial.buff:O:Vampirism.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/949/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:O:103"
+      ]
+    },
+    "timer_initial.buff:O:Vampirism.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/950/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:O:103"
+      ]
+    },
+    "timer_initial.buff:O:Vampirism.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1346/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:O:103"
+      ]
+    },
+    "processing_nodes.buff:O:Spikes": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "buff:O:104"
+    },
+    "timer_initial.buff:O:Spikes.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/971/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:O:104"
+      ]
+    },
+    "timer_initial.buff:O:Spikes.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/965/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:O:104"
+      ]
+    },
+    "timer_initial.buff:O:Spikes.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/967/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:O:104"
+      ]
+    },
+    "timer_initial.buff:O:Spikes.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/964/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:O:104"
+      ]
+    },
+    "timer_initial.buff:O:Spikes.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/968/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:O:104"
+      ]
+    },
+    "timer_initial.buff:O:Spikes.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/969/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:O:104"
+      ]
+    },
+    "timer_initial.buff:O:Spikes.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1347/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:O:104"
+      ]
+    },
+    "processing_nodes.buff:O:Mana": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "buff:O:105"
+    },
+    "timer_initial.buff:O:Mana.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/990/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:O:105"
+      ]
+    },
+    "timer_initial.buff:O:Mana.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/984/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:O:105"
+      ]
+    },
+    "timer_initial.buff:O:Mana.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/986/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:O:105"
+      ]
+    },
+    "timer_initial.buff:O:Mana.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/983/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:O:105"
+      ]
+    },
+    "timer_initial.buff:O:Mana.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/987/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:O:105"
+      ]
+    },
+    "timer_initial.buff:O:Mana.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/988/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:O:105"
+      ]
+    },
+    "timer_initial.buff:O:Mana.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1348/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:O:105"
+      ]
+    },
+    "processing_nodes.buff:O:Empower": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "buff:O:106"
+    },
+    "timer_initial.buff:O:Empower.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1009/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:O:106"
+      ]
+    },
+    "timer_initial.buff:O:Empower.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1003/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:O:106"
+      ]
+    },
+    "timer_initial.buff:O:Empower.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1005/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:O:106"
+      ]
+    },
+    "timer_initial.buff:O:Empower.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1002/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:O:106"
+      ]
+    },
+    "timer_initial.buff:O:Empower.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1006/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:O:106"
+      ]
+    },
+    "timer_initial.buff:O:Empower.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1007/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:O:106"
+      ]
+    },
+    "timer_initial.buff:O:Empower.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1349/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:O:106"
+      ]
+    },
+    "processing_nodes.buff:O:Heat": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "buff:O:107"
+    },
+    "timer_initial.buff:O:Heat.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1028/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:O:107"
+      ]
+    },
+    "timer_initial.buff:O:Heat.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1022/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:O:107"
+      ]
+    },
+    "timer_initial.buff:O:Heat.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1024/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:O:107"
+      ]
+    },
+    "timer_initial.buff:O:Heat.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1021/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:O:107"
+      ]
+    },
+    "timer_initial.buff:O:Heat.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1025/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:O:107"
+      ]
+    },
+    "timer_initial.buff:O:Heat.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1026/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:O:107"
+      ]
+    },
+    "timer_initial.buff:O:Heat.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1350/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:O:107"
+      ]
+    },
+    "processing_nodes.buff:O:Poison": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "buff:O:108"
+    },
+    "timer_initial.buff:O:Poison.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1047/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:O:108"
+      ]
+    },
+    "timer_initial.buff:O:Poison.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1041/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:O:108"
+      ]
+    },
+    "timer_initial.buff:O:Poison.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1043/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:O:108"
+      ]
+    },
+    "timer_initial.buff:O:Poison.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1040/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:O:108"
+      ]
+    },
+    "timer_initial.buff:O:Poison.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1044/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:O:108"
+      ]
+    },
+    "timer_initial.buff:O:Poison.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1045/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:O:108"
+      ]
+    },
+    "timer_initial.buff:O:Poison.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1351/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:O:108"
+      ]
+    },
+    "processing_nodes.buff:O:Blind": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "buff:O:109"
+    },
+    "timer_initial.buff:O:Blind.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1066/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:O:109"
+      ]
+    },
+    "timer_initial.buff:O:Blind.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1060/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:O:109"
+      ]
+    },
+    "timer_initial.buff:O:Blind.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1062/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:O:109"
+      ]
+    },
+    "timer_initial.buff:O:Blind.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1059/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:O:109"
+      ]
+    },
+    "timer_initial.buff:O:Blind.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1063/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:O:109"
+      ]
+    },
+    "timer_initial.buff:O:Blind.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1064/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:O:109"
+      ]
+    },
+    "timer_initial.buff:O:Blind.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1352/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:O:109"
+      ]
+    },
+    "processing_nodes.buff:O:Cold": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "buff:O:110"
+    },
+    "timer_initial.buff:O:Cold.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1085/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:O:110"
+      ]
+    },
+    "timer_initial.buff:O:Cold.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1079/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:O:110"
+      ]
+    },
+    "timer_initial.buff:O:Cold.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1081/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:O:110"
+      ]
+    },
+    "timer_initial.buff:O:Cold.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1078/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:O:110"
+      ]
+    },
+    "timer_initial.buff:O:Cold.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1082/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:O:110"
+      ]
+    },
+    "timer_initial.buff:O:Cold.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1083/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:O:110"
+      ]
+    },
+    "timer_initial.buff:O:Cold.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1353/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:O:110"
+      ]
+    },
+    "processing_nodes.item:P:18": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:P:18"
+    },
+    "processing_nodes.item:P:15": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:P:15"
+    },
+    "processing_nodes.item:P:1": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:P:1"
+    },
+    "processing_nodes.item:P:19": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:P:19"
+    },
+    "processing_nodes.item:P:13": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:P:13"
+    },
+    "processing_nodes.item:P:11": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:P:11"
+    },
+    "processing_nodes.item:P:2": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:P:2"
+    },
+    "processing_nodes.item:P:0": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:P:0"
+    },
+    "processing_nodes.item:P:5": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:P:5"
+    },
+    "processing_nodes.item:P:17": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:P:17"
+    },
+    "processing_nodes.item:P:8": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:P:8"
+    },
+    "processing_nodes.item:P:3": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:P:3"
+    },
+    "processing_nodes.item:P:9": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:P:9"
+    },
+    "processing_nodes.item:P:4": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:P:4"
+    },
+    "processing_nodes.item:P:14": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:P:14"
+    },
+    "processing_nodes.item:P:10": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:P:10"
+    },
+    "processing_nodes.item:P:7": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:P:7"
+    },
+    "processing_nodes.item:P:6": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:P:6"
+    },
+    "processing_nodes.item:P:12": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:P:12"
+    },
+    "processing_nodes.king_buff:P:12": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "king_buff:P:12"
+    },
+    "timer_initial.king_buff:P:12.native_identity": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1256/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "king_buff:P:12"
+      ]
+    },
+    "timer_initial.king_buff:P:12.wait_time_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1250/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "king_buff:P:12"
+      ]
+    },
+    "timer_initial.king_buff:P:12.one_shot": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1252/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "king_buff:P:12"
+      ]
+    },
+    "timer_initial.king_buff:P:12.process_mode": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1249/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "king_buff:P:12"
+      ]
+    },
+    "timer_initial.king_buff:P:12.autostart": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1253/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "king_buff:P:12"
+      ]
+    },
+    "timer_initial.king_buff:P:12.paused": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1254/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "king_buff:P:12"
+      ]
+    },
+    "timer_initial.king_buff:P:12.private_left_bits": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1362/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "king_buff:P:12"
+      ]
+    },
+    "processing_nodes.item:P:16": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:P:16"
+    },
+    "processing_nodes.item:O:18": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:O:18"
+    },
+    "processing_nodes.item:O:1": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:O:1"
+    },
+    "processing_nodes.item:O:17": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:O:17"
+    },
+    "processing_nodes.item:O:7": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:O:7"
+    },
+    "processing_nodes.item:O:13": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:O:13"
+    },
+    "processing_nodes.item:O:9": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:O:9"
+    },
+    "processing_nodes.item:O:0": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:O:0"
+    },
+    "processing_nodes.item:O:11": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:O:11"
+    },
+    "processing_nodes.item:O:4": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:O:4"
+    },
+    "processing_nodes.item:O:16": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:O:16"
+    },
+    "processing_nodes.item:O:15": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:O:15"
+    },
+    "processing_nodes.item:O:5": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:O:5"
+    },
+    "processing_nodes.item:O:6": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:O:6"
+    },
+    "processing_nodes.item:O:19": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:O:19"
+    },
+    "processing_nodes.item:O:14": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:O:14"
+    },
+    "processing_nodes.item:O:8": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:O:8"
+    },
+    "processing_nodes.item:O:10": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:O:10"
+    },
+    "processing_nodes.item:O:2": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:O:2"
+    },
+    "processing_nodes.item:O:3": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "raw_role": "item:O:3"
+    },
+    "initial_characters.P.invulnerable": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1326/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Character.invulnerable",
+        "pre_activate",
+        "P"
+      ]
+    },
+    "initial_characters.P.invulnerabilityItem": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1327/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Character.invulnerabilityItem",
+        "pre_activate",
+        "P"
+      ]
+    },
+    "initial_characters.P.buffProtectStacks": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/634/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Character.buffProtectStacks",
+        "pre_activate",
+        "P"
+      ]
+    },
+    "initial_characters.O.invulnerable": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1328/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Character.invulnerable",
+        "pre_activate",
+        "O"
+      ]
+    },
+    "initial_characters.O.invulnerabilityItem": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/1329/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "key": [
+        "Character.invulnerabilityItem",
+        "pre_activate",
+        "O"
+      ]
+    },
+    "initial_characters.O.buffProtectStacks": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "pointer": "/required_rows/635/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "key": [
+        "Character.buffProtectStacks",
+        "pre_activate",
+        "O"
+      ]
+    },
+    "initial_items.P:18": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "P:18",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:15": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "P:15",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:1": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "P:1",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:19": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "P:19",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:13": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "P:13",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:11": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "P:11",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:2": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "P:2",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:0": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "P:0",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:5": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "P:5",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:17": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "P:17",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:8": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "P:8",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:3": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "P:3",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:9": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "P:9",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:4": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "P:4",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:14": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "P:14",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:10": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "P:10",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:7": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "P:7",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:6": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "P:6",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:12": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "P:12",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:16": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "P:16",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:18": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "O:18",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:1": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "O:1",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:17": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "O:17",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:7": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "O:7",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:13": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "O:13",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:9": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "O:9",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:0": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "O:0",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:11": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "O:11",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:4": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "O:4",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:16": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "O:16",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:15": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "O:15",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:5": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "O:5",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:6": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "O:6",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:19": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "O:19",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:14": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "O:14",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:8": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "O:8",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:10": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "O:10",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:2": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "O:2",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:3": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "instance": "O:3",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "runtime.schema": {
+      "source": "data/phase441-fixed-A-input-source/abi.json",
+      "predicate": "immutable input-only ABI declaration; not runtime acceptance"
+    },
+    "runtime.mode": {
+      "source": "data/phase441-fixed-A-input-source/abi.json",
+      "predicate": "immutable input-only ABI declaration; not runtime acceptance"
+    },
+    "runtime.profile_id": {
+      "source": "data/phase441-fixed-A-input-source/abi.json",
+      "predicate": "immutable input-only ABI declaration; not runtime acceptance"
+    },
+    "runtime.terminal_profile": {
+      "source": "data/phase441-fixed-A-input-source/abi.json",
+      "predicate": "immutable input-only ABI declaration; not runtime acceptance"
+    },
+    "runtime.checkpoint": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1232,
+      "predicate": "actual activation field projection with role normalization and two UI Timer exclusions"
+    },
+    "runtime.environment": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "predicate": "actual activation field projection with role normalization and two UI Timer exclusions"
+    },
+    "runtime.nodes": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "predicate": "actual activation field projection with role normalization and two UI Timer exclusions"
+    },
+    "runtime.processing_nodes": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1231,
+      "predicate": "actual activation field projection with role normalization and two UI Timer exclusions"
+    },
+    "runtime.frame_clock": {
+      "files": [
+        "king-clock-checkpoint.json",
+        "king-clock-passes.jsonl"
+      ],
+      "predicate": "complete original header/pass sequence; typed clock decode"
+    },
+    "runtime.prepare_order": {
+      "file": "observer7-input.jsonl",
+      "sequence": 139,
+      "pointer": "/payload/arguments",
+      "predicate": "actual39 native/role relation"
+    },
+    "runtime.activate_order": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1232,
+      "pointer": "/payload/arguments",
+      "predicate": "actual39 native/role relation"
+    },
+    "runtime.timer_initial": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "predicate": "accepted actual values joined to the same fixed INPUT bytes; individual field refs supplied"
+    },
+    "runtime.initial_characters": {
+      "file": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "predicate": "accepted actual values joined to the same fixed INPUT bytes; individual field refs supplied"
+    },
+    "runtime.initial_items": {
+      "file": "observer7-input.jsonl",
+      "sequence": 138,
+      "pointer": "/payload/items",
+      "predicate": "only emitted pre-prepare limiter/cache predicates; not complete constructor proof"
+    },
+    "bundle.schema": {
+      "source": "data/phase441-fixed-A-input-source/abi.json",
+      "predicate": "fixed five-key input envelope"
+    },
+    "bundle.fixture": {
+      "files": [
+        "fixture.json",
+        "player_fixture.json",
+        "king-slot-bindings.json"
+      ],
+      "predicate": "fixed Source fixture plus actual resources/geometry/order relation"
+    },
+    "bundle.runtime": {
+      "source": "data/phase441-fixed-A-input-source/abi.json",
+      "predicate": "exact14 declared INPUT-only fields; individual field refs supplied"
+    },
+    "bundle.draws": {
+      "file": "observer7-primitives.jsonl",
+      "sequences": [
+        1249,
+        1250,
+        1251,
+        1252,
+        1253,
+        1254,
+        1255,
+        1256,
+        1257,
+        1258,
+        3605,
+        3615,
+        3616,
+        3619,
+        3623,
+        3798,
+        3808,
+        3809,
+        3812,
+        3816,
+        6027,
+        6037,
+        6038,
+        6041,
+        6045,
+        6300,
+        6310,
+        6311,
+        6314,
+        6318,
+        7227,
+        7351,
+        7423,
+        7555,
+        7611,
+        7695,
+        7779,
+        7881,
+        7938,
+        8822,
+        8832,
+        8833,
+        8836,
+        8840,
+        9185,
+        9195,
+        9196,
+        9199,
+        9203,
+        11468,
+        11478,
+        11479,
+        11703,
+        11713,
+        11714,
+        13862,
+        14010,
+        14020,
+        14021,
+        14024,
+        14028,
+        14115,
+        14157,
+        14237,
+        14301,
+        14311,
+        14312,
+        14315,
+        14319,
+        14436,
+        14484,
+        14732,
+        14860,
+        16798,
+        16808,
+        16809,
+        16812,
+        16816,
+        16965,
+        16975,
+        16976,
+        16979,
+        16983,
+        19220,
+        19230,
+        19231,
+        19234,
+        19238,
+        19585,
+        19595,
+        19596,
+        19599,
+        19603,
+        20402,
+        20594,
+        20636,
+        20824,
+        21000,
+        21110,
+        21242,
+        21299,
+        21435,
+        22075,
+        22085,
+        22086,
+        22089,
+        22093,
+        22438,
+        22448,
+        22451,
+        22455,
+        24516,
+        24526,
+        24527,
+        24530,
+        24534,
+        24935,
+        24945,
+        24948,
+        24952,
+        26793,
+        27053,
+        27063,
+        27064,
+        27130,
+        27187,
+        27601,
+        27691,
+        27701,
+        27704,
+        27708,
+        27755,
+        27861,
+        27925,
+        28219,
+        28257,
+        29883,
+        29893,
+        29894,
+        29897,
+        29901,
+        30498,
+        30508,
+        30511,
+        30515,
+        32530,
+        32540,
+        32541,
+        32544,
+        32548,
+        33110,
+        33140,
+        33213,
+        33223,
+        33226,
+        33230,
+        33319,
+        33973,
+        34355,
+        34393,
+        34475,
+        34591,
+        34715,
+        35009,
+        35226,
+        35256,
+        35485,
+        35495,
+        35496,
+        35499,
+        35503,
+        36076,
+        36086,
+        36089,
+        36093,
+        37121,
+        37151,
+        38086,
+        38096,
+        38097,
+        38100,
+        38104,
+        38753,
+        38763,
+        38766,
+        38770,
+        39058,
+        39088,
+        39997,
+        40595,
+        40827,
+        40837,
+        40838,
+        40841,
+        40845,
+        41011,
+        41041,
+        41370,
+        41420,
+        41452,
+        41738,
+        41770,
+        41780,
+        41783,
+        41787,
+        41840,
+        41876,
+        43025,
+        43055,
+        43596,
+        43606,
+        43609,
+        43613,
+        44438,
+        44448,
+        44451,
+        44455,
+        44919,
+        44949,
+        46138,
+        46148,
+        46151,
+        46155,
+        46749,
+        46779,
+        47050,
+        47060,
+        47063,
+        47067,
+        47128,
+        47382,
+        48164,
+        48284,
+        48362,
+        48434,
+        48528,
+        48690,
+        48859,
+        48889,
+        49146,
+        49156,
+        49159,
+        49163,
+        49932,
+        49942,
+        49945,
+        49949,
+        50773,
+        50803,
+        51852,
+        51862,
+        51865,
+        51869,
+        52605,
+        52635,
+        52680,
+        52690,
+        52693,
+        52697,
+        54052,
+        54362,
+        54454,
+        54464,
+        54467,
+        54471,
+        54635,
+        54665,
+        55164,
+        55202,
+        55306,
+        55338,
+        55464,
+        55576,
+        55586,
+        55589,
+        55593,
+        55862,
+        56651,
+        56681,
+        57304,
+        57314,
+        57317,
+        57321,
+        58176,
+        58186,
+        58189,
+        58193,
+        58565,
+        58595,
+        59814,
+        59824,
+        59827,
+        59831,
+        60443,
+        60473,
+        60872,
+        61032,
+        61042,
+        61045,
+        61049,
+        61134,
+        61704,
+        61898,
+        62006,
+        62264,
+        62461,
+        62491,
+        62574,
+        62654,
+        62756,
+        62766,
+        62769,
+        62773,
+        63910,
+        63920,
+        63923,
+        63927,
+        64419,
+        64483,
+        65276,
+        65286,
+        65289,
+        65293,
+        66329,
+        66359,
+        66660,
+        66670,
+        66673,
+        66677,
+        67782,
+        68012,
+        68022,
+        68025,
+        68029,
+        68104,
+        68222,
+        68325,
+        68355,
+        68790,
+        68856,
+        69106,
+        69366,
+        69376,
+        69379,
+        69383,
+        69542,
+        69764,
+        70327,
+        70357,
+        70926,
+        70936,
+        70939,
+        70943,
+        72046,
+        72056,
+        72059,
+        72063,
+        72245,
+        72275,
+        73408,
+        73418,
+        73421,
+        73425,
+        74075,
+        74107
+      ],
+      "predicate": "all selected actual records, strict activation boundary and physical order"
+    },
+    "bundle.synthetic_seed": {
+      "source": "data/phase441-fixed-A-input-source/abi.json",
+      "predicate": "null for conditional direct-native primitive Tape; no seed restoration"
+    }
+  },
+  "primitive_original_sequences": [
+    1249,
+    1250,
+    1251,
+    1252,
+    1253,
+    1254,
+    1255,
+    1256,
+    1257,
+    1258,
+    3605,
+    3615,
+    3616,
+    3619,
+    3623,
+    3798,
+    3808,
+    3809,
+    3812,
+    3816,
+    6027,
+    6037,
+    6038,
+    6041,
+    6045,
+    6300,
+    6310,
+    6311,
+    6314,
+    6318,
+    7227,
+    7351,
+    7423,
+    7555,
+    7611,
+    7695,
+    7779,
+    7881,
+    7938,
+    8822,
+    8832,
+    8833,
+    8836,
+    8840,
+    9185,
+    9195,
+    9196,
+    9199,
+    9203,
+    11468,
+    11478,
+    11479,
+    11703,
+    11713,
+    11714,
+    13862,
+    14010,
+    14020,
+    14021,
+    14024,
+    14028,
+    14115,
+    14157,
+    14237,
+    14301,
+    14311,
+    14312,
+    14315,
+    14319,
+    14436,
+    14484,
+    14732,
+    14860,
+    16798,
+    16808,
+    16809,
+    16812,
+    16816,
+    16965,
+    16975,
+    16976,
+    16979,
+    16983,
+    19220,
+    19230,
+    19231,
+    19234,
+    19238,
+    19585,
+    19595,
+    19596,
+    19599,
+    19603,
+    20402,
+    20594,
+    20636,
+    20824,
+    21000,
+    21110,
+    21242,
+    21299,
+    21435,
+    22075,
+    22085,
+    22086,
+    22089,
+    22093,
+    22438,
+    22448,
+    22451,
+    22455,
+    24516,
+    24526,
+    24527,
+    24530,
+    24534,
+    24935,
+    24945,
+    24948,
+    24952,
+    26793,
+    27053,
+    27063,
+    27064,
+    27130,
+    27187,
+    27601,
+    27691,
+    27701,
+    27704,
+    27708,
+    27755,
+    27861,
+    27925,
+    28219,
+    28257,
+    29883,
+    29893,
+    29894,
+    29897,
+    29901,
+    30498,
+    30508,
+    30511,
+    30515,
+    32530,
+    32540,
+    32541,
+    32544,
+    32548,
+    33110,
+    33140,
+    33213,
+    33223,
+    33226,
+    33230,
+    33319,
+    33973,
+    34355,
+    34393,
+    34475,
+    34591,
+    34715,
+    35009,
+    35226,
+    35256,
+    35485,
+    35495,
+    35496,
+    35499,
+    35503,
+    36076,
+    36086,
+    36089,
+    36093,
+    37121,
+    37151,
+    38086,
+    38096,
+    38097,
+    38100,
+    38104,
+    38753,
+    38763,
+    38766,
+    38770,
+    39058,
+    39088,
+    39997,
+    40595,
+    40827,
+    40837,
+    40838,
+    40841,
+    40845,
+    41011,
+    41041,
+    41370,
+    41420,
+    41452,
+    41738,
+    41770,
+    41780,
+    41783,
+    41787,
+    41840,
+    41876,
+    43025,
+    43055,
+    43596,
+    43606,
+    43609,
+    43613,
+    44438,
+    44448,
+    44451,
+    44455,
+    44919,
+    44949,
+    46138,
+    46148,
+    46151,
+    46155,
+    46749,
+    46779,
+    47050,
+    47060,
+    47063,
+    47067,
+    47128,
+    47382,
+    48164,
+    48284,
+    48362,
+    48434,
+    48528,
+    48690,
+    48859,
+    48889,
+    49146,
+    49156,
+    49159,
+    49163,
+    49932,
+    49942,
+    49945,
+    49949,
+    50773,
+    50803,
+    51852,
+    51862,
+    51865,
+    51869,
+    52605,
+    52635,
+    52680,
+    52690,
+    52693,
+    52697,
+    54052,
+    54362,
+    54454,
+    54464,
+    54467,
+    54471,
+    54635,
+    54665,
+    55164,
+    55202,
+    55306,
+    55338,
+    55464,
+    55576,
+    55586,
+    55589,
+    55593,
+    55862,
+    56651,
+    56681,
+    57304,
+    57314,
+    57317,
+    57321,
+    58176,
+    58186,
+    58189,
+    58193,
+    58565,
+    58595,
+    59814,
+    59824,
+    59827,
+    59831,
+    60443,
+    60473,
+    60872,
+    61032,
+    61042,
+    61045,
+    61049,
+    61134,
+    61704,
+    61898,
+    62006,
+    62264,
+    62461,
+    62491,
+    62574,
+    62654,
+    62756,
+    62766,
+    62769,
+    62773,
+    63910,
+    63920,
+    63923,
+    63927,
+    64419,
+    64483,
+    65276,
+    65286,
+    65289,
+    65293,
+    66329,
+    66359,
+    66660,
+    66670,
+    66673,
+    66677,
+    67782,
+    68012,
+    68022,
+    68025,
+    68029,
+    68104,
+    68222,
+    68325,
+    68355,
+    68790,
+    68856,
+    69106,
+    69366,
+    69376,
+    69379,
+    69383,
+    69542,
+    69764,
+    70327,
+    70357,
+    70926,
+    70936,
+    70939,
+    70943,
+    72046,
+    72056,
+    72059,
+    72063,
+    72245,
+    72275,
+    73408,
+    73418,
+    73421,
+    73425,
+    74075,
+    74107
+  ],
+  "coverage": {
+    "status": "INPUT_ONLY_NOT_RUNTIME_VALIDATED",
+    "emitted_fields_have_declared_sources": true,
+    "future_model_blockers": [
+      "constructor/prepare equivalence",
+      "ordinary callbacks/transform/RNG noninterference",
+      "King setState/log behavior",
+      "candidate runtime acceptance and same-instance diagnostics",
+      "strict output/comparator mapping"
+    ],
+    "runtime_validated": false,
+    "candidate_or_comparator_bound": false,
+    "model_release": false
+  },
+  "presentation_semantics": "116 excluded fields are not runtime/initial acceptance predicates",
+  "clock_and_tape": "complete original physical selected streams; no posthoc terminal filtering",
+  "timer_origin": "accepted SOURCE-supported initial values; never fresh_configured or public-zero inference",
+  "fixed_input_validation": {
+    "input_descriptors": {
+      "fixture.json": {
+        "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/fixture.json",
+        "size": 771,
+        "sha256": "98ae29e5cbe3ae60504cee9d994ce76a27bd10d8d372d5281e6d681e500869b1"
+      },
+      "player_fixture.json": {
+        "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/player_fixture.json",
+        "size": 1676,
+        "sha256": "a42675c3fedb0651e4309754403d5658edcce869f85edb07963e7a2f87391c56"
+      },
+      "observer7-input.jsonl": {
+        "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-input.jsonl",
+        "size": 306081,
+        "sha256": "00158549c266456a1b2a29ac14c395a47acb13eb441fc6a4be7056b21bfa6616"
+      },
+      "observer7-lineage.jsonl": {
+        "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-lineage.jsonl",
+        "size": 75657,
+        "sha256": "5c57025f62e96d05e80dad16f77b1fd2d3ea4688ed717b3708cb4747c01262e0"
+      },
+      "observer7-metadata.jsonl": {
+        "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-metadata.jsonl",
+        "size": 6457,
+        "sha256": "2e11a7eb3996d9fd0f9edd1146a1b190e9be95e92258683fbfc992033d8674f2"
+      },
+      "observer7-primitives.jsonl": {
+        "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-primitives.jsonl",
+        "size": 265642,
+        "sha256": "924d7be78bbdde6f655a9bd62318592b3a905ab88db4b9550324ece6a238f78d"
+      },
+      "king-clock-checkpoint.json": {
+        "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-clock-checkpoint.json",
+        "size": 352,
+        "sha256": "21ce432a668fb4406b27bbb4f4ff623a4cbb54f0c0695fb4c2bdf53a28629c73"
+      },
+      "king-clock-passes.jsonl": {
+        "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-clock-passes.jsonl",
+        "size": 227219,
+        "sha256": "660cff32026b6cd0b5942081e6c279fc0076ff6c95fee4ce1e8f7cf2d5a86526"
+      },
+      "king-input-facts.json": {
+        "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-input-facts.json",
+        "size": 10082,
+        "sha256": "e3b2e6267a6132a53f95fd0f0322ba14fbc22115a1f5ba8dc9411a67ac3f5880"
+      },
+      "king-ui-authority.jsonl": {
+        "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-ui-authority.jsonl",
+        "size": 596454,
+        "sha256": "bd3ddda8379be45bd13a40342b90951fa2a1e4b41a8334f7c996ab6aa0480429"
+      },
+      "king-rng-checkpoint.json": {
+        "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-rng-checkpoint.json",
+        "size": 772,
+        "sha256": "5a844bfb47cbb4491ab3ec647be315a3e7b2aa73b0373900ea7fd3d0769e51bc"
+      },
+      "king-slot-bindings.json": {
+        "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-slot-bindings.json",
+        "size": 20254,
+        "sha256": "e326643b93a87f48864895dbfda136b3aa6feb2d03681cf943e81b3da550eefc"
+      }
+    },
+    "binding_join": {
+      "schema": "phase360-auxiliary-binding-join/1",
+      "status": "RELATION_PROOF_ONLY_NOT_FULL_ELEVEN_VALIDATION_OR_ADMISSION",
+      "native_to_role": {
+        "1548": "root_viewport",
+        "4015": "game",
+        "2540": "util",
+        "6886": "combat_timer",
+        "6888": "fatigue:start",
+        "6889": "fatigue:tick",
+        "47611": "P",
+        "47765": "tick:P",
+        "47766": "aux:P:battleRageTimer",
+        "47768": "aux:P:autoRageTimer",
+        "47767": "invu:P",
+        "48451": "buff:P:100",
+        "48453": "buff:P:101",
+        "48455": "buff:P:102",
+        "48457": "buff:P:103",
+        "48459": "buff:P:104",
+        "48461": "buff:P:105",
+        "48463": "buff:P:106",
+        "48465": "buff:P:107",
+        "48467": "buff:P:108",
+        "48469": "buff:P:109",
+        "48471": "buff:P:110",
+        "84805": "O",
+        "84959": "tick:O",
+        "84960": "aux:O:battleRageTimer",
+        "84962": "aux:O:autoRageTimer",
+        "84961": "invu:O",
+        "85264": "buff:O:100",
+        "85266": "buff:O:101",
+        "85268": "buff:O:102",
+        "85270": "buff:O:103",
+        "85272": "buff:O:104",
+        "85274": "buff:O:105",
+        "85276": "buff:O:106",
+        "85278": "buff:O:107",
+        "85280": "buff:O:108",
+        "85282": "buff:O:109",
+        "85284": "buff:O:110",
+        "81978": "P:18",
+        "81839": "P:15",
+        "81074": "P:1",
+        "82032": "P:19",
+        "81751": "P:13",
+        "81624": "P:11",
+        "81129": "P:2",
+        "81019": "P:0",
+        "81294": "P:5",
+        "81934": "P:17",
+        "81459": "P:8",
+        "81184": "P:3",
+        "81514": "P:9",
+        "81239": "P:4",
+        "81795": "P:14",
+        "81569": "P:10",
+        "81404": "P:7",
+        "81349": "P:6",
+        "81679": "P:12",
+        "81717": "king_buff:P:12",
+        "81740": "king_hide:P:12",
+        "81732": "king_drag:P:12",
+        "81883": "P:16",
+        "86212": "O:18",
+        "85875": "O:1",
+        "86168": "O:17",
+        "85545": "O:7",
+        "85985": "O:13",
+        "85435": "O:9",
+        "85930": "O:0",
+        "85325": "O:11",
+        "85710": "O:4",
+        "86117": "O:16",
+        "86073": "O:15",
+        "85655": "O:5",
+        "85600": "O:6",
+        "86266": "O:19",
+        "86029": "O:14",
+        "85490": "O:8",
+        "85380": "O:10",
+        "85820": "O:2",
+        "85765": "O:3"
+      },
+      "role_to_native": {
+        "root_viewport": "1548",
+        "game": "4015",
+        "util": "2540",
+        "combat_timer": "6886",
+        "fatigue:start": "6888",
+        "fatigue:tick": "6889",
+        "P": "47611",
+        "tick:P": "47765",
+        "aux:P:battleRageTimer": "47766",
+        "aux:P:autoRageTimer": "47768",
+        "invu:P": "47767",
+        "buff:P:100": "48451",
+        "buff:P:101": "48453",
+        "buff:P:102": "48455",
+        "buff:P:103": "48457",
+        "buff:P:104": "48459",
+        "buff:P:105": "48461",
+        "buff:P:106": "48463",
+        "buff:P:107": "48465",
+        "buff:P:108": "48467",
+        "buff:P:109": "48469",
+        "buff:P:110": "48471",
+        "O": "84805",
+        "tick:O": "84959",
+        "aux:O:battleRageTimer": "84960",
+        "aux:O:autoRageTimer": "84962",
+        "invu:O": "84961",
+        "buff:O:100": "85264",
+        "buff:O:101": "85266",
+        "buff:O:102": "85268",
+        "buff:O:103": "85270",
+        "buff:O:104": "85272",
+        "buff:O:105": "85274",
+        "buff:O:106": "85276",
+        "buff:O:107": "85278",
+        "buff:O:108": "85280",
+        "buff:O:109": "85282",
+        "buff:O:110": "85284",
+        "P:18": "81978",
+        "P:15": "81839",
+        "P:1": "81074",
+        "P:19": "82032",
+        "P:13": "81751",
+        "P:11": "81624",
+        "P:2": "81129",
+        "P:0": "81019",
+        "P:5": "81294",
+        "P:17": "81934",
+        "P:8": "81459",
+        "P:3": "81184",
+        "P:9": "81514",
+        "P:4": "81239",
+        "P:14": "81795",
+        "P:10": "81569",
+        "P:7": "81404",
+        "P:6": "81349",
+        "P:12": "81679",
+        "king_buff:P:12": "81717",
+        "king_hide:P:12": "81740",
+        "king_drag:P:12": "81732",
+        "P:16": "81883",
+        "O:18": "86212",
+        "O:1": "85875",
+        "O:17": "86168",
+        "O:7": "85545",
+        "O:13": "85985",
+        "O:9": "85435",
+        "O:0": "85930",
+        "O:11": "85325",
+        "O:4": "85710",
+        "O:16": "86117",
+        "O:15": "86073",
+        "O:5": "85655",
+        "O:6": "85600",
+        "O:19": "86266",
+        "O:14": "86029",
+        "O:8": "85490",
+        "O:10": "85380",
+        "O:2": "85820",
+        "O:3": "85765"
+      },
+      "input_order": {
+        "P": [
+          "P:0",
+          "P:1",
+          "P:2",
+          "P:3",
+          "P:4",
+          "P:5",
+          "P:6",
+          "P:7",
+          "P:8",
+          "P:9",
+          "P:10",
+          "P:11",
+          "P:12",
+          "P:13",
+          "P:14",
+          "P:15",
+          "P:16",
+          "P:17",
+          "P:18",
+          "P:19"
+        ],
+        "O": [
+          "O:0",
+          "O:1",
+          "O:2",
+          "O:3",
+          "O:4",
+          "O:5",
+          "O:6",
+          "O:7",
+          "O:8",
+          "O:9",
+          "O:10",
+          "O:11",
+          "O:13",
+          "O:14",
+          "O:15",
+          "O:16",
+          "O:17",
+          "O:18",
+          "O:19"
+        ]
+      },
+      "inventory_order": {
+        "P": [
+          "P:0",
+          "P:1",
+          "P:2",
+          "P:3",
+          "P:4",
+          "P:5",
+          "P:6",
+          "P:7",
+          "P:8",
+          "P:9",
+          "P:10",
+          "P:11",
+          "P:12",
+          "P:13",
+          "P:14",
+          "P:15",
+          "P:16",
+          "P:17",
+          "P:18",
+          "P:19"
+        ],
+        "O": [
+          "O:11",
+          "O:10",
+          "O:9",
+          "O:8",
+          "O:7",
+          "O:6",
+          "O:5",
+          "O:4",
+          "O:3",
+          "O:2",
+          "O:1",
+          "O:0",
+          "O:13",
+          "O:14",
+          "O:15",
+          "O:16",
+          "O:17",
+          "O:18",
+          "O:19"
+        ]
+      },
+      "evidence_refs": {
+        "P:0": {
+          "native_id": "81019",
+          "descriptor_id": "8656",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 0,
+          "ready_sequence": 1,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "P:1": {
+          "native_id": "81074",
+          "descriptor_id": "8656",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 3,
+          "ready_sequence": 4,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "P:2": {
+          "native_id": "81129",
+          "descriptor_id": "8656",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 6,
+          "ready_sequence": 7,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "P:3": {
+          "native_id": "81184",
+          "descriptor_id": "8656",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 9,
+          "ready_sequence": 10,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "P:4": {
+          "native_id": "81239",
+          "descriptor_id": "8656",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 12,
+          "ready_sequence": 13,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "P:5": {
+          "native_id": "81294",
+          "descriptor_id": "8656",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 15,
+          "ready_sequence": 16,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "P:6": {
+          "native_id": "81349",
+          "descriptor_id": "8656",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 18,
+          "ready_sequence": 19,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "P:7": {
+          "native_id": "81404",
+          "descriptor_id": "8656",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 21,
+          "ready_sequence": 22,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "P:8": {
+          "native_id": "81459",
+          "descriptor_id": "8656",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 24,
+          "ready_sequence": 25,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "P:9": {
+          "native_id": "81514",
+          "descriptor_id": "8656",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 27,
+          "ready_sequence": 28,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "P:10": {
+          "native_id": "81569",
+          "descriptor_id": "8656",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 30,
+          "ready_sequence": 31,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "P:11": {
+          "native_id": "81624",
+          "descriptor_id": "8656",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 33,
+          "ready_sequence": 34,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "P:12": {
+          "native_id": "81679",
+          "descriptor_id": "12018",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 36,
+          "ready_sequence": 37,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "P:13": {
+          "native_id": "81751",
+          "descriptor_id": "8839",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 39,
+          "ready_sequence": 40,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "P:14": {
+          "native_id": "81795",
+          "descriptor_id": "8839",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 42,
+          "ready_sequence": 43,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "P:15": {
+          "native_id": "81839",
+          "descriptor_id": "8839",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 45,
+          "ready_sequence": 46,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "P:16": {
+          "native_id": "81883",
+          "descriptor_id": "8346",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 48,
+          "ready_sequence": 49,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "P:17": {
+          "native_id": "81934",
+          "descriptor_id": "8839",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 51,
+          "ready_sequence": 52,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "P:18": {
+          "native_id": "81978",
+          "descriptor_id": "8778",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 54,
+          "ready_sequence": 55,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "P:19": {
+          "native_id": "82032",
+          "descriptor_id": "8423",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 57,
+          "ready_sequence": 58,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "O:11": {
+          "native_id": "85325",
+          "descriptor_id": "8656",
+          "inventory_id": "85250",
+          "character_id": "84805",
+          "scene_sequence": 80,
+          "ready_sequence": 81,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "O:10": {
+          "native_id": "85380",
+          "descriptor_id": "8656",
+          "inventory_id": "85250",
+          "character_id": "84805",
+          "scene_sequence": 83,
+          "ready_sequence": 84,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "O:9": {
+          "native_id": "85435",
+          "descriptor_id": "8656",
+          "inventory_id": "85250",
+          "character_id": "84805",
+          "scene_sequence": 86,
+          "ready_sequence": 87,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "O:8": {
+          "native_id": "85490",
+          "descriptor_id": "8656",
+          "inventory_id": "85250",
+          "character_id": "84805",
+          "scene_sequence": 89,
+          "ready_sequence": 90,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "O:7": {
+          "native_id": "85545",
+          "descriptor_id": "8656",
+          "inventory_id": "85250",
+          "character_id": "84805",
+          "scene_sequence": 92,
+          "ready_sequence": 93,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "O:6": {
+          "native_id": "85600",
+          "descriptor_id": "8656",
+          "inventory_id": "85250",
+          "character_id": "84805",
+          "scene_sequence": 95,
+          "ready_sequence": 96,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "O:5": {
+          "native_id": "85655",
+          "descriptor_id": "8656",
+          "inventory_id": "85250",
+          "character_id": "84805",
+          "scene_sequence": 98,
+          "ready_sequence": 99,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "O:4": {
+          "native_id": "85710",
+          "descriptor_id": "8656",
+          "inventory_id": "85250",
+          "character_id": "84805",
+          "scene_sequence": 101,
+          "ready_sequence": 102,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "O:3": {
+          "native_id": "85765",
+          "descriptor_id": "8656",
+          "inventory_id": "85250",
+          "character_id": "84805",
+          "scene_sequence": 104,
+          "ready_sequence": 105,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "O:2": {
+          "native_id": "85820",
+          "descriptor_id": "8656",
+          "inventory_id": "85250",
+          "character_id": "84805",
+          "scene_sequence": 107,
+          "ready_sequence": 108,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "O:1": {
+          "native_id": "85875",
+          "descriptor_id": "8656",
+          "inventory_id": "85250",
+          "character_id": "84805",
+          "scene_sequence": 110,
+          "ready_sequence": 111,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "O:0": {
+          "native_id": "85930",
+          "descriptor_id": "8656",
+          "inventory_id": "85250",
+          "character_id": "84805",
+          "scene_sequence": 113,
+          "ready_sequence": 114,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "O:13": {
+          "native_id": "85985",
+          "descriptor_id": "8839",
+          "inventory_id": "85250",
+          "character_id": "84805",
+          "scene_sequence": 116,
+          "ready_sequence": 117,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "O:14": {
+          "native_id": "86029",
+          "descriptor_id": "8839",
+          "inventory_id": "85250",
+          "character_id": "84805",
+          "scene_sequence": 119,
+          "ready_sequence": 120,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "O:15": {
+          "native_id": "86073",
+          "descriptor_id": "8839",
+          "inventory_id": "85250",
+          "character_id": "84805",
+          "scene_sequence": 122,
+          "ready_sequence": 123,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "O:16": {
+          "native_id": "86117",
+          "descriptor_id": "8346",
+          "inventory_id": "85250",
+          "character_id": "84805",
+          "scene_sequence": 125,
+          "ready_sequence": 126,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "O:17": {
+          "native_id": "86168",
+          "descriptor_id": "8839",
+          "inventory_id": "85250",
+          "character_id": "84805",
+          "scene_sequence": 128,
+          "ready_sequence": 129,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "O:18": {
+          "native_id": "86212",
+          "descriptor_id": "8778",
+          "inventory_id": "85250",
+          "character_id": "84805",
+          "scene_sequence": 131,
+          "ready_sequence": 132,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        },
+        "O:19": {
+          "native_id": "86266",
+          "descriptor_id": "8423",
+          "inventory_id": "85250",
+          "character_id": "84805",
+          "scene_sequence": 134,
+          "ready_sequence": 135,
+          "pre_sequence": 138,
+          "activate_sequence": 1231
+        }
+      },
+      "decoded_observations_sha256": "6582c9f3733632d9816c3a03d0e1a622e234d4e7343b7f95bd9de5076b456502",
+      "source_contract": {
+        "schema": "phase360-binding-source-contract/1",
+        "schema_origin": {
+          "path": "tests/phase358_king_observer_schema.py",
+          "size": 259033,
+          "sha256": "d8dabd87ffe0352ceb886ad3f25c2548d1e4412d13538da813ba77f8115947a7"
+        },
+        "producer_source_origin": {
+          "path": "data/phase359-king-producer-source/producer-source-freeze.json",
+          "size": 43099,
+          "sha256": "419a79c51f9a5c92c56edc4a2fd0ca7fd829f0471f747652015a39e26035204a"
+        },
+        "fixed_slot_map": {
+          "path": "data/phase359-king-producer-source/fixed-slot-map.json",
+          "size": 10715,
+          "sha256": "3511ea812052dfa636d09b4e1d4e00bb5aa904d39d8d042c3e5be7ca634ddafa"
+        },
+        "fixed_fixture": {
+          "path": "data/phase355-king-finite-source/fixed-A-v8-fixture.json",
+          "size": 5636,
+          "sha256": "e969df30573a01e1ce7a0efa65a90b7f153d3e32636492cb6832ad705ee8c627"
+        },
+        "evidence_policy": "SOURCE_ORIGIN_ONLY_NOT_INDEPENDENT_ACCEPTANCE_OR_RUNTIME_ADMISSION"
+      },
+      "source_limits": [
+        "359 inventory association derives from actual bind method getter/control-flow SOURCE; no second inventory-node direct sample",
+        "359 has no independent binding stamp; no timestamp was invented",
+        "359 independent producer review is still pending"
+      ],
+      "input_bundle_created": false,
+      "native_admitted": false,
+      "model_calls": 0
+    },
+    "validation_scope": "FIXED_BYTES_TRANSPORT_TYPED_RELATION_ONLY",
+    "full391_source_gate_called": false
+  },
+  "accepted_initial_audit": {
+    "path": "data/phase439-timer-overlay-first-001/overlay-report.json",
+    "size": 1148063,
+    "sha256": "523974fd3e18522618bc678bc9062e83effb77d8a73f5d0d1bfdee51ad813e88"
+  },
+  "source_authority": {
+    "source_context": {
+      "path": "data/phase441-fixed-A-input-source/context.json",
+      "size": 7919,
+      "sha256": "4cb8efbb24c78727de9dd3028499524561466e188302f944cd4abe5e4eba88df"
+    },
+    "abi": {
+      "path": "data/phase441-fixed-A-input-source/abi.json",
+      "size": 2458,
+      "sha256": "8379ca4cde37516f5c701baa6e96d94c7b32621f6d8a1e044bda40126aca5bd6"
+    },
+    "receipts": {
+      "root401": {
+        "path": "data/phase401-root-native-attempt06/oracle-acceptance.json",
+        "size": 4460,
+        "sha256": "6b8d469256489175d7e30a503caf21c7209b567c6b18f4ae436cb465d2730f2c"
+      },
+      "root402": {
+        "path": "data/phase401-root-native-attempt06/independent402-accepted.json",
+        "size": 993,
+        "sha256": "cabf6a704ec10e4fa1322ed3051e280ade500186b938de33bb6ddf4704812021"
+      },
+      "independent402": {
+        "path": "data/phase402-independent-final/review.json",
+        "size": 23995,
+        "sha256": "278776b72d664d2925988e09807fb9842af6cdb93df9950e786ff4b59cc838fd"
+      },
+      "root438": {
+        "path": "data/phase438-root-character8-acceptance/acceptance.json",
+        "size": 1482,
+        "sha256": "c4fc10ff4196083eab5c3f1169bfa00bb080712ab49cb2947bcebbc0b60f28a5"
+      },
+      "root439": {
+        "path": "data/phase439-root-timer64-acceptance/acceptance.json",
+        "size": 2052,
+        "sha256": "c32a013aa58598fd15a6658c220dba67073062a4e3f022f84c5b8b0408d25b78"
+      },
+      "independent439": {
+        "path": "data/phase439-independent-acceptance-first-001/acceptance-seal.json",
+        "size": 2587,
+        "sha256": "da5543d5f051c0d61b2d68e30a89b85d2c70710978c7442ab88491b55b69c183"
+      },
+      "root440": {
+        "path": "data/phase440-root-design-acceptance/acceptance.json",
+        "size": 1360,
+        "sha256": "1732e704f4c819b2eadc4ad73060531710d43fa9479631d4d2e28f766dd885be"
+      },
+      "independent440": {
+        "path": "data/phase440-independent-design-review/review.json",
+        "size": 4501,
+        "sha256": "1e700b6d2231715448b44ae3f613569814c06b12ffe9cc76e2d3aded564e1c93"
+      }
+    },
+    "model_release": false,
+    "native_profile": "observer7-390-native-single-king-A/1",
+    "projection_profile": "pure-combat-fixed-king-A-input441/1",
+    "status": "INPUT_ONLY_NOT_RUNTIME_VALIDATED"
+  }
+}

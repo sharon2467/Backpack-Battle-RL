@@ -1,0 +1,86 @@
+{
+  "schema": "phase441-input-only-ABI/1",
+  "status": "INPUT_ONLY_NOT_RUNTIME_VALIDATED",
+  "native_profile": "observer7-390-native-single-king-A/1",
+  "native_observer_version": "7-king-single-A-390",
+  "projection_profile": "pure-combat-fixed-king-A-input441/1",
+  "runtime_schema": "native-v8-pure-combat-runtime-input/441",
+  "bundle_schema": "native-v8-input-only/1",
+  "bundle_keys": [
+    "schema",
+    "fixture",
+    "runtime",
+    "draws",
+    "synthetic_seed"
+  ],
+  "runtime_keys": [
+    "schema",
+    "mode",
+    "profile_id",
+    "checkpoint",
+    "environment",
+    "nodes",
+    "timer_initial",
+    "initial_items",
+    "initial_characters",
+    "prepare_order",
+    "activate_order",
+    "terminal_profile",
+    "frame_clock",
+    "processing_nodes"
+  ],
+  "business_timer_count": 33,
+  "timer_initial_domain": "SOURCE_SUPPORTED_INACTIVE_INITIAL_VALUES; proof external; no fresh_configured reinterpretation",
+  "excluded_timer_roles": [
+    "king_hide:P:12",
+    "king_drag:P:12"
+  ],
+  "source_only_deferred": [
+    "constructor/prepare equivalence",
+    "ordinary callbacks/transform/RNG noninterference",
+    "King setState/log behavior",
+    "candidate runtime acceptance and same-instance diagnostics",
+    "strict output/comparator mapping"
+  ],
+  "model_release": false,
+  "candidate_code_bound": false,
+  "comparator_code_bound": false,
+  "mode": "genuine",
+  "terminal_profile": "source-two-physics-idle-pre-internal/1",
+  "native_terminal_policy": "first-actual-idle-after-at-least-two-future-physics/1",
+  "environment_keys": [
+    "fps",
+    "scale",
+    "paused"
+  ],
+  "node_config_keys": [
+    "role",
+    "path",
+    "positions",
+    "priority",
+    "kind"
+  ],
+  "timer_initial_keys": [
+    "wait_time_bits",
+    "one_shot",
+    "process_mode",
+    "autostart",
+    "paused",
+    "private_left_bits"
+  ],
+  "initial_character_keys": [
+    "invulnerable",
+    "invulnerabilityItem",
+    "buffProtectStacks"
+  ],
+  "initial_item_keys": [
+    "lastActivationTime_bits",
+    "lastTriggerTime_bits",
+    "activationsThisFrame",
+    "triggersThisFrame",
+    "dragged",
+    "moveback_running",
+    "cache_fresh"
+  ],
+  "portability": "Portable pure-byte project_from_bytes does not open or resolve source descriptor paths. Fixed build_from_files currently uses historical absolute capture paths as the current execution location; relocation is a future engineering wrapper concern, not business state or restored-file identity."
+}

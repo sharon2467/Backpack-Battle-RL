@@ -1,0 +1,242 @@
+{
+  "schema": "phase441-independent-helper-controls/1",
+  "status": "PASS_HELPERS_ONLY_NO_FULL_BUNDLE",
+  "call_counts": {
+    "load_accepted_initial": 2,
+    "decode_lawful12": 1,
+    "project_runtime": 8,
+    "project_order": 17,
+    "project_fixture": 1,
+    "project_primitives": 1
+  },
+  "negatives": [
+    {
+      "case": "duplicate JSON keys",
+      "reason": "STRICT_JSON: DUPLICATE_JSON_KEY"
+    },
+    {
+      "case": "nonfinite JSON",
+      "reason": "STRICT_JSON: NONFINITE_JSON_CONSTANT"
+    },
+    {
+      "case": "BOOL is not INT",
+      "reason": "TYPED_int"
+    },
+    {
+      "case": "BOOL payload is not integer0",
+      "reason": "TYPED_BOOL"
+    },
+    {
+      "case": "missing carrier",
+      "reason": "EXACT_FIXED12_NAMES"
+    },
+    {
+      "case": "extra carrier",
+      "reason": "EXACT_FIXED12_NAMES"
+    },
+    {
+      "case": "raw byte drift:fixture.json",
+      "reason": "FIXED_INPUT_IDENTITY_fixture.json"
+    },
+    {
+      "case": "raw byte drift:player_fixture.json",
+      "reason": "FIXED_INPUT_IDENTITY_player_fixture.json"
+    },
+    {
+      "case": "raw byte drift:observer7-input.jsonl",
+      "reason": "FIXED_INPUT_IDENTITY_observer7-input.jsonl"
+    },
+    {
+      "case": "raw byte drift:observer7-lineage.jsonl",
+      "reason": "FIXED_INPUT_IDENTITY_observer7-lineage.jsonl"
+    },
+    {
+      "case": "raw byte drift:observer7-metadata.jsonl",
+      "reason": "FIXED_INPUT_IDENTITY_observer7-metadata.jsonl"
+    },
+    {
+      "case": "raw byte drift:observer7-primitives.jsonl",
+      "reason": "FIXED_INPUT_IDENTITY_observer7-primitives.jsonl"
+    },
+    {
+      "case": "raw byte drift:king-clock-checkpoint.json",
+      "reason": "FIXED_INPUT_IDENTITY_king-clock-checkpoint.json"
+    },
+    {
+      "case": "raw byte drift:king-clock-passes.jsonl",
+      "reason": "FIXED_INPUT_IDENTITY_king-clock-passes.jsonl"
+    },
+    {
+      "case": "raw byte drift:king-input-facts.json",
+      "reason": "FIXED_INPUT_IDENTITY_king-input-facts.json"
+    },
+    {
+      "case": "raw byte drift:king-ui-authority.jsonl",
+      "reason": "FIXED_INPUT_IDENTITY_king-ui-authority.jsonl"
+    },
+    {
+      "case": "raw byte drift:king-rng-checkpoint.json",
+      "reason": "FIXED_INPUT_IDENTITY_king-rng-checkpoint.json"
+    },
+    {
+      "case": "raw byte drift:king-slot-bindings.json",
+      "reason": "FIXED_INPUT_IDENTITY_king-slot-bindings.json"
+    },
+    {
+      "case": "accepted audit byte drift",
+      "reason": "ACCEPTED439_AUDIT_IDENTITY"
+    },
+    {
+      "case": "Timer mode BOOL",
+      "reason": "TIMER_ACTUAL_AUDIT_JOIN_invu:P:process_mode"
+    },
+    {
+      "case": "P invu stale child5",
+      "reason": "ACTUAL_P7_O5_TOPOLOGY"
+    },
+    {
+      "case": "ordinary flag INT0",
+      "reason": "EMITTED_NODE_BOOL_ordinary_idle"
+    },
+    {
+      "case": "activation negativezero clock",
+      "reason": "ACTIVATION_PHASE_COMBAT_CLOCK"
+    },
+    {
+      "case": "missing private source",
+      "reason": "EXACT_EMITTED_BUSINESS_NODE_ROLES"
+    },
+    {
+      "case": "publiczero private inversion",
+      "reason": "SUPPORTED_PRIVATE_INITIAL_MINUS_ONE"
+    },
+    {
+      "case": "order native alias",
+      "reason": "GAME_ITEM_ALIAS"
+    },
+    {
+      "case": "fixture slot loss",
+      "reason": "FIXED_FIXTURE_GEOMETRY_ORDER"
+    },
+    {
+      "case": "illegal primitive INT coercion",
+      "reason": "UNSUPPORTED_PRIMITIVE_ARGUMENT_COERCION"
+    },
+    {
+      "case": "temporary same-size hash drift",
+      "reason": "PIN_HASH"
+    },
+    {
+      "case": "symlink",
+      "reason": "PATH_SYMLINK"
+    },
+    {
+      "case": "hardlink",
+      "reason": "NONORDINARY_FILE"
+    },
+    {
+      "case": "nonordinary FIFO",
+      "reason": "NONORDINARY_FILE"
+    },
+    {
+      "case": "existing write-once output",
+      "reason": "FileExistsError"
+    }
+  ],
+  "read_pinned_successes": [
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/fixture.json",
+      "size": 771,
+      "sha256": "98ae29e5cbe3ae60504cee9d994ce76a27bd10d8d372d5281e6d681e500869b1"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/player_fixture.json",
+      "size": 1676,
+      "sha256": "a42675c3fedb0651e4309754403d5658edcce869f85edb07963e7a2f87391c56"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-input.jsonl",
+      "size": 306081,
+      "sha256": "00158549c266456a1b2a29ac14c395a47acb13eb441fc6a4be7056b21bfa6616"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-lineage.jsonl",
+      "size": 75657,
+      "sha256": "5c57025f62e96d05e80dad16f77b1fd2d3ea4688ed717b3708cb4747c01262e0"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-metadata.jsonl",
+      "size": 6457,
+      "sha256": "2e11a7eb3996d9fd0f9edd1146a1b190e9be95e92258683fbfc992033d8674f2"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-primitives.jsonl",
+      "size": 265642,
+      "sha256": "924d7be78bbdde6f655a9bd62318592b3a905ab88db4b9550324ece6a238f78d"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-clock-checkpoint.json",
+      "size": 352,
+      "sha256": "21ce432a668fb4406b27bbb4f4ff623a4cbb54f0c0695fb4c2bdf53a28629c73"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-clock-passes.jsonl",
+      "size": 227219,
+      "sha256": "660cff32026b6cd0b5942081e6c279fc0076ff6c95fee4ce1e8f7cf2d5a86526"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-input-facts.json",
+      "size": 10082,
+      "sha256": "e3b2e6267a6132a53f95fd0f0322ba14fbc22115a1f5ba8dc9411a67ac3f5880"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-ui-authority.jsonl",
+      "size": 596454,
+      "sha256": "bd3ddda8379be45bd13a40342b90951fa2a1e4b41a8334f7c996ab6aa0480429"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-rng-checkpoint.json",
+      "size": 772,
+      "sha256": "5a844bfb47cbb4491ab3ec647be315a3e7b2aa73b0373900ea7fd3d0769e51bc"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-slot-bindings.json",
+      "size": 20254,
+      "sha256": "e326643b93a87f48864895dbfda136b3aa6feb2d03681cf943e81b3da550eefc"
+    },
+    {
+      "path": "data/phase439-timer-overlay-first-001/overlay-report.json",
+      "size": 1148063,
+      "sha256": "523974fd3e18522618bc678bc9062e83effb77d8a73f5d0d1bfdee51ad813e88"
+    }
+  ],
+  "raw12_reads": 12,
+  "accepted_audit_reads": 1,
+  "full_bundle_projections": 0,
+  "actual_builds": 0,
+  "model_runs": 0,
+  "old_controls": 0,
+  "EXPECTED_reads": 0,
+  "new_native": 0,
+  "preimport_source_checks": {
+    "author_owned": 9,
+    "schema": {
+      "path": "tests/phase391_king_observer_schema.py",
+      "size": 208243,
+      "sha256": "ffcddfd2cbe58307f7258c1aefad5586a9179c6c452dc59c3342f9047f31457c"
+    }
+  },
+  "decoded_display_control": "Equal partial runtime and origins; no raw identity relaxation or full bundle projection.",
+  "elapsed_seconds": 0.6068009039991011,
+  "partial_runtime_positive_calls": 2,
+  "source_module": {
+    "path": "/workspace/python-original-engine/repo/tests/phase441_fixed_A_input_bridge.py",
+    "size": 36491,
+    "sha256": "e6c3336c5d91e51988d9629eaa779c3a229af5c1cc08d423609062831032f4f9"
+  },
+  "author_owner": {
+    "path": "/workspace/python-original-engine/repo/data/phase441-fixed-A-input-source/source-owner.json",
+    "size": 1996,
+    "sha256": "7184b737c00ca53ac497463c4f038164cdee39875efa5eea13707939b68882ea"
+  }
+}

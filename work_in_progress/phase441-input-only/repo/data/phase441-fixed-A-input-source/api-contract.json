@@ -1,0 +1,295 @@
+{
+  "schema": "phase441-fixed-A-input-source-API/1",
+  "module": {
+    "path": "tests/phase441_fixed_A_input_bridge.py",
+    "size": 36491,
+    "sha256": "e6c3336c5d91e51988d9629eaa779c3a229af5c1cc08d423609062831032f4f9"
+  },
+  "status": "SOURCE_ONLY_NOT_EXECUTED",
+  "functions": [
+    {
+      "name": "require",
+      "line": 33,
+      "end_line": 35,
+      "arguments": "condition, reason"
+    },
+    {
+      "name": "same",
+      "line": 38,
+      "end_line": 39,
+      "arguments": "left, right"
+    },
+    {
+      "name": "strict_json",
+      "line": 42,
+      "end_line": 59,
+      "arguments": "raw"
+    },
+    {
+      "name": "key",
+      "line": 62,
+      "end_line": 66,
+      "arguments": "row"
+    },
+    {
+      "name": "canonical",
+      "line": 69,
+      "end_line": 73,
+      "arguments": "value"
+    },
+    {
+      "name": "physical",
+      "line": 76,
+      "end_line": 84,
+      "arguments": "path, regular=True"
+    },
+    {
+      "name": "read_pinned",
+      "line": 87,
+      "end_line": 114,
+      "arguments": "descriptor, io"
+    },
+    {
+      "name": "save_new",
+      "line": 117,
+      "end_line": 132,
+      "arguments": "path, value"
+    },
+    {
+      "name": "fingerprint",
+      "line": 135,
+      "end_line": 136,
+      "arguments": "value"
+    },
+    {
+      "name": "verify_raw_inputs",
+      "line": 139,
+      "end_line": 144,
+      "arguments": "raw12"
+    },
+    {
+      "name": "decode_lawful12",
+      "line": 147,
+      "end_line": 159,
+      "arguments": "raw12"
+    },
+    {
+      "name": "load_accepted_initial",
+      "line": 162,
+      "end_line": 172,
+      "arguments": "audit_raw"
+    },
+    {
+      "name": "source_value",
+      "line": 175,
+      "end_line": 179,
+      "arguments": "index, field, phase, role"
+    },
+    {
+      "name": "typed_scalar",
+      "line": 182,
+      "end_line": 198,
+      "arguments": "value, kind"
+    },
+    {
+      "name": "one",
+      "line": 201,
+      "end_line": 204,
+      "arguments": "rows, site, edge"
+    },
+    {
+      "name": "model_role",
+      "line": 207,
+      "end_line": 213,
+      "arguments": "role"
+    },
+    {
+      "name": "project_order",
+      "line": 216,
+      "end_line": 227,
+      "arguments": "entry, aliases"
+    },
+    {
+      "name": "project_fixture",
+      "line": 230,
+      "end_line": 242,
+      "arguments": "decoded"
+    },
+    {
+      "name": "project_runtime",
+      "line": 245,
+      "end_line": 358,
+      "arguments": "decoded, aliases, index"
+    },
+    {
+      "name": "project_primitives",
+      "line": 361,
+      "end_line": 395,
+      "arguments": "decoded, activation_sequence"
+    },
+    {
+      "name": "validate_initial_consumer_coverage",
+      "line": 398,
+      "end_line": 416,
+      "arguments": "bundle, origins"
+    },
+    {
+      "name": "project_decoded",
+      "line": 419,
+      "end_line": 435,
+      "arguments": "decoded, aliases, index"
+    },
+    {
+      "name": "project_from_bytes",
+      "line": 438,
+      "end_line": 445,
+      "arguments": "raw12, audit_raw"
+    },
+    {
+      "name": "verify_source_context",
+      "line": 448,
+      "end_line": 471,
+      "arguments": "context, io"
+    },
+    {
+      "name": "build_from_files",
+      "line": 474,
+      "end_line": 509,
+      "arguments": "output_new"
+    },
+    {
+      "name": "main",
+      "line": 512,
+      "end_line": 516,
+      "arguments": "argv=None"
+    }
+  ],
+  "pure_actual_bytes_entry": "project_from_bytes(raw12,audit_raw) -> (bundle, proof), no file I/O",
+  "decoded_field_entry": "project_decoded(decoded,aliases,index) -> (bundle, proof); separate display-semantic noninterference controls, not raw-file identity admission",
+  "actual_file_entry": "build_from_files(output_new), Source/controls/Root release outside this Source-only author step",
+  "CLI": "python tests/phase441_fixed_A_input_bridge.py --output-new /workspace/python-original-engine/repo/data/NEW-DIRECTORY",
+  "native_schema_calls": [
+    "native_schema._transport_only_decode",
+    "native_schema.argument_fields",
+    "native_schema.decimal",
+    "native_schema.decode_clock",
+    "native_schema.exact",
+    "native_schema.join_binding_provenance",
+    "native_schema.validate_binding_carrier",
+    "native_schema.validate_record",
+    "native_schema.validate_typed"
+  ],
+  "never_called": [
+    "391.validate_source_carriers",
+    "391.validate_sources_with_binding",
+    "391 full-FX fresh/UI gates",
+    "361 reader/sealer",
+    "438/439 derivation adapters",
+    "TapeRandom or CombatEngine"
+  ],
+  "immutable_ABI": {
+    "path": "data/phase441-fixed-A-input-source/abi.json",
+    "size": 2458,
+    "sha256": "8379ca4cde37516f5c701baa6e96d94c7b32621f6d8a1e044bda40126aca5bd6"
+  },
+  "Source_context": {
+    "path": "data/phase441-fixed-A-input-source/context.json",
+    "size": 7919,
+    "sha256": "4cb8efbb24c78727de9dd3028499524561466e188302f944cd4abe5e4eba88df"
+  },
+  "fixed_input_carriers": 12,
+  "emitted_counts": {
+    "bundle_keys": 5,
+    "runtime_keys": 14,
+    "items": 39,
+    "business_timers": 33,
+    "P_invu_child": 7,
+    "O_invu_child": 5
+  },
+  "status_on_projection": "INPUT_ONLY_NOT_RUNTIME_VALIDATED",
+  "deferred_model_blockers": [
+    "constructor/prepare equivalence",
+    "ordinary callbacks/transform/RNG noninterference",
+    "King setState/log behavior",
+    "candidate runtime acceptance and same-instance diagnostics",
+    "strict output/comparator mapping"
+  ],
+  "minimum_new_independent_controls": [
+    "actual fixed bytes positive via pure API or later authorized single file build; neither claims runtime acceptance",
+    "wrong/missing/extra/raw changed carrier rejects fixed SHA; no EXPECТED names",
+    "wrong accepted audit/schema/receipt/context identity rejects",
+    "typed/alias/order/slot/private/configuration error rejects only necessary source/emitted fields",
+    "project_decoded variation of116 excluded display values leaves business bundle unchanged; distinguish from actual raw SHA drift rejection",
+    "any primitive sequence<=activation rejects; never filters selected stream or infers prepare RNG absent",
+    "33 Timer values source-supported, no fresh_configured; actualP7/O5 enforced",
+    "all14 fields have explicit origins; constructor/prepare/noninterference/Kinglog/output deferred without blocking truthful data projection",
+    "link/nonordinary/existing output rejects and postreservation error persists without retry",
+    "currentI/O absolute-location limit disclosed; portable pure bytes mapping does not resolve it"
+  ],
+  "imports": [
+    {
+      "line": 2,
+      "text": "import argparse"
+    },
+    {
+      "line": 3,
+      "text": "from copy import deepcopy"
+    },
+    {
+      "line": 4,
+      "text": "import hashlib"
+    },
+    {
+      "line": 5,
+      "text": "import json"
+    },
+    {
+      "line": 6,
+      "text": "import math"
+    },
+    {
+      "line": 7,
+      "text": "import os"
+    },
+    {
+      "line": 8,
+      "text": "from pathlib import Path"
+    },
+    {
+      "line": 9,
+      "text": "import re"
+    },
+    {
+      "line": 10,
+      "text": "import stat"
+    },
+    {
+      "line": 11,
+      "text": "import struct"
+    },
+    {
+      "line": 12,
+      "text": "import phase391_king_observer_schema as native_schema"
+    }
+  ],
+  "schema_stdlib_imports": [
+    "import hashlib, json, math, re, struct",
+    "from copy import deepcopy",
+    "from dataclasses import dataclass",
+    "from types import SimpleNamespace"
+  ],
+  "author_activity": {
+    "compile_only": 1,
+    "bridge_imports": 0,
+    "schema_imports": 0,
+    "schema_calls": 0,
+    "reader_calls": 0,
+    "projector_calls": 0,
+    "actual_builds": 0,
+    "capture_payload_reads": 0,
+    "model_imports": 0,
+    "model_runs": 0,
+    "EXPECTED_reads": 0,
+    "new_native": 0
+  }
+}

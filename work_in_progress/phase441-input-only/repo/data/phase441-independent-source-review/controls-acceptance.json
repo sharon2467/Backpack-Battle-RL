@@ -1,0 +1,63 @@
+{
+  "schema": "phase441-independent-controls-acceptance/1",
+  "status": "ACCEPTED_SAVED_HELPER_BATCH_NO_REPLAY",
+  "result": {
+    "path": "data/phase441-independent-controls-first-001/result.json",
+    "size": 8203,
+    "sha256": "894bd9b46477a5a1f95595f465b9820abc0e483539d0e08475b9e2923e0f3321"
+  },
+  "owner": {
+    "path": "data/phase441-independent-controls-first-001/owned-files.json",
+    "size": 958,
+    "sha256": "5421052882d09f2035a0179abc1aba1aa29df15afa8d36afda951a2db80fbd7b"
+  },
+  "root_release": {
+    "path": "data/phase441-root-controls-release/release.json",
+    "size": 560,
+    "sha256": "64da6e4bfbb129e0ebbfa38d93c801f1bb73cc11a3d69b9a65dba2aa11104839"
+  },
+  "root_invocation": {
+    "path": "data/phase441-root-controls-release/invocation.json",
+    "size": 125,
+    "sha256": "a9cfb236acb89aef35b08c1546e7b4d22c520137438827c401021b42e6753f3b"
+  },
+  "root_stdout": {
+    "path": "data/phase441-root-controls-release/stdout.txt",
+    "size": 256,
+    "sha256": "169eddedddabe1820db00f95809509264d9914422b4b6bc0612b34a0bbdab31e"
+  },
+  "root_stderr": {
+    "path": "data/phase441-root-controls-release/stderr.txt",
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "owner_file_pins_verified": 4,
+  "drift": [],
+  "execution": {
+    "attempts": 1,
+    "returncode": 0,
+    "helper_elapsed_seconds": 0.6068009039991011,
+    "launcher_elapsed_seconds": 0.6536988769994423,
+    "unexpected_errors": 0,
+    "expected_negatives": 33
+  },
+  "actual_calls": {
+    "load_accepted_initial": 2,
+    "decode_lawful12": 1,
+    "project_runtime": 8,
+    "project_order": 17,
+    "project_fixture": 1,
+    "project_primitives": 1
+  },
+  "actual_payload_reads": {
+    "lawful12": 12,
+    "accepted_audit": 1
+  },
+  "partial_runtime_positive_calls": 2,
+  "full_project_from_bytes_calls": 0,
+  "full_project_decoded_calls": 0,
+  "actual_builds": 0,
+  "models": 0,
+  "independent_activity": "Read saved result, owner and Root release/invocation; verified4 owner pins; no new control/source/module invocation or original12 read.",
+  "next": "One separately released actual build through the sealed wrapper. All five deferred runtime/output blocks remain closed."
+}
