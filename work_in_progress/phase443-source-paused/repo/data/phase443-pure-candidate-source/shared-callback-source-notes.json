@@ -1,0 +1,36 @@
+{
+  "schema": "phase443-shared3-callback-source-notes/1",
+  "source_ABI": {
+    "path": "tests/phase391_king_observer_schema.py",
+    "size": 208243,
+    "sha256": "ffcddfd2cbe58307f7258c1aefad5586a9179c6c452dc59c3342f9047f31457c"
+  },
+  "callbacks": [
+    {
+      "site": "Core/Game.gd::_physics_process",
+      "receivers": 1,
+      "slots": 1,
+      "model": "CombatEngine._source_noninterfering_callback(game,0)",
+      "status": "EXTERNAL_B2_PENDING"
+    },
+    {
+      "site": "Core/Game.gd::_process",
+      "receivers": 1,
+      "slots": 1,
+      "model": "CombatEngine._source_noninterfering_callback(game,1)",
+      "status": "EXTERNAL_B2_PENDING"
+    },
+    {
+      "site": "Items/Item.gd::_process",
+      "receivers": 39,
+      "slots": 39,
+      "model": "CombatEngine._source_noninterfering_callback(item:*,1)",
+      "status": "EXTERNAL_B2_PENDING"
+    }
+  ],
+  "total_receivers": 40,
+  "total_slots": 41,
+  "scope": "Root separately closes shared Game/Item business, geometry/cache, Timer, event/history/control-flow and selected primitive noninterference. No full UI forest or global-generator equivalence.",
+  "not_proof": "Initial dragged/moveback=false alone is insufficient. Source implementation records callbacks but cannot certify their no-op interpretation.",
+  "source_guard_from_root": "Await independently accepted Root B2 receipt; no mutable proof flag or raw capture passed to Engine"
+}

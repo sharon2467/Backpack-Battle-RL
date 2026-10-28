@@ -1,0 +1,505 @@
+--- frozen356/native_replay_v8/engine.py
++++ candidate443/native_replay_v8/engine.py
+@@ -16,7 +16,8 @@
+ from types import SimpleNamespace
+ from pathlib import Path
+ 
+-from .randomness import BalancedRange, BalancedRng, SeededRandom
++from .randomness import BalancedRange, BalancedRng, SeededRandom, TapeRandom
++from .genuine import PURE441_PROFILE, PURE441_SCHEMA, PURE441_CONTRACT, validate_pure441_profile
+ from .histories import CombatHistories
+ from .state import native_rule_state
+ 
+@@ -817,7 +818,7 @@
+ 
+ 
+ def _integration_domain(data):
+-    return data.get('profile_id') in (KING_INTEGRATION_PROFILE, KING_GENUINE_PROFILE, SINGLE_KING_GENUINE_PROFILE)
++    return _pure441_profile(data) or data.get('profile_id') in (KING_INTEGRATION_PROFILE, KING_GENUINE_PROFILE, SINGLE_KING_GENUINE_PROFILE)
+ 
+ 
+ def _validate_processing_inputs(data,fixture):
+@@ -952,6 +953,8 @@
+ 
+ def validate_runtime_inputs(runtime, fixture):
+     data = deepcopy(runtime.data if isinstance(runtime, RuntimeDTO) else runtime)
++    if _pure441_profile(data):
++        return _validate_pure441_runtime(data, fixture, runtime)
+     if _source_king_profile(data):
+         return _validate_source_king_runtime(data, fixture, runtime)
+     if _single_king_genuine_profile(data):
+@@ -1080,6 +1083,8 @@
+ 
+ 
+ def build_runtime_scaffold(dto):
++    if _pure441_profile(dto):
++        return _build_pure441_scaffold(dto)
+     integration=_integration_domain(dto.data)
+     runtime=TimerRuntime(root_internal_idle=dto.data['root_node']['internal_idle'])if integration else TimerRuntime()
+     records={}; prefixes={(-1,):('root',)}
+@@ -1136,7 +1141,9 @@
+     def snapshot(self):
+         result=super().snapshot()
+         result['model']=self.engine.snapshot()
+-        if self.engine.integration_mode:result['full_fx']=self.engine._integration_fx_snapshot()
++        if self.engine.pure_combat_mode:
++            result['business']=self.engine._pure_business_snapshot('final' if self.finalized else 'cleanup')
++        elif self.engine.integration_mode:result['full_fx']=self.engine._integration_fx_snapshot()
+         return result
+ 
+ 
+@@ -1184,9 +1191,14 @@
+         self.model_source_sha256 = assert_model_source_stable()
+         self.fixture = deepcopy(fixture if fixture is not None else starter_fixture())
+         validate_fixture(self.fixture)
+-        source_runtime = validate_runtime_inputs(runtime, self.fixture) if _source_king_profile(runtime) or _single_king_genuine_profile(runtime) else None
++        source_runtime = validate_runtime_inputs(runtime, self.fixture) if _source_king_profile(runtime) or _single_king_genuine_profile(runtime) or _pure441_profile(runtime) else None
++        if _pure441_profile(runtime) and type(random_source) is not TapeRandom:
++            raise ValueError('fixed441 pure candidate requires actual TapeRandom; no seed fallback')
+         self.random = random_source if random_source is not None else SeededRandom(0)
+         self.runtime_inputs = source_runtime if source_runtime is not None else validate_runtime_inputs(runtime, self.fixture)
++        self.pure_combat_mode = _pure441_profile(self.runtime_inputs)
++        self.pure_snapshots = []
++        self.pure_api_trace = []
+         self.physics_order = ["explicit_runtime_roles"]
+         self.characters = {}
+         self.items = {}
+@@ -1244,7 +1256,13 @@
+         self.king_states={}
+         self.invu_origins={'P':None,'O':None}
+         self.invu_bubbles={'P':False,'O':False}
+-        if self.king_mode:
++        if self.pure_combat_mode:
++            for side, values in self.runtime_inputs.data['initial_characters'].items():
++                self.characters[side].invulnerable = values['invulnerable']
++                self.characters[side].buff_protect_stacks = values['buffProtectStacks']
++                self.invu_origins[side] = values['invulnerabilityItem']
++            self.king_states['P:12'] = dict(invuCharges=0, protectedBuffs=3.0, manaCost=4.0)
++        elif self.king_mode:
+             for identity,facts in self.runtime_inputs.data['king_particles'].items():
+                 self.king_states[identity]=dict(invuCharges=0,protectedBuffs=3.0,manaCost=4.0,crown=0,
+                     visible=False,emitting=False,drag_visible=False,drag_emitting=False,
+@@ -1264,6 +1282,71 @@
+                     if self.processing_inputs[role]['ordinary_idle']:
+                         self.timer_runtime.connect_ordinary(self.runtime_roles[role],lambda node,delta,role=role:self._source_noninterfering_callback(role,1,delta),1)
+                         self.timer_runtime.set_ordinary_processing(self.runtime_roles[role],True,1)
++        if self.pure_combat_mode:
++            self._validate_pure441_constructed()
++            self.pure_snapshots.append(self._pure_business_snapshot('constructed_off_clock'))
++
++    def _validate_pure441_constructed(self):
++        data = self.runtime_inputs.data
++        for side, values in data['initial_characters'].items():
++            char = self.characters[side]
++            if (char.invulnerable is not values['invulnerable'] or self.invu_origins[side] != values['invulnerabilityItem']
++                    or char.buff_protect_stacks != values['buffProtectStacks']):
++                raise ValueError('constructed character differs from supported441 values')
++        for identity, values in data['initial_items'].items():
++            item = self.items[identity]
++            if (_float_bits(item.last_activation_time) != values['lastActivationTime_bits']
++                    or _float_bits(item.last_trigger_time) != values['lastTriggerTime_bits']
++                    or item.activations_this_frame != values['activationsThisFrame']
++                    or item.triggers_this_frame != values['triggersThisFrame']
++                    or (not self.prepared and item.cache_prepared) or values['dragged'] or values['moveback_running']):
++                raise ValueError('constructed emitted item scalar mismatch')
++        for role, initial in data['timer_initial'].items():
++            _assert_pure441_timer(self.runtime_roles[role], initial)
++        if self.random.position != 0 or self.random.audit:
++            raise ValueError('fixed441 constructor may not consume activation Tape')
++
++    def _validate_pure441_prepared(self):
++        self._validate_pure441_constructed()
++        if not self.prepared or self.king_states['P:12']['invuCharges'] != self.items['P:12'].definition['charges']:
++            raise ValueError('pure King prepare business state mismatch')
++
++    def _pure_business_snapshot(self, stage):
++        off_clock = stage in ('constructed_off_clock', 'prepare_off_clock')
++        d = getattr(self, 'frame_driver', None)
++        clock = None if off_clock else dict(phase=d.phase, physics_frame=d.physics_frame,
++            idle_frame=d.idle_frame, util_time_bits=_float_bits(d.util_time),
++            util_clock_time_bits=_float_bits(d.util_clock_time), util_frame_counter=d.util_frame_counter,
++            passes_consumed=d.pass_index, ending=d.ending, cleaned=d.cleaned, finalized=d.finalized,
++            physics_signals_remaining=d.physics_signals_remaining)
++        timers = {r:dict(public=self._public_timer(n),private_left_bits=_float_bits(n.private_left),processing=n.processing)
++                  for r,n in self.runtime_roles.items() if isinstance(n,TimerRecord)}
++        items = {identity:dict(lastActivationTime_bits=_float_bits(item.last_activation_time),
++                    lastTriggerTime_bits=_float_bits(item.last_trigger_time),activationsThisFrame=item.activations_this_frame,
++                    triggersThisFrame=item.triggers_this_frame,cache_prepared=item.cache_prepared,consumed=item.consumed,
++                    iterationCooldown_bits=_float_bits(item.iteration_cooldown),triggerTime_bits=_float_bits(item.trigger_time),
++                    speedScale_bits=_float_bits(item.speed_scale),goobert_activations=item.goobert_activations,potion_full=item.potion_full)
++                 for identity,item in self.items.items()}
++        return dict(schema='phase443-business-snapshot/1',stage=stage,clock=clock,off_clock=off_clock,
++            combat_time_bits=_float_bits(self.time),timers=timers,
++            processing_nodes=[self._integration_node(n['role']) for n in self.runtime_inputs.data['processing_nodes']],
++            characters={s:asdict(c) for s,c in self.characters.items()},items=items,
++            model_current_target_cache={k:[i.instance_id for i in v] for k,v in self.affected_items_cache.items()},
++            king=deepcopy(self.king_states),invu_origins=deepcopy(self.invu_origins),
++            event_num=self.event_num,events=deepcopy(self.events),allocated_events=deepcopy(self.allocated_events),
++            histories=self.histories.snapshot(),logging_mode=self.logging_mode,pending_signals=len(self.signal_queue),
++            tape_position=self.random.position,tape_audit_length=len(self.random.audit))
++
++    def _pure_api_before(self, role, operation, args):
++        self.pure_api_trace.append(dict(edge='before',operation=operation,role=role,argc=len(args),
++            args=[_pure441_variant(x) for x in args],state=self._full_timer(self.runtime_roles[role]),
++            phase=self.frame_driver.phase,physics_frame=self.frame_driver.physics_frame,idle_frame=self.frame_driver.idle_frame))
++
++    def _pure_api_after(self, role, operation, args, helper_status):
++        self.pure_api_trace.append(dict(edge='after',operation=operation,role=role,argc=len(args),
++            args=[_pure441_variant(x) for x in args],state=self._full_timer(self.runtime_roles[role]),
++            helper_status=helper_status,native_return_semantics=dict(typed={'type':'null'},basis='SOURCE_VOID_NOT_SAMPLED'),
++            phase=self.frame_driver.phase,physics_frame=self.frame_driver.physics_frame,idle_frame=self.frame_driver.idle_frame))
+ 
+     def _set_source_processing(self,role,enabled,source):
+         if not self.integration_mode:return
+@@ -1285,6 +1368,10 @@
+         if not self.integration_mode or not(role=='game' or mode==1 and role.startswith('item:')):
+             raise ValueError('unknown noninterference callback')
+         self._integration_callback(role,mode,delta)
++        if self.pure_combat_mode:
++            self.diagnostics.append(dict(kind='pure_shared_callback_domain',role=role,mode=mode,
++                scope='443 fixed shared Game/Item business and selected-call guard; external pre-run closure required'))
++            return
+         self.diagnostics.append(dict(kind='source_ui_noninterference',role=role,mode=mode,lemma='127-complete-zero-unsupported-ui-authority'))
+ 
+     def _integration_node(self,role):
+@@ -1340,18 +1427,27 @@
+     def _timer_snapshot(self):
+         return {role:self._public_timer(node)for role,node in self.runtime_roles.items()if isinstance(node,TimerRecord)}
+ 
+-    def _start_timer(self, role, duration=0.0):
++    def _start_timer(self, role, *args):
++        if len(args)>1:raise ValueError('Timer.start supports zero or one argument')
++        duration=args[0] if args else 0.0
++        if type(duration) not in (int,float):raise ValueError('Timer.start numeric Variant required')
+         timer=self.runtime_roles[role]
++        if self.pure_combat_mode:
++            self._pure_api_before(role,'start',args)
+         if self.king_mode:self.runtime_trace.append(dict(kind='api_full_before',api='start',role=role,state=self._full_timer(timer)))
+         self.runtime_trace.append(dict(kind='start_before',role=role,argument=float(duration),util_time=self.util_time,frame=self.frame))
+         result=self.timer_runtime.start(timer,float(duration))
++        if self.pure_combat_mode:
++            self._pure_api_after(role,'start',args,dict(ok=result.ok,error=result.error))
+         if not result.ok:raise ValueError(result.error)
+         self.runtime_trace.append(dict(kind='start_after',role=role,public=self._public_timer(timer),util_time=self.util_time,frame=self.frame))
+         if self.king_mode:self.runtime_trace.append(dict(kind='api_full_after',api='start',role=role,state=self._full_timer(timer)))
+ 
+     def _stop_timer(self, role):
++        if self.pure_combat_mode:self._pure_api_before(role,'stop',())
+         if self.king_mode:self.runtime_trace.append(dict(kind='api_full_before',api='stop',role=role,state=self._full_timer(self.runtime_roles[role])))
+         self.timer_runtime.stop(self.runtime_roles[role])
++        if self.pure_combat_mode:self._pure_api_after(role,'stop',(),None)
+         self.runtime_trace.append(dict(kind='stop',role=role,public=self._public_timer(self.runtime_roles[role]),util_time=self.util_time,frame=self.frame))
+         if self.king_mode:self.runtime_trace.append(dict(kind='api_full_after',api='stop',role=role,state=self._full_timer(self.runtime_roles[role])))
+ 
+@@ -1374,9 +1470,9 @@
+             if self.tick_counter[side]%2==0 and char.regeneration>0:self.heal(side,char.regeneration,102)
+             elif self.tick_counter[side]%2==1 and char.poison>0:self.damage_nonitem(side,char.poison,108)
+             self.tick_counter[side]+=1
+-        elif role=='fatigue:start':self._start_timer('fatigue:tick',3.0)
++        elif role=='fatigue:start':self._start_timer('fatigue:tick',3 if self.pure_combat_mode else 3.0)
+         elif role=='fatigue:tick':
+-            self.fatigue_tick();self._start_timer('fatigue:tick',1.0)
++            self.fatigue_tick();self._start_timer('fatigue:tick',1 if self.pure_combat_mode else 1.0)
+         else:raise ValueError('unknown Timer callback role')
+         self.runtime_trace.append(dict(kind='timeout_exit',role=role,frame=self.frame,util_time=self.util_time))
+ 
+@@ -1416,6 +1512,7 @@
+         if item.item_index!=262 or type(state)is not int or state not in (0,1,2):
+             raise ValueError('King CrownState integer required')
+         self.histories.item_state(item,state,next_event=next_event)
++        if self.pure_combat_mode:return
+         k=self.king_states[item.instance_id];k['crown']=state
+         if state==1:
+             self._stop_timer('king_hide:'+item.instance_id)
+@@ -1610,7 +1707,7 @@
+             result.update(util_clock_time=d.util_clock_time,util_frame_counter=d.util_frame_counter,
+                           phase=d.phase,passes_consumed=d.pass_index,physics_frame=d.physics_frame,idle_frame=d.idle_frame,
+                           full_timers={r:self._full_timer(n) for r,n in self.runtime_roles.items() if isinstance(n,TimerRecord)},
+-                          king=deepcopy(self.king_states),invu_origins=deepcopy(self.invu_origins),invu_bubbles=deepcopy(self.invu_bubbles))
++                          king=deepcopy(self.king_states),invu_origins=deepcopy(self.invu_origins),**({} if self.pure_combat_mode else dict(invu_bubbles=deepcopy(self.invu_bubbles))))
+         return result
+ 
+ 
+@@ -1780,6 +1877,9 @@
+                 self.histories.tooltip(bag, 3)
+                 self.histories.tooltip(bag, 9)
+         self.prepared = True
++        if self.pure_combat_mode:
++            self._validate_pure441_prepared()
++            self.pure_snapshots.append(self._pure_business_snapshot('prepare_off_clock'))
+ 
+     def activate_from_checkpoint(self):
+         if self.king_mode and not self.frame_driver.activated:
+@@ -1787,6 +1887,9 @@
+             return self.frame_driver.activate(lambda driver:self.activate_from_checkpoint())
+         if not self.prepared or self.activated:
+             raise ValueError('activation requires prepared/unactivated')
++        if self.pure_combat_mode:
++            self._validate_pure441_prepared()
++            self.pure_snapshots.append(self._pure_business_snapshot('pre_activate'))
+         self.util_time = self.runtime_inputs.util_time
+         for identity, fields in self.runtime_inputs.data['initial_items'].items():
+             item = self.items[identity]
+@@ -1796,12 +1899,13 @@
+             item.triggers_this_frame = fields['triggersThisFrame']
+         self.activated = True
+         self._stop_timer('fatigue:start'); self._stop_timer('fatigue:tick')
+-        self._start_timer('fatigue:start', 14.0)
++        self._start_timer('fatigue:start', 14 if self.pure_combat_mode else 14.0)
+         if self.integration_mode:
+             self._set_source_processing('combat_timer',True,'CombatTimer.start')
+             for side in ('P','O'):
+                 self._set_source_processing('character:'+side,True,'Character.combatStart')
+-                self._start_timer('tick:'+side,0.0)
++                if self.pure_combat_mode:self._start_timer('tick:'+side)
++                else:self._start_timer('tick:'+side,0.0)
+         else:self._start_timer('tick:P', 0.0); self._start_timer('tick:O', 0.0)
+         # ALL preCombatStart before ANY combatStart.
+         for identity in self.preparation_order:
+@@ -3315,7 +3419,8 @@
+             if self.integration_mode:
+                 for name in ('battleRageTimer','autoRageTimer'):
+                     role='aux:'+side+':'+name
+-                    self.runtime_trace.append(dict(kind='inactive_aux_stop',role=role,source='Character.combatEnd',before=self._integration_aux_timer(role),after=self._integration_aux_timer(role)))
++                    if self.pure_combat_mode:self._stop_timer(role)
++                    else:self.runtime_trace.append(dict(kind='inactive_aux_stop',role=role,source='Character.combatEnd',before=self._integration_aux_timer(role),after=self._integration_aux_timer(role)))
+             if self.king_mode:self._stop_timer('invu:'+side)
+         self.fatigue_counter = 0
+         self._stop_timer('fatigue:start')
+@@ -3406,6 +3511,14 @@
+             result['king_terminal']=dict(post_cleanup=deepcopy(self.frame_driver.post_cleanup_snapshot),
+                                         final=deepcopy(self.frame_driver.final_snapshot),
+                                         passes=deepcopy(self.frame_driver.pass_trace))
++        if self.pure_combat_mode:
++            result['pure_combat_diagnostics'] = dict(schema='phase443-same-instance-business/1',
++                contract=deepcopy(PURE441_CONTRACT), snapshots=deepcopy(self.pure_snapshots),
++                post_cleanup=deepcopy(self.frame_driver.post_cleanup_snapshot['business']),
++                final=deepcopy(self.frame_driver.final_snapshot['business']),
++                api=deepcopy(self.pure_api_trace), callbacks=[deepcopy(x) for x in self.runtime_trace if x.get('kind')=='source_callback'],
++                tape_position=self.random.position, tape_records=len(self.random.records),
++                comparison_status='NOT_EVALUATED', pre_run_closure='External launcher responsibility; not a gameplay certificate')
+         return result
+ 
+     @staticmethod
+@@ -3556,3 +3669,163 @@
+     _validate_single_king_topology(data, table)
+     return table
+ 
++
++
++#443 fixed14 DTO. These routines validate emitted state, never external proof flags.
++def _pure441_profile(runtime):
++    data = runtime.data if isinstance(runtime, RuntimeDTO) else runtime
++    return type(data) is dict and data.get('profile_id') == PURE441_PROFILE
++
++
++def _pure441_roles(fixture):
++    roles = _required_roles(fixture)
++    del roles['king_hide:P:12']
++    del roles['king_drag:P:12']
++    roles['game'] = 'ordinary'
++    for side in ('P', 'O'):
++        for name in ('battleRageTimer', 'autoRageTimer'):
++            roles['aux:' + side + ':' + name] = 'timer'
++    return roles
++
++
++def _validate_pure441_runtime(data, fixture, original):
++    validate_pure441_profile(data, fixture)
++    _keys(data, ('schema','mode','profile_id','checkpoint','environment','nodes','timer_initial',
++                 'initial_items','initial_characters','prepare_order','activate_order','terminal_profile',
++                 'frame_clock','processing_nodes'), 'pure441 runtime14')
++    _keys(data['environment'], ('fps','scale','paused'), 'pure environment')
++    env = data['environment']
++    if type(env['fps']) is not int or env['fps'] != 60 or type(env['scale']) is not float or env['scale'] != 1.0 or env['paused'] is not False:
++        raise ValueError('pure441 fixed60 scale1 unpaused required')
++    _keys(data['checkpoint'], ('util_time_bits','combat_time_bits','source_phase'), 'pure checkpoint')
++    checkpoint = data['checkpoint']
++    util_time = _be_float(checkpoint['util_time_bits'])
++    if util_time < 0 or checkpoint['combat_time_bits'] != _float_bits(0.0) or checkpoint['source_phase'] != 'Core/Game.gd::activateItems:enter':
++        raise ValueError('pure441 activation checkpoint')
++    clock = decode_clock(data['frame_clock'])
++    if _float_bits(clock.util_time) != checkpoint['util_time_bits']:
++        raise ValueError('pure441 checkpoint/clock mismatch')
++    ids = {i['instance_id'] for side in fixture['sides'] for i in side['items']}
++    for field in ('prepare_order','activate_order'):
++        order = data[field]
++        if type(order) is not list or len(order) != 39 or any(type(i) is not str for i in order) or set(order) != ids:
++            raise ValueError('pure441 exact39 item order')
++    if data['prepare_order'] != data['activate_order']:
++        raise ValueError('pure441 different prepare/activate order unsupported')
++    _keys(data['initial_items'], ids, 'pure initial items')
++    for values in data['initial_items'].values():
++        _keys(values, ('lastActivationTime_bits','lastTriggerTime_bits','activationsThisFrame','triggersThisFrame','dragged','moveback_running','cache_fresh'), 'pure emitted item scalars')
++        if any(values[k] != _float_bits(0.0) for k in ('lastActivationTime_bits','lastTriggerTime_bits')):
++            raise ValueError('pure441 limiter bits differ from fixed input domain')
++        if any(type(values[k]) is not int or values[k] != 0 for k in ('activationsThisFrame','triggersThisFrame')):
++            raise ValueError('pure441 limiter integer domain')
++        if values['dragged'] is not False or values['moveback_running'] is not False or values['cache_fresh'] is not True:
++            raise ValueError('pure441 emitted drag/tween/cache predicate')
++    _keys(data['initial_characters'], ('P','O'), 'pure initial characters')
++    for values in data['initial_characters'].values():
++        _keys(values, ('invulnerable','invulnerabilityItem','buffProtectStacks'), 'pure character fields')
++        if values['invulnerable'] is not False or values['invulnerabilityItem'] is not None or type(values['buffProtectStacks']) is not int or values['buffProtectStacks'] != 0:
++            raise ValueError('unsupported fixed441 character initial values')
++    required = _pure441_roles(fixture)
++    rows = data['processing_nodes']
++    if type(rows) is not list or len(rows) != 78:
++        raise ValueError('pure441 processing78 required')
++    table, native_ids, paths, positions, prefixes = {}, set(), set(), set(), {}
++    for node in rows:
++        _keys(node, NODE_INPUT_KEYS, 'pure processing node')
++        role = node['role']
++        if type(role) is not str or role not in set(required) | {'root_viewport'} or role in table:
++            raise ValueError('pure441 unknown/duplicate role')
++        if type(node['native_id']) is not str or re.fullmatch('[1-9][0-9]*',node['native_id']) is None or node['native_id'] in native_ids:
++            raise ValueError('pure441 native identity')
++        if type(node['path']) is not str or not (node['path']=='/root' or node['path'].startswith('/root/')) or node['path'] in paths:
++            raise ValueError('pure441 actual path')
++        names, pos = node['path'].split('/')[1:], node['positions']
++        if type(pos) is not list or len(pos) != len(names) or not pos or pos[0] != -1 or any(type(x) is not int for x in pos) or any(not 0 <= x <= 4096 for x in pos[1:]) or tuple(pos) in positions:
++            raise ValueError('pure441 actual sparse coordinates')
++        if node['name'] != names[-1] or type(node['priority']) is not int or not -(2**31) <= node['priority'] < 2**31 or type(node['class']) is not str or node['inside_tree'] is not True:
++            raise ValueError('pure441 node scalar types')
++        for flag in ('ordinary_physics','internal_physics','ordinary_idle','internal_idle'):
++            if type(node[flag]) is not bool:raise ValueError('pure441 independent bool flags')
++        for j in range(1,len(names)+1):
++            prefix = tuple(pos[:j])
++            if prefix in prefixes and prefixes[prefix] != tuple(names[:j]):raise ValueError('pure441 sparse prefix conflict')
++            prefixes[prefix] = tuple(names[:j])
++        if role == 'root_viewport':
++            if node['path']!='/root' or pos!=[-1] or node['priority']!=0 or node['class']!='Viewport' or (node['ordinary_physics'],node['internal_physics'],node['ordinary_idle'],node['internal_idle']) != (False,True,False,False):
++                raise ValueError('pure441 root flags')
++        else:
++            if node['internal_physics'] or node['internal_idle']:raise ValueError('pure441 initial native internal flags')
++            expected = (True,True) if role in ('game','util') else (True,False) if role.startswith('character:') else (False,True) if role.startswith('item:') else (False,False)
++            if (node['ordinary_physics'],node['ordinary_idle']) != expected:raise ValueError('pure441 initial ordinary memberships')
++        table[role]=node;native_ids.add(node['native_id']);paths.add(node['path']);positions.add(tuple(pos))
++    if set(table) != set(required)|{'root_viewport'}:raise ValueError('pure441 complete processing roles')
++    configs = data['nodes']
++    if type(configs) is not list or len(configs)!=77:raise ValueError('pure441 config77 required')
++    seen=set()
++    for config in configs:
++        _keys(config, ('role','path','positions','priority','kind'), 'pure node config')
++        role=config['role']
++        if type(role) is not str or role not in required or role in seen or type(config['kind']) is not str or config['kind']!=required[role]:raise ValueError('pure441 node kind/role')
++        actual=table[role]
++        if type(config['positions']) is not list or any(type(x) is not int for x in config['positions']):raise ValueError('pure441 typed config positions')
++        if any(type(config[k]) is not type(actual[k]) or config[k]!=actual[k] for k in ('path','positions','priority')):raise ValueError('pure441 raw/config topology')
++        seen.add(role)
++    timers={role for role,kind in required.items() if kind=='timer'}
++    _keys(data['timer_initial'],timers,'pure33 timer values')
++    if len(timers)!=33:raise ValueError('pure441 exact33 timers')
++    for role, initial in data['timer_initial'].items():
++        _keys(initial, ('wait_time_bits','one_shot','process_mode','autostart','paused','private_left_bits'), 'pure timer fields')
++        wait=_be_float(initial['wait_time_bits'])
++        if wait!=1.0 or f32(wait)!=wait or type(initial['one_shot']) is not bool or initial['one_shot'] != (not role.startswith('tick:')) or type(initial['process_mode']) is not int or initial['process_mode']!=0 or initial['autostart'] is not False or initial['paused'] is not False or initial['private_left_bits'] != _float_bits(-1.0) or table[role]['class']!='Timer':
++            raise ValueError('pure441 unsupported typed Timer state/config')
++    for side, child in (('P',7),('O',5)):
++        timer,parent=table['invu:'+side],table['character:'+side]
++        if timer['positions']!=parent['positions']+[child] or timer['path']!=parent['path']+'/InvulnerabilityTimer':raise ValueError('pure441 P7/O5 topology')
++    if isinstance(original,RuntimeDTO) and (type(original.prepare_order) is not tuple or original.prepare_order!=tuple(data['prepare_order']) or type(original.util_time) is not float or _float_bits(original.util_time)!=checkpoint['util_time_bits']):
++        raise ValueError('pure441 RuntimeDTO convenience mismatch')
++    return RuntimeDTO(data,tuple(data['prepare_order']),util_time)
++
++
++def _assert_pure441_timer(node, initial):
++    if (not isinstance(node,TimerRecord) or _float_bits(node.wait_time)!=initial['wait_time_bits']
++            or node.one_shot is not initial['one_shot'] or node.process_mode!=initial['process_mode']
++            or node.autostart is not initial['autostart'] or node.paused is not initial['paused']
++            or _float_bits(node.private_left)!=initial['private_left_bits'] or node.processing
++            or node.internal_physics or node.internal_idle or node.ordinary_physics or node.ordinary_idle):
++        raise ValueError('actual model Timer differs from supported initial state')
++
++
++def _build_pure441_scaffold(dto):
++    table={n['role']:n for n in dto.data['processing_nodes']}
++    runtime=TimerRuntime(root_internal_idle=table['root_viewport']['internal_idle'])
++    configs=dto.data['nodes'];by_position={tuple(n['positions']):n for n in configs};prefixes={(-1,):('root',)}
++    for config in configs:
++        names=config['path'].split('/')[1:]
++        for end in range(2,len(names)+1):prefixes[tuple(config['positions'][:end])]=tuple(names[:end])
++    objects,records={(-1,):runtime.root},{}
++    for pos in sorted((p for p in prefixes if len(p)>1),key=lambda p:(len(p),p)):
++        parent=objects[pos[:-1]]
++        while len(parent.children)<pos[-1]:
++            gap=runtime.new_node('gap:'+str(pos[:-1])+':'+str(len(parent.children)),'__v8_gap_'+str(len(parent.children)))
++            runtime.add_child(parent,gap)
++        config=by_position.get(pos);name=prefixes[pos][-1]
++        role=config['role'] if config else 'ancestor:'+'/'.join(prefixes[pos])
++        node=runtime.new_timer(role,name) if config and config['kind']=='timer' else runtime.new_node(role,name)
++        runtime.add_child(parent,node);objects[pos]=node
++        if config:
++            runtime.set_priority(node,config['priority']);records[role]=node
++            if config['kind']=='timer':
++                initial=dto.data['timer_initial'][role]
++                runtime.configure_timer(node,initial['one_shot'],initial['process_mode'])
++                result=runtime.set_wait_time(node,_be_float(initial['wait_time_bits']))
++                if not result.ok:raise ValueError(result.error)
++                _assert_pure441_timer(node,initial)
++    ordinary=sorted((n for n in configs if n['kind']=='ordinary'),key=lambda n:(n['priority'],tuple(n['positions'])))
++    return runtime,records,[n['role'] for n in ordinary]
++
++
++def _pure441_variant(value):
++    if type(value) is int:return dict(type='int',decimal=str(value))
++    if type(value) is float and math.isfinite(value):return dict(type='float',binary64_be=_float_bits(value))
++    raise ValueError('pure Timer argument must retain finite INT/REAL Variant')
+--- frozen356/native_replay_v8/genuine.py
++++ candidate443/native_replay_v8/genuine.py
+@@ -73,6 +73,9 @@
+ 
+ 
+ def validate_profile(data, fixture):
++    if data.get('profile_id') == PURE441_PROFILE:
++        validate_pure441_profile(data, fixture)
++        return
+     if data.get('profile_id') == SINGLE_KING_GENUINE_PROFILE:
+         require_single_king_admission()
+         if data.get('mode') != 'genuine' or data.get('terminal_profile') != SINGLE_KING_TERMINAL:
+@@ -146,6 +149,11 @@
+         raise ValueError('genuine input outside code-approved finite source/lineage domain')
+ 
+ def validate_result_profile(runtime,fixture):
++    if runtime.get('profile') == PURE441_PROFILE:
++        validate_single_king_fixture(fixture)
++        if runtime.get('mode') != 'genuine' or runtime.get('terminal_profile') != SINGLE_KING_TERMINAL:
++            raise ValueError('fixed441 pure result profile/terminal required')
++        return
+     if runtime.get('profile') == SINGLE_KING_GENUINE_PROFILE:
+         require_single_king_admission()
+         if runtime.get('mode') != 'genuine' or runtime.get('terminal_profile') != SINGLE_KING_TERMINAL:
+@@ -217,6 +225,7 @@
+         raise ValueError('BLOCKED_INHERITED_INPUT: completed genuine finite-profile result required')
+ 
+ def observer_label(data):
++    if data.get('profile_id') == PURE441_PROFILE:return 'observer7-390-fixed441-pure-candidate443'
+     if data.get('profile_id') == SINGLE_KING_GENUINE_PROFILE:return 'observer7-355-single-king-A'
+     if data.get('profile_id') == RAINBOW75_PROFILE:return 'observer7-324-headless-rainbow75-battle'
+     if data.get('profile_id') == SUPPORT68_PROFILE:return 'observer7-298-headless-support68-battle'
+@@ -1046,3 +1055,25 @@
+     substitute for that contract.
+     """
+     raise ValueError('PENDING_SINGLE_KING_OBSERVER_PATCH_BINDING: new observer/schema/patch SOURCE not frozen')
++
++
++#443 fixed INPUT-only ABI consumer. Actual execution authority is checked externally.
++PURE441_PROFILE = 'pure-combat-fixed-king-A-input441/1'
++PURE441_SCHEMA = 'native-v8-pure-combat-runtime-input/441'
++PURE441_CONTRACT = {
++    'native_profile': 'observer7-390-native-single-king-A/1',
++    'native_observer_version': '7-king-single-A-390',
++    'input_bundle_sha256': 'c87525f35adf8fa3793cc5d1440dff420dc55f3a24c77e520766b01e8963ae2c',
++    'abi_sha256': '8379ca4cde37516f5c701baa6e96d94c7b32621f6d8a1e044bda40126aca5bd6',
++    'scope': 'fixed-A conditional direct-native primitive returns; external Source/input/closure/one-run acceptance required',
++    'timer_initial_domain': 'SOURCE_SUPPORTED_INACTIVE_VALUES_NOT_NATIVE_FRESH_HISTORY',
++}
++PROFILES = PROFILES | {PURE441_PROFILE}
++
++
++def validate_pure441_profile(data, fixture):
++    validate_single_king_fixture(fixture)
++    if (data.get('schema') != PURE441_SCHEMA or data.get('profile_id') != PURE441_PROFILE
++            or data.get('mode') != 'genuine' or data.get('terminal_profile') != SINGLE_KING_TERMINAL):
++        raise ValueError('fixed441 pure input ABI/profile/terminal required')
++    return True

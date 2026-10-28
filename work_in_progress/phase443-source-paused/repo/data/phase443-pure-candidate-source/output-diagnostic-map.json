@@ -1,0 +1,1883 @@
+{
+  "schema": "phase443-frozen-output-map/1",
+  "status": "FROZEN_SOURCE_MAPPING_WITH_EXPLICIT_B5_GAPS",
+  "same_instance_stages": [
+    {
+      "name": "constructed_off_clock",
+      "path": "pure_combat_diagnostics.snapshots[0]",
+      "clock": null
+    },
+    {
+      "name": "prepare_off_clock",
+      "path": "pure_combat_diagnostics.snapshots[1]",
+      "clock": null
+    },
+    {
+      "name": "pre_activate",
+      "path": "pure_combat_diagnostics.snapshots[2]",
+      "clock": "actual FrameDriver activation header"
+    },
+    {
+      "name": "cleanup",
+      "path": "pure_combat_diagnostics.post_cleanup",
+      "clock": "actual same driver cut"
+    },
+    {
+      "name": "final",
+      "path": "pure_combat_diagnostics.final",
+      "clock": "actual eligible idle preinternal driver cut"
+    }
+  ],
+  "projections": [
+    {
+      "native": "ordered events / allocated parent closure / typed histories",
+      "model": "events, allocated_events, event_references, histories",
+      "comparison": "Existing strict typed business/history/parent primitives; exact IDs/ordering, no sorting/truncation"
+    },
+    {
+      "native": "all selected primitive kind/label/typed args/return/order and terminal business RNG state",
+      "model": "random_inputs plus Tape position and final.native_rule_state / character and item RNG states",
+      "comparison": "all365 records, unchanged Tape.assert_consumed; no count forcing or same-seed claim"
+    },
+    {
+      "native": "ordered ordinary/timeouts",
+      "model": "pure_combat_diagnostics.callbacks and runtime_trace.timeout_enter/exit",
+      "comparison": "strict ordered slot/role/mode/frame/phase/delta; callback exit/method-return boundaries remain separately incomplete"
+    },
+    {
+      "native": "native Timer API arguments/arity/public before-after",
+      "model": "pure_combat_diagnostics.api",
+      "comparison": "role+operation+edge+argc+original INT/REAL typed values+actual timer states; exact source-site attribution remains incomplete at some shared Buff callsites"
+    },
+    {
+      "native": "Timer method returns",
+      "model": "api.helper_status and api.native_return_semantics",
+      "comparison": "helper ApiResult.ok/error is model status; native VOID=>NIL is Source-known, not sampled native return"
+    },
+    {
+      "native": "33 business Timer current public/flags/config and source-supported initial private",
+      "model": "five business snapshots timers + processing_nodes",
+      "comparison": "later model private countdown is diagnostic; never relabel as sampled native private"
+    },
+    {
+      "native": "terminal clock/passes/cleanup/final barrier",
+      "model": "king_terminal, five snapshots.clock, scheduling",
+      "comparison": "full2574 finite records retained; actual EOF exactness unchanged; constructor/prepare are off-clock"
+    }
+  ],
+  "timer_native_statement_ABI": [
+    {
+      "argc": 0,
+      "line": 343,
+      "operation": "stop",
+      "original_args_source": "",
+      "receiver_local": "timer",
+      "site": "Core/Buff.gd::combatEnd"
+    },
+    {
+      "argc": 1,
+      "line": 161,
+      "operation": "start",
+      "original_args_source": "duration",
+      "receiver_local": "timer",
+      "site": "Core/Buff.gd::gainTemporary"
+    },
+    {
+      "argc": 0,
+      "line": 165,
+      "operation": "stop",
+      "original_args_source": "",
+      "receiver_local": "timer",
+      "site": "Core/Buff.gd::gainTemporary"
+    },
+    {
+      "argc": 1,
+      "line": 166,
+      "operation": "start",
+      "original_args_source": "duration",
+      "receiver_local": "timer",
+      "site": "Core/Buff.gd::gainTemporary"
+    },
+    {
+      "argc": 0,
+      "line": 278,
+      "operation": "stop",
+      "original_args_source": "",
+      "receiver_local": "timer",
+      "site": "Core/Buff.gd::loseStacks"
+    },
+    {
+      "argc": 1,
+      "line": 340,
+      "operation": "start",
+      "original_args_source": "delay",
+      "receiver_local": "timer",
+      "site": "Core/Buff.gd::onTimeout"
+    },
+    {
+      "argc": 0,
+      "line": 340,
+      "operation": "stop",
+      "original_args_source": "",
+      "receiver_local": "tickTimer",
+      "site": "Core/Character.gd::combatEnd"
+    },
+    {
+      "argc": 0,
+      "line": 345,
+      "operation": "stop",
+      "original_args_source": "",
+      "receiver_local": "battleRageTimer",
+      "site": "Core/Character.gd::combatEnd"
+    },
+    {
+      "argc": 0,
+      "line": 346,
+      "operation": "stop",
+      "original_args_source": "",
+      "receiver_local": "autoRageTimer",
+      "site": "Core/Character.gd::combatEnd"
+    },
+    {
+      "argc": 0,
+      "line": 347,
+      "operation": "stop",
+      "original_args_source": "",
+      "receiver_local": "invulnerabilityTimer",
+      "site": "Core/Character.gd::combatEnd"
+    },
+    {
+      "argc": 0,
+      "line": 333,
+      "operation": "start",
+      "original_args_source": "",
+      "receiver_local": "tickTimer",
+      "site": "Core/Character.gd::combatStart"
+    },
+    {
+      "argc": 1,
+      "line": 336,
+      "operation": "start",
+      "original_args_source": "AUTO_RAGE_DELAY",
+      "receiver_local": "autoRageTimer",
+      "site": "Core/Character.gd::combatStart"
+    },
+    {
+      "argc": 0,
+      "line": 1568,
+      "operation": "stop",
+      "original_args_source": "",
+      "receiver_local": "battleRageTimer",
+      "site": "Core/Character.gd::endBattleRage"
+    },
+    {
+      "argc": 1,
+      "line": 1041,
+      "operation": "start",
+      "original_args_source": "invuDur",
+      "receiver_local": "invulnerabilityTimer",
+      "site": "Core/Character.gd::makeInvulnerable"
+    },
+    {
+      "argc": 1,
+      "line": 1560,
+      "operation": "start",
+      "original_args_source": "fullDur",
+      "receiver_local": "battleRageTimer",
+      "site": "Core/Character.gd::startBattleRage"
+    },
+    {
+      "argc": 0,
+      "line": 100,
+      "operation": "stop",
+      "original_args_source": "",
+      "receiver_local": "fatigueStartTimer",
+      "site": "Interface/CombatTimer/CombatTimer.gd::combatEnd"
+    },
+    {
+      "argc": 0,
+      "line": 101,
+      "operation": "stop",
+      "original_args_source": "",
+      "receiver_local": "fatigueTickTimer",
+      "site": "Interface/CombatTimer/CombatTimer.gd::combatEnd"
+    },
+    {
+      "argc": 1,
+      "line": 179,
+      "operation": "start",
+      "original_args_source": "1",
+      "receiver_local": "fatigueTickTimer",
+      "site": "Interface/CombatTimer/CombatTimer.gd::dealFatigueDamage"
+    },
+    {
+      "argc": 0,
+      "line": 116,
+      "operation": "stop",
+      "original_args_source": "",
+      "receiver_local": "fatigueStartTimer",
+      "site": "Interface/CombatTimer/CombatTimer.gd::start"
+    },
+    {
+      "argc": 0,
+      "line": 117,
+      "operation": "stop",
+      "original_args_source": "",
+      "receiver_local": "fatigueTickTimer",
+      "site": "Interface/CombatTimer/CombatTimer.gd::start"
+    },
+    {
+      "argc": 1,
+      "line": 119,
+      "operation": "start",
+      "original_args_source": "FATIGUE_TIME - 3",
+      "receiver_local": "fatigueStartTimer",
+      "site": "Interface/CombatTimer/CombatTimer.gd::start"
+    },
+    {
+      "argc": 1,
+      "line": 151,
+      "operation": "start",
+      "original_args_source": "3",
+      "receiver_local": "fatigueTickTimer",
+      "site": "Interface/CombatTimer/CombatTimer.gd::startFatigue"
+    },
+    {
+      "argc": 1,
+      "line": 36,
+      "operation": "start",
+      "original_args_source": "invuDur",
+      "receiver_local": "buffTimer",
+      "site": "Items/Exclusive/KingGoobert.gd::doCooldownEffect"
+    },
+    {
+      "argc": 0,
+      "line": 47,
+      "operation": "stop",
+      "original_args_source": "",
+      "receiver_local": "buffTimer",
+      "site": "Items/Exclusive/KingGoobert.gd::onCombatEnd"
+    },
+    {
+      "argc": 0,
+      "line": 13,
+      "operation": "stop",
+      "original_args_source": "",
+      "receiver_local": "timer",
+      "site": "Utility/AutoHideParticles.gd::activate"
+    },
+    {
+      "argc": 0,
+      "line": 36,
+      "operation": "stop",
+      "original_args_source": "",
+      "receiver_local": "timer",
+      "site": "Utility/AutoHideParticles.gd::instantClear"
+    },
+    {
+      "argc": 1,
+      "line": 30,
+      "operation": "start",
+      "original_args_source": "lifetime * (1 + (1 - explosiveness) / speed_scale)",
+      "receiver_local": "timer",
+      "site": "Utility/AutoHideParticles.gd::startTimer"
+    },
+    {
+      "argc": 1,
+      "line": 1593,
+      "operation": "start",
+      "original_args_source": "t + timeLeft",
+      "receiver_local": "timer",
+      "site": "Utility/Util.gd::changeTimer"
+    }
+  ],
+  "native_method_site_count": 107,
+  "native_method_boundaries": [
+    {
+      "native_site": "Core/Buff.gd::TemporaryStacks._init",
+      "state_schema": "temporary_constructor",
+      "channel": "lineage",
+      "function_sha256": "89b0de5339e090ec851007a41be0b7a0420d03e433da93d5f74dcd1bc185f87a",
+      "argument_names": [
+        "_amount",
+        "_timeout",
+        "_item"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Buff.gd::changeCleanseProtectionChance",
+      "state_schema": "buff",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "chance"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Buff.gd::changeCurrentLogShowLabel",
+      "state_schema": "buff",
+      "channel": "runtime",
+      "function_sha256": "8c55139842769de33e635c04213a4fac2e20ec09dbdd97a4fe668566e5750b0c",
+      "argument_names": [
+        "isTimeout",
+        "amount",
+        "item",
+        "triggerEvent",
+        "used"
+      ],
+      "explicit_returns": [
+        {
+          "line": 313
+        },
+        {
+          "line": 315
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Buff.gd::changeReflectChance",
+      "state_schema": "buff",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "amount"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Buff.gd::changeResistChance",
+      "state_schema": "buff",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "chance"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Buff.gd::combatEnd",
+      "state_schema": "buff",
+      "channel": "runtime",
+      "function_sha256": "56520ea40e402739ff4497d71435c1d5f47854cb307466f2ac10ace06fa06fc6",
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Buff.gd::gainTemporary",
+      "state_schema": "buff",
+      "channel": "runtime",
+      "function_sha256": "385039ee0ba49fbaea0425752922c03728df65eeaacb1f21024009793f85841b",
+      "argument_names": [
+        "amount",
+        "duration",
+        "item",
+        "triggerEvent",
+        "reflect"
+      ],
+      "explicit_returns": [
+        {
+          "line": 148
+        },
+        {
+          "line": 196
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Buff.gd::init",
+      "state_schema": "buff",
+      "channel": "lineage",
+      "function_sha256": "e62b4fb80b552569f479cb81eaa2e0c1148930a03af17e182a8bd445c4cee653",
+      "argument_names": [
+        "_type",
+        "_character",
+        "_counter",
+        "_signalName"
+      ],
+      "explicit_returns": [
+        {
+          "line": 43
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Buff.gd::loseStacks",
+      "state_schema": "buff",
+      "channel": "runtime",
+      "function_sha256": "e3ee6d0bce4c5c60164ccd562955129d892222d9684132b461b7d3d7a3007f80",
+      "argument_names": [
+        "amount",
+        "item",
+        "triggerEvent",
+        "used"
+      ],
+      "explicit_returns": [
+        {
+          "line": 280
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Buff.gd::onTimeout",
+      "state_schema": "buff",
+      "channel": "runtime",
+      "function_sha256": "538d354e7084516fdca7a29a15abc8285241b3a198c850ebd72d218e286b4044",
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Character.gd::_physics_process",
+      "state_schema": "character",
+      "channel": "runtime",
+      "function_sha256": "fedb90d907d81a35a3f322fd8952303dec9599780e7d03e0bea5ee8c7ecc7306",
+      "argument_names": [
+        "delta"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Character.gd::_ready",
+      "state_schema": "character",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Character.gd::changeBuffProtectStacks",
+      "state_schema": "character",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "amount"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Character.gd::changeDebuffReflectStacks",
+      "state_schema": "character",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "amount"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Character.gd::changeMaxHealthTemporary",
+      "state_schema": "character",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "amount",
+        "item",
+        "triggerEvent"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Character.gd::cleanse",
+      "state_schema": "character",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Character.gd::combatEnd",
+      "state_schema": "character",
+      "channel": "runtime",
+      "function_sha256": "aaa57772d5227b3b11696abad5932e103472eede591f8887a5427604ef4fcac1",
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Character.gd::combatStart",
+      "state_schema": "character",
+      "channel": "runtime",
+      "function_sha256": "e6a9c9563ec92963fc396dfc4e9d5a761e1f10df3ca57f98c066633a100ebe7a",
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Character.gd::endBattleRage",
+      "state_schema": "character",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Character.gd::endStun",
+      "state_schema": "character",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Character.gd::gainMana",
+      "state_schema": "character",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "amount",
+        "item",
+        "triggerEvent"
+      ],
+      "explicit_returns": [
+        {
+          "line": 1280
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Character.gd::gainStacks",
+      "state_schema": "character",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "buffType",
+        "amount",
+        "item",
+        "triggerEvent",
+        "reflect"
+      ],
+      "explicit_returns": [
+        {
+          "line": 1152
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Character.gd::gainStacksTemporary",
+      "state_schema": "character",
+      "channel": "runtime",
+      "function_sha256": "14f08f31d925c784c74b6ab136bb7b4810a372db1370b2ddc802a20c5df1cb7f",
+      "argument_names": [
+        "buffType",
+        "amount",
+        "duration",
+        "item",
+        "triggerEvent",
+        "reflect"
+      ],
+      "explicit_returns": [
+        {
+          "line": 1157
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Character.gd::invulnerabilityEnded",
+      "state_schema": "character",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Character.gd::loseHealth",
+      "state_schema": "character",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "amount",
+        "item",
+        "triggerEvent"
+      ],
+      "explicit_returns": [
+        {
+          "line": 869
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Character.gd::makeInvulnerable",
+      "state_schema": "character",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "invuDur",
+        "item",
+        "triggerEvent"
+      ],
+      "explicit_returns": [
+        {
+          "line": 1051
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Character.gd::onTick",
+      "state_schema": "character",
+      "channel": "runtime",
+      "function_sha256": "8331593a21e5edc9eb4426da830c7b5a21c10bf7b809a566b20090f4863ce9e8",
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Character.gd::prepare",
+      "state_schema": "character",
+      "channel": "runtime",
+      "function_sha256": "bb0281bf5e7bb4d4b3487a02288aa2ff2b81f6aa9da94a507ff3d089e2a6b58c",
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Character.gd::startBattleRage",
+      "state_schema": "character",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "item",
+        "duration",
+        "triggerEvent",
+        "applyBonus"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Character.gd::stun",
+      "state_schema": "character",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "duration",
+        "item",
+        "triggerEvent"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Character.gd::takeDamage",
+      "state_schema": "character",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "damageSource",
+        "triggerEvent"
+      ],
+      "explicit_returns": [
+        {
+          "line": 505
+        },
+        {
+          "line": 653
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Character.gd::useMana",
+      "state_schema": "character",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "amount",
+        "item",
+        "triggerEvent"
+      ],
+      "explicit_returns": [
+        {
+          "line": 1285
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Character.gd::useStacks",
+      "state_schema": "character",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "buffType",
+        "amount",
+        "item",
+        "triggerEvent"
+      ],
+      "explicit_returns": [
+        {
+          "line": 1164
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/CombatLog.gd::createEvent",
+      "state_schema": "combat_log",
+      "channel": "runtime",
+      "function_sha256": "b3e2e3ce13598dfe4749363d57cdfa61682b532131a461d554bcad8b4a91dab6",
+      "argument_names": [
+        "triggerEvent",
+        "origin",
+        "type"
+      ],
+      "explicit_returns": [
+        {
+          "line": 249
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/CombatLog.gd::createEvent_BattleRageEnd",
+      "state_schema": "combat_log",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "playerId",
+        "triggerEvent"
+      ],
+      "explicit_returns": [
+        {
+          "line": 846
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/CombatLog.gd::createEvent_BattleRageStart",
+      "state_schema": "combat_log",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "item",
+        "duration",
+        "triggerEvent"
+      ],
+      "explicit_returns": [
+        {
+          "line": 840
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/CombatLog.gd::createEvent_InvulnerableEnd",
+      "state_schema": "combat_log",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "item",
+        "playerId",
+        "triggerEvent"
+      ],
+      "explicit_returns": [
+        {
+          "line": 796
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/CombatLog.gd::createEvent_InvulnerableStart",
+      "state_schema": "combat_log",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "item",
+        "duration",
+        "playerId",
+        "triggerEvent"
+      ],
+      "explicit_returns": [
+        {
+          "line": 791
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/CombatLog.gd::createEvent_Stack",
+      "state_schema": "combat_log",
+      "channel": "runtime",
+      "function_sha256": "7dc8b46ff3f3f60aec710480b0e577d7a19cf75c604bb136f30f58a72d53d6f2",
+      "argument_names": [
+        "type",
+        "item",
+        "amount",
+        "playerId",
+        "triggerEvent",
+        "used",
+        "reflected"
+      ],
+      "explicit_returns": [
+        {
+          "line": 750
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/CombatLog.gd::createEvent_StackTemporary",
+      "state_schema": "combat_log",
+      "channel": "runtime",
+      "function_sha256": "f14cb92522f5b357cb60bbbf377e793d3d104141c44913e5b241b9cc8270d809",
+      "argument_names": [
+        "type",
+        "item",
+        "amount",
+        "duration",
+        "playerId",
+        "triggerEvent",
+        "reflected"
+      ],
+      "explicit_returns": [
+        {
+          "line": 757
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/CombatLog.gd::createEvent_StackTimeout",
+      "state_schema": "combat_log",
+      "channel": "runtime",
+      "function_sha256": "eb97f7b740e90c09b61b4136a0266752731cd92c91fefea9aac9ca047bd7ca2b",
+      "argument_names": [
+        "type",
+        "item",
+        "amount",
+        "playerId",
+        "triggerEvent"
+      ],
+      "explicit_returns": [
+        {
+          "line": 762
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/CombatLog.gd::logEvent",
+      "state_schema": "combat_log",
+      "channel": "runtime",
+      "function_sha256": "befedbcc9b204c85363eae9b1515a80d80cce8077f52bc9e206de23374b5bdb3",
+      "argument_names": [
+        "event",
+        "afterFightAllowed"
+      ],
+      "explicit_returns": [
+        {
+          "line": 267
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/CombatLog.gd::onCombatEnd",
+      "state_schema": "combat_log",
+      "channel": "runtime",
+      "function_sha256": "08e31fae8e82b2f5979d7299260e4e864f900edf9a74994f9ed2023ee7a550ba",
+      "argument_names": [
+        "roundResult"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/CombatLog.gd::snapshotItemState",
+      "state_schema": "combat_log",
+      "channel": "runtime",
+      "function_sha256": "89cd95788263e6b2cab62cb6902d1a42d4306b021770f836832d2829dee623e8",
+      "argument_names": [
+        "item",
+        "state",
+        "withNextEvent",
+        "event"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Game.gd::activateItems",
+      "state_schema": "game",
+      "channel": "input",
+      "function_sha256": "007c1feade10ee128decb34393cf1b44d5da5871fc195497b102816fac9f8431",
+      "argument_names": [
+        "items"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Game.gd::combatEndDeferred",
+      "state_schema": "game",
+      "channel": "runtime",
+      "function_sha256": "f1b66ade553d36af1b25448dd0c70419de354bdceee06a267b22f091e96d9e41",
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Game.gd::endCombat",
+      "state_schema": "game",
+      "channel": "runtime",
+      "function_sha256": "12bc1c002707660c489a1251d1361c0e101aceea404f378fc80889c986985643",
+      "argument_names": [],
+      "explicit_returns": [
+        {
+          "line": 3086
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Core/Game.gd::prepareItems",
+      "state_schema": "game",
+      "channel": "input",
+      "function_sha256": "8799a2f3988a9060d43c9d94189b357ef8efcff41bc20a324e48996e70bb158f",
+      "argument_names": [
+        "items"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Interface/CombatTimer/CombatTimer.gd::_physics_process",
+      "state_schema": "combat_timer",
+      "channel": "runtime",
+      "function_sha256": "a61a3c93efd7fe3e535bb10135dfe9203da96d33a88eb327c61c8325f41de7d2",
+      "argument_names": [
+        "delta"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Interface/CombatTimer/CombatTimer.gd::combatEnd",
+      "state_schema": "combat_timer",
+      "channel": "runtime",
+      "function_sha256": "aa5f220eada602d17186204897396ad2f1cded9b50446f80bcf7e75b51fc7f10",
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Interface/CombatTimer/CombatTimer.gd::dealFatigueDamage",
+      "state_schema": "combat_timer",
+      "channel": "runtime",
+      "function_sha256": "a5c61c08fbc0785326b3c1d46fd2148359f09c0de833a209244cbefafe89537c",
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Interface/CombatTimer/CombatTimer.gd::start",
+      "state_schema": "combat_timer",
+      "channel": "runtime",
+      "function_sha256": "fea0b602a1bf9196c5db1d331e8574f398be27aa9ea976e1debc2c2de4371651",
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Interface/CombatTimer/CombatTimer.gd::startFatigue",
+      "state_schema": "combat_timer",
+      "channel": "runtime",
+      "function_sha256": "967da52da40673cacc45c192b5c88ca075f4f106795b112818a174cacee760e0",
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Exclusive/KingGoobert.gd::buffEnded",
+      "state_schema": "king",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Exclusive/KingGoobert.gd::doCooldownEffect",
+      "state_schema": "king",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Exclusive/KingGoobert.gd::onCombatEnd",
+      "state_schema": "king",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Exclusive/KingGoobert.gd::onStateChanged",
+      "state_schema": "king",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "_crownState"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Exclusive/KingGoobert.gd::prepare",
+      "state_schema": "king",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/HealthPotion.gd::onDamaged",
+      "state_schema": "potion",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "_healthChange",
+        "event"
+      ],
+      "explicit_returns": [
+        {
+          "line": 13
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/HealthPotion.gd::onPrepare",
+      "state_schema": "potion",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/HealthPotion.gd::onTriggerPotion",
+      "state_schema": "potion",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "triggerEvent"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Item.gd::_physics_process",
+      "state_schema": "item",
+      "channel": "runtime",
+      "function_sha256": "c4258175c89b0f0bce5b40591e3cd076c9a3dcc5233d746294d8c67446718dba",
+      "argument_names": [
+        "delta"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Item.gd::_ready",
+      "state_schema": "generic",
+      "channel": "lineage",
+      "function_sha256": "07614105a2dab6ac94d109bc20e4997264c7dd578d513da8108eefbe65de3eea",
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Item.gd::activate",
+      "state_schema": "item",
+      "channel": "runtime",
+      "function_sha256": "babc0ca5e748234525bc36a01557199014d7f7e44da0551b899090ef78007828",
+      "argument_names": [
+        "damageRes",
+        "playCombatAni",
+        "consume",
+        "animationOverride"
+      ],
+      "explicit_returns": [
+        {
+          "line": 4672
+        },
+        {
+          "line": 4673
+        },
+        {
+          "line": 4685
+        },
+        {
+          "line": 4720
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Item.gd::addBonusDamage",
+      "state_schema": "item",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "damage",
+        "removable"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Item.gd::cleanseRandomDebuffs",
+      "state_schema": "item",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "numDebuffs",
+        "triggerEvent"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Item.gd::combatEnd",
+      "state_schema": "item",
+      "channel": "runtime",
+      "function_sha256": "420f6162e6c714d86cb1be5a0b167e61021e4c3d8cc28d54190eb1387340b3df",
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Item.gd::consume",
+      "state_schema": "item",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "damageRes",
+        "playCombatAni"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Item.gd::getMostStacks",
+      "state_schema": "item",
+      "channel": "runtime",
+      "function_sha256": "e682309b125bb29256febb13c83083f2dd66eaea44649298adb4177a59bbb97b",
+      "argument_names": [
+        "target",
+        "availableStacks"
+      ],
+      "explicit_returns": [
+        {
+          "line": 5561
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Item.gd::giveMana",
+      "state_schema": "item",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "amount",
+        "triggerEvent"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Item.gd::giveMana_capped",
+      "state_schema": "item",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "amount",
+        "maximum",
+        "triggerEvent"
+      ],
+      "explicit_returns": [
+        {
+          "line": 5056
+        },
+        {
+          "line": 5058
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Item.gd::giveMaxHealth",
+      "state_schema": "item",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "amount",
+        "triggerEvent"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Item.gd::giveMostBuffs",
+      "state_schema": "item",
+      "channel": "runtime",
+      "function_sha256": "bce705953d4eb718d3530101d6e9b6dac67f36e2c4f72cd27fe2fb406adbdd48",
+      "argument_names": [
+        "numBuffs",
+        "triggerEvent",
+        "availableBuffs"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Item.gd::healthToBlock",
+      "state_schema": "item",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "health",
+        "block",
+        "triggerEvent"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Item.gd::miniActivate",
+      "state_schema": "item",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Item.gd::pickRandomStacks",
+      "state_schema": "item",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "stackTypes",
+        "numStacks",
+        "target",
+        "priorityStack"
+      ],
+      "explicit_returns": [
+        {
+          "line": 5427
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Item.gd::prepare",
+      "state_schema": "item",
+      "channel": "runtime",
+      "function_sha256": "ad66c806b5d4d2f1862828b1382e2f91648f5120354a00722da9711eda94839f",
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Item.gd::rollChance",
+      "state_schema": "item",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "chance"
+      ],
+      "explicit_returns": [
+        {
+          "line": 4391
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Item.gd::stealLife",
+      "state_schema": "item",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "damage",
+        "lifestealFactor",
+        "triggerEvent"
+      ],
+      "explicit_returns": [
+        {
+          "line": 5123
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Item.gd::tryUseMana",
+      "state_schema": "item",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "amount",
+        "triggerEvent"
+      ],
+      "explicit_returns": [
+        {
+          "line": 5070
+        },
+        {
+          "line": 5072
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Item.gd::useMana",
+      "state_schema": "item",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "amount",
+        "triggerEvent"
+      ],
+      "explicit_returns": [
+        {
+          "line": 5064
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/ItemDescriptor.gd::instantiate",
+      "state_schema": "generic",
+      "channel": "lineage",
+      "function_sha256": "bb2f1cb642403e4c34c75752ef26cf555dd3baeac031c1db504b21f2bd777b35",
+      "argument_names": [],
+      "explicit_returns": [
+        {
+          "line": 92
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/ItemDescriptor.gd::instantiate_pooled",
+      "state_schema": "generic",
+      "channel": "lineage",
+      "function_sha256": "8dc072a9c7a148c76916f040e4f84b0950d4d67f36704ee84f14d4e5f23632e2",
+      "argument_names": [],
+      "explicit_returns": [
+        {
+          "line": 98
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Potion.gd::activate",
+      "state_schema": "potion",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "damageRes",
+        "playCombatAni",
+        "consume",
+        "animationOverride",
+        "emitSignal"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Potion.gd::consumePotion",
+      "state_schema": "potion",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "event",
+        "withActivate"
+      ],
+      "explicit_returns": [
+        {
+          "line": 58
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Potion.gd::prepare",
+      "state_schema": "potion",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Potion.gd::triggerPotion",
+      "state_schema": "potion",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "triggerEvent"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Weapon.gd::attack",
+      "state_schema": "item",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "triggerEvent"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Weapon.gd::doCooldownEffect",
+      "state_schema": "item",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Sheets/ItemBook.gd::detectMentionedStacks",
+      "state_schema": "generic",
+      "channel": "metadata",
+      "function_sha256": "4dfc76dfeb1ad9903f3ffcb980325e45f9c802fc768b30db893dd5e7a23a5f27",
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Utility/AutoHideParticles.gd::_ready",
+      "state_schema": "auto_hide",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Utility/AutoHideParticles.gd::activate",
+      "state_schema": "auto_hide",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Utility/AutoHideParticles.gd::deactivate",
+      "state_schema": "auto_hide",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Utility/AutoHideParticles.gd::instantClear",
+      "state_schema": "auto_hide",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Utility/AutoHideParticles.gd::startTimer",
+      "state_schema": "auto_hide",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Utility/AutoHideParticles.gd::timeout",
+      "state_schema": "auto_hide",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Utility/EventBus.gd::connectEvent",
+      "state_schema": "event_bus",
+      "channel": "runtime",
+      "function_sha256": "3f6031d769974fba0e1c23fe8fff71db44234f917003a6999e83b5782664252a",
+      "argument_names": [
+        "emitter",
+        "signalName",
+        "receiver",
+        "method"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Utility/EventBus.gd::disconnectAll",
+      "state_schema": "event_bus",
+      "channel": "runtime",
+      "function_sha256": "78a2571f417520c9ef7b2c1d5f11d12a6bc3efc147b5358d505c0fc64df7cea4",
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Utility/EventBus.gd::emitAndLog",
+      "state_schema": "event_bus",
+      "channel": "runtime",
+      "function_sha256": "02894443e26b9b30406cf21a6f7a091e357ce06b94091927654bb4d69c3b3c8a",
+      "argument_names": [
+        "emitter",
+        "signalName",
+        "event",
+        "arguments"
+      ],
+      "explicit_returns": [
+        {
+          "line": 86
+        },
+        {
+          "line": 94
+        }
+      ],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Utility/EventBus.gd::flushLoggingQueue",
+      "state_schema": "event_bus",
+      "channel": "runtime",
+      "function_sha256": "6ba47830ed17daf232ed8d9f0bd9f3a8cabdd0bcbc81282cf8b9ed28e9bbe25d",
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Utility/Util.gd::_physics_process",
+      "state_schema": "util",
+      "channel": "runtime",
+      "function_sha256": "b4ec0241f8378ad4a17ad957ad6edc56d1b48f4f191d4df6f2a677c69b61f967",
+      "argument_names": [
+        "delta"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Utility/Util.gd::_process",
+      "state_schema": "util",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "delta"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Utility/Util.gd::changeTimer",
+      "state_schema": "util",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "timer",
+        "t"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Goobert.gd::prepare",
+      "state_schema": "goobert",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Goobert.gd::onItemActivated",
+      "state_schema": "goobert",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [
+        "event"
+      ],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Goobert.gd::doCooldownEffect",
+      "state_schema": "goobert",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    },
+    {
+      "native_site": "Items/Food.gd::prepare",
+      "state_schema": "item",
+      "channel": "runtime",
+      "function_sha256": null,
+      "argument_names": [],
+      "explicit_returns": [],
+      "method_boundary_projection": "INCOMPLETE_BEFORE_MODEL_RELEASE",
+      "available_model_projection": "Semantic business effects/events/histories may be present; no claim that final state reconstructs this method boundary",
+      "remaining": "Independently decide fixed-case required subset and provide exact ordered arguments/state/return projection; sampled returns cannot be invented. No EXPECTED read to select missing fields."
+    }
+  ],
+  "excluded_display": "116 display initial predicates remain excluded. Legacy final output extras such as invulBubbleVisible are ignored as pure comparison predicates and are not sampled evidence.",
+  "unknown_required_boundaries": "INCOMPLETE and blocks model release until independently narrowed/resolved; no automatic post-run diagnostic retry",
+  "comparison_executed": false
+}

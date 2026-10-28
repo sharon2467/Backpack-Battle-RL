@@ -1,0 +1,506 @@
+{
+  "schema": "phase443-function-api-diff/1",
+  "functions": [
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "_integration_domain",
+      "change": "modified",
+      "before": {
+        "line_start": 819,
+        "line_end": 820,
+        "signature": "data",
+        "sha256": "6f9f6b225fdcdd2e0629d93e9a26d948cfe5ad67f09cfd4c5e8d6554aad4e1cf",
+        "size": 145
+      },
+      "after": {
+        "line_start": 820,
+        "line_end": 821,
+        "signature": "data",
+        "sha256": "b2e8f7daf5a3b60d0b8cedeaf235c077d888cd27e42abceb9c1dcf2d4efedacf",
+        "size": 171
+      }
+    },
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "validate_runtime_inputs",
+      "change": "modified",
+      "before": {
+        "line_start": 953,
+        "line_end": 1030,
+        "signature": "runtime, fixture",
+        "sha256": "6b4c12d8b95e75dfda241b2ecd9a724c4c66b080b17230c64eb054aae0010900",
+        "size": 5912
+      },
+      "after": {
+        "line_start": 954,
+        "line_end": 1033,
+        "signature": "runtime, fixture",
+        "sha256": "ec946b959522cb2ad36a8fc908dcc9908046306b734693c2e89a36a4d9607ad3",
+        "size": 6008
+      }
+    },
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "build_runtime_scaffold",
+      "change": "modified",
+      "before": {
+        "line_start": 1082,
+        "line_end": 1109,
+        "signature": "dto",
+        "sha256": "2ad7768ea2d99c6e49ff651609acdb58bdad9abbc6aa56b88a2f891428ebcf7e",
+        "size": 1839
+      },
+      "after": {
+        "line_start": 1085,
+        "line_end": 1114,
+        "signature": "dto",
+        "sha256": "57bd0d72455d306189050896e90aacd0a0532c476f6afd2699648d3d89fdbc65",
+        "size": 1913
+      }
+    },
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "EngineFrameDriver.snapshot",
+      "change": "modified",
+      "before": {
+        "line_start": 1136,
+        "line_end": 1140,
+        "signature": "self",
+        "sha256": "8614d3efd94c43cf6c79c92d80449daf171833b9ab285495a33cb16c001407db",
+        "size": 219
+      },
+      "after": {
+        "line_start": 1141,
+        "line_end": 1147,
+        "signature": "self",
+        "sha256": "ee66c92fafe498da1ec212e1b76534d8a469d274cb5d91e17e233c17976d9cce",
+        "size": 371
+      }
+    },
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "CombatEngine.__init__",
+      "change": "modified",
+      "before": {
+        "line_start": 1183,
+        "line_end": 1266,
+        "signature": "self, fixture, random_source, runtime",
+        "sha256": "69840ac1eb5b303a40ba1d40faf27c1077262ef3979e5a09f8267618009ab1c2",
+        "size": 5024
+      },
+      "after": {
+        "line_start": 1190,
+        "line_end": 1287,
+        "signature": "self, fixture, random_source, runtime",
+        "sha256": "912d61c8893ae5188014319516139e2f09c02b1adc10a96629de1b1dbd24feb7",
+        "size": 6000
+      }
+    },
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "CombatEngine._validate_pure441_constructed",
+      "change": "added",
+      "before": null,
+      "after": {
+        "line_start": 1289,
+        "line_end": 1307,
+        "signature": "self",
+        "sha256": "83eaace9362e8380d1165a38563f32a61713203128ef689b411be20f7729dbb5",
+        "size": 1403
+      }
+    },
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "CombatEngine._validate_pure441_prepared",
+      "change": "added",
+      "before": null,
+      "after": {
+        "line_start": 1309,
+        "line_end": 1312,
+        "signature": "self",
+        "sha256": "0ba143f3dbb387c94094d41d05c645daca451b7ceb42c1edd17a11a901ada4b8",
+        "size": 273
+      }
+    },
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "CombatEngine._pure_business_snapshot",
+      "change": "added",
+      "before": null,
+      "after": {
+        "line_start": 1314,
+        "line_end": 1338,
+        "signature": "self, stage",
+        "sha256": "8895b4bdc6ec823ceb7653da6176837f59c160285425c0a61a987d9553bc7258",
+        "size": 2391
+      }
+    },
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "CombatEngine._pure_api_before",
+      "change": "added",
+      "before": null,
+      "after": {
+        "line_start": 1340,
+        "line_end": 1343,
+        "signature": "self, role, operation, args",
+        "sha256": "12fb7e1090840d04a0f1faa50846adbb72569f58fcabee0d0979abae5cf88010",
+        "size": 383
+      }
+    },
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "CombatEngine._pure_api_after",
+      "change": "added",
+      "before": null,
+      "after": {
+        "line_start": 1345,
+        "line_end": 1349,
+        "signature": "self, role, operation, args, helper_status",
+        "sha256": "e2d6f63ddc20cf1088bee15ef2bd748931dfb66f2cea5f964c605c1a8dbb6a1f",
+        "size": 521
+      }
+    },
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "CombatEngine._source_noninterfering_callback",
+      "change": "modified",
+      "before": {
+        "line_start": 1284,
+        "line_end": 1288,
+        "signature": "self, role, mode, delta",
+        "sha256": "fdd754b22da7b829dd2f218485337263e58b5c779f1a277ead26dd4c6d0a02e3",
+        "size": 417
+      },
+      "after": {
+        "line_start": 1367,
+        "line_end": 1375,
+        "signature": "self, role, mode, delta",
+        "sha256": "af4b24c9574991ee8274b68dc395a1888d755462207569a81e504f4e746a2dea",
+        "size": 688
+      }
+    },
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "CombatEngine._start_timer",
+      "change": "modified",
+      "before": {
+        "line_start": 1343,
+        "line_end": 1350,
+        "signature": "self, role, duration=0.0",
+        "sha256": "802924b25b72e0ae92d3e43aa2c9f6092f9bdc8099ab9f871f15a76afaf1a692",
+        "size": 751
+      },
+      "after": {
+        "line_start": 1430,
+        "line_end": 1444,
+        "signature": "self, role, *args",
+        "sha256": "adc156629137d8b10aae0ad4644ab684653554062fa9c3a828629a7464fc485b",
+        "size": 1184
+      }
+    },
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "CombatEngine._stop_timer",
+      "change": "modified",
+      "before": {
+        "line_start": 1352,
+        "line_end": 1356,
+        "signature": "self, role",
+        "sha256": "cb36bd76200fff5a8014d16fa6c4bfd780c86f820a295b0be3ea4116e460253c",
+        "size": 546
+      },
+      "after": {
+        "line_start": 1446,
+        "line_end": 1452,
+        "signature": "self, role",
+        "sha256": "58bb939c474f7d40447ad8964a84b9bf94323223600b68574efc69e45c558a78",
+        "size": 692
+      }
+    },
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "CombatEngine._timer_timeout",
+      "change": "modified",
+      "before": {
+        "line_start": 1358,
+        "line_end": 1381,
+        "signature": "self, role",
+        "sha256": "d8f366acbe31a6d442c8c59ec7b127f56983d686c71e17090a62c122e363e13b",
+        "size": 1762
+      },
+      "after": {
+        "line_start": 1454,
+        "line_end": 1477,
+        "signature": "self, role",
+        "sha256": "9a3d7244e488105446a0beacc9acac0a7a31096fdb4ae60eed35d5b6a0bf9860",
+        "size": 1826
+      }
+    },
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "CombatEngine.king_set_state",
+      "change": "modified",
+      "before": {
+        "line_start": 1415,
+        "line_end": 1431,
+        "signature": "self, item, state, next_event=False",
+        "sha256": "c9a4d9c2b1b77c8364047a1cc641c32cb92d2d7a6d59f6ea2dadbc18597c7c51",
+        "size": 1015
+      },
+      "after": {
+        "line_start": 1511,
+        "line_end": 1528,
+        "signature": "self, item, state, next_event=False",
+        "sha256": "346f87bfc0ce7ddf785d775906d61f4b743b5bc0f3d16f43b3f79ea445491b6a",
+        "size": 1055
+      }
+    },
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "CombatEngine._runtime_projection",
+      "change": "modified",
+      "before": {
+        "line_start": 1603,
+        "line_end": 1614,
+        "signature": "self",
+        "sha256": "8802440455ef0635c7f860207de1b5710b390014283741dac352475f36013254",
+        "size": 1022
+      },
+      "after": {
+        "line_start": 1700,
+        "line_end": 1711,
+        "signature": "self",
+        "sha256": "dd0c9bb3347607b870a59816d8f08e0c59205c9156e29a6b53305f631217e396",
+        "size": 1065
+      }
+    },
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "CombatEngine.prepare_only",
+      "change": "modified",
+      "before": {
+        "line_start": 1687,
+        "line_end": 1782,
+        "signature": "self",
+        "sha256": "ba708a361db55b97a3ce33418d0f492953551b4bbcd4081e8894bbf8944ab0b4",
+        "size": 5586
+      },
+      "after": {
+        "line_start": 1784,
+        "line_end": 1882,
+        "signature": "self",
+        "sha256": "3898f85495458159fdd5e2bcb1252be8fcbfc2e48d20ebfe4b76463535edd394",
+        "size": 5756
+      }
+    },
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "CombatEngine.activate_from_checkpoint",
+      "change": "modified",
+      "before": {
+        "line_start": 1784,
+        "line_end": 1892,
+        "signature": "self",
+        "sha256": "5b32dd06fd0826966016eaaea4cabdb3a84d78000fd9bc88a00bbee2e1a716d5",
+        "size": 6087
+      },
+      "after": {
+        "line_start": 1884,
+        "line_end": 1996,
+        "signature": "self",
+        "sha256": "1394d34265958da05061bfdebbb7df352125ee8dc86e833eac97594729753f23",
+        "size": 6363
+      }
+    },
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "CombatEngine.finish",
+      "change": "modified",
+      "before": {
+        "line_start": 3297,
+        "line_end": 3341,
+        "signature": "self",
+        "sha256": "a9e650da3c9637d711a7986afd5fe6abd32a1a7d1b0c96ed073442b7ea966463",
+        "size": 2672
+      },
+      "after": {
+        "line_start": 3401,
+        "line_end": 3446,
+        "signature": "self",
+        "sha256": "af8ffc84c0128b80e17782843f71b708db3de98352ddda8aed8bf35b5a36db1f",
+        "size": 2745
+      }
+    },
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "CombatEngine.result",
+      "change": "modified",
+      "before": {
+        "line_start": 3382,
+        "line_end": 3409,
+        "signature": "self",
+        "sha256": "8d4fa98f46b9834e22cc83d1be1fa501efd4880c961ed6637bdfd8da4e767022",
+        "size": 2144
+      },
+      "after": {
+        "line_start": 3487,
+        "line_end": 3522,
+        "signature": "self",
+        "sha256": "6f4afc08dffe79efb7f888d65ee69f821953ffa646e360a0df84e9ef9d7ebef2",
+        "size": 2901
+      }
+    },
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "_pure441_profile",
+      "change": "added",
+      "before": null,
+      "after": {
+        "line_start": 3675,
+        "line_end": 3677,
+        "signature": "runtime",
+        "sha256": "a1a382fe990185d621009ba0b60f166a43dfd433015fe9654a1fc1d01816be60",
+        "size": 178
+      }
+    },
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "_pure441_roles",
+      "change": "added",
+      "before": null,
+      "after": {
+        "line_start": 3680,
+        "line_end": 3688,
+        "signature": "fixture",
+        "sha256": "4a89dc39e946da085bfed75fad95529c0da73eb5d694517a1e40b587249d6e7e",
+        "size": 319
+      }
+    },
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "_validate_pure441_runtime",
+      "change": "added",
+      "before": null,
+      "after": {
+        "line_start": 3691,
+        "line_end": 3787,
+        "signature": "data, fixture, original",
+        "sha256": "6891baea0f2df4922c20ddecd2903f67e3f14eeb70e4254e1e049dd9ae857dbc",
+        "size": 8407
+      }
+    },
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "_assert_pure441_timer",
+      "change": "added",
+      "before": null,
+      "after": {
+        "line_start": 3790,
+        "line_end": 3796,
+        "signature": "node, initial",
+        "sha256": "eb2e39a49e57ce2926bf9bacb3b8e164d636a7c485e15ea128db754fa4e8fe5b",
+        "size": 627
+      }
+    },
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "_build_pure441_scaffold",
+      "change": "added",
+      "before": null,
+      "after": {
+        "line_start": 3799,
+        "line_end": 3825,
+        "signature": "dto",
+        "sha256": "d1467abcfef7b1dfb89f1328888923ea989130f7640c7deff36d73efba623d3f",
+        "size": 1803
+      }
+    },
+    {
+      "file": "native_replay_v8/engine.py",
+      "function": "_pure441_variant",
+      "change": "added",
+      "before": null,
+      "after": {
+        "line_start": 3828,
+        "line_end": 3831,
+        "signature": "value",
+        "sha256": "6ee293e10d6f5c806c9ead13badd8ccd7b3845de697a5e61b86e95d08153baf6",
+        "size": 287
+      }
+    },
+    {
+      "file": "native_replay_v8/genuine.py",
+      "function": "validate_profile",
+      "change": "modified",
+      "before": {
+        "line_start": 75,
+        "line_end": 146,
+        "signature": "data, fixture",
+        "sha256": "a35c3a1aaaac57187cade9d4020ac4d81b15b3d53b4bce018b39df1f1f30c773",
+        "size": 4613
+      },
+      "after": {
+        "line_start": 75,
+        "line_end": 149,
+        "signature": "data, fixture",
+        "sha256": "f4ceabbe870848bad5ba0ca12c2274ecca39846bb6f20a252e15883e406df07f",
+        "size": 4726
+      }
+    },
+    {
+      "file": "native_replay_v8/genuine.py",
+      "function": "validate_result_profile",
+      "change": "modified",
+      "before": {
+        "line_start": 148,
+        "line_end": 217,
+        "signature": "runtime, fixture",
+        "sha256": "2f7d6b7443ce6d01f3f2b8dd8e285bf730520607d480e5e7549494770ef0e4fa",
+        "size": 4607
+      },
+      "after": {
+        "line_start": 151,
+        "line_end": 225,
+        "signature": "runtime, fixture",
+        "sha256": "617e2a5a4d1b1d34e42f3fa9696a685615241b8c6a5c5fbc458a76c21c65037a",
+        "size": 4901
+      }
+    },
+    {
+      "file": "native_replay_v8/genuine.py",
+      "function": "observer_label",
+      "change": "modified",
+      "before": {
+        "line_start": 219,
+        "line_end": 235,
+        "signature": "data",
+        "sha256": "af17d55d4e4c1268407e2c3534a31e90d45359349f56534b515efa7053c9db5b",
+        "size": 1688
+      },
+      "after": {
+        "line_start": 227,
+        "line_end": 244,
+        "signature": "data",
+        "sha256": "bbd985903a2746e9006c71483cb208fa7af2b10ba887b4830bb0dc56671419e5",
+        "size": 1787
+      }
+    },
+    {
+      "file": "native_replay_v8/genuine.py",
+      "function": "validate_pure441_profile",
+      "change": "added",
+      "before": null,
+      "after": {
+        "line_start": 1074,
+        "line_end": 1079,
+        "signature": "data, fixture",
+        "sha256": "9537c8184966374a5593817eb856107a648319aaf437fc375b706aeaee5db01f",
+        "size": 373
+      }
+    }
+  ],
+  "source_comparison": "AST/source byte inspection only; no import",
+  "changed_modules": 2,
+  "conserved_modules": 13
+}
