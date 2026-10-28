@@ -1,0 +1,11 @@
+# Accepted minimal pure candidate consumer design
+
+442 is accepted design, not candidate execution or King admission. The proposed next443 Source copy is the small frozen35615-file Python package, preferring only engine.py/genuine.py edits and13 conserved modules. Original formal75,356,441 and all raw materials remain unchanged. Existing TimerRuntime, finite FrameDriver and observed.run_input_bundle are retained.
+
+It consumes the actual441 five-key/14-runtime INPUT-only bundle with39items/33realTimers/78processing nodes/2574clockpasses/365primitives. Actual input physics duration is38.13333532214165s; no120s budget or ended-tail change is justified. Preserve P7/O5, sparse roles/O:12 hole, genuine Tape guard, King history-first state0/1/2 and every selected primitive call. Four auxiliary timers must be real records and really stop during cleanup. Same-instance read-only business diagnostics are planned at five lifecycle cuts.
+
+Independent review adds exact Timer API distinctions:tick start() argc0;fatigue original arguments INT14/INT3/INT1 before numeric kernel conversion. ApiResult.ok is a helper result, not a sampled native return; Source-known void/NIL stays separately labelled. Source/input permission checks remain in the external launcher, never business state.
+
+The conditional Tape B2 domain concerns the shared Game/39Item receiver callbacks and their business/selected-primitive effects. FullUI authority and independent global/backend-generator equivalence are stronger claims not required or established here. Display-only branches can be omitted only under the declared business/selected-call boundary; initial drag=false alone does not prove the entire run. No new missing observation was identified by this design.
+
+Five pre-run closure groups still block model release:constructor/prepare;ordinary callback/transform/RNG domain;King log/RNG split;runtime and same-instance diagnostics;strict business output map. They do not block writing isolated Source. No model/import/capture/EXPECTED or old test replay occurred in442. See independent review and Root decision; fullengine/RL and King remain unadmitted. Use the main recovery README single flat Source-overlay loop; all exact Source/input pins reference files already Git-hosted in prior supplements.
