@@ -1,0 +1,138 @@
+{
+  "schema": "phase475-independent-first-failure-review/1",
+  "status": "BLOCKED_ACTIVATION_PRIMITIVE_ARGUMENT_INPUT_BRANCH_MISMATCH",
+  "evidence": [
+    {
+      "path": "data/phase475-independent-interfaces-first-001/owned-files.json",
+      "size": 832,
+      "sha256": "f2ba3fd1f483235292555d238282bda9b139e08778c3b2e01aa80af4b7d8687b"
+    },
+    {
+      "path": "data/phase475-independent-interfaces-first-001/result.json",
+      "size": 10553,
+      "sha256": "010c25e3d5f986c20e473ffac3915080d596da28d524d556f5804046e9d3688f"
+    },
+    {
+      "path": "data/phase475-independent-interfaces-first-001/b2-applicability.json",
+      "size": 8423,
+      "sha256": "1aedb467c1f94f13a2899974040c0e90b30dcf00e6cf582c2e8a7a89471a8c09"
+    },
+    {
+      "path": "data/phase475-independent-interfaces-first-001/same-instance-partial.json",
+      "size": 2915590,
+      "sha256": "3b90c2758b4023eb68e7f14e8617226e7bff0b03c868ff45b7c5ad9b5c1d908e"
+    },
+    {
+      "path": "data/phase475-independent-harness-source/owned-files.json",
+      "size": 669,
+      "sha256": "e0f53d26182258a10e22969d6ca8feea87de41e0e082d057c43c758280c2ef18"
+    },
+    {
+      "path": "data/phase475-independent-execution-release/owned-files.json",
+      "size": 816,
+      "sha256": "aa790795afa6f663ecae07245a06eb4e97220bb6ed3fb17d0011856e92be7072"
+    },
+    {
+      "path": "data/phase470-joint-input-first-001/input-bundle.json",
+      "size": 500518,
+      "sha256": "bb731532d9852be73e374c0f296d5fc1d32923faeabbcef471d5aed75dee86ee"
+    },
+    {
+      "path": "data/phase460-joint-native-observation-design/request.json",
+      "size": 15561,
+      "sha256": "88d6f6e0b583eaeab540abbb105aa1549cee3891168b6f137f56ee43b84d9434"
+    }
+  ],
+  "source_after": {
+    "path": "data/phase475-independent-first-failure-review/source-after.json",
+    "size": 12564,
+    "sha256": "09a74a11d5a45c47ce9311fb82b735a8ea531afdfe8bf1caed5f7162a0bd564a"
+  },
+  "actual_result": {
+    "wall_seconds": 0.661118575000728,
+    "completed_control_cases": 10,
+    "successful_constructors": 1,
+    "constructor_rejections": 2,
+    "prepare_calls": 1,
+    "logical_activation_attempts": 1,
+    "actual_activation_entries": 2,
+    "Tape_take_attempts": 7,
+    "Tape_consumed": 6,
+    "Tape_total": 422,
+    "passes_consumed": 0,
+    "step": 0,
+    "full_run": 0,
+    "adapter_imports": 1,
+    "launcher_imports": 1,
+    "adapter_control_calls": 0,
+    "launcher_control_calls": 0,
+    "raw_UI_reads": 1,
+    "other11_original_INPUT_reads": 0,
+    "EXPECTED_business_reads": 0,
+    "Oracle": 0,
+    "pool_operations": 0,
+    "automatic_retries": 0
+  },
+  "first_error": {
+    "operation": "CombatEngine.activate_from_checkpoint → adjust_cooldown → TapeRandom._take",
+    "error": "ValueError",
+    "reason": "primitive tape mismatch at 6:args",
+    "ordinal_zero_based": 6,
+    "selected_input": {
+      "kind": "randf_range",
+      "label": "cooldown:O:11",
+      "args": [
+        "3fef333333333333",
+        "3ff0cccccccccccd"
+      ],
+      "value_bits": "3fefaa23a0000000"
+    },
+    "candidate_request": {
+      "kind": "randf_range",
+      "label": "cooldown:O:11",
+      "args": [
+        "3fee666666666666",
+        "3ff0cccccccccccd"
+      ]
+    },
+    "input_fixture_below_master": false
+  },
+  "source_localization": {
+    "original_item": "Items/Item.gd3788–3795: Opponent && (Game.isBelowLeague(Master) || Game.curMode==Lobbies) selects low0.975, otherwise0.95.",
+    "original_character": "Core/Character.gd298–310: same predicate selects P/O accuracy and critical bias−0.2/+0.2 after reset. Cannot fix only cooldown call arguments.",
+    "candidate": "471engine.adjust_cooldown uses fixture.below_master for low; prepare_only uses same fixture flag for Character accuracy/critical bias.",
+    "ingress_origin": "460 model_fixture_shape_proposal inherited459Source below_master=false;462fixedfixture and470projection pin that proposal.470INPUT-only acceptance did not establish constructor/prepare/runtime equivalence.",
+    "minimal_next_evidence": "Root may authorize a narrow existing lawful primitive carrier read to check explicit actual adjustCooldown:belowMasterOpponent Source branch site. If present this is a direct INPUT branch witness, not Expected or random-return inversion. Join same predicate/stability before deciding immutable input/fixture/candidate corrections. No new capture indicated by this failure alone."
+  },
+  "partial_acceptances": {
+    "B2": {
+      "status": "ACCEPTED_FIXED26_CONDITIONAL_TAPE_SHARED_CALLBACK_DOMAIN",
+      "rows": 1098,
+      "roles_sequence": 1064,
+      "selected_ids": 26,
+      "critical_entries": [],
+      "selected_item_entries": [],
+      "entries_by_site": {
+        "Utility/AutoHideParticles.gd::deactivate": 10,
+        "Utility/AutoHideParticles.gd::activate": 9,
+        "Utility/AutoHideParticles.gd::startTimer": 8
+      },
+      "scope": "Only28 shared model no-op slots in fixed conditionalTape ordinaryG02 domain; no GUI/global law."
+    },
+    "B1": "Constructor and prepare checks, fresh-target exact arrays and actual cache/listener mapping all passed before failing activation. Three same-instance snapshots are preserved. B1-stage-correspondence.json was scheduled after successful activation and was not written; fresh getter returned arrays were asserted in the frozen script but no standalone return dump survives. Do not manufacture one.",
+    "startup_API": "Five real operations present: fatigue start stop, fatigue tick stop, fatigue INT14 start, tickP and tickO argc0 starts;10before/after rows saved. Not a full Timer/run validation."
+  },
+  "pending": [
+    "Complete case11 activation with correct independently sourced runtime predicate.",
+    "Adapter cases12–20 and launcher case21 have not run.",
+    "Full joint model and strict8section comparison remain closed."
+  ],
+  "not_claimed": [
+    "Candidate/interface joined acceptance",
+    "Successful complete activation",
+    "Runtime/terminal equivalence",
+    "Joint native eight-section equality",
+    "General King support"
+  ],
+  "old_outputs_unchanged": true
+}
