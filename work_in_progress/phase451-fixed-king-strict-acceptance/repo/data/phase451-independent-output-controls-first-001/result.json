@@ -1,0 +1,78 @@
+{
+  "schema": "phase451-independent-component-REAL-controls/1",
+  "status": "PASS_SYNTHETIC_ADAPTER_INTERFACE_CONTROLS",
+  "cases": [
+    {
+      "name": "LE_display_exact_shape_bits_and_BE_regression",
+      "status": "PASS"
+    },
+    {
+      "name": "display_type",
+      "status": "PASS",
+      "rejection": "collector REAL display metadata"
+    },
+    {
+      "name": "unknown_extra",
+      "status": "PASS",
+      "rejection": "REAL fields"
+    },
+    {
+      "name": "missing_bits",
+      "status": "PASS",
+      "rejection": "REAL fields"
+    },
+    {
+      "name": "both_endian",
+      "status": "PASS",
+      "rejection": "REAL fields"
+    },
+    {
+      "name": "bad_hex",
+      "status": "PASS",
+      "rejection": "REAL bits"
+    },
+    {
+      "name": "nonfinite",
+      "status": "PASS",
+      "rejection": "finite REAL required"
+    },
+    {
+      "name": "wrong_type",
+      "status": "PASS",
+      "rejection": "INT fields"
+    },
+    {
+      "name": "actual_component_typed_public_API_shape_business_and_arg_type",
+      "status": "PASS"
+    }
+  ],
+  "reads": [
+    {
+      "path": "tests/phase451_pure_business_output_v4.py",
+      "size": 41991,
+      "sha256": "ee905f14176415a09f58ee7d657e08b6008a70771bd74075fe0587bf9a966515"
+    },
+    {
+      "path": "data/phase441-fixed-A-input-first-001/input-bundle.json",
+      "size": 539534,
+      "sha256": "c87525f35adf8fa3793cc5d1440dff420dc55f3a24c77e520766b01e8963ae2c"
+    },
+    {
+      "path": "tests/phase451_pure_business_output_v4.py",
+      "size": 41991,
+      "sha256": "ee905f14176415a09f58ee7d657e08b6008a70771bd74075fe0587bf9a966515"
+    }
+  ],
+  "calls": {
+    "bindings": 1,
+    "decode_native": 212,
+    "project_native_api": 1,
+    "first_difference": 381,
+    "project_model_api": 4
+  },
+  "elapsed_seconds": 0.017268165000132285,
+  "EXPECTED_reads": 0,
+  "model_calls": 0,
+  "component_imports": 0,
+  "actual_comparisons": 0
+}

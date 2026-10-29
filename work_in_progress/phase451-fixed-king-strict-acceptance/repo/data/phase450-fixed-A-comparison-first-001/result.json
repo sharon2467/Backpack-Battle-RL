@@ -1,0 +1,245 @@
+{
+  "prior_comparison_attempt": "data/phase448-fixed-A-comparison-first-001",
+  "prior_EXPECTED_payload_reads": 9,
+  "attempt_semantics": "new immutable adapter continues unfinished strict comparison; no model rerun",
+  "schema": "phase450-fixed-A-independent-comparison/1",
+  "status": "FAIL_FIRST_CARRIER_OR_PROJECTION_ERROR_NO_RETRY",
+  "King_admitted": false,
+  "formal_support": 75,
+  "failure": {
+    "stage": "single_compare_decoded",
+    "type": "ValueError",
+    "message": "REAL fields",
+    "traceback": "Traceback (most recent call last):\n  File \"/workspace/python-original-engine/repo/tests/phase450_independent_actual_compare.py\", line 102, in main\n    comparison=A.compare_decoded(native,result,bundle)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase450_independent_actual_compare.py\", line 51, in counted\n    calls[_name]+=1;return _fn(*args,**kwargs)\n                           ^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase450_pure_business_output_v3.py\", line 615, in compare_decoded\n    return compare_projected(project_native(native_outputs,accepted_bundle),project_model(sealed_result,accepted_bundle))\n                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase450_independent_actual_compare.py\", line 51, in counted\n    calls[_name]+=1;return _fn(*args,**kwargs)\n                           ^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase450_pure_business_output_v3.py\", line 597, in project_model\n    callbacks=project_model_callbacks(result,bound),timer_api=project_model_api(result,bound),\n                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase450_independent_actual_compare.py\", line 51, in counted\n    calls[_name]+=1;return _fn(*args,**kwargs)\n                           ^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase450_pure_business_output_v3.py\", line 495, in project_model_api\n    physics_frame=row['physics_frame'],idle_frame=row['idle_frame'],public=_model_timer(row['state']['public'],name,bound)))\n                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase450_pure_business_output_v3.py\", line 347, in _model_timer\n    value={k:decode_native(v,bound) for k,v in public.items()}\n             ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase450_pure_business_output_v3.py\", line 122, in decode_native\n    require(set(value) in ({'type','binary64_be'},{'type','binary64_le'},{'type','display','binary64_be'}),'REAL fields')\n  File \"/workspace/python-original-engine/repo/tests/phase450_pure_business_output_v3.py\", line 39, in require\n    raise ValueError(reason)\nValueError: REAL fields\n"
+  },
+  "elapsed_seconds": 7.453927549002401,
+  "calls": {
+    "strict_json_loads": 72306,
+    "compare_decoded": 1,
+    "project_native": 1,
+    "bindings": 3,
+    "project_native_final": 1,
+    "_snapshot_native": 3,
+    "project_native_callbacks": 1,
+    "project_native_api": 1,
+    "_terminal_native": 1,
+    "project_model": 1,
+    "project_model_final": 1,
+    "project_model_callbacks": 1,
+    "project_model_api": 1
+  },
+  "pins": [
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase450_pure_business_output_v3.py",
+      "size": 41958,
+      "sha256": "fbaefa11808260260b8c7e9f58feda3b548ceb9cda2baf7a93b8b25881d53d73"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase450-independent-output-controls-first-001/owned-files.json",
+      "size": 264,
+      "sha256": "ecdf283bdbb4c7b113fac21529579b42c4fa9f4bfaba4d16cda2baeb47f775e3"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase450-independent-output-controls-first-001/result.json",
+      "size": 6635,
+      "sha256": "3bbbf454a43a800ccd61fdb8f1523cf72246ef06858387c7fd4b4d341e4b7588"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase445-business-output-contract/contract.json",
+      "size": 4664,
+      "sha256": "d7c6b97de2c966fb207da8fc16ac0030bb0560f3fb1299356611c07ffb697f09"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase447-existing-expected-pins/pins.json",
+      "size": 2019,
+      "sha256": "b09832f36ed5ff097f4bcc6be7767adf3f1334e0baf5e6e723e23153bb6af98a"
+    },
+    {
+      "path": "/workspace/backpack-python-publish-20261025/work_in_progress/phase401/host_capture/CAPSULE.json",
+      "size": 84477,
+      "sha256": "c7564f5aa83b5b34f942abc2910cc8af900dae286cd14ea9e674dfcb8f8e091b"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase446-fixed-A-model-first-001/output-seal.json",
+      "size": 417,
+      "sha256": "dbadcb4b1bb093cea46c95f8d6a64e867fb96a7aa41195c1a8235e1d93cf012c"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase446-fixed-A-model-first-001/before.json",
+      "size": 3731,
+      "sha256": "de8e0c91d7a26ea8d60e8a8cfa92751952f263313ef3b99c643979b29af3f5fb"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase446-fixed-A-model-first-001/execution.json",
+      "size": 12716,
+      "sha256": "1fc53bebc22f95478f887bbe74398786849ee3b676fee2409afac7db4dbdd952"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase441-fixed-A-input-first-001/input-bundle.json",
+      "size": 539534,
+      "sha256": "c87525f35adf8fa3793cc5d1440dff420dc55f3a24c77e520766b01e8963ae2c"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase446-fixed-A-model-first-001/model-output.json",
+      "size": 32056632,
+      "sha256": "7867a3d4869c3e924557a6a865bf1efcb2eef2f32746b21ab55757b17e0d47ae"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/events.jsonl",
+      "size": 166809,
+      "sha256": "80ef9b7599824f0d134ed99bb5acdbf73a2939955f8c6564db53b41fffb83942"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/event_references.json",
+      "size": 8738,
+      "sha256": "869aa420d4a3164cca8aae71e5da7b8cb25d778fa1d6b59e8a20f2dc277c7855"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/histories.json",
+      "size": 1501383,
+      "sha256": "4d4f9e047ec921613ec7cbf3f74ae6ceb2c8864dca44d8007c9deeaabd06eb0e"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/final_state.json",
+      "size": 441118,
+      "sha256": "b1be02740a9c713a958302b24325681476e05bf275a63eef8785ff8cbf817037"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-runtime.jsonl",
+      "size": 148417400,
+      "sha256": "a529461c5d54a1154ded20ec1fc732849de8a4598085ff935143a1ea6e415cbd"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-post-cleanup-source.json",
+      "size": 24942,
+      "sha256": "bcdf87de2d65545b9a5bf0fd7f921a425eccce0b39c5974c237ae5168f4d36ab"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-final-source.json",
+      "size": 24943,
+      "sha256": "903f30658bf04f22e71f4908fe36eabd627f1c2623ef0121e17c71f76218282b"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-capture-endpoint.json",
+      "size": 396,
+      "sha256": "b44b9de0e55405b0604c711c5a3c493ad39f482110d340d1621d6a538314baae"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-collector-cut.json",
+      "size": 27121,
+      "sha256": "8ed6917ffe5f8ba7d6ed737c9d000f8dbbb089e58bc5ba39a6bc680b522ec0f8"
+    }
+  ],
+  "EXPECTED_payload_open_attempts": [
+    "events.jsonl",
+    "event_references.json",
+    "histories.json",
+    "final_state.json",
+    "observer7-runtime.jsonl",
+    "king-post-cleanup-source.json",
+    "king-final-source.json",
+    "king-capture-endpoint.json",
+    "king-collector-cut.json"
+  ],
+  "EXPECTED_payload_successful_pins": [
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/events.jsonl",
+      "size": 166809,
+      "sha256": "80ef9b7599824f0d134ed99bb5acdbf73a2939955f8c6564db53b41fffb83942"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/event_references.json",
+      "size": 8738,
+      "sha256": "869aa420d4a3164cca8aae71e5da7b8cb25d778fa1d6b59e8a20f2dc277c7855"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/histories.json",
+      "size": 1501383,
+      "sha256": "4d4f9e047ec921613ec7cbf3f74ae6ceb2c8864dca44d8007c9deeaabd06eb0e"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/final_state.json",
+      "size": 441118,
+      "sha256": "b1be02740a9c713a958302b24325681476e05bf275a63eef8785ff8cbf817037"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-runtime.jsonl",
+      "size": 148417400,
+      "sha256": "a529461c5d54a1154ded20ec1fc732849de8a4598085ff935143a1ea6e415cbd"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-post-cleanup-source.json",
+      "size": 24942,
+      "sha256": "bcdf87de2d65545b9a5bf0fd7f921a425eccce0b39c5974c237ae5168f4d36ab"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-final-source.json",
+      "size": 24943,
+      "sha256": "903f30658bf04f22e71f4908fe36eabd627f1c2623ef0121e17c71f76218282b"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-capture-endpoint.json",
+      "size": 396,
+      "sha256": "b44b9de0e55405b0604c711c5a3c493ad39f482110d340d1621d6a538314baae"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-collector-cut.json",
+      "size": 27121,
+      "sha256": "8ed6917ffe5f8ba7d6ed737c9d000f8dbbb089e58bc5ba39a6bc680b522ec0f8"
+    }
+  ],
+  "accesses_after_Expected_gate": [
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/events.jsonl",
+      "operation": "read"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/event_references.json",
+      "operation": "read"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/histories.json",
+      "operation": "read"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/final_state.json",
+      "operation": "read"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-runtime.jsonl",
+      "operation": "read"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-post-cleanup-source.json",
+      "operation": "read"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-final-source.json",
+      "operation": "read"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-capture-endpoint.json",
+      "operation": "read"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-collector-cut.json",
+      "operation": "read"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase450_independent_actual_compare.py",
+      "operation": "read"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase450_pure_business_output_v3.py",
+      "operation": "read"
+    },
+    {
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/__pycache__/ast.cpython-312.pyc",
+      "operation": "read"
+    }
+  ],
+  "model_invocations": 0,
+  "original_INPUT12_reads": 0,
+  "new_native_capture": 0,
+  "contract_sha256": "d7c6b97de2c966fb207da8fc16ac0030bb0560f3fb1299356611c07ffb697f09"
+}

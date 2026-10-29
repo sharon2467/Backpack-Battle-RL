@@ -1,0 +1,117 @@
+{
+  "schema": "phase450-collector-serializer-Source-evidence/1",
+  "functions": [
+    {
+      "source": {
+        "path": "data/phase391-terminal-source/collector.gd",
+        "size": 64928,
+        "sha256": "f05bbf6b0e7277b5a342553d3a8d3c842f3efa6526f0b85948bd003837ac74ce"
+      },
+      "function": "fields",
+      "line_start": 591,
+      "line_end": 598,
+      "size": 191,
+      "sha256": "83710b545c3a95cfdb2866420f71e5e0f21b949b9a9d2eb053cbaf8ee66a8f9a"
+    },
+    {
+      "source": {
+        "path": "data/phase391-terminal-source/collector.gd",
+        "size": 64928,
+        "sha256": "f05bbf6b0e7277b5a342553d3a8d3c842f3efa6526f0b85948bd003837ac74ce"
+      },
+      "function": "encode",
+      "line_start": 705,
+      "line_end": 759,
+      "size": 2473,
+      "sha256": "b168f02bb20e362e6f29425d3d56b2ab684177a03f55455df2017aedd60071df"
+    },
+    {
+      "source": {
+        "path": "data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
+        "size": 104333,
+        "sha256": "999e0043a653067a962819cf81340b0dad745fa2148bbfab7724d7948a6a21ea"
+      },
+      "function": "encode",
+      "line_start": 112,
+      "line_end": 181,
+      "size": 2739,
+      "sha256": "877efea6604561f40ffb0e803d4824320081f54c6df5f553b3f4ac3aa9d86716"
+    },
+    {
+      "source": {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/state.py",
+        "size": 15114,
+        "sha256": "21478fecea4c888f701ff8991fb2cf75519670c602ed2bd9d17874e238c54bd1"
+      },
+      "function": "project_buff_fields",
+      "line_start": 190,
+      "line_end": 193,
+      "sha256": "4a40683d8d989a5957b09fd66136f84acd9e904ae74b1f2917d4d56199d5360f"
+    }
+  ],
+  "temporary_declaration": {
+    "source": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Buff.gd",
+      "size": 8827,
+      "sha256": "3efabb72eb0b337e30ebc924347aba40bd1039a3c5f718b761b0ee78b48ab8bb"
+    },
+    "class_name": "TemporaryStacks",
+    "line_start": 346,
+    "line_end": 354,
+    "fields": {
+      "amount": "int",
+      "timeout": "float",
+      "item": "Item"
+    },
+    "SourceItemDefault": "null"
+  },
+  "Source_shapes": {
+    "collector_REAL": [
+      "type",
+      "display",
+      "binary64_be"
+    ],
+    "sink_REAL": [
+      "type",
+      "binary64_be"
+    ],
+    "component_REAL": [
+      "type",
+      "binary64_le"
+    ],
+    "collector_ARRAY": [
+      "type",
+      "variant_type",
+      "values"
+    ],
+    "sink_ARRAY": [
+      "type",
+      "values"
+    ],
+    "collector_TemporaryStacks": [
+      "type",
+      "native_id",
+      "amount",
+      "timeout",
+      "item"
+    ]
+  },
+  "native_presentation_fields": {
+    "source": {
+      "path": "data/phase391-terminal-source/collector.gd",
+      "size": 64928,
+      "sha256": "f05bbf6b0e7277b5a342553d3a8d3c842f3efa6526f0b85948bd003837ac74ce"
+    },
+    "fields_array_line": 15,
+    "fields_function_line": 591,
+    "state_snapshot_line": 603,
+    "names": [
+      "characterName",
+      "chibi",
+      "invulBubbleVisible"
+    ],
+    "layer": "char.fields is encoded dictionary, so decode before exact deletion; no GUI-presence defaults or optional business fields"
+  },
+  "failure_explanation": "448v2 tested raw typed-dictionary envelope keys for character field names before decoding. No eight-section business difference had been computed.",
+  "EXPECTED_payload_reads": 0
+}

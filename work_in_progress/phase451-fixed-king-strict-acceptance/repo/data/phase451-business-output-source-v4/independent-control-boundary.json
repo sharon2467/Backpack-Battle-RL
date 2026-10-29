@@ -1,0 +1,88 @@
+{
+  "schema": "phase451-component-REAL-control-boundary/1",
+  "status": "SOURCE_CASES_NOT_EXECUTED_BY_AUTHOR",
+  "function": "decode_native(value,bound=None)",
+  "positive": [
+    {
+      "name": "component_signed_negative_zero",
+      "value": {
+        "type": "float",
+        "binary64_le": "0000000000000080",
+        "display": "-0.0"
+      },
+      "expected_type": "float",
+      "expected_binary64_be": "8000000000000000"
+    },
+    {
+      "name": "component_bits_over_display",
+      "value": {
+        "type": "float",
+        "binary64_le": "000000000000f03f",
+        "display": "metadata only"
+      },
+      "expected_type": "float",
+      "expected_binary64_be": "3ff0000000000000"
+    }
+  ],
+  "negative": [
+    {
+      "name": "display_wrong_type",
+      "value": {
+        "type": "float",
+        "binary64_le": "000000000000f03f",
+        "display": false
+      }
+    },
+    {
+      "name": "extra_field",
+      "value": {
+        "type": "float",
+        "binary64_le": "000000000000f03f",
+        "display": "1.0",
+        "extra": 0
+      }
+    },
+    {
+      "name": "missing_bits",
+      "value": {
+        "type": "float",
+        "display": "1.0"
+      }
+    },
+    {
+      "name": "both_endians",
+      "value": {
+        "type": "float",
+        "binary64_le": "000000000000f03f",
+        "binary64_be": "3ff0000000000000",
+        "display": "1.0"
+      }
+    },
+    {
+      "name": "malformed_hex",
+      "value": {
+        "type": "float",
+        "binary64_le": "not-hex",
+        "display": "1.0"
+      }
+    },
+    {
+      "name": "nonfinite_LE",
+      "value": {
+        "type": "float",
+        "binary64_le": "000000000000f07f",
+        "display": "inf"
+      }
+    },
+    {
+      "name": "nonfloat_tag",
+      "value": {
+        "type": "int",
+        "binary64_le": "000000000000f03f",
+        "display": "1.0"
+      }
+    }
+  ],
+  "independent_method": "Import only the frozen stdlib-only adapter. Decode these actual component-shaped DTOs, assert exact result type+BE64 bits or ValueError; component/model import and battle rerun0.",
+  "actual_expected_payload_required": false
+}

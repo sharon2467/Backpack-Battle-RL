@@ -1,0 +1,37 @@
+{
+  "schema": "phase450-independent-source-controls-owner/1",
+  "status": "STATIC_SOURCE_PASS_CONTROLS_SEALED_BEFORE_EXECUTION",
+  "files": [
+    {
+      "path": "tests/phase450_independent_output_controls.py",
+      "size": 18738,
+      "sha256": "8b23d7fbd33b404ddaece072af61eda80cf9fdb5c56ac3a802d57456bf4b7b06"
+    },
+    {
+      "path": "docs/phase450_independent_decoder_acceptance_spec.md",
+      "size": 2674,
+      "sha256": "b896c1f976ac89d3a6cf0ffadb01f6ee9dc2610121b71faf31d121b5eeff5260"
+    }
+  ],
+  "adapter": {
+    "path": "tests/phase450_pure_business_output_v3.py",
+    "size": 41958,
+    "sha256": "fbaefa11808260260b8c7e9f58feda3b548ceb9cda2baf7a93b8b25881d53d73"
+  },
+  "author_owner": {
+    "path": "data/phase450-business-output-source-v3/owned-files.json",
+    "size": 1455,
+    "sha256": "df0ea751ef9998f3c9e4ea57786091c3be156d39925643325ea6d5b816e6931d"
+  },
+  "changed_functions": [
+    "decode_native",
+    "project_native_final"
+  ],
+  "conserved_functions": 35,
+  "nonfunction_AST_unchanged": true,
+  "regression_reason": "decoder changed original Collector ABI; prior26 fast adapter controls explicitly authorized",
+  "metadata_normalization": "REAL display not numeric authority; accepted array-family tags normalize container only, preserve element types/values/order; TemporaryStacks native_id canonical provenance, compare INT amount/REAL timeout/bound Item or null",
+  "adapter_calls": 0,
+  "EXPECTED_reads": 0,
+  "model_calls": 0
+}

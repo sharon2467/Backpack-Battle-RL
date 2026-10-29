@@ -1,0 +1,75 @@
+{
+  "schema": "phase450-business-output-source-v3-context/1",
+  "module": {
+    "path": "tests/phase450_pure_business_output_v3.py",
+    "size": 41958,
+    "sha256": "fbaefa11808260260b8c7e9f58feda3b548ceb9cda2baf7a93b8b25881d53d73"
+  },
+  "pins": [
+    {
+      "path": "data/phase448-business-output-source-v2/owned-files.json",
+      "size": 1652,
+      "sha256": "b6503fdd06696efd90b7bd5feda8221ab773c097084a81ffaf666beead8ca889"
+    },
+    {
+      "path": "data/phase448-fixed-A-comparison-first-001/result.json",
+      "size": 12117,
+      "sha256": "19a0839b10cedf091554ccfc36a07735fb09f7bb7b9ec4e4c3ae05921ea646f9"
+    },
+    {
+      "path": "data/phase445-business-output-contract/owned-files.json",
+      "size": 847,
+      "sha256": "50bd73c2903f5f1cd5c261f83c250049f29914570b2dc19f8b03aaaccb3a0e92"
+    },
+    {
+      "path": "data/phase445-business-output-contract/contract.json",
+      "size": 4664,
+      "sha256": "d7c6b97de2c966fb207da8fc16ac0030bb0560f3fb1299356611c07ffb697f09"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/owned-files.json",
+      "size": 5487,
+      "sha256": "cc3e87254a020a16afb64834ad10be8c5f3db118ac0c48f73ac35b85dfafc6d4"
+    },
+    {
+      "path": "data/phase446-fixed-A-model-first-001/output-seal.json",
+      "size": 417,
+      "sha256": "dbadcb4b1bb093cea46c95f8d6a64e867fb96a7aa41195c1a8235e1d93cf012c"
+    },
+    {
+      "path": "data/phase391-terminal-source/collector.gd",
+      "size": 64928,
+      "sha256": "f05bbf6b0e7277b5a342553d3a8d3c842f3efa6526f0b85948bd003837ac74ce"
+    },
+    {
+      "path": "data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
+      "size": 104333,
+      "sha256": "999e0043a653067a962819cf81340b0dad745fa2148bbfab7724d7948a6a21ea"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Buff.gd",
+      "size": 8827,
+      "sha256": "3efabb72eb0b337e30ebc924347aba40bd1039a3c5f718b761b0ee78b48ab8bb"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/state.py",
+      "size": 15114,
+      "sha256": "21478fecea4c888f701ff8991fb2cf75519670c602ed2bd9d17874e238c54bd1"
+    }
+  ],
+  "entrypoint": "compare_decoded(native_outputs,sealed_result,accepted_bundle)",
+  "input_output_contract": "Unchanged frozen445 eight sections and9 decoded native leaves; existing sealed446 model result and accepted441 input.",
+  "scope": "Only proven collector envelope/REAL/ARRAY/TemporaryStacks ABI correction; no business relaxation or model rerun",
+  "temporary_projection": "Keep strict INT amount, finite REAL timeout and null/bound Item. Native object ID remains canonical positive provenance, not a modeled object ID. Preserve array order.",
+  "display_projection": "decode first; three declared fields still required at correct decoded layer, exact string/bool/bool; delete only those names",
+  "required_independent_controls": [
+    "actual tagged dictionary char.fields positive",
+    "missing/wrong-type decoded display field rejection",
+    "collector REAL display/BE64 and sink/component original shapes",
+    "extra/missing/nonfinite REAL rejection",
+    "strict collector ARRAY family tag versus BOOL/unknown",
+    "TemporaryStacks valid Item/null and missing/extra/amount BOOL/timeout INT/foreign-or-Character-or-Timer item rejection",
+    "retain448 foreign idle and subject drift rejection"
+  ],
+  "execution": "Independent continuation only, preserve first error and all old versions. Author no import/call or EXPECTED read."
+}

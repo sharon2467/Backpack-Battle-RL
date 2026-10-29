@@ -1,0 +1,263 @@
+{
+  "schema": "phase450-independent-output-controls/1",
+  "status": "PASS_SYNTHETIC_ADAPTER_INTERFACE_CONTROLS",
+  "cases": [
+    {
+      "name": "input_identity_drift",
+      "status": "PASS",
+      "rejection": "exact accepted441 bundle"
+    },
+    {
+      "name": "duplicate_JSON",
+      "status": "PASS",
+      "rejection": "duplicate JSON key"
+    },
+    {
+      "name": "nonfinite_JSON",
+      "status": "PASS",
+      "rejection": "nonfinite JSON float"
+    },
+    {
+      "name": "BOOL_typed_INT",
+      "status": "PASS",
+      "rejection": "canonical decimal"
+    },
+    {
+      "name": "noncanonical_INT",
+      "status": "PASS",
+      "rejection": "canonical decimal"
+    },
+    {
+      "name": "duplicate_typed_dictionary",
+      "status": "PASS",
+      "rejection": "duplicate/alias dictionary key"
+    },
+    {
+      "name": "strict_types_bits_keys_order",
+      "status": "PASS"
+    },
+    {
+      "name": "foreign_native_ref",
+      "status": "PASS",
+      "rejection": "native REF owner"
+    },
+    {
+      "name": "bound_reference_positive",
+      "status": "PASS"
+    },
+    {
+      "name": "Potion_BOOL_required",
+      "status": "PASS",
+      "rejection": "same-instance HealthPotion live bool"
+    },
+    {
+      "name": "Potion_missing_rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "synthetic_final_display_business_and_live_Potion",
+      "status": "PASS"
+    },
+    {
+      "name": "foreign_item_idle_not_swallowed",
+      "status": "PASS",
+      "rejection": "model callback bound identity"
+    },
+    {
+      "name": "exact41_noop_order_and_trailing_callback_retention",
+      "status": "PASS"
+    },
+    {
+      "name": "Timer_subject_type",
+      "status": "PASS",
+      "rejection": "callback receiver ref"
+    },
+    {
+      "name": "Timer_subject_role",
+      "status": "PASS",
+      "rejection": "native REF association"
+    },
+    {
+      "name": "Timer_subject_class",
+      "status": "PASS",
+      "rejection": "native REF association"
+    },
+    {
+      "name": "Timer_subject_native_id",
+      "status": "PASS",
+      "rejection": "native REF association"
+    },
+    {
+      "name": "Timer_subject_extra",
+      "status": "PASS",
+      "rejection": "native REF fields"
+    },
+    {
+      "name": "Timer_missing_pair",
+      "status": "PASS",
+      "rejection": "Timer paired API edge count"
+    },
+    {
+      "name": "Timer_arity_Variant_subject_pairs_private_partition",
+      "status": "PASS"
+    },
+    {
+      "name": "terminal_missing_pass",
+      "status": "PASS",
+      "rejection": "full model clock exhaustion"
+    },
+    {
+      "name": "terminal_wrong_first_idle",
+      "status": "PASS",
+      "rejection": "first idle exact full finite EOF"
+    },
+    {
+      "name": "full_clock_first_eligible_idle_no_frame_execution",
+      "status": "PASS"
+    },
+    {
+      "name": "missing_business_section",
+      "status": "PASS",
+      "rejection": "model business sections"
+    },
+    {
+      "name": "all8_sections_strict_mutations",
+      "status": "PASS"
+    },
+    {
+      "name": "collector_tagged_dictionary_final_exact_display_business",
+      "status": "PASS"
+    },
+    {
+      "name": "REAL_display_type",
+      "status": "PASS",
+      "rejection": "collector REAL display metadata"
+    },
+    {
+      "name": "REAL_unknown_key",
+      "status": "PASS",
+      "rejection": "REAL fields"
+    },
+    {
+      "name": "REAL_nonfinite_bits",
+      "status": "PASS",
+      "rejection": "finite REAL required"
+    },
+    {
+      "name": "ARRAY_BOOL_tag",
+      "status": "PASS",
+      "rejection": "collector ARRAY family tag"
+    },
+    {
+      "name": "ARRAY_unknown_tag",
+      "status": "PASS",
+      "rejection": "collector ARRAY family tag"
+    },
+    {
+      "name": "ARRAY_unknown_field",
+      "status": "PASS",
+      "rejection": "ARRAY fields"
+    },
+    {
+      "name": "collector_REAL_bits_ARRAY_order_type_and_metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "TemporaryStacks_id_zero",
+      "status": "PASS",
+      "rejection": "TemporaryStacks object identity"
+    },
+    {
+      "name": "TemporaryStacks_id_noncanonical",
+      "status": "PASS",
+      "rejection": "canonical decimal"
+    },
+    {
+      "name": "TemporaryStacks_amount_BOOL",
+      "status": "PASS",
+      "rejection": "TemporaryStacks INT amount/REAL timeout"
+    },
+    {
+      "name": "TemporaryStacks_timeout_INT",
+      "status": "PASS",
+      "rejection": "TemporaryStacks INT amount/REAL timeout"
+    },
+    {
+      "name": "TemporaryStacks_item_Character",
+      "status": "PASS",
+      "rejection": "TemporaryStacks bound Item owner"
+    },
+    {
+      "name": "TemporaryStacks_item_Timer",
+      "status": "PASS",
+      "rejection": "TemporaryStacks Item reference form"
+    },
+    {
+      "name": "TemporaryStacks_item_foreign",
+      "status": "PASS",
+      "rejection": "collector instance REF"
+    },
+    {
+      "name": "TemporaryStacks_unknown_field",
+      "status": "PASS",
+      "rejection": "collector TemporaryStacks fields"
+    },
+    {
+      "name": "TemporaryStacks_logical_tuple_and_provenance_identity",
+      "status": "PASS"
+    }
+  ],
+  "calls": {
+    "strict_json_loads": 3,
+    "require": 29235,
+    "bindings": 3,
+    "canonical_sha": 3,
+    "first_difference": 17396,
+    "bits": 1137,
+    "decode_native": 4295,
+    "keys": 2309,
+    "decimal": 94,
+    "role": 135,
+    "project_native_final": 7,
+    "_rule_state": 7,
+    "project_model_final": 4,
+    "restore_integer_table": 248,
+    "project_model_callbacks": 3,
+    "_runtime_rows": 1,
+    "project_native_callbacks": 2,
+    "_callback_role": 5,
+    "_subject": 21,
+    "project_native_api": 7,
+    "_native_timer": 110,
+    "_node": 131,
+    "_api_pairs": 5,
+    "project_model_api": 3,
+    "_model_timer": 18,
+    "_snapshot_native": 3,
+    "_terminal_native": 2,
+    "_terminal_model": 2,
+    "compare_projected": 10
+  },
+  "reads": [
+    {
+      "path": "tests/phase450_pure_business_output_v3.py",
+      "size": 41958,
+      "sha256": "fbaefa11808260260b8c7e9f58feda3b548ceb9cda2baf7a93b8b25881d53d73"
+    },
+    {
+      "path": "data/phase441-fixed-A-input-first-001/input-bundle.json",
+      "size": 539534,
+      "sha256": "c87525f35adf8fa3793cc5d1440dff420dc55f3a24c77e520766b01e8963ae2c"
+    },
+    {
+      "path": "tests/phase450_pure_business_output_v3.py",
+      "size": 41958,
+      "sha256": "fbaefa11808260260b8c7e9f58feda3b548ceb9cda2baf7a93b8b25881d53d73"
+    }
+  ],
+  "elapsed_seconds": 0.06502256299791043,
+  "model_calls": 0,
+  "EXPECTED_reads": 0,
+  "actual_comparisons": 0,
+  "fixture_kind": "synthetic helper fixtures plus pinned INPUT identity/topology/clock"
+}

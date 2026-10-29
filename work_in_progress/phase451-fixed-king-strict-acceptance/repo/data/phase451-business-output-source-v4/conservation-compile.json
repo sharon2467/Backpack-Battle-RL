@@ -1,0 +1,54 @@
+{
+  "schema": "phase451-v4-compile-conservation/1",
+  "v3": {
+    "path": "tests/phase450_pure_business_output_v3.py",
+    "size": 41958,
+    "sha256": "fbaefa11808260260b8c7e9f58feda3b548ceb9cda2baf7a93b8b25881d53d73"
+  },
+  "v4": {
+    "path": "tests/phase451_pure_business_output_v4.py",
+    "size": 41991,
+    "sha256": "ee905f14176415a09f58ee7d657e08b6008a70771bd74075fe0587bf9a966515"
+  },
+  "changed_functions": [
+    "decode_native"
+  ],
+  "conserved_other_functions": 36,
+  "all_other_AST_and_nonfunction_AST_equal": true,
+  "exact_single_set_addition_reverse_byte_equality": true,
+  "verified_owners": [
+    {
+      "owner": {
+        "path": "data/phase450-business-output-source-v3/owned-files.json",
+        "size": 1455,
+        "sha256": "df0ea751ef9998f3c9e4ea57786091c3be156d39925643325ea6d5b816e6931d"
+      },
+      "payloads": 7,
+      "drift": []
+    },
+    {
+      "owner": {
+        "path": "data/phase445-business-output-contract/owned-files.json",
+        "size": 847,
+        "sha256": "50bd73c2903f5f1cd5c261f83c250049f29914570b2dc19f8b03aaaccb3a0e92"
+      },
+      "payloads": 4,
+      "drift": []
+    },
+    {
+      "owner": {
+        "path": "data/phase443-pure-candidate-source/owned-files.json",
+        "size": 5487,
+        "sha256": "cc3e87254a020a16afb64834ad10be8c5f3db118ac0c48f73ac35b85dfafc6d4"
+      },
+      "payloads": 27,
+      "drift": []
+    }
+  ],
+  "compiled_files": 1,
+  "adapter_imports": 0,
+  "adapter_calls": 0,
+  "controls": 0,
+  "model_calls": 0,
+  "EXPECTED_payload_reads": 0
+}

@@ -1,0 +1,11 @@
+--- tests/phase450_pure_business_output_v3.py
++++ tests/phase451_pure_business_output_v4.py
+@@ -119,7 +119,7 @@
+     if kind=='int':
+         keys(value,('type','decimal'),'INT fields');return decimal(value['decimal'])
+     if kind=='float':
+-        require(set(value) in ({'type','binary64_be'},{'type','binary64_le'},{'type','display','binary64_be'}),'REAL fields')
++        require(set(value) in ({'type','binary64_be'},{'type','binary64_le'},{'type','display','binary64_be'},{'type','display','binary64_le'}),'REAL fields')
+         if 'display' in value:require(type(value['display']) is str,'collector REAL display metadata')
+         endian = 'binary64_be' if 'binary64_be' in value else 'binary64_le'
+         raw = value[endian]

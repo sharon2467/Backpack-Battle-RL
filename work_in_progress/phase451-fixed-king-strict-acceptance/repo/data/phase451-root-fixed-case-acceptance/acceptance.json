@@ -1,0 +1,89 @@
+{
+  "schema": "phase451-root-fixed-case-acceptance/1",
+  "utc": "2026-10-29T03:33:35.764490+00:00",
+  "status": "ACCEPTED_FIXED_KING_A_PURE_CONDITIONAL_TAPE_STRICT_CASE",
+  "independent_review": {
+    "path": "data/phase451-independent-final-acceptance/review.json",
+    "size": 11932,
+    "sha256": "b0545addc21f1fa15d581d35a188a08cf2ecd1cdb7be90167c136c6562dbad84"
+  },
+  "contract_sha256": "d7c6b97de2c966fb207da8fc16ac0030bb0560f3fb1299356611c07ffb697f09",
+  "eight_sections": {
+    "events": null,
+    "event_references": null,
+    "histories": null,
+    "rng": null,
+    "final": null,
+    "callbacks": null,
+    "timer_api": null,
+    "cuts": null
+  },
+  "original_case": "NATIVE-027-KING-A attempt06",
+  "candidate_Source": "phase443 exact15 frozen Python files",
+  "model_full_runs": 1,
+  "comparison_attempts": 3,
+  "completed_business_comparisons": 1,
+  "prior_projection_errors_preserved": 2,
+  "Expected_payload_reads_by_independent_attempts": 27,
+  "new_original_capture": 0,
+  "actual_model": {
+    "wall_seconds": 2.4539081240000087,
+    "output_bytes": 32056632,
+    "output_sha256": "7867a3d4869c3e924557a6a865bf1efcb2eef2f32746b21ab55757b17e0d47ae",
+    "events": 375,
+    "referenced_parents": 20,
+    "allocated_events": 376,
+    "selected_primitives": 365,
+    "physics_frames": 2288,
+    "clock_passes": 2574,
+    "timers": 33
+  },
+  "actual_hit_evidence": {
+    "mixed_item_count": 39,
+    "descriptor_counts": {
+      "11": 24,
+      "262": 1,
+      "22": 8,
+      "1": 2,
+      "19": 2,
+      "4": 2
+    },
+    "king_state_history": {
+      "event_numbers": [
+        -1,
+        27,
+        35,
+        88,
+        100,
+        113,
+        133
+      ],
+      "values": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        2
+      ]
+    },
+    "king_invu_start_calls": 3,
+    "king_invu_duration_bits": "3ff8000000000000",
+    "king_invuCharges_final": 0,
+    "P_health_potion_full_final": true,
+    "O_health_potion_full_final": false
+  },
+  "not_proven_by_this_case": [
+    "Fresh arbitrary layout ingress and Source-generated initial state rather than fixed441 bundle.",
+    "Seeded/native RNG algorithm equivalence, distribution and global generator advancement; conditionalTape only.",
+    "Opponent-side/multiple King, other item combinations/gems/classes/rules or altered process cadence.",
+    "Insufficient mana while charges remain and already-invulnerable/overlap branches are not separately established by the seven state-history points.",
+    "Full107 method enter/return equality, GUI presentation and unobserved later native private Timer fields."
+  ],
+  "formal_support": 75,
+  "King_fixed_case_admitted": true,
+  "King_general_production_admitted": false,
+  "full_engine_RL_complete": false,
+  "next": "452 minimal Source-only mixed-layout/seed execution design using existing headless/core/registry, preserving provenance distinctions; independent design/tests; no automatic new native capture."
+}
