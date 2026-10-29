@@ -1,0 +1,531 @@
+--- frozen443/headless.py
++++ source453/headless.py
+@@ -14,6 +14,8 @@
+     SOURCE_KING_PROFILE, SOURCE_KING_ITEMS, _has_king, validate_source_king_domain,
+     source_king_runtime_inputs, source_king_fresh_defaults, source_king_policy,
+     source_king_topology, _source_king_equal,
++    SOURCE_PURE_PROFILE, source_pure_runtime_inputs, source_pure_business_defaults,
++    source_pure_policy, _source_pure_roles,
+     validate_fixture, validate_runtime_inputs, _validate_runtime_nodes,
+ )
+ from native_replay_v8.randomness import _bits
+@@ -197,6 +199,7 @@
+     """Generate fresh combat-relative topology, never accepting captured private phase."""
+     _validate_king_fresh_domain(fixture)
+     king = _has_king(fixture)
++    if king:return source_pure_runtime_topology(fixture)
+     roles = _required_roles(fixture)
+     nodes = []
+ 
+@@ -248,7 +251,7 @@
+     topology=source_runtime_topology(fixture) if topology is None else deepcopy(topology)
+     if _has_king(fixture):
+         _validate_king_fresh_domain(fixture)
+-        return source_king_runtime_inputs(fixture, order, topology)
++        return source_pure_runtime_inputs(fixture, order, topology)
+     _validate_runtime_nodes(topology,fixture)
+     initial_items = {item['instance_id']: dict(lastActivationTime_bits=_float_bits(0.0),
+                      activationsThisFrame=0, lastTriggerTime_bits=_float_bits(0.0), triggersThisFrame=0,
+@@ -316,6 +319,12 @@
+                                context=context, ordinal=ordinal, width=width))
+         return value
+ 
++    def snapshot(self):
++        return dict(schema='source-headless-two-stream-state/1',util=self._generator.snapshot(),
++            global_rng=dict(state=self._global_generator.get_state(),current_seed=self._global_generator.get_seed(),
++                            increment=self._global_generator._increment),audit_length=len(self.audit),
++            seed_policy=SEED_POLICY,native_seed_parity='PENDING_CUSTOM_BINARY_NUMERIC_AND_SESSION_CONSUMPTION')
++
+ 
+ class HeadlessBattle:
+     def __init__(self, engine, descriptor):
+@@ -326,6 +335,10 @@
+     def initialization(self):
+         return deepcopy(self._initialization)
+ 
++    @property
++    def done(self):
++        return self._engine.frame_driver.finalized if self._engine.king_mode else self._engine.finalized
++
+     def step(self):
+         if self._engine.source_king_mode:
+             return self._engine._source_king_quantum()
+@@ -334,13 +347,23 @@
+     def snapshot(self):
+         value = self._engine.snapshot()
+         # Public metadata describes the source-generated origin, not the legacy DTO.
+-        value['runtime'].update(mode='source_headless', profile=SOURCE_KING_PROFILE if self._engine.source_king_mode else ORIGIN)
++        value['runtime'].update(mode='source_headless', profile=SOURCE_PURE_PROFILE if self._engine.source_pure_mode else SOURCE_KING_PROFILE if self._engine.source_king_mode else ORIGIN)
++        if self._engine.source_pure_mode:
++            value=_source_pure_snapshot_view(value)
++            value['source_rng']=self._engine.random.snapshot()
+         return value
+ 
+     def run(self, max_seconds=120.0):
+         if type(max_seconds) not in (float, int) or not math.isfinite(max_seconds) or max_seconds <= 0:
+             raise ValueError('positive finite battle budget required')
+         result = self._engine.run(float(max_seconds))
++        return self._result_view(result)
++
++    def result(self):
++        if not self.done:raise ValueError('result requires completed battle; use step or run')
++        return self._result_view(self._engine.result())
++
++    def _result_view(self,result):
+         value = dict(schema='headless-battle-result/1', initialization=self.initialization,
+                     fixture=result['fixture'], events=result['events'], event_references=result['event_references'],
+                     histories=result['histories'], final=self.snapshot(), random_inputs=result['random_inputs'],
+@@ -361,6 +384,17 @@
+                 passes_consumed=self._engine.frame_driver.pass_index,
+                 physics_frame=self._engine.frame_driver.physics_frame,
+                 idle_frame=self._engine.frame_driver.idle_frame)
++        if self._engine.source_pure_mode:
++            value['coverage'].update(status='SOURCE_PURE_SIX_ID_SINGLE_KING_NOT_NATIVE_SEED_VALIDATED',formal_support=75,
++                native_seed_parity='PENDING_CUSTOM_BINARY_NUMERIC_AND_SESSION_CONSUMPTION',
++                evidence='Fixed441 conditionalTape equality only; this layout and seed have no native comparison',
++                remaining=['King_plus75','two_King','King_rage','gems','custom_native_seed_parity','full_engine_RL_action_environment'])
++            value['scheduling']['source_clock']['policy']=source_pure_policy()
++            value['source_rng']=self._engine.random.snapshot()
++            terminal=deepcopy(result['king_terminal'])
++            for stage in ('post_cleanup','final'):terminal[stage]['model']=_source_pure_snapshot_view(terminal[stage]['model'])
++            value['source_terminal']=terminal
++            value['source_timer_api']=deepcopy(self._engine.pure_api_trace)
+         return value
+ 
+ 
+@@ -369,8 +403,8 @@
+         raise ValueError('uint64 headless seed required')
+     fixture = validate_layout(layout)
+     topology = source_runtime_topology(fixture)
+-    _validate_runtime_nodes(topology,fixture,_has_king(fixture))
+-    if _has_king(fixture):_fresh_king_facts(fixture)  # All SOURCE defaults validated before seed derivation.
++    if _has_king(fixture):source_pure_business_defaults(fixture)
++    else:_validate_runtime_nodes(topology,fixture)
+     global_contexts = tuple(f"fraction_shuffle:{item['instance_id']}:{side['side']}:multiply"
+                             for side in fixture['sides'] for item in side['items'] if item['item_index'] == 332)
+     global_seed, combat_seed = derive_stream_seeds(seed)
+@@ -385,20 +419,94 @@
+                       util_time_origin=0.0, combat_time_origin=0.0,
+                       preparation_order=order, ordinary_order=list(engine.ordinary_roles))
+     if engine.source_king_mode:
+-        descriptor.update(source_clock=source_king_policy(),
++        descriptor.update(source_clock=source_pure_policy() if engine.source_pure_mode else source_king_policy(),
+             domain=dict(items=sorted(SOURCE_KING_ITEMS), classes=[0], global_max_King=1),
+             clock_time_origin=0.0, physics_frame_origin=0, idle_frame_origin=0, util_frame_counter_origin=0)
++    if engine.source_pure_mode:
++        descriptor.update(profile=SOURCE_PURE_PROFILE,initialization_origin='FRESH_MODEL_OBJECTS_SOURCE_FACTORY',
++            native_seed_parity='PENDING_CUSTOM_BINARY_NUMERIC_AND_SESSION_CONSUMPTION',formal_support=75)
+     return HeadlessBattle(engine, descriptor)
++
++
++def source_pure_runtime_topology(fixture):
++    _validate_king_fresh_domain(fixture)
++    roles=_source_pure_roles(fixture);nodes=[]
++    def add(name,path,positions):nodes.append(dict(role=name,path=path,positions=positions,priority=0,kind=roles[name]))
++    add('util','/root/Util',[-1,0])
++    for side in ('O','P'):
++        parent='/root/Main/Combat/Opponent' if side=='O' else '/root/Main/Player'
++        pos=[-1,1,0,0] if side=='O' else [-1,1,1]
++        add('character:'+side,parent+'/Character',pos+[0])
++        add('tick:'+side,parent+'/Character/TickTimer',pos+[0,3])
++        add('invu:'+side,parent+'/Character/InvulnerabilityTimer',pos+[0,7 if side=='P' else 5])
++        for name,child in [('battleRageTimer',6 if side=='P' else 4),('autoRageTimer',8 if side=='P' else 6)]:
++            add('aux:'+side+':'+name,parent+'/Character/'+name,pos+[0,child])
++        for index,category in enumerate(range(100,111)):
++            add('buff:'+side+':'+STACK_NAMES_BY_TYPE[category],parent+'/Character/Buff'+str(index),pos+[0,100+index])
++        for index,item in enumerate(_item_siblings(_inventory_items(fixture,side))):
++            path=parent+'/Item'+str(index);position=pos+[index+2]
++            add('item:'+item['instance_id'],path,position)
++            if item['item_index']==262:add('king_buff:'+item['instance_id'],path+'/BuffTimer',position+[7])
++    path='/root/Main/Combat/UI/CombatTimer';position=[-1,1,0,1,0]
++    add('combat_timer',path,position)
++    add('fatigue:start',path+'/FatigueStartTimer',position+[1])
++    add('fatigue:tick',path+'/FatigueTickTimer',position+[2])
++    timers={name:dict(wait_time_bits=_float_bits(1.0),one_shot=not name.startswith('tick:'),process_mode=0,
++                autostart=False,paused=False,private_left_bits=_float_bits(-1.0)) for name,kind in roles.items() if kind=='timer'}
++    return dict(nodes=nodes,timer_initial=timers)
++
++
++def _source_pure_snapshot_view(snapshot):
++    value=deepcopy(snapshot)
++    value['runtime'].pop('invu_bubbles',None)
++    for char in value['native_rule_state']['characters']:char['fields'].pop('invulBubbleVisible',None)
++    return value
++
++
++def run_batch(jobs,max_seconds=120.0,keep_results=False):
++    if type(jobs) is not list or not 1<=len(jobs)<=64:raise ValueError('one to64 ordered batch jobs required')
++    if type(max_seconds) not in (int,float) or not math.isfinite(max_seconds) or not 0<max_seconds<=120:
++        raise ValueError('batch positive finite budget <=120 required')
++    if type(keep_results) is not bool:raise ValueError('batch keep_results BOOL required')
++    # Complete cheap validation of every job before any RNG/Engine is constructed.
++    for job in jobs:
++        if type(job) is not dict or set(job)!={'layout','seed'}:raise ValueError('closed batch job fields')
++        if type(job['seed']) is not int or not 0<=job['seed']<=MASK64:raise ValueError('batch uint64 seed required')
++        fixture=validate_layout(job['layout'])
++        source_runtime_topology(fixture)
++    records=[]
++    for index,job in enumerate(jobs):
++        battle=initialize(job['layout'],job['seed'])
++        try:
++            result=battle.run(float(max_seconds))
++        except TimeoutError as error:
++            records.append(dict(index=index,seed=job['seed'],status='TIME_BUDGET',message=str(error),
++                elapsed=battle._engine.elapsed,frames=battle._engine.frame,scope=battle.initialization))
++        else:
++            record=dict(index=index,seed=job['seed'],status='COMPLETED',summary=dict(winner=result['final']['winner'],
++                terminal_time=result['final']['timestamp'],frames=result['scheduling']['frames'],coverage=deepcopy(result['coverage'])))
++            if keep_results:record['result']=result
++            records.append(record)
++        del battle
++    return dict(schema='headless-batch-result/1',jobs=records,seed_policy=SEED_POLICY,formal_support=75,
++        source_king_domain='experimental sixID singleKing class0; native numeric/seed parity pending')
+ 
+ 
+ def main():
+     parser = argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument('--layout', type=Path, required=True)
+-    parser.add_argument('--seed', type=int, required=True)
++    parser.add_argument('--layout', type=Path)
++    parser.add_argument('--seed', type=int)
+     parser.add_argument('--output', type=Path, required=True)
+     parser.add_argument('--max-seconds', type=float, default=120.0)
++    parser.add_argument('--batch', type=Path)
++    parser.add_argument('--keep-results', action='store_true')
+     args = parser.parse_args()
+-    result = initialize(strict_json_loads(args.layout.read_text()), args.seed).run(args.max_seconds)
++    if args.batch is not None:
++        if args.layout is not None or args.seed is not None:parser.error('--batch excludes --layout/--seed')
++        result=run_batch(strict_json_loads(args.batch.read_text()),args.max_seconds,args.keep_results)
++    else:
++        if args.layout is None or args.seed is None:parser.error('--layout and --seed required without --batch')
++        result = initialize(strict_json_loads(args.layout.read_text()), args.seed).run(args.max_seconds)
+     args.output.write_text(json.dumps(result, sort_keys=True, indent=2, allow_nan=False) + '\n')
+ 
+ 
+--- frozen443/native_replay_v8/engine.py
++++ source453/native_replay_v8/engine.py
+@@ -953,6 +953,8 @@
+ 
+ def validate_runtime_inputs(runtime, fixture):
+     data = deepcopy(runtime.data if isinstance(runtime, RuntimeDTO) else runtime)
++    if _source_pure_profile(data):
++        return _validate_source_pure_runtime(data, fixture, runtime)
+     if _pure441_profile(data):
+         return _validate_pure441_runtime(data, fixture, runtime)
+     if _source_king_profile(data):
+@@ -1083,6 +1085,8 @@
+ 
+ 
+ def build_runtime_scaffold(dto):
++    if _source_pure_profile(dto):
++        return _build_source_pure_scaffold(dto)
+     if _pure441_profile(dto):
+         return _build_pure441_scaffold(dto)
+     integration=_integration_domain(dto.data)
+@@ -1191,12 +1195,15 @@
+         self.model_source_sha256 = assert_model_source_stable()
+         self.fixture = deepcopy(fixture if fixture is not None else starter_fixture())
+         validate_fixture(self.fixture)
+-        source_runtime = validate_runtime_inputs(runtime, self.fixture) if _source_king_profile(runtime) or _single_king_genuine_profile(runtime) or _pure441_profile(runtime) else None
++        source_runtime = validate_runtime_inputs(runtime, self.fixture) if _source_king_profile(runtime) or _single_king_genuine_profile(runtime) or _pure441_profile(runtime) or _source_pure_profile(runtime) else None
++        if _source_pure_profile(runtime) and (random_source is None or isinstance(random_source,(TapeRandom,SeededRandom))):
++            raise ValueError('Source pure requires explicit Source seed provider; no Tape/Python seed fallback')
+         if _pure441_profile(runtime) and type(random_source) is not TapeRandom:
+             raise ValueError('fixed441 pure candidate requires actual TapeRandom; no seed fallback')
+         self.random = random_source if random_source is not None else SeededRandom(0)
+         self.runtime_inputs = source_runtime if source_runtime is not None else validate_runtime_inputs(runtime, self.fixture)
+         self.pure_combat_mode = _pure441_profile(self.runtime_inputs)
++        self.source_pure_mode = _source_pure_profile(self.runtime_inputs)
+         self.pure_snapshots = []
+         self.pure_api_trace = []
+         self.physics_order = ["explicit_runtime_roles"]
+@@ -1250,13 +1257,20 @@
+         self.histories = CombatHistories(self)
+         self.timer_runtime, self.runtime_roles, self.ordinary_roles = build_runtime_scaffold(self.runtime_inputs)
+         self.king_mode=_has_king(self.fixture)
+-        self.source_king_mode=_source_king_profile(self.runtime_inputs)
++        self.source_king_mode=_source_king_profile(self.runtime_inputs) or self.source_pure_mode
+         self.integration_mode=_integration_domain(self.runtime_inputs.data)
+         self.processing_inputs={n['role']:n for n in self.runtime_inputs.data.get('processing_nodes',[])}
+         self.king_states={}
+         self.invu_origins={'P':None,'O':None}
+         self.invu_bubbles={'P':False,'O':False}
+-        if self.pure_combat_mode:
++        if self.source_pure_mode:
++            defaults=source_pure_business_defaults(self.fixture)
++            for side,values in defaults['characters'].items():
++                self.characters[side].invulnerable=values['invulnerable']
++                self.characters[side].buff_protect_stacks=values['buffProtectStacks']
++                self.invu_origins[side]=values['invulnerabilityItem']
++            self.king_states=deepcopy(defaults['kings'])
++        elif self.pure_combat_mode:
+             for side, values in self.runtime_inputs.data['initial_characters'].items():
+                 self.characters[side].invulnerable = values['invulnerable']
+                 self.characters[side].buff_protect_stacks = values['buffProtectStacks']
+@@ -1285,6 +1299,28 @@
+         if self.pure_combat_mode:
+             self._validate_pure441_constructed()
+             self.pure_snapshots.append(self._pure_business_snapshot('constructed_off_clock'))
++        if self.source_pure_mode:self._validate_source_pure_state(False)
++
++    def _validate_source_pure_state(self,prepared):
++        data=self.runtime_inputs.data
++        if type(prepared) is not bool or self.prepared is not prepared:
++            raise ValueError('Source pure preparation stage')
++        for side,values in data['initial_characters'].items():
++            char=self.characters[side]
++            if char.invulnerable is not values['invulnerable'] or self.invu_origins[side]!=values['invulnerabilityItem'] or char.buff_protect_stacks!=values['buffProtectStacks']:
++                raise ValueError('Source pure fresh character business state')
++        for identity,values in data['initial_items'].items():
++            item=self.items[identity]
++            if (_float_bits(item.last_activation_time)!=values['lastActivationTime_bits'] or _float_bits(item.last_trigger_time)!=values['lastTriggerTime_bits']
++                    or item.activations_this_frame!=values['activationsThisFrame'] or item.triggers_this_frame!=values['triggersThisFrame']
++                    or item.cache_prepared is not prepared):
++                raise ValueError('Source pure fresh item/preparation state')
++        for identity,state in self.king_states.items():
++            expected=int(self.items[identity].definition['charges']) if prepared else 0
++            if type(state['invuCharges']) is not int or state['invuCharges']!=expected:
++                raise ValueError('Source pure King charge stage')
++        for name,initial in data['timer_initial'].items():_assert_pure441_timer(self.runtime_roles[name],initial)
++        if self.random.audit:raise ValueError('Source pure constructor/prepare may not consume combat provider')
+ 
+     def _validate_pure441_constructed(self):
+         data = self.runtime_inputs.data
+@@ -1432,22 +1468,22 @@
+         duration=args[0] if args else 0.0
+         if type(duration) not in (int,float):raise ValueError('Timer.start numeric Variant required')
+         timer=self.runtime_roles[role]
+-        if self.pure_combat_mode:
++        if (self.pure_combat_mode or self.source_pure_mode):
+             self._pure_api_before(role,'start',args)
+         if self.king_mode:self.runtime_trace.append(dict(kind='api_full_before',api='start',role=role,state=self._full_timer(timer)))
+         self.runtime_trace.append(dict(kind='start_before',role=role,argument=float(duration),util_time=self.util_time,frame=self.frame))
+         result=self.timer_runtime.start(timer,float(duration))
+-        if self.pure_combat_mode:
++        if (self.pure_combat_mode or self.source_pure_mode):
+             self._pure_api_after(role,'start',args,dict(ok=result.ok,error=result.error))
+         if not result.ok:raise ValueError(result.error)
+         self.runtime_trace.append(dict(kind='start_after',role=role,public=self._public_timer(timer),util_time=self.util_time,frame=self.frame))
+         if self.king_mode:self.runtime_trace.append(dict(kind='api_full_after',api='start',role=role,state=self._full_timer(timer)))
+ 
+     def _stop_timer(self, role):
+-        if self.pure_combat_mode:self._pure_api_before(role,'stop',())
++        if (self.pure_combat_mode or self.source_pure_mode):self._pure_api_before(role,'stop',())
+         if self.king_mode:self.runtime_trace.append(dict(kind='api_full_before',api='stop',role=role,state=self._full_timer(self.runtime_roles[role])))
+         self.timer_runtime.stop(self.runtime_roles[role])
+-        if self.pure_combat_mode:self._pure_api_after(role,'stop',(),None)
++        if (self.pure_combat_mode or self.source_pure_mode):self._pure_api_after(role,'stop',(),None)
+         self.runtime_trace.append(dict(kind='stop',role=role,public=self._public_timer(self.runtime_roles[role]),util_time=self.util_time,frame=self.frame))
+         if self.king_mode:self.runtime_trace.append(dict(kind='api_full_after',api='stop',role=role,state=self._full_timer(self.runtime_roles[role])))
+ 
+@@ -1470,9 +1506,9 @@
+             if self.tick_counter[side]%2==0 and char.regeneration>0:self.heal(side,char.regeneration,102)
+             elif self.tick_counter[side]%2==1 and char.poison>0:self.damage_nonitem(side,char.poison,108)
+             self.tick_counter[side]+=1
+-        elif role=='fatigue:start':self._start_timer('fatigue:tick',3 if self.pure_combat_mode else 3.0)
++        elif role=='fatigue:start':self._start_timer('fatigue:tick',3 if (self.pure_combat_mode or self.source_pure_mode) else 3.0)
+         elif role=='fatigue:tick':
+-            self.fatigue_tick();self._start_timer('fatigue:tick',1 if self.pure_combat_mode else 1.0)
++            self.fatigue_tick();self._start_timer('fatigue:tick',1 if (self.pure_combat_mode or self.source_pure_mode) else 1.0)
+         else:raise ValueError('unknown Timer callback role')
+         self.runtime_trace.append(dict(kind='timeout_exit',role=role,frame=self.frame,util_time=self.util_time))
+ 
+@@ -1512,7 +1548,7 @@
+         if item.item_index!=262 or type(state)is not int or state not in (0,1,2):
+             raise ValueError('King CrownState integer required')
+         self.histories.item_state(item,state,next_event=next_event)
+-        if self.pure_combat_mode:return
++        if (self.pure_combat_mode or self.source_pure_mode):return
+         k=self.king_states[item.instance_id];k['crown']=state
+         if state==1:
+             self._stop_timer('king_hide:'+item.instance_id)
+@@ -1707,7 +1743,7 @@
+             result.update(util_clock_time=d.util_clock_time,util_frame_counter=d.util_frame_counter,
+                           phase=d.phase,passes_consumed=d.pass_index,physics_frame=d.physics_frame,idle_frame=d.idle_frame,
+                           full_timers={r:self._full_timer(n) for r,n in self.runtime_roles.items() if isinstance(n,TimerRecord)},
+-                          king=deepcopy(self.king_states),invu_origins=deepcopy(self.invu_origins),**({} if self.pure_combat_mode else dict(invu_bubbles=deepcopy(self.invu_bubbles))))
++                          king=deepcopy(self.king_states),invu_origins=deepcopy(self.invu_origins),**({} if (self.pure_combat_mode or self.source_pure_mode) else dict(invu_bubbles=deepcopy(self.invu_bubbles))))
+         return result
+ 
+ 
+@@ -1880,6 +1916,7 @@
+         if self.pure_combat_mode:
+             self._validate_pure441_prepared()
+             self.pure_snapshots.append(self._pure_business_snapshot('prepare_off_clock'))
++        if self.source_pure_mode:self._validate_source_pure_state(True)
+ 
+     def activate_from_checkpoint(self):
+         if self.king_mode and not self.frame_driver.activated:
+@@ -1890,6 +1927,7 @@
+         if self.pure_combat_mode:
+             self._validate_pure441_prepared()
+             self.pure_snapshots.append(self._pure_business_snapshot('pre_activate'))
++        if self.source_pure_mode:self._validate_source_pure_state(True)
+         self.util_time = self.runtime_inputs.util_time
+         for identity, fields in self.runtime_inputs.data['initial_items'].items():
+             item = self.items[identity]
+@@ -1899,13 +1937,14 @@
+             item.triggers_this_frame = fields['triggersThisFrame']
+         self.activated = True
+         self._stop_timer('fatigue:start'); self._stop_timer('fatigue:tick')
+-        self._start_timer('fatigue:start', 14 if self.pure_combat_mode else 14.0)
++        self._start_timer('fatigue:start', 14 if (self.pure_combat_mode or self.source_pure_mode) else 14.0)
+         if self.integration_mode:
+             self._set_source_processing('combat_timer',True,'CombatTimer.start')
+             for side in ('P','O'):
+                 self._set_source_processing('character:'+side,True,'Character.combatStart')
+-                if self.pure_combat_mode:self._start_timer('tick:'+side)
++                if self.pure_combat_mode or self.source_pure_mode:self._start_timer('tick:'+side)
+                 else:self._start_timer('tick:'+side,0.0)
++        elif self.source_pure_mode:self._start_timer('tick:P'); self._start_timer('tick:O')
+         else:self._start_timer('tick:P', 0.0); self._start_timer('tick:O', 0.0)
+         # ALL preCombatStart before ANY combatStart.
+         for identity in self.preparation_order:
+@@ -3416,10 +3455,10 @@
+                 self._stop_timer('buff:' + side + ':' + name)
+                 self.characters[side].buff_fields[category]['temporaryStacks'].clear()
+             if 'rage:' + side in self.runtime_roles:self._stop_timer('rage:' + side)
+-            if self.integration_mode:
++            if self.integration_mode or self.source_pure_mode:
+                 for name in ('battleRageTimer','autoRageTimer'):
+                     role='aux:'+side+':'+name
+-                    if self.pure_combat_mode:self._stop_timer(role)
++                    if self.pure_combat_mode or self.source_pure_mode:self._stop_timer(role)
+                     else:self.runtime_trace.append(dict(kind='inactive_aux_stop',role=role,source='Character.combatEnd',before=self._integration_aux_timer(role),after=self._integration_aux_timer(role)))
+             if self.king_mode:self._stop_timer('invu:'+side)
+         self.fatigue_counter = 0
+@@ -3829,3 +3868,133 @@
+     if type(value) is int:return dict(type='int',decimal=str(value))
+     if type(value) is float and math.isfinite(value):return dict(type='float',binary64_be=_float_bits(value))
+     raise ValueError('pure Timer argument must retain finite INT/REAL Variant')
++
++
++#453 internal fresh Source carrier. No capture IDs, GUI facts or external passes.
++SOURCE_PURE_PROFILE='source-headless-pure-business-fixed60/1'
++SOURCE_PURE_SCHEMA='native-v8-source-pure-runtime/1'
++
++
++def _source_pure_profile(runtime):
++    data=runtime.data if isinstance(runtime,RuntimeDTO) else runtime
++    return type(data) is dict and data.get('profile_id')==SOURCE_PURE_PROFILE
++
++
++def source_pure_policy():
++    value=source_king_policy()
++    value['schema']=SOURCE_PURE_PROFILE
++    value['origin']='SOURCE_POLICY_NOT_NATIVE_FRAME_CAPTURE'
++    return value
++
++
++def source_pure_business_defaults(fixture):
++    validate_source_king_domain(fixture)
++    return dict(characters={side:dict(invulnerable=False,invulnerabilityItem=None,buffProtectStacks=0) for side in ('P','O')},
++        kings={item['instance_id']:dict(invuCharges=0,protectedBuffs=float(CATALOG[262]['protected_buffs']),manaCost=float(CATALOG[262]['mana_cost']))
++               for side in fixture['sides'] for item in side['items'] if item['item_index']==262})
++
++
++def _source_pure_roles(fixture):
++    validate_source_king_domain(fixture)
++    roles=_required_roles(fixture)
++    for side in fixture['sides']:
++        for item in side['items']:
++            if item['item_index']==262:
++                del roles['king_hide:'+item['instance_id']]
++                del roles['king_drag:'+item['instance_id']]
++    for side in ('P','O'):
++        for name in ('battleRageTimer','autoRageTimer'):roles['aux:'+side+':'+name]='timer'
++    return roles
++
++
++def source_pure_topology(fixture):
++    roles=_source_pure_roles(fixture);nodes=[]
++    def add(name,path,positions):
++        nodes.append(dict(role=name,path=path,positions=positions,priority=0,kind=roles[name]))
++    add('util','/root/Util',[-1,0])
++    for side in ('O','P'):
++        parent='/root/Main/Combat/Opponent' if side=='O' else '/root/Main/Player'
++        pos=[-1,1,0,0] if side=='O' else [-1,1,1]
++        add('character:'+side,parent+'/Character',pos+[0])
++        for name,child,path in [('tick:',3,'TickTimer'),('invu:',7 if side=='P' else 5,'InvulnerabilityTimer')]:
++            add(name+side,parent+'/Character/'+path,pos+[0,child])
++        for name,child in [('battleRageTimer',6 if side=='P' else 4),('autoRageTimer',8 if side=='P' else 6)]:
++            add('aux:'+side+':'+name,parent+'/Character/'+name,pos+[0,child])
++        for index,category in enumerate(range(100,111)):
++            add('buff:'+side+':'+STACK_NAMES_BY_TYPE[category],parent+'/Character/Buff'+str(index),pos+[0,100+index])
++        entries=fixture['sides'][0 if side=='P' else 1]['items']
++        values=[SimpleNamespace(definition=CATALOG[e['item_index']],entry=e) for e in entries]
++        if side=='O':values=opponent_inventory_order(values)
++        # Six-ID domain has only equal-layer Leather Bags; this is exactly the
++        # accepted fresh sibling order. Headless independently uses _item_siblings.
++        for index,value in enumerate(values):
++            item=value.entry;path=parent+'/Item'+str(index);position=pos+[index+2]
++            add('item:'+item['instance_id'],path,position)
++            if item['item_index']==262:add('king_buff:'+item['instance_id'],path+'/BuffTimer',position+[7])
++    path='/root/Main/Combat/UI/CombatTimer';position=[-1,1,0,1,0]
++    add('combat_timer',path,position)
++    add('fatigue:start',path+'/FatigueStartTimer',position+[1])
++    add('fatigue:tick',path+'/FatigueTickTimer',position+[2])
++    require_roles={n['role'] for n in nodes}
++    if require_roles!=set(roles) or len(require_roles)!=len(nodes):raise ValueError('Source pure exact role topology')
++    timers={name:dict(wait_time_bits=_float_bits(1.0),one_shot=not name.startswith('tick:'),process_mode=0,
++                autostart=False,paused=False,private_left_bits=_float_bits(-1.0)) for name,kind in roles.items() if kind=='timer'}
++    return dict(nodes=nodes,timer_initial=timers)
++
++
++def _source_pure_data(fixture,order):
++    topology=source_pure_topology(fixture);defaults=source_pure_business_defaults(fixture)
++    ids=[item['instance_id'] for side in fixture['sides'] for item in side['items']]
++    if type(order) is not list or any(type(x) is not str for x in order) or len(order)!=len(ids) or set(order)!=set(ids):
++        raise ValueError('Source pure complete preparation order')
++    return dict(schema=SOURCE_PURE_SCHEMA,mode='source_headless',profile_id=SOURCE_PURE_PROFILE,
++        checkpoint=dict(util_time_bits=_float_bits(0.0),combat_time_bits=_float_bits(0.0),source_phase='source-fresh-before-activate'),
++        environment=dict(fps=60,scale=1.0,paused=False),nodes=topology['nodes'],timer_initial=topology['timer_initial'],
++        initial_items={identity:dict(lastActivationTime_bits=_float_bits(0.0),lastTriggerTime_bits=_float_bits(0.0),
++                activationsThisFrame=0,triggersThisFrame=0,dragged=False,moveback_running=False,cache_fresh=True) for identity in ids},
++        initial_characters=defaults['characters'],prepare_order=order.copy(),activate_order=order.copy(),
++        terminal_profile=KING_TERMINAL,clock_policy=source_pure_policy())
++
++
++def source_pure_runtime_inputs(fixture,order,topology=None):
++    data=_source_pure_data(fixture,order)
++    if topology is not None and not _source_king_equal(topology,{k:data[k] for k in ('nodes','timer_initial')}):
++        raise ValueError('headless/engine Source pure topology disagreement')
++    return validate_runtime_inputs(data,fixture)
++
++
++def _validate_source_pure_runtime(data,fixture,original):
++    if type(data) is not dict or type(data.get('prepare_order')) is not list:raise ValueError('Source pure internal carrier')
++    expected=_source_pure_data(fixture,data['prepare_order'])
++    if not _source_king_equal(data,expected):raise ValueError('Source pure requires exact reconstructed fresh business carrier')
++    if isinstance(original,RuntimeDTO) and (type(original.prepare_order) is not tuple or original.prepare_order!=tuple(data['prepare_order'])
++            or type(original.util_time) is not float or _float_bits(original.util_time)!=_float_bits(0.0)):
++        raise ValueError('Source pure RuntimeDTO convenience mismatch')
++    return RuntimeDTO(data,tuple(data['prepare_order']),0.0)
++
++
++def _build_source_pure_scaffold(dto):
++    runtime=TimerRuntime();configs=dto.data['nodes'];by_position={tuple(n['positions']):n for n in configs}
++    prefixes={(-1,):('root',)}
++    for config in configs:
++        names=config['path'].split('/')[1:]
++        for end in range(2,len(names)+1):prefixes[tuple(config['positions'][:end])]=tuple(names[:end])
++    objects,records={(-1,):runtime.root},{}
++    for pos in sorted((p for p in prefixes if len(p)>1),key=lambda p:(len(p),p)):
++        parent=objects[pos[:-1]]
++        while len(parent.children)<pos[-1]:
++            runtime.add_child(parent,runtime.new_node('gap:'+str(pos[:-1])+':'+str(len(parent.children)),'__v8_gap_'+str(len(parent.children))))
++        config=by_position.get(pos);name=prefixes[pos][-1]
++        role=config['role'] if config else 'ancestor:'+'/'.join(prefixes[pos])
++        node=runtime.new_timer(role,name) if config and config['kind']=='timer' else runtime.new_node(role,name)
++        runtime.add_child(parent,node);objects[pos]=node
++        if config:
++            runtime.set_priority(node,config['priority']);records[role]=node
++            if config['kind']=='timer':
++                initial=dto.data['timer_initial'][role]
++                runtime.configure_timer(node,initial['one_shot'],initial['process_mode'])
++                status=runtime.set_wait_time(node,_be_float(initial['wait_time_bits']))
++                if not status.ok:raise ValueError(status.error)
++                _assert_pure441_timer(node,initial)
++    ordinary=sorted((n for n in configs if n['kind']=='ordinary'),key=lambda n:(n['priority'],tuple(n['positions'])))
++    return runtime,records,[n['role'] for n in ordinary]
