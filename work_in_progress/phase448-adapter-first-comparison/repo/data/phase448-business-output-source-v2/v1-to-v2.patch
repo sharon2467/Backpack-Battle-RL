@@ -1,0 +1,26 @@
+--- tests/phase445_pure_business_output.py
++++ tests/phase448_pure_business_output_v2.py
+@@ -416,11 +416,13 @@
+ 
+ def project_model_callbacks(result,bound):
+     rows=[]
++    noop_slots={('game',0),('game',1)} | {('item:'+identity,1) for identity in bound['items']}
+     for row in result['pure_combat_diagnostics']['callbacks']:
+         require(row['kind']=='source_callback','model callback kind')
+         name=row['role'];mode=row['mode']
++        require(type(name) is str and name in bound['nodes'],'model callback bound identity')
+         require(type(mode) is int and mode in (0,1),'model callback mode INT0/1')
+-        if name=='game' or mode==1 and name.startswith('item:'):
++        if (name,mode) in noop_slots:
+             continue  # Exact41-slot Source-only partition, accepted444; no native rows fabricated.
+         require(name in bound['nodes'] and (name=='util' or name=='combat_timer' or name.startswith(('character:','item:')) or name in bound['timers']),'unknown model callback')
+         rows.append({k:row[k] for k in ('role','mode','physics_frame','idle_frame','delta_bits','util_time_bits','combat_time_bits')})
+@@ -457,7 +459,7 @@
+         edge='before' if row['edge']=='timer_before' else 'after'
+         value=payload['public_before' if edge=='before' else 'public_after']
+         require(value is not None,'Timer public API state')
+-        require(row['subject']['native_id']==bound['nodes'][name]['native_id'],'Timer API receiver ID')
++        require(_subject(row,bound)==name,'Timer API receiver typed ID/role/class binding')
+         result.append(dict(role=name,edge=edge,operation=payload['operation'],argc=payload['argc'],args=args,
+             physics_frame=p,idle_frame=i,public=_native_timer(value,name,bound)))
+     _api_pairs(result);return result

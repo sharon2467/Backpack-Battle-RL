@@ -1,0 +1,49 @@
+{
+  "schema": "phase448-output-source-v2-context/1",
+  "pins": [
+    {
+      "path": "data/phase445-business-output-source/owned-files.json",
+      "size": 1246,
+      "sha256": "5e10f92aa227c3869645e8dbc812827add2c15a5032ca83b16c8d16f22e5254a"
+    },
+    {
+      "path": "data/phase445-business-output-contract/owned-files.json",
+      "size": 847,
+      "sha256": "50bd73c2903f5f1cd5c261f83c250049f29914570b2dc19f8b03aaaccb3a0e92"
+    },
+    {
+      "path": "data/phase445-business-output-contract/contract.json",
+      "size": 4664,
+      "sha256": "d7c6b97de2c966fb207da8fc16ac0030bb0560f3fb1299356611c07ffb697f09"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/owned-files.json",
+      "size": 5487,
+      "sha256": "cc3e87254a020a16afb64834ad10be8c5f3db118ac0c48f73ac35b85dfafc6d4"
+    }
+  ],
+  "module": {
+    "path": "tests/phase448_pure_business_output_v2.py",
+    "size": 40581,
+    "sha256": "726652a8c6c3dabaefb060baccae49bbc5d06afb3ef91989d6fedda0987c376f"
+  },
+  "entrypoint": "compare_decoded(native_outputs,sealed_result,accepted_bundle)",
+  "input_contract": "Exact unchanged445 frozen9native-leaf decoded mapping + actual sealed446 result + accepted441 fixed bundle.",
+  "scope": "Only callback identity/no-op filter and Timer API subject identity fixes; no107 debugger or new battle/launcher.",
+  "v1_preserved": {
+    "path": "tests/phase445_pure_business_output.py",
+    "size": 40431,
+    "sha256": "1b513526e550391150d6215b030979992051c72ce4acf3760d28fa4cf0a1ef14"
+  },
+  "independent_controls_required": [
+    "foreign item idle",
+    "foreign/unknown bound callback name",
+    "wrong callback mode type",
+    "Timer API subject wrong type",
+    "Timer API subject missing/extra fields",
+    "Timer API subject nativeID mismatch",
+    "Timer API subject role drift",
+    "Timer API subject class drift"
+  ],
+  "actual_comparison": "Independent once against existing446 model result, never rerun model. Source author does not read EXPECTED."
+}

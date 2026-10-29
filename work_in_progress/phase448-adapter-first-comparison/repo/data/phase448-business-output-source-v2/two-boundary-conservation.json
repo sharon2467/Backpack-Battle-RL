@@ -1,0 +1,60 @@
+{
+  "schema": "phase448-two-boundary-conservation/1",
+  "v1": {
+    "path": "tests/phase445_pure_business_output.py",
+    "size": 40431,
+    "sha256": "1b513526e550391150d6215b030979992051c72ce4acf3760d28fa4cf0a1ef14"
+  },
+  "v2": {
+    "path": "tests/phase448_pure_business_output_v2.py",
+    "size": 40581,
+    "sha256": "726652a8c6c3dabaefb060baccae49bbc5d06afb3ef91989d6fedda0987c376f"
+  },
+  "changed_functions": [
+    "project_model_callbacks",
+    "project_native_api"
+  ],
+  "conserved_other_function_count": 35,
+  "all_nonfunction_AST_and_other_functions_equal": true,
+  "patch": {
+    "path": "data/phase448-business-output-source-v2/v1-to-v2.patch",
+    "size": 1799,
+    "sha256": "a8a97ebbff916b1eb98a3aea5ba851812e70f33794afe46dea368c17e3135482"
+  },
+  "changes": [
+    "Validate exact bound callback name before the precisely enumerated41 no-op slots.",
+    "Validate Timer API native_ref four-field association through existing _subject/decode_native, not native_id alone."
+  ],
+  "verified_prior_owners": [
+    {
+      "owner": {
+        "path": "data/phase445-business-output-source/owned-files.json",
+        "size": 1246,
+        "sha256": "5e10f92aa227c3869645e8dbc812827add2c15a5032ca83b16c8d16f22e5254a"
+      },
+      "payloads": 6,
+      "drift": []
+    },
+    {
+      "owner": {
+        "path": "data/phase445-business-output-contract/owned-files.json",
+        "size": 847,
+        "sha256": "50bd73c2903f5f1cd5c261f83c250049f29914570b2dc19f8b03aaaccb3a0e92"
+      },
+      "payloads": 4,
+      "drift": []
+    },
+    {
+      "owner": {
+        "path": "data/phase443-pure-candidate-source/owned-files.json",
+        "size": 5487,
+        "sha256": "cc3e87254a020a16afb64834ad10be8c5f3db118ac0c48f73ac35b85dfafc6d4"
+      },
+      "payloads": 27,
+      "drift": []
+    }
+  ],
+  "candidate_changes": 0,
+  "model_result_changes": 0,
+  "eight_section_contract_changes": 0
+}

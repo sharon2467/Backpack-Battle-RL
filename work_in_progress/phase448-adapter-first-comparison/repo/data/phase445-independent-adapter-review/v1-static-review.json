@@ -1,0 +1,53 @@
+{
+  "schema": "phase445-independent-adapter-static-review/1",
+  "status": "SOURCE_CHANGES_REQUIRED_BEFORE_CONTROLS_AND_EXPECTED",
+  "module": {
+    "path": "tests/phase445_pure_business_output.py",
+    "size": 40431,
+    "sha256": "1b513526e550391150d6215b030979992051c72ce4acf3760d28fa4cf0a1ef14"
+  },
+  "owner": {
+    "path": "data/phase445-business-output-source/owned-files.json",
+    "size": 1246,
+    "sha256": "5e10f92aa227c3869645e8dbc812827add2c15a5032ca83b16c8d16f22e5254a"
+  },
+  "checks": {
+    "payload_pins": 6,
+    "function_slice_pins": 37,
+    "source_runtime_interface_slices": "read-only391 sink Timer DTO/API and conservedFrameDriver phase/cut Source checked",
+    "adapter_imports": 0,
+    "adapter_calls": 0,
+    "EXPECTED_reads": 0,
+    "model_calls": 0
+  },
+  "findings": [
+    {
+      "id": "F1",
+      "function": "project_model_callbacks",
+      "line": 423,
+      "severity": "comparison false acceptance",
+      "counterexample": "A source_callback row with role item:FOREIGN and mode INT1 is dropped before the known-node check; it can be appended without any projected callback difference.",
+      "required_fix": "Validate known bound node first; filter only exact39 bound item idle tuples and Game physics/idle. No unknown callback may disappear."
+    },
+    {
+      "id": "F2",
+      "function": "project_native_api",
+      "line": 460,
+      "severity": "native reference association validation gap",
+      "counterexample": "Keep subject.native_id equal to the right businessTimer but change native_ref type/role/class/shape. Current code compares only native_id and projects valid public DTO, discarding poisoned subject metadata.",
+      "required_fix": "Reuse exact native_ref decoder/subject association and require it resolves to the same payload businessTimer role."
+    }
+  ],
+  "other_review": "Eight-section projection structure reviewed without importing/calling. Ordered complete events/parents/history/RNG, exact public Timer/node ABI and pair order, full finite terminal cutoff retained. No additional concrete static blocker identified in this pass; actual carrier compatibility and negative controls remain untested.",
+  "frozen_contract": {
+    "path": "data/phase445-business-output-contract/contract.json",
+    "size": 4664,
+    "sha256": "d7c6b97de2c966fb207da8fc16ac0030bb0560f3fb1299356611c07ffb697f09"
+  },
+  "limits": [
+    "These are output-adapter defects; existing446 sealed model output remains unchanged.",
+    "No model rerun or EXPECTED-driven filtering authorized. Preserve v1 and freeze minimal v2.",
+    "Successful adapter controls remain comparison precondition; no final King/formal75 admission."
+  ],
+  "King_admitted": false
+}

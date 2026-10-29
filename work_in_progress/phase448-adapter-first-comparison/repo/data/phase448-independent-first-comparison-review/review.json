@@ -1,0 +1,65 @@
+{
+  "schema": "phase448-independent-first-comparison-review/1",
+  "status": "FIRST_NATIVE_FINAL_PROJECTION_ABI_ERROR_PRESERVED_NO_BUSINESS_COMPARISON_YET",
+  "controls": {
+    "path": "data/phase448-independent-output-controls-first-001/result.json",
+    "size": 4540,
+    "sha256": "162feb5cc454f3e77dafff5508ae501120fa5e487c8bf1d654aeabec7e1ed60e"
+  },
+  "controls_status": "26 synthetic helper checks PASS; actual raw tagged char.fields shape was not represented by the synthetic final mock",
+  "actual_owner": {
+    "path": "data/phase448-fixed-A-comparison-first-001/owned-files.json",
+    "size": 510,
+    "sha256": "424a42e03d9c1e2cac4f461c77d0417550ca495d4530d55e0613d0719df063a4"
+  },
+  "actual_result": {
+    "path": "data/phase448-fixed-A-comparison-first-001/result.json",
+    "size": 12117,
+    "sha256": "19a0839b10cedf091554ccfc36a07735fb09f7bb7b9ec4e4c3ae05921ea646f9"
+  },
+  "actual": {
+    "elapsed_seconds": 6.29700724400027,
+    "EXPECTED_leaves_hash_verified": 9,
+    "EXPECTED_bytes": 150612850,
+    "compare_decoded": 1,
+    "project_native": 1,
+    "project_native_final": 1,
+    "project_model": 0,
+    "compare_projected": 0,
+    "model_invocations": 0
+  },
+  "first_error": {
+    "stage": "single_compare_decoded",
+    "type": "ValueError",
+    "message": "native presentation envelope field missing",
+    "traceback": "Traceback (most recent call last):\n  File \"/workspace/python-original-engine/repo/tests/phase448_independent_actual_compare.py\", line 102, in main\n    comparison=A.compare_decoded(native,result,bundle)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase448_independent_actual_compare.py\", line 51, in counted\n    calls[_name]+=1;return _fn(*args,**kwargs)\n                           ^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase448_pure_business_output_v2.py\", line 600, in compare_decoded\n    return compare_projected(project_native(native_outputs,accepted_bundle),project_model(sealed_result,accepted_bundle))\n                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase448_independent_actual_compare.py\", line 51, in counted\n    calls[_name]+=1;return _fn(*args,**kwargs)\n                           ^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase448_pure_business_output_v2.py\", line 561, in project_native\n    final=project_native_final(native['final_state.json'],bound)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase448_independent_actual_compare.py\", line 51, in counted\n    calls[_name]+=1;return _fn(*args,**kwargs)\n                           ^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase448_pure_business_output_v2.py\", line 259, in project_native_final\n    require(name in char['fields'],'native presentation envelope field missing')\n  File \"/workspace/python-original-engine/repo/tests/phase448_pure_business_output_v2.py\", line 39, in require\n    raise ValueError(reason)\nValueError: native presentation envelope field missing\n"
+  },
+  "Source_diagnosis": {
+    "collector": {
+      "path": "data/phase391-terminal-source/collector.gd",
+      "size": 64928,
+      "sha256": "f05bbf6b0e7277b5a342553d3a8d3c842f3efa6526f0b85948bd003837ac74ce"
+    },
+    "primary": "collector fields(obj,names),591-596,returns encode(values): char.fields is tagged DICTIONARY before decode. Adapter project_native_final259 treated it as a plain dictionary. CoreCharacter declares excluded characterName:String/chibi:BOOL/invulBubbleVisible:BOOL; strict decode may precede removing exactly the three already-frozen exclusions.",
+    "adjacent_same_leaf_ABI": [
+      "collector encode REAL emits type,display,binary64_be; decoder currently rejects display.",
+      "collector encode ARRAY emits type,variant_type,values; decoder currently rejects variant_type.",
+      "collector encode TemporaryStacks emits type,native_id,amount,timeout,item; decoder currently lacks an explicit branch. Preserve typed logical fields and disclose provenance identity normalization if implemented; do not fabricate model native addresses."
+    ],
+    "method": "Only stored Source read after failure, no further Expected payload open or adapter/model invocation."
+  },
+  "correction_boundary": [
+    "New immutable adapter Source/owner; preserve448v2/26controls/first actual exception.",
+    "Test only affected original tagged serializer shapes/exclusions plus any new branch; no repeat old model/interfaces.",
+    "Do not optionalize missing business fields or trim frozen eight-section semantics.",
+    "Next authorized retry continues previously unfinished output comparison, not a new model run or original capture."
+  ],
+  "activity_after_error": {
+    "EXPECTED_payload_reads": 0,
+    "adapter_calls": 0,
+    "model_calls": 0,
+    "new_native": 0
+  },
+  "King_admitted": false,
+  "formal_support": 75
+}
