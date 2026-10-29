@@ -1,0 +1,271 @@
+{
+  "schema": "phase459-pre-outcome-business-expectations/1",
+  "status": "SEALED_BEFORE_458_IMPORT_OR_EXECUTION",
+  "basis": "Original Goobert/King/Item/EventBus/Character/StatHistory plus accepted unchanged Source method bodies; not candidate output",
+  "prestate": {
+    "hp": 100.0,
+    "max_hp": 240.0,
+    "basic_counter": 4,
+    "king_counter": 5,
+    "basic_threshold": 5.0,
+    "king_threshold": 6.0,
+    "basic_trigger": 1.0,
+    "king_trigger": 1.0,
+    "util_time": 1.0,
+    "mana": 4,
+    "mana_permanent_stacks": 4,
+    "protected_stacks": 0,
+    "invu_charges": 3,
+    "invulnerable": false,
+    "goobert_physics_processing": false,
+    "per_frame_activations": 0
+  },
+  "e": "ID of actual trigger Activation, after explicit synthetic setup; contiguous action allocations e..e+6",
+  "common_positive": {
+    "final_hp": 144.0,
+    "basic_healing": 9.0,
+    "king_healing": 35.0,
+    "basic_overheal": 0.0,
+    "king_overheal": 0.0,
+    "protection": 3,
+    "mana": 0,
+    "mana_permanent_stacks": 0,
+    "invu_charges": 2,
+    "invulnerable": true,
+    "timer_starts": [
+      {
+        "role": "invu:P",
+        "args": [
+          1.5
+        ]
+      },
+      {
+        "role": "king_buff:P:king",
+        "args": [
+          1.5
+        ]
+      }
+    ],
+    "pitch_calls": [
+      {
+        "method": "randf_range",
+        "label": "invulnerability_pitch:P:king",
+        "args": [
+          0.9,
+          1.1
+        ],
+        "return": 1.0
+      }
+    ],
+    "basic_activation_metric_delta": 1,
+    "king_activation_metric_delta": 1
+  },
+  "basic_first": {
+    "entry": "emit actual typed King Activation carrier, then actual on_goobert_item_activated(Basic,event)",
+    "events": [
+      {
+        "offset": 0,
+        "origin": "P:king",
+        "type": "Activation",
+        "params": {},
+        "parent_offset": null,
+        "target": null
+      },
+      {
+        "offset": 1,
+        "origin": "P:basic",
+        "type": "Health",
+        "params": {
+          "amount": 9
+        },
+        "parent_offset": null,
+        "target": 0
+      },
+      {
+        "offset": 2,
+        "origin": "P:basic",
+        "type": "Activation",
+        "params": {},
+        "parent_offset": null,
+        "target": null
+      },
+      {
+        "offset": 3,
+        "origin": "P:king",
+        "type": "Health",
+        "params": {
+          "amount": 35
+        },
+        "parent_offset": null,
+        "target": 0
+      },
+      {
+        "offset": 4,
+        "origin": "P:king",
+        "type": "InvulnerableStart",
+        "params": {
+          "duration": 1.5
+        },
+        "parent_offset": null,
+        "target": 0
+      },
+      {
+        "offset": 5,
+        "origin": "P:king",
+        "type": "Mana",
+        "params": {
+          "amount": -4,
+          "used": true,
+          "reflected": false
+        },
+        "parent_offset": 4,
+        "target": 0
+      },
+      {
+        "offset": 6,
+        "origin": "P:king",
+        "type": "Activation",
+        "params": {},
+        "parent_offset": null,
+        "target": null
+      }
+    ],
+    "final_counters": {
+      "P:basic": 1,
+      "P:king": 0
+    },
+    "final_triggers": {
+      "P:basic": 4.0,
+      "P:king": 6.0
+    },
+    "cooldown_history_appends": {
+      "P:basic": [
+        {
+          "event_offset": 6,
+          "value": 85895050952704
+        }
+      ],
+      "P:king": [
+        {
+          "event_offset": 2,
+          "value": 0
+        }
+      ]
+    },
+    "outer_Basic_duplicate_compressed": true
+  },
+  "king_first": {
+    "entry": "actual activate(P:berry0), real prepared King receiver",
+    "events": [
+      {
+        "offset": 0,
+        "origin": "P:berry0",
+        "type": "Activation",
+        "params": {},
+        "parent_offset": null,
+        "target": null
+      },
+      {
+        "offset": 1,
+        "origin": "P:king",
+        "type": "Health",
+        "params": {
+          "amount": 35
+        },
+        "parent_offset": null,
+        "target": 0
+      },
+      {
+        "offset": 2,
+        "origin": "P:king",
+        "type": "InvulnerableStart",
+        "params": {
+          "duration": 1.5
+        },
+        "parent_offset": null,
+        "target": 0
+      },
+      {
+        "offset": 3,
+        "origin": "P:king",
+        "type": "Mana",
+        "params": {
+          "amount": -4,
+          "used": true,
+          "reflected": false
+        },
+        "parent_offset": 2,
+        "target": 0
+      },
+      {
+        "offset": 4,
+        "origin": "P:king",
+        "type": "Activation",
+        "params": {},
+        "parent_offset": null,
+        "target": null
+      },
+      {
+        "offset": 5,
+        "origin": "P:basic",
+        "type": "Health",
+        "params": {
+          "amount": 9
+        },
+        "parent_offset": null,
+        "target": 0
+      },
+      {
+        "offset": 6,
+        "origin": "P:basic",
+        "type": "Activation",
+        "params": {},
+        "parent_offset": null,
+        "target": null
+      }
+    ],
+    "final_counters": {
+      "P:basic": 0,
+      "P:king": 1
+    },
+    "final_triggers": {
+      "P:basic": 5.0,
+      "P:king": 5.0
+    },
+    "cooldown_history_appends": {
+      "P:king": [
+        {
+          "event_offset": 6,
+          "value": 71579924955136
+        }
+      ],
+      "P:basic": [
+        {
+          "event_offset": 4,
+          "value": 0
+        }
+      ]
+    },
+    "outer_King_duplicate_compressed": true,
+    "berry_activation_metric_delta": 1
+  },
+  "bounded_additional_cases": [
+    "three King invu short-circuit prestates",
+    "nontrigger Basic0→1",
+    "four Basic threshold entries at same time:4heals/3Activation/King3",
+    "prepared multi-cell dedup",
+    "synthetic ended boundary between two ordered real listeners",
+    "already-ended activate",
+    "only affected new-domain atomic rejections"
+  ],
+  "public_provider_gate": "UNCHANGED_LAYOUT_PLUS_SEED; test-owned strict pitch provider is internal synthetic state only",
+  "integration": {
+    "request": "source-job.json",
+    "seed": 45701,
+    "items": 26,
+    "full_battle_limit": 1,
+    "winner_expected": null,
+    "natural_reentry_HIT": "MEASURE_ONLY_NEVER_RETUNE",
+    "timers": 33
+  }
+}
