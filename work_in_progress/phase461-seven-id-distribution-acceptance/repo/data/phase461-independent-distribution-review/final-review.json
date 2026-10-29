@@ -1,0 +1,147 @@
+{
+  "schema": "phase461-independent-final-distribution-review/1",
+  "status": "ACCEPTED_REMOTE_SEVEN_ID_SOURCE_PACKAGE_STARTUP_NO_BATTLE",
+  "remote_head": "60132963ea8effcf0c2daf1bc2a90deab4a494c2",
+  "remote_clone": "/workspace/backpack-github-source-clone-20261025",
+  "script": {
+    "path": "tests/phase461_independent_remote_startup.py",
+    "size": 6963,
+    "sha256": "edf999f6becc0dfd1064f1c5edb1f3c34c1b8b3bff3af45327abdb7e55794cc3"
+  },
+  "verified_evidence_owners": [
+    {
+      "owner": {
+        "path": "data/phase461-independent-distribution-review/static-owned-files.json",
+        "size": 290,
+        "sha256": "881f296a6317509eb033a2c88b9d678a7a764eabe47e95ba7b985ecb6da17f84"
+      },
+      "payload_count": 1
+    },
+    {
+      "owner": {
+        "path": "data/phase461-independent-remote-startup-source/owned-files.json",
+        "size": 648,
+        "sha256": "9e828bc3c4604c1dd42a5a5b8be4b272e92aa318400b40b1f8da244441e2d7da"
+      },
+      "payload_count": 3
+    },
+    {
+      "owner": {
+        "path": "data/phase461-independent-remote-startup-first-001/owned-files.json",
+        "size": 2497,
+        "sha256": "1245173bcbbedf28083795ddbd29e1cdaf5249d82978b449d6b60fd07cd3342e"
+      },
+      "payload_count": 10
+    }
+  ],
+  "actual_checks": [
+    {
+      "label": "outer-verifier",
+      "args": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "/workspace/backpack-github-source-clone-20261025/python_engine/tools/verify_manifest.py"
+      ],
+      "cwd": "/workspace/python-original-engine/repo/data/phase461-independent-remote-startup-first-001",
+      "exit_code": 0,
+      "seconds": 0.06403177900210721
+    },
+    {
+      "label": "inner-verifier",
+      "args": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/verify_manifest.py",
+        "--manifest-sha256",
+        "33fcd94a6c68cccccdeba2f25b6487a6b99e2f5d6d28afec21001ddff88dd73f"
+      ],
+      "cwd": "/workspace/python-original-engine/repo/data/phase461-independent-remote-startup-first-001",
+      "exit_code": 0,
+      "seconds": 0.06384815700585023
+    },
+    {
+      "label": "CLI-help",
+      "args": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/headless.py",
+        "--help"
+      ],
+      "cwd": "/workspace/python-original-engine/repo/data/phase461-independent-remote-startup-first-001",
+      "exit_code": 0,
+      "seconds": 0.16403806900052587
+    },
+    {
+      "label": "CLI-invalid-seed",
+      "args": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-I",
+        "-B",
+        "/workspace/python-original-engine/repo/tests/phase461_independent_remote_startup.py",
+        "--negative-probe"
+      ],
+      "cwd": "/workspace/python-original-engine/repo/data/phase461-independent-remote-startup-first-001",
+      "exit_code": 0,
+      "seconds": 0.26444187400193186
+    }
+  ],
+  "elapsed_seconds": 0.5632168809970608,
+  "checks_summary": {
+    "outer_publication_payloads": 68,
+    "outer_historical_runtime_files": 30,
+    "inner_trusted_manifest_sha": "33fcd94a6c68cccccdeba2f25b6487a6b99e2f5d6d28afec21001ddff88dd73f",
+    "inner_payloads": 22,
+    "inner_exact_Source_files": 15,
+    "actual_CLI_help": true,
+    "actual_CLI_negative_seed": "uint64 headless seed required",
+    "negative_counts": {
+      "initialize": 1,
+      "CombatRandom.__init__": 0,
+      "Battle.run": 0,
+      "GodotPCGInteger.__init__": 0,
+      "Engine.__init__": 0,
+      "prepare": 0,
+      "activate": 0,
+      "Engine.run": 0,
+      "Engine.step": 0
+    },
+    "negative_result_created": false,
+    "candidate_module_paths_verified": 11,
+    "after_hash_reads": 69,
+    "source_drift": false,
+    "after_git_status_python_engine": "empty"
+  },
+  "static_scope": {
+    "owner_payloads_verified": 25,
+    "physical_package_files": 23,
+    "manifest_payloads": 22,
+    "Source_exact458": 15,
+    "Source_conserved455": 13,
+    "old_examples_and_verifier_exact": 4,
+    "new_joint_layout": "exact presealed459 /layout; source_root_seed45701",
+    "old455_archive": "preserved, no old battle replay",
+    "outer_verifier": "same591bc210 bytes; excludes root MANIFEST only, nested inner manifest covered"
+  },
+  "execution_scope": {
+    "outer_verifier_runs": 1,
+    "inner_verifier_runs": 1,
+    "CLI_help_runs": 1,
+    "CLI_negative_runs": 1,
+    "complete_battles": 0,
+    "Engine_constructors": 0,
+    "RNG_constructors": 0,
+    "native_runs": 0,
+    "Expected_reads": 0,
+    "old451454459_replays": 0,
+    "retry_count": 0,
+    "active_child_processes": 0
+  },
+  "limits": [
+    "This validates packaging/import/CLI and exact byte lineage on the accepted same-host environment, not a new battle or freshOS/platform test.",
+    "Formal75 remains unchanged; seven-ID Source King+Basic domain is experimental.459 finite Source business acceptance preserved; native joint comparison has not occurred.",
+    "451 fixed different-case conditional-Tape equality does not establish this pair or seeded-session parity. No numerical456 work resumed.",
+    "Verifier without external trustedSHA is local byte consistency only; this attempt supplied the independently handed-off inner SHA and pinned outer publication."
+  ],
+  "packaging_diagnostic": "Root initial request[seed] KeyError remains archived; corrected /source_root_seed is validated against pre-outcome input. No runtime defect inferred.",
+  "conclusion": "Public package ready within declared experimental scope; no remaining distribution blocker from this review."
+}

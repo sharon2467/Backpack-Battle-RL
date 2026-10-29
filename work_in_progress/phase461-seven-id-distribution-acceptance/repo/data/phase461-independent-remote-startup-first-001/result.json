@@ -1,0 +1,461 @@
+{
+  "status": "PASS_REMOTE_DISTRIBUTION_STARTUP_NO_BATTLE",
+  "checks": [
+    {
+      "label": "outer-verifier",
+      "args": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "/workspace/backpack-github-source-clone-20261025/python_engine/tools/verify_manifest.py"
+      ],
+      "cwd": "/workspace/python-original-engine/repo/data/phase461-independent-remote-startup-first-001",
+      "exit_code": 0,
+      "seconds": 0.06403177900210721
+    },
+    {
+      "label": "inner-verifier",
+      "args": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/verify_manifest.py",
+        "--manifest-sha256",
+        "33fcd94a6c68cccccdeba2f25b6487a6b99e2f5d6d28afec21001ddff88dd73f"
+      ],
+      "cwd": "/workspace/python-original-engine/repo/data/phase461-independent-remote-startup-first-001",
+      "exit_code": 0,
+      "seconds": 0.06384815700585023
+    },
+    {
+      "label": "CLI-help",
+      "args": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/headless.py",
+        "--help"
+      ],
+      "cwd": "/workspace/python-original-engine/repo/data/phase461-independent-remote-startup-first-001",
+      "exit_code": 0,
+      "seconds": 0.16403806900052587
+    },
+    {
+      "label": "CLI-invalid-seed",
+      "args": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-I",
+        "-B",
+        "/workspace/python-original-engine/repo/tests/phase461_independent_remote_startup.py",
+        "--negative-probe"
+      ],
+      "cwd": "/workspace/python-original-engine/repo/data/phase461-independent-remote-startup-first-001",
+      "exit_code": 0,
+      "seconds": 0.26444187400193186
+    }
+  ],
+  "before": [
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/tools/verify_manifest.py",
+      "size": 1448,
+      "sha256": "591bc2101bc162e8f8269965cb258e354ee0f1ddad1db77b356301c16d36dc62"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/MANIFEST.json",
+      "size": 10809,
+      "sha256": "f5054f497b1f59c6609391e7a7c9329b1ec40551e427625ede4d5a5727394e90"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/manifest.json",
+      "size": 4416,
+      "sha256": "33fcd94a6c68cccccdeba2f25b6487a6b99e2f5d6d28afec21001ddff88dd73f"
+    }
+  ],
+  "after": [
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/MANIFEST.json",
+      "size": 10809,
+      "sha256": "f5054f497b1f59c6609391e7a7c9329b1ec40551e427625ede4d5a5727394e90"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/.gitignore",
+      "size": 58,
+      "sha256": "17422bf741f13ec1201c0fc2b4f2881e35efe7de744b650927349ccba38381b0"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/README.md",
+      "size": 8548,
+      "sha256": "82db185e3b4282a679ff66d542ceb29f99ea1ab479ee13bc14c490df9ca0f65e"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/THIRD_PARTY_NOTICES.md",
+      "size": 991,
+      "sha256": "a78223109d84cac762b6e644ce639c7982be08b10844f785f5d08a50721826ff"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/candidate75/godot_pcg_integer.py",
+      "size": 2198,
+      "sha256": "c084075fdb566b91348ed5a5776d3808b161c23da144e8f5db33e5b48cd694ca"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/candidate75/headless.py",
+      "size": 17866,
+      "sha256": "586694b13ab9cf3455b27e43591494f52370c2a72cabbe68bc5f81a9557329d3"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/candidate75/native_replay_v7/__init__.py",
+      "size": 389,
+      "sha256": "82b496191ffa3ec2761b83bf4de9267089d077b777ee38e4b93ab0cb824c4612"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/candidate75/native_replay_v7/frame_driver.py",
+      "size": 12318,
+      "sha256": "9d8e361144e353a8d944e4490502c5301e7a92451771d35f22ab48f6277f64fd"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/candidate75/native_replay_v7/timer_runtime.py",
+      "size": 38705,
+      "sha256": "5b7c14ebb7c7511aa05a3411752c7f3341b925c00de31eedfacf4f9345f4a109"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/candidate75/native_replay_v8/__init__.py",
+      "size": 618,
+      "sha256": "805cc7035f10e96bfc217ef52f6ac175323ea83c69fb6e678fcd97a5bbcc3d7b"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/candidate75/native_replay_v8/__main__.py",
+      "size": 1436,
+      "sha256": "b808649da7470e72669ad7639ef01577187e9692e9ade3745e18b0f21eea647a"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/candidate75/native_replay_v8/compare.py",
+      "size": 38087,
+      "sha256": "4af52ee400acf1460c9e28faf5a760d05753d1de7218a00d4a740712a40fdd22"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/candidate75/native_replay_v8/engine.py",
+      "size": 184779,
+      "sha256": "75a234855a8c25d837e36d4aae75164cdf136fcbc335ad8095b7b0dd8e5cc2b3"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/candidate75/native_replay_v8/genuine.py",
+      "size": 213659,
+      "sha256": "e8f38850dd6c70afeafb804a661824f2e83a5087b84a674f835c015d2ff5a260"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/candidate75/native_replay_v8/histories.py",
+      "size": 8508,
+      "sha256": "d9b3f270b53f328f5958647fdaba86532ff3d9db11b272d9a7d0d2aef1db0b05"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/candidate75/native_replay_v8/observed.py",
+      "size": 2323,
+      "sha256": "0a04fb2b03e48cd1cd9a3e43425deddef56c7906105dadeaefafa81ac84a6fd1"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/candidate75/native_replay_v8/randomness.py",
+      "size": 7063,
+      "sha256": "676d42a69937394dc1bd8ff23268a08dc41fe9604f7e56213bb968ab331b9139"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/candidate75/native_replay_v8/state.py",
+      "size": 15114,
+      "sha256": "21478fecea4c888f701ff8991fb2cf75519670c602ed2bd9d17874e238c54bd1"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/candidate75/original_rng.py",
+      "size": 2439,
+      "sha256": "5f7024f6c3dbbb2b105962a79a8bf39db40b3fa87bd9c115f2dd578b8082d60e"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/evidence/experimental-source-validation.json",
+      "size": 2240,
+      "sha256": "fe9ed7a79b48cd840c61eda1025844bb97beca45181a8c46d3c86b2a679381dd"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/evidence/publication-checks.json",
+      "size": 692,
+      "sha256": "b6c9dc98e3cf9feb07230bec8c33ed06a2782a68b3c0a7cd8b7dca980720ba0b"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/evidence/runtime-sources.json",
+      "size": 5193,
+      "sha256": "ac5ea8bbce066000b12b5e820cbdd451160185c1c44b3f540f5f648d8919b370"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/evidence/validation-summary.json",
+      "size": 3220,
+      "sha256": "d9604a70c20bca8ec38fd2a6de523b249ff375807058205de212261c76431cd3"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/examples/candidate75.json",
+      "size": 8143,
+      "sha256": "584001b8f3c47cc4a70098b81c9455fba2a45244adb38c92b6870f6e92050146"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/examples/formal68.json",
+      "size": 7961,
+      "sha256": "97b1a6bae3d7bb3b2dac0ca8a1cad66fef52a4cffdf864414452d7b1b9094687"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/examples/formal75.json",
+      "size": 8143,
+      "sha256": "584001b8f3c47cc4a70098b81c9455fba2a45244adb38c92b6870f6e92050146"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/README.md",
+      "size": 5938,
+      "sha256": "9a8e03aba0af51f688bb45fe43ff3f402a9be4d1e51d7e4a03f0508f7ea39819"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/examples/jobs.json",
+      "size": 8638,
+      "sha256": "b5d0e3d4a9fc85ffaf007aecb662c7a41b3c508baacea1a036bb08d108862bea"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/examples/layout-A.json",
+      "size": 3543,
+      "sha256": "6affc8be333edaf540fa411a0754667f1d50dcc06b59c457c36bdbd5dc8ae0c8"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/examples/layout-B.json",
+      "size": 3544,
+      "sha256": "54118c2054ff2e72fa3dfd58caf51d6dfc7664fccef6124eab391dfc3d06651e"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/examples/layout-King-Basic.json",
+      "size": 3904,
+      "sha256": "6ea2ebd5058092f9c2451099d39a79eadc36d9a4776f5a9f9242560c61d275f5"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/godot_pcg_integer.py",
+      "size": 2198,
+      "sha256": "c084075fdb566b91348ed5a5776d3808b161c23da144e8f5db33e5b48cd694ca"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/headless.py",
+      "size": 29158,
+      "sha256": "fe00987fb8c248e63cd9d441714479b050c797aad92894ecb6f3d4069f5cddb2"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/manifest.json",
+      "size": 4416,
+      "sha256": "33fcd94a6c68cccccdeba2f25b6487a6b99e2f5d6d28afec21001ddff88dd73f"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/native_replay_v7/__init__.py",
+      "size": 389,
+      "sha256": "82b496191ffa3ec2761b83bf4de9267089d077b777ee38e4b93ab0cb824c4612"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/native_replay_v7/frame_driver.py",
+      "size": 12318,
+      "sha256": "9d8e361144e353a8d944e4490502c5301e7a92451771d35f22ab48f6277f64fd"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/native_replay_v7/timer_runtime.py",
+      "size": 38705,
+      "sha256": "5b7c14ebb7c7511aa05a3411752c7f3341b925c00de31eedfacf4f9345f4a109"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/native_replay_v8/__init__.py",
+      "size": 618,
+      "sha256": "805cc7035f10e96bfc217ef52f6ac175323ea83c69fb6e678fcd97a5bbcc3d7b"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/native_replay_v8/__main__.py",
+      "size": 1436,
+      "sha256": "b808649da7470e72669ad7639ef01577187e9692e9ade3745e18b0f21eea647a"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/native_replay_v8/compare.py",
+      "size": 38087,
+      "sha256": "4af52ee400acf1460c9e28faf5a760d05753d1de7218a00d4a740712a40fdd22"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/native_replay_v8/engine.py",
+      "size": 239691,
+      "sha256": "632b7f985db980171995fe652091d4ed9823c0d331ae21033ec0bf486db5532a"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/native_replay_v8/genuine.py",
+      "size": 246253,
+      "sha256": "0592caf8baa0221d94235a9d2eef4355f9dabc1bfbb690ee2548d5f5613ee484"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/native_replay_v8/histories.py",
+      "size": 8508,
+      "sha256": "d9b3f270b53f328f5958647fdaba86532ff3d9db11b272d9a7d0d2aef1db0b05"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/native_replay_v8/observed.py",
+      "size": 2323,
+      "sha256": "0a04fb2b03e48cd1cd9a3e43425deddef56c7906105dadeaefafa81ac84a6fd1"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/native_replay_v8/randomness.py",
+      "size": 7063,
+      "sha256": "676d42a69937394dc1bd8ff23268a08dc41fe9604f7e56213bb968ab331b9139"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/native_replay_v8/state.py",
+      "size": 15114,
+      "sha256": "21478fecea4c888f701ff8991fb2cf75519670c602ed2bd9d17874e238c54bd1"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/original_rng.py",
+      "size": 2439,
+      "sha256": "5f7024f6c3dbbb2b105962a79a8bf39db40b3fa87bd9c115f2dd578b8082d60e"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/source-lineage.json",
+      "size": 8280,
+      "sha256": "08249b413150ee0d5860175e83a4e59c9bbe3de8cb8224b88ca7f78cf9b3129b"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/verify_manifest.py",
+      "size": 6296,
+      "sha256": "d60b23f7764660c1097e8f7991d18a23cd894989e7114f8c7eba93b93b0614e4"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/formal68/godot_pcg_integer.py",
+      "size": 2198,
+      "sha256": "c084075fdb566b91348ed5a5776d3808b161c23da144e8f5db33e5b48cd694ca"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/formal68/headless.py",
+      "size": 17832,
+      "sha256": "2e64fd0db31139ba47092ffd07616a7dd01b2994771695cb674cdc1f079fff79"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/formal68/native_replay_v7/__init__.py",
+      "size": 389,
+      "sha256": "82b496191ffa3ec2761b83bf4de9267089d077b777ee38e4b93ab0cb824c4612"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/formal68/native_replay_v7/frame_driver.py",
+      "size": 12318,
+      "sha256": "9d8e361144e353a8d944e4490502c5301e7a92451771d35f22ab48f6277f64fd"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/formal68/native_replay_v7/timer_runtime.py",
+      "size": 38705,
+      "sha256": "5b7c14ebb7c7511aa05a3411752c7f3341b925c00de31eedfacf4f9345f4a109"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/formal68/native_replay_v8/__init__.py",
+      "size": 618,
+      "sha256": "805cc7035f10e96bfc217ef52f6ac175323ea83c69fb6e678fcd97a5bbcc3d7b"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/formal68/native_replay_v8/__main__.py",
+      "size": 1436,
+      "sha256": "b808649da7470e72669ad7639ef01577187e9692e9ade3745e18b0f21eea647a"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/formal68/native_replay_v8/compare.py",
+      "size": 38042,
+      "sha256": "78c4ddb8258d464d2d4a4744478c3d175f8e6e07dae0a9b6962e17224ce648ec"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/formal68/native_replay_v8/engine.py",
+      "size": 184499,
+      "sha256": "0befa2a3a0287b77c24b0a2874af1f2155f38a8e499b4c8e81e6feeb56b41177"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/formal68/native_replay_v8/genuine.py",
+      "size": 212844,
+      "sha256": "1939b8ef1630a5f01f5564e675e466ecdca098b67180fff2fc6815a0ade4a718"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/formal68/native_replay_v8/histories.py",
+      "size": 8508,
+      "sha256": "d9b3f270b53f328f5958647fdaba86532ff3d9db11b272d9a7d0d2aef1db0b05"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/formal68/native_replay_v8/observed.py",
+      "size": 2323,
+      "sha256": "0a04fb2b03e48cd1cd9a3e43425deddef56c7906105dadeaefafa81ac84a6fd1"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/formal68/native_replay_v8/randomness.py",
+      "size": 7063,
+      "sha256": "676d42a69937394dc1bd8ff23268a08dc41fe9604f7e56213bb968ab331b9139"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/formal68/native_replay_v8/state.py",
+      "size": 14798,
+      "sha256": "0b5a60ac2ade5eda6293e16498691d9d449f49be2cfa221139f4c3e6eff410cf"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/formal68/original_rng.py",
+      "size": 2439,
+      "sha256": "5f7024f6c3dbbb2b105962a79a8bf39db40b3fa87bd9c115f2dd578b8082d60e"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/licenses/Apache-2.0.txt",
+      "size": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/licenses/Godot-MIT.txt",
+      "size": 1220,
+      "sha256": "bcbc7af68c505d08c0b84ed80df1e8a6724b48da3b443d81c0a3a1379f8f278c"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/requirements.txt",
+      "size": 118,
+      "sha256": "ca9aa11ca4b6c220d59b3d65729bf9018f588665d15b321a0610a63eefa28535"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/tests/test_publication.py",
+      "size": 4700,
+      "sha256": "72ee5bc216bc855c9026b26808628a682a30252b5ecda2fd1b7324fd8ca2ed95"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/tools/verify_manifest.py",
+      "size": 1448,
+      "sha256": "591bc2101bc162e8f8269965cb258e354ee0f1ddad1db77b356301c16d36dc62"
+    }
+  ],
+  "battle_calls": 0,
+  "Expected_reads": 0,
+  "new_native": 0,
+  "remote_head": "60132963ea8effcf0c2daf1bc2a90deab4a494c2",
+  "negative_probe": {
+    "status": "PASS_ORIGINAL_CLI_REJECTION_ZERO_RNG_MODEL",
+    "error": "uint64 headless seed required",
+    "counts": {
+      "initialize": 1,
+      "CombatRandom.__init__": 0,
+      "Battle.run": 0,
+      "GodotPCGInteger.__init__": 0,
+      "Engine.__init__": 0,
+      "prepare": 0,
+      "activate": 0,
+      "Engine.run": 0,
+      "Engine.step": 0
+    },
+    "loaded_modules": {
+      "godot_pcg_integer": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/godot_pcg_integer.py",
+      "original_rng": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/original_rng.py",
+      "native_replay_v7.timer_runtime": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/native_replay_v7/timer_runtime.py",
+      "native_replay_v7": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/native_replay_v7/__init__.py",
+      "native_replay_v7.frame_driver": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/native_replay_v7/frame_driver.py",
+      "native_replay_v8.randomness": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/native_replay_v8/randomness.py",
+      "native_replay_v8.genuine": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/native_replay_v8/genuine.py",
+      "native_replay_v8.histories": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/native_replay_v8/histories.py",
+      "native_replay_v8.state": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/native_replay_v8/state.py",
+      "native_replay_v8.engine": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/native_replay_v8/engine.py",
+      "native_replay_v8": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/native_replay_v8/__init__.py"
+    },
+    "output_created": false,
+    "argv": [
+      "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/headless.py",
+      "--layout",
+      "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/examples/layout-A.json",
+      "--seed",
+      "-1",
+      "--output",
+      "/workspace/python-original-engine/repo/data/phase461-independent-remote-startup-first-001/forbidden-battle-result.json"
+    ]
+  },
+  "elapsed_seconds": 0.5632168809970608
+}
