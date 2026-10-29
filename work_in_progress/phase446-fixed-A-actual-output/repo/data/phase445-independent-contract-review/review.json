@@ -1,0 +1,169 @@
+{
+  "schema": "phase445-independent-prerun-contract-review/1",
+  "status": "B1_AND_B5_PRERUN_SEMANTIC_CONTRACT_ACCEPTED_COMPARISON_IMPLEMENTATION_PENDING",
+  "author_owner": {
+    "path": "data/phase445-business-output-contract/owned-files.json",
+    "size": 847,
+    "sha256": "50bd73c2903f5f1cd5c261f83c250049f29914570b2dc19f8b03aaaccb3a0e92"
+  },
+  "evidence": [
+    {
+      "path": "docs/phase445_business_output_adapter_spec.md",
+      "size": 9398,
+      "sha256": "645e2e52289f7f8bc8c3555ddd94c86c2be5fe3abbbe2bc291192ab3d94429b0"
+    },
+    {
+      "path": "data/phase445-business-output-contract/b1-source-proof.json",
+      "size": 16214,
+      "sha256": "d7851d124a9f1754fa20d07baecbbe774c653b3d95c21d71a2c3f4aaec882b44"
+    },
+    {
+      "path": "data/phase445-business-output-contract/contract.json",
+      "size": 4664,
+      "sha256": "d7c6b97de2c966fb207da8fc16ac0030bb0560f3fb1299356611c07ffb697f09"
+    },
+    {
+      "path": "data/phase445-business-output-contract/source-pins.json",
+      "size": 3378,
+      "sha256": "21db7244a7df676d4f44c6f22d1dde29218cf35b862e5b99c8e92647e4d16768"
+    }
+  ],
+  "B1": {
+    "status": "ACCEPTED_FIXED_A_SOURCE_CONSUMER_DOMAIN",
+    "checks": {
+      "native_function_pins": 23,
+      "native_physical_files": 10,
+      "conserved443_function_AST_hashes": 10,
+      "drift": []
+    },
+    "fixed_input_inspection": {
+      "bundle_sha256": "c87525f35adf8fa3793cc5d1440dff420dc55f3a24c77e520766b01e8963ae2c",
+      "additional_bundle_reads": 1,
+      "below_master": true,
+      "P_HP": 360.0,
+      "O_HP": 380.0,
+      "stamina": 5.0,
+      "character_class": 0,
+      "King": {
+        "identity": "P:12",
+        "top_left": [
+          2,
+          1
+        ],
+        "orientation": 0
+      },
+      "fresh_star_points": [
+        [
+          1,
+          1
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "fresh_listener_order": [
+        "P:13",
+        "P:16",
+        "P:14",
+        "P:15",
+        "P:17"
+      ],
+      "current_prepared_order": [
+        "P:13",
+        "P:14",
+        "P:15",
+        "P:16",
+        "P:17"
+      ],
+      "empty_food_and_potion_caches": 10
+    },
+    "reasoning": [
+      "Native getAffectedItems branches on cachedAffectedItems.empty. Goobert.prepare connects before parent Item.prepare populates cached arrays.443 uses fresh ordered-star scan while cache_prepared=false, then eager current-target cache afterward. Native empty cachedAffectedItems is not equated with eager model currentAffectedItems.",
+      "King precedes affected later items in fixed P load order, so current cache appends P13,P14,P15,P16,P17. Fresh star scan first encounters swordP16 at4,1 and suppresses duplicate4,2, yielding P13,P16,P14,P15,P17. Actual fixture positions and Source star offsets independently read; no model invocation for this proof.",
+      "Eight Blueberries exclude same descriptors and each side has one isolated Potion: remaining10 caches empty independently of O load order. No O King or gem introduced.",
+      "Character.prepare resets four RNGs then applies actual below-master biases; Item.prepare resets chance/damageRange before selected use. Constructor/off-clock RNG histories are not claimed native-equal. Shared default healthMultiplier100 and fixed no-rage-starter/auto-rage domain reuse existing accepted rule/fixture closure.",
+      "King charge3 and state0 history precede Goobert.prepare.33Timer/Character initial proofs reused, not recaptured. Fixed-A Source consumer equivalence does not assert arbitrary fresh native history or all prior-battle states."
+    ]
+  },
+  "B5": {
+    "status": "PRE_RUN_CONTRACT_ACCEPTED",
+    "sections": [
+      "events",
+      "event_references",
+      "histories",
+      "rng",
+      "final",
+      "callbacks",
+      "timer_api",
+      "cuts"
+    ],
+    "scope": "Complete ordered business events/parent closure/histories, all365 typed selected primitive records and terminal RNG/business state,33Timer public/API transitions, sampled callbacks through terminal and full first-eligible-idle barrier. Exact types/BE64 and ordering remain strict.",
+    "partition": [
+      "107 observer debug method sites remain coverage disclosure, not107 independent semantic targets. No sampled return fabricated; all actual business effects/logs/typed API/callback order mandatory.",
+      "41 Source-only no-op ordinary slots use accepted B2; do not invent native callback samples. Unknown observed callbacks must fail.",
+      "Only established116 presentation counterparts and two named King display Timer roles excluded; no broad substring/status/value-dependent exclusion.",
+      "Later native private Timer is NOT_EXPOSED; model private remains diagnostic, distinct from initial Source proof.",
+      "HealthPotion.isFull must come from same-instance potion_full typedBOOL in output projection, never guessed or written into gameplay.",
+      "Full441clock plus actual cleanup/final cuts constrain terminal; footer never seeds/stops model."
+    ],
+    "gate_split": {
+      "before_model": "B1 and this frozen complete semantic contract satisfy their pre-run gates alongside accepted INPUT/candidate/interfaces/B2. Root owns actual-run release.",
+      "before_comparison": "Adapter Source and new function controls plus external source/input/result/provenance checks and sealed actual output must be accepted before EXPECTED is opened/compared.",
+      "no_behavior_dependency": "Standalone output adapter is designed without model/input mutation or invocation; its unfinished implementation is a comparison gate, not an uncovered candidate input/behavior dependency."
+    },
+    "implementation_status": "NOT_YET_REVIEWED_NO_ADAPTER_CALLS"
+  },
+  "related_acceptances": [
+    {
+      "path": "data/phase444-independent-b2-review/review.json",
+      "size": 5883,
+      "sha256": "6fd0cee7140edd8771257d071a3cb92f24bf319ebd2abcc3175e758ebab73945"
+    },
+    {
+      "path": "data/phase444-independent-interface-acceptance/review.json",
+      "size": 6814,
+      "sha256": "93ff1e404340632946c8fda3316dd1b8d180289ca2127391a8a2c4c4d0170eb7"
+    },
+    {
+      "path": "data/phase446-independent-runner-review/review.json",
+      "size": 3178,
+      "sha256": "710ce8ff20ca55f97220bb0f0818f7bf949acd2b7c0f7a3e0ef1e321b50a5c14"
+    }
+  ],
+  "remaining": [
+    "No actual model run/output comparison in this review.",
+    "Never narrow frozen contract after observing differences; preserve first mismatch and use new immutable repair Source when required.",
+    "G02 native/source dispatch,conditionalTape,815 public-redaction and reconstructed-old-report limitations remain."
+  ],
+  "activity": {
+    "candidate_imports": 0,
+    "model_calls": 0,
+    "adapter_calls": 0,
+    "EXPECTED_reads": 0,
+    "raw_original12_reads": 0,
+    "original_UI_reads": 0,
+    "new_native": 0,
+    "old_controls": 0,
+    "accepted441_bundle_reads_for_new_B1": 1,
+    "metadata_seal_first_attempt": "KeyError on owner files vs payloads before any output; corrected metadata key only, no candidate/control execution"
+  },
+  "model_release": false,
+  "King_admitted": false
+}

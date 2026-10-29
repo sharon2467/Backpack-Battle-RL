@@ -1,0 +1,75 @@
+{
+  "schema": "phase446-root-one-fixed-model-release/1",
+  "utc": "2026-10-29T02:49:37.695545+00:00",
+  "status": "RELEASE_ONE_OFFLINE_FIXED_CASE_RUN_NOT_COMPARISON",
+  "source_and_evidence": [
+    {
+      "path": "data/phase443-pure-candidate-source/owned-files.json",
+      "size": 5487,
+      "sha256": "cc3e87254a020a16afb64834ad10be8c5f3db118ac0c48f73ac35b85dfafc6d4"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/candidate-source-freeze.json",
+      "size": 4466,
+      "sha256": "b5a87cbaab96e859368fdc5a037889c5931908d429e3551a612c732af5e0d68a"
+    },
+    {
+      "path": "data/phase441-fixed-A-input-first-001/input-bundle.json",
+      "size": 539534,
+      "sha256": "c87525f35adf8fa3793cc5d1440dff420dc55f3a24c77e520766b01e8963ae2c"
+    },
+    {
+      "path": "data/phase444-independent-interface-acceptance/review.json",
+      "size": 6814,
+      "sha256": "93ff1e404340632946c8fda3316dd1b8d180289ca2127391a8a2c4c4d0170eb7"
+    },
+    {
+      "path": "data/phase444-independent-b2-review/review.json",
+      "size": 5883,
+      "sha256": "6fd0cee7140edd8771257d071a3cb92f24bf319ebd2abcc3175e758ebab73945"
+    },
+    {
+      "path": "data/phase445-independent-contract-review/review.json",
+      "size": 7310,
+      "sha256": "80c8d0e051859fba93e42110cd6477ce6aee6153befb27f5bba0cf215d921a78"
+    },
+    {
+      "path": "data/phase445-business-output-contract/contract.json",
+      "size": 4664,
+      "sha256": "d7c6b97de2c966fb207da8fc16ac0030bb0560f3fb1299356611c07ffb697f09"
+    },
+    {
+      "path": "data/phase446-independent-runner-review/review.json",
+      "size": 3178,
+      "sha256": "710ce8ff20ca55f97220bb0f0818f7bf949acd2b7c0f7a3e0ef1e321b50a5c14"
+    },
+    {
+      "path": "tests/phase446_fixed_case_python_run.py",
+      "size": 8987,
+      "sha256": "3e5fc91e69aabf9eb5f800d257980919c95c2971dd52310219fb0d7d0e3465b8"
+    }
+  ],
+  "gates": {
+    "B1": "ACCEPTED_FIXED_SOURCE_CONSUMER_EQUIVALENCE",
+    "B2": "ACCEPTED_FIXED_SHARED_CALLBACK_DOMAIN",
+    "B3_B4": "31_NEW_INTERFACES_ACCEPTED",
+    "B5": "FROZEN_8_SECTION_SEMANTIC_CONTRACT_ACCEPTED; adapter code/control acceptance still required before comparison"
+  },
+  "command": [
+    "python",
+    "-I",
+    "-B",
+    "tests/phase446_fixed_case_python_run.py",
+    "--candidate-freeze",
+    "data/phase443-pure-candidate-source/candidate-source-freeze.json",
+    "--output",
+    "data/phase446-fixed-A-model-first-001"
+  ],
+  "new_full_model_runs_allowed": 1,
+  "new_original_capture": 0,
+  "EXPECTED_reads_allowed_during_model": 0,
+  "result_seal_required_before_EXPECTED": true,
+  "automatic_retry": false,
+  "formal_support": 75,
+  "King_admitted": false
+}
