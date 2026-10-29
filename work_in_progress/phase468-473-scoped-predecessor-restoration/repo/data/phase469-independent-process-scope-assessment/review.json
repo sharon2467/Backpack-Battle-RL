@@ -1,0 +1,250 @@
+{
+  "schema": "phase469-independent-process-scope-assessment/1",
+  "status": "BOUNDED_OPERATIONAL_GUARD_CORRECTION_SUPPORTED_SOURCE_CHANGE_PENDING",
+  "first_restore_failure": {
+    "path": "data/phase469-actual-predecessor-restore-001/result.json",
+    "size": 2465,
+    "sha256": "345722c2c767d25e36234cb7634fb58c7112a04cd5633fb80fff72df4924a89d"
+  },
+  "existing_permission_diagnostic": {
+    "path": "data/phase469-root-predecessor-restore/process-permission-diagnostic.json",
+    "size": 2615,
+    "sha256": "6f47a15bc2dfa94d746a7d2e99c7fb7e31b1542ed08417dcfe1df61f702e424c"
+  },
+  "source_refs": [
+    {
+      "path": "tests/native_run_compaction.py",
+      "size": 27304,
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260"
+    },
+    {
+      "path": "tests/phase391_oracle_storage.py",
+      "size": 20410,
+      "sha256": "a443a0e8572e5a079bb106f6940d1d0d5b1e8a6fe59ab0bf9e85212d20e21718"
+    },
+    {
+      "path": "tests/phase464_oracle_storage.py",
+      "size": 21560,
+      "sha256": "56368d5c594cf80289438634840091883161274f9386abf40d0b90d22d4c62fd"
+    },
+    {
+      "path": "tests/phase363_oracle_process.py",
+      "size": 13665,
+      "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f"
+    },
+    {
+      "path": "tests/phase468_independent_predecessor_readback.py",
+      "size": 25137,
+      "sha256": "93d960d2e52f72f57073827dfe7ee5eb8d349a683eaea3e22be1e23c684f4600"
+    },
+    {
+      "path": "tests/phase469_restore_fixed_predecessor.py",
+      "size": 25553,
+      "sha256": "f72f82bb39db93c1acace29c1a2634e47b428dc8a62866f2f21d8255ad867416"
+    }
+  ],
+  "conclusion": "The platform PermissionError gaps are real. Requiring process_inspection_complete=true and gaps=[] as a prerequisite for this fixed restoration/readback is a new468/469 predicate, absent from accepted operational check_ready/lease. It overextends the task from scoped pool ownership into platform-wide visibility. Removing that extra predicate under the existing operational scope is not overriding platform permissions or changing the business comparison contract.",
+  "source_reasoning": [
+    "c.process_check raises for observed active pool references; it returns inspection_gaps and process_inspection_complete=false without raising merely for cwd/fd/maps PermissionError.",
+    "391/464 check_ready function bytes are identical: after physical/evidence checks it calls c.process_check(pool), without a complete/gaps predicate. lease relies on that check under exclusive flock; archive_streaming likewise calls the existing check.",
+    "469 no_process and468 readback.no_process separately add complete=true/gaps=[] conjunctions. The first469 failure is at that new predicate before write_phase; all file/directory/state/READY writes remain0.",
+    "A globally readable process snapshot is not itself a concurrency lock. The existing operational bound is the shared exclusive pool lock, one coordinator-managed attempt, monitor cleanup of its own spawned session/group, readable-reference rejection and exact preimage/full physical readbacks."
+  ],
+  "diagnostic_observation": {
+    "active_matches": [],
+    "inspection_gaps_count": 24,
+    "gapped_pids": [
+      1,
+      2,
+      3,
+      124,
+      176,
+      445,
+      18702,
+      18704
+    ],
+    "process_inspection_complete": false,
+    "prune_eligible": false
+  },
+  "saved_monitor_process_evidence": [
+    {
+      "source": {
+        "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/parse-monitor-result.json",
+        "size": 2962,
+        "sha256": "7dda10250a250f8981914a4849fced8d94da4d530f5e27ca7db3c09849c05665"
+      },
+      "scope": "GENERIC_SUBPROCESS_MONITOR_ONLY_NOT_ORACLE_OR_CAPTURE",
+      "exit_code": 0,
+      "process_clean_exit": true,
+      "abort_reason": null,
+      "cleanup": {
+        "after": [
+          {
+            "live": false,
+            "pid": 18070,
+            "state": "Z"
+          }
+        ],
+        "before": [
+          {
+            "live": false,
+            "pid": 18070,
+            "state": "Z"
+          }
+        ],
+        "duration_seconds": 0.006053896002413239,
+        "kill_grace_seconds": 0.5,
+        "kill_sent": false,
+        "leader_returncode": 0,
+        "live_remaining": [],
+        "pgid": 18060,
+        "term_grace_seconds": 5.0,
+        "term_sent": true,
+        "zombies_not_claimed_reaped": [
+          18070
+        ]
+      }
+    },
+    {
+      "source": {
+        "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/parse-process-result.json",
+        "size": 3029,
+        "sha256": "36ef41038f415b9dd58f7d7d57aeea39fd9d3319c4373a80d92d450a75c79e96"
+      },
+      "scope": "FIXED_REAL_GODOT_CHECK_ONLY_WRAPPER",
+      "exit_code": 0,
+      "process_clean_exit": true,
+      "abort_reason": null,
+      "cleanup": {
+        "after": [
+          {
+            "live": false,
+            "pid": 18070,
+            "state": "Z"
+          }
+        ],
+        "before": [
+          {
+            "live": false,
+            "pid": 18070,
+            "state": "Z"
+          }
+        ],
+        "duration_seconds": 0.006053896002413239,
+        "kill_grace_seconds": 0.5,
+        "kill_sent": false,
+        "leader_returncode": 0,
+        "live_remaining": [],
+        "pgid": 18060,
+        "term_grace_seconds": 5.0,
+        "term_sent": true,
+        "zombies_not_claimed_reaped": [
+          18070
+        ]
+      }
+    },
+    {
+      "source": {
+        "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/native-monitor-result.json",
+        "size": 31949,
+        "sha256": "37dd65e1120c3298ab1effec88f872006045e086d623eec61e14be545b4ac99f"
+      },
+      "scope": "GENERIC_SUBPROCESS_MONITOR_ONLY_NOT_ORACLE_OR_CAPTURE",
+      "exit_code": 0,
+      "process_clean_exit": true,
+      "abort_reason": null,
+      "cleanup": {
+        "after": [
+          {
+            "live": false,
+            "pid": 18129,
+            "state": "Z"
+          }
+        ],
+        "before": [
+          {
+            "live": false,
+            "pid": 18129,
+            "state": "Z"
+          }
+        ],
+        "duration_seconds": 0.007186277995060664,
+        "kill_grace_seconds": 0.5,
+        "kill_sent": false,
+        "leader_returncode": 0,
+        "live_remaining": [],
+        "pgid": 18119,
+        "term_grace_seconds": 5.0,
+        "term_sent": true,
+        "zombies_not_claimed_reaped": [
+          18129
+        ]
+      }
+    },
+    {
+      "source": {
+        "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/native-process-result.json",
+        "size": 32008,
+        "sha256": "44a76085a04441d6fdfe9dc1296f25604f4e0c3260d8bebac43cd6c870e8ec58"
+      },
+      "scope": "FIXED_REAL_ORACLE_WRAPPER",
+      "exit_code": 0,
+      "process_clean_exit": false,
+      "abort_reason": null,
+      "cleanup": {
+        "after": [
+          {
+            "live": false,
+            "pid": 18129,
+            "state": "Z"
+          }
+        ],
+        "before": [
+          {
+            "live": false,
+            "pid": 18129,
+            "state": "Z"
+          }
+        ],
+        "duration_seconds": 0.007186277995060664,
+        "kill_grace_seconds": 0.5,
+        "kill_sent": false,
+        "leader_returncode": 0,
+        "live_remaining": [],
+        "pgid": 18119,
+        "term_grace_seconds": 5.0,
+        "term_sent": true,
+        "zombies_not_claimed_reaped": [
+          18129
+        ]
+      }
+    }
+  ],
+  "minimal_immutable_correction": [
+    "Preserve original468/469 Source, failed run and diagnostic. New versions change only scoped process-guard expectation/reporting and necessary identity/config bindings; no automatic retry.",
+    "Keep original c.process_check unchanged and call it under the same exclusive lock before and after. Any readable active match or actual scanner exception continues to fail. Keep raw returned gaps and complete flag intact; never synthesize complete=true or clear gaps.",
+    "Bind the existing actual parse/native monitor cleanup records by exact paths/SHA in the fixed Source/request. Require actual leader completion and live_remaining=[] with internally consistent after/live flags. Retain zombies_not_claimed_reaped. Do not require or assert native process_clean_exit=true: actual wrapper says false, while monitor says true.",
+    "Record process_guard_scope as exclusive-lock/readable-references/pinned-own-session-cleanup, plus global_visibility_complete from the real scan. No PID allowlist, system-PID exemption, privilege escalation, safety change or expanded proc research.",
+    "Preserve every Source/config/target/preimage/atomic/fsync/directory/state guard, full baseline/project/staged/retained/driver/bundle/provenance equality, first-error retention and Root-only final READY commit. Business eight sections and native outcome acceptance remain unchanged."
+  ],
+  "limits": [
+    "Saved diagnostics establish unreadable cwd/fd/maps, not proof those hidden processes have no pool references. System/supervisor labels do not turn invisible state into negative evidence.",
+    "Monitor cleanup concerns its spawned process group/session; _group_members skips unavailable stat entries, and does not prove arbitrary detached descendants or every platform process absent. Leaders completed and recorded remaining entries are zombies, not claimed reaped.",
+    "The bounded correction is sufficient for the previously accepted cooperative pool operational domain with coordinator ownership. It is not a guarantee against an arbitrary hidden noncooperating writer. If global visibility is made a separate requirement, current permissions do not establish it.",
+    "This assessment makes no new current-process or physical-restoration observation. Actual global complete remains false in the saved diagnostic. Pool must stay failed/PENDING until a new explicitly released restoration and independent scoped physical readback succeed."
+  ],
+  "reviewer_acknowledgement": "My earlier468 design and469 static acceptance added/accepted the overbroad global completeness prerequisite. Correct the scope explicitly in immutable versions rather than treating the platform as malfunctioning or reporting a restoration/engine defect.",
+  "counts": {
+    "saved_process_metadata_distinct_files_read": 4,
+    "saved_failure_and_diagnostic_files_read": 2,
+    "actual_proc_scans": 0,
+    "actual_pool_reads_or_writes": 0,
+    "restore_calls": 0,
+    "module_imports": 0,
+    "native": 0,
+    "models": 0,
+    "Expected_semantic_decoding": 0
+  },
+  "no_source_changed": true,
+  "no_execution_release_implied": true
+}

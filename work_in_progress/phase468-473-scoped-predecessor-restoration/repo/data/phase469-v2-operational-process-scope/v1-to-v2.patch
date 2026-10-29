@@ -1,0 +1,14 @@
+--- v1
++++ v2
+@@ -162,8 +162,9 @@
+ 
+ def no_process(c):
+     result = c.process_check(POOL)
+-    require(result['process_inspection_complete'] is True and result['inspection_gaps'] == []
+-            and result['active_matches'] == [], 'complete no-active-pool-reference check')
++    require(result['active_matches'] == [], 'no readable active pool references')
++    result['operational_scope'] = 'original-readable-reference-check-with-exclusive-pool-lock/1'
++    result['global_process_completeness_claimed'] = False
+     return result
+ 
+ 

@@ -1,0 +1,68 @@
+{
+  "schema": "phase468-independent-readback-source-context/1",
+  "script": {
+    "path": "tests/phase468_independent_predecessor_readback.py",
+    "size": 25137,
+    "sha256": "93d960d2e52f72f57073827dfe7ee5eb8d349a683eaea3e22be1e23c684f4600"
+  },
+  "spec": {
+    "path": "docs/phase468_independent_predecessor_readback_spec.md",
+    "size": 8163,
+    "sha256": "5fa028d1a7f78d206ea40cd84f414c69ce99efad48db0fd0983105cb059fe264"
+  },
+  "compaction_source": {
+    "path": "tests/native_run_compaction.py",
+    "size": 27304,
+    "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260"
+  },
+  "selected_readonly_function_segment_sha256": {
+    "load_bundle": "b1128d98056e906fee6255791b563852bba544fa2aac6666c9a0b8cf9b3c2ffd",
+    "inventory": "283d0a4c2ff203e2cbf61469aef4b626b386c6c10f1ab0c08ee0181fe300175f",
+    "retained": "24cca93288924fc2a51327628c6e11d846a06a6b02cbd15c5ce33b24c47dfa7e",
+    "process_check": "12698469d54ee5ebeca85f17fa4504232994e05d9a5833fd617a5e5440709f48",
+    "index": "b03acba53e832b1581a06acd816aee46705520175a24103d6a1aea15cd1a18cd",
+    "overlay_plan": "ddd45842739ee7fd156d8ae559812bacfd0ea063861a65c30d3561ea4cb632b3",
+    "validate_archive": "922571986f7caa7bf006fd787f93014aaea851204000fa86c9ff0a788aa891bb",
+    "digest": "601f1847648bd91cdefe8a4198232ecdbe83aeb3b6d4ce8826da3e7451174481",
+    "read": "ee1455dc9dd6ad26cd1947eca5c2c5ed8c824d6509daab38424bf08f40ed1ae8",
+    "require": "570ace48effbcffbb325b4bdc4424b575500114187d28c59c86b8870081e9f76",
+    "safe_path": "870013124a076a28001db58595cb6e9eb02ad6eb2d409777559980a42640c5d0",
+    "stamp": "9436394125f8796bd1a45790a73e5dd3f37a7c4dd59eaeaa054b85469d3e05d1"
+  },
+  "restoration_contract": {
+    "path": "data/phase464-joint-oracle-host-source-v2/restoration-contract.json",
+    "size": 1468,
+    "sha256": "adbd6cb37f644d37744c4bef55e7bdeb35b0979b3f7ddd8d817052cd394e10d7"
+  },
+  "host": {
+    "path": "tests/phase464_oracle_host_v2.py",
+    "size": 41285,
+    "sha256": "0c7397d099ebcdd5d7b4aeed0eb0615a9d929a5fed4dd35766eb6da98731ba9f"
+  },
+  "storage": {
+    "path": "tests/phase464_oracle_storage.py",
+    "size": 21560,
+    "sha256": "56368d5c594cf80289438634840091883161274f9386abf40d0b90d22d4c62fd"
+  },
+  "prior_host_acceptance": {
+    "path": "data/phase465-independent-host-source-acceptance/review.json",
+    "size": 8057,
+    "sha256": "91e9a438f780314ebe7093f9d1dc5280237da6d81858e1875972ac7409b35890"
+  },
+  "scope": "Fixed future readonly predecessor physical check, exact existing bundle/inventory/retained/process helpers. Does not call host/storage or check_ready. No restore writer or second Game tree.",
+  "source_preparation_counts": {
+    "discarded_compile_objects": 1,
+    "module_imports": 0,
+    "helper_calls": 0,
+    "actual_pool_reads": 0,
+    "process_scans": 0,
+    "native": 0,
+    "models": 0,
+    "Expected_semantic_decoding": 0,
+    "old_capture_physical_hash_reads": 0
+  },
+  "future_read_disclosure": "c.retained(previous) physically hashes old original capture bytes, possibly Expected-bearing files, with semantic decode0. Report actual opened paths and inventory byte totals; never claim total reads0.",
+  "future_retained_limits": "Exact existing c.retained representation: generated output exclusions and root outputmtime omission, relaxed legacy user-special rows. Baseline/project/staged use strict full inventory including directories.",
+  "known_pending": "Root must supply all actual evidence pins after restore. Current Source cannot certify native capture, restore completeness or READY.",
+  "no_execution_or_tests_performed": true
+}

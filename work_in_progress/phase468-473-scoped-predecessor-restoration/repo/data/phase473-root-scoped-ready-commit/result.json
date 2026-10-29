@@ -1,0 +1,265 @@
+{
+  "schema": "phase473-scoped-ready-commit/1",
+  "global_process_completeness_claimed": false,
+  "global_visibility_gaps_retained_in_readback": true,
+  "process_scope": "Only actual spawned groups/owned leaders and members; host completion and exclusive pool lock",
+  "evidence_assembled_utc": "2026-10-29T08:01:02.375848+00:00",
+  "independent_acceptance": {
+    "path": "/workspace/python-original-engine/repo/data/phase468-independent-final-readback-acceptance/review.json",
+    "size": 9960,
+    "sha256": "5169f49247a992090d7d82cd6afccf8bdfa6b01bc71215ae26f589adcfcb0155"
+  },
+  "readback": {
+    "path": "/workspace/python-original-engine/repo/data/phase468-independent-predecessor-readback-v2-001/result.json",
+    "size": 3610650,
+    "sha256": "b01a38933b2b63366383cc37d5a3e258f0b15d3318cff6b0ea6dda2bc0d3fa10"
+  },
+  "restore": {
+    "path": "/workspace/python-original-engine/repo/data/phase469-actual-predecessor-restore-v2-001/result.json",
+    "size": 7214,
+    "sha256": "e1bb2e0ac09a00c18f5510f3f8c5c4ec4fb56d99ab548b094ae7c147da77f8d5"
+  },
+  "host_returned": {
+    "path": "/workspace/python-original-engine/repo/data/phase467-root-native-king-basic-001/execute-returned.json",
+    "size": 128,
+    "sha256": "3f6e5e330aa18decdf193fe4a886eb4dcab2680c0f523d410894e373cb919109"
+  },
+  "saved_process_records": [
+    {
+      "descriptor": {
+        "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/parse-monitor-result.json",
+        "size": 2962,
+        "sha256": "7dda10250a250f8981914a4849fced8d94da4d530f5e27ca7db3c09849c05665"
+      },
+      "pgid": 18060,
+      "leader_returncode": 0,
+      "live_remaining": [],
+      "zombies_not_claimed_reaped": [
+        18070
+      ],
+      "record_mtime_ns": 1793257949517338297
+    },
+    {
+      "descriptor": {
+        "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/native-monitor-result.json",
+        "size": 31949,
+        "sha256": "37dd65e1120c3298ab1effec88f872006045e086d623eec61e14be545b4ac99f"
+      },
+      "pgid": 18119,
+      "leader_returncode": 0,
+      "live_remaining": [],
+      "zombies_not_claimed_reaped": [
+        18129
+      ],
+      "record_mtime_ns": 1793258045883630820
+    },
+    {
+      "descriptor": {
+        "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/parse-process-result.json",
+        "size": 3029,
+        "sha256": "36ef41038f415b9dd58f7d7d57aeea39fd9d3319c4373a80d92d450a75c79e96"
+      },
+      "pgid": 18060,
+      "leader_returncode": 0,
+      "live_remaining": [],
+      "zombies_not_claimed_reaped": [
+        18070
+      ],
+      "record_mtime_ns": 1793257949519027080
+    },
+    {
+      "descriptor": {
+        "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/native-process-result.json",
+        "size": 32008,
+        "sha256": "44a76085a04441d6fdfe9dc1296f25604f4e0c3260d8bebac43cd6c870e8ec58"
+      },
+      "pgid": 18119,
+      "leader_returncode": 0,
+      "live_remaining": [],
+      "zombies_not_claimed_reaped": [
+        18129
+      ],
+      "record_mtime_ns": 1793258045885627214
+    }
+  ],
+  "READY_writes": 1,
+  "project_data_writes": 0,
+  "new_original_or_model": 0,
+  "actual_lock": {
+    "pid": 19633,
+    "fd": 3,
+    "device": 27,
+    "inode": 1966152,
+    "exclusive_nonblocking_acquired": true
+  },
+  "targeted_owned_PID_observations": [
+    {
+      "pid": 18060,
+      "observation": "absent"
+    },
+    {
+      "pid": 18070,
+      "state": "Z",
+      "starttime": "4471569",
+      "observation": "zombie, not reaped and not an executing writer"
+    },
+    {
+      "pid": 18119,
+      "observation": "absent"
+    },
+    {
+      "pid": 18129,
+      "state": "Z",
+      "starttime": "4471990",
+      "observation": "zombie, not reaped and not an executing writer"
+    }
+  ],
+  "status": "EXACT_PREDECESSOR_READY_COMMITTED_AFTER_INDEPENDENT_PHYSICAL_PASS_AND_SCOPED_WRITER_PROOF",
+  "ready_state": {
+    "path": "/workspace/native-combat-20261013/pool/state.json",
+    "size": 4243,
+    "sha256": "e92ce49332709fe5cf71665b8add0f2ee47acaff4a04c5318f9d06ff0a543431"
+  },
+  "actual_ready": {
+    "bundle_inventory": {
+      "entries": [
+        {
+          "kind": "directory",
+          "mode": 448,
+          "mtime_ns": 1793007805372166410,
+          "path": "."
+        },
+        {
+          "kind": "file",
+          "mode": 384,
+          "mtime_ns": 1793007801293312952,
+          "path": "RESTORE-PROJECT.md",
+          "sha256": "3cfc0b9b4210f96a00e9791ce1d6ab295dec02699ada25e77af8293fc273b4bb",
+          "size": 158
+        },
+        {
+          "kind": "file",
+          "mode": 384,
+          "mtime_ns": 1793007801056348679,
+          "path": "baseline-files.json",
+          "sha256": "f12fd0eadad4a5857913532adc4cbe3373ffd08f0c801dd220353b5e5b84337d",
+          "size": 4099473
+        },
+        {
+          "kind": "file",
+          "mode": 384,
+          "mtime_ns": 1793007801312549657,
+          "path": "bundle-manifest.json",
+          "sha256": "fcc84dbd161036f54581138e14eba88395400c5a309d0748fb9287c6b1945c8c",
+          "size": 16804
+        },
+        {
+          "kind": "file",
+          "mode": 384,
+          "mtime_ns": 1793007801135404397,
+          "path": "driver-files.json",
+          "sha256": "62bd0d32208dff7e88e6eb0c2ec2126b0c9e8fc21403e77c9d311530901544e3",
+          "size": 42843
+        },
+        {
+          "kind": "file",
+          "mode": 384,
+          "mtime_ns": 1793007801292558310,
+          "path": "eligibility.json",
+          "sha256": "67f04335868d81ff27910060afc294670cb753374a5775dc09e14d9415df8a4b",
+          "size": 59
+        },
+        {
+          "kind": "directory",
+          "mode": 448,
+          "mtime_ns": 1793007798443381980,
+          "path": "inputs"
+        },
+        {
+          "kind": "file",
+          "mode": 384,
+          "mtime_ns": 1792965393973306148,
+          "path": "inputs/custom_opponent.json",
+          "sha256": "9c57f7781c8ae58027296004262cc0b2b691c25084ea29d8f4171ff44828a689",
+          "size": 1597
+        },
+        {
+          "kind": "file",
+          "mode": 384,
+          "mtime_ns": 1792965393973133147,
+          "path": "inputs/custom_player.json",
+          "sha256": "a42675c3fedb0651e4309754403d5658edcce869f85edb07963e7a2f87391c56",
+          "size": 1676
+        },
+        {
+          "kind": "file",
+          "mode": 384,
+          "mtime_ns": 1792965393973368877,
+          "path": "inputs/native_capture_config.json",
+          "sha256": "dbded47b0896eb3efa859b75aacab673da495a32b845c1e795090969ad76f2c8",
+          "size": 229
+        },
+        {
+          "kind": "file",
+          "mode": 384,
+          "mtime_ns": 1793007801131776571,
+          "path": "overlay-manifest.json",
+          "sha256": "dc24be64750d9eb9705ad877d5181ba658afe3fa8562578df2a28bebf7518795",
+          "size": 5184
+        },
+        {
+          "kind": "file",
+          "mode": 384,
+          "mtime_ns": 1793007798832442027,
+          "path": "overlay.zip",
+          "sha256": "0f0a1ccfb6772a263ffed8e1719a4fa669a9235292d8c9d9ae89a026ee7c8158",
+          "size": 204633
+        },
+        {
+          "kind": "file",
+          "mode": 384,
+          "mtime_ns": 1793007805379307190,
+          "path": "pool-roundtrip.json",
+          "sha256": "c0404cda79c10a5648c1800956eb8032416cdff8c4ac91c63d087723127e49e0",
+          "size": 498
+        },
+        {
+          "kind": "file",
+          "mode": 384,
+          "mtime_ns": 1793007801124345825,
+          "path": "project-files.json",
+          "sha256": "3933f396e2d51fdff9dc4b402b39efd91c6f63be3e9db9a03627ead4707409aa",
+          "size": 4100431
+        },
+        {
+          "kind": "file",
+          "mode": 384,
+          "mtime_ns": 1793007801134088361,
+          "path": "retained-evidence.json",
+          "sha256": "ca589dfdbd025aa6dfd1f85760adbc478b53172a79a9640d33d64572b2498c0b",
+          "size": 94027
+        },
+        {
+          "kind": "file",
+          "mode": 384,
+          "mtime_ns": 1793007801280339277,
+          "path": "source-identities.json",
+          "sha256": "9cf526f1426eafe559533e15a8767ff98d26cf7017aa8f0882f0648a0e0d605e",
+          "size": 8699320
+        },
+        {
+          "kind": "file",
+          "mode": 384,
+          "mtime_ns": 1793007801131108897,
+          "path": "staged-inputs.json",
+          "sha256": "5edc93be775ab2f84375e71fb4dbcf8f3cc2e9d1a8b0e978ac8427673ae46287",
+          "size": 649
+        }
+      ],
+      "schema": "native-run-project-manifest/1"
+    },
+    "run": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06",
+    "status": "ready"
+  },
+  "completed_utc": "2026-10-29T08:01:02.400307+00:00"
+}

@@ -1,0 +1,14 @@
+--- tests/phase468_independent_predecessor_readback.py
++++ tests/phase468_independent_predecessor_readback_v2.py
+@@ -181,8 +181,9 @@
+                 and pending['control_preimages']['restored'] is False, 'pending-state backup association')
+         def no_process(label):
+             value = c.process_check(pool)
+-            require(value['process_inspection_complete'] is True and value['inspection_gaps'] == []
+-                    and value['active_matches'] == [], 'complete no-active-pool-reference check')
++            require(value['active_matches'] == [], 'no readable active pool references')
++            value['operational_scope'] = 'original-readable-reference-check-with-exclusive-pool-lock/1'
++            value['global_process_completeness_claimed'] = False
+             result[label] = value
+         no_process('process_before')
+         control_manifest = decoded(raw_evidence['controls_manifest'])

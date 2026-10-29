@@ -1,0 +1,63 @@
+{
+  "schema": "phase469-v2-independent-delta-review/1",
+  "status": "SOURCE_DELTA_ACCEPTED_FIXED_RESTORE_ROOT_EXECUTION_PENDING",
+  "writer": {
+    "path": "tests/phase469_restore_fixed_predecessor_v2.py",
+    "size": 25605,
+    "sha256": "94dbb8256bab5447f91828a59a255b7e699594337856cf9fce6bd3e1f2921cf3"
+  },
+  "writer_owner": {
+    "path": "data/phase469-v2-operational-process-scope/owned-files.json",
+    "size": 810,
+    "sha256": "119e5a0def5eac71d76bc4e3c68405be104a01f6de1e91dc3984926c6b097954"
+  },
+  "prior_static_review": {
+    "path": "data/phase469-independent-restore-source-review/review.json",
+    "size": 4434,
+    "sha256": "11f91c2a8b829452b86cfc92ace9db2d3eb0662277148245b652599f3280c83c"
+  },
+  "scope_assessment": {
+    "path": "data/phase469-independent-process-scope-assessment/review.json",
+    "size": 10728,
+    "sha256": "76428a1e4b8ec61baf448f5b4f96a58cc8dcd8091544758fcf392458baba300b"
+  },
+  "reader_v2": {
+    "path": "tests/phase468_independent_predecessor_readback_v2.py",
+    "size": 25197,
+    "sha256": "a36960de539f075f04785a1d1e650c82a811ca87aa1f4b3590a770979937feb1"
+  },
+  "reader_v2_owner": {
+    "path": "data/phase468-v2-operational-process-scope/owned-files.json",
+    "size": 853,
+    "sha256": "f041ed4348ff0eac20125752137d3bf785f1be100e2b71058b5ca9f6311db3c7"
+  },
+  "verified": {
+    "writer_owner_payloads": 4,
+    "changed_function": "no_process",
+    "unchanged_functions": 21,
+    "complete_inverse_to_v1": true,
+    "other_nonfunction_bytes_exact": true,
+    "active_matches_rejection_retained": true,
+    "original_visibility_fields_retained": true,
+    "global_process_completeness_claimed": false,
+    "fixed80targets_and_all_physical_checks_unchanged": true,
+    "state_write_absent_and_READY_still_independent_Root_only": true
+  },
+  "decision": "The only change removes the newly added all-global-readable prerequisite. Existing c.process_check still raises for readable active references under the same exclusive lock. Both immutable versions retain actual gaps/complete fields and add the same honest operational scope. No process/evidence mutation or new observation performed by this review.",
+  "limits": [
+    "Unreadable platform-process references are not proved absent; no global completeness claim.",
+    "Saved own-group cleanup evidence remains bounded and does not turn native process_clean_exit=false into true or zombies into reaped.",
+    "Runtime restoration, scoped full independent physical readback and separate Root READY commit remain pending; this receipt is Source delta acceptance only."
+  ],
+  "counts": {
+    "imports": 0,
+    "helpers": 0,
+    "process_scans": 0,
+    "actual_pool_reads_or_writes": 0,
+    "restore": 0,
+    "reader": 0,
+    "native": 0,
+    "models": 0,
+    "Expected_semantic_decoding": 0
+  }
+}
