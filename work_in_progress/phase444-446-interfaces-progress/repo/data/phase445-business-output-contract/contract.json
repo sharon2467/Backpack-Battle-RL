@@ -1,0 +1,88 @@
+{
+  "schema": "phase445-pure-business-output-contract/1",
+  "status": "FROZEN_BEFORE_EXPECTED_FOR_INDEPENDENT_REVIEW",
+  "fixed_profile": "pure-combat-fixed-king-A-input441/1",
+  "native_profile": "observer7-390-native-single-king-A/1",
+  "candidate_source": {
+    "path": "data/phase443-pure-candidate-source/owned-files.json",
+    "size": 5487,
+    "sha256": "cc3e87254a020a16afb64834ad10be8c5f3db118ac0c48f73ac35b85dfafc6d4"
+  },
+  "bundle": {
+    "path": "data/phase441-fixed-A-input-first-001/input-bundle.json",
+    "size": 539534,
+    "sha256": "c87525f35adf8fa3793cc5d1440dff420dc55f3a24c77e520766b01e8963ae2c"
+  },
+  "sections": {
+    "events": "complete ordered events including sequence/id/timestamp BE64/parent/origin/target/type/typed params/snapshot; no sorting/truncation",
+    "event_references": "complete referenced-parent closure, typed identity and event payload; event_reference native_object ids are provenance, event_id is semantic; no invented allocation return",
+    "histories": "all character/stack/itemtooltip/itemmetric/itemstate/global histories, event associations and adjacent compression; retained King state0/1/2 log",
+    "rng": "all365 supplied ordered kinds/labels/typed arguments/conditional returns and complete final4x2 Character+39 Item chance/damage RNG state; no same-seed/global equivalence",
+    "final": "full business native_rule_state/ordered inventory/occupiedCells/fields/stats/22buffs/metrics/rules+game/event_bus/time/winner; add model HealthPotion.isFull from same-instance potion_full",
+    "callbacks": "all sampled business physics/Util idle/33 Timer callback enter sites in actual sequence through terminal, no cleanup truncation or reconstruction;41 Source-only no-op slots disclosed separately",
+    "timer_api": "all33-role typed argc/INT/REAL/API before-after public state/node ID/flags/frame sequence; caller debugsite retained as diagnostic; SourceVOID and helperstatus separate, not sampledreturn",
+    "cuts": "cleanup+first-eligible final33Timer public/nodes/Character invu+origin+protect/King counters/Util and frame clocks/full finite pass exhaustion/cleanup anchor/at-least2 strictly-future physics/first actual eligible idle"
+  },
+  "terminal_fields": {
+    "character_removed": [
+      "characterName",
+      "chibi",
+      "invulBubbleVisible"
+    ],
+    "timer_roles_removed": [
+      "king_hide:P:12",
+      "king_drag:P:12"
+    ],
+    "King_display_removed": [
+      "crown_last_observed_argument",
+      "crown_origin",
+      "particles.activation",
+      "particles.drag",
+      "particles.light_visible",
+      "particles.light_modulate_rgba"
+    ],
+    "retained": "Every events/history/RNG/state/typed Timer field outside exact presentation counterparts; no substring matching or status-dependent exclusion",
+    "private": "Initial Source proof only; later native private_timer_values explicitly NOT_EXPOSED. Preserve model private as model-only diagnostic."
+  },
+  "native_expected_leaf_names": [
+    "events.jsonl",
+    "event_references.json",
+    "histories.json",
+    "final_state.json",
+    "observer7-runtime.jsonl",
+    "king-post-cleanup-source.json",
+    "king-final-source.json",
+    "king-capture-endpoint.json",
+    "king-collector-cut.json"
+  ],
+  "expected_IO": "Only external independent caller after result/source/input SHA seal; adapter accepts decoded values, no filesystem/capture/model/launcher imports",
+  "debug_boundaries": {
+    "observer_sites": 107,
+    "full_method_enter_return_trace": "NOT_CLAIMED; effect-bearing distinctions are checked by frozen event/parent/history/RNG/terminal/Timer/callback projections; sampled BOOL/NIL returns are not fabricated",
+    "model_only_noop_slots": 41,
+    "noop_authority": {
+      "path": "data/phase444-independent-b2-review/review.json",
+      "size": 5883,
+      "sha256": "6fd0cee7140edd8771257d071a3cb92f24bf319ebd2abcc3175e758ebab73945"
+    },
+    "not_compared": "preclock constructor RNG samples, display-only state, generator identity/global advances, native private unobserved; named guard domain only"
+  },
+  "required_model_source_changes": 0,
+  "HealthPotion_mapping": "Require final.items[P:18/O:18].item_index INT19 and potion_full actual bool; merge as isFull into projection only, not engine state or guessed default",
+  "legacy_reuse": [
+    "first_difference",
+    "project_events",
+    "project_histories",
+    "restore_history_json_keys",
+    "strict_json_loads"
+  ],
+  "legacy_entrypoints_forbidden": [
+    "compare_capture",
+    "project_final",
+    "project_particle_timers",
+    "validate_provenance",
+    "compare_callback_schedule"
+  ],
+  "model_release": false,
+  "EXPECTED_reads": 0
+}

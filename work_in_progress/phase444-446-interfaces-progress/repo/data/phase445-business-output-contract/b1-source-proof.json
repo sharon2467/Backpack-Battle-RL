@@ -1,0 +1,446 @@
+{
+  "schema": "phase445-b1-bounded-source-proof/1",
+  "status": "SOURCE_ARGUMENT_FOR_INDEPENDENT_ACCEPTANCE",
+  "fixed_fixture": {
+    "path": "data/phase441-fixed-A-input-first-001/input-bundle.json",
+    "size": 539534,
+    "sha256": "c87525f35adf8fa3793cc5d1440dff420dc55f3a24c77e520766b01e8963ae2c"
+  },
+  "cache_consumers": {
+    "count": 11,
+    "prepared_caches": {
+      "P:13": [],
+      "P:14": [],
+      "P:15": [],
+      "P:17": [],
+      "P:18": [],
+      "O:13": [],
+      "O:14": [],
+      "O:15": [],
+      "O:17": [],
+      "O:18": [],
+      "P:12": [
+        "P:13",
+        "P:14",
+        "P:15",
+        "P:16",
+        "P:17"
+      ]
+    },
+    "king_fresh_listener_order": [
+      "P:13",
+      "P:16",
+      "P:14",
+      "P:15",
+      "P:17"
+    ],
+    "king_star_scan_points": [
+      [
+        1,
+        1
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        4,
+        3
+      ]
+    ],
+    "king_current_dictionary_order": [
+      "P:13",
+      "P:14",
+      "P:15",
+      "P:16",
+      "P:17"
+    ],
+    "king_duplicate_sword_cell": "P:16 occupies4,1 and4,2; source getItemsInCells preserves first encounter only",
+    "no_O_sort_dependency": "O has no King; Food same-descriptor filter and sole potion make all5 O caches empty for every legal load order",
+    "health_potions": "P:18/O:18 isolated; no second potion on either side",
+    "blueberries": "Eight descriptor22 foods; Food.canAffect excludes identical descriptor, so all eight speed cache contributions0.0"
+  },
+  "consumer_timing": [
+    "Native currentAffectedItems is built during addToInventory and later item_added append, before prepare.",
+    "Native cachedAffectedItems starts empty; its emptiness selects fresh geometric lookup during Goobert.prepare before parent Item.prepare.",
+    "Goobert.prepare connects activation listeners in star-scan order, then parent Item.prepare copies currentAffectedItems[color].keys() into cachedAffectedItems.",
+    "443 _fresh_goobert_targets is used until item.cache_prepared; eager model current cache is consumed after cache_prepared. No need to equate constructor cache with native empty cachedAffectedItems."
+  ],
+  "constructor_prepare": {
+    "character": "Reuse shared formal/default Character/fixture construction; P baseMaxStamina5/O0 matches setClassResource P-only plus supplied maxStamina5. Rule default healthMultiplier100 yields temporary-health delta0. No selected fixed item is a BattleRage starter or auto-rage item.",
+    "rng": "BalancedRng native constructor expectedWins may differ before prepare. Character.prepare resets all four, then P/O accuracy+crit bias -0.2/+0.2; Item.prepare resets chance and damageRange. Fixed selected code does not roll them before these resets. Constructor/off-clock diagnostic is not claimed native random-history equality.",
+    "king": "ProtectedBuffs REAL3, manaCost REAL4, invuCharges INT0 initial accepted439/441; prepare sets charge INT3 and history state0 before Goobert.prepare. Shared business core conserved.",
+    "timers": "33 accepted439 source-supported initial inactive values; no stop/private write/fresh-native-history assertion added.",
+    "initial_claim_limit": "This is fixed-A Source consumer equivalence plus reused accepted shared defaults/core, not a new full1289/74 audit or arbitrary prior-battle state claim."
+  },
+  "source_functions": [
+    {
+      "source": "Items/Item.gd",
+      "function": "addToInventory",
+      "line_start": 1317,
+      "line_end": 1362,
+      "size": 1488,
+      "sha256": "5dfb552a9650a6071b7de7b0262d3feef87e518340ae966383e36c073b4cfef3",
+      "wholefile": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+        "size": 170717,
+        "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f"
+      }
+    },
+    {
+      "source": "Items/Item.gd",
+      "function": "onItemAdded",
+      "line_start": 1428,
+      "line_end": 1447,
+      "size": 432,
+      "sha256": "5bd6342feb2b838aef6b29a4bf1ee72ace71ff2619fd12cbce202654cabc40d4",
+      "wholefile": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+        "size": 170717,
+        "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f"
+      }
+    },
+    {
+      "source": "Items/Item.gd",
+      "function": "cacheAffectedItemsForCombat",
+      "line_start": 3339,
+      "line_end": 3343,
+      "size": 137,
+      "sha256": "4caefaffe6fc0618e3d99b643e00abc748bc7f8727a22cb77f9eb7fce30edba9",
+      "wholefile": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+        "size": 170717,
+        "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f"
+      }
+    },
+    {
+      "source": "Items/Item.gd",
+      "function": "getAffectedItems",
+      "line_start": 1161,
+      "line_end": 1174,
+      "size": 280,
+      "sha256": "0da6143edf56629aa8d7165223ee443dd9e0a08d1ab16472266443e5e92b3d22",
+      "wholefile": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+        "size": 170717,
+        "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f"
+      }
+    },
+    {
+      "source": "Items/Item.gd",
+      "function": "prepare",
+      "line_start": 3344,
+      "line_end": 3354,
+      "size": 171,
+      "sha256": "ad66c806b5d4d2f1862828b1382e2f91648f5120354a00722da9711eda94839f",
+      "wholefile": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+        "size": 170717,
+        "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f"
+      }
+    },
+    {
+      "source": "Items/Item.gd",
+      "function": "canActivate",
+      "line_start": 3642,
+      "line_end": 3644,
+      "size": 60,
+      "sha256": "26aacd26fe1d15146ac8f2e48d285031a397163b3578116e34c2f391661b53bb",
+      "wholefile": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+        "size": 170717,
+        "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f"
+      }
+    },
+    {
+      "source": "Core/Inventory.gd",
+      "function": "addItem",
+      "line_start": 609,
+      "line_end": 620,
+      "size": 243,
+      "sha256": "1acb6839ac51698973a6042f456d0eba02c734b79dd81ed2a17fb6a5d74afd71",
+      "wholefile": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Inventory.gd",
+        "size": 27240,
+        "sha256": "aa17f0ef93bcc57cd8e5f1ce19c463a0e0f077c711c0a787b030b35a3498ba6e"
+      }
+    },
+    {
+      "source": "Core/Inventory.gd",
+      "function": "getItemsInCells",
+      "line_start": 729,
+      "line_end": 741,
+      "size": 255,
+      "sha256": "6a0f9cabfdd3d9ec0654171df74c579cb7be5b06ef9e78d6b8f764e773d47828",
+      "wholefile": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Inventory.gd",
+        "size": 27240,
+        "sha256": "aa17f0ef93bcc57cd8e5f1ce19c463a0e0f077c711c0a787b030b35a3498ba6e"
+      }
+    },
+    {
+      "source": "Items/Goobert.gd",
+      "function": "prepare",
+      "line_start": 16,
+      "line_end": 25,
+      "size": 274,
+      "sha256": "b5a5407daa6a508b01d4c4f538f3245d553d19d7018b42e6e86ff6f1e65d882c",
+      "wholefile": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Goobert.gd",
+        "size": 1076,
+        "sha256": "8fda35f3740fe787231d4c69c38eaab1938127c1a01e076df70252cc4212e723"
+      }
+    },
+    {
+      "source": "Items/Goobert.gd",
+      "function": "canAffect",
+      "line_start": 13,
+      "line_end": 15,
+      "size": 50,
+      "sha256": "10d035698e8fb037d4c166f105a1a81b7982768b7809de1ad3c45bde286e8090",
+      "wholefile": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Goobert.gd",
+        "size": 1076,
+        "sha256": "8fda35f3740fe787231d4c69c38eaab1938127c1a01e076df70252cc4212e723"
+      }
+    },
+    {
+      "source": "Items/Food.gd",
+      "function": "prepare",
+      "line_start": 7,
+      "line_end": 9,
+      "size": 67,
+      "sha256": "1510db883f562fb94457df4d1d3bd631389a8cd9eb28ada6d4a749f204e1a715",
+      "wholefile": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Food.gd",
+        "size": 187,
+        "sha256": "e0ff858b55f1f5a2d8e1b06ee155a4f7444ba7f4cd903bbee2b09780bfb20a23"
+      }
+    },
+    {
+      "source": "Items/Food.gd",
+      "function": "canAffect",
+      "line_start": 4,
+      "line_end": 6,
+      "size": 90,
+      "sha256": "93ae208e54eb1b960bbc104a0a447be35ee5106ad77aad6c943a136a566f759f",
+      "wholefile": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Food.gd",
+        "size": 187,
+        "sha256": "e0ff858b55f1f5a2d8e1b06ee155a4f7444ba7f4cd903bbee2b09780bfb20a23"
+      }
+    },
+    {
+      "source": "Items/Potion.gd",
+      "function": "prepare",
+      "line_start": 31,
+      "line_end": 34,
+      "size": 45,
+      "sha256": "840e8a6148544d5546964d5b2679214bc7798257e8fa54eca4b22600c1f44cf5",
+      "wholefile": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Potion.gd",
+        "size": 4922,
+        "sha256": "b4c0c7026fec662f50cd159f6f363cf78ab8abcc89c20bc770a97d02ee614a1a"
+      }
+    },
+    {
+      "source": "Items/Potion.gd",
+      "function": "canAffect",
+      "line_start": 35,
+      "line_end": 37,
+      "size": 57,
+      "sha256": "d01dba41c4393230ee1336823d23577e997e90ec0b24a01093c476503ba57315",
+      "wholefile": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Potion.gd",
+        "size": 4922,
+        "sha256": "b4c0c7026fec662f50cd159f6f363cf78ab8abcc89c20bc770a97d02ee614a1a"
+      }
+    },
+    {
+      "source": "Items/Exclusive/KingGoobert.gd",
+      "function": "prepare",
+      "line_start": 19,
+      "line_end": 27,
+      "size": 194,
+      "sha256": "d732b2cb14b31f8ead8cddc774aa8c6b1cbdbae257a432148604d22f4d9126eb",
+      "wholefile": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/KingGoobert.gd",
+        "size": 1581,
+        "sha256": "2f852255072386a57757bceea38a9f5825e0d1299b6fa8ce2c55b14827385d0f"
+      }
+    },
+    {
+      "source": "Items/Exclusive/KingGoobert.gd",
+      "function": "doCooldownEffect",
+      "line_start": 28,
+      "line_end": 39,
+      "size": 424,
+      "sha256": "7ca0ea8804edf50b655a63b0235047c9d4ec37d3255f52a759e52d105a885d06",
+      "wholefile": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/KingGoobert.gd",
+        "size": 1581,
+        "sha256": "2f852255072386a57757bceea38a9f5825e0d1299b6fa8ce2c55b14827385d0f"
+      }
+    },
+    {
+      "source": "Core/Character.gd",
+      "function": "prepare",
+      "line_start": 294,
+      "line_end": 327,
+      "size": 928,
+      "sha256": "bb0281bf5e7bb4d4b3487a02288aa2ff2b81f6aa9da94a507ff3d089e2a6b58c",
+      "wholefile": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Character.gd",
+        "size": 48033,
+        "sha256": "dc372965eaa048657caa1646d70aba85ff9b4b9677565eaa480bc195de027496"
+      }
+    },
+    {
+      "source": "Core/Character.gd",
+      "function": "setClass",
+      "line_start": 198,
+      "line_end": 210,
+      "size": 337,
+      "sha256": "db1cfb32d62c8b3cac804f80b93411f22c34bf385d897eeb6045be9ed61fbc76",
+      "wholefile": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Character.gd",
+        "size": 48033,
+        "sha256": "dc372965eaa048657caa1646d70aba85ff9b4b9677565eaa480bc195de027496"
+      }
+    },
+    {
+      "source": "Core/Character.gd",
+      "function": "setClassResource",
+      "line_start": 211,
+      "line_end": 216,
+      "size": 196,
+      "sha256": "6e7396cffebd57762876676f1fbb6583c3366ea7affe1f7f2309118c5a367f2c",
+      "wholefile": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Character.gd",
+        "size": 48033,
+        "sha256": "dc372965eaa048657caa1646d70aba85ff9b4b9677565eaa480bc195de027496"
+      }
+    },
+    {
+      "source": "Utility/BalancedRandom.gd",
+      "function": "reset",
+      "line_start": 104,
+      "line_end": 112,
+      "size": 120,
+      "sha256": "cc0476aabe87d22a302461e7d71da3ad1f3cffb8f4027b6eb735a5ab12ac685a",
+      "wholefile": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Utility/BalancedRandom.gd",
+        "size": 1643,
+        "sha256": "cfd5d34cd03bd915aab84999862a1ca63f9bebaf519c8ec067241b921170266a"
+      }
+    },
+    {
+      "source": "Utility/BalancedRange.gd",
+      "function": "reset",
+      "line_start": 6,
+      "line_end": 8,
+      "size": 26,
+      "sha256": "cac7369b14f85134f1774e44054a772fe4ef70a697e468bc80e3e7a1f3faafe3",
+      "wholefile": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Utility/BalancedRange.gd",
+        "size": 493,
+        "sha256": "3e54446c0a88186313170ca19275afbf9b75595bb9bb6b59c364dede4216cb3b"
+      }
+    },
+    {
+      "source": "Core/Game.gd",
+      "function": "prepareItems",
+      "line_start": 3059,
+      "line_end": 3065,
+      "size": 104,
+      "sha256": "8799a2f3988a9060d43c9d94189b357ef8efcff41bc20a324e48996e70bb158f",
+      "wholefile": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Game.gd",
+        "size": 145148,
+        "sha256": "f3688bfdf39b95a8ed6a77d9a7ad058a95a0aaa4bcb6d297bc953425add4b9c9"
+      }
+    },
+    {
+      "source": "Core/Game.gd",
+      "function": "activateItems",
+      "line_start": 3066,
+      "line_end": 3083,
+      "size": 266,
+      "sha256": "007c1feade10ee128decb34393cf1b44d5da5871fc195497b102816fac9f8431",
+      "wholefile": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Game.gd",
+        "size": 145148,
+        "sha256": "f3688bfdf39b95a8ed6a77d9a7ad058a95a0aaa4bcb6d297bc953425add4b9c9"
+      }
+    }
+  ],
+  "conserved_model_functions": [
+    {
+      "function": "new_caller_target_caches",
+      "source_sha256": "bd9996556141a4bd166a5dcea83308213613a9c5ad48ee50687efd2c2b22bcff",
+      "exact356_to443": true
+    },
+    {
+      "function": "new_steel_secondary_caches",
+      "source_sha256": "cc76122ea160baeb29aaf6f3d1112279de5eccf8f017296cff549826115d602f",
+      "exact356_to443": true
+    },
+    {
+      "function": "_fresh_goobert_targets",
+      "source_sha256": "fc3513aacae8419951def77a43b79d2533be2b0c1ee9e1012862d670f002bdc3",
+      "exact356_to443": true
+    },
+    {
+      "function": "affected_items",
+      "source_sha256": "6a86bbe989d77b0cd017f4d168315d76d9b7ff3ed27f3f19cd23d6b530b380d2",
+      "exact356_to443": true
+    },
+    {
+      "function": "opponent_inventory_order",
+      "source_sha256": "b1e35c43d672fe3d271626c06cfa760e063e13d8fc1068c9ddbef9b16194a50d",
+      "exact356_to443": true
+    },
+    {
+      "function": "king_prepare",
+      "source_sha256": "834bf49f4f60c64247ca64f77a67673a41c4476c799ba6321369f9a120b0b2ba",
+      "exact356_to443": true
+    },
+    {
+      "function": "king_effect",
+      "source_sha256": "1f1931d2fe5ef1ee0443382527a42cbe45655f3f20e69567e3490d23fbc19729",
+      "exact356_to443": true
+    },
+    {
+      "function": "make_invulnerable",
+      "source_sha256": "80bf6a89b45e0b01ea61a489c49cc79f33aa5c48c9964305aca93c82d1f0d9a2",
+      "exact356_to443": true
+    },
+    {
+      "function": "invu_timeout",
+      "source_sha256": "4737f397a0f437dc4fd62da7eb41d4acd246c0411bcbf46f1ee91b06d8ebec98",
+      "exact356_to443": true
+    },
+    {
+      "function": "king_buff_timeout",
+      "source_sha256": "8ff6230e35207b26064834e3e769ee8c72e2873323d7c916706a37ce5df54602",
+      "exact356_to443": true
+    }
+  ],
+  "required_candidate_business_changes": 0,
+  "expected_reads": 0,
+  "model_calls": 0,
+  "controls": 0,
+  "new_native": 0
+}

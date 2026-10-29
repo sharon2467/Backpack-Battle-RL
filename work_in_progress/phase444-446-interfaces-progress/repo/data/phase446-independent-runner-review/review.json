@@ -1,0 +1,40 @@
+{
+  "schema": "phase446-independent-static-runner-review/1",
+  "status": "STATIC_SOURCE_PASS_EXECUTION_NOT_RELEASED",
+  "source": {
+    "path": "tests/phase446_fixed_case_python_run.py",
+    "size": 8987,
+    "sha256": "3e5fc91e69aabf9eb5f800d257980919c95c2971dd52310219fb0d7d0e3465b8"
+  },
+  "spec": {
+    "path": "docs/phase446_fixed_case_python_run_spec.md",
+    "size": 2647,
+    "sha256": "0ebbe19c6e8b48a017476bbe4e2916a1c0b59541b25a9ee5e171d3d6dd80f1c2"
+  },
+  "author_owner": {
+    "path": "data/phase446-runner-source/owned-files.json",
+    "size": 490,
+    "sha256": "de7a04ef03363759524376fce74477d8f714b5d491951cd12fb87e1a7cbeb1ab"
+  },
+  "findings": [
+    "Preflight pins 15 manifest files and rejects duplicate candidate paths, inconsistent roots, extra Python files, symlinks/multilinks and size/SHA drift. Actual launcher invocation must use the independently accepted candidate manifest; file count alone is not a semantic acceptance certificate.",
+    "Input is exact accepted441 bundle SHA/size and five-key envelope, all365 Tape records and no seed fallback; no EXPECTED access is needed.",
+    "Fresh bytecode-cache prefix under new output plus dont_write_bytecode prevents existing candidate pyc use. Candidate engine import path is checked; a fresh isolated CLI process remains the invocation contract.",
+    "One constructor and one full engine.run are attempted. Same engine and Tape retained on failure; no retry or alternate candidate. Success requires Tape exhaustion and reread of all15 Source hashes before output seal.",
+    "Audit denies subprocess/network and project reads outside candidate/launcher/output during candidate execution. Standard-library/platform imports are allowed. This is a bounded audit guard for the reviewed candidate, not a hostile-code sandbox.",
+    "Fixed concrete failure-evidence defect: traceback.format_exc could read the unallowed launcher through linecache. Final8987B source now pins launcher before execution, includes before.launcher and permits that exact source read. No execution-based verification was performed.",
+    "Source-controlled result/failure/execution files are exclusively created and hash-sealed. Status is output sealed not compared; King remains false/formal75 unchanged. Execution report records construct/full-run entry counts, not a fabricated independent prepare counter."
+  ],
+  "invocation_conditions": [
+    "Use fresh isolated Python (-I -B recommended) and the selected independently accepted 15-file candidate freeze.",
+    "Root must close applicable B1/B2/B4/B5 gates and give actual-run release before invoking; the launcher intentionally does not turn receipts into mutable gameplay proof flags.",
+    "Exactly one new output directory per authorized attempt. Complete output seal precedes independent EXPECTED comparison."
+  ],
+  "limitations": [
+    "Static review only: runner imports/calls/model runs/EXPECTED reads0 in this review.",
+    "Unclosed model/interface proofs are not discharged by launcher Source acceptance.",
+    "Native provenance/G02/conditional-Tape and public-redaction limits remain unchanged."
+  ],
+  "model_release": false,
+  "King_admitted": false
+}

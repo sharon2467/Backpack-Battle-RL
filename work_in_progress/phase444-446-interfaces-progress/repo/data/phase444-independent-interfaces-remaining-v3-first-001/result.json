@@ -1,0 +1,790 @@
+{
+  "schema": "phase444-independent-interface-controls/1",
+  "status": "PASS_INTERFACE_ONLY_NOT_RUNTIME_EQUIVALENCE",
+  "cases": [
+    {
+      "name": "constructed_read_only",
+      "status": "PASS",
+      "state_sha256": "591ebadec313db12b469a259c3bff4d24d5480f95b4b6efdd5c7a978817bad18"
+    },
+    {
+      "name": "prepared_read_only",
+      "status": "PASS",
+      "state_sha256": "1990b64534fbc2ad33953ef14e5383a81642af2bfe55145f8fd02f44e1bc9b8e"
+    },
+    {
+      "name": "prepared_Tape_guard",
+      "status": "PASS",
+      "rejection": "fixed441 constructor may not consume activation Tape"
+    },
+    {
+      "name": "construct_prepare_no_Tape",
+      "status": "PASS",
+      "position": 0,
+      "audit": 0
+    },
+    {
+      "name": "King_real_history_before_visual_return",
+      "status": "PASS",
+      "calls": [
+        [
+          "P:12",
+          0,
+          false
+        ],
+        [
+          "P:12",
+          1,
+          true
+        ],
+        [
+          "P:12",
+          2,
+          false
+        ]
+      ]
+    },
+    {
+      "name": "start_BOOL",
+      "status": "PASS",
+      "rejection": "Timer.start numeric Variant required"
+    },
+    {
+      "name": "start_argc2",
+      "status": "PASS",
+      "rejection": "Timer.start supports zero or one argument"
+    },
+    {
+      "name": "Timer_wrapper_arity_and_Variant",
+      "status": "PASS",
+      "starts": 5
+    },
+    {
+      "name": "FrameDriver_wrapper_read_only_unadvanced",
+      "status": "PASS",
+      "state_sha256": "449861f26687da616c00b30bb5da9f00de36d1ae3e2e5fc11af9ddcbe4d8b1f8"
+    },
+    {
+      "name": "wrapper_label_disclosure",
+      "status": "PASS",
+      "selected_stage": "cleanup",
+      "actual_cut": "unadvanced synthetic control, not cleanup"
+    },
+    {
+      "name": "synthetic_finished_read_only",
+      "status": "PASS",
+      "state_sha256": "899bfce547cb62cffbba1ebe66d728a97bee2abc5f4cc145a3ba1aacd0039ee5"
+    },
+    {
+      "name": "four_real_aux_stops_synthetic_finish",
+      "status": "PASS",
+      "auxiliary_calls": [
+        [
+          "aux:P:battleRageTimer",
+          139895922538016
+        ],
+        [
+          "aux:P:autoRageTimer",
+          139895922538112
+        ],
+        [
+          "aux:O:battleRageTimer",
+          139895922539312
+        ],
+        [
+          "aux:O:autoRageTimer",
+          139895922539408
+        ]
+      ],
+      "all_component_stops": 33
+    }
+  ],
+  "model_release": false,
+  "King_admitted": false,
+  "scope": "remaining controls: one actual INPUT-derived instance, then synthetic local mutations; no battle",
+  "fingerprint_scope": "stored built-in containers and native_replay_v7/v8 objects; other objects are identity leaves",
+  "source_pins": [
+    {
+      "path": "data/phase443-pure-candidate-source/staged/godot_pcg_integer.py",
+      "size": 2198,
+      "sha256": "c084075fdb566b91348ed5a5776d3808b161c23da144e8f5db33e5b48cd694ca"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/headless.py",
+      "size": 20694,
+      "sha256": "7e5bae9520db2ee0de1335c9eb742995ce4b6fcf125cd607f41d39c4b6125688"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/native_replay_v7/__init__.py",
+      "size": 389,
+      "sha256": "82b496191ffa3ec2761b83bf4de9267089d077b777ee38e4b93ab0cb824c4612"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/native_replay_v7/frame_driver.py",
+      "size": 12318,
+      "sha256": "9d8e361144e353a8d944e4490502c5301e7a92451771d35f22ab48f6277f64fd"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/native_replay_v7/timer_runtime.py",
+      "size": 38705,
+      "sha256": "5b7c14ebb7c7511aa05a3411752c7f3341b925c00de31eedfacf4f9345f4a109"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/__init__.py",
+      "size": 618,
+      "sha256": "805cc7035f10e96bfc217ef52f6ac175323ea83c69fb6e678fcd97a5bbcc3d7b"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/__main__.py",
+      "size": 1436,
+      "sha256": "b808649da7470e72669ad7639ef01577187e9692e9ade3745e18b0f21eea647a"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/compare.py",
+      "size": 38087,
+      "sha256": "4af52ee400acf1460c9e28faf5a760d05753d1de7218a00d4a740712a40fdd22"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/engine.py",
+      "size": 226780,
+      "sha256": "b71081a05acfc61182f1be3a77d2ffcbaac5ec56452ccf934f6031d105ef5d63"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/genuine.py",
+      "size": 246253,
+      "sha256": "0592caf8baa0221d94235a9d2eef4355f9dabc1bfbb690ee2548d5f5613ee484"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/histories.py",
+      "size": 8508,
+      "sha256": "d9b3f270b53f328f5958647fdaba86532ff3d9db11b272d9a7d0d2aef1db0b05"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/observed.py",
+      "size": 2323,
+      "sha256": "0a04fb2b03e48cd1cd9a3e43425deddef56c7906105dadeaefafa81ac84a6fd1"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/randomness.py",
+      "size": 7063,
+      "sha256": "676d42a69937394dc1bd8ff23268a08dc41fe9604f7e56213bb968ab331b9139"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/state.py",
+      "size": 15114,
+      "sha256": "21478fecea4c888f701ff8991fb2cf75519670c602ed2bd9d17874e238c54bd1"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/original_rng.py",
+      "size": 2439,
+      "sha256": "5f7024f6c3dbbb2b105962a79a8bf39db40b3fa87bd9c115f2dd578b8082d60e"
+    }
+  ],
+  "freeze": {
+    "path": "data/phase443-pure-candidate-source/candidate-source-freeze.json",
+    "size": 4466,
+    "sha256": "b5a87cbaab96e859368fdc5a037889c5931908d429e3551a612c732af5e0d68a"
+  },
+  "control_source_owner": {
+    "path": "data/phase444-independent-interfaces-source-v3/owned-files.json",
+    "size": 761,
+    "sha256": "4705a1956db6dbb4eefe403f67d9be648738aa4887664d30cd0725e8827a91e1"
+  },
+  "input": {
+    "path": "data/phase441-fixed-A-input-first-001/input-bundle.json",
+    "size": 539534,
+    "sha256": "c87525f35adf8fa3793cc5d1440dff420dc55f3a24c77e520766b01e8963ae2c"
+  },
+  "same_instance": {
+    "engine": 139895933842448,
+    "tape": 139895929048288,
+    "timer_runtime": 139895922456672,
+    "driver": 139895922532736
+  },
+  "inherited_successful_prefix": "data/phase444-independent-interfaces-first-001/result.json:19 cases; not repeated",
+  "source_readback": [
+    {
+      "path": "data/phase443-pure-candidate-source/staged/godot_pcg_integer.py",
+      "size": 2198,
+      "sha256": "c084075fdb566b91348ed5a5776d3808b161c23da144e8f5db33e5b48cd694ca"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/headless.py",
+      "size": 20694,
+      "sha256": "7e5bae9520db2ee0de1335c9eb742995ce4b6fcf125cd607f41d39c4b6125688"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/native_replay_v7/__init__.py",
+      "size": 389,
+      "sha256": "82b496191ffa3ec2761b83bf4de9267089d077b777ee38e4b93ab0cb824c4612"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/native_replay_v7/frame_driver.py",
+      "size": 12318,
+      "sha256": "9d8e361144e353a8d944e4490502c5301e7a92451771d35f22ab48f6277f64fd"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/native_replay_v7/timer_runtime.py",
+      "size": 38705,
+      "sha256": "5b7c14ebb7c7511aa05a3411752c7f3341b925c00de31eedfacf4f9345f4a109"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/__init__.py",
+      "size": 618,
+      "sha256": "805cc7035f10e96bfc217ef52f6ac175323ea83c69fb6e678fcd97a5bbcc3d7b"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/__main__.py",
+      "size": 1436,
+      "sha256": "b808649da7470e72669ad7639ef01577187e9692e9ade3745e18b0f21eea647a"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/compare.py",
+      "size": 38087,
+      "sha256": "4af52ee400acf1460c9e28faf5a760d05753d1de7218a00d4a740712a40fdd22"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/engine.py",
+      "size": 226780,
+      "sha256": "b71081a05acfc61182f1be3a77d2ffcbaac5ec56452ccf934f6031d105ef5d63"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/genuine.py",
+      "size": 246253,
+      "sha256": "0592caf8baa0221d94235a9d2eef4355f9dabc1bfbb690ee2548d5f5613ee484"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/histories.py",
+      "size": 8508,
+      "sha256": "d9b3f270b53f328f5958647fdaba86532ff3d9db11b272d9a7d0d2aef1db0b05"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/observed.py",
+      "size": 2323,
+      "sha256": "0a04fb2b03e48cd1cd9a3e43425deddef56c7906105dadeaefafa81ac84a6fd1"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/randomness.py",
+      "size": 7063,
+      "sha256": "676d42a69937394dc1bd8ff23268a08dc41fe9604f7e56213bb968ab331b9139"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/state.py",
+      "size": 15114,
+      "sha256": "21478fecea4c888f701ff8991fb2cf75519670c602ed2bd9d17874e238c54bd1"
+    },
+    {
+      "path": "data/phase443-pure-candidate-source/staged/original_rng.py",
+      "size": 2439,
+      "sha256": "5f7024f6c3dbbb2b105962a79a8bf39db40b3fa87bd9c115f2dd578b8082d60e"
+    }
+  ],
+  "summary": {
+    "constructor_attempts": 1,
+    "successful_instances": 1,
+    "prepare": 1,
+    "synthetic_finish": 1,
+    "real_timers": 33,
+    "frame_passes": 0,
+    "Tape_draws": 0,
+    "full_battle": 0,
+    "original12_reads": 0,
+    "EXPECTED_reads": 0,
+    "old_controls": 0
+  },
+  "elapsed_seconds": 4.734264139002335,
+  "fingerprint_statistics": [
+    {
+      "nodes": 58638,
+      "bytes": 3222457,
+      "elapsed_seconds": 0.18311311400248087
+    },
+    {
+      "nodes": 58638,
+      "bytes": 3222457,
+      "elapsed_seconds": 0.1942859610026062
+    },
+    {
+      "nodes": 79578,
+      "bytes": 4013003,
+      "elapsed_seconds": 0.25933335299851024
+    },
+    {
+      "nodes": 79578,
+      "bytes": 4013003,
+      "elapsed_seconds": 0.30654021900045336
+    },
+    {
+      "nodes": 80738,
+      "bytes": 4131513,
+      "elapsed_seconds": 0.2583006269996986
+    },
+    {
+      "nodes": 80738,
+      "bytes": 4131513,
+      "elapsed_seconds": 0.33491221999793197
+    },
+    {
+      "nodes": 84973,
+      "bytes": 4569045,
+      "elapsed_seconds": 0.2774256559969217
+    },
+    {
+      "nodes": 84973,
+      "bytes": 4569045,
+      "elapsed_seconds": 0.3297130479986663
+    }
+  ],
+  "profiled_model_component_calls": {
+    "generated_dataclass:CharacterState.__init__": 2,
+    "generated_dataclass:ItemState.__init__": 39,
+    "generated_dataclass:RuntimeDTO.__init__": 1,
+    "native_replay_v7/__init__.py:<module>": 1,
+    "native_replay_v7/frame_driver.py:<genexpr>": 3,
+    "native_replay_v7/frame_driver.py:<module>": 1,
+    "native_replay_v7/frame_driver.py:ClockSchedule": 1,
+    "native_replay_v7/frame_driver.py:EngineFrameDriver.__init__": 1,
+    "native_replay_v7/frame_driver.py:EngineFrameDriver.snapshot": 2,
+    "native_replay_v7/frame_driver.py:FrameDriver": 1,
+    "native_replay_v7/frame_driver.py:FramePass": 1,
+    "native_replay_v7/frame_driver.py:IncompleteFrameStream": 1,
+    "native_replay_v7/frame_driver.py:_counter": 10302,
+    "native_replay_v7/frame_driver.py:_keys": 5154,
+    "native_replay_v7/frame_driver.py:_nonnegative_real": 4,
+    "native_replay_v7/frame_driver.py:_real": 5152,
+    "native_replay_v7/frame_driver.py:decode_clock": 2,
+    "native_replay_v7/timer_runtime.py:<genexpr>": 1580,
+    "native_replay_v7/timer_runtime.py:<module>": 1,
+    "native_replay_v7/timer_runtime.py:ApiResult": 1,
+    "native_replay_v7/timer_runtime.py:NodeRecord": 1,
+    "native_replay_v7/timer_runtime.py:TimerRecord": 1,
+    "native_replay_v7/timer_runtime.py:TimerRuntime": 1,
+    "native_replay_v7/timer_runtime.py:TimerRuntime.__init__": 1,
+    "native_replay_v7/timer_runtime.py:TimerRuntime._erase": 40,
+    "native_replay_v7/timer_runtime.py:TimerRuntime._group": 94,
+    "native_replay_v7/timer_runtime.py:TimerRuntime._known": 3760,
+    "native_replay_v7/timer_runtime.py:TimerRuntime._register": 54,
+    "native_replay_v7/timer_runtime.py:TimerRuntime.add_child": 132,
+    "native_replay_v7/timer_runtime.py:TimerRuntime.configure_timer": 33,
+    "native_replay_v7/timer_runtime.py:TimerRuntime.connect_ordinary": 85,
+    "native_replay_v7/timer_runtime.py:TimerRuntime.connect_timeout": 33,
+    "native_replay_v7/timer_runtime.py:TimerRuntime.is_stopped": 763,
+    "native_replay_v7/timer_runtime.py:TimerRuntime.new_node": 132,
+    "native_replay_v7/timer_runtime.py:TimerRuntime.new_timer": 33,
+    "native_replay_v7/timer_runtime.py:TimerRuntime.node_state": 763,
+    "native_replay_v7/timer_runtime.py:TimerRuntime.set_ordinary_processing": 127,
+    "native_replay_v7/timer_runtime.py:TimerRuntime.set_priority": 77,
+    "native_replay_v7/timer_runtime.py:TimerRuntime.set_wait_time": 41,
+    "native_replay_v7/timer_runtime.py:TimerRuntime.start": 9,
+    "native_replay_v7/timer_runtime.py:TimerRuntime.stop": 38,
+    "native_replay_v7/timer_runtime.py:TimerRuntime.time_left": 1526,
+    "native_replay_v7/timer_runtime.py:TimerRuntime.timer_state": 763,
+    "native_replay_v7/timer_runtime.py:UnsupportedTransition": 1,
+    "native_replay_v7/timer_runtime.py:_FixedProgram": 1,
+    "native_replay_v7/timer_runtime.py:_flag": 1010,
+    "native_replay_v7/timer_runtime.py:_integer": 77,
+    "native_replay_v7/timer_runtime.py:_mode": 419,
+    "native_replay_v7/timer_runtime.py:_path": 4222,
+    "native_replay_v7/timer_runtime.py:_positions": 4222,
+    "native_replay_v7/timer_runtime.py:_subtree": 792,
+    "native_replay_v7/timer_runtime.py:f32": 6793,
+    "native_replay_v7/timer_runtime.py:typed": 17837,
+    "native_replay_v8/__init__.py:<module>": 1,
+    "native_replay_v8/engine.py:<genexpr>": 3942,
+    "native_replay_v8/engine.py:<lambda>": 206,
+    "native_replay_v8/engine.py:<module>": 1,
+    "native_replay_v8/engine.py:CharacterState": 1,
+    "native_replay_v8/engine.py:CombatEngine": 1,
+    "native_replay_v8/engine.py:CombatEngine.__init__": 1,
+    "native_replay_v8/engine.py:CombatEngine._connect_runtime_callbacks": 1,
+    "native_replay_v8/engine.py:CombatEngine._emit_and_log": 1,
+    "native_replay_v8/engine.py:CombatEngine._fresh_goobert_targets": 1,
+    "native_replay_v8/engine.py:CombatEngine._full_timer": 254,
+    "native_replay_v8/engine.py:CombatEngine._integration_node": 780,
+    "native_replay_v8/engine.py:CombatEngine._ordered_stars": 1,
+    "native_replay_v8/engine.py:CombatEngine._public_timer": 443,
+    "native_replay_v8/engine.py:CombatEngine._pure_api_after": 47,
+    "native_replay_v8/engine.py:CombatEngine._pure_api_before": 47,
+    "native_replay_v8/engine.py:CombatEngine._pure_business_snapshot": 10,
+    "native_replay_v8/engine.py:CombatEngine._runtime_projection": 2,
+    "native_replay_v8/engine.py:CombatEngine._set_item_cooldown": 39,
+    "native_replay_v8/engine.py:CombatEngine._set_source_processing": 42,
+    "native_replay_v8/engine.py:CombatEngine._start_timer": 11,
+    "native_replay_v8/engine.py:CombatEngine._stop_timer": 38,
+    "native_replay_v8/engine.py:CombatEngine._timer_snapshot": 2,
+    "native_replay_v8/engine.py:CombatEngine._validate_pure441_constructed": 3,
+    "native_replay_v8/engine.py:CombatEngine._validate_pure441_prepared": 2,
+    "native_replay_v8/engine.py:CombatEngine.affected_items": 9,
+    "native_replay_v8/engine.py:CombatEngine.allocate_event": 1,
+    "native_replay_v8/engine.py:CombatEngine.damage_bounds": 4,
+    "native_replay_v8/engine.py:CombatEngine.emit": 1,
+    "native_replay_v8/engine.py:CombatEngine.emit_event": 1,
+    "native_replay_v8/engine.py:CombatEngine.finish": 1,
+    "native_replay_v8/engine.py:CombatEngine.is_battle_raging": 138,
+    "native_replay_v8/engine.py:CombatEngine.king_prepare": 1,
+    "native_replay_v8/engine.py:CombatEngine.king_set_state": 4,
+    "native_replay_v8/engine.py:CombatEngine.new_caller_target_caches": 1,
+    "native_replay_v8/engine.py:CombatEngine.new_steel_secondary_caches": 1,
+    "native_replay_v8/engine.py:CombatEngine.prepare_only": 1,
+    "native_replay_v8/engine.py:CombatEngine.set_item_state": 2,
+    "native_replay_v8/engine.py:CombatEngine.snapshot": 2,
+    "native_replay_v8/engine.py:CombatEngine.speed": 47,
+    "native_replay_v8/engine.py:EngineFrameDriver": 1,
+    "native_replay_v8/engine.py:EngineFrameDriver.__init__": 1,
+    "native_replay_v8/engine.py:EngineFrameDriver.snapshot": 2,
+    "native_replay_v8/engine.py:Fixed60Passes": 1,
+    "native_replay_v8/engine.py:HeadlessKingFrameDriver": 1,
+    "native_replay_v8/engine.py:ItemState": 1,
+    "native_replay_v8/engine.py:ItemState.can_activate": 13,
+    "native_replay_v8/engine.py:ItemState.definition": 2147,
+    "native_replay_v8/engine.py:ItemState.has_cooldown": 390,
+    "native_replay_v8/engine.py:ItemState.logs_cooldown": 390,
+    "native_replay_v8/engine.py:RuntimeDTO": 1,
+    "native_replay_v8/engine.py:TemporaryEntry": 1,
+    "native_replay_v8/engine.py:_assert_pure441_timer": 132,
+    "native_replay_v8/engine.py:_be_float": 67,
+    "native_replay_v8/engine.py:_build_pure441_scaffold": 1,
+    "native_replay_v8/engine.py:_float_bits": 2912,
+    "native_replay_v8/engine.py:_has_king": 2,
+    "native_replay_v8/engine.py:_has_rage": 1,
+    "native_replay_v8/engine.py:_integration_domain": 1,
+    "native_replay_v8/engine.py:_keys": 235,
+    "native_replay_v8/engine.py:_pure441_profile": 6,
+    "native_replay_v8/engine.py:_pure441_roles": 1,
+    "native_replay_v8/engine.py:_pure441_variant": 16,
+    "native_replay_v8/engine.py:_required_roles": 1,
+    "native_replay_v8/engine.py:_single_king_genuine_profile": 1,
+    "native_replay_v8/engine.py:_source_king_profile": 2,
+    "native_replay_v8/engine.py:_validate_pure441_runtime": 1,
+    "native_replay_v8/engine.py:assert_model_source_stable": 1,
+    "native_replay_v8/engine.py:before": 41,
+    "native_replay_v8/engine.py:build_runtime_scaffold": 1,
+    "native_replay_v8/engine.py:eligible": 53,
+    "native_replay_v8/engine.py:fresh_buff_fields": 2,
+    "native_replay_v8/engine.py:intro": 2,
+    "native_replay_v8/engine.py:model_source_hashes": 2,
+    "native_replay_v8/engine.py:occupied_cells": 93,
+    "native_replay_v8/engine.py:opponent_inventory_order": 1,
+    "native_replay_v8/engine.py:ordered_occupied_cells": 134,
+    "native_replay_v8/engine.py:primitive": 9534,
+    "native_replay_v8/engine.py:source_round": 8,
+    "native_replay_v8/engine.py:transformed_cells": 39,
+    "native_replay_v8/engine.py:validate_fixture": 1,
+    "native_replay_v8/engine.py:validate_runtime_inputs": 1,
+    "native_replay_v8/genuine.py:<genexpr>": 57,
+    "native_replay_v8/genuine.py:<module>": 1,
+    "native_replay_v8/genuine.py:canonical_sha": 1,
+    "native_replay_v8/genuine.py:validate_pure441_profile": 1,
+    "native_replay_v8/genuine.py:validate_single_king_fixture": 1,
+    "native_replay_v8/histories.py:<module>": 1,
+    "native_replay_v8/histories.py:CombatHistories": 1,
+    "native_replay_v8/histories.py:CombatHistories.__init__": 1,
+    "native_replay_v8/histories.py:CombatHistories.character": 2,
+    "native_replay_v8/histories.py:CombatHistories.character_stat": 134,
+    "native_replay_v8/histories.py:CombatHistories.item_stat": 407,
+    "native_replay_v8/histories.py:CombatHistories.item_state": 6,
+    "native_replay_v8/histories.py:CombatHistories.logger": 26,
+    "native_replay_v8/histories.py:CombatHistories.snapshot": 10,
+    "native_replay_v8/histories.py:CombatHistories.stack_value": 22,
+    "native_replay_v8/histories.py:CombatHistories.tooltip": 17,
+    "native_replay_v8/histories.py:StatHistory": 1,
+    "native_replay_v8/histories.py:StatHistory.__init__": 6752,
+    "native_replay_v8/histories.py:StatHistory.add_acc": 16,
+    "native_replay_v8/histories.py:StatHistory.add_value": 6738,
+    "native_replay_v8/histories.py:StatHistory.snapshot": 67520,
+    "native_replay_v8/histories.py:freeze": 70450,
+    "native_replay_v8/randomness.py:<genexpr>": 282,
+    "native_replay_v8/randomness.py:<module>": 1,
+    "native_replay_v8/randomness.py:BalancedRange": 1,
+    "native_replay_v8/randomness.py:BalancedRng": 1,
+    "native_replay_v8/randomness.py:BalancedRng.reset": 47,
+    "native_replay_v8/randomness.py:SeededRandom": 1,
+    "native_replay_v8/randomness.py:TapeRandom": 1,
+    "native_replay_v8/randomness.py:TapeRandom.__init__": 1,
+    "native_replay_v8/randomness.py:_float": 563,
+    "native_replay_v8/randomness.py:_validate": 365,
+    "native_replay_v8/state.py:<module>": 1,
+    "native_replay_v8/state.py:native_rule_state": 2,
+    "native_replay_v8/state.py:project_buff_fields": 44,
+    "native_replay_v8/state.py:rng_state": 94
+  },
+  "readscope": {
+    "audit_installed": true,
+    "accesses": [
+      {
+        "path": "data/phase444-independent-interfaces-remaining-v3-first-001/unused-bytecode-cache/workspace/python-original-engine/repo/data/phase443-pure-candidate-source/staged/native_replay_v8/__init__.cpython-312.pyc",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/__init__.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase444-independent-interfaces-remaining-v3-first-001/unused-bytecode-cache/workspace/python-original-engine/repo/data/phase443-pure-candidate-source/staged/native_replay_v8/engine.cpython-312.pyc",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/engine.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase444-independent-interfaces-remaining-v3-first-001/unused-bytecode-cache/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/dataclasses.cpython-312.pyc",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase444-independent-interfaces-remaining-v3-first-001/unused-bytecode-cache/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/inspect.cpython-312.pyc",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase444-independent-interfaces-remaining-v3-first-001/unused-bytecode-cache/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ast.cpython-312.pyc",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase444-independent-interfaces-remaining-v3-first-001/unused-bytecode-cache/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/dis.cpython-312.pyc",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase444-independent-interfaces-remaining-v3-first-001/unused-bytecode-cache/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/opcode.cpython-312.pyc",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase444-independent-interfaces-remaining-v3-first-001/unused-bytecode-cache/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/struct.cpython-312.pyc",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase444-independent-interfaces-remaining-v3-first-001/unused-bytecode-cache/workspace/python-original-engine/repo/data/phase443-pure-candidate-source/staged/native_replay_v7/__init__.cpython-312.pyc",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v7/__init__.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase444-independent-interfaces-remaining-v3-first-001/unused-bytecode-cache/workspace/python-original-engine/repo/data/phase443-pure-candidate-source/staged/native_replay_v7/timer_runtime.cpython-312.pyc",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v7/timer_runtime.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase444-independent-interfaces-remaining-v3-first-001/unused-bytecode-cache/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/typing.cpython-312.pyc",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase444-independent-interfaces-remaining-v3-first-001/unused-bytecode-cache/workspace/python-original-engine/repo/data/phase443-pure-candidate-source/staged/native_replay_v7/frame_driver.cpython-312.pyc",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v7/frame_driver.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase444-independent-interfaces-remaining-v3-first-001/unused-bytecode-cache/workspace/python-original-engine/repo/data/phase443-pure-candidate-source/staged/native_replay_v8/randomness.cpython-312.pyc",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/randomness.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase444-independent-interfaces-remaining-v3-first-001/unused-bytecode-cache/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/random.cpython-312.pyc",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase444-independent-interfaces-remaining-v3-first-001/unused-bytecode-cache/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/bisect.cpython-312.pyc",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase444-independent-interfaces-remaining-v3-first-001/unused-bytecode-cache/workspace/python-original-engine/repo/data/phase443-pure-candidate-source/staged/native_replay_v8/genuine.cpython-312.pyc",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/genuine.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase444-independent-interfaces-remaining-v3-first-001/unused-bytecode-cache/workspace/python-original-engine/repo/data/phase443-pure-candidate-source/staged/native_replay_v8/histories.cpython-312.pyc",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/histories.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase444-independent-interfaces-remaining-v3-first-001/unused-bytecode-cache/workspace/python-original-engine/repo/data/phase443-pure-candidate-source/staged/native_replay_v8/state.cpython-312.pyc",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/state.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/__init__.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/__main__.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/compare.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/engine.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/genuine.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/histories.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/observed.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/randomness.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/state.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v7/__init__.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v7/timer_runtime.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v7/frame_driver.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase441-fixed-A-input-first-001/input-bundle.json",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/__init__.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/__main__.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/compare.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/engine.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/genuine.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/histories.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/observed.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/randomness.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/state.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v7/__init__.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v7/timer_runtime.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v7/frame_driver.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/godot_pcg_integer.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/headless.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v7/__init__.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v7/frame_driver.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v7/timer_runtime.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/__init__.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/__main__.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/compare.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/engine.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/genuine.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/histories.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/observed.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/randomness.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/native_replay_v8/state.py",
+        "operation": "read"
+      },
+      {
+        "path": "data/phase443-pure-candidate-source/staged/original_rng.py",
+        "operation": "read"
+      }
+    ],
+    "bundle_reads": 1,
+    "pre_audit": "freeze once,15 source pins,control-owner plus owned SPEC/script pins; no bundle read"
+  },
+  "remaining_blocks": [
+    "B1 native constructor/cache/prepare equivalence",
+    "B5 required output method/site mapping"
+  ]
+}

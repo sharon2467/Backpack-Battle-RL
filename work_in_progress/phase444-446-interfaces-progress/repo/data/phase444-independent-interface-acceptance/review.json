@@ -1,0 +1,177 @@
+{
+  "schema": "phase444-independent-interface-acceptance/1",
+  "status": "ACCEPTED_TESTED_INTERFACE_BOUNDARY_NOT_NATIVE_RUNTIME_EQUIVALENCE",
+  "evidence": [
+    {
+      "path": "data/phase444-independent-interfaces-first-001/result.json",
+      "size": 30005,
+      "sha256": "d2f7ccae797990c35e4b8b5ccdaab88e2530101b2335650bb68eae256e08d0b0"
+    },
+    {
+      "path": "data/phase444-independent-interfaces-first-001/owned-files.json",
+      "size": 274,
+      "sha256": "4a5544c4e9cac7edd4b11f62283ac7bad56294d63a5c2a25b5aa5a6db31422c8"
+    },
+    {
+      "path": "data/phase444-independent-interfaces-remaining-first-001/result.json",
+      "size": 24626,
+      "sha256": "dacda2cedc5708921a0de219dc81395c79b77d8e82da95ff8595775b45bb6e39"
+    },
+    {
+      "path": "data/phase444-independent-interfaces-remaining-first-001/owned-files.json",
+      "size": 284,
+      "sha256": "4f188b0657d5c36f92ae73a15211862c7a4c730a2547a07c2721e4f9a706d71c"
+    },
+    {
+      "path": "data/phase444-independent-interfaces-remaining-v3-first-001/result.json",
+      "size": 32763,
+      "sha256": "3309e9eca0714304f7f3dcf9ce501f165302e5ae7f1dceac6f681bf470d63d46"
+    },
+    {
+      "path": "data/phase444-independent-interfaces-remaining-v3-first-001/owned-files.json",
+      "size": 287,
+      "sha256": "fc483fee167d08a05f021fa84aee282fa9936d80c460ef5d42c1f78d4502f84a"
+    },
+    {
+      "path": "data/phase444-independent-interfaces-source/owned-files.json",
+      "size": 547,
+      "sha256": "4dfb61bb165a13d004091c156a5eb53ed8fa50dea1519ccadceca4aaa958f06a"
+    },
+    {
+      "path": "data/phase444-independent-interfaces-source-v2/owned-files.json",
+      "size": 644,
+      "sha256": "3efc3e1d464a45972c0fcefee014accf5541f4ff6ebb06ff61c9a1b1176557a0"
+    },
+    {
+      "path": "data/phase444-independent-interfaces-source-v3/owned-files.json",
+      "size": 761,
+      "sha256": "4705a1956db6dbb4eefe403f67d9be648738aa4887664d30cd0725e8827a91e1"
+    }
+  ],
+  "author_candidate_freeze": {
+    "path": "data/phase443-pure-candidate-source/candidate-source-freeze.json",
+    "size": 4466,
+    "sha256": "b5a87cbaab96e859368fdc5a037889c5931908d429e3551a612c732af5e0d68a"
+  },
+  "input": {
+    "path": "data/phase441-fixed-A-input-first-001/input-bundle.json",
+    "size": 539534,
+    "sha256": "c87525f35adf8fa3793cc5d1440dff420dc55f3a24c77e520766b01e8963ae2c"
+  },
+  "preserved_failures": [
+    {
+      "output": "phase444-independent-interfaces-first-001",
+      "status": "FAIL_FIRST_ERROR_NO_RETRY",
+      "elapsed_seconds": 15.013943215999461,
+      "completed_cases": 19,
+      "cause": "test-harness stored-state fingerprint traversal/indented JSON under profile exceeded budget; no candidate nontermination or assertion defect established"
+    },
+    {
+      "output": "phase444-independent-interfaces-remaining-first-001",
+      "status": "FAIL_FIRST_ERROR_NO_RETRY",
+      "elapsed_seconds": 35.00960574000055,
+      "completed_cases": 0,
+      "cause": "test-harness stored-state fingerprint traversal/indented JSON under profile exceeded budget; no candidate nontermination or assertion defect established"
+    }
+  ],
+  "accepted_coverage": {
+    "first_successful_prefix": 19,
+    "remaining_v3": 12,
+    "remaining_v3_seconds": 4.734264139002335,
+    "prior_cases_not_reexecuted": true,
+    "strict_DTO_and_no_seed": "first19 accepted prefix; new construct setup naturally reruns positive constructor validation",
+    "scaffold": "33 actual timers,78 flags/topology,Util/Game one member per ordinary mode",
+    "prepare": "actual prepare_only once; zero Tape position/audit, supported guard rejects temporary position1",
+    "King": "real history call through pure split for0/1/2 including withNextEvent; visual table absent during local check",
+    "Timer": "argc0 and INT14/3/1 versus REAL14.0; BOOL/argc2 rejected; helper status distinct from SOURCE_VOID_NOT_SAMPLED",
+    "aux": "four started real Timer objects stopped by actual finish in P battleRage/autoRage then O order; synthetic ended/winner setup clearly separated from native fight",
+    "snapshot": "eight stored-state fingerprints spanning constructed/prepared/driver wrapper/synthetic finish; compared results and full stored model state unchanged",
+    "FrameDriver": "snapshot integration only, zero pass advances; wrapper selected cleanup label not actual cleanup cut"
+  },
+  "actual_calls_total": {
+    "fresh_processes": 3,
+    "constructor_attempts": 5,
+    "successful_constructs": 3,
+    "prepare_only": 1,
+    "synthetic_finish": 1,
+    "full_run": 0,
+    "activation": 0,
+    "frame_passes": 0,
+    "Tape_draws": 0
+  },
+  "successful_v3_calls": {
+    "construct": 1,
+    "prepare_only": 1,
+    "king_set_state": 4,
+    "Timer_start_wrapper_entries": 11,
+    "Timer_start_positive": 9,
+    "Timer_start_rejections": 2,
+    "Timer_stop_wrapper": 38,
+    "Timer_component_stop": 38,
+    "finish_stop_subset": 33,
+    "EngineFrameDriver_snapshot": 2,
+    "pure_business_snapshot": 10
+  },
+  "readscope": {
+    "control_bundle_reads": 3,
+    "one_per_actual_batch": true,
+    "acceptance_metadata_input_hash_read": 1,
+    "raw_original12_reads": 0,
+    "EXPECTED_reads": 0,
+    "original_UI_reads": 0,
+    "new_native_capture": 0,
+    "old_control_runs": 0
+  },
+  "fingerprint_statistics": [
+    {
+      "nodes": 58638,
+      "bytes": 3222457,
+      "elapsed_seconds": 0.18311311400248087
+    },
+    {
+      "nodes": 58638,
+      "bytes": 3222457,
+      "elapsed_seconds": 0.1942859610026062
+    },
+    {
+      "nodes": 79578,
+      "bytes": 4013003,
+      "elapsed_seconds": 0.25933335299851024
+    },
+    {
+      "nodes": 79578,
+      "bytes": 4013003,
+      "elapsed_seconds": 0.30654021900045336
+    },
+    {
+      "nodes": 80738,
+      "bytes": 4131513,
+      "elapsed_seconds": 0.2583006269996986
+    },
+    {
+      "nodes": 80738,
+      "bytes": 4131513,
+      "elapsed_seconds": 0.33491221999793197
+    },
+    {
+      "nodes": 84973,
+      "bytes": 4569045,
+      "elapsed_seconds": 0.2774256559969217
+    },
+    {
+      "nodes": 84973,
+      "bytes": 4569045,
+      "elapsed_seconds": 0.3297130479986663
+    }
+  ],
+  "limits": [
+    "Existing B1 native constructor/prepare/eager cache equality and B5 method/site output mapping remain unresolved here.",
+    "B2 separately accepted by phase444-independent-b2-review; it is not established by these controls.",
+    "No full365 Tape exhaustion/combat outputs/native terminal/equivalent state proof.",
+    "The accepted boundary joins31 named checks, not31 distinct proofs; reports preserve each actual case and count.",
+    "Conditional direct-return Tape, G02 native Source/dispatch and815 public-redaction limits persist.",
+    "Production/candidate Source and old443 sealed independent review remain unchanged."
+  ],
+  "model_release": false,
+  "King_admitted": false
+}

@@ -1,0 +1,80 @@
+--- tests/phase444_independent_candidate_interfaces_v2.py
++++ tests/phase444_independent_candidate_interfaces_v3.py
+@@ -16,8 +16,8 @@
+ FREEZE_SHA = 'b5a87cbaab96e859368fdc5a037889c5931908d429e3551a612c732af5e0d68a'
+ BUNDLE = 'data/phase441-fixed-A-input-first-001/input-bundle.json'
+ BUNDLE_SHA = 'c87525f35adf8fa3793cc5d1440dff420dc55f3a24c77e520766b01e8963ae2c'
+-OUTPUT = ROOT / 'data/phase444-independent-interfaces-remaining-first-001'
+-OWNER = ROOT / 'data/phase444-independent-interfaces-source-v2/owned-files.json'
++OUTPUT = ROOT / 'data/phase444-independent-interfaces-remaining-v3-first-001'
++OWNER = ROOT / 'data/phase444-independent-interfaces-source-v3/owned-files.json'
+ 
+ 
+ def sha(raw):
+@@ -38,7 +38,10 @@
+     return raw, record
+ 
+ 
+-def state_digest(root):
++DIGEST_STATS = []
++
++
++def _state_digest_unprofiled(root):
+     """Stored state only: no model getters; represent aliases/cycles explicitly."""
+     seen = {}
+ 
+@@ -64,7 +67,20 @@
+             return [type(value).__module__, type(value).__name__, walk(vars(value))]
+         return ['external_identity_leaf', type(value).__module__, type(value).__name__, identity]
+ 
+-    return sha(encoded(walk(root)))
++    began = time.monotonic()
++    tree = walk(root)
++    raw = json.dumps(tree, ensure_ascii=False, allow_nan=False, separators=(',', ':')).encode()
++    DIGEST_STATS.append(dict(nodes=len(seen), bytes=len(raw), elapsed_seconds=time.monotonic() - began))
++    return sha(raw)
++
++
++def state_digest(root):
++    previous = sys.getprofile()
++    sys.setprofile(None)
++    try:
++        return _state_digest_unprofiled(root)
++    finally:
++        sys.setprofile(previous)
+ 
+ 
+ def main():
+@@ -106,19 +122,21 @@
+         if event != 'call':
+             return
+         code = frame.f_code
+-        local = frame.f_locals.get('self')
+-        cls = type(local).__name__ + '.' if local is not None else ''
+         if code not in code_owners:
+             filename = code.co_filename
+             if filename.startswith(str(STAGED) + '/'):
+                 code_owners[code] = filename[len(str(STAGED)) + 1:]
+-            elif filename == '<string>' and local is not None and type(local).__module__ == 'native_replay_v8.engine':
++            elif filename == '<string>':
+                 code_owners[code] = 'generated_dataclass'
+             else:
+                 code_owners[code] = None
+         origin = code_owners[code]
+         if origin is None:
+             return
++        local = frame.f_locals.get('self')
++        if origin == 'generated_dataclass' and (local is None or type(local).__module__ != 'native_replay_v8.engine'):
++            return
++        cls = type(local).__name__ + '.' if local is not None else ''
+         key = origin + ':' + cls + code.co_name
+         calls[key] += 1
+         forbidden = {'run', 'run_input_bundle', 'run_observed', 'compare_expected', 'compare_capture',
+@@ -284,6 +302,7 @@
+         sys.setprofile(None)
+         signal.setitimer(signal.ITIMER_REAL, 0)
+         report['elapsed_seconds'] = time.monotonic() - started
++        report['fingerprint_statistics'] = DIGEST_STATS
+         report['profiled_model_component_calls'] = dict(sorted(calls.items()))
+         report['readscope'] = dict(audit_installed=auditing, accesses=list(reads),
+                                    bundle_reads=sum(x['path'] == BUNDLE and x['operation'] == 'read' for x in reads),

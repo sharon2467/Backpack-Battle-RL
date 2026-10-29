@@ -1,0 +1,394 @@
+{
+  "schema": "phase444-b2-callee-purity-proposal/1",
+  "status": "SOURCE_ARGUMENT_PENDING_INDEPENDENT_ACCEPTANCE",
+  "utc": "2026-10-29T02:31:14.712434+00:00",
+  "scope": "Only residual Item._process nonCombat highlight call; no global focus=null or all-interval Game.state assumption.",
+  "selected_ids": {
+    "1": "Wooden Sword",
+    "4": "Wooden Buckler",
+    "11": "Leather Bag",
+    "19": "Health Potion",
+    "22": "Blueberries",
+    "262": "King Goobert"
+  },
+  "source_refs": [
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "size": 170717,
+      "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f",
+      "function": "_process",
+      "line": 1787,
+      "through_line": 1929,
+      "source_slice_sha256": "09c4fcaaf238492c385cc98465a7f81b8372aaeeaa5902da60bfc51992b5aa45",
+      "source": "func _process(delta: float) -> void :\n\t\n\t\n\t\n\tif Game.state != Game.State.Combat and animation.current_animation == \"\":\n\t\tsprite.modulate = Color.white\n\t\n\tif focus and Game.tooltipsEnabled():\n\t\tif placed:\n\t\t\tinventory.previewAffectedCells(self)\n\t\t\n\t\t\n\t\telse:\n\t\t\tif affectedCellsActive:\n\t\t\t\tGame.PLAYER.INVENTORY.previewAffectedCells(self)\n\t\n\tif dragged:\n\t\tvar pos = global_position\n\t\tglobal_position = Util.getMousePosInWindow()\n\t\tglobal_position.y -= Settings.getVal(Settings.Setting.pick_offset) * Settings.PICK_OFFSET\n\t\t\n\t\tvar dif = global_position - pos\n\t\tvar speed = dif.length() / delta\n\t\tvar direction = dif.normalized()\n\t\tmomentumStrength = lerp(momentumStrength, speed / 60, 20 * delta)\n\t\t\n\t\tmomentumStrength = min(momentumStrength, 150.0)\n\t\tmomentum = direction * momentumStrength\n\t\t\n\t\tif momentumStrength > Util.rng.randf_range(5, 15):\n\t\t\tdragParticles.activate()\n\t\telse:\n\t\t\tdragParticles.deactivate()\n\t\t\n\t\tSound.itemMovePlayer.volume_db = linear2db(clamp((momentumStrength - 20) / 100.0, 0, 1) * (0.5 + 0.1 * getNumCells()))\n\t\t\n\t\tif draggedInsideItems.empty():\n\t\t\tvar mainDif\n\t\t\tif abs(dif.x) > abs(dif.y):\n\t\t\t\tmainDif = dif.length() * sign(dif.x)\n\t\t\telse:\n\t\t\t\tmainDif = - dif.length() * sign(dif.y)\n\t\t\t\n\t\t\trotationMomentum += mainDif * moveRotationMouseFactor\n\t\t\t\n\t\t\trotationMomentum -= bonusRotation * backforce * delta\n\t\t\t\n\t\t\trotationMomentum *= max(0, 1 - (fric * delta))\n\t\t\t\n\t\t\tbonusRotation += rotationMomentum * moveRotationSpeed * delta\n\t\t\tbonusRotation = clamp(bonusRotation, - maxAngle, maxAngle)\n\t\t\t\n\t\t\tsprite.rotation_degrees = bonusRotation\n\t\t\t\n\t\t\t\n\t\t\n\t\t\n\t\tif Util.isActionJustPressed(\"rotate_right_button\"):\n\t\t\trotateRight()\n\t\telif Util.isActionJustPressed(\"rotate_left_button\"):\n\t\t\trotateLeft()\n\t\t\n\t\tif Util.time >= mouseWheelRotationReadyTime:\n\t\t\tif Util.isActionJustPressed(\"rotate_right\", false):\n\t\t\t\trotateRight()\n\t\t\t\tmouseWheelRotationReadyTime = Util.time + 0.1\n\t\t\telif Util.isActionJustPressed(\"rotate_left\", false):\n\t\t\t\trotateLeft()\n\t\t\t\tmouseWheelRotationReadyTime = Util.time + 0.1\n\t\t\n\t\tpreviewCellCollision()\n\t\n\telif placed and Game.state != Game.State.Combat and not Game.SELECTING:\n\t\tvar focusItem = Game.getFocusItem()\n\t\tif (focusItem != null and \n\t\t\tfocusItem != self and \n\t\t\t(focusItem.placed or focusItem == Game.draggedItem) and \n\t\t\tnot focusItem.isBag()):\n\t\t\tvar affectedPrimary = canAffectDraggedItem(focusItem, Affected.Primary)\n\t\t\tvar affectedSecondary = canAffectDraggedItem(focusItem, Affected.Secondary)\n\t\t\tvar affectedTertiary = canAffectDraggedItem(focusItem, Affected.Tertiary)\n\t\t\tvar affectedLightning = canAffectDraggedItem(focusItem, Affected.Lightning)\n\t\t\t\n\t\t\tvar sum = int(affectedPrimary) + int(affectedSecondary) + int(affectedTertiary)\n\t\t\tif sum > 1:\n\t\t\t\tsprite.modulate = Color(1.3, 1.3, 1.3, 1)\n\t\t\telif affectedPrimary:\n\t\t\t\t\n\t\t\t\tsprite.modulate = Color(1.3, 1.3, 0.8, 1)\n\t\t\telif affectedSecondary:\n\t\t\t\tsprite.modulate = Color(1.0, 1.3, 0.9, 1)\n\t\t\telif affectedTertiary:\n\t\t\t\tsprite.modulate = Color(1.3, 0.9, 1.3, 1)\n\t\t\telif affectedLightning:\n\t\t\t\tsprite.modulate = Color(1.35, 1.25, 1.0, 1)\n\t\t\t\t\n\tupdateShadow()\n\tif lock.visible:\n\t\tlock.global_rotation = 0\n\t\t\n\tif mode == RigidBody2D.MODE_RIGID and visible:\n\t\taveragedPosition = lerp(averagedPosition, global_position, 1.5 * delta)\n\t\tvar posDif = (averagedPosition - global_position).length()\n\t\t\n\t\t\n\t\tvar curVelocity = get_linear_velocity()\n\t\tvar acceleration = (lastVelocity - curVelocity).length()\n\t\t\n\t\tif posDif > 30 and acceleration > 50:\n\t\t\t\n\t\t\tif Util.time >= impactSoundReadyTime:\n\t\t\t\tplayDropSound(Util.rng.randf_range( - 15, - 10))\n\t\t\t\timpactSoundReadyTime = Util.time + 0.5\n\t\t\t\n\t\t\tvar particles = ObjectPool.particleOneShot(dustParticles, get_parent().get_parent())\n\t\t\tif acceleration > 200:\n\t\t\t\tparticles.amount = 12\n\t\t\telse:\n\t\t\t\tparticles.amount = 6\n\t\t\t\n\t\t\tparticles.z_index = get_parent().z_index - 1\n\t\t\t\n\t\t\tvar dir = lastVelocity.normalized()\n\t\t\tparticles.process_material.direction = Vector3(dir.x, dir.y, 0)\n\t\t\tparticles.process_material.initial_velocity = lastVelocity.length() * 0.4 + 120.0\n\t\t\tparticles.global_position = lastCollisionPos\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\tif (is_instance_valid(lastCollider) and not Util.isItem(lastCollider) and \n\t\t\t\tlastCollisionPos.y > 770):\n\t\t\t\tvar impulse = acceleration * totalWeight\n\t\t\t\tif impulse > 2000:\n\t\t\t\t\tGame.STORAGEBOX.shake(lastCollisionPos, true)\n\t\t\t\telif impulse > 800:\n\t\t\t\t\tGame.STORAGEBOX.shake(lastCollisionPos, false)\n\t\t\t\n\t\t\tparticles.scale = Vector2(0.3, 0.3) * sqrt(getNumCells()) + Vector2(0.1, 0.1)\n\t\t\t\n\t\tlastVelocity = curVelocity\n\n\n"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "size": 170717,
+      "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f",
+      "function": "canAffectDraggedItem",
+      "line": 1486,
+      "through_line": 1513,
+      "source_slice_sha256": "e905c1023232c5ab8f186a62323169d7ae88b6a01aa8aa5822a26cd79452ff6f",
+      "source": "func canAffectDraggedItem(item, color):\n\tif canAffect_color(item, color):\n\t\t\n\t\tvar affectedCells = getAffectedCellsInInventory_cached(color)\n\t\t\n\t\tfor cell in affectedCells:\n\t\t\tif item.dragged:\n\t\t\t\tif inventory.isHovered(cell):\n\t\t\t\t\treturn true\n\t\t\telse:\n\t\t\t\tif cell in item.occupiedCells:\n\t\t\t\t\treturn true\n\treturn false\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "size": 170717,
+      "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f",
+      "function": "getAffectedCellsInInventory_cached",
+      "line": 1483,
+      "through_line": 1485,
+      "source_slice_sha256": "b7003f8f0394d8df87bb2248f444439f547b80cfd6168341a48cbef5333dc40b",
+      "source": "func getAffectedCellsInInventory_cached(color):\n\treturn affectedCellsCache.get(color, [])\n\n"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "size": 170717,
+      "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f",
+      "function": "canAffect_color",
+      "line": 3539,
+      "through_line": 3548,
+      "source_slice_sha256": "a1b02d528546da37ecb550664d380051e74572135b55688c00f0ece74750f36b",
+      "source": "func canAffect_color(item, color):\n\tif color == Affected.Primary:\n\t\treturn canAffect(item)\n\telif color == Affected.Secondary:\n\t\treturn canAffect_secondary(item)\n\telif color == Affected.Tertiary:\n\t\treturn canAffect_tertiary(item)\n\telse:\n\t\treturn canAffect_lightning(item)\n\n"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "size": 170717,
+      "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f",
+      "function": "canAffect",
+      "line": 3527,
+      "through_line": 3529,
+      "source_slice_sha256": "de1b2e234b7fb95c35b48da75377f18b7c06e66eb1b93720d0c9015934bc7129",
+      "source": "func canAffect(item) -> bool:\n\treturn false\n\n"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "size": 170717,
+      "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f",
+      "function": "canAffect_secondary",
+      "line": 3530,
+      "through_line": 3532,
+      "source_slice_sha256": "1872383bf3ec3002d080be9300ddb73784f834d436959ba287c18c0a730add22",
+      "source": "func canAffect_secondary(item) -> bool:\n\treturn false\n\n"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "size": 170717,
+      "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f",
+      "function": "canAffect_tertiary",
+      "line": 3533,
+      "through_line": 3535,
+      "source_slice_sha256": "e255da3a1eab3de8b9eea1f59098d7114cff014ab9d6608b2b53b36eab14baa7",
+      "source": "func canAffect_tertiary(item) -> bool:\n\treturn false\n\n"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "size": 170717,
+      "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f",
+      "function": "canAffect_lightning",
+      "line": 3536,
+      "through_line": 3538,
+      "source_slice_sha256": "ee1e84c65ead8ecd5a2e0af7c20c66ea647547e5307680a5708ff211b1d723a3",
+      "source": "func canAffect_lightning(item) -> bool:\n\treturn false\n\n"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "size": 170717,
+      "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f",
+      "function": "canActivate",
+      "line": 3642,
+      "through_line": 3644,
+      "source_slice_sha256": "26aacd26fe1d15146ac8f2e48d285031a397163b3578116e34c2f391661b53bb",
+      "source": "func canActivate() -> bool:\n\treturn descriptor.canActivate\n\n"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "size": 170717,
+      "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f",
+      "function": "hasType",
+      "line": 3577,
+      "through_line": 3579,
+      "source_slice_sha256": "6f36248457552834892799bdbfd9018d8029ece865ded721ddc90f6cddfaa4fe",
+      "source": "func hasType(type: int) -> bool:\n\treturn type in descriptor.types or type in dynamicTypes\n\n"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "size": 170717,
+      "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f",
+      "function": "isBag",
+      "line": 952,
+      "through_line": 954,
+      "source_slice_sha256": "38bac35325a9f9389f19785a064a33595e44b735c9f54bc1b636bb09241c6c8f",
+      "source": "func isBag() -> bool:\n\treturn false\n\n"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Goobert.gd",
+      "size": 1076,
+      "sha256": "8fda35f3740fe787231d4c69c38eaab1938127c1a01e076df70252cc4212e723",
+      "function": "canAffect",
+      "line": 13,
+      "through_line": 15,
+      "source_slice_sha256": "10d035698e8fb037d4c166f105a1a81b7982768b7809de1ad3c45bde286e8090",
+      "source": "func canAffect(item):\n\treturn item.canActivate()\n\n"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Potion.gd",
+      "size": 4922,
+      "sha256": "b4c0c7026fec662f50cd159f6f363cf78ab8abcc89c20bc770a97d02ee614a1a",
+      "function": "canAffect",
+      "line": 35,
+      "through_line": 37,
+      "source_slice_sha256": "d01dba41c4393230ee1336823d23577e997e90ec0b24a01093c476503ba57315",
+      "source": "func canAffect(item):\n\treturn item.hasType(Type.Potion)\n\n"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Food.gd",
+      "size": 187,
+      "sha256": "e0ff858b55f1f5a2d8e1b06ee155a4f7444ba7f4cd903bbee2b09780bfb20a23",
+      "function": "canAffect",
+      "line": 4,
+      "through_line": 6,
+      "source_slice_sha256": "93ae208e54eb1b960bbc104a0a447be35ee5106ad77aad6c943a136a566f759f",
+      "source": "func canAffect(item):\n\treturn item.hasType(Type.Food) and item.descriptor != descriptor\n\t\n"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/MagicRing.gd",
+      "size": 8774,
+      "sha256": "65a9ee51a7bb19195a3e20bf540a553ca50a84ba7d447741b22e0bc0b0e617ba",
+      "function": "hasType",
+      "line": 149,
+      "through_line": 151,
+      "source_slice_sha256": "74219367648bb380655a3aa5f26de12a048d11a07c1290d3e1100f3707eae666",
+      "source": "func hasType(type: int) -> bool:\n\treturn type in ringTypes or .hasType(type)\n\n"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Inventory.gd",
+      "size": 27240,
+      "sha256": "aa17f0ef93bcc57cd8e5f1ce19c463a0e0f077c711c0a787b030b35a3498ba6e",
+      "function": "isHovered",
+      "line": 269,
+      "through_line": 275,
+      "source_slice_sha256": "4e384c4592b662da15fcbb84c6ef0b8a40308f5f7277455cdceb97b730d588a2",
+      "source": "func isHovered(cell: Vector2) -> bool:\n\t\n\t\n\treturn cell in curHovered\n\nvar affectedItemsChecked: Array\n\n"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Bag.gd",
+      "size": 6520,
+      "sha256": "104ad86cfe3be4b189799b34b04a2fa4fcaa95883eb6e6ee286018b33ad8afb4",
+      "function": "isBag",
+      "line": 29,
+      "through_line": 31,
+      "source_slice_sha256": "0da058aa18345f5d902b89f7b77070d9bfeda4b37bae31b780bdc987ce7e915d",
+      "source": "func isBag():\n\treturn true\n\n"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Weapon.gd",
+      "size": 298,
+      "sha256": "6acd1030b6e29521647df3718d48a865bdaeaced19f3190cb310f63e890253a2"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Bag.gd",
+      "size": 6520,
+      "sha256": "104ad86cfe3be4b189799b34b04a2fa4fcaa95883eb6e6ee286018b33ad8afb4"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Shield.gd",
+      "size": 853,
+      "sha256": "d9074128f1fe653458893ba93e135810e621c6dd0d15778d1ac2b134b779a63c"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/WoodenBuckler.gd",
+      "size": 94,
+      "sha256": "c14e89defbfb1c5458d61c324daaeb8b8e50976fc532bd202aa96b5d225e6242"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/HealthPotion.gd",
+      "size": 489,
+      "sha256": "0b535483c8832de65ca689d42184d8d650699dd38897bf2e2c719e15edd153e6"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Potion.gd",
+      "size": 4922,
+      "sha256": "b4c0c7026fec662f50cd159f6f363cf78ab8abcc89c20bc770a97d02ee614a1a"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Blueberries.gd",
+      "size": 140,
+      "sha256": "13ad54f17dc6e4d12977f5c46b79e624530d77a68cef18092a4fc9089357a155"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Food.gd",
+      "size": 187,
+      "sha256": "e0ff858b55f1f5a2d8e1b06ee155a4f7444ba7f4cd903bbee2b09780bfb20a23"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Goobert.gd",
+      "size": 1076,
+      "sha256": "8fda35f3740fe787231d4c69c38eaab1938127c1a01e076df70252cc4212e723"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/KingGoobert.gd",
+      "size": 1581,
+      "sha256": "2f852255072386a57757bceea38a9f5825e0d1299b6fa8ce2c55b14827385d0f"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/WoodenSword.tscn",
+      "size": 1403,
+      "sha256": "2f8d2d8d75d7c9a0c31e0d59c7c3417fb1db405a228e58cb99a3b808b4166c85"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/WoodenBuckler.tscn",
+      "size": 1213,
+      "sha256": "617c52ea248b6208f1a8df919b45bf1ab45023bc93d6f463222da4139387bfe5"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/LeatherBag.tscn",
+      "size": 5607,
+      "sha256": "6244eebf29a4511ec275ae2084a1a1d4de2d91713b048cd388505e9f02264987"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/HealthPotion.tscn",
+      "size": 2778,
+      "sha256": "c603123e866f8b0bae97fb936566f40e4b36983f80412400224cdf28af197958"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Blueberries.tscn",
+      "size": 1706,
+      "sha256": "cdf0c7c25b33d54c5c1675afebf27eca13dcbeb64a9b69e3d5829929c603c81f"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/KingGoobert.tscn",
+      "size": 4541,
+      "sha256": "853c83082edf0086f21c518075cf5701d93d88669e712df9094856cee6d89c8c"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Sheets/CSV/ItemData.csv",
+      "size": 80933,
+      "sha256": "26f5433cf37cd33c066dd505672fcb292e7570ede8c823c5a10f9bc21208a473"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Sheets/ItemBook.gd",
+      "size": 48708,
+      "sha256": "6b0f0b78c0ee1a0529e7740b424b157837b614cbd74c3e8f22886f9509cb9d84"
+    }
+  ],
+  "selected_script_chains": {
+    "Items/Weapon.gd": {
+      "extends": "extends Item",
+      "relevant_overrides": []
+    },
+    "Items/Bag.gd": {
+      "extends": "extends Item",
+      "relevant_overrides": []
+    },
+    "Items/Shield.gd": {
+      "extends": "extends Item",
+      "relevant_overrides": []
+    },
+    "Items/WoodenBuckler.gd": {
+      "extends": "extends Shield",
+      "relevant_overrides": []
+    },
+    "Items/HealthPotion.gd": {
+      "extends": "extends Potion",
+      "relevant_overrides": []
+    },
+    "Items/Potion.gd": {
+      "extends": "extends Item",
+      "relevant_overrides": [
+        "canAffect"
+      ]
+    },
+    "Items/Blueberries.gd": {
+      "extends": "extends Food",
+      "relevant_overrides": []
+    },
+    "Items/Food.gd": {
+      "extends": "extends Item",
+      "relevant_overrides": [
+        "canAffect"
+      ]
+    },
+    "Items/Goobert.gd": {
+      "extends": "extends Item",
+      "relevant_overrides": [
+        "canAffect"
+      ]
+    },
+    "Items/Exclusive/KingGoobert.gd": {
+      "extends": "extends Goobert",
+      "relevant_overrides": []
+    }
+  },
+  "bounded_method_census": {
+    "canAffectDraggedItem": [
+      {
+        "path": "Items/Item.gd",
+        "line": 1486
+      }
+    ],
+    "getAffectedCellsInInventory_cached": [
+      {
+        "path": "Items/Item.gd",
+        "line": 1483
+      }
+    ],
+    "canAffect_color": [
+      {
+        "path": "Items/Item.gd",
+        "line": 3539
+      }
+    ],
+    "canActivate": [
+      {
+        "path": "Items/Item.gd",
+        "line": 3642
+      }
+    ],
+    "hasType": [
+      {
+        "path": "Items/Item.gd",
+        "line": 3577
+      },
+      {
+        "path": "Items/ItemDescriptor.gd",
+        "line": 296
+      },
+      {
+        "path": "Items/Exclusive/MagicRing.gd",
+        "line": 149
+      }
+    ],
+    "isBag": [
+      {
+        "path": "Items/Item.gd",
+        "line": 952
+      },
+      {
+        "path": "Items/Bag.gd",
+        "line": 29
+      },
+      {
+        "path": "Items/ItemDescriptor.gd",
+        "line": 305
+      }
+    ]
+  },
+  "argument": [
+    "All six selected receiver kinds resolve canAffectDraggedItem/getAffectedCellsInInventory_cached/canAffect_color to Item. Neither the caller nor callees assign business fields/cache entries, call RNG, Timer, events or combat logs. Local variables and read-only array/dictionary membership checks do not mutate the sources.",
+    "Primary dynamic canAffect is false for Bag, Weapon and Shield chains; Potion calls target.hasType(Potion); Food calls target.hasType(Food) and descriptor comparison; King inherits Goobert, calling target.canActivate(). Secondary/tertiary/lightning resolve Item false in these selected chains.",
+    "Item.canActivate reads descriptor.canActivate. The Item-derived hasType override census finds only MagicRing.hasType, which reads ringTypes or delegates to pure base membership. Thus a global hovered/dragged target outside selected39 does not require proving it absent; these target queries remain read-only for original Item-derived targets.",
+    "Inventory.isHovered only checks curHovered membership; affectedCellsCache.get only returns an existing array/default empty array. No lazy caching or write occurs. focusItem.isBag is a constant false/true Item/Bag query.",
+    "The four booleans returned to Item._process select sprite.modulate only. Therefore arbitrary existing focusItem does not alter conditional business state/selected primitive consumption through this residual path."
+  ],
+  "limits": [
+    "No assertion that Game.hoveredItems/draggedItem is empty or Game.state is Combat for the entire interval.",
+    "No GUI equality, global generator or same-seed backend equivalence claim.",
+    "Requires the already-bounded original Item-derived object/ordinary callback domain; no foreign script injection or fabricated native binary proof.",
+    "Previous443 dragged/rigid/focus/controller hook argument and original facts remain unchanged and require independent joined acceptance."
+  ],
+  "raw_carrier_reads": 0,
+  "model_calls": 0,
+  "new_original_capture": 0
+}
