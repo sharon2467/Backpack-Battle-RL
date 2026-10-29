@@ -1,0 +1,79 @@
+# Phase452 — Source-only pure King headless and batch interface design
+
+## 1. Requirements
+
+DESIGN ONLY. No implementation/candidate copy, engine/provider/schema import, initialize/prepare/run/control/batch invocation, EXPECTED read, raw12 rebuild,72-initial audit, GUI forest or new native capture. Preserve formal75 and all443/441/446/451 Source/evidence. Fixed441 conditional-Tape eight-section equality is accepted evidence for that capture only, not seed/native RNG or arbitrary-layout admission.
+
+The next minimum should accept new legal default six-ID layouts plus a root uint64 seed through Python, construct its own fresh business runtime, and run without441 capture bytes, captured native IDs/clock, GUI/King particles/crown/light values or proof DTOs. First King domain is exactly one global King, two class0 sides, descriptors {1,4,11,19,22,262}, default rules/no gems/modifiers and ordinary legal geometry. King may be on either side at any legal instance slot; item counts/order/HP/stamina/positions/rotations/seed need not match441. Keep all existing75 non-King behavior and registry unchanged. Do not initially enable King×other75, class2/129+King or multiple King.
+
+Expose practical initialize/step/snapshot/run plus a small sequential batch evaluator. Results must distinguish Source logic and deterministic seed policy from native parity. Formal support remains75; King experimental Source domain is separate. Root has allowed implementation after independent design acceptance without another routine permission round; no native sampling is authorized by that allowance.
+
+## 2. Design
+
+### Actual reusable ingress and present blockers
+
+`headless.py` already has closed headless-layout/1 validation,75 registry, geometry/default validation, Godot SortArray counterpart, bag-layer siblings, preparation shuffle/priority sorting, source topology, CombatRandom, HeadlessBattle and initialize. The443 staged headless adds a six-ID single-King Source path. No Python symbol/file named SourceKingRuntime exists in these sources: that label denotes `source_king_runtime_inputs` / RuntimeDTO plus HeadlessKingFrameDriver and Fixed60Passes, not a new runtime class to implement.
+
+The old SourceKing factory is still coupled to fresh_king_defaults crown/light/particles and two King AutoHide Timers. Its thin source_king_topology does not use headless._item_siblings. Keep that legacy profile unchanged for compatibility; do not merely widen its whitelist or call its GUI-fact factory and strip the result. The independently passed443 pure441 branch avoids presentation but requires an exact fixture/profile,39/33/77/78 cardinalities, captured finite clock/IDs and actual TapeRandom. It hardcodes P:12 initialization/prepared checks and reads random.position. These are specific ingress/diagnostic constraints, not missing gameplay algorithms.
+
+### New isolated Source profile; two-file change target
+
+Start the next implementation from the frozen44315-file capsule. Modify only its headless.py and native_replay_v8/engine.py if this design remains sufficient; conserve13 including genuine.py, observed.py, TimerRuntime, FrameDriver, RNG implementations, histories and state. Do not overwrite working formal75 or443. Introduce one code-generated internal profile `source-headless-pure-business-fixed60/1`. Keep all fixed441 and old Source/genuine validators closed to their existing domains. `pure_combat_mode` continues to mean the fixed441 path; a separate code-profile predicate identifies the Source mode so it cannot accidentally enter441 assertions or fixed-fixture gates.
+
+Public ingress remains layout+seed, not a generic runtime/clock/provider schema. Layout fields stay the existing headless-layout/1 shape with explicit instance_id,x,y,f. Reuse formal75 validation and CATALOG; King branch invokes the existing thin membership/cardinality/class restriction before any RNG construction. Non-King dispatch keeps the current75 path. No new item implementation or formal76 registry claim follows from the new profile.
+
+The internal Source DTO has13 keys: schema,mode,profile_id,checkpoint,environment,nodes,timer_initial,initial_items,initial_characters,prepare_order,activate_order,terminal_profile,clock_policy. It is a private factory carrier, not a new capture schema. It contains role/path/relative positions/priority/kind, supported fresh model scalar/config values and code-owned fixed60 policy. It has no native_id, external processing witness, frame passes, king_particles, crown/light/bubble inputs, certificate flags or provenance getters. Fresh -1 is asserted on actual newly configured model TimerRecords; native P reused-history evidence is neither relabeled nor required for new Python objects.
+
+Topology reuses headless._inventory_items/_item_siblings and its accepted outer embedding. Keep business relative Timer order and current Source-supported local Tick3/P-invu7/O-invu5; include22 Buff,2tick,2fatigue,2invu,1KingBuff and4 auxiliary TimerRecords. Remove exactly the per-King king_hide/king_drag roles. They are presentation-only; do not generalize removal to particle:* because53/168 have business Timer behavior in the unchanged75 path. No fake Godot native identity is generated. Output node identity is model role plus actual component topology/flags.
+
+Use the existing HeadlessKingFrameDriver/Fixed60Passes production view, finite FrameDriver dispatch/barrier core and TimerRuntime. New Source mode chooses that production driver; fixed441 keeps its finite recorded driver/exhaustion unchanged. The Source policy is explicit physics60+idle60, promoted-f32 delta, zero Source clock origins,120 simulated-second budget and first eligible idle after at least two future physics signals. It is not a reconstruction of actual retail idle scheduling or a captured input stream.
+
+Standalone Source execution schedules the existing business callbacks through the existing Source headless policy. It does not instantiate Game/GUI or add captured41 no-op slots.444's fixed39+Game guard is not generalized to other inventories; absence of a GUI runtime is an explicit property of this Python Source simulator. No claim of per-layout native callback equality is made.
+
+### Gameplay, RNG and output reuse
+
+Keep King prepare/effect/invu/KingBuff/Heal/Mana/event-parent/history/RNG methods. Populate business king_states by actual King instance identity, not P:12. Reuse king_set_state's history-first presentation-tail split for Source mode. Retain state0/1/2 histories and invulnerability pitch draws. Source constructors/prepared assertions are separate from441: no TapeRandom requirement, no .position accesses, no fixed item count and no native witness demand. Fresh per-instance counters/timers are Source-created and checked, not injected prepared values.
+
+Reuse unchanged `derive_stream_seeds` policy headless-sha256-domains/1 and CombatRandom backed by OriginalRNG(Util stream)+GodotPCGInteger(global stream). Preparation shuffle consumes the global generator first, then hands its actual state to CombatRandom for any later global contexts. Do not reseed after shuffle or rewrite PRNGs. CombatRandom's alignment continues to identify Source initialization. Never silently fall back to `.randomness.SeededRandom`/Python random when a seed provider is missing; that class's existing independent_python_synthetic_not_native_distribution_verified label remains unchanged for its separate explicit synthetic path.
+
+Source PRNG/float binder algorithms are implemented, but custom-binary numeric ABI, native session/randomize/constructor/UI consumption and same-root-seed battle parity are pending.451 used actual supplied primitive returns; it cannot discharge these seed obligations. Fresh constructor random values overwritten during prepare are not claimed equal to native pre-prepare samples.
+
+For Source output, use actual model snapshots/timers/flags, event/parent/history outputs and provider audit length rather than Tape position. Add a read-only CombatRandom.snapshot exposing its own two generator states for deterministic isolation checks; do not accept caller-supplied RNG state. HeadlessBattle's Source result adds domain/profile/seed-policy/clock-policy/evidence labels, actual cleanup/final diagnostics and Source RNG states. Exact437 presentation counterparts can be removed in this output view; do not change state.py or turn an output label into model authority. No source capture proof or451 comparison acceptance is mutable business state.
+
+`run_batch(jobs, max_seconds=120, keep_results=False)` is a simple ordered loop over `{layout,seed}` requests. First cheaply validate every job/layout/seed in the whole batch, before any RNG construction or computation: an invalid later job must cause no partial batch computation. Then use one fresh Battle/two-stream state per job and release it before the next. Return actual Source outcome summaries (index,seed,status,winner,terminal time,frames,scope); optionally retain each ordinary full result. Only an actual budget TimeoutError is reported as TIME_BUDGET with no manufactured winner/finish. Internal ValueError/AssertionError/unsupported-path errors propagate rather than being mislabeled as an ordinary timeout. Keep full existing internal tracing for now; compact returned summaries do not claim a tracing-performance optimization. No worker pool, reward policy, action-space/training framework or reset-in-place state sharing is needed for the first usable RL evaluator.
+
+## 3. Realize
+
+### headless.py proposed changes
+
+1. `validate_layout`/`_validate_king_fresh_domain`: reuse existing75 registry check plus the staged six-ID King guard; validate all geometry/schema before RNG. Preserve non-King validation and accepted defaults.
+2. `source_pure_runtime_topology(fixture)` new: require thin King domain; reuse inventory/sibling helpers; build Source business roles and real33 Timer configurations, with no UI roles/native IDs. Do not call source_king_fresh_defaults/source_king_topology.
+3. `runtime_inputs(fixture,order,topology=None)`: King→new engine source_pure_runtime_inputs; no-King→original75 path. User layout cannot supply topology/passes/private state.
+4. `initialize`: validate seed/layout/domain/topology/fresh constants before generators; reuse derive_stream_seeds, preparation_order and continuous global state handoff; construct CombatRandom then Engine; real prepare+activate once. Metadata identifies the new Source profile only on that branch.
+5. `CombatRandom.snapshot()` new: read actual Util snapshot and global seed/state/sequence policy without advancing or importing anything.
+6. `HeadlessBattle.step/snapshot/run`: Source pure mode uses existing complete physics+idle quantum/budget semantics and Source business output view; no captured fixture/observer label. Preserve75 path byte/behavior equivalence where unchanged.
+7. `run_batch` new plus optional CLI batch argument: sequential public Python evaluator, deterministic ordered job records and compact summaries; no second engine core or external launcher.
+
+### engine.py proposed changes
+
+1. Add SOURCE_PURE_PROFILE predicate/domain-owned13-key factory and strict reconstruction validator. Legacy validate_source_king_domain remains thin and can supply the membership/class/count predicate; all oldprofile data validators remain unchanged.
+2. `_required_source_pure_roles`/`source_pure_runtime_inputs`/`_build_source_pure_scaffold`: derive actual roles from fixture, omit only King UI Timers, add4 aux; configure new real Timers and assert current supported state. Reuse original sparse construction/API operations, not a new Timer or scheduler implementation.
+3. `validate_runtime_inputs`/`build_runtime_scaffold`: early Source-only dispatch before legacy UI/441 gates. Data equals independently reconstructed code-owned Source carrier, not arbitrary caller booleans.
+4. `CombatEngine.__init__`: validate new Source data/provider presence before state mutation; set separate source_pure_mode. Generalize Source King identity construction only, preserve441 P:12 branch. Choose the existing production HeadlessKingFrameDriver, leave captured441 finite driver unchanged. Source mode does not set integration_mode to reuse fixed444 native no-op evidence.
+5. New Source constructor/prepared assertion hooks: actual item/Character/Timer/default/charge agreement at correct stages, audit initially empty; no .position or441 count. Reuse existing prepare loop and actual King business methods.
+6. `king_set_state`: after unchanged history call, return for fixed441 or Source pure; no display values/AutoHide lookups.
+7. `activate_from_checkpoint`/`_timer_timeout`/`finish`: Source pure keeps zero-arg tick and INT14/3/1 callsite forms; stop4 actual aux at the same Character cleanup location despite not entering captured integration mode. No effect/Timer arithmetic changes.
+8. `_runtime_projection`/`EngineFrameDriver.snapshot`/`result`: Source business diagnostics and profile label without old full_fx/particle facts or Tape position. Read existing model snapshot/actual TimerRuntime state. Generalize only the new Source branch; old fixed441 schema/observer label remains exact.
+9. `_source_king_quantum`/`_run_source_king` or a narrow Source dispatch: reuse existing production clock/budget and finite core algorithms for the new Source profile. No legacy finite EOF/trailing check relaxation.
+
+The implementation surface is at most two changed modules plus independent tests/Source artifacts. New functions above can be coalesced if that reduces code; this is not permission to rewrite conserved helpers. Any truly needed third-file change must identify its concrete caller before proceeding. Do not implement registry expansion, generic runtime providers or UI cleanup as incidental work.
+
+## 4. Acceptance Criteria / Tests
+
+Independent Source review first confirms the two-profile separation,13-field internal carrier, no native IDs/GUI/particles dependency and unchanged finite/Timer/RNG core. Root's accepted451 eight-section evidence remains a pinned reference; do not rerun its full battle or reopen EXPECTED for Source design.
+
+Minimum new controls use actual public ingress/core methods: legal new geometry/rotations/instance identities with one King on P and separately O; invalid collisions/uncovered cells/typed seeds/layout extras/gems/tape/clock/private fields; two King/class2/129 or other75+King rejection before RNG/prepare; correct business33 Timer ancestry/order/config/actual fresh state; Source state0→prepare3/history-first; no SeededRandom fallback; zeroarg tick/INTfatigue and real aux stops; fixed60 production quantum and budget/postfinal behavior via reused core, without replaying old Timer/FrameDriver suites.
+
+Then one small new Source-only layout+seed run and one two-instance/batch determinism/isolation check are independently authorized/executed after Source freeze. Use different legitimate layouts/seeds, no native seed search or new native capture. Compare same-source same-seed full business output and two generator states for sequential versus interleaved operation; independent outputs are sealed before inspection. Report which King branches actually hit or did not hit. A successful Python batch is not per-layout native correctness.
+
+Status output must keep four facts separate: (1) Source-only layout/domain implementation and independent Python controls; (2) fixed441 conditional-Tape eight-section equality; (3) custom-native RNG numeric/seed/consumption parity pending; (4) other King/mixed layouts and full engine/RL action environment not native-validated. Formal75 remains unchanged; do not announce formal76. First practical endpoint is a fresh deterministic Python battle/batch evaluator; later King×75/two-King/rage or native captures require separately bounded expansion/evidence.

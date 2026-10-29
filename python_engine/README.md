@@ -9,6 +9,12 @@ This directory packages the existing Python reconstruction of Backpack Battles 1
 
 The directory name `candidate75/` is retained from the pre-promotion snapshot; its exact fifteen source files are now the accepted bounded75 runtime. The user explicitly resumed the migration on2026-10-25. Exact promotion, independent readback and one isolated package CLI run succeeded; King production work and the full engine/RL are still incomplete.
 
+## Latest pure combat evidence
+
+On2026-10-29 the fixed King-A39-item/six-type mixed case passed all eight strict business sections against the original: events, parent closure, histories, all365 primitive/RNG state, final state, sampled callbacks, typed business Timer API and terminal clock cuts. The single Python battle was sealed before comparison and was not rerun. See [current engineering checkpoint](../recovery_checkpoint/CURRENT-WORK.md) and `work_in_progress/phase451-fixed-king-strict-acceptance/`.
+
+This admits the fixed conditional-Tape case only; it does not add King to `candidate75/`, prove native seed parity, or complete the engine/RL. A separate fresh six-ID/single-King Source entry and sequential batch interface are now being implemented under452/453, with no GUI/captured-state input. They are not yet accepted or packaged here.
+
 ## Run the formal checkpoint
 
 Python 3.12 is the tested interpreter. No pip packages are required.
