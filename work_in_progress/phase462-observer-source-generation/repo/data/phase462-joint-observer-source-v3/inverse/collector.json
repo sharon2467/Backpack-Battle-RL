@@ -1,0 +1,116 @@
+{
+  "after": {
+    "path": "data/phase462-joint-observer-source-v3/collector.gd",
+    "sha256": "feb22de0f4427b0412d136d9f56ee0ab17ab8d8044fc225244a69d9cc8ccf273",
+    "size": 64365
+  },
+  "before": {
+    "path": "data/phase391-terminal-source/collector.gd",
+    "sha256": "f05bbf6b0e7277b5a342553d3a8d3c842f3efa6526f0b85948bd003837ac74ce",
+    "size": 64928
+  },
+  "changed_functions": [],
+  "conserved_functions": [
+    "_initialize",
+    "after_activate",
+    "attach_source_listener",
+    "check_barrier",
+    "check_source_listener_order",
+    "collector_control_bound_value",
+    "collector_control_float_bits",
+    "collector_control_rows",
+    "collector_control_target",
+    "collector_diag_valid",
+    "collector_diagnostic_fallback",
+    "config_matches_source",
+    "encode",
+    "ensure_source_window",
+    "event_row",
+    "exact_keys",
+    "fail",
+    "fail_write_cap",
+    "fields",
+    "finish_source_cut",
+    "frames",
+    "freeze_events",
+    "histories",
+    "integer_between",
+    "native_ids",
+    "observe",
+    "observe_player_setup",
+    "observer7_precondition",
+    "old_player_exit_valid",
+    "on_combat_end",
+    "on_combat_start",
+    "on_idle_source_cut",
+    "on_shop_closed",
+    "phase",
+    "place_player_items",
+    "player_input_valid",
+    "player_membership_unchanged",
+    "player_setup_settled",
+    "player_spatial_evidence",
+    "preflight",
+    "read_player_fixture",
+    "register_inventory",
+    "rules_are_default",
+    "run_context",
+    "same_id_set",
+    "serializer_selftest",
+    "set_stage",
+    "setup_step",
+    "slot_spec",
+    "source_connection_target",
+    "source_control_record",
+    "source_control_snapshot",
+    "source_cut_reject_collector",
+    "source_is",
+    "source_terminal_receipt_matches",
+    "source_window_reject",
+    "stable_snapshot",
+    "start_controlled_combat",
+    "state_snapshot",
+    "timeout_budget_selftest",
+    "timeout_budget_valid",
+    "write_json",
+    "write_jsonl",
+    "write_source_bytes"
+  ],
+  "edits": [
+    {
+      "after": "const SOURCE_P = {\"class\": 0, \"game_version\": \"1.1.8\", \"health\": 240, \"items\": [{\"f\": 0, \"item_index\": 11, \"x\": 0, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 2, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 4, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 0, \"y\": 2}, {\"f\": 0, \"item_index\": 11, \"x\": 2, \"y\": 2}, {\"f\": 0, \"item_index\": 11, \"x\": 4, \"y\": 2}, {\"f\": 0, \"item_index\": 262, \"x\": 2, \"y\": 0}, {\"f\": 0, \"item_index\": 23, \"x\": 4, \"y\": 0}, {\"f\": 0, \"item_index\": 22, \"x\": 1, \"y\": 0}, {\"f\": 0, \"item_index\": 22, \"x\": 1, \"y\": 1}, {\"f\": 0, \"item_index\": 22, \"x\": 1, \"y\": 2}, {\"f\": 0, \"item_index\": 22, \"x\": 4, \"y\": 2}, {\"f\": 0, \"item_index\": 1, \"x\": 0, \"y\": 0}, {\"f\": 0, \"item_index\": 1, \"x\": 0, \"y\": 2}], \"schema_version\": 1, \"stamina\": 5}",
+      "after_positions": [
+        404
+      ],
+      "before": "const SOURCE_P = {\"schema_version\": 1, \"game_version\": \"1.1.8\", \"class\": 0, \"health\": 360, \"stamina\": 5, \"items\": [{\"f\": 0, \"item_index\": 11, \"x\": 0, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 2, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 4, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 6, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 0, \"y\": 2}, {\"f\": 0, \"item_index\": 11, \"x\": 2, \"y\": 2}, {\"f\": 0, \"item_index\": 11, \"x\": 4, \"y\": 2}, {\"f\": 0, \"item_index\": 11, \"x\": 6, \"y\": 2}, {\"f\": 0, \"item_index\": 11, \"x\": 0, \"y\": 4}, {\"f\": 0, \"item_index\": 11, \"x\": 2, \"y\": 4}, {\"f\": 0, \"item_index\": 11, \"x\": 4, \"y\": 4}, {\"f\": 0, \"item_index\": 11, \"x\": 6, \"y\": 4}, {\"f\": 0, \"item_index\": 262, \"x\": 2, \"y\": 1}, {\"f\": 0, \"item_index\": 22, \"x\": 1, \"y\": 1}, {\"f\": 0, \"item_index\": 22, \"x\": 1, \"y\": 2}, {\"f\": 0, \"item_index\": 22, \"x\": 1, \"y\": 3}, {\"f\": 0, \"item_index\": 1, \"x\": 4, \"y\": 1}, {\"f\": 0, \"item_index\": 22, \"x\": 4, \"y\": 3}, {\"f\": 0, \"item_index\": 19, \"x\": 6, \"y\": 0}, {\"f\": 0, \"item_index\": 4, \"x\": 6, \"y\": 4}]}",
+      "occurrences": 1
+    },
+    {
+      "after": "const SOURCE_O = {\"class\": 0, \"game_version\": \"1.1.8\", \"health\": 260, \"items\": [{\"f\": 0, \"item_index\": 11, \"x\": 0, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 2, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 4, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 0, \"y\": 2}, {\"f\": 0, \"item_index\": 11, \"x\": 2, \"y\": 2}, {\"f\": 0, \"item_index\": 11, \"x\": 4, \"y\": 2}, {\"f\": 0, \"item_index\": 1, \"x\": 1, \"y\": 0}, {\"f\": 0, \"item_index\": 1, \"x\": 3, \"y\": 0}, {\"f\": 0, \"item_index\": 4, \"x\": 0, \"y\": 2}, {\"f\": 0, \"item_index\": 19, \"x\": 4, \"y\": 0}, {\"f\": 0, \"item_index\": 22, \"x\": 2, \"y\": 2}, {\"f\": 0, \"item_index\": 22, \"x\": 3, \"y\": 2}], \"schema_version\": 1, \"stamina\": 5}",
+      "after_positions": [
+        1135
+      ],
+      "before": "const SOURCE_O = {\"schema_version\": 1, \"game_version\": \"1.1.8\", \"class\": 0, \"health\": 380, \"stamina\": 5, \"items\": [{\"f\": 0, \"item_index\": 11, \"x\": 0, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 2, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 4, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 6, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 0, \"y\": 2}, {\"f\": 0, \"item_index\": 11, \"x\": 2, \"y\": 2}, {\"f\": 0, \"item_index\": 11, \"x\": 4, \"y\": 2}, {\"f\": 0, \"item_index\": 11, \"x\": 6, \"y\": 2}, {\"f\": 0, \"item_index\": 11, \"x\": 0, \"y\": 4}, {\"f\": 0, \"item_index\": 11, \"x\": 2, \"y\": 4}, {\"f\": 0, \"item_index\": 11, \"x\": 4, \"y\": 4}, {\"f\": 0, \"item_index\": 11, \"x\": 6, \"y\": 4}, {\"f\": 0, \"item_index\": 22, \"x\": 1, \"y\": 1}, {\"f\": 0, \"item_index\": 22, \"x\": 1, \"y\": 2}, {\"f\": 0, \"item_index\": 22, \"x\": 1, \"y\": 3}, {\"f\": 0, \"item_index\": 1, \"x\": 4, \"y\": 1}, {\"f\": 0, \"item_index\": 22, \"x\": 4, \"y\": 3}, {\"f\": 0, \"item_index\": 19, \"x\": 6, \"y\": 0}, {\"f\": 0, \"item_index\": 4, \"x\": 6, \"y\": 4}]}",
+      "occurrences": 1
+    },
+    {
+      "after": "const SOURCE_CONFIG = {\"case_id\": \"NATIVE-028-KING-BASIC-A\", \"global_seed\": 45701, \"player_fixture_enabled\": true, \"schema\": \"native-combat-capture/1\", \"timeouts\": {\"battle_seconds\": 120, \"total_seconds\": 295}, \"util_seed\": 45702}",
+      "after_positions": [
+        1776
+      ],
+      "before": "const SOURCE_CONFIG = {\"schema\": \"native-combat-capture/1\", \"case_id\": \"NATIVE-027-KING-A\", \"global_seed\": 35301, \"util_seed\": 35302, \"player_fixture_enabled\": true, \"timeouts\": {\"battle_seconds\": 120, \"total_seconds\": 295}}",
+      "occurrences": 1
+    },
+    {
+      "after": "const PLAYER_ITEM_WHITELIST = [1, 4, 11, 19, 22, 23, 262]",
+      "after_positions": [
+        2044
+      ],
+      "before": "const PLAYER_ITEM_WHITELIST = [1, 4, 11, 19, 22, 262]",
+      "occurrences": 1
+    }
+  ],
+  "inverse": "EXACT_COMPLETE_BYTES",
+  "language": "gd",
+  "new_functions": 0
+}

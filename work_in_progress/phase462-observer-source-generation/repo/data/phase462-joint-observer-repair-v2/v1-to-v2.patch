@@ -1,0 +1,22 @@
+--- tests/phase462_prepare_joint_observer_source.py
++++ tests/phase462_prepare_joint_observer_source_v2.py
+@@ -10,8 +10,8 @@
+ 
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+-OUT = ROOT / 'data/phase462-joint-observer-source'
+-SPEC = 'docs/phase462_joint_observer_source_implementation_spec.md'
++OUT = ROOT / 'data/phase462-joint-observer-source-v2'
++SPEC = 'docs/phase462_joint_observer_source_v2_repair_spec.md'
+ REQUEST = 'data/phase460-joint-native-observation-design/request.json'
+ REVIEW = 'data/phase460-independent-design-review/review.json'
+ PREIMAGES = {
+@@ -322,7 +322,7 @@
+         accepted_source_controls=[], host_ready=False, native=0, model=0))
+     compile(read_source(Path(__file__)), __file__, 'exec', dont_inherit=True)
+     save(OUT / 'compile-only.json', dict(schema='phase462-compile-only/1', discarded_compile_objects=2,
+-        producer=True, schema=True, GD_lexical_conservation_only=True, Godot_parse=0,
++        producer=True, schema_compiled=True, GD_lexical_conservation_only=True, Godot_parse=0,
+         generated_module_imports=0, candidate_imports=0, schema_calls=0, models=0, Expected_reads=0, pool_operations=0))
+     save(OUT / 'first-generation-result.json', dict(schema='phase462-first-generation/1',
+         status='SOURCE_GENERATED_COMPILED_NOT_INDEPENDENTLY_ACCEPTED_OR_HOST_READY', source_generation_invocations=1,

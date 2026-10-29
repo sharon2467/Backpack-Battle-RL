@@ -1,0 +1,34 @@
+{
+  "after": {
+    "path": "tests/phase462_prepare_joint_observer_source_v2.py",
+    "sha256": "7859538bcfb22bd385d8c1710fcf751316de7d97a16c602bf32c63afe866b0b0",
+    "size": 25192
+  },
+  "algorithm_changes": false,
+  "before": {
+    "path": "tests/phase462_prepare_joint_observer_source.py",
+    "sha256": "524348aac62dc35fe6aba3fe41037b7746d1fafae8511f33337d6fe99c245f48",
+    "size": 25185
+  },
+  "complete_inverse_bytes": true,
+  "exact_three_replacements": [
+    {
+      "after": "OUT = ROOT / 'data/phase462-joint-observer-source-v2'",
+      "before": "OUT = ROOT / 'data/phase462-joint-observer-source'"
+    },
+    {
+      "after": "SPEC = 'docs/phase462_joint_observer_source_v2_repair_spec.md'",
+      "before": "SPEC = 'docs/phase462_joint_observer_source_implementation_spec.md'"
+    },
+    {
+      "after": "producer=True, schema_compiled=True, GD_lexical_conservation_only=True",
+      "before": "producer=True, schema=True, GD_lexical_conservation_only=True"
+    }
+  ],
+  "old_error_owner": {
+    "path": "data/phase462-joint-observer-source/first-error-owner.json",
+    "sha256": "f0c4290e89ee1813ee66cfda16f720cbb3791db92069799ade2c80c7853f0add",
+    "size": 1484
+  },
+  "schema": "phase462-v2-repair-conservation/1"
+}

@@ -1,0 +1,11 @@
+{
+  "Godot": 0,
+  "error_type": "ValueError",
+  "generated_schema_imports": 0,
+  "message": "unexpected changed functions: ['bind_fixed_inventory', 'rng_initial_capture', 'source_selected_auto', 'state', 'ui_close', 'ui_open']",
+  "models": 0,
+  "pool_operations": 0,
+  "retry_authorized": false,
+  "schema": "phase462-generation-error/1",
+  "traceback": "Traceback (most recent call last):\n  File \"/workspace/python-original-engine/repo/tests/phase462_prepare_joint_observer_source_v2.py\", line 378, in main\n    artifacts[name], reports[name] = delta.finish(path, changed)\n                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase462_prepare_joint_observer_source_v2.py\", line 126, in finish\n    require(set(changed) == set(allowed), 'unexpected changed functions: ' + repr(changed))\n  File \"/workspace/python-original-engine/repo/tests/phase462_prepare_joint_observer_source_v2.py\", line 30, in require\n    raise ValueError(message)\nValueError: unexpected changed functions: ['bind_fixed_inventory', 'rng_initial_capture', 'source_selected_auto', 'state', 'ui_close', 'ui_open']\n"
+}

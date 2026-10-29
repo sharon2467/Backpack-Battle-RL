@@ -1,0 +1,42 @@
+--- tests/phase462_prepare_joint_observer_source_v2.py
++++ tests/phase462_prepare_joint_observer_source_v3.py
+@@ -10,8 +10,8 @@
+ 
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+-OUT = ROOT / 'data/phase462-joint-observer-source-v2'
+-SPEC = 'docs/phase462_joint_observer_source_v2_repair_spec.md'
++OUT = ROOT / 'data/phase462-joint-observer-source-v3'
++SPEC = 'docs/phase462_joint_observer_source_v3_repair_spec.md'
+ REQUEST = 'data/phase460-joint-native-observation-design/request.json'
+ REVIEW = 'data/phase460-independent-design-review/review.json'
+ PREIMAGES = {
+@@ -71,9 +71,25 @@
+ 
+ 
+ def gd_functions(text):
+-    starts = list(re.finditer(r'^func (\w+)\(', text, re.M))
+-    return {match.group(1): text[match.start(): starts[i + 1].start() if i + 1 < len(starts) else len(text)].rstrip()
+-            for i, match in enumerate(starts)}
++    # Only header and indented body; intervening top-level declarations are not methods.
++    lines = text.splitlines(keepends=True)
++    result = {}
++    for index, line in enumerate(lines):
++        match = re.match(r'^func (\w+)\(', line)
++        if match is None:
++            continue
++        name = match.group(1)
++        if name in result:
++            raise ValueError('duplicate GD function: ' + name)
++        end = index + 1
++        while end < len(lines):
++            following = lines[end]
++            if not following.strip() or following.startswith((' ', '\t')) or following.lstrip().startswith('#'):
++                end += 1
++            else:
++                break
++        result[name] = ''.join(lines[index:end]).rstrip()
++    return result
+ 
+ 
+ class Delta:

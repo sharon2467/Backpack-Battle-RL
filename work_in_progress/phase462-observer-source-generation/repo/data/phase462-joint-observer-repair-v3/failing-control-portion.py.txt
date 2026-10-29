@@ -1,0 +1,5 @@
+# Failing portion of the author pre-generation stdin lexical control, not the producer:
+ui = base_map['ui_close']
+assert '\tui_closed = true' in ui
+# Actual immutable391 source is: \tui_closed = ok
+# First control already asserted base_map == constant_map before this site.
