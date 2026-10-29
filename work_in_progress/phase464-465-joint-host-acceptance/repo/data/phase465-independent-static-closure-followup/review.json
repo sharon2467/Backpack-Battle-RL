@@ -1,0 +1,79 @@
+{
+  "schema": "phase465-limited-static-closure-followup/1",
+  "status": "STATIC_REMAINDER_COMPLETE_ONE_EXISTING_BLOCK",
+  "first_finding": {
+    "path": "data/phase465-independent-static-first-finding/finding.json",
+    "size": 3595,
+    "sha256": "ef639447d93b010b433cb6a3ff2acb0a6d02e993d446b49588cc728fa1be1e9e"
+  },
+  "selected_source_graph": [
+    {
+      "path": "tests/phase464_oracle_host.py",
+      "size": 41282,
+      "sha256": "645fbea14deb78e25835fea41f5cb199187be693755a3c71dfeec13d890d33f3",
+      "repo_local_imports": [
+        "phase363_oracle_process",
+        "phase464_oracle_storage"
+      ]
+    },
+    {
+      "path": "tests/phase464_oracle_storage.py",
+      "size": 21560,
+      "sha256": "56368d5c594cf80289438634840091883161274f9386abf40d0b90d22d4c62fd",
+      "repo_local_imports": [
+        "native_run_compaction"
+      ]
+    },
+    {
+      "path": "tests/phase363_oracle_process.py",
+      "size": 13665,
+      "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f",
+      "repo_local_imports": [
+        "phase363_oracle_storage"
+      ]
+    },
+    {
+      "path": "tests/phase363_oracle_storage.py",
+      "size": 15496,
+      "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc",
+      "repo_local_imports": [
+        "native_run_compaction"
+      ]
+    },
+    {
+      "path": "tests/native_run_compaction.py",
+      "size": 27304,
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260",
+      "repo_local_imports": []
+    },
+    {
+      "path": "tests/godotsteam_offline_exec.py",
+      "size": 4218,
+      "sha256": "78beb697959d28b45c40f7a93174d22c67f711c077f5f7dcfb22ca10e69dd961",
+      "repo_local_imports": []
+    }
+  ],
+  "only_missing_leaf": "tests/phase363_oracle_storage.py",
+  "dynamic_sites": "process.command starts frozen godotsteam_offline_exec.py; offline self_test string imports same already-listed offline file. Host terminal schema loader binds462 schema, remains uncalled. No other repository-local dependency found in the six selected files.",
+  "reviewed_remaining": [
+    "Sourcegate actual463 receipt+owner/freeze/tuple checks; separate exact newHostreview/native/models strictINT0; old392 status notaccepted",
+    "Actual frozen26slots/seeds45701/45702/attempt1 and78files812880bytes match",
+    "Lease snapshot underflock aftercheck_ready beforebusy; fixed triple yield",
+    "Host predecessor controls durable file fsync/readback and manifest fsync before reset; absence versusempty preserved",
+    "Oldarchive byteexact; immediate pendingfailed write under same lease afterarchive; no automatic oldREADY restore",
+    "Storage22/Host9 exact inherited function segments verified; no broader physical audit or runtime proof"
+  ],
+  "counts": {
+    "host_imports": 0,
+    "storage_imports": 0,
+    "helpers": 0,
+    "lease": 0,
+    "plan": 0,
+    "execute": 0,
+    "actual_pool": 0,
+    "native": 0,
+    "models": 0,
+    "Expected": 0
+  },
+  "next": "Root-approved immutablev2 adds actual dependency and necessary Source path binding. Review only delta then seal first helper batch if clear."
+}

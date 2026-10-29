@@ -1,0 +1,145 @@
+{
+  "schema": "phase465-independent-host-source-plan/1",
+  "status": "PLAN_ONLY_AWAIT_464_FINAL_OWNER_AND_ROOT_FINITE_EXECUTION_RELEASE",
+  "spec": {
+    "path": "docs/phase465_independent_joint_host_source_acceptance_spec.md",
+    "size": 9270,
+    "sha256": "5cd80f90f26079b832111dd5cf39452be2ce8d1369fccae79db157232d238880"
+  },
+  "draft_reference_not_final_acceptance": {
+    "path": "docs/phase464_joint_oracle_host_source_spec.md",
+    "size": 9610,
+    "sha256": "9a500c315d890ca28f4562bb2b3faa4c1e581eae684d236b34b4a56f5ef86ebb"
+  },
+  "prior_observer_acceptance": {
+    "path": "data/phase463-independent-source-acceptance/review.json",
+    "size": 5374,
+    "sha256": "5cebd80f470a6d7b829ca6bc09c4d1b490f4d83f669d862925f1f10df5cf7906"
+  },
+  "prior_observer_acceptance_owner": {
+    "path": "data/phase463-independent-source-acceptance/owned-files.json",
+    "size": 297,
+    "sha256": "0a4a24d0cf026467ebb5f7eb00cebd845b114e16da6e067e1b63d934857f36b3"
+  },
+  "required_final_source_owner": null,
+  "scope": {
+    "case": "NATIVE-028-KING-BASIC-A",
+    "run_name": "original028-king-basic-A-single-001",
+    "attempt": 1,
+    "native_seeds": [
+      45701,
+      45702
+    ],
+    "install_files": 78,
+    "install_bytes": 812880,
+    "case_inputs": 3,
+    "fixed_slots": 26,
+    "King": "P:6",
+    "Basic": "P:7",
+    "Sword": "P:12"
+  },
+  "static_groups": [
+    "final owner/freeze/tuple/463 identity and exact permissions",
+    "75patch+3artifact/threecaseinput/driver descriptor closure",
+    "all inherited storage functions exact except lease and install-byte constant; unchanged physical/process/archive methods exact",
+    "flock-check_ready-state snapshot-busy-yield chronology",
+    "fsynced state+twofixture backup before reset",
+    "same-lock archive then failed/PENDING_INDEPENDENT_PREDECESSOR_RESTORE; no automatic READY restoration"
+  ],
+  "proposed_calls": [
+    {
+      "id": "S1",
+      "helper": "backup_predecessor_controls",
+      "expected": "PASS",
+      "input": "TEST_ONLY two fixture files present; one empty; raw state image; exact mode/mtime and manifest bytes"
+    },
+    {
+      "id": "S2",
+      "helper": "backup_predecessor_controls",
+      "expected": "PASS",
+      "input": "TEST_ONLY one fixture absent; preserve absence distinct from empty"
+    },
+    {
+      "id": "S3",
+      "helper": "backup_predecessor_controls",
+      "expected": "REJECT",
+      "input": "TEST_ONLY raw state/identity mismatch; no backup directory created"
+    },
+    {
+      "id": "S4",
+      "helper": "backup_predecessor_controls",
+      "expected": "REJECT",
+      "input": "TEST_ONLY symlink fixture; retain expected partial artifacts"
+    },
+    {
+      "id": "D1",
+      "helper": "resolve_execute_payloads",
+      "expected": "PASS",
+      "input": "final frozen464 Source only, no pool; count actual nested calls"
+    },
+    {
+      "id": "D2",
+      "helper": "verify_execute_payloads",
+      "expected": "REJECT",
+      "input": "copy of D1 graph with wrong install byte limit"
+    },
+    {
+      "id": "D3",
+      "helper": "resolve_execute_payloads",
+      "expected": "REJECT",
+      "input": "copied freeze with stale case input descriptor"
+    },
+    {
+      "id": "G1",
+      "helper": "validate_observer_review",
+      "expected": "PASS",
+      "input": "already sealed463 actual receipt and exact Source descriptors"
+    },
+    {
+      "id": "G2",
+      "helper": "validate_observer_review",
+      "expected": "REJECT",
+      "input": "copied actual463 value with stale Source identity"
+    },
+    {
+      "id": "G3",
+      "helper": "source_gate",
+      "expected": "REJECT",
+      "input": "TEST_ONLY closed config BOOL false for INT0; fail before observer/pool/resource read"
+    }
+  ],
+  "call_bound": 10,
+  "runtime_scope_not_yet_released": true,
+  "no_calls": [
+    "lease",
+    "plan",
+    "execute",
+    "budget",
+    "check_ready",
+    "reset_previous",
+    "install",
+    "archive_streaming",
+    "Godot including parse",
+    "model/component",
+    "Expected",
+    "actual pool"
+  ],
+  "current_counts": {
+    "host_imports": 0,
+    "storage_imports": 0,
+    "helper_calls": 0,
+    "plan_calls": 0,
+    "lease_calls": 0,
+    "actual_pool_reads_or_writes": 0,
+    "native": 0,
+    "models": 0,
+    "Expected": 0
+  },
+  "limits": [
+    "Synthetic state_preimage does not prove actual lease locking; lease chronology is statically reviewed without fake Game.",
+    "No full Source-gate positive until actual review/config exists; early negative and exact pure observer receipt tests are local scope.",
+    "No current READY/space/predecessor claim; full actual readonly preflight belongs to later Root plan invocation.",
+    "No old tests, new capture, schema import or whole physical restoration chain.",
+    "Root may reduce/adapt the finite call list after final Source; no automatic expansion or execution from this plan."
+  ]
+}

@@ -1,0 +1,403 @@
+{
+  "schema": "phase465-independent-helper-result/1",
+  "status": "PASS_10_SOURCE_HELPER_CONTROLS",
+  "cases": [
+    {
+      "id": "S1",
+      "helper": "backup_predecessor_controls",
+      "status": "PASS",
+      "expected": "PASS",
+      "manifest": {
+        "path": "data/phase465-independent-helpers-first-001/S1/backup/manifest.json",
+        "size": 1285,
+        "sha256": "38d8a592ea6696c3077cff2e45caf80f5330f8d57bbfa9eff72805ed8e6fdbb7"
+      }
+    },
+    {
+      "id": "S2",
+      "helper": "backup_predecessor_controls",
+      "status": "PASS",
+      "expected": "PASS",
+      "manifest": {
+        "path": "data/phase465-independent-helpers-first-001/S2/backup/manifest.json",
+        "size": 1096,
+        "sha256": "09f21a58c2d74d85005ba91a5352c0a1912da49b8275bfd909a2a1801b05c418"
+      }
+    },
+    {
+      "id": "S3",
+      "helper": "backup_predecessor_controls",
+      "status": "PASS",
+      "expected": "REJECT_VALUE_ERROR",
+      "rejection": {
+        "type": "ValueError",
+        "message": "locked predecessor state bytes"
+      }
+    },
+    {
+      "id": "S4",
+      "helper": "backup_predecessor_controls",
+      "status": "PASS",
+      "expected": "REJECT_VALUE_ERROR",
+      "rejection": {
+        "type": "ValueError",
+        "message": "symlink member/ancestor"
+      }
+    },
+    {
+      "id": "D1",
+      "helper": "resolve_execute_payloads",
+      "status": "PASS",
+      "expected": "PASS",
+      "install": {
+        "files": 78,
+        "bytes": 812880
+      }
+    },
+    {
+      "id": "D2",
+      "helper": "verify_execute_payloads",
+      "status": "PASS",
+      "expected": "REJECT_VALUE_ERROR",
+      "rejection": {
+        "type": "ValueError",
+        "message": "exact frozen install limits"
+      }
+    },
+    {
+      "id": "D3",
+      "helper": "resolve_execute_payloads",
+      "status": "PASS",
+      "expected": "REJECT_VALUE_ERROR",
+      "rejection": {
+        "type": "ValueError",
+        "message": "exact three462v3 case descriptors"
+      }
+    },
+    {
+      "id": "G1",
+      "helper": "validate_observer_review",
+      "status": "PASS",
+      "expected": "PASS"
+    },
+    {
+      "id": "G2",
+      "helper": "validate_observer_review",
+      "status": "PASS",
+      "expected": "REJECT_VALUE_ERROR",
+      "rejection": {
+        "type": "ValueError",
+        "message": "actual463 Source-only acceptance for exact462v3 required"
+      }
+    },
+    {
+      "id": "G3",
+      "helper": "source_gate",
+      "status": "PASS",
+      "expected": "REJECT_VALUE_ERROR",
+      "rejection": {
+        "type": "ValueError",
+        "message": "strictINT0 model/inputbuild/expected permissions"
+      }
+    }
+  ],
+  "top_level_calls": 10,
+  "module_loads": [
+    {
+      "module": "native_run_compaction",
+      "source": {
+        "path": "tests/native_run_compaction.py",
+        "size": 27304,
+        "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260"
+      }
+    },
+    {
+      "module": "phase363_oracle_storage",
+      "source": {
+        "path": "tests/phase363_oracle_storage.py",
+        "size": 15496,
+        "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc"
+      }
+    },
+    {
+      "module": "phase363_oracle_process",
+      "source": {
+        "path": "tests/phase363_oracle_process.py",
+        "size": 13665,
+        "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f"
+      }
+    },
+    {
+      "module": "phase464_oracle_storage",
+      "source": {
+        "path": "tests/phase464_oracle_storage.py",
+        "size": 21560,
+        "sha256": "56368d5c594cf80289438634840091883161274f9386abf40d0b90d22d4c62fd"
+      }
+    },
+    {
+      "module": "phase464_oracle_host_v2",
+      "source": {
+        "path": "tests/phase464_oracle_host_v2.py",
+        "size": 41285,
+        "sha256": "0c7397d099ebcdd5d7b4aeed0eb0615a9d929a5fed4dd35766eb6da98731ba9f"
+      }
+    }
+  ],
+  "function_entries": {
+    "phase464_oracle_host_v2.py:backup_predecessor_controls": 4,
+    "phase464_oracle_storage.py:member": 150,
+    "phase464_oracle_storage.py:directory": 299,
+    "phase464_oracle_storage.py:<genexpr>": 15492,
+    "phase464_oracle_storage.py:regular_target": 300,
+    "phase464_oracle_storage.py:_source_signature": 882,
+    "os.fsync": 14,
+    "phase464_oracle_storage.py:pin": 8,
+    "native_run_compaction.py:digest": 8,
+    "native_run_compaction.py:<lambda>": 15,
+    "phase464_oracle_storage.py:write_new": 2,
+    "phase464_oracle_storage.py:sync": 2,
+    "phase464_oracle_host_v2.py:resolve_execute_payloads": 2,
+    "phase464_oracle_host_v2.py:_payload_rows": 7,
+    "phase464_oracle_host_v2.py:validate_active_source_tuple": 2,
+    "phase464_oracle_storage.py:check_source_descriptor": 144,
+    "phase464_oracle_storage.py:_read_source": 144,
+    "phase464_oracle_storage.py:_source_descriptor": 144,
+    "phase464_oracle_storage.py:_identity": 144,
+    "phase464_oracle_storage.py:read": 12,
+    "native_run_compaction.py:safe_path": 228,
+    "native_run_compaction.py:require": 456,
+    "native_run_compaction.py:<genexpr>": 735,
+    "phase464_oracle_host_v2.py:frozen": 4,
+    "phase464_oracle_host_v2.py:verify_execute_payloads": 2,
+    "phase464_oracle_host_v2.py:<genexpr>": 365,
+    "phase464_oracle_host_v2.py:validate_observer_review": 2,
+    "phase464_oracle_host_v2.py:source_gate": 1,
+    "phase464_oracle_host_v2.py:descriptor": 1
+  },
+  "forbidden_calls": [],
+  "scope": "TEST_ONLY_FIXTURES_AND_FROZEN_SOURCE",
+  "actual_pool": 0,
+  "native": 0,
+  "models": 0,
+  "Expected": 0,
+  "source_before_verified": 121,
+  "source_owner": {
+    "path": "data/phase464-joint-oracle-host-source-v2/source-owner.json",
+    "size": 24526,
+    "sha256": "f1d5f9cf4d8008e0a3cfb8c6eae26bd3feef3820a182768f00325aea7c2e3507"
+  },
+  "source_freeze": {
+    "path": "data/phase464-joint-oracle-host-source-v2/combined-source-freeze.json",
+    "size": 58276,
+    "sha256": "b66879fe67a0afcf8cb84ce5a52f1ad7386ce7e58be5d1dcada0fcdb2e0b0965"
+  },
+  "fixtures_before_after_unchanged": {
+    "/workspace/python-original-engine/repo/data/phase465-independent-helpers-first-001/S1/TEST_ONLY_FIXTURES/data/custom_player.json": {
+      "identity": {
+        "size": 31,
+        "sha256": "dcfab20cd97065b9d1ec03f2d294ee838c7ab97d919e57cb88fff5d44083ad22"
+      },
+      "mode": 384,
+      "mtime_ns": 1700000000123456789
+    },
+    "/workspace/python-original-engine/repo/data/phase465-independent-helpers-first-001/S1/TEST_ONLY_FIXTURES/data/custom_opponent.json": {
+      "identity": {
+        "size": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "mode": 384,
+      "mtime_ns": 1700000000123456789
+    },
+    "/workspace/python-original-engine/repo/data/phase465-independent-helpers-first-001/S2/TEST_ONLY_FIXTURES/data/custom_opponent.json": {
+      "identity": {
+        "size": 33,
+        "sha256": "ab741f4f5f8b83e4285ac8a1b9f7390d430437a7c5bed55f0b14765c390afe4a"
+      },
+      "mode": 384,
+      "mtime_ns": 1700000000123456789
+    },
+    "/workspace/python-original-engine/repo/data/phase465-independent-helpers-first-001/S3/TEST_ONLY_FIXTURES/data/custom_player.json": {
+      "identity": {
+        "size": 31,
+        "sha256": "dcfab20cd97065b9d1ec03f2d294ee838c7ab97d919e57cb88fff5d44083ad22"
+      },
+      "mode": 384,
+      "mtime_ns": 1700000000123456789
+    },
+    "/workspace/python-original-engine/repo/data/phase465-independent-helpers-first-001/S3/TEST_ONLY_FIXTURES/data/custom_opponent.json": {
+      "identity": {
+        "size": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "mode": 384,
+      "mtime_ns": 1700000000123456789
+    }
+  },
+  "elapsed_seconds": 0.2865024769998854,
+  "io_scope": {
+    "audited_read_paths": [
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Core/Buff.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Core/Character.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Core/CombatLog.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Core/Game.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Interface/CombatTimer/CombatTimer.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/AcornCollar.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/BloodAmulet.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/BloodGoobert.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Broom.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/BurningTorch.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Carrot.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/CarrotGoobert.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Crossblades.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Dagger.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/BerserkerBag.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/BookofIce.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/BroccoliGoobert.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/CheeseGoobert.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/ChiliGoobert.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/CupcakeGoobert.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/KingGoobert.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/LuckyShortbow.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/MagicMirror.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/PoisonShortbow.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertAdventurer.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertBerserker.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertEngineer.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertMage.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertPyromancer.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/Shelly.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/ShepherdsCrook.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/ThornShortbow.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/ToastGoobert.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/FalconBlade.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Food.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/GlovesofHaste.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Goobert.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Hammer.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/HealingHerbs.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/HealthPotion.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/HeroLongsword.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/HeroSword.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/HungryBlade.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Item.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/ItemDescriptor.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/LeatherArmor.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/LeatherBoots.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/LightGoobert.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/MagicStaff.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/ManaPotion.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/PestilenceFlask.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/PocketSand.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/PoisonGoobert.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Potion.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/RainbowGoobert.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/RainbowGoobertRanger.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/RangerCollar.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/RubyEgg.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/SteelGoobert.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/StoneSkinPotion.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/StrongHealthPotion.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/StrongStoneSkinPotion.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/ThornWhip.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/VampiricArmor.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/WalrusTusk.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Weapon.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Sheets/ItemBook.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/AutoHideParticles.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/BalancedRandom.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/BalancedRange.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/DamageSource.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/EventBus.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/Util.gd",
+      "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/project.godot",
+      "/workspace/python-original-engine/repo/data/phase362-oracle-capture-source/disposable-marker.txt",
+      "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/after-source/native_random_observer_sink_v7.gd",
+      "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/case-inputs/custom_opponent.json",
+      "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/case-inputs/custom_player.json",
+      "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/case-inputs/native_capture_config.json",
+      "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/collector.gd",
+      "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/combined-source-freeze.json",
+      "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/conservation.json",
+      "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/fixed-plan.json",
+      "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/fixed-v8-fixture.json",
+      "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/generation-started.json",
+      "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/install-targets.json",
+      "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/inverse/collector.json",
+      "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/inverse/collector.patch",
+      "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/inverse/native_random_observer_sink_v7.json",
+      "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/inverse/native_random_observer_sink_v7.patch",
+      "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/inverse/phase462_king_basic_observer_schema.json",
+      "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/inverse/phase462_king_basic_observer_schema.patch",
+      "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/native-patch-source.json",
+      "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/schema/phase462_king_basic_observer_schema.py",
+      "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/source-authority.json",
+      "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/source-before.json",
+      "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/source-owner.json",
+      "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/source-tuple.json",
+      "/workspace/python-original-engine/repo/data/phase463-independent-source-acceptance/owned-files.json",
+      "/workspace/python-original-engine/repo/data/phase463-independent-source-acceptance/review.json",
+      "/workspace/python-original-engine/repo/data/phase464-joint-oracle-host-source-v2/combined-source-freeze.json",
+      "/workspace/python-original-engine/repo/data/phase464-joint-oracle-host-source-v2/conservation-and-compile.json",
+      "/workspace/python-original-engine/repo/data/phase464-joint-oracle-host-source-v2/copy-before.json",
+      "/workspace/python-original-engine/repo/data/phase464-joint-oracle-host-source-v2/host-v1-to-v2.patch",
+      "/workspace/python-original-engine/repo/data/phase464-joint-oracle-host-source-v2/phase464_oracle_host-vs391.patch",
+      "/workspace/python-original-engine/repo/data/phase464-joint-oracle-host-source-v2/phase464_oracle_storage-vs391.patch",
+      "/workspace/python-original-engine/repo/data/phase464-joint-oracle-host-source-v2/required-root-config-contract.json",
+      "/workspace/python-original-engine/repo/data/phase464-joint-oracle-host-source-v2/restoration-contract.json",
+      "/workspace/python-original-engine/repo/data/phase464-joint-oracle-host-source-v2/selected-import-closure.json",
+      "/workspace/python-original-engine/repo/data/phase464-joint-oracle-host-source-v2/source-owner.json",
+      "/workspace/python-original-engine/repo/data/phase464-joint-oracle-host-source-v2/summary.json",
+      "/workspace/python-original-engine/repo/data/phase464-joint-oracle-host-source-v2/v2-repair-conservation.json",
+      "/workspace/python-original-engine/repo/data/phase465-independent-helper-source/inputs.json",
+      "/workspace/python-original-engine/repo/data/phase465-independent-helpers-first-001/G3/TEST_ONLY_INVALID_CONFIG.json",
+      "/workspace/python-original-engine/repo/data/phase465-independent-helpers-first-001/S1/TEST_ONLY_FIXTURES/data/custom_opponent.json",
+      "/workspace/python-original-engine/repo/data/phase465-independent-helpers-first-001/S1/TEST_ONLY_FIXTURES/data/custom_player.json",
+      "/workspace/python-original-engine/repo/data/phase465-independent-helpers-first-001/S1/backup",
+      "/workspace/python-original-engine/repo/data/phase465-independent-helpers-first-001/S1/backup/0",
+      "/workspace/python-original-engine/repo/data/phase465-independent-helpers-first-001/S1/backup/1",
+      "/workspace/python-original-engine/repo/data/phase465-independent-helpers-first-001/S1/backup/2",
+      "/workspace/python-original-engine/repo/data/phase465-independent-helpers-first-001/S1/backup/manifest.json",
+      "/workspace/python-original-engine/repo/data/phase465-independent-helpers-first-001/S2/TEST_ONLY_FIXTURES/data/custom_opponent.json",
+      "/workspace/python-original-engine/repo/data/phase465-independent-helpers-first-001/S2/backup",
+      "/workspace/python-original-engine/repo/data/phase465-independent-helpers-first-001/S2/backup/0",
+      "/workspace/python-original-engine/repo/data/phase465-independent-helpers-first-001/S2/backup/2",
+      "/workspace/python-original-engine/repo/data/phase465-independent-helpers-first-001/S2/backup/manifest.json",
+      "/workspace/python-original-engine/repo/data/phase465-independent-helpers-first-001/S3/TEST_ONLY_FIXTURES/data/custom_opponent.json",
+      "/workspace/python-original-engine/repo/data/phase465-independent-helpers-first-001/S3/TEST_ONLY_FIXTURES/data/custom_player.json",
+      "/workspace/python-original-engine/repo/data/phase465-independent-host-source-plan/plan.json",
+      "/workspace/python-original-engine/repo/data/phase465-independent-static-v2-review/owned-files.json",
+      "/workspace/python-original-engine/repo/data/phase465-independent-static-v2-review/review.json",
+      "/workspace/python-original-engine/repo/docs/phase462_joint_observer_source_v3_repair_spec.md",
+      "/workspace/python-original-engine/repo/docs/phase464_joint_host_v2_dependency_repair_spec.md",
+      "/workspace/python-original-engine/repo/docs/phase464_joint_oracle_host_source_spec.md",
+      "/workspace/python-original-engine/repo/docs/phase465_independent_joint_host_source_acceptance_spec.md",
+      "/workspace/python-original-engine/repo/tests/godotsteam_offline_exec.py",
+      "/workspace/python-original-engine/repo/tests/native_run_compaction.py",
+      "/workspace/python-original-engine/repo/tests/phase363_oracle_process.py",
+      "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py",
+      "/workspace/python-original-engine/repo/tests/phase462_prepare_joint_observer_source_v3.py",
+      "/workspace/python-original-engine/repo/tests/phase464_oracle_host_v2.py",
+      "/workspace/python-original-engine/repo/tests/phase464_oracle_storage.py"
+    ],
+    "audited_write_paths": [
+      "G3/TEST_ONLY_INVALID_CONFIG.json",
+      "S1/TEST_ONLY_FIXTURES/data/custom_opponent.json",
+      "S1/TEST_ONLY_FIXTURES/data/custom_player.json",
+      "S1/backup/0",
+      "S1/backup/1",
+      "S1/backup/2",
+      "S1/backup/manifest.json",
+      "S2/TEST_ONLY_FIXTURES/data/custom_opponent.json",
+      "S2/backup/0",
+      "S2/backup/2",
+      "S2/backup/manifest.json",
+      "S3/TEST_ONLY_FIXTURES/data/custom_opponent.json",
+      "S3/TEST_ONLY_FIXTURES/data/custom_player.json",
+      "S4/TEST_ONLY_SYMLINK_TARGET",
+      "resolved-graph.json",
+      "source-after.json"
+    ],
+    "preaudit": "Read/hash only sealed contract/owner and declared Source leaves; no pool."
+  }
+}

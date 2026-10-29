@@ -1,0 +1,55 @@
+{
+  "actual463_review": {
+    "path": "data/phase463-independent-source-acceptance/review.json",
+    "sha256": "5cebd80f470a6d7b829ca6bc09c4d1b490f4d83f669d862925f1f10df5cf7906",
+    "size": 5374
+  },
+  "actual_observer_source_owner": {
+    "path": "data/phase462-joint-observer-source-v3/source-owner.json",
+    "sha256": "91b5098388e356ad2d386f0b35298fb92cda2e100ddf74c52183dc469fa180f9",
+    "size": 20753
+  },
+  "closure_repair": {
+    "path": "tests/phase363_oracle_storage.py",
+    "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc",
+    "size": 15496
+  },
+  "counts": {
+    "Expected_reads": 0,
+    "Godot": 0,
+    "compile_objects": 2,
+    "host_calls": 0,
+    "imports": 0,
+    "models": 0,
+    "operational_helper_calls": 0,
+    "plan_calls": 0,
+    "pool_inventory_or_writes": 0
+  },
+  "host": {
+    "path": "tests/phase464_oracle_host_v2.py",
+    "sha256": "0c7397d099ebcdd5d7b4aeed0eb0615a9d929a5fed4dd35766eb6da98731ba9f",
+    "size": 41285
+  },
+  "host_derived_freeze": {
+    "path": "data/phase464-joint-oracle-host-source-v2/combined-source-freeze.json",
+    "sha256": "b66879fe67a0afcf8cb84ce5a52f1ad7386ce7e58be5d1dcada0fcdb2e0b0965",
+    "size": 58276
+  },
+  "install_bytes": 812880,
+  "install_payloads": 78,
+  "new_storage_API": "lease yields(previous,run,locked_state_preimage); old391 API untouched",
+  "pending": [
+    "Independent Host Source review matching frozen review contract",
+    "Actual Root config with exact review/owner/freeze descriptors",
+    "Root actual current capacity/READY and later separate parse/battle gates",
+    "Actual postcapture restoration/readback/READY commit"
+  ],
+  "restore_boundary": "Actual locked state+fixtures backup before reset; preserve failed until independent physical predecessor readback+Root commit. No restoration executed.",
+  "schema": "phase464-host-source-summary/1",
+  "status": "COMPILED_V2_SOURCE_CLOSURE_REPAIRED_PENDING_INDEPENDENT_HOST_REVIEW",
+  "storage": {
+    "path": "tests/phase464_oracle_storage.py",
+    "sha256": "56368d5c594cf80289438634840091883161274f9386abf40d0b90d22d4c62fd",
+    "size": 21560
+  }
+}

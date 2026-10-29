@@ -1,0 +1,67 @@
+{
+  "schema": "phase465-independent-static-v2-review/1",
+  "status": "STATIC_PASS_FIRST_FINITE_HELPER_BATCH_RELEASED",
+  "source_owner": {
+    "path": "data/phase464-joint-oracle-host-source-v2/source-owner.json",
+    "size": 24526,
+    "sha256": "f1d5f9cf4d8008e0a3cfb8c6eae26bd3feef3820a182768f00325aea7c2e3507"
+  },
+  "source_freeze": {
+    "path": "data/phase464-joint-oracle-host-source-v2/combined-source-freeze.json",
+    "size": 58276,
+    "sha256": "b66879fe67a0afcf8cb84ce5a52f1ad7386ce7e58be5d1dcada0fcdb2e0b0965"
+  },
+  "host": {
+    "path": "tests/phase464_oracle_host_v2.py",
+    "size": 41285,
+    "sha256": "0c7397d099ebcdd5d7b4aeed0eb0615a9d929a5fed4dd35766eb6da98731ba9f"
+  },
+  "storage": {
+    "path": "tests/phase464_oracle_storage.py",
+    "size": 21560,
+    "sha256": "56368d5c594cf80289438634840091883161274f9386abf40d0b90d22d4c62fd"
+  },
+  "prior_finding": {
+    "path": "data/phase465-independent-static-first-finding/finding.json",
+    "size": 3595,
+    "sha256": "ef639447d93b010b433cb6a3ff2acb0a6d02e993d446b49588cc728fa1be1e9e"
+  },
+  "prior_remaining_static": {
+    "path": "data/phase465-independent-static-closure-followup/review.json",
+    "size": 3130,
+    "sha256": "67298bf7960b6928ccc64ea6ab16bcb61834d8a1d5ea1ada4d3488ba478715da"
+  },
+  "verified": {
+    "owner_files": 121,
+    "freeze_files": 119,
+    "host_complete_inverse_to_v1": "only SOURCE string replacement",
+    "all_host_functions_equal": 18,
+    "storage_source_unchanged": true,
+    "missing363_storage_in_both_owner_and_freeze": true,
+    "selected_repository_import_edges": 5,
+    "selected_source_leaves_including_offline": 6,
+    "no_other_repo_local_dependency_in_selected_files": true,
+    "install_files": 78,
+    "install_bytes": 812880,
+    "fixed_slots": 26,
+    "unchanged_case_attempt_seeds_tuple_463gate": true
+  },
+  "changed_freeze_keys": [
+    "files",
+    "host",
+    "previous_host_source_freeze",
+    "selected_operational_import_closure"
+  ],
+  "decision": "Prior one-leaf closure blocker repaired by immutablev2. Prior limited static judgments remain applicable because all host function bodies and storage bytes are unchanged; no expanded old physical review or control replay. Proceed first <=10 planned synthetic/local helper batch only.",
+  "counts_before_controls": {
+    "imports": 0,
+    "helpers": 0,
+    "lease": 0,
+    "plan": 0,
+    "execute": 0,
+    "actual_pool": 0,
+    "native": 0,
+    "models": 0,
+    "Expected": 0
+  }
+}

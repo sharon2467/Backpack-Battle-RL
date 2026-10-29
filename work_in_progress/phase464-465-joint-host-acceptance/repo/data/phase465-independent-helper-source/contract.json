@@ -1,0 +1,131 @@
+{
+  "schema": "phase465-independent-helper-contract/1",
+  "status": "SEALED_BEFORE_ANY_HOST_STORAGE_IMPORT",
+  "pins": {
+    "source_owner": {
+      "path": "data/phase464-joint-oracle-host-source-v2/source-owner.json",
+      "size": 24526,
+      "sha256": "f1d5f9cf4d8008e0a3cfb8c6eae26bd3feef3820a182768f00325aea7c2e3507"
+    },
+    "source_freeze": {
+      "path": "data/phase464-joint-oracle-host-source-v2/combined-source-freeze.json",
+      "size": 58276,
+      "sha256": "b66879fe67a0afcf8cb84ce5a52f1ad7386ce7e58be5d1dcada0fcdb2e0b0965"
+    },
+    "host": {
+      "path": "tests/phase464_oracle_host_v2.py",
+      "size": 41285,
+      "sha256": "0c7397d099ebcdd5d7b4aeed0eb0615a9d929a5fed4dd35766eb6da98731ba9f"
+    },
+    "storage": {
+      "path": "tests/phase464_oracle_storage.py",
+      "size": 21560,
+      "sha256": "56368d5c594cf80289438634840091883161274f9386abf40d0b90d22d4c62fd"
+    },
+    "process_storage": {
+      "path": "tests/phase363_oracle_storage.py",
+      "size": 15496,
+      "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc"
+    },
+    "observer_review": {
+      "path": "data/phase463-independent-source-acceptance/review.json",
+      "size": 5374,
+      "sha256": "5cebd80f470a6d7b829ca6bc09c4d1b490f4d83f669d862925f1f10df5cf7906"
+    },
+    "observer_review_owner": {
+      "path": "data/phase463-independent-source-acceptance/owned-files.json",
+      "size": 297,
+      "sha256": "0a4a24d0cf026467ebb5f7eb00cebd845b114e16da6e067e1b63d934857f36b3"
+    },
+    "static_review": {
+      "path": "data/phase465-independent-static-v2-review/review.json",
+      "size": 2462,
+      "sha256": "fa32118de15e66f9a6d3e97f168e6d2f4541db3012f2de2bd3fe8139c70a2d8f"
+    },
+    "static_owner": {
+      "path": "data/phase465-independent-static-v2-review/owned-files.json",
+      "size": 276,
+      "sha256": "c59a466d8fc191358cdf8d8f53ae9ce1448a603782bd2aa84fe8ff46474e933b"
+    },
+    "spec": {
+      "path": "docs/phase465_independent_joint_host_source_acceptance_spec.md",
+      "size": 9270,
+      "sha256": "5cd80f90f26079b832111dd5cf39452be2ce8d1369fccae79db157232d238880"
+    },
+    "plan": {
+      "path": "data/phase465-independent-host-source-plan/plan.json",
+      "size": 4881,
+      "sha256": "be2442200da932cdfb4fe2980bc11df4e2903af28986923c5498c2ffb1572bf2"
+    },
+    "inputs": {
+      "path": "data/phase465-independent-helper-source/inputs.json",
+      "size": 1305,
+      "sha256": "a4957f07bc5ac6d9f590530f567f9db8ac5970de10acc4d14cab6835922d8b01"
+    }
+  },
+  "load_order": [
+    {
+      "module": "native_run_compaction",
+      "source": {
+        "path": "tests/native_run_compaction.py",
+        "size": 27304,
+        "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260"
+      }
+    },
+    {
+      "module": "phase363_oracle_storage",
+      "source": {
+        "path": "tests/phase363_oracle_storage.py",
+        "size": 15496,
+        "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc"
+      }
+    },
+    {
+      "module": "phase363_oracle_process",
+      "source": {
+        "path": "tests/phase363_oracle_process.py",
+        "size": 13665,
+        "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f"
+      }
+    },
+    {
+      "module": "phase464_oracle_storage",
+      "source": {
+        "path": "tests/phase464_oracle_storage.py",
+        "size": 21560,
+        "sha256": "56368d5c594cf80289438634840091883161274f9386abf40d0b90d22d4c62fd"
+      }
+    },
+    {
+      "module": "phase464_oracle_host_v2",
+      "source": {
+        "path": "tests/phase464_oracle_host_v2.py",
+        "size": 41285,
+        "sha256": "0c7397d099ebcdd5d7b4aeed0eb0615a9d929a5fed4dd35766eb6da98731ba9f"
+      }
+    }
+  ],
+  "execution": {
+    "batches": 1,
+    "top_level_calls_max": 10,
+    "deadline_seconds": 15,
+    "first_unexpected_error_stop": true,
+    "no_retry": true
+  },
+  "calls": [
+    "S1 present snapshots including empty fixture",
+    "S2 absent fixture snapshot",
+    "S3 bad state digest rejection before backup directory",
+    "S4 fixture symlink rejection preserving partial temp dir",
+    "D1 frozen real Source resolver positive",
+    "D2 wrong install byte limit reject",
+    "D3 stale case input reject",
+    "G1 actual463 local review positive",
+    "G2 stale observerSource identity reject",
+    "G3 strictINT0 BOOL false reject before any Source authorization/readiness"
+  ],
+  "isolation": "Load exact pinned source bytes through compile/exec into correctly named modules in dependency order; no cached pyc. Profile rejects operational function entry. Audit read allowlist is declared Source/testoutput/stdlib only; all open writes limited to unique testoutput; subprocess/network rejected. No actual pool path is supplied.",
+  "snapshot_claim": "Synthetic supplied state image and fixtures only; lease timing established statically, not claimed as runtime lock test. Retain temporary evidence including one labelled symlink.",
+  "readscope": "Pre-audit reads are pinned harness contract/source owners and declared Source hash leaves. Actual helpers read only frozen Source or test fixture files. No Expected payload; named terminalExpected function is not called.",
+  "source_after": "Verify all121 owner leaves and contract pins after batch; retain first failure if any."
+}

@@ -1,0 +1,31 @@
+{
+  "actual_physical_restoration_proved": false,
+  "actual_restore_implemented": false,
+  "archive_behavior": "Exact old archive_streaming briefly writes new READY while same lease remains locked; host immediately sets failed/PENDING_INDEPENDENT_PREDECESSOR_RESTORE before unlock.",
+  "backup_before_reset": "run/output/predecessor-control-preimages/{0,1,2,manifest.json}",
+  "final_expected_pool_status": "failed",
+  "fixed_images": [
+    "state.json",
+    "data/custom_player.json",
+    "data/custom_opponent.json"
+  ],
+  "future_Root_sequence": [
+    "Reverse new78 journal under explicit predecessor restoration authorization",
+    "Restore retained actual old patch+marker and two customfixture images/metadata",
+    "Keep state failed while independent full physical byte/mode/mtime readback checks backed predecessor",
+    "Only Root may commit READY after independent readback; saved old state bytes alone are not proof."
+  ],
+  "new78_preimage_journal": "run/output/source-preimages/preimages.json via exact old install",
+  "old_READY_copy_permitted": false,
+  "old_patch_marker_backup": "run/output/previous-source-preimages via exact old reset_previous",
+  "preserved_fields": [
+    "raw bytes",
+    "size",
+    "SHA256",
+    "mode",
+    "mtime_ns",
+    "absence if fixture absent"
+  ],
+  "schema": "phase464-fixed-predecessor-restoration-contract/1",
+  "state_snapshot_point": "same exclusive lease, after actual check_ready and before busy state_write"
+}

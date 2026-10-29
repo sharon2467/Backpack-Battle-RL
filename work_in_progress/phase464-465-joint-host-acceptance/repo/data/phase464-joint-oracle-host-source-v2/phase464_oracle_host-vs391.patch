@@ -1,0 +1,354 @@
+--- tests/phase391_oracle_host.py
++++ tests/phase464_oracle_host_v2.py
+@@ -1,4 +1,4 @@
+-"""Explicit-path fixed original027 oracle host. No model/projection/admission code."""
++"""Fixed original028 King/basic oracle host Source. No model/projection/admission."""
+ from pathlib import Path
+ import argparse
+ import hashlib
+@@ -6,16 +6,29 @@
+ import os
+ import re
+ import shutil
+-from phase391_oracle_storage import (directory,member,pin,read,write_new,sync,budget,check_ready,lease,
+-                                     reset_previous,install,archive_streaming,c,check_source_descriptor,MAX_INSTALL_PAYLOADS,MAX_INSTALL_BYTES)
++import stat
++from phase464_oracle_storage import (directory,member,pin,read,write_new,sync,budget,check_ready,lease,
++                                     reset_previous,install,archive_streaming,c,check_source_descriptor,MAX_INSTALL_PAYLOADS,MAX_INSTALL_BYTES,
++                                     regular_target,state_write,_source_signature)
+ from phase363_oracle_process import execute_process,rename_capture,usage
+ 
+-SOURCE = 'data/phase391-terminal-source'
+-DATA = 'data/phase362-oracle-capture-source'
+-CASE = 'NATIVE-027-KING-A'
+-RUN_NAME = 'original027-king-single-A-20261026-attempt06'
+-REVIEW_STATUS = 'INDEPENDENT392_FIRST_ELIGIBLE_IDLE_SOURCE_ACCEPTED_ROOT_PENDING'
++SOURCE = 'data/phase464-joint-oracle-host-source-v2'
++OBSERVER_SOURCE = 'data/phase462-joint-observer-source-v3'
++CASE = 'NATIVE-028-KING-BASIC-A'
++RUN_NAME = 'original028-king-basic-A-single-001'
++HOST_REVIEW_SCHEMA = 'phase464-independent-host-source-review/1'
++HOST_REVIEW_STATUS = 'ACCEPTED_PHASE464_HOST_SOURCE_ONLY_ROOT_PENDING'
++OBSERVER_FREEZE = {'path': OBSERVER_SOURCE+'/combined-source-freeze.json', 'size': 51863, 'sha256': 'b073e49f98f43d6b77ac8bc8d31e2f387de0122e43860557b243bb64640d7faa'}
++OBSERVER_OWNER = {'path': OBSERVER_SOURCE+'/source-owner.json', 'size': 20753, 'sha256': '91b5098388e356ad2d386f0b35298fb92cda2e100ddf74c52183dc469fa180f9'}
++OBSERVER_REVIEW = {'path': 'data/phase463-independent-source-acceptance/review.json', 'size': 5374, 'sha256': '5cebd80f470a6d7b829ca6bc09c4d1b490f4d83f669d862925f1f10df5cf7906'}
++OBSERVER_REVIEW_OWNER = {'path': 'data/phase463-independent-source-acceptance/owned-files.json', 'size': 297, 'sha256': '0a4a24d0cf026467ebb5f7eb00cebd845b114e16da6e067e1b63d934857f36b3'}
++CASE_INPUTS = {
++    'custom_player.json': {'path': OBSERVER_SOURCE+'/case-inputs/custom_player.json', 'size': 1208, 'sha256': '2057c9f7fce84b61c07339cf2f11b212f213d52a669d18e8eadeec7a8b4b0d4f'},
++    'custom_opponent.json': {'path': OBSERVER_SOURCE+'/case-inputs/custom_opponent.json', 'size': 1050, 'sha256': '4474b0125c1ef60cef1370537bb7d72f6a21b3110ed996783e10bbd8e700bc1d'},
++    'native_capture_config.json': {'path': OBSERVER_SOURCE+'/case-inputs/native_capture_config.json', 'size': 235, 'sha256': 'd21a98f50d956936e9443a4e86d5eeba162d17e80e01ed97fd8cdca00af8a425'},
++}
+ POLICY = 'bounded-writers-and-monitored-process/1'
++RESTORE_POLICY = 'restore-predecessor-after-independent-readback-root-commit/1'
+ NAMES = ('custom_player.json','custom_opponent.json','native_capture_config.json')
+ LAWFUL = ('fixture.json','player_fixture.json','observer7-input.jsonl','observer7-lineage.jsonl',
+           'observer7-metadata.jsonl','observer7-primitives.jsonl','king-clock-checkpoint.json',
+@@ -43,30 +56,63 @@
+     return leaves
+ 
+ 
++def validate_observer_review(value,receipt,source_tuple):
++    if (receipt!=OBSERVER_REVIEW or value.get('schema')!='phase463-independent-source-acceptance/1'
++            or value.get('status')!='ACCEPTED_SOURCE_ONLY_SYNTHETIC18'
++            or value.get('source_owner')!=OBSERVER_OWNER or value.get('source_freeze')!=OBSERVER_FREEZE
++            or value.get('source_tuple')!=source_tuple):
++        raise ValueError('actual463 Source-only acceptance for exact462v3 required')
++
++
+ def source_gate(source_root,config_descriptor):
+     root=directory(source_root); config_path=descriptor(root,config_descriptor); config=read(config_path)
+-    if config.get('schema')!='phase391-root-oracle-acceptance/1' or config.get('root_oracle_authorized') is not True:
++    keys={'schema','host','source_freeze','source_owner','observer_source_freeze','observer_source_owner',
++          'active_source_tuple','reviews','resources','relocations','write_policy','restore_policy',
++          'root_oracle_authorized','models_allowed','input_builds_allowed','expected_comparison_allowed'}
++    if type(config) is not dict or set(config)!=keys or config.get('schema')!='phase464-root-oracle-acceptance/1' or config.get('root_oracle_authorized') is not True:
+         raise ValueError('actual root oracle-only authorization required')
+     if any(type(config.get(k)) is not int or config[k]!=0 for k in ('models_allowed','input_builds_allowed','expected_comparison_allowed')):
+         raise ValueError('strictINT0 model/inputbuild/expected permissions')
+-    if config.get('write_policy')!=POLICY: raise ValueError('exact root monitored-writes policy')
++    if config.get('write_policy')!=POLICY or config.get('restore_policy')!=RESTORE_POLICY:
++        raise ValueError('exact monitored-writes and predecessor-restore policies')
++    if config['observer_source_freeze']!=OBSERVER_FREEZE or config['observer_source_owner']!=OBSERVER_OWNER:
++        raise ValueError('exact actual462v3 observer source identities')
++    descriptor(root,OBSERVER_FREEZE)
++    observer_leaves=verify_owner(root,OBSERVER_OWNER)
++    if observer_leaves.get(OBSERVER_FREEZE['path'])!={k:OBSERVER_FREEZE[k] for k in ('size','sha256')}:
++        raise ValueError('observer owner must cover actual observer freeze')
+     freeze_path=descriptor(root,config['source_freeze'])
+-    if str(freeze_path.relative_to(root))!=SOURCE+'/combined-source-freeze.json': raise ValueError('exact362 SOURCE freeze')
++    if str(freeze_path.relative_to(root))!=SOURCE+'/combined-source-freeze.json': raise ValueError('exact464 host-derived SOURCE freeze')
+     freeze=read(freeze_path)
++    if (freeze.get('schema')!='phase464-host-derived-source-freeze/1'
++            or freeze.get('observer_source_freeze')!=OBSERVER_FREEZE or freeze.get('observer_source_owner')!=OBSERVER_OWNER):
++        raise ValueError('host freeze must bind actual462 observer')
++    observer_freeze=read(descriptor(root,OBSERVER_FREEZE))
++    for key in ('paths','artifacts','collector','schema_module','active_source_tuple','native_source_origin',
++                'profile','observer_version','terminal_policy','schema_case'):
++        if freeze.get(key)!=observer_freeze.get(key): raise ValueError('observer/host freeze binding differs: '+key)
++    if freeze.get('case_inputs')!=CASE_INPUTS or config['source_owner'].get('path')!=SOURCE+'/source-owner.json':
++        raise ValueError('exact464 Source owner and three462 case inputs')
+     for row in freeze['files']: descriptor(root,row)
+     leaves=verify_owner(root,config['source_owner'])
+     if leaves.get(str(Path(__file__).relative_to(root)))!=pin(Path(__file__)) or leaves.get(config['source_freeze']['path'])!=pin(freeze_path):
+         raise ValueError('owner must actually cover host and freeze')
+-    reviews=config.get('reviews')
+-    if type(reviews) is not list or not reviews: raise ValueError('real independent SOURCE reviews required')
+-    for review in reviews:
++    reviews=config['reviews']
++    if type(reviews) is not dict or set(reviews)!={'observer463','host_source'}:
++        raise ValueError('both actual observer463 and new host Source reviews required')
++    for role,review in reviews.items():
++        if type(review) is not dict or set(review)!={'receipt','owner'}: raise ValueError('closed review descriptors')
+         receipt=descriptor(root,review['receipt']); owned=verify_owner(root,review['owner']); result=read(receipt)
+-        if owned.get(review['receipt']['path'])!=pin(receipt) or result.get('status')!=REVIEW_STATUS:
+-            raise ValueError('actual owned independent362 SOURCE status')
+-        if result.get('source_freeze')!=config['source_freeze'] or any(type(result.get(k)) is not int or result[k]!=0 for k in ('native','models')):
+-            raise ValueError('actual reviewed closure and zero execution')
++        if owned.get(review['receipt']['path'])!=pin(receipt): raise ValueError('owned independent Source receipt')
++        if role=='observer463':
++            if review['owner']!=OBSERVER_REVIEW_OWNER:raise ValueError('actual463 review owner')
++            validate_observer_review(result,review['receipt'],config['active_source_tuple'])
++        elif (result.get('schema')!=HOST_REVIEW_SCHEMA or result.get('status')!=HOST_REVIEW_STATUS
++              or result.get('source_freeze')!=config['source_freeze'] or result.get('observer_source_owner')!=OBSERVER_OWNER
++              or any(type(result.get(k)) is not int or result[k]!=0 for k in ('native','models'))):
++            raise ValueError('exact actual new host review and zero execution')
+     if config.get('active_source_tuple') != freeze['active_source_tuple']:
+-        raise ValueError('Root must pin actual391 source tuple')
++        raise ValueError('Root must pin actual462v3 source tuple')
+     validate_active_source_tuple(root,freeze)
+     if freeze['accepted_source_controls'] != []:
+         raise ValueError('historical controls cannot approve new SOURCE')
+@@ -104,15 +150,59 @@
+     run=paths['runs_root']/RUN_NAME
+     if run.exists(): raise ValueError('fixed unique attempt path already exists')
+     native_config=read(check_source_descriptor(root,payloads['case_inputs']['native_capture_config.json']))
+-    if native_config!=dict(schema='native-combat-capture/1',case_id=CASE,global_seed=35301,util_seed=35302,
++    if native_config!=dict(schema='native-combat-capture/1',case_id=CASE,global_seed=45701,util_seed=45702,
+                           player_fixture_enabled=True,timeouts=dict(battle_seconds=120,total_seconds=295)):
+         raise ValueError('fixed SOURCE config/seeds/timeouts')
+-    return dict(schema='phase391-oracle-readonly-plan/1',paths={k:str(v) for k,v in paths.items()},source_root=str(root),
+-        run=str(run),case_id=CASE,attempt=6,previous_run=str(previous),budget=capacity,
++    return dict(schema='phase464-oracle-readonly-plan/1',paths={k:str(v) for k,v in paths.items()},source_root=str(root),
++        run=str(run),case_id=CASE,attempt=1,previous_run=str(previous),budget=capacity,
+         root_config=config_descriptor,freeze=config['source_freeze'],source_owner=config['source_owner'],
+         reviews=config['reviews'],config=native_config,policy=POLICY,execute_payloads=payloads,
+         oracle_processes=0,models=0,projection_calls=0,Game_copies=0,
+-        source_profile=freeze['profile'],schema_case=freeze['schema_case'],native_scope='FIXED_A_SINGLE_KING_ORACLE_ONLY')
++        source_profile=freeze['profile'],schema_case=freeze['schema_case'],native_scope='FIXED_26_ITEM_KING_BASIC_ORACLE_ONLY',
++        restore_policy=RESTORE_POLICY,final_pool_state='FAILED_PENDING_INDEPENDENT_PREDECESSOR_RESTORE')
++
++
++def backup_predecessor_controls(pool,backup,state_preimage,previous):
++    """Fixed three images only; caller holds464 lease, state snapshot precedes busy."""
++    backup=Path(backup)
++    if backup.exists() or backup.is_symlink(): raise ValueError('unique predecessor control backup')
++    if type(state_preimage) is not dict or set(state_preimage)!={'raw','identity','mode','mtime_ns'}:
++        raise ValueError('fixed locked predecessor state image')
++    if type(state_preimage['raw']) is not bytes or dict(size=len(state_preimage['raw']),sha256=hashlib.sha256(state_preimage['raw']).hexdigest())!=state_preimage['identity']:
++        raise ValueError('locked predecessor state bytes')
++    backup.mkdir()
++    rows=[]
++    images=[('state.json',state_preimage)]
++    for name in NAMES[:2]:
++        path=member(pool,'data/'+name);before=regular_target(path,absent=True)
++        if before is None:
++            images.append(('data/'+name,None));continue
++        fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW)
++        with os.fdopen(fd,'rb') as stream:
++            opened=os.fstat(stream.fileno());raw=stream.read(before.st_size+1);after=os.fstat(stream.fileno())
++        if (len(raw)!=before.st_size or _source_signature(before)!=_source_signature(opened)
++                or _source_signature(before)!=_source_signature(after)
++                or _source_signature(before)!=_source_signature(regular_target(path))):
++            raise ValueError('locked predecessor fixture changed during backup')
++        images.append(('data/'+name,dict(raw=raw,identity=dict(size=len(raw),sha256=hashlib.sha256(raw).hexdigest()),
++                                       mode=stat.S_IMODE(before.st_mode),mtime_ns=before.st_mtime_ns)))
++    for index,(target,image) in enumerate(images):
++        if image is None:
++            rows.append(dict(target=target,present=False,backup=None));continue
++        path=backup/str(index)
++        with path.open('xb') as stream: stream.write(image['raw']);stream.flush();os.fsync(stream.fileno())
++        os.chmod(path,image['mode']);os.utime(path,ns=(image['mtime_ns'],image['mtime_ns']))
++        info=regular_target(path)
++        if pin(path)!=image['identity'] or stat.S_IMODE(info.st_mode)!=image['mode'] or info.st_mtime_ns!=image['mtime_ns']:
++            raise ValueError('predecessor image readback')
++        with path.open('rb') as stream:os.fsync(stream.fileno())
++        rows.append(dict(target=target,present=True,backup=str(index),identity=image['identity'],
++                         mode=image['mode'],mtime_ns=image['mtime_ns']))
++    value=dict(schema='phase464-predecessor-control-preimages/1',previous_run=str(previous),images=rows,
++               state_snapshot='inside_lease_lock_after_check_ready_before_busy',fixtures_snapshot='inside_same_lease_before_reset',
++               restored=False,ready_commit='ROOT_ONLY_AFTER_INDEPENDENT_PHYSICAL_READBACK')
++    write_new(backup/'manifest.json',value);sync(backup)
++    return dict(path=str(backup),manifest=pin(backup/'manifest.json'),restored=False)
+ 
+ 
+ def execute(source_root,config_descriptor,task_root,baseline,pool,runs_root):
+@@ -122,11 +212,12 @@
+     payloads=resolve_execute_payloads(root,freeze,execute_driver_descriptors(root,config_descriptor,config,freeze))
+     if payloads!=launch['execute_payloads']: raise ValueError('plan/execute payload descriptor graph changed before lease')
+     verify_execute_payloads(root,payloads)
+-    with lease(paths['pool'],paths['baseline'],paths['runs_root'],RUN_NAME,config['relocations']) as (previous,run):
++    with lease(paths['pool'],paths['baseline'],paths['runs_root'],RUN_NAME,config['relocations']) as (previous,run,state_preimage):
+         run.mkdir(); (run/'output').mkdir(); (run/'output/driver').mkdir(); (run/'data').mkdir()
+         for name in ('data','config','cache','run','tmp'): (run/'user'/name).mkdir(parents=True,mode=0o700)
+         out=run/'output'; project=paths['pool']/'project'
+         write_new(out/'readonly-plan.json',launch)
++        controls_backup=backup_predecessor_controls(paths['pool'],out/'predecessor-control-preimages',state_preimage,previous)
+         reset=reset_previous(project,paths['baseline'],previous,out/'previous-source-preimages')
+         write_new(out/'prior-observer-reset.json',reset)
+         for name in NAMES:
+@@ -135,12 +226,12 @@
+         artifacts=payloads['artifacts']
+         journal=install(root,project,freeze,artifacts,out/'source-preimages')
+         for name in NAMES[:2]: shutil.copy2(run/'data'/name,paths['pool']/'data'/name)
+-        report=dict(schema='observer7-patch/1',patch_version='phase391-oracle-single-King',added_files=['native_random_observer_sink_v7.gd'],
++        report=dict(schema='observer7-patch/1',patch_version='phase464-oracle-King-basic',added_files=['native_random_observer_sink_v7.gd'],
+                     patches=[dict(path=name,before_size=None if row['before'] is None else row['before']['size'],
+                         before_sha256=None if row['before'] is None else row['before']['sha256'],
+                         after_size=row['after']['size'],after_sha256=row['after']['sha256']) for name,row in freeze['paths'].items()])
+         (out/'observer-patch').mkdir(); write_new(out/'observer-patch/native_random_observer_patch_manifest.json',report)
+-        write_new(out/'host_manifest.json',dict(schema='phase391-oracle-host/1',case_id=CASE,
++        write_new(out/'host_manifest.json',dict(schema='phase464-oracle-host/1',case_id=CASE,
+             audited_runtime_observation_patch=report,source_freeze=config['source_freeze'],collector=pin(project/'native_combat_capture.gd'),models=0))
+         # Archive the exact SOURCE actually used before any Godot command.
+         copies=payloads['driver_sources']
+@@ -153,7 +244,9 @@
+         write_new(out/'driver/source-map.json',dict(files=saved))
+         write_new(out/'pool-provenance.json',dict(schema='phase362-explicit-pool-provenance/1',plan=launch,
+             installed_preimages=journal,driver_sha256={p.name:c.digest(p) for p in (out/'driver').iterdir()},
+-            inputs={name:pin(run/'data'/name) for name in NAMES},full_game_copy=False))
++            inputs={name:pin(run/'data'/name) for name in NAMES},full_game_copy=False,
++            predecessor_control_preimages=controls_backup,previous_patch_and_marker_backup=str(out/'previous-source-preimages'),
++            new_install_preimages=str(out/'source-preimages'),restore_policy=RESTORE_POLICY))
+         before=dict(baseline=c.inventory(paths['baseline']),project=c.inventory(project),staged=c.inventory(paths['pool']/'data'))
+         write_new(out/'pool-before.json',before)
+         parsed=execute_process(root,paths['task_root'],run,project,check_only=True)
+@@ -162,7 +255,7 @@
+         if descriptor(root,config_descriptor)!=descriptor(root,launch['root_config']): raise ValueError('config drift')
+         # Preserve the same config identity, no second dynamic plan after mutation.
+         source_gate(root,config_descriptor); resource_gate(root,config,paths); usage(run)
+-        write_new(out/'one-shot-launch.json',dict(case_id=CASE,attempt=6,models=0,timeout=dict(battle=120,collector=295,runner=300)))
++        write_new(out/'one-shot-launch.json',dict(case_id=CASE,attempt=1,models=0,timeout=dict(battle=120,collector=295,runner=300)))
+         result=execute_process(root,paths['task_root'],run,project,check_only=False)
+         write_new(out/'process-returned.json',result)
+         partition=collect_capture_metadata(run,result,root,freeze)
+@@ -173,10 +266,13 @@
+             primary_failure=partition['primary_failure'],secondary_errors=partition['secondary_errors'],
+             source_changes_after_run=['PROJECT_TREE_CHANGED'] if project_changed else [],
+             process_clean_exit=result['process_clean_exit'],model_acceptance=False,automatic_retry=False))
+-        if not complete: raise RuntimeError('first original027 failed/partial; preserve, no retry')
++        if not complete: raise RuntimeError('first original028 failed/partial; preserve, no retry')
+         proof=archive_streaming(paths['baseline'],paths['pool'],run,before)
+-        # No write after READY: retained run identity remains stable.
+-        return dict(status='ORACLE_CAPTURE_ARCHIVED_MODELS_AND_FULLPROJECTION_PENDING',run=str(run),proof=proof,
++        # Existing archive briefly writes its normal READY while this same lease stays locked.
++        # Do not expose a completed predecessor restoration or paste the old READY snapshot.
++        state_write(paths['pool'],dict(status='failed',run=str(run),reason='PENDING_INDEPENDENT_PREDECESSOR_RESTORE',
++                    previous_run=str(previous),control_preimages=controls_backup,utc=c.stamp()))
++        return dict(status='ORACLE_CAPTURE_ARCHIVED_PENDING_INDEPENDENT_PREDECESSOR_RESTORE',run=str(run),proof=proof,
+                     process_clean_exit=result['process_clean_exit'],models=0,inputbuilds=0,King_production_admitted=False)
+ 
+ 
+@@ -264,6 +360,7 @@
+ def resolve_execute_payloads(source_root,freeze,driver_descriptors=()):
+     """Public real resolver, independent of pool/lease/ROOT execution permission."""
+     root=directory(source_root); declared=_payload_rows(freeze['files'])
++    validate_active_source_tuple(root,freeze)
+     if type(freeze.get('paths')) is not dict or len(freeze['paths'])!=75: raise ValueError('exact75 SOURCE patches')
+     patches=[]
+     for name,row in freeze['paths'].items():
+@@ -274,11 +371,15 @@
+     def frozen(name):
+         if name not in declared: raise ValueError('required fixedDATA descriptor absent')
+         return dict(declared[name])
+-    cases={name:frozen(DATA+'/case-A/'+name) for name in NAMES}
++    if freeze.get('case_inputs')!=CASE_INPUTS:raise ValueError('exact three462v3 case descriptors')
++    cases={name:frozen(CASE_INPUTS[name]['path']) for name in NAMES}
++    if cases!=CASE_INPUTS:raise ValueError('fixed actual462 input bytes')
++    observer=read(check_source_descriptor(root,OBSERVER_FREEZE))
+     artifacts={'native_combat_capture.gd':dict(freeze['collector']),
+         'native_capture_config.json':dict(cases['native_capture_config.json']),
+-        '.native-random-observer-disposable':frozen(DATA+'/disposable-marker.txt')}
+-    if artifacts!=freeze.get('artifacts'): raise ValueError('explicit frozen artifact descriptors differ from fixed authority')
++        '.native-random-observer-disposable':frozen(observer['artifacts']['.native-random-observer-disposable']['path'])}
++    if artifacts!=freeze.get('artifacts') or artifacts!=observer['artifacts']:
++        raise ValueError('actual462 artifact descriptors differ')
+     for row in artifacts.values():
+         if declared.get(row['path'])!=row: raise ValueError('artifact not in actual frozen descriptor closure')
+     bindings={name:dict(freeze[name]) for name in ('collector','schema_module','active_source_tuple','native_source_origin')}
+@@ -326,29 +427,38 @@
+ def execute_driver_descriptors(root,config_descriptor,config,freeze):
+     rows=list(freeze['files'])+read(descriptor(root,config['source_owner']))['files']
+     rows += [config_descriptor,config['source_owner'],config['source_freeze']]
+-    for review in config['reviews']: rows += [review['receipt'],review['owner']]
++    for review in config['reviews'].values(): rows += [review['receipt'],review['owner']]
+     return list(_payload_rows(rows).values())
+ 
+ """Expected/control SOURCE helpers; loaded by the actual391 host after descriptor checks."""
+ 
+ TERMINAL_POLICY = 'first-actual-idle-after-at-least-two-future-physics/1'
+-OBSERVER_VERSION = '7-king-single-A-390'
+-OBSERVER_PROFILE = 'observer7-390-native-single-king-A/1'
++OBSERVER_VERSION = '7-king-basic-A-460'
++OBSERVER_PROFILE = 'observer7-king-basic-A-native-tape/1'
+ 
+ 
+ def validate_active_source_tuple(root, freeze):
++    if (freeze.get('schema')!='phase464-host-derived-source-freeze/1'
++            or freeze.get('observer_source_freeze')!=OBSERVER_FREEZE or freeze.get('observer_source_owner')!=OBSERVER_OWNER):
++        raise ValueError('closed464 binding to actual462 Source required')
++    observer=read(check_source_descriptor(root,OBSERVER_FREEZE))
++    if freeze['active_source_tuple']!=observer['active_source_tuple']:
++        raise ValueError('exact462v3 tuple descriptor')
+     row = freeze['active_source_tuple']
+     value = read(check_source_descriptor(root, row))
+     keys = {'schema', 'profile', 'observer_version', 'terminal_policy', 'fixed_fixture',
+-            'native_patch', 'producer', 'sink', 'collector', 'schema_module', 'projector_source_origin'}
+-    if type(value) is not dict or set(value) != keys or value['schema'] != 'phase391-terminal-source-tuple/1':
+-        raise ValueError('closed actual391 source tuple')
++            'fixed_plan', 'native_patch', 'producer', 'sink', 'collector', 'schema_module',
++            'model_input_or_runtime_admitted','host_execution_ready'}
++    if (type(value) is not dict or set(value) != keys or value['schema'] != 'phase462-joint-observer-source-tuple/1'
++            or value['model_input_or_runtime_admitted'] is not False or value['host_execution_ready'] is not False):
++        raise ValueError('closed actual462 source tuple and two historical false flags')
+     if (value['profile'], value['observer_version'], value['terminal_policy']) != (OBSERVER_PROFILE, OBSERVER_VERSION, TERMINAL_POLICY):
+         raise ValueError('mixed terminal source policy/version')
+     if (freeze['profile'], freeze['observer_version'], freeze['terminal_policy'], freeze['run_name']) != (OBSERVER_PROFILE, OBSERVER_VERSION, TERMINAL_POLICY, RUN_NAME):
+         raise ValueError('host/freeze terminal policy/version/attempt mismatch')
+     declared = _payload_rows(freeze['files'])
+-    for key in keys - {'schema', 'profile', 'observer_version', 'terminal_policy'}:
++    for key in keys - {'schema', 'profile', 'observer_version', 'terminal_policy',
++                       'model_input_or_runtime_admitted','host_execution_ready'}:
+         source = value[key]
+         if declared.get(source['path']) != source:
+             raise ValueError('tuple source outside frozen descriptor graph')
+@@ -361,9 +471,20 @@
+     patch = read(check_source_descriptor(root, value['native_patch']))
+     if type(patch) is not dict or set(patch) != {'schema', 'paths', 'producer', 'sink', 'profile', 'observer_version', 'terminal_policy'}:
+         raise ValueError('closed actual patch declaration')
+-    if patch != dict(schema='phase391-native-patch-source/1', paths=freeze['paths'], producer=value['producer'],
++    if patch != dict(schema='phase462-native-patch-source/1', paths=freeze['paths'], producer=value['producer'],
+                      sink=value['sink'], profile=OBSERVER_PROFILE, observer_version=OBSERVER_VERSION, terminal_policy=TERMINAL_POLICY):
+         raise ValueError('actual75 patch tuple disagreement')
++    for key in ('paths','artifacts','collector','schema_module','profile','observer_version','terminal_policy','schema_case'):
++        if freeze.get(key)!=observer.get(key):raise ValueError('host/observer Source graph mismatch: '+key)
++    fixed_plan=read(check_source_descriptor(root,value['fixed_plan']))
++    fixture=read(check_source_descriptor(root,value['fixed_fixture']))
++    if (fixed_plan.get('fixture')!=fixture or fixed_plan.get('profile')!=OBSERVER_PROFILE
++            or fixed_plan.get('version')!=OBSERVER_VERSION or fixed_plan.get('source_case')!='KING-BASIC-A-460'
++            or fixed_plan.get('native_case')!=CASE or len(fixed_plan.get('slots',[]))!=26):
++        raise ValueError('exact joint fixture/26 slots/profile/case')
++    item_map={row['instance_id']:row['item_index'] for row in fixed_plan['slots']}
++    if len(item_map)!=26 or item_map.get('P:6')!=262 or item_map.get('P:7')!=23 or item_map.get('P:12')!=1:
++        raise ValueError('KingP6/BasicP7/swordP12 fixed meaning')
+     return value
+ 
+ 
+@@ -378,7 +499,7 @@
+     raw = path.read_bytes()
+     if len(raw) != row['size'] or hashlib.sha256(raw).hexdigest() != row['sha256']:
+         raise ValueError('schema changed between descriptor and read')
+-    name = '_phase391_terminal_schema_' + row['sha256']
++    name = '_phase464_terminal_schema_' + row['sha256']
+     if name in sys.modules:
+         raise ValueError('terminal schema already loaded; no cached foreign module')
+     module = ModuleType(name)

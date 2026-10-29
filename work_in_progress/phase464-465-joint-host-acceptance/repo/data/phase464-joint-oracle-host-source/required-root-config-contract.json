@@ -1,0 +1,81 @@
+{
+  "closed_keys": [
+    "schema",
+    "host",
+    "source_freeze",
+    "source_owner",
+    "observer_source_freeze",
+    "observer_source_owner",
+    "active_source_tuple",
+    "reviews",
+    "resources",
+    "relocations",
+    "write_policy",
+    "restore_policy",
+    "root_oracle_authorized",
+    "models_allowed",
+    "input_builds_allowed",
+    "expected_comparison_allowed"
+  ],
+  "host": {
+    "path": "tests/phase464_oracle_host.py",
+    "sha256": "645fbea14deb78e25835fea41f5cb199187be693755a3c71dfeec13d890d33f3",
+    "size": 41282
+  },
+  "host_freeze_path": "data/phase464-joint-oracle-host-source/combined-source-freeze.json",
+  "host_owner_path": "data/phase464-joint-oracle-host-source/source-owner.json",
+  "not_an_execution_config": true,
+  "observer_freeze": {
+    "path": "data/phase462-joint-observer-source-v3/combined-source-freeze.json",
+    "sha256": "b073e49f98f43d6b77ac8bc8d31e2f387de0122e43860557b243bb64640d7faa",
+    "size": 51863
+  },
+  "observer_owner": {
+    "path": "data/phase462-joint-observer-source-v3/source-owner.json",
+    "sha256": "91b5098388e356ad2d386f0b35298fb92cda2e100ddf74c52183dc469fa180f9",
+    "size": 20753
+  },
+  "observer_tuple": {
+    "path": "data/phase462-joint-observer-source-v3/source-tuple.json",
+    "sha256": "1a77916bf7d5f5a50936c576c3d9ff72b91d821742173f6e39af9c8be0913f57",
+    "size": 1729
+  },
+  "permissions": {
+    "expected_comparison_allowed": 0,
+    "input_builds_allowed": 0,
+    "models_allowed": 0,
+    "root_oracle_authorized": "Only actual Root-issued config after reviews; no True config emitted here."
+  },
+  "required_schema": "phase464-root-oracle-acceptance/1",
+  "restore_policy": "restore-predecessor-after-independent-readback-root-commit/1",
+  "reviews": {
+    "host_source": {
+      "owner": "ACTUAL_FUTURE_OWNER_DESCRIPTOR_REQUIRED_NOT_CREATED_HERE",
+      "receipt": "ACTUAL_FUTURE_RECEIPT_DESCRIPTOR_REQUIRED_NOT_CREATED_HERE",
+      "required_binding_fields": [
+        "source_freeze=actual464derivedfreeze",
+        "observer_source_owner=actual462v3owner",
+        "native INT0",
+        "models INT0"
+      ],
+      "schema": "phase464-independent-host-source-review/1",
+      "status": "ACCEPTED_PHASE464_HOST_SOURCE_ONLY_ROOT_PENDING"
+    },
+    "observer463": {
+      "owner": {
+        "path": "data/phase463-independent-source-acceptance/owned-files.json",
+        "sha256": "0a4a24d0cf026467ebb5f7eb00cebd845b114e16da6e067e1b63d934857f36b3",
+        "size": 297
+      },
+      "receipt": {
+        "path": "data/phase463-independent-source-acceptance/review.json",
+        "sha256": "5cebd80f470a6d7b829ca6bc09c4d1b490f4d83f669d862925f1f10df5cf7906",
+        "size": 5374
+      },
+      "schema": "phase463-independent-source-acceptance/1",
+      "status": "ACCEPTED_SOURCE_ONLY_SYNTHETIC18"
+    }
+  },
+  "schema": "phase464-root-config-shape-contract/1",
+  "write_policy": "bounded-writers-and-monitored-process/1"
+}

@@ -1,0 +1,94 @@
+{
+  "Expected_reads": 0,
+  "Godot": 0,
+  "Source_imports": 0,
+  "compile_errors": 0,
+  "discarded_compile_objects": 2,
+  "host_calls": 0,
+  "models": 0,
+  "modules": [
+    {
+      "after": {
+        "path": "tests/phase464_oracle_storage.py",
+        "sha256": "56368d5c594cf80289438634840091883161274f9386abf40d0b90d22d4c62fd",
+        "size": 21560
+      },
+      "before": {
+        "path": "tests/phase391_oracle_storage.py",
+        "sha256": "a443a0e8572e5a079bb106f6940d1d0d5b1e8a6fe59ab0bf9e85212d20e21718",
+        "size": 20410
+      },
+      "byte_identical_function_segments": {
+        "_identity": "ee4a132d216afc85c53778b59024a786ed53fc7f42c9fba7e3646c5f24f41d65",
+        "_read_source": "3aeac9226bc4d1dc15c76784fbfcc43b762765f55cdf5d3b09a6271841b51b64",
+        "_source_descriptor": "17a298dba675752d44aca969a561eedafefcb57989208c41acc4a4f8831ef0e7",
+        "_source_signature": "d59b91c2e51e2787f96a2911c755b51c1f6ea8d7322ebda01805be5558adba62",
+        "archive_streaming": "635c8ba0057722bcf5a427f0c2aee4952d9c01e750d455df6e70e3d18b00d0da",
+        "atomic_image": "2892a2ea3cda61f76e6ebe7982b46d46a8ef74626977f5c037f12ba440701d16",
+        "budget": "cadb2c65bfe598723dac00c7ad3a5dd585e783fb454010f12fb607041aa90447",
+        "check_ready": "383d9727665e515079f04afea6c6099b9da2ff6fd322e79cc36dd289a209a31d",
+        "check_source_descriptor": "e6651b0648b1ca72a3dfdf9ae1454faef58b71fde95fd5a995e40df39f24bb8f",
+        "directory": "c5665c6109b86faf58e15b541d751028b8e1bf66d79e3a542f357fb4505839a0",
+        "install": "ac7fdba370641fda6668732765a1435917e82b00b9f2a7c3b522898108402c3b",
+        "map_recorded": "0f734bbe15ea8c95017eb367bd2b965501297d95263c21f22eda70d2bd1ba393",
+        "member": "bc7bb2b974f824250fba3c68afb3c8d57def473efc3fd81964be3b9faf43a0bb",
+        "pin": "5321c18323f25e7ffa211833b2e7ab4d6a804938a64702c1d00fb82b07d8fe3f",
+        "preflight_install_payloads": "dfb5f70433608166a4cc911da3e0a4958a4982cd629bc817dd6b8cb48dc831c7",
+        "read": "ee1455dc9dd6ad26cd1947eca5c2c5ed8c824d6509daab38424bf08f40ed1ae8",
+        "read_source_payload": "56c0cbd92bb27c4d361a7c9b5a6d76d645f0f25d2f3875f7e332c1e579dfae2e",
+        "regular_target": "7b51cb55871a090e526aded607f1d4e8ac0b90df3c9384dd9ee7ae9d4e6a2def",
+        "reset_previous": "5943eb68c1514134f20e2eefb30cef3213ffbe479028c922acb1296133636fcc",
+        "state_write": "394623262454d7aa0f9f7099077309fd19b6a1bd36b11defa2c544ad53c0f7df",
+        "sync": "c3d7f6d8d42279a1889559921b424d503c9477dd354c833ba90a324b726b1001",
+        "write_new": "d156f42632aa7a8fc5bfb492d582faf464a80284feabf1615328f242d164b2b7"
+      },
+      "changed_functions": [
+        "lease"
+      ],
+      "new_functions": []
+    },
+    {
+      "after": {
+        "path": "tests/phase464_oracle_host.py",
+        "sha256": "645fbea14deb78e25835fea41f5cb199187be693755a3c71dfeec13d890d33f3",
+        "size": 41282
+      },
+      "before": {
+        "path": "tests/phase391_oracle_host.py",
+        "sha256": "49df9df290a1c595a9a2acf69f1d3e1b81af889913d531d5327ed0ba9b16b0ef",
+        "size": 31092
+      },
+      "byte_identical_function_segments": {
+        "_payload_rows": "b18b9f22c51dcff1ebd17b6a28e228d43be6fe4cbff330072c3cf71f34a1833a",
+        "collect_capture_metadata": "e4ff165d43d459b8bdd67847a1945a1a358e9fadfb919c8bf45a53ed9d6b8f89",
+        "descriptor": "f17403dec1366340a2e1e52b61d38bd3c2bef18d47b5428f58b1fee6d8878fed",
+        "main": "aa3fb171e70ceac39eda28473addb977476c653e39d42391f06c4f563278f931",
+        "read_control": "ba4f3d361bc99ebb81a5b1860d081e88740e7be58078a157ec5a863a1dcf79b4",
+        "read_terminal_expected_controls": "385bfb91368f3361b75e48e353d4174d5049520a02d5478209bd1add78753a3d",
+        "resource_gate": "f8e1b9df0b518e084f193aad64af803e8e3b36fa2deeaec29d59becc784f8f25",
+        "verify_execute_payloads": "acb7ee483e7b1bcab146a4c77c966550bedd7ccaa5866f77142553a7fa42357c",
+        "verify_owner": "973718fb8c922d2e4be4e43c951e9b0383343a46a3490b5fab8a8630ba843fe5"
+      },
+      "changed_functions": [
+        "source_gate",
+        "plan",
+        "execute",
+        "resolve_execute_payloads",
+        "execute_driver_descriptors",
+        "validate_active_source_tuple",
+        "load_terminal_schema"
+      ],
+      "new_functions": [
+        "backup_predecessor_controls",
+        "validate_observer_review"
+      ]
+    }
+  ],
+  "operational_helper_calls": 0,
+  "plan_calls": 0,
+  "pool_operations": 0,
+  "schema": "phase464-source-conservation/1",
+  "schema_calls": 0,
+  "shared_host_process_and_terminal_helpers": "resource_gate/collect_capture_metadata/read_terminal_expected_controls/verify_execute_payloads and all unlisted functions byte-exact.",
+  "storage_change_reason": "Fixed locked predecessor state image in isolated lease before busy, plus MAX_INSTALL_BYTES815198\u2192812880; count78 unchanged. Every other physical function exact."
+}

@@ -1,0 +1,36 @@
+{
+  "schema": "phase465-presealed-synthetic-inputs/1",
+  "classification": "TEST_ONLY_NO_ACTUAL_POOL_OR_AUTHORIZATION",
+  "state_raw_utf8": "{\n  \"status\": \"TEST_ONLY_PREDECESSOR\", \"sentinel\": 465\n}\n",
+  "state_mode": 416,
+  "fixture_mode": 384,
+  "mtime_ns": 1700000000123456789,
+  "fixtures_both_present": {
+    "custom_player.json": "{\"fixture\":\"TEST_ONLY_PLAYER\"}\n",
+    "custom_opponent.json": ""
+  },
+  "fixtures_one_absent": {
+    "custom_opponent.json": "{\"fixture\":\"TEST_ONLY_OPPONENT\"}\n"
+  },
+  "wrong_install_bytes": 812881,
+  "stale_case_input_path": "data/phase362-oracle-capture-source/case-A/custom_player.json",
+  "invalid_bool_config": {
+    "schema": "phase464-root-oracle-acceptance/1",
+    "host": null,
+    "source_freeze": null,
+    "source_owner": null,
+    "observer_source_freeze": null,
+    "observer_source_owner": null,
+    "active_source_tuple": null,
+    "reviews": null,
+    "resources": null,
+    "relocations": null,
+    "write_policy": null,
+    "restore_policy": null,
+    "root_oracle_authorized": true,
+    "models_allowed": false,
+    "input_builds_allowed": 0,
+    "expected_comparison_allowed": 0
+  },
+  "invalid_config_limitation": "Only tests strictINT0 early rejection; descriptors are null, no future review or Root permission represented."
+}

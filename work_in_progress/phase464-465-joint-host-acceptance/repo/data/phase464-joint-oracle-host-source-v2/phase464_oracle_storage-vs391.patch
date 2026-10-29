@@ -1,0 +1,37 @@
+--- tests/phase391_oracle_storage.py
++++ tests/phase464_oracle_storage.py
+@@ -163,9 +163,24 @@
+     with lock_path.open('r+b') as lock:
+         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+         previous = check_ready(pool, baseline, relocations)
++        # Fixed464 predecessor image: captured inside this lock before busy replaces it.
++        state_path = member(pool, 'state.json')
++        state_before = regular_target(state_path)
++        state_fd = os.open(state_path, os.O_RDONLY | os.O_NOFOLLOW)
++        with os.fdopen(state_fd, 'rb') as state_stream:
++            state_opened = os.fstat(state_stream.fileno())
++            state_raw = state_stream.read(state_before.st_size + 1)
++            state_after = os.fstat(state_stream.fileno())
++        if (len(state_raw) != state_before.st_size
++                or _source_signature(state_before) != _source_signature(state_opened)
++                or _source_signature(state_before) != _source_signature(state_after)
++                or _source_signature(state_before) != _source_signature(regular_target(state_path))):
++            raise ValueError('locked predecessor state changed during snapshot')
++        state_preimage = dict(raw=state_raw, identity=dict(size=len(state_raw), sha256=hashlib.sha256(state_raw).hexdigest()),
++                              mode=stat.S_IMODE(state_before.st_mode), mtime_ns=state_before.st_mtime_ns)
+         state_write(pool, dict(status='busy', run=str(run), started_utc=c.stamp()))
+         try:
+-            yield previous, run
++            yield previous, run, state_preimage
+         except BaseException as exc:
+             state_write(pool, dict(status='failed', run=str(run), reason=repr(exc), utc=c.stamp()))
+             raise
+@@ -289,7 +304,7 @@
+ 
+ """SOURCE extension merged into a new363-derived storage module, never run here."""
+ MAX_INSTALL_PAYLOADS = 78
+-MAX_INSTALL_BYTES = 815198
++MAX_INSTALL_BYTES = 812880
+ 
+ 
+ def _identity(value):
