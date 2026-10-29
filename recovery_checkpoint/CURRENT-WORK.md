@@ -16,3 +16,5 @@ No master/force/PR/newenvironment/purchase/security changes or previously unauth
 
 
 Current fresh Source milestone:453/454 experimental six-ID single-King/class0 new-layout+seed and sequential batch interface is independently and Root accepted for full typed determinism/isolation. Preserve the45s harness failure; bounded continuation used only2interleaved models, cumulative6natural completions+1tinybudget. P-side/O-side King arbitrary IDs both state0→1→0→1→0→1→2;14activation methodentries are recursive,7effective initialized models. No native new-layout/seed evidence follows. Next455 packages exact15Source files/examples/manifest for direct use, without repeating battles.
+
+Direct distribution now accepted:python_engine/experimental_source_king provides exact453Source plus455 examples/API/manifest; independent remote checks passed outer66/30legacy,innertrustedSHA21/15,help and invalidseed beforeRNG/Engine. No extra battle or native ran. Current456 work is static consolidation of existing138/140/142 native numeric evidence to avoid redundant sampling; native Game/session/new-layout parity remains a separate limit.

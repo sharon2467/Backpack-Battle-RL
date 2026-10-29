@@ -1,0 +1,7 @@
+# Phase455 remote package acceptance
+
+The exact45315-file experimental Source runtime is directly available at python_engine/experimental_source_king. On remote commit dbe4a71f64fa0eba5ccd391490c5f1575444bc5b the independent reviewer executed exactly four minimal checks: outer manifest66payload/30historical runtime Source, inner trusted-SHA manifest21payload/15Source, CLI help, and public CLIseed-1 rejection. All passed in0.5299s. Negative CLI called initialize1, but RNG/Engine/prepare/run0 and no result file. No battle/Expected/native execution occurred. Clone package bytes andgitstatus stayed unchanged.
+
+Static review independently verified26authorpayloads/22physicalfiles, exact45315Source, five lineage references and pre-outcome examples/seeds. The package is standard-library-only and needs no Godot, original assets/capture or GUI. Formal75 and original snapshots remain intact. The experimental King branch is six defaultIDs, exactly one King and class0; it is not native newlayout/seed parity or complete engine/RL.451 fixed conditionalTape strict acceptance is separately retained.
+
+Full startup stdout/stderr/call/read-scope records and independent/Root acceptance are under repo/. The tested package stayed identical through this acceptance metadata update. This is same-host isolated Git clone, not fresh OS. Continue456 bounded existing-native-numeric-evidence consolidation rather than rerunning138/140 or new Game capture automatically.

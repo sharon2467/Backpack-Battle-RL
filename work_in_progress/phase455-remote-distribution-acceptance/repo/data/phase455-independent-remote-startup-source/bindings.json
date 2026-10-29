@@ -1,0 +1,34 @@
+{
+  "schema": "phase455-remote-startup-bindings/1",
+  "remote_head": "dbe4a71f64fa0eba5ccd391490c5f1575444bc5b",
+  "pins": [
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/tools/verify_manifest.py",
+      "size": 1448,
+      "sha256": "591bc2101bc162e8f8269965cb258e354ee0f1ddad1db77b356301c16d36dc62"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/MANIFEST.json",
+      "size": 10469,
+      "sha256": "6160c40cf51419c6fd85d6614308fb679357ddcb4bca47023b690a8f257de6aa"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/evidence/runtime-sources.json",
+      "size": 5193,
+      "sha256": "ac5ea8bbce066000b12b5e820cbdd451160185c1c44b3f540f5f648d8919b370"
+    },
+    {
+      "path": "/workspace/backpack-github-source-clone-20261025/python_engine/experimental_source_king/manifest.json",
+      "size": 4206,
+      "sha256": "8855e67f4179c9bfca9c12034945eaa898c379176496390abe9f8b12d5f0db46"
+    }
+  ],
+  "outer_static_review": "Excludes p == ROOT/MANIFEST.json only; nested experimentalmanifest nowincluded in66set. runtime-sources requiresexact30 expectedidentities. Hash-only stdlibcode, noengineimport.",
+  "fourchecks": [
+    "outerverifier",
+    "innertrustedSHAverifier",
+    "CLI--help",
+    "actualCLIseed-1 withprofilezeroRNG/model"
+  ],
+  "candidate_calls_before_seal": 0
+}

@@ -14,7 +14,7 @@ The directory name `candidate75/` is retained from the pre-promotion snapshot; i
 
 On2026-10-29 the fixed King-A39-item/six-type mixed case passed all eight strict business sections against the original: events, parent closure, histories, all365 primitive/RNG state, final state, sampled callbacks, typed business Timer API and terminal clock cuts. The single Python battle was sealed before comparison and was not rerun. See [current engineering checkpoint](../recovery_checkpoint/CURRENT-WORK.md) and `work_in_progress/phase451-fixed-king-strict-acceptance/`.
 
-This admits the fixed conditional-Tape case only; it does not add King to `candidate75/`, prove native seed parity, or complete the engine/RL. The separate [experimental Source package](experimental_source_king/README.md) now provides fresh six-ID/single-King layout+seed and sequential batch APIs without GUI/captured-state input. Phase454 independently accepted its typed determinism/isolation and26 ingress controls; its package CLI/integrity boundary is being checked from the remote readback. It is not a general King native admission.
+This admits the fixed conditional-Tape case only; it does not add King to `candidate75/`, prove native seed parity, or complete the engine/RL. The separate [experimental Source package](experimental_source_king/README.md) now provides fresh six-ID/single-King layout+seed and sequential batch APIs without GUI/captured-state input. Phase454 independently accepted its typed determinism/isolation and26 ingress controls; its package CLI/integrity/invalid-input boundary passed independent minimal checks from the remote readback (no extra battle). It is not a general King native admission.
 
 ## Run the formal checkpoint
 
