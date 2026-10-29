@@ -1,0 +1,61 @@
+{
+  "schema": "phase469-independent-restore-source-review/1",
+  "status": "SOURCE_ACCEPTED_FIXED_RESTORE_ROOT_EXECUTION_PENDING",
+  "source_owner": {
+    "path": "data/phase469-predecessor-restore-source/source-owner.json",
+    "size": 5418,
+    "sha256": "b428ed26f096a9e4fd9d2f33f6f0768a441a64e4f253d9c87ffb5443905cf61a"
+  },
+  "writer": {
+    "path": "tests/phase469_restore_fixed_predecessor.py",
+    "size": 25553,
+    "sha256": "f72f82bb39db93c1acace29c1a2634e47b428dc8a62866f2f21d8255ad867416"
+  },
+  "spec": {
+    "path": "docs/phase469_fixed_predecessor_restore_source_spec.md",
+    "size": 8438,
+    "sha256": "e0020ca4d3af5c8520b018e4f769a22daabde25cb7542067141d8d59fbbee841"
+  },
+  "request_template": {
+    "path": "data/phase469-predecessor-restore-source/request-template.json",
+    "size": 3747,
+    "sha256": "d4b76118a4b6772b858c80bbbe4692c437c63cecf91e5916ff85c8ef44d670da"
+  },
+  "readback_source_owner": {
+    "path": "data/phase468-independent-readback-source/owned-files.json",
+    "size": 871,
+    "sha256": "1d42955e4713d4bff41e19067f0eb121a40d8eb3c553243583c6a277837ac5f8"
+  },
+  "verified_source_payloads": 10,
+  "checks": [
+    "Closed fixed case/absolute pool+two runs; exact writer/config SHA and accepted464v2 freeze; explicit root_restore_authorized isTrue required; published template remains false.",
+    "Existing readonly-opened ordinary .lock holds exclusive nonblocking flock across prepare/apply/state+process readback; no lease/check_ready/state_write or READY path.",
+    "All pinned metadata, saved3controls, previous proof/bundle/project/staged/patch,75oldpatch+marker backups and78newjournal bytes are validated before writes; statebackup0 is never a target.",
+    "Actual runtime current full project/staged inventories must equal sealed post-install pool-before; unchanged file rows and path/kind sets checked; only78project targets+2fixtures become actions.",
+    "Actions retain source bytes in memory; plan fsynced; all targets rechecked before first action and each own write. Existing atomic_image handles replacement; exact old mode/mtime and fsync/readback follow. Absent fixture unlink is fixed scoped, backups are never consumed.",
+    "Project247directory metadata deepest-first after files; project and staged roots at final depth, staged root appended last; directory+file final metadata checks and fsync. Full directory inventory equality remains independent468 obligation.",
+    "Pool state stable raw/identity/mode/mtime/signature equality before/after; state and lock never enter action or metadata lists. Success remains RESTORED_FILES_STATE_FAILED_INDEPENDENT468_PENDING.",
+    "result.json has case/run/previous/pool and state_unchanged; owner literalfiles covers result/restore-plan/progress. Compatible with468 restore_receipt/owner pins; result success content does not substitute for full independent readback.",
+    "Only existing pinned storage+compaction loaded on later invocation; no host/Godot/model launch/Expected decoding or Game reconstruction call in selected path."
+  ],
+  "limits": [
+    "This is static Source acceptance only; current pool, actual12 evidence descriptor targets, process state, backups and inventories were not read or verified by this reviewer. Their values were read only as descriptors inside repository metadata.",
+    "Writer nested equal uses native Python equality after Source-pinned JSON authority and strict c.index/live stat metadata; this review does not assert a generic adversarial JSON validator.",
+    "Crash/power-loss recovery and physical restoration are not simulated. A first write-phase failure may leave partially restored failed state and must remain blocked with retained progress; no auto retry/rollback.",
+    "Root must issue a distinct SHA-pinned actual true request, execute once, retain first error if any, then release468 actual full independent readback before separate READY commit."
+  ],
+  "metadata_preview_diagnostic": "An attempted optional source-context.json preview found no such file; actual plan-contract/request-template/source-owner were used. No source import or operational call occurred.",
+  "counts": {
+    "module_imports": 0,
+    "helpers": 0,
+    "inventory": 0,
+    "process_check": 0,
+    "actual_pool_reads_or_writes": 0,
+    "restore": 0,
+    "native": 0,
+    "models": 0,
+    "Expected_semantic_decoding": 0
+  },
+  "blocking_findings": [],
+  "functions_statically_parsed": 22
+}

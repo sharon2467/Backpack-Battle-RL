@@ -1,0 +1,68 @@
+{
+  "schema": "phase468-readback-request-contract/1",
+  "status": "SOURCE_ONLY_NO_ACTUAL_REQUEST_OR_EXECUTION",
+  "cli": [
+    "--config ACTUAL_ROOT_REQUEST_JSON",
+    "--config-sha256 ACTUAL_REQUEST_SHA256",
+    "--output-new NEW_REPOSITORY_DATA_PHASE468_DIRECTORY"
+  ],
+  "request_schema": "phase468-fixed-predecessor-readback-request/1",
+  "closed_keys": [
+    "schema",
+    "case_id",
+    "run",
+    "pool",
+    "baseline",
+    "previous_run",
+    "relocations",
+    "host_source_freeze",
+    "evidence"
+  ],
+  "fixed_case": "NATIVE-028-KING-BASIC-A",
+  "fixed_new_run_basename": "original028-king-basic-A-single-001",
+  "source_freeze": {
+    "path": "data/phase464-joint-oracle-host-source-v2/combined-source-freeze.json",
+    "size": 58276,
+    "sha256": "b66879fe67a0afcf8cb84ce5a52f1ad7386ce7e58be5d1dcada0fcdb2e0b0965"
+  },
+  "unknown_actual_fields": [
+    "absolute run/pool/baseline/previous_run paths",
+    "explicit approved recorded-path relocations",
+    "Root actual restore receipt+owner",
+    "SHA/size of actual control/patch/journal/proof/bundle/current-pending-state files",
+    "request SHA and unique report directory"
+  ],
+  "evidence_keys": [
+    "restore_receipt",
+    "restore_owner",
+    "controls_manifest",
+    "patch_inventory",
+    "install_journal",
+    "previous_proof",
+    "previous_bundle_manifest",
+    "pending_state"
+  ],
+  "descriptor_shape": {
+    "path": "absolute runtime path or relative repository Source path",
+    "size": "strict nonnegative INT",
+    "sha256": "64 lowercase hex"
+  },
+  "deterministic_paths": {
+    "controls_manifest": "run/output/predecessor-control-preimages/manifest.json",
+    "patch_inventory": "run/output/previous-source-preimages/inventory.json",
+    "install_journal": "run/output/source-preimages/preimages.json",
+    "previous_proof": "previous_run/output/compaction/pool-roundtrip.json",
+    "previous_bundle_manifest": "previous_run/output/compaction/bundle-manifest.json",
+    "pending_state": "pool/state.json"
+  },
+  "restore_receipt_interpretation": "Receipt and owner must be real pinned artifacts with owner covering receipt. Contents are not used as proof of physical equality or as fabricated success.",
+  "current_state_required": {
+    "status": "failed",
+    "reason": "PENDING_INDEPENDENT_PREDECESSOR_RESTORE",
+    "run": "actual new run",
+    "previous_run": "actual saved predecessor",
+    "control_preimages": "actual saved controls manifest association, restored false"
+  },
+  "ready_transition": "Tool never writes READY. Root may separately commit only after actual PASS and review.",
+  "actual_execution_requires": "Root Source review and explicit release after its actual restoration; no execution authorized by this contract."
+}

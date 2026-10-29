@@ -1,0 +1,7 @@
+# Captured consumer design and physical restoration work cut
+
+466 freezes the separate captured14-input/candidate/eight-section comparison design before Expected; actual native values are bound later from lawful INPUT. No model has run.468 readonly physical verifier and469 fixed-case restore writer are Source-frozen, with the latter independently statically reviewed.
+
+The first real469 restoration request stopped before writes,0.1917s:its newly added global process_inspection_complete/gaps-empty predicate could not be satisfied because protected system/supervisor/exec ancestors deny cwd/fd/maps reads. Readable active_matches=[],but that is not complete inspection. All file/directory/state/READY writes0; actual request/stdout/result/owner and a readonly permission diagnostic are preserved. No privilege change, blind retry, or fabricated READY occurred. Pool remains failed/PENDING and all backups/evidence remain intact.
+
+This snapshot records that actual failed operation, not a claim the Source tool is operationally accepted. A bounded Source assessment is distinguishing the new global-completeness requirement from the previously accepted operational lease/no-readable-active-reference scope. Independent lawful INPUT and Python bridge work continues without the pool. The original one-case native record is separately archived467; no recapture or Expected-derived initialization is allowed. Restore via the flat repo overlay. FILES.json binds all current files; future fixes/results need their own immutable snapshot.

@@ -1,0 +1,41 @@
+{
+  "Expected_semantic_decoding": 0,
+  "READY_writes": 0,
+  "case_id": "NATIVE-028-KING-BASIC-A",
+  "config": {
+    "path": "/workspace/python-original-engine/repo/data/phase469-root-predecessor-restore/restore-request.json",
+    "sha256": "97595f25331b0335cca9a5464fdf6e21484d091f32a36d1ea401f07916f2f79b",
+    "size": 3746
+  },
+  "directory_operations": {
+    "metadata": 0,
+    "skip": 0
+  },
+  "elapsed_seconds": 0.1917378389989608,
+  "error": {
+    "message": "complete no-active-pool-reference check",
+    "traceback": "Traceback (most recent call last):\n  File \"/workspace/python-original-engine/repo/tests/phase469_restore_fixed_predecessor.py\", line 450, in main\n    restore(request, freeze, c, s, out, result)\n  File \"/workspace/python-original-engine/repo/tests/phase469_restore_fixed_predecessor.py\", line 403, in restore\n    actions, dirs, state = prepare(request, freeze, c, s, result)\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase469_restore_fixed_predecessor.py\", line 202, in prepare\n    result['process_before'] = no_process(c)\n                               ^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase469_restore_fixed_predecessor.py\", line 165, in no_process\n    require(result['process_inspection_complete'] is True and result['inspection_gaps'] == []\n  File \"/workspace/python-original-engine/repo/tests/phase469_restore_fixed_predecessor.py\", line 46, in require\n    raise ValueError(message)\nValueError: complete no-active-pool-reference check\n",
+    "type": "ValueError"
+  },
+  "file_operations": {
+    "metadata": 0,
+    "replace": 0,
+    "skip": 0,
+    "unlink": 0
+  },
+  "models": 0,
+  "native": 0,
+  "pool": "/workspace/native-combat-20261013/pool",
+  "previous_run": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06",
+  "readback_role": "Writer target/metadata checks only; independent468 full physical proof still required.",
+  "run": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001",
+  "schema": "phase469-fixed-predecessor-restore-result/1",
+  "source": {
+    "path": "tests/phase469_restore_fixed_predecessor.py",
+    "sha256": "f72f82bb39db93c1acace29c1a2634e47b428dc8a62866f2f21d8255ad867416",
+    "size": 25553
+  },
+  "state_writes": 0,
+  "status": "FIRST_ERROR_STOPPED_FAILED_STATE_READY_BLOCKED",
+  "write_phase_entered": false
+}
