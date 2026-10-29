@@ -1,0 +1,166 @@
+{
+  "schema": "phase460-independent-limited-design-review/1",
+  "status": "ACCEPTED_DESIGN_FOR_LIMITED_SOURCE_PREPARATION_ONLY",
+  "design_owner": {
+    "path": "data/phase460-joint-native-observation-design/owned-files.json",
+    "size": 923,
+    "sha256": "17593145adc832c0b94d667a8de5424b731908445662f65a011a0de3d9cdebe0"
+  },
+  "request": {
+    "path": "data/phase460-joint-native-observation-design/request.json",
+    "size": 15561,
+    "sha256": "88d6f6e0b583eaeab540abbb105aa1549cee3891168b6f137f56ee43b84d9434"
+  },
+  "verification": {
+    "design_payloads": 4,
+    "design_payload_bytes": 65157,
+    "whole_Source_preimage_hashes": 12,
+    "selected_function_segments_verified": [
+      {
+        "file": "data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
+        "current_source_segment_sha256": "779ab1d85c4bb2339257574b47c269ebd1d70a07e70f0124c802aa722725785d",
+        "first_line": 210,
+        "function": "state",
+        "last_line": 245
+      },
+      {
+        "file": "data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
+        "current_source_segment_sha256": "a19cc4632de282076d227ff54ed5480127c96a5c4ae0459f99493c24fecda38e",
+        "first_line": 670,
+        "function": "checkpoint",
+        "last_line": 704
+      },
+      {
+        "file": "data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
+        "current_source_segment_sha256": "47fd176ea556d56c1ee777e790679b2c607ad0fbeb2db77ee89941e9ac686071",
+        "first_line": 1234,
+        "function": "bind_fixed_inventory",
+        "last_line": 1317
+      },
+      {
+        "file": "data/phase391-terminal-source/after-source/native_random_observer_sink_v7.gd",
+        "current_source_segment_sha256": "c649522881a87588732d6f82fb6349fce7ab4f8f232b7415719a86db9aa51be1",
+        "first_line": 768,
+        "function": "king_timer_fact",
+        "last_line": 777
+      },
+      {
+        "file": "tests/phase391_king_observer_schema.py",
+        "current_source_segment_sha256": "f985c49d2bca3b5052974dcb1bd4d503757d6646e23507ca08aa7e5432b4896e",
+        "first_line": 1433,
+        "function": "validate_state",
+        "last_line": 1494
+      },
+      {
+        "file": "tests/phase441_fixed_A_input_bridge.py",
+        "current_source_segment_sha256": "f0fbc77c54da139ab4142c58150c67cdfd005bf0375163fe3ae8080e785b53ee",
+        "first_line": 361,
+        "function": "project_primitives",
+        "last_line": 395
+      },
+      {
+        "file": "data/phase458-source-king-basic/staged/native_replay_v8/engine.py",
+        "current_source_segment_sha256": "4a89dc39e946da085bfed75fad95529c0da73eb5d694517a1e40b587249d6e7e",
+        "first_line": 3726,
+        "function": "_pure441_roles",
+        "last_line": 3734
+      },
+      {
+        "file": "data/phase458-source-king-basic/staged/native_replay_v8/genuine.py",
+        "current_source_segment_sha256": "9537c8184966374a5593817eb856107a648319aaf437fc375b706aeaee5db01f",
+        "first_line": 1074,
+        "function": "validate_pure441_profile",
+        "last_line": 1079
+      },
+      {
+        "file": "tests/phase451_pure_business_output_v4.py",
+        "current_source_segment_sha256": "14cfebe6a1ab7cd8269ec54bf91dcad5e4636d2885b3d8bb07846a89876729cb",
+        "first_line": 95,
+        "function": "bindings",
+        "last_line": 104
+      }
+    ],
+    "declared_functions_not_all_reaudited": 62,
+    "existing_site_keys_counted": 107,
+    "required_existing_site_keys_confirmed": [
+      "Items/Goobert.gd::prepare",
+      "Items/Goobert.gd::onItemActivated",
+      "Items/Goobert.gd::doCooldownEffect",
+      "Items/Item.gd::activate",
+      "Items/Exclusive/KingGoobert.gd::doCooldownEffect"
+    ],
+    "existing_instrumented_Goobert_pin_verified": {
+      "path": "data/phase359-king-producer-source/after-source/Items/Goobert.gd",
+      "sha256": "7a7b70e9a230b551feca7e00df2fe5e241b97c7aeb15f060e792c15ff4015ebb",
+      "size": 1579
+    },
+    "slot_bijection_checked": 26,
+    "old_host_storage_implementation_reaudit": false,
+    "old815_scope_reaudit": false
+  },
+  "decisions": [
+    "Fixed request is faithful to presealed457/459 placement/order/HP/stamina, not its output. P14/O12, King P:6, Basic P:7; P:12 is sword. Native seeds45701/45702 are configuration inputs and are not Source root45701 stream states or an outcome expectation.",
+    "The actual sink.state rejects23 and forces non262/non19 to plain item. Actual schema.validate_state also maps all nonKing/nonPotion to plain_item and accepts goobert only forKing. Both concrete dispatchers need the new23 subtype; accepting a new ID without preserving its INT activations/REAL threshold is insufficient.",
+    "Existing Goobert prepare/onItemActivated/doCooldownEffect instrumentation has enter/leave around actual counter reset/effect/synchronous activate/post-recursion trigger/history. Item.activate and King effect sites exist. source_observable dispatches bound Item identities through actual script inheritance. No additional hook site is currently justified; future patch-inverse equality still must be established for the new sealed tuple.",
+    "Collector final-state sampling already recognizes actual Goobert inheritance and emits activations/activationsToTrigger. New declaration/descriptor cap7/26-slot/King-owned Timer bindings and schema validation are the necessary bridge. Preserve type, nativeID/class/role, owner and alias rejects.",
+    "Pure role arithmetic33 businessTimers +26items +root/game/util/combatTimer/twoCharacters=65 processing roles;64 configs excluding root. Two native King displayTimers remain diagnostics and must be excluded by precise owner/role, never arbitrary substring filtering.",
+    "438/439 logical premises can be reused.32 common Timer roles at two cuts require actual joined native flags/mode/type/identity/writer-domain evidence; private_left=-1 is not inferred from publiczero. KingBuffTimer uses its own new birth/no-start proof. Characterfalse/null requires whole lifetime/pre-ready closure through pre_activate. No old row/count/fingerprint/value transfer.",
+    "Unscripted Timer premise is Source-established under accepted G02 ordinary native domain, not a newly observed script-null getter. New current-source/context applicability and actual two-cut identities remain mandatory. Missing premise stays a specific input gap.",
+    "Basic state/prepare cache/listener order is checked against actual new case fields and Source geometry/registration, not default-filled or borrowed from441 target lists. Captured prepare/activate order remains unsorted and complete.",
+    "Captured14-key Tape runtime must be a separate narrow exact case profile in isolated engine/genuine; public458/461 layout+seed provider gate, six-ID Source, old441P12/39/78 profile and formal75 remain closed. P6/profile handling cannot be achieved by retagging Source-fresh state or using a test provider escape.",
+    "Eight-section event/reference/history/RNG/final/callback/TimerAPI/cut semantics and typed decoder are conserved. Only finite case bindings change. Preserve all selected primitives after the actual pre-activation checkpoint, including legitimate initial cooldown draws; no prepare-zero assertion may erase initialize/activate draws.",
+    "Original event parent/null and explicit tooltip triggering event are different relationships. Compare both exactly; nesting depth cannot supply fabricated parents. Native107 debug methods need not become full output-equality sections.",
+    "One future original observation with fixed layout and no retry/reseed/outcome tuning is sufficient for a bounded joint claim if all later input and strict comparison gates pass. Basic-first or other natural branches may be NOT_HIT without invalidating honest partial coverage or permitting another automatic capture."
+  ],
+  "minimum_next_implementation": [
+    "Freeze a new isolated Source preparation SPEC/tuple for collector, sink and schema: exact26slots/7descriptors, P6/P7 binding,23→goobert typed serialization, new case/profile/version. Reuse current selected hook bodies and old finite Delta/inverse machinery; do not replay historical generation chains.",
+    "Perform only Source/metadata/synthetic carrier controls for23 missing/wrong type, swapped King/basic identity, foreign refs, exact source tuple/profile mismatch and unchanged hook matrix/inverse. Define the captured14-key reader/candidate/output contract before native; actual IDs/carrierSHA cannot be filled yet.",
+    "Host changes are finite tuple/config gates and measured exact install descriptor. Existing capacity/READY/lease/reset/archive/monitor implementation is reused; no new physical restoration audit, pool inventory or environment recreation is a design prerequisite.",
+    "After a separately scoped observation, independently bind actual lawful INPUT/initial receipts; then narrow captured candidate controls, one input-only Tape model/raw seal and strict EXPECTED comparison. The existing459 Source-seeded output is not a native prediction."
+  ],
+  "remaining_real_gates": [
+    "New Source implementation/patch inverse and serializer/schema tests have not occurred. This review does not certify executable new artifacts.",
+    "Actual current baseline/preimage source applicability, available space and predecessor READY are later operational facts; no old boolean or historicalengine receipt substitutes for them.",
+    "Actual native IDs/flags/lifetime counters/cut stamps/registration/clock/Tape and carrier hashes must come from the one new lawful observation; unknown facts remain unknown.",
+    "Future host work explicitly includes one parse-only Godot process plus one actual battle, not a single Godot invocation. No process is authorized/executed by this review.",
+    "Root scope selection controls the next engineering step; design PASS is not a native joint or generalKing acceptance."
+  ],
+  "cost_stop_scope": {
+    "new_full_Game_copies": 0,
+    "planned_parse_processes_if_released": 1,
+    "planned_original_battles_if_released": 1,
+    "new_hook_sites_identified": 0,
+    "future_conditional_Tape_models": 1,
+    "free_floor_bytes": 4294967296,
+    "attempt_reserve_bytes": 1610612736,
+    "minimum_preflight_free_bytes": 5905580032,
+    "observer_aggregate_bytes": 268435456,
+    "host_capture_bound_bytes": 536870912,
+    "run_user_cache_reserve_bytes": 1610612736,
+    "poll_interval_seconds": 0.05,
+    "battle_collector_runner_seconds": [
+      120,
+      295,
+      300
+    ],
+    "current_capacity_measured": false,
+    "enforcement": "Existing writer caps and polling, not kernel aggregate quota; overshoot and process cleanliness distinct from semantic success.",
+    "stop": "First parser/source/identity/input/record-budget/lifetime/terminal/business failure retained; no automatic retry/reseed/layout adjustment or destruction of evidence."
+  },
+  "actual_counts": {
+    "candidate_or_schema_imports": 0,
+    "component_or_model_calls": 0,
+    "Godot_or_parse": 0,
+    "new_capture": 0,
+    "Expected_reads": 0,
+    "pool_inventory": 0,
+    "pool_writes": 0,
+    "old_test_replays": 0,
+    "new_executable_source_files": 0
+  },
+  "limits": [
+    "459 Source result remains its own finite experimental evidence;451 native fixed-case and178 historical mixed evidence remain separate.",
+    "No joint native parity established here; no same-seed/session law, formal76/all75King or RL/fullengine claim.456 numeric proposal remains deferred nonblocking.",
+    "No new user permission loop is introduced; the described gates are the already authorized engineering controls for producing reviewable Source and lawful observations."
+  ]
+}
