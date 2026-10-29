@@ -1,0 +1,6988 @@
+{
+  "schema": "phase470-input-only-projection-proof/1",
+  "status": "INPUT_ONLY_NOT_RUNTIME_VALIDATED",
+  "field_origins": {
+    "processing_nodes.root_viewport": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "root_viewport"
+    },
+    "processing_nodes.game": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "game"
+    },
+    "processing_nodes.util": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "util"
+    },
+    "processing_nodes.combat_timer": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "combat_timer"
+    },
+    "processing_nodes.fatigue:start": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "fatigue:start"
+    },
+    "timer_initial.fatigue:start.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/410/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "fatigue:start"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "6888",
+          "pointer": "/payload/nodes/4/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.fatigue:start.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/405/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "fatigue:start"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "6888",
+          "pointer": "/payload/nodes/4/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.fatigue:start.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/406/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "fatigue:start"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "6888",
+          "pointer": "/payload/nodes/4/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.fatigue:start.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/407/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "fatigue:start"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "6888",
+          "pointer": "/payload/nodes/4/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.fatigue:start.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/408/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "fatigue:start"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "6888",
+          "pointer": "/payload/nodes/4/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.fatigue:start.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/409/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "fatigue:start"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "6888",
+          "pointer": "/payload/nodes/4/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.fatigue:start.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/411/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "fatigue:start"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "6888",
+          "pointer": "/payload/nodes/4/timer"
+        }
+      ]
+    },
+    "processing_nodes.fatigue:tick": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "fatigue:tick"
+    },
+    "timer_initial.fatigue:tick.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/417/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "fatigue:tick"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "6889",
+          "pointer": "/payload/nodes/5/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.fatigue:tick.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/412/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "fatigue:tick"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "6889",
+          "pointer": "/payload/nodes/5/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.fatigue:tick.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/413/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "fatigue:tick"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "6889",
+          "pointer": "/payload/nodes/5/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.fatigue:tick.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/414/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "fatigue:tick"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "6889",
+          "pointer": "/payload/nodes/5/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.fatigue:tick.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/415/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "fatigue:tick"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "6889",
+          "pointer": "/payload/nodes/5/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.fatigue:tick.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/416/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "fatigue:tick"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "6889",
+          "pointer": "/payload/nodes/5/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.fatigue:tick.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/418/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "fatigue:tick"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "6889",
+          "pointer": "/payload/nodes/5/timer"
+        }
+      ]
+    },
+    "processing_nodes.character:P": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "character:P"
+    },
+    "processing_nodes.tick:P": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "tick:P"
+    },
+    "timer_initial.tick:P.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/242/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "tick:P"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47765",
+          "pointer": "/payload/nodes/7/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.tick:P.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/237/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "tick:P"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47765",
+          "pointer": "/payload/nodes/7/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.tick:P.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/238/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "tick:P"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47765",
+          "pointer": "/payload/nodes/7/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.tick:P.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/239/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "tick:P"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47765",
+          "pointer": "/payload/nodes/7/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.tick:P.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/240/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "tick:P"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47765",
+          "pointer": "/payload/nodes/7/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.tick:P.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/241/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "tick:P"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47765",
+          "pointer": "/payload/nodes/7/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.tick:P.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/243/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "tick:P"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47765",
+          "pointer": "/payload/nodes/7/timer"
+        }
+      ]
+    },
+    "processing_nodes.aux:P:battleRageTimer": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "aux:P:battleRageTimer"
+    },
+    "timer_initial.aux:P:battleRageTimer.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/424/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "aux:P:battleRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47766",
+          "pointer": "/payload/nodes/8/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.aux:P:battleRageTimer.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/419/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "aux:P:battleRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47766",
+          "pointer": "/payload/nodes/8/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.aux:P:battleRageTimer.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/420/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "aux:P:battleRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47766",
+          "pointer": "/payload/nodes/8/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.aux:P:battleRageTimer.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/421/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "aux:P:battleRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47766",
+          "pointer": "/payload/nodes/8/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.aux:P:battleRageTimer.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/422/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "aux:P:battleRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47766",
+          "pointer": "/payload/nodes/8/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.aux:P:battleRageTimer.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/423/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "aux:P:battleRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47766",
+          "pointer": "/payload/nodes/8/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.aux:P:battleRageTimer.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/425/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "aux:P:battleRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47766",
+          "pointer": "/payload/nodes/8/timer"
+        }
+      ]
+    },
+    "processing_nodes.aux:P:autoRageTimer": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "aux:P:autoRageTimer"
+    },
+    "timer_initial.aux:P:autoRageTimer.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/431/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "aux:P:autoRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47768",
+          "pointer": "/payload/nodes/9/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.aux:P:autoRageTimer.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/426/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "aux:P:autoRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47768",
+          "pointer": "/payload/nodes/9/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.aux:P:autoRageTimer.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/427/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "aux:P:autoRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47768",
+          "pointer": "/payload/nodes/9/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.aux:P:autoRageTimer.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/428/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "aux:P:autoRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47768",
+          "pointer": "/payload/nodes/9/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.aux:P:autoRageTimer.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/429/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "aux:P:autoRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47768",
+          "pointer": "/payload/nodes/9/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.aux:P:autoRageTimer.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/430/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "aux:P:autoRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47768",
+          "pointer": "/payload/nodes/9/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.aux:P:autoRageTimer.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/432/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "aux:P:autoRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47768",
+          "pointer": "/payload/nodes/9/timer"
+        }
+      ]
+    },
+    "processing_nodes.invu:P": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "invu:P"
+    },
+    "timer_initial.invu:P.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/452/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "invu:P"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47767",
+          "pointer": "/payload/nodes/10/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.invu:P.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/447/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "invu:P"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47767",
+          "pointer": "/payload/nodes/10/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.invu:P.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/448/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "invu:P"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47767",
+          "pointer": "/payload/nodes/10/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.invu:P.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/449/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "invu:P"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47767",
+          "pointer": "/payload/nodes/10/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.invu:P.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/450/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "invu:P"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47767",
+          "pointer": "/payload/nodes/10/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.invu:P.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/451/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "invu:P"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47767",
+          "pointer": "/payload/nodes/10/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.invu:P.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/453/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "invu:P"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47767",
+          "pointer": "/payload/nodes/10/timer"
+        }
+      ]
+    },
+    "processing_nodes.buff:P:Block": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "buff:P:100"
+    },
+    "timer_initial.buff:P:Block.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/256/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:P:100"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48451",
+          "pointer": "/payload/nodes/11/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Block.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/251/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:P:100"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48451",
+          "pointer": "/payload/nodes/11/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Block.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/252/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:P:100"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48451",
+          "pointer": "/payload/nodes/11/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Block.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/253/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:P:100"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48451",
+          "pointer": "/payload/nodes/11/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Block.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/254/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:P:100"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48451",
+          "pointer": "/payload/nodes/11/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Block.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/255/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:P:100"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48451",
+          "pointer": "/payload/nodes/11/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Block.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/257/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:P:100"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48451",
+          "pointer": "/payload/nodes/11/timer"
+        },
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48451",
+          "pointer": "/payload/source_resources/0/buffs/0/state/timer"
+        }
+      ]
+    },
+    "processing_nodes.buff:P:Lucky": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "buff:P:101"
+    },
+    "timer_initial.buff:P:Lucky.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/263/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:P:101"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48453",
+          "pointer": "/payload/nodes/12/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Lucky.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/258/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:P:101"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48453",
+          "pointer": "/payload/nodes/12/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Lucky.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/259/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:P:101"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48453",
+          "pointer": "/payload/nodes/12/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Lucky.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/260/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:P:101"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48453",
+          "pointer": "/payload/nodes/12/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Lucky.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/261/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:P:101"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48453",
+          "pointer": "/payload/nodes/12/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Lucky.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/262/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:P:101"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48453",
+          "pointer": "/payload/nodes/12/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Lucky.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/264/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:P:101"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48453",
+          "pointer": "/payload/nodes/12/timer"
+        },
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48453",
+          "pointer": "/payload/source_resources/0/buffs/1/state/timer"
+        }
+      ]
+    },
+    "processing_nodes.buff:P:Regeneration": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "buff:P:102"
+    },
+    "timer_initial.buff:P:Regeneration.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/270/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:P:102"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48455",
+          "pointer": "/payload/nodes/13/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Regeneration.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/265/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:P:102"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48455",
+          "pointer": "/payload/nodes/13/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Regeneration.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/266/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:P:102"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48455",
+          "pointer": "/payload/nodes/13/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Regeneration.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/267/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:P:102"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48455",
+          "pointer": "/payload/nodes/13/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Regeneration.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/268/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:P:102"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48455",
+          "pointer": "/payload/nodes/13/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Regeneration.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/269/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:P:102"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48455",
+          "pointer": "/payload/nodes/13/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Regeneration.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/271/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:P:102"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48455",
+          "pointer": "/payload/nodes/13/timer"
+        },
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48455",
+          "pointer": "/payload/source_resources/0/buffs/2/state/timer"
+        }
+      ]
+    },
+    "processing_nodes.buff:P:Vampirism": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "buff:P:103"
+    },
+    "timer_initial.buff:P:Vampirism.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/277/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:P:103"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48457",
+          "pointer": "/payload/nodes/14/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Vampirism.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/272/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:P:103"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48457",
+          "pointer": "/payload/nodes/14/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Vampirism.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/273/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:P:103"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48457",
+          "pointer": "/payload/nodes/14/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Vampirism.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/274/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:P:103"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48457",
+          "pointer": "/payload/nodes/14/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Vampirism.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/275/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:P:103"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48457",
+          "pointer": "/payload/nodes/14/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Vampirism.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/276/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:P:103"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48457",
+          "pointer": "/payload/nodes/14/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Vampirism.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/278/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:P:103"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48457",
+          "pointer": "/payload/nodes/14/timer"
+        },
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48457",
+          "pointer": "/payload/source_resources/0/buffs/3/state/timer"
+        }
+      ]
+    },
+    "processing_nodes.buff:P:Spikes": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "buff:P:104"
+    },
+    "timer_initial.buff:P:Spikes.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/284/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:P:104"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48459",
+          "pointer": "/payload/nodes/15/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Spikes.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/279/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:P:104"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48459",
+          "pointer": "/payload/nodes/15/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Spikes.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/280/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:P:104"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48459",
+          "pointer": "/payload/nodes/15/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Spikes.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/281/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:P:104"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48459",
+          "pointer": "/payload/nodes/15/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Spikes.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/282/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:P:104"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48459",
+          "pointer": "/payload/nodes/15/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Spikes.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/283/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:P:104"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48459",
+          "pointer": "/payload/nodes/15/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Spikes.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/285/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:P:104"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48459",
+          "pointer": "/payload/nodes/15/timer"
+        },
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48459",
+          "pointer": "/payload/source_resources/0/buffs/4/state/timer"
+        }
+      ]
+    },
+    "processing_nodes.buff:P:Mana": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "buff:P:105"
+    },
+    "timer_initial.buff:P:Mana.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/291/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:P:105"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48461",
+          "pointer": "/payload/nodes/16/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Mana.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/286/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:P:105"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48461",
+          "pointer": "/payload/nodes/16/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Mana.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/287/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:P:105"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48461",
+          "pointer": "/payload/nodes/16/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Mana.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/288/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:P:105"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48461",
+          "pointer": "/payload/nodes/16/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Mana.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/289/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:P:105"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48461",
+          "pointer": "/payload/nodes/16/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Mana.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/290/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:P:105"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48461",
+          "pointer": "/payload/nodes/16/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Mana.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/292/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:P:105"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48461",
+          "pointer": "/payload/nodes/16/timer"
+        },
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48461",
+          "pointer": "/payload/source_resources/0/buffs/5/state/timer"
+        }
+      ]
+    },
+    "processing_nodes.buff:P:Empower": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "buff:P:106"
+    },
+    "timer_initial.buff:P:Empower.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/298/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:P:106"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48463",
+          "pointer": "/payload/nodes/17/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Empower.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/293/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:P:106"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48463",
+          "pointer": "/payload/nodes/17/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Empower.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/294/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:P:106"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48463",
+          "pointer": "/payload/nodes/17/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Empower.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/295/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:P:106"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48463",
+          "pointer": "/payload/nodes/17/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Empower.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/296/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:P:106"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48463",
+          "pointer": "/payload/nodes/17/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Empower.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/297/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:P:106"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48463",
+          "pointer": "/payload/nodes/17/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Empower.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/299/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:P:106"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48463",
+          "pointer": "/payload/nodes/17/timer"
+        },
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48463",
+          "pointer": "/payload/source_resources/0/buffs/6/state/timer"
+        }
+      ]
+    },
+    "processing_nodes.buff:P:Heat": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "buff:P:107"
+    },
+    "timer_initial.buff:P:Heat.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/305/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:P:107"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48465",
+          "pointer": "/payload/nodes/18/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Heat.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/300/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:P:107"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48465",
+          "pointer": "/payload/nodes/18/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Heat.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/301/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:P:107"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48465",
+          "pointer": "/payload/nodes/18/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Heat.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/302/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:P:107"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48465",
+          "pointer": "/payload/nodes/18/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Heat.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/303/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:P:107"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48465",
+          "pointer": "/payload/nodes/18/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Heat.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/304/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:P:107"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48465",
+          "pointer": "/payload/nodes/18/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Heat.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/306/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:P:107"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48465",
+          "pointer": "/payload/nodes/18/timer"
+        },
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48465",
+          "pointer": "/payload/source_resources/0/buffs/7/state/timer"
+        }
+      ]
+    },
+    "processing_nodes.buff:P:Poison": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "buff:P:108"
+    },
+    "timer_initial.buff:P:Poison.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/312/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:P:108"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48467",
+          "pointer": "/payload/nodes/19/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Poison.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/307/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:P:108"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48467",
+          "pointer": "/payload/nodes/19/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Poison.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/308/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:P:108"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48467",
+          "pointer": "/payload/nodes/19/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Poison.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/309/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:P:108"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48467",
+          "pointer": "/payload/nodes/19/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Poison.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/310/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:P:108"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48467",
+          "pointer": "/payload/nodes/19/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Poison.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/311/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:P:108"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48467",
+          "pointer": "/payload/nodes/19/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Poison.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/313/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:P:108"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48467",
+          "pointer": "/payload/nodes/19/timer"
+        },
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48467",
+          "pointer": "/payload/source_resources/0/buffs/8/state/timer"
+        }
+      ]
+    },
+    "processing_nodes.buff:P:Blind": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "buff:P:109"
+    },
+    "timer_initial.buff:P:Blind.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/319/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:P:109"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48469",
+          "pointer": "/payload/nodes/20/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Blind.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/314/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:P:109"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48469",
+          "pointer": "/payload/nodes/20/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Blind.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/315/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:P:109"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48469",
+          "pointer": "/payload/nodes/20/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Blind.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/316/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:P:109"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48469",
+          "pointer": "/payload/nodes/20/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Blind.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/317/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:P:109"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48469",
+          "pointer": "/payload/nodes/20/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Blind.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/318/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:P:109"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48469",
+          "pointer": "/payload/nodes/20/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Blind.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/320/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:P:109"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48469",
+          "pointer": "/payload/nodes/20/timer"
+        },
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48469",
+          "pointer": "/payload/source_resources/0/buffs/9/state/timer"
+        }
+      ]
+    },
+    "processing_nodes.buff:P:Cold": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "buff:P:110"
+    },
+    "timer_initial.buff:P:Cold.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/326/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:P:110"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48471",
+          "pointer": "/payload/nodes/21/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Cold.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/321/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:P:110"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48471",
+          "pointer": "/payload/nodes/21/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Cold.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/322/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:P:110"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48471",
+          "pointer": "/payload/nodes/21/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Cold.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/323/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:P:110"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48471",
+          "pointer": "/payload/nodes/21/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Cold.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/324/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:P:110"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48471",
+          "pointer": "/payload/nodes/21/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Cold.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/325/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:P:110"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48471",
+          "pointer": "/payload/nodes/21/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.buff:P:Cold.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/327/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:P:110"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48471",
+          "pointer": "/payload/nodes/21/timer"
+        },
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "48471",
+          "pointer": "/payload/source_resources/0/buffs/10/state/timer"
+        }
+      ]
+    },
+    "processing_nodes.character:O": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "character:O"
+    },
+    "processing_nodes.tick:O": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "tick:O"
+    },
+    "timer_initial.tick:O.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/249/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "tick:O"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84525",
+          "pointer": "/payload/nodes/23/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.tick:O.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/244/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "tick:O"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84525",
+          "pointer": "/payload/nodes/23/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.tick:O.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/245/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "tick:O"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84525",
+          "pointer": "/payload/nodes/23/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.tick:O.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/246/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "tick:O"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84525",
+          "pointer": "/payload/nodes/23/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.tick:O.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/247/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "tick:O"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84525",
+          "pointer": "/payload/nodes/23/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.tick:O.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/248/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "tick:O"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84525",
+          "pointer": "/payload/nodes/23/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.tick:O.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/250/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "tick:O"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84525",
+          "pointer": "/payload/nodes/23/timer"
+        }
+      ]
+    },
+    "processing_nodes.aux:O:battleRageTimer": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "aux:O:battleRageTimer"
+    },
+    "timer_initial.aux:O:battleRageTimer.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/438/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "aux:O:battleRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84526",
+          "pointer": "/payload/nodes/24/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.aux:O:battleRageTimer.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/433/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "aux:O:battleRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84526",
+          "pointer": "/payload/nodes/24/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.aux:O:battleRageTimer.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/434/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "aux:O:battleRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84526",
+          "pointer": "/payload/nodes/24/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.aux:O:battleRageTimer.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/435/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "aux:O:battleRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84526",
+          "pointer": "/payload/nodes/24/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.aux:O:battleRageTimer.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/436/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "aux:O:battleRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84526",
+          "pointer": "/payload/nodes/24/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.aux:O:battleRageTimer.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/437/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "aux:O:battleRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84526",
+          "pointer": "/payload/nodes/24/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.aux:O:battleRageTimer.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/439/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "aux:O:battleRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84526",
+          "pointer": "/payload/nodes/24/timer"
+        }
+      ]
+    },
+    "processing_nodes.aux:O:autoRageTimer": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "aux:O:autoRageTimer"
+    },
+    "timer_initial.aux:O:autoRageTimer.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/445/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "aux:O:autoRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84528",
+          "pointer": "/payload/nodes/25/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.aux:O:autoRageTimer.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/440/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "aux:O:autoRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84528",
+          "pointer": "/payload/nodes/25/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.aux:O:autoRageTimer.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/441/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "aux:O:autoRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84528",
+          "pointer": "/payload/nodes/25/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.aux:O:autoRageTimer.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/442/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "aux:O:autoRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84528",
+          "pointer": "/payload/nodes/25/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.aux:O:autoRageTimer.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/443/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "aux:O:autoRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84528",
+          "pointer": "/payload/nodes/25/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.aux:O:autoRageTimer.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/444/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "aux:O:autoRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84528",
+          "pointer": "/payload/nodes/25/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.aux:O:autoRageTimer.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/446/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "aux:O:autoRageTimer"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84528",
+          "pointer": "/payload/nodes/25/timer"
+        }
+      ]
+    },
+    "processing_nodes.invu:O": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "invu:O"
+    },
+    "timer_initial.invu:O.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/459/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "invu:O"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84527",
+          "pointer": "/payload/nodes/26/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.invu:O.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/454/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "invu:O"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84527",
+          "pointer": "/payload/nodes/26/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.invu:O.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/455/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "invu:O"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84527",
+          "pointer": "/payload/nodes/26/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.invu:O.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/456/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "invu:O"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84527",
+          "pointer": "/payload/nodes/26/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.invu:O.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/457/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "invu:O"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84527",
+          "pointer": "/payload/nodes/26/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.invu:O.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/458/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "invu:O"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84527",
+          "pointer": "/payload/nodes/26/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.invu:O.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/460/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "invu:O"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84527",
+          "pointer": "/payload/nodes/26/timer"
+        }
+      ]
+    },
+    "processing_nodes.buff:O:Block": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "buff:O:100"
+    },
+    "timer_initial.buff:O:Block.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/333/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:O:100"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84830",
+          "pointer": "/payload/nodes/27/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Block.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/328/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:O:100"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84830",
+          "pointer": "/payload/nodes/27/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Block.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/329/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:O:100"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84830",
+          "pointer": "/payload/nodes/27/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Block.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/330/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:O:100"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84830",
+          "pointer": "/payload/nodes/27/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Block.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/331/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:O:100"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84830",
+          "pointer": "/payload/nodes/27/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Block.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/332/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:O:100"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84830",
+          "pointer": "/payload/nodes/27/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Block.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/334/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:O:100"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84830",
+          "pointer": "/payload/nodes/27/timer"
+        },
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84830",
+          "pointer": "/payload/source_resources/1/buffs/0/state/timer"
+        }
+      ]
+    },
+    "processing_nodes.buff:O:Lucky": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "buff:O:101"
+    },
+    "timer_initial.buff:O:Lucky.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/340/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:O:101"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84832",
+          "pointer": "/payload/nodes/28/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Lucky.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/335/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:O:101"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84832",
+          "pointer": "/payload/nodes/28/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Lucky.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/336/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:O:101"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84832",
+          "pointer": "/payload/nodes/28/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Lucky.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/337/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:O:101"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84832",
+          "pointer": "/payload/nodes/28/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Lucky.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/338/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:O:101"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84832",
+          "pointer": "/payload/nodes/28/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Lucky.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/339/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:O:101"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84832",
+          "pointer": "/payload/nodes/28/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Lucky.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/341/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:O:101"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84832",
+          "pointer": "/payload/nodes/28/timer"
+        },
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84832",
+          "pointer": "/payload/source_resources/1/buffs/1/state/timer"
+        }
+      ]
+    },
+    "processing_nodes.buff:O:Regeneration": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "buff:O:102"
+    },
+    "timer_initial.buff:O:Regeneration.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/347/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:O:102"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84834",
+          "pointer": "/payload/nodes/29/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Regeneration.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/342/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:O:102"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84834",
+          "pointer": "/payload/nodes/29/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Regeneration.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/343/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:O:102"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84834",
+          "pointer": "/payload/nodes/29/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Regeneration.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/344/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:O:102"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84834",
+          "pointer": "/payload/nodes/29/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Regeneration.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/345/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:O:102"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84834",
+          "pointer": "/payload/nodes/29/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Regeneration.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/346/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:O:102"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84834",
+          "pointer": "/payload/nodes/29/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Regeneration.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/348/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:O:102"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84834",
+          "pointer": "/payload/nodes/29/timer"
+        },
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84834",
+          "pointer": "/payload/source_resources/1/buffs/2/state/timer"
+        }
+      ]
+    },
+    "processing_nodes.buff:O:Vampirism": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "buff:O:103"
+    },
+    "timer_initial.buff:O:Vampirism.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/354/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:O:103"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84836",
+          "pointer": "/payload/nodes/30/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Vampirism.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/349/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:O:103"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84836",
+          "pointer": "/payload/nodes/30/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Vampirism.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/350/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:O:103"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84836",
+          "pointer": "/payload/nodes/30/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Vampirism.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/351/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:O:103"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84836",
+          "pointer": "/payload/nodes/30/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Vampirism.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/352/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:O:103"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84836",
+          "pointer": "/payload/nodes/30/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Vampirism.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/353/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:O:103"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84836",
+          "pointer": "/payload/nodes/30/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Vampirism.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/355/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:O:103"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84836",
+          "pointer": "/payload/nodes/30/timer"
+        },
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84836",
+          "pointer": "/payload/source_resources/1/buffs/3/state/timer"
+        }
+      ]
+    },
+    "processing_nodes.buff:O:Spikes": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "buff:O:104"
+    },
+    "timer_initial.buff:O:Spikes.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/361/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:O:104"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84838",
+          "pointer": "/payload/nodes/31/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Spikes.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/356/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:O:104"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84838",
+          "pointer": "/payload/nodes/31/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Spikes.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/357/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:O:104"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84838",
+          "pointer": "/payload/nodes/31/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Spikes.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/358/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:O:104"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84838",
+          "pointer": "/payload/nodes/31/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Spikes.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/359/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:O:104"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84838",
+          "pointer": "/payload/nodes/31/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Spikes.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/360/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:O:104"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84838",
+          "pointer": "/payload/nodes/31/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Spikes.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/362/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:O:104"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84838",
+          "pointer": "/payload/nodes/31/timer"
+        },
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84838",
+          "pointer": "/payload/source_resources/1/buffs/4/state/timer"
+        }
+      ]
+    },
+    "processing_nodes.buff:O:Mana": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "buff:O:105"
+    },
+    "timer_initial.buff:O:Mana.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/368/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:O:105"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84840",
+          "pointer": "/payload/nodes/32/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Mana.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/363/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:O:105"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84840",
+          "pointer": "/payload/nodes/32/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Mana.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/364/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:O:105"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84840",
+          "pointer": "/payload/nodes/32/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Mana.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/365/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:O:105"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84840",
+          "pointer": "/payload/nodes/32/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Mana.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/366/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:O:105"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84840",
+          "pointer": "/payload/nodes/32/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Mana.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/367/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:O:105"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84840",
+          "pointer": "/payload/nodes/32/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Mana.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/369/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:O:105"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84840",
+          "pointer": "/payload/nodes/32/timer"
+        },
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84840",
+          "pointer": "/payload/source_resources/1/buffs/5/state/timer"
+        }
+      ]
+    },
+    "processing_nodes.buff:O:Empower": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "buff:O:106"
+    },
+    "timer_initial.buff:O:Empower.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/375/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:O:106"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84842",
+          "pointer": "/payload/nodes/33/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Empower.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/370/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:O:106"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84842",
+          "pointer": "/payload/nodes/33/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Empower.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/371/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:O:106"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84842",
+          "pointer": "/payload/nodes/33/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Empower.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/372/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:O:106"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84842",
+          "pointer": "/payload/nodes/33/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Empower.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/373/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:O:106"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84842",
+          "pointer": "/payload/nodes/33/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Empower.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/374/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:O:106"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84842",
+          "pointer": "/payload/nodes/33/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Empower.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/376/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:O:106"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84842",
+          "pointer": "/payload/nodes/33/timer"
+        },
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84842",
+          "pointer": "/payload/source_resources/1/buffs/6/state/timer"
+        }
+      ]
+    },
+    "processing_nodes.buff:O:Heat": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "buff:O:107"
+    },
+    "timer_initial.buff:O:Heat.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/382/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:O:107"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84844",
+          "pointer": "/payload/nodes/34/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Heat.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/377/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:O:107"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84844",
+          "pointer": "/payload/nodes/34/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Heat.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/378/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:O:107"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84844",
+          "pointer": "/payload/nodes/34/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Heat.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/379/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:O:107"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84844",
+          "pointer": "/payload/nodes/34/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Heat.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/380/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:O:107"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84844",
+          "pointer": "/payload/nodes/34/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Heat.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/381/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:O:107"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84844",
+          "pointer": "/payload/nodes/34/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Heat.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/383/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:O:107"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84844",
+          "pointer": "/payload/nodes/34/timer"
+        },
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84844",
+          "pointer": "/payload/source_resources/1/buffs/7/state/timer"
+        }
+      ]
+    },
+    "processing_nodes.buff:O:Poison": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "buff:O:108"
+    },
+    "timer_initial.buff:O:Poison.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/389/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:O:108"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84846",
+          "pointer": "/payload/nodes/35/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Poison.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/384/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:O:108"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84846",
+          "pointer": "/payload/nodes/35/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Poison.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/385/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:O:108"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84846",
+          "pointer": "/payload/nodes/35/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Poison.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/386/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:O:108"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84846",
+          "pointer": "/payload/nodes/35/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Poison.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/387/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:O:108"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84846",
+          "pointer": "/payload/nodes/35/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Poison.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/388/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:O:108"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84846",
+          "pointer": "/payload/nodes/35/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Poison.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/390/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:O:108"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84846",
+          "pointer": "/payload/nodes/35/timer"
+        },
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84846",
+          "pointer": "/payload/source_resources/1/buffs/8/state/timer"
+        }
+      ]
+    },
+    "processing_nodes.buff:O:Blind": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "buff:O:109"
+    },
+    "timer_initial.buff:O:Blind.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/396/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:O:109"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84848",
+          "pointer": "/payload/nodes/36/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Blind.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/391/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:O:109"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84848",
+          "pointer": "/payload/nodes/36/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Blind.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/392/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:O:109"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84848",
+          "pointer": "/payload/nodes/36/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Blind.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/393/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:O:109"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84848",
+          "pointer": "/payload/nodes/36/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Blind.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/394/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:O:109"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84848",
+          "pointer": "/payload/nodes/36/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Blind.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/395/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:O:109"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84848",
+          "pointer": "/payload/nodes/36/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Blind.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/397/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:O:109"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84848",
+          "pointer": "/payload/nodes/36/timer"
+        },
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84848",
+          "pointer": "/payload/source_resources/1/buffs/9/state/timer"
+        }
+      ]
+    },
+    "processing_nodes.buff:O:Cold": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "buff:O:110"
+    },
+    "timer_initial.buff:O:Cold.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/403/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "buff:O:110"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84850",
+          "pointer": "/payload/nodes/37/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Cold.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/398/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "buff:O:110"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84850",
+          "pointer": "/payload/nodes/37/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Cold.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/399/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "buff:O:110"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84850",
+          "pointer": "/payload/nodes/37/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Cold.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/400/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "buff:O:110"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84850",
+          "pointer": "/payload/nodes/37/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Cold.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/401/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "buff:O:110"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84850",
+          "pointer": "/payload/nodes/37/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Cold.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/402/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "buff:O:110"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84850",
+          "pointer": "/payload/nodes/37/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.buff:O:Cold.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/404/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "INACTIVE_PROCESSING_INVARIANT",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "buff:O:110"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84850",
+          "pointer": "/payload/nodes/37/timer"
+        },
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84850",
+          "pointer": "/payload/source_resources/1/buffs/10/state/timer"
+        }
+      ]
+    },
+    "processing_nodes.item:P:10": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:P:10"
+    },
+    "processing_nodes.item:P:7": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:P:7"
+    },
+    "processing_nodes.item:P:8": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:P:8"
+    },
+    "processing_nodes.item:P:6": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:P:6"
+    },
+    "processing_nodes.king_buff:P:6": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "king_buff:P:6"
+    },
+    "timer_initial.king_buff:P:6.native_identity": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/466/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.node.native_id",
+        "pre_activate",
+        "king_buff:P:6"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "81406",
+          "pointer": "/payload/nodes/42/timer/node/native_id"
+        }
+      ]
+    },
+    "timer_initial.king_buff:P:6.wait_time_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/461/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.wait_time",
+        "pre_activate",
+        "king_buff:P:6"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "81406",
+          "pointer": "/payload/nodes/42/timer/wait_time"
+        }
+      ]
+    },
+    "timer_initial.king_buff:P:6.one_shot": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/462/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.one_shot",
+        "pre_activate",
+        "king_buff:P:6"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "81406",
+          "pointer": "/payload/nodes/42/timer/one_shot"
+        }
+      ]
+    },
+    "timer_initial.king_buff:P:6.process_mode": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/463/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.process_mode",
+        "pre_activate",
+        "king_buff:P:6"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "81406",
+          "pointer": "/payload/nodes/42/timer/process_mode"
+        }
+      ]
+    },
+    "timer_initial.king_buff:P:6.autostart": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/464/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.autostart",
+        "pre_activate",
+        "king_buff:P:6"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "81406",
+          "pointer": "/payload/nodes/42/timer/autostart"
+        }
+      ]
+    },
+    "timer_initial.king_buff:P:6.paused": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/465/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Timer.paused",
+        "pre_activate",
+        "king_buff:P:6"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "81406",
+          "pointer": "/payload/nodes/42/timer/paused"
+        }
+      ]
+    },
+    "timer_initial.king_buff:P:6.private_left_bits": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/467/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "FRESH_KING_NATIVE_SCENE_NO_START",
+      "key": [
+        "Timer.private_left",
+        "pre_activate",
+        "king_buff:P:6"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "81406",
+          "pointer": "/payload/nodes/42/timer"
+        }
+      ]
+    },
+    "processing_nodes.item:P:12": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:P:12"
+    },
+    "processing_nodes.item:P:2": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:P:2"
+    },
+    "processing_nodes.item:P:1": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:P:1"
+    },
+    "processing_nodes.item:P:3": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:P:3"
+    },
+    "processing_nodes.item:P:5": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:P:5"
+    },
+    "processing_nodes.item:P:9": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:P:9"
+    },
+    "processing_nodes.item:P:13": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:P:13"
+    },
+    "processing_nodes.item:P:11": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:P:11"
+    },
+    "processing_nodes.item:P:4": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:P:4"
+    },
+    "processing_nodes.item:P:0": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:P:0"
+    },
+    "processing_nodes.item:O:9": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:O:9"
+    },
+    "processing_nodes.item:O:11": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:O:11"
+    },
+    "processing_nodes.item:O:8": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:O:8"
+    },
+    "processing_nodes.item:O:6": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:O:6"
+    },
+    "processing_nodes.item:O:10": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:O:10"
+    },
+    "processing_nodes.item:O:2": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:O:2"
+    },
+    "processing_nodes.item:O:1": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:O:1"
+    },
+    "processing_nodes.item:O:0": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:O:0"
+    },
+    "processing_nodes.item:O:7": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:O:7"
+    },
+    "processing_nodes.item:O:5": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:O:5"
+    },
+    "processing_nodes.item:O:4": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:O:4"
+    },
+    "processing_nodes.item:O:3": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "raw_role": "item:O:3"
+    },
+    "initial_characters.P.invulnerable": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/469/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "CHARACTER_DEFAULT_CALLER_CLOSURE_LIFETIME_ZERO_START",
+      "key": [
+        "Character.invulnerable",
+        "pre_activate",
+        "P"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47767",
+          "pointer": "/payload/nodes/10/timer"
+        },
+        {
+          "file": "king-input-facts.json",
+          "pointer": "/timers/invu:P/lineage",
+          "native_owner": "47767"
+        }
+      ]
+    },
+    "initial_characters.P.invulnerabilityItem": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/470/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "CHARACTER_DEFAULT_CALLER_CLOSURE_LIFETIME_ZERO_START",
+      "key": [
+        "Character.invulnerabilityItem",
+        "pre_activate",
+        "P"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47767",
+          "pointer": "/payload/nodes/10/timer"
+        },
+        {
+          "file": "king-input-facts.json",
+          "pointer": "/timers/invu:P/lineage",
+          "native_owner": "47767"
+        }
+      ]
+    },
+    "initial_characters.P.buffProtectStacks": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/468/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Character.buffProtectStacks",
+        "pre_activate",
+        "P"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "47611",
+          "pointer": "/payload/source_resources/0/buffProtectStacks"
+        }
+      ]
+    },
+    "initial_characters.O.invulnerable": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/472/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "CHARACTER_DEFAULT_CALLER_CLOSURE_LIFETIME_ZERO_START",
+      "key": [
+        "Character.invulnerable",
+        "pre_activate",
+        "O"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84527",
+          "pointer": "/payload/nodes/26/timer"
+        },
+        {
+          "file": "king-input-facts.json",
+          "pointer": "/timers/invu:O/lineage",
+          "native_owner": "84527"
+        }
+      ]
+    },
+    "initial_characters.O.invulnerabilityItem": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/473/actual_value",
+      "classification": "SOURCE_DERIVED",
+      "rule": "CHARACTER_DEFAULT_CALLER_CLOSURE_LIFETIME_ZERO_START",
+      "key": [
+        "Character.invulnerabilityItem",
+        "pre_activate",
+        "O"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84527",
+          "pointer": "/payload/nodes/26/timer"
+        },
+        {
+          "file": "king-input-facts.json",
+          "pointer": "/timers/invu:O/lineage",
+          "native_owner": "84527"
+        }
+      ]
+    },
+    "initial_characters.O.buffProtectStacks": {
+      "file": "initial-receipt.json",
+      "pointer": "/values/471/actual_value",
+      "classification": "DIRECT_OBSERVATION",
+      "rule": null,
+      "key": [
+        "Character.buffProtectStacks",
+        "pre_activate",
+        "O"
+      ],
+      "input_refs": [
+        {
+          "file": "observer7-input.jsonl",
+          "line": 4,
+          "sequence": 1149,
+          "native_owner": "84371",
+          "pointer": "/payload/source_resources/1/buffProtectStacks"
+        }
+      ]
+    },
+    "initial_items.P:10": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "P:10",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:7": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "P:7",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:8": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "P:8",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:6": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "P:6",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:12": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "P:12",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:2": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "P:2",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:1": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "P:1",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:3": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "P:3",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:5": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "P:5",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:9": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "P:9",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:13": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "P:13",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:11": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "P:11",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:4": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "P:4",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.P:0": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "P:0",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:9": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "O:9",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:11": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "O:11",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:8": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "O:8",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:6": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "O:6",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:10": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "O:10",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:2": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "O:2",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:1": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "O:1",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:0": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "O:0",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:7": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "O:7",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:5": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "O:5",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:4": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "O:4",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "initial_items.O:3": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "instance": "O:3",
+      "predicate": "emitted limiter scalars and actual empty pre-cache only"
+    },
+    "runtime.schema": {
+      "source": "data/phase470-joint-input-source/abi.json",
+      "predicate": "immutable input-only ABI declaration; not runtime acceptance"
+    },
+    "runtime.mode": {
+      "source": "data/phase470-joint-input-source/abi.json",
+      "predicate": "immutable input-only ABI declaration; not runtime acceptance"
+    },
+    "runtime.profile_id": {
+      "source": "data/phase470-joint-input-source/abi.json",
+      "predicate": "immutable input-only ABI declaration; not runtime acceptance"
+    },
+    "runtime.terminal_profile": {
+      "source": "data/phase470-joint-input-source/abi.json",
+      "predicate": "immutable input-only ABI declaration; not runtime acceptance"
+    },
+    "runtime.checkpoint": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1150,
+      "predicate": "actual activation field projection with role normalization and two UI Timer exclusions"
+    },
+    "runtime.environment": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "predicate": "actual activation field projection with role normalization and two UI Timer exclusions"
+    },
+    "runtime.nodes": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "predicate": "actual activation field projection with role normalization and two UI Timer exclusions"
+    },
+    "runtime.processing_nodes": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1149,
+      "predicate": "actual activation field projection with role normalization and two UI Timer exclusions"
+    },
+    "runtime.frame_clock": {
+      "files": [
+        "king-clock-checkpoint.json",
+        "king-clock-passes.jsonl"
+      ],
+      "predicate": "complete original header/pass sequence; typed clock decode"
+    },
+    "runtime.prepare_order": {
+      "file": "observer7-input.jsonl",
+      "sequence": 100,
+      "pointer": "/payload/arguments",
+      "predicate": "actual26 native/role relation"
+    },
+    "runtime.activate_order": {
+      "file": "observer7-input.jsonl",
+      "sequence": 1150,
+      "pointer": "/payload/arguments",
+      "predicate": "actual26 native/role relation"
+    },
+    "runtime.timer_initial": {
+      "file": "initial-receipt.json",
+      "predicate": "new-object Source-supported values joined to these actual INPUT bytes; individual field refs supplied"
+    },
+    "runtime.initial_characters": {
+      "file": "initial-receipt.json",
+      "predicate": "new-object Source-supported values joined to these actual INPUT bytes; individual field refs supplied"
+    },
+    "runtime.initial_items": {
+      "file": "observer7-input.jsonl",
+      "sequence": 99,
+      "pointer": "/payload/items",
+      "predicate": "only emitted pre-prepare limiter/cache predicates; not complete constructor proof"
+    },
+    "bundle.schema": {
+      "source": "data/phase470-joint-input-source/abi.json",
+      "predicate": "fixed five-key input envelope"
+    },
+    "bundle.fixture": {
+      "files": [
+        "fixture.json",
+        "player_fixture.json",
+        "king-slot-bindings.json"
+      ],
+      "predicate": "fixed Source fixture plus actual resources/geometry/order relation"
+    },
+    "bundle.runtime": {
+      "source": "data/phase470-joint-input-source/abi.json",
+      "predicate": "exact14 declared INPUT-only fields; individual field refs supplied"
+    },
+    "bundle.draws": {
+      "file": "observer7-primitives.jsonl",
+      "sequences": [
+        1167,
+        1168,
+        1169,
+        1170,
+        1171,
+        1172,
+        1173,
+        1174,
+        1175,
+        1176,
+        3533,
+        3543,
+        3544,
+        3547,
+        3631,
+        3641,
+        3642,
+        3645,
+        3649,
+        3730,
+        3740,
+        3741,
+        3744,
+        3832,
+        3842,
+        3843,
+        3846,
+        3850,
+        6159,
+        6169,
+        6170,
+        6234,
+        6244,
+        6245,
+        6248,
+        6252,
+        6305,
+        6315,
+        6316,
+        6319,
+        6387,
+        6397,
+        6398,
+        6401,
+        7415,
+        7527,
+        7623,
+        7707,
+        7863,
+        7959,
+        8969,
+        8979,
+        8980,
+        9030,
+        9040,
+        9041,
+        9044,
+        9048,
+        9145,
+        9155,
+        9156,
+        9159,
+        9163,
+        9296,
+        9306,
+        9307,
+        9310,
+        11516,
+        11526,
+        11527,
+        11530,
+        11534,
+        11757,
+        11767,
+        11768,
+        11771,
+        11859,
+        11869,
+        11870,
+        11873,
+        11877,
+        12016,
+        12026,
+        12027,
+        12030,
+        14094,
+        14104,
+        14105,
+        14108,
+        14112,
+        14221,
+        14343,
+        14383,
+        14451,
+        14508,
+        14570,
+        14664,
+        14740,
+        14750,
+        14751,
+        14754,
+        14888,
+        14970,
+        14980,
+        14981,
+        14984,
+        17050,
+        17060,
+        17061,
+        17064,
+        17068,
+        17257,
+        17267,
+        17268,
+        17271,
+        17275,
+        17436,
+        17446,
+        17447,
+        17450,
+        17604,
+        17614,
+        17615,
+        17618,
+        19796,
+        19806,
+        19807,
+        19933,
+        20009,
+        20019,
+        20020,
+        20023,
+        20091,
+        20855,
+        20923,
+        21031,
+        21121,
+        21215,
+        21399,
+        21456,
+        22566,
+        22576,
+        22577,
+        22580,
+        22584,
+        22799,
+        22809,
+        22810,
+        22813,
+        22817,
+        22976,
+        22986,
+        22987,
+        22990,
+        23114,
+        23124,
+        23125,
+        23128,
+        25136,
+        25146,
+        25147,
+        25150,
+        25154,
+        25341,
+        25503,
+        25513,
+        25514,
+        25517,
+        25699,
+        27509,
+        27547,
+        27645,
+        27655,
+        27656,
+        27659,
+        27663,
+        27756,
+        27882,
+        27936,
+        28154,
+        28266,
+        28376,
+        28386,
+        28387,
+        28475,
+        30291,
+        30301,
+        30302,
+        30305,
+        30309,
+        30696,
+        30942,
+        30952,
+        30953,
+        30956,
+        31108,
+        31118,
+        31119,
+        31122,
+        32794,
+        32804,
+        32805,
+        32808,
+        32812,
+        33339,
+        33349,
+        33350,
+        33353,
+        33357,
+        33439,
+        33469,
+        33670,
+        33680,
+        33681,
+        33684,
+        33836,
+        34088,
+        34178,
+        34235,
+        34357,
+        34531,
+        34781,
+        34929,
+        35548,
+        35578,
+        35799,
+        35809,
+        35810,
+        35813,
+        35817,
+        36316,
+        36506,
+        36516,
+        36517,
+        36520,
+        36730,
+        36740,
+        36741,
+        36744,
+        37513,
+        37543,
+        38442,
+        38452,
+        38453,
+        38456,
+        38460,
+        38953,
+        39227,
+        39237,
+        39238,
+        39241,
+        39365,
+        39434,
+        39464,
+        40639,
+        40903,
+        41085,
+        41235,
+        41245,
+        41246,
+        41347,
+        41377,
+        41508,
+        41704,
+        41778,
+        41788,
+        41791,
+        41795,
+        41900,
+        42124,
+        42134,
+        42137,
+        42291,
+        43376,
+        43406,
+        43939,
+        43949,
+        43952,
+        43956,
+        44455,
+        44729,
+        44739,
+        44742,
+        44922,
+        44932,
+        44935,
+        45312,
+        45342,
+        46635,
+        46645,
+        46648,
+        46652,
+        47011,
+        47144,
+        47174,
+        47461,
+        47471,
+        47474,
+        47598,
+        47766,
+        47854,
+        47978,
+        48292,
+        48542,
+        48600,
+        49163,
+        49193,
+        49442,
+        49452,
+        49455,
+        49459,
+        49980,
+        50226,
+        50236,
+        50239,
+        50363,
+        50373,
+        50376,
+        51119,
+        51149,
+        52104,
+        52114,
+        52117,
+        52121,
+        52564,
+        52574,
+        52577,
+        52581,
+        52916,
+        52926,
+        52929,
+        53052,
+        53082,
+        53171,
+        54497,
+        54591,
+        54815,
+        54881,
+        55012,
+        55042,
+        55093,
+        55103,
+        55106,
+        55110,
+        55553,
+        55577,
+        55667,
+        55887,
+        55897,
+        55900,
+        56054,
+        56064,
+        56067,
+        57008,
+        57072,
+        57857,
+        57867,
+        57870,
+        57874,
+        58395,
+        58501,
+        58511,
+        58514,
+        58780,
+        58961,
+        58991,
+        60484,
+        60494,
+        60497,
+        60501,
+        60803,
+        60833,
+        61112,
+        61122,
+        61125,
+        61129,
+        61322,
+        61332,
+        61335,
+        61487,
+        61683,
+        61721,
+        61777,
+        61957,
+        62543,
+        62717,
+        62910,
+        62940,
+        63359,
+        63369,
+        63372,
+        63376,
+        64045,
+        64093,
+        64103,
+        64106,
+        64288,
+        64298,
+        64301,
+        64846,
+        64876,
+        65831,
+        65841,
+        65844,
+        65848,
+        66629,
+        66678,
+        66708,
+        66769,
+        66779,
+        66782,
+        67076,
+        68292,
+        68376,
+        68446,
+        68456,
+        68459,
+        68463,
+        68590,
+        68665,
+        68697,
+        68741
+      ],
+      "predicate": "all selected actual records, strict activation boundary and physical order"
+    },
+    "bundle.synthetic_seed": {
+      "source": "data/phase470-joint-input-source/abi.json",
+      "predicate": "null for conditional direct-native primitive Tape; no seed restoration"
+    }
+  },
+  "primitive_original_sequences": [
+    1167,
+    1168,
+    1169,
+    1170,
+    1171,
+    1172,
+    1173,
+    1174,
+    1175,
+    1176,
+    3533,
+    3543,
+    3544,
+    3547,
+    3631,
+    3641,
+    3642,
+    3645,
+    3649,
+    3730,
+    3740,
+    3741,
+    3744,
+    3832,
+    3842,
+    3843,
+    3846,
+    3850,
+    6159,
+    6169,
+    6170,
+    6234,
+    6244,
+    6245,
+    6248,
+    6252,
+    6305,
+    6315,
+    6316,
+    6319,
+    6387,
+    6397,
+    6398,
+    6401,
+    7415,
+    7527,
+    7623,
+    7707,
+    7863,
+    7959,
+    8969,
+    8979,
+    8980,
+    9030,
+    9040,
+    9041,
+    9044,
+    9048,
+    9145,
+    9155,
+    9156,
+    9159,
+    9163,
+    9296,
+    9306,
+    9307,
+    9310,
+    11516,
+    11526,
+    11527,
+    11530,
+    11534,
+    11757,
+    11767,
+    11768,
+    11771,
+    11859,
+    11869,
+    11870,
+    11873,
+    11877,
+    12016,
+    12026,
+    12027,
+    12030,
+    14094,
+    14104,
+    14105,
+    14108,
+    14112,
+    14221,
+    14343,
+    14383,
+    14451,
+    14508,
+    14570,
+    14664,
+    14740,
+    14750,
+    14751,
+    14754,
+    14888,
+    14970,
+    14980,
+    14981,
+    14984,
+    17050,
+    17060,
+    17061,
+    17064,
+    17068,
+    17257,
+    17267,
+    17268,
+    17271,
+    17275,
+    17436,
+    17446,
+    17447,
+    17450,
+    17604,
+    17614,
+    17615,
+    17618,
+    19796,
+    19806,
+    19807,
+    19933,
+    20009,
+    20019,
+    20020,
+    20023,
+    20091,
+    20855,
+    20923,
+    21031,
+    21121,
+    21215,
+    21399,
+    21456,
+    22566,
+    22576,
+    22577,
+    22580,
+    22584,
+    22799,
+    22809,
+    22810,
+    22813,
+    22817,
+    22976,
+    22986,
+    22987,
+    22990,
+    23114,
+    23124,
+    23125,
+    23128,
+    25136,
+    25146,
+    25147,
+    25150,
+    25154,
+    25341,
+    25503,
+    25513,
+    25514,
+    25517,
+    25699,
+    27509,
+    27547,
+    27645,
+    27655,
+    27656,
+    27659,
+    27663,
+    27756,
+    27882,
+    27936,
+    28154,
+    28266,
+    28376,
+    28386,
+    28387,
+    28475,
+    30291,
+    30301,
+    30302,
+    30305,
+    30309,
+    30696,
+    30942,
+    30952,
+    30953,
+    30956,
+    31108,
+    31118,
+    31119,
+    31122,
+    32794,
+    32804,
+    32805,
+    32808,
+    32812,
+    33339,
+    33349,
+    33350,
+    33353,
+    33357,
+    33439,
+    33469,
+    33670,
+    33680,
+    33681,
+    33684,
+    33836,
+    34088,
+    34178,
+    34235,
+    34357,
+    34531,
+    34781,
+    34929,
+    35548,
+    35578,
+    35799,
+    35809,
+    35810,
+    35813,
+    35817,
+    36316,
+    36506,
+    36516,
+    36517,
+    36520,
+    36730,
+    36740,
+    36741,
+    36744,
+    37513,
+    37543,
+    38442,
+    38452,
+    38453,
+    38456,
+    38460,
+    38953,
+    39227,
+    39237,
+    39238,
+    39241,
+    39365,
+    39434,
+    39464,
+    40639,
+    40903,
+    41085,
+    41235,
+    41245,
+    41246,
+    41347,
+    41377,
+    41508,
+    41704,
+    41778,
+    41788,
+    41791,
+    41795,
+    41900,
+    42124,
+    42134,
+    42137,
+    42291,
+    43376,
+    43406,
+    43939,
+    43949,
+    43952,
+    43956,
+    44455,
+    44729,
+    44739,
+    44742,
+    44922,
+    44932,
+    44935,
+    45312,
+    45342,
+    46635,
+    46645,
+    46648,
+    46652,
+    47011,
+    47144,
+    47174,
+    47461,
+    47471,
+    47474,
+    47598,
+    47766,
+    47854,
+    47978,
+    48292,
+    48542,
+    48600,
+    49163,
+    49193,
+    49442,
+    49452,
+    49455,
+    49459,
+    49980,
+    50226,
+    50236,
+    50239,
+    50363,
+    50373,
+    50376,
+    51119,
+    51149,
+    52104,
+    52114,
+    52117,
+    52121,
+    52564,
+    52574,
+    52577,
+    52581,
+    52916,
+    52926,
+    52929,
+    53052,
+    53082,
+    53171,
+    54497,
+    54591,
+    54815,
+    54881,
+    55012,
+    55042,
+    55093,
+    55103,
+    55106,
+    55110,
+    55553,
+    55577,
+    55667,
+    55887,
+    55897,
+    55900,
+    56054,
+    56064,
+    56067,
+    57008,
+    57072,
+    57857,
+    57867,
+    57870,
+    57874,
+    58395,
+    58501,
+    58511,
+    58514,
+    58780,
+    58961,
+    58991,
+    60484,
+    60494,
+    60497,
+    60501,
+    60803,
+    60833,
+    61112,
+    61122,
+    61125,
+    61129,
+    61322,
+    61332,
+    61335,
+    61487,
+    61683,
+    61721,
+    61777,
+    61957,
+    62543,
+    62717,
+    62910,
+    62940,
+    63359,
+    63369,
+    63372,
+    63376,
+    64045,
+    64093,
+    64103,
+    64106,
+    64288,
+    64298,
+    64301,
+    64846,
+    64876,
+    65831,
+    65841,
+    65844,
+    65848,
+    66629,
+    66678,
+    66708,
+    66769,
+    66779,
+    66782,
+    67076,
+    68292,
+    68376,
+    68446,
+    68456,
+    68459,
+    68463,
+    68590,
+    68665,
+    68697,
+    68741
+  ],
+  "coverage": {
+    "status": "INPUT_ONLY_NOT_RUNTIME_VALIDATED",
+    "emitted_fields_have_declared_sources": true,
+    "future_model_blockers": [
+      "constructor/prepare equivalence",
+      "ordinary callbacks/transform/RNG noninterference",
+      "King setState/log behavior",
+      "candidate runtime acceptance and same-instance diagnostics",
+      "strict output/comparator mapping"
+    ],
+    "runtime_validated": false,
+    "candidate_or_comparator_bound": false,
+    "model_release": false
+  },
+  "presentation_semantics": "Named presentation exclusions inherit437 policy; old116 occurrence rows/count are not borrowed",
+  "clock_and_tape": "complete original physical selected streams; no posthoc terminal filtering",
+  "timer_origin": "new actual-object Source-supported initial values; never all fresh_configured or public-zero inference",
+  "fixed_input_validation": {
+    "input_descriptors": {
+      "fixture.json": {
+        "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/fixture.json",
+        "size": 518,
+        "sha256": "2267d80b4584dcb27af4e34e792c70905b0e48cf4c91f64114eeb5d888589e0f"
+      },
+      "player_fixture.json": {
+        "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/player_fixture.json",
+        "size": 1208,
+        "sha256": "2057c9f7fce84b61c07339cf2f11b212f213d52a669d18e8eadeec7a8b4b0d4f"
+      },
+      "observer7-input.jsonl": {
+        "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/observer7-input.jsonl",
+        "size": 246024,
+        "sha256": "1d9c7cee9d78d13723c7f05a8398cf5e4eb8fbaaf0a9b1c1df45f8f1274ea40b"
+      },
+      "observer7-lineage.jsonl": {
+        "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/observer7-lineage.jsonl",
+        "size": 53397,
+        "sha256": "ce1a55abffece59479cfcd90a23ca8b59a7f588272b6c0ee82e8a315f5c0dd2b"
+      },
+      "observer7-metadata.jsonl": {
+        "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/observer7-metadata.jsonl",
+        "size": 7404,
+        "sha256": "f625d86c26893d477c3527b9b1ba931291b893720322bf29b88d39b1982dceb8"
+      },
+      "observer7-primitives.jsonl": {
+        "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/observer7-primitives.jsonl",
+        "size": 306106,
+        "sha256": "ec5867d289ad3d6413a609e9a57a4e1af722843bdb74e6f23867ae0a84b4eba9"
+      },
+      "king-clock-checkpoint.json": {
+        "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-clock-checkpoint.json",
+        "size": 352,
+        "sha256": "3d48e27ec3592d0da6f24eeb3ce40486a15e1dbf67832875c09ee8d68f65fc99"
+      },
+      "king-clock-passes.jsonl": {
+        "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-clock-passes.jsonl",
+        "size": 208861,
+        "sha256": "5f0c338f390fe5d97f385a8f495b31cd128f8bd195986ff76d7905deca57d218"
+      },
+      "king-input-facts.json": {
+        "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-input-facts.json",
+        "size": 10062,
+        "sha256": "0d097072bfdb1856b226259606c14918f421918c14ce9c69f3e5e9b1f265f526"
+      },
+      "king-ui-authority.jsonl": {
+        "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-ui-authority.jsonl",
+        "size": 589392,
+        "sha256": "1bc8a95521ce125007593ef54486c812ef39ba3034d2ea1a3bb71696f67a4b3d"
+      },
+      "king-rng-checkpoint.json": {
+        "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-rng-checkpoint.json",
+        "size": 771,
+        "sha256": "e87f160f9d368f40823abea521454c98e30ccd981ebd7ae7f37be8520508de34"
+      },
+      "king-slot-bindings.json": {
+        "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-slot-bindings.json",
+        "size": 13462,
+        "sha256": "cd8ca6f285e33b60c63235ebbfb4f441ca6a043be01d93f0bfdd21746ebd92e5"
+      }
+    },
+    "binding_join": {
+      "schema": "phase360-auxiliary-binding-join/1",
+      "status": "RELATION_PROOF_ONLY_NOT_FULL_ELEVEN_VALIDATION_OR_ADMISSION",
+      "native_to_role": {
+        "1548": "root_viewport",
+        "4015": "game",
+        "2540": "util",
+        "6886": "combat_timer",
+        "6888": "fatigue:start",
+        "6889": "fatigue:tick",
+        "47611": "P",
+        "47765": "tick:P",
+        "47766": "aux:P:battleRageTimer",
+        "47768": "aux:P:autoRageTimer",
+        "47767": "invu:P",
+        "48451": "buff:P:100",
+        "48453": "buff:P:101",
+        "48455": "buff:P:102",
+        "48457": "buff:P:103",
+        "48459": "buff:P:104",
+        "48461": "buff:P:105",
+        "48463": "buff:P:106",
+        "48465": "buff:P:107",
+        "48467": "buff:P:108",
+        "48469": "buff:P:109",
+        "48471": "buff:P:110",
+        "84371": "O",
+        "84525": "tick:O",
+        "84526": "aux:O:battleRageTimer",
+        "84528": "aux:O:autoRageTimer",
+        "84527": "invu:O",
+        "84830": "buff:O:100",
+        "84832": "buff:O:101",
+        "84834": "buff:O:102",
+        "84836": "buff:O:103",
+        "84838": "buff:O:104",
+        "84840": "buff:O:105",
+        "84842": "buff:O:106",
+        "84844": "buff:O:107",
+        "84846": "buff:O:108",
+        "84848": "buff:O:109",
+        "84850": "buff:O:110",
+        "81575": "P:10",
+        "81440": "P:7",
+        "81487": "P:8",
+        "81368": "P:6",
+        "81406": "king_buff:P:6",
+        "81429": "king_hide:P:6",
+        "81421": "king_drag:P:6",
+        "81663": "P:12",
+        "81148": "P:2",
+        "81093": "P:1",
+        "81203": "P:3",
+        "81313": "P:5",
+        "81531": "P:9",
+        "81714": "P:13",
+        "81619": "P:11",
+        "81258": "P:4",
+        "81038": "P:0",
+        "85367": "O:9",
+        "85465": "O:11",
+        "85323": "O:8",
+        "85221": "O:6",
+        "85421": "O:10",
+        "85001": "O:2",
+        "84946": "O:1",
+        "84891": "O:0",
+        "85272": "O:7",
+        "85166": "O:5",
+        "85111": "O:4",
+        "85056": "O:3"
+      },
+      "role_to_native": {
+        "root_viewport": "1548",
+        "game": "4015",
+        "util": "2540",
+        "combat_timer": "6886",
+        "fatigue:start": "6888",
+        "fatigue:tick": "6889",
+        "P": "47611",
+        "tick:P": "47765",
+        "aux:P:battleRageTimer": "47766",
+        "aux:P:autoRageTimer": "47768",
+        "invu:P": "47767",
+        "buff:P:100": "48451",
+        "buff:P:101": "48453",
+        "buff:P:102": "48455",
+        "buff:P:103": "48457",
+        "buff:P:104": "48459",
+        "buff:P:105": "48461",
+        "buff:P:106": "48463",
+        "buff:P:107": "48465",
+        "buff:P:108": "48467",
+        "buff:P:109": "48469",
+        "buff:P:110": "48471",
+        "O": "84371",
+        "tick:O": "84525",
+        "aux:O:battleRageTimer": "84526",
+        "aux:O:autoRageTimer": "84528",
+        "invu:O": "84527",
+        "buff:O:100": "84830",
+        "buff:O:101": "84832",
+        "buff:O:102": "84834",
+        "buff:O:103": "84836",
+        "buff:O:104": "84838",
+        "buff:O:105": "84840",
+        "buff:O:106": "84842",
+        "buff:O:107": "84844",
+        "buff:O:108": "84846",
+        "buff:O:109": "84848",
+        "buff:O:110": "84850",
+        "P:10": "81575",
+        "P:7": "81440",
+        "P:8": "81487",
+        "P:6": "81368",
+        "king_buff:P:6": "81406",
+        "king_hide:P:6": "81429",
+        "king_drag:P:6": "81421",
+        "P:12": "81663",
+        "P:2": "81148",
+        "P:1": "81093",
+        "P:3": "81203",
+        "P:5": "81313",
+        "P:9": "81531",
+        "P:13": "81714",
+        "P:11": "81619",
+        "P:4": "81258",
+        "P:0": "81038",
+        "O:9": "85367",
+        "O:11": "85465",
+        "O:8": "85323",
+        "O:6": "85221",
+        "O:10": "85421",
+        "O:2": "85001",
+        "O:1": "84946",
+        "O:0": "84891",
+        "O:7": "85272",
+        "O:5": "85166",
+        "O:4": "85111",
+        "O:3": "85056"
+      },
+      "input_order": {
+        "P": [
+          "P:0",
+          "P:1",
+          "P:2",
+          "P:3",
+          "P:4",
+          "P:5",
+          "P:6",
+          "P:7",
+          "P:8",
+          "P:9",
+          "P:10",
+          "P:11",
+          "P:12",
+          "P:13"
+        ],
+        "O": [
+          "O:0",
+          "O:1",
+          "O:2",
+          "O:3",
+          "O:4",
+          "O:5",
+          "O:6",
+          "O:7",
+          "O:8",
+          "O:9",
+          "O:10",
+          "O:11"
+        ]
+      },
+      "inventory_order": {
+        "P": [
+          "P:0",
+          "P:1",
+          "P:2",
+          "P:3",
+          "P:4",
+          "P:5",
+          "P:6",
+          "P:7",
+          "P:8",
+          "P:9",
+          "P:10",
+          "P:11",
+          "P:12",
+          "P:13"
+        ],
+        "O": [
+          "O:0",
+          "O:1",
+          "O:2",
+          "O:3",
+          "O:4",
+          "O:5",
+          "O:6",
+          "O:7",
+          "O:8",
+          "O:9",
+          "O:10",
+          "O:11"
+        ]
+      },
+      "evidence_refs": {
+        "P:0": {
+          "native_id": "81038",
+          "descriptor_id": "8656",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 0,
+          "ready_sequence": 1,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        },
+        "P:1": {
+          "native_id": "81093",
+          "descriptor_id": "8656",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 3,
+          "ready_sequence": 4,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        },
+        "P:2": {
+          "native_id": "81148",
+          "descriptor_id": "8656",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 6,
+          "ready_sequence": 7,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        },
+        "P:3": {
+          "native_id": "81203",
+          "descriptor_id": "8656",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 9,
+          "ready_sequence": 10,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        },
+        "P:4": {
+          "native_id": "81258",
+          "descriptor_id": "8656",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 12,
+          "ready_sequence": 13,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        },
+        "P:5": {
+          "native_id": "81313",
+          "descriptor_id": "8656",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 15,
+          "ready_sequence": 16,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        },
+        "P:6": {
+          "native_id": "81368",
+          "descriptor_id": "12018",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 18,
+          "ready_sequence": 19,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        },
+        "P:7": {
+          "native_id": "81440",
+          "descriptor_id": "8850",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 21,
+          "ready_sequence": 22,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        },
+        "P:8": {
+          "native_id": "81487",
+          "descriptor_id": "8839",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 24,
+          "ready_sequence": 25,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        },
+        "P:9": {
+          "native_id": "81531",
+          "descriptor_id": "8839",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 27,
+          "ready_sequence": 28,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        },
+        "P:10": {
+          "native_id": "81575",
+          "descriptor_id": "8839",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 30,
+          "ready_sequence": 31,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        },
+        "P:11": {
+          "native_id": "81619",
+          "descriptor_id": "8839",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 33,
+          "ready_sequence": 34,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        },
+        "P:12": {
+          "native_id": "81663",
+          "descriptor_id": "8346",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 36,
+          "ready_sequence": 37,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        },
+        "P:13": {
+          "native_id": "81714",
+          "descriptor_id": "8346",
+          "inventory_id": "48429",
+          "character_id": "47611",
+          "scene_sequence": 39,
+          "ready_sequence": 40,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        },
+        "O:0": {
+          "native_id": "84891",
+          "descriptor_id": "8656",
+          "inventory_id": "84816",
+          "character_id": "84371",
+          "scene_sequence": 62,
+          "ready_sequence": 63,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        },
+        "O:1": {
+          "native_id": "84946",
+          "descriptor_id": "8656",
+          "inventory_id": "84816",
+          "character_id": "84371",
+          "scene_sequence": 65,
+          "ready_sequence": 66,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        },
+        "O:2": {
+          "native_id": "85001",
+          "descriptor_id": "8656",
+          "inventory_id": "84816",
+          "character_id": "84371",
+          "scene_sequence": 68,
+          "ready_sequence": 69,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        },
+        "O:3": {
+          "native_id": "85056",
+          "descriptor_id": "8656",
+          "inventory_id": "84816",
+          "character_id": "84371",
+          "scene_sequence": 71,
+          "ready_sequence": 72,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        },
+        "O:4": {
+          "native_id": "85111",
+          "descriptor_id": "8656",
+          "inventory_id": "84816",
+          "character_id": "84371",
+          "scene_sequence": 74,
+          "ready_sequence": 75,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        },
+        "O:5": {
+          "native_id": "85166",
+          "descriptor_id": "8656",
+          "inventory_id": "84816",
+          "character_id": "84371",
+          "scene_sequence": 77,
+          "ready_sequence": 78,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        },
+        "O:6": {
+          "native_id": "85221",
+          "descriptor_id": "8346",
+          "inventory_id": "84816",
+          "character_id": "84371",
+          "scene_sequence": 80,
+          "ready_sequence": 81,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        },
+        "O:7": {
+          "native_id": "85272",
+          "descriptor_id": "8346",
+          "inventory_id": "84816",
+          "character_id": "84371",
+          "scene_sequence": 83,
+          "ready_sequence": 84,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        },
+        "O:8": {
+          "native_id": "85323",
+          "descriptor_id": "8423",
+          "inventory_id": "84816",
+          "character_id": "84371",
+          "scene_sequence": 86,
+          "ready_sequence": 87,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        },
+        "O:9": {
+          "native_id": "85367",
+          "descriptor_id": "8778",
+          "inventory_id": "84816",
+          "character_id": "84371",
+          "scene_sequence": 89,
+          "ready_sequence": 90,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        },
+        "O:10": {
+          "native_id": "85421",
+          "descriptor_id": "8839",
+          "inventory_id": "84816",
+          "character_id": "84371",
+          "scene_sequence": 92,
+          "ready_sequence": 93,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        },
+        "O:11": {
+          "native_id": "85465",
+          "descriptor_id": "8839",
+          "inventory_id": "84816",
+          "character_id": "84371",
+          "scene_sequence": 95,
+          "ready_sequence": 96,
+          "pre_sequence": 99,
+          "activate_sequence": 1149
+        }
+      },
+      "decoded_observations_sha256": "69819f359f1539fad1751267c15b2a46ae52eb234b7031cb4bdef80a79d099a9",
+      "source_contract": {
+        "schema": "phase360-binding-source-contract/1",
+        "schema_origin": {
+          "path": "tests/phase391_king_observer_schema.py",
+          "size": 208243,
+          "sha256": "ffcddfd2cbe58307f7258c1aefad5586a9179c6c452dc59c3342f9047f31457c"
+        },
+        "producer_source_origin": {
+          "path": "data/phase462-joint-observer-source-v3/source-authority.json",
+          "size": 1054,
+          "sha256": "53fcd7f2ce1153d86b79f5cdf2c562cb0f86a00de800c4d6455d003ad54dfd63"
+        },
+        "fixed_slot_map": {
+          "path": "data/phase462-joint-observer-source-v3/fixed-plan.json",
+          "size": 21163,
+          "sha256": "06feb02caf7e29dc19e2aa402264c31739fde98c58f464bdfaf67db2ef1a0e9f"
+        },
+        "fixed_fixture": {
+          "path": "data/phase462-joint-observer-source-v3/fixed-v8-fixture.json",
+          "size": 3881,
+          "sha256": "209704d584e9719841834163758606afd5738f0de14fa90669627b1a52e39963"
+        },
+        "evidence_policy": "SOURCE_ORIGIN_ONLY_NOT_INDEPENDENT_ACCEPTANCE_OR_RUNTIME_ADMISSION"
+      },
+      "source_limits": [
+        "359 inventory association derives from actual bind method getter/control-flow SOURCE; no second inventory-node direct sample",
+        "359 has no independent binding stamp; no timestamp was invented",
+        "359 independent producer review is still pending"
+      ],
+      "input_bundle_created": false,
+      "native_admitted": false,
+      "model_calls": 0
+    },
+    "validation_scope": "FIXED_BYTES_TRANSPORT_TYPED_RELATION_ONLY",
+    "full391_source_gate_called": false
+  },
+  "initial_receipt": {
+    "file": "initial-receipt.json",
+    "counts": {
+      "SOURCE_DERIVED": 74,
+      "DIRECT_OBSERVATION": 400
+    },
+    "predicate": "Derived in this call from the same exact12 inputs; no old instance audit"
+  },
+  "source_authority": {
+    "source_context": {
+      "path": "data/phase470-joint-input-source/context.json",
+      "size": 8481,
+      "sha256": "4ddb2e9ed1256f893bb206928618e910a84871f6ee220680b7d482581047785f"
+    },
+    "abi": {
+      "path": "data/phase470-joint-input-source/abi.json",
+      "sha256": "15d5671b349230ddcc04e48fd7dd3c98d1d4de2212de05d7c5cf73c7dc7e9727",
+      "size": 738
+    },
+    "historical_lemma_receipts": [
+      {
+        "path": "data/phase438-character-overlay-source-v2/context.json",
+        "sha256": "0098e19041a88317466c87d69a19044f018f7362334b325bf71cafe8cbc3ec73",
+        "size": 193067
+      },
+      {
+        "path": "data/phase439-timer-overlay-source-v2/context.json",
+        "sha256": "72c4b0f2c2450e723b39d711b32d83f42608216e74d7679ecc7138656ae83a09",
+        "size": 214569
+      },
+      {
+        "path": "data/phase438-native-timer-source-review/source-ledger.json",
+        "sha256": "cb88ff66ce1151338f453b3f7f08811f87d80f1e96a7a5a9aa4e8ad656e860b0",
+        "size": 2689
+      },
+      {
+        "path": "data/phase438-root-character8-acceptance/acceptance.json",
+        "sha256": "c4fc10ff4196083eab5c3f1169bfa00bb080712ab49cb2947bcebbc0b60f28a5",
+        "size": 1482
+      },
+      {
+        "path": "data/phase439-root-timer64-acceptance/acceptance.json",
+        "sha256": "c32a013aa58598fd15a6658c220dba67073062a4e3f022f84c5b8b0408d25b78",
+        "size": 2052
+      }
+    ],
+    "observer_source_acceptance": {
+      "path": "data/phase463-independent-source-acceptance/review.json",
+      "sha256": "5cebd80f470a6d7b829ca6bc09c4d1b490f4d83f669d862925f1f10df5cf7906",
+      "size": 5374
+    },
+    "source_premise_limits": [
+      "Historical815 GD/19 inherited scenes+Main+8 animation leaf proofs reused with disclosed public redaction/migration limit; no current815 re-audit or environment-ready claim.",
+      "Old contexts contain old instance/audit descriptors as historical provenance only; old rows/IDs are not read or used by the new receipt.",
+      "New active462v3/463 delta preserves hooks/shared Timer/native writer domain; source-only observer acceptance is not host/native/runtime acceptance.",
+      "Actual new12 byte identities/native owner graph/cuts/flags/birth/monotonic ledgers are checked by this new Source; output remains INPUT-only."
+    ],
+    "model_release": false,
+    "native_profile": "observer7-king-basic-A-native-tape/1",
+    "projection_profile": "pure-combat-king-basic-A-captured/1",
+    "status": "INPUT_ONLY_NOT_RUNTIME_VALIDATED"
+  }
+}

@@ -1,0 +1,74 @@
+--- 458/native_replay_v8/genuine.py
++++ 471/native_replay_v8/genuine.py
+@@ -73,6 +73,9 @@
+ 
+ 
+ def validate_profile(data, fixture):
++    if data.get('profile_id') == CAPTURED_JOINT_PROFILE:
++        validate_captured_joint_profile(data, fixture)
++        return
+     if data.get('profile_id') == PURE441_PROFILE:
+         validate_pure441_profile(data, fixture)
+         return
+@@ -149,6 +152,11 @@
+         raise ValueError('genuine input outside code-approved finite source/lineage domain')
+ 
+ def validate_result_profile(runtime,fixture):
++    if runtime.get('profile') == CAPTURED_JOINT_PROFILE:
++        validate_captured_joint_fixture(fixture)
++        if runtime.get('mode') != 'genuine' or runtime.get('terminal_profile') != SINGLE_KING_TERMINAL:
++            raise ValueError('captured joint result profile/terminal required')
++        return
+     if runtime.get('profile') == PURE441_PROFILE:
+         validate_single_king_fixture(fixture)
+         if runtime.get('mode') != 'genuine' or runtime.get('terminal_profile') != SINGLE_KING_TERMINAL:
+@@ -225,6 +233,7 @@
+         raise ValueError('BLOCKED_INHERITED_INPUT: completed genuine finite-profile result required')
+ 
+ def observer_label(data):
++    if data.get('profile_id') == CAPTURED_JOINT_PROFILE:return 'observer7-king-basic-A-captured-candidate471'
+     if data.get('profile_id') == PURE441_PROFILE:return 'observer7-390-fixed441-pure-candidate443'
+     if data.get('profile_id') == SINGLE_KING_GENUINE_PROFILE:return 'observer7-355-single-king-A'
+     if data.get('profile_id') == RAINBOW75_PROFILE:return 'observer7-324-headless-rainbow75-battle'
+@@ -1077,3 +1086,41 @@
+             or data.get('mode') != 'genuine' or data.get('terminal_profile') != SINGLE_KING_TERMINAL):
+         raise ValueError('fixed441 pure input ABI/profile/terminal required')
+     return True
++
++
++#471 finite captured joint consumer. Execution authority stays in the external launcher.
++CAPTURED_JOINT_PROFILE = 'pure-combat-king-basic-A-captured/1'
++CAPTURED_JOINT_SCHEMA = 'native-v8-pure-combat-runtime-input/king-basic-1'
++CAPTURED_JOINT_FIXTURE_SHA256 = '20c259d7a7b99ef18f006b049c362fde21830cbb557d5879016282bf7451c0a2'
++CAPTURED_JOINT_CONTRACT = {
++    'native_profile': 'observer7-king-basic-A-native-tape/1',
++    'native_observer_version': '7-king-basic-A-460',
++    'input_abi_sha256': '15d5671b349230ddcc04e48fd7dd3c98d1d4de2212de05d7c5cf73c7dc7e9727',
++    'scope': 'Fixed26 P6King/P7Basic conditional actual primitive Tape and full observed clock; independent INPUT/Source/launcher binding required.',
++    'timer_initial_domain': 'SOURCE_SUPPORTED_INACTIVE_VALUES_NOT_ALL_FRESH_HISTORY',
++    'input_bundle_sha256': None,
++    'input_binding_status': 'PENDING_EXTERNAL_ACTUAL_INPUT_ACCEPTANCE_AND_CODE_BOUND_LAUNCHER',
++    'comparison_status': 'NOT_EVALUATED',
++}
++PROFILES = PROFILES | {CAPTURED_JOINT_PROFILE}
++
++
++def validate_captured_joint_fixture(fixture):
++    if type(fixture) is not dict or canonical_sha(fixture) != CAPTURED_JOINT_FIXTURE_SHA256:
++        raise ValueError('captured joint outside fixed26 Source fixture')
++    if any(type(side['character_class']) is not int or side['character_class'] != 0 for side in fixture['sides']):
++        raise ValueError('captured joint class0 only')
++    items = {item['instance_id']: item for side in fixture['sides'] for item in side['items']}
++    expected = {f'P:{n}' for n in range(14)} | {f'O:{n}' for n in range(12)}
++    if (len(items) != 26 or set(items) != expected or items['P:6']['item_index'] != 262
++            or items['P:7']['item_index'] != 23 or items['P:12']['item_index'] != 1 or items['O:9']['item_index'] != 19):
++        raise ValueError('captured joint exact26 subtype identities')
++    return True
++
++
++def validate_captured_joint_profile(data, fixture):
++    validate_captured_joint_fixture(fixture)
++    if (data.get('schema') != CAPTURED_JOINT_SCHEMA or data.get('profile_id') != CAPTURED_JOINT_PROFILE
++            or data.get('mode') != 'genuine' or data.get('terminal_profile') != SINGLE_KING_TERMINAL):
++        raise ValueError('captured joint exact14 ABI/profile/terminal required')
++    return True

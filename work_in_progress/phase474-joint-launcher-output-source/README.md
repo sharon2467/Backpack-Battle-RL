@@ -1,0 +1,5 @@
+# Joint-case launcher and eight-section adapter Source
+
+474 launcher/adapter compile-only Source is frozen; no import/model/compare/Expected business read has run. Launcher preserves single actual model/output-first/Source hash/IO-denial behavior and requires actual independently accepted INPUT/candidate/business closure descriptors. Adapter retains25 helper bodies and callback AST from451 and changes only this fixed case/provenance/role binding plus required Basic type checks. No fabricated Basic cut or post-observation contract trimming.
+
+Actual Root external binding identifies the accepted500518B INPUT and canonicalSHA; nine Expected identities are derived only from the already-sealed467 capsule manifest, not fresh payload reads. These are identities, not a comparison result or model release. Independent source/interface/finite-controls gates and narrow B2 applicability are pending. Root must seal one actual model result before business Expected decode. Formal75/generalKing unchanged. Main+flat repo overlays restore all Source; FILES.json binds the snapshot.

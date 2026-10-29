@@ -1,0 +1,173 @@
+{
+  "schema": "phase470-independent-final-input-acceptance/1",
+  "status": "ACCEPTED_ACTUAL_INPUT_ONLY_NOT_RUNTIME_VALIDATED",
+  "source_owner": {
+    "path": "data/phase470-joint-input-source/source-owner.json",
+    "size": 7913,
+    "sha256": "73b0ac566b5f59748c6b46fb0af75f2b0a0af0b1083f171de011a586ba245ab7"
+  },
+  "independent_source_owner": {
+    "path": "data/phase470-independent-source-review/owned-files.json",
+    "size": 850,
+    "sha256": "8cafb5f72cca480afdc4d6f75b30e57269f60780041b9473cd2660f783abbb36"
+  },
+  "harness": {
+    "path": "tests/phase470_independent_input_acceptance.py",
+    "size": 26022,
+    "sha256": "94f96a0f41e6cd1b7035c888d07704ebf2c2f1a30c837d31cd6a323373481b8f"
+  },
+  "actual_result": {
+    "path": "data/phase470-independent-input-acceptance-first-001/result.json",
+    "size": 24637,
+    "sha256": "2b47499a906eb5e2e934df24fa91078d5dfa8e0048e57229415cfc419e926162"
+  },
+  "actual_owner": {
+    "path": "data/phase470-independent-input-acceptance-first-001/owned-files.json",
+    "size": 612,
+    "sha256": "a784358f885537595dba20206527aae5404e65877d79fe4369ebfae48af30ed3"
+  },
+  "execution_owner": {
+    "path": "data/phase470-independent-execution-release/owned-files.json",
+    "size": 828,
+    "sha256": "5f74908ed49999b44950686881a14564f4a6ff404746e1f4fb4c3ac6db41d78e"
+  },
+  "input_output_owner": {
+    "path": "data/phase470-joint-input-first-001/owned-files.json",
+    "size": 1550,
+    "sha256": "b906ee080db284731513ea0b8d7456345e50faea5b6ff71dad1c6c4977f0743d"
+  },
+  "input_seal": {
+    "path": "data/phase470-joint-input-first-001/input-joint-seal.json",
+    "size": 1981,
+    "sha256": "906fec1bd943f1daf73b8ebad113498362d8b87a0a2d0cbf5b39810a9e29a63f"
+  },
+  "bundle": {
+    "path": "data/phase470-joint-input-first-001/input-bundle.json",
+    "size": 500518,
+    "sha256": "bb731532d9852be73e374c0f296d5fc1d32923faeabbcef471d5aed75dee86ee"
+  },
+  "proof": {
+    "path": "data/phase470-joint-input-first-001/input-proof.json",
+    "size": 183941,
+    "sha256": "4d842ec57af89c632d6058239fd98ed0afbe0c86b0ca1160b4dbd6785a4cd62e"
+  },
+  "receipt": {
+    "path": "data/phase470-joint-input-first-001/initial-receipt.json",
+    "size": 434877,
+    "sha256": "f09e7e18978582bb53b3739319609ffa62c4c0080d898f76d2a4c3f2d04fb635"
+  },
+  "accepted_mapping": {
+    "items": 26,
+    "business_timers": 33,
+    "processing_nodes": 65,
+    "node_configs": 64,
+    "derived": 74,
+    "clock_passes": 2367,
+    "primitives": 422,
+    "field_origins": 347,
+    "receipt_input_refs_checked": 757
+  },
+  "receipt_counts": {
+    "SOURCE_DERIVED": 74,
+    "DIRECT_OBSERVATION": 400
+  },
+  "controls": {
+    "cases": 24,
+    "positive": 3,
+    "negative": 21,
+    "actual_decode_fixture": 1,
+    "full_bundle_positive_before_build": 0,
+    "partial_runtime_projections": 2,
+    "first_errors": 0,
+    "automatic_retries": 0,
+    "calls": {
+      "bridge.read_pinned": 12,
+      "bridge.decode_lawful12": 1,
+      "bridge.verify_raw_inputs": 3,
+      "receipt.build_initial_receipt": 9,
+      "receipt.validate_timer": 337,
+      "receipt.validate_cache_alias": 219,
+      "receipt.validate_ledger": 8,
+      "receipt.value_index": 1,
+      "bridge.source_value": 475,
+      "bridge.project_primitives": 1,
+      "schema.decode_clock": 3,
+      "bridge.project_runtime": 2,
+      "bridge.validate_initial_consumer_coverage": 1
+    }
+  },
+  "actual_execution": {
+    "launcher": {
+      "returncode": 0,
+      "timeout": false,
+      "wall_seconds": 1.3668723520022468
+    },
+    "harness_wall_seconds": 1.2908481460035546,
+    "build_seconds": 0.2299425580058596,
+    "calls": {
+      "bridge.read_pinned": 79,
+      "bridge.decode_lawful12": 2,
+      "bridge.verify_raw_inputs": 4,
+      "receipt.build_initial_receipt": 10,
+      "receipt.validate_timer": 403,
+      "receipt.validate_cache_alias": 297,
+      "receipt.validate_ledger": 11,
+      "receipt.value_index": 2,
+      "bridge.source_value": 712,
+      "bridge.project_primitives": 2,
+      "schema.decode_clock": 4,
+      "bridge.project_runtime": 3,
+      "bridge.validate_initial_consumer_coverage": 2,
+      "bridge.build_from_files": 1,
+      "bridge.project_from_bytes": 1,
+      "bridge.project_decoded": 1
+    },
+    "build_from_files_entries": 1,
+    "project_from_bytes_entries": 1,
+    "full_project_decoded_entries": 1,
+    "transport_decodes_total": 2,
+    "raw_input_distinct_files": 12,
+    "raw_input_whole_file_reads": 36,
+    "raw_input_file_bytes_total_once": 1437557,
+    "raw_input_whole_file_bytes_total": 4312671,
+    "read_scope": "One12-file controls prefix, then12 build reads plus12 unchanged readbacks. All12 transport-decoded twice. No postcleanup business snapshot used as input; this is not a zero-read claim.",
+    "schema_imports": 1,
+    "bridge_imports": 1,
+    "receipt_imports": 1,
+    "bridge_read_pinned_entries": 79,
+    "schema_import_source_read_outside_bridge_counter": 1,
+    "models": 0,
+    "Oracle": 0,
+    "EXPECTED_business_decodes": 0,
+    "pool_operations": 0,
+    "old_controls": 0
+  },
+  "independent_checks": [
+    "All23 author Source descriptors and author owner checked before and after; loaded bridge/receipt/schema exact paths and pins; independent harness itself included in readback.",
+    "All6 output payloads and output owner verified; independent control/result and launcher owners also read back.",
+    "Complete retained26-item geometry/order and both actual preparation/activation arrays;33 Timer/scalar configs,65 processing nodes64 configs independently mapped from same exact decoded INPUT.",
+    "New receipt400 direct+74 Source-derived facts; common64/King2/Character8 Source premises and actual owner/lifetime witnesses; no old439 instance rows.",
+    "Physical input lines1/4 map toseq99/1149.757 actual receipt references resolved and native owners checked, including both-cut caches and lifetime witnesses.",
+    "347 origins including each emitted Timer/Character field and each item predicate; absent origin rejected. Two display Timer decoded mutations leave business runtime exact while raw one-byte mutation rejects SHA.",
+    "All422 original selected primitive calls preserve order/labels/args/value bits; all2367 clock passes and header retained.",
+    "Before/after SOURCE and INPUT equal; all12 actual raw files opened exactly3 times, no forbidden IO or candidate modules."
+  ],
+  "future_model_blockers": [
+    "constructor/prepare equivalence",
+    "ordinary callbacks/transform/RNG noninterference",
+    "King setState/log behavior",
+    "candidate runtime acceptance and same-instance diagnostics",
+    "strict output/comparator mapping"
+  ],
+  "limitations": [
+    "INPUT-only projection accepted; constructor/prepare/cache and complete downstream business consumers still need separately released candidate acceptance.",
+    "No model run, terminal comparison, joint native equality or general King/public support promotion follows from this receipt.",
+    "Accepted historical G02 ordinary native/writer-domain premise retained; private Timer values are Source derivations, not native private observations. Historical redacted Source/reconstructed analysis limitations remain.",
+    "Bridge context omits its own self-hash; independent author-owner/module pin and loaded-path/before-after checks supply execution-source closure. Frozen470 code was not changed.",
+    "Synthetic mutated decoded helpers do not admit altered raw bytes or detect otherwise hidden history outside the declared Source domain."
+  ],
+  "runtime_validated": false,
+  "model_release": false,
+  "King_general_admission": false,
+  "Native_joint_equality_claimed": false
+}

@@ -1,0 +1,69 @@
+{
+  "changed_functions": [
+    "build_from_files",
+    "project_decoded",
+    "project_from_bytes",
+    "project_order",
+    "project_runtime",
+    "source_value",
+    "validate_initial_consumer_coverage",
+    "verify_source_context"
+  ],
+  "counters": {
+    "Expected_reads": 0,
+    "Source_imports": 0,
+    "builds": 0,
+    "models": 0,
+    "native": 0
+  },
+  "exact_shared_functions": [
+    "Rejected",
+    "canonical",
+    "decode_lawful12",
+    "fingerprint",
+    "key",
+    "main",
+    "model_role",
+    "one",
+    "physical",
+    "project_fixture",
+    "project_primitives",
+    "read_pinned",
+    "require",
+    "same",
+    "save_new",
+    "strict_json",
+    "typed_scalar",
+    "verify_raw_inputs"
+  ],
+  "new_functions": [
+    "load_schema"
+  ],
+  "new_reader": {
+    "path": "tests/phase470_joint_input_bridge.py",
+    "sha256": "d70d31b13226da2f08627986c260f32aba6520cb745bbc5dbc6bf069a5936394",
+    "size": 35514
+  },
+  "new_receipt": {
+    "path": "tests/phase470_joint_initial_receipt.py",
+    "sha256": "67cede8069561f03113008b1797be22248b1d2f69751c970c91c11060c2a6f4e",
+    "size": 18125
+  },
+  "old_reader": {
+    "path": "tests/phase441_fixed_A_input_bridge.py",
+    "sha256": "e6c3336c5d91e51988d9629eaa779c3a229af5c1cc08d423609062831032f4f9",
+    "size": 36491
+  },
+  "pure_api": {
+    "build_from_files": "(output_new) -> status; later Root/independent onebuild only",
+    "build_initial_receipt": "(decoded,aliases,pinned_schema) -> receipt; pure new owner/cut/ledger premise application",
+    "project_decoded": "(decoded,aliases,index) -> (bundle,proof); pure semantic helper, no rawidentity admission",
+    "project_from_bytes": "(raw12: dict[str,bytes]) -> (bundle, proof, initial_receipt)",
+    "value_index": "(receipt) -> ordered value lookup; no old audit acceptor"
+  },
+  "removed_functions": [
+    "load_accepted_initial"
+  ],
+  "schema": "phase470-source-reuse-map/1",
+  "unchanged_model_source": "No model file copied, imported or modified;45813shared/engine/genuine and public461 remain outside this block."
+}

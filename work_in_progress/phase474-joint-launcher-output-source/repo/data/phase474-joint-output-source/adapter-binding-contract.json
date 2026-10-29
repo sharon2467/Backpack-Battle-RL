@@ -1,0 +1,41 @@
+{
+  "activation_enter_sequence": 1150,
+  "binding_schema": "phase474-fixed-comparison-binding/1",
+  "closed_keys": [
+    "schema",
+    "input_bundle",
+    "input_canonical_sha256",
+    "candidate_freeze",
+    "contract"
+  ],
+  "descriptor_shape": {
+    "path": "actual absolute or repo-relative path",
+    "sha256": "64lowercasehex",
+    "size": "strict positive INT"
+  },
+  "fixed": {
+    "candidate_freeze": {
+      "path": "data/phase471-captured-joint-source/candidate-source-freeze.json",
+      "sha256": "d640e6cd25562692ae6bd4cc3b908d5c6e57e20754e0c60221644b87cb8e88b8",
+      "size": 5113
+    },
+    "contract": {
+      "path": "data/phase466-captured-joint-bridge-design/comparison-contract.json",
+      "sha256": "71c681047140d3bc13d91b24be590dcb598cb3454edac394288c64e01cb3ecef",
+      "size": 4636
+    }
+  },
+  "fixture_canonical_sha256": "20c259d7a7b99ef18f006b049c362fde21830cbb557d5879016282bf7451c0a2",
+  "profiles": {
+    "native": "observer7-king-basic-A-native-tape/1",
+    "projection": "pure-combat-king-basic-A-captured/1"
+  },
+  "pure_api": "compare_decoded(native_outputs,sealed_result,accepted_bundle,root_binding)",
+  "role": "Independent caller hashes/authenticates raw INPUT and output seals before pure decoded projection; no arbitrary verified flag.",
+  "schema": "phase474-adapter-binding-contract/1",
+  "status": "SOURCE_ONLY_FUTURE_ACTUAL_INPUT_BINDING_UNKNOWN",
+  "unknown": {
+    "input_bundle": null,
+    "input_canonical_sha256": null
+  }
+}

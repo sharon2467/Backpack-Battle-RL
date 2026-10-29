@@ -1,0 +1,174 @@
+{
+  "status": "PASS24",
+  "cases": [
+    {
+      "name": "01 new74 receipt",
+      "status": "PASS"
+    },
+    {
+      "name": "02 raw byte identity",
+      "status": "PASS_REJECTED",
+      "error": "Rejected",
+      "reason": "FIXED_INPUT_IDENTITY_fixture.json"
+    },
+    {
+      "name": "03 missing raw carrier",
+      "status": "PASS_REJECTED",
+      "error": "Rejected",
+      "reason": "EXACT_FIXED12_NAMES"
+    },
+    {
+      "name": "04 duplicate role",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "INITIAL_DUPLICATE_ROLE"
+    },
+    {
+      "name": "05 foreign crosscut alias",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "INITIAL_NODE_ALIAS"
+    },
+    {
+      "name": "06 BOOL mode",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "integer range/type"
+    },
+    {
+      "name": "07 INT flag",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "raw node/Timer BOOL"
+    },
+    {
+      "name": "08 paused Timer",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "STRICT_TIMER_FALSE_paused"
+    },
+    {
+      "name": "09 wrong child position",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "SOURCE_SCENE_CHILD"
+    },
+    {
+      "name": "10 Buff dual",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "BUFF_RESOURCE_TIMER_DUAL"
+    },
+    {
+      "name": "11 ledger owner",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "INITIAL_LEDGER_OWNER_KIND"
+    },
+    {
+      "name": "12 nonzero start",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "LIFETIME_ZERO_INT_starts"
+    },
+    {
+      "name": "13 pooled King",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "KING_FRESH_SCENE_JOIN"
+    },
+    {
+      "name": "14 missing Basic threshold",
+      "status": "PASS_REJECTED",
+      "error": "KeyError",
+      "reason": "'activationsToTrigger'"
+    },
+    {
+      "name": "15 INT Basic threshold",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "GOOBERT_TYPED_SOURCE_THRESHOLD"
+    },
+    {
+      "name": "16 BOOL Basic counter",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "INITIAL_TYPED_INT_0"
+    },
+    {
+      "name": "17 cache foreign alias",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "CACHE_NATIVE_ROLE_ASSOCIATION"
+    },
+    {
+      "name": "18 cache dual",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "ITEM_CACHE_DUAL"
+    },
+    {
+      "name": "19 missing receipt key",
+      "status": "PASS_REJECTED",
+      "error": "Rejected",
+      "reason": "EMITTED_VALUE_SOURCE_MISSING_Timer.private_left:pre_activate:tick:P"
+    },
+    {
+      "name": "20 early primitive",
+      "status": "PASS_REJECTED",
+      "error": "Rejected",
+      "reason": "SELECTED_PRIMITIVE_NOT_AFTER_ACTIVATION"
+    },
+    {
+      "name": "21 clock duplicate",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "missing/duplicate/reordered source frame counters"
+    },
+    {
+      "name": "22 partial runtime",
+      "status": "PASS"
+    },
+    {
+      "name": "23 display exclusion",
+      "status": "PASS"
+    },
+    {
+      "name": "24 missing origin",
+      "status": "PASS_REJECTED",
+      "error": "Rejected",
+      "reason": "MISSING_TIMER_FIELD_ORIGIN"
+    }
+  ],
+  "calls": {
+    "bridge.read_pinned": 12,
+    "bridge.decode_lawful12": 1,
+    "bridge.verify_raw_inputs": 3,
+    "receipt.build_initial_receipt": 9,
+    "receipt.validate_timer": 337,
+    "receipt.validate_cache_alias": 219,
+    "receipt.validate_ledger": 8,
+    "receipt.value_index": 1,
+    "bridge.source_value": 475,
+    "bridge.project_primitives": 1,
+    "schema.decode_clock": 3,
+    "bridge.project_runtime": 2,
+    "bridge.validate_initial_consumer_coverage": 1
+  },
+  "raw_reads": {
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/fixture.json": 1,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-clock-checkpoint.json": 1,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-clock-passes.jsonl": 1,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-input-facts.json": 1,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-rng-checkpoint.json": 1,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-slot-bindings.json": 1,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-ui-authority.jsonl": 1,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/observer7-input.jsonl": 1,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/observer7-lineage.jsonl": 1,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/observer7-metadata.jsonl": 1,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/observer7-primitives.jsonl": 1,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/player_fixture.json": 1
+  },
+  "full_bundle_projections": 0,
+  "partial_runtime_projections": 2
+}

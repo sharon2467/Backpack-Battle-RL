@@ -1,0 +1,1358 @@
+{
+  "declared_shared_body_adjustments": {
+    "CombatEngine.activate_from_checkpoint": "one stage-check call substitution only; algorithm/order otherwise byte-exact",
+    "CombatEngine.prepare_only": "one stage-check call substitution only; algorithm/order otherwise byte-exact",
+    "CombatEngine.result": "new profile diagnostic contract selection only"
+  },
+  "modules": {
+    "native_replay_v8/engine.py": {
+      "changed_existing_functions": [
+        "CombatEngine.__init__",
+        "CombatEngine.activate_from_checkpoint",
+        "CombatEngine.prepare_only",
+        "CombatEngine.result",
+        "_integration_domain",
+        "build_runtime_scaffold",
+        "validate_runtime_inputs"
+      ],
+      "function_pins": {
+        "CombatEngine.__init__": {
+          "after_sha256": "120e64ce6acc1bcd7a4da35c58cbd27bda87ae4b828f323a4bdfa818d69658c5",
+          "before_sha256": "9e715d6345142263bf74df2cc162009b47c5f42a27b4ee7e787fa02ff93c8955",
+          "byte_exact": false
+        },
+        "CombatEngine._blood_effect_domain": {
+          "after_sha256": "2803075a57eeb2c18ec746e9e4f0f799099c684a822a14f534de3c2798ae0610",
+          "before_sha256": "2803075a57eeb2c18ec746e9e4f0f799099c684a822a14f534de3c2798ae0610",
+          "byte_exact": true
+        },
+        "CombatEngine._buff_record": {
+          "after_sha256": "70a03fa6216db02b71bc3a2df058eef0f1e6c2acfd860d275661d26d79970a0a",
+          "before_sha256": "70a03fa6216db02b71bc3a2df058eef0f1e6c2acfd860d275661d26d79970a0a",
+          "byte_exact": true
+        },
+        "CombatEngine._buff_roll": {
+          "after_sha256": "11f59d4a0d787fe136cf3ecfba1db3cb5def04dc3760f6c61aef3e0e1c3347e5",
+          "before_sha256": "11f59d4a0d787fe136cf3ecfba1db3cb5def04dc3760f6c61aef3e0e1c3347e5",
+          "byte_exact": true
+        },
+        "CombatEngine._connect_runtime_callbacks": {
+          "after_sha256": "4dedcd7e33dc1170f5a29991d327d93686bcd41680574dc866aa8396c7cdc9b3",
+          "before_sha256": "4dedcd7e33dc1170f5a29991d327d93686bcd41680574dc866aa8396c7cdc9b3",
+          "byte_exact": true
+        },
+        "CombatEngine._damage_after_resistance": {
+          "after_sha256": "65d69fc01d3a0b77aa9a8c2d415a879f1e7dc637d59a694783db08bfbd922d53",
+          "before_sha256": "65d69fc01d3a0b77aa9a8c2d415a879f1e7dc637d59a694783db08bfbd922d53",
+          "byte_exact": true
+        },
+        "CombatEngine._emit_and_log": {
+          "after_sha256": "7037e713172465ae60631d16b0ec0904f830c4768df9dcc777f998f3a8f7de27",
+          "before_sha256": "7037e713172465ae60631d16b0ec0904f830c4768df9dcc777f998f3a8f7de27",
+          "byte_exact": true
+        },
+        "CombatEngine._fraction_round": {
+          "after_sha256": "0afb2027cac86e0d1bc9d7e3aa69a42814e2bb5f56f2d211d3be2967c1acf7c4",
+          "before_sha256": "0afb2027cac86e0d1bc9d7e3aa69a42814e2bb5f56f2d211d3be2967c1acf7c4",
+          "byte_exact": true
+        },
+        "CombatEngine._fresh_goobert_targets": {
+          "after_sha256": "8b9029e83a597300d101b24e35efff4b9f327f780319615b63555dbf79c0bdc0",
+          "before_sha256": "8b9029e83a597300d101b24e35efff4b9f327f780319615b63555dbf79c0bdc0",
+          "byte_exact": true
+        },
+        "CombatEngine._full_timer": {
+          "after_sha256": "33b0a2bf993b2902ac08d98709d5d38c6218fd2470ea965252ade9d73c27539c",
+          "before_sha256": "33b0a2bf993b2902ac08d98709d5d38c6218fd2470ea965252ade9d73c27539c",
+          "byte_exact": true
+        },
+        "CombatEngine._gain_permanent_stacks": {
+          "after_sha256": "203f5e771a6b5c4588d6f76162913265afb4b7e212f63d47407739aa54d5e680",
+          "before_sha256": "203f5e771a6b5c4588d6f76162913265afb4b7e212f63d47407739aa54d5e680",
+          "byte_exact": true
+        },
+        "CombatEngine._gain_stacks": {
+          "after_sha256": "361c6dcbd43b2c24f0dd5c8a480250c1e643d9fdbd4c8021f206f1ad8b792efc",
+          "before_sha256": "361c6dcbd43b2c24f0dd5c8a480250c1e643d9fdbd4c8021f206f1ad8b792efc",
+          "byte_exact": true
+        },
+        "CombatEngine._integration_aux_timer": {
+          "after_sha256": "9af32ad3ce213999cae8ae1d4427ea2776a9bdecb7d7416fb53ef826598c31f6",
+          "before_sha256": "9af32ad3ce213999cae8ae1d4427ea2776a9bdecb7d7416fb53ef826598c31f6",
+          "byte_exact": true
+        },
+        "CombatEngine._integration_callback": {
+          "after_sha256": "ac17bad9547e1c7bdd0915e0518b9fb21a7e795c82229a6a4d4457a564e6b76e",
+          "before_sha256": "ac17bad9547e1c7bdd0915e0518b9fb21a7e795c82229a6a4d4457a564e6b76e",
+          "byte_exact": true
+        },
+        "CombatEngine._integration_fx_snapshot": {
+          "after_sha256": "47adee2ca6ca7b7d7e2873775957b49cd7ac75880ffc13397ff1a5d335b5b69a",
+          "before_sha256": "47adee2ca6ca7b7d7e2873775957b49cd7ac75880ffc13397ff1a5d335b5b69a",
+          "byte_exact": true
+        },
+        "CombatEngine._integration_node": {
+          "after_sha256": "2df43957a99742c86785750da3f9704bed9dacc84bbe8a2259259cab72f1cbd9",
+          "before_sha256": "2df43957a99742c86785750da3f9704bed9dacc84bbe8a2259259cab72f1cbd9",
+          "byte_exact": true
+        },
+        "CombatEngine._integration_timer": {
+          "after_sha256": "7097685227d2ad0371108bf46468f0c01d59f6e6bd3b69aeec464970158f29eb",
+          "before_sha256": "7097685227d2ad0371108bf46468f0c01d59f6e6bd3b69aeec464970158f29eb",
+          "byte_exact": true
+        },
+        "CombatEngine._king_ordinary": {
+          "after_sha256": "1038bd68abc312176cdf1569ccdab65ccd516ea909295459bdb47a28f2345831",
+          "before_sha256": "1038bd68abc312176cdf1569ccdab65ccd516ea909295459bdb47a28f2345831",
+          "byte_exact": true
+        },
+        "CombatEngine._ordered_stars": {
+          "after_sha256": "e1a2ac290bbcb5a8270495b3f50c5ee907d162efe5a3e29f292965900a4fd565",
+          "before_sha256": "e1a2ac290bbcb5a8270495b3f50c5ee907d162efe5a3e29f292965900a4fd565",
+          "byte_exact": true
+        },
+        "CombatEngine._public_timer": {
+          "after_sha256": "359f0e6d39bd5d30158692466867dd433e718241d4a549338ad301b2553947ee",
+          "before_sha256": "359f0e6d39bd5d30158692466867dd433e718241d4a549338ad301b2553947ee",
+          "byte_exact": true
+        },
+        "CombatEngine._pure_api_after": {
+          "after_sha256": "7170a56b1d0adae865113461743c6a0e2901d18f8f73cf3661ed92fbd7c4bdad",
+          "before_sha256": "7170a56b1d0adae865113461743c6a0e2901d18f8f73cf3661ed92fbd7c4bdad",
+          "byte_exact": true
+        },
+        "CombatEngine._pure_api_before": {
+          "after_sha256": "ecd57a814be75b3c6736d168c37b419171dd8c1ae445cf218f7606706db3d80c",
+          "before_sha256": "ecd57a814be75b3c6736d168c37b419171dd8c1ae445cf218f7606706db3d80c",
+          "byte_exact": true
+        },
+        "CombatEngine._pure_business_snapshot": {
+          "after_sha256": "6ea76560a7436beb1a3bf84d7ea688e2e57db4427b2c1649d2521673b6f45c9f",
+          "before_sha256": "6ea76560a7436beb1a3bf84d7ea688e2e57db4427b2c1649d2521673b6f45c9f",
+          "byte_exact": true
+        },
+        "CombatEngine._run_source_king": {
+          "after_sha256": "2671f01573f76710626a1bd9f2514973fd0ac75046aa37bed6c7b3ac88208ca7",
+          "before_sha256": "2671f01573f76710626a1bd9f2514973fd0ac75046aa37bed6c7b3ac88208ca7",
+          "byte_exact": true
+        },
+        "CombatEngine._runtime_projection": {
+          "after_sha256": "79314162ccf84560bd04595acc33e0d10baca45db09b0dccdd198d2542415eb3",
+          "before_sha256": "79314162ccf84560bd04595acc33e0d10baca45db09b0dccdd198d2542415eb3",
+          "byte_exact": true
+        },
+        "CombatEngine._set_item_cooldown": {
+          "after_sha256": "67b9304c9f7836263182c7faa51f70898084aebcd314bd52f596c6abee5bd363",
+          "before_sha256": "67b9304c9f7836263182c7faa51f70898084aebcd314bd52f596c6abee5bd363",
+          "byte_exact": true
+        },
+        "CombatEngine._set_source_processing": {
+          "after_sha256": "1f82b6e84e8325af41c4b55cdeea76da6d35724a84249808907c04b4656878d3",
+          "before_sha256": "1f82b6e84e8325af41c4b55cdeea76da6d35724a84249808907c04b4656878d3",
+          "byte_exact": true
+        },
+        "CombatEngine._source_king_budget": {
+          "after_sha256": "09f273208c6de212fe12e3ded5dca025ad7900ba3a542b72aa4fdb351f26925c",
+          "before_sha256": "09f273208c6de212fe12e3ded5dca025ad7900ba3a542b72aa4fdb351f26925c",
+          "byte_exact": true
+        },
+        "CombatEngine._source_king_quantum": {
+          "after_sha256": "a9a3a62e9ca14305fe4d135e53fffa7e06dd8f8cd84fa0a94ac89c3aa3d2ead3",
+          "before_sha256": "a9a3a62e9ca14305fe4d135e53fffa7e06dd8f8cd84fa0a94ac89c3aa3d2ead3",
+          "byte_exact": true
+        },
+        "CombatEngine._source_noninterfering_callback": {
+          "after_sha256": "624be573ddd7cdfd35149ee8392d95fbf1299b18c6ed38c6a1855e2944a6ed0f",
+          "before_sha256": "624be573ddd7cdfd35149ee8392d95fbf1299b18c6ed38c6a1855e2944a6ed0f",
+          "byte_exact": true
+        },
+        "CombatEngine._stack_metric": {
+          "after_sha256": "fb6278b865f3ba44515549c41064c03820e800bfac7ee54c49fc13fdb730ca9c",
+          "before_sha256": "fb6278b865f3ba44515549c41064c03820e800bfac7ee54c49fc13fdb730ca9c",
+          "byte_exact": true
+        },
+        "CombatEngine._stack_name": {
+          "after_sha256": "eba5a9a94aad6afa41a8675c5fcee35e46f23d3f51fd6a07c477ba8bf7d2da6b",
+          "before_sha256": "eba5a9a94aad6afa41a8675c5fcee35e46f23d3f51fd6a07c477ba8bf7d2da6b",
+          "byte_exact": true
+        },
+        "CombatEngine._stack_picker_inputs": {
+          "after_sha256": "e6a63fb20bec819993f31a9ce308fcc589ce5e9cf9b575ce0b5d442cfd077fe9",
+          "before_sha256": "e6a63fb20bec819993f31a9ce308fcc589ce5e9cf9b575ce0b5d442cfd077fe9",
+          "byte_exact": true
+        },
+        "CombatEngine._start_timer": {
+          "after_sha256": "18bc5ae4966d29fe506a3b66d7ca61963cbf22214a029f056aadae5204604f47",
+          "before_sha256": "18bc5ae4966d29fe506a3b66d7ca61963cbf22214a029f056aadae5204604f47",
+          "byte_exact": true
+        },
+        "CombatEngine._stop_timer": {
+          "after_sha256": "4a77b756083093df11f2f501ddf56480c76d99a7da0d4d1a8b8d03efb076510f",
+          "before_sha256": "4a77b756083093df11f2f501ddf56480c76d99a7da0d4d1a8b8d03efb076510f",
+          "byte_exact": true
+        },
+        "CombatEngine._timer_snapshot": {
+          "after_sha256": "715ee52265948abb628f94523c6d87559fb8a3ed6630936f4c30c2d1563c45d4",
+          "before_sha256": "715ee52265948abb628f94523c6d87559fb8a3ed6630936f4c30c2d1563c45d4",
+          "byte_exact": true
+        },
+        "CombatEngine._timer_timeout": {
+          "after_sha256": "57f6ec77ec33188d91c9d9e8f6603cd29a673bc11c095c5679eb1cf9eeb0ccd6",
+          "before_sha256": "57f6ec77ec33188d91c9d9e8f6603cd29a673bc11c095c5679eb1cf9eeb0ccd6",
+          "byte_exact": true
+        },
+        "CombatEngine._validate_pure441_constructed": {
+          "after_sha256": "cdb9f0a1cca380a0ebafe2001a4c4de4d8bf51657742c2572fa0e5494d8be1bc",
+          "before_sha256": "cdb9f0a1cca380a0ebafe2001a4c4de4d8bf51657742c2572fa0e5494d8be1bc",
+          "byte_exact": true
+        },
+        "CombatEngine._validate_pure441_prepared": {
+          "after_sha256": "fee11b2cb73b4d04c4e201167ee5a2cf5bda123ed9c552eee3f46dc4c6b3a9dc",
+          "before_sha256": "fee11b2cb73b4d04c4e201167ee5a2cf5bda123ed9c552eee3f46dc4c6b3a9dc",
+          "byte_exact": true
+        },
+        "CombatEngine._validate_source_pure_state": {
+          "after_sha256": "c00fd397a77e1d630f1f22bc070c4a6640ae720994d503c5f9d974d116b59dc7",
+          "before_sha256": "c00fd397a77e1d630f1f22bc070c4a6640ae720994d503c5f9d974d116b59dc7",
+          "byte_exact": true
+        },
+        "CombatEngine.activate": {
+          "after_sha256": "8aa408f246a8836f16b06c93fd932cabd641a4fc4968fa1348e90e093ecc9caf",
+          "before_sha256": "8aa408f246a8836f16b06c93fd932cabd641a4fc4968fa1348e90e093ecc9caf",
+          "byte_exact": true
+        },
+        "CombatEngine.activate_from_checkpoint": {
+          "after_sha256": "659de0dc0bc262b3e1f1070f6d9b19fdee4943774b2eb31198858dbb60c162d3",
+          "before_sha256": "93d85bd7346d3e3f3b9e8c6ea6cb98483be0cd657de3730f462620b32967012f",
+          "byte_exact": false
+        },
+        "CombatEngine.add_bonus_damage": {
+          "after_sha256": "ef6dbef4a3978e29208857a19a8da379859161c7a9d0f3f043d654a358cb147f",
+          "before_sha256": "ef6dbef4a3978e29208857a19a8da379859161c7a9d0f3f043d654a358cb147f",
+          "byte_exact": true
+        },
+        "CombatEngine.add_max_damage": {
+          "after_sha256": "36660d2eef2c43fcf76225f9278c6b5a2e9236c5b016571cbb4ac6f20ea37407",
+          "before_sha256": "36660d2eef2c43fcf76225f9278c6b5a2e9236c5b016571cbb4ac6f20ea37407",
+          "byte_exact": true
+        },
+        "CombatEngine.add_speed": {
+          "after_sha256": "2aa15d44a2e206ccc16f7fbe1a65cbb357cf3ca609a9f01b8123b1c9bca6218f",
+          "before_sha256": "2aa15d44a2e206ccc16f7fbe1a65cbb357cf3ca609a9f01b8123b1c9bca6218f",
+          "byte_exact": true
+        },
+        "CombatEngine.adjust_cooldown": {
+          "after_sha256": "7144b6f321b00eccdb74b6812fc73cfdcc981a0ca0845966c6213e59ce25f0d9",
+          "before_sha256": "7144b6f321b00eccdb74b6812fc73cfdcc981a0ca0845966c6213e59ce25f0d9",
+          "byte_exact": true
+        },
+        "CombatEngine.affected_items": {
+          "after_sha256": "445661ff883fe9f94b204b7a17d5050632bfbdce97d5ec7d01d769f03058568b",
+          "before_sha256": "445661ff883fe9f94b204b7a17d5050632bfbdce97d5ec7d01d769f03058568b",
+          "byte_exact": true
+        },
+        "CombatEngine.allocate_event": {
+          "after_sha256": "83c3a197a8fbf1afd48886f54915b9e0fc0dd5b38e56369174d7019415dc381e",
+          "before_sha256": "83c3a197a8fbf1afd48886f54915b9e0fc0dd5b38e56369174d7019415dc381e",
+          "byte_exact": true
+        },
+        "CombatEngine.attack": {
+          "after_sha256": "548860eda747375e9d9827d6564365717221fcea1652f0bb59a9c93d074e9970",
+          "before_sha256": "548860eda747375e9d9827d6564365717221fcea1652f0bb59a9c93d074e9970",
+          "byte_exact": true
+        },
+        "CombatEngine.attack_effect_count": {
+          "after_sha256": "4a3da880db3c3e95b9b0d6089749e02463f46f1f6736d1fa531263b6febfb6a2",
+          "before_sha256": "4a3da880db3c3e95b9b0d6089749e02463f46f1f6736d1fa531263b6febfb6a2",
+          "byte_exact": true
+        },
+        "CombatEngine.blood_effect": {
+          "after_sha256": "e5270304a84531034f4ace0dbb50da9934d7a69cf30a7526faefd177865d84d5",
+          "before_sha256": "e5270304a84531034f4ace0dbb50da9934d7a69cf30a7526faefd177865d84d5",
+          "byte_exact": true
+        },
+        "CombatEngine.buff_timeout": {
+          "after_sha256": "e42cd38bd681b1de7757bb00a59c2284fa4839f39366652fb3723aa1ef92f0a9",
+          "before_sha256": "e42cd38bd681b1de7757bb00a59c2284fa4839f39366652fb3723aa1ef92f0a9",
+          "byte_exact": true
+        },
+        "CombatEngine.carrot_effect": {
+          "after_sha256": "9d5cb10f790a93b5ba18655f90fa3871b1960a0b1e70bbd183291dc5eb9950ce",
+          "before_sha256": "9d5cb10f790a93b5ba18655f90fa3871b1960a0b1e70bbd183291dc5eb9950ce",
+          "byte_exact": true
+        },
+        "CombatEngine.carrot_particle_timeout": {
+          "after_sha256": "53c18f50083fd9b3538a16c6477580c7abb3af5738cc2ee9c0ddf4e646799cf6",
+          "before_sha256": "53c18f50083fd9b3538a16c6477580c7abb3af5738cc2ee9c0ddf4e646799cf6",
+          "byte_exact": true
+        },
+        "CombatEngine.change_amplification": {
+          "after_sha256": "af5dfab09a63b4dd36bafb71f3bc49835f6898746657c81d960b75dfb1c98809",
+          "before_sha256": "af5dfab09a63b4dd36bafb71f3bc49835f6898746657c81d960b75dfb1c98809",
+          "byte_exact": true
+        },
+        "CombatEngine.change_buff_protect_stacks": {
+          "after_sha256": "8c75fa2d75217041f9effa5eb05ef4c3ed9834398d6f01efda1bbf9853d44d36",
+          "before_sha256": "8c75fa2d75217041f9effa5eb05ef4c3ed9834398d6f01efda1bbf9853d44d36",
+          "byte_exact": true
+        },
+        "CombatEngine.change_buff_protection_chance": {
+          "after_sha256": "5972969d2b2a6c9b5d48cc4850fb0edee6b53727e7118b5a62c4dc7f3c454415",
+          "before_sha256": "5972969d2b2a6c9b5d48cc4850fb0edee6b53727e7118b5a62c4dc7f3c454415",
+          "byte_exact": true
+        },
+        "CombatEngine.change_current_log_show_label": {
+          "after_sha256": "bf4d534fce8c605dba9bfc5eff85e2a11f150dfcd1908a813ea34db35d657307",
+          "before_sha256": "bf4d534fce8c605dba9bfc5eff85e2a11f150dfcd1908a813ea34db35d657307",
+          "byte_exact": true
+        },
+        "CombatEngine.change_debuff_protection_chance": {
+          "after_sha256": "a407db214177231c4dbd9b4eefba988e09624633d0dbea6521e8736a6bbeee16",
+          "before_sha256": "a407db214177231c4dbd9b4eefba988e09624633d0dbea6521e8736a6bbeee16",
+          "byte_exact": true
+        },
+        "CombatEngine.change_debuff_reflection": {
+          "after_sha256": "25b4d3dcc606130a70e673097331f4bc62d60603e86ed02a01687410ca2763b8",
+          "before_sha256": "25b4d3dcc606130a70e673097331f4bc62d60603e86ed02a01687410ca2763b8",
+          "byte_exact": true
+        },
+        "CombatEngine.change_debuff_resistance": {
+          "after_sha256": "2c54f61d52685422a17d20de28e377639e8fe8d64ba92bf3456fa00f9bb27489",
+          "before_sha256": "2c54f61d52685422a17d20de28e377639e8fe8d64ba92bf3456fa00f9bb27489",
+          "byte_exact": true
+        },
+        "CombatEngine.change_protection_chance": {
+          "after_sha256": "5f679271c9af0f784f1cc6767c6c9995aec0668d0636997bb3287fe0a0d39f96",
+          "before_sha256": "5f679271c9af0f784f1cc6767c6c9995aec0668d0636997bb3287fe0a0d39f96",
+          "byte_exact": true
+        },
+        "CombatEngine.change_reflect_chance": {
+          "after_sha256": "55affb966bd1d14e2743568daf645a2d80d10bcdc7a6572b497a6cb3db542b46",
+          "before_sha256": "55affb966bd1d14e2743568daf645a2d80d10bcdc7a6572b497a6cb3db542b46",
+          "byte_exact": true
+        },
+        "CombatEngine.change_resist_chance": {
+          "after_sha256": "20652feafa9ccc3fd4218d6120f2719ea466d1044df0725e6b75ebc5287a4575",
+          "before_sha256": "20652feafa9ccc3fd4218d6120f2719ea466d1044df0725e6b75ebc5287a4575",
+          "byte_exact": true
+        },
+        "CombatEngine.change_resist_stacks": {
+          "after_sha256": "5263e6229f933c9fa009a66e4736d1c72289a51f4fe62af6f6a2d20facb84028",
+          "before_sha256": "5263e6229f933c9fa009a66e4736d1c72289a51f4fe62af6f6a2d20facb84028",
+          "byte_exact": true
+        },
+        "CombatEngine.change_varying_damage": {
+          "after_sha256": "4d1dea1e8b1af43708c45b6df4e019d56828d0e94f05b36bc4ceb7f62f2ca4fc",
+          "before_sha256": "4d1dea1e8b1af43708c45b6df4e019d56828d0e94f05b36bc4ceb7f62f2ca4fc",
+          "byte_exact": true
+        },
+        "CombatEngine.character_gain_stacks": {
+          "after_sha256": "d03d8f6f9b78850ce6d4ca58591c1bb47ced50194225f0fab1fc2d6ae3ab7e72",
+          "before_sha256": "d03d8f6f9b78850ce6d4ca58591c1bb47ced50194225f0fab1fc2d6ae3ab7e72",
+          "byte_exact": true
+        },
+        "CombatEngine.cleanse_random_debuffs": {
+          "after_sha256": "98ab5f577642f444050a176c0de34a0652c45fb8b7e34fcf3e436f14795b8c26",
+          "before_sha256": "98ab5f577642f444050a176c0de34a0652c45fb8b7e34fcf3e436f14795b8c26",
+          "byte_exact": true
+        },
+        "CombatEngine.consume_potion": {
+          "after_sha256": "5cf654015561d63479f6d90ba5677c6b10b50c00c3512547cc5de4c83ba7c558",
+          "before_sha256": "5cf654015561d63479f6d90ba5677c6b10b50c00c3512547cc5de4c83ba7c558",
+          "byte_exact": true
+        },
+        "CombatEngine.damage_bounds": {
+          "after_sha256": "2a9598bc7647193735857ff68bbf9e865f7433432fe604cd29e45d34bb266e2c",
+          "before_sha256": "2a9598bc7647193735857ff68bbf9e865f7433432fe604cd29e45d34bb266e2c",
+          "byte_exact": true
+        },
+        "CombatEngine.damage_nonitem": {
+          "after_sha256": "058f0ce7689d8a098bc89135a85f5c929ac85b541b4740e6ccc27863c3c93597",
+          "before_sha256": "058f0ce7689d8a098bc89135a85f5c929ac85b541b4740e6ccc27863c3c93597",
+          "byte_exact": true
+        },
+        "CombatEngine.death": {
+          "after_sha256": "83b1f7bae453d47415ea1373fe24c3bb609214ab96723872bd0f8d6e6dbc0460",
+          "before_sha256": "83b1f7bae453d47415ea1373fe24c3bb609214ab96723872bd0f8d6e6dbc0460",
+          "byte_exact": true
+        },
+        "CombatEngine.drain_stamina": {
+          "after_sha256": "f7273747f6631e704137a393ce299c029d2c03232a4faca4264bfcfd188979cb",
+          "before_sha256": "f7273747f6631e704137a393ce299c029d2c03232a4faca4264bfcfd188979cb",
+          "byte_exact": true
+        },
+        "CombatEngine.emit": {
+          "after_sha256": "05120af9660043f33454fbee0106fe0d6e73e23308851be2e32db5fcb4d0b796",
+          "before_sha256": "05120af9660043f33454fbee0106fe0d6e73e23308851be2e32db5fcb4d0b796",
+          "byte_exact": true
+        },
+        "CombatEngine.emit_event": {
+          "after_sha256": "1aff9d382b52f073a917f74d349465591ef4d02e2efabdf64eb58f723c84b655",
+          "before_sha256": "1aff9d382b52f073a917f74d349465591ef4d02e2efabdf64eb58f723c84b655",
+          "byte_exact": true
+        },
+        "CombatEngine.empty_affected_cells": {
+          "after_sha256": "1905469bdf059c56833b68c4fd9379d16b3e781c2cec239170ddfc3ea29232ac",
+          "before_sha256": "1905469bdf059c56833b68c4fd9379d16b3e781c2cec239170ddfc3ea29232ac",
+          "byte_exact": true
+        },
+        "CombatEngine.end_battle_rage": {
+          "after_sha256": "ab87b72dbf311831165a0a258bb9dd698dc20d16921ab1871905028afa72fe2e",
+          "before_sha256": "ab87b72dbf311831165a0a258bb9dd698dc20d16921ab1871905028afa72fe2e",
+          "byte_exact": true
+        },
+        "CombatEngine.end_stun": {
+          "after_sha256": "3d9e9c1edcb49cd6a3cba003951a063731267828eac1169176b62cfb38623a5c",
+          "before_sha256": "3d9e9c1edcb49cd6a3cba003951a063731267828eac1169176b62cfb38623a5c",
+          "byte_exact": true
+        },
+        "CombatEngine.event_references": {
+          "after_sha256": "4953be9d76b5d4baf6c63ef69e92769adb6da3c85e044de96f8d06ef1cfa6446",
+          "before_sha256": "4953be9d76b5d4baf6c63ef69e92769adb6da3c85e044de96f8d06ef1cfa6446",
+          "byte_exact": true
+        },
+        "CombatEngine.extra_attack": {
+          "after_sha256": "00c89180b140ae4b1dfaeb69506423b50ccca3c1d764c3509f2ae2c79bdc112b",
+          "before_sha256": "00c89180b140ae4b1dfaeb69506423b50ccca3c1d764c3509f2ae2c79bdc112b",
+          "byte_exact": true
+        },
+        "CombatEngine.fatigue_tick": {
+          "after_sha256": "d59f504a15f589ccb3f117bbbe93b3bd9de9668c12801c4ea0d01818763fd816",
+          "before_sha256": "d59f504a15f589ccb3f117bbbe93b3bd9de9668c12801c4ea0d01818763fd816",
+          "byte_exact": true
+        },
+        "CombatEngine.finish": {
+          "after_sha256": "b99d1d00a3b79cc021048ffec81a2d7a50266e3db4a5e17c93cafe64c6bf763a",
+          "before_sha256": "b99d1d00a3b79cc021048ffec81a2d7a50266e3db4a5e17c93cafe64c6bf763a",
+          "byte_exact": true
+        },
+        "CombatEngine.flush_logging_queue": {
+          "after_sha256": "43e633366dbbe0c64a2b505495eb227fac0c3065a6d97a74b730319f251eb043",
+          "before_sha256": "43e633366dbbe0c64a2b505495eb227fac0c3065a6d97a74b730319f251eb043",
+          "byte_exact": true
+        },
+        "CombatEngine.gain_stacks_temporary": {
+          "after_sha256": "5566f96244bd32ac94b6976c74e14b3b5ef78374025b098985f4850282d243f4",
+          "before_sha256": "5566f96244bd32ac94b6976c74e14b3b5ef78374025b098985f4850282d243f4",
+          "byte_exact": true
+        },
+        "CombatEngine.get_most_stacks": {
+          "after_sha256": "438b144e49b1791e9c2463ca5c87ffaaba81b9fa466763195ec507976a956d91",
+          "before_sha256": "438b144e49b1791e9c2463ca5c87ffaaba81b9fa466763195ec507976a956d91",
+          "byte_exact": true
+        },
+        "CombatEngine.get_stack_fraction": {
+          "after_sha256": "c24e4578f4194aab1303277e1be2af7a37f7304cc240c645e7dc9b3203afffae",
+          "before_sha256": "c24e4578f4194aab1303277e1be2af7a37f7304cc240c645e7dc9b3203afffae",
+          "byte_exact": true
+        },
+        "CombatEngine.give_buff_power": {
+          "after_sha256": "be75a86fbd0ebb696f960ec4c4c247b2729d0975e546a5a5414511e51d75288f",
+          "before_sha256": "be75a86fbd0ebb696f960ec4c4c247b2729d0975e546a5a5414511e51d75288f",
+          "byte_exact": true
+        },
+        "CombatEngine.give_lucky": {
+          "after_sha256": "ede7017ac84c258583286438354e37ccd22eb7dc8628aa466ca7f854499934f8",
+          "before_sha256": "ede7017ac84c258583286438354e37ccd22eb7dc8628aa466ca7f854499934f8",
+          "byte_exact": true
+        },
+        "CombatEngine.give_max_health": {
+          "after_sha256": "8a089edcdba0b09aa4f3327e48c2d85feceaebba07c1867ea85a1c902cf027a7",
+          "before_sha256": "8a089edcdba0b09aa4f3327e48c2d85feceaebba07c1867ea85a1c902cf027a7",
+          "byte_exact": true
+        },
+        "CombatEngine.give_most_buffs": {
+          "after_sha256": "e6a0772f403b6a4be3f0c5cf761a3bed8a6563fa28c671a30e5fcffa03ab2493",
+          "before_sha256": "e6a0772f403b6a4be3f0c5cf761a3bed8a6563fa28c671a30e5fcffa03ab2493",
+          "byte_exact": true
+        },
+        "CombatEngine.give_random_buffs": {
+          "after_sha256": "08cce75fac1ec755d05e16ad09d54f36f03eb8402b7eb4c60332ed42bfe136ca",
+          "before_sha256": "08cce75fac1ec755d05e16ad09d54f36f03eb8402b7eb4c60332ed42bfe136ca",
+          "byte_exact": true
+        },
+        "CombatEngine.give_stack": {
+          "after_sha256": "2b917975701aabf03fb967a8e1370e446e7564568904ba1e3828f8cc004fe171",
+          "before_sha256": "2b917975701aabf03fb967a8e1370e446e7564568904ba1e3828f8cc004fe171",
+          "byte_exact": true
+        },
+        "CombatEngine.give_stacks_temporary": {
+          "after_sha256": "ea07ce05bc0ff6d2e4dc25a4e738c4612d957ebe6d958d50fd36b5d6208be62a",
+          "before_sha256": "ea07ce05bc0ff6d2e4dc25a4e738c4612d957ebe6d958d50fd36b5d6208be62a",
+          "byte_exact": true
+        },
+        "CombatEngine.give_stamina": {
+          "after_sha256": "2802edefd64f923dabc5cef18ca9ec4dc9e7bea702434d10655528c59defebf7",
+          "before_sha256": "2802edefd64f923dabc5cef18ca9ec4dc9e7bea702434d10655528c59defebf7",
+          "byte_exact": true
+        },
+        "CombatEngine.heal": {
+          "after_sha256": "e1cbdc2b88760606432b644c2fbba3b34cd0ddd52a64d57981411eb4e78010d7",
+          "before_sha256": "e1cbdc2b88760606432b644c2fbba3b34cd0ddd52a64d57981411eb4e78010d7",
+          "byte_exact": true
+        },
+        "CombatEngine.health_to_block": {
+          "after_sha256": "6175748e44faddbcfd95327dc166c51bd2b29d888527c0903afed5b998e39017",
+          "before_sha256": "6175748e44faddbcfd95327dc166c51bd2b29d888527c0903afed5b998e39017",
+          "byte_exact": true
+        },
+        "CombatEngine.inflict_random_debuffs": {
+          "after_sha256": "743f0b3ab8a471de3f7e24f5f35d5acdccfbe7ec8a5df84748152eb93f686423",
+          "before_sha256": "743f0b3ab8a471de3f7e24f5f35d5acdccfbe7ec8a5df84748152eb93f686423",
+          "byte_exact": true
+        },
+        "CombatEngine.inside_items": {
+          "after_sha256": "b6a5fc96a0addbb7edb9a452e376ad9fb58638073ec9af9b022de3b035c87aa5",
+          "before_sha256": "b6a5fc96a0addbb7edb9a452e376ad9fb58638073ec9af9b022de3b035c87aa5",
+          "byte_exact": true
+        },
+        "CombatEngine.invu_timeout": {
+          "after_sha256": "f72202d02a1a7e70df5c60018b198636126343433288ade57aae8deeb3604ecf",
+          "before_sha256": "f72202d02a1a7e70df5c60018b198636126343433288ade57aae8deeb3604ecf",
+          "byte_exact": true
+        },
+        "CombatEngine.is_battle_raging": {
+          "after_sha256": "6682c030732f7665b39966063f3037b48df48d9817ab361005ebca9e1f76a61f",
+          "before_sha256": "6682c030732f7665b39966063f3037b48df48d9817ab361005ebca9e1f76a61f",
+          "byte_exact": true
+        },
+        "CombatEngine.king_buff_timeout": {
+          "after_sha256": "3a1a27c62a1e9fe32e4a465b85be54a3bb7301fe8412a505c7fb17fbed078f56",
+          "before_sha256": "3a1a27c62a1e9fe32e4a465b85be54a3bb7301fe8412a505c7fb17fbed078f56",
+          "byte_exact": true
+        },
+        "CombatEngine.king_effect": {
+          "after_sha256": "319c43a76a47e57ef781d5dd0f9767ae37f68dfddc44bd7eb4ae5229e84dfe91",
+          "before_sha256": "319c43a76a47e57ef781d5dd0f9767ae37f68dfddc44bd7eb4ae5229e84dfe91",
+          "byte_exact": true
+        },
+        "CombatEngine.king_prepare": {
+          "after_sha256": "6846c1fa42c43761e268f09c6564266578785d9555d68d398da7577f3e7ed0f8",
+          "before_sha256": "6846c1fa42c43761e268f09c6564266578785d9555d68d398da7577f3e7ed0f8",
+          "byte_exact": true
+        },
+        "CombatEngine.king_set_state": {
+          "after_sha256": "613525504f032ec311b3d54a305221b2767557cea79881dbcb49c39395e31705",
+          "before_sha256": "613525504f032ec311b3d54a305221b2767557cea79881dbcb49c39395e31705",
+          "byte_exact": true
+        },
+        "CombatEngine.late_item_damage": {
+          "after_sha256": "cd68b035d827246b43f80135cf47372f816eeab406e8219f452abfcd1f286985",
+          "before_sha256": "cd68b035d827246b43f80135cf47372f816eeab406e8219f452abfcd1f286985",
+          "byte_exact": true
+        },
+        "CombatEngine.light_effect": {
+          "after_sha256": "4943340258669b36797add0ac36bef70f964fa77c726c69a2fd48b79db1b3d8b",
+          "before_sha256": "4943340258669b36797add0ac36bef70f964fa77c726c69a2fd48b79db1b3d8b",
+          "byte_exact": true
+        },
+        "CombatEngine.light_particle_timeout": {
+          "after_sha256": "3ac2abf2b40a80ef96e3433e8c30d9cb79771d27b32ce670b027ef25bbc75138",
+          "before_sha256": "3ac2abf2b40a80ef96e3433e8c30d9cb79771d27b32ce670b027ef25bbc75138",
+          "byte_exact": true
+        },
+        "CombatEngine.lose_health": {
+          "after_sha256": "f09a7b6213b2641586cc579c9aa6a378ed33b1de5188c075e1d9b2c0bf512a6e",
+          "before_sha256": "f09a7b6213b2641586cc579c9aa6a378ed33b1de5188c075e1d9b2c0bf512a6e",
+          "byte_exact": true
+        },
+        "CombatEngine.lucky_changed": {
+          "after_sha256": "db06e7033ed1ce6bb37031bb68baf4cc9f031adc6b94c3dcbb7e1e411f424ce2",
+          "before_sha256": "db06e7033ed1ce6bb37031bb68baf4cc9f031adc6b94c3dcbb7e1e411f424ce2",
+          "byte_exact": true
+        },
+        "CombatEngine.make_invulnerable": {
+          "after_sha256": "4b1970893087aea433c5677d2ab2cecf1a67213a883d3eb14cf3af92b9323a7c",
+          "before_sha256": "4b1970893087aea433c5677d2ab2cecf1a67213a883d3eb14cf3af92b9323a7c",
+          "byte_exact": true
+        },
+        "CombatEngine.mark_schedule": {
+          "after_sha256": "30929553b138d0a77657dc67860ec8e5a737ba49423003d6a67bc9436c6466a9",
+          "before_sha256": "30929553b138d0a77657dc67860ec8e5a737ba49423003d6a67bc9436c6466a9",
+          "byte_exact": true
+        },
+        "CombatEngine.multiply_buffs_limit": {
+          "after_sha256": "fdd2b72ee3faaae0bd79bb7fa8888b611195757f1d54d2931d4a8c6ce4078d97",
+          "before_sha256": "fdd2b72ee3faaae0bd79bb7fa8888b611195757f1d54d2931d4a8c6ce4078d97",
+          "byte_exact": true
+        },
+        "CombatEngine.new_caller_target_caches": {
+          "after_sha256": "2e983522f8eecf728e282414322da3a7555080a21c6d6db50c127a66c94beeb6",
+          "before_sha256": "2e983522f8eecf728e282414322da3a7555080a21c6d6db50c127a66c94beeb6",
+          "byte_exact": true
+        },
+        "CombatEngine.new_steel_secondary_caches": {
+          "after_sha256": "3a2dbb866cde79f2cd4c34b47365b9295c609b1ee8bd30ebeac4a0809f907865",
+          "before_sha256": "3a2dbb866cde79f2cd4c34b47365b9295c609b1ee8bd30ebeac4a0809f907865",
+          "byte_exact": true
+        },
+        "CombatEngine.on_battle_rage": {
+          "after_sha256": "f8c536dd181b35ad0aa3cc46f5c3f5f6e35544feebdd263d7a450c21e87465e9",
+          "before_sha256": "f8c536dd181b35ad0aa3cc46f5c3f5f6e35544feebdd263d7a450c21e87465e9",
+          "byte_exact": true
+        },
+        "CombatEngine.on_character_attacked": {
+          "after_sha256": "37877e1f46f1f150ce20c6b71c387e4f36c2eceafd6bf2f2d38c3549ce2cc8c9",
+          "before_sha256": "37877e1f46f1f150ce20c6b71c387e4f36c2eceafd6bf2f2d38c3549ce2cc8c9",
+          "byte_exact": true
+        },
+        "CombatEngine.on_character_damaged": {
+          "after_sha256": "59a2710ee580a0adffafb1084a8102b980be7d10a8ee4adf4cec6575be89ee9b",
+          "before_sha256": "59a2710ee580a0adffafb1084a8102b980be7d10a8ee4adf4cec6575be89ee9b",
+          "byte_exact": true
+        },
+        "CombatEngine.on_character_healed": {
+          "after_sha256": "50c92f61100f7a94cb9906aa26edf80d38d2debe74c36da3f3990c8da773910e",
+          "before_sha256": "50c92f61100f7a94cb9906aa26edf80d38d2debe74c36da3f3990c8da773910e",
+          "byte_exact": true
+        },
+        "CombatEngine.on_goobert_item_activated": {
+          "after_sha256": "02a1dffd63d1ef26de1dd85bb34d8095bcc9bf865ef7d9b51a95b178eeed74cb",
+          "before_sha256": "02a1dffd63d1ef26de1dd85bb34d8095bcc9bf865ef7d9b51a95b178eeed74cb",
+          "byte_exact": true
+        },
+        "CombatEngine.on_item_dealt_damage": {
+          "after_sha256": "78b0334ea4d227e9a454a74d36da26b035bdb3ff3f7ee3c9924c0f9ce2c9e34c",
+          "before_sha256": "78b0334ea4d227e9a454a74d36da26b035bdb3ff3f7ee3c9924c0f9ce2c9e34c",
+          "byte_exact": true
+        },
+        "CombatEngine.on_mana_changed": {
+          "after_sha256": "d27c80045d23518e6819199b56d142280e689e62bfd68eb700524ec766d2cb02",
+          "before_sha256": "d27c80045d23518e6819199b56d142280e689e62bfd68eb700524ec766d2cb02",
+          "byte_exact": true
+        },
+        "CombatEngine.on_opponent_heal": {
+          "after_sha256": "bbe535e0fcfddc6259a6234e2ae6ab5197a9b3be715fab13df0046b72e0b0bfd",
+          "before_sha256": "bbe535e0fcfddc6259a6234e2ae6ab5197a9b3be715fab13df0046b72e0b0bfd",
+          "byte_exact": true
+        },
+        "CombatEngine.on_stack_changed": {
+          "after_sha256": "fa103fe1d81f6cf26335998a094ee7291517319a8eff199df9c087681628bb00",
+          "before_sha256": "fa103fe1d81f6cf26335998a094ee7291517319a8eff199df9c087681628bb00",
+          "byte_exact": true
+        },
+        "CombatEngine.pick_random_stacks": {
+          "after_sha256": "32ef03ec2030d410ac39972be8947d6ba3cfefe33c733321e50a5ef8b79d57ea",
+          "before_sha256": "32ef03ec2030d410ac39972be8947d6ba3cfefe33c733321e50a5ef8b79d57ea",
+          "byte_exact": true
+        },
+        "CombatEngine.pick_random_stacks_to_give": {
+          "after_sha256": "2554a7967c932d60eadc9376a9c04e3e1c23a1bb1d379d14cf67349ae24aea9f",
+          "before_sha256": "2554a7967c932d60eadc9376a9c04e3e1c23a1bb1d379d14cf67349ae24aea9f",
+          "byte_exact": true
+        },
+        "CombatEngine.pre_item_damage": {
+          "after_sha256": "96db4d5f666772f1e04714d1cd886382d9ce84f649262fe011d404dc103f8d49",
+          "before_sha256": "96db4d5f666772f1e04714d1cd886382d9ce84f649262fe011d404dc103f8d49",
+          "byte_exact": true
+        },
+        "CombatEngine.prepare_only": {
+          "after_sha256": "2b24f36b36ca21badf15c77f70559adca006ba5805542d886670cdc04a2e7e06",
+          "before_sha256": "c37175397412a8af6038b0a1e4b992b27ccb4ecd176eb5e1c9816eb02fa17bad",
+          "byte_exact": false
+        },
+        "CombatEngine.rainbow_effect": {
+          "after_sha256": "5fdb86b18b7c9e23e325b304668c28eb49019f85a8cbfff8eb1140966e83db2d",
+          "before_sha256": "5fdb86b18b7c9e23e325b304668c28eb49019f85a8cbfff8eb1140966e83db2d",
+          "byte_exact": true
+        },
+        "CombatEngine.remove_buffs_fraction": {
+          "after_sha256": "c2230e17864430eaac888edd28e4c461f79f8c2c6b55d6194005be1a3e0e4d0d",
+          "before_sha256": "c2230e17864430eaac888edd28e4c461f79f8c2c6b55d6194005be1a3e0e4d0d",
+          "byte_exact": true
+        },
+        "CombatEngine.remove_random_buffs": {
+          "after_sha256": "e89b156a3fd10e5c8951398b18e81ed848254c4acab3361aa54deff4489cc901",
+          "before_sha256": "e89b156a3fd10e5c8951398b18e81ed848254c4acab3361aa54deff4489cc901",
+          "byte_exact": true
+        },
+        "CombatEngine.remove_stack": {
+          "after_sha256": "ff7b0fe7bf8738900a8302a3e87a01a0b031bb0f719ec6a34427e4ed4d84efff",
+          "before_sha256": "ff7b0fe7bf8738900a8302a3e87a01a0b031bb0f719ec6a34427e4ed4d84efff",
+          "byte_exact": true
+        },
+        "CombatEngine.result": {
+          "after_sha256": "1f367d89f83c2b1827beaf9a6f68c5f26da233ec61ba606d7cdfe6e2aed556de",
+          "before_sha256": "c02cfdffaf6b4243329307a4cecb4dad46b35daa1794f56102d3333a87a4430e",
+          "byte_exact": false
+        },
+        "CombatEngine.roll_item_chance": {
+          "after_sha256": "b055ab12d125cb52ac45131ee34cee946845facce6a2afeccd7d664cbc110b82",
+          "before_sha256": "b055ab12d125cb52ac45131ee34cee946845facce6a2afeccd7d664cbc110b82",
+          "byte_exact": true
+        },
+        "CombatEngine.ruby_effect": {
+          "after_sha256": "408811977e0ccf77c8baee443d3b0d8eaf4d33a81fe8e9614bb7de63acd9ff7c",
+          "before_sha256": "408811977e0ccf77c8baee443d3b0d8eaf4d33a81fe8e9614bb7de63acd9ff7c",
+          "byte_exact": true
+        },
+        "CombatEngine.run": {
+          "after_sha256": "628ce70964b94493bd16e1d4180a9b30bbb03754704cd78678ac7ff92c633088",
+          "before_sha256": "628ce70964b94493bd16e1d4180a9b30bbb03754704cd78678ac7ff92c633088",
+          "byte_exact": true
+        },
+        "CombatEngine.set_item_state": {
+          "after_sha256": "470b9c0d6e83ce06c7a159315f1cd2e8b33dbe350363b5d65b70b63552494486",
+          "before_sha256": "470b9c0d6e83ce06c7a159315f1cd2e8b33dbe350363b5d65b70b63552494486",
+          "byte_exact": true
+        },
+        "CombatEngine.set_logging_mode": {
+          "after_sha256": "d8d1fe98dce636efb38410a1dfdfe5407abfbd08939d6ab22dfdc768299c0e7f",
+          "before_sha256": "d8d1fe98dce636efb38410a1dfdfe5407abfbd08939d6ab22dfdc768299c0e7f",
+          "byte_exact": true
+        },
+        "CombatEngine.shield_after_attack": {
+          "after_sha256": "3299aa2712eb0a456dc0c3fb6a7fcdd4d019bcbca3c64529fd9566502d7a4d01",
+          "before_sha256": "3299aa2712eb0a456dc0c3fb6a7fcdd4d019bcbca3c64529fd9566502d7a4d01",
+          "byte_exact": true
+        },
+        "CombatEngine.shield_before_damage": {
+          "after_sha256": "c1ea92867f5f382ffb1ceae2cfe873822520773708807b3de7392bc52b61e53c",
+          "before_sha256": "c1ea92867f5f382ffb1ceae2cfe873822520773708807b3de7392bc52b61e53c",
+          "byte_exact": true
+        },
+        "CombatEngine.snapshot": {
+          "after_sha256": "ea915366315a8584b33887c137fdc741f53867a3b1ec530808d100a0f1b065d9",
+          "before_sha256": "ea915366315a8584b33887c137fdc741f53867a3b1ec530808d100a0f1b065d9",
+          "byte_exact": true
+        },
+        "CombatEngine.special_goobert_effect": {
+          "after_sha256": "01e927759855c81778a1d499f71c51440d73072c2f62114c060db835df50c7c4",
+          "before_sha256": "01e927759855c81778a1d499f71c51440d73072c2f62114c060db835df50c7c4",
+          "byte_exact": true
+        },
+        "CombatEngine.speed": {
+          "after_sha256": "aa0fb0b392258e44dfb8ea4779f8ed8f257ec3333e37557250d8c40b641653eb",
+          "before_sha256": "aa0fb0b392258e44dfb8ea4779f8ed8f257ec3333e37557250d8c40b641653eb",
+          "byte_exact": true
+        },
+        "CombatEngine.stack_event": {
+          "after_sha256": "299a935d90bfc862bbaeb7198e3cc2830b377363f7414b1d82d5c21c4bd36953",
+          "before_sha256": "299a935d90bfc862bbaeb7198e3cc2830b377363f7414b1d82d5c21c4bd36953",
+          "byte_exact": true
+        },
+        "CombatEngine.start_battle_rage": {
+          "after_sha256": "7c718ec9b2289af35b97036d852a7b755e56ab32ad5eca3554ae4239b55c20ca",
+          "before_sha256": "7c718ec9b2289af35b97036d852a7b755e56ab32ad5eca3554ae4239b55c20ca",
+          "byte_exact": true
+        },
+        "CombatEngine.steal_buffs_fraction": {
+          "after_sha256": "bc94e6f519c17b405a85322cb3b445dfbd8ed527c6bd8345cd87c76185be193e",
+          "before_sha256": "bc94e6f519c17b405a85322cb3b445dfbd8ed527c6bd8345cd87c76185be193e",
+          "byte_exact": true
+        },
+        "CombatEngine.steal_life": {
+          "after_sha256": "789756f4eae3f65e1a7ad213a18f647e47e5ee8d85f541bd55617e2ffceed9c3",
+          "before_sha256": "789756f4eae3f65e1a7ad213a18f647e47e5ee8d85f541bd55617e2ffceed9c3",
+          "byte_exact": true
+        },
+        "CombatEngine.steal_random_buff": {
+          "after_sha256": "f8281220a9528425cb123e254f037457a70a0ed65bc4eaa00bf0ce9d951a31db",
+          "before_sha256": "f8281220a9528425cb123e254f037457a70a0ed65bc4eaa00bf0ce9d951a31db",
+          "byte_exact": true
+        },
+        "CombatEngine.steal_stack": {
+          "after_sha256": "f3e9f6cf199e2e81e58fae2d85eef90f19660c7406061ef030057723bc0a6633",
+          "before_sha256": "f3e9f6cf199e2e81e58fae2d85eef90f19660c7406061ef030057723bc0a6633",
+          "byte_exact": true
+        },
+        "CombatEngine.step": {
+          "after_sha256": "1aba741b23ade4984ceddde0fb648563e2095a43be0ec73b7da98a64fb0b901f",
+          "before_sha256": "1aba741b23ade4984ceddde0fb648563e2095a43be0ec73b7da98a64fb0b901f",
+          "byte_exact": true
+        },
+        "CombatEngine.stun": {
+          "after_sha256": "dc8724049e7a8c3bb3c1c15e5e4e70157844ce3c8713b44a4505e4a4ad85fd62",
+          "before_sha256": "dc8724049e7a8c3bb3c1c15e5e4e70157844ce3c8713b44a4505e4a4ad85fd62",
+          "byte_exact": true
+        },
+        "CombatEngine.take_effect_damage": {
+          "after_sha256": "370dd0134faa743bcd97a14acb82e4cb07cdf6083ee06dd1eebb0ad44457058e",
+          "before_sha256": "370dd0134faa743bcd97a14acb82e4cb07cdf6083ee06dd1eebb0ad44457058e",
+          "byte_exact": true
+        },
+        "CombatEngine.trigger": {
+          "after_sha256": "b03aeabde57b32c1a4b29eb53ed873f1e4c9ab9873e6ce8f8b748ac7b1697f95",
+          "before_sha256": "b03aeabde57b32c1a4b29eb53ed873f1e4c9ab9873e6ce8f8b748ac7b1697f95",
+          "byte_exact": true
+        },
+        "CombatEngine.trigger_potion": {
+          "after_sha256": "b286a71017fabbbe9818ca50f7a5f507de40a02e317c097ddc00198c6f2bb24b",
+          "before_sha256": "b286a71017fabbbe9818ca50f7a5f507de40a02e317c097ddc00198c6f2bb24b",
+          "byte_exact": true
+        },
+        "CombatEngine.try_use_mana": {
+          "after_sha256": "974889bf65a3efc19394444c27c350e7dd8b6e15b9f0f80e128a3706d4650905",
+          "before_sha256": "974889bf65a3efc19394444c27c350e7dd8b6e15b9f0f80e128a3706d4650905",
+          "byte_exact": true
+        },
+        "CombatEngine.use_random_buffs": {
+          "after_sha256": "d86c6ec5861984631d0747ce03954ff8f823ae0e76384f1aab5852f882f505aa",
+          "before_sha256": "d86c6ec5861984631d0747ce03954ff8f823ae0e76384f1aab5852f882f505aa",
+          "byte_exact": true
+        },
+        "CombatEngine.use_stack": {
+          "after_sha256": "04fabae312a2221961d473533e361a4a4f80099e2bf71eb19586f401a1a58b35",
+          "before_sha256": "04fabae312a2221961d473533e361a4a4f80099e2bf71eb19586f401a1a58b35",
+          "byte_exact": true
+        },
+        "CombatEngine.weapon_attack": {
+          "after_sha256": "f9a2a331231725bc93dde2f063b64c7f7d055325e30bdbf34d25ab739747387e",
+          "before_sha256": "f9a2a331231725bc93dde2f063b64c7f7d055325e30bdbf34d25ab739747387e",
+          "byte_exact": true
+        },
+        "EngineFrameDriver.__init__": {
+          "after_sha256": "0c338f73bae729bb618a7d130538886baad73b42886f62643f643c52183c7920",
+          "before_sha256": "0c338f73bae729bb618a7d130538886baad73b42886f62643f643c52183c7920",
+          "byte_exact": true
+        },
+        "EngineFrameDriver._util_idle": {
+          "after_sha256": "a40a322fe8cebcaa10a3683b63a2fff6bbb47d39c1812d73257af587bad16cbb",
+          "before_sha256": "a40a322fe8cebcaa10a3683b63a2fff6bbb47d39c1812d73257af587bad16cbb",
+          "byte_exact": true
+        },
+        "EngineFrameDriver._util_physics": {
+          "after_sha256": "a251302e4e119910231dcee513362b895c38d981917628ca47de2cb3f150ceb8",
+          "before_sha256": "a251302e4e119910231dcee513362b895c38d981917628ca47de2cb3f150ceb8",
+          "byte_exact": true
+        },
+        "EngineFrameDriver.snapshot": {
+          "after_sha256": "cd2c9aa0ba146ef2c2ccb5ae80d3f108391acbf939e959d0876705ce4c4fc1ea",
+          "before_sha256": "cd2c9aa0ba146ef2c2ccb5ae80d3f108391acbf939e959d0876705ce4c4fc1ea",
+          "byte_exact": true
+        },
+        "Fixed60Passes.__getitem__": {
+          "after_sha256": "2121d9e26c376ff68480db66abea042d5c6c6d52ffbc32591ac400ddd260579d",
+          "before_sha256": "2121d9e26c376ff68480db66abea042d5c6c6d52ffbc32591ac400ddd260579d",
+          "byte_exact": true
+        },
+        "Fixed60Passes.__len__": {
+          "after_sha256": "dd21b7cc61be6475d8942e16859803803e6d0ab429a79ee5f86aeb039dd23bcc",
+          "before_sha256": "dd21b7cc61be6475d8942e16859803803e6d0ab429a79ee5f86aeb039dd23bcc",
+          "byte_exact": true
+        },
+        "HeadlessKingFrameDriver.__init__": {
+          "after_sha256": "6ade424ec849e231344d002c1900368d8395440b255c2eb4c85be4fdbf2f01b1",
+          "before_sha256": "6ade424ec849e231344d002c1900368d8395440b255c2eb4c85be4fdbf2f01b1",
+          "byte_exact": true
+        },
+        "HeadlessKingFrameDriver.complete": {
+          "after_sha256": "27f463597435fabefaefe3d46978c9ed799612b37be88ceb11b74cc584860c3d",
+          "before_sha256": "27f463597435fabefaefe3d46978c9ed799612b37be88ceb11b74cc584860c3d",
+          "byte_exact": true
+        },
+        "ItemState.can_activate": {
+          "after_sha256": "0ca36c7f804023772495137d6b70730216c41e7d721621114421acb14d8787fe",
+          "before_sha256": "0ca36c7f804023772495137d6b70730216c41e7d721621114421acb14d8787fe",
+          "byte_exact": true
+        },
+        "ItemState.can_damage": {
+          "after_sha256": "966d2099bd1431628326a93a6560e1c353336993fb791a5a54eaa44fc1e49336",
+          "before_sha256": "966d2099bd1431628326a93a6560e1c353336993fb791a5a54eaa44fc1e49336",
+          "byte_exact": true
+        },
+        "ItemState.definition": {
+          "after_sha256": "e329969110faa56ae2b2bf6277503861886117a5ec2c1aa26eea13e4515617a5",
+          "before_sha256": "e329969110faa56ae2b2bf6277503861886117a5ec2c1aa26eea13e4515617a5",
+          "byte_exact": true
+        },
+        "ItemState.has_cooldown": {
+          "after_sha256": "9067971f7fa3928897019d5e93db062efadc25688922cf64983a585ec428a77b",
+          "before_sha256": "9067971f7fa3928897019d5e93db062efadc25688922cf64983a585ec428a77b",
+          "byte_exact": true
+        },
+        "ItemState.logs_cooldown": {
+          "after_sha256": "ed418b12fe6086eb32200b0da94500d31b4f09673a015dad7434147255eb5dd5",
+          "before_sha256": "ed418b12fe6086eb32200b0da94500d31b4f09673a015dad7434147255eb5dd5",
+          "byte_exact": true
+        },
+        "_assert_pure441_timer": {
+          "after_sha256": "1079cf80db46ac3202a9597ebd48f4eb998a9accb161fd79e0d41ae80c954421",
+          "before_sha256": "1079cf80db46ac3202a9597ebd48f4eb998a9accb161fd79e0d41ae80c954421",
+          "byte_exact": true
+        },
+        "_be_float": {
+          "after_sha256": "e3b33fb3e9312e2db3ea33c3b0b45a2f895421cbd725c2e1f4d05452dd92ed21",
+          "before_sha256": "e3b33fb3e9312e2db3ea33c3b0b45a2f895421cbd725c2e1f4d05452dd92ed21",
+          "byte_exact": true
+        },
+        "_build_pure441_scaffold": {
+          "after_sha256": "d9875acfc11b406bfbe4e9d8998f322f51ca2c0d58fa9f2080982a919552b4eb",
+          "before_sha256": "d9875acfc11b406bfbe4e9d8998f322f51ca2c0d58fa9f2080982a919552b4eb",
+          "byte_exact": true
+        },
+        "_build_source_pure_scaffold": {
+          "after_sha256": "e90016c7995ab24641c628bac2ff2b6c8a01a1e40f1bbbb72aa0a90134a43d2b",
+          "before_sha256": "e90016c7995ab24641c628bac2ff2b6c8a01a1e40f1bbbb72aa0a90134a43d2b",
+          "byte_exact": true
+        },
+        "_fixture_from_custom_side": {
+          "after_sha256": "4f56a1c456faeb039b1754865355b2e739ac4194cedc8137a14ba6c462710fa0",
+          "before_sha256": "4f56a1c456faeb039b1754865355b2e739ac4194cedc8137a14ba6c462710fa0",
+          "byte_exact": true
+        },
+        "_float_bits": {
+          "after_sha256": "564291eebbf37bfd31fa1e3ef0e90bb3847eda8108a711ca029a36a7d8a8c5b8",
+          "before_sha256": "564291eebbf37bfd31fa1e3ef0e90bb3847eda8108a711ca029a36a7d8a8c5b8",
+          "byte_exact": true
+        },
+        "_has_king": {
+          "after_sha256": "af8df30401e8bf15c427342d85a93c40421144a04349daa68a19a32281f54100",
+          "before_sha256": "af8df30401e8bf15c427342d85a93c40421144a04349daa68a19a32281f54100",
+          "byte_exact": true
+        },
+        "_has_rage": {
+          "after_sha256": "e6bc99dea278c9f086f8bee18ff76042d1deb1c113caea84d0f8eae486866539",
+          "before_sha256": "e6bc99dea278c9f086f8bee18ff76042d1deb1c113caea84d0f8eae486866539",
+          "byte_exact": true
+        },
+        "_integration_domain": {
+          "after_sha256": "759c93be53bb713ad51af0de9dde78017c8a05faed5d6728ade274e73dd7be7b",
+          "before_sha256": "3325c9532eb3cc4ed6e29a5a13f20970301edffc20e012447d49583537b6d394",
+          "byte_exact": false
+        },
+        "_keys": {
+          "after_sha256": "fc83dc2c40f5bc53b9982f297a3c76837555978d832dc0561668912aa7366436",
+          "before_sha256": "fc83dc2c40f5bc53b9982f297a3c76837555978d832dc0561668912aa7366436",
+          "byte_exact": true
+        },
+        "_king_particle_facts": {
+          "after_sha256": "28dafc10323699ad669cd7de66ff4a6f5ed034449ec3f0fda8225263e362210e",
+          "before_sha256": "28dafc10323699ad669cd7de66ff4a6f5ed034449ec3f0fda8225263e362210e",
+          "byte_exact": true
+        },
+        "_pure441_profile": {
+          "after_sha256": "0d03afdb705a52d3c503a31fb1aaed9ed7a4f2b6a1888de0998782a77f6bb657",
+          "before_sha256": "0d03afdb705a52d3c503a31fb1aaed9ed7a4f2b6a1888de0998782a77f6bb657",
+          "byte_exact": true
+        },
+        "_pure441_roles": {
+          "after_sha256": "a8aebf5830f7aac9e15a53867e09897e5f957c946d8b102534ef46b13a6fae45",
+          "before_sha256": "a8aebf5830f7aac9e15a53867e09897e5f957c946d8b102534ef46b13a6fae45",
+          "byte_exact": true
+        },
+        "_pure441_variant": {
+          "after_sha256": "b5724279bc70167918a68e0e6ebdeebb2229457089fbffcd390eb52c108ddf40",
+          "before_sha256": "b5724279bc70167918a68e0e6ebdeebb2229457089fbffcd390eb52c108ddf40",
+          "byte_exact": true
+        },
+        "_required_roles": {
+          "after_sha256": "b10f00dd785f54ebebd2ef6677a15e2767672eb0bc3b561e357d63839205457e",
+          "before_sha256": "b10f00dd785f54ebebd2ef6677a15e2767672eb0bc3b561e357d63839205457e",
+          "byte_exact": true
+        },
+        "_single_king_genuine_profile": {
+          "after_sha256": "f15fd09d03f10294cbbccf13b1106865ce5457cd636f3e8205f436f92f350723",
+          "before_sha256": "f15fd09d03f10294cbbccf13b1106865ce5457cd636f3e8205f436f92f350723",
+          "byte_exact": true
+        },
+        "_source_king_bootstrap_clock": {
+          "after_sha256": "d9a56757b27476b62b1f416d53c6fa9172043ab890e0bfdded599e71278b0295",
+          "before_sha256": "d9a56757b27476b62b1f416d53c6fa9172043ab890e0bfdded599e71278b0295",
+          "byte_exact": true
+        },
+        "_source_king_data": {
+          "after_sha256": "9a1c8e4e7e3799c61fa378247b6803f4af03fe9b02960ab42d068fe5111a305b",
+          "before_sha256": "9a1c8e4e7e3799c61fa378247b6803f4af03fe9b02960ab42d068fe5111a305b",
+          "byte_exact": true
+        },
+        "_source_king_equal": {
+          "after_sha256": "b3da588771519f9e374c24923be96d15ac04e59a592e99f5944ade16736ccc86",
+          "before_sha256": "b3da588771519f9e374c24923be96d15ac04e59a592e99f5944ade16736ccc86",
+          "byte_exact": true
+        },
+        "_source_king_profile": {
+          "after_sha256": "847b609ee8a8c20ea8b06ff8b9bdde681fc6f26567a2aadb6ffe79ee844c9754",
+          "before_sha256": "847b609ee8a8c20ea8b06ff8b9bdde681fc6f26567a2aadb6ffe79ee844c9754",
+          "byte_exact": true
+        },
+        "_source_pure_data": {
+          "after_sha256": "9a9f2189ce6d0afaf41ad1c3911447b2986c70307e8d78b2fa59b62716c8b911",
+          "before_sha256": "9a9f2189ce6d0afaf41ad1c3911447b2986c70307e8d78b2fa59b62716c8b911",
+          "byte_exact": true
+        },
+        "_source_pure_profile": {
+          "after_sha256": "f9f72a5cde0955d770cfdb5ecab2f3fb24d24c7ffb0835eace33936d891b7fda",
+          "before_sha256": "f9f72a5cde0955d770cfdb5ecab2f3fb24d24c7ffb0835eace33936d891b7fda",
+          "byte_exact": true
+        },
+        "_source_pure_roles": {
+          "after_sha256": "9b99f0798f0bd93ec9a481b10a54a4d61561ef28285a44c99c7708389eec8388",
+          "before_sha256": "9b99f0798f0bd93ec9a481b10a54a4d61561ef28285a44c99c7708389eec8388",
+          "byte_exact": true
+        },
+        "_synthetic_runtime_data": {
+          "after_sha256": "213ba5bfb2f856f646a5c37c8babd89ddf71ab26636e86101c056a766d39fb12",
+          "before_sha256": "213ba5bfb2f856f646a5c37c8babd89ddf71ab26636e86101c056a766d39fb12",
+          "byte_exact": true
+        },
+        "_validate_processing_inputs": {
+          "after_sha256": "e9462895b58b762de9cfb95700fa0a171819c33a096e2453a216a29d37e5f5e0",
+          "before_sha256": "e9462895b58b762de9cfb95700fa0a171819c33a096e2453a216a29d37e5f5e0",
+          "byte_exact": true
+        },
+        "_validate_pure441_runtime": {
+          "after_sha256": "c6d56aeb816b4fa11ab24b7ead881e064e7bcdb52aea45d3836abfd6caa33d88",
+          "before_sha256": "c6d56aeb816b4fa11ab24b7ead881e064e7bcdb52aea45d3836abfd6caa33d88",
+          "byte_exact": true
+        },
+        "_validate_runtime_nodes": {
+          "after_sha256": "7e147a8a379cf542a7927709ac52d830c2d1f65e9ff6bba4e48eb6cf228c843d",
+          "before_sha256": "7e147a8a379cf542a7927709ac52d830c2d1f65e9ff6bba4e48eb6cf228c843d",
+          "byte_exact": true
+        },
+        "_validate_single_king_initials": {
+          "after_sha256": "301117633a648a0b9ab17828b9088993a4c33bea9819d950f6bf96b3c4a9f5af",
+          "before_sha256": "301117633a648a0b9ab17828b9088993a4c33bea9819d950f6bf96b3c4a9f5af",
+          "byte_exact": true
+        },
+        "_validate_single_king_processing_inputs": {
+          "after_sha256": "dcfc83b7abebfb545d76761c00a6c6f605a3a02960c801b0684b272796fd7c46",
+          "before_sha256": "dcfc83b7abebfb545d76761c00a6c6f605a3a02960c801b0684b272796fd7c46",
+          "byte_exact": true
+        },
+        "_validate_single_king_topology": {
+          "after_sha256": "38532f281dc09ebf7665db9d629b222b772d3e34ea58110aae64b24a34834638",
+          "before_sha256": "38532f281dc09ebf7665db9d629b222b772d3e34ea58110aae64b24a34834638",
+          "byte_exact": true
+        },
+        "_validate_source_king_runtime": {
+          "after_sha256": "11dd45c57fa567fd8320d23eccebd10ed3c0b7fff27148b5b860cdec2c9ddc99",
+          "before_sha256": "11dd45c57fa567fd8320d23eccebd10ed3c0b7fff27148b5b860cdec2c9ddc99",
+          "byte_exact": true
+        },
+        "_validate_source_pure_runtime": {
+          "after_sha256": "f6055af23073ccb0c05c7b2debc93379ea892541d0c67cc4452a24a31a96779a",
+          "before_sha256": "f6055af23073ccb0c05c7b2debc93379ea892541d0c67cc4452a24a31a96779a",
+          "byte_exact": true
+        },
+        "assert_model_source_stable": {
+          "after_sha256": "e3a24f6091617f20cdd3b40d29cb392013fcb3e5c99040d75139df7051180b0a",
+          "before_sha256": "e3a24f6091617f20cdd3b40d29cb392013fcb3e5c99040d75139df7051180b0a",
+          "byte_exact": true
+        },
+        "build_runtime_scaffold": {
+          "after_sha256": "7b99e688b347357990c91eece8677e6f911bea66ea62b668b525df9c7503f0e8",
+          "before_sha256": "c1fd8210f6cd34709eb6876418f3da389c8ba775dccbcd14fe99aa39f1781e53",
+          "byte_exact": false
+        },
+        "fixture_from_custom_opponent": {
+          "after_sha256": "dd7bb48d77d63de63d1bdc3ea6558dd0225276246a7167f5e65f409018a9bea0",
+          "before_sha256": "dd7bb48d77d63de63d1bdc3ea6558dd0225276246a7167f5e65f409018a9bea0",
+          "byte_exact": true
+        },
+        "fresh_buff_fields": {
+          "after_sha256": "fb8df6b49227c4765a8f9198106ec6a3e45605a636afdda904d636a3fe4329c8",
+          "before_sha256": "fb8df6b49227c4765a8f9198106ec6a3e45605a636afdda904d636a3fe4329c8",
+          "byte_exact": true
+        },
+        "model_source_hashes": {
+          "after_sha256": "828d7e6979d3b0c634ccc5f66b5a74818d79c3ffa9da67d56b5a94d37b5ee0e2",
+          "before_sha256": "828d7e6979d3b0c634ccc5f66b5a74818d79c3ffa9da67d56b5a94d37b5ee0e2",
+          "byte_exact": true
+        },
+        "occupied_cells": {
+          "after_sha256": "84df07760c210cda81e0cdeef3a4f729f24f80981879289ea5f862547fdfa07b",
+          "before_sha256": "84df07760c210cda81e0cdeef3a4f729f24f80981879289ea5f862547fdfa07b",
+          "byte_exact": true
+        },
+        "opponent_inventory_order": {
+          "after_sha256": "3565dbf939f21c670308362b62eb609603bf31e2832eb8b8fd2e069810cb438e",
+          "before_sha256": "3565dbf939f21c670308362b62eb609603bf31e2832eb8b8fd2e069810cb438e",
+          "byte_exact": true
+        },
+        "ordered_occupied_cells": {
+          "after_sha256": "8f1f33041e881a051976e53aa6543cfe886cc596f45329eae4632bce35285673",
+          "before_sha256": "8f1f33041e881a051976e53aa6543cfe886cc596f45329eae4632bce35285673",
+          "byte_exact": true
+        },
+        "source_king_fresh_defaults": {
+          "after_sha256": "b5e0be53d9cbf51cb9b90f1231adce31ec5460fb42e78e94da6ccc770e93aecd",
+          "before_sha256": "b5e0be53d9cbf51cb9b90f1231adce31ec5460fb42e78e94da6ccc770e93aecd",
+          "byte_exact": true
+        },
+        "source_king_policy": {
+          "after_sha256": "e3682ecbc58a81ece16733821c1d1b6d5ffbc22f30408970ad9d6362c1b753e9",
+          "before_sha256": "e3682ecbc58a81ece16733821c1d1b6d5ffbc22f30408970ad9d6362c1b753e9",
+          "byte_exact": true
+        },
+        "source_king_runtime_inputs": {
+          "after_sha256": "99f3a9ba2b5558fd063e671a032c0a8517cf77b0a73fe18868b8a82d552a5afb",
+          "before_sha256": "99f3a9ba2b5558fd063e671a032c0a8517cf77b0a73fe18868b8a82d552a5afb",
+          "byte_exact": true
+        },
+        "source_king_topology": {
+          "after_sha256": "e1997c51d5f42423a2fd8872e8927670761ceeda335a088ebed95563af30f8f8",
+          "before_sha256": "e1997c51d5f42423a2fd8872e8927670761ceeda335a088ebed95563af30f8f8",
+          "byte_exact": true
+        },
+        "source_pure_business_defaults": {
+          "after_sha256": "882ee86fe8a2ec2eaf05deaf5a90c6f7b2c169339d26e4b2b21aa9733ea9e19f",
+          "before_sha256": "882ee86fe8a2ec2eaf05deaf5a90c6f7b2c169339d26e4b2b21aa9733ea9e19f",
+          "byte_exact": true
+        },
+        "source_pure_policy": {
+          "after_sha256": "827771a4aa8561e514d5b5b2ac903ed7234956bfae3d0e2afd45b1b55e86f7bf",
+          "before_sha256": "827771a4aa8561e514d5b5b2ac903ed7234956bfae3d0e2afd45b1b55e86f7bf",
+          "byte_exact": true
+        },
+        "source_pure_runtime_inputs": {
+          "after_sha256": "e2af71a9af1609f70db8b128ceeecae9410cc02d21791f48155b1be2d69c8da1",
+          "before_sha256": "e2af71a9af1609f70db8b128ceeecae9410cc02d21791f48155b1be2d69c8da1",
+          "byte_exact": true
+        },
+        "source_pure_topology": {
+          "after_sha256": "4afa27e24235922d25c8751c0713a9e12a8b48e11b0242d55cc8c038a885d51a",
+          "before_sha256": "4afa27e24235922d25c8751c0713a9e12a8b48e11b0242d55cc8c038a885d51a",
+          "byte_exact": true
+        },
+        "starter_fixture": {
+          "after_sha256": "3c788ce1bf933dff2822801291c924bc2afcee07152ed2aca0075c3076154adc",
+          "before_sha256": "3c788ce1bf933dff2822801291c924bc2afcee07152ed2aca0075c3076154adc",
+          "byte_exact": true
+        },
+        "synthetic_king_runtime_inputs": {
+          "after_sha256": "6e30739a74d9d07ee630a46c25879d1f33f6fb464da50f1d4e31d29d3d4adeb4",
+          "before_sha256": "6e30739a74d9d07ee630a46c25879d1f33f6fb464da50f1d4e31d29d3d4adeb4",
+          "byte_exact": true
+        },
+        "synthetic_runtime_inputs": {
+          "after_sha256": "3076130cf93e978eb4fc9de5c3a2140ca3bea4e91412170fb18cc8bb1a12e888",
+          "before_sha256": "3076130cf93e978eb4fc9de5c3a2140ca3bea4e91412170fb18cc8bb1a12e888",
+          "byte_exact": true
+        },
+        "transformed_cells": {
+          "after_sha256": "e032f54e77134809d3fc34919c257fd158af84ca553dc44a2c21ad94507ed4f8",
+          "before_sha256": "e032f54e77134809d3fc34919c257fd158af84ca553dc44a2c21ad94507ed4f8",
+          "byte_exact": true
+        },
+        "validate_fixture": {
+          "after_sha256": "e679668ed31504cf9e6ec341729aaee1c881a69e4f695827646272b5f2aab5fe",
+          "before_sha256": "e679668ed31504cf9e6ec341729aaee1c881a69e4f695827646272b5f2aab5fe",
+          "byte_exact": true
+        },
+        "validate_runtime_inputs": {
+          "after_sha256": "526edf902e24ad7e5fb0e27b4aea2684d894779d5c36e3b0917310df19dbf178",
+          "before_sha256": "98d7925f56d48733614900f4ef73406a332803554f0c2abb89c048810743cd33",
+          "byte_exact": false
+        },
+        "validate_source_king_domain": {
+          "after_sha256": "c5f1ab4b576575179f7314073efd17bd4d542de55d05d2af013daf49997a32be",
+          "before_sha256": "c5f1ab4b576575179f7314073efd17bd4d542de55d05d2af013daf49997a32be",
+          "byte_exact": true
+        },
+        "validate_source_pure_business_domain": {
+          "after_sha256": "e4a265f0ce078ef713fbab234d47a7d52f21d8c0503f39f4619f4a7c9e3e13b8",
+          "before_sha256": "e4a265f0ce078ef713fbab234d47a7d52f21d8c0503f39f4619f4a7c9e3e13b8",
+          "byte_exact": true
+        }
+      },
+      "new_functions": [
+        "CombatEngine._validate_captured_constructed",
+        "CombatEngine._validate_captured_prepared",
+        "CombatEngine._validate_joint_captured_state",
+        "_joint_captured_profile",
+        "_joint_captured_roles",
+        "_validate_joint_captured_runtime"
+      ],
+      "removed_functions": []
+    },
+    "native_replay_v8/genuine.py": {
+      "changed_existing_functions": [
+        "observer_label",
+        "validate_profile",
+        "validate_result_profile"
+      ],
+      "function_pins": {
+        "_rng_decimal": {
+          "after_sha256": "1ea665c402f0b7fdf90fd5c1c551776714cdb54465775c1f150a3125b6faa5f6",
+          "before_sha256": "1ea665c402f0b7fdf90fd5c1c551776714cdb54465775c1f150a3125b6faa5f6",
+          "byte_exact": true
+        },
+        "_rng_int64": {
+          "after_sha256": "b569b4760b14038da2ab7146473384f9c3b11bca6be236e3e2167b5797b0b75e",
+          "before_sha256": "b569b4760b14038da2ab7146473384f9c3b11bca6be236e3e2167b5797b0b75e",
+          "byte_exact": true
+        },
+        "_rng_keys": {
+          "after_sha256": "18d5bf25b90d9c9a6082b30e4529bb9cd381d00af64839af1ae5b86734c02d53",
+          "before_sha256": "18d5bf25b90d9c9a6082b30e4529bb9cd381d00af64839af1ae5b86734c02d53",
+          "byte_exact": true
+        },
+        "_rng_real": {
+          "after_sha256": "258368beec5227b28e04899464726331795dd7d6e32c1b9ab121dc58ec1497aa",
+          "before_sha256": "258368beec5227b28e04899464726331795dd7d6e32c1b9ab121dc58ec1497aa",
+          "byte_exact": true
+        },
+        "_rng_validate_initial_checkpoint": {
+          "after_sha256": "8c7d5e1a046243474f2cbbc5613f61fdb97bc13a3d7fbd3d6bb92cb5812eefd7",
+          "before_sha256": "8c7d5e1a046243474f2cbbc5613f61fdb97bc13a3d7fbd3d6bb92cb5812eefd7",
+          "byte_exact": true
+        },
+        "_single_king_counter": {
+          "after_sha256": "f53d23db34450151961c7db128c102c5bba561d07c61b0f9d7b08430cf6f4e3e",
+          "before_sha256": "f53d23db34450151961c7db128c102c5bba561d07c61b0f9d7b08430cf6f4e3e",
+          "byte_exact": true
+        },
+        "_single_king_keys": {
+          "after_sha256": "04121c02033b6644f09440cd6e8904b217293380cc6713c73660126e0103d770",
+          "before_sha256": "04121c02033b6644f09440cd6e8904b217293380cc6713c73660126e0103d770",
+          "byte_exact": true
+        },
+        "_single_king_node": {
+          "after_sha256": "5f4f2c09de03b5dd02f02fb01f676682c62b0b0b25fd9c3f9638f10a64484874",
+          "before_sha256": "5f4f2c09de03b5dd02f02fb01f676682c62b0b0b25fd9c3f9638f10a64484874",
+          "byte_exact": true
+        },
+        "_single_king_particle": {
+          "after_sha256": "ce31755a84a0dcb23180d61c6b035ffbc1efd9c4eaddc24913bb030c9bc76353",
+          "before_sha256": "ce31755a84a0dcb23180d61c6b035ffbc1efd9c4eaddc24913bb030c9bc76353",
+          "byte_exact": true
+        },
+        "_single_king_real": {
+          "after_sha256": "9c680651718e36e1da50c1b722f224182bc78dba88559ec0821b2d9f1813b40f",
+          "before_sha256": "9c680651718e36e1da50c1b722f224182bc78dba88559ec0821b2d9f1813b40f",
+          "byte_exact": true
+        },
+        "_single_king_rng_checkpoint": {
+          "after_sha256": "17d445bf6a165db0fa3ef1f40e81f55561e15ce93c0a2f4ea3b92b2d059ce22a",
+          "before_sha256": "17d445bf6a165db0fa3ef1f40e81f55561e15ce93c0a2f4ea3b92b2d059ce22a",
+          "byte_exact": true
+        },
+        "_single_king_timer": {
+          "after_sha256": "f2cdabb327b0cb7b2865b9323ac2b4aa3b4771d149bd27a2c8b114322710b224",
+          "before_sha256": "f2cdabb327b0cb7b2865b9323ac2b4aa3b4771d149bd27a2c8b114322710b224",
+          "byte_exact": true
+        },
+        "_single_king_typed": {
+          "after_sha256": "16540332cbc38ab87c0edc3e15e543974add8ea8cabe22acb74a64ad81700059",
+          "before_sha256": "16540332cbc38ab87c0edc3e15e543974add8ea8cabe22acb74a64ad81700059",
+          "byte_exact": true
+        },
+        "_single_king_validate_ui": {
+          "after_sha256": "dd828d84736fceeb835c1ff6aa97f026ee7e783dec424c1c791ac836b0ef773b",
+          "before_sha256": "dd828d84736fceeb835c1ff6aa97f026ee7e783dec424c1c791ac836b0ef773b",
+          "byte_exact": true
+        },
+        "_ui_controls": {
+          "after_sha256": "478ca19e99652fd1a6a8cd72fd8f0a2e5764057ec65a85bc872f7cc7760d4e6c",
+          "before_sha256": "478ca19e99652fd1a6a8cd72fd8f0a2e5764057ec65a85bc872f7cc7760d4e6c",
+          "byte_exact": true
+        },
+        "_ui_exact": {
+          "after_sha256": "894c15968566e512d7f5c8b30b162fe33b7ab0683fdf795f57a85c4152135514",
+          "before_sha256": "894c15968566e512d7f5c8b30b162fe33b7ab0683fdf795f57a85c4152135514",
+          "byte_exact": true
+        },
+        "_ui_ident": {
+          "after_sha256": "f970cd07ce66008fa10a37b24420044e8f776833e5e607971e934a6ce3982b34",
+          "before_sha256": "f970cd07ce66008fa10a37b24420044e8f776833e5e607971e934a6ce3982b34",
+          "byte_exact": true
+        },
+        "_ui_integer": {
+          "after_sha256": "7286da3a7ae25ad5d3a37e2a3df78caf4db16ed6222362c8f6f76f9e52833c90",
+          "before_sha256": "7286da3a7ae25ad5d3a37e2a3df78caf4db16ed6222362c8f6f76f9e52833c90",
+          "byte_exact": true
+        },
+        "_ui_need": {
+          "after_sha256": "f019d679c3b7d08b536927e431c04462677816f825ff52a1816ff35412724572",
+          "before_sha256": "f019d679c3b7d08b536927e431c04462677816f825ff52a1816ff35412724572",
+          "byte_exact": true
+        },
+        "_ui_require_admission": {
+          "after_sha256": "53c01f4cda1d285002b5eb3447aa144c7ea026c23ea24dc9f5b546203525f8c5",
+          "before_sha256": "53c01f4cda1d285002b5eb3447aa144c7ea026c23ea24dc9f5b546203525f8c5",
+          "byte_exact": true
+        },
+        "_ui_validate_ui": {
+          "after_sha256": "86be7aa46435e65bf79f9c3a79744d1f9b011c784f442b91494e7871e397a753",
+          "before_sha256": "86be7aa46435e65bf79f9c3a79744d1f9b011c784f442b91494e7871e397a753",
+          "byte_exact": true
+        },
+        "canonical_sha": {
+          "after_sha256": "fee8b00e67dbe2156c491e7669b6edd0e4de1dd0469edf357722a1111285cc1a",
+          "before_sha256": "fee8b00e67dbe2156c491e7669b6edd0e4de1dd0469edf357722a1111285cc1a",
+          "byte_exact": true
+        },
+        "observer_label": {
+          "after_sha256": "77f218307dd2f8f07f01ee730da9eb2902a4f487aa8570172effb39923bcad60",
+          "before_sha256": "f5abd2e16d921c8d7d80554ce58cdab42e474f7dfc3a1f82e075369063d5e1c4",
+          "byte_exact": false
+        },
+        "require_single_king_admission": {
+          "after_sha256": "5ddd1b44015a9d6b29161ac7e30ecc3eeb70e6ecf78762d457de45bc417280c0",
+          "before_sha256": "5ddd1b44015a9d6b29161ac7e30ecc3eeb70e6ecf78762d457de45bc417280c0",
+          "byte_exact": true
+        },
+        "validate_headless_fixture": {
+          "after_sha256": "650476ae8fbddcd4fb268ccf06c496a1b3c8d61ff3d0d8a8c650a99eea27fa5c",
+          "before_sha256": "650476ae8fbddcd4fb268ccf06c496a1b3c8d61ff3d0d8a8c650a99eea27fa5c",
+          "byte_exact": true
+        },
+        "validate_king_input_provenance": {
+          "after_sha256": "cca3441f902e713382e30931330048a758a77e73e12fb663468835cd5bf7c74d",
+          "before_sha256": "cca3441f902e713382e30931330048a758a77e73e12fb663468835cd5bf7c74d",
+          "byte_exact": true
+        },
+        "validate_patch": {
+          "after_sha256": "e267d7e39084fc116331d8547fa2c7f92963c241959605153eb0848c736ab412",
+          "before_sha256": "e267d7e39084fc116331d8547fa2c7f92963c241959605153eb0848c736ab412",
+          "byte_exact": true
+        },
+        "validate_profile": {
+          "after_sha256": "ab72e99767cedaff53a720fce4922532bd283b43dcf715aeabeba324c6c45b75",
+          "before_sha256": "d73c5526811fd0b63347c850e9541d0c4ee8ff56ce7cd4c4147456d4a08d10c1",
+          "byte_exact": false
+        },
+        "validate_pure441_profile": {
+          "after_sha256": "fdc99e02bf77093d4c48cac294ddb37d864abd7e285a60bc59ad2a59016c2419",
+          "before_sha256": "fdc99e02bf77093d4c48cac294ddb37d864abd7e285a60bc59ad2a59016c2419",
+          "byte_exact": true
+        },
+        "validate_result_profile": {
+          "after_sha256": "c51f74b46055fe5cbf0d158de05fa5b4f95b5290aedbd709aafc760c27997c34",
+          "before_sha256": "810ebcd1676fe896fff1ea5032a4ceadc1e5fa20f641ab2109677beb05df370e",
+          "byte_exact": false
+        },
+        "validate_single_king_fixture": {
+          "after_sha256": "e2b0229dc2204756599ee708c01f915a0749127ebcf49b778e6df50f766a7ffb",
+          "before_sha256": "e2b0229dc2204756599ee708c01f915a0749127ebcf49b778e6df50f766a7ffb",
+          "byte_exact": true
+        },
+        "validate_single_king_fresh_facts": {
+          "after_sha256": "b10eb26414d46b610a87bf0e4861edb835732107b22b81850778a5bd1d68c1ab",
+          "before_sha256": "b10eb26414d46b610a87bf0e4861edb835732107b22b81850778a5bd1d68c1ab",
+          "byte_exact": true
+        },
+        "validate_single_king_input_provenance": {
+          "after_sha256": "ab072c80e433904307fbbb7604491198b642f9651314c19d54d3d868605cfc82",
+          "before_sha256": "ab072c80e433904307fbbb7604491198b642f9651314c19d54d3d868605cfc82",
+          "byte_exact": true
+        },
+        "validate_single_king_source_defaults": {
+          "after_sha256": "409e4f2cefc755a6a9fd9d9d3b25bba9d5fab68b4b0074aeea6c571cb35a51e5",
+          "before_sha256": "409e4f2cefc755a6a9fd9d9d3b25bba9d5fab68b4b0074aeea6c571cb35a51e5",
+          "byte_exact": true
+        },
+        "validate_single_king_ui_authority": {
+          "after_sha256": "cd58d6f0a9fd4788985ea32446a38089d9f1d40b51a046c25a92f0856463ad4f",
+          "before_sha256": "cd58d6f0a9fd4788985ea32446a38089d9f1d40b51a046c25a92f0856463ad4f",
+          "byte_exact": true
+        },
+        "validate_ui_authority": {
+          "after_sha256": "45aedb5b50c9ed7b6209432c786f089324a7b06bc0979e79981ebfbfe463bb69",
+          "before_sha256": "45aedb5b50c9ed7b6209432c786f089324a7b06bc0979e79981ebfbfe463bb69",
+          "byte_exact": true
+        }
+      },
+      "new_functions": [
+        "validate_captured_joint_fixture",
+        "validate_captured_joint_profile"
+      ],
+      "removed_functions": []
+    }
+  },
+  "read_only_stability": "model_source_hashes automatically covers new staged engine/genuine and13unchanged sources",
+  "runtime_executions": 0,
+  "schema": "phase471-function-conservation/1"
+}

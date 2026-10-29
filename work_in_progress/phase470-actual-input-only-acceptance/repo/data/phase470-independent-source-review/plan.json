@@ -1,0 +1,93 @@
+{
+  "schema": "phase470-independent-finite-execution-plan/1",
+  "status": "SEALED_BEFORE_EXECUTION",
+  "spec": {
+    "path": "docs/phase470_independent_input_bridge_acceptance_spec.md",
+    "size": 7926,
+    "sha256": "3e8a584fdd23c9fc1afef9ba04c85946a0a56c83813c62472d4936ee3023fb17"
+  },
+  "harness": {
+    "path": "tests/phase470_independent_input_acceptance.py",
+    "size": 26022,
+    "sha256": "94f96a0f41e6cd1b7035c888d07704ebf2c2f1a30c837d31cd6a323373481b8f"
+  },
+  "control_cap": 24,
+  "positive_cases": 3,
+  "negative_cases": 21,
+  "setup_decode_calls": 1,
+  "control_full_bundle_projections": 0,
+  "control_partial_runtime_projections": 2,
+  "actual_build_calls": 1,
+  "total_decode_calls_on_success": 2,
+  "actual_INPUT_file_reads_on_success": 36,
+  "distinct_actual_INPUT_files": 12,
+  "actual_input_payloads_not_yet_opened": true,
+  "input_pins": {
+    "fixture.json": {
+      "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/fixture.json",
+      "sha256": "2267d80b4584dcb27af4e34e792c70905b0e48cf4c91f64114eeb5d888589e0f",
+      "size": 518
+    },
+    "king-clock-checkpoint.json": {
+      "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-clock-checkpoint.json",
+      "sha256": "3d48e27ec3592d0da6f24eeb3ce40486a15e1dbf67832875c09ee8d68f65fc99",
+      "size": 352
+    },
+    "king-clock-passes.jsonl": {
+      "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-clock-passes.jsonl",
+      "sha256": "5f0c338f390fe5d97f385a8f495b31cd128f8bd195986ff76d7905deca57d218",
+      "size": 208861
+    },
+    "king-input-facts.json": {
+      "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-input-facts.json",
+      "sha256": "0d097072bfdb1856b226259606c14918f421918c14ce9c69f3e5e9b1f265f526",
+      "size": 10062
+    },
+    "king-rng-checkpoint.json": {
+      "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-rng-checkpoint.json",
+      "sha256": "e87f160f9d368f40823abea521454c98e30ccd981ebd7ae7f37be8520508de34",
+      "size": 771
+    },
+    "king-slot-bindings.json": {
+      "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-slot-bindings.json",
+      "sha256": "cd8ca6f285e33b60c63235ebbfb4f441ca6a043be01d93f0bfdd21746ebd92e5",
+      "size": 13462
+    },
+    "king-ui-authority.jsonl": {
+      "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-ui-authority.jsonl",
+      "sha256": "1bc8a95521ce125007593ef54486c812ef39ba3034d2ea1a3bb71696f67a4b3d",
+      "size": 589392
+    },
+    "observer7-input.jsonl": {
+      "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/observer7-input.jsonl",
+      "sha256": "1d9c7cee9d78d13723c7f05a8398cf5e4eb8fbaaf0a9b1c1df45f8f1274ea40b",
+      "size": 246024
+    },
+    "observer7-lineage.jsonl": {
+      "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/observer7-lineage.jsonl",
+      "sha256": "ce1a55abffece59479cfcd90a23ca8b59a7f588272b6c0ee82e8a315f5c0dd2b",
+      "size": 53397
+    },
+    "observer7-metadata.jsonl": {
+      "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/observer7-metadata.jsonl",
+      "sha256": "f625d86c26893d477c3527b9b1ba931291b893720322bf29b88d39b1982dceb8",
+      "size": 7404
+    },
+    "observer7-primitives.jsonl": {
+      "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/observer7-primitives.jsonl",
+      "sha256": "ec5867d289ad3d6413a609e9a57a4e1af722843bdb74e6f23867ae0a84b4eba9",
+      "size": 306106
+    },
+    "player_fixture.json": {
+      "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/player_fixture.json",
+      "sha256": "2057c9f7fce84b61c07339cf2f11b212f213d52a669d18e8eadeec7a8b4b0d4f",
+      "size": 1208
+    }
+  },
+  "control_and_acceptance_output": "data/phase470-independent-input-acceptance-first-001",
+  "single_build_output": "data/phase470-joint-input-first-001",
+  "first_error": "retain and stop; no automatic repair/retry",
+  "model_release": false,
+  "Expected_business_decode": false,
+  "execution_pending": true
+}

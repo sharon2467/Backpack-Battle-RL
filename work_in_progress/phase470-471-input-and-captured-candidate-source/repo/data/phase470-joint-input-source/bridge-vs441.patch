@@ -1,0 +1,289 @@
+--- tests/phase441_fixed_A_input_bridge.py
++++ tests/phase470_joint_input_bridge.py
+@@ -1,4 +1,4 @@
+-"""Fixed401-A INPUT-only projection. Author must not import or run this module."""
++"""Fixed028 King+Basic INPUT-only projection. Author compiles only; never runs it."""
+ import argparse
+ from copy import deepcopy
+ import hashlib
+@@ -9,21 +9,22 @@
+ import re
+ import stat
+ import struct
+-import phase391_king_observer_schema as native_schema
++import sys
++import types
++from phase470_joint_initial_receipt import build_initial_receipt, value_index
+ 
+ REPO = Path('/workspace/python-original-engine/repo')
+-CONTEXT = {'path': 'data/phase441-fixed-A-input-source/context.json', 'size': 7919, 'sha256': '4cb8efbb24c78727de9dd3028499524561466e188302f944cd4abe5e4eba88df'}
++CONTEXT = {'path': 'data/phase470-joint-input-source/context.json', 'size': 8481, 'sha256': '4ddb2e9ed1256f893bb206928618e910a84871f6ee220680b7d482581047785f'}
+ STATUS = 'INPUT_ONLY_NOT_RUNTIME_VALIDATED'
+-RUNTIME_SCHEMA = 'native-v8-pure-combat-runtime-input/441'
+-PROFILE = 'pure-combat-fixed-king-A-input441/1'
++RUNTIME_SCHEMA = 'native-v8-pure-combat-runtime-input/king-basic-1'
++PROFILE = 'pure-combat-king-basic-A-captured/1'
+ RUNTIME_KEYS = ('schema','mode','profile_id','checkpoint','environment','nodes','timer_initial','initial_items','initial_characters','prepare_order','activate_order','terminal_profile','frame_clock','processing_nodes')
+-EXCLUDED_TIMERS = frozenset(('king_hide:P:12','king_drag:P:12'))
++EXCLUDED_TIMERS = frozenset(('king_hide:P:6','king_drag:P:6'))
+ STACK_NAMES = {100:'Block',101:'Lucky',102:'Regeneration',103:'Vampirism',104:'Spikes',105:'Mana',106:'Empower',107:'Heat',108:'Poison',109:'Blind',110:'Cold'}
+ ZERO_BITS = '0000000000000000'
+ DEFERRED = ('constructor/prepare equivalence','ordinary callbacks/transform/RNG noninterference','King setState/log behavior','candidate runtime acceptance and same-instance diagnostics','strict output/comparator mapping')
+-INPUT_PINS = {'fixture.json': {'path': '/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/fixture.json', 'size': 771, 'sha256': '98ae29e5cbe3ae60504cee9d994ce76a27bd10d8d372d5281e6d681e500869b1'}, 'player_fixture.json': {'path': '/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/player_fixture.json', 'size': 1676, 'sha256': 'a42675c3fedb0651e4309754403d5658edcce869f85edb07963e7a2f87391c56'}, 'observer7-input.jsonl': {'path': '/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-input.jsonl', 'size': 306081, 'sha256': '00158549c266456a1b2a29ac14c395a47acb13eb441fc6a4be7056b21bfa6616'}, 'observer7-lineage.jsonl': {'path': '/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-lineage.jsonl', 'size': 75657, 'sha256': '5c57025f62e96d05e80dad16f77b1fd2d3ea4688ed717b3708cb4747c01262e0'}, 'observer7-metadata.jsonl': {'path': '/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-metadata.jsonl', 'size': 6457, 'sha256': '2e11a7eb3996d9fd0f9edd1146a1b190e9be95e92258683fbfc992033d8674f2'}, 'observer7-primitives.jsonl': {'path': '/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/observer7-primitives.jsonl', 'size': 265642, 'sha256': '924d7be78bbdde6f655a9bd62318592b3a905ab88db4b9550324ece6a238f78d'}, 'king-clock-checkpoint.json': {'path': '/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-clock-checkpoint.json', 'size': 352, 'sha256': '21ce432a668fb4406b27bbb4f4ff623a4cbb54f0c0695fb4c2bdf53a28629c73'}, 'king-clock-passes.jsonl': {'path': '/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-clock-passes.jsonl', 'size': 227219, 'sha256': '660cff32026b6cd0b5942081e6c279fc0076ff6c95fee4ce1e8f7cf2d5a86526'}, 'king-input-facts.json': {'path': '/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-input-facts.json', 'size': 10082, 'sha256': 'e3b2e6267a6132a53f95fd0f0322ba14fbc22115a1f5ba8dc9411a67ac3f5880'}, 'king-ui-authority.jsonl': {'path': '/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-ui-authority.jsonl', 'size': 596454, 'sha256': 'bd3ddda8379be45bd13a40342b90951fa2a1e4b41a8334f7c996ab6aa0480429'}, 'king-rng-checkpoint.json': {'path': '/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-rng-checkpoint.json', 'size': 772, 'sha256': '5a844bfb47cbb4491ab3ec647be315a3e7b2aa73b0373900ea7fd3d0769e51bc'}, 'king-slot-bindings.json': {'path': '/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/capture/king-slot-bindings.json', 'size': 20254, 'sha256': 'e326643b93a87f48864895dbfda136b3aa6feb2d03681cf943e81b3da550eefc'}}
+-AUDIT_PIN = {'path': 'data/phase439-timer-overlay-first-001/overlay-report.json', 'size': 1148063, 'sha256': '523974fd3e18522618bc678bc9062e83effb77d8a73f5d0d1bfdee51ad813e88'}
+-SCHEMA_PIN = {'path': 'tests/phase391_king_observer_schema.py', 'size': 208243, 'sha256': 'ffcddfd2cbe58307f7258c1aefad5586a9179c6c452dc59c3342f9047f31457c'}
++INPUT_PINS = {'fixture.json': {'path': '/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/fixture.json', 'size': 518, 'sha256': '2267d80b4584dcb27af4e34e792c70905b0e48cf4c91f64114eeb5d888589e0f'}, 'player_fixture.json': {'path': '/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/player_fixture.json', 'size': 1208, 'sha256': '2057c9f7fce84b61c07339cf2f11b212f213d52a669d18e8eadeec7a8b4b0d4f'}, 'observer7-input.jsonl': {'path': '/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/observer7-input.jsonl', 'size': 246024, 'sha256': '1d9c7cee9d78d13723c7f05a8398cf5e4eb8fbaaf0a9b1c1df45f8f1274ea40b'}, 'observer7-lineage.jsonl': {'path': '/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/observer7-lineage.jsonl', 'size': 53397, 'sha256': 'ce1a55abffece59479cfcd90a23ca8b59a7f588272b6c0ee82e8a315f5c0dd2b'}, 'observer7-metadata.jsonl': {'path': '/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/observer7-metadata.jsonl', 'size': 7404, 'sha256': 'f625d86c26893d477c3527b9b1ba931291b893720322bf29b88d39b1982dceb8'}, 'observer7-primitives.jsonl': {'path': '/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/observer7-primitives.jsonl', 'size': 306106, 'sha256': 'ec5867d289ad3d6413a609e9a57a4e1af722843bdb74e6f23867ae0a84b4eba9'}, 'king-clock-checkpoint.json': {'path': '/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-clock-checkpoint.json', 'size': 352, 'sha256': '3d48e27ec3592d0da6f24eeb3ce40486a15e1dbf67832875c09ee8d68f65fc99'}, 'king-clock-passes.jsonl': {'path': '/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-clock-passes.jsonl', 'size': 208861, 'sha256': '5f0c338f390fe5d97f385a8f495b31cd128f8bd195986ff76d7905deca57d218'}, 'king-input-facts.json': {'path': '/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-input-facts.json', 'size': 10062, 'sha256': '0d097072bfdb1856b226259606c14918f421918c14ce9c69f3e5e9b1f265f526'}, 'king-ui-authority.jsonl': {'path': '/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-ui-authority.jsonl', 'size': 589392, 'sha256': '1bc8a95521ce125007593ef54486c812ef39ba3034d2ea1a3bb71696f67a4b3d'}, 'king-rng-checkpoint.json': {'path': '/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-rng-checkpoint.json', 'size': 771, 'sha256': 'e87f160f9d368f40823abea521454c98e30ccd981ebd7ae7f37be8520508de34'}, 'king-slot-bindings.json': {'path': '/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-slot-bindings.json', 'size': 13462, 'sha256': 'cd8ca6f285e33b60c63235ebbfb4f441ca6a043be01d93f0bfdd21746ebd92e5'}}
++SCHEMA_PIN = {'path': 'data/phase462-joint-observer-source-v3/schema/phase462_king_basic_observer_schema.py', 'size': 196289, 'sha256': 'b2cafda5409b048f655f2f2668f915e3e69339ea801569d0420c775776aabd91'}
+ 
+ 
+ class Rejected(ValueError):
+@@ -159,24 +160,22 @@
+                              'full391_source_gate_called': False}
+ 
+ 
+-def load_accepted_initial(audit_raw):
+-    require(type(audit_raw) is bytes and len(audit_raw) == AUDIT_PIN['size'] and hashlib.sha256(audit_raw).hexdigest() == AUDIT_PIN['sha256'], 'ACCEPTED439_AUDIT_IDENTITY')
+-    audit = strict_json(audit_raw)
+-    require(audit.get('schema') == 'phase439-timer-combat-initial-overlay/1' and audit.get('profile') == 'pure-combat-initial-fixed-king-A/437', 'ACCEPTED439_PROFILE')
+-    require(same(audit.get('counts'), {'DIRECT': 1289, 'SOURCE_DERIVED': 74, 'MISSING': 0}) and len(audit.get('required_rows', [])) == 1363 and len(audit.get('excluded_presentation', [])) == 116, 'ACCEPTED439_COUNTS')
+-    result = {}
+-    for ordinal, row in enumerate(audit['required_rows']):
+-        ident = key(row)
+-        require(ident not in result and row.get('classification') in ('DIRECT_OBSERVATION', 'SOURCE_DERIVED') and row.get('proof_complete') is True and row.get('validation_result') == 'SUPPORTED' and 'actual_value' in row, 'ACCEPTED439_SUPPORTED_UNIQUE')
+-        result[ident] = (ordinal, row)
+-    return result
++def load_schema():
++    raw = read_pinned(SCHEMA_PIN, [])
++    module = types.ModuleType('_phase470_frozen_joint_schema')
++    module.__file__ = str(canonical(SCHEMA_PIN['path']))
++    sys.modules[module.__name__] = module
++    exec(compile(raw, module.__file__, 'exec'), module.__dict__)
++    require(module.VERSION == '7-king-basic-A-460' and module.PROFILE == 'observer7-king-basic-A-native-tape/1', 'EXACT_NEW_SCHEMA_PROFILE')
++    return module
+ 
+ 
+ def source_value(index, field, phase, role):
+     ident = (field, phase, role)
+     require(ident in index, 'EMITTED_VALUE_SOURCE_MISSING_' + ':'.join(ident))
+     ordinal, row = index[ident]
+-    return deepcopy(row['actual_value']), {'file': AUDIT_PIN['path'], 'pointer': f'/required_rows/{ordinal}/actual_value', 'classification': row['classification'], 'key': list(ident)}
++    return deepcopy(row['actual_value']), {'file': 'initial-receipt.json', 'pointer': f'/values/{ordinal}/actual_value',
++        'classification': row['classification'], 'rule': row['rule'], 'key': list(ident), 'input_refs': deepcopy(row['input_refs'])}
+ 
+ 
+ def typed_scalar(value, kind):
+@@ -223,7 +222,7 @@
+         role = aliases['native_to_role'].get(ref.get('native_id'))
+         require(role in native_schema.FIXED_ROLES and ref.get('role') == role and aliases['role_to_native'].get(role) == ref['native_id'], 'GAME_ITEM_ALIAS')
+         order.append(role)
+-    require(len(order) == len(set(order)) == 39 and set(order) == native_schema.FIXED_ROLES, 'GAME_ORDER39')
++    require(len(order) == len(set(order)) == 26 and set(order) == native_schema.FIXED_ROLES, 'GAME_ORDER26')
+     return order
+ 
+ 
+@@ -252,7 +251,7 @@
+         require(checkpoint['sequence'] + 1 == entry['sequence'], 'CHECKPOINT_ENTRY_ADJACENCY')
+         require(all(same(checkpoint['stamp'][k], entry['stamp'][k]) for k in ('physics_frame', 'idle_frame', 'util_time', 'combat_time')), 'CHECKPOINT_ENTRY_CLOCK')
+     prepare, activate = project_order(pe, aliases), project_order(ae, aliases)
+-    require(prepare == activate, 'FIXED_A_PREPARE_ACTIVATE_ORDER')
++    require(prepare == activate, 'FIXED_JOINT_PREPARE_ACTIVATE_ORDER')
+     header = deepcopy(decoded['king-clock-checkpoint.json'])
+     frame_clock = dict(header, passes=deepcopy(decoded['king-clock-passes.jsonl']))
+     clock = native_schema.decode_clock(frame_clock)
+@@ -290,12 +289,12 @@
+             continue
+         require(same(timer['node'], wrapper['node']), 'TIMER_NODE_ALIAS')
+         identity, identity_origin = source_value(index, 'Timer.node.native_id', 'pre_activate', raw_role)
+-        require(identity == wrapper['node']['native_id'], 'TIMER_ACCEPTED_AUDIT_NATIVE_ID')
++        require(identity == wrapper['node']['native_id'], 'TIMER_NEW_RECEIPT_NATIVE_ID')
+         origins['timer_initial.' + role + '.native_identity'] = identity_origin
+         values = {}
+         for raw_field, output_field in (('wait_time', 'wait_time_bits'), ('one_shot', 'one_shot'), ('process_mode', 'process_mode'), ('autostart', 'autostart'), ('paused', 'paused')):
+             actual, origin = source_value(index, 'Timer.' + raw_field, 'pre_activate', raw_role)
+-            require(same(actual, timer[raw_field]), 'TIMER_ACTUAL_AUDIT_JOIN_' + raw_role + ':' + raw_field)
++            require(same(actual, timer[raw_field]), 'TIMER_ACTUAL_RECEIPT_JOIN_' + raw_role + ':' + raw_field)
+             if raw_field == 'wait_time':
+                 require(typed_scalar(actual, 'float') > 0, 'TIMER_WAIT_POSITIVE')
+                 values[output_field] = actual['binary64_be']
+@@ -308,7 +307,7 @@
+         values['private_left_bits'] = private['binary64_be']
+         origins['timer_initial.' + role + '.private_left_bits'] = origin
+         timers[role] = values
+-    require(len(timers) == 33 and len({n['role'] for n in processing}) == len(processing), 'BUSINESS_TIMER_OR_NODE_COUNT')
++    require(len(timers) == 33 and len(processing) == 65 and len(nodes) == 64 and len({n['role'] for n in processing}) == len(processing), 'BUSINESS_TIMER_OR_NODE_COUNT')
+     for side, child in (('P', 7), ('O', 5)):
+         invu, parent = raw_nodes['invu:' + side]['node'], raw_nodes['character:' + side]['node']
+         require(invu['positions'] == parent['positions'] + [child] and invu['path'] == parent['path'] + '/InvulnerabilityTimer', 'ACTUAL_P7_O5_TOPOLOGY')
+@@ -338,7 +337,7 @@
+         value['cache_fresh'] = True  # Exactly the observed empty-pre-cache predicate, not all constructor equivalence.
+         initial[identity] = value
+         origins['initial_items.' + identity] = {'file': 'observer7-input.jsonl', 'sequence': pre['sequence'], 'instance': identity, 'predicate': 'emitted limiter scalars and actual empty pre-cache only'}
+-    require(set(initial) == native_schema.FIXED_ROLES, 'INITIAL_ITEMS_COMPLETE39')
++    require(set(initial) == native_schema.FIXED_ROLES, 'INITIAL_ITEMS_COMPLETE26')
+     runtime = dict(schema=RUNTIME_SCHEMA, mode='genuine', profile_id=PROFILE,
+                    checkpoint={'util_time_bits': ae['stamp']['util_time']['binary64_be'], 'combat_time_bits': ae['stamp']['combat_time']['binary64_be'], 'source_phase': ae['stamp']['phase']},
+                    environment=environment, nodes=nodes, timer_initial=timers, initial_items=initial,
+@@ -346,14 +345,14 @@
+                    terminal_profile='source-two-physics-idle-pre-internal/1', frame_clock=frame_clock, processing_nodes=processing)
+     require(set(runtime) == set(RUNTIME_KEYS), 'RUNTIME14_KEYS')
+     for field in ('schema', 'mode', 'profile_id', 'terminal_profile'):
+-        origins['runtime.' + field] = {'source': 'data/phase441-fixed-A-input-source/abi.json', 'predicate': 'immutable input-only ABI declaration; not runtime acceptance'}
++        origins['runtime.' + field] = {'source': 'data/phase470-joint-input-source/abi.json', 'predicate': 'immutable input-only ABI declaration; not runtime acceptance'}
+     for field in ('checkpoint', 'environment', 'nodes', 'processing_nodes'):
+         origins['runtime.' + field] = {'file': 'observer7-input.jsonl', 'sequence': ae['sequence'] if field == 'checkpoint' else act['sequence'], 'predicate': 'actual activation field projection with role normalization and two UI Timer exclusions'}
+     origins['runtime.frame_clock'] = {'files': ['king-clock-checkpoint.json', 'king-clock-passes.jsonl'], 'predicate': 'complete original header/pass sequence; typed clock decode'}
+     for field, entry in (('prepare_order', pe), ('activate_order', ae)):
+-        origins['runtime.' + field] = {'file': 'observer7-input.jsonl', 'sequence': entry['sequence'], 'pointer': '/payload/arguments', 'predicate': 'actual39 native/role relation'}
++        origins['runtime.' + field] = {'file': 'observer7-input.jsonl', 'sequence': entry['sequence'], 'pointer': '/payload/arguments', 'predicate': 'actual26 native/role relation'}
+     for field in ('timer_initial', 'initial_characters'):
+-        origins['runtime.' + field] = {'file': AUDIT_PIN['path'], 'predicate': 'accepted actual values joined to the same fixed INPUT bytes; individual field refs supplied'}
++        origins['runtime.' + field] = {'file': 'initial-receipt.json', 'predicate': 'new-object Source-supported values joined to these actual INPUT bytes; individual field refs supplied'}
+     origins['runtime.initial_items'] = {'file': 'observer7-input.jsonl', 'sequence': pre['sequence'], 'pointer': '/payload/items', 'predicate': 'only emitted pre-prepare limiter/cache predicates; not complete constructor proof'}
+     return runtime, origins, ae['sequence']
+ 
+@@ -399,7 +398,7 @@
+     require(set(bundle) == {'schema', 'fixture', 'runtime', 'draws', 'synthetic_seed'} and bundle['schema'] == 'native-v8-input-only/1' and bundle['synthetic_seed'] is None, 'INPUT_ONLY_ENVELOPE')
+     runtime = bundle['runtime']
+     require(set(runtime) == set(RUNTIME_KEYS) and runtime['schema'] == RUNTIME_SCHEMA and runtime['profile_id'] == PROFILE, 'INPUT_ONLY_RUNTIME_ABI')
+-    require(len(runtime['timer_initial']) == 33 and len(runtime['initial_items']) == 39 and set(runtime['initial_characters']) == {'P', 'O'}, 'EMITTED_MEMBERSHIP')
++    require(len(runtime['timer_initial']) == 33 and len(runtime['initial_items']) == 26 and set(runtime['initial_characters']) == {'P', 'O'}, 'EMITTED_MEMBERSHIP')
+     for field in bundle:
+         require('bundle.' + field in origins, 'MISSING_BUNDLE_FIELD_ORIGIN_' + field)
+     for field in runtime:
+@@ -422,59 +421,56 @@
+     runtime, origins, activation_sequence = project_runtime(decoded, aliases, index)
+     draws, sequences = project_primitives(decoded, activation_sequence)
+     bundle = {'schema': 'native-v8-input-only/1', 'fixture': fixture, 'runtime': runtime, 'draws': draws, 'synthetic_seed': None}
+-    origins.update({'bundle.schema': {'source': 'data/phase441-fixed-A-input-source/abi.json', 'predicate': 'fixed five-key input envelope'},
++    origins.update({'bundle.schema': {'source': 'data/phase470-joint-input-source/abi.json', 'predicate': 'fixed five-key input envelope'},
+                     'bundle.fixture': {'files': ['fixture.json', 'player_fixture.json', 'king-slot-bindings.json'], 'predicate': 'fixed Source fixture plus actual resources/geometry/order relation'},
+-                    'bundle.runtime': {'source': 'data/phase441-fixed-A-input-source/abi.json', 'predicate': 'exact14 declared INPUT-only fields; individual field refs supplied'},
++                    'bundle.runtime': {'source': 'data/phase470-joint-input-source/abi.json', 'predicate': 'exact14 declared INPUT-only fields; individual field refs supplied'},
+                     'bundle.draws': {'file': 'observer7-primitives.jsonl', 'sequences': sequences, 'predicate': 'all selected actual records, strict activation boundary and physical order'},
+-                    'bundle.synthetic_seed': {'source': 'data/phase441-fixed-A-input-source/abi.json', 'predicate': 'null for conditional direct-native primitive Tape; no seed restoration'}})
++                    'bundle.synthetic_seed': {'source': 'data/phase470-joint-input-source/abi.json', 'predicate': 'null for conditional direct-native primitive Tape; no seed restoration'}})
+     coverage = validate_initial_consumer_coverage(bundle, origins)
+-    return bundle, {'schema': 'phase441-input-only-projection-proof/1', 'status': STATUS,
++    return bundle, {'schema': 'phase470-input-only-projection-proof/1', 'status': STATUS,
+                     'field_origins': origins, 'primitive_original_sequences': sequences,
+-                    'coverage': coverage, 'presentation_semantics': '116 excluded fields are not runtime/initial acceptance predicates',
++                    'coverage': coverage, 'presentation_semantics': 'Named presentation exclusions inherit437 policy; old116 occurrence rows/count are not borrowed',
+                     'clock_and_tape': 'complete original physical selected streams; no posthoc terminal filtering',
+-                    'timer_origin': 'accepted SOURCE-supported initial values; never fresh_configured or public-zero inference'}
+-
+-
+-def project_from_bytes(raw12, audit_raw):
+-    """Pure fixed-byte entry; all physical filesystem/receipt controls are separate."""
++                    'timer_origin': 'new actual-object Source-supported initial values; never all fresh_configured or public-zero inference'}
++
++
++def project_from_bytes(raw12):
++    """Pure bytes API after this module's pinned schema load. No old audit input."""
+     decoded, aliases, validation = decode_lawful12(raw12)
+-    index = load_accepted_initial(audit_raw)
+-    bundle, proof = project_decoded(decoded, aliases, index)
++    receipt = build_initial_receipt(decoded, aliases, native_schema)
++    bundle, proof = project_decoded(decoded, aliases, value_index(receipt))
+     proof['fixed_input_validation'] = validation
+-    proof['accepted_initial_audit'] = deepcopy(AUDIT_PIN)
+-    return bundle, proof
++    proof['initial_receipt'] = {'file': 'initial-receipt.json', 'counts': deepcopy(receipt['counts']),
++                                'predicate': 'Derived in this call from the same exact12 inputs; no old instance audit'}
++    return bundle, proof, receipt
+ 
+ 
+ def verify_source_context(context, io):
+-    require(type(context) is dict and context.get('schema') == 'phase441-fixed-source-context/1', 'SOURCE_CONTEXT_SCHEMA')
+-    require(same(context.get('input_descriptors'), INPUT_PINS) and same(context.get('audit'), AUDIT_PIN), 'SOURCE_FIXED_INPUT_BINDING')
+-    require(same(context.get('schema_module'), SCHEMA_PIN), 'SOURCE_SCHEMA_BINDING')
++    require(type(context) is dict and context.get('schema') == 'phase470-fixed-source-context/1', 'SOURCE_CONTEXT_SCHEMA')
++    require(same(context.get('input_descriptors'), INPUT_PINS) and same(context.get('schema_module'), SCHEMA_PIN), 'SOURCE_FIXED_CASE_BINDING')
+     require(Path(native_schema.__file__).absolute() == canonical(SCHEMA_PIN['path']), 'IMPORTED_SCHEMA_PATH')
+     seen = set()
+     for pin in context['source_pins']:
+         path = str(canonical(pin['path']))
+         require(path not in seen, 'SOURCE_PIN_DUPLICATE')
+-        seen.add(path)
+-        read_pinned(pin, io)
++        seen.add(path); read_pinned(pin, io)
+     abi = strict_json(read_pinned(context['abi'], io))
+-    require(abi.get('status') == STATUS and abi.get('runtime_schema') == RUNTIME_SCHEMA and abi.get('projection_profile') == PROFILE and same(abi.get('runtime_keys'), list(RUNTIME_KEYS)) and abi.get('business_timer_count') == 33, 'IMMUTABLE441_ABI')
+-    receipts = {name: strict_json(read_pinned(pin, io)) for name, pin in context['receipts'].items()}
+-    accepted = receipts['root439']
+-    require(accepted.get('status') == 'ACCEPTED_ACTUAL64_SOURCE_DERIVED_FIXED_INPUT_DOMAIN' and same(accepted.get('actual_overlay'), AUDIT_PIN) and same(accepted.get('after'), {'DIRECT': 1289, 'SOURCE_DERIVED': 74, 'MISSING': 0}), 'ACTUAL439_ACCEPTANCE')
+-    require(same(accepted.get('independent_seal'), context['receipts']['independent439']), '439_INDEPENDENT_SEAL_BINDING')
+-    require(receipts['root440'].get('status') == 'ACCEPTED_INPUT_ONLY_IMPLEMENTATION_DIRECTION' and receipts['root440'].get('model_release') is False, '440_ROOT_INPUT_ONLY_DIRECTION')
+-    require(receipts['independent440'].get('status') == 'DESIGN_ACCEPTED_FOR_MINIMAL441_INPUT_ONLY_IMPLEMENTATION', '440_INDEPENDENT_DIRECTION')
+-    require(receipts['root402'].get('status') == 'ROOT_ACCEPTS_FIXED06_BOUNDED_TERMINAL_SOURCE_PROCESS_CONTROLS', 'FIXED401_402_CONTROL_ACCEPTANCE')
++    require(abi.get('status') == STATUS and abi.get('runtime_schema') == RUNTIME_SCHEMA and abi.get('projection_profile') == PROFILE
++            and same(abi.get('runtime_keys'), list(RUNTIME_KEYS)) and abi.get('business_timer_count') == 33
++            and abi.get('items') == 26 and abi.get('processing_nodes') == 65 and abi.get('node_configs') == 64, 'IMMUTABLE470_ABI')
++    accepted = strict_json(read_pinned(context['observer_acceptance'], io))
++    require(accepted.get('status') == 'ACCEPTED_SOURCE_ONLY_SYNTHETIC18', 'EXACT463_SOURCE_ACCEPTANCE')
+     return {'source_context': deepcopy(CONTEXT), 'abi': deepcopy(context['abi']),
+-            'receipts': deepcopy(context['receipts']), 'model_release': False,
+-            'native_profile': 'observer7-390-native-single-king-A/1',
+-            'projection_profile': PROFILE, 'status': STATUS}
++            'historical_lemma_receipts': deepcopy(context['historical_lemma_receipts']),
++            'observer_source_acceptance': deepcopy(context['observer_acceptance']),
++            'source_premise_limits': deepcopy(context['source_premise_limits']), 'model_release': False,
++            'native_profile': 'observer7-king-basic-A-native-tape/1', 'projection_profile': PROFILE, 'status': STATUS}
+ 
+ 
+ def build_from_files(output_new):
+-    """One explicit file build; Source/controls must be accepted externally first."""
++    """Explicit later one-build only; Source and independent controls must pass first."""
+     output = canonical(output_new)
+-    require(output.is_relative_to(REPO / 'data') and output != REPO / 'data', 'OUTPUT_DOMAIN')
++    require(output.parent == REPO / 'data' and output.name.startswith('phase470-'), 'OUTPUT_DOMAIN')
+     physical(output.parent, False)
+     require(not os.path.lexists(output), 'OUTPUT_EXISTS')
+     source_io, input_io, owned = [], [], []
+@@ -483,8 +479,7 @@
+     output.mkdir(mode=0o700)
+     try:
+         raw12 = {name: read_pinned(pin, input_io) for name, pin in INPUT_PINS.items()}
+-        audit_raw = read_pinned(AUDIT_PIN, input_io)
+-        bundle, proof = project_from_bytes(raw12, audit_raw)
++        bundle, proof, receipt = project_from_bytes(raw12)
+         proof['source_authority'] = source
+         source_after, input_after = [], []
+         for pin in source_io:
+@@ -493,18 +488,20 @@
+             read_pinned(pin, input_after)
+         require(same(source_io, source_after) and same(input_io, input_after), 'BUILD_SOURCE_INPUT_READBACK')
+         owned.append(save_new(output / 'input-bundle.json', bundle))
++        owned.append(save_new(output / 'initial-receipt.json', receipt))
+         owned.append(save_new(output / 'input-proof.json', proof))
+-        owned.append(save_new(output / 'inputs-before-interpretation.json', {'source_files': source_io, 'input_payload_files': input_io, 'raw_inputs': deepcopy(INPUT_PINS), 'accepted_initial_audit': deepcopy(AUDIT_PIN)}))
+-        owned.append(save_new(output / 'input-readback.json', {'source_before': source_io, 'source_after': source_after, 'input_before': input_io, 'input_after': input_after, 'unchanged': True, 'whole_files_read_and_hashed': True, 'lawful_carriers_syntax_decoded': 12, 'EXPECTED_file_reads': 0, 'postcleanup_records_used_as_input': 0}))
+-        seal = {'schema': 'phase441-joint-input-only-seal/1', 'status': STATUS, 'files': deepcopy(owned),
+-                'source_context': deepcopy(CONTEXT), 'abi': deepcopy(context['abi']),
+-                'runtime_validated': False, 'model_release': False, 'King_admitted': False,
+-                'future_model_blockers': list(DEFERRED)}
++        owned.append(save_new(output / 'inputs-before-interpretation.json', {'source_files': source_io, 'input_payload_files': input_io, 'raw_inputs': deepcopy(INPUT_PINS)}))
++        owned.append(save_new(output / 'input-readback.json', {'source_before': source_io, 'source_after': source_after, 'input_before': input_io, 'input_after': input_after,
++            'unchanged': True, 'whole_files_read_and_hashed': True, 'lawful_carriers_syntax_decoded': 12, 'EXPECTED_file_reads': 0, 'postcleanup_records_used_as_input': 0}))
++        seal = {'schema': 'phase470-joint-input-only-seal/1', 'status': STATUS, 'files': deepcopy(owned),
++                'source_context': deepcopy(CONTEXT), 'abi': deepcopy(context['abi']), 'runtime_validated': False,
++                'model_release': False, 'King_admitted': False, 'future_model_blockers': list(DEFERRED)}
+         owned.append(save_new(output / 'input-joint-seal.json', seal))
+-        save_new(output / 'owned-files.json', {'schema': 'phase441-input-only-output-owner/1', 'files': owned, 'status': STATUS, 'independent_input_acceptance': 'PENDING'})
++        save_new(output / 'owned-files.json', {'schema': 'phase470-input-only-output-owner/1', 'files': owned, 'status': STATUS, 'independent_input_acceptance': 'PENDING'})
+     except Exception as error:
+         if not os.path.lexists(output / 'first-error.json'):
+-            save_new(output / 'first-error.json', {'error': type(error).__name__, 'reason': str(error)[:2000], 'source_reads_completed': source_io, 'input_reads_completed': input_io, 'preserved_outputs': owned, 'automatic_retry': False, 'runtime_validated': False})
++            save_new(output / 'first-error.json', {'error': type(error).__name__, 'reason': str(error)[:2000], 'source_reads_completed': source_io,
++                'input_reads_completed': input_io, 'preserved_outputs': owned, 'automatic_retry': False, 'runtime_validated': False})
+         raise
+     return {'output': str(output), 'status': STATUS, 'input_bundle_created': True, 'runtime_validated': False, 'model_runs': 0}
+ 
+@@ -516,5 +513,8 @@
+     print(json.dumps(build_from_files(args.output_new), sort_keys=True))
+ 
+ 
++native_schema = load_schema()
++
++
+ if __name__ == '__main__':
+     main()

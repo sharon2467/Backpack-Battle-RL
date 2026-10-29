@@ -1,0 +1,268 @@
+--- 458/native_replay_v8/engine.py
++++ 471/native_replay_v8/engine.py
+@@ -18,6 +18,7 @@
+ 
+ from .randomness import BalancedRange, BalancedRng, SeededRandom, TapeRandom
+ from .genuine import PURE441_PROFILE, PURE441_SCHEMA, PURE441_CONTRACT, validate_pure441_profile
++from .genuine import CAPTURED_JOINT_PROFILE, CAPTURED_JOINT_SCHEMA, CAPTURED_JOINT_CONTRACT, validate_captured_joint_profile
+ from .histories import CombatHistories
+ from .state import native_rule_state
+ 
+@@ -818,7 +819,7 @@
+ 
+ 
+ def _integration_domain(data):
+-    return _pure441_profile(data) or data.get('profile_id') in (KING_INTEGRATION_PROFILE, KING_GENUINE_PROFILE, SINGLE_KING_GENUINE_PROFILE)
++    return _pure441_profile(data) or _joint_captured_profile(data) or data.get('profile_id') in (KING_INTEGRATION_PROFILE, KING_GENUINE_PROFILE, SINGLE_KING_GENUINE_PROFILE)
+ 
+ 
+ def _validate_processing_inputs(data,fixture):
+@@ -955,6 +956,8 @@
+     data = deepcopy(runtime.data if isinstance(runtime, RuntimeDTO) else runtime)
+     if _source_pure_profile(data):
+         return _validate_source_pure_runtime(data, fixture, runtime)
++    if _joint_captured_profile(data):
++        return _validate_joint_captured_runtime(data, fixture, runtime)
+     if _pure441_profile(data):
+         return _validate_pure441_runtime(data, fixture, runtime)
+     if _source_king_profile(data):
+@@ -1087,6 +1090,8 @@
+ def build_runtime_scaffold(dto):
+     if _source_pure_profile(dto):
+         return _build_source_pure_scaffold(dto)
++    if _joint_captured_profile(dto):
++        return _build_pure441_scaffold(dto)
+     if _pure441_profile(dto):
+         return _build_pure441_scaffold(dto)
+     integration=_integration_domain(dto.data)
+@@ -1195,14 +1200,16 @@
+         self.model_source_sha256 = assert_model_source_stable()
+         self.fixture = deepcopy(fixture if fixture is not None else starter_fixture())
+         validate_fixture(self.fixture)
+-        source_runtime = validate_runtime_inputs(runtime, self.fixture) if _source_king_profile(runtime) or _single_king_genuine_profile(runtime) or _pure441_profile(runtime) or _source_pure_profile(runtime) else None
++        source_runtime = validate_runtime_inputs(runtime, self.fixture) if _source_king_profile(runtime) or _single_king_genuine_profile(runtime) or _pure441_profile(runtime) or _source_pure_profile(runtime) or _joint_captured_profile(runtime) else None
+         if _source_pure_profile(runtime) and (random_source is None or isinstance(random_source,(TapeRandom,SeededRandom))):
+             raise ValueError('Source pure requires explicit Source seed provider; no Tape/Python seed fallback')
++        if _joint_captured_profile(runtime) and type(random_source) is not TapeRandom:
++            raise ValueError('captured joint requires exact TapeRandom; no seed fallback')
+         if _pure441_profile(runtime) and type(random_source) is not TapeRandom:
+             raise ValueError('fixed441 pure candidate requires actual TapeRandom; no seed fallback')
+         self.random = random_source if random_source is not None else SeededRandom(0)
+         self.runtime_inputs = source_runtime if source_runtime is not None else validate_runtime_inputs(runtime, self.fixture)
+-        self.pure_combat_mode = _pure441_profile(self.runtime_inputs)
++        self.pure_combat_mode = _pure441_profile(self.runtime_inputs) or _joint_captured_profile(self.runtime_inputs)
+         self.source_pure_mode = _source_pure_profile(self.runtime_inputs)
+         self.pure_snapshots = []
+         self.pure_api_trace = []
+@@ -1275,7 +1282,8 @@
+                 self.characters[side].invulnerable = values['invulnerable']
+                 self.characters[side].buff_protect_stacks = values['buffProtectStacks']
+                 self.invu_origins[side] = values['invulnerabilityItem']
+-            self.king_states['P:12'] = dict(invuCharges=0, protectedBuffs=3.0, manaCost=4.0)
++            king_identity = 'P:6' if _joint_captured_profile(self.runtime_inputs) else 'P:12'
++            self.king_states[king_identity] = dict(invuCharges=0, protectedBuffs=3.0, manaCost=4.0)
+         elif self.king_mode:
+             for identity,facts in self.runtime_inputs.data['king_particles'].items():
+                 self.king_states[identity]=dict(invuCharges=0,protectedBuffs=3.0,manaCost=4.0,crown=0,
+@@ -1297,7 +1305,7 @@
+                         self.timer_runtime.connect_ordinary(self.runtime_roles[role],lambda node,delta,role=role:self._source_noninterfering_callback(role,1,delta),1)
+                         self.timer_runtime.set_ordinary_processing(self.runtime_roles[role],True,1)
+         if self.pure_combat_mode:
+-            self._validate_pure441_constructed()
++            self._validate_captured_constructed()
+             self.pure_snapshots.append(self._pure_business_snapshot('constructed_off_clock'))
+         if self.source_pure_mode:self._validate_source_pure_state(False)
+ 
+@@ -1353,6 +1361,38 @@
+         self._validate_pure441_constructed()
+         if not self.prepared or self.king_states['P:12']['invuCharges'] != self.items['P:12'].definition['charges']:
+             raise ValueError('pure King prepare business state mismatch')
++
++    def _validate_captured_constructed(self):
++        if _joint_captured_profile(self.runtime_inputs):
++            return self._validate_joint_captured_state(False)
++        return self._validate_pure441_constructed()
++
++    def _validate_captured_prepared(self):
++        if _joint_captured_profile(self.runtime_inputs):
++            return self._validate_joint_captured_state(True)
++        return self._validate_pure441_prepared()
++
++    def _validate_joint_captured_state(self, prepared):
++        if type(prepared) is not bool or self.prepared is not prepared:
++            raise ValueError('captured joint actual preparation stage')
++        # This shape-neutral assertion checks actual constructed values/Timers/Tape0.
++        self._validate_pure441_constructed()
++        for item in self.items.values():
++            if item.cache_prepared is not prepared:
++                raise ValueError('captured joint actual cache preparation stage')
++        for identity, threshold in (('P:6', 6), ('P:7', 5)):
++            item = self.items[identity]
++            expected = float(threshold) if prepared else 0.0
++            if (type(item.definition['activations_to_trigger']) is not int or item.definition['activations_to_trigger'] != threshold
++                    or type(item.goobert_activations) is not int or item.goobert_activations != 0
++                    or type(item.iteration_cooldown) is not float or type(item.trigger_time) is not float
++                    or _float_bits(item.iteration_cooldown) != _float_bits(expected)
++                    or _float_bits(item.trigger_time) != _float_bits(expected)):
++                raise ValueError('captured joint actual Goobert counter/threshold/prepare state')
++        king = self.king_states['P:6']
++        if (king['protectedBuffs'] != 3.0 or king['manaCost'] != 4.0
++                or king['invuCharges'] != (self.items['P:6'].definition['charges'] if prepared else 0)):
++            raise ValueError('captured joint actual King charge stage')
+ 
+     def _pure_business_snapshot(self, stage):
+         off_clock = stage in ('constructed_off_clock', 'prepare_off_clock')
+@@ -1921,7 +1961,7 @@
+                 self.histories.tooltip(bag, 9)
+         self.prepared = True
+         if self.pure_combat_mode:
+-            self._validate_pure441_prepared()
++            self._validate_captured_prepared()
+             self.pure_snapshots.append(self._pure_business_snapshot('prepare_off_clock'))
+         if self.source_pure_mode:self._validate_source_pure_state(True)
+ 
+@@ -1932,7 +1972,7 @@
+         if not self.prepared or self.activated:
+             raise ValueError('activation requires prepared/unactivated')
+         if self.pure_combat_mode:
+-            self._validate_pure441_prepared()
++            self._validate_captured_prepared()
+             self.pure_snapshots.append(self._pure_business_snapshot('pre_activate'))
+         if self.source_pure_mode:self._validate_source_pure_state(True)
+         self.util_time = self.runtime_inputs.util_time
+@@ -3559,7 +3599,7 @@
+                                         passes=deepcopy(self.frame_driver.pass_trace))
+         if self.pure_combat_mode:
+             result['pure_combat_diagnostics'] = dict(schema='phase443-same-instance-business/1',
+-                contract=deepcopy(PURE441_CONTRACT), snapshots=deepcopy(self.pure_snapshots),
++                contract=deepcopy(CAPTURED_JOINT_CONTRACT if _joint_captured_profile(self.runtime_inputs) else PURE441_CONTRACT), snapshots=deepcopy(self.pure_snapshots),
+                 post_cleanup=deepcopy(self.frame_driver.post_cleanup_snapshot['business']),
+                 final=deepcopy(self.frame_driver.final_snapshot['business']),
+                 api=deepcopy(self.pure_api_trace), callbacks=[deepcopy(x) for x in self.runtime_trace if x.get('kind')=='source_callback'],
+@@ -4024,3 +4064,126 @@
+                 _assert_pure441_timer(node,initial)
+     ordinary=sorted((n for n in configs if n['kind']=='ordinary'),key=lambda n:(n['priority'],tuple(n['positions'])))
+     return runtime,records,[n['role'] for n in ordinary]
++
++
++#471 independent captured fixed26 validator; old441 and public Source gates stay separate.
++def _joint_captured_profile(runtime):
++    data = runtime.data if isinstance(runtime, RuntimeDTO) else runtime
++    return type(data) is dict and data.get('profile_id') == CAPTURED_JOINT_PROFILE
++
++
++def _joint_captured_roles(fixture):
++    roles = _required_roles(fixture)
++    del roles['king_hide:P:6']
++    del roles['king_drag:P:6']
++    roles['game'] = 'ordinary'
++    for side in ('P', 'O'):
++        for name in ('battleRageTimer', 'autoRageTimer'):
++            roles['aux:' + side + ':' + name] = 'timer'
++    return roles
++
++
++def _validate_joint_captured_runtime(data, fixture, original):
++    validate_captured_joint_profile(data, fixture)
++    _keys(data, ('schema','mode','profile_id','checkpoint','environment','nodes','timer_initial',
++                 'initial_items','initial_characters','prepare_order','activate_order','terminal_profile',
++                 'frame_clock','processing_nodes'), 'captured joint runtime14')
++    _keys(data['environment'], ('fps','scale','paused'), 'pure environment')
++    env = data['environment']
++    if type(env['fps']) is not int or env['fps'] != 60 or type(env['scale']) is not float or env['scale'] != 1.0 or env['paused'] is not False:
++        raise ValueError('captured joint fixed60 scale1 unpaused required')
++    _keys(data['checkpoint'], ('util_time_bits','combat_time_bits','source_phase'), 'pure checkpoint')
++    checkpoint = data['checkpoint']
++    util_time = _be_float(checkpoint['util_time_bits'])
++    if util_time < 0 or checkpoint['combat_time_bits'] != _float_bits(0.0) or checkpoint['source_phase'] != 'Core/Game.gd::activateItems:enter':
++        raise ValueError('captured joint activation checkpoint')
++    clock = decode_clock(data['frame_clock'])
++    if _float_bits(clock.util_time) != checkpoint['util_time_bits']:
++        raise ValueError('captured joint checkpoint/clock mismatch')
++    ids = {i['instance_id'] for side in fixture['sides'] for i in side['items']}
++    for field in ('prepare_order','activate_order'):
++        order = data[field]
++        if type(order) is not list or len(order) != 26 or any(type(i) is not str for i in order) or set(order) != ids:
++            raise ValueError('captured joint exact26 item order')
++    if data['prepare_order'] != data['activate_order']:
++        raise ValueError('captured joint different prepare/activate order unsupported')
++    _keys(data['initial_items'], ids, 'pure initial items')
++    for values in data['initial_items'].values():
++        _keys(values, ('lastActivationTime_bits','lastTriggerTime_bits','activationsThisFrame','triggersThisFrame','dragged','moveback_running','cache_fresh'), 'pure emitted item scalars')
++        if any(values[k] != _float_bits(0.0) for k in ('lastActivationTime_bits','lastTriggerTime_bits')):
++            raise ValueError('captured joint limiter bits differ from fixed input domain')
++        if any(type(values[k]) is not int or values[k] != 0 for k in ('activationsThisFrame','triggersThisFrame')):
++            raise ValueError('captured joint limiter integer domain')
++        if values['dragged'] is not False or values['moveback_running'] is not False or values['cache_fresh'] is not True:
++            raise ValueError('captured joint emitted drag/tween/cache predicate')
++    _keys(data['initial_characters'], ('P','O'), 'pure initial characters')
++    for values in data['initial_characters'].values():
++        _keys(values, ('invulnerable','invulnerabilityItem','buffProtectStacks'), 'pure character fields')
++        if values['invulnerable'] is not False or values['invulnerabilityItem'] is not None or type(values['buffProtectStacks']) is not int or values['buffProtectStacks'] != 0:
++            raise ValueError('unsupported captured joint character initial values')
++    required = _joint_captured_roles(fixture)
++    rows = data['processing_nodes']
++    if type(rows) is not list or len(rows) != 65:
++        raise ValueError('captured joint processing65 required')
++    table, native_ids, paths, positions, prefixes = {}, set(), set(), set(), {}
++    for node in rows:
++        _keys(node, NODE_INPUT_KEYS, 'pure processing node')
++        role = node['role']
++        if type(role) is not str or role not in set(required) | {'root_viewport'} or role in table:
++            raise ValueError('captured joint unknown/duplicate role')
++        if type(node['native_id']) is not str or re.fullmatch('[1-9][0-9]*',node['native_id']) is None or node['native_id'] in native_ids:
++            raise ValueError('captured joint native identity')
++        if type(node['path']) is not str or not (node['path']=='/root' or node['path'].startswith('/root/')) or node['path'] in paths:
++            raise ValueError('captured joint actual path')
++        names, pos = node['path'].split('/')[1:], node['positions']
++        if type(pos) is not list or len(pos) != len(names) or not pos or pos[0] != -1 or any(type(x) is not int for x in pos) or any(not 0 <= x <= 4096 for x in pos[1:]) or tuple(pos) in positions:
++            raise ValueError('captured joint actual sparse coordinates')
++        if node['name'] != names[-1] or type(node['priority']) is not int or not -(2**31) <= node['priority'] < 2**31 or type(node['class']) is not str or node['inside_tree'] is not True:
++            raise ValueError('captured joint node scalar types')
++        expected_class = 'Viewport' if role == 'root_viewport' else 'Timer' if required[role] == 'timer' else 'RigidBody2D' if role.startswith('item:') else 'Node2D'
++        if node['class'] != expected_class:
++            raise ValueError('captured joint role/native class association')
++        for flag in ('ordinary_physics','internal_physics','ordinary_idle','internal_idle'):
++            if type(node[flag]) is not bool:raise ValueError('captured joint independent bool flags')
++        for j in range(1,len(names)+1):
++            prefix = tuple(pos[:j])
++            if prefix in prefixes and prefixes[prefix] != tuple(names[:j]):raise ValueError('captured joint sparse prefix conflict')
++            prefixes[prefix] = tuple(names[:j])
++        if role == 'root_viewport':
++            if node['path']!='/root' or pos!=[-1] or node['priority']!=0 or node['class']!='Viewport' or (node['ordinary_physics'],node['internal_physics'],node['ordinary_idle'],node['internal_idle']) != (False,True,False,False):
++                raise ValueError('captured joint root flags')
++        else:
++            if node['internal_physics'] or node['internal_idle']:raise ValueError('captured joint initial native internal flags')
++            expected = (True,True) if role in ('game','util') else (True,False) if role.startswith('character:') else (False,True) if role.startswith('item:') else (False,False)
++            if (node['ordinary_physics'],node['ordinary_idle']) != expected:raise ValueError('captured joint initial ordinary memberships')
++        table[role]=node;native_ids.add(node['native_id']);paths.add(node['path']);positions.add(tuple(pos))
++    if set(table) != set(required)|{'root_viewport'}:raise ValueError('captured joint complete processing roles')
++    configs = data['nodes']
++    if type(configs) is not list or len(configs)!=64:raise ValueError('captured joint config64 required')
++    seen=set()
++    for config in configs:
++        _keys(config, ('role','path','positions','priority','kind'), 'pure node config')
++        role=config['role']
++        if type(role) is not str or role not in required or role in seen or type(config['kind']) is not str or config['kind']!=required[role]:raise ValueError('captured joint node kind/role')
++        actual=table[role]
++        if type(config['positions']) is not list or any(type(x) is not int for x in config['positions']):raise ValueError('captured joint typed config positions')
++        if any(type(config[k]) is not type(actual[k]) or config[k]!=actual[k] for k in ('path','positions','priority')):raise ValueError('captured joint raw/config topology')
++        seen.add(role)
++    timers={role for role,kind in required.items() if kind=='timer'}
++    _keys(data['timer_initial'],timers,'pure33 timer values')
++    if len(timers)!=33:raise ValueError('captured joint exact33 timers')
++    for role, initial in data['timer_initial'].items():
++        _keys(initial, ('wait_time_bits','one_shot','process_mode','autostart','paused','private_left_bits'), 'pure timer fields')
++        wait=_be_float(initial['wait_time_bits'])
++        if wait!=1.0 or f32(wait)!=wait or type(initial['one_shot']) is not bool or initial['one_shot'] != (not role.startswith('tick:')) or type(initial['process_mode']) is not int or initial['process_mode']!=0 or initial['autostart'] is not False or initial['paused'] is not False or initial['private_left_bits'] != _float_bits(-1.0) or table[role]['class']!='Timer':
++            raise ValueError('captured joint unsupported typed Timer state/config')
++    for side, child in (('P',7),('O',5)):
++        timer,parent=table['invu:'+side],table['character:'+side]
++        if timer['positions']!=parent['positions']+[child] or timer['path']!=parent['path']+'/InvulnerabilityTimer':raise ValueError('captured joint P7/O5 topology')
++    king_timer,king_parent=table['king_buff:P:6'],table['item:P:6']
++    if king_timer['positions']!=king_parent['positions']+[7] or king_timer['path']!=king_parent['path']+'/BuffTimer':
++        raise ValueError('captured joint P6 native BuffTimer child7')
++    if isinstance(original,RuntimeDTO) and (type(original.prepare_order) is not tuple or original.prepare_order!=tuple(data['prepare_order']) or type(original.util_time) is not float or _float_bits(original.util_time)!=checkpoint['util_time_bits']):
++        raise ValueError('captured joint RuntimeDTO convenience mismatch')
++    return RuntimeDTO(data,tuple(data['prepare_order']),util_time)
++

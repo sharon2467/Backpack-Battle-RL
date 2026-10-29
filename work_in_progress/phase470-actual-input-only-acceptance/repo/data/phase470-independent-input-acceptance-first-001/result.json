@@ -1,0 +1,563 @@
+{
+  "schema": "phase470-independent-input-acceptance/1",
+  "status": "ACCEPTED_ACTUAL_INPUT_ONLY_NOT_RUNTIME_VALIDATED",
+  "cases": [
+    {
+      "name": "01 new74 receipt",
+      "status": "PASS"
+    },
+    {
+      "name": "02 raw byte identity",
+      "status": "PASS_REJECTED",
+      "error": "Rejected",
+      "reason": "FIXED_INPUT_IDENTITY_fixture.json"
+    },
+    {
+      "name": "03 missing raw carrier",
+      "status": "PASS_REJECTED",
+      "error": "Rejected",
+      "reason": "EXACT_FIXED12_NAMES"
+    },
+    {
+      "name": "04 duplicate role",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "INITIAL_DUPLICATE_ROLE"
+    },
+    {
+      "name": "05 foreign crosscut alias",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "INITIAL_NODE_ALIAS"
+    },
+    {
+      "name": "06 BOOL mode",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "integer range/type"
+    },
+    {
+      "name": "07 INT flag",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "raw node/Timer BOOL"
+    },
+    {
+      "name": "08 paused Timer",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "STRICT_TIMER_FALSE_paused"
+    },
+    {
+      "name": "09 wrong child position",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "SOURCE_SCENE_CHILD"
+    },
+    {
+      "name": "10 Buff dual",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "BUFF_RESOURCE_TIMER_DUAL"
+    },
+    {
+      "name": "11 ledger owner",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "INITIAL_LEDGER_OWNER_KIND"
+    },
+    {
+      "name": "12 nonzero start",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "LIFETIME_ZERO_INT_starts"
+    },
+    {
+      "name": "13 pooled King",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "KING_FRESH_SCENE_JOIN"
+    },
+    {
+      "name": "14 missing Basic threshold",
+      "status": "PASS_REJECTED",
+      "error": "KeyError",
+      "reason": "'activationsToTrigger'"
+    },
+    {
+      "name": "15 INT Basic threshold",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "GOOBERT_TYPED_SOURCE_THRESHOLD"
+    },
+    {
+      "name": "16 BOOL Basic counter",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "INITIAL_TYPED_INT_0"
+    },
+    {
+      "name": "17 cache foreign alias",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "CACHE_NATIVE_ROLE_ASSOCIATION"
+    },
+    {
+      "name": "18 cache dual",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "ITEM_CACHE_DUAL"
+    },
+    {
+      "name": "19 missing receipt key",
+      "status": "PASS_REJECTED",
+      "error": "Rejected",
+      "reason": "EMITTED_VALUE_SOURCE_MISSING_Timer.private_left:pre_activate:tick:P"
+    },
+    {
+      "name": "20 early primitive",
+      "status": "PASS_REJECTED",
+      "error": "Rejected",
+      "reason": "SELECTED_PRIMITIVE_NOT_AFTER_ACTIVATION"
+    },
+    {
+      "name": "21 clock duplicate",
+      "status": "PASS_REJECTED",
+      "error": "ValueError",
+      "reason": "missing/duplicate/reordered source frame counters"
+    },
+    {
+      "name": "22 partial runtime",
+      "status": "PASS"
+    },
+    {
+      "name": "23 display exclusion",
+      "status": "PASS"
+    },
+    {
+      "name": "24 missing origin",
+      "status": "PASS_REJECTED",
+      "error": "Rejected",
+      "reason": "MISSING_TIMER_FIELD_ORIGIN"
+    }
+  ],
+  "calls": {
+    "bridge.read_pinned": 79,
+    "bridge.decode_lawful12": 2,
+    "bridge.verify_raw_inputs": 4,
+    "receipt.build_initial_receipt": 10,
+    "receipt.validate_timer": 403,
+    "receipt.validate_cache_alias": 297,
+    "receipt.validate_ledger": 11,
+    "receipt.value_index": 2,
+    "bridge.source_value": 712,
+    "bridge.project_primitives": 2,
+    "schema.decode_clock": 4,
+    "bridge.project_runtime": 3,
+    "bridge.validate_initial_consumer_coverage": 2,
+    "bridge.build_from_files": 1,
+    "bridge.project_from_bytes": 1,
+    "bridge.project_decoded": 1
+  },
+  "model_runs": 0,
+  "Oracle": 0,
+  "EXPECTED_business_decodes": 0,
+  "pool_operations": 0,
+  "old_controls": 0,
+  "runtime_validated": false,
+  "loaded_paths": {
+    "bridge": "/workspace/python-original-engine/repo/tests/phase470_joint_input_bridge.py",
+    "receipt": "/workspace/python-original-engine/repo/tests/phase470_joint_initial_receipt.py",
+    "schema": "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/schema/phase462_king_basic_observer_schema.py"
+  },
+  "controls_calls": {
+    "bridge.read_pinned": 12,
+    "bridge.decode_lawful12": 1,
+    "bridge.verify_raw_inputs": 3,
+    "receipt.build_initial_receipt": 9,
+    "receipt.validate_timer": 337,
+    "receipt.validate_cache_alias": 219,
+    "receipt.validate_ledger": 8,
+    "receipt.value_index": 1,
+    "bridge.source_value": 475,
+    "bridge.project_primitives": 1,
+    "schema.decode_clock": 3,
+    "bridge.project_runtime": 2,
+    "bridge.validate_initial_consumer_coverage": 1
+  },
+  "controls_seconds": 1.026241908002703,
+  "controls_raw_reads": {
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/fixture.json": 1,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-clock-checkpoint.json": 1,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-clock-passes.jsonl": 1,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-input-facts.json": 1,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-rng-checkpoint.json": 1,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-slot-bindings.json": 1,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-ui-authority.jsonl": 1,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/observer7-input.jsonl": 1,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/observer7-lineage.jsonl": 1,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/observer7-metadata.jsonl": 1,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/observer7-primitives.jsonl": 1,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/player_fixture.json": 1
+  },
+  "build_return": {
+    "output": "/workspace/python-original-engine/repo/data/phase470-joint-input-first-001",
+    "status": "INPUT_ONLY_NOT_RUNTIME_VALIDATED",
+    "input_bundle_created": true,
+    "runtime_validated": false,
+    "model_runs": 0
+  },
+  "build_seconds": 0.2299425580058596,
+  "mapping": {
+    "items": 26,
+    "business_timers": 33,
+    "processing_nodes": 65,
+    "node_configs": 64,
+    "derived": 74,
+    "clock_passes": 2367,
+    "primitives": 422,
+    "field_origins": 347,
+    "receipt_input_refs_checked": 757
+  },
+  "source_before": [
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase470_joint_input_bridge_source_spec.md",
+      "size": 9616,
+      "sha256": "426c5169388e31d514abb850a265e54eedb8c90da4071cf1988f7606099d1670"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase470_joint_input_bridge.py",
+      "size": 35514,
+      "sha256": "d70d31b13226da2f08627986c260f32aba6520cb745bbc5dbc6bf069a5936394"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase470_joint_initial_receipt.py",
+      "size": 18125,
+      "sha256": "67cede8069561f03113008b1797be22248b1d2f69751c970c91c11060c2a6f4e"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-source/abi.json",
+      "size": 738,
+      "sha256": "15d5671b349230ddcc04e48fd7dd3c98d1d4de2212de05d7c5cf73c7dc7e9727"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-source/bridge-vs441.patch",
+      "size": 30017,
+      "sha256": "b8f60dcfb6bb901f82f672e7a54b0c163d53e9453a4d756f29818afbbdb21a5e"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-source/compile-only.json",
+      "size": 842,
+      "sha256": "569b634b48822c4de0f742d93aabb6a398ccd2a6c31688eb7029e43876fc5d0a"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-source/context.json",
+      "size": 8481,
+      "sha256": "4ddb2e9ed1256f893bb206928618e910a84871f6ee220680b7d482581047785f"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-source/input-pins.json",
+      "size": 3157,
+      "sha256": "196dad5c8a743c6ca569d5757b6211751435d1ef9a0f173182c94413cf4b6ad8"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-source/reuse-map.json",
+      "size": 2046,
+      "sha256": "af8b70efb5a157f5fc5e7b77e9ecacd8a7c38015a45e4ea4f9e0fec436cb9612"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/schema/phase462_king_basic_observer_schema.py",
+      "size": 196289,
+      "sha256": "b2cafda5409b048f655f2f2668f915e3e69339ea801569d0420c775776aabd91"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/source-owner.json",
+      "size": 20753,
+      "sha256": "91b5098388e356ad2d386f0b35298fb92cda2e100ddf74c52183dc469fa180f9"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/source-tuple.json",
+      "size": 1729,
+      "sha256": "1a77916bf7d5f5a50936c576c3d9ff72b91d821742173f6e39af9c8be0913f57"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/fixed-v8-fixture.json",
+      "size": 3881,
+      "sha256": "209704d584e9719841834163758606afd5738f0de14fa90669627b1a52e39963"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase463-independent-source-acceptance/review.json",
+      "size": 5374,
+      "sha256": "5cebd80f470a6d7b829ca6bc09c4d1b490f4d83f669d862925f1f10df5cf7906"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase466-captured-joint-bridge-design/owned-files.json",
+      "size": 925,
+      "sha256": "7efcc5ff65940aa78264eaf1cfa40c61bfbad6c8154dda52890a290c4f24d11f"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase466-captured-joint-bridge-design/comparison-contract.json",
+      "size": 4636,
+      "sha256": "71c681047140d3bc13d91b24be590dcb598cb3454edac394288c64e01cb3ecef"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase438_impl_character_buff_source_closure.md",
+      "size": 14287,
+      "sha256": "abd72f67838a5319e1a25d1606a236d57b6ee659474cb61d65f06505e1e37b80"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase438_native_timer_source_review.md",
+      "size": 16492,
+      "sha256": "f60745add1129a381f75831a0a53bdf21b3fdca6fb836609ea161e975ef6af97"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase438-character-overlay-source-v2/context.json",
+      "size": 193067,
+      "sha256": "0098e19041a88317466c87d69a19044f018f7362334b325bf71cafe8cbc3ec73"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase439-timer-overlay-source-v2/context.json",
+      "size": 214569,
+      "sha256": "72c4b0f2c2450e723b39d711b32d83f42608216e74d7679ecc7138656ae83a09"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase438-native-timer-source-review/source-ledger.json",
+      "size": 2689,
+      "sha256": "cb88ff66ce1151338f453b3f7f08811f87d80f1e96a7a5a9aa4e8ad656e860b0"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase438-root-character8-acceptance/acceptance.json",
+      "size": 1482,
+      "sha256": "c4fc10ff4196083eab5c3f1169bfa00bb080712ab49cb2947bcebbc0b60f28a5"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase439-root-timer64-acceptance/acceptance.json",
+      "size": 2052,
+      "sha256": "c32a013aa58598fd15a6658c220dba67073062a4e3f022f84c5b8b0408d25b78"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-source/source-owner.json",
+      "size": 7913,
+      "sha256": "73b0ac566b5f59748c6b46fb0af75f2b0a0af0b1083f171de011a586ba245ab7"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase470_independent_input_acceptance.py",
+      "size": 26022,
+      "sha256": "94f96a0f41e6cd1b7035c888d07704ebf2c2f1a30c837d31cd6a323373481b8f"
+    }
+  ],
+  "source_after": [
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase470_joint_input_bridge_source_spec.md",
+      "size": 9616,
+      "sha256": "426c5169388e31d514abb850a265e54eedb8c90da4071cf1988f7606099d1670"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase470_joint_input_bridge.py",
+      "size": 35514,
+      "sha256": "d70d31b13226da2f08627986c260f32aba6520cb745bbc5dbc6bf069a5936394"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase470_joint_initial_receipt.py",
+      "size": 18125,
+      "sha256": "67cede8069561f03113008b1797be22248b1d2f69751c970c91c11060c2a6f4e"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-source/abi.json",
+      "size": 738,
+      "sha256": "15d5671b349230ddcc04e48fd7dd3c98d1d4de2212de05d7c5cf73c7dc7e9727"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-source/bridge-vs441.patch",
+      "size": 30017,
+      "sha256": "b8f60dcfb6bb901f82f672e7a54b0c163d53e9453a4d756f29818afbbdb21a5e"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-source/compile-only.json",
+      "size": 842,
+      "sha256": "569b634b48822c4de0f742d93aabb6a398ccd2a6c31688eb7029e43876fc5d0a"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-source/context.json",
+      "size": 8481,
+      "sha256": "4ddb2e9ed1256f893bb206928618e910a84871f6ee220680b7d482581047785f"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-source/input-pins.json",
+      "size": 3157,
+      "sha256": "196dad5c8a743c6ca569d5757b6211751435d1ef9a0f173182c94413cf4b6ad8"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-source/reuse-map.json",
+      "size": 2046,
+      "sha256": "af8b70efb5a157f5fc5e7b77e9ecacd8a7c38015a45e4ea4f9e0fec436cb9612"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/schema/phase462_king_basic_observer_schema.py",
+      "size": 196289,
+      "sha256": "b2cafda5409b048f655f2f2668f915e3e69339ea801569d0420c775776aabd91"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/source-owner.json",
+      "size": 20753,
+      "sha256": "91b5098388e356ad2d386f0b35298fb92cda2e100ddf74c52183dc469fa180f9"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/source-tuple.json",
+      "size": 1729,
+      "sha256": "1a77916bf7d5f5a50936c576c3d9ff72b91d821742173f6e39af9c8be0913f57"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/fixed-v8-fixture.json",
+      "size": 3881,
+      "sha256": "209704d584e9719841834163758606afd5738f0de14fa90669627b1a52e39963"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase463-independent-source-acceptance/review.json",
+      "size": 5374,
+      "sha256": "5cebd80f470a6d7b829ca6bc09c4d1b490f4d83f669d862925f1f10df5cf7906"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase466-captured-joint-bridge-design/owned-files.json",
+      "size": 925,
+      "sha256": "7efcc5ff65940aa78264eaf1cfa40c61bfbad6c8154dda52890a290c4f24d11f"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase466-captured-joint-bridge-design/comparison-contract.json",
+      "size": 4636,
+      "sha256": "71c681047140d3bc13d91b24be590dcb598cb3454edac394288c64e01cb3ecef"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase438_impl_character_buff_source_closure.md",
+      "size": 14287,
+      "sha256": "abd72f67838a5319e1a25d1606a236d57b6ee659474cb61d65f06505e1e37b80"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase438_native_timer_source_review.md",
+      "size": 16492,
+      "sha256": "f60745add1129a381f75831a0a53bdf21b3fdca6fb836609ea161e975ef6af97"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase438-character-overlay-source-v2/context.json",
+      "size": 193067,
+      "sha256": "0098e19041a88317466c87d69a19044f018f7362334b325bf71cafe8cbc3ec73"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase439-timer-overlay-source-v2/context.json",
+      "size": 214569,
+      "sha256": "72c4b0f2c2450e723b39d711b32d83f42608216e74d7679ecc7138656ae83a09"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase438-native-timer-source-review/source-ledger.json",
+      "size": 2689,
+      "sha256": "cb88ff66ce1151338f453b3f7f08811f87d80f1e96a7a5a9aa4e8ad656e860b0"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase438-root-character8-acceptance/acceptance.json",
+      "size": 1482,
+      "sha256": "c4fc10ff4196083eab5c3f1169bfa00bb080712ab49cb2947bcebbc0b60f28a5"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase439-root-timer64-acceptance/acceptance.json",
+      "size": 2052,
+      "sha256": "c32a013aa58598fd15a6658c220dba67073062a4e3f022f84c5b8b0408d25b78"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-source/source-owner.json",
+      "size": 7913,
+      "sha256": "73b0ac566b5f59748c6b46fb0af75f2b0a0af0b1083f171de011a586ba245ab7"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase470_independent_input_acceptance.py",
+      "size": 26022,
+      "sha256": "94f96a0f41e6cd1b7035c888d07704ebf2c2f1a30c837d31cd6a323373481b8f"
+    }
+  ],
+  "physical_raw_reads": {
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/fixture.json": 3,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-clock-checkpoint.json": 3,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-clock-passes.jsonl": 3,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-input-facts.json": 3,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-rng-checkpoint.json": 3,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-slot-bindings.json": 3,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/king-ui-authority.jsonl": 3,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/observer7-input.jsonl": 3,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/observer7-lineage.jsonl": 3,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/observer7-metadata.jsonl": 3,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/observer7-primitives.jsonl": 3,
+    "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/player_fixture.json": 3
+  },
+  "physical_raw_reads_total": 36,
+  "distinct_raw_inputs": 12,
+  "source_read_opens_after_audit": {
+    "/workspace/python-original-engine/repo/tests/phase470_joint_initial_receipt.py": 4,
+    "/workspace/python-original-engine/repo/tests/phase470_joint_input_bridge.py": 2,
+    "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/schema/phase462_king_basic_observer_schema.py": 4,
+    "/workspace/python-original-engine/repo/data/phase470-joint-input-source/context.json": 3,
+    "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/source-owner.json": 3,
+    "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/source-tuple.json": 3,
+    "/workspace/python-original-engine/repo/data/phase462-joint-observer-source-v3/fixed-v8-fixture.json": 3,
+    "/workspace/python-original-engine/repo/data/phase463-independent-source-acceptance/review.json": 5,
+    "/workspace/python-original-engine/repo/data/phase466-captured-joint-bridge-design/owned-files.json": 3,
+    "/workspace/python-original-engine/repo/data/phase466-captured-joint-bridge-design/comparison-contract.json": 3,
+    "/workspace/python-original-engine/repo/docs/phase438_impl_character_buff_source_closure.md": 3,
+    "/workspace/python-original-engine/repo/docs/phase438_native_timer_source_review.md": 3,
+    "/workspace/python-original-engine/repo/data/phase438-character-overlay-source-v2/context.json": 3,
+    "/workspace/python-original-engine/repo/data/phase439-timer-overlay-source-v2/context.json": 3,
+    "/workspace/python-original-engine/repo/data/phase438-native-timer-source-review/source-ledger.json": 3,
+    "/workspace/python-original-engine/repo/data/phase438-root-character8-acceptance/acceptance.json": 3,
+    "/workspace/python-original-engine/repo/data/phase439-root-timer64-acceptance/acceptance.json": 3,
+    "/workspace/python-original-engine/repo/data/phase470-joint-input-source/abi.json": 3,
+    "/workspace/python-original-engine/repo/docs/phase470_joint_input_bridge_source_spec.md": 1,
+    "/workspace/python-original-engine/repo/data/phase470-joint-input-source/bridge-vs441.patch": 1,
+    "/workspace/python-original-engine/repo/data/phase470-joint-input-source/compile-only.json": 1,
+    "/workspace/python-original-engine/repo/data/phase470-joint-input-source/input-pins.json": 1,
+    "/workspace/python-original-engine/repo/data/phase470-joint-input-source/reuse-map.json": 1,
+    "/workspace/python-original-engine/repo/data/phase470-joint-input-source/source-owner.json": 1,
+    "/workspace/python-original-engine/repo/tests/phase470_independent_input_acceptance.py": 1
+  },
+  "input_output_owner": {
+    "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-first-001/owned-files.json",
+    "size": 1550,
+    "sha256": "b906ee080db284731513ea0b8d7456345e50faea5b6ff71dad1c6c4977f0743d"
+  },
+  "output_payloads": [
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-first-001/input-bundle.json",
+      "size": 500518,
+      "sha256": "bb731532d9852be73e374c0f296d5fc1d32923faeabbcef471d5aed75dee86ee"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-first-001/initial-receipt.json",
+      "size": 434877,
+      "sha256": "f09e7e18978582bb53b3739319609ffa62c4c0080d898f76d2a4c3f2d04fb635"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-first-001/input-proof.json",
+      "size": 183941,
+      "sha256": "4d842ec57af89c632d6058239fd98ed0afbe0c86b0ca1160b4dbd6785a4cd62e"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-first-001/inputs-before-interpretation.json",
+      "size": 9718,
+      "sha256": "a1167044d0e08ba3a54f1e860f65c303f3fa543067a715c743dde87e7cb2b4e3"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-first-001/input-readback.json",
+      "size": 12997,
+      "sha256": "4ddab130061feca46d9bb3b9d139ed423b04f8efc51ade77deedb7ba5346bef3"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-first-001/input-joint-seal.json",
+      "size": 1981,
+      "sha256": "906fec1bd943f1daf73b8ebad113498362d8b87a0a2d0cbf5b39810a9e29a63f"
+    }
+  ],
+  "full_bundle_projections": 1,
+  "actual_builds": 1,
+  "transport_decodes": 2,
+  "controls_case_count": 24,
+  "loaded_candidate_modules": [],
+  "forbidden_io": [],
+  "wall_seconds": 1.2908481460035546
+}

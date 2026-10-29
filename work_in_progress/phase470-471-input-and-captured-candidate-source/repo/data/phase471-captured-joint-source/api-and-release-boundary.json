@@ -1,0 +1,42 @@
+{
+  "actual_input_bundle": null,
+  "api": {
+    "CombatEngine": "exact TapeRandom; real prepare_only/activate_from_checkpoint/step/run/result; not invoked by author",
+    "build_runtime_scaffold": "new dispatch after validation reuses neutral scaffold",
+    "source_headless": "exact458headless unchanged; public Source13 still rejects Tape",
+    "validate_runtime_inputs": "new exact captured dispatch returns RuntimeDTO; no RNG/construct/prepare"
+  },
+  "counts": {
+    "business_timers": 33,
+    "items": 26,
+    "node_configs": 64,
+    "processing_nodes": 65
+  },
+  "expected_read": false,
+  "external_model_blockers": [
+    "470 independent Source/controls and actual bundle acceptance",
+    "new candidate independent Source/interface acceptance",
+    "new-case finite shared callback guard applicability",
+    "bound actual bundle+receipt+candidate+launcher provenance",
+    "frozen same8section newcase comparator before Expected"
+  ],
+  "fixture": {
+    "path": "data/phase462-joint-observer-source-v3/fixed-v8-fixture.json",
+    "sha256": "209704d584e9719841834163758606afd5738f0de14fa90669627b1a52e39963",
+    "size": 3881
+  },
+  "input_abi": {
+    "path": "data/phase470-joint-input-source/abi.json",
+    "sha256": "15d5671b349230ddcc04e48fd7dd3c98d1d4de2212de05d7c5cf73c7dc7e9727",
+    "size": 738
+  },
+  "input_source_owner": {
+    "path": "data/phase470-joint-input-source/source-owner.json",
+    "sha256": "73b0ac566b5f59748c6b46fb0af75f2b0a0af0b1083f171de011a586ba245ab7",
+    "size": 7913
+  },
+  "model_authorized": false,
+  "profile": "pure-combat-king-basic-A-captured/1",
+  "runtime_schema": "native-v8-pure-combat-runtime-input/king-basic-1",
+  "schema": "phase471-captured-source-boundary/1"
+}

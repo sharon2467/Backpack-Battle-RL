@@ -1,0 +1,51 @@
+{
+  "schema": "phase470-joint-input-only-seal/1",
+  "status": "INPUT_ONLY_NOT_RUNTIME_VALIDATED",
+  "files": [
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-first-001/input-bundle.json",
+      "size": 500518,
+      "sha256": "bb731532d9852be73e374c0f296d5fc1d32923faeabbcef471d5aed75dee86ee"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-first-001/initial-receipt.json",
+      "size": 434877,
+      "sha256": "f09e7e18978582bb53b3739319609ffa62c4c0080d898f76d2a4c3f2d04fb635"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-first-001/input-proof.json",
+      "size": 183941,
+      "sha256": "4d842ec57af89c632d6058239fd98ed0afbe0c86b0ca1160b4dbd6785a4cd62e"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-first-001/inputs-before-interpretation.json",
+      "size": 9718,
+      "sha256": "a1167044d0e08ba3a54f1e860f65c303f3fa543067a715c743dde87e7cb2b4e3"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-first-001/input-readback.json",
+      "size": 12997,
+      "sha256": "4ddab130061feca46d9bb3b9d139ed423b04f8efc51ade77deedb7ba5346bef3"
+    }
+  ],
+  "source_context": {
+    "path": "data/phase470-joint-input-source/context.json",
+    "size": 8481,
+    "sha256": "4ddb2e9ed1256f893bb206928618e910a84871f6ee220680b7d482581047785f"
+  },
+  "abi": {
+    "path": "data/phase470-joint-input-source/abi.json",
+    "sha256": "15d5671b349230ddcc04e48fd7dd3c98d1d4de2212de05d7c5cf73c7dc7e9727",
+    "size": 738
+  },
+  "runtime_validated": false,
+  "model_release": false,
+  "King_admitted": false,
+  "future_model_blockers": [
+    "constructor/prepare equivalence",
+    "ordinary callbacks/transform/RNG noninterference",
+    "King setState/log behavior",
+    "candidate runtime acceptance and same-instance diagnostics",
+    "strict output/comparator mapping"
+  ]
+}
