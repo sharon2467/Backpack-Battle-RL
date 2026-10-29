@@ -1,0 +1,58 @@
+{
+  "schema": "phase445-typed-business-field-map/1",
+  "native_source": "data/phase391-terminal-source/collector.gd + after-source/native_random_observer_sink_v7.gd",
+  "sections": {
+    "events": {
+      "native": "collector events.jsonl: typed id/timestamp/parent/origin/target/type/params/snapshot + raw sequence",
+      "model": "result.events",
+      "rule": "complete ordered values + exact timestamp BE64"
+    },
+    "event_references": {
+      "native": "collector event_references.json ID→complete recursive parent event records",
+      "model": "result.event_references",
+      "rule": "canonical string IDs with matching typed event.id; complete key/type/value closure"
+    },
+    "histories": {
+      "native": "histories.json collector tagged StatHistory/dictionary/array",
+      "model": "result.histories with only known JSON INT tables restored",
+      "rule": "all stat_loggers+global; no history filtering or event-number shift"
+    },
+    "rng": {
+      "native": "already accepted441 all365 actual direct-native primitive records + final_state balanced_rng/chance_rng/damage_rng",
+      "model": "result.random_inputs + complete final.native_rule_state RNGs",
+      "rule": "ordered primitive kind/label/args/returns and7 fields per balanced RNG +range acc; conditional Tape only"
+    },
+    "final": {
+      "native": "final_state.json entire business native_rule_state (actual subtype fields merged), game/event_bus/timer/winner",
+      "model": "same result.final native_rule_state/game/event_bus/timer/winner; HealthPotion.isFull from final.items live potion_full",
+      "rule": "preserve39 inventory order, occupiedCells order, all business field types/floats/metrics/stats/22Buffs/rules. Only characterName/chibi and437 bubble are removed; empty fixed six-family particle wrapper asserted"
+    },
+    "callbacks": {
+      "native": "runtime sequence>1232 known callback enter sites: Util physics+idle,combatTimer physics,Character physics,Item physics,Buff.onTimeout,Character.onTick/invulnerabilityEnded,fatigue startFatigue/dealFatigueDamage,King.buffEnded",
+      "model": "pure_combat_diagnostics.callbacks in append order excluding exact accepted44441 Source-only no-op slots",
+      "rule": "same role/mode/physical+idle frame/delta/combat+Util BE64, full through final, no sort/cleanup truncation, unexpected same-activation-frame selected callback fails"
+    },
+    "timer_api": {
+      "native": "runtime timer_before/after: role,args,argc,operation,public_before/public_after,stamp.physical+idle frame,subject receiver nativeID",
+      "model": "pure_combat_diagnostics.api: actual component public ABI + typed raw args before float coercion",
+      "rule": "33 exact roles, paired ordered edges, INT/REAL strict form,Node ID/path/name/class/sparse positions/priority/four independent flags/config/time_left/stopped; helper status and void Source semantics kept separate"
+    },
+    "cuts": {
+      "native": "king-post-cleanup-source.json +king-final-source.json +king-capture-endpoint.json +king-collector-cut.json actual_final/receipt",
+      "model": "result.king_terminal.post_cleanup/final.business and same-cut.model.native_rule_state, full pass_trace",
+      "rule": "all33 public timers and nodes+root; characters invulnerable/origin/protect; King5 business fields; Util clocks+framecounter; actual cleanup anchor, all2574passes and first actualidle after>=2 strictlyfuturephysics signals"
+    }
+  },
+  "excluded_display": {
+    "initial_reviewed_rows": 116,
+    "output_rule": "exact named Source counterparts only; no116 arbitrary output rows or wildcard filter",
+    "Source_only_noop_slots": 41
+  },
+  "not_sampled": [
+    "later native Timer private_left",
+    "107 debug method full enter/return-state trace",
+    "pre-prepare constructor RNG expectedWins",
+    "same-seed/global-generator equivalence"
+  ],
+  "all_other_actual_differences": "retain as first strict mismatch; no expected-dependent crop/default"
+}
