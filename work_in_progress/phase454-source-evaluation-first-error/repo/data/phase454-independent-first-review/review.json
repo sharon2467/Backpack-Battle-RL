@@ -1,0 +1,71 @@
+{
+  "schema": "phase454-independent-first-review/1",
+  "status": "FIRST_HARNESS_TIMEOUT_PRESERVED_PARTIAL_ACCEPTANCE_NO_RETRY",
+  "execution_owner": {
+    "path": "data/phase454-independent-source-headless-first-001/owned-files.json",
+    "size": 1101,
+    "sha256": "f50cb4bf752651c0c8bfa96c5ec97e388a36898419d47c18cbb4063c4084f01f"
+  },
+  "execution_result": {
+    "path": "data/phase454-independent-source-headless-first-001/result.json",
+    "size": 53218,
+    "sha256": "62936e2b1556b329b1168317a0fdebede469f29b83ebf6c5cefd4a22f7b26b85"
+  },
+  "source_review": {
+    "path": "data/phase453-independent-source-review/review.json",
+    "size": 2763,
+    "sha256": "effe07a8b9dc0f10c0b8bacb04381379649fa27e6279652070020887efe0b5f9"
+  },
+  "harness_source_owner": {
+    "path": "data/phase454-independent-harness-source/owned-files.json",
+    "size": 1628,
+    "sha256": "f26cbcc675e0afd5dc3376a35cb5ee309cda688c69e5f6aa1cdb68967f514acb"
+  },
+  "launcher_owner": {
+    "path": "data/phase454-independent-release/owned-files.json",
+    "size": 786,
+    "sha256": "ae6bb47dc3c9a26d78869ece28bc56ac3cbefba065be3e4b07e0b0e72678a19e"
+  },
+  "actual": {
+    "finite_controls_passed": 26,
+    "constructed_engines": 5,
+    "unfinished_tinybudget_models": 1,
+    "naturally_completed_battles": 4,
+    "batch_reference_results_sealed": 2,
+    "interleaved_results_sealed": 1,
+    "Engine_run_calls": 3,
+    "Engine_finish_calls": 4,
+    "Engine_step_calls": 15378,
+    "Battle_step_calls": 3846,
+    "prepare_calls": 5,
+    "activate_calls_including_recursive_driver_entry": 10,
+    "source_after_rereads": 15,
+    "source_drift": [],
+    "elapsed_seconds": 45.00170784700458
+  },
+  "failure": {
+    "stage": "strict_results_and_terminal_checks",
+    "type": "RuntimeError",
+    "message": "Independent harness 45-second bound exceeded",
+    "traceback": "Traceback (most recent call last):\n  File \"/workspace/python-original-engine/repo/tests/phase454_independent_source_headless_acceptance.py\", line 384, in main\n    result=battle.result()\n           ^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/data/phase453-source-pure-headless/staged/headless.py\", line 364, in result\n    return self._result_view(self._engine.result())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/data/phase453-source-pure-headless/staged/headless.py\", line 394, in _result_view\n    terminal=deepcopy(result['king_terminal'])\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/copy.py\", line 136, in deepcopy\n    y = copier(x, memo)\n        ^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/copy.py\", line 221, in _deepcopy_dict\n    y[deepcopy(key, memo)] = deepcopy(value, memo)\n                             ^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/copy.py\", line 136, in deepcopy\n    y = copier(x, memo)\n        ^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/copy.py\", line 221, in _deepcopy_dict\n    y[deepcopy(key, memo)] = deepcopy(value, memo)\n                             ^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/copy.py\", line 136, in deepcopy\n    y = copier(x, memo)\n        ^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/copy.py\", line 221, in _deepcopy_dict\n    y[deepcopy(key, memo)] = deepcopy(value, memo)\n                             ^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/copy.py\", line 136, in deepcopy\n    y = copier(x, memo)\n        ^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/copy.py\", line 221, in _deepcopy_dict\n    y[deepcopy(key, memo)] = deepcopy(value, memo)\n                             ^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/copy.py\", line 136, in deepcopy\n    y = copier(x, memo)\n        ^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/copy.py\", line 196, in _deepcopy_list\n    append(deepcopy(a, memo))\n           ^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/copy.py\", line 136, in deepcopy\n    y = copier(x, memo)\n        ^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/copy.py\", line 221, in _deepcopy_dict\n    y[deepcopy(key, memo)] = deepcopy(value, memo)\n                             ^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/copy.py\", line 136, in deepcopy\n    y = copier(x, memo)\n        ^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/copy.py\", line 196, in _deepcopy_list\n    append(deepcopy(a, memo))\n           ^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/copy.py\", line 136, in deepcopy\n    y = copier(x, memo)\n        ^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/copy.py\", line 221, in _deepcopy_dict\n    y[deepcopy(key, memo)] = deepcopy(value, memo)\n                             ^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/copy.py\", line 136, in deepcopy\n    y = copier(x, memo)\n        ^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/copy.py\", line 221, in _deepcopy_dict\n    y[deepcopy(key, memo)] = deepcopy(value, memo)\n                             ^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/copy.py\", line 134, in deepcopy\n    copier = _deepcopy_dispatch.get(cls)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase454_independent_source_headless_acceptance.py\", line 129, in __call__\n    def __call__(self, frame, event, arg):\n    \n  File \"/workspace/python-original-engine/repo/tests/phase454_independent_source_headless_acceptance.py\", line 177, in alarm\n    raise RuntimeError('Independent harness 45-second bound exceeded')\nRuntimeError: Independent harness 45-second bound exceeded\n"
+  },
+  "progress_interpretation": [
+    "26 finitecontrols passed and were sealed before either fullbatch run. Includes wholebatchprevalidation zeroRNG, narrowdomain rejection, actualtinybudget no fabricatedwinner, ValueError propagation, realfresh33Timers/dynamicKing/preparehistory, readonlysnapshot and exact13carrier rejection.",
+    "Both batch reference jobs and both interleaved instances completed. A=Pwinner,B=Owinner in each sequence; allfour1922physicsframes,3844passes,414primitiveauditrows. These aggregate equalities are not substitutes for full typed comparison.",
+    "interleaved-0.json is sealed. Control flow reached the next loop iteration after first full in-memory strictcomparison, RNGstate comparison, postfinalreadonly, typedTimer/aux/terminalchecks; first comparison was therefore executed successfully. Its local summary was not committed to report before timeout.",
+    "The second interleaved result was interrupted during HeadlessBattle.result/_result_view deepcopy with sys.profile active. No second full result artifact exists, and the original process has exited. Do not reconstruct it from the reference or claim two-sidedfullcomparisonPASS."
+  ],
+  "cause_limit": "45-second total harness limit, with continuous global profiling imposing overhead on model/deepcopy calls. The trace is an injected harnessRuntimeError, not a failed businessassertion or demonstrated candidate defect. No new performance claim is inferred.",
+  "remaining": "Wholephase acceptance blocked on second full interleaved result/equality. Root must explicitly choose/authorize repair scope because fourcompletedbattle budget was already consumed.",
+  "proposed_minimum_repair": "New immutable harness reuses sealedbatch reference and reruns only2 interleaved instances; no26control/batch/451 rerun. Profile only initialization if needed, manually count publicstep/result boundaries, disable profiling for stepping/resultserialization, retain timing perstage. This raises cumulative naturalcompletions to6 and is not authorized/executed by this report.",
+  "activity_after_error": {
+    "candidate_imports": 0,
+    "model_calls": 0,
+    "test_retries": 0,
+    "Expected_reads": 0,
+    "native_calls": 0
+  },
+  "active_processes_started_by_this_review": 0,
+  "formal_support": 75,
+  "general_King_formal_admitted": false
+}

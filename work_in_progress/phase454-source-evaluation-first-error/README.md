@@ -1,0 +1,9 @@
+# Phase454 fresh Source evaluation first-error checkpoint
+
+453 Source passed independent static review. The first454 independent batch passed26 necessary small controls and naturally completed all4 planned new Source battles: sequential A/B references and two interleaved instances. Both Source requests completed1922physics frames/414primitive returns, A winnerP/B winnerO. These are Python Source observations, not new native-layout or seed validation.
+
+The45-second test harness bound then fired during the second terminal result deepcopy under global sys.profile. This is a harness extraction failure, not a proven gameplay mismatch. The first interleaved A full typed result matched its sealed batch reference, but the second B full result never returned or sealed. It cannot be reconstructed from the reference. Batch-reference.json and interleaved-0.json,26controls, before/failure/actualcall records and the independent Source diagnosis are preserved. No model retry happened in this first attempt; all15 Source hashes remained unchanged.
+
+The next bounded continuation is authorized to replay only2 interleaved instances using the already sealed batch reference: cumulative6 naturally completed Source battles, not a repeat of the original4-battle batch or26controls. A replay is necessary as B's interleaving environment; do not just single-run B or fabricate its missing prior output. Remove global profiling overhead, retain boundary counts/phase timings, restore only Source-defined numeric dictionary-key tables from saved JSON, and compare complete typed output/two-stream state. Do not relax the contract or replay451/Expected/original capture.
+
+Experimental batch admission remains PENDING until complete A/B proof and terminal checks pass. Formal75/generalKing production scope remain unchanged. Existing451 fixed conditionalTape eight-section strict PASS is unaffected. Full engine/RL remains IN_PROGRESS.
