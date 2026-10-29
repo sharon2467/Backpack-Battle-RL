@@ -1,0 +1,36 @@
+{
+  "candidate_functions_changed": [],
+  "counts": {
+    "Expected": 0,
+    "actual_input_derivations": 0,
+    "models": 0,
+    "raw_INPUT_rereads": 0
+  },
+  "engine_byte_exact": true,
+  "gameplay_consumers": [
+    {
+      "effect": "O .975..1.05 if true else .95..1.05",
+      "file": "native_replay_v8/engine.py",
+      "function": "CombatEngine.adjust_cooldown"
+    },
+    {
+      "effect": "P/O accuracy+critical bias -/+0.2 if true else0",
+      "file": "native_replay_v8/engine.py",
+      "function": "CombatEngine.prepare_only"
+    }
+  ],
+  "mode_limitation": "Source Unranked setup chain; UI/RigidBody2D.mode1 is not Game.curMode; precise rank/rating not filled",
+  "new_source_fixture": "Fixed metadata true declaration only; author has not read/derived old bundle in this block",
+  "other_occurrences": [
+    "headless.py input/type/transport",
+    "engine.py starter fixture/fixture key+BOOL checks",
+    "compare.py legacy fixture builder, not called by this captured lane"
+  ],
+  "prerequisite_receipt": {
+    "path": "data/phase475-cooldown-branch-input-evidence/receipt.json",
+    "sha256": "9fa7642265d2bf4b75e42692866f9448dfb7899a6e677c14dda690df1ebfa156",
+    "size": 8279
+  },
+  "schema": "phase476-finite-condition-consumer-map/1",
+  "searched": "All15 fixed471 Python Sources, text search below_master/belowMaster/isBelowLeague/Lobbies; no new full GD audit"
+}

@@ -1,0 +1,99 @@
+{
+  "schema": "phase477-independent-final-acceptance/1",
+  "status": "ACCEPTED_FIXED_REPAIRED_INPUT_AND_PRERUN_INTERFACES_NOT_FULL_RUN",
+  "result": {
+    "path": "data/phase477-independent-interfaces-first-001/result.json",
+    "size": 37160,
+    "sha256": "afa8394c3c9bd19b97d7911b24b1cf76a34e5c4099fe5b755500a2f5e1efea7f"
+  },
+  "actual_result_owner": {
+    "path": "data/phase477-independent-interfaces-first-001/owned-files.json",
+    "size": 890,
+    "sha256": "c0ddc8f8735df7af984a88b6e4c2ce75e787f384904b393491270841650177a0"
+  },
+  "input_acceptance": {
+    "path": "data/phase477-independent-final-acceptance/input-acceptance.json",
+    "size": 1791,
+    "sha256": "3a7224a9e35a246fd89a236c554001804064fecac24484771a98535706980607"
+  },
+  "business_closure": {
+    "path": "data/phase477-independent-final-acceptance/business-closure.json",
+    "size": 4160,
+    "sha256": "59207c1b02ebb0b7965c21ad96c088824c0a664066433c88237fe9b2750395f8"
+  },
+  "harness_owner": {
+    "path": "data/phase477-independent-harness-source/owned-files.json",
+    "size": 973,
+    "sha256": "d10d5d365ea864739b4c7d0e990b5ffc543e5b1cc8b993d5aad0cef2d76779d0"
+  },
+  "execution_owner": {
+    "path": "data/phase477-independent-execution-release/owned-files.json",
+    "size": 816,
+    "sha256": "4a6c34e9655960d613c4b8ac3888d4829edb4aac8a88009bf5c6b530e416351c"
+  },
+  "passed_top_level_cases": 16,
+  "deriver_calls": {
+    "negative_pure_calls": 3,
+    "successful_pure_calls_inside_unique_build": 1,
+    "actual_build_from_files": 1,
+    "production_read_pinned": 6
+  },
+  "candidate_calls": {
+    "deriver.derive_from_bytes": 4,
+    "deriver.build_from_files": 1,
+    "deriver.read_pinned": 6,
+    "engine.validate_runtime_inputs": 2,
+    "engine._validate_joint_captured_runtime": 2,
+    "TapeRandom.__init__": 1,
+    "CombatEngine.__init__": 1,
+    "engine.build_runtime_scaffold": 1,
+    "CombatEngine._validate_joint_captured_state": 3,
+    "CombatEngine._pure_business_snapshot": 3,
+    "CombatEngine._fresh_goobert_targets": 4,
+    "CombatEngine.prepare_only": 1,
+    "CombatEngine.king_prepare": 1,
+    "CombatEngine.king_set_state": 1,
+    "CombatEngine.activate_from_checkpoint": 2,
+    "EngineFrameDriver.activate": 1,
+    "TapeRandom._take": 10,
+    "adapter.bindings": 3,
+    "adapter._basic_fields": 5,
+    "adapter.project_model_callbacks": 1,
+    "adapter._subject": 1,
+    "launcher.validate_request": 1
+  },
+  "actual_successful_constructors": 1,
+  "prepare_calls": 1,
+  "logical_activate_calls": 1,
+  "activation_method_entries": 2,
+  "Tape_position": 10,
+  "wall_seconds": 0.7047217459985404,
+  "all49_frozen_source_and_input_identity_checks_unchanged": true,
+  "checked_identity_count": 49,
+  "io_accounting": "Result io map counts opens after audit-hook installation, including postflight. Preflight separately verified48 pinned payloads, own harness once and pins once. Production derivation read each oldbundle/fact/oldreceipt twice; no original raw capture reopened. No total-file-read-zero claim.",
+  "prior_failure": {
+    "receipt": {
+      "path": "data/phase475-independent-first-failure-review/review.json",
+      "size": 6093,
+      "sha256": "2a48e9430468bed0f497d0725bb06dab60377738188f99c295aa3e1e29c50472"
+    },
+    "state": "Preserved, not retried or relabeled; new immutable476 Source and477 batch."
+  },
+  "cumulative_joint_interface_model_calls": {
+    "475_successful_constructor": 1,
+    "477_successful_constructor": 1,
+    "475_rejected_provider_constructors": 2,
+    "total_prepare": 2,
+    "total_logical_activate_attempts": 2,
+    "activation_attempts_completed": 1,
+    "full_model_runs": 0,
+    "frame_steps": 0
+  },
+  "limits": [
+    "Fixed captured case only; formal75/general King support unchanged.",
+    "No complete runtime/terminal/8-section validation yet.",
+    "All422 draws and fullclock preserved; this interface batch consumed only10 startup draws.",
+    "Existing B2 ordinary native/dispatch and presentation exclusion scope retained."
+  ],
+  "remaining_blocker": "No pre-run interface blocker found; full battle and strict eight-section comparison remain separate outstanding execution gates."
+}

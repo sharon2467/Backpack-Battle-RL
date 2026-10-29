@@ -1,0 +1,809 @@
+{
+  "schema": "phase477-independent-interface-result/1",
+  "status": "ACCEPTED_REPAIRED_JOINT_INPUT_AND_INTERFACES_NOT_FULL_RUN",
+  "cases": [
+    {
+      "name": "01 changed old bundle byte identity",
+      "status": "PASS_REJECTED",
+      "reason": "fixed input/evidence byte identity"
+    },
+    {
+      "name": "02 changed fact byte identity",
+      "status": "PASS_REJECTED",
+      "reason": "fixed input/evidence byte identity"
+    },
+    {
+      "name": "03 missing fact identity",
+      "status": "PASS_REJECTED",
+      "reason": "fixed input/evidence byte identity"
+    },
+    {
+      "name": "04 one actual fixed input derivation",
+      "status": "PASS",
+      "new_bundle": {
+        "path": "data/phase476-derived-joint-input-first-001/input-bundle.json",
+        "size": 500517,
+        "sha256": "1b2d32e4f0727fa99d8ee0707592f17245adea5e4533f81cd15d807e824531c9"
+      },
+      "changed_field": "/fixture/below_master",
+      "old_initial_receipt": {
+        "path": "data/phase470-joint-input-first-001/initial-receipt.json",
+        "size": 434877,
+        "sha256": "f09e7e18978582bb53b3739319609ffa62c4c0080d898f76d2a4c3f2d04fb635"
+      }
+    },
+    {
+      "name": "05 old false fixture rejected by repaired gate",
+      "status": "PASS_REJECTED",
+      "reason": "captured joint outside fixed26 Source fixture"
+    },
+    {
+      "name": "06 one real construct/prepare/activate with shared biases and ten startup draws",
+      "status": "PASS"
+    },
+    {
+      "name": "07 actual binding and synthetic Basic typed positive",
+      "status": "PASS"
+    },
+    {
+      "name": "08 wrong canonical input",
+      "status": "PASS_REJECTED",
+      "reason": "authenticated actual INPUT canonical identity"
+    },
+    {
+      "name": "09 old profile with synthetic digest",
+      "status": "PASS_REJECTED",
+      "reason": "joint profile/33Timer"
+    },
+    {
+      "name": "10 missing Basic REAL",
+      "status": "PASS_REJECTED",
+      "reason": "Basic REAL field required: activationsToTrigger"
+    },
+    {
+      "name": "11 BOOL Basic INT",
+      "status": "PASS_REJECTED",
+      "reason": "Basic INT counter required"
+    },
+    {
+      "name": "12 INT Basic REAL",
+      "status": "PASS_REJECTED",
+      "reason": "Basic REAL field required: activationsToTrigger"
+    },
+    {
+      "name": "13 nonfinite Basic REAL",
+      "status": "PASS_REJECTED",
+      "reason": "finite REAL required"
+    },
+    {
+      "name": "14 foreign noop identity",
+      "status": "PASS_REJECTED",
+      "reason": "model callback bound identity"
+    },
+    {
+      "name": "15 retained native subject class",
+      "status": "PASS_REJECTED",
+      "reason": "native REF association"
+    },
+    {
+      "name": "16 false launcher authority",
+      "status": "PASS_REJECTED",
+      "reason": "closed fixed Root execution request/explicit authorization required"
+    }
+  ],
+  "full_run": 0,
+  "step": 0,
+  "Expected_business_decode": 0,
+  "Oracle": 0,
+  "pool_operations": 0,
+  "raw_capture_INPUT_reads": 0,
+  "B2_raw_reextract": 0,
+  "loaded_modules": {
+    "native_replay_v7.timer_runtime": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v7/timer_runtime.py",
+    "native_replay_v7": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v7/__init__.py",
+    "native_replay_v7.frame_driver": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v7/frame_driver.py",
+    "native_replay_v8.randomness": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/randomness.py",
+    "native_replay_v8.genuine": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/genuine.py",
+    "native_replay_v8.histories": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/histories.py",
+    "native_replay_v8.state": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/state.py",
+    "native_replay_v8.engine": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/engine.py",
+    "native_replay_v8": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/__init__.py"
+  },
+  "adapter_path": "/workspace/python-original-engine/repo/tests/phase476_joint_business_output.py",
+  "launcher_path": "/workspace/python-original-engine/repo/tests/phase476_joint_tape_run.py",
+  "deriver_path": "/workspace/python-original-engine/repo/tests/phase476_derive_joint_condition_input.py",
+  "source_before": [
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase476_joint_condition_repair_spec.md",
+      "size": 9442,
+      "sha256": "057832658b942d79560764f4bbe99038481ed71c93ef81d5988f5e4d14a11bb0"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase476_derive_joint_condition_input.py",
+      "size": 10012,
+      "sha256": "2188e20dea12e85965bccf4451148748c7f1faa0c55ff9e555c3713b0f341a32"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase476_joint_tape_run.py",
+      "size": 13140,
+      "sha256": "6041037025d16079aa4ea129a29c8bc04d686a691f71cc5a6f6f6e4190456ed5"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase476_joint_business_output.py",
+      "size": 44908,
+      "sha256": "23c5bec3eee0449bc0bccf9e6a216e288aec50895bfd3e4223506fc9971976b1"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase475-cooldown-branch-input-evidence/receipt.json",
+      "size": 8279,
+      "sha256": "9fa7642265d2bf4b75e42692866f9448dfb7899a6e677c14dda690df1ebfa156"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase475-cooldown-branch-input-evidence/owned-files.json",
+      "size": 1020,
+      "sha256": "a03c3e44fcfc4dba15621166c584ae853bd72d435ca591d14db8ef5444bfb1aa"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-source/source-owner.json",
+      "size": 7913,
+      "sha256": "73b0ac566b5f59748c6b46fb0af75f2b0a0af0b1083f171de011a586ba245ab7"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-independent-final-input-acceptance/review.json",
+      "size": 7635,
+      "sha256": "458e7f184ae05ad9bf5e5d2d6851f022af66ecec8138c32028431aea3f779421"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase471-captured-joint-source/owned-files.json",
+      "size": 6222,
+      "sha256": "b369bde298e8466f4e0eb67c93f8c73ba30e23a2ffbb539bc8bb785b6df6490d"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase474-joint-output-source/owned-files.json",
+      "size": 4068,
+      "sha256": "de6fff24730c39f96d1d7af5f04fb9d3cb8b1ed810758398ae70026482b7029e"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase466-captured-joint-bridge-design/comparison-contract.json",
+      "size": 4636,
+      "sha256": "71c681047140d3bc13d91b24be590dcb598cb3454edac394288c64e01cb3ecef"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/adapter-vs474.patch",
+      "size": 7155,
+      "sha256": "f076e4ec90120b9e734409290307559300e7ffd2b1cb307afd5e09c345100f40"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/candidate-source-freeze.json",
+      "size": 5234,
+      "sha256": "ebd99ad8fbe50247b520a005314d6b0714895d7014081c199cba03791f11bc09"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/compile-only.json",
+      "size": 5731,
+      "sha256": "8915726dc9c1fd038c9acbf6c658acaf666eb9c182a50f1c2356df3ef9f8a24e"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/conservation.json",
+      "size": 1097,
+      "sha256": "f427dec310b75cbbc2f690c09575bc50bb9bb00aa836b54e1d2f76af255302fa"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/consumer-source-map.json",
+      "size": 1382,
+      "sha256": "edf04001f70ac07bad152577ce3b942ad62af2518b367f4e3920e257dfcf7c36"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/external-bindings-contract.json",
+      "size": 2011,
+      "sha256": "d8747fc77e1735c472f02346b3b3418a5d02719021de5e7d7e664f8b1b28b9d7"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/fixed-source-fixture.json",
+      "size": 3880,
+      "sha256": "856afb4384c56c2cbddc8cfd6caf584b6b5c4ab42f7dd1e576ebc55359ec8aef"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/genuine-vs471.patch",
+      "size": 749,
+      "sha256": "467ed30b1a2d8e0971138de65621df7b5fdc0e6328fad34b6782950df30b9b53"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/input-derivation-contract.json",
+      "size": 2122,
+      "sha256": "a90fc7ff5ea7a2ffb5a4579edfdd594095a9d6ab033e2ee38317a3ae6dca4ecc"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/input-source-owner.json",
+      "size": 2175,
+      "sha256": "04d81d52a2677a95a4718b87cea5d9935a8c8c4618128cac578ff151ef87dda5"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/launcher-vs474.patch",
+      "size": 2388,
+      "sha256": "ca70212c62bc83fa44f78f7c76fd29badd888a02506e6842e3c9030d7d864eea"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/source-only-copy.json",
+      "size": 340,
+      "sha256": "b86e597c9fa603b763f88405041fd0d4b027b7d70f13caa3cc0f7b76cac76ed9"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/godot_pcg_integer.py",
+      "size": 2198,
+      "sha256": "c084075fdb566b91348ed5a5776d3808b161c23da144e8f5db33e5b48cd694ca"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/headless.py",
+      "size": 29158,
+      "sha256": "fe00987fb8c248e63cd9d441714479b050c797aad92894ecb6f3d4069f5cddb2"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v7/__init__.py",
+      "size": 389,
+      "sha256": "82b496191ffa3ec2761b83bf4de9267089d077b777ee38e4b93ab0cb824c4612"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v7/frame_driver.py",
+      "size": 12318,
+      "sha256": "9d8e361144e353a8d944e4490502c5301e7a92451771d35f22ab48f6277f64fd"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v7/timer_runtime.py",
+      "size": 38705,
+      "sha256": "5b7c14ebb7c7511aa05a3411752c7f3341b925c00de31eedfacf4f9345f4a109"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/__init__.py",
+      "size": 618,
+      "sha256": "805cc7035f10e96bfc217ef52f6ac175323ea83c69fb6e678fcd97a5bbcc3d7b"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/__main__.py",
+      "size": 1436,
+      "sha256": "b808649da7470e72669ad7639ef01577187e9692e9ade3745e18b0f21eea647a"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/compare.py",
+      "size": 38087,
+      "sha256": "4af52ee400acf1460c9e28faf5a760d05753d1de7218a00d4a740712a40fdd22"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/engine.py",
+      "size": 252264,
+      "sha256": "e06bf6493baf0d5d4250c73ea13f6388a0925556e1aafde4043ab9a21871a118"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/genuine.py",
+      "size": 249070,
+      "sha256": "2b16a2a79c4601e584cf1bb8e4ddbdbcca67be08d0c4a2c322cd6e21b21e55fe"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/histories.py",
+      "size": 8508,
+      "sha256": "d9b3f270b53f328f5958647fdaba86532ff3d9db11b272d9a7d0d2aef1db0b05"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/observed.py",
+      "size": 2323,
+      "sha256": "0a04fb2b03e48cd1cd9a3e43425deddef56c7906105dadeaefafa81ac84a6fd1"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/randomness.py",
+      "size": 7063,
+      "sha256": "676d42a69937394dc1bd8ff23268a08dc41fe9604f7e56213bb968ab331b9139"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/state.py",
+      "size": 15114,
+      "sha256": "21478fecea4c888f701ff8991fb2cf75519670c602ed2bd9d17874e238c54bd1"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/original_rng.py",
+      "size": 2439,
+      "sha256": "5f7024f6c3dbbb2b105962a79a8bf39db40b3fa87bd9c115f2dd578b8082d60e"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/owned-files.json",
+      "size": 7954,
+      "sha256": "a9fdd92422bb19404c32bdbd1d7d7e1f9c147862f0ffce36144fad3f6df3b146"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase477_independent_condition_repair_acceptance_spec.md",
+      "size": 3624,
+      "sha256": "876d7ccc4a70b0196104abb007cec0cac81395b52744731fdcbcadec68cd3497"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase477-independent-harness-source/source-review.json",
+      "size": 1892,
+      "sha256": "42e480ac920dad7ceee6be4d1d5b8c83734d9da6ee77934c1cd5fdeea349d970"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase475_independent_joint_interfaces.py",
+      "size": 26535,
+      "sha256": "70a7182c59a8bad2a69c43f8303d96e358b946a760e951bc4ea6d0c15a0889c2"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-first-001/input-bundle.json",
+      "size": 500518,
+      "sha256": "bb731532d9852be73e374c0f296d5fc1d32923faeabbcef471d5aed75dee86ee"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-first-001/initial-receipt.json",
+      "size": 434877,
+      "sha256": "f09e7e18978582bb53b3739319609ffa62c4c0080d898f76d2a4c3f2d04fb635"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase474-root-external-identities/comparison-binding.json",
+      "size": 756,
+      "sha256": "e8d3d21ffac898098eabeb3bd54212bf420e7ee079495e98e50e3a23cb353cad"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase474-joint-output-source/launcher-request-contract.json",
+      "size": 2526,
+      "sha256": "e39b58b33605f69355230d83328a06c91c5e0cd57272ce55622e3e077408bebc"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase475-independent-interfaces-first-001/b2-applicability.json",
+      "size": 8423,
+      "sha256": "1aedb467c1f94f13a2899974040c0e90b30dcf00e6cf582c2e8a7a89471a8c09"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase475-independent-first-failure-review/review.json",
+      "size": 6093,
+      "sha256": "2a48e9430468bed0f497d0725bb06dab60377738188f99c295aa3e1e29c50472"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase477_independent_condition_interfaces.py",
+      "size": 21250,
+      "sha256": "e13d6766c469dbec2c2d12091e2dc47e690acb8826fb8fc3c585106feae88c2f"
+    }
+  ],
+  "source_after": [
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase476_joint_condition_repair_spec.md",
+      "size": 9442,
+      "sha256": "057832658b942d79560764f4bbe99038481ed71c93ef81d5988f5e4d14a11bb0"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase476_derive_joint_condition_input.py",
+      "size": 10012,
+      "sha256": "2188e20dea12e85965bccf4451148748c7f1faa0c55ff9e555c3713b0f341a32"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase476_joint_tape_run.py",
+      "size": 13140,
+      "sha256": "6041037025d16079aa4ea129a29c8bc04d686a691f71cc5a6f6f6e4190456ed5"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase476_joint_business_output.py",
+      "size": 44908,
+      "sha256": "23c5bec3eee0449bc0bccf9e6a216e288aec50895bfd3e4223506fc9971976b1"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase475-cooldown-branch-input-evidence/receipt.json",
+      "size": 8279,
+      "sha256": "9fa7642265d2bf4b75e42692866f9448dfb7899a6e677c14dda690df1ebfa156"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase475-cooldown-branch-input-evidence/owned-files.json",
+      "size": 1020,
+      "sha256": "a03c3e44fcfc4dba15621166c584ae853bd72d435ca591d14db8ef5444bfb1aa"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-source/source-owner.json",
+      "size": 7913,
+      "sha256": "73b0ac566b5f59748c6b46fb0af75f2b0a0af0b1083f171de011a586ba245ab7"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-independent-final-input-acceptance/review.json",
+      "size": 7635,
+      "sha256": "458e7f184ae05ad9bf5e5d2d6851f022af66ecec8138c32028431aea3f779421"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase471-captured-joint-source/owned-files.json",
+      "size": 6222,
+      "sha256": "b369bde298e8466f4e0eb67c93f8c73ba30e23a2ffbb539bc8bb785b6df6490d"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase474-joint-output-source/owned-files.json",
+      "size": 4068,
+      "sha256": "de6fff24730c39f96d1d7af5f04fb9d3cb8b1ed810758398ae70026482b7029e"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase466-captured-joint-bridge-design/comparison-contract.json",
+      "size": 4636,
+      "sha256": "71c681047140d3bc13d91b24be590dcb598cb3454edac394288c64e01cb3ecef"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/adapter-vs474.patch",
+      "size": 7155,
+      "sha256": "f076e4ec90120b9e734409290307559300e7ffd2b1cb307afd5e09c345100f40"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/candidate-source-freeze.json",
+      "size": 5234,
+      "sha256": "ebd99ad8fbe50247b520a005314d6b0714895d7014081c199cba03791f11bc09"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/compile-only.json",
+      "size": 5731,
+      "sha256": "8915726dc9c1fd038c9acbf6c658acaf666eb9c182a50f1c2356df3ef9f8a24e"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/conservation.json",
+      "size": 1097,
+      "sha256": "f427dec310b75cbbc2f690c09575bc50bb9bb00aa836b54e1d2f76af255302fa"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/consumer-source-map.json",
+      "size": 1382,
+      "sha256": "edf04001f70ac07bad152577ce3b942ad62af2518b367f4e3920e257dfcf7c36"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/external-bindings-contract.json",
+      "size": 2011,
+      "sha256": "d8747fc77e1735c472f02346b3b3418a5d02719021de5e7d7e664f8b1b28b9d7"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/fixed-source-fixture.json",
+      "size": 3880,
+      "sha256": "856afb4384c56c2cbddc8cfd6caf584b6b5c4ab42f7dd1e576ebc55359ec8aef"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/genuine-vs471.patch",
+      "size": 749,
+      "sha256": "467ed30b1a2d8e0971138de65621df7b5fdc0e6328fad34b6782950df30b9b53"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/input-derivation-contract.json",
+      "size": 2122,
+      "sha256": "a90fc7ff5ea7a2ffb5a4579edfdd594095a9d6ab033e2ee38317a3ae6dca4ecc"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/input-source-owner.json",
+      "size": 2175,
+      "sha256": "04d81d52a2677a95a4718b87cea5d9935a8c8c4618128cac578ff151ef87dda5"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/launcher-vs474.patch",
+      "size": 2388,
+      "sha256": "ca70212c62bc83fa44f78f7c76fd29badd888a02506e6842e3c9030d7d864eea"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/source-only-copy.json",
+      "size": 340,
+      "sha256": "b86e597c9fa603b763f88405041fd0d4b027b7d70f13caa3cc0f7b76cac76ed9"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/godot_pcg_integer.py",
+      "size": 2198,
+      "sha256": "c084075fdb566b91348ed5a5776d3808b161c23da144e8f5db33e5b48cd694ca"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/headless.py",
+      "size": 29158,
+      "sha256": "fe00987fb8c248e63cd9d441714479b050c797aad92894ecb6f3d4069f5cddb2"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v7/__init__.py",
+      "size": 389,
+      "sha256": "82b496191ffa3ec2761b83bf4de9267089d077b777ee38e4b93ab0cb824c4612"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v7/frame_driver.py",
+      "size": 12318,
+      "sha256": "9d8e361144e353a8d944e4490502c5301e7a92451771d35f22ab48f6277f64fd"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v7/timer_runtime.py",
+      "size": 38705,
+      "sha256": "5b7c14ebb7c7511aa05a3411752c7f3341b925c00de31eedfacf4f9345f4a109"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/__init__.py",
+      "size": 618,
+      "sha256": "805cc7035f10e96bfc217ef52f6ac175323ea83c69fb6e678fcd97a5bbcc3d7b"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/__main__.py",
+      "size": 1436,
+      "sha256": "b808649da7470e72669ad7639ef01577187e9692e9ade3745e18b0f21eea647a"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/compare.py",
+      "size": 38087,
+      "sha256": "4af52ee400acf1460c9e28faf5a760d05753d1de7218a00d4a740712a40fdd22"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/engine.py",
+      "size": 252264,
+      "sha256": "e06bf6493baf0d5d4250c73ea13f6388a0925556e1aafde4043ab9a21871a118"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/genuine.py",
+      "size": 249070,
+      "sha256": "2b16a2a79c4601e584cf1bb8e4ddbdbcca67be08d0c4a2c322cd6e21b21e55fe"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/histories.py",
+      "size": 8508,
+      "sha256": "d9b3f270b53f328f5958647fdaba86532ff3d9db11b272d9a7d0d2aef1db0b05"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/observed.py",
+      "size": 2323,
+      "sha256": "0a04fb2b03e48cd1cd9a3e43425deddef56c7906105dadeaefafa81ac84a6fd1"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/randomness.py",
+      "size": 7063,
+      "sha256": "676d42a69937394dc1bd8ff23268a08dc41fe9604f7e56213bb968ab331b9139"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/state.py",
+      "size": 15114,
+      "sha256": "21478fecea4c888f701ff8991fb2cf75519670c602ed2bd9d17874e238c54bd1"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/original_rng.py",
+      "size": 2439,
+      "sha256": "5f7024f6c3dbbb2b105962a79a8bf39db40b3fa87bd9c115f2dd578b8082d60e"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/owned-files.json",
+      "size": 7954,
+      "sha256": "a9fdd92422bb19404c32bdbd1d7d7e1f9c147862f0ffce36144fad3f6df3b146"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase477_independent_condition_repair_acceptance_spec.md",
+      "size": 3624,
+      "sha256": "876d7ccc4a70b0196104abb007cec0cac81395b52744731fdcbcadec68cd3497"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase477-independent-harness-source/source-review.json",
+      "size": 1892,
+      "sha256": "42e480ac920dad7ceee6be4d1d5b8c83734d9da6ee77934c1cd5fdeea349d970"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase475_independent_joint_interfaces.py",
+      "size": 26535,
+      "sha256": "70a7182c59a8bad2a69c43f8303d96e358b946a760e951bc4ea6d0c15a0889c2"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-first-001/input-bundle.json",
+      "size": 500518,
+      "sha256": "bb731532d9852be73e374c0f296d5fc1d32923faeabbcef471d5aed75dee86ee"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase470-joint-input-first-001/initial-receipt.json",
+      "size": 434877,
+      "sha256": "f09e7e18978582bb53b3739319609ffa62c4c0080d898f76d2a4c3f2d04fb635"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase474-root-external-identities/comparison-binding.json",
+      "size": 756,
+      "sha256": "e8d3d21ffac898098eabeb3bd54212bf420e7ee079495e98e50e3a23cb353cad"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase474-joint-output-source/launcher-request-contract.json",
+      "size": 2526,
+      "sha256": "e39b58b33605f69355230d83328a06c91c5e0cd57272ce55622e3e077408bebc"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase475-independent-interfaces-first-001/b2-applicability.json",
+      "size": 8423,
+      "sha256": "1aedb467c1f94f13a2899974040c0e90b30dcf00e6cf582c2e8a7a89471a8c09"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase475-independent-first-failure-review/review.json",
+      "size": 6093,
+      "sha256": "2a48e9430468bed0f497d0725bb06dab60377738188f99c295aa3e1e29c50472"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase477_independent_condition_interfaces.py",
+      "size": 21250,
+      "sha256": "e13d6766c469dbec2c2d12091e2dc47e690acb8826fb8fc3c585106feae88c2f"
+    }
+  ],
+  "input_binding": {
+    "schema": "phase474-fixed-comparison-binding/1",
+    "input_bundle": {
+      "path": "data/phase476-derived-joint-input-first-001/input-bundle.json",
+      "size": 500517,
+      "sha256": "1b2d32e4f0727fa99d8ee0707592f17245adea5e4533f81cd15d807e824531c9"
+    },
+    "input_canonical_sha256": "3c192982bc69bbc433d37e5471d9a61483636da36497318f6477f674d597a5d8",
+    "candidate_freeze": {
+      "path": "data/phase476-joint-condition-repair/candidate-source-freeze.json",
+      "size": 5234,
+      "sha256": "ebd99ad8fbe50247b520a005314d6b0714895d7014081c199cba03791f11bc09"
+    },
+    "contract": {
+      "path": "data/phase466-captured-joint-bridge-design/comparison-contract.json",
+      "size": 4636,
+      "sha256": "71c681047140d3bc13d91b24be590dcb598cb3454edac394288c64e01cb3ecef"
+    }
+  },
+  "successful_constructors": 1,
+  "prepare_calls": 1,
+  "logical_activate_calls": 1,
+  "actual_activate_method_entries": 2,
+  "passes_consumed": 0,
+  "activation_Tape_position": 10,
+  "activation_Tape_audit": [
+    {
+      "kind": "randf_range",
+      "label": "cooldown:P:10",
+      "args": [
+        "3fee666666666666",
+        "3ff0cccccccccccd"
+      ],
+      "value_bits": "3ff0672da0000000"
+    },
+    {
+      "kind": "randf_range",
+      "label": "cooldown:P:8",
+      "args": [
+        "3fee666666666666",
+        "3ff0cccccccccccd"
+      ],
+      "value_bits": "3fefe9ebe0000000"
+    },
+    {
+      "kind": "randf_range",
+      "label": "cooldown:P:12",
+      "args": [
+        "3fee666666666666",
+        "3ff0cccccccccccd"
+      ],
+      "value_bits": "3ff017d300000000"
+    },
+    {
+      "kind": "randf_range",
+      "label": "cooldown:P:9",
+      "args": [
+        "3fee666666666666",
+        "3ff0cccccccccccd"
+      ],
+      "value_bits": "3fef2ff3a0000000"
+    },
+    {
+      "kind": "randf_range",
+      "label": "cooldown:P:13",
+      "args": [
+        "3fee666666666666",
+        "3ff0cccccccccccd"
+      ],
+      "value_bits": "3ff0a71d00000000"
+    },
+    {
+      "kind": "randf_range",
+      "label": "cooldown:P:11",
+      "args": [
+        "3fee666666666666",
+        "3ff0cccccccccccd"
+      ],
+      "value_bits": "3ff0889d60000000"
+    },
+    {
+      "kind": "randf_range",
+      "label": "cooldown:O:11",
+      "args": [
+        "3fef333333333333",
+        "3ff0cccccccccccd"
+      ],
+      "value_bits": "3fefaa23a0000000"
+    },
+    {
+      "kind": "randf_range",
+      "label": "cooldown:O:6",
+      "args": [
+        "3fef333333333333",
+        "3ff0cccccccccccd"
+      ],
+      "value_bits": "3ff07ef560000000"
+    },
+    {
+      "kind": "randf_range",
+      "label": "cooldown:O:10",
+      "args": [
+        "3fef333333333333",
+        "3ff0cccccccccccd"
+      ],
+      "value_bits": "3ff013bca0000000"
+    },
+    {
+      "kind": "randf_range",
+      "label": "cooldown:O:7",
+      "args": [
+        "3fef333333333333",
+        "3ff0cccccccccccd"
+      ],
+      "value_bits": "3fefdc0120000000"
+    }
+  ],
+  "complete_model_run": false,
+  "complete_native_comparison": false,
+  "B2_reused": {
+    "path": "data/phase475-independent-interfaces-first-001/b2-applicability.json",
+    "size": 8423,
+    "sha256": "1aedb467c1f94f13a2899974040c0e90b30dcf00e6cf582c2e8a7a89471a8c09"
+  },
+  "io": {
+    "/workspace/python-original-engine/repo/tests/phase476_derive_joint_condition_input.py": 2,
+    "/workspace/python-original-engine/repo/data/phase470-joint-input-first-001/input-bundle.json": 4,
+    "/workspace/python-original-engine/repo/data/phase475-cooldown-branch-input-evidence/receipt.json": 4,
+    "/workspace/python-original-engine/repo/data/phase470-joint-input-first-001/initial-receipt.json": 4,
+    "/workspace/python-original-engine/repo/data/phase474-root-external-identities/comparison-binding.json": 2,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/__init__.py": 4,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/engine.py": 4,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v7/__init__.py": 4,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v7/timer_runtime.py": 4,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v7/frame_driver.py": 4,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/randomness.py": 4,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/genuine.py": 4,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/histories.py": 4,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/state.py": 4,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/__main__.py": 3,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/compare.py": 3,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/native_replay_v8/observed.py": 3,
+    "/workspace/python-original-engine/repo/tests/phase476_joint_business_output.py": 2,
+    "/workspace/python-original-engine/repo/tests/phase476_joint_tape_run.py": 2,
+    "/workspace/python-original-engine/repo/data/phase474-joint-output-source/launcher-request-contract.json": 2,
+    "/workspace/python-original-engine/repo/docs/phase476_joint_condition_repair_spec.md": 1,
+    "/workspace/python-original-engine/repo/data/phase475-cooldown-branch-input-evidence/owned-files.json": 1,
+    "/workspace/python-original-engine/repo/data/phase470-joint-input-source/source-owner.json": 1,
+    "/workspace/python-original-engine/repo/data/phase470-independent-final-input-acceptance/review.json": 1,
+    "/workspace/python-original-engine/repo/data/phase471-captured-joint-source/owned-files.json": 1,
+    "/workspace/python-original-engine/repo/data/phase474-joint-output-source/owned-files.json": 1,
+    "/workspace/python-original-engine/repo/data/phase466-captured-joint-bridge-design/comparison-contract.json": 1,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/adapter-vs474.patch": 1,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/candidate-source-freeze.json": 1,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/compile-only.json": 1,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/conservation.json": 1,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/consumer-source-map.json": 1,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/external-bindings-contract.json": 1,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/fixed-source-fixture.json": 1,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/genuine-vs471.patch": 1,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/input-derivation-contract.json": 1,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/input-source-owner.json": 1,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/launcher-vs474.patch": 1,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/source-only-copy.json": 1,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/godot_pcg_integer.py": 1,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/headless.py": 1,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/staged/original_rng.py": 1,
+    "/workspace/python-original-engine/repo/data/phase476-joint-condition-repair/owned-files.json": 1,
+    "/workspace/python-original-engine/repo/docs/phase477_independent_condition_repair_acceptance_spec.md": 1,
+    "/workspace/python-original-engine/repo/data/phase477-independent-harness-source/source-review.json": 1,
+    "/workspace/python-original-engine/repo/tests/phase475_independent_joint_interfaces.py": 1,
+    "/workspace/python-original-engine/repo/data/phase475-independent-interfaces-first-001/b2-applicability.json": 1,
+    "/workspace/python-original-engine/repo/data/phase475-independent-first-failure-review/review.json": 1,
+    "/workspace/python-original-engine/repo/tests/phase477_independent_condition_interfaces.py": 1
+  },
+  "calls": {
+    "deriver.derive_from_bytes": 4,
+    "deriver.build_from_files": 1,
+    "deriver.read_pinned": 6,
+    "engine.validate_runtime_inputs": 2,
+    "engine._validate_joint_captured_runtime": 2,
+    "TapeRandom.__init__": 1,
+    "CombatEngine.__init__": 1,
+    "engine.build_runtime_scaffold": 1,
+    "CombatEngine._validate_joint_captured_state": 3,
+    "CombatEngine._pure_business_snapshot": 3,
+    "CombatEngine._fresh_goobert_targets": 4,
+    "CombatEngine.prepare_only": 1,
+    "CombatEngine.king_prepare": 1,
+    "CombatEngine.king_set_state": 1,
+    "CombatEngine.activate_from_checkpoint": 2,
+    "EngineFrameDriver.activate": 1,
+    "TapeRandom._take": 10,
+    "adapter.bindings": 3,
+    "adapter._basic_fields": 5,
+    "adapter.project_model_callbacks": 1,
+    "adapter._subject": 1,
+    "launcher.validate_request": 1
+  },
+  "wall_seconds": 0.7047217459985404
+}

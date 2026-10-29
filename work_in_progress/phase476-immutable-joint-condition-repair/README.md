@@ -1,0 +1,5 @@
+# Immutable fixed joint-case condition repair Source
+
+The old proposed below_master=false fixture failed the first finite activation. Existing native primitive call sites and their frozen original Source mapping establish the common rule predicate for this fixed Unranked case; the evidence does not serialize a rank or rating. A new INPUT derivation changes only this one BOOL, retaining all other bytes and the prior74-rule initial proof.
+
+All candidate gameplay functions and14/15 complete files remain exact; genuine only changes the fixed fixture hash gate. Launcher and eight-section adapter change mechanical identities only. The original files and failed attempt remain in earlier archives. Source author compiled18 files and performed zero actual derivations/battles/EXPECTED reads. Independent477 controls and the first actual complete joint Python battle are pending at this Source checkpoint. Formal75/general King scope is unchanged. Native exit0 was non-clean; diagnostics remain in467 capsule.

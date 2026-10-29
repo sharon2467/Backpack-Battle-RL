@@ -1,0 +1,163 @@
+{
+  "sources": [
+    {
+      "descriptor": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+        "size": 170717,
+        "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f"
+      },
+      "ranges": [
+        {
+          "first": 3344,
+          "last": 3395,
+          "text": "func prepare():\n\tcacheAffectedItemsForCombat()\n\t\n\tdisablePicking()\n\tchanceRng.reset()\n\tdamageRangeRng.reset()\n\tfor gem in getGemsNoNull():\n\t\tgem.prepare()\n\tonPrepare()\n\t\n\nfunc onPrepare():\n\tpass\n\nfunc preCombatStart():\n\tfor gem in getGemsNoNull():\n\t\tgem.preCombatStart()\n\t\n\tif hasCooldown():\n\t\titerationCooldown = adjustCooldown()\n\t\ttriggerTime = iterationCooldown\n\t\tactivateCooldown()\n\t\tGame.combatLog.snapshotItemTooltipStat(self, Stat.Cooldown)\n\t\n\tonPreCombatStart()\n\nfunc onPreCombatStart():\n\tpass\n\nfunc hasStartofBattle() -> bool:\n\treturn has_method(\"onCombatStart\")\n\nfunc combatStart():\n\tupdateShaderRotation()\n\t\n\tfor gem in getGemsNoNull():\n\t\tgem.combatStart()\n\t\n\tif hasStartofBattle():\n\t\tme.onCombatStart()\n\n\n\n\nfunc postCombatStart():\n\tfor gem in getGemsNoNull():\n\t\tgem.postCombatStart()\n\n\n\tonPostCombatStart()\n\nfunc onPostCombatStart():"
+        },
+        {
+          "first": 3788,
+          "last": 3795,
+          "text": "func adjustCooldown():\n\tvar adjustedCooldown = getCooldown()\n\tif ownerType == Owner.Opponent and (Game.isBelowLeague(Game.Leagues.Master) or Game.curMode == Game.Mode.Lobbies):\n\t\tadjustedCooldown *= Util.rng.randf_range(0.975, 1.05)\n\telse:\n\t\tadjustedCooldown *= Util.rng.randf_range(0.95, 1.05)\n\t\n\treturn adjustedCooldown"
+        }
+      ]
+    },
+    {
+      "descriptor": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Character.gd",
+        "size": 48033,
+        "sha256": "dc372965eaa048657caa1646d70aba85ff9b4b9677565eaa480bc195de027496"
+      },
+      "ranges": [
+        {
+          "first": 294,
+          "last": 310,
+          "text": "func prepare():\n\tstaminaRegen = baseStaminaRegen\n\tvar bonusHealth = getMaxHealth() * ((CustomRules.getHealthMultiplier() - 100.0) / 100.0)\n\tchangeMaxHealthTemporary(bonusHealth)\n\t\n\taccuracyRng.reset()\n\tcritRng.reset()\n\tcritResistanceRng.reset()\n\tstunResistanceRng.reset()\n\t\n\tif Game.isBelowLeague(Game.Leagues.Master) or Game.curMode == Game.Mode.Lobbies:\n\t\tif playerId == ID.PLAYER:\n\t\t\taccuracyRng.setBias( - 0.2)\n\t\t\tcritRng.setBias( - 0.2)\n\t\telse:\n\t\t\taccuracyRng.setBias(0.2)\n\t\t\tcritRng.setBias(0.2)"
+        },
+        {
+          "first": 328,
+          "last": 337,
+          "text": "func combatStart():\n\tstunnedDuration = 0.0\n\tset_physics_process(true)\n\tcombatDefaultPos = spriteNode.position\n\ttickCounter = 0\n\ttickTimer.start()\n\t\n\tif autoRageItem != null:\n\t\tautoRageTimer.start(AUTO_RAGE_DELAY)\n"
+        }
+      ]
+    },
+    {
+      "descriptor": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Game.gd",
+        "size": 145148,
+        "sha256": "f3688bfdf39b95a8ed6a77d9a7ad058a95a0aaa4bcb6d297bc953425add4b9c9"
+      },
+      "ranges": [
+        {
+          "first": 139,
+          "last": 164,
+          "text": "enum Mode{\n\tRanked = 0, \n\tUnranked = 1, \n\tLobbies = 2, \n\tUnselected = 3, \n\tHistory = 4\n}\n\nenum Loadout{\n\tLoadout1 = 0, \n\tLoadout2 = 1, \n\tRandomLoadout = 2, \n\tRandomCharacter = 3\n}\n\nenum Leagues{\n\tBronze = 0, \n\tSilver = 1, \n\tGold = 2, \n\tPlatinum = 3, \n\tDiamond = 4, \n\tMaster = 5, \n\tGrandmaster = 6, \n\tGrandma = 7, \n\tImpossibleWoodRank = - 1\n}"
+        },
+        {
+          "first": 1779,
+          "last": 1784,
+          "text": "\telse:\n\t\tsetLoadout(0)\n\t\t\nfunc setMode(newMode):\n\tcurMode = newMode\n"
+        },
+        {
+          "first": 1983,
+          "last": 2000,
+          "text": "func getLeague_exact(rating) -> float:\n\trating = max(0, rating)\n\tvar league = Leagues.ImpossibleWoodRank\n\tfor threshold in leagueThresholds:\n\t\tif rating >= threshold:\n\t\t\tleague += 1\n\t\telse:\n\t\t\tbreak\n\t\n\tvar leftBorder = leagueThresholds[league]\n\tvar rightBorder = leagueThresholds[league + 1]\n\tvar bracketSize: float = rightBorder - leftBorder\n\tvar interpolationPoint = (rating - leftBorder) / bracketSize\n\t\n\t\n\treturn league + interpolationPoint\n\nfunc getRatingFromLeague(leagueExact: float) -> float:"
+        },
+        {
+          "first": 2017,
+          "last": 2027,
+          "text": "func getLeague(charClass) -> int:\n\treturn int(getLeague_exact(getPlayerRating(charClass)))\n\t\nfunc getLeagueProgress(charClass) -> float:\n\treturn fmod(getLeague_exact(getPlayerRating(charClass)), 1.0)\n\nfunc getLeagueName(league):\n\treturn Util.tra(\"LEAGUE_\" + Leagues.keys()[league])\n\nfunc isBelowLeague(league):\n\treturn getLeague(curClass) < league"
+        },
+        {
+          "first": 2358,
+          "last": 2400,
+          "text": "func startFreshRun(mode):\n\trunsStartedThisSession += 1\n\trunWasConceded = false\n\tsetMode(mode)\n\tcurRound = 1\n\twins = 0\n\tlosses = 0\n\ttries = MAX_TRIES\n\tsurvivalMode = false\n\tDEVCHEATS = false\n\tbagPityCounter = 0\n\tpersistent[\"runsStarted\"] += 1\n\t\n\tif winNextRun:\n\t\tif mode == Mode.Lobbies:\n\t\t\twins = 17\n\t\t\tcurRound = 18\n\t\telse:\n\t\t\twins = MAX_WINS - 1\n\t\t\tcurRound = 10\n\telif loseNextRun:\n\t\ttries = 1\n\t\tcurRound = 5\n\t\n\tif randomCharacter:\n\t\tvar possibleClasses = getClassesForRandom()\n\t\tvar classI = Util.pickRandomElement(possibleClasses)\n\t\tpersistent[\"lastRandomClass\"] = classI\n\t\tinstanceCharacter(classI)\n\t\tinitStartInventory(Loadout.RandomLoadout)\n\t\tvar particles = ObjectPool.particleOneShot(rainbowRevealParticles, playerNode)\n\t\tparticles.global_position = PLAYER.sprite.global_position\n\t\tvar numTimesRandomed = SteamHelper.changeStat(\"Random\", 1)\n\t\tif numTimesRandomed >= 50:\n\t\t\tSteamHelper.unlockAchievement(\"Dice\")\n\t\t\n\tstartRun()\n\tsaveGame()\n\t\n\temit_signal(\"fresh_run_started\")\n\t\n\tprint(\"New Game (\", Util.enumToString(Mode, curMode), \") as \", Util.enumToString(Classes_Full, curClass))\n"
+        },
+        {
+          "first": 3059,
+          "last": 3081,
+          "text": "func prepareItems(items):\n\tPLAYER.prepare()\n\tOPPONENT.prepare()\n\t\n\tfor item in items:\n\t\titem.prepare()\n\nfunc activateItems(items):\n\t\n\t\n\temit_signal(\"combat_start\")\n\tcombatTimer.start()\n\t\n\tPLAYER.combatStart()\n\tOPPONENT.combatStart()\n\t\n\tfor item in items:\n\t\titem.preCombatStart()\n\t\n\tfor item in items:\n\t\titem.combatStart()\n\t\n\tfor item in items:"
+        },
+        {
+          "first": 3944,
+          "last": 3954,
+          "text": "func getRunRating(charClass, season = getSeason()):\n\treturn persistent[\"rating\" + season][charClass]\n\nfunc setRating(rating, charClass = curClass):\n\tpersistent[\"rating\" + getSeason()][charClass] = rating\n\nfunc getPlayerRating(charClass = null):\n\tif isRankedSwitchMode() or charClass == null:\n\t\treturn getSwitchModeRating()\n\telse:\n\t\treturn getRunRating(charClass)"
+        },
+        {
+          "first": 3991,
+          "last": 4021,
+          "text": "\tif Engine.get_physics_frames() == endRunFrame:\n\t\tUtil.eassert(false)\n\t\tprint(\"Duplicate end run\")\n\t\treturn\n\t\n\tendRunFrame = Engine.get_physics_frames()\n\tprint(\"Game over\")\n\t\n\tif survivalMode and hasSurvived():\n\t\tSteamHelper.unlockAchievement(\"Survived\" + getClassInternalName(curClass))\n\t\tif getTries() == MAX_TRIES:\n\t\t\tSteamHelper.unlockAchievement(\"FullLifeSurvival\")\n\t\t\n\tleagueExactPreRun = getLeague_exact(getPlayerRating(curClass))\n\tleaguePreRun = int(leagueExactPreRun)\n\trankingPreRun = getRanking(curClass)\n\tleagueProgressPreRun = fmod(leagueExactPreRun, 1.0)\n\ttrophiesPreRun = getTrophies()\n\twasRankedSwitchMode = isRankedSwitchMode()\n\t\n\t\n\t\n\t\n\tif curMode == Mode.Ranked:\n\t\tsetRating(calcRunRatingForClass())\n\telif curMode == Mode.Unranked:\n\t\tif CustomRules.areCustomRulesActive():\n\t\t\tcommit = false\n\t\tif CustomRules.isRankedSwitchMode():\n\t\t\tsetSwitchModeRating(calcRunRating(getSwitchModeRating()))\n\telif curMode == Mode.Lobbies:"
+        }
+      ]
+    },
+    {
+      "descriptor": {
+        "path": "data/phase359-king-producer-source/after-source/Items/Item.gd",
+        "size": 178363,
+        "sha256": "2fc1d658db352a7ecae8c2bfb60640a019284992a9c5f9a14c87baea50721631"
+      },
+      "ranges": [
+        {
+          "first": 3807,
+          "last": 3814,
+          "text": "func adjustCooldown():\n\tvar adjustedCooldown = getCooldown()\n\tif ownerType == Owner.Opponent and (Game.isBelowLeague(Game.Leagues.Master) or Game.curMode == Game.Mode.Lobbies):\n\t\tadjustedCooldown *= NativeRandomObserver.cooldown(self, 0.975, 1.05)\n\telse:\n\t\tadjustedCooldown *= NativeRandomObserver.cooldown(self, 0.95, 1.05)\n\t\n\treturn adjustedCooldown"
+        }
+      ]
+    },
+    {
+      "descriptor": {
+        "path": "data/phase359-king-producer-source/after-source/Core/Game.gd",
+        "size": 145943,
+        "sha256": "fafe9612858a25b95d8d6149531b50869dbd9709719bd5d2ab6b070b6b8283b1"
+      },
+      "ranges": [
+        {
+          "first": 2676,
+          "last": 2687,
+          "text": "\n\n\t\n\tvar opponentItems = OPPONENT.INVENTORY.getItems().duplicate()\n\topponentItems.shuffle()\n\topponentItems.sort_custom(ItemSort, \"sort_TriggerPriority\")\n\t\n\t\n\tcall_deferred(\"prepareItems\", playerItems + opponentItems)\n\tUtil.callDelayed(self, \"activateItems\", COMBAT_DELAY, [playerItems + opponentItems])\n\t\n\tPLAYER.playSound(classResources[curClass].getRoundStartSound(), 4)"
+        },
+        {
+          "first": 3059,
+          "last": 3086,
+          "text": "func prepareItems(items):\n\tNativeRandomObserver.entry(\"Core/Game.gd::prepareItems\", self, {\"items\": items})\n\tPLAYER.prepare()\n\tOPPONENT.prepare()\n\t\n\tfor item in items:\n\t\titem.prepare()\n\tNativeRandomObserver.leave(\"Core/Game.gd::prepareItems\", self, null, \"return_implicit\")\n\nfunc activateItems(items):\n\tNativeRandomObserver.entry(\"Core/Game.gd::activateItems\", self, {\"items\": items})\n\t\n\t\n\temit_signal(\"combat_start\")\n\tcombatTimer.start()\n\t\n\tPLAYER.combatStart()\n\tOPPONENT.combatStart()\n\t\n\tfor item in items:\n\t\titem.preCombatStart()\n\t\n\tfor item in items:\n\t\titem.combatStart()\n\t\n\tfor item in items:\n\t\titem.postCombatStart()\n\tNativeRandomObserver.leave(\"Core/Game.gd::activateItems\", self, null, \"return_implicit\")"
+        }
+      ]
+    },
+    {
+      "descriptor": {
+        "path": "data/phase462-joint-observer-source-v3/collector.gd",
+        "size": 64365,
+        "sha256": "feb22de0f4427b0412d136d9f56ee0ab17ab8d8044fc225244a69d9cc8ccf273"
+      },
+      "ranges": [
+        {
+          "first": 184,
+          "last": 196,
+          "text": "\t\t\treturn\n\t\tgame.connect(\"shop_closed\", self, \"on_shop_closed\")\n\t\tgame.connect(\"combat_start\", self, \"on_combat_start\")\n\t\tgame.connect(\"combat_end\", self, \"on_combat_end\", [], CONNECT_DEFERRED)\n\t\tvar before = encode(util.rng.state)\n\t\tseed(int(config.global_seed))\n\t\tutil.rng.seed = int(config.util_seed)\n\t\tphases.append({\"name\": \"seed_boundary\", \"frame\": frames(), \"util_state_before\": before, \"util_state_after\": encode(util.rng.state), \"global_seed\": str(int(config.global_seed)), \"util_seed\": str(int(config.util_seed))})\n\t\tvar selected_class = int(player_fixture[\"class\"]) if config.player_fixture_enabled else 0\n\t\tgame.instanceCharacter(selected_class)\n\t\tgame.initStartInventory(0)\n\t\tgame.startFreshRun(game.Mode.Unranked)\n\t\tset_stage(\"shop_wait\")"
+        },
+        {
+          "first": 439,
+          "last": 447,
+          "text": "func start_controlled_combat(player_registered = false):\n\tif not player_registered or not ensure_source_window():\n\t\tsource_control_record(\"start_controlled_combat\", \"FRESH_PLAYER_OR_WINDOW_REJECTED\", {\"player_registered\": player_registered})\n\t\tfail(\"single King requires controlled fresh player and actual SOURCE window\")\n\t\treturn\n\tphase(\"shop_ready\")\n\tset_stage(\"combat_wait\")\n\tgame.switchToCombat()\n"
+        },
+        {
+          "first": 519,
+          "last": 548,
+          "text": "func on_shop_closed():\n\tif done:\n\t\treturn\n\tif game.curOpponentData.get(\"name\", \"\") != \"Custom Opponent\" or not register_inventory(game.OPPONENT, \"O\"):\n\t\tfail(\"custom opponent/layout not verified\")\n\t\treturn\n\tif config.player_fixture_enabled:\n\t\tif not player_membership_unchanged():\n\t\t\tfail(\"player fixture changed before native preparation\")\n\t\t\treturn\n\t\tplayer_setup_evidence[\"before_native_prepare\"] = player_spatial_evidence()\n\t\twrite_json(\"player_setup_evidence.json\", player_setup_evidence)\n\t\tif not errors.empty():\n\t\t\tfail(\"player spatial associations invalid before preparation\")\n\t\t\treturn\n\tif not observer7_precondition():\n\t\tfail(\"observer7 post-opponent lineage PRECONDITION_UNSUPPORTED\")\n\t\treturn\n\tphase(\"shop_closed_sync\")\n\nfunc on_combat_start():\n\tif done:\n\t\treturn\n\tphase(\"combat_start_sync\")\n\tcall_deferred(\"after_activate\")\n\nfunc after_activate():\n\tif not done:\n\t\tphase(\"activate_return_deferred\")\n\t\tset_stage(\"combat_active\")"
+        }
+      ]
+    },
+    {
+      "descriptor": {
+        "path": "data/phase462-joint-observer-source-v3/after-source/native_random_observer_sink_v7.gd",
+        "size": 102572,
+        "sha256": "3d3d0cefe90c0e4bd3590d01800b1a05b0ff3398f7e4d245935a122e526a190a"
+      },
+      "ranges": [
+        {
+          "first": 558,
+          "last": 573,
+          "text": "\nfunc primitive(site, kind, label, args, value):\n\tif enabled and label != \"\" and not failed and not closed:\n\t\tsource_phase = site + \":return_native_primitive\"\n\t\tbegin_encoding()\n\t\tvar raw_args = []\n\t\tfor arg in args:\n\t\t\traw_args.append(encode(arg))\n\t\twrite_record(\"primitive\", site, \"return_native_primitive\", null, {\"kind\": kind, \"label\": label, \"args\": raw_args, \"value\": encode(value), \"context\": context(label, kind)})\n\treturn value\n\nfunc cooldown(item, low, high):\n\tvar value = get_node(\"/root/Util\").rng.randf_range(low, high)\n\tprimitive(\"Items/Item.gd::adjustCooldown:\" + (\"belowMasterOpponent\" if low == 0.975 else \"other\"), \"randf_range\", \"cooldown:\" + item_id(item), [low, high], value)\n\treturn value\n"
+        }
+      ]
+    }
+  ],
+  "scope": "Finite existing Original and frozen installed Source excerpts; no live pool or Expected read."
+}

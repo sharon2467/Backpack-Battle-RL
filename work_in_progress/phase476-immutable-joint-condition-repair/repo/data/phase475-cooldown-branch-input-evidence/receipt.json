@@ -1,0 +1,192 @@
+{
+  "schema": "phase475-shared-cooldown-predicate-evidence/1",
+  "status": "ACCEPTED_FIXED_CASE_SOURCE_BOUND_BRANCH_WITNESS",
+  "case": "original028-king-basic-A-single-001",
+  "predicate": "Game.isBelowLeague(Game.Leagues.Master) or Game.curMode == Game.Mode.Lobbies",
+  "derived_fixture_field": {
+    "path": "fixture.below_master",
+    "type": "BOOL",
+    "value": true
+  },
+  "accepted_bundle": {
+    "path": "data/phase470-joint-input-first-001/input-bundle.json",
+    "size": 500518,
+    "sha256": "bb731532d9852be73e374c0f296d5fc1d32923faeabbcef471d5aed75dee86ee"
+  },
+  "actual_input_descriptor": {
+    "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/observer7-primitives.jsonl",
+    "sha256": "ec5867d289ad3d6413a609e9a57a4e1af722843bdb74e6f23867ae0a84b4eba9",
+    "size": 306106
+  },
+  "branch_evidence": {
+    "decoded_primitive_rows": 422,
+    "cooldown_rows": 165,
+    "selected_P_other": 95,
+    "selected_O_belowMasterOpponent": 70,
+    "startup": [
+      {
+        "physical_line": 1,
+        "sequence": 1167,
+        "item": "P:10",
+        "site": "Items/Item.gd::adjustCooldown:other",
+        "combat_time": {
+          "type": "float",
+          "binary64_be": "0000000000000000"
+        }
+      },
+      {
+        "physical_line": 2,
+        "sequence": 1168,
+        "item": "P:8",
+        "site": "Items/Item.gd::adjustCooldown:other",
+        "combat_time": {
+          "type": "float",
+          "binary64_be": "0000000000000000"
+        }
+      },
+      {
+        "physical_line": 3,
+        "sequence": 1169,
+        "item": "P:12",
+        "site": "Items/Item.gd::adjustCooldown:other",
+        "combat_time": {
+          "type": "float",
+          "binary64_be": "0000000000000000"
+        }
+      },
+      {
+        "physical_line": 4,
+        "sequence": 1170,
+        "item": "P:9",
+        "site": "Items/Item.gd::adjustCooldown:other",
+        "combat_time": {
+          "type": "float",
+          "binary64_be": "0000000000000000"
+        }
+      },
+      {
+        "physical_line": 5,
+        "sequence": 1171,
+        "item": "P:13",
+        "site": "Items/Item.gd::adjustCooldown:other",
+        "combat_time": {
+          "type": "float",
+          "binary64_be": "0000000000000000"
+        }
+      },
+      {
+        "physical_line": 6,
+        "sequence": 1172,
+        "item": "P:11",
+        "site": "Items/Item.gd::adjustCooldown:other",
+        "combat_time": {
+          "type": "float",
+          "binary64_be": "0000000000000000"
+        }
+      },
+      {
+        "physical_line": 7,
+        "sequence": 1173,
+        "item": "O:11",
+        "site": "Items/Item.gd::adjustCooldown:belowMasterOpponent",
+        "combat_time": {
+          "type": "float",
+          "binary64_be": "0000000000000000"
+        }
+      },
+      {
+        "physical_line": 8,
+        "sequence": 1174,
+        "item": "O:6",
+        "site": "Items/Item.gd::adjustCooldown:belowMasterOpponent",
+        "combat_time": {
+          "type": "float",
+          "binary64_be": "0000000000000000"
+        }
+      },
+      {
+        "physical_line": 9,
+        "sequence": 1175,
+        "item": "O:10",
+        "site": "Items/Item.gd::adjustCooldown:belowMasterOpponent",
+        "combat_time": {
+          "type": "float",
+          "binary64_be": "0000000000000000"
+        }
+      },
+      {
+        "physical_line": 10,
+        "sequence": 1176,
+        "item": "O:7",
+        "site": "Items/Item.gd::adjustCooldown:belowMasterOpponent",
+        "combat_time": {
+          "type": "float",
+          "binary64_be": "0000000000000000"
+        }
+      }
+    ],
+    "identity": "All cooldown labels map to the accepted 26-item side/instance table; subject is null in this producer row. No claim that primitive.subject independently carries a NativeRef.",
+    "site_semantics": "Sink line 571 classifies low==0.975. The frozen installed Source has exactly two direct wrapper calls: original true branch uses literal .975,1.05; false branch uses .95,1.05. Wrapper passes low/high unchanged through randf_range and serializes the branch site. Site plus Source mapping is execution evidence, not direct Game/rank serialization.",
+    "argument_bits": "Strict typed arguments checked for consistency only; no random return value is used to infer the branch."
+  },
+  "mode_evidence": {
+    "kind": "SOURCE_PATH_NOT_DIRECT_MODE_SAMPLE",
+    "value": "Unranked",
+    "source": "Collector 195 calls startFreshRun(Mode.Unranked); Game.startFreshRun calls setMode; enum Unranked=1, Lobbies=2. Collector then uses ordinary switchToCombat and observed fixed custom-opponent path.",
+    "ui_mode": "The already saved B2 mode=1 is Item/RigidBody2D.mode and is NOT Game.curMode evidence.",
+    "specific_rank_or_rating": null
+  },
+  "prepare_applicability": {
+    "accepted": true,
+    "source_reason": "Character.prepare at 304 and Item.adjustCooldown at 3790 use the identical global OR predicate. Fixed ordinary Game preparation precedes activation: deferred prepareItems calls both Character.prepare then selected item.prepare; delayed activateItems calls both combatStart then all preCombatStart (cooldown) before combatStart item effects. The selected seven-ID Source callbacks and accepted B2 guards introduce no mode/class/rating/rules writers on this bounded path. Character.combatStart only sets combat state/timers; base item preparation caches/resets and preCombatStart samples cooldown. Collector callbacks record phases/identity and schedule the post-activation observation, not rating changes.",
+    "stability_scope": "Fixed accepted ordinary native/source-dispatch domain, default rules, controlled Unranked setup and first preparation/activation interval. Mode/class are established before preparation. Rating migration is startup-load work; rating updates in endRun occur after combat, not on this interval. This is a bounded Source-path conclusion, not proof against arbitrary generic mutation, native hooks, another layout or another mode.",
+    "consequence": "True common predicate means P accuracy/crit bias -0.2 and O +0.2 at prepare, and O cooldown lower bound .975. Correcting only cooldown would be incomplete."
+  },
+  "limits": [
+    "No specific league/rating was independently sampled or inferred.",
+    "No new full-project generic-call/animation/native-hook audit; retain the accepted G02 ordinary native/dispatch and B2 fixed-case premises.",
+    "All 70 opponent sites agree, but agreement alone does not prove hidden historical state stability; the preparation application uses the finite Source path above.",
+    "The copied fixture proposal false was not authoritative native INPUT; only this field may be mechanically derived in a new immutable bundle. Old bundle/evidence remain unchanged.",
+    "No runtime/complete-battle/8-section PASS is claimed."
+  ],
+  "counts": {
+    "raw_primitive_physical_reads": 1,
+    "raw_primitive_bytes": 306106,
+    "raw_primitive_jsonl_decode_passes": 1,
+    "other_raw_INPUT_reads": 0,
+    "Expected_business_reads": 0,
+    "model_or_component_calls": 0,
+    "new_capture": 0,
+    "pool_reads_or_writes": 0,
+    "candidate_imports": 0,
+    "return_values_incidentally_JSON_decoded": 422,
+    "return_values_used_for_derivation": 0
+  },
+  "references": [
+    {
+      "path": "data/phase475-cooldown-branch-input-evidence/extraction.json",
+      "size": 223683,
+      "sha256": "9c34083d29c31f074a602ab9cf601a971753886905ae4747b26662f86849ed00"
+    },
+    {
+      "path": "data/phase475-cooldown-branch-input-evidence/wrapper-census.json",
+      "size": 1276,
+      "sha256": "eb7cee4259806c09c8b3561cfe1dc32453e2b88823ab6c928a699d938d640869"
+    },
+    {
+      "path": "data/phase475-cooldown-branch-input-evidence/source-evidence.json",
+      "size": 14768,
+      "sha256": "8f2636a543e82ef0e8d6b85ab7e9ffe6ca169c59eed9bafe6534313fa0dc55ef"
+    },
+    {
+      "path": "data/phase475-independent-interfaces-first-001/b2-applicability.json",
+      "size": 8423,
+      "sha256": "1aedb467c1f94f13a2899974040c0e90b30dcf00e6cf582c2e8a7a89471a8c09"
+    },
+    {
+      "path": "data/phase475-independent-first-failure-review/review.json",
+      "size": 6093,
+      "sha256": "2a48e9430468bed0f497d0725bb06dab60377738188f99c295aa3e1e29c50472"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+--- tests/phase474_joint_tape_run.py
++++ tests/phase476_joint_tape_run.py
+@@ -15,10 +15,8 @@
+ CASE = 'NATIVE-028-KING-BASIC-A'
+ PROFILE = 'pure-combat-king-basic-A-captured/1'
+ SCHEMA = 'native-v8-pure-combat-runtime-input/king-basic-1'
+-FREEZE = {'path': 'data/phase471-captured-joint-source/candidate-source-freeze.json', 'size': 5113,
+-          'sha256': 'd640e6cd25562692ae6bd4cc3b908d5c6e57e20754e0c60221644b87cb8e88b8'}
+-INPUT_SOURCE = {'path': 'data/phase470-joint-input-source/source-owner.json', 'size': 7913,
+-                'sha256': '73b0ac566b5f59748c6b46fb0af75f2b0a0af0b1083f171de011a586ba245ab7'}
++FREEZE = {'path': 'data/phase476-joint-condition-repair/candidate-source-freeze.json', 'size': 5234, 'sha256': 'ebd99ad8fbe50247b520a005314d6b0714895d7014081c199cba03791f11bc09'}
++INPUT_SOURCE = {'path': 'data/phase476-joint-condition-repair/input-source-owner.json', 'size': 2175, 'sha256': '04d81d52a2677a95a4718b87cea5d9935a8c8c4618128cac578ff151ef87dda5'}
+ INPUT_ABI = {'path': 'data/phase470-joint-input-source/abi.json', 'size': 738,
+              'sha256': '15d5671b349230ddcc04e48fd7dd3c98d1d4de2212de05d7c5cf73c7dc7e9727'}
+ CONTRACT = {'path': 'data/phase466-captured-joint-bridge-design/comparison-contract.json', 'size': 4636,
+@@ -123,7 +121,7 @@
+     source_rows = freeze['files']
+     if len(source_rows) != 15:
+         raise ValueError('exact15 candidate Source files required')
+-    sources = {}; staged = ROOT / 'data/phase471-captured-joint-source/staged'
++    sources = {}; staged = ROOT / 'data/phase476-joint-condition-repair/staged'
+     for row in source_rows:
+         relative = Path(row['relative']); path = path_of(row['path'])
+         if relative.is_absolute() or '..' in relative.parts or staged / relative != path or str(path) in sources:
+@@ -136,7 +134,7 @@
+            for prefix in ('native_replay_v8', 'native_replay_v7', 'original_rng', 'godot_pcg_integer')):
+         raise ValueError('fresh single candidate import required')
+     output = path_of(args.output)
+-    if (output.parent != ROOT / 'data' or not output.name.startswith('phase474-') or output.exists()
++    if (output.parent != ROOT / 'data' or not output.name.startswith('phase476-') or output.exists()
+             or any(p.is_symlink() for p in output.parents)):
+         raise ValueError('new ordinary phase474 output directory required')
+     output.mkdir(mode=0o700)
