@@ -1,0 +1,9 @@
+# Phase457 accepted King/basic-Goobert business extension design
+
+Selected A: experimental Source seven-ID/single-King/class0 with exactly one basicGoobert23 on the King's side. This adds a real synchronous5/6 counter feedback edge to the six-ID domain, not a new item effect or wholesale75 expansion. Existing core methods already implement heal-before-Activation/reset-before-effect/postreentry counter reread and must be tested as production code. New profile stays separate from old six-ID/75/fixed441, two changed modules target/13conserved.
+
+Required independent Source-unit cases: basic-first reentry leaves counter1/outertrigger4; King-first reentry leaves counter1/outertrigger5. Freeze entry/prestate/listener order, true event parents, tooltip event associations/compression and RNG/effect order. Synthetic prestates/Tape are component inputs, not native observations or public provider gates. The proposed26item native layout has reciprocal King/basic listeners but no shared direct ordinary emitter; natural hits cannot be claimed before observation.
+
+Existing178 is real historical King+Mirror/RangerBag/SpikedShield/FlyAgaric mixed evidence (215events/303Tape/fullhistories/final plus sampled runtime), not erased or misrepresented. Its old17-key/35totalTimer fixture is not a new441 input: no borrowing441 receipts or deriving input fromExpected. Migration B is deferred rather than becoming a long prerequisite chain. Existing022basic and401/451King evidence are reused at their true scopes.
+
+No new native capture/code execution occurred in457.458 implementation/459 Source business controls follow independent design acceptance; one future joint original case is a concrete unexecuted need, not an automatic capture release.456numeric plan remains nonblocking/deferred. Formal75/fullengine limits remain.
