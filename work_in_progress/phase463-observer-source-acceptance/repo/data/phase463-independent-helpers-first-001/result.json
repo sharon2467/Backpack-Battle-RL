@@ -1,0 +1,208 @@
+{
+  "schema": "phase463-independent-helper-result/1",
+  "status": "PASS_18_SYNTHETIC_HELPER_CONTROLS",
+  "classification": "SYNTHETIC_SOURCE_HELPERS_ONLY",
+  "cases": [
+    {
+      "id": "S1",
+      "helper": "validate_state",
+      "expected": "PASS",
+      "status": "PASS",
+      "observation": "accepted_exact_value_and_types"
+    },
+    {
+      "id": "S2",
+      "helper": "validate_state",
+      "expected": "PASS",
+      "status": "PASS",
+      "observation": "accepted_exact_value_and_types"
+    },
+    {
+      "id": "S3",
+      "helper": "validate_state",
+      "expected": "PASS",
+      "status": "PASS",
+      "observation": "accepted_exact_value_and_types"
+    },
+    {
+      "id": "S4",
+      "helper": "validate_state",
+      "expected": "REJECT_VALUE_ERROR",
+      "status": "PASS",
+      "observation": {
+        "exception": "ValueError",
+        "message": "exact object keys required: {'activations': 'int', 'activationsThisFrame': 'int', 'activationsToTrigger': 'float', 'cachedAffectedItems': 'dictionary', 'consumed': 'bool', 'currentAffectedItems': 'dictionary', 'descriptorIndex': 'int', 'faceDirection': 'int', 'iterationCooldown': 'float', 'lastActivationTime': 'float', 'lastTriggerTime': 'float', 'ownerType': 'int', 'placed': 'bool', 'speedScale': 'float', 'triggerTime': 'float', 'triggersThisFrame': 'int'}"
+      }
+    },
+    {
+      "id": "S5",
+      "helper": "validate_state",
+      "expected": "REJECT_VALUE_ERROR",
+      "status": "PASS",
+      "observation": {
+        "exception": "ValueError",
+        "message": "exact object keys required: {'activations': 'int', 'activationsThisFrame': 'int', 'activationsToTrigger': 'float', 'cachedAffectedItems': 'dictionary', 'consumed': 'bool', 'currentAffectedItems': 'dictionary', 'descriptorIndex': 'int', 'faceDirection': 'int', 'iterationCooldown': 'float', 'lastActivationTime': 'float', 'lastTriggerTime': 'float', 'ownerType': 'int', 'placed': 'bool', 'speedScale': 'float', 'triggerTime': 'float', 'triggersThisFrame': 'int'}"
+      }
+    },
+    {
+      "id": "S6",
+      "helper": "validate_state",
+      "expected": "REJECT_VALUE_ERROR",
+      "status": "PASS",
+      "observation": {
+        "exception": "ValueError",
+        "message": "exact raw property type goobert.activations"
+      }
+    },
+    {
+      "id": "S7",
+      "helper": "validate_state",
+      "expected": "REJECT_VALUE_ERROR",
+      "status": "PASS",
+      "observation": {
+        "exception": "ValueError",
+        "message": "exact raw property type goobert.activations"
+      }
+    },
+    {
+      "id": "S8",
+      "helper": "validate_state",
+      "expected": "REJECT_VALUE_ERROR",
+      "status": "PASS",
+      "observation": {
+        "exception": "ValueError",
+        "message": "exact raw property type goobert.activationsToTrigger"
+      }
+    },
+    {
+      "id": "S9",
+      "helper": "validate_state",
+      "expected": "REJECT_VALUE_ERROR",
+      "status": "PASS",
+      "observation": {
+        "exception": "ValueError",
+        "message": "exact object keys required: {'activationParticles': 'auto_hide', 'activations': 'int', 'activationsThisFrame': 'int', 'activationsToTrigger': 'float', 'buffTimer': 'timer', 'cachedAffectedItems': 'dictionary', 'consumed': 'bool', 'currentAffectedItems': 'dictionary', 'descriptorIndex': 'int', 'faceDirection': 'int', 'invuCharges': 'int', 'iterationCooldown': 'float', 'lastActivationTime': 'float', 'lastTriggerTime': 'float', 'manaCost': 'float', 'ownerType': 'int', 'placed': 'bool', 'protectedBuffs': 'float', 'speedScale': 'float', 'triggerTime': 'float', 'triggersThisFrame': 'int'}"
+      }
+    },
+    {
+      "id": "S10",
+      "helper": "validate_state",
+      "expected": "REJECT_VALUE_ERROR",
+      "status": "PASS",
+      "observation": {
+        "exception": "ValueError",
+        "message": "closed source Item subtype"
+      }
+    },
+    {
+      "id": "S11",
+      "helper": "validate_state",
+      "expected": "REJECT_VALUE_ERROR",
+      "status": "PASS",
+      "observation": {
+        "exception": "ValueError",
+        "message": "item descriptor outside fixed seven IDs"
+      }
+    },
+    {
+      "id": "B1",
+      "helper": "_binding_validate_value",
+      "expected": "PASS",
+      "status": "PASS",
+      "observation": "accepted_exact_value_and_types"
+    },
+    {
+      "id": "B2",
+      "helper": "_binding_validate_value",
+      "expected": "REJECT_VALUE_ERROR",
+      "status": "PASS",
+      "observation": {
+        "exception": "ValueError",
+        "message": "binding original fixture slot differs"
+      }
+    },
+    {
+      "id": "B3",
+      "helper": "_binding_validate_value",
+      "expected": "REJECT_VALUE_ERROR",
+      "status": "PASS",
+      "observation": {
+        "exception": "ValueError",
+        "message": "actual item nativeID reused across slots"
+      }
+    },
+    {
+      "id": "B4",
+      "helper": "_binding_validate_value",
+      "expected": "REJECT_VALUE_ERROR",
+      "status": "PASS",
+      "observation": {
+        "exception": "ValueError",
+        "message": "actual descriptor/index association inconsistent"
+      }
+    },
+    {
+      "id": "B5",
+      "helper": "_binding_validate_value",
+      "expected": "REJECT_VALUE_ERROR",
+      "status": "PASS",
+      "observation": {
+        "exception": "ValueError",
+        "message": "binding original fixture slot differs"
+      }
+    },
+    {
+      "id": "B6",
+      "helper": "_binding_validate_value",
+      "expected": "REJECT_VALUE_ERROR",
+      "status": "PASS",
+      "observation": {
+        "exception": "ValueError",
+        "message": "exact26 actual slot bindings"
+      }
+    },
+    {
+      "id": "B7",
+      "helper": "_binding_validate_value",
+      "expected": "REJECT_VALUE_ERROR",
+      "status": "PASS",
+      "observation": {
+        "exception": "ValueError",
+        "message": "SOURCE list length"
+      }
+    }
+  ],
+  "counts": {
+    "schema_imports": 1,
+    "top_level_helper_calls": 18,
+    "validate_state_top_level": 11,
+    "_binding_validate_value_top_level": 7,
+    "model": 0,
+    "Godot_including_parse": 0,
+    "Expected": 0,
+    "pool_operations": 0,
+    "producer_regenerations": 0
+  },
+  "recursive_function_entries": {
+    "validate_state": 14,
+    "_binding_validate_value": 7
+  },
+  "source_before_verified_files": 101,
+  "source_owner": {
+    "path": "data/phase462-joint-observer-source-v3/source-owner.json",
+    "size": 20753,
+    "sha256": "91b5098388e356ad2d386f0b35298fb92cda2e100ddf74c52183dc469fa180f9"
+  },
+  "source_tuple": {
+    "path": "data/phase462-joint-observer-source-v3/source-tuple.json",
+    "size": 1729,
+    "sha256": "1a77916bf7d5f5a50936c576c3d9ff72b91d821742173f6e39af9c8be0913f57"
+  },
+  "source_after": {
+    "path": "data/phase463-independent-helpers-first-001/source-after.json",
+    "size": 20618,
+    "sha256": "b409c133e1161fccf5e43d27f002bb5b22021b0113b90d158d0740eb3c0e7770"
+  },
+  "elapsed_seconds": 0.08011883199651493,
+  "no_native_observation_or_capture_acceptance": true
+}

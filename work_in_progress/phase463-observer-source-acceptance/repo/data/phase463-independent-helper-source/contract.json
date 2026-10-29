@@ -1,0 +1,59 @@
+{
+  "schema": "phase463-independent-helper-contract/1",
+  "status": "SEALED_BEFORE_SCHEMA_IMPORT",
+  "pins": {
+    "source_owner": {
+      "path": "data/phase462-joint-observer-source-v3/source-owner.json",
+      "size": 20753,
+      "sha256": "91b5098388e356ad2d386f0b35298fb92cda2e100ddf74c52183dc469fa180f9"
+    },
+    "source_tuple": {
+      "path": "data/phase462-joint-observer-source-v3/source-tuple.json",
+      "size": 1729,
+      "sha256": "1a77916bf7d5f5a50936c576c3d9ff72b91d821742173f6e39af9c8be0913f57"
+    },
+    "schema": {
+      "path": "data/phase462-joint-observer-source-v3/schema/phase462_king_basic_observer_schema.py",
+      "size": 196289,
+      "sha256": "b2cafda5409b048f655f2f2668f915e3e69339ea801569d0420c775776aabd91"
+    },
+    "synthetic_inputs": {
+      "path": "data/phase463-independent-helper-source/synthetic-inputs.json",
+      "size": 132368,
+      "sha256": "36a98ac5070517646f357165b8338e5446c593fb12e6c1f6f288847ee77230cd"
+    },
+    "spec": {
+      "path": "docs/phase463_independent_joint_observer_source_acceptance_spec.md",
+      "size": 7487,
+      "sha256": "a2ef2e115680319b3cfb799c77621ce139e8e9aaf0b4f4837cef20007055f593"
+    },
+    "plan": {
+      "path": "data/phase463-independent-source-acceptance-plan/plan.json",
+      "size": 10480,
+      "sha256": "7659375b54cd4121593613b36302500fe54ab7318d6c7aaec0c862fb93721144"
+    },
+    "static_review": {
+      "path": "data/phase463-independent-static-review/review.json",
+      "size": 3375,
+      "sha256": "fab0041ab73957b26da8c45d7fd67429c4cfd7d94c824e3d0499b5c37442d1ac"
+    },
+    "static_owner": {
+      "path": "data/phase463-independent-static-review/owned-files.json",
+      "size": 277,
+      "sha256": "c102b0c4e630c05843b415bbd59de3d738a8cc9236d49f479b31d7b5e5ffefea"
+    }
+  },
+  "execution": {
+    "batches": 1,
+    "maximum_top_level_calls": 18,
+    "state_positive": 3,
+    "state_negative": 8,
+    "binding_positive": 1,
+    "binding_negative": 6,
+    "deadline_seconds": 15,
+    "stop_first_unexpected": true
+  },
+  "scope": "Only exact frozen schema import and synthetic validate_state/_binding_validate_value calls. No model, Godot including parse, Expected, pool, producer regeneration or old controls. Recursive helper entries separately counted; local binding acceptance does not claim class/real native ID linkage.",
+  "source_after": "Rehash all 101 frozen source-owner files and all contract pins.",
+  "synthetic_provenance": "Literal Source schema shapes and fixed design geometry; all positive native IDs are TEST_ONLY invented strings. Old fixed-plan input is AST literal from prior Source, not native data."
+}
