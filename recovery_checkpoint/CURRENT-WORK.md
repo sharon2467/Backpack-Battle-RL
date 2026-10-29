@@ -14,3 +14,5 @@ Restore using recovery_checkpoint/README.md main restoration, its single flat re
 
 No master/force/PR/newenvironment/purchase/security changes or previously unauthorized public interruption note. No automatic new original capture, reseed, relayout or pool installation. Reuse fixed resources; preserve unique Source/evidence/failures. Implementation and independent testing remain separate.
 
+
+Current fresh Source milestone:453/454 experimental six-ID single-King/class0 new-layout+seed and sequential batch interface is independently and Root accepted for full typed determinism/isolation. Preserve the45s harness failure; bounded continuation used only2interleaved models, cumulative6natural completions+1tinybudget. P-side/O-side King arbitrary IDs both state0→1→0→1→0→1→2;14activation methodentries are recursive,7effective initialized models. No native new-layout/seed evidence follows. Next455 packages exact15Source files/examples/manifest for direct use, without repeating battles.

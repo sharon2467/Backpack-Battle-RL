@@ -1,0 +1,11 @@
+# Phase454 accepted experimental fresh Source interface
+
+Independent and Root accept the six-ID/single-King/class0 fresh-layout/seed interface, deterministic ordered batch and two-instance isolation.26 small controls passed; two complete typed outputs and both generator states match their previously sealed sequential batch references. A King P:A-royal winsP356events; B King O:B-royal winsO362events. Each414draws/1922physics/3844passes, state history0,1,0,1,0,1,2 and all3 invulnerability charges. Actual tickstart argc0, fatigueINT14/3/1, fourauxstop sequence, twofuturephysics terminal barrier and whole stored/RNG-slot readonly checks passed.
+
+Keep the previous45s profiling/extraction failure and partial records in preceding phase454-source-evaluation-first-error. B's first interleaved full result was never sealed; it was not fabricated from reference. The explicitly bounded continuation replayed only2 interleaved models, with no global profiling during steps/results, no repeated batch/26controls/451. It passed in4.51565s. Cumulative7 constructions/prepares=6 natural completions+1 unfinished tinybudget;14 activate method entries include recursive FrameDriver activation, not14 battle starts. Source15 files stayed unchanged.
+
+Reused JSON references restore only Source-defined integer-key tables, known coordinate tuples and histories using pinned schema helpers. String event-reference/instance/role/typed decimal values are not generically coerced. Reference restoration is value/bit lossless; complete typed comparison is not replaced by winner/count equality.
+
+This is fresh Python Source logic and determinism evidence, not native numericseed/session/cadence or per-layout native validation. Formal75 and generalKing production scope remain unchanged;451 fixed native conditionalTape strict PASS remains separately accepted. No Expected/raw12/native/451 battle ran in this stage. Full engine/RL action environment and representative throughput remain incomplete.
+
+Restore flat overlays as usual. Newv2 harness, whole outputs, release/Source restoration proof and final independent/Root acceptance are under repo/. Previous batch reference/preimages are already Git-hosted. Next455 packages exact accepted453 Source for direct use without changing algorithms or rerunning successful battles.

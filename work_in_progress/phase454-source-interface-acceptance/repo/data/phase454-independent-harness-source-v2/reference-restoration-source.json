@@ -1,0 +1,77 @@
+{
+  "schema": "phase454-v2-Source-reference-restoration/1",
+  "refs": [
+    {
+      "path": "data/phase453-source-pure-headless/staged/native_replay_v8/state.py",
+      "name": "native_rule_state",
+      "line": 19,
+      "end_line": 121,
+      "sha256": "f8203a2abb7852a0321e895676ca4911b6825d0fb5131e2db04373329fa2df86",
+      "size": 11890
+    },
+    {
+      "path": "data/phase453-source-pure-headless/staged/native_replay_v8/state.py",
+      "name": "restore_integer_table",
+      "line": 140,
+      "end_line": 152,
+      "sha256": "0f6894bc132cc3561f404034464ede7c4d5f64a30208ba2ff5a9be8a6b8203a1",
+      "size": 481
+    },
+    {
+      "path": "data/phase453-source-pure-headless/staged/native_replay_v8/state.py",
+      "name": "restore_state_json_keys",
+      "line": 155,
+      "end_line": 166,
+      "sha256": "994635025bbbe741ed6bb28213aa8be865caab42e58f165f24e8eec40297b065",
+      "size": 559
+    },
+    {
+      "path": "data/phase453-source-pure-headless/staged/native_replay_v8/compare.py",
+      "name": "restore_history_json_keys",
+      "line": 104,
+      "end_line": 117,
+      "sha256": "40fe4f148258f631479d21ec3dbda64d495498f1354647fbd1ddba5a24c391c8",
+      "size": 682
+    },
+    {
+      "path": "data/phase453-source-pure-headless/staged/native_replay_v8/engine.py",
+      "name": "ordered_occupied_cells",
+      "line": 249,
+      "end_line": 254,
+      "sha256": "8144cd9a4951073d54c26cc47c8f2073443f9a81f067cedca84e58d52cbe14e0",
+      "size": 338
+    },
+    {
+      "path": "data/phase453-source-pure-headless/staged/native_replay_v8/engine.py",
+      "name": "CharacterState",
+      "line": 380,
+      "end_line": 433,
+      "sha256": "4744b90cecf1ffcd01f58715e42c4539deca02ab3346ae5558fa94496d813e08",
+      "size": 1840
+    },
+    {
+      "path": "data/phase453-source-pure-headless/staged/native_replay_v8/engine.py",
+      "name": "ItemState",
+      "line": 437,
+      "end_line": 501,
+      "sha256": "1bbfe0754dec0cf9eed946326083b8f45b54e04e3ecca1dd71c9e805dae1cdbe",
+      "size": 2151
+    },
+    {
+      "path": "data/phase453-source-pure-headless/staged/native_replay_v8/engine.py",
+      "name": "CombatEngine.snapshot",
+      "line": 3487,
+      "end_line": 3510,
+      "size": 1912,
+      "sha256": "e19dccf7073889accf47aae4e6a62849e08a2079f04f1cf20af2e83eb7d831fc"
+    }
+  ],
+  "rules": [
+    "Three actual snapshot model nodes only; top-level histories only.",
+    "Preserve event_references str keys and all instance/role/side keys.",
+    "Restore exact integer tables with existing conserved helpers, plus raw dataclass mirrors.",
+    "Restore top_left coordinate tuple and inner coordinate tuples in cells/stars/ordered_cells from Source declarations.",
+    "No newresult consulted; unknown/noncanonical integer keys or coordinate shape fails; strict typed fullcomparison unchanged."
+  ],
+  "candidate_execution": 0
+}
