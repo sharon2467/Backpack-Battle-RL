@@ -11,7 +11,7 @@ def main():
     expected = manifest['files']
     actual = {p.relative_to(ROOT).as_posix() for p in ROOT.rglob('*')
               if p.is_file() and '__pycache__' not in p.parts and p.suffix != '.pyc'
-              and p.name != 'MANIFEST.json'}
+              and p != ROOT / 'MANIFEST.json'}
     if actual != set(expected):
         raise ValueError({'missing': sorted(set(expected) - actual),
                           'unexpected': sorted(actual - set(expected))})
@@ -25,7 +25,7 @@ def main():
     runtime = json.loads((ROOT / 'evidence/runtime-sources.json').read_text())['files']
     if len(runtime) != 30 or any(expected.get(n) != w for n, w in runtime.items()):
         raise ValueError('two exact fifteen-file runtime snapshots required')
-    print(f'PASS: {len(expected)} publication files; 30 exact runtime files')
+    print(f'PASS: {len(expected)} publication files; 30 exact historical runtime files')
 
 
 if __name__ == '__main__':

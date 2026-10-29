@@ -1,0 +1,13 @@
+{
+  "schema": "phase455-publication-manifest-refresh-diagnostic/1",
+  "README_expected": {
+    "sha256": "575a7ee627e171151c1f663da77ba0e2954263e861e790f9f8d41e4bc3df08fd",
+    "size": 6414
+  },
+  "README_actual": {
+    "size": 7742,
+    "sha256": "8aec43df7313082030a9f54ee5ce9008800c822c519111d97e72834bb921c24b"
+  },
+  "cause": "Root updated current evidence guide in452 but did not refresh outer publication README hash. Source/runtime snapshots unchanged.",
+  "correction": "Refresh outer publication manifest after adding455 package, retain historical30 Source proofs and include nested experimental manifest by exact root-only exclusion."
+}
