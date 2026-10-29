@@ -1,0 +1,87 @@
+--- tests/phase459_independent_king_basic_business.py
++++ tests/phase459_independent_king_basic_business_v2.py
+@@ -14,10 +14,11 @@
+ ROOT = Path(__file__).resolve().parents[1]
+ SOURCE = ROOT / 'data/phase458-source-king-basic'
+ PLAN = ROOT / 'data/phase459-independent-business-plan'
+-OUT = ROOT / 'data/phase459-independent-business-first-001'
+-OWNER = ROOT / 'data/phase459-independent-business-harness-source/owned-files.json'
++OUT = ROOT / 'data/phase459-independent-business-v2-first-001'
++OWNER = ROOT / 'data/phase459-independent-business-harness-source-v2/owned-files.json'
+ COUNTS = {}
+ PASSES = []
++PREPARE_BOUNDARIES = []
+ ACTIVE = None
+ STAGE = 'preflight'
+ B, K, R = 'P:basic', 'P:king', 'P:berry0'
+@@ -84,6 +85,17 @@
+     @functools.wraps(original)
+     def call(*args, **kwargs):
+         COUNTS[label] = COUNTS.get(label, 0) + 1
++        if label == 'Engine.prepare_only':
++            engine = args[0]
++            before = copy.deepcopy(engine.random.audit)
++            answer = original(*args, **kwargs)
++            after = copy.deepcopy(engine.random.audit)
++            strict(before, [], 'actual_prepare_entry_audit')
++            strict(after, [], 'actual_prepare_return_audit')
++            PREPARE_BOUNDARIES.append({'before_audit': before, 'after_audit': after,
++                'event_num': engine.event_num, 'basic_count': engine.items[B].goobert_activations,
++                'basic_trigger': engine.items[B].trigger_time, 'prepared': engine.prepared})
++            return answer
+         return original(*args, **kwargs)
+ 
+     setattr(cls, name, call)
+@@ -170,7 +182,21 @@
+     battle = h.initialize(layout, 45701)
+     e = battle._engine
+     ACTIVE = e
+-    assert e.random.audit == [], 'prepare consumed provider'
++    # Public initialize includes real activation cooldown draws. Preserve, never clear.
++    activation_audit = copy.deepcopy(e.random.audit)
++    labels = ['cooldown:' + identity for identity in e.preparation_order if e.items[identity].has_cooldown]
++    strict([row['label'] for row in activation_audit], labels, 'activation_labels')
++    strict(len(activation_audit), 10, 'fixed_unit_initialization_draw_count')
++    for row in activation_audit:
++        strict(set(row), {'kind', 'label', 'args', 'value_bits'})
++        strict(row['kind'], 'randf_range')
++        strict(row['args'], [struct.pack('>d', x).hex() for x in (0.95, 1.05)])
++        value = struct.unpack('>d', bytes.fromhex(row['value_bits']))[0]
++        assert 0.95 <= value <= 1.05
++    save(name + '.initialize.json', {'synthetic_cut_not_native': True,
++         'actual_prepare_boundary': copy.deepcopy(PREPARE_BOUNDARIES[-1]),
++         'activation_audit': activation_audit, 'source_rng_before_test_provider': e.random.snapshot(),
++         'preparation_order': e.preparation_order.copy(), 'calls': COUNTS.copy()})
+     strict(battle.initialization['profile'], mod.SOURCE_KING_BASIC_PROFILE)
+     strict(e.items[B].goobert_activations, 0)
+     strict(e.items[B].iteration_cooldown, 5.0)
+@@ -465,8 +491,16 @@
+                 (mod.CombatEngine, 'run', 'Engine.run'),
+                 (mod.CombatEngine, 'step', 'Engine.step')]:
+             counted(cls, method, label)
+-        STAGE = 'new_domain_atomicity'
+-        ingress(h, mod, fixture['layout'])
++        STAGE = 'reuse_sealed_twelve_passed_ingress_controls'
++        old = ROOT / 'data/phase459-independent-business-first-001'
++        old_owner_sha = json.loads((OWNER.parent / 'contract.json').read_text())['passed_prefix_owner']['sha256']
++        verify_owner(old / 'owned-files.json', old_owner_sha)
++        old_result = json.loads((old / 'result.json').read_text())
++        strict(old_result['passed_controls'], 12)
++        strict(old_result['stage'], 'basic_first')
++        save('reused-prefix.json', {'actual_owner': pin(old / 'owned-files.json'),
++             'passed_controls': 12, 'rerun': False, 'prior_ctor': 1, 'prior_prepare': 1,
++             'prior_activate_entries': 2, 'prior_activation_draws': 10})
+         STAGE = 'basic_first'
+         positive(h, mod, Tape, fixture['layout'], expected, STAGE)
+         STAGE = 'king_first'
+@@ -496,8 +530,9 @@
+             strict(actual, row, 'after_source')
+             after.append(actual)
+         save('source-after.json', after)
++        save('actual-prepare-boundaries.json', PREPARE_BOUNDARIES)
+         save('result.json', {'status': status, 'stage': STAGE, 'wall_seconds': time.monotonic() - started,
+-            'passed_controls': len(PASSES), 'calls': COUNTS, 'native_runs': 0, 'Expected_reads': 0,
++            'passed_controls': len(PASSES), 'reused_prefix_controls': 12, 'calls': COUNTS, 'native_runs': 0, 'Expected_reads': 0,
+             'old_tests': 0, 'source_payloads_unchanged': len(after), 'no_auto_retry': True})
+         files = [pin(p) for p in sorted(OUT.iterdir()) if p.is_file()]
+         save('owned-files.json', {'schema': 'phase459-independent-actual-owner/1', 'files': files, 'no_more_writes': True})

@@ -1,0 +1,45 @@
+{
+  "schema": "phase458-independent-source-review/1",
+  "status": "STATIC_PASS_RELEASE_PRESEALED_459_COMPONENTS_AND_ONE_SOURCE_JOB",
+  "source_owner": {
+    "path": "data/phase458-source-king-basic/owned-files.json",
+    "size": 4818,
+    "sha256": "772ba31a3f7b9bb39ccfca59543aca19ea833ac7fc7b529931766bf7342bada4"
+  },
+  "freeze": {
+    "path": "data/phase458-source-king-basic/candidate-source-freeze.json",
+    "size": 4388,
+    "sha256": "31b05f329c376a37e491caeeacc5d7337719593d43acef2d58e5daababb8327d"
+  },
+  "erratum": {
+    "path": "data/phase458-source-api-signature-erratum/erratum.json",
+    "size": 766,
+    "sha256": "155c4b2a114957eb538966fdb7bc1c96de15ebba7d623abbb8013f125c7d1ad3"
+  },
+  "verified": {
+    "owner_payloads": 24,
+    "candidate_files": 15,
+    "changed": [
+      "headless.py",
+      "native_replay_v8/engine.py"
+    ],
+    "conserved_modules": 13,
+    "byte_conserved_business_methods": 16
+  },
+  "findings": [
+    "New exact seven-ID/same-side single Basic/King/class0 validator is confined to pure Source dispatch; old legacy six-ID validator unchanged. No-Basic delegates old validator/profile. Non-King still old75 path.",
+    "Closed13-key Source DTO exact reconstruction and provider restrictions remain unchanged. Distinct profile derives from fixture; factory does not admit user-provided native/GUI proof.",
+    "Basic stage assertions compare actual typed INT0 and REAL0/5 constructor/prepare state; no corrective reset. Actual shared prepare/cache/activation/heal/King/history/Timer/FrameDriver logic conserved.",
+    "Profile metadata reads actual runtime; new-only domain/evidence labels. No-arg policy retains old value and old batches retain old description.",
+    "Whole-batch validation still before RNG; added mixed flag only changes description. API erratum is documentation-only; actual positional run_batch signature preserved."
+  ],
+  "counts": {
+    "candidate_imports": 0,
+    "components": 0,
+    "model_runs": 0,
+    "native": 0,
+    "Expected": 0,
+    "old_controls": 0
+  },
+  "next": "Execute459 presealed expectations through separate frozen harness; first error retained and stop. No new native or old451/454 replay."
+}

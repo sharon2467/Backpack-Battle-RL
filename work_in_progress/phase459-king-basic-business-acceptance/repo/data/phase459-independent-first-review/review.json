@@ -1,0 +1,144 @@
+{
+  "schema": "phase459-independent-first-review/1",
+  "status": "STOPPED_FIRST_HARNESS_PHASE_ASSERTION_FAILURE_NOT_CANDIDATE_BUSINESS_DEFECT",
+  "actual_owner": {
+    "path": "data/phase459-independent-business-first-001/owned-files.json",
+    "size": 1052,
+    "sha256": "c8614e984b2b475ec50b2d85d25b326298b2a4a2b1a69b6a83586a95cf95a943"
+  },
+  "release_owner": {
+    "path": "data/phase459-independent-business-release/owned-files.json",
+    "size": 833,
+    "sha256": "712644ef20de5d099f4caa02678cf1bbd361e69bd9391f353bda73d339ed16ec"
+  },
+  "result": {
+    "status": "FAILED",
+    "stage": "basic_first",
+    "wall_seconds": 0.1970099169993773,
+    "passed_controls": 12,
+    "calls": {
+      "GodotPCGInteger.__init__": 3,
+      "CombatRandom.__init__": 1,
+      "Engine.__init__": 1,
+      "Engine.prepare_only": 1,
+      "Engine.activate_from_checkpoint": 2
+    },
+    "native_runs": 0,
+    "Expected_reads": 0,
+    "old_tests": 0,
+    "source_payloads_unchanged": 24,
+    "no_auto_retry": true
+  },
+  "analysis": [
+    "unit() checks empty random.audit only after public initialize returned. initialize legitimately executes both prepare_only and activate_from_checkpoint; the latter calls adjust_cooldown for each has_cooldown item.",
+    "Source engine1937 asserts empty combat audit before activation;1957-1963 starts ordinary cooldowns using adjust_cooldown. engine1807-1816 selects0.95..1.05 for this non-master fixture. Real10 saved records are exactly cooldown pitches (six P/four O), no unexpected business primitive.",
+    "The counter2 for activate_from_checkpoint is real outer driver delegation plus inner checkpoint call, not two separate public activations. Source frame0, no emitted events, Goobert counters0 and thresholds5/6, native/model full runs0.",
+    "Failure happened before internal test Tape installation, prestate mutation, real threshold handler or component effect. Do not count either directed reentry as tested."
+  ],
+  "actual_activation_draws": [
+    {
+      "kind": "randf_range",
+      "label": "cooldown:P:berry2",
+      "args": [
+        "3fee666666666666",
+        "3ff0cccccccccccd"
+      ],
+      "value_bits": "3fefc16b80000000"
+    },
+    {
+      "kind": "randf_range",
+      "label": "cooldown:P:sword1",
+      "args": [
+        "3fee666666666666",
+        "3ff0cccccccccccd"
+      ],
+      "value_bits": "3feebef200000000"
+    },
+    {
+      "kind": "randf_range",
+      "label": "cooldown:P:berry0",
+      "args": [
+        "3fee666666666666",
+        "3ff0cccccccccccd"
+      ],
+      "value_bits": "3fefbc5780000000"
+    },
+    {
+      "kind": "randf_range",
+      "label": "cooldown:P:berry1",
+      "args": [
+        "3fee666666666666",
+        "3ff0cccccccccccd"
+      ],
+      "value_bits": "3fef0d28e0000000"
+    },
+    {
+      "kind": "randf_range",
+      "label": "cooldown:P:sword0",
+      "args": [
+        "3fee666666666666",
+        "3ff0cccccccccccd"
+      ],
+      "value_bits": "3ff0566360000000"
+    },
+    {
+      "kind": "randf_range",
+      "label": "cooldown:P:berry3",
+      "args": [
+        "3fee666666666666",
+        "3ff0cccccccccccd"
+      ],
+      "value_bits": "3fef17e060000000"
+    },
+    {
+      "kind": "randf_range",
+      "label": "cooldown:O:berry1",
+      "args": [
+        "3fee666666666666",
+        "3ff0cccccccccccd"
+      ],
+      "value_bits": "3ff0b80e00000000"
+    },
+    {
+      "kind": "randf_range",
+      "label": "cooldown:O:sword0",
+      "args": [
+        "3fee666666666666",
+        "3ff0cccccccccccd"
+      ],
+      "value_bits": "3fef99fc00000000"
+    },
+    {
+      "kind": "randf_range",
+      "label": "cooldown:O:sword1",
+      "args": [
+        "3fee666666666666",
+        "3ff0cccccccccccd"
+      ],
+      "value_bits": "3ff08883e0000000"
+    },
+    {
+      "kind": "randf_range",
+      "label": "cooldown:O:berry0",
+      "args": [
+        "3fee666666666666",
+        "3ff0cccccccccccd"
+      ],
+      "value_bits": "3fefb10ca0000000"
+    }
+  ],
+  "candidate_source_unchanged": 24,
+  "prefix_passed": 12,
+  "untested": [
+    "two directed business cases",
+    "three short-circuit cases",
+    "nontrigger/limiter/end boundary",
+    "one fixed26-item Source full battle"
+  ],
+  "minimum_proposed_revision": [
+    "Preserve v1 Source/result unchanged. Create new immutable v2 harness, skip and pin12 passed ingress controls.",
+    "Observe prepare entry/return audit0 at actual prepare boundary; after full initialize separately verify and retain legitimate activation cooldown audit/dual stream state, then install synthetic component Tape.",
+    "Keep sealed Source unit business expectations/layout unchanged; use only remaining cases and at most one integration run. No automatic execution until Root responds to first-error report."
+  ],
+  "no_new_execution": true
+}
