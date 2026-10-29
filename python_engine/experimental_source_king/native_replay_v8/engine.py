@@ -1315,6 +1315,13 @@ class CombatEngine:
                     or item.activations_this_frame!=values['activationsThisFrame'] or item.triggers_this_frame!=values['triggersThisFrame']
                     or item.cache_prepared is not prepared):
                 raise ValueError('Source pure fresh item/preparation state')
+            if item.item_index==23:
+                expected=float(item.definition['activations_to_trigger']) if prepared else 0.0
+                if (type(item.goobert_activations) is not int or item.goobert_activations!=0
+                        or type(item.iteration_cooldown) is not float or type(item.trigger_time) is not float
+                        or _float_bits(item.iteration_cooldown)!=_float_bits(expected)
+                        or _float_bits(item.trigger_time)!=_float_bits(expected)):
+                    raise ValueError('Source basic Goobert fresh counter/cooldown stage')
         for identity,state in self.king_states.items():
             expected=int(self.items[identity].definition['charges']) if prepared else 0
             if type(state['invuCharges']) is not int or state['invuCharges']!=expected:
@@ -3873,29 +3880,47 @@ def _pure441_variant(value):
 #453 internal fresh Source carrier. No capture IDs, GUI facts or external passes.
 SOURCE_PURE_PROFILE='source-headless-pure-business-fixed60/1'
 SOURCE_PURE_SCHEMA='native-v8-source-pure-runtime/1'
+SOURCE_KING_BASIC_PROFILE='source-headless-king-basic-goobert-fixed60/1'
+SOURCE_KING_BASIC_ITEMS=SOURCE_KING_ITEMS|frozenset({23})
+
+
+def validate_source_pure_business_domain(fixture):
+    """Separate the old six-ID domain from one same-side King/basic pair."""
+    validate_fixture(fixture)
+    entries=[(side['side'],item) for side in fixture['sides'] for item in side['items']]
+    basics=[(side,item) for side,item in entries if item['item_index']==23]
+    if not basics:
+        validate_source_king_domain(fixture)
+        return SOURCE_PURE_PROFILE
+    kings=[(side,item) for side,item in entries if item['item_index']==262]
+    if (_has_rage(fixture) or any(side['character_class']!=0 for side in fixture['sides'])
+            or len(kings)!=1 or len(basics)!=1 or kings[0][0]!=basics[0][0]
+            or any(item['item_index'] not in SOURCE_KING_BASIC_ITEMS for side,item in entries)):
+        raise ValueError('Source mixed domain requires one same-side King/basic pair, seven IDs and class0')
+    return SOURCE_KING_BASIC_PROFILE
 
 
 def _source_pure_profile(runtime):
     data=runtime.data if isinstance(runtime,RuntimeDTO) else runtime
-    return type(data) is dict and data.get('profile_id')==SOURCE_PURE_PROFILE
+    return type(data) is dict and data.get('profile_id') in (SOURCE_PURE_PROFILE,SOURCE_KING_BASIC_PROFILE)
 
 
-def source_pure_policy():
+def source_pure_policy(fixture=None):
     value=source_king_policy()
-    value['schema']=SOURCE_PURE_PROFILE
+    value['schema']=SOURCE_PURE_PROFILE if fixture is None else validate_source_pure_business_domain(fixture)
     value['origin']='SOURCE_POLICY_NOT_NATIVE_FRAME_CAPTURE'
     return value
 
 
 def source_pure_business_defaults(fixture):
-    validate_source_king_domain(fixture)
+    validate_source_pure_business_domain(fixture)
     return dict(characters={side:dict(invulnerable=False,invulnerabilityItem=None,buffProtectStacks=0) for side in ('P','O')},
         kings={item['instance_id']:dict(invuCharges=0,protectedBuffs=float(CATALOG[262]['protected_buffs']),manaCost=float(CATALOG[262]['mana_cost']))
                for side in fixture['sides'] for item in side['items'] if item['item_index']==262})
 
 
 def _source_pure_roles(fixture):
-    validate_source_king_domain(fixture)
+    validate_source_pure_business_domain(fixture)
     roles=_required_roles(fixture)
     for side in fixture['sides']:
         for item in side['items']:
@@ -3925,7 +3950,7 @@ def source_pure_topology(fixture):
         entries=fixture['sides'][0 if side=='P' else 1]['items']
         values=[SimpleNamespace(definition=CATALOG[e['item_index']],entry=e) for e in entries]
         if side=='O':values=opponent_inventory_order(values)
-        # Six-ID domain has only equal-layer Leather Bags; this is exactly the
+        # Both Source domains have only equal-layer Leather Bags; this is the
         # accepted fresh sibling order. Headless independently uses _item_siblings.
         for index,value in enumerate(values):
             item=value.entry;path=parent+'/Item'+str(index);position=pos+[index+2]
@@ -3944,16 +3969,17 @@ def source_pure_topology(fixture):
 
 def _source_pure_data(fixture,order):
     topology=source_pure_topology(fixture);defaults=source_pure_business_defaults(fixture)
+    policy=source_pure_policy(fixture)
     ids=[item['instance_id'] for side in fixture['sides'] for item in side['items']]
     if type(order) is not list or any(type(x) is not str for x in order) or len(order)!=len(ids) or set(order)!=set(ids):
         raise ValueError('Source pure complete preparation order')
-    return dict(schema=SOURCE_PURE_SCHEMA,mode='source_headless',profile_id=SOURCE_PURE_PROFILE,
+    return dict(schema=SOURCE_PURE_SCHEMA,mode='source_headless',profile_id=policy['schema'],
         checkpoint=dict(util_time_bits=_float_bits(0.0),combat_time_bits=_float_bits(0.0),source_phase='source-fresh-before-activate'),
         environment=dict(fps=60,scale=1.0,paused=False),nodes=topology['nodes'],timer_initial=topology['timer_initial'],
         initial_items={identity:dict(lastActivationTime_bits=_float_bits(0.0),lastTriggerTime_bits=_float_bits(0.0),
                 activationsThisFrame=0,triggersThisFrame=0,dragged=False,moveback_running=False,cache_fresh=True) for identity in ids},
         initial_characters=defaults['characters'],prepare_order=order.copy(),activate_order=order.copy(),
-        terminal_profile=KING_TERMINAL,clock_policy=source_pure_policy())
+        terminal_profile=KING_TERMINAL,clock_policy=policy)
 
 
 def source_pure_runtime_inputs(fixture,order,topology=None):

@@ -15,7 +15,8 @@ from native_replay_v8.engine import (
     source_king_runtime_inputs, source_king_fresh_defaults, source_king_policy,
     source_king_topology, _source_king_equal,
     SOURCE_PURE_PROFILE, source_pure_runtime_inputs, source_pure_business_defaults,
-    source_pure_policy, _source_pure_roles,
+    source_pure_policy, _source_pure_roles, SOURCE_KING_BASIC_PROFILE,
+    SOURCE_KING_BASIC_ITEMS, validate_source_pure_business_domain,
     validate_fixture, validate_runtime_inputs, _validate_runtime_nodes,
 )
 from native_replay_v8.randomness import _bits
@@ -80,7 +81,7 @@ def validate_layout(layout):
 
 def _validate_king_fresh_domain(fixture):
     if _has_king(fixture):
-        validate_source_king_domain(fixture)
+        validate_source_pure_business_domain(fixture)
 
 
 def _fresh_king_facts(fixture):
@@ -347,7 +348,7 @@ class HeadlessBattle:
     def snapshot(self):
         value = self._engine.snapshot()
         # Public metadata describes the source-generated origin, not the legacy DTO.
-        value['runtime'].update(mode='source_headless', profile=SOURCE_PURE_PROFILE if self._engine.source_pure_mode else SOURCE_KING_PROFILE if self._engine.source_king_mode else ORIGIN)
+        value['runtime'].update(mode='source_headless', profile=self._engine.runtime_inputs.data['profile_id'] if self._engine.source_pure_mode else SOURCE_KING_PROFILE if self._engine.source_king_mode else ORIGIN)
         if self._engine.source_pure_mode:
             value=_source_pure_snapshot_view(value)
             value['source_rng']=self._engine.random.snapshot()
@@ -389,7 +390,16 @@ class HeadlessBattle:
                 native_seed_parity='PENDING_CUSTOM_BINARY_NUMERIC_AND_SESSION_CONSUMPTION',
                 evidence='Fixed441 conditionalTape equality only; this layout and seed have no native comparison',
                 remaining=['King_plus75','two_King','King_rage','gems','custom_native_seed_parity','full_engine_RL_action_environment'])
-            value['scheduling']['source_clock']['policy']=source_pure_policy()
+            value['scheduling']['source_clock']['policy']=source_pure_policy(self._engine.fixture)
+            if self._engine.runtime_inputs.data['profile_id']==SOURCE_KING_BASIC_PROFILE:
+                domain=dict(items=sorted(SOURCE_KING_BASIC_ITEMS),classes=[0],global_max_King=1,
+                            global_max_basic_Goobert=1,basic_same_side_as_King=True)
+                value['coverage'].update(items=sorted(SOURCE_KING_BASIC_ITEMS),
+                    status='SOURCE_PURE_KING_BASIC_GOOBERT_NOT_JOINT_NATIVE_VALIDATED',
+                    evidence='Source-defined shared Goobert interaction; no joint King/basic native comparison',
+                    domains=dict(non_King_default75=sorted(ITEMS),King=domain),
+                    remaining=['other_King_plus75','two_King','multiple_basic_Goobert','King_rage','gems',
+                               'joint_King_basic_native_comparison','custom_native_seed_parity','full_engine_RL_action_environment'])
             value['source_rng']=self._engine.random.snapshot()
             terminal=deepcopy(result['king_terminal'])
             for stage in ('post_cleanup','final'):terminal[stage]['model']=_source_pure_snapshot_view(terminal[stage]['model'])
@@ -419,12 +429,15 @@ def initialize(layout, seed):
                       util_time_origin=0.0, combat_time_origin=0.0,
                       preparation_order=order, ordinary_order=list(engine.ordinary_roles))
     if engine.source_king_mode:
-        descriptor.update(source_clock=source_pure_policy() if engine.source_pure_mode else source_king_policy(),
+        descriptor.update(source_clock=source_pure_policy(fixture) if engine.source_pure_mode else source_king_policy(),
             domain=dict(items=sorted(SOURCE_KING_ITEMS), classes=[0], global_max_King=1),
             clock_time_origin=0.0, physics_frame_origin=0, idle_frame_origin=0, util_frame_counter_origin=0)
     if engine.source_pure_mode:
-        descriptor.update(profile=SOURCE_PURE_PROFILE,initialization_origin='FRESH_MODEL_OBJECTS_SOURCE_FACTORY',
+        descriptor.update(profile=runtime.data['profile_id'],initialization_origin='FRESH_MODEL_OBJECTS_SOURCE_FACTORY',
             native_seed_parity='PENDING_CUSTOM_BINARY_NUMERIC_AND_SESSION_CONSUMPTION',formal_support=75)
+        if runtime.data['profile_id']==SOURCE_KING_BASIC_PROFILE:
+            descriptor['domain']=dict(items=sorted(SOURCE_KING_BASIC_ITEMS),classes=[0],global_max_King=1,
+                                      global_max_basic_Goobert=1,basic_same_side_as_King=True)
     return HeadlessBattle(engine, descriptor)
 
 
@@ -469,11 +482,13 @@ def run_batch(jobs,max_seconds=120.0,keep_results=False):
         raise ValueError('batch positive finite budget <=120 required')
     if type(keep_results) is not bool:raise ValueError('batch keep_results BOOL required')
     # Complete cheap validation of every job before any RNG/Engine is constructed.
+    mixed=False
     for job in jobs:
         if type(job) is not dict or set(job)!={'layout','seed'}:raise ValueError('closed batch job fields')
         if type(job['seed']) is not int or not 0<=job['seed']<=MASK64:raise ValueError('batch uint64 seed required')
         fixture=validate_layout(job['layout'])
         source_runtime_topology(fixture)
+        mixed=mixed or (_has_king(fixture) and any(item['item_index']==23 for side in fixture['sides'] for item in side['items']))
     records=[]
     for index,job in enumerate(jobs):
         battle=initialize(job['layout'],job['seed'])
@@ -489,7 +504,8 @@ def run_batch(jobs,max_seconds=120.0,keep_results=False):
             records.append(record)
         del battle
     return dict(schema='headless-batch-result/1',jobs=records,seed_policy=SEED_POLICY,formal_support=75,
-        source_king_domain='experimental sixID singleKing class0; native numeric/seed parity pending')
+        source_king_domain=('experimental sixID King and sevenID same-side King/basicGoobert class0; joint/native seed parity pending'
+                            if mixed else 'experimental sixID singleKing class0; native numeric/seed parity pending'))
 
 
 def main():

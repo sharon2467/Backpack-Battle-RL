@@ -6,7 +6,7 @@ This directory packages the existing Python reconstruction of Backpack Battles 1
 | --- | ---: | --- |
 | `formal68/` | 68 | Accepted historical checkpoint |
 | `candidate75/` | 75 | Current accepted bounded runtime; promoted344 and independently verified348/346 |
-| `experimental_source_king/` | 75 non-King; six-ID/single-King Source branch | Independently tested Source interface; native seed/new-layout parity pending |
+| `experimental_source_king/` | 75 non-King; six-ID King / seven-ID King+basic Source branches | Independently tested Source interface; native seed/new-layout parity pending |
 
 The directory name `candidate75/` is retained from the pre-promotion snapshot; its exact fifteen source files are now the accepted bounded75 runtime. The user explicitly resumed the migration on2026-10-25. Exact promotion, independent readback and one isolated package CLI run succeeded; King production work and the full engine/RL are still incomplete.
 
@@ -14,7 +14,7 @@ The directory name `candidate75/` is retained from the pre-promotion snapshot; i
 
 On2026-10-29 the fixed King-A39-item/six-type mixed case passed all eight strict business sections against the original: events, parent closure, histories, all365 primitive/RNG state, final state, sampled callbacks, typed business Timer API and terminal clock cuts. The single Python battle was sealed before comparison and was not rerun. See [current engineering checkpoint](../recovery_checkpoint/CURRENT-WORK.md) and `work_in_progress/phase451-fixed-king-strict-acceptance/`.
 
-This admits the fixed conditional-Tape case only; it does not add King to `candidate75/`, prove native seed parity, or complete the engine/RL. The separate [experimental Source package](experimental_source_king/README.md) now provides fresh six-ID/single-King layout+seed and sequential batch APIs without GUI/captured-state input. Phase454 independently accepted its typed determinism/isolation and26 ingress controls; its package CLI/integrity/invalid-input boundary passed independent minimal checks from the remote readback (no extra battle). It is not a general King native admission.
+This admits the fixed conditional-Tape case only; it does not add King to `candidate75/`, prove native seed parity, or complete the engine/RL. The separate [experimental Source package](experimental_source_king/README.md) now provides fresh single-King layout+seed (six-ID or seven-ID with one same-side basic Goobert) and sequential batch APIs without GUI/captured-state input. Phase454 independently accepted its typed determinism/isolation and26 ingress controls; the earlier453/455 package passed independent remote startup checks. Current458 exact Source adds basic Goobert23 and459 independently accepted22 business controls plus one fixed26-item Source battle; natural King-first reentry hit, Basic-first component only. This new package has static acceptance; remote startup checks are pending. No native joint or generalKing admission follows.
 
 ## Run the formal checkpoint
 
@@ -37,7 +37,7 @@ The separate isolated package validation retained873 events,784 random returns,2
 
 The JSON root has exactly `schema: "headless-layout/1"`, boolean `below_master`, and two ordered `sides` named `P` and `O`. Each side has `character_class` (integer 0 or 2), `items`, and optional initial `hp`/`stamina`. Each placement preserves `instance_id`, numeric `item_index`, `x`, `y`, and rotation field `f` (0, 1, 2 or 3 quarter-turns). Bags precede ordinary items; item bodies must be valid, covered and non-overlapping. See the two complete JSON examples.
 
-Only the admitted default configurations are accepted. Unsupported fields, items, classes, gems and modifiers fail validation. The runtime catalogue contains 76 registered descriptions; that is not a claim of complete support. In particular, King Goobert is not admitted by the formal `candidate75/` entry point; the separately labelled experimental package has its six-ID/single-King Source domain.
+Only the admitted default configurations are accepted. Unsupported fields, items, classes, gems and modifiers fail validation. The runtime catalogue contains 76 registered descriptions; that is not a claim of complete support. In particular, King Goobert is not admitted by the formal `candidate75/` entry point; the separately labelled experimental package has its finite six-ID King and seven-ID King+basic Source domains.
 
 Production seeds use the recorded `headless-sha256-domains/1` policy to derive distinct global/Util seed domains. This does not claim mathematical independence or reproduce a native session's independently seeded streams. Historical exact original-game comparisons used conditional primitive replay; they are a different validation path from the fresh headless API.
 

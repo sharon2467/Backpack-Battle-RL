@@ -1,8 +1,10 @@
-# Experimental Source King combat
+# Experimental Source King and basic Goobert combat
 
-Standalone Python Source simulator. **Formal support remains 75 non-King items.** The additional King path is experimental: exactly one King across both sides, both characters class0, and only item IDs `1, 4, 11, 19, 22, 262` (Wooden Sword, Wooden Buckler, Leather Bag, Health Potion, Blueberries, King Goobert). King may have a different identity or be on either side.
+Standalone Python Source simulator. **Formal support remains75 non-King items.** The six-ID singleKing branch accepts IDs `1,4,11,19,22,262`. The separate seven-ID branch additionally accepts at most one basic Goobert23 on the single King's side. Both characters must be class0; one King globally, default items and legal layouts only. King identity/side may vary. Opposing-sideBasic, multipleKing/Basic, King with other75, rage, gems and modifiers are rejected.
 
-This package is an exact copy of the independently accepted phase453 code. Phase454 checked ingress, deterministic sequential/interleaved execution and independent instance state. It does **not** establish custom-native numeric ABI, native seed/session consumption parity, arbitrary-layout native correctness, King with the other75 items, two King, rage, gems or a complete RL action environment. Phase451's separate fixed441 comparison passed all eight business sections using an actual primitive Tape; that evidence does not prove seeded-native equivalence.
+The15 Source files are exact frozen458 bytes, independently accepted in459 for finite Source business interactions. Existing453/454 six-ID Source interface/determinism/isolation evidence is retained; this does not claim those old complete battles were rerun on458. Phase459 passed22 controls and one fixed26-item Source battle (364events/424 combat-provider audit entries/33Timers). Both synchronous reentry directions were asserted on disposable Source components; the full battle naturally hit only King-first reentry with outer trigger5. The first harness timing error and remaining-only continuation are archived.
+
+No native King+Basic joint comparison has occurred. Phase451 separately passed all eight strict business sections for a different fixed King case using original primitive Tape. That is not seeded-native equivalence. Production all-seed/platform parity is not a prerequisite for Tape-based business validation; no new numeric probe is included. This remains an experimental partial engine and does not complete the RL environment. Old453/455 six-ID package remains available in the recovery checkpoint and Git history.
 
 ## Runtime
 
@@ -19,11 +21,12 @@ python -B headless.py --help
 python -B headless.py --layout examples/layout-A.json --seed 123456789 --output ../result-A.json
 python -B headless.py --layout examples/layout-B.json --seed 987654321 --output ../result-B.json
 python -B headless.py --batch examples/jobs.json --output ../batch-summary.json
+python -B headless.py --layout examples/layout-King-Basic.json --seed 45701 --output ../result-King-Basic.json
 ```
 
 Add `--keep-results` to the batch command for full per-job results. Batch accepts1..64 exact `{layout, seed}` jobs and validates the whole batch before starting any job. A real budget timeout produces `TIME_BUDGET` without a fabricated winner/result; other internal errors propagate. Full traces can be large even when only summaries are returned.
 
-The examples are unchanged inputs extracted from phase454's pre-outcome requests, including their seeds. They are examples, not a native-output oracle.
+The original A/B/jobs examples are byte-exact455 inputs from454's pre-outcome requests. The added King-Basic layout is extracted from459's presealed request before its Source outcome; source_root_seed45701 is unchanged. Examples are inputs, not native-output oracles. Running a command computes a new simulation; packaging did not rerun accepted battles.
 
 ## Python API
 
