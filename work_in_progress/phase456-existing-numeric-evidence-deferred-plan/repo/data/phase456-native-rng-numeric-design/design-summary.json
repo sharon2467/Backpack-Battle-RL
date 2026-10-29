@@ -1,0 +1,49 @@
+{
+  "actual_counts": {
+    "Game": 0,
+    "Godot": 0,
+    "RNG_component_imports": 0,
+    "candidate_runs": 0,
+    "models": 0,
+    "raw_numeric_reinterpretations": 0,
+    "tests": 0
+  },
+  "budgets": {
+    "each_log_bytes": 2097152,
+    "enforcement": "POLLING_NOT_KERNEL_QUOTA",
+    "kill_grace_seconds": 0.5,
+    "owned_entries": 2048,
+    "owned_total_bytes": 33554432,
+    "poll_seconds": 0.05,
+    "record_bytes": 16384,
+    "result_bytes": 262144,
+    "term_grace_seconds": 0.2,
+    "wall_seconds": 30
+  },
+  "evidence": "data/phase456-native-rng-numeric-design/evidence-map.json",
+  "future_prerequisites": [
+    "Root design decision",
+    "new minimal three-file Source project+fixed input+independent presealed numeric expected stream",
+    "independent Source/checker review",
+    "actual indexed runtime files verified",
+    "one-shot exclusive release and raw-seal-first independent comparison"
+  ],
+  "new_minimum_gap": "Untouched constructor trajectory +5 explicit seed trajectories,4 high-bit state overrides, two-object isolation and INT-to-real binder witnesses",
+  "nonclaim": "No native Game seed/session/consumption law, general King or formal76 admission; no code/label changes.",
+  "plan": "data/phase456-native-rng-numeric-design/planned-inputs.json",
+  "planned_counts": {
+    "Godot_invocations_max": 1,
+    "REAL_API_returns": 12,
+    "constructors": 2,
+    "diagnostic_tail_draws": 0,
+    "integer_API_returns": 22,
+    "numeric_API_invocations": 34,
+    "seed_setters": 5,
+    "state_setters": 4,
+    "wire_records_including_header_footer": 47
+  },
+  "reuse": "140 exact custom-binary primitive route +142 current two-module linkage; no old46/368 replay",
+  "schema": "phase456-native-numeric-design-summary/1",
+  "spec": "docs/phase456_native_rng_seed_numeric_design_spec.md",
+  "status": "DESIGN_FROZEN_PENDING_INDEPENDENT_REVIEW_NOT_SOURCE_OR_NATIVE_RELEASE"
+}

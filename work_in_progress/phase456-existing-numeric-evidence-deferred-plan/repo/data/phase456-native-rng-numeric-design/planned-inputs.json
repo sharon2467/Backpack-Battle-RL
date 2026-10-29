@@ -1,0 +1,718 @@
+{
+  "actual_counts": {
+    "Game": 0,
+    "Godot": 0,
+    "RNG_calls": 0,
+    "candidate_imports": 0,
+    "models": 0,
+    "new_native_results": 0
+  },
+  "before_after_rule": "Read actual seed/state of every existing object before and after each setter/numeric API; untouched object exact equal. Constructor B rereads A.",
+  "explicit_seed_cases": [
+    {
+      "native_argument": {
+        "decimal": "0",
+        "type": "int"
+      },
+      "semantic_uint64_decimal": "0"
+    },
+    {
+      "native_argument": {
+        "decimal": "1",
+        "type": "int"
+      },
+      "semantic_uint64_decimal": "1"
+    },
+    {
+      "native_argument": {
+        "decimal": "9223372036854775807",
+        "type": "int"
+      },
+      "semantic_uint64_decimal": "9223372036854775807"
+    },
+    {
+      "native_argument": {
+        "decimal": "-9223372036854775808",
+        "type": "int"
+      },
+      "semantic_uint64_decimal": "9223372036854775808"
+    },
+    {
+      "native_argument": {
+        "decimal": "-1",
+        "type": "int"
+      },
+      "semantic_uint64_decimal": "18446744073709551615"
+    }
+  ],
+  "mixed_sequence": [
+    {
+      "arguments": [],
+      "operation": "randi"
+    },
+    {
+      "arguments": [
+        {
+          "decimal": "-2",
+          "type": "int"
+        },
+        {
+          "decimal": "3",
+          "type": "int"
+        }
+      ],
+      "operation": "randi_range"
+    },
+    {
+      "arguments": [
+        {
+          "decimal": "7",
+          "type": "int"
+        },
+        {
+          "decimal": "7",
+          "type": "int"
+        }
+      ],
+      "operation": "randi_range"
+    },
+    {
+      "arguments": [],
+      "operation": "randf"
+    },
+    {
+      "arguments": [
+        {
+          "decimal": "-2",
+          "type": "int"
+        },
+        {
+          "decimal": "3",
+          "type": "int"
+        }
+      ],
+      "operation": "randf_range"
+    }
+  ],
+  "no_expected_values_generated": true,
+  "ordered_record_plan": [
+    {
+      "kind": "header",
+      "sequence": 0
+    },
+    {
+      "kind": "construct",
+      "receiver": "A",
+      "sequence": 1
+    },
+    {
+      "kind": "construct",
+      "receiver": "B",
+      "sequence": 2
+    },
+    {
+      "case_id": "seed-0",
+      "input": {
+        "native_argument": {
+          "decimal": "0",
+          "type": "int"
+        },
+        "semantic_uint64_decimal": "0"
+      },
+      "kind": "seed_set",
+      "receiver": "A",
+      "sequence": 3
+    },
+    {
+      "arguments": [],
+      "case_id": "seed-0-api-0",
+      "kind": "numeric",
+      "operation": "randi",
+      "receiver": "A",
+      "sequence": 4
+    },
+    {
+      "arguments": [
+        {
+          "decimal": "-2",
+          "type": "int"
+        },
+        {
+          "decimal": "3",
+          "type": "int"
+        }
+      ],
+      "case_id": "seed-0-api-1",
+      "kind": "numeric",
+      "operation": "randi_range",
+      "receiver": "A",
+      "sequence": 5
+    },
+    {
+      "arguments": [
+        {
+          "decimal": "7",
+          "type": "int"
+        },
+        {
+          "decimal": "7",
+          "type": "int"
+        }
+      ],
+      "case_id": "seed-0-api-2",
+      "kind": "numeric",
+      "operation": "randi_range",
+      "receiver": "A",
+      "sequence": 6
+    },
+    {
+      "arguments": [],
+      "case_id": "seed-0-api-3",
+      "kind": "numeric",
+      "operation": "randf",
+      "receiver": "A",
+      "sequence": 7
+    },
+    {
+      "arguments": [
+        {
+          "decimal": "-2",
+          "type": "int"
+        },
+        {
+          "decimal": "3",
+          "type": "int"
+        }
+      ],
+      "case_id": "seed-0-api-4",
+      "kind": "numeric",
+      "operation": "randf_range",
+      "receiver": "A",
+      "sequence": 8
+    },
+    {
+      "case_id": "seed-1",
+      "input": {
+        "native_argument": {
+          "decimal": "1",
+          "type": "int"
+        },
+        "semantic_uint64_decimal": "1"
+      },
+      "kind": "seed_set",
+      "receiver": "A",
+      "sequence": 9
+    },
+    {
+      "arguments": [],
+      "case_id": "seed-1-api-0",
+      "kind": "numeric",
+      "operation": "randi",
+      "receiver": "A",
+      "sequence": 10
+    },
+    {
+      "arguments": [
+        {
+          "decimal": "-2",
+          "type": "int"
+        },
+        {
+          "decimal": "3",
+          "type": "int"
+        }
+      ],
+      "case_id": "seed-1-api-1",
+      "kind": "numeric",
+      "operation": "randi_range",
+      "receiver": "A",
+      "sequence": 11
+    },
+    {
+      "arguments": [
+        {
+          "decimal": "7",
+          "type": "int"
+        },
+        {
+          "decimal": "7",
+          "type": "int"
+        }
+      ],
+      "case_id": "seed-1-api-2",
+      "kind": "numeric",
+      "operation": "randi_range",
+      "receiver": "A",
+      "sequence": 12
+    },
+    {
+      "arguments": [],
+      "case_id": "seed-1-api-3",
+      "kind": "numeric",
+      "operation": "randf",
+      "receiver": "A",
+      "sequence": 13
+    },
+    {
+      "arguments": [
+        {
+          "decimal": "-2",
+          "type": "int"
+        },
+        {
+          "decimal": "3",
+          "type": "int"
+        }
+      ],
+      "case_id": "seed-1-api-4",
+      "kind": "numeric",
+      "operation": "randf_range",
+      "receiver": "A",
+      "sequence": 14
+    },
+    {
+      "case_id": "seed-2",
+      "input": {
+        "native_argument": {
+          "decimal": "9223372036854775807",
+          "type": "int"
+        },
+        "semantic_uint64_decimal": "9223372036854775807"
+      },
+      "kind": "seed_set",
+      "receiver": "A",
+      "sequence": 15
+    },
+    {
+      "arguments": [],
+      "case_id": "seed-2-api-0",
+      "kind": "numeric",
+      "operation": "randi",
+      "receiver": "A",
+      "sequence": 16
+    },
+    {
+      "arguments": [
+        {
+          "decimal": "-2",
+          "type": "int"
+        },
+        {
+          "decimal": "3",
+          "type": "int"
+        }
+      ],
+      "case_id": "seed-2-api-1",
+      "kind": "numeric",
+      "operation": "randi_range",
+      "receiver": "A",
+      "sequence": 17
+    },
+    {
+      "arguments": [
+        {
+          "decimal": "7",
+          "type": "int"
+        },
+        {
+          "decimal": "7",
+          "type": "int"
+        }
+      ],
+      "case_id": "seed-2-api-2",
+      "kind": "numeric",
+      "operation": "randi_range",
+      "receiver": "A",
+      "sequence": 18
+    },
+    {
+      "arguments": [],
+      "case_id": "seed-2-api-3",
+      "kind": "numeric",
+      "operation": "randf",
+      "receiver": "A",
+      "sequence": 19
+    },
+    {
+      "arguments": [
+        {
+          "decimal": "-2",
+          "type": "int"
+        },
+        {
+          "decimal": "3",
+          "type": "int"
+        }
+      ],
+      "case_id": "seed-2-api-4",
+      "kind": "numeric",
+      "operation": "randf_range",
+      "receiver": "A",
+      "sequence": 20
+    },
+    {
+      "case_id": "seed-3",
+      "input": {
+        "native_argument": {
+          "decimal": "-9223372036854775808",
+          "type": "int"
+        },
+        "semantic_uint64_decimal": "9223372036854775808"
+      },
+      "kind": "seed_set",
+      "receiver": "A",
+      "sequence": 21
+    },
+    {
+      "arguments": [],
+      "case_id": "seed-3-api-0",
+      "kind": "numeric",
+      "operation": "randi",
+      "receiver": "A",
+      "sequence": 22
+    },
+    {
+      "arguments": [
+        {
+          "decimal": "-2",
+          "type": "int"
+        },
+        {
+          "decimal": "3",
+          "type": "int"
+        }
+      ],
+      "case_id": "seed-3-api-1",
+      "kind": "numeric",
+      "operation": "randi_range",
+      "receiver": "A",
+      "sequence": 23
+    },
+    {
+      "arguments": [
+        {
+          "decimal": "7",
+          "type": "int"
+        },
+        {
+          "decimal": "7",
+          "type": "int"
+        }
+      ],
+      "case_id": "seed-3-api-2",
+      "kind": "numeric",
+      "operation": "randi_range",
+      "receiver": "A",
+      "sequence": 24
+    },
+    {
+      "arguments": [],
+      "case_id": "seed-3-api-3",
+      "kind": "numeric",
+      "operation": "randf",
+      "receiver": "A",
+      "sequence": 25
+    },
+    {
+      "arguments": [
+        {
+          "decimal": "-2",
+          "type": "int"
+        },
+        {
+          "decimal": "3",
+          "type": "int"
+        }
+      ],
+      "case_id": "seed-3-api-4",
+      "kind": "numeric",
+      "operation": "randf_range",
+      "receiver": "A",
+      "sequence": 26
+    },
+    {
+      "case_id": "seed-4",
+      "input": {
+        "native_argument": {
+          "decimal": "-1",
+          "type": "int"
+        },
+        "semantic_uint64_decimal": "18446744073709551615"
+      },
+      "kind": "seed_set",
+      "receiver": "A",
+      "sequence": 27
+    },
+    {
+      "arguments": [],
+      "case_id": "seed-4-api-0",
+      "kind": "numeric",
+      "operation": "randi",
+      "receiver": "A",
+      "sequence": 28
+    },
+    {
+      "arguments": [
+        {
+          "decimal": "-2",
+          "type": "int"
+        },
+        {
+          "decimal": "3",
+          "type": "int"
+        }
+      ],
+      "case_id": "seed-4-api-1",
+      "kind": "numeric",
+      "operation": "randi_range",
+      "receiver": "A",
+      "sequence": 29
+    },
+    {
+      "arguments": [
+        {
+          "decimal": "7",
+          "type": "int"
+        },
+        {
+          "decimal": "7",
+          "type": "int"
+        }
+      ],
+      "case_id": "seed-4-api-2",
+      "kind": "numeric",
+      "operation": "randi_range",
+      "receiver": "A",
+      "sequence": 30
+    },
+    {
+      "arguments": [],
+      "case_id": "seed-4-api-3",
+      "kind": "numeric",
+      "operation": "randf",
+      "receiver": "A",
+      "sequence": 31
+    },
+    {
+      "arguments": [
+        {
+          "decimal": "-2",
+          "type": "int"
+        },
+        {
+          "decimal": "3",
+          "type": "int"
+        }
+      ],
+      "case_id": "seed-4-api-4",
+      "kind": "numeric",
+      "operation": "randf_range",
+      "receiver": "A",
+      "sequence": 32
+    },
+    {
+      "arguments": [],
+      "case_id": "untouched-default-api-0",
+      "kind": "numeric",
+      "operation": "randi",
+      "receiver": "B",
+      "sequence": 33
+    },
+    {
+      "arguments": [
+        {
+          "decimal": "-2",
+          "type": "int"
+        },
+        {
+          "decimal": "3",
+          "type": "int"
+        }
+      ],
+      "case_id": "untouched-default-api-1",
+      "kind": "numeric",
+      "operation": "randi_range",
+      "receiver": "B",
+      "sequence": 34
+    },
+    {
+      "arguments": [
+        {
+          "decimal": "7",
+          "type": "int"
+        },
+        {
+          "decimal": "7",
+          "type": "int"
+        }
+      ],
+      "case_id": "untouched-default-api-2",
+      "kind": "numeric",
+      "operation": "randi_range",
+      "receiver": "B",
+      "sequence": 35
+    },
+    {
+      "arguments": [],
+      "case_id": "untouched-default-api-3",
+      "kind": "numeric",
+      "operation": "randf",
+      "receiver": "B",
+      "sequence": 36
+    },
+    {
+      "arguments": [
+        {
+          "decimal": "-2",
+          "type": "int"
+        },
+        {
+          "decimal": "3",
+          "type": "int"
+        }
+      ],
+      "case_id": "untouched-default-api-4",
+      "kind": "numeric",
+      "operation": "randf_range",
+      "receiver": "B",
+      "sequence": 37
+    },
+    {
+      "case_id": "state-0",
+      "input": {
+        "native_argument": {
+          "decimal": "0",
+          "type": "int"
+        },
+        "semantic_uint64_decimal": "0"
+      },
+      "kind": "state_set",
+      "receiver": "B",
+      "sequence": 38
+    },
+    {
+      "arguments": [],
+      "case_id": "state-0-api",
+      "kind": "numeric",
+      "operation": "randi",
+      "receiver": "B",
+      "sequence": 39
+    },
+    {
+      "case_id": "state-1",
+      "input": {
+        "native_argument": {
+          "decimal": "9223372036854775807",
+          "type": "int"
+        },
+        "semantic_uint64_decimal": "9223372036854775807"
+      },
+      "kind": "state_set",
+      "receiver": "B",
+      "sequence": 40
+    },
+    {
+      "arguments": [],
+      "case_id": "state-1-api",
+      "kind": "numeric",
+      "operation": "randi",
+      "receiver": "B",
+      "sequence": 41
+    },
+    {
+      "case_id": "state-2",
+      "input": {
+        "native_argument": {
+          "decimal": "-9223372036854775808",
+          "type": "int"
+        },
+        "semantic_uint64_decimal": "9223372036854775808"
+      },
+      "kind": "state_set",
+      "receiver": "B",
+      "sequence": 42
+    },
+    {
+      "arguments": [],
+      "case_id": "state-2-api",
+      "kind": "numeric",
+      "operation": "randi",
+      "receiver": "B",
+      "sequence": 43
+    },
+    {
+      "case_id": "state-3",
+      "input": {
+        "native_argument": {
+          "decimal": "-1",
+          "type": "int"
+        },
+        "semantic_uint64_decimal": "18446744073709551615"
+      },
+      "kind": "state_set",
+      "receiver": "B",
+      "sequence": 44
+    },
+    {
+      "arguments": [],
+      "case_id": "state-3-api",
+      "kind": "numeric",
+      "operation": "randi",
+      "receiver": "B",
+      "sequence": 45
+    },
+    {
+      "kind": "footer",
+      "sequence": 46
+    }
+  ],
+  "planned_counts": {
+    "Godot_invocations_max": 1,
+    "REAL_API_returns": 12,
+    "constructors": 2,
+    "diagnostic_tail_draws": 0,
+    "integer_API_returns": 22,
+    "numeric_API_invocations": 34,
+    "seed_setters": 5,
+    "state_setters": 4,
+    "wire_records_including_header_footer": 47
+  },
+  "schema": "phase456-proposed-seed-numeric-input/1",
+  "state_cases": [
+    {
+      "native_argument": {
+        "decimal": "0",
+        "type": "int"
+      },
+      "semantic_uint64_decimal": "0"
+    },
+    {
+      "native_argument": {
+        "decimal": "9223372036854775807",
+        "type": "int"
+      },
+      "semantic_uint64_decimal": "9223372036854775807"
+    },
+    {
+      "native_argument": {
+        "decimal": "-9223372036854775808",
+        "type": "int"
+      },
+      "semantic_uint64_decimal": "9223372036854775808"
+    },
+    {
+      "native_argument": {
+        "decimal": "-1",
+        "type": "int"
+      },
+      "semantic_uint64_decimal": "18446744073709551615"
+    }
+  ],
+  "status": "DESIGN_ONLY_NOT_EXECUTABLE_OR_RELEASED",
+  "untouched_constructor_case": {
+    "expected_source_default_uint64_decimal": "12047754176567800795",
+    "receiver": "B",
+    "seed_setters_before_trajectory": 0,
+    "state_setters_before_trajectory": 0
+  }
+}
