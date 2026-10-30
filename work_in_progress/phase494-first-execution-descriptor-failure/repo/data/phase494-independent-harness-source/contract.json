@@ -1,0 +1,46 @@
+{
+  "schema": "phase494-exact-harness-contract/1",
+  "status": "FROZEN_BEFORE_CANDIDATE_IMPORT",
+  "plan_owner": {
+    "path": "data/phase494-independent-business-plan/owned-files.json",
+    "size": 626,
+    "sha256": "450f7f82f8ab2b71d0150e084ebf72913715e572f91be9f7a213f8e76cc35b0e"
+  },
+  "source_owner": {
+    "path": "data/phase493-source-amethyst-whelp/owned-files.json",
+    "size": 4490,
+    "sha256": "6b10e35d7487ab7834ae30ee4e3f51241c70d0c09067fe4c8f83860c4349c0c4"
+  },
+  "source_review": {
+    "path": "data/phase494-independent-source-review/review.json",
+    "size": 2335,
+    "sha256": "1eac6c7d72d6a45f644d558e77056d4bf653c993aae46b99c35d905a46b5df65"
+  },
+  "groups": 17,
+  "actual_successful_constructor_limit": 2,
+  "synthetic_instances": 1,
+  "natural_instances": 1,
+  "natural_fullrun_attempts": 1,
+  "wall_seconds": 35,
+  "simulated_seconds": 120,
+  "gate_reject_calls": 10,
+  "pure_new_admission_calls": 3,
+  "initializer_success_calls": 2,
+  "unit_layout": "12bags+Whelp201+Whetstone10; no other active receivers;14items",
+  "startup_unit_rows": "cooldown Whelp(.95,1.05)->1.0; picks(0,2,0,1) each range0..2; reflection Poison twice thenCold thenBlind each range0..100->50.0; four picks precede allapplications",
+  "attack_unit_rows": "default double float.5 or explicit0; accuracy.5 hit /1miss after explicit BalancedRng last_resultTrue reset; per-own-hook single-category picker; damage range6..11->6 after real Whetstone+1. PositiveSpikes case choosesMana index1 of2. No candidate business helper replaced.",
+  "synthetic_state": "Explicit unit resets include permanentStack mirrors/history, buff amounts, nonKing invulnerable and buffProtection values, hp/dead, accuracy/damage balancing state; none are native observations",
+  "source_review_static_corrections": [
+    "Logging mode flush restores1, not0; bonus_damage remains INT1.",
+    "Default0 debuff reflection still draws four REALs after four selections; expected rows and ordering retain these draws."
+  ],
+  "no_execution_yet": true,
+  "forbidden_calls": [
+    "old490",
+    "Native",
+    "Expected",
+    "pool",
+    "extra natural retry"
+  ],
+  "output_policy": "full natural raw saved before result assertions; actual calls and PASS groups distinct"
+}

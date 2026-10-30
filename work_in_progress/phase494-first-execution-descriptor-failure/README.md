@@ -1,0 +1,7 @@
+# Preserved first Whelp experimental-interface failure
+
+494's first actual finite execution passed four ingress groups and ten rejection calls, then stopped at group05. One candidate construction/prepare/activation occurred; complete Engine.run and natural-case executions were zero. The unit initialization output,9draws/5events, exception, exact input/harness/source seals and independent finding are preserved. Later semantic assertions were not reached and are not labeled passed.
+
+The real Source493 defect is `battle.initialization.update(...)`: initialization is a property returning a deep copy, so the new experimental identity was never persisted. The missing source_extension raised KeyError. Result-label consequences follow from source inspection; no natural result was generated or claimed. The prior static review missed this getter/update interaction, and the actual first failure is retained explicitly.
+
+The authorized smallest next repair is an immutable Source copy changing only the new initializer to update its actually owned internal descriptor. Old getter deep-copy protection, common initialization and all combat algorithms remain unchanged. No weakening of identity/coverage assertions, no original capture, no retry or seed/layout tuning occurred here. Passed groups01–04 will not be rerun; remaining05–17 await repaired Source review and a separate presealed remaining-only harness. The currently published usable runtime remains accepted489 Squirrel Source. Formal75/generalKing/native admission is unchanged.

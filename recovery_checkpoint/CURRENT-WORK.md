@@ -63,3 +63,7 @@ Reuse the fixed read-only baseline/pool; do not create a full Game copy per case
 ## Next shared family candidate, independent functional acceptance pending
 
 [492–494 Whelp Source/plan](../work_in_progress/phase492-494-whelp-source-and-predeclared-plan/README.md) preserves accepted limited design, compile-only493Source15 and the pre-outcome mixed164+201 request. Fixed `initialize_experimental_nonking` reuses shared buff/attack rules and keeps old gates. Two modules changed/thirteen conserved; no author model import/run. Independent494 Source/functional acceptance is pending here; no new native collection or formal promotion. The direct public runtime remains independently accepted489 Squirrel Source.
+
+## Actual Whelp interface first failure preserved
+
+[494 first execution](../work_in_progress/phase494-first-execution-descriptor-failure/README.md) passed four ingress groups/ten rejections, then exposed a real descriptor write to a deep-copy property. One unit ctor/prepare/activation executed; complete battles/natural runs0. Remaining05–17 are unaccepted. First output/exception/seals are retained;495 will be an immutable one-function interface repair, with combat algorithms and the old public getter unchanged. No original capture or automatic retry occurred.

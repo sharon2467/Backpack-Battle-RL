@@ -1,0 +1,63 @@
+{
+  "schema": "phase494-independent-source-review/1",
+  "status": "PASS_LIMITED_DELTA_PENDING_CONTROLS",
+  "source_owner": {
+    "path": "data/phase493-source-amethyst-whelp/owned-files.json",
+    "size": 4490,
+    "sha256": "6b10e35d7487ab7834ae30ee4e3f51241c70d0c09067fe4c8f83860c4349c0c4"
+  },
+  "source_freeze": {
+    "path": "data/phase493-source-amethyst-whelp/candidate-source-freeze.json",
+    "size": 4552,
+    "sha256": "d7d8a37e14e467a061ad2a6352de250080807743f525bcfe68b1872cdf563de8"
+  },
+  "owner_refs": 22,
+  "conserved_modules": [
+    "godot_pcg_integer.py",
+    "native_replay_v7/__init__.py",
+    "native_replay_v7/frame_driver.py",
+    "native_replay_v7/timer_runtime.py",
+    "native_replay_v8/__init__.py",
+    "native_replay_v8/__main__.py",
+    "native_replay_v8/compare.py",
+    "native_replay_v8/genuine.py",
+    "native_replay_v8/histories.py",
+    "native_replay_v8/observed.py",
+    "native_replay_v8/randomness.py",
+    "native_replay_v8/state.py",
+    "original_rng.py"
+  ],
+  "function_delta": {
+    "headless.py": {
+      "changed": [
+        "HeadlessBattle._result_view"
+      ],
+      "exact": 38,
+      "added": [
+        "initialize_experimental_nonking",
+        "validate_experimental_nonking_layout"
+      ],
+      "removed": []
+    },
+    "native_replay_v8/engine.py": {
+      "changed": [
+        "CombatEngine.activate_from_checkpoint",
+        "CombatEngine.pre_item_damage"
+      ],
+      "exact": 237,
+      "added": [],
+      "removed": []
+    }
+  },
+  "conclusions": [
+    "201 startup calls existing grouped inflict_random_debuffs then real activate; own hit early calls existing remove_random_buffs without parent. Shared damage/queue/loss/RNG/Squirrel behavior remains exact.",
+    "Fixed experimental validator and initializer require164/201,class0 and forbid129/262; old validator/initialize/Squirrel/batch/CLI bodies exact. No public provider widening.",
+    "Result identity records actual extras and catalog78/formal75; legacy Squirrel global catalog count follows registration. Metadata does not select attack business branch.",
+    "Bounded ranged attack reuse retains default zero type factors/limits; dual Original flags63 not represented as fabricated new runtime field."
+  ],
+  "candidate_imports": 0,
+  "model_calls": 0,
+  "native": 0,
+  "expected": 0,
+  "blockers": []
+}

@@ -1,0 +1,96 @@
+{
+  "schema": "phase494-first-candidate-finding/1",
+  "status": "BLOCKED_CANDIDATE_METADATA_WRITE_TO_DEEPCOPY",
+  "actual_result": {
+    "path": "data/phase494-independent-business-first-001/result.json",
+    "size": 465,
+    "sha256": "610ffe6151a28a89f23cc570232ab86b650aef7680c280217939a282240fb2ba"
+  },
+  "actual_owner": {
+    "path": "data/phase494-independent-business-first-001/owned-files.json",
+    "size": 1510,
+    "sha256": "bd8dbdcfe38fea2744b95937e3f943d3ddb094b302967fe149c6da5570830bfa"
+  },
+  "first_error": {
+    "path": "data/phase494-independent-business-first-001/first-error.json",
+    "size": 1057,
+    "sha256": "7d5b0fc0c7a5a1342ff848095aa027753d5ea4bd345c482c1aa2350ea6296a00"
+  },
+  "unit_output": {
+    "path": "data/phase494-independent-business-first-001/unit-initialize.json",
+    "size": 158673,
+    "sha256": "ea8c0cbf93342b88f91464417905532066f1ab4a7c5fc1aa132b4d21bb912a3c"
+  },
+  "release_owner": {
+    "path": "data/phase494-independent-release/owned-files.json",
+    "size": 734,
+    "sha256": "4336f199c58efae8a11e672ff8c24c934d82619e7e4e3f99106c27e21b668a81"
+  },
+  "failed_assertion": "Actual initialization has no source_extension, raising KeyError before group05 PASS.",
+  "source_reason": {
+    "file": "data/phase493-source-amethyst-whelp/staged/headless.py",
+    "getter_lines": [
+      364,
+      366
+    ],
+    "write_line": 486,
+    "getter": "initialization returns deepcopy(self._initialization)",
+    "write": "battle.initialization.update(...) updates the temporary copy",
+    "effect": "201-only keeps generic initialization; mixed164+201 keeps old Squirrel identity. New result coverage branch cannot match EXPERIMENTAL_NONKING_EXTENSION."
+  },
+  "classification": "Real candidate metadata persistence bug; not unit provider or missing business source input. Earlier limited static PASS missed this getter/update interaction.",
+  "minimum_repair": "Preserve493; immutable repaired Source changes only initialize_experimental_nonking to update actual internally owned descriptor or supply merged descriptor before HeadlessBattle construction. Do not weaken initialization identity assertion or alter business algorithms.",
+  "actual": {
+    "status": "FAILED",
+    "stage": "05_unit_initialize",
+    "passed_groups": 4,
+    "rejection_calls": 10,
+    "calls": {
+      "derive_stream_seeds": 2,
+      "PCG.__init__": 3,
+      "CombatRandom.__init__": 1,
+      "Engine.__init__": 1,
+      "Engine.prepare_only": 1,
+      "Engine.activate_from_checkpoint": 1,
+      "Engine.inflict_random_debuffs": 1,
+      "Engine.give_stack": 3,
+      "Engine.activate": 2,
+      "Engine.emit": 2
+    },
+    "wall_seconds": 0.23244483899998158,
+    "source_refs_unchanged": 22,
+    "Native": 0,
+    "Expected": 0,
+    "old_tests": 0,
+    "pool": 0,
+    "auto_retry": false
+  },
+  "saved_unit_observations": {
+    "draws": 9,
+    "events": 5,
+    "initialization_keys": [
+      "origin",
+      "seed",
+      "root_seed",
+      "seed_policy",
+      "global_seed",
+      "combat_seed",
+      "util_time_origin",
+      "combat_time_origin",
+      "preparation_order",
+      "ordinary_order"
+    ],
+    "initialization_origin": "source-headless-fresh-prepare-domain-separated-pcg/2",
+    "source_extension_present": false,
+    "note": "Saved output exists; later group06 semantic assertions were not reached and are not counted PASS."
+  },
+  "remaining": "Groups05\u201317 incomplete; natural constructor/run0. Await explicit immutable Source repair and remaining-only harness release; do not repeat four passed ingress groups.",
+  "source_after": "22 owner payloads byte-exact; frozen493 and all earlier evidence untouched",
+  "calls_added_by_this_finding": {
+    "candidate": 0,
+    "model": 0,
+    "native": 0,
+    "Expected": 0,
+    "pool": 0
+  }
+}
