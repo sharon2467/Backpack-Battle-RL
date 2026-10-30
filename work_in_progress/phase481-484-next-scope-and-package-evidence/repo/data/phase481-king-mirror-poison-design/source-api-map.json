@@ -1,0 +1,355 @@
+{
+  "schema": "phase481-minimal-source-seams/1",
+  "proposed_phase": 482,
+  "staged_baseline": "data/phase458-source-king-basic/staged",
+  "proposed_changed_files": 2,
+  "conserved_files": 13,
+  "anticipated_changes": [
+    {
+      "source": {
+        "path": "data/phase458-source-king-basic/staged/native_replay_v8/engine.py",
+        "size": 239691,
+        "sha256": "632b7f985db980171995fe652091d4ed9823c0d331ae21033ec0bf486db5532a"
+      },
+      "functions": [
+        {
+          "name": "validate_source_pure_business_domain",
+          "line": 3887,
+          "end_line": 3900,
+          "sha256": "e4a265f0ce078ef713fbab234d47a7d52f21d8c0503f39f4619f4a7c9e3e13b8"
+        },
+        {
+          "name": "_source_pure_profile",
+          "line": 3903,
+          "end_line": 3905,
+          "sha256": "f9f72a5cde0955d770cfdb5ecab2f3fb24d24c7ffb0835eace33936d891b7fda"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "data/phase458-source-king-basic/staged/headless.py",
+        "size": 29158,
+        "sha256": "fe00987fb8c248e63cd9d441714479b050c797aad92894ecb6f3d4069f5cddb2"
+      },
+      "functions": [
+        {
+          "name": "HeadlessBattle._result_view",
+          "line": 367,
+          "end_line": 408,
+          "sha256": "d58d7c4939f7c95e5f4c8a0696e32f52233c788d7dbbe51013439fe9c0fe904e"
+        },
+        {
+          "name": "initialize",
+          "line": 411,
+          "end_line": 441,
+          "sha256": "1dd77335d248a6167c11112cf9ccb4a1b23d1c02bc9dc7a66f5e66634bdde7ca"
+        },
+        {
+          "name": "run_batch",
+          "line": 479,
+          "end_line": 508,
+          "sha256": "b523b1634c85034547f6ddb70ff98e299336b27fcaa393351d4aed9e637bb0b6"
+        }
+      ]
+    }
+  ],
+  "shared_bodies_to_preserve": [
+    {
+      "source": {
+        "path": "data/phase458-source-king-basic/staged/native_replay_v8/engine.py",
+        "size": 239691,
+        "sha256": "632b7f985db980171995fe652091d4ed9823c0d331ae21033ec0bf486db5532a"
+      },
+      "functions": [
+        {
+          "name": "CombatEngine._validate_source_pure_state",
+          "line": 1304,
+          "end_line": 1330,
+          "sha256": "c00fd397a77e1d630f1f22bc070c4a6640ae720994d503c5f9d974d116b59dc7"
+        },
+        {
+          "name": "CombatEngine.king_effect",
+          "line": 1573,
+          "end_line": 1584,
+          "sha256": "319c43a76a47e57ef781d5dd0f9767ae37f68dfddc44bd7eb4ae5229e84dfe91"
+        },
+        {
+          "name": "CombatEngine.prepare_only",
+          "line": 1827,
+          "end_line": 1926,
+          "sha256": "c37175397412a8af6038b0a1e4b992b27ccb4ecd176eb5e1c9816eb02fa17bad"
+        },
+        {
+          "name": "CombatEngine.activate_from_checkpoint",
+          "line": 1928,
+          "end_line": 2042,
+          "sha256": "93d85bd7346d3e3f3b9e8c6ea6cb98483be0cd657de3730f462620b32967012f"
+        },
+        {
+          "name": "CombatEngine.new_caller_target_caches",
+          "line": 2071,
+          "end_line": 2123,
+          "sha256": "2e983522f8eecf728e282414322da3a7555080a21c6d6db50c127a66c94beeb6"
+        },
+        {
+          "name": "CombatEngine._gain_stacks",
+          "line": 2372,
+          "end_line": 2442,
+          "sha256": "361c6dcbd43b2c24f0dd5c8a480250c1e643d9fdbd4c8021f206f1ad8b792efc"
+        },
+        {
+          "name": "CombatEngine.remove_stack",
+          "line": 2444,
+          "end_line": 2498,
+          "sha256": "ff7b0fe7bf8738900a8302a3e87a01a0b031bb0f719ec6a34427e4ed4d84efff"
+        },
+        {
+          "name": "CombatEngine.try_use_mana",
+          "line": 2503,
+          "end_line": 2506,
+          "sha256": "974889bf65a3efc19394444c27c350e7dd8b6e15b9f0f80e128a3706d4650905"
+        },
+        {
+          "name": "CombatEngine.get_stack_fraction",
+          "line": 2555,
+          "end_line": 2611,
+          "sha256": "c24e4578f4194aab1303277e1be2af7a37f7304cc240c645e7dc9b3203afffae"
+        },
+        {
+          "name": "CombatEngine.multiply_buffs_limit",
+          "line": 2613,
+          "end_line": 2620,
+          "sha256": "fdd2b72ee3faaae0bd79bb7fa8888b611195757f1d54d2931d4a8c6ce4078d97"
+        },
+        {
+          "name": "CombatEngine.activate",
+          "line": 2805,
+          "end_line": 2826,
+          "sha256": "8aa408f246a8836f16b06c93fd932cabd641a4fc4968fa1348e90e093ecc9caf"
+        },
+        {
+          "name": "CombatEngine.on_goobert_item_activated",
+          "line": 2828,
+          "end_line": 2871,
+          "sha256": "02a1dffd63d1ef26de1dd85bb34d8095bcc9bf865ef7d9b51a95b178eeed74cb"
+        },
+        {
+          "name": "CombatEngine.trigger",
+          "line": 3169,
+          "end_line": 3258,
+          "sha256": "b03aeabde57b32c1a4b29eb53ed873f1e4c9ab9873e6ce8f8b748ac7b1697f95"
+        },
+        {
+          "name": "CombatEngine.damage_nonitem",
+          "line": 3386,
+          "end_line": 3407,
+          "sha256": "058f0ce7689d8a098bc89135a85f5c929ac85b541b4740e6ccc27863c3c93597"
+        },
+        {
+          "name": "source_pure_policy",
+          "line": 3908,
+          "end_line": 3912,
+          "sha256": "827771a4aa8561e514d5b5b2ac903ed7234956bfae3d0e2afd45b1b55e86f7bf"
+        },
+        {
+          "name": "source_pure_business_defaults",
+          "line": 3915,
+          "end_line": 3919,
+          "sha256": "882ee86fe8a2ec2eaf05deaf5a90c6f7b2c169339d26e4b2b21aa9733ea9e19f"
+        },
+        {
+          "name": "_source_pure_roles",
+          "line": 3922,
+          "end_line": 3932,
+          "sha256": "9b99f0798f0bd93ec9a481b10a54a4d61561ef28285a44c99c7708389eec8388"
+        },
+        {
+          "name": "_source_pure_data",
+          "line": 3970,
+          "end_line": 3982,
+          "sha256": "9a9f2189ce6d0afaf41ad1c3911447b2986c70307e8d78b2fa59b62716c8b911"
+        },
+        {
+          "name": "source_pure_runtime_inputs",
+          "line": 3985,
+          "end_line": 3989,
+          "sha256": "e2af71a9af1609f70db8b128ceeecae9410cc02d21791f48155b1be2d69c8da1"
+        },
+        {
+          "name": "_validate_source_pure_runtime",
+          "line": 3992,
+          "end_line": 3999,
+          "sha256": "f6055af23073ccb0c05c7b2debc93379ea892541d0c67cc4452a24a31a96779a"
+        },
+        {
+          "name": "_build_source_pure_scaffold",
+          "line": 4002,
+          "end_line": 4026,
+          "sha256": "e90016c7995ab24641c628bac2ff2b6c8a01a1e40f1bbbb72aa0a90134a43d2b"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "data/phase458-source-king-basic/staged/headless.py",
+        "size": 29158,
+        "sha256": "fe00987fb8c248e63cd9d441714479b050c797aad92894ecb6f3d4069f5cddb2"
+      },
+      "functions": [
+        {
+          "name": "derive_stream_seeds",
+          "line": 34,
+          "end_line": 40,
+          "sha256": "dc0419fd00943aec7960e5b32ebfc7a8514a1aa20e7c69cd7e53f138f7b2037e"
+        },
+        {
+          "name": "validate_layout",
+          "line": 43,
+          "end_line": 79,
+          "sha256": "b20c5d32fa4c8bd8349ea3b11f2d92d79bc6c0aad85411fb4ca6ac56c6529692"
+        },
+        {
+          "name": "_validate_king_fresh_domain",
+          "line": 82,
+          "end_line": 84,
+          "sha256": "082f1e0e2fb475c880a536d252e5caa2fd979e2c55a93a501cbc8a85c534c7cb"
+        },
+        {
+          "name": "preparation_order",
+          "line": 169,
+          "end_line": 178,
+          "sha256": "8dadb28e8ed075d04fdd9a4ae20c771e01a76fdefe684b02711683142611e8b0"
+        },
+        {
+          "name": "source_runtime_topology",
+          "line": 199,
+          "end_line": 248,
+          "sha256": "49957985e5985014591c60c18ca8941c835fc9b3d00ff17d59ef27b51fa836ff"
+        },
+        {
+          "name": "runtime_inputs",
+          "line": 251,
+          "end_line": 269,
+          "sha256": "8f4d8d4ff5462049d210a2ac58c3598b84c2d12edd0086186d48e8121a59021a"
+        },
+        {
+          "name": "HeadlessBattle.step",
+          "line": 343,
+          "end_line": 346,
+          "sha256": "c7ed7c112a0a5fc2e5a74527304da997a0d5c62e81681e3baac9724a95b94e71"
+        },
+        {
+          "name": "HeadlessBattle.snapshot",
+          "line": 348,
+          "end_line": 355,
+          "sha256": "e82c483b2293a15e44b95b587c108d7bba6c9113164d310649f27f39d55881ff"
+        },
+        {
+          "name": "HeadlessBattle.run",
+          "line": 357,
+          "end_line": 361,
+          "sha256": "109bfc6fca092d0b29170499c575797a1d62ba3e19a497cea4e10eabcefdfd9d"
+        },
+        {
+          "name": "HeadlessBattle.result",
+          "line": 363,
+          "end_line": 365,
+          "sha256": "ae01c8cba154f20f50e676efa1e0cbda9c453cc81214e49ab69eb272934d49f4"
+        },
+        {
+          "name": "source_pure_runtime_topology",
+          "line": 444,
+          "end_line": 469,
+          "sha256": "92c01707e48d4306c453c4508e2fabec11facd16caa9e69db36ca0937f5da4a1"
+        },
+        {
+          "name": "main",
+          "line": 511,
+          "end_line": 526,
+          "sha256": "1f049c8d72a9b3060e928c3a195b1e510f251b7ec5951297031de8ad2ffb1153"
+        }
+      ]
+    }
+  ],
+  "original_source": [
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/MagicMirror.gd",
+      "size": 399,
+      "sha256": "a841a129b60215e66d78ff65434825dfa2191c66dd9b6b30e3def57fe5c0e087"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/FlyAgaric.gd",
+      "size": 75,
+      "sha256": "a50859c0ea0de1fa459614a3e1f95b5d27be1dedcc44db01851c6b529b56687e"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/KingGoobert.gd",
+      "size": 1581,
+      "sha256": "2f852255072386a57757bceea38a9f5825e0d1299b6fa8ce2c55b14827385d0f"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Buff.gd",
+      "size": 8827,
+      "sha256": "3efabb72eb0b337e30ebc924347aba40bd1039a3c5f718b761b0ee78b48ab8bb"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Character.gd",
+      "size": 48033,
+      "sha256": "dc372965eaa048657caa1646d70aba85ff9b4b9677565eaa480bc195de027496"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "size": 170717,
+      "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Garlic.gd",
+      "size": 254,
+      "sha256": "bf21fc991ac4da9d271411de93316597f46eaeab8b0ce02d7531e2b7f87caa13"
+    }
+  ],
+  "original_rules": [
+    {
+      "file": "Items/Exclusive/MagicMirror.gd",
+      "functions": [
+        "canAffect",
+        "onPrepare",
+        "doCooldownEffect"
+      ],
+      "rule": "Holy-only unique cached targets; chance+2% per target; positive multiply then finish/consume"
+    },
+    {
+      "file": "Items/FlyAgaric.gd",
+      "functions": [
+        "doCooldownEffect"
+      ],
+      "rule": "inflictPoison before activate"
+    },
+    {
+      "file": "Items/Item.gd",
+      "functions": [
+        "multiplyBuffsLimit",
+        "removeBuffsFraction"
+      ],
+      "lines": [
+        5636,
+        5649
+      ],
+      "rule": "Separate positive gain and enemy buff-loss paths; Mirror calls the former"
+    },
+    {
+      "file": "Core/Buff.gd",
+      "functions": [
+        "gainTemporary",
+        "loseStacks"
+      ],
+      "rule": "Reflection recursion, resistance/cap order, positive-buff protection only for non-used/non-Block loss"
+    }
+  ],
+  "dependency_limits": [
+    "Static Source current bytes, no fresh original installation/readiness claim",
+    "Use historical finite proof receipts within their original scope; no re-audit of815 scripts or72 initial fields",
+    "No raw historical input or Expected payload is decoded in this design"
+  ]
+}

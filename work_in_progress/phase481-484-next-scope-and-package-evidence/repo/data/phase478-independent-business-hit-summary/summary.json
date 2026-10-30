@@ -1,0 +1,209 @@
+{
+  "schema": "phase478-actual-joint-business-hit-summary/1",
+  "status": "ACTUAL_FIXED_CASE_COVERAGE_SUMMARY_NOT_NEW_RUN_OR_COMPARISON",
+  "accepted_case_review": {
+    "path": "data/phase478-independent-final-acceptance/review.json",
+    "size": 6712,
+    "sha256": "239ba225fde750d14cbd1f7914bd83f3cd858307c29a906875c530cb58bc8ba8"
+  },
+  "payload_pins": {
+    "model": {
+      "path": "data/phase476-joint-actual-model-first-001/model-output.json",
+      "size": 27176123,
+      "sha256": "d4e9705b2a1d6907d9464f1caf8ffa6d4cdbe99aa296b427addc3aa21da28aae"
+    },
+    "events": {
+      "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/events.jsonl",
+      "size": 157546,
+      "sha256": "01d14873a2cc264a3a28c0aa941da94cf247d1e17e2861c21282268e619a8f69"
+    },
+    "histories": {
+      "path": "/workspace/native-combat-20261013/runs/original028-king-basic-A-single-001/output/capture/histories.json",
+      "size": 1058446,
+      "sha256": "a5b4240606cd2eb766c81897d95ab34ca084e67e26d66e399016223139ac716f"
+    }
+  },
+  "counts": {
+    "model_payload_read_and_decode": 1,
+    "native_events_read_and_decode": 1,
+    "native_histories_read_and_decode": 1,
+    "native_runtime_reads": 0,
+    "new_comparator_calls": 0,
+    "new_model_imports_or_runs": 0,
+    "raw_INPUT12_reads": 0,
+    "new_native_capture": 0
+  },
+  "observed": {
+    "events": 366,
+    "allocated_events": 368,
+    "winner": "P",
+    "terminal_event": {
+      "sequence": 365,
+      "id": 367,
+      "type": "Win",
+      "timestamp_hex": "404180000f500000"
+    },
+    "King_activations": [
+      63,
+      103,
+      164,
+      208,
+      278,
+      330
+    ],
+    "Basic_activations": [
+      280
+    ],
+    "King_heal_events": [
+      60,
+      100,
+      161,
+      207,
+      277,
+      329
+    ],
+    "King_heal_amount_each": 35,
+    "Basic_heal": {
+      "event": 279,
+      "amount": 9
+    },
+    "King_invu_starts": [
+      61,
+      101,
+      162
+    ],
+    "King_invu_ends": [
+      77,
+      114,
+      182
+    ],
+    "King_Mana_uses": [
+      {
+        "event": 62,
+        "parent": 61,
+        "amount": -4
+      },
+      {
+        "event": 102,
+        "parent": 101,
+        "amount": -4
+      },
+      {
+        "event": 163,
+        "parent": 162,
+        "amount": -4
+      }
+    ],
+    "King_state_history": {
+      "event_numbers": [
+        -1,
+        61,
+        78,
+        101,
+        115,
+        162,
+        183
+      ],
+      "values": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        2
+      ]
+    },
+    "final_King": {
+      "charges": 0,
+      "activations_total": 6,
+      "counter": 4,
+      "triggerTime": 2.0
+    },
+    "final_Basic": {
+      "activations_total": 1,
+      "counter": 1,
+      "triggerTime": 4.0
+    },
+    "final_P_buffProtectStacks": 18,
+    "final_P_mana": 10
+  },
+  "natural_reentry_HIT": {
+    "timestamp_hex": "403bd5556db00000",
+    "ordered_ids": [
+      276,
+      277,
+      278,
+      279,
+      280
+    ],
+    "ordered_meaning": [
+      "P11 Activation",
+      "King Health35",
+      "King Activation",
+      "Basic Health9",
+      "Basic Activation"
+    ],
+    "parents": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "native_history_witness": {
+      "King_tooltip9_before": {
+        "event": 274,
+        "packed": 357912509677568,
+        "progress_fixed100000": 83333
+      },
+      "King_tooltip9_after": {
+        "event": 280,
+        "packed": 71579924955136,
+        "progress_fixed100000": 16666
+      },
+      "King_outer_event276_history_row": "Absent: identical post-reentry value is adjacent-compressed under StatHistory.addValue.",
+      "Basic_tooltip9": {
+        "event": 278,
+        "packed": 0
+      },
+      "King_activation_metric4_fifth_value": {
+        "associated_event": 280,
+        "value": 5
+      },
+      "Basic_activation_metric4": {
+        "associated_event": 280,
+        "value": 1
+      }
+    },
+    "interpretation": "Under the already authenticated mutual-listener topology and original Goobert handler, this is King threshold6 → Basic threshold5 → King reentry counter1. King post-reentry triggerTime5 follows that Source rule and the recorded cooldown progress; no new direct handler-exit sample is claimed. The inner event280 survives in King history/metric; synchronous causality does not invent event parents.",
+    "direction": "King-first natural direction HIT; Basic-first natural direction is not established."
+  },
+  "charge_vs_protection": {
+    "hit": "All three invulnerability charges are spent, then later King activations208/278/330 still heal/activate without new invulnerability. State history reaches Used=2 after third end.",
+    "not_same_as_protection_depletion": "Six King effects add3 protection each; final protection18. No StackProtect event exists in observed event types. Protection consumption/exhaustion is not HIT.",
+    "used_Mana_scope": "Three used=true mana spends with explicit InvuStart parents coexist with all18 protection stacks retained, consistent with Buff.loseStacks used bypass; no new universal proof asserted."
+  },
+  "not_HIT_or_not_established": [
+    "Natural Basic-first threshold reentry (459 covers synthetic Source direction only).",
+    "A shared ordinary emitter directly feeding both Gooberts; this fixed topology does not have one.",
+    "Buff protection consumption/exhaustion by hostile beneficial-stack removal; no StackProtect event.",
+    "King insufficient-mana or already-invulnerable short-circuit before charges run out; this extraction does not establish such a hit (459 synthetic tests retained).",
+    "Activation limiter saturation and natural death during listener dispatch; not established by this case.",
+    "Nonzero doubleActivationChance or arbitrary multi-King/multi-Basic layouts."
+  ],
+  "next_small_business_slice": {
+    "recommendation": "King-produced buff protection interacting with one already implemented beneficial-buff removal path.",
+    "why": "Current real case proves protection accumulation and used-Mana bypass but never spends protection; this adds actual gameplay interaction rather than another GUI/seed proof.",
+    "existing_work_to_reuse": [
+      "Original Buff.loseStacks225–241 and current engine.remove_stack already contain the ordered resist/protection/remaining-stack logic.",
+      "478 exact King accumulation/history/clock and459 synthetic zerocharge/mana/invu/reentry tests stay accepted; do not rerun them.",
+      "Select one existing formal75 removal consumer/fixture by a bounded existing-coverage lookup before proposing a new domain item."
+    ],
+    "minimal_new_Source_control": "A targeted removal with amount crossing remaining protection: verify protected count/event and trigger parent, remaining removal, protection-to-zero, and next removal after exhaustion; retain exact Tape if probabilistic cleanse protection is enabled. No test is executed in this report.",
+    "native_gap": "These current records do not provide a native hostile-removal/protection-depletion joint observation. First check existing accepted records for that exact hit; if absent, report one fixed mixed-layout observation as the remaining native need, without auto-capture or widening to the whole75 domain.",
+    "not_recommended": "Reopen seed parity, GUI reproduction, all107 debug methods, or old178 full bridge migration merely to advance this next interaction."
+  },
+  "inspection_note": "One read-only exploratory query used nonexistent model_final.native_rule_state.items and raised KeyError before any write/model/compare. Correct nested data was inspected in the already retained local subset; this was not a failed validation/retry.",
+  "final_acceptance_unchanged": true
+}

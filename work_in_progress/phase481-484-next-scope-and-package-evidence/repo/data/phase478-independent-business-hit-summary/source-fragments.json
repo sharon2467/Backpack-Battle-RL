@@ -1,0 +1,64 @@
+{
+  "sources": [
+    {
+      "descriptor": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Goobert.gd",
+        "size": 1076,
+        "sha256": "8fda35f3740fe787231d4c69c38eaab1938127c1a01e076df70252cc4212e723"
+      },
+      "first": 29,
+      "last": 45,
+      "text": "func onItemActivated(event):\n\tactivations += 1\n\t\n\tif activations == getP1():\n\t\tactivations = 0\n\t\tdoCooldownEffect()\n\t\tactivate()\n\t\t\n\t\tif doubleActivationChance > 0 and Util.flip(doubleActivationChance):\n\t\t\tdoCooldownEffect()\n\t\t\tactivate()\n\t\t\n\t\tshowCooldownSmooth(activations / activationsToTrigger, true)\n\telse:\n\t\tshowCooldownSmooth(activations / activationsToTrigger, false)\n\t\n\ttriggerTime = activationsToTrigger - activations"
+    },
+    {
+      "descriptor": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/KingGoobert.gd",
+        "size": 1581,
+        "sha256": "2f852255072386a57757bceea38a9f5825e0d1299b6fa8ce2c55b14827385d0f"
+      },
+      "first": 32,
+      "last": 53,
+      "text": "\t\tinvuCharges -= 1\n\t\tsetState(CrownState.Active, true)\n\t\tvar invuDur = getP_m(\"dur_invu\")\n\t\tvar event = character().makeInvulnerable(invuDur, self)\n\t\tbuffTimer.start(invuDur)\n\t\tuseMana(manaCost, event)\n\t\tUtil.createPulse(activationPulse, self, global_position)\n\nfunc buffEnded():\n\tif invuCharges > 0:\n\t\tsetState(CrownState.Inactive, true)\n\telse:\n\t\tsetState(CrownState.Used, true)\n\nfunc onCombatEnd():\n\tbuffTimer.stop()\n\nfunc onShopEntered():\n\tonStateChanged(CrownState.Inactive)\n\nfunc onStateChanged(_crownState):\n\tif _crownState == CrownState.Inactive:"
+    },
+    {
+      "descriptor": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+        "size": 170717,
+        "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f"
+      },
+      "first": 4447,
+      "last": 4457,
+      "text": "\tif iterationCooldown == 0:\n\t\treturn - 1\n\tvar relProgress = 1.0 - triggerTime / iterationCooldown\n\tvar progressPerSecond: float\n\tif is_physics_processing():\n\t\tprogressPerSecond = getSpeed() / iterationCooldown\n\telse:\n\t\tprogressPerSecond = 0\n\tvar value = int(relProgress * cdEncodingFactor) << 32\n\tvalue += int(progressPerSecond * cdEncodingFactor)\n\treturn value"
+    },
+    {
+      "descriptor": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/CombatLog.gd",
+        "size": 35028,
+        "sha256": "502ba9802874c189798001a59c4135ca6591efaec80b007559760b12dc0bf638"
+      },
+      "first": 475,
+      "last": 501,
+      "text": "\nfunc snapshotItemMetric(item, metricIndex, playerId = null, withNextEvent = false):\n\tif playerId == null:\n\t\tplayerId = item.character().playerId\n\t\n\tvar connectedEventNum = eventNum\n\tif withNextEvent:\n\t\tconnectedEventNum += 1\n\tstatLoggers[playerId].logItemMetric(item, metricIndex, \n\t\tconnectedEventNum, item.getMetric(metricIndex))\n\nfunc snapshotItemTooltipStat(item, statType, playerId = null, \n\twithNextEvent = false, event = null):\n\t\n\tif playerId == null:\n\t\tplayerId = item.character().playerId\n\t\n\tvar connectedEventNum = eventNum\n\tif event != null:\n\t\tconnectedEventNum = event.id\n\telif withNextEvent:\n\t\tconnectedEventNum += 1\n\t\n\tstatLoggers[playerId].logItemStat(item, \n\t\tstatType, connectedEventNum, item.getStat(statType))\n\t\n\titem.queueTooltipUpdate()"
+    },
+    {
+      "descriptor": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/StatHistory.gd",
+        "size": 832,
+        "sha256": "5ae1f194e97dd6e1657e4266864f10448504026f91713a2dc9a1b61021bc498b"
+      },
+      "first": 7,
+      "last": 10,
+      "text": "func addValue(eventNum, value):\n\tif values.empty() or not Util.equals(values[ - 1], value):\n\t\teventNumbers.push_back(eventNum)\n\t\tvalues.push_back(value)"
+    },
+    {
+      "descriptor": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Buff.gd",
+        "size": 8827,
+        "sha256": "3efabb72eb0b337e30ebc924347aba40bd1039a3c5f718b761b0ee78b48ab8bb"
+      },
+      "first": 225,
+      "last": 241,
+      "text": "\t\t\n\t\tif (isBuff and \n\t\t\ttype != Game.EventType.Block and \n\t\t\tamount > 0 and \n\t\t\tcharacter.buffProtectStacks > 0):\n\t\t\t\n\t\t\tvar protectedByStacks = min(amount, character.buffProtectStacks)\n\t\t\tprotected += protectedByStacks\n\t\t\tamount -= protectedByStacks\n\t\t\tcharacter.buffProtectStacks -= protectedByStacks\n\t\t\n\t\tif protected > 0:\n\t\t\tUtil.spawnProtectedLabel(type, character.randBuffLabelPos(), protected)\n\t\t\tvar protectedEvent = Game.combatLog.createEvent_StackProtect(type, \n\t\t\t\titem, protected, character.playerId, triggerEvent)\n\t\t\tEventBus.logEvent(protectedEvent)\n\t"
+    }
+  ]
+}

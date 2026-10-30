@@ -1,0 +1,7 @@
+# Next bounded business scope and standalone evidence refresh
+
+478 actual HIT summary distinguishes synchronous King/basic reentry, three invulnerability charges exhausted, and18 protection stacks still present.481 independently accepted a new experimental eight-ID design for one King, same-side Magic Mirror332 and opposing Fly Agaric21, with base1/4/11/19/22. Its natural goals are protection accumulation/non-consumption, buff multiplication, poison reflection and tick interaction. It cannot naturally prove positive-buff protection consumption; any direct shared-loss component remains synthetic. Existing178 historical evidence is retained but its missing current14DTO initial proofs are not filled from Expected.
+
+482 first Source edit stopped before compilation/runtime because an edit anchor was duplicated; complete partial15Source and first error are preserved. A separately authorized immutablev2 is pending; this archive does not accept its implementation. Formal75/general King status stays unchanged.
+
+484 independently accepted a metadata-only refresh of the existing Source package. README/lineage/manifest now record478's fixed native-Tape evidence and its limits. All15 runtime files and20 other payloads, including4 examples and verifier, remain exact461. One read-only verifier passed22payload/15Source in0.0379s; no battle/CLI/Engine/native/comparison run occurred. The direct package still simulates fresh legal layouts without oracle/assets. Its trusted current manifest SHA is f327e5b621b2fd713da1b44dbb66c530edea91a2b2ac3e6903226203fb14139d.
