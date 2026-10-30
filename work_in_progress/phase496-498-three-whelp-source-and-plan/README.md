@@ -1,0 +1,9 @@
+# Three-Whelp shared Source candidate and frozen validation plan
+
+496 finite design was independently accepted.497 is an immutable15-file Source copy of accepted495, adding Ruby64/Emerald197/Sapphire199 through the existing pre/start/own-early dispatches and metadata. Two files changed/thirteen exact,275 other functions conserved; generic attack/buff/payment/queue/history/Timer/RNG and the earlier descriptor fix remain unchanged. The author compiled15 files and performed zero imports/tests/models/native runs. **Independent498 functional acceptance is pending at this checkpoint.**
+
+The single closed experimental non-King interface is expanded to old75 plus164/201/64/197/199, requiring an experimental instance,class0/defaults,noKing. No per-item API or arbitrary caller-supplied allowlist is added; old formal/CLI/batch/Squirrel/King gates remain unchanged. Registeredcatalog81 is a candidate count, not formal81. Formal support remains75; complete engine/RL and native admission are unfinished.
+
+498 predeclares16case groups,at most1synthetic+1natural,seed49801/29items/120simulated seconds and a separate35s wall cap. It targets Ruby pre-reflection before all combatStart, Emerald hitPoison, Sapphire actual paidMana→Block then six-category nonMana gain with the same payment parent, and existing Whelp/Squirrel interactions. The input is frozen before any model outcome. Source review and exactharness binding must precede the sole finite execution; no old494/490 complete cases, new native or Expected are permitted here.
+
+This additive archive preserves full runnable candidate Source, SPEC, Source/API/compile/conservation records and the pre-outcome plan. Existing accepted495 full Source and invocation remain in `../phase494-496-whelp-source-accepted-and-family-plan`; the direct public package remains489 pending a later combined distribution. No unique original/evidence files were removed or moved.

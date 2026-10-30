@@ -71,3 +71,7 @@ Reuse the fixed read-only baseline/pool; do not create a full Game copy per case
 ## Whelp/Squirrel Source accepted after preserved first error
 
 [494–496 acceptedSource](../work_in_progress/phase494-496-whelp-source-accepted-and-family-plan/README.md) contains full standalone495Source15, the presealed request and an invocation requiring no old cloud files. One receiver-only descriptor fix, fourteen modules/allbusiness algorithms conserved; independentremaining05–17PASS joined with old01–04 gives17groups without repeats. Sole natural22-item case:279events375draws26Timers;WhelpMana removal7/Squirrelsteal8/sharedPet speed0.6. No new native/Expected run. Formal75/generalKing remain;catalog78 only registered. Direct public package remains489 until a later combined distribution. Subsequent496 three-Whelp group is frozen static design only; its paused draft remains.
+
+## Three-Whelp shared Source pending finite validation
+
+[496–498 Source/plan](../work_in_progress/phase496-498-three-whelp-source-and-plan/README.md) preserves accepted design, complete497candidate15Source and predeclared29-item498input. Two files changed/thirteen exact relative to accepted495; authorcompile-only. Ruby64/Emerald197/Sapphire199 share the same closedexperimental nonKing API. Catalog81 is candidate registration, formal75 unchanged. Independent498 functional acceptance is pending; no new original capture. Currentaccepted495 and prior failure evidence remain intact.

@@ -1,0 +1,3145 @@
+{
+  "schema": "phase497-source-conservation/1",
+  "modified_files": [
+    "headless.py",
+    "native_replay_v8/engine.py"
+  ],
+  "conserved_files": [
+    "godot_pcg_integer.py",
+    "native_replay_v7/__init__.py",
+    "native_replay_v7/frame_driver.py",
+    "native_replay_v7/timer_runtime.py",
+    "native_replay_v8/__init__.py",
+    "native_replay_v8/__main__.py",
+    "native_replay_v8/compare.py",
+    "native_replay_v8/genuine.py",
+    "native_replay_v8/histories.py",
+    "native_replay_v8/observed.py",
+    "native_replay_v8/randomness.py",
+    "native_replay_v8/state.py",
+    "original_rng.py"
+  ],
+  "functions": {
+    "headless.py": {
+      "changed": [
+        "HeadlessBattle._result_view",
+        "initialize_experimental_nonking",
+        "validate_experimental_nonking_layout"
+      ],
+      "exact": [
+        "derive_stream_seeds",
+        "validate_layout",
+        "validate_squirrel_layout",
+        "_validate_layout_items",
+        "_validate_king_fresh_domain",
+        "_fresh_king_facts",
+        "source_sort",
+        "source_sort.adjust_heap",
+        "source_sort.heap_sort",
+        "source_sort.intro",
+        "_inventory_items",
+        "preparation_order",
+        "_item_siblings",
+        "source_runtime_topology",
+        "source_runtime_topology.node",
+        "runtime_inputs",
+        "CombatRandom.__init__",
+        "CombatRandom._label",
+        "CombatRandom.randf",
+        "CombatRandom.randf_range",
+        "CombatRandom.randi_range",
+        "CombatRandom.global_u32",
+        "CombatRandom.snapshot",
+        "HeadlessBattle.__init__",
+        "HeadlessBattle.initialization",
+        "HeadlessBattle.done",
+        "HeadlessBattle.step",
+        "HeadlessBattle.snapshot",
+        "HeadlessBattle.run",
+        "HeadlessBattle.result",
+        "initialize",
+        "initialize_squirrel",
+        "_initialize_fixture",
+        "source_pure_runtime_topology",
+        "source_pure_runtime_topology.add",
+        "_source_pure_snapshot_view",
+        "run_batch",
+        "main"
+      ],
+      "before": {
+        "derive_stream_seeds": {
+          "line": 39,
+          "end_line": 45,
+          "sha256": "dc0419fd00943aec7960e5b32ebfc7a8514a1aa20e7c69cd7e53f138f7b2037e"
+        },
+        "validate_layout": {
+          "line": 48,
+          "end_line": 49,
+          "sha256": "042c28acb02c27b9f71af86debbeb3cb92e5a3900cad26b3923aee275f530a1c"
+        },
+        "validate_squirrel_layout": {
+          "line": 52,
+          "end_line": 59,
+          "sha256": "e3560f7384f597d8bf4647d23c8badb22e18d2fde224a9c2efbfd88e616834b9"
+        },
+        "validate_experimental_nonking_layout": {
+          "line": 62,
+          "end_line": 69,
+          "sha256": "11f77e3478a8ee75559ccfab98c55d37b900847bee374365434be110dbb2ac46"
+        },
+        "_validate_layout_items": {
+          "line": 72,
+          "end_line": 108,
+          "sha256": "032f1fe000162833a2115962adc3ad40dc99dd1fdc64f4155c258af752b6c6ca"
+        },
+        "_validate_king_fresh_domain": {
+          "line": 111,
+          "end_line": 113,
+          "sha256": "082f1e0e2fb475c880a536d252e5caa2fd979e2c55a93a501cbc8a85c534c7cb"
+        },
+        "_fresh_king_facts": {
+          "line": 116,
+          "end_line": 117,
+          "sha256": "57d9f8c7c3873894ee86447747b0e0fe0aaf8d153518113439e57d2b9bf6b8ec"
+        },
+        "source_sort": {
+          "line": 120,
+          "end_line": 187,
+          "sha256": "fd59d16b6bcdbbdfd4bd580ab275a055e84e1c67be4d3a6d90cc0825488d4bae"
+        },
+        "source_sort.adjust_heap": {
+          "line": 124,
+          "end_line": 142,
+          "sha256": "5a854510c3ed182b680837b94f5612cc9e17f4414020dd75ceff015d7cd9c9f4"
+        },
+        "source_sort.heap_sort": {
+          "line": 144,
+          "end_line": 152,
+          "sha256": "44e78d405300ee5e899202c8799b97f9a8a7aafdc480c0f38a6e06352f10b3d1"
+        },
+        "source_sort.intro": {
+          "line": 154,
+          "end_line": 177,
+          "sha256": "4fdba7d23f3dd2ef18ebd6abd49cbb492629516fca4fda50d2efc3ddb9a11787"
+        },
+        "_inventory_items": {
+          "line": 190,
+          "end_line": 195,
+          "sha256": "68bc8dc2bcb00fa0280b307c516c98ce7a032d872e709ee1a9690768a31ee5eb"
+        },
+        "preparation_order": {
+          "line": 198,
+          "end_line": 207,
+          "sha256": "8dadb28e8ed075d04fdd9a4ae20c771e01a76fdefe684b02711683142611e8b0"
+        },
+        "_item_siblings": {
+          "line": 210,
+          "end_line": 225,
+          "sha256": "877c27353e8fd2b73d5070bf8ad1b1f67256a0c293e4e0fe9ccbee472d6824cc"
+        },
+        "source_runtime_topology": {
+          "line": 228,
+          "end_line": 277,
+          "sha256": "49957985e5985014591c60c18ca8941c835fc9b3d00ff17d59ef27b51fa836ff"
+        },
+        "source_runtime_topology.node": {
+          "line": 236,
+          "end_line": 241,
+          "sha256": "966eaac271cbd028f092695b8ac985de2a9c85a7c84c8876a3ad2b24e59df18c"
+        },
+        "runtime_inputs": {
+          "line": 280,
+          "end_line": 298,
+          "sha256": "8f4d8d4ff5462049d210a2ac58c3598b84c2d12edd0086186d48e8121a59021a"
+        },
+        "CombatRandom.__init__": {
+          "line": 304,
+          "end_line": 316,
+          "sha256": "3be8c48853d18238b3e2f956f145eee7f391fb165c4bd7ab0cb6a8cc7fe7aa4f"
+        },
+        "CombatRandom._label": {
+          "line": 319,
+          "end_line": 321,
+          "sha256": "7a9e78f70fa456ede24133702bb5eafea8aaf1d62ab0fc13275195c10c757a6c"
+        },
+        "CombatRandom.randf": {
+          "line": 323,
+          "end_line": 327,
+          "sha256": "66bff6ea05f2f46e10dfe28face1b181a055d62c3a2d1fd85b7ba6f61c82e9e3"
+        },
+        "CombatRandom.randf_range": {
+          "line": 329,
+          "end_line": 333,
+          "sha256": "303a8874243b5f43aba9e27d50c7f07667162b3362a750a817ab7fd5f2724622"
+        },
+        "CombatRandom.randi_range": {
+          "line": 335,
+          "end_line": 339,
+          "sha256": "5f92c5a437fac2b296d39f42af60076ef682aaf89b5e8bf5db26ef0faffd7f3d"
+        },
+        "CombatRandom.global_u32": {
+          "line": 341,
+          "end_line": 350,
+          "sha256": "6e9cb3fbc3745e55bb927f9e7d8769175d0b2ccaf3c379ef7e89f41ad3a4f1e0"
+        },
+        "CombatRandom.snapshot": {
+          "line": 352,
+          "end_line": 356,
+          "sha256": "d3c4d57bcbd7fab0cef286178af8bde8ff87348f6ad980e446e5ec1adfcd79dd"
+        },
+        "HeadlessBattle.__init__": {
+          "line": 360,
+          "end_line": 362,
+          "sha256": "573a98e77dd0d5fa2c5bfc8e09bac881209610b9888e44ce69369b75dcc4d968"
+        },
+        "HeadlessBattle.initialization": {
+          "line": 365,
+          "end_line": 366,
+          "sha256": "6a0023abd36c7ea5b9ff37b44390939ea022af8b245b74c4fcad1312ffe537f7"
+        },
+        "HeadlessBattle.done": {
+          "line": 369,
+          "end_line": 370,
+          "sha256": "c65ffdcc8568828af535dce933c391d48099fb63c929f12dd1d9909a7a8c67a0"
+        },
+        "HeadlessBattle.step": {
+          "line": 372,
+          "end_line": 375,
+          "sha256": "c7ed7c112a0a5fc2e5a74527304da997a0d5c62e81681e3baac9724a95b94e71"
+        },
+        "HeadlessBattle.snapshot": {
+          "line": 377,
+          "end_line": 384,
+          "sha256": "e82c483b2293a15e44b95b587c108d7bba6c9113164d310649f27f39d55881ff"
+        },
+        "HeadlessBattle.run": {
+          "line": 386,
+          "end_line": 390,
+          "sha256": "109bfc6fca092d0b29170499c575797a1d62ba3e19a497cea4e10eabcefdfd9d"
+        },
+        "HeadlessBattle.result": {
+          "line": 392,
+          "end_line": 394,
+          "sha256": "ae01c8cba154f20f50e676efa1e0cbda9c453cc81214e49ab69eb272934d49f4"
+        },
+        "HeadlessBattle._result_view": {
+          "line": 396,
+          "end_line": 462,
+          "sha256": "1e50705c9f1fc1a38313cb3f5d0c3848bb439ec766caaf556db8281c91657e2f"
+        },
+        "initialize": {
+          "line": 465,
+          "end_line": 469,
+          "sha256": "21988cf280c7ca5edc55b96e94256a052b0952312deb20aafc06ae4491b048de"
+        },
+        "initialize_squirrel": {
+          "line": 472,
+          "end_line": 476,
+          "sha256": "31b44d0bb9ffdee1ccd4c0f6af30f0c51789b47b6236359eb9943bff503664fe"
+        },
+        "initialize_experimental_nonking": {
+          "line": 479,
+          "end_line": 491,
+          "sha256": "e0406b8be61056c0b04492376ba6458f8d0e64c4b676b24a70c4e3b6960c28c8"
+        },
+        "_initialize_fixture": {
+          "line": 494,
+          "end_line": 529,
+          "sha256": "0194bdccb3f7f9bf03021766834d38b114bdfdbf59317323fb94564ef8967cd5"
+        },
+        "source_pure_runtime_topology": {
+          "line": 532,
+          "end_line": 557,
+          "sha256": "92c01707e48d4306c453c4508e2fabec11facd16caa9e69db36ca0937f5da4a1"
+        },
+        "source_pure_runtime_topology.add": {
+          "line": 535,
+          "end_line": 535,
+          "sha256": "e81decfda7027afe14c8fa9f31cd85b0a56fe702984aa6eac47a00a74f103567"
+        },
+        "_source_pure_snapshot_view": {
+          "line": 560,
+          "end_line": 564,
+          "sha256": "0aefeb42efa08339023cb2414e11d3ce2c439fbc64dc75235f8b4400acffb1c3"
+        },
+        "run_batch": {
+          "line": 567,
+          "end_line": 599,
+          "sha256": "b7f7073bc01eae3ef4dddf6a41085d5129c62ffb0fc52052707aa9ca26da5148"
+        },
+        "main": {
+          "line": 602,
+          "end_line": 617,
+          "sha256": "1f049c8d72a9b3060e928c3a195b1e510f251b7ec5951297031de8ad2ffb1153"
+        }
+      },
+      "after": {
+        "derive_stream_seeds": {
+          "line": 39,
+          "end_line": 45,
+          "sha256": "dc0419fd00943aec7960e5b32ebfc7a8514a1aa20e7c69cd7e53f138f7b2037e"
+        },
+        "validate_layout": {
+          "line": 48,
+          "end_line": 49,
+          "sha256": "042c28acb02c27b9f71af86debbeb3cb92e5a3900cad26b3923aee275f530a1c"
+        },
+        "validate_squirrel_layout": {
+          "line": 52,
+          "end_line": 59,
+          "sha256": "e3560f7384f597d8bf4647d23c8badb22e18d2fde224a9c2efbfd88e616834b9"
+        },
+        "validate_experimental_nonking_layout": {
+          "line": 62,
+          "end_line": 69,
+          "sha256": "eb5b2c900179f4a2bc062af5a75c27cbca41f677cf6baae8585afee676d2471c"
+        },
+        "_validate_layout_items": {
+          "line": 72,
+          "end_line": 108,
+          "sha256": "032f1fe000162833a2115962adc3ad40dc99dd1fdc64f4155c258af752b6c6ca"
+        },
+        "_validate_king_fresh_domain": {
+          "line": 111,
+          "end_line": 113,
+          "sha256": "082f1e0e2fb475c880a536d252e5caa2fd979e2c55a93a501cbc8a85c534c7cb"
+        },
+        "_fresh_king_facts": {
+          "line": 116,
+          "end_line": 117,
+          "sha256": "57d9f8c7c3873894ee86447747b0e0fe0aaf8d153518113439e57d2b9bf6b8ec"
+        },
+        "source_sort": {
+          "line": 120,
+          "end_line": 187,
+          "sha256": "fd59d16b6bcdbbdfd4bd580ab275a055e84e1c67be4d3a6d90cc0825488d4bae"
+        },
+        "source_sort.adjust_heap": {
+          "line": 124,
+          "end_line": 142,
+          "sha256": "5a854510c3ed182b680837b94f5612cc9e17f4414020dd75ceff015d7cd9c9f4"
+        },
+        "source_sort.heap_sort": {
+          "line": 144,
+          "end_line": 152,
+          "sha256": "44e78d405300ee5e899202c8799b97f9a8a7aafdc480c0f38a6e06352f10b3d1"
+        },
+        "source_sort.intro": {
+          "line": 154,
+          "end_line": 177,
+          "sha256": "4fdba7d23f3dd2ef18ebd6abd49cbb492629516fca4fda50d2efc3ddb9a11787"
+        },
+        "_inventory_items": {
+          "line": 190,
+          "end_line": 195,
+          "sha256": "68bc8dc2bcb00fa0280b307c516c98ce7a032d872e709ee1a9690768a31ee5eb"
+        },
+        "preparation_order": {
+          "line": 198,
+          "end_line": 207,
+          "sha256": "8dadb28e8ed075d04fdd9a4ae20c771e01a76fdefe684b02711683142611e8b0"
+        },
+        "_item_siblings": {
+          "line": 210,
+          "end_line": 225,
+          "sha256": "877c27353e8fd2b73d5070bf8ad1b1f67256a0c293e4e0fe9ccbee472d6824cc"
+        },
+        "source_runtime_topology": {
+          "line": 228,
+          "end_line": 277,
+          "sha256": "49957985e5985014591c60c18ca8941c835fc9b3d00ff17d59ef27b51fa836ff"
+        },
+        "source_runtime_topology.node": {
+          "line": 236,
+          "end_line": 241,
+          "sha256": "966eaac271cbd028f092695b8ac985de2a9c85a7c84c8876a3ad2b24e59df18c"
+        },
+        "runtime_inputs": {
+          "line": 280,
+          "end_line": 298,
+          "sha256": "8f4d8d4ff5462049d210a2ac58c3598b84c2d12edd0086186d48e8121a59021a"
+        },
+        "CombatRandom.__init__": {
+          "line": 304,
+          "end_line": 316,
+          "sha256": "3be8c48853d18238b3e2f956f145eee7f391fb165c4bd7ab0cb6a8cc7fe7aa4f"
+        },
+        "CombatRandom._label": {
+          "line": 319,
+          "end_line": 321,
+          "sha256": "7a9e78f70fa456ede24133702bb5eafea8aaf1d62ab0fc13275195c10c757a6c"
+        },
+        "CombatRandom.randf": {
+          "line": 323,
+          "end_line": 327,
+          "sha256": "66bff6ea05f2f46e10dfe28face1b181a055d62c3a2d1fd85b7ba6f61c82e9e3"
+        },
+        "CombatRandom.randf_range": {
+          "line": 329,
+          "end_line": 333,
+          "sha256": "303a8874243b5f43aba9e27d50c7f07667162b3362a750a817ab7fd5f2724622"
+        },
+        "CombatRandom.randi_range": {
+          "line": 335,
+          "end_line": 339,
+          "sha256": "5f92c5a437fac2b296d39f42af60076ef682aaf89b5e8bf5db26ef0faffd7f3d"
+        },
+        "CombatRandom.global_u32": {
+          "line": 341,
+          "end_line": 350,
+          "sha256": "6e9cb3fbc3745e55bb927f9e7d8769175d0b2ccaf3c379ef7e89f41ad3a4f1e0"
+        },
+        "CombatRandom.snapshot": {
+          "line": 352,
+          "end_line": 356,
+          "sha256": "d3c4d57bcbd7fab0cef286178af8bde8ff87348f6ad980e446e5ec1adfcd79dd"
+        },
+        "HeadlessBattle.__init__": {
+          "line": 360,
+          "end_line": 362,
+          "sha256": "573a98e77dd0d5fa2c5bfc8e09bac881209610b9888e44ce69369b75dcc4d968"
+        },
+        "HeadlessBattle.initialization": {
+          "line": 365,
+          "end_line": 366,
+          "sha256": "6a0023abd36c7ea5b9ff37b44390939ea022af8b245b74c4fcad1312ffe537f7"
+        },
+        "HeadlessBattle.done": {
+          "line": 369,
+          "end_line": 370,
+          "sha256": "c65ffdcc8568828af535dce933c391d48099fb63c929f12dd1d9909a7a8c67a0"
+        },
+        "HeadlessBattle.step": {
+          "line": 372,
+          "end_line": 375,
+          "sha256": "c7ed7c112a0a5fc2e5a74527304da997a0d5c62e81681e3baac9724a95b94e71"
+        },
+        "HeadlessBattle.snapshot": {
+          "line": 377,
+          "end_line": 384,
+          "sha256": "e82c483b2293a15e44b95b587c108d7bba6c9113164d310649f27f39d55881ff"
+        },
+        "HeadlessBattle.run": {
+          "line": 386,
+          "end_line": 390,
+          "sha256": "109bfc6fca092d0b29170499c575797a1d62ba3e19a497cea4e10eabcefdfd9d"
+        },
+        "HeadlessBattle.result": {
+          "line": 392,
+          "end_line": 394,
+          "sha256": "ae01c8cba154f20f50e676efa1e0cbda9c453cc81214e49ab69eb272934d49f4"
+        },
+        "HeadlessBattle._result_view": {
+          "line": 396,
+          "end_line": 462,
+          "sha256": "47d01c4270f7b74d7f020f0dae0facc16630ee4924c9af8c0217d6bec6e8654b"
+        },
+        "initialize": {
+          "line": 465,
+          "end_line": 469,
+          "sha256": "21988cf280c7ca5edc55b96e94256a052b0952312deb20aafc06ae4491b048de"
+        },
+        "initialize_squirrel": {
+          "line": 472,
+          "end_line": 476,
+          "sha256": "31b44d0bb9ffdee1ccd4c0f6af30f0c51789b47b6236359eb9943bff503664fe"
+        },
+        "initialize_experimental_nonking": {
+          "line": 479,
+          "end_line": 491,
+          "sha256": "d81be7064379ba0194449f6a5b042139fe8589ccc022fa4af6fdd0f8b5a3fc0f"
+        },
+        "_initialize_fixture": {
+          "line": 494,
+          "end_line": 529,
+          "sha256": "0194bdccb3f7f9bf03021766834d38b114bdfdbf59317323fb94564ef8967cd5"
+        },
+        "source_pure_runtime_topology": {
+          "line": 532,
+          "end_line": 557,
+          "sha256": "92c01707e48d4306c453c4508e2fabec11facd16caa9e69db36ca0937f5da4a1"
+        },
+        "source_pure_runtime_topology.add": {
+          "line": 535,
+          "end_line": 535,
+          "sha256": "e81decfda7027afe14c8fa9f31cd85b0a56fe702984aa6eac47a00a74f103567"
+        },
+        "_source_pure_snapshot_view": {
+          "line": 560,
+          "end_line": 564,
+          "sha256": "0aefeb42efa08339023cb2414e11d3ce2c439fbc64dc75235f8b4400acffb1c3"
+        },
+        "run_batch": {
+          "line": 567,
+          "end_line": 599,
+          "sha256": "b7f7073bc01eae3ef4dddf6a41085d5129c62ffb0fc52052707aa9ca26da5148"
+        },
+        "main": {
+          "line": 602,
+          "end_line": 617,
+          "sha256": "1f049c8d72a9b3060e928c3a195b1e510f251b7ec5951297031de8ad2ffb1153"
+        }
+      }
+    },
+    "native_replay_v8/engine.py": {
+      "changed": [
+        "CombatEngine.activate_from_checkpoint",
+        "CombatEngine.pre_item_damage"
+      ],
+      "exact": [
+        "model_source_hashes",
+        "assert_model_source_stable",
+        "fresh_buff_fields",
+        "starter_fixture",
+        "transformed_cells",
+        "ordered_occupied_cells",
+        "occupied_cells",
+        "_fixture_from_custom_side",
+        "_fixture_from_custom_side.native_integer",
+        "fixture_from_custom_opponent",
+        "validate_fixture",
+        "ItemState.definition",
+        "ItemState.has_cooldown",
+        "ItemState.logs_cooldown",
+        "ItemState.can_activate",
+        "ItemState.can_damage",
+        "opponent_inventory_order",
+        "opponent_inventory_order.before",
+        "opponent_inventory_order.adjust_heap",
+        "opponent_inventory_order.heap_sort",
+        "opponent_inventory_order.intro",
+        "_be_float",
+        "_float_bits",
+        "_keys",
+        "_has_king",
+        "_king_particle_facts",
+        "validate_source_king_domain",
+        "source_king_policy",
+        "source_king_fresh_defaults",
+        "source_king_topology",
+        "source_king_topology.node",
+        "_source_king_equal",
+        "_source_king_data",
+        "source_king_runtime_inputs",
+        "_validate_source_king_runtime",
+        "_source_king_profile",
+        "_has_rage",
+        "_required_roles",
+        "_integration_domain",
+        "_validate_processing_inputs",
+        "_validate_runtime_nodes",
+        "validate_runtime_inputs",
+        "_synthetic_runtime_data",
+        "synthetic_runtime_inputs",
+        "synthetic_king_runtime_inputs",
+        "build_runtime_scaffold",
+        "EngineFrameDriver.__init__",
+        "EngineFrameDriver._util_physics",
+        "EngineFrameDriver._util_idle",
+        "EngineFrameDriver.snapshot",
+        "Fixed60Passes.__len__",
+        "Fixed60Passes.__getitem__",
+        "_source_king_bootstrap_clock",
+        "HeadlessKingFrameDriver.__init__",
+        "HeadlessKingFrameDriver.complete",
+        "CombatEngine.__init__",
+        "CombatEngine._validate_source_pure_state",
+        "CombatEngine._validate_pure441_constructed",
+        "CombatEngine._validate_pure441_prepared",
+        "CombatEngine._pure_business_snapshot",
+        "CombatEngine._pure_api_before",
+        "CombatEngine._pure_api_after",
+        "CombatEngine._set_source_processing",
+        "CombatEngine._set_item_cooldown",
+        "CombatEngine._integration_callback",
+        "CombatEngine._source_noninterfering_callback",
+        "CombatEngine._integration_node",
+        "CombatEngine._integration_aux_timer",
+        "CombatEngine._integration_timer",
+        "CombatEngine._integration_fx_snapshot",
+        "CombatEngine._connect_runtime_callbacks",
+        "CombatEngine._public_timer",
+        "CombatEngine._public_timer.primitive",
+        "CombatEngine._timer_snapshot",
+        "CombatEngine._start_timer",
+        "CombatEngine._stop_timer",
+        "CombatEngine._timer_timeout",
+        "CombatEngine._full_timer",
+        "CombatEngine._king_ordinary",
+        "CombatEngine.king_prepare",
+        "CombatEngine.king_set_state",
+        "CombatEngine.king_effect",
+        "CombatEngine.make_invulnerable",
+        "CombatEngine.invu_timeout",
+        "CombatEngine.king_buff_timeout",
+        "CombatEngine._ordered_stars",
+        "CombatEngine._fresh_goobert_targets",
+        "CombatEngine.give_stacks_temporary",
+        "CombatEngine.change_current_log_show_label",
+        "CombatEngine.buff_timeout",
+        "CombatEngine._blood_effect_domain",
+        "CombatEngine.take_effect_damage",
+        "CombatEngine.steal_life",
+        "CombatEngine.blood_effect",
+        "CombatEngine.carrot_effect",
+        "CombatEngine.carrot_particle_timeout",
+        "CombatEngine.light_effect",
+        "CombatEngine.light_particle_timeout",
+        "CombatEngine._runtime_projection",
+        "CombatEngine.mark_schedule",
+        "CombatEngine.allocate_event",
+        "CombatEngine.emit",
+        "CombatEngine.set_logging_mode",
+        "CombatEngine.emit_event",
+        "CombatEngine._emit_and_log",
+        "CombatEngine.flush_logging_queue",
+        "CombatEngine.adjust_cooldown",
+        "CombatEngine.ruby_effect",
+        "CombatEngine.prepare_only",
+        "CombatEngine.inside_items",
+        "CombatEngine.empty_affected_cells",
+        "CombatEngine.new_caller_target_caches",
+        "CombatEngine.new_caller_target_caches.eligible",
+        "CombatEngine.new_steel_secondary_caches",
+        "CombatEngine.new_steel_secondary_caches.eligible",
+        "CombatEngine.affected_items",
+        "CombatEngine.add_speed",
+        "CombatEngine.add_bonus_damage",
+        "CombatEngine.damage_bounds",
+        "CombatEngine.damage_bounds.source_round",
+        "CombatEngine.change_varying_damage",
+        "CombatEngine.add_max_damage",
+        "CombatEngine.on_stack_changed",
+        "CombatEngine.on_mana_changed",
+        "CombatEngine.change_debuff_resistance",
+        "CombatEngine.change_debuff_reflection",
+        "CombatEngine.give_max_health",
+        "CombatEngine._buff_record",
+        "CombatEngine.change_resist_chance",
+        "CombatEngine.change_protection_chance",
+        "CombatEngine.change_buff_protection_chance",
+        "CombatEngine.change_debuff_protection_chance",
+        "CombatEngine.change_reflect_chance",
+        "CombatEngine.change_resist_stacks",
+        "CombatEngine.change_buff_protect_stacks",
+        "CombatEngine.change_amplification",
+        "CombatEngine.give_buff_power",
+        "CombatEngine._stack_metric",
+        "CombatEngine.stack_event",
+        "CombatEngine._buff_roll",
+        "CombatEngine.character_gain_stacks",
+        "CombatEngine.gain_stacks_temporary",
+        "CombatEngine._gain_permanent_stacks",
+        "CombatEngine._gain_stacks",
+        "CombatEngine.remove_stack",
+        "CombatEngine.use_stack",
+        "CombatEngine.try_use_mana",
+        "CombatEngine.lucky_changed",
+        "CombatEngine.lose_health",
+        "CombatEngine.health_to_block",
+        "CombatEngine.give_stack",
+        "CombatEngine._fraction_round",
+        "CombatEngine.get_stack_fraction",
+        "CombatEngine.multiply_buffs_limit",
+        "CombatEngine.remove_buffs_fraction",
+        "CombatEngine.steal_stack",
+        "CombatEngine.steal_buffs_fraction",
+        "CombatEngine._stack_picker_inputs",
+        "CombatEngine._stack_name",
+        "CombatEngine.pick_random_stacks",
+        "CombatEngine.pick_random_stacks_to_give",
+        "CombatEngine.cleanse_random_debuffs",
+        "CombatEngine.give_random_buffs",
+        "CombatEngine.use_random_buffs",
+        "CombatEngine.inflict_random_debuffs",
+        "CombatEngine.remove_random_buffs",
+        "CombatEngine.steal_random_buff",
+        "CombatEngine.give_lucky",
+        "CombatEngine.heal",
+        "CombatEngine.on_character_healed",
+        "CombatEngine.on_opponent_heal",
+        "CombatEngine.give_stamina",
+        "CombatEngine.activate",
+        "CombatEngine.on_goobert_item_activated",
+        "CombatEngine.get_most_stacks",
+        "CombatEngine.give_most_buffs",
+        "CombatEngine.special_goobert_effect",
+        "CombatEngine.rainbow_effect",
+        "CombatEngine.roll_item_chance",
+        "CombatEngine.drain_stamina",
+        "CombatEngine.extra_attack",
+        "CombatEngine.weapon_attack",
+        "CombatEngine.stun",
+        "CombatEngine.end_stun",
+        "CombatEngine.set_item_state",
+        "CombatEngine.trigger_potion",
+        "CombatEngine.consume_potion",
+        "CombatEngine.on_character_attacked",
+        "CombatEngine.is_battle_raging",
+        "CombatEngine.start_battle_rage",
+        "CombatEngine.end_battle_rage",
+        "CombatEngine.on_battle_rage",
+        "CombatEngine._damage_after_resistance",
+        "CombatEngine.on_character_damaged",
+        "CombatEngine.on_item_dealt_damage",
+        "CombatEngine.shield_before_damage",
+        "CombatEngine.shield_after_attack",
+        "CombatEngine.speed",
+        "CombatEngine.trigger",
+        "CombatEngine.attack_effect_count",
+        "CombatEngine.late_item_damage",
+        "CombatEngine.attack",
+        "CombatEngine.death",
+        "CombatEngine.fatigue_tick",
+        "CombatEngine.damage_nonitem",
+        "CombatEngine.step",
+        "CombatEngine.finish",
+        "CombatEngine.snapshot",
+        "CombatEngine.event_references",
+        "CombatEngine.event_references.visit",
+        "CombatEngine.result",
+        "CombatEngine._source_king_budget",
+        "CombatEngine._source_king_quantum",
+        "CombatEngine._run_source_king",
+        "CombatEngine.run",
+        "_single_king_genuine_profile",
+        "_validate_single_king_initials",
+        "_validate_single_king_topology",
+        "_validate_single_king_topology.child",
+        "_validate_single_king_processing_inputs",
+        "_pure441_profile",
+        "_pure441_roles",
+        "_validate_pure441_runtime",
+        "_assert_pure441_timer",
+        "_build_pure441_scaffold",
+        "_pure441_variant",
+        "validate_source_pure_business_domain",
+        "_source_pure_profile",
+        "source_pure_policy",
+        "source_pure_business_defaults",
+        "_source_pure_roles",
+        "source_pure_topology",
+        "source_pure_topology.add",
+        "_source_pure_data",
+        "source_pure_runtime_inputs",
+        "_validate_source_pure_runtime",
+        "_build_source_pure_scaffold"
+      ],
+      "before": {
+        "model_source_hashes": {
+          "line": 25,
+          "end_line": 29,
+          "sha256": "828d7e6979d3b0c634ccc5f66b5a74818d79c3ffa9da67d56b5a94d37b5ee0e2"
+        },
+        "assert_model_source_stable": {
+          "line": 35,
+          "end_line": 39,
+          "sha256": "e3a24f6091617f20cdd3b40d29cb392013fcb3e5c99040d75139df7051180b0a"
+        },
+        "fresh_buff_fields": {
+          "line": 221,
+          "end_line": 224,
+          "sha256": "fb8df6b49227c4765a8f9198106ec6a3e45605a636afdda904d636a3fe4329c8"
+        },
+        "starter_fixture": {
+          "line": 230,
+          "end_line": 238,
+          "sha256": "3c788ce1bf933dff2822801291c924bc2afcee07152ed2aca0075c3076154adc"
+        },
+        "transformed_cells": {
+          "line": 241,
+          "end_line": 253,
+          "sha256": "e032f54e77134809d3fc34919c257fd158af84ca553dc44a2c21ad94507ed4f8"
+        },
+        "ordered_occupied_cells": {
+          "line": 256,
+          "end_line": 261,
+          "sha256": "8f1f33041e881a051976e53aa6543cfe886cc596f45329eae4632bce35285673"
+        },
+        "occupied_cells": {
+          "line": 264,
+          "end_line": 265,
+          "sha256": "84df07760c210cda81e0cdeef3a4f729f24f80981879289ea5f862547fdfa07b"
+        },
+        "_fixture_from_custom_side": {
+          "line": 268,
+          "end_line": 298,
+          "sha256": "4f56a1c456faeb039b1754865355b2e739ac4194cedc8137a14ba6c462710fa0"
+        },
+        "_fixture_from_custom_side.native_integer": {
+          "line": 273,
+          "end_line": 277,
+          "sha256": "84109916d943783e77700a5611e55e63b51bcf66334bc7aefe1eb62d0214ba76"
+        },
+        "fixture_from_custom_opponent": {
+          "line": 301,
+          "end_line": 328,
+          "sha256": "dd7bb48d77d63de63d1bdc3ea6558dd0225276246a7167f5e65f409018a9bea0"
+        },
+        "validate_fixture": {
+          "line": 331,
+          "end_line": 383,
+          "sha256": "e679668ed31504cf9e6ec341729aaee1c881a69e4f695827646272b5f2aab5fe"
+        },
+        "ItemState.definition": {
+          "line": 491,
+          "end_line": 492,
+          "sha256": "e329969110faa56ae2b2bf6277503861886117a5ec2c1aa26eea13e4515617a5"
+        },
+        "ItemState.has_cooldown": {
+          "line": 495,
+          "end_line": 496,
+          "sha256": "9067971f7fa3928897019d5e93db062efadc25688922cf64983a585ec428a77b"
+        },
+        "ItemState.logs_cooldown": {
+          "line": 499,
+          "end_line": 500,
+          "sha256": "ed418b12fe6086eb32200b0da94500d31b4f09673a015dad7434147255eb5dd5"
+        },
+        "ItemState.can_activate": {
+          "line": 503,
+          "end_line": 504,
+          "sha256": "0ca36c7f804023772495137d6b70730216c41e7d721621114421acb14d8787fe"
+        },
+        "ItemState.can_damage": {
+          "line": 507,
+          "end_line": 508,
+          "sha256": "966d2099bd1431628326a93a6560e1c353336993fb791a5a54eaa44fc1e49336"
+        },
+        "opponent_inventory_order": {
+          "line": 511,
+          "end_line": 587,
+          "sha256": "3565dbf939f21c670308362b62eb609603bf31e2832eb8b8fd2e069810cb438e"
+        },
+        "opponent_inventory_order.before": {
+          "line": 519,
+          "end_line": 520,
+          "sha256": "9151891780ce13fbf3c3462d3306ff59667f12c03f101d42c641aede3b9bb1a1"
+        },
+        "opponent_inventory_order.adjust_heap": {
+          "line": 522,
+          "end_line": 540,
+          "sha256": "5a854510c3ed182b680837b94f5612cc9e17f4414020dd75ceff015d7cd9c9f4"
+        },
+        "opponent_inventory_order.heap_sort": {
+          "line": 542,
+          "end_line": 550,
+          "sha256": "44e78d405300ee5e899202c8799b97f9a8a7aafdc480c0f38a6e06352f10b3d1"
+        },
+        "opponent_inventory_order.intro": {
+          "line": 552,
+          "end_line": 575,
+          "sha256": "4fdba7d23f3dd2ef18ebd6abd49cbb492629516fca4fda50d2efc3ddb9a11787"
+        },
+        "_be_float": {
+          "line": 598,
+          "end_line": 604,
+          "sha256": "e3b33fb3e9312e2db3ea33c3b0b45a2f895421cbd725c2e1f4d05452dd92ed21"
+        },
+        "_float_bits": {
+          "line": 607,
+          "end_line": 610,
+          "sha256": "564291eebbf37bfd31fa1e3ef0e90bb3847eda8108a711ca029a36a7d8a8c5b8"
+        },
+        "_keys": {
+          "line": 613,
+          "end_line": 615,
+          "sha256": "fc83dc2c40f5bc53b9982f297a3c76837555978d832dc0561668912aa7366436"
+        },
+        "_has_king": {
+          "line": 629,
+          "end_line": 630,
+          "sha256": "af8df30401e8bf15c427342d85a93c40421144a04349daa68a19a32281f54100"
+        },
+        "_king_particle_facts": {
+          "line": 633,
+          "end_line": 640,
+          "sha256": "28dafc10323699ad669cd7de66ff4a6f5ed034449ec3f0fda8225263e362210e"
+        },
+        "validate_source_king_domain": {
+          "line": 650,
+          "end_line": 661,
+          "sha256": "c5f1ab4b576575179f7314073efd17bd4d542de55d05d2af013daf49997a32be"
+        },
+        "source_king_policy": {
+          "line": 664,
+          "end_line": 671,
+          "sha256": "e3682ecbc58a81ece16733821c1d1b6d5ffbc22f30408970ad9d6362c1b753e9"
+        },
+        "source_king_fresh_defaults": {
+          "line": 674,
+          "end_line": 685,
+          "sha256": "b5e0be53d9cbf51cb9b90f1231adce31ec5460fb42e78e94da6ccc770e93aecd"
+        },
+        "source_king_topology": {
+          "line": 688,
+          "end_line": 731,
+          "sha256": "e1997c51d5f42423a2fd8872e8927670761ceeda335a088ebed95563af30f8f8"
+        },
+        "source_king_topology.node": {
+          "line": 693,
+          "end_line": 698,
+          "sha256": "d6a237665e6ec863759f75894325e9b5d67fd17d01c8e83e2b82221f30a21d35"
+        },
+        "_source_king_equal": {
+          "line": 734,
+          "end_line": 744,
+          "sha256": "b3da588771519f9e374c24923be96d15ac04e59a592e99f5944ade16736ccc86"
+        },
+        "_source_king_data": {
+          "line": 747,
+          "end_line": 764,
+          "sha256": "9a1c8e4e7e3799c61fa378247b6803f4af03fe9b02960ab42d068fe5111a305b"
+        },
+        "source_king_runtime_inputs": {
+          "line": 767,
+          "end_line": 771,
+          "sha256": "99f3a9ba2b5558fd063e671a032c0a8517cf77b0a73fe18868b8a82d552a5afb"
+        },
+        "_validate_source_king_runtime": {
+          "line": 774,
+          "end_line": 784,
+          "sha256": "11dd45c57fa567fd8320d23eccebd10ed3c0b7fff27148b5b860cdec2c9ddc99"
+        },
+        "_source_king_profile": {
+          "line": 787,
+          "end_line": 789,
+          "sha256": "847b609ee8a8c20ea8b06ff8b9bdde681fc6f26567a2aadb6ffe79ee844c9754"
+        },
+        "_has_rage": {
+          "line": 792,
+          "end_line": 794,
+          "sha256": "e6bc99dea278c9f086f8bee18ff76042d1deb1c113caea84d0f8eae486866539"
+        },
+        "_required_roles": {
+          "line": 797,
+          "end_line": 817,
+          "sha256": "b10f00dd785f54ebebd2ef6677a15e2767672eb0bc3b561e357d63839205457e"
+        },
+        "_integration_domain": {
+          "line": 827,
+          "end_line": 828,
+          "sha256": "3325c9532eb3cc4ed6e29a5a13f20970301edffc20e012447d49583537b6d394"
+        },
+        "_validate_processing_inputs": {
+          "line": 831,
+          "end_line": 899,
+          "sha256": "e9462895b58b762de9cfb95700fa0a171819c33a096e2453a216a29d37e5f5e0"
+        },
+        "_validate_runtime_nodes": {
+          "line": 902,
+          "end_line": 958,
+          "sha256": "7e147a8a379cf542a7927709ac52d830c2d1f65e9ff6bba4e48eb6cf228c843d"
+        },
+        "validate_runtime_inputs": {
+          "line": 961,
+          "end_line": 1042,
+          "sha256": "98d7925f56d48733614900f4ef73406a332803554f0c2abb89c048810743cd33"
+        },
+        "_synthetic_runtime_data": {
+          "line": 1045,
+          "end_line": 1073,
+          "sha256": "213ba5bfb2f856f646a5c37c8babd89ddf71ab26636e86101c056a766d39fb12"
+        },
+        "synthetic_runtime_inputs": {
+          "line": 1076,
+          "end_line": 1079,
+          "sha256": "3076130cf93e978eb4fc9de5c3a2140ca3bea4e91412170fb18cc8bb1a12e888"
+        },
+        "synthetic_king_runtime_inputs": {
+          "line": 1082,
+          "end_line": 1091,
+          "sha256": "6e30739a74d9d07ee630a46c25879d1f33f6fb464da50f1d4e31d29d3d4adeb4"
+        },
+        "build_runtime_scaffold": {
+          "line": 1094,
+          "end_line": 1125,
+          "sha256": "c1fd8210f6cd34709eb6876418f3da389c8ba775dccbcd14fe99aa39f1781e53"
+        },
+        "EngineFrameDriver.__init__": {
+          "line": 1137,
+          "end_line": 1139,
+          "sha256": "0c338f73bae729bb618a7d130538886baad73b42886f62643f643c52183c7920"
+        },
+        "EngineFrameDriver._util_physics": {
+          "line": 1141,
+          "end_line": 1145,
+          "sha256": "a251302e4e119910231dcee513362b895c38d981917628ca47de2cb3f150ceb8"
+        },
+        "EngineFrameDriver._util_idle": {
+          "line": 1147,
+          "end_line": 1150,
+          "sha256": "a40a322fe8cebcaa10a3683b63a2fff6bbb47d39c1812d73257af587bad16cbb"
+        },
+        "EngineFrameDriver.snapshot": {
+          "line": 1152,
+          "end_line": 1158,
+          "sha256": "cd2c9aa0ba146ef2c2ccb5ae80d3f108391acbf939e959d0876705ce4c4fc1ea"
+        },
+        "Fixed60Passes.__len__": {
+          "line": 1164,
+          "end_line": 1165,
+          "sha256": "dd21b7cc61be6475d8942e16859803803e6d0ab429a79ee5f86aeb039dd23bcc"
+        },
+        "Fixed60Passes.__getitem__": {
+          "line": 1167,
+          "end_line": 1173,
+          "sha256": "2121d9e26c376ff68480db66abea042d5c6c6d52ffbc32591ac400ddd260579d"
+        },
+        "_source_king_bootstrap_clock": {
+          "line": 1176,
+          "end_line": 1181,
+          "sha256": "d9a56757b27476b62b1f416d53c6fa9172043ab890e0bfdded599e71278b0295"
+        },
+        "HeadlessKingFrameDriver.__init__": {
+          "line": 1186,
+          "end_line": 1189,
+          "sha256": "6ade424ec849e231344d002c1900368d8395440b255c2eb4c85be4fdbf2f01b1"
+        },
+        "HeadlessKingFrameDriver.complete": {
+          "line": 1191,
+          "end_line": 1197,
+          "sha256": "27f463597435fabefaefe3d46978c9ed799612b37be88ceb11b74cc584860c3d"
+        },
+        "CombatEngine.__init__": {
+          "line": 1201,
+          "end_line": 1309,
+          "sha256": "9e715d6345142263bf74df2cc162009b47c5f42a27b4ee7e787fa02ff93c8955"
+        },
+        "CombatEngine._validate_source_pure_state": {
+          "line": 1311,
+          "end_line": 1337,
+          "sha256": "c00fd397a77e1d630f1f22bc070c4a6640ae720994d503c5f9d974d116b59dc7"
+        },
+        "CombatEngine._validate_pure441_constructed": {
+          "line": 1339,
+          "end_line": 1357,
+          "sha256": "cdb9f0a1cca380a0ebafe2001a4c4de4d8bf51657742c2572fa0e5494d8be1bc"
+        },
+        "CombatEngine._validate_pure441_prepared": {
+          "line": 1359,
+          "end_line": 1362,
+          "sha256": "fee11b2cb73b4d04c4e201167ee5a2cf5bda123ed9c552eee3f46dc4c6b3a9dc"
+        },
+        "CombatEngine._pure_business_snapshot": {
+          "line": 1364,
+          "end_line": 1388,
+          "sha256": "6ea76560a7436beb1a3bf84d7ea688e2e57db4427b2c1649d2521673b6f45c9f"
+        },
+        "CombatEngine._pure_api_before": {
+          "line": 1390,
+          "end_line": 1393,
+          "sha256": "ecd57a814be75b3c6736d168c37b419171dd8c1ae445cf218f7606706db3d80c"
+        },
+        "CombatEngine._pure_api_after": {
+          "line": 1395,
+          "end_line": 1399,
+          "sha256": "7170a56b1d0adae865113461743c6a0e2901d18f8f73cf3661ed92fbd7c4bdad"
+        },
+        "CombatEngine._set_source_processing": {
+          "line": 1401,
+          "end_line": 1405,
+          "sha256": "1f82b6e84e8325af41c4b55cdeea76da6d35724a84249808907c04b4656878d3"
+        },
+        "CombatEngine._set_item_cooldown": {
+          "line": 1407,
+          "end_line": 1409,
+          "sha256": "67b9304c9f7836263182c7faa51f70898084aebcd314bd52f596c6abee5bd363"
+        },
+        "CombatEngine._integration_callback": {
+          "line": 1411,
+          "end_line": 1415,
+          "sha256": "ac17bad9547e1c7bdd0915e0518b9fb21a7e795c82229a6a4d4457a564e6b76e"
+        },
+        "CombatEngine._source_noninterfering_callback": {
+          "line": 1417,
+          "end_line": 1425,
+          "sha256": "624be573ddd7cdfd35149ee8392d95fbf1299b18c6ed38c6a1855e2944a6ed0f"
+        },
+        "CombatEngine._integration_node": {
+          "line": 1427,
+          "end_line": 1433,
+          "sha256": "2df43957a99742c86785750da3f9704bed9dacc84bbe8a2259259cab72f1cbd9"
+        },
+        "CombatEngine._integration_aux_timer": {
+          "line": 1435,
+          "end_line": 1437,
+          "sha256": "9af32ad3ce213999cae8ae1d4427ea2776a9bdecb7d7416fb53ef826598c31f6"
+        },
+        "CombatEngine._integration_timer": {
+          "line": 1439,
+          "end_line": 1442,
+          "sha256": "7097685227d2ad0371108bf46468f0c01d59f6e6bd3b69aeec464970158f29eb"
+        },
+        "CombatEngine._integration_fx_snapshot": {
+          "line": 1444,
+          "end_line": 1458,
+          "sha256": "47adee2ca6ca7b7d7e2873775957b49cd7ac75880ffc13397ff1a5d335b5b69a"
+        },
+        "CombatEngine._connect_runtime_callbacks": {
+          "line": 1461,
+          "end_line": 1464,
+          "sha256": "4dedcd7e33dc1170f5a29991d327d93686bcd41680574dc866aa8396c7cdc9b3"
+        },
+        "CombatEngine._public_timer": {
+          "line": 1466,
+          "end_line": 1475,
+          "sha256": "359f0e6d39bd5d30158692466867dd433e718241d4a549338ad301b2553947ee"
+        },
+        "CombatEngine._public_timer.primitive": {
+          "line": 1467,
+          "end_line": 1474,
+          "sha256": "5816bf0b13051eaadec2f722b9a3d64e1fae774102f0d714872faae0648a7497"
+        },
+        "CombatEngine._timer_snapshot": {
+          "line": 1477,
+          "end_line": 1478,
+          "sha256": "715ee52265948abb628f94523c6d87559fb8a3ed6630936f4c30c2d1563c45d4"
+        },
+        "CombatEngine._start_timer": {
+          "line": 1480,
+          "end_line": 1494,
+          "sha256": "18bc5ae4966d29fe506a3b66d7ca61963cbf22214a029f056aadae5204604f47"
+        },
+        "CombatEngine._stop_timer": {
+          "line": 1496,
+          "end_line": 1502,
+          "sha256": "4a77b756083093df11f2f501ddf56480c76d99a7da0d4d1a8b8d03efb076510f"
+        },
+        "CombatEngine._timer_timeout": {
+          "line": 1504,
+          "end_line": 1527,
+          "sha256": "57f6ec77ec33188d91c9d9e8f6603cd29a673bc11c095c5679eb1cf9eeb0ccd6"
+        },
+        "CombatEngine._full_timer": {
+          "line": 1529,
+          "end_line": 1531,
+          "sha256": "33b0a2bf993b2902ac08d98709d5d38c6218fd2470ea965252ade9d73c27539c"
+        },
+        "CombatEngine._king_ordinary": {
+          "line": 1533,
+          "end_line": 1553,
+          "sha256": "1038bd68abc312176cdf1569ccdab65ccd516ea909295459bdb47a28f2345831"
+        },
+        "CombatEngine.king_prepare": {
+          "line": 1555,
+          "end_line": 1559,
+          "sha256": "6846c1fa42c43761e268f09c6564266578785d9555d68d398da7577f3e7ed0f8"
+        },
+        "CombatEngine.king_set_state": {
+          "line": 1561,
+          "end_line": 1578,
+          "sha256": "613525504f032ec311b3d54a305221b2767557cea79881dbcb49c39395e31705"
+        },
+        "CombatEngine.king_effect": {
+          "line": 1580,
+          "end_line": 1591,
+          "sha256": "319c43a76a47e57ef781d5dd0f9767ae37f68dfddc44bd7eb4ae5229e84dfe91"
+        },
+        "CombatEngine.make_invulnerable": {
+          "line": 1593,
+          "end_line": 1605,
+          "sha256": "4b1970893087aea433c5677d2ab2cecf1a67213a883d3eb14cf3af92b9323a7c"
+        },
+        "CombatEngine.invu_timeout": {
+          "line": 1607,
+          "end_line": 1611,
+          "sha256": "f72202d02a1a7e70df5c60018b198636126343433288ade57aae8deeb3604ecf"
+        },
+        "CombatEngine.king_buff_timeout": {
+          "line": 1613,
+          "end_line": 1614,
+          "sha256": "3a1a27c62a1e9fe32e4a465b85be54a3bb7301fe8412a505c7fb17fbed078f56"
+        },
+        "CombatEngine._ordered_stars": {
+          "line": 1616,
+          "end_line": 1621,
+          "sha256": "e1a2ac290bbcb5a8270495b3f50c5ee907d162efe5a3e29f292965900a4fd565"
+        },
+        "CombatEngine._fresh_goobert_targets": {
+          "line": 1623,
+          "end_line": 1629,
+          "sha256": "8b9029e83a597300d101b24e35efff4b9f327f780319615b63555dbf79c0bdc0"
+        },
+        "CombatEngine.give_stacks_temporary": {
+          "line": 1631,
+          "end_line": 1635,
+          "sha256": "ea07ce05bc0ff6d2e4dc25a4e738c4612d957ebe6d958d50fd36b5d6208be62a"
+        },
+        "CombatEngine.change_current_log_show_label": {
+          "line": 1637,
+          "end_line": 1644,
+          "sha256": "bf4d534fce8c605dba9bfc5eff85e2a11f150dfcd1908a813ea34db35d657307"
+        },
+        "CombatEngine.buff_timeout": {
+          "line": 1646,
+          "end_line": 1663,
+          "sha256": "e42cd38bd681b1de7757bb00a59c2284fa4839f39366652fb3723aa1ef92f0a9"
+        },
+        "CombatEngine._blood_effect_domain": {
+          "line": 1665,
+          "end_line": 1672,
+          "sha256": "2803075a57eeb2c18ec746e9e4f0f799099c684a822a14f534de3c2798ae0610"
+        },
+        "CombatEngine.take_effect_damage": {
+          "line": 1674,
+          "end_line": 1715,
+          "sha256": "370dd0134faa743bcd97a14acb82e4cb07cdf6083ee06dd1eebb0ad44457058e"
+        },
+        "CombatEngine.steal_life": {
+          "line": 1717,
+          "end_line": 1725,
+          "sha256": "789756f4eae3f65e1a7ad213a18f647e47e5ee8d85f541bd55617e2ffceed9c3"
+        },
+        "CombatEngine.blood_effect": {
+          "line": 1727,
+          "end_line": 1728,
+          "sha256": "e5270304a84531034f4ace0dbb50da9934d7a69cf30a7526faefd177865d84d5"
+        },
+        "CombatEngine.carrot_effect": {
+          "line": 1730,
+          "end_line": 1735,
+          "sha256": "9d5cb10f790a93b5ba18655f90fa3871b1960a0b1e70bbd183291dc5eb9950ce"
+        },
+        "CombatEngine.carrot_particle_timeout": {
+          "line": 1737,
+          "end_line": 1738,
+          "sha256": "53c18f50083fd9b3538a16c6477580c7abb3af5738cc2ee9c0ddf4e646799cf6"
+        },
+        "CombatEngine.light_effect": {
+          "line": 1740,
+          "end_line": 1745,
+          "sha256": "4943340258669b36797add0ac36bef70f964fa77c726c69a2fd48b79db1b3d8b"
+        },
+        "CombatEngine.light_particle_timeout": {
+          "line": 1747,
+          "end_line": 1748,
+          "sha256": "3ac2abf2b40a80ef96e3433e8c30d9cb79771d27b32ce670b027ef25bbc75138"
+        },
+        "CombatEngine._runtime_projection": {
+          "line": 1750,
+          "end_line": 1761,
+          "sha256": "79314162ccf84560bd04595acc33e0d10baca45db09b0dccdd198d2542415eb3"
+        },
+        "CombatEngine.mark_schedule": {
+          "line": 1764,
+          "end_line": 1767,
+          "sha256": "30929553b138d0a77657dc67860ec8e5a737ba49423003d6a67bc9436c6466a9"
+        },
+        "CombatEngine.allocate_event": {
+          "line": 1769,
+          "end_line": 1779,
+          "sha256": "83c3a197a8fbf1afd48886f54915b9e0fc0dd5b38e56369174d7019415dc381e"
+        },
+        "CombatEngine.emit": {
+          "line": 1781,
+          "end_line": 1784,
+          "sha256": "05120af9660043f33454fbee0106fe0d6e73e23308851be2e32db5fcb4d0b796"
+        },
+        "CombatEngine.set_logging_mode": {
+          "line": 1786,
+          "end_line": 1789,
+          "sha256": "d8d1fe98dce636efb38410a1dfdfe5407abfbd08939d6ab22dfdc768299c0e7f"
+        },
+        "CombatEngine.emit_event": {
+          "line": 1791,
+          "end_line": 1795,
+          "sha256": "1aff9d382b52f073a917f74d349465591ef4d02e2efabdf64eb58f723c84b655"
+        },
+        "CombatEngine._emit_and_log": {
+          "line": 1797,
+          "end_line": 1812,
+          "sha256": "7037e713172465ae60631d16b0ec0904f830c4768df9dcc777f998f3a8f7de27"
+        },
+        "CombatEngine.flush_logging_queue": {
+          "line": 1814,
+          "end_line": 1819,
+          "sha256": "43e633366dbbe0c64a2b505495eb227fac0c3065a6d97a74b730319f251eb043"
+        },
+        "CombatEngine.adjust_cooldown": {
+          "line": 1821,
+          "end_line": 1823,
+          "sha256": "7144b6f321b00eccdb74b6812fc73cfdcc981a0ca0845966c6213e59ce25f0d9"
+        },
+        "CombatEngine.ruby_effect": {
+          "line": 1825,
+          "end_line": 1832,
+          "sha256": "408811977e0ccf77c8baee443d3b0d8eaf4d33a81fe8e9614bb7de63acd9ff7c"
+        },
+        "CombatEngine.prepare_only": {
+          "line": 1834,
+          "end_line": 1933,
+          "sha256": "c37175397412a8af6038b0a1e4b992b27ccb4ecd176eb5e1c9816eb02fa17bad"
+        },
+        "CombatEngine.activate_from_checkpoint": {
+          "line": 1935,
+          "end_line": 2056,
+          "sha256": "9a3dbef7e13180177791614123a5fd55acdb2beb3165a1e477e1fb7c9bc8fab9"
+        },
+        "CombatEngine.inside_items": {
+          "line": 2058,
+          "end_line": 2073,
+          "sha256": "b6a5fc96a0addbb7edb9a452e376ad9fb58638073ec9af9b022de3b035c87aa5"
+        },
+        "CombatEngine.empty_affected_cells": {
+          "line": 2075,
+          "end_line": 2083,
+          "sha256": "1905469bdf059c56833b68c4fd9379d16b3e781c2cec239170ddfc3ea29232ac"
+        },
+        "CombatEngine.new_caller_target_caches": {
+          "line": 2085,
+          "end_line": 2139,
+          "sha256": "6ce18fb658f39f42906f06e56c750d7830534356b26d003ca6a14010bc9f7eeb"
+        },
+        "CombatEngine.new_caller_target_caches.eligible": {
+          "line": 2092,
+          "end_line": 2111,
+          "sha256": "c89fc8f9eb39ae0480715e538d6f4eda1c6bc6431df45e9ae924a647fb2939ad"
+        },
+        "CombatEngine.new_steel_secondary_caches": {
+          "line": 2141,
+          "end_line": 2159,
+          "sha256": "3a2dbb866cde79f2cd4c34b47365b9295c609b1ee8bd30ebeac4a0809f907865"
+        },
+        "CombatEngine.new_steel_secondary_caches.eligible": {
+          "line": 2147,
+          "end_line": 2148,
+          "sha256": "511b4d290263d9bd763bce22e12e1d033ceb68f31dac9b26479549fe42e82551"
+        },
+        "CombatEngine.affected_items": {
+          "line": 2161,
+          "end_line": 2200,
+          "sha256": "484e8500644baf19b1906712f5363818093c32b874e758ded39a7703a1535d1f"
+        },
+        "CombatEngine.add_speed": {
+          "line": 2202,
+          "end_line": 2205,
+          "sha256": "2aa15d44a2e206ccc16f7fbe1a65cbb357cf3ca609a9f01b8123b1c9bca6218f"
+        },
+        "CombatEngine.add_bonus_damage": {
+          "line": 2207,
+          "end_line": 2211,
+          "sha256": "ef6dbef4a3978e29208857a19a8da379859161c7a9d0f3f043d654a358cb147f"
+        },
+        "CombatEngine.damage_bounds": {
+          "line": 2213,
+          "end_line": 2221,
+          "sha256": "2a9598bc7647193735857ff68bbf9e865f7433432fe604cd29e45d34bb266e2c"
+        },
+        "CombatEngine.damage_bounds.source_round": {
+          "line": 2219,
+          "end_line": 2220,
+          "sha256": "d1292ef70d8e55995d2dcc67f9e0433a13d20df226c80863aee8c4fb7f91a107"
+        },
+        "CombatEngine.change_varying_damage": {
+          "line": 2223,
+          "end_line": 2227,
+          "sha256": "4d1dea1e8b1af43708c45b6df4e019d56828d0e94f05b36bc4ceb7f62f2ca4fc"
+        },
+        "CombatEngine.add_max_damage": {
+          "line": 2229,
+          "end_line": 2231,
+          "sha256": "36660d2eef2c43fcf76225f9278c6b5a2e9236c5b016571cbb4ac6f20ea37407"
+        },
+        "CombatEngine.on_stack_changed": {
+          "line": 2233,
+          "end_line": 2248,
+          "sha256": "fa103fe1d81f6cf26335998a094ee7291517319a8eff199df9c087681628bb00"
+        },
+        "CombatEngine.on_mana_changed": {
+          "line": 2250,
+          "end_line": 2255,
+          "sha256": "d27c80045d23518e6819199b56d142280e689e62bfd68eb700524ec766d2cb02"
+        },
+        "CombatEngine.change_debuff_resistance": {
+          "line": 2257,
+          "end_line": 2259,
+          "sha256": "2c54f61d52685422a17d20de28e377639e8fe8d64ba92bf3456fa00f9bb27489"
+        },
+        "CombatEngine.change_debuff_reflection": {
+          "line": 2261,
+          "end_line": 2263,
+          "sha256": "25b4d3dcc606130a70e673097331f4bc62d60603e86ed02a01687410ca2763b8"
+        },
+        "CombatEngine.give_max_health": {
+          "line": 2265,
+          "end_line": 2276,
+          "sha256": "8a089edcdba0b09aa4f3327e48c2d85feceaebba07c1867ea85a1c902cf027a7"
+        },
+        "CombatEngine._buff_record": {
+          "line": 2278,
+          "end_line": 2285,
+          "sha256": "70a03fa6216db02b71bc3a2df058eef0f1e6c2acfd860d275661d26d79970a0a"
+        },
+        "CombatEngine.change_resist_chance": {
+          "line": 2287,
+          "end_line": 2289,
+          "sha256": "20652feafa9ccc3fd4218d6120f2719ea466d1044df0725e6b75ebc5287a4575"
+        },
+        "CombatEngine.change_protection_chance": {
+          "line": 2291,
+          "end_line": 2293,
+          "sha256": "5f679271c9af0f784f1cc6767c6c9995aec0668d0636997bb3287fe0a0d39f96"
+        },
+        "CombatEngine.change_buff_protection_chance": {
+          "line": 2295,
+          "end_line": 2297,
+          "sha256": "5972969d2b2a6c9b5d48cc4850fb0edee6b53727e7118b5a62c4dc7f3c454415"
+        },
+        "CombatEngine.change_debuff_protection_chance": {
+          "line": 2299,
+          "end_line": 2301,
+          "sha256": "a407db214177231c4dbd9b4eefba988e09624633d0dbea6521e8736a6bbeee16"
+        },
+        "CombatEngine.change_reflect_chance": {
+          "line": 2303,
+          "end_line": 2305,
+          "sha256": "55affb966bd1d14e2743568daf645a2d80d10bcdc7a6572b497a6cb3db542b46"
+        },
+        "CombatEngine.change_resist_stacks": {
+          "line": 2307,
+          "end_line": 2309,
+          "sha256": "5263e6229f933c9fa009a66e4736d1c72289a51f4fe62af6f6a2d20facb84028"
+        },
+        "CombatEngine.change_buff_protect_stacks": {
+          "line": 2311,
+          "end_line": 2312,
+          "sha256": "8c75fa2d75217041f9effa5eb05ef4c3ed9834398d6f01efda1bbf9853d44d36"
+        },
+        "CombatEngine.change_amplification": {
+          "line": 2314,
+          "end_line": 2316,
+          "sha256": "af5dfab09a63b4dd36bafb71f3bc49835f6898746657c81d960b75dfb1c98809"
+        },
+        "CombatEngine.give_buff_power": {
+          "line": 2318,
+          "end_line": 2320,
+          "sha256": "be75a86fbd0ebb696f960ec4c4c247b2729d0975e546a5a5414511e51d75288f"
+        },
+        "CombatEngine._stack_metric": {
+          "line": 2322,
+          "end_line": 2336,
+          "sha256": "fb6278b865f3ba44515549c41064c03820e800bfac7ee54c49fc13fdb730ca9c"
+        },
+        "CombatEngine.stack_event": {
+          "line": 2338,
+          "end_line": 2365,
+          "sha256": "299a935d90bfc862bbaeb7198e3cc2830b377363f7414b1d82d5c21c4bd36953"
+        },
+        "CombatEngine._buff_roll": {
+          "line": 2367,
+          "end_line": 2370,
+          "sha256": "11f59d4a0d787fe136cf3ecfba1db3cb5def04dc3760f6c61aef3e0e1c3347e5"
+        },
+        "CombatEngine.character_gain_stacks": {
+          "line": 2372,
+          "end_line": 2374,
+          "sha256": "d03d8f6f9b78850ce6d4ca58591c1bb47ced50194225f0fab1fc2d6ae3ab7e72"
+        },
+        "CombatEngine.gain_stacks_temporary": {
+          "line": 2376,
+          "end_line": 2385,
+          "sha256": "5566f96244bd32ac94b6976c74e14b3b5ef78374025b098985f4850282d243f4"
+        },
+        "CombatEngine._gain_permanent_stacks": {
+          "line": 2387,
+          "end_line": 2388,
+          "sha256": "203f5e771a6b5c4588d6f76162913265afb4b7e212f63d47407739aa54d5e680"
+        },
+        "CombatEngine._gain_stacks": {
+          "line": 2390,
+          "end_line": 2460,
+          "sha256": "361c6dcbd43b2c24f0dd5c8a480250c1e643d9fdbd4c8021f206f1ad8b792efc"
+        },
+        "CombatEngine.remove_stack": {
+          "line": 2462,
+          "end_line": 2516,
+          "sha256": "ff7b0fe7bf8738900a8302a3e87a01a0b031bb0f719ec6a34427e4ed4d84efff"
+        },
+        "CombatEngine.use_stack": {
+          "line": 2518,
+          "end_line": 2519,
+          "sha256": "04fabae312a2221961d473533e361a4a4f80099e2bf71eb19586f401a1a58b35"
+        },
+        "CombatEngine.try_use_mana": {
+          "line": 2521,
+          "end_line": 2524,
+          "sha256": "974889bf65a3efc19394444c27c350e7dd8b6e15b9f0f80e128a3706d4650905"
+        },
+        "CombatEngine.lucky_changed": {
+          "line": 2526,
+          "end_line": 2532,
+          "sha256": "db06e7033ed1ce6bb37031bb68baf4cc9f031adc6b94c3dcbb7e1e411f424ce2"
+        },
+        "CombatEngine.lose_health": {
+          "line": 2534,
+          "end_line": 2546,
+          "sha256": "f09a7b6213b2641586cc579c9aa6a378ed33b1de5188c075e1d9b2c0bf512a6e"
+        },
+        "CombatEngine.health_to_block": {
+          "line": 2548,
+          "end_line": 2555,
+          "sha256": "6175748e44faddbcfd95327dc166c51bd2b29d888527c0903afed5b998e39017"
+        },
+        "CombatEngine.give_stack": {
+          "line": 2557,
+          "end_line": 2564,
+          "sha256": "2b917975701aabf03fb967a8e1370e446e7564568904ba1e3828f8cc004fe171"
+        },
+        "CombatEngine._fraction_round": {
+          "line": 2567,
+          "end_line": 2571,
+          "sha256": "0afb2027cac86e0d1bc9d7e3aa69a42814e2bb5f56f2d211d3be2967c1acf7c4"
+        },
+        "CombatEngine.get_stack_fraction": {
+          "line": 2573,
+          "end_line": 2629,
+          "sha256": "c24e4578f4194aab1303277e1be2af7a37f7304cc240c645e7dc9b3203afffae"
+        },
+        "CombatEngine.multiply_buffs_limit": {
+          "line": 2631,
+          "end_line": 2638,
+          "sha256": "fdd2b72ee3faaae0bd79bb7fa8888b611195757f1d54d2931d4a8c6ce4078d97"
+        },
+        "CombatEngine.remove_buffs_fraction": {
+          "line": 2640,
+          "end_line": 2648,
+          "sha256": "c2230e17864430eaac888edd28e4c461f79f8c2c6b55d6194005be1a3e0e4d0d"
+        },
+        "CombatEngine.steal_stack": {
+          "line": 2650,
+          "end_line": 2654,
+          "sha256": "f3e9f6cf199e2e81e58fae2d85eef90f19660c7406061ef030057723bc0a6633"
+        },
+        "CombatEngine.steal_buffs_fraction": {
+          "line": 2656,
+          "end_line": 2664,
+          "sha256": "bc94e6f519c17b405a85322cb3b445dfbd8ed527c6bd8345cd87c76185be193e"
+        },
+        "CombatEngine._stack_picker_inputs": {
+          "line": 2666,
+          "end_line": 2676,
+          "sha256": "e6a63fb20bec819993f31a9ce308fcc589ce5e9cf9b575ce0b5d442cfd077fe9"
+        },
+        "CombatEngine._stack_name": {
+          "line": 2678,
+          "end_line": 2679,
+          "sha256": "eba5a9a94aad6afa41a8675c5fcee35e46f23d3f51fd6a07c477ba8bf7d2da6b"
+        },
+        "CombatEngine.pick_random_stacks": {
+          "line": 2681,
+          "end_line": 2708,
+          "sha256": "32ef03ec2030d410ac39972be8947d6ba3cfefe33c733321e50a5ef8b79d57ea"
+        },
+        "CombatEngine.pick_random_stacks_to_give": {
+          "line": 2710,
+          "end_line": 2720,
+          "sha256": "2554a7967c932d60eadc9376a9c04e3e1c23a1bb1d379d14cf67349ae24aea9f"
+        },
+        "CombatEngine.cleanse_random_debuffs": {
+          "line": 2722,
+          "end_line": 2727,
+          "sha256": "98ab5f577642f444050a176c0de34a0652c45fb8b7e34fcf3e436f14795b8c26"
+        },
+        "CombatEngine.give_random_buffs": {
+          "line": 2729,
+          "end_line": 2735,
+          "sha256": "08cce75fac1ec755d05e16ad09d54f36f03eb8402b7eb4c60332ed42bfe136ca"
+        },
+        "CombatEngine.use_random_buffs": {
+          "line": 2737,
+          "end_line": 2746,
+          "sha256": "d86c6ec5861984631d0747ce03954ff8f823ae0e76384f1aab5852f882f505aa"
+        },
+        "CombatEngine.inflict_random_debuffs": {
+          "line": 2748,
+          "end_line": 2754,
+          "sha256": "743f0b3ab8a471de3f7e24f5f35d5acdccfbe7ec8a5df84748152eb93f686423"
+        },
+        "CombatEngine.remove_random_buffs": {
+          "line": 2756,
+          "end_line": 2762,
+          "sha256": "e89b156a3fd10e5c8951398b18e81ed848254c4acab3361aa54deff4489cc901"
+        },
+        "CombatEngine.steal_random_buff": {
+          "line": 2764,
+          "end_line": 2772,
+          "sha256": "f8281220a9528425cb123e254f037457a70a0ed65bc4eaa00bf0ce9d951a31db"
+        },
+        "CombatEngine.give_lucky": {
+          "line": 2774,
+          "end_line": 2775,
+          "sha256": "ede7017ac84c258583286438354e37ccd22eb7dc8628aa466ca7f854499934f8"
+        },
+        "CombatEngine.heal": {
+          "line": 2777,
+          "end_line": 2795,
+          "sha256": "e1cbdc2b88760606432b644c2fbba3b34cd0ddd52a64d57981411eb4e78010d7"
+        },
+        "CombatEngine.on_character_healed": {
+          "line": 2797,
+          "end_line": 2803,
+          "sha256": "50c92f61100f7a94cb9906aa26edf80d38d2debe74c36da3f3990c8da773910e"
+        },
+        "CombatEngine.on_opponent_heal": {
+          "line": 2805,
+          "end_line": 2813,
+          "sha256": "bbe535e0fcfddc6259a6234e2ae6ab5197a9b3be715fab13df0046b72e0b0bfd"
+        },
+        "CombatEngine.give_stamina": {
+          "line": 2815,
+          "end_line": 2821,
+          "sha256": "2802edefd64f923dabc5cef18ca9ec4dc9e7bea702434d10655528c59defebf7"
+        },
+        "CombatEngine.activate": {
+          "line": 2823,
+          "end_line": 2846,
+          "sha256": "eead715715b28c4f8be0aeda55b75d350d26905b3412a40a3eca562e0abd7fd2"
+        },
+        "CombatEngine.on_goobert_item_activated": {
+          "line": 2848,
+          "end_line": 2891,
+          "sha256": "02a1dffd63d1ef26de1dd85bb34d8095bcc9bf865ef7d9b51a95b178eeed74cb"
+        },
+        "CombatEngine.get_most_stacks": {
+          "line": 2893,
+          "end_line": 2911,
+          "sha256": "438b144e49b1791e9c2463ca5c87ffaaba81b9fa466763195ec507976a956d91"
+        },
+        "CombatEngine.give_most_buffs": {
+          "line": 2913,
+          "end_line": 2920,
+          "sha256": "e6a0772f403b6a4be3f0c5cf761a3bed8a6563fa28c671a30e5fcffa03ab2493"
+        },
+        "CombatEngine.special_goobert_effect": {
+          "line": 2922,
+          "end_line": 2946,
+          "sha256": "01e927759855c81778a1d499f71c51440d73072c2f62114c060db835df50c7c4"
+        },
+        "CombatEngine.rainbow_effect": {
+          "line": 2948,
+          "end_line": 2970,
+          "sha256": "5fdb86b18b7c9e23e325b304668c28eb49019f85a8cbfff8eb1140966e83db2d"
+        },
+        "CombatEngine.roll_item_chance": {
+          "line": 2972,
+          "end_line": 2975,
+          "sha256": "b055ab12d125cb52ac45131ee34cee946845facce6a2afeccd7d664cbc110b82"
+        },
+        "CombatEngine.drain_stamina": {
+          "line": 2977,
+          "end_line": 2986,
+          "sha256": "f7273747f6631e704137a393ce299c029d2c03232a4faca4264bfcfd188979cb"
+        },
+        "CombatEngine.extra_attack": {
+          "line": 2988,
+          "end_line": 2992,
+          "sha256": "00c89180b140ae4b1dfaeb69506423b50ccca3c1d764c3509f2ae2c79bdc112b"
+        },
+        "CombatEngine.weapon_attack": {
+          "line": 2994,
+          "end_line": 3000,
+          "sha256": "f9a2a331231725bc93dde2f063b64c7f7d055325e30bdbf34d25ab739747387e"
+        },
+        "CombatEngine.stun": {
+          "line": 3002,
+          "end_line": 3017,
+          "sha256": "dc8724049e7a8c3bb3c1c15e5e4e70157844ce3c8713b44a4505e4a4ad85fd62"
+        },
+        "CombatEngine.end_stun": {
+          "line": 3019,
+          "end_line": 3021,
+          "sha256": "3d9e9c1edcb49cd6a3cba003951a063731267828eac1169176b62cfb38623a5c"
+        },
+        "CombatEngine.set_item_state": {
+          "line": 3023,
+          "end_line": 3028,
+          "sha256": "470b9c0d6e83ce06c7a159315f1cd2e8b33dbe350363b5d65b70b63552494486"
+        },
+        "CombatEngine.trigger_potion": {
+          "line": 3030,
+          "end_line": 3047,
+          "sha256": "b286a71017fabbbe9818ca50f7a5f507de40a02e317c097ddc00198c6f2bb24b"
+        },
+        "CombatEngine.consume_potion": {
+          "line": 3049,
+          "end_line": 3058,
+          "sha256": "5cf654015561d63479f6d90ba5677c6b10b50c00c3512547cc5de4c83ba7c558"
+        },
+        "CombatEngine.on_character_attacked": {
+          "line": 3060,
+          "end_line": 3071,
+          "sha256": "37877e1f46f1f150ce20c6b71c387e4f36c2eceafd6bf2f2d38c3549ce2cc8c9"
+        },
+        "CombatEngine.is_battle_raging": {
+          "line": 3073,
+          "end_line": 3076,
+          "sha256": "6682c030732f7665b39966063f3037b48df48d9817ab361005ebca9e1f76a61f"
+        },
+        "CombatEngine.start_battle_rage": {
+          "line": 3078,
+          "end_line": 3090,
+          "sha256": "7c718ec9b2289af35b97036d852a7b755e56ab32ad5eca3554ae4239b55c20ca"
+        },
+        "CombatEngine.end_battle_rage": {
+          "line": 3092,
+          "end_line": 3097,
+          "sha256": "ab87b72dbf311831165a0a258bb9dd698dc20d16921ab1871905028afa72fe2e"
+        },
+        "CombatEngine.on_battle_rage": {
+          "line": 3099,
+          "end_line": 3111,
+          "sha256": "f8c536dd181b35ad0aa3cc46f5c3f5f6e35544feebdd263d7a450c21e87465e9"
+        },
+        "CombatEngine._damage_after_resistance": {
+          "line": 3113,
+          "end_line": 3118,
+          "sha256": "65d69fc01d3a0b77aa9a8c2d415a879f1e7dc637d59a694783db08bfbd922d53"
+        },
+        "CombatEngine.on_character_damaged": {
+          "line": 3120,
+          "end_line": 3143,
+          "sha256": "59a2710ee580a0adffafb1084a8102b980be7d10a8ee4adf4cec6575be89ee9b"
+        },
+        "CombatEngine.on_item_dealt_damage": {
+          "line": 3145,
+          "end_line": 3153,
+          "sha256": "78b0334ea4d227e9a454a74d36da26b035bdb3ff3f7ee3c9924c0f9ce2c9e34c"
+        },
+        "CombatEngine.shield_before_damage": {
+          "line": 3155,
+          "end_line": 3175,
+          "sha256": "c1ea92867f5f382ffb1ceae2cfe873822520773708807b3de7392bc52b61e53c"
+        },
+        "CombatEngine.shield_after_attack": {
+          "line": 3177,
+          "end_line": 3182,
+          "sha256": "3299aa2712eb0a456dc0c3fb6a7fcdd4d019bcbca3c64529fd9566502d7a4d01"
+        },
+        "CombatEngine.speed": {
+          "line": 3184,
+          "end_line": 3187,
+          "sha256": "aa0fb0b392258e44dfb8ea4779f8ed8f257ec3333e37557250d8c40b641653eb"
+        },
+        "CombatEngine.trigger": {
+          "line": 3189,
+          "end_line": 3282,
+          "sha256": "b8079443922a5ada24e60c840479fc99cf181bc58543b3d780f602e18312deb2"
+        },
+        "CombatEngine.pre_item_damage": {
+          "line": 3284,
+          "end_line": 3318,
+          "sha256": "edcbf23b4f4b0903dbe58ca0a5898f6b057a7884d1667d788f4c0c89a890f5dc"
+        },
+        "CombatEngine.attack_effect_count": {
+          "line": 3320,
+          "end_line": 3325,
+          "sha256": "4a3da880db3c3e95b9b0d6089749e02463f46f1f6736d1fa531263b6febfb6a2"
+        },
+        "CombatEngine.late_item_damage": {
+          "line": 3327,
+          "end_line": 3339,
+          "sha256": "cd68b035d827246b43f80135cf47372f816eeab406e8219f452abfcd1f286985"
+        },
+        "CombatEngine.attack": {
+          "line": 3341,
+          "end_line": 3396,
+          "sha256": "548860eda747375e9d9827d6564365717221fcea1652f0bb59a9c93d074e9970"
+        },
+        "CombatEngine.death": {
+          "line": 3398,
+          "end_line": 3404,
+          "sha256": "83b1f7bae453d47415ea1373fe24c3bb609214ab96723872bd0f8d6e6dbc0460"
+        },
+        "CombatEngine.fatigue_tick": {
+          "line": 3406,
+          "end_line": 3410,
+          "sha256": "d59f504a15f589ccb3f117bbbe93b3bd9de9668c12801c4ea0d01818763fd816"
+        },
+        "CombatEngine.damage_nonitem": {
+          "line": 3412,
+          "end_line": 3433,
+          "sha256": "058f0ce7689d8a098bc89135a85f5c929ac85b541b4740e6ccc27863c3c93597"
+        },
+        "CombatEngine.step": {
+          "line": 3435,
+          "end_line": 3471,
+          "sha256": "1aba741b23ade4984ceddde0fb648563e2095a43be0ec73b7da98a64fb0b901f"
+        },
+        "CombatEngine.finish": {
+          "line": 3473,
+          "end_line": 3518,
+          "sha256": "b99d1d00a3b79cc021048ffec81a2d7a50266e3db4a5e17c93cafe64c6bf763a"
+        },
+        "CombatEngine.snapshot": {
+          "line": 3520,
+          "end_line": 3543,
+          "sha256": "ea915366315a8584b33887c137fdc741f53867a3b1ec530808d100a0f1b065d9"
+        },
+        "CombatEngine.event_references": {
+          "line": 3545,
+          "end_line": 3557,
+          "sha256": "4953be9d76b5d4baf6c63ef69e92769adb6da3c85e044de96f8d06ef1cfa6446"
+        },
+        "CombatEngine.event_references.visit": {
+          "line": 3547,
+          "end_line": 3554,
+          "sha256": "95eb587c2f32aeb5f1ca5af43caa91a2df7a4754450d434b6a8a3736d87349d6"
+        },
+        "CombatEngine.result": {
+          "line": 3559,
+          "end_line": 3594,
+          "sha256": "c02cfdffaf6b4243329307a4cecb4dad46b35daa1794f56102d3333a87a4430e"
+        },
+        "CombatEngine._source_king_budget": {
+          "line": 3597,
+          "end_line": 3601,
+          "sha256": "09f273208c6de212fe12e3ded5dca025ad7900ba3a542b72aa4fdb351f26925c"
+        },
+        "CombatEngine._source_king_quantum": {
+          "line": 3603,
+          "end_line": 3617,
+          "sha256": "a9a3a62e9ca14305fe4d135e53fffa7e06dd8f8cd84fa0a94ac89c3aa3d2ead3"
+        },
+        "CombatEngine._run_source_king": {
+          "line": 3619,
+          "end_line": 3625,
+          "sha256": "2671f01573f76710626a1bd9f2514973fd0ac75046aa37bed6c7b3ac88208ca7"
+        },
+        "CombatEngine.run": {
+          "line": 3627,
+          "end_line": 3638,
+          "sha256": "628ce70964b94493bd16e1d4180a9b30bbb03754704cd78678ac7ff92c633088"
+        },
+        "_single_king_genuine_profile": {
+          "line": 3642,
+          "end_line": 3644,
+          "sha256": "f15fd09d03f10294cbbccf13b1106865ce5457cd636f3e8205f436f92f350723"
+        },
+        "_validate_single_king_initials": {
+          "line": 3647,
+          "end_line": 3653,
+          "sha256": "301117633a648a0b9ab17828b9088993a4c33bea9819d950f6bf96b3c4a9f5af"
+        },
+        "_validate_single_king_topology": {
+          "line": 3656,
+          "end_line": 3674,
+          "sha256": "38532f281dc09ebf7665db9d629b222b772d3e34ea58110aae64b24a34834638"
+        },
+        "_validate_single_king_topology.child": {
+          "line": 3657,
+          "end_line": 3661,
+          "sha256": "ad9b165df9a111efd99c8bfe449d85244b5cb93c2f097264b0f580922e4f5ab7"
+        },
+        "_validate_single_king_processing_inputs": {
+          "line": 3676,
+          "end_line": 3742,
+          "sha256": "dcfc83b7abebfb545d76761c00a6c6f605a3a02960c801b0684b272796fd7c46"
+        },
+        "_pure441_profile": {
+          "line": 3747,
+          "end_line": 3749,
+          "sha256": "0d03afdb705a52d3c503a31fb1aaed9ed7a4f2b6a1888de0998782a77f6bb657"
+        },
+        "_pure441_roles": {
+          "line": 3752,
+          "end_line": 3760,
+          "sha256": "a8aebf5830f7aac9e15a53867e09897e5f957c946d8b102534ef46b13a6fae45"
+        },
+        "_validate_pure441_runtime": {
+          "line": 3763,
+          "end_line": 3859,
+          "sha256": "c6d56aeb816b4fa11ab24b7ead881e064e7bcdb52aea45d3836abfd6caa33d88"
+        },
+        "_assert_pure441_timer": {
+          "line": 3862,
+          "end_line": 3868,
+          "sha256": "1079cf80db46ac3202a9597ebd48f4eb998a9accb161fd79e0d41ae80c954421"
+        },
+        "_build_pure441_scaffold": {
+          "line": 3871,
+          "end_line": 3897,
+          "sha256": "d9875acfc11b406bfbe4e9d8998f322f51ca2c0d58fa9f2080982a919552b4eb"
+        },
+        "_pure441_variant": {
+          "line": 3900,
+          "end_line": 3903,
+          "sha256": "b5724279bc70167918a68e0e6ebdeebb2229457089fbffcd390eb52c108ddf40"
+        },
+        "validate_source_pure_business_domain": {
+          "line": 3915,
+          "end_line": 3938,
+          "sha256": "c8183e0789f40e323d602ef7fec23f0d6c0b824b7438734f17d185364e66b20e"
+        },
+        "_source_pure_profile": {
+          "line": 3941,
+          "end_line": 3943,
+          "sha256": "d297f5faa33da957a9f14511281f0aee773e7d295d8069a24c26a8c74a01774d"
+        },
+        "source_pure_policy": {
+          "line": 3946,
+          "end_line": 3950,
+          "sha256": "827771a4aa8561e514d5b5b2ac903ed7234956bfae3d0e2afd45b1b55e86f7bf"
+        },
+        "source_pure_business_defaults": {
+          "line": 3953,
+          "end_line": 3957,
+          "sha256": "882ee86fe8a2ec2eaf05deaf5a90c6f7b2c169339d26e4b2b21aa9733ea9e19f"
+        },
+        "_source_pure_roles": {
+          "line": 3960,
+          "end_line": 3970,
+          "sha256": "9b99f0798f0bd93ec9a481b10a54a4d61561ef28285a44c99c7708389eec8388"
+        },
+        "source_pure_topology": {
+          "line": 3973,
+          "end_line": 4005,
+          "sha256": "4afa27e24235922d25c8751c0713a9e12a8b48e11b0242d55cc8c038a885d51a"
+        },
+        "source_pure_topology.add": {
+          "line": 3975,
+          "end_line": 3976,
+          "sha256": "f124fdb79e18a878fcb7d4c4874dfd00823a9f2de7fa891bdec4b6ea4b879c1c"
+        },
+        "_source_pure_data": {
+          "line": 4008,
+          "end_line": 4020,
+          "sha256": "9a9f2189ce6d0afaf41ad1c3911447b2986c70307e8d78b2fa59b62716c8b911"
+        },
+        "source_pure_runtime_inputs": {
+          "line": 4023,
+          "end_line": 4027,
+          "sha256": "e2af71a9af1609f70db8b128ceeecae9410cc02d21791f48155b1be2d69c8da1"
+        },
+        "_validate_source_pure_runtime": {
+          "line": 4030,
+          "end_line": 4037,
+          "sha256": "f6055af23073ccb0c05c7b2debc93379ea892541d0c67cc4452a24a31a96779a"
+        },
+        "_build_source_pure_scaffold": {
+          "line": 4040,
+          "end_line": 4064,
+          "sha256": "e90016c7995ab24641c628bac2ff2b6c8a01a1e40f1bbbb72aa0a90134a43d2b"
+        }
+      },
+      "after": {
+        "model_source_hashes": {
+          "line": 25,
+          "end_line": 29,
+          "sha256": "828d7e6979d3b0c634ccc5f66b5a74818d79c3ffa9da67d56b5a94d37b5ee0e2"
+        },
+        "assert_model_source_stable": {
+          "line": 35,
+          "end_line": 39,
+          "sha256": "e3a24f6091617f20cdd3b40d29cb392013fcb3e5c99040d75139df7051180b0a"
+        },
+        "fresh_buff_fields": {
+          "line": 231,
+          "end_line": 234,
+          "sha256": "fb8df6b49227c4765a8f9198106ec6a3e45605a636afdda904d636a3fe4329c8"
+        },
+        "starter_fixture": {
+          "line": 240,
+          "end_line": 248,
+          "sha256": "3c788ce1bf933dff2822801291c924bc2afcee07152ed2aca0075c3076154adc"
+        },
+        "transformed_cells": {
+          "line": 251,
+          "end_line": 263,
+          "sha256": "e032f54e77134809d3fc34919c257fd158af84ca553dc44a2c21ad94507ed4f8"
+        },
+        "ordered_occupied_cells": {
+          "line": 266,
+          "end_line": 271,
+          "sha256": "8f1f33041e881a051976e53aa6543cfe886cc596f45329eae4632bce35285673"
+        },
+        "occupied_cells": {
+          "line": 274,
+          "end_line": 275,
+          "sha256": "84df07760c210cda81e0cdeef3a4f729f24f80981879289ea5f862547fdfa07b"
+        },
+        "_fixture_from_custom_side": {
+          "line": 278,
+          "end_line": 308,
+          "sha256": "4f56a1c456faeb039b1754865355b2e739ac4194cedc8137a14ba6c462710fa0"
+        },
+        "_fixture_from_custom_side.native_integer": {
+          "line": 283,
+          "end_line": 287,
+          "sha256": "84109916d943783e77700a5611e55e63b51bcf66334bc7aefe1eb62d0214ba76"
+        },
+        "fixture_from_custom_opponent": {
+          "line": 311,
+          "end_line": 338,
+          "sha256": "dd7bb48d77d63de63d1bdc3ea6558dd0225276246a7167f5e65f409018a9bea0"
+        },
+        "validate_fixture": {
+          "line": 341,
+          "end_line": 393,
+          "sha256": "e679668ed31504cf9e6ec341729aaee1c881a69e4f695827646272b5f2aab5fe"
+        },
+        "ItemState.definition": {
+          "line": 501,
+          "end_line": 502,
+          "sha256": "e329969110faa56ae2b2bf6277503861886117a5ec2c1aa26eea13e4515617a5"
+        },
+        "ItemState.has_cooldown": {
+          "line": 505,
+          "end_line": 506,
+          "sha256": "9067971f7fa3928897019d5e93db062efadc25688922cf64983a585ec428a77b"
+        },
+        "ItemState.logs_cooldown": {
+          "line": 509,
+          "end_line": 510,
+          "sha256": "ed418b12fe6086eb32200b0da94500d31b4f09673a015dad7434147255eb5dd5"
+        },
+        "ItemState.can_activate": {
+          "line": 513,
+          "end_line": 514,
+          "sha256": "0ca36c7f804023772495137d6b70730216c41e7d721621114421acb14d8787fe"
+        },
+        "ItemState.can_damage": {
+          "line": 517,
+          "end_line": 518,
+          "sha256": "966d2099bd1431628326a93a6560e1c353336993fb791a5a54eaa44fc1e49336"
+        },
+        "opponent_inventory_order": {
+          "line": 521,
+          "end_line": 597,
+          "sha256": "3565dbf939f21c670308362b62eb609603bf31e2832eb8b8fd2e069810cb438e"
+        },
+        "opponent_inventory_order.before": {
+          "line": 529,
+          "end_line": 530,
+          "sha256": "9151891780ce13fbf3c3462d3306ff59667f12c03f101d42c641aede3b9bb1a1"
+        },
+        "opponent_inventory_order.adjust_heap": {
+          "line": 532,
+          "end_line": 550,
+          "sha256": "5a854510c3ed182b680837b94f5612cc9e17f4414020dd75ceff015d7cd9c9f4"
+        },
+        "opponent_inventory_order.heap_sort": {
+          "line": 552,
+          "end_line": 560,
+          "sha256": "44e78d405300ee5e899202c8799b97f9a8a7aafdc480c0f38a6e06352f10b3d1"
+        },
+        "opponent_inventory_order.intro": {
+          "line": 562,
+          "end_line": 585,
+          "sha256": "4fdba7d23f3dd2ef18ebd6abd49cbb492629516fca4fda50d2efc3ddb9a11787"
+        },
+        "_be_float": {
+          "line": 608,
+          "end_line": 614,
+          "sha256": "e3b33fb3e9312e2db3ea33c3b0b45a2f895421cbd725c2e1f4d05452dd92ed21"
+        },
+        "_float_bits": {
+          "line": 617,
+          "end_line": 620,
+          "sha256": "564291eebbf37bfd31fa1e3ef0e90bb3847eda8108a711ca029a36a7d8a8c5b8"
+        },
+        "_keys": {
+          "line": 623,
+          "end_line": 625,
+          "sha256": "fc83dc2c40f5bc53b9982f297a3c76837555978d832dc0561668912aa7366436"
+        },
+        "_has_king": {
+          "line": 639,
+          "end_line": 640,
+          "sha256": "af8df30401e8bf15c427342d85a93c40421144a04349daa68a19a32281f54100"
+        },
+        "_king_particle_facts": {
+          "line": 643,
+          "end_line": 650,
+          "sha256": "28dafc10323699ad669cd7de66ff4a6f5ed034449ec3f0fda8225263e362210e"
+        },
+        "validate_source_king_domain": {
+          "line": 660,
+          "end_line": 671,
+          "sha256": "c5f1ab4b576575179f7314073efd17bd4d542de55d05d2af013daf49997a32be"
+        },
+        "source_king_policy": {
+          "line": 674,
+          "end_line": 681,
+          "sha256": "e3682ecbc58a81ece16733821c1d1b6d5ffbc22f30408970ad9d6362c1b753e9"
+        },
+        "source_king_fresh_defaults": {
+          "line": 684,
+          "end_line": 695,
+          "sha256": "b5e0be53d9cbf51cb9b90f1231adce31ec5460fb42e78e94da6ccc770e93aecd"
+        },
+        "source_king_topology": {
+          "line": 698,
+          "end_line": 741,
+          "sha256": "e1997c51d5f42423a2fd8872e8927670761ceeda335a088ebed95563af30f8f8"
+        },
+        "source_king_topology.node": {
+          "line": 703,
+          "end_line": 708,
+          "sha256": "d6a237665e6ec863759f75894325e9b5d67fd17d01c8e83e2b82221f30a21d35"
+        },
+        "_source_king_equal": {
+          "line": 744,
+          "end_line": 754,
+          "sha256": "b3da588771519f9e374c24923be96d15ac04e59a592e99f5944ade16736ccc86"
+        },
+        "_source_king_data": {
+          "line": 757,
+          "end_line": 774,
+          "sha256": "9a1c8e4e7e3799c61fa378247b6803f4af03fe9b02960ab42d068fe5111a305b"
+        },
+        "source_king_runtime_inputs": {
+          "line": 777,
+          "end_line": 781,
+          "sha256": "99f3a9ba2b5558fd063e671a032c0a8517cf77b0a73fe18868b8a82d552a5afb"
+        },
+        "_validate_source_king_runtime": {
+          "line": 784,
+          "end_line": 794,
+          "sha256": "11dd45c57fa567fd8320d23eccebd10ed3c0b7fff27148b5b860cdec2c9ddc99"
+        },
+        "_source_king_profile": {
+          "line": 797,
+          "end_line": 799,
+          "sha256": "847b609ee8a8c20ea8b06ff8b9bdde681fc6f26567a2aadb6ffe79ee844c9754"
+        },
+        "_has_rage": {
+          "line": 802,
+          "end_line": 804,
+          "sha256": "e6bc99dea278c9f086f8bee18ff76042d1deb1c113caea84d0f8eae486866539"
+        },
+        "_required_roles": {
+          "line": 807,
+          "end_line": 827,
+          "sha256": "b10f00dd785f54ebebd2ef6677a15e2767672eb0bc3b561e357d63839205457e"
+        },
+        "_integration_domain": {
+          "line": 837,
+          "end_line": 838,
+          "sha256": "3325c9532eb3cc4ed6e29a5a13f20970301edffc20e012447d49583537b6d394"
+        },
+        "_validate_processing_inputs": {
+          "line": 841,
+          "end_line": 909,
+          "sha256": "e9462895b58b762de9cfb95700fa0a171819c33a096e2453a216a29d37e5f5e0"
+        },
+        "_validate_runtime_nodes": {
+          "line": 912,
+          "end_line": 968,
+          "sha256": "7e147a8a379cf542a7927709ac52d830c2d1f65e9ff6bba4e48eb6cf228c843d"
+        },
+        "validate_runtime_inputs": {
+          "line": 971,
+          "end_line": 1052,
+          "sha256": "98d7925f56d48733614900f4ef73406a332803554f0c2abb89c048810743cd33"
+        },
+        "_synthetic_runtime_data": {
+          "line": 1055,
+          "end_line": 1083,
+          "sha256": "213ba5bfb2f856f646a5c37c8babd89ddf71ab26636e86101c056a766d39fb12"
+        },
+        "synthetic_runtime_inputs": {
+          "line": 1086,
+          "end_line": 1089,
+          "sha256": "3076130cf93e978eb4fc9de5c3a2140ca3bea4e91412170fb18cc8bb1a12e888"
+        },
+        "synthetic_king_runtime_inputs": {
+          "line": 1092,
+          "end_line": 1101,
+          "sha256": "6e30739a74d9d07ee630a46c25879d1f33f6fb464da50f1d4e31d29d3d4adeb4"
+        },
+        "build_runtime_scaffold": {
+          "line": 1104,
+          "end_line": 1135,
+          "sha256": "c1fd8210f6cd34709eb6876418f3da389c8ba775dccbcd14fe99aa39f1781e53"
+        },
+        "EngineFrameDriver.__init__": {
+          "line": 1147,
+          "end_line": 1149,
+          "sha256": "0c338f73bae729bb618a7d130538886baad73b42886f62643f643c52183c7920"
+        },
+        "EngineFrameDriver._util_physics": {
+          "line": 1151,
+          "end_line": 1155,
+          "sha256": "a251302e4e119910231dcee513362b895c38d981917628ca47de2cb3f150ceb8"
+        },
+        "EngineFrameDriver._util_idle": {
+          "line": 1157,
+          "end_line": 1160,
+          "sha256": "a40a322fe8cebcaa10a3683b63a2fff6bbb47d39c1812d73257af587bad16cbb"
+        },
+        "EngineFrameDriver.snapshot": {
+          "line": 1162,
+          "end_line": 1168,
+          "sha256": "cd2c9aa0ba146ef2c2ccb5ae80d3f108391acbf939e959d0876705ce4c4fc1ea"
+        },
+        "Fixed60Passes.__len__": {
+          "line": 1174,
+          "end_line": 1175,
+          "sha256": "dd21b7cc61be6475d8942e16859803803e6d0ab429a79ee5f86aeb039dd23bcc"
+        },
+        "Fixed60Passes.__getitem__": {
+          "line": 1177,
+          "end_line": 1183,
+          "sha256": "2121d9e26c376ff68480db66abea042d5c6c6d52ffbc32591ac400ddd260579d"
+        },
+        "_source_king_bootstrap_clock": {
+          "line": 1186,
+          "end_line": 1191,
+          "sha256": "d9a56757b27476b62b1f416d53c6fa9172043ab890e0bfdded599e71278b0295"
+        },
+        "HeadlessKingFrameDriver.__init__": {
+          "line": 1196,
+          "end_line": 1199,
+          "sha256": "6ade424ec849e231344d002c1900368d8395440b255c2eb4c85be4fdbf2f01b1"
+        },
+        "HeadlessKingFrameDriver.complete": {
+          "line": 1201,
+          "end_line": 1207,
+          "sha256": "27f463597435fabefaefe3d46978c9ed799612b37be88ceb11b74cc584860c3d"
+        },
+        "CombatEngine.__init__": {
+          "line": 1211,
+          "end_line": 1319,
+          "sha256": "9e715d6345142263bf74df2cc162009b47c5f42a27b4ee7e787fa02ff93c8955"
+        },
+        "CombatEngine._validate_source_pure_state": {
+          "line": 1321,
+          "end_line": 1347,
+          "sha256": "c00fd397a77e1d630f1f22bc070c4a6640ae720994d503c5f9d974d116b59dc7"
+        },
+        "CombatEngine._validate_pure441_constructed": {
+          "line": 1349,
+          "end_line": 1367,
+          "sha256": "cdb9f0a1cca380a0ebafe2001a4c4de4d8bf51657742c2572fa0e5494d8be1bc"
+        },
+        "CombatEngine._validate_pure441_prepared": {
+          "line": 1369,
+          "end_line": 1372,
+          "sha256": "fee11b2cb73b4d04c4e201167ee5a2cf5bda123ed9c552eee3f46dc4c6b3a9dc"
+        },
+        "CombatEngine._pure_business_snapshot": {
+          "line": 1374,
+          "end_line": 1398,
+          "sha256": "6ea76560a7436beb1a3bf84d7ea688e2e57db4427b2c1649d2521673b6f45c9f"
+        },
+        "CombatEngine._pure_api_before": {
+          "line": 1400,
+          "end_line": 1403,
+          "sha256": "ecd57a814be75b3c6736d168c37b419171dd8c1ae445cf218f7606706db3d80c"
+        },
+        "CombatEngine._pure_api_after": {
+          "line": 1405,
+          "end_line": 1409,
+          "sha256": "7170a56b1d0adae865113461743c6a0e2901d18f8f73cf3661ed92fbd7c4bdad"
+        },
+        "CombatEngine._set_source_processing": {
+          "line": 1411,
+          "end_line": 1415,
+          "sha256": "1f82b6e84e8325af41c4b55cdeea76da6d35724a84249808907c04b4656878d3"
+        },
+        "CombatEngine._set_item_cooldown": {
+          "line": 1417,
+          "end_line": 1419,
+          "sha256": "67b9304c9f7836263182c7faa51f70898084aebcd314bd52f596c6abee5bd363"
+        },
+        "CombatEngine._integration_callback": {
+          "line": 1421,
+          "end_line": 1425,
+          "sha256": "ac17bad9547e1c7bdd0915e0518b9fb21a7e795c82229a6a4d4457a564e6b76e"
+        },
+        "CombatEngine._source_noninterfering_callback": {
+          "line": 1427,
+          "end_line": 1435,
+          "sha256": "624be573ddd7cdfd35149ee8392d95fbf1299b18c6ed38c6a1855e2944a6ed0f"
+        },
+        "CombatEngine._integration_node": {
+          "line": 1437,
+          "end_line": 1443,
+          "sha256": "2df43957a99742c86785750da3f9704bed9dacc84bbe8a2259259cab72f1cbd9"
+        },
+        "CombatEngine._integration_aux_timer": {
+          "line": 1445,
+          "end_line": 1447,
+          "sha256": "9af32ad3ce213999cae8ae1d4427ea2776a9bdecb7d7416fb53ef826598c31f6"
+        },
+        "CombatEngine._integration_timer": {
+          "line": 1449,
+          "end_line": 1452,
+          "sha256": "7097685227d2ad0371108bf46468f0c01d59f6e6bd3b69aeec464970158f29eb"
+        },
+        "CombatEngine._integration_fx_snapshot": {
+          "line": 1454,
+          "end_line": 1468,
+          "sha256": "47adee2ca6ca7b7d7e2873775957b49cd7ac75880ffc13397ff1a5d335b5b69a"
+        },
+        "CombatEngine._connect_runtime_callbacks": {
+          "line": 1471,
+          "end_line": 1474,
+          "sha256": "4dedcd7e33dc1170f5a29991d327d93686bcd41680574dc866aa8396c7cdc9b3"
+        },
+        "CombatEngine._public_timer": {
+          "line": 1476,
+          "end_line": 1485,
+          "sha256": "359f0e6d39bd5d30158692466867dd433e718241d4a549338ad301b2553947ee"
+        },
+        "CombatEngine._public_timer.primitive": {
+          "line": 1477,
+          "end_line": 1484,
+          "sha256": "5816bf0b13051eaadec2f722b9a3d64e1fae774102f0d714872faae0648a7497"
+        },
+        "CombatEngine._timer_snapshot": {
+          "line": 1487,
+          "end_line": 1488,
+          "sha256": "715ee52265948abb628f94523c6d87559fb8a3ed6630936f4c30c2d1563c45d4"
+        },
+        "CombatEngine._start_timer": {
+          "line": 1490,
+          "end_line": 1504,
+          "sha256": "18bc5ae4966d29fe506a3b66d7ca61963cbf22214a029f056aadae5204604f47"
+        },
+        "CombatEngine._stop_timer": {
+          "line": 1506,
+          "end_line": 1512,
+          "sha256": "4a77b756083093df11f2f501ddf56480c76d99a7da0d4d1a8b8d03efb076510f"
+        },
+        "CombatEngine._timer_timeout": {
+          "line": 1514,
+          "end_line": 1537,
+          "sha256": "57f6ec77ec33188d91c9d9e8f6603cd29a673bc11c095c5679eb1cf9eeb0ccd6"
+        },
+        "CombatEngine._full_timer": {
+          "line": 1539,
+          "end_line": 1541,
+          "sha256": "33b0a2bf993b2902ac08d98709d5d38c6218fd2470ea965252ade9d73c27539c"
+        },
+        "CombatEngine._king_ordinary": {
+          "line": 1543,
+          "end_line": 1563,
+          "sha256": "1038bd68abc312176cdf1569ccdab65ccd516ea909295459bdb47a28f2345831"
+        },
+        "CombatEngine.king_prepare": {
+          "line": 1565,
+          "end_line": 1569,
+          "sha256": "6846c1fa42c43761e268f09c6564266578785d9555d68d398da7577f3e7ed0f8"
+        },
+        "CombatEngine.king_set_state": {
+          "line": 1571,
+          "end_line": 1588,
+          "sha256": "613525504f032ec311b3d54a305221b2767557cea79881dbcb49c39395e31705"
+        },
+        "CombatEngine.king_effect": {
+          "line": 1590,
+          "end_line": 1601,
+          "sha256": "319c43a76a47e57ef781d5dd0f9767ae37f68dfddc44bd7eb4ae5229e84dfe91"
+        },
+        "CombatEngine.make_invulnerable": {
+          "line": 1603,
+          "end_line": 1615,
+          "sha256": "4b1970893087aea433c5677d2ab2cecf1a67213a883d3eb14cf3af92b9323a7c"
+        },
+        "CombatEngine.invu_timeout": {
+          "line": 1617,
+          "end_line": 1621,
+          "sha256": "f72202d02a1a7e70df5c60018b198636126343433288ade57aae8deeb3604ecf"
+        },
+        "CombatEngine.king_buff_timeout": {
+          "line": 1623,
+          "end_line": 1624,
+          "sha256": "3a1a27c62a1e9fe32e4a465b85be54a3bb7301fe8412a505c7fb17fbed078f56"
+        },
+        "CombatEngine._ordered_stars": {
+          "line": 1626,
+          "end_line": 1631,
+          "sha256": "e1a2ac290bbcb5a8270495b3f50c5ee907d162efe5a3e29f292965900a4fd565"
+        },
+        "CombatEngine._fresh_goobert_targets": {
+          "line": 1633,
+          "end_line": 1639,
+          "sha256": "8b9029e83a597300d101b24e35efff4b9f327f780319615b63555dbf79c0bdc0"
+        },
+        "CombatEngine.give_stacks_temporary": {
+          "line": 1641,
+          "end_line": 1645,
+          "sha256": "ea07ce05bc0ff6d2e4dc25a4e738c4612d957ebe6d958d50fd36b5d6208be62a"
+        },
+        "CombatEngine.change_current_log_show_label": {
+          "line": 1647,
+          "end_line": 1654,
+          "sha256": "bf4d534fce8c605dba9bfc5eff85e2a11f150dfcd1908a813ea34db35d657307"
+        },
+        "CombatEngine.buff_timeout": {
+          "line": 1656,
+          "end_line": 1673,
+          "sha256": "e42cd38bd681b1de7757bb00a59c2284fa4839f39366652fb3723aa1ef92f0a9"
+        },
+        "CombatEngine._blood_effect_domain": {
+          "line": 1675,
+          "end_line": 1682,
+          "sha256": "2803075a57eeb2c18ec746e9e4f0f799099c684a822a14f534de3c2798ae0610"
+        },
+        "CombatEngine.take_effect_damage": {
+          "line": 1684,
+          "end_line": 1725,
+          "sha256": "370dd0134faa743bcd97a14acb82e4cb07cdf6083ee06dd1eebb0ad44457058e"
+        },
+        "CombatEngine.steal_life": {
+          "line": 1727,
+          "end_line": 1735,
+          "sha256": "789756f4eae3f65e1a7ad213a18f647e47e5ee8d85f541bd55617e2ffceed9c3"
+        },
+        "CombatEngine.blood_effect": {
+          "line": 1737,
+          "end_line": 1738,
+          "sha256": "e5270304a84531034f4ace0dbb50da9934d7a69cf30a7526faefd177865d84d5"
+        },
+        "CombatEngine.carrot_effect": {
+          "line": 1740,
+          "end_line": 1745,
+          "sha256": "9d5cb10f790a93b5ba18655f90fa3871b1960a0b1e70bbd183291dc5eb9950ce"
+        },
+        "CombatEngine.carrot_particle_timeout": {
+          "line": 1747,
+          "end_line": 1748,
+          "sha256": "53c18f50083fd9b3538a16c6477580c7abb3af5738cc2ee9c0ddf4e646799cf6"
+        },
+        "CombatEngine.light_effect": {
+          "line": 1750,
+          "end_line": 1755,
+          "sha256": "4943340258669b36797add0ac36bef70f964fa77c726c69a2fd48b79db1b3d8b"
+        },
+        "CombatEngine.light_particle_timeout": {
+          "line": 1757,
+          "end_line": 1758,
+          "sha256": "3ac2abf2b40a80ef96e3433e8c30d9cb79771d27b32ce670b027ef25bbc75138"
+        },
+        "CombatEngine._runtime_projection": {
+          "line": 1760,
+          "end_line": 1771,
+          "sha256": "79314162ccf84560bd04595acc33e0d10baca45db09b0dccdd198d2542415eb3"
+        },
+        "CombatEngine.mark_schedule": {
+          "line": 1774,
+          "end_line": 1777,
+          "sha256": "30929553b138d0a77657dc67860ec8e5a737ba49423003d6a67bc9436c6466a9"
+        },
+        "CombatEngine.allocate_event": {
+          "line": 1779,
+          "end_line": 1789,
+          "sha256": "83c3a197a8fbf1afd48886f54915b9e0fc0dd5b38e56369174d7019415dc381e"
+        },
+        "CombatEngine.emit": {
+          "line": 1791,
+          "end_line": 1794,
+          "sha256": "05120af9660043f33454fbee0106fe0d6e73e23308851be2e32db5fcb4d0b796"
+        },
+        "CombatEngine.set_logging_mode": {
+          "line": 1796,
+          "end_line": 1799,
+          "sha256": "d8d1fe98dce636efb38410a1dfdfe5407abfbd08939d6ab22dfdc768299c0e7f"
+        },
+        "CombatEngine.emit_event": {
+          "line": 1801,
+          "end_line": 1805,
+          "sha256": "1aff9d382b52f073a917f74d349465591ef4d02e2efabdf64eb58f723c84b655"
+        },
+        "CombatEngine._emit_and_log": {
+          "line": 1807,
+          "end_line": 1822,
+          "sha256": "7037e713172465ae60631d16b0ec0904f830c4768df9dcc777f998f3a8f7de27"
+        },
+        "CombatEngine.flush_logging_queue": {
+          "line": 1824,
+          "end_line": 1829,
+          "sha256": "43e633366dbbe0c64a2b505495eb227fac0c3065a6d97a74b730319f251eb043"
+        },
+        "CombatEngine.adjust_cooldown": {
+          "line": 1831,
+          "end_line": 1833,
+          "sha256": "7144b6f321b00eccdb74b6812fc73cfdcc981a0ca0845966c6213e59ce25f0d9"
+        },
+        "CombatEngine.ruby_effect": {
+          "line": 1835,
+          "end_line": 1842,
+          "sha256": "408811977e0ccf77c8baee443d3b0d8eaf4d33a81fe8e9614bb7de63acd9ff7c"
+        },
+        "CombatEngine.prepare_only": {
+          "line": 1844,
+          "end_line": 1943,
+          "sha256": "c37175397412a8af6038b0a1e4b992b27ccb4ecd176eb5e1c9816eb02fa17bad"
+        },
+        "CombatEngine.activate_from_checkpoint": {
+          "line": 1945,
+          "end_line": 2077,
+          "sha256": "30fc41dd64d5ac6553de76c06aeb0078396fea42986129607ba464046e4211b4"
+        },
+        "CombatEngine.inside_items": {
+          "line": 2079,
+          "end_line": 2094,
+          "sha256": "b6a5fc96a0addbb7edb9a452e376ad9fb58638073ec9af9b022de3b035c87aa5"
+        },
+        "CombatEngine.empty_affected_cells": {
+          "line": 2096,
+          "end_line": 2104,
+          "sha256": "1905469bdf059c56833b68c4fd9379d16b3e781c2cec239170ddfc3ea29232ac"
+        },
+        "CombatEngine.new_caller_target_caches": {
+          "line": 2106,
+          "end_line": 2160,
+          "sha256": "6ce18fb658f39f42906f06e56c750d7830534356b26d003ca6a14010bc9f7eeb"
+        },
+        "CombatEngine.new_caller_target_caches.eligible": {
+          "line": 2113,
+          "end_line": 2132,
+          "sha256": "c89fc8f9eb39ae0480715e538d6f4eda1c6bc6431df45e9ae924a647fb2939ad"
+        },
+        "CombatEngine.new_steel_secondary_caches": {
+          "line": 2162,
+          "end_line": 2180,
+          "sha256": "3a2dbb866cde79f2cd4c34b47365b9295c609b1ee8bd30ebeac4a0809f907865"
+        },
+        "CombatEngine.new_steel_secondary_caches.eligible": {
+          "line": 2168,
+          "end_line": 2169,
+          "sha256": "511b4d290263d9bd763bce22e12e1d033ceb68f31dac9b26479549fe42e82551"
+        },
+        "CombatEngine.affected_items": {
+          "line": 2182,
+          "end_line": 2221,
+          "sha256": "484e8500644baf19b1906712f5363818093c32b874e758ded39a7703a1535d1f"
+        },
+        "CombatEngine.add_speed": {
+          "line": 2223,
+          "end_line": 2226,
+          "sha256": "2aa15d44a2e206ccc16f7fbe1a65cbb357cf3ca609a9f01b8123b1c9bca6218f"
+        },
+        "CombatEngine.add_bonus_damage": {
+          "line": 2228,
+          "end_line": 2232,
+          "sha256": "ef6dbef4a3978e29208857a19a8da379859161c7a9d0f3f043d654a358cb147f"
+        },
+        "CombatEngine.damage_bounds": {
+          "line": 2234,
+          "end_line": 2242,
+          "sha256": "2a9598bc7647193735857ff68bbf9e865f7433432fe604cd29e45d34bb266e2c"
+        },
+        "CombatEngine.damage_bounds.source_round": {
+          "line": 2240,
+          "end_line": 2241,
+          "sha256": "d1292ef70d8e55995d2dcc67f9e0433a13d20df226c80863aee8c4fb7f91a107"
+        },
+        "CombatEngine.change_varying_damage": {
+          "line": 2244,
+          "end_line": 2248,
+          "sha256": "4d1dea1e8b1af43708c45b6df4e019d56828d0e94f05b36bc4ceb7f62f2ca4fc"
+        },
+        "CombatEngine.add_max_damage": {
+          "line": 2250,
+          "end_line": 2252,
+          "sha256": "36660d2eef2c43fcf76225f9278c6b5a2e9236c5b016571cbb4ac6f20ea37407"
+        },
+        "CombatEngine.on_stack_changed": {
+          "line": 2254,
+          "end_line": 2269,
+          "sha256": "fa103fe1d81f6cf26335998a094ee7291517319a8eff199df9c087681628bb00"
+        },
+        "CombatEngine.on_mana_changed": {
+          "line": 2271,
+          "end_line": 2276,
+          "sha256": "d27c80045d23518e6819199b56d142280e689e62bfd68eb700524ec766d2cb02"
+        },
+        "CombatEngine.change_debuff_resistance": {
+          "line": 2278,
+          "end_line": 2280,
+          "sha256": "2c54f61d52685422a17d20de28e377639e8fe8d64ba92bf3456fa00f9bb27489"
+        },
+        "CombatEngine.change_debuff_reflection": {
+          "line": 2282,
+          "end_line": 2284,
+          "sha256": "25b4d3dcc606130a70e673097331f4bc62d60603e86ed02a01687410ca2763b8"
+        },
+        "CombatEngine.give_max_health": {
+          "line": 2286,
+          "end_line": 2297,
+          "sha256": "8a089edcdba0b09aa4f3327e48c2d85feceaebba07c1867ea85a1c902cf027a7"
+        },
+        "CombatEngine._buff_record": {
+          "line": 2299,
+          "end_line": 2306,
+          "sha256": "70a03fa6216db02b71bc3a2df058eef0f1e6c2acfd860d275661d26d79970a0a"
+        },
+        "CombatEngine.change_resist_chance": {
+          "line": 2308,
+          "end_line": 2310,
+          "sha256": "20652feafa9ccc3fd4218d6120f2719ea466d1044df0725e6b75ebc5287a4575"
+        },
+        "CombatEngine.change_protection_chance": {
+          "line": 2312,
+          "end_line": 2314,
+          "sha256": "5f679271c9af0f784f1cc6767c6c9995aec0668d0636997bb3287fe0a0d39f96"
+        },
+        "CombatEngine.change_buff_protection_chance": {
+          "line": 2316,
+          "end_line": 2318,
+          "sha256": "5972969d2b2a6c9b5d48cc4850fb0edee6b53727e7118b5a62c4dc7f3c454415"
+        },
+        "CombatEngine.change_debuff_protection_chance": {
+          "line": 2320,
+          "end_line": 2322,
+          "sha256": "a407db214177231c4dbd9b4eefba988e09624633d0dbea6521e8736a6bbeee16"
+        },
+        "CombatEngine.change_reflect_chance": {
+          "line": 2324,
+          "end_line": 2326,
+          "sha256": "55affb966bd1d14e2743568daf645a2d80d10bcdc7a6572b497a6cb3db542b46"
+        },
+        "CombatEngine.change_resist_stacks": {
+          "line": 2328,
+          "end_line": 2330,
+          "sha256": "5263e6229f933c9fa009a66e4736d1c72289a51f4fe62af6f6a2d20facb84028"
+        },
+        "CombatEngine.change_buff_protect_stacks": {
+          "line": 2332,
+          "end_line": 2333,
+          "sha256": "8c75fa2d75217041f9effa5eb05ef4c3ed9834398d6f01efda1bbf9853d44d36"
+        },
+        "CombatEngine.change_amplification": {
+          "line": 2335,
+          "end_line": 2337,
+          "sha256": "af5dfab09a63b4dd36bafb71f3bc49835f6898746657c81d960b75dfb1c98809"
+        },
+        "CombatEngine.give_buff_power": {
+          "line": 2339,
+          "end_line": 2341,
+          "sha256": "be75a86fbd0ebb696f960ec4c4c247b2729d0975e546a5a5414511e51d75288f"
+        },
+        "CombatEngine._stack_metric": {
+          "line": 2343,
+          "end_line": 2357,
+          "sha256": "fb6278b865f3ba44515549c41064c03820e800bfac7ee54c49fc13fdb730ca9c"
+        },
+        "CombatEngine.stack_event": {
+          "line": 2359,
+          "end_line": 2386,
+          "sha256": "299a935d90bfc862bbaeb7198e3cc2830b377363f7414b1d82d5c21c4bd36953"
+        },
+        "CombatEngine._buff_roll": {
+          "line": 2388,
+          "end_line": 2391,
+          "sha256": "11f59d4a0d787fe136cf3ecfba1db3cb5def04dc3760f6c61aef3e0e1c3347e5"
+        },
+        "CombatEngine.character_gain_stacks": {
+          "line": 2393,
+          "end_line": 2395,
+          "sha256": "d03d8f6f9b78850ce6d4ca58591c1bb47ced50194225f0fab1fc2d6ae3ab7e72"
+        },
+        "CombatEngine.gain_stacks_temporary": {
+          "line": 2397,
+          "end_line": 2406,
+          "sha256": "5566f96244bd32ac94b6976c74e14b3b5ef78374025b098985f4850282d243f4"
+        },
+        "CombatEngine._gain_permanent_stacks": {
+          "line": 2408,
+          "end_line": 2409,
+          "sha256": "203f5e771a6b5c4588d6f76162913265afb4b7e212f63d47407739aa54d5e680"
+        },
+        "CombatEngine._gain_stacks": {
+          "line": 2411,
+          "end_line": 2481,
+          "sha256": "361c6dcbd43b2c24f0dd5c8a480250c1e643d9fdbd4c8021f206f1ad8b792efc"
+        },
+        "CombatEngine.remove_stack": {
+          "line": 2483,
+          "end_line": 2537,
+          "sha256": "ff7b0fe7bf8738900a8302a3e87a01a0b031bb0f719ec6a34427e4ed4d84efff"
+        },
+        "CombatEngine.use_stack": {
+          "line": 2539,
+          "end_line": 2540,
+          "sha256": "04fabae312a2221961d473533e361a4a4f80099e2bf71eb19586f401a1a58b35"
+        },
+        "CombatEngine.try_use_mana": {
+          "line": 2542,
+          "end_line": 2545,
+          "sha256": "974889bf65a3efc19394444c27c350e7dd8b6e15b9f0f80e128a3706d4650905"
+        },
+        "CombatEngine.lucky_changed": {
+          "line": 2547,
+          "end_line": 2553,
+          "sha256": "db06e7033ed1ce6bb37031bb68baf4cc9f031adc6b94c3dcbb7e1e411f424ce2"
+        },
+        "CombatEngine.lose_health": {
+          "line": 2555,
+          "end_line": 2567,
+          "sha256": "f09a7b6213b2641586cc579c9aa6a378ed33b1de5188c075e1d9b2c0bf512a6e"
+        },
+        "CombatEngine.health_to_block": {
+          "line": 2569,
+          "end_line": 2576,
+          "sha256": "6175748e44faddbcfd95327dc166c51bd2b29d888527c0903afed5b998e39017"
+        },
+        "CombatEngine.give_stack": {
+          "line": 2578,
+          "end_line": 2585,
+          "sha256": "2b917975701aabf03fb967a8e1370e446e7564568904ba1e3828f8cc004fe171"
+        },
+        "CombatEngine._fraction_round": {
+          "line": 2588,
+          "end_line": 2592,
+          "sha256": "0afb2027cac86e0d1bc9d7e3aa69a42814e2bb5f56f2d211d3be2967c1acf7c4"
+        },
+        "CombatEngine.get_stack_fraction": {
+          "line": 2594,
+          "end_line": 2650,
+          "sha256": "c24e4578f4194aab1303277e1be2af7a37f7304cc240c645e7dc9b3203afffae"
+        },
+        "CombatEngine.multiply_buffs_limit": {
+          "line": 2652,
+          "end_line": 2659,
+          "sha256": "fdd2b72ee3faaae0bd79bb7fa8888b611195757f1d54d2931d4a8c6ce4078d97"
+        },
+        "CombatEngine.remove_buffs_fraction": {
+          "line": 2661,
+          "end_line": 2669,
+          "sha256": "c2230e17864430eaac888edd28e4c461f79f8c2c6b55d6194005be1a3e0e4d0d"
+        },
+        "CombatEngine.steal_stack": {
+          "line": 2671,
+          "end_line": 2675,
+          "sha256": "f3e9f6cf199e2e81e58fae2d85eef90f19660c7406061ef030057723bc0a6633"
+        },
+        "CombatEngine.steal_buffs_fraction": {
+          "line": 2677,
+          "end_line": 2685,
+          "sha256": "bc94e6f519c17b405a85322cb3b445dfbd8ed527c6bd8345cd87c76185be193e"
+        },
+        "CombatEngine._stack_picker_inputs": {
+          "line": 2687,
+          "end_line": 2697,
+          "sha256": "e6a63fb20bec819993f31a9ce308fcc589ce5e9cf9b575ce0b5d442cfd077fe9"
+        },
+        "CombatEngine._stack_name": {
+          "line": 2699,
+          "end_line": 2700,
+          "sha256": "eba5a9a94aad6afa41a8675c5fcee35e46f23d3f51fd6a07c477ba8bf7d2da6b"
+        },
+        "CombatEngine.pick_random_stacks": {
+          "line": 2702,
+          "end_line": 2729,
+          "sha256": "32ef03ec2030d410ac39972be8947d6ba3cfefe33c733321e50a5ef8b79d57ea"
+        },
+        "CombatEngine.pick_random_stacks_to_give": {
+          "line": 2731,
+          "end_line": 2741,
+          "sha256": "2554a7967c932d60eadc9376a9c04e3e1c23a1bb1d379d14cf67349ae24aea9f"
+        },
+        "CombatEngine.cleanse_random_debuffs": {
+          "line": 2743,
+          "end_line": 2748,
+          "sha256": "98ab5f577642f444050a176c0de34a0652c45fb8b7e34fcf3e436f14795b8c26"
+        },
+        "CombatEngine.give_random_buffs": {
+          "line": 2750,
+          "end_line": 2756,
+          "sha256": "08cce75fac1ec755d05e16ad09d54f36f03eb8402b7eb4c60332ed42bfe136ca"
+        },
+        "CombatEngine.use_random_buffs": {
+          "line": 2758,
+          "end_line": 2767,
+          "sha256": "d86c6ec5861984631d0747ce03954ff8f823ae0e76384f1aab5852f882f505aa"
+        },
+        "CombatEngine.inflict_random_debuffs": {
+          "line": 2769,
+          "end_line": 2775,
+          "sha256": "743f0b3ab8a471de3f7e24f5f35d5acdccfbe7ec8a5df84748152eb93f686423"
+        },
+        "CombatEngine.remove_random_buffs": {
+          "line": 2777,
+          "end_line": 2783,
+          "sha256": "e89b156a3fd10e5c8951398b18e81ed848254c4acab3361aa54deff4489cc901"
+        },
+        "CombatEngine.steal_random_buff": {
+          "line": 2785,
+          "end_line": 2793,
+          "sha256": "f8281220a9528425cb123e254f037457a70a0ed65bc4eaa00bf0ce9d951a31db"
+        },
+        "CombatEngine.give_lucky": {
+          "line": 2795,
+          "end_line": 2796,
+          "sha256": "ede7017ac84c258583286438354e37ccd22eb7dc8628aa466ca7f854499934f8"
+        },
+        "CombatEngine.heal": {
+          "line": 2798,
+          "end_line": 2816,
+          "sha256": "e1cbdc2b88760606432b644c2fbba3b34cd0ddd52a64d57981411eb4e78010d7"
+        },
+        "CombatEngine.on_character_healed": {
+          "line": 2818,
+          "end_line": 2824,
+          "sha256": "50c92f61100f7a94cb9906aa26edf80d38d2debe74c36da3f3990c8da773910e"
+        },
+        "CombatEngine.on_opponent_heal": {
+          "line": 2826,
+          "end_line": 2834,
+          "sha256": "bbe535e0fcfddc6259a6234e2ae6ab5197a9b3be715fab13df0046b72e0b0bfd"
+        },
+        "CombatEngine.give_stamina": {
+          "line": 2836,
+          "end_line": 2842,
+          "sha256": "2802edefd64f923dabc5cef18ca9ec4dc9e7bea702434d10655528c59defebf7"
+        },
+        "CombatEngine.activate": {
+          "line": 2844,
+          "end_line": 2867,
+          "sha256": "eead715715b28c4f8be0aeda55b75d350d26905b3412a40a3eca562e0abd7fd2"
+        },
+        "CombatEngine.on_goobert_item_activated": {
+          "line": 2869,
+          "end_line": 2912,
+          "sha256": "02a1dffd63d1ef26de1dd85bb34d8095bcc9bf865ef7d9b51a95b178eeed74cb"
+        },
+        "CombatEngine.get_most_stacks": {
+          "line": 2914,
+          "end_line": 2932,
+          "sha256": "438b144e49b1791e9c2463ca5c87ffaaba81b9fa466763195ec507976a956d91"
+        },
+        "CombatEngine.give_most_buffs": {
+          "line": 2934,
+          "end_line": 2941,
+          "sha256": "e6a0772f403b6a4be3f0c5cf761a3bed8a6563fa28c671a30e5fcffa03ab2493"
+        },
+        "CombatEngine.special_goobert_effect": {
+          "line": 2943,
+          "end_line": 2967,
+          "sha256": "01e927759855c81778a1d499f71c51440d73072c2f62114c060db835df50c7c4"
+        },
+        "CombatEngine.rainbow_effect": {
+          "line": 2969,
+          "end_line": 2991,
+          "sha256": "5fdb86b18b7c9e23e325b304668c28eb49019f85a8cbfff8eb1140966e83db2d"
+        },
+        "CombatEngine.roll_item_chance": {
+          "line": 2993,
+          "end_line": 2996,
+          "sha256": "b055ab12d125cb52ac45131ee34cee946845facce6a2afeccd7d664cbc110b82"
+        },
+        "CombatEngine.drain_stamina": {
+          "line": 2998,
+          "end_line": 3007,
+          "sha256": "f7273747f6631e704137a393ce299c029d2c03232a4faca4264bfcfd188979cb"
+        },
+        "CombatEngine.extra_attack": {
+          "line": 3009,
+          "end_line": 3013,
+          "sha256": "00c89180b140ae4b1dfaeb69506423b50ccca3c1d764c3509f2ae2c79bdc112b"
+        },
+        "CombatEngine.weapon_attack": {
+          "line": 3015,
+          "end_line": 3021,
+          "sha256": "f9a2a331231725bc93dde2f063b64c7f7d055325e30bdbf34d25ab739747387e"
+        },
+        "CombatEngine.stun": {
+          "line": 3023,
+          "end_line": 3038,
+          "sha256": "dc8724049e7a8c3bb3c1c15e5e4e70157844ce3c8713b44a4505e4a4ad85fd62"
+        },
+        "CombatEngine.end_stun": {
+          "line": 3040,
+          "end_line": 3042,
+          "sha256": "3d9e9c1edcb49cd6a3cba003951a063731267828eac1169176b62cfb38623a5c"
+        },
+        "CombatEngine.set_item_state": {
+          "line": 3044,
+          "end_line": 3049,
+          "sha256": "470b9c0d6e83ce06c7a159315f1cd2e8b33dbe350363b5d65b70b63552494486"
+        },
+        "CombatEngine.trigger_potion": {
+          "line": 3051,
+          "end_line": 3068,
+          "sha256": "b286a71017fabbbe9818ca50f7a5f507de40a02e317c097ddc00198c6f2bb24b"
+        },
+        "CombatEngine.consume_potion": {
+          "line": 3070,
+          "end_line": 3079,
+          "sha256": "5cf654015561d63479f6d90ba5677c6b10b50c00c3512547cc5de4c83ba7c558"
+        },
+        "CombatEngine.on_character_attacked": {
+          "line": 3081,
+          "end_line": 3092,
+          "sha256": "37877e1f46f1f150ce20c6b71c387e4f36c2eceafd6bf2f2d38c3549ce2cc8c9"
+        },
+        "CombatEngine.is_battle_raging": {
+          "line": 3094,
+          "end_line": 3097,
+          "sha256": "6682c030732f7665b39966063f3037b48df48d9817ab361005ebca9e1f76a61f"
+        },
+        "CombatEngine.start_battle_rage": {
+          "line": 3099,
+          "end_line": 3111,
+          "sha256": "7c718ec9b2289af35b97036d852a7b755e56ab32ad5eca3554ae4239b55c20ca"
+        },
+        "CombatEngine.end_battle_rage": {
+          "line": 3113,
+          "end_line": 3118,
+          "sha256": "ab87b72dbf311831165a0a258bb9dd698dc20d16921ab1871905028afa72fe2e"
+        },
+        "CombatEngine.on_battle_rage": {
+          "line": 3120,
+          "end_line": 3132,
+          "sha256": "f8c536dd181b35ad0aa3cc46f5c3f5f6e35544feebdd263d7a450c21e87465e9"
+        },
+        "CombatEngine._damage_after_resistance": {
+          "line": 3134,
+          "end_line": 3139,
+          "sha256": "65d69fc01d3a0b77aa9a8c2d415a879f1e7dc637d59a694783db08bfbd922d53"
+        },
+        "CombatEngine.on_character_damaged": {
+          "line": 3141,
+          "end_line": 3164,
+          "sha256": "59a2710ee580a0adffafb1084a8102b980be7d10a8ee4adf4cec6575be89ee9b"
+        },
+        "CombatEngine.on_item_dealt_damage": {
+          "line": 3166,
+          "end_line": 3174,
+          "sha256": "78b0334ea4d227e9a454a74d36da26b035bdb3ff3f7ee3c9924c0f9ce2c9e34c"
+        },
+        "CombatEngine.shield_before_damage": {
+          "line": 3176,
+          "end_line": 3196,
+          "sha256": "c1ea92867f5f382ffb1ceae2cfe873822520773708807b3de7392bc52b61e53c"
+        },
+        "CombatEngine.shield_after_attack": {
+          "line": 3198,
+          "end_line": 3203,
+          "sha256": "3299aa2712eb0a456dc0c3fb6a7fcdd4d019bcbca3c64529fd9566502d7a4d01"
+        },
+        "CombatEngine.speed": {
+          "line": 3205,
+          "end_line": 3208,
+          "sha256": "aa0fb0b392258e44dfb8ea4779f8ed8f257ec3333e37557250d8c40b641653eb"
+        },
+        "CombatEngine.trigger": {
+          "line": 3210,
+          "end_line": 3303,
+          "sha256": "b8079443922a5ada24e60c840479fc99cf181bc58543b3d780f602e18312deb2"
+        },
+        "CombatEngine.pre_item_damage": {
+          "line": 3305,
+          "end_line": 3346,
+          "sha256": "32ce26b9a9afceb024f2826584aad5294f3c3da8f442d057443ecf39b27dd4e5"
+        },
+        "CombatEngine.attack_effect_count": {
+          "line": 3348,
+          "end_line": 3353,
+          "sha256": "4a3da880db3c3e95b9b0d6089749e02463f46f1f6736d1fa531263b6febfb6a2"
+        },
+        "CombatEngine.late_item_damage": {
+          "line": 3355,
+          "end_line": 3367,
+          "sha256": "cd68b035d827246b43f80135cf47372f816eeab406e8219f452abfcd1f286985"
+        },
+        "CombatEngine.attack": {
+          "line": 3369,
+          "end_line": 3424,
+          "sha256": "548860eda747375e9d9827d6564365717221fcea1652f0bb59a9c93d074e9970"
+        },
+        "CombatEngine.death": {
+          "line": 3426,
+          "end_line": 3432,
+          "sha256": "83b1f7bae453d47415ea1373fe24c3bb609214ab96723872bd0f8d6e6dbc0460"
+        },
+        "CombatEngine.fatigue_tick": {
+          "line": 3434,
+          "end_line": 3438,
+          "sha256": "d59f504a15f589ccb3f117bbbe93b3bd9de9668c12801c4ea0d01818763fd816"
+        },
+        "CombatEngine.damage_nonitem": {
+          "line": 3440,
+          "end_line": 3461,
+          "sha256": "058f0ce7689d8a098bc89135a85f5c929ac85b541b4740e6ccc27863c3c93597"
+        },
+        "CombatEngine.step": {
+          "line": 3463,
+          "end_line": 3499,
+          "sha256": "1aba741b23ade4984ceddde0fb648563e2095a43be0ec73b7da98a64fb0b901f"
+        },
+        "CombatEngine.finish": {
+          "line": 3501,
+          "end_line": 3546,
+          "sha256": "b99d1d00a3b79cc021048ffec81a2d7a50266e3db4a5e17c93cafe64c6bf763a"
+        },
+        "CombatEngine.snapshot": {
+          "line": 3548,
+          "end_line": 3571,
+          "sha256": "ea915366315a8584b33887c137fdc741f53867a3b1ec530808d100a0f1b065d9"
+        },
+        "CombatEngine.event_references": {
+          "line": 3573,
+          "end_line": 3585,
+          "sha256": "4953be9d76b5d4baf6c63ef69e92769adb6da3c85e044de96f8d06ef1cfa6446"
+        },
+        "CombatEngine.event_references.visit": {
+          "line": 3575,
+          "end_line": 3582,
+          "sha256": "95eb587c2f32aeb5f1ca5af43caa91a2df7a4754450d434b6a8a3736d87349d6"
+        },
+        "CombatEngine.result": {
+          "line": 3587,
+          "end_line": 3622,
+          "sha256": "c02cfdffaf6b4243329307a4cecb4dad46b35daa1794f56102d3333a87a4430e"
+        },
+        "CombatEngine._source_king_budget": {
+          "line": 3625,
+          "end_line": 3629,
+          "sha256": "09f273208c6de212fe12e3ded5dca025ad7900ba3a542b72aa4fdb351f26925c"
+        },
+        "CombatEngine._source_king_quantum": {
+          "line": 3631,
+          "end_line": 3645,
+          "sha256": "a9a3a62e9ca14305fe4d135e53fffa7e06dd8f8cd84fa0a94ac89c3aa3d2ead3"
+        },
+        "CombatEngine._run_source_king": {
+          "line": 3647,
+          "end_line": 3653,
+          "sha256": "2671f01573f76710626a1bd9f2514973fd0ac75046aa37bed6c7b3ac88208ca7"
+        },
+        "CombatEngine.run": {
+          "line": 3655,
+          "end_line": 3666,
+          "sha256": "628ce70964b94493bd16e1d4180a9b30bbb03754704cd78678ac7ff92c633088"
+        },
+        "_single_king_genuine_profile": {
+          "line": 3670,
+          "end_line": 3672,
+          "sha256": "f15fd09d03f10294cbbccf13b1106865ce5457cd636f3e8205f436f92f350723"
+        },
+        "_validate_single_king_initials": {
+          "line": 3675,
+          "end_line": 3681,
+          "sha256": "301117633a648a0b9ab17828b9088993a4c33bea9819d950f6bf96b3c4a9f5af"
+        },
+        "_validate_single_king_topology": {
+          "line": 3684,
+          "end_line": 3702,
+          "sha256": "38532f281dc09ebf7665db9d629b222b772d3e34ea58110aae64b24a34834638"
+        },
+        "_validate_single_king_topology.child": {
+          "line": 3685,
+          "end_line": 3689,
+          "sha256": "ad9b165df9a111efd99c8bfe449d85244b5cb93c2f097264b0f580922e4f5ab7"
+        },
+        "_validate_single_king_processing_inputs": {
+          "line": 3704,
+          "end_line": 3770,
+          "sha256": "dcfc83b7abebfb545d76761c00a6c6f605a3a02960c801b0684b272796fd7c46"
+        },
+        "_pure441_profile": {
+          "line": 3775,
+          "end_line": 3777,
+          "sha256": "0d03afdb705a52d3c503a31fb1aaed9ed7a4f2b6a1888de0998782a77f6bb657"
+        },
+        "_pure441_roles": {
+          "line": 3780,
+          "end_line": 3788,
+          "sha256": "a8aebf5830f7aac9e15a53867e09897e5f957c946d8b102534ef46b13a6fae45"
+        },
+        "_validate_pure441_runtime": {
+          "line": 3791,
+          "end_line": 3887,
+          "sha256": "c6d56aeb816b4fa11ab24b7ead881e064e7bcdb52aea45d3836abfd6caa33d88"
+        },
+        "_assert_pure441_timer": {
+          "line": 3890,
+          "end_line": 3896,
+          "sha256": "1079cf80db46ac3202a9597ebd48f4eb998a9accb161fd79e0d41ae80c954421"
+        },
+        "_build_pure441_scaffold": {
+          "line": 3899,
+          "end_line": 3925,
+          "sha256": "d9875acfc11b406bfbe4e9d8998f322f51ca2c0d58fa9f2080982a919552b4eb"
+        },
+        "_pure441_variant": {
+          "line": 3928,
+          "end_line": 3931,
+          "sha256": "b5724279bc70167918a68e0e6ebdeebb2229457089fbffcd390eb52c108ddf40"
+        },
+        "validate_source_pure_business_domain": {
+          "line": 3943,
+          "end_line": 3966,
+          "sha256": "c8183e0789f40e323d602ef7fec23f0d6c0b824b7438734f17d185364e66b20e"
+        },
+        "_source_pure_profile": {
+          "line": 3969,
+          "end_line": 3971,
+          "sha256": "d297f5faa33da957a9f14511281f0aee773e7d295d8069a24c26a8c74a01774d"
+        },
+        "source_pure_policy": {
+          "line": 3974,
+          "end_line": 3978,
+          "sha256": "827771a4aa8561e514d5b5b2ac903ed7234956bfae3d0e2afd45b1b55e86f7bf"
+        },
+        "source_pure_business_defaults": {
+          "line": 3981,
+          "end_line": 3985,
+          "sha256": "882ee86fe8a2ec2eaf05deaf5a90c6f7b2c169339d26e4b2b21aa9733ea9e19f"
+        },
+        "_source_pure_roles": {
+          "line": 3988,
+          "end_line": 3998,
+          "sha256": "9b99f0798f0bd93ec9a481b10a54a4d61561ef28285a44c99c7708389eec8388"
+        },
+        "source_pure_topology": {
+          "line": 4001,
+          "end_line": 4033,
+          "sha256": "4afa27e24235922d25c8751c0713a9e12a8b48e11b0242d55cc8c038a885d51a"
+        },
+        "source_pure_topology.add": {
+          "line": 4003,
+          "end_line": 4004,
+          "sha256": "f124fdb79e18a878fcb7d4c4874dfd00823a9f2de7fa891bdec4b6ea4b879c1c"
+        },
+        "_source_pure_data": {
+          "line": 4036,
+          "end_line": 4048,
+          "sha256": "9a9f2189ce6d0afaf41ad1c3911447b2986c70307e8d78b2fa59b62716c8b911"
+        },
+        "source_pure_runtime_inputs": {
+          "line": 4051,
+          "end_line": 4055,
+          "sha256": "e2af71a9af1609f70db8b128ceeecae9410cc02d21791f48155b1be2d69c8da1"
+        },
+        "_validate_source_pure_runtime": {
+          "line": 4058,
+          "end_line": 4065,
+          "sha256": "f6055af23073ccb0c05c7b2debc93379ea892541d0c67cc4452a24a31a96779a"
+        },
+        "_build_source_pure_scaffold": {
+          "line": 4068,
+          "end_line": 4092,
+          "sha256": "e90016c7995ab24641c628bac2ff2b6c8a01a1e40f1bbbb72aa0a90134a43d2b"
+        }
+      }
+    }
+  },
+  "new_functions": 0,
+  "old_catalog_rows_exact": true,
+  "added_catalog": [
+    64,
+    197,
+    199
+  ],
+  "registered_catalog": 81,
+  "formal_support": 75,
+  "old_ITEMS75_exact": true,
+  "fixed_experimental_items": [
+    64,
+    164,
+    197,
+    199,
+    201
+  ],
+  "descriptor_private_repair_retained": true,
+  "shared_use_give_picker_loss_gain_queue_attack_Timer_RNG_exact": true,
+  "old_formal_Squirrel_King_genuine_batch_CLI_private_factory_exact": true,
+  "staged_change": "Ruby reflection remains in whole pre loop; all starts remain next loop; Sapphire same paid id for Block then random subset; shared functions untouched"
+}

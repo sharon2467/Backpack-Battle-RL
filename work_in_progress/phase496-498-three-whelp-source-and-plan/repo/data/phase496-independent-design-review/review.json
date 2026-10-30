@@ -1,0 +1,88 @@
+{
+  "schema": "phase496-independent-design-review/1",
+  "status": "PASS_LIMITED_THREE_WHELP_DESIGN_NOT_IMPLEMENTATION_OR_NATIVE_ACCEPTANCE",
+  "design_owner": {
+    "path": "data/phase496-whelp-family-design-final-v2/owned-files.json",
+    "size": 890,
+    "sha256": "27124f3fd6f9b391e7a3003b76f001ddffb45c8668c1e9602c38141be6308383"
+  },
+  "spec": {
+    "path": "docs/phase496_whelp_start_hit_family_design_spec_v2.md",
+    "size": 13520,
+    "sha256": "59974d2366655da2647543d0a6668e81e4857c8f509d06bcf5137adbf7dbea5d"
+  },
+  "required_successor_source": {
+    "path": "data/phase495-experimental-descriptor-repair/candidate-source-freeze.json",
+    "size": 4705,
+    "sha256": "4595eee5690ccfb683097b14221eda2da944e0cded49aee1668f95f4ef5522b1"
+  },
+  "current_functional_acceptance": {
+    "path": "data/phase494-independent-final-acceptance/review.json",
+    "size": 7552,
+    "sha256": "2c496bdfc6be29de02eef11bf26c5b91108f491f719a72afd71555290018c43e"
+  },
+  "historical_status_note": "496 freeze correctly recorded495remaining pending at its creation.494joined17groups has since passed; successor must use exact495, never revert493 defensive-copy write bug. Frozen496/paused bytes remain unchanged.",
+  "verification": {
+    "design_payloads": 4,
+    "physical_pin_checks": 26,
+    "unique_paths": 24,
+    "function_segment_pins": 28,
+    "mechanism": "Read/hash/AST only; no candidate import/compile/call."
+  },
+  "conclusions": [
+    {
+      "item": 64,
+      "source": "Items/RubyWhelp.gd;Item.preCombatStart3358-3368",
+      "rule": "preCombatStart reflect3 after generic cooldown setup, before any combatStart; later Heat5 then realActivation. Preserve both loops and shared reflection counter."
+    },
+    {
+      "item": 197,
+      "source": "Items/Exclusive/EmeraldWhelp.gd",
+      "rule": "startLucky3 thenActivation; ownhitPoison3 with default nullparent beforeAttack; miss skips and hit laterzero still triggers."
+    },
+    {
+      "item": 199,
+      "source": "Items/Exclusive/SapphireWhelp.gd;Game.getBuffs5095;Item.tryUseMana5067/giveBlock4919/giveRandomBuffs5438",
+      "rule": "Ready tuple101,102,103,104,106,107 after deletingMana. StartMana6 thenActivation. Hit branches on returned paid event; Block10 then one inclusive0..5 picker, both share paid event parent. Mana used=True bypasses protection. Failed pay skips both; zero Block gain does not cancel random reward."
+    },
+    {
+      "topic": "Shared helpers",
+      "rule": "getBlock returns descriptor.block; giveStacks applies existing buffPowers/rounding. Existing helper accepts explicit six-category subset. Keep actual loss/gain/queue/history/RNG/attack/Timer bodies exact; no generic refactor or fabricated pitch."
+    },
+    {
+      "topic": "gave_block guard",
+      "rule": "Direct literal connection search in original Items findsMoonShield227,AmuletOfSteel265,SmellyBarrier288,SunShield225. All absent from current495 catalog and proposednew64/197/199 additions. This is bounded selected-domain business guard, not whole native signal equivalence or global reflection proof."
+    },
+    {
+      "topic": "Admission and identity",
+      "rule": "Expand only fixed experimental nonKing set to64/164/197/199/201; preserve old75/Squirrel/CLI/batch/King gates. Real descriptor writes retain495 private ownership repair. Derive descriptive actual kinds from fixedset; do not use metadata as gameplay permission."
+    },
+    {
+      "topic": "Metadata/release",
+      "rule": "Directscene Item square/no stars/oneemptySocket and matching Weapon scripts; common ranged5..10/cd2.1/stamina0/accuracy90; gainflags128/258/254. Ordinary64 and conditionalExclusive197/199 resource availability is separate from native instantiate/canAdd. Reuse accepted boundeddualtype default-factor reasoning; no new wholeflags audit."
+    }
+  ],
+  "necessary_successor_controls": [
+    "Stage checkpoint provesRubyreflection before any start effects, Heat onlystart; originalstartupActivation order.",
+    "Emeraldmiss/hitzero and own-double ordering, nullparents, sharedreflection retained.",
+    "Sapphire insufficient/sufficient payment, protectedMana use, exact sixcategory map/endpoints, paidparent for bothrewards, cappedBlock continuation, secondownhook observes firstpayment.",
+    "Closedentry/legacyrejection and persisteddescriptor checks; atmostone separately presealed mixedSourcecase with actualHIT/NOT_HIT and no seed tuning."
+  ],
+  "blockers": [],
+  "limits": [
+    "Design acceptance only;497 implementation needsRoot release and its own four-sectionSPEC/freeze.",
+    "No native64/197/199 comparison or availability execution; formal75/generalKing unchanged.",
+    "Synthetic branches and laterSourceHITs do not establish native same-seed or all-layout equivalence.",
+    "Future registration of any gave_block receiver creates an explicit additional business obligation."
+  ],
+  "activity": {
+    "candidate_import": 0,
+    "compile": 0,
+    "component": 0,
+    "model": 0,
+    "Native": 0,
+    "Expected": 0,
+    "old_tests": 0,
+    "pool": 0
+  }
+}
