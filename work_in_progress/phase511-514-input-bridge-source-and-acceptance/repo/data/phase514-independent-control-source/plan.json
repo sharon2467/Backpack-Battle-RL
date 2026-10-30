@@ -1,0 +1,100 @@
+{
+  "schema": "phase514-exact-finite-plan/1",
+  "status": "FROZEN_PENDING_ROOT_EXECUTION_RELEASE",
+  "top_calls": 12,
+  "cases": [
+    {
+      "id": "01",
+      "api": "bridge.load_schema",
+      "outcome": "accept"
+    },
+    {
+      "id": "02",
+      "api": "bridge.authenticate_request",
+      "outcome": "accept"
+    },
+    {
+      "id": "03",
+      "api": "bridge.authenticate_request",
+      "outcome": "reject",
+      "reason": "REQUEST_STRICT_INT0"
+    },
+    {
+      "id": "04",
+      "api": "bridge.authenticate_request",
+      "outcome": "reject",
+      "reason": "CLOSED_SOURCE_PIN_PATHS_NO_EXPECTED"
+    },
+    {
+      "id": "05",
+      "api": "initial.validate_timer",
+      "outcome": "accept"
+    },
+    {
+      "id": "06",
+      "api": "initial.validate_timer",
+      "outcome": "reject",
+      "reason": "integer range/type"
+    },
+    {
+      "id": "07",
+      "api": "initial.validate_ledger",
+      "outcome": "reject",
+      "reason": "LIFETIME_NO_START_NONNEGATIVE_STOPS"
+    },
+    {
+      "id": "08",
+      "api": "initial.validate_cache_alias",
+      "outcome": "reject",
+      "reason": "CACHE_NATIVE_ROLE_ASSOCIATION"
+    },
+    {
+      "id": "09",
+      "api": "bridge.derive_branch_witness",
+      "outcome": "accept"
+    },
+    {
+      "id": "10",
+      "api": "bridge.derive_branch_witness",
+      "outcome": "reject",
+      "reason": "NEW_PREDICATE_BRANCH_NOT_STABLE"
+    },
+    {
+      "id": "11",
+      "api": "bridge.derive_branch_witness",
+      "outcome": "reject",
+      "reason": "COOLDOWN_SELECTED_ALIAS"
+    },
+    {
+      "id": "12",
+      "api": "bridge.project_prepared_witnesses",
+      "outcome": "accept"
+    }
+  ],
+  "import_limits": {
+    "bridge": 1,
+    "initial": 1,
+    "exact502schema": 1
+  },
+  "fullprojection": 0,
+  "actual_INPUT_reads": 0,
+  "Expected": 0,
+  "Native": 0,
+  "model": 0,
+  "pool": 0,
+  "output_new": "data/phase514-independent-controls-first-001",
+  "processes": 1,
+  "external_wall_cap_seconds": 15,
+  "first_error": "STOP_PRESERVE_NO_RETRY",
+  "call_breakdown": {
+    "load_schema": 1,
+    "authenticate_request": 3,
+    "validate_timer": 2,
+    "validate_ledger": 1,
+    "validate_cache_alias": 1,
+    "derive_branch_witness": 3,
+    "project_prepared_witnesses": 1
+  },
+  "wholefakecapture": false,
+  "note": "29 prepared-observation stubs only because actual helper requires29; no runtime graph, full capture, input payloads or bundle created. Request descriptors synthetic only. Schema is exact production Source; never fake/noop. Production nested function entries counted separately; no helper execution during freeze."
+}

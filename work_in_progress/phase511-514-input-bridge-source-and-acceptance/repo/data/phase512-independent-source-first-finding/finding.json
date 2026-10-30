@@ -1,0 +1,102 @@
+{
+  "schema": "phase512-independent-source-finding/1",
+  "status": "BLOCKED_STATIC_ABI_MISMATCH_NO_CONTROLS_EXECUTED",
+  "severity": "actual bridge-to-accepted-consumer incompatibility",
+  "source_owner": {
+    "path": "data/phase511-input-bridge-source-v2/owned-files.json",
+    "size": 5017,
+    "sha256": "4069d246b1914bf00dc14fc37393b37f43557ecab6627d7dd85edbc449a6d44b"
+  },
+  "source_freeze": {
+    "path": "data/phase511-input-bridge-source-v2/source-freeze.json",
+    "size": 1059,
+    "sha256": "87d2639424064cad9b6793c045ea682f106cde31eadfda3f1522f795fa8879d0"
+  },
+  "source_context": {
+    "path": "data/phase511-input-bridge-source-v2/source-context.json",
+    "size": 6600,
+    "sha256": "9d0b7c07c11e4d2302f3f81b925db99f39c48835638778ad5a734b3f42c50f19"
+  },
+  "finding": {
+    "id": "TERMINAL_PROFILE_LAYER_MISMATCH",
+    "producer_field": "runtime.terminal_profile",
+    "actual_literal": "first-actual-idle-after-at-least-two-future-physics/1",
+    "required_consumer_literal": "source-two-physics-idle-pre-internal/1",
+    "producer_location": "tests/phase511_input_bridge.py:425",
+    "consumer_locations": [
+      "data/phase505-captured-nonking-source-v3/staged/native_replay_v8/genuine.py:47",
+      "data/phase505-captured-nonking-source-v3/staged/native_replay_v8/genuine.py:1110"
+    ],
+    "reason": "511 project_runtime emits the observer/collector terminal policy identifier as model DTO terminal_profile.505 validate_captured_whelp_profile compares that field against SINGLE_KING_TERMINAL, whose literal is different. Consequently a future otherwise-valid511 bundle cannot pass the already-accepted505 consumer admission. This is proven by current Source, not by executing a synthetic or actual bundle.",
+    "counterexample_scope": "Any project_runtime return reaching its construction has the rejected literal; no guessed Native values or wholefakecapture needed.",
+    "minimum_repair": "Immutable new bridge revision changes only emitted model runtime terminal_profile to accepted505 ABI value and updates necessary provenance/pins/ABI declaration. Retain original observer terminal_policy and full clock unchanged. Do not weaken505 admission or modify502/505 kernels."
+  },
+  "completed_static_checks": {
+    "owner_context_unique_descriptors_verified": 35,
+    "original_partial_owner_refs_verified_unchanged": 10,
+    "exact470_bridge_functions_or_classes": 14,
+    "exact470_initial_functions": 6,
+    "import_time_schema_execution": false,
+    "actual_default_request": null,
+    "partial_abi_branch_files": "Already present in sealed failed-generation partialowner, verified unchanged; v2 depends explicitly on them, no later completion fiction."
+  },
+  "review_status": "No final implementation acceptance. Helper harness execution deferred until repairedSource is frozen and independent remaining review completed. This finding does not invalidate previously accepted510v2 design or imply missing producer fields.",
+  "relevant_bodies": [
+    {
+      "source": {
+        "path": "tests/phase511_input_bridge.py",
+        "size": 43043,
+        "sha256": "f34612453a0fb91fcb4dc74bf59e454c9f149fd582019c2b3e70afe210d1829a"
+      },
+      "function": "project_runtime",
+      "line": 319,
+      "end_line": 437,
+      "function_sha256": "f413fac4485c8f10be0171565c0d9d46cf54666d42613da8d5f451697e54c6c1"
+    },
+    {
+      "source": {
+        "path": "data/phase505-captured-nonking-source-v3/staged/native_replay_v8/genuine.py",
+        "size": 248840,
+        "sha256": "1c56c2bcf93d4099f0cefb883381cdc093ccc77cec8998b1a763e5994b1e0978"
+      },
+      "function": "validate_captured_whelp_profile",
+      "line": 1107,
+      "end_line": 1112,
+      "function_sha256": "5737de0c43c0a8e1137a132ec7d19e5701740eda5020f652ad79537bcfc902a5"
+    }
+  ],
+  "refs": [
+    {
+      "path": "data/phase505-captured-nonking-source-v3/candidate-source-freeze.json",
+      "size": 4729,
+      "sha256": "e3f2a86713ef097cae77858f0868fdd70b7487cdeadeaa7fcf11ebb184d550ad"
+    },
+    {
+      "path": "data/phase506-independent-final-acceptance/review.json",
+      "size": 8697,
+      "sha256": "7199a5dd9cbd52a99ff7a7ebf6d2e01bd88c7c92990799019093de688dbc03a0"
+    },
+    {
+      "path": "data/phase511-input-bridge-source-v2/conservation.json",
+      "size": 1775,
+      "sha256": "a576ef9359d4cf6dc0d6ea0752164dd7adfd4cc856923efbd08fd471cbd66343"
+    },
+    {
+      "path": "data/phase511-input-bridge-source/partial-source-owner.json",
+      "size": 2175,
+      "sha256": "e7d2be6ee724c2bc0d1f07f6c2d3acd0a0fef578e13f296f299614948fd38c1e"
+    }
+  ],
+  "activities": {
+    "candidate_or_schema_imports": 0,
+    "helpers": 0,
+    "whole_projection": 0,
+    "actualINPUT_or_Native_record_reads": 0,
+    "Expected_decode": 0,
+    "model": 0,
+    "host": 0,
+    "pool": 0,
+    "Source_mutations": 0,
+    "old_tests": 0
+  }
+}

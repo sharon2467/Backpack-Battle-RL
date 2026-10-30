@@ -1,0 +1,95 @@
+{
+  "schema": "phase514-immutable-harness-path-repair/1",
+  "status": "FROZEN_COMPILE_ONLY_PENDING_ROOT_RELEASE",
+  "before": {
+    "path": "tests/phase514_independent_helper_controls_v2.py",
+    "size": 11920,
+    "sha256": "c8465d08d0786d36afa83f323aba0e21ec5b60cee4c7f88439139ea9c9155891"
+  },
+  "after": {
+    "path": "tests/phase514_independent_helper_controls_v3.py",
+    "size": 12164,
+    "sha256": "9f33a5f2bac97d4d9f00dfc2c35c9e5710d9bfe8cb3258e41b86fc5a1d421877"
+  },
+  "edits": [
+    {
+      "before": "SOURCE = REPO / 'data/phase514-independent-control-source-v2'",
+      "after": "SOURCE = REPO / 'data/phase514-independent-control-source-v3'"
+    },
+    {
+      "before": "OUTPUT = REPO / 'data/phase514-independent-controls-first-001'",
+      "after": "OUTPUT = REPO / 'data/phase514-independent-controls-v3-001'"
+    },
+    {
+      "before": "        'data/phase502-whelp-observer-source-v4/schema/phase502_whelp_observer_schema.py')}\n",
+      "after": "        'data/phase502-whelp-observer-source-v4/schema/phase502_whelp_observer_schema.py')}\n    watched.add('data/phase502-whelp-observer-source-v4/schema/phase502_whelp_observer_schema.py')\n"
+    },
+    {
+      "before": "        assert Path(schema.__file__).resolve() == (REPO / schema_path).resolve()\n",
+      "after": "        schema_file = Path(schema.__file__)\n        resolved_schema_file = (schema_file if schema_file.is_absolute() else bridge.REPO / schema_file).resolve()\n        assert resolved_schema_file == (REPO / schema_path).resolve()\n"
+    }
+  ],
+  "whole_byte_inverse_verified": true,
+  "function_body_changes": [
+    "main"
+  ],
+  "all_other_functions_exact": [
+    "digest",
+    "encode",
+    "descriptor"
+  ],
+  "production_Source_changes": 0,
+  "vector": {
+    "path": "data/phase514-independent-control-source/vectors.json",
+    "size": 235900,
+    "sha256": "cdcbca4b0bc41ea23955397d4d1d4d3d3881fbde14adf73d361009c9743c9126"
+  },
+  "preserved_owners": [
+    {
+      "path": "data/phase514-independent-control-source/owned-files.json",
+      "size": 1231,
+      "sha256": "217db52f12c0186ccacdd19603be2088917f0d0204c0f495074627cd5d01e805"
+    },
+    {
+      "path": "data/phase514-independent-control-source-v2/owned-files.json",
+      "size": 1629,
+      "sha256": "527a4cda8cd13fb3e687c767fe22d72561676dc6f0bab20e839e5b000bb240f8"
+    },
+    {
+      "path": "data/phase514-independent-controls-first-001/owned-files.json",
+      "size": 257,
+      "sha256": "870a7cab9032bf45db154938d769239c4beb373ade90f1d40752676e71d7a27f"
+    },
+    {
+      "path": "data/phase514-independent-control-invocation/owned-files.json",
+      "size": 830,
+      "sha256": "ef5e1ebeeddd4182ecace4177dd6e9f057b20d326542f9f17a4fda271b3adbb3"
+    },
+    {
+      "path": "data/phase514-independent-first-error/owned-files.json",
+      "size": 260,
+      "sha256": "4df085f89182186ec913432a2b4c26ff9c8517a7efd207ddfe8a2fcc22cb3d6f"
+    }
+  ],
+  "all_preserved_owner_payloads_verified": true,
+  "first_actual": {
+    "loader_successful_returns": 1,
+    "case_passes": 0,
+    "top_calls": 1,
+    "reason": "harness repo-relative schema metadata interpreted against /tmp"
+  },
+  "future_batch_limits": {
+    "top_calls": 12,
+    "schema_loads": 1,
+    "fresh_processes": 1,
+    "external_wall_seconds": 15,
+    "output_new": "data/phase514-independent-controls-v3-001"
+  },
+  "cumulative_limits_after_future_batch": {
+    "top_calls": 13,
+    "schema_loads": 2
+  },
+  "profile_keys": "original code filenames retained; pinned absolute names plus exact relative schema compile name",
+  "read_scope_widened": false,
+  "new_runtime_calls": 0
+}

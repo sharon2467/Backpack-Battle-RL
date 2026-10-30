@@ -1,0 +1,79 @@
+{
+  "schema": "phase514-immutable-harness-dependency-repair/1",
+  "status": "FROZEN_COMPILE_ONLY_PENDING_ROOT_RELEASE",
+  "cause": "Static Root finding: argparse absent from explicit pre-audit imports; no actual batch attempted.",
+  "changes": [
+    "pre-audit top-level import argparse",
+    "SOURCE path points to immutable v2 pins directory"
+  ],
+  "all_function_bodies_exact": [
+    "digest",
+    "encode",
+    "descriptor",
+    "main"
+  ],
+  "old_harness": {
+    "path": "tests/phase514_independent_helper_controls.py",
+    "size": 11901,
+    "sha256": "50b49547ee187515d6182668f2639124164b33a62848c5f5437298e02c710d5b"
+  },
+  "new_harness": {
+    "path": "tests/phase514_independent_helper_controls_v2.py",
+    "size": 11920,
+    "sha256": "c8465d08d0786d36afa83f323aba0e21ec5b60cee4c7f88439139ea9c9155891"
+  },
+  "v1_owner_preserved": {
+    "path": "data/phase514-independent-control-source/owned-files.json",
+    "size": 1231,
+    "sha256": "217db52f12c0186ccacdd19603be2088917f0d0204c0f495074627cd5d01e805"
+  },
+  "v1_payloads_preserved": [
+    {
+      "path": "docs/phase514_independent_input_bridge_controls_spec.md",
+      "size": 4629,
+      "sha256": "98f19feffbfd0a5ef0b6ac8d08b3f9961e231289523096ab475eab9f3a743c08"
+    },
+    {
+      "path": "tests/phase514_independent_helper_controls.py",
+      "size": 11901,
+      "sha256": "50b49547ee187515d6182668f2639124164b33a62848c5f5437298e02c710d5b"
+    },
+    {
+      "path": "data/phase514-independent-control-source/vectors.json",
+      "size": 235900,
+      "sha256": "cdcbca4b0bc41ea23955397d4d1d4d3d3881fbde14adf73d361009c9743c9126"
+    },
+    {
+      "path": "data/phase514-independent-control-source/pins.json",
+      "size": 2089,
+      "sha256": "44d4d7326aab1d75c8ae0af2c2e4ace876d63380a0d5e58fa4ad7d790e1adc2e"
+    },
+    {
+      "path": "data/phase514-independent-control-source/plan.json",
+      "size": 2604,
+      "sha256": "708a7b220a23bd7c0ccae1eebb2b5d05098e7a6c8efbe334ca0cf5cb2e75d106"
+    },
+    {
+      "path": "data/phase514-independent-control-source/compile-only.json",
+      "size": 577,
+      "sha256": "87ed4abd37e297a279b64b3920ed068e3a21bd1f758a145bbb9689791bbcccd2"
+    }
+  ],
+  "vectors_reused_exact": {
+    "path": "data/phase514-independent-control-source/vectors.json",
+    "size": 235900,
+    "sha256": "cdcbca4b0bc41ea23955397d4d1d4d3d3881fbde14adf73d361009c9743c9126"
+  },
+  "plan_reused_exact": {
+    "path": "data/phase514-independent-control-source/plan.json",
+    "size": 2604,
+    "sha256": "708a7b220a23bd7c0ccae1eebb2b5d05098e7a6c8efbe334ca0cf5cb2e75d106"
+  },
+  "top_calls": 12,
+  "output_unchanged": "data/phase514-independent-controls-first-001",
+  "read_scope_widened": false,
+  "runtime_imports": 0,
+  "controls": 0,
+  "projection": 0,
+  "production_Source_changes": 0
+}

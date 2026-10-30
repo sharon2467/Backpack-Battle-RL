@@ -1,0 +1,32 @@
+--- tests/phase514_independent_helper_controls_v2.py
++++ tests/phase514_independent_helper_controls_v3.py
+@@ -17,8 +17,8 @@
+ import types
+ 
+ REPO = Path(__file__).resolve().parents[1]
+-SOURCE = REPO / 'data/phase514-independent-control-source-v2'
+-OUTPUT = REPO / 'data/phase514-independent-controls-first-001'
++SOURCE = REPO / 'data/phase514-independent-control-source-v3'
++OUTPUT = REPO / 'data/phase514-independent-controls-v3-001'
+ 
+ 
+ def digest(raw):
+@@ -77,6 +77,7 @@
+     watched = {str((REPO / x).resolve()) for x in (
+         'tests/phase511_initial_receipt.py', 'tests/phase513_input_bridge.py',
+         'data/phase502-whelp-observer-source-v4/schema/phase502_whelp_observer_schema.py')}
++    watched.add('data/phase502-whelp-observer-source-v4/schema/phase502_whelp_observer_schema.py')
+ 
+     def profile(frame, event, arg):
+         if event == 'call' and frame.f_code.co_filename in watched and frame.f_code.co_name != '<module>':
+@@ -127,7 +128,9 @@
+             schema = bridge.load_schema(raws[schema_path])
+         finally:
+             sys.setprofile(None)
+-        assert Path(schema.__file__).resolve() == (REPO / schema_path).resolve()
++        schema_file = Path(schema.__file__)
++        resolved_schema_file = (schema_file if schema_file.is_absolute() else bridge.REPO / schema_file).resolve()
++        assert resolved_schema_file == (REPO / schema_path).resolve()
+         modules.append({'name': schema.__name__, 'file': schema.__file__})
+         assert schema.VERSION == '7-whelp-family-A-502'
+         results.append({'case': '01', 'api': cases[0]['api'], 'status': 'PASS_ACCEPTED'})

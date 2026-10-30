@@ -1,0 +1,77 @@
+--- tests/phase511_prepare_input_bridge_source.py
++++ tests/phase511_prepare_input_bridge_source_v2.py
+@@ -7,10 +7,11 @@
+ import traceback
+ 
+ ROOT=Path(__file__).resolve().parents[1]
+-OUT=ROOT/'data/phase511-input-bridge-source'
++OUT=ROOT/'data/phase511-input-bridge-source-v2'
++ORIGIN_OUT=ROOT/'data/phase511-input-bridge-source'
+ INITIAL=ROOT/'tests/phase511_initial_receipt.py'
+ BRIDGE=ROOT/'tests/phase511_input_bridge.py'
+-SPEC=ROOT/'docs/phase511_case029_input_bridge_source_spec.md'
++SPEC=ROOT/'docs/phase511_input_bridge_v2_source_guard_repair_spec.md'
+ 
+ 
+ def require(ok,message):
+@@ -393,11 +394,11 @@
+ 
+ 
+ def main():
+-    require(not OUT.exists() and not INITIAL.exists() and not BRIDGE.exists(),'unique511 Source outputs')
++    require(not OUT.exists() and INITIAL.is_file() and BRIDGE.is_file(),'unique511v2 metadata with immutable modules present')
+     OUT.mkdir();save(OUT/'generation-started.json',{'source_only':True,'producer':pin(Path(__file__)),'spec':pin(SPEC),'Native_records_read':0})
+     try:
+         ip,initial_old,initial=initial_source();compile(initial,str(INITIAL),'exec',dont_inherit=True)
+-        INITIAL.write_text(initial)
++        require(INITIAL.read_bytes()==initial.encode(),'immutable initial module exact reuse')
+         source_refs={
+             'schema_module':ROOT/'data/phase502-whelp-observer-source-v4/schema/phase502_whelp_observer_schema.py',
+             'observer_tuple':ROOT/'data/phase502-whelp-observer-source-v4/source-tuple.json',
+@@ -419,16 +420,16 @@
+             'source_predicate_reason_ref':pin(ROOT/'data/phase475-cooldown-branch-input-evidence/source-evidence.json'),
+             'limits':'No old branch rows/value/rating or Source498 flag carried. Actual selected site witness is required; numeric return/bounds do not infer branch. This is bounded ordinary Source-domain applicability, not arbitrary runtime hooks.'}
+         save(OUT/'branch-source-rule.json',branch_rule)
+-        rules={'cooldown_predicate':dict(descriptor=pin(OUT/'branch-source-rule.json'),predicate=branch_rule['predicate'],basis='NEW_SITE_WITNESS_PLUS_FIXED_SOURCE_CLOSURE'),
++        rules={'cooldown_predicate':dict(descriptor=pin(ORIGIN_OUT/'branch-source-rule.json'),predicate=branch_rule['predicate'],basis='NEW_SITE_WITNESS_PLUS_FIXED_SOURCE_CLOSURE'),
+                'initial':{'domain':'accepted G02 and Character default/pre-ready-call closure applied to actual new32/2cut objects','native_rule':fixed['native_timer_source_rule'],'character_rule':fixed['character_source_rule'],'timer_acceptance':fixed['timer_rule_acceptance'],
+                           'limits':'Historical domain/migration limits retained. No old row/native-ID/private value or all-fresh assumption. Actual birth/no-start ledger only for2invu, no fabricated ledger for30others.'}}
+-        bp,bridge_old,bridge,exact=bridge_source(fixed,rules);compile(bridge,str(BRIDGE),'exec',dont_inherit=True);BRIDGE.write_text(bridge)
++        bp,bridge_old,bridge,exact=bridge_source(fixed,rules);compile(bridge,str(BRIDGE),'exec',dont_inherit=True);require(BRIDGE.read_bytes()==bridge.encode(),'immutable bridge module exact reuse')
+         abi={'schema':'phase511-input-ABI/1','status':'INPUT_ONLY_NOT_RUNTIME_VALIDATED','profile':'pure-combat-whelp-family-A-captured/1','runtime_schema':'native-v8-pure-combat-runtime-input/whelp-family-1',
+              'runtime_keys':['schema','mode','profile_id','checkpoint','environment','nodes','timer_initial','initial_items','initial_characters','prepare_order','activate_order','terminal_profile','frame_clock','processing_nodes'],
+              'raw_timers':32,'business_timers':26,'inactive_timers':6,'processing_nodes':67,'configs':66,'items':29,'derived_private_and_character':72,
+              'prepared_witness':'Source-only full actual cache provenance; external same-instance business prepare gate required before activation','model_release':False}
+         save(OUT/'abi.json',abi)
+-        source_pins=list(fixed.values())+[pin(INITIAL),pin(BRIDGE),pin(OUT/'branch-source-rule.json'),pin(OUT/'abi.json')]
++        source_pins=list(fixed.values())+[pin(INITIAL),pin(BRIDGE),pin(ORIGIN_OUT/'branch-source-rule.json'),pin(ORIGIN_OUT/'abi.json')]
+         source_pins=list({p['path']:p for p in source_pins}.values())
+         context={'schema':'phase511-fixed-source-context/1','case_id':'NATIVE-029-WHELP-FAMILY-A','profile':abi['profile'],'runtime_schema':abi['runtime_schema'],
+                  'schema_module':fixed['schema_module'],'fixed_source_bindings':fixed,'source_pins':source_pins,'source_rules':rules,
+@@ -440,7 +441,10 @@
+         require(all(oldbf[name]==newbf[name] for name in exact),'exact typed/IO/Tape helper bodies')
+         initial_exact=sorted(name for name in oldif if name in newif and oldif[name]==newif[name])
+         require(all(name in initial_exact for name in ('require','same','ref','integer','validate_cache_alias','value_index')),'shape-neutral receipt core exact')
+-        require('INPUT_PINS' not in bridge and 'native_schema = load_schema()' not in bridge,'no old pins/import-time schema')
++        tree=ast.parse(bridge)
++        assignments=[n for n in tree.body if isinstance(n,(ast.Assign,ast.AnnAssign))]
++        require(not any(isinstance(t,ast.Name) and t.id=='INPUT_PINS' for n in assignments for t in (n.targets if isinstance(n,ast.Assign) else [n.target])),'no old INPUT_PINS assignment')
++        require('native_schema = load_schema()' not in bridge,'no import-time schema loader')
+         require('KING_TIMER' not in initial and 'EXCLUDED_TIMERS' not in bridge,'no King branch/presentation exclusion')
+         for name,old,new in [('initial',initial_old,initial),('bridge',bridge_old,bridge)]:
+             (OUT/(name+'-vs470.patch')).write_text(''.join(difflib.unified_diff(old.splitlines(True),new.splitlines(True),fromfile=str((ip if name=='initial' else bp).relative_to(ROOT)),tofile=str((INITIAL if name=='initial' else BRIDGE).relative_to(ROOT)))))
+@@ -458,7 +462,13 @@
+         save(OUT/'source-freeze.json',{'schema':'phase511-source-freeze/1','modules':[pin(INITIAL),pin(BRIDGE)],'source_context':pin(OUT/'source-context.json'),'ABI':pin(OUT/'abi.json'),
+              'future_request_template':pin(OUT/'future-root-request-template.json'),'status':'FROZEN_COMPILE_ONLY_PENDING_ROOT_AND512_NO_ACTUAL_INPUT'})
+         save(OUT/'first-generation-result.json',{'source_generation_invocations':1,'status':'SOURCE_FROZEN_NO_PROJECTOR_OR_SCHEMA_EXECUTION','new_modules':2,'schema_imports':0,'projection_calls':0,'Native_records_opened':0,'models':0,'pool':0,'Expected':0,'actual_bundle_created':False})
+-        files=[pin(p) for p in sorted(OUT.rglob('*')) if p.is_file()]+[pin(p) for p in refs]
++        reuse=[ORIGIN_OUT/'partial-source-owner.json',ORIGIN_OUT/'abi.json',ORIGIN_OUT/'branch-source-rule.json',ROOT/'docs/phase511_case029_input_bridge_source_spec.md']
++        original_owner=json.loads((ORIGIN_OUT/'partial-source-owner.json').read_bytes())
++        oldpins={p['path']:p for p in original_owner['files']}
++        for p in [INITIAL,BRIDGE,ORIGIN_OUT/'abi.json',ORIGIN_OUT/'branch-source-rule.json']:
++            require(pin(p)==oldpins[str(p.relative_to(ROOT))],'original sealed reusable leaf identity')
++        save(OUT/'reuse-provenance.json',{'schema':'phase511-v2-immutable-reuse/1','partial_owner':pin(reuse[0]),'reused_modules':[pin(INITIAL),pin(BRIDGE)],'reused_Source_leaves':[pin(p) for p in reuse[1:3]],'module_bytes_changed':False,'firstassembly_reclassified_success':False,'Source_assembly_total':2,'first_guard_failed':1,'v2_success':1})
++        files=[pin(p) for p in sorted(OUT.rglob('*')) if p.is_file()]+[pin(p) for p in refs+reuse]
+         unique={p['path']:p for p in files}
+         save(OUT/'owned-files.json',{'schema':'phase511-source-owner/1','files':list(unique.values()),'no_more_writes':True,'status':'SOURCE_ONLY_PENDING_ROOT_REVIEW_NO_AUTOMATIC512_OR_BUILD'})
+         print(json.dumps({'status':'SOURCE_FROZEN_NOT_RUN','owner':pin(OUT/'owned-files.json')},sort_keys=True))

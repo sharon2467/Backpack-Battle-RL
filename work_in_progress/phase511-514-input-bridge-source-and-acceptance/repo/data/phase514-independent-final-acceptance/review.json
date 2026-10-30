@@ -1,0 +1,214 @@
+{
+  "schema": "phase514-independent-input-source-helper-acceptance/1",
+  "status": "ACCEPTED_SOURCE_AND_FINITE_SYNTHETIC_HELPERS_NOT_ACTUAL_INPUT_OR_RUNTIME",
+  "source_freeze": {
+    "path": "data/phase513-input-bridge-source/source-freeze.json",
+    "size": 1067,
+    "sha256": "ce1ddc3d01cd2419f25fa4670228bd1f31cbd0bf4fa23029ba299a23213ddc52"
+  },
+  "source_owner": {
+    "path": "data/phase513-input-bridge-source/owned-files.json",
+    "size": 4615,
+    "sha256": "1cc22ebad657b450dc90671b23ab10cc7baa77e1f2f46f958ce81cc347cc4d79"
+  },
+  "bridge": {
+    "path": "tests/phase513_input_bridge.py",
+    "size": 43763,
+    "sha256": "c0a206f76cce2a789db0eb33cbf0f23790448951bb76f49853e23bf7d8228b33"
+  },
+  "initial_receipt_source": {
+    "path": "tests/phase511_initial_receipt.py",
+    "size": 16790,
+    "sha256": "b504aef3f5c60af9d95a03aa0e975334ac9caa7723a3622badba6aec4e7f7b68"
+  },
+  "static_review": {
+    "path": "data/phase514-independent-source-review/review.json",
+    "size": 3135,
+    "sha256": "15dbd22d67730a6191742102a3ec2298d3e9cc2b2ea98401cc0410b81ff4b4ed"
+  },
+  "repair_conclusion": "512 terminal ABI finding closed by exact513 runtime literal/origin/auth-path repair;28 other declarations and initial helper unchanged. No new production defect found in completed limited Source review.",
+  "actual_result": {
+    "path": "data/phase514-independent-controls-v3-001/result.json",
+    "size": 12531,
+    "sha256": "f480409e0a9011438c71144a0eba26bd21b1abc327df5a7f4c79c67d4e4b77f7"
+  },
+  "actual_output_owner": {
+    "path": "data/phase514-independent-controls-v3-001/owned-files.json",
+    "size": 255,
+    "sha256": "026a23e91799a51c4200b6c4fcdc9eafaec5a83f7b08e352a784c23f05b5bc2c"
+  },
+  "actual_release": {
+    "path": "data/phase514-root-exact-v3-release/release.json",
+    "size": 1005,
+    "sha256": "a96d938416a1842b4b2e0bddcca938a1d42d6b69b68224c1239ca38213329845"
+  },
+  "execution": {
+    "returncode": 0,
+    "timed_out": false,
+    "wall_seconds": 0.14354152599844383,
+    "attempts": 1
+  },
+  "accepted_cases": [
+    {
+      "case": "01",
+      "api": "bridge.load_schema",
+      "status": "PASS_ACCEPTED"
+    },
+    {
+      "case": "02",
+      "api": "bridge.authenticate_request",
+      "status": "PASS_ACCEPTED"
+    },
+    {
+      "case": "03",
+      "api": "bridge.authenticate_request",
+      "status": "PASS_EXPECTED_REJECTION",
+      "reason": "REQUEST_STRICT_INT0"
+    },
+    {
+      "case": "04",
+      "api": "bridge.authenticate_request",
+      "status": "PASS_EXPECTED_REJECTION",
+      "reason": "CLOSED_SOURCE_PIN_PATHS_NO_EXPECTED"
+    },
+    {
+      "case": "05",
+      "api": "initial.validate_timer",
+      "status": "PASS_ACCEPTED"
+    },
+    {
+      "case": "06",
+      "api": "initial.validate_timer",
+      "status": "PASS_EXPECTED_REJECTION",
+      "reason": "integer range/type"
+    },
+    {
+      "case": "07",
+      "api": "initial.validate_ledger",
+      "status": "PASS_EXPECTED_REJECTION",
+      "reason": "LIFETIME_NO_START_NONNEGATIVE_STOPS"
+    },
+    {
+      "case": "08",
+      "api": "initial.validate_cache_alias",
+      "status": "PASS_EXPECTED_REJECTION",
+      "reason": "CACHE_NATIVE_ROLE_ASSOCIATION"
+    },
+    {
+      "case": "09",
+      "api": "bridge.derive_branch_witness",
+      "status": "PASS_ACCEPTED"
+    },
+    {
+      "case": "10",
+      "api": "bridge.derive_branch_witness",
+      "status": "PASS_EXPECTED_REJECTION",
+      "reason": "NEW_PREDICATE_BRANCH_NOT_STABLE"
+    },
+    {
+      "case": "11",
+      "api": "bridge.derive_branch_witness",
+      "status": "PASS_EXPECTED_REJECTION",
+      "reason": "COOLDOWN_SELECTED_ALIAS"
+    },
+    {
+      "case": "12",
+      "api": "bridge.project_prepared_witnesses",
+      "status": "PASS_ACCEPTED"
+    }
+  ],
+  "actual_limits": {
+    "top_calls": 12,
+    "positive": 5,
+    "expected_rejections": 7,
+    "bridge_module_loads": 1,
+    "initial_module_loads": 1,
+    "schema_loads": 1,
+    "successful_processes_this_v3_batch": 1,
+    "external_wall_seconds": 0.14354152599844383,
+    "internal_wall_seconds": 0.09587419600211433,
+    "source_pins_before_after_equal": 13,
+    "arguments_unchanged_checked": true,
+    "exact502schema_used_for_Timer_ledger_cache": true
+  },
+  "cumulative_history": {
+    "v1": "Never executed; Root pre-run static argparse dependency finding preserved, not a dynamic failure.",
+    "v2": "One actual process, real load_schema returned, then test-owned path postcheck resolved repo-relative schema.__file__ against /tmp and failed;0 cases accepted,11 helpers not entered.",
+    "v3": "One actual process; only path resolution/profile filename and immutable namespace repaired;12 cases accepted. Production Source and vectors unchanged.",
+    "fresh_processes": 2,
+    "top_calls": 13,
+    "schema_successful_loads": 2,
+    "bridge_module_loads": 2,
+    "initial_module_loads": 2,
+    "v2_schema_module_list_undercount_disclosed_in_finding": true,
+    "v2_relative_schema_profile_gap_disclosed": true,
+    "automatic_retry": false,
+    "root_released_immutable_followup": true
+  },
+  "coverage": "Closed descriptor-only authorization/strictINT0/no foreign Source path; real Timer typed premise and lifetime-start refusal; cache UID-role refusal; branch consistency/foreign label refusal; prepared order and typed Basic/Sapphire provenance retention. No complete capture/bundle was constructed.",
+  "nonclaims_and_pending": [
+    "Synthetic Timer/ledger/cache data establish helper behavior only, not actual64 Timer-private+8 Character provenance.",
+    "No twelve actual payloads read, decoded, projected or built; future actual physical cut/line/UID/origin evidence remains required.",
+    "Prepared29 helper observations are synthetic; actual ordered prepared witness and later external same-instance prepare_only business comparison before activation remain pending.",
+    "Historical G02/domain limits remain explicit; no native seed law, all-fresh object claim, publiczero inference or old case identity reuse.",
+    "No runtime/candidate full run, callback noninterference or strict8 business comparison accepted by this phase."
+  ],
+  "zero_activity": {
+    "complete_projection": 0,
+    "actual_INPUT_reads": 0,
+    "raw12_constructed": 0,
+    "build": 0,
+    "model": 0,
+    "Native": 0,
+    "Expected": 0,
+    "pool": 0
+  },
+  "preserved_and_verified_evidence_owners": [
+    {
+      "path": "data/phase514-independent-source-review/owned-files.json",
+      "size": 263,
+      "sha256": "c1b6b28ce86544f4be31afed9bc9bf94df2fe39262741db546d2abc4e1a60745"
+    },
+    {
+      "path": "data/phase514-independent-control-source/owned-files.json",
+      "size": 1231,
+      "sha256": "217db52f12c0186ccacdd19603be2088917f0d0204c0f495074627cd5d01e805"
+    },
+    {
+      "path": "data/phase514-independent-control-source-v2/owned-files.json",
+      "size": 1629,
+      "sha256": "527a4cda8cd13fb3e687c767fe22d72561676dc6f0bab20e839e5b000bb240f8"
+    },
+    {
+      "path": "data/phase514-independent-control-source-v3/owned-files.json",
+      "size": 1701,
+      "sha256": "8a3c690eccf56b1c94f2e04313a00dfdf91ab8c4263c7227b3c3ced0cf8af405"
+    },
+    {
+      "path": "data/phase514-independent-controls-first-001/owned-files.json",
+      "size": 257,
+      "sha256": "870a7cab9032bf45db154938d769239c4beb373ade90f1d40752676e71d7a27f"
+    },
+    {
+      "path": "data/phase514-independent-control-invocation/owned-files.json",
+      "size": 830,
+      "sha256": "ef5e1ebeeddd4182ecace4177dd6e9f057b20d326542f9f17a4fda271b3adbb3"
+    },
+    {
+      "path": "data/phase514-independent-first-error/owned-files.json",
+      "size": 260,
+      "sha256": "4df085f89182186ec913432a2b4c26ff9c8517a7efd207ddfe8a2fcc22cb3d6f"
+    },
+    {
+      "path": "data/phase514-independent-controls-v3-001/owned-files.json",
+      "size": 255,
+      "sha256": "026a23e91799a51c4200b6c4fcdc9eafaec5a83f7b08e352a784c23f05b5bc2c"
+    },
+    {
+      "path": "data/phase514-independent-control-v3-invocation/owned-files.json",
+      "size": 845,
+      "sha256": "78c239ee165882eca563984100f56bdf5b44e8d921b5b13dd28921011ffa4cc4"
+    }
+  ],
+  "stop_state": "Finished this explicitly released finite batch and sealed evidence; no automatic actualIO or follow-up work."
+}

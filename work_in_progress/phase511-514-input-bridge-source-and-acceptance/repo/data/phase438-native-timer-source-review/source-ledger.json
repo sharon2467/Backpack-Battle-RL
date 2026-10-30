@@ -1,0 +1,47 @@
+{
+  "status": "CONDITIONAL_KERNEL_PROVED_ACTUAL_HISTORY_NOT_CERTIFIED",
+  "review_kind": "static_only_no_controls_executed",
+  "source_root": "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main",
+  "source_sha256": {
+    "timer.cpp": "79e2ce272fd56465d8ccc2a5077bf6dc39422cbc588e71ddfab482eb7a33d862",
+    "timer.h": "20a3de2206b528223bd5b1ddf3175dd150e286c305f7ba43857a3dc29e80dd22",
+    "node.cpp": "0c2e3230b37644c8496f5b1aee59f428de6a497a380c247613c489e44cd508a9"
+  },
+  "baseline_root": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles",
+  "object_leaf_followup": {
+    "root": "data/phase184-ranger-idle-sync-source/source",
+    "recorded_version": "godotengine/godot/3.6.2-stable",
+    "metadata_checked": ["source-download.json", "source-freeze.json", "owned-files.json"],
+    "sha256": {
+      "object.cpp": "7d9bb073fde7ba0c1d7b057fbefcdba292148eeb4cdd58c1c975c9e8f8f3b8c6",
+      "object.h": "47e2e30d76c93182ac6a5900df8a652d01b4b1f8e513c375d6060b869dcb4562"
+    },
+    "non_tools_change_notify": "no_op",
+    "tools_change_notify": "native_virtual_calls_on_registered_receptors_only",
+    "script_can_register_receptor_via_bound_api": false,
+    "actual_tools_build_or_native_registrar_domain_verified_here": false
+  },
+  "baseline_sha256": {
+    "Core/Character.tscn": "5a6e1a99539975a7664e651fa32ed078f1017ba157ce1247a75fecd8266c97e9",
+    "Core/Main.tscn": "3bceddb7e88839b367528c3c2cce0690956cef3eea1b345453592c601db8bf0d",
+    "Core/Buff.gd": "3efabb72eb0b337e30ebc924347aba40bd1039a3c5f718b761b0ee78b48ab8bb",
+    "Utility/MultiTimer.gd": "2f7989ce6cd632bc104f5177321b405d403a8de0a83eb69d2580d4f2e774eecc",
+    "Utility/Util.gd": "596e7f7a9308ea03957e5c9f6e5cb43aa1591e1e0fd13217e2f2c70368970a36",
+    "Sheets/Table.gd": "a323d31b9b7f470dd28d91419a44a727a41af6961688cadc737fb31f1f397aa8"
+  },
+  "conditional_conclusion": "nonpaused && both_internal_flags_false => private_left == -1",
+  "required_domain": [
+    "pinned_native_semantics_and_native_getter_identity",
+    "completed_serialized_native_operation_cut",
+    "all_historical_timer_modes_in_0_1",
+    "no_external_inherited_internal_flag_writes",
+    "no_internal_setter_change_receptor_reentry"
+  ],
+  "project_receiver_history_closure": false,
+  "actual_rows_promoted": 0,
+  "invalid_history_counterexample": {
+    "trace": ["construct_idle", "start_wait_1", "tick_delta_1", "set_paused_true", "set_mode_2", "set_paused_false", "set_mode_0"],
+    "final": {"processing": true, "paused": false, "mode": 0, "idle_internal": false, "physics_internal": false, "private_left": 0, "public_left": 0, "is_stopped": true}
+  },
+  "report": "docs/phase438_native_timer_source_review.md"
+}

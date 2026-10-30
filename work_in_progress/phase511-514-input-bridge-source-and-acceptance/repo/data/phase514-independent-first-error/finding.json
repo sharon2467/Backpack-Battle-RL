@@ -1,0 +1,98 @@
+{
+  "schema": "phase514-independent-first-error/1",
+  "status": "STOPPED_HARNESS_RELATIVE_SCHEMA_PATH_POSTCHECK_NOT_PRODUCTION_FAILURE",
+  "phase": "first actual v2 batch; v1 never executed",
+  "actual_result": {
+    "path": "data/phase514-independent-controls-first-001/result.json",
+    "size": 7164,
+    "sha256": "377afc4e593d00afe4f44cdd627c20d3ccca342959193c9ed01f6290495568ec"
+  },
+  "actual_owner": {
+    "path": "data/phase514-independent-controls-first-001/owned-files.json",
+    "size": 257,
+    "sha256": "870a7cab9032bf45db154938d769239c4beb373ade90f1d40752676e71d7a27f"
+  },
+  "invocation_owner": {
+    "path": "data/phase514-independent-control-invocation/owned-files.json",
+    "size": 830,
+    "sha256": "ef5e1ebeeddd4182ecace4177dd6e9f057b20d326542f9f17a4fda271b3adbb3"
+  },
+  "release": {
+    "path": "data/phase514-root-exact-release/release.json",
+    "size": 836,
+    "sha256": "03224b5e31f4388dcef2cc621055ca796270fa6c8d0d6366a21359c0f115f7c9"
+  },
+  "execution": {
+    "returncode": 1,
+    "timed_out": false,
+    "wall_seconds": 0.09827066300204024,
+    "attempts": 1
+  },
+  "cause": {
+    "harness": {
+      "path": "tests/phase514_independent_helper_controls_v2.py",
+      "size": 11920,
+      "sha256": "c8465d08d0786d36afa83f323aba0e21ec5b60cee4c7f88439139ea9c9155891"
+    },
+    "line": 130,
+    "assertion": "Path(schema.__file__).resolve() == (REPO / schema_path).resolve()",
+    "source": {
+      "path": "tests/phase513_input_bridge.py",
+      "size": 43763,
+      "sha256": "c0a206f76cce2a789db0eb33cbf0f23790448951bb76f49853e23bf7d8228b33"
+    },
+    "source_lines": [
+      244,
+      246,
+      250,
+      253,
+      256
+    ],
+    "source_behavior": "load_schema hashes exact bytes, uses repo-relative SCHEMA_PIN.path as module.__file__/compile filename, executes and validates domain, returns module then removes transient sys.modules entry. It does not promise an absolute __file__.",
+    "fresh_process_cwd": "/tmp",
+    "wrong_inference": "Harness interpreted repo-relative Source metadata against the fresh process cwd. Successful loader result then failed test-owned path assertion."
+  },
+  "corrected_accounting_without_reexecution": {
+    "fresh_processes": 1,
+    "top_helpers_entered": 1,
+    "load_schema_successful_returns": 1,
+    "testcases_accepted": 0,
+    "remaining_cases_not_entered": 11,
+    "bridge_loads": 1,
+    "initial_loads": 1,
+    "schema_loads": 1,
+    "why_result_module_list_has_only_two": "Schema append follows failing assertion, so it was not reached. This instrumentation omission is disclosed, not a schema-load zero claim.",
+    "profile_limitation": "watched filenames are absolute, but schema compile filename is repo-relative; schema-internal entry counts were not covered. No schema validator cases were entered after loading.",
+    "actual_input_reads": 0,
+    "complete_projection": 0,
+    "build": 0,
+    "raw12_created": 0,
+    "Native": 0,
+    "model": 0,
+    "Expected": 0,
+    "pool": 0,
+    "source_before_after_equal": true,
+    "source_pins_count": 12
+  },
+  "minimal_future_repair_not_applied": [
+    "Resolve schema.__file__ relative to the bridge REPO only when it is not absolute, and retain equality to the exact pinned schema path.",
+    "Watch the actual repo-relative schema compile filename as well as pinned absolute paths so nested schema entry accounting is accurate.",
+    "Use a new immutable harness/output directory and new Root release; do not modify production bridge/schema/vectors or silently retry."
+  ],
+  "scope_result": "513 static repair review remains separate and valid; finite helper acceptance NOT achieved. Actual72 provenance, full projection, ordered actual witness and external same-instance business prepare gate remain unverified.",
+  "preservation": {
+    "v1_owner": {
+      "path": "data/phase514-independent-control-source/owned-files.json",
+      "size": 1231,
+      "sha256": "217db52f12c0186ccacdd19603be2088917f0d0204c0f495074627cd5d01e805"
+    },
+    "v2_owner": {
+      "path": "data/phase514-independent-control-source-v2/owned-files.json",
+      "size": 1629,
+      "sha256": "527a4cda8cd13fb3e687c767fe22d72561676dc6f0bab20e839e5b000bb240f8"
+    },
+    "both_all_payloads_unchanged": true,
+    "prerun_argparse_static_finding_not_a_dynamic_failure": true,
+    "automatic_retry": false
+  }
+}
