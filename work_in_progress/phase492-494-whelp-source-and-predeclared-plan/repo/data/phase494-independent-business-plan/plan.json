@@ -1,0 +1,120 @@
+{
+  "schema": "phase494-independent-business-plan/1",
+  "status": "PRESEALED_INPUT_AND_CONTROL_BOUNDARY_AWAITING493_SOURCE_AND_EXACT_HARNESS",
+  "design_review": {
+    "path": "data/phase492-independent-design-review/review.json",
+    "size": 3974,
+    "sha256": "dcfa4c38fe86db6a2211499d1a46937df9136837f214e0b6503b6175949453da"
+  },
+  "natural_job": {
+    "path": "data/phase494-independent-business-plan/natural-job.json",
+    "size": 3737,
+    "sha256": "38a8f07be8da9f13c8b3c9044bd20dada9a736b00559c18f3aff03c7216135f7"
+  },
+  "input_origin": {
+    "path": "data/phase490-independent-business-plan/natural-job.json",
+    "size": 3736,
+    "sha256": "7a9b726f0e12a52037e4ba855def76ab6c586de1c55ac5802070a59c533646dd"
+  },
+  "input_edits": [
+    "seed49001->49401",
+    "P:sword0 item1 at(4,0),rotation0 -> P:whelp item201 atsameposition; all other game inputs unchanged"
+  ],
+  "natural_expected_source_geometry": {
+    "item_count": 22,
+    "P_squirrel_ordered_targets": [
+      "P:berry0",
+      "P:goobert",
+      "P:berry1",
+      "P:whelp"
+    ],
+    "speed_arithmetic": "4 * 15.0 / 100.0",
+    "timer_count": 26,
+    "fresh_nonking": true
+  },
+  "case_bound": 17,
+  "cases": [
+    {
+      "id": "01_descriptor",
+      "expectation": "201 square/no stars/one empty socket/dual Ranged+Effect flags63 attack classification; catalog78/formal75; metadata only"
+    },
+    {
+      "id": "02_new_closed_gate",
+      "expectation": "Pure validation of201-only,164-only and mixed layout; no constructor"
+    },
+    {
+      "id": "03_old_closed_gates",
+      "expectation": "Old initialize, Squirrel entry and old batch reject201 before RNG/engine; original King domains stay unchanged by Source conservation"
+    },
+    {
+      "id": "04_new_rejections",
+      "expectation": "No experimental item,King,rage129,nonzero class/modifier and bool seed reject; pre-RNG where applicable"
+    },
+    {
+      "id": "05_real_prepare",
+      "expectation": "Zero draws at actual prepare boundary; ordered cache includes201 once; all preCombatStart cooldowns precede Whelp picks; default26Timers"
+    },
+    {
+      "id": "06_real_start_burst",
+      "expectation": "Four picks0,2,0,1 before applications; grouped Poison2,Cold1,Blind1 first-key order/null parents; real startup Activation after all applications"
+    },
+    {
+      "id": "07_miss",
+      "expectation": "Real attack miss has no201 removal selector/event"
+    },
+    {
+      "id": "08_positive_hit",
+      "expectation": "Real hit removes1 before damage draw and Attack allocation; null parent/no stolen gain"
+    },
+    {
+      "id": "09_block_zero",
+      "expectation": "Same early removal even when final health damage zero due to block"
+    },
+    {
+      "id": "10_invu_zero",
+      "expectation": "Same early removal even when final damage zero due to synthetic invulnerability"
+    },
+    {
+      "id": "11_empty_pool",
+      "expectation": "No selector with empty positive-buff pool; full attack and Activation continue"
+    },
+    {
+      "id": "12_protected_loss",
+      "expectation": "Synthetic positive-buff protection consumed; requested1/actualLoss0; no stolen give; preserve real queue/history"
+    },
+    {
+      "id": "13_double_own",
+      "expectation": "Raw0 default double-effect yields two own early removals but one common attack and Activation"
+    },
+    {
+      "id": "14_ended_entry",
+      "expectation": "Already-dead defender preserves existing no-attack-draw/hook semantics"
+    },
+    {
+      "id": "15_weapon_default_boundary",
+      "expectation": "201 real Weapon eligibility/empowerment under existing helper; default ranged/effect limit and typed-factor boundary; Debuff flags not positive-amplification"
+    },
+    {
+      "id": "16_pitch_boundary",
+      "expectation": "No Squirrel-specific activation pitch for201; actual164 pitch remains attributable to164 in its own calls"
+    },
+    {
+      "id": "17_natural",
+      "expectation": "One immutable mixed22item Source job; seal full output before assertions; report startup/removal/steal and Pet-speed HIT/NOT_HIT without output tuning"
+    }
+  ],
+  "limits": {
+    "successful_constructors": 3,
+    "synthetic_instances": 2,
+    "natural_instances": 1,
+    "natural_fullrun_attempts": 1,
+    "natural_seed": 49401,
+    "max_seconds_simulated": 120,
+    "wall_cap_seconds": 35,
+    "old_case_replays": 0,
+    "native_runs": 0,
+    "expected_reads": 0
+  },
+  "execution_boundary": "No candidate imports or execution in this plan. Bind frozen493 Source/API and exact helper call counts/UnitTape rows in immutable harness before executing. Synthetic provider injection only internal testing at real prepare boundary; public provider gate remains unchanged. Reuse two synthetic states across explicit isolated component prestates; do not replace heal/attack/removal algorithms. First real or harness failure retained and stop, no retries.",
+  "output_policy": "Seal natural raw result and RNG/events/history/final before result assertions. NonKing engine.finalized and26Timers; no King33Timer claim. Report measured calls and any NOT_HIT; synthetic invulnerability/protection/double cases are not natural or native evidence."
+}

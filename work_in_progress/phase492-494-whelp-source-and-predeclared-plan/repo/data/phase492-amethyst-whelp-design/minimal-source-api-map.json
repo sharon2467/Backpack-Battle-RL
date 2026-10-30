@@ -1,0 +1,243 @@
+{
+  "schema": "phase492-api-delta-plan/1",
+  "baseline": {
+    "path": "data/phase489-source-squirrel/candidate-source-freeze.json",
+    "size": 4443,
+    "sha256": "0f3c525e944a0d42616193587574f27b5adf594b6afd0a79b1cfbe9ca42dc289"
+  },
+  "baseline_acceptance": {
+    "path": "data/phase490-independent-final-acceptance/review.json",
+    "size": 4911,
+    "sha256": "b31f6b58f0f23a95c13bdf856c185c75921fe5614fd8a0414374c2eca5abb765"
+  },
+  "engine_dispatch_changes": {
+    "source": {
+      "path": "data/phase489-source-squirrel/staged/native_replay_v8/engine.py",
+      "size": 241834,
+      "sha256": "ef308ebaf1d39116bbfde82077810157d308e8e1c7dbf2d427cc4d6f8e89c6fc"
+    },
+    "functions": [
+      {
+        "name": "CombatEngine.activate_from_checkpoint",
+        "line": 1932,
+        "end_line": 2050,
+        "sha256": "a84d8303541040f7230a28eb8226a850f309b12e0ca5c59172ea4b7e50f6f8fb"
+      },
+      {
+        "name": "CombatEngine.pre_item_damage",
+        "line": 3278,
+        "end_line": 3310,
+        "sha256": "96db4d5f666772f1e04714d1cd886382d9ce84f649262fe011d404dc103f8d49"
+      }
+    ]
+  },
+  "module_literals": [
+    "CATALOG201",
+    "EMPOWERABLE_WEAPON_IDS+201",
+    "GAINED_STACK_FLAGS201=1792"
+  ],
+  "shared_engine_functions": {
+    "source": {
+      "path": "data/phase489-source-squirrel/staged/native_replay_v8/engine.py",
+      "size": 241834,
+      "sha256": "ef308ebaf1d39116bbfde82077810157d308e8e1c7dbf2d427cc4d6f8e89c6fc"
+    },
+    "functions": [
+      {
+        "name": "CombatEngine.set_logging_mode",
+        "line": 1783,
+        "end_line": 1786,
+        "sha256": "d8d1fe98dce636efb38410a1dfdfe5407abfbd08939d6ab22dfdc768299c0e7f"
+      },
+      {
+        "name": "CombatEngine.flush_logging_queue",
+        "line": 1811,
+        "end_line": 1816,
+        "sha256": "43e633366dbbe0c64a2b505495eb227fac0c3065a6d97a74b730319f251eb043"
+      },
+      {
+        "name": "CombatEngine.new_caller_target_caches",
+        "line": 2079,
+        "end_line": 2133,
+        "sha256": "6ce18fb658f39f42906f06e56c750d7830534356b26d003ca6a14010bc9f7eeb"
+      },
+      {
+        "name": "CombatEngine.affected_items",
+        "line": 2155,
+        "end_line": 2194,
+        "sha256": "484e8500644baf19b1906712f5363818093c32b874e758ded39a7703a1535d1f"
+      },
+      {
+        "name": "CombatEngine.damage_bounds",
+        "line": 2207,
+        "end_line": 2215,
+        "sha256": "2a9598bc7647193735857ff68bbf9e865f7433432fe604cd29e45d34bb266e2c"
+      },
+      {
+        "name": "CombatEngine._gain_stacks",
+        "line": 2384,
+        "end_line": 2454,
+        "sha256": "361c6dcbd43b2c24f0dd5c8a480250c1e643d9fdbd4c8021f206f1ad8b792efc"
+      },
+      {
+        "name": "CombatEngine.remove_stack",
+        "line": 2456,
+        "end_line": 2510,
+        "sha256": "ff7b0fe7bf8738900a8302a3e87a01a0b031bb0f719ec6a34427e4ed4d84efff"
+      },
+      {
+        "name": "CombatEngine.give_stack",
+        "line": 2551,
+        "end_line": 2558,
+        "sha256": "2b917975701aabf03fb967a8e1370e446e7564568904ba1e3828f8cc004fe171"
+      },
+      {
+        "name": "CombatEngine.pick_random_stacks",
+        "line": 2675,
+        "end_line": 2702,
+        "sha256": "32ef03ec2030d410ac39972be8947d6ba3cfefe33c733321e50a5ef8b79d57ea"
+      },
+      {
+        "name": "CombatEngine.pick_random_stacks_to_give",
+        "line": 2704,
+        "end_line": 2714,
+        "sha256": "2554a7967c932d60eadc9376a9c04e3e1c23a1bb1d379d14cf67349ae24aea9f"
+      },
+      {
+        "name": "CombatEngine.inflict_random_debuffs",
+        "line": 2742,
+        "end_line": 2748,
+        "sha256": "743f0b3ab8a471de3f7e24f5f35d5acdccfbe7ec8a5df84748152eb93f686423"
+      },
+      {
+        "name": "CombatEngine.remove_random_buffs",
+        "line": 2750,
+        "end_line": 2756,
+        "sha256": "e89b156a3fd10e5c8951398b18e81ed848254c4acab3361aa54deff4489cc901"
+      },
+      {
+        "name": "CombatEngine.activate",
+        "line": 2817,
+        "end_line": 2840,
+        "sha256": "eead715715b28c4f8be0aeda55b75d350d26905b3412a40a3eca562e0abd7fd2"
+      },
+      {
+        "name": "CombatEngine.weapon_attack",
+        "line": 2988,
+        "end_line": 2994,
+        "sha256": "f9a2a331231725bc93dde2f063b64c7f7d055325e30bdbf34d25ab739747387e"
+      },
+      {
+        "name": "CombatEngine.trigger",
+        "line": 3183,
+        "end_line": 3276,
+        "sha256": "b8079443922a5ada24e60c840479fc99cf181bc58543b3d780f602e18312deb2"
+      },
+      {
+        "name": "CombatEngine.attack_effect_count",
+        "line": 3312,
+        "end_line": 3317,
+        "sha256": "4a3da880db3c3e95b9b0d6089749e02463f46f1f6736d1fa531263b6febfb6a2"
+      },
+      {
+        "name": "CombatEngine.attack",
+        "line": 3333,
+        "end_line": 3388,
+        "sha256": "548860eda747375e9d9827d6564365717221fcea1652f0bb59a9c93d074e9970"
+      }
+    ]
+  },
+  "headless_reuse": {
+    "source": {
+      "path": "data/phase489-source-squirrel/staged/headless.py",
+      "size": 33145,
+      "sha256": "b96966f85d28e6add4b46452646ec6132d3df931f47e26ed986d76ee82c6b435"
+    },
+    "functions": [
+      {
+        "name": "validate_layout",
+        "line": 46,
+        "end_line": 47,
+        "sha256": "042c28acb02c27b9f71af86debbeb3cb92e5a3900cad26b3923aee275f530a1c"
+      },
+      {
+        "name": "validate_squirrel_layout",
+        "line": 50,
+        "end_line": 57,
+        "sha256": "e3560f7384f597d8bf4647d23c8badb22e18d2fde224a9c2efbfd88e616834b9"
+      },
+      {
+        "name": "_validate_layout_items",
+        "line": 60,
+        "end_line": 96,
+        "sha256": "032f1fe000162833a2115962adc3ad40dc99dd1fdc64f4155c258af752b6c6ca"
+      },
+      {
+        "name": "initialize",
+        "line": 444,
+        "end_line": 448,
+        "sha256": "21988cf280c7ca5edc55b96e94256a052b0952312deb20aafc06ae4491b048de"
+      },
+      {
+        "name": "initialize_squirrel",
+        "line": 451,
+        "end_line": 455,
+        "sha256": "31b44d0bb9ffdee1ccd4c0f6af30f0c51789b47b6236359eb9943bff503664fe"
+      },
+      {
+        "name": "_initialize_fixture",
+        "line": 458,
+        "end_line": 493,
+        "sha256": "0194bdccb3f7f9bf03021766834d38b114bdfdbf59317323fb94564ef8967cd5"
+      },
+      {
+        "name": "run_batch",
+        "line": 531,
+        "end_line": 563,
+        "sha256": "b7f7073bc01eae3ef4dddf6a41085d5129c62ffb0fc52052707aa9ca26da5148"
+      },
+      {
+        "name": "main",
+        "line": 566,
+        "end_line": 581,
+        "sha256": "1f049c8d72a9b3060e928c3a195b1e510f251b7ec5951297031de8ad2ffb1153"
+      }
+    ]
+  },
+  "metadata_seam": {
+    "source": {
+      "path": "data/phase489-source-squirrel/staged/headless.py",
+      "size": 33145,
+      "sha256": "b96966f85d28e6add4b46452646ec6132d3df931f47e26ed986d76ee82c6b435"
+    },
+    "functions": [
+      {
+        "name": "HeadlessBattle._result_view",
+        "line": 384,
+        "end_line": 441,
+        "sha256": "1bcd24c03383d1208cd08ffbc8c3182b652d97b236d90ba70d6f370be24a252a"
+      }
+    ]
+  },
+  "new_fixed_entry": [
+    "validate_experimental_nonking_layout(layout)",
+    "initialize_experimental_nonking(layout,seed)"
+  ],
+  "closed_Source_domain": {
+    "items": "old75 +164+201",
+    "experimental_items": [
+      164,
+      201
+    ],
+    "requires_experimental": true,
+    "classes": [
+      0
+    ],
+    "King": false,
+    "rage": false,
+    "public_arbitrary_allowlist": false
+  },
+  "legacy_entry_contract": "Old75/King and initialize_squirrel admission unchanged; old batch/CLI unchanged",
+  "Source_metadata_plan": "New entry annotates descriptor after common initialization; result descriptive Source identity/actual experimental kinds/formal75/catalog78. Metadata never controls business permission.",
+  "other_modules_conserved": 13
+}

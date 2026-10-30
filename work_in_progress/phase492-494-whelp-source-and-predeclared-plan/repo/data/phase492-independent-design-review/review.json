@@ -1,0 +1,66 @@
+{
+  "schema": "phase492-independent-design-review/1",
+  "status": "PASS_LIMITED_SOURCE_DESIGN_NOT_IMPLEMENTATION_OR_NATIVE_ACCEPTANCE",
+  "design_owner": {
+    "path": "data/phase492-amethyst-whelp-design/owned-files.json",
+    "size": 862,
+    "sha256": "1579fed93fc1c46b8704c6520ca34797bf23d65619622da28829d3c939abebe3"
+  },
+  "spec": {
+    "path": "docs/phase492_amethyst_whelp_removal_design_spec.md",
+    "size": 15060,
+    "sha256": "88e42cd5a6a1e7540bcf4bf35c6ffb4b5e6c6c6ebf9264a136e846897b610440"
+  },
+  "verification": {
+    "owner_payloads": 4,
+    "physical_pin_checks": 23,
+    "unique_paths": 21,
+    "function_segment_pins": 28,
+    "method": "Static source reads and byte hashes only; no candidate imports or calls."
+  },
+  "findings": [
+    {
+      "topic": "Dual damage types",
+      "conclusion": "Original DamageSource.setItem appends Ranged then Effect and selects ranged flags63; isAttack remains true. Character fresh prepare resets ranged/effect Spikes limits and ranged Vampirism limit to0 and typed factors to0. Reuse bounded ranged path; no arbitrary nonzero custom-factor equivalence claimed.",
+      "source": "Utility/DamageSource.gd setItem/isAttack; Core/Character.gd87-92,390-396,710-735"
+    },
+    {
+      "topic": "Combat start",
+      "conclusion": "Whelp calls inflictRandomDebuffs(getP1()) then activate(null,false). Shared helper completes all selections before delayed application in first-key insertion order. Preserve four selections, aggregation, reflection order, null parents and real Activation.",
+      "source": "Items/Exclusive/AmethystWhelp.gd3-5; Items/Item.gd5465-5475"
+    },
+    {
+      "topic": "Own early removal",
+      "conclusion": "hasHit gates removeRandomBuffs(1) with default null parent. Character invokes this before damage and crit draws and Attack creation; later block/invulnerability zero damage does not suppress removal. Only own hook repeats for attackEffectCount; common hook and complete attack are not duplicated.",
+      "source": "Items/Exclusive/AmethystWhelp.gd7-9; Core/Character.gd505-590; Items/Item.gd5477-5483"
+    },
+    {
+      "topic": "Closed experimental entry",
+      "conclusion": "Fixed old75+164+201 nonKing domain with at least one extra and class0/default restrictions is a bounded reuse of489 private validation/initialization. Old initialize, CLI/batch, Squirrel and King admission remain closed to201. Coverage metadata must not control business state."
+    },
+    {
+      "topic": "Small implementation boundary",
+      "conclusion": "Two engine dispatch additions plus descriptor/empowerable/gained flags and closed headless entry; preserve13 modules and existing combat helpers. One empty socket and Pet/Dark/Ranged/Effect metadata are required; no Squirrel pitch for201."
+    }
+  ],
+  "next_minimum": [
+    "493 four-section function implementation SPEC and isolated Source freeze after Root confirmation.",
+    "Independent finite controls: grouped four-pick startup/parent/RNG order; miss versus hit with zero damage; empty buff pool and protected removal; own-hook raw0 double count without duplicated common attack; old/new admission and Pet/Weapon eligibility.",
+    "At most one separately presealed164+201 Source integration case, with simulated and wall budgets distinguished; natural unhit branches remain NOT_HIT."
+  ],
+  "blockers": [],
+  "limitations": [
+    "Design acceptance only. No new201 production caller execution, natural HIT or native equivalence observed.",
+    "Default-factor bounded Source reasoning does not prove arbitrary mutated damage-type factors or all seed/native equality.",
+    "Historical phase201 Shortbow and490 Squirrel outcomes are not descriptor201 native evidence. Formal75 and general King admission remain unchanged."
+  ],
+  "calls": {
+    "candidate_imports": 0,
+    "candidate_compile": 0,
+    "component_calls": 0,
+    "model_runs": 0,
+    "native_runs": 0,
+    "expected_business_reads": 0,
+    "pool_operations": 0
+  }
+}

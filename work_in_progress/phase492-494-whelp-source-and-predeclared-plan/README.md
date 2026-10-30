@@ -1,0 +1,9 @@
+# Amethyst Whelp shared-family Source checkpoint
+
+492 limited original-derived design was independently accepted.493 freezes exact15 standalone Python modules with201 startup random-debuff burst and hit-only own early random-buff removal. Existing attack/buff/queue/history/Timer/RNG algorithms remain exact; two modules changed and thirteen remain byte-exact489. The author compiled15 files but performed zero candidate imports/models/native captures. **Functional494 acceptance is pending at this checkpoint.**
+
+The new fixed `initialize_experimental_nonking` entry admits old75 plus Squirrel164 and Whelp201 under class0/default non-King constraints, with at least one experimental item. This allows the existing ForestFriend Pet cache to target201 and early removal to affect later Squirrel steals without per-item entry proliferation. Old formal/CLI/batch/Squirrel/King entry domains remain unchanged. Catalog78 is registration, not formal78; formal support remains75.
+
+The independent494 plan/request is presealed before any result:17 case groups, at most2 component instances and1 natural mixed22-item Source case, seed49401,120 simulated seconds and separate35s wall limit. No new native collection is authorized or executed by this checkpoint. The currently distributed accepted Source remains489 until independent validation/distribution of this candidate.
+
+Use the four-section implementation SPEC, owner/source-freeze/API/conservation records and predeclared plan here to resume. Source runtime is Python3.12 standard library and does not require original assets or old cloud files; technical evidence references are provenance. This is additive preservation; all original materials, earlier accepted packages and error records remain intact. The overall pure combat/RL task remains unfinished.
