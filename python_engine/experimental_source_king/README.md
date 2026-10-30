@@ -1,10 +1,16 @@
-# Experimental Source King and basic Goobert combat
+# Experimental Source King combat: six, seven and eight IDs
 
-Standalone Python Source simulator. **Formal support remains75 non-King items.** The six-ID singleKing branch accepts IDs `1,4,11,19,22,262`. The separate seven-ID branch additionally accepts at most one basic Goobert23 on the single King's side. Both characters must be class0; one King globally, default items and legal layouts only. King identity/side may vary. Opposing-sideBasic, multipleKing/Basic, King with other75, rage, gems and modifiers are rejected.
+Standalone Python Source simulator. **Formal support remains75 non-King items.** Three separate experimental King domains are available, with class0/default legal layouts and exactly one global King:
 
-The15 Source files are exact frozen458 bytes, independently accepted in459 for finite Source business interactions. Existing453/454 six-ID Source interface/determinism/isolation evidence is retained; this does not claim those old complete battles were rerun on458. Phase459 passed22 controls and one fixed26-item Source battle (364events/424 combat-provider audit entries/33Timers). Both synchronous reentry directions were asserted on disposable Source components; the full battle naturally hit only King-first reentry with outer trigger5. The first harness timing error and remaining-only continuation are archived.
+- Six IDs: `1,4,11,19,22,262`.
+- Seven IDs: six plus one basic Goobert23 on the King's side.
+- Eight IDs: `1,4,11,19,21,22,262,332`, with exactly one Magic Mirror332 on the King's side and one Fly Agaric21 on the opposite side. This branch does not include Basic23.
 
-Phase478 passed all eight strict business sections for one fixed26-item King+Basic native case using its original primitive Tape:366 events,422 selected primitive records and33 business Timers. The captured candidate and corrected INPUT are separately frozen engineering artifacts; the15 Source files in this package remain exact458. Phase451 separately passed a different fixed King case. These results do not claim native equality for every public Source layout or seed. Production all-seed/platform parity is not a prerequisite for Tape-based business validation; no new numeric probe is included. This remains an experimental partial engine and does not complete the RL environment. Old453/455 six-ID package remains available in the recovery checkpoint and Git history.
+King identity/side may vary. Extra King/Basic/Mirror/Fly, wrong side relationships, other75×King mixes, SpikedShield16/RangerBag67 in the eight-ID branch, rage, gems and modifiers are rejected. Non-King formal75 behavior remains separate.
+
+The15 Source files are exact frozen482v2 bytes, independently accepted in483 for the finite eight-ID Source extension;13 modules and the shared business/Timer/RNG algorithms are conserved from458. Historical453/454 six-ID and459 seven-ID Source evidence is retained, without rerunning those old complete battles on this package. Phase483 passed17 ingress/component controls and one remaining natural Source integration:409events,474combat-provider audit entries and33Timers. It naturally hit Mirror activation/allocation, Poison reflection and zero/nonzero Poison ticks across King invulnerability; positive-buff protection accumulated to18 without consumption. These are fresh Source observations, not a new native comparison. The first natural attempt stopped at its chosen10 simulated-second ceiling; its error is preserved, and only the remaining natural case was rerun with a120 simulated-second ceiling. No candidate algorithm changed.
+
+Phase478 passed all eight strict business sections for one fixed26-item King+Basic native case using its original primitive Tape:366 events,422 selected primitive records and33 business Timers. The captured candidate and corrected INPUT are separately frozen engineering artifacts; the15 Source files in this package are now exact482v2, with their shared business algorithms conserved. Phase451 separately passed a different fixed King case. These results do not claim native equality for every public Source layout or seed. Production all-seed/platform parity is not a prerequisite for Tape-based business validation; no new numeric probe is included. This remains an experimental partial engine and does not complete the RL environment. Old453/455 six-ID package remains available in the recovery checkpoint and Git history.
 
 ## Runtime
 
@@ -22,11 +28,13 @@ python -B headless.py --layout examples/layout-A.json --seed 123456789 --output 
 python -B headless.py --layout examples/layout-B.json --seed 987654321 --output ../result-B.json
 python -B headless.py --batch examples/jobs.json --output ../batch-summary.json
 python -B headless.py --layout examples/layout-King-Basic.json --seed 45701 --output ../result-King-Basic.json
+python -B headless.py --layout examples/layout-King-Mirror-Poison.json --seed 48701 --output ../result-King-Mirror-Poison.json
+python -B headless.py --batch examples/jobs-RL-smoke.json --keep-results --output ../batch-RL-smoke.json
 ```
 
-Add `--keep-results` to the batch command for full per-job results. Batch accepts1..64 exact `{layout, seed}` jobs and validates the whole batch before starting any job. A real budget timeout produces `TIME_BUDGET` without a fabricated winner/result; other internal errors propagate. Full traces can be large even when only summaries are returned.
+Add `--keep-results` to the batch command for full per-job results. Batch accepts1..64 exact `{layout, seed}` jobs and validates the whole batch before starting any job. `max_seconds` / `--max-seconds` is the simulated combat-time ceiling (up to120 seconds on these King paths), not a wall-clock deadline. Exceeding it before terminal produces `TIME_BUDGET` in batch without a fabricated winner/result; other internal errors propagate. Set an external process/harness wall-clock limit separately when needed. Full traces can be large even when only summaries are returned.
 
-The original A/B/jobs examples are byte-exact455 inputs from454's pre-outcome requests. The added King-Basic layout is extracted from459's presealed request before its Source outcome; source_root_seed45701 is unchanged. Examples are inputs, not native-output oracles. Running a command computes a new simulation; packaging did not rerun accepted battles.
+The original A/B/jobs examples are byte-exact455 inputs from454's pre-outcome requests. The added King-Basic layout is extracted from459's presealed request before its Source outcome; source_root_seed45701 is unchanged. The new King-Mirror-Poison layout is extracted from483's presealed `source-job.layout`, without outcome data. `jobs-RL-smoke.json` contains exactly that eight-ID layout with seed48701 followed by the existing seven-ID King-Basic layout with seed48702. Root selected these two seeds before any corresponding execution; the jobs are for fresh Source batch/throughput validation, not native comparison or a completed RL environment. Examples are inputs, not native-output oracles. Running a command computes a new simulation; packaging did not rerun accepted battles.
 
 ## Python API
 

@@ -1,0 +1,7 @@
+# Accepted bounded Source business and eight-ID standalone distribution
+
+483 independently accepted seventeen component/ingress controls and one remaining natural integration. The original10 simulated-second budget stop (101events/152draws/winnerNone) is retained. A remaining-only runner changed only the execution ceiling to120 simulated seconds, same input/seed48301 and35wall cap, without rerunning seventeen passed controls. Cumulative two natural attempts, one completion:409events/474combat-provider audit entries/33Timers over35.000001825392246 simulated seconds. Mirror activation/allocation, poison/reflection and three zero-damage ticks while invulnerable plus thirteen nonzero outside were HIT. Positive-buff protection ended at18; natural protection consumption was NOT_HIT. All evidence is Source-only, not a new native comparison.
+
+486 packages exact482v2 fifteen Source files with6/7/8-ID experimental domains. The new8-ID domain requires oneKing, one same-sideMirror332 and one opposingFlyAgaric21 plus base1/4/11/19/22, bothclass0/defaults. Old four examples/verifier are unchanged. New eight-ID layout and predeclared mixed2job seeds48701/48702 come from existing input-only examples, not outcomes. Public API still requires no oracle/game/assets.
+
+487 independent static package review passed. The direct package has been copied but its remote one-verifier/one-mixed2job acceptance remains pending at this checkpoint. No complete-RL, generalized King, arbitrary native-seed or formal75 expansion is claimed.

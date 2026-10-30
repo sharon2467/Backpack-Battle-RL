@@ -1,0 +1,8 @@
+{
+  "schema": "phase483-budget-evidence-erratum/1",
+  "corrects": "data/phase483-independent-first-attempt-review/review.json source_budget_evidence wording",
+  "actual_predicate": "not self.ended and (self.elapsed >= budget or driver.pass_index // 2 >= SOURCE_KING_QUANTA)",
+  "actual_location": "data/phase482-source-king-mirror-poison-v2/staged/native_replay_v8/engine.py:3587",
+  "correction": "The review phrase next_physics_time is inaccurate; actual Source checks self.elapsed and quantum cap. The simulated-time budget classification and actual incomplete result are unchanged.",
+  "no_code_or_result_change": true
+}

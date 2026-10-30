@@ -3882,12 +3882,24 @@ SOURCE_PURE_PROFILE='source-headless-pure-business-fixed60/1'
 SOURCE_PURE_SCHEMA='native-v8-source-pure-runtime/1'
 SOURCE_KING_BASIC_PROFILE='source-headless-king-basic-goobert-fixed60/1'
 SOURCE_KING_BASIC_ITEMS=SOURCE_KING_ITEMS|frozenset({23})
+SOURCE_KING_MIRROR_POISON_PROFILE='source-headless-king-mirror-poison-fixed60/1'
+SOURCE_KING_MIRROR_POISON_ITEMS=SOURCE_KING_ITEMS|frozenset({21,332})
 
 
 def validate_source_pure_business_domain(fixture):
     """Separate the old six-ID domain from one same-side King/basic pair."""
     validate_fixture(fixture)
     entries=[(side['side'],item) for side in fixture['sides'] for item in side['items']]
+    if _has_king(fixture) and any(item['item_index'] in (21,332) for side,item in entries):
+        kings=[(side,item) for side,item in entries if item['item_index']==262]
+        mirrors=[(side,item) for side,item in entries if item['item_index']==332]
+        flies=[(side,item) for side,item in entries if item['item_index']==21]
+        if (_has_rage(fixture) or any(side['character_class']!=0 for side in fixture['sides'])
+                or len(kings)!=1 or len(mirrors)!=1 or len(flies)!=1
+                or kings[0][0]!=mirrors[0][0] or kings[0][0]==flies[0][0]
+                or any(item['item_index'] not in SOURCE_KING_MIRROR_POISON_ITEMS for side,item in entries)):
+            raise ValueError('Source eight-ID domain requires one King with same-side Mirror, opposite Fly and class0')
+        return SOURCE_KING_MIRROR_POISON_PROFILE
     basics=[(side,item) for side,item in entries if item['item_index']==23]
     if not basics:
         validate_source_king_domain(fixture)
@@ -3902,7 +3914,7 @@ def validate_source_pure_business_domain(fixture):
 
 def _source_pure_profile(runtime):
     data=runtime.data if isinstance(runtime,RuntimeDTO) else runtime
-    return type(data) is dict and data.get('profile_id') in (SOURCE_PURE_PROFILE,SOURCE_KING_BASIC_PROFILE)
+    return type(data) is dict and data.get('profile_id') in (SOURCE_PURE_PROFILE,SOURCE_KING_BASIC_PROFILE,SOURCE_KING_MIRROR_POISON_PROFILE)
 
 
 def source_pure_policy(fixture=None):

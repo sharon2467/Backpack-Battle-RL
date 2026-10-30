@@ -17,6 +17,7 @@ from native_replay_v8.engine import (
     SOURCE_PURE_PROFILE, source_pure_runtime_inputs, source_pure_business_defaults,
     source_pure_policy, _source_pure_roles, SOURCE_KING_BASIC_PROFILE,
     SOURCE_KING_BASIC_ITEMS, validate_source_pure_business_domain,
+    SOURCE_KING_MIRROR_POISON_PROFILE, SOURCE_KING_MIRROR_POISON_ITEMS,
     validate_fixture, validate_runtime_inputs, _validate_runtime_nodes,
 )
 from native_replay_v8.randomness import _bits
@@ -400,6 +401,16 @@ class HeadlessBattle:
                     domains=dict(non_King_default75=sorted(ITEMS),King=domain),
                     remaining=['other_King_plus75','two_King','multiple_basic_Goobert','King_rage','gems',
                                'joint_King_basic_native_comparison','custom_native_seed_parity','full_engine_RL_action_environment'])
+            if self._engine.runtime_inputs.data['profile_id']==SOURCE_KING_MIRROR_POISON_PROFILE:
+                domain=dict(items=sorted(SOURCE_KING_MIRROR_POISON_ITEMS),classes=[0],global_max_King=1,
+                            global_Mirror=1,global_Fly_Agaric=1,Mirror_same_side_as_King=True,Fly_opposite_King=True)
+                value['coverage'].update(items=sorted(SOURCE_KING_MIRROR_POISON_ITEMS),
+                    status='SOURCE_PURE_KING_MIRROR_POISON_NOT_PER_LAYOUT_NATIVE_VALIDATED',
+                    evidence='Historical178 mixed King/Mirror/Poison and fixed478 different-pair Tape evidence; this Source layout/seed has no native comparison',
+                    domains=dict(non_King_default75=sorted(ITEMS),King=domain),
+                    remaining=['other_King_plus75','two_King','multiple_Mirror_or_Fly','King_rage','gems',
+                               'per_layout_native_comparison','natural_positive_buff_protection_loss',
+                               'custom_native_seed_parity','full_engine_RL_action_environment'])
             value['source_rng']=self._engine.random.snapshot()
             terminal=deepcopy(result['king_terminal'])
             for stage in ('post_cleanup','final'):terminal[stage]['model']=_source_pure_snapshot_view(terminal[stage]['model'])
@@ -438,6 +449,9 @@ def initialize(layout, seed):
         if runtime.data['profile_id']==SOURCE_KING_BASIC_PROFILE:
             descriptor['domain']=dict(items=sorted(SOURCE_KING_BASIC_ITEMS),classes=[0],global_max_King=1,
                                       global_max_basic_Goobert=1,basic_same_side_as_King=True)
+        if runtime.data['profile_id']==SOURCE_KING_MIRROR_POISON_PROFILE:
+            descriptor['domain']=dict(items=sorted(SOURCE_KING_MIRROR_POISON_ITEMS),classes=[0],global_max_King=1,
+                                      global_Mirror=1,global_Fly_Agaric=1,Mirror_same_side_as_King=True,Fly_opposite_King=True)
     return HeadlessBattle(engine, descriptor)
 
 
@@ -483,12 +497,14 @@ def run_batch(jobs,max_seconds=120.0,keep_results=False):
     if type(keep_results) is not bool:raise ValueError('batch keep_results BOOL required')
     # Complete cheap validation of every job before any RNG/Engine is constructed.
     mixed=False
+    mirror_poison=False
     for job in jobs:
         if type(job) is not dict or set(job)!={'layout','seed'}:raise ValueError('closed batch job fields')
         if type(job['seed']) is not int or not 0<=job['seed']<=MASK64:raise ValueError('batch uint64 seed required')
         fixture=validate_layout(job['layout'])
         source_runtime_topology(fixture)
         mixed=mixed or (_has_king(fixture) and any(item['item_index']==23 for side in fixture['sides'] for item in side['items']))
+        mirror_poison=mirror_poison or (_has_king(fixture) and any(item['item_index'] in (21,332) for side in fixture['sides'] for item in side['items']))
     records=[]
     for index,job in enumerate(jobs):
         battle=initialize(job['layout'],job['seed'])
@@ -504,7 +520,8 @@ def run_batch(jobs,max_seconds=120.0,keep_results=False):
             records.append(record)
         del battle
     return dict(schema='headless-batch-result/1',jobs=records,seed_policy=SEED_POLICY,formal_support=75,
-        source_king_domain=('experimental sixID King and sevenID same-side King/basicGoobert class0; joint/native seed parity pending'
+        source_king_domain=('experimental eightID King/same-side Mirror/opposite Fly class0 present; per-layout native/seed parity pending'
+                            if mirror_poison else 'experimental sixID King and sevenID same-side King/basicGoobert class0; joint/native seed parity pending'
                             if mixed else 'experimental sixID singleKing class0; native numeric/seed parity pending'))
 
 
