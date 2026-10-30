@@ -1,0 +1,530 @@
+{
+  "schema": "phase509-frozen-synthetic-vectors/1",
+  "total_top_level_calls": 11,
+  "host_cases": [
+    {
+      "name": "01 exact502 tuple/derived graph",
+      "api": "validate_active_source_tuple",
+      "mutation": null
+    },
+    {
+      "name": "02 old tuple schema rejected",
+      "api": "validate_active_source_tuple",
+      "mutation": "old_schema",
+      "reject": "closed508 binding to actual502 Source required"
+    },
+    {
+      "name": "03 wrapper declaration hash mismatch",
+      "api": "validate_active_source_tuple",
+      "mutation": "wrapper_declared_hash",
+      "reject": "tuple leaf outside frozen graph"
+    },
+    {
+      "name": "04 derived origin mismatch",
+      "api": "validate_active_source_tuple",
+      "mutation": "derived_origin",
+      "reject": "derived actual case/sourceauthority binding"
+    },
+    {
+      "name": "05 actual503 review accepted",
+      "api": "validate_observer_review",
+      "mutation": null
+    },
+    {
+      "name": "06 foreign observer owner rejected",
+      "api": "validate_observer_review",
+      "mutation": "review_owner",
+      "reject": "actual503 Source-only acceptance for exact502v4 required"
+    }
+  ],
+  "selection_cases": [
+    {
+      "name": "07 O-only old installed source distinct from reset baseline",
+      "args": {
+        "old": {
+          ".native-random-observer-disposable": {
+            "kind": "file",
+            "size": 11,
+            "sha256": "87e6a9959fc130012943a09c31183bc9a4678b25527ebad000bf5642ecf7a06e",
+            "mode": 420,
+            "mtime_ns": 100
+          },
+          "Items/synthetic-selection.gd": {
+            "kind": "file",
+            "size": 14,
+            "sha256": "1b0fd39caea16fec4b7d388866b7da055283c36250547472ee43e6cc06a70398",
+            "mode": 420,
+            "mtime_ns": 100
+          }
+        },
+        "baseline": {
+          "Items/synthetic-selection.gd": {
+            "kind": "file",
+            "size": 17,
+            "sha256": "0d10857c24a372ee25424275f67b9c0c2b7e6cd02c863929b78701a9c001c224",
+            "mode": 420,
+            "mtime_ns": 90
+          }
+        },
+        "old_targets": {
+          "Items/synthetic-selection.gd": {
+            "presealed": "old-patch"
+          }
+        },
+        "old_images": {
+          ".native-random-observer-disposable": {
+            "raw_hex": "6f6c642d6d61726b65720a",
+            "identity": {
+              "size": 11,
+              "sha256": "87e6a9959fc130012943a09c31183bc9a4678b25527ebad000bf5642ecf7a06e"
+            },
+            "mode": 420,
+            "mtime_ns": 100
+          },
+          "Items/synthetic-selection.gd": {
+            "raw_hex": "646573697265642d6f6c642d410a",
+            "identity": {
+              "size": 14,
+              "sha256": "1b0fd39caea16fec4b7d388866b7da055283c36250547472ee43e6cc06a70398"
+            },
+            "mode": 420,
+            "mtime_ns": 100
+          }
+        },
+        "journal": [
+          {
+            "path": ".native-random-observer-disposable",
+            "backup": null,
+            "before": null,
+            "after": {
+              "size": 11,
+              "sha256": "24c1313db6cdabe8d4161d7a8c3dac4b56cd60953845ce651e5de03fad8fb926"
+            }
+          }
+        ],
+        "journal_images": {},
+        "expected_after": {
+          ".native-random-observer-disposable": {
+            "size": 11,
+            "sha256": "24c1313db6cdabe8d4161d7a8c3dac4b56cd60953845ce651e5de03fad8fb926"
+          }
+        }
+      },
+      "expected": {
+        ".native-random-observer-disposable": {
+          "raw_hex": "6f6c642d6d61726b65720a",
+          "identity": {
+            "size": 11,
+            "sha256": "87e6a9959fc130012943a09c31183bc9a4678b25527ebad000bf5642ecf7a06e"
+          },
+          "mode": 420,
+          "mtime_ns": 100
+        },
+        "Items/synthetic-selection.gd": {
+          "raw_hex": "646573697265642d6f6c642d410a",
+          "identity": {
+            "size": 14,
+            "sha256": "1b0fd39caea16fec4b7d388866b7da055283c36250547472ee43e6cc06a70398"
+          },
+          "mode": 420,
+          "mtime_ns": 100
+        }
+      }
+    },
+    {
+      "name": "08 N-only journal image selected by target",
+      "args": {
+        "old": {
+          ".native-random-observer-disposable": {
+            "kind": "file",
+            "size": 11,
+            "sha256": "87e6a9959fc130012943a09c31183bc9a4678b25527ebad000bf5642ecf7a06e",
+            "mode": 420,
+            "mtime_ns": 100
+          },
+          "Items/synthetic-selection.gd": {
+            "kind": "file",
+            "size": 14,
+            "sha256": "1b0fd39caea16fec4b7d388866b7da055283c36250547472ee43e6cc06a70398",
+            "mode": 420,
+            "mtime_ns": 100
+          }
+        },
+        "baseline": {
+          "Items/synthetic-selection.gd": {
+            "kind": "file",
+            "size": 14,
+            "sha256": "1b0fd39caea16fec4b7d388866b7da055283c36250547472ee43e6cc06a70398",
+            "mode": 420,
+            "mtime_ns": 100
+          }
+        },
+        "old_targets": {},
+        "old_images": {
+          ".native-random-observer-disposable": {
+            "raw_hex": "6f6c642d6d61726b65720a",
+            "identity": {
+              "size": 11,
+              "sha256": "87e6a9959fc130012943a09c31183bc9a4678b25527ebad000bf5642ecf7a06e"
+            },
+            "mode": 420,
+            "mtime_ns": 100
+          }
+        },
+        "journal": [
+          {
+            "path": ".native-random-observer-disposable",
+            "backup": null,
+            "before": null,
+            "after": {
+              "size": 11,
+              "sha256": "24c1313db6cdabe8d4161d7a8c3dac4b56cd60953845ce651e5de03fad8fb926"
+            }
+          },
+          {
+            "path": "Items/synthetic-selection.gd",
+            "backup": "1",
+            "before": {
+              "identity": {
+                "size": 14,
+                "sha256": "1b0fd39caea16fec4b7d388866b7da055283c36250547472ee43e6cc06a70398"
+              },
+              "mode": 420,
+              "mtime_ns": 100
+            },
+            "after": {
+              "size": 14,
+              "sha256": "675e3745e8fefc3b9e1d6dd814b008582223eff3b7ca0369fb6ce07397397a33"
+            }
+          }
+        ],
+        "journal_images": {
+          "Items/synthetic-selection.gd": {
+            "raw_hex": "646573697265642d6f6c642d410a",
+            "identity": {
+              "size": 14,
+              "sha256": "1b0fd39caea16fec4b7d388866b7da055283c36250547472ee43e6cc06a70398"
+            },
+            "mode": 420,
+            "mtime_ns": 100
+          }
+        },
+        "expected_after": {
+          ".native-random-observer-disposable": {
+            "size": 11,
+            "sha256": "24c1313db6cdabe8d4161d7a8c3dac4b56cd60953845ce651e5de03fad8fb926"
+          },
+          "Items/synthetic-selection.gd": {
+            "size": 14,
+            "sha256": "675e3745e8fefc3b9e1d6dd814b008582223eff3b7ca0369fb6ce07397397a33"
+          }
+        }
+      },
+      "expected": {
+        ".native-random-observer-disposable": {
+          "raw_hex": "6f6c642d6d61726b65720a",
+          "identity": {
+            "size": 11,
+            "sha256": "87e6a9959fc130012943a09c31183bc9a4678b25527ebad000bf5642ecf7a06e"
+          },
+          "mode": 420,
+          "mtime_ns": 100
+        },
+        "Items/synthetic-selection.gd": {
+          "raw_hex": "646573697265642d6f6c642d410a",
+          "identity": {
+            "size": 14,
+            "sha256": "1b0fd39caea16fec4b7d388866b7da055283c36250547472ee43e6cc06a70398"
+          },
+          "mode": 420,
+          "mtime_ns": 100
+        }
+      }
+    },
+    {
+      "name": "09 overlap old installed A and reset-before B differ legitimately",
+      "args": {
+        "old": {
+          ".native-random-observer-disposable": {
+            "kind": "file",
+            "size": 11,
+            "sha256": "87e6a9959fc130012943a09c31183bc9a4678b25527ebad000bf5642ecf7a06e",
+            "mode": 420,
+            "mtime_ns": 100
+          },
+          "Items/synthetic-selection.gd": {
+            "kind": "file",
+            "size": 14,
+            "sha256": "1b0fd39caea16fec4b7d388866b7da055283c36250547472ee43e6cc06a70398",
+            "mode": 420,
+            "mtime_ns": 100
+          }
+        },
+        "baseline": {
+          "Items/synthetic-selection.gd": {
+            "kind": "file",
+            "size": 17,
+            "sha256": "0d10857c24a372ee25424275f67b9c0c2b7e6cd02c863929b78701a9c001c224",
+            "mode": 420,
+            "mtime_ns": 90
+          }
+        },
+        "old_targets": {
+          "Items/synthetic-selection.gd": {
+            "presealed": "old-patch"
+          }
+        },
+        "old_images": {
+          ".native-random-observer-disposable": {
+            "raw_hex": "6f6c642d6d61726b65720a",
+            "identity": {
+              "size": 11,
+              "sha256": "87e6a9959fc130012943a09c31183bc9a4678b25527ebad000bf5642ecf7a06e"
+            },
+            "mode": 420,
+            "mtime_ns": 100
+          },
+          "Items/synthetic-selection.gd": {
+            "raw_hex": "646573697265642d6f6c642d410a",
+            "identity": {
+              "size": 14,
+              "sha256": "1b0fd39caea16fec4b7d388866b7da055283c36250547472ee43e6cc06a70398"
+            },
+            "mode": 420,
+            "mtime_ns": 100
+          }
+        },
+        "journal": [
+          {
+            "path": ".native-random-observer-disposable",
+            "backup": null,
+            "before": null,
+            "after": {
+              "size": 11,
+              "sha256": "24c1313db6cdabe8d4161d7a8c3dac4b56cd60953845ce651e5de03fad8fb926"
+            }
+          },
+          {
+            "path": "Items/synthetic-selection.gd",
+            "backup": "1",
+            "before": {
+              "identity": {
+                "size": 17,
+                "sha256": "0d10857c24a372ee25424275f67b9c0c2b7e6cd02c863929b78701a9c001c224"
+              },
+              "mode": 420,
+              "mtime_ns": 90
+            },
+            "after": {
+              "size": 14,
+              "sha256": "675e3745e8fefc3b9e1d6dd814b008582223eff3b7ca0369fb6ce07397397a33"
+            }
+          }
+        ],
+        "journal_images": {
+          "Items/synthetic-selection.gd": {
+            "raw_hex": "72657365742d626173656c696e652d420a",
+            "identity": {
+              "size": 17,
+              "sha256": "0d10857c24a372ee25424275f67b9c0c2b7e6cd02c863929b78701a9c001c224"
+            },
+            "mode": 420,
+            "mtime_ns": 90
+          }
+        },
+        "expected_after": {
+          ".native-random-observer-disposable": {
+            "size": 11,
+            "sha256": "24c1313db6cdabe8d4161d7a8c3dac4b56cd60953845ce651e5de03fad8fb926"
+          },
+          "Items/synthetic-selection.gd": {
+            "size": 14,
+            "sha256": "675e3745e8fefc3b9e1d6dd814b008582223eff3b7ca0369fb6ce07397397a33"
+          }
+        }
+      },
+      "expected": {
+        ".native-random-observer-disposable": {
+          "raw_hex": "6f6c642d6d61726b65720a",
+          "identity": {
+            "size": 11,
+            "sha256": "87e6a9959fc130012943a09c31183bc9a4678b25527ebad000bf5642ecf7a06e"
+          },
+          "mode": 420,
+          "mtime_ns": 100
+        },
+        "Items/synthetic-selection.gd": {
+          "raw_hex": "646573697265642d6f6c642d410a",
+          "identity": {
+            "size": 14,
+            "sha256": "1b0fd39caea16fec4b7d388866b7da055283c36250547472ee43e6cc06a70398"
+          },
+          "mode": 420,
+          "mtime_ns": 100
+        }
+      }
+    },
+    {
+      "name": "10 desired absence selects no invented source",
+      "args": {
+        "old": {
+          ".native-random-observer-disposable": {
+            "kind": "file",
+            "size": 11,
+            "sha256": "87e6a9959fc130012943a09c31183bc9a4678b25527ebad000bf5642ecf7a06e",
+            "mode": 420,
+            "mtime_ns": 100
+          }
+        },
+        "baseline": {},
+        "old_targets": {},
+        "old_images": {
+          ".native-random-observer-disposable": {
+            "raw_hex": "6f6c642d6d61726b65720a",
+            "identity": {
+              "size": 11,
+              "sha256": "87e6a9959fc130012943a09c31183bc9a4678b25527ebad000bf5642ecf7a06e"
+            },
+            "mode": 420,
+            "mtime_ns": 100
+          }
+        },
+        "journal": [
+          {
+            "path": ".native-random-observer-disposable",
+            "backup": null,
+            "before": null,
+            "after": {
+              "size": 11,
+              "sha256": "24c1313db6cdabe8d4161d7a8c3dac4b56cd60953845ce651e5de03fad8fb926"
+            }
+          },
+          {
+            "path": "Items/synthetic-selection.gd",
+            "backup": null,
+            "before": null,
+            "after": {
+              "size": 14,
+              "sha256": "675e3745e8fefc3b9e1d6dd814b008582223eff3b7ca0369fb6ce07397397a33"
+            }
+          }
+        ],
+        "journal_images": {},
+        "expected_after": {
+          ".native-random-observer-disposable": {
+            "size": 11,
+            "sha256": "24c1313db6cdabe8d4161d7a8c3dac4b56cd60953845ce651e5de03fad8fb926"
+          },
+          "Items/synthetic-selection.gd": {
+            "size": 14,
+            "sha256": "675e3745e8fefc3b9e1d6dd814b008582223eff3b7ca0369fb6ce07397397a33"
+          }
+        }
+      },
+      "expected": {
+        ".native-random-observer-disposable": {
+          "raw_hex": "6f6c642d6d61726b65720a",
+          "identity": {
+            "size": 11,
+            "sha256": "87e6a9959fc130012943a09c31183bc9a4678b25527ebad000bf5642ecf7a06e"
+          },
+          "mode": 420,
+          "mtime_ns": 100
+        },
+        "Items/synthetic-selection.gd": null
+      }
+    },
+    {
+      "name": "11 conflicting reset-time image authority",
+      "args": {
+        "old": {
+          ".native-random-observer-disposable": {
+            "kind": "file",
+            "size": 11,
+            "sha256": "87e6a9959fc130012943a09c31183bc9a4678b25527ebad000bf5642ecf7a06e",
+            "mode": 420,
+            "mtime_ns": 100
+          },
+          "Items/synthetic-selection.gd": {
+            "kind": "file",
+            "size": 14,
+            "sha256": "1b0fd39caea16fec4b7d388866b7da055283c36250547472ee43e6cc06a70398",
+            "mode": 420,
+            "mtime_ns": 100
+          }
+        },
+        "baseline": {
+          "Items/synthetic-selection.gd": {
+            "kind": "file",
+            "size": 14,
+            "sha256": "1b0fd39caea16fec4b7d388866b7da055283c36250547472ee43e6cc06a70398",
+            "mode": 420,
+            "mtime_ns": 100
+          }
+        },
+        "old_targets": {},
+        "old_images": {
+          ".native-random-observer-disposable": {
+            "raw_hex": "6f6c642d6d61726b65720a",
+            "identity": {
+              "size": 11,
+              "sha256": "87e6a9959fc130012943a09c31183bc9a4678b25527ebad000bf5642ecf7a06e"
+            },
+            "mode": 420,
+            "mtime_ns": 100
+          }
+        },
+        "journal": [
+          {
+            "path": ".native-random-observer-disposable",
+            "backup": null,
+            "before": null,
+            "after": {
+              "size": 11,
+              "sha256": "24c1313db6cdabe8d4161d7a8c3dac4b56cd60953845ce651e5de03fad8fb926"
+            }
+          },
+          {
+            "path": "Items/synthetic-selection.gd",
+            "backup": "1",
+            "before": {
+              "identity": {
+                "size": 14,
+                "sha256": "1b0fd39caea16fec4b7d388866b7da055283c36250547472ee43e6cc06a70398"
+              },
+              "mode": 420,
+              "mtime_ns": 100
+            },
+            "after": {
+              "size": 14,
+              "sha256": "675e3745e8fefc3b9e1d6dd814b008582223eff3b7ca0369fb6ce07397397a33"
+            }
+          }
+        ],
+        "journal_images": {
+          "Items/synthetic-selection.gd": {
+            "raw_hex": "72657365742d626173656c696e652d420a",
+            "identity": {
+              "size": 17,
+              "sha256": "0d10857c24a372ee25424275f67b9c0c2b7e6cd02c863929b78701a9c001c224"
+            },
+            "mode": 420,
+            "mtime_ns": 90
+          }
+        },
+        "expected_after": {
+          ".native-random-observer-disposable": {
+            "size": 11,
+            "sha256": "24c1313db6cdabe8d4161d7a8c3dac4b56cd60953845ce651e5de03fad8fb926"
+          },
+          "Items/synthetic-selection.gd": {
+            "size": 14,
+            "sha256": "675e3745e8fefc3b9e1d6dd814b008582223eff3b7ca0369fb6ce07397397a33"
+          }
+        }
+      },
+      "reject": "reset-time backup bytes bytes"
+    }
+  ],
+  "scope": "Synthetic already-read images only. No fake pool or current physical proof. O/N selection returns source images, not executed restore actions."
+}

@@ -1,0 +1,90 @@
+--- tests/phase468_independent_predecessor_readback_v2.py
++++ tests/phase508_independent_predecessor_readback.py
+@@ -14,12 +14,11 @@
+ import types
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+-CASE = 'NATIVE-028-KING-BASIC-A'
+-RUN = 'original028-king-basic-A-single-001'
++CASE = 'NATIVE-029-WHELP-FAMILY-A'
++RUN = 'original029-whelp-family-A-single-001'
+ HELPER = {'path': 'tests/native_run_compaction.py', 'size': 27304,
+           'sha256': '829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260'}
+-FREEZE = {'path': 'data/phase464-joint-oracle-host-source-v2/combined-source-freeze.json', 'size': 58276,
+-          'sha256': 'b66879fe67a0afcf8cb84ce5a52f1ad7386ce7e58be5d1dcada0fcdb2e0b0965'}
++FREEZE = {'path': 'data/phase508-case029-host-restore-source/combined-source-freeze.json', 'size': 62542, 'sha256': '3e668a3714183a6d371eb14ef019d4a1fc7dbdf2897f80300989d760df285199'}
+ EVIDENCE = {'restore_receipt', 'restore_owner', 'controls_manifest', 'patch_inventory',
+             'install_journal', 'previous_proof', 'previous_bundle_manifest', 'pending_state'}
+ 
+@@ -121,7 +120,7 @@
+ def readback(request, c, out, result):
+     require(type(request) is dict and set(request) == {'schema', 'case_id', 'run', 'pool', 'baseline',
+             'previous_run', 'relocations', 'host_source_freeze', 'evidence'}, 'closed readback request')
+-    require(request['schema'] == 'phase468-fixed-predecessor-readback-request/1' and request['case_id'] == CASE,
++    require(request['schema'] == 'phase508-fixed-predecessor-readback-request/1' and request['case_id'] == CASE,
+             'fixed readback case')
+     require(request['host_source_freeze'] == FREEZE, 'exact accepted464v2 Source freeze')
+     freeze = decoded(descriptor(FREEZE))
+@@ -129,7 +128,8 @@
+                 for k in ('run', 'pool', 'baseline', 'previous_run')), 'absolute runtime paths required')
+     roots = {k: path_of(request[k]) for k in ('run', 'pool', 'baseline', 'previous_run')}
+     run, pool, baseline, previous = (roots[k] for k in ('run', 'pool', 'baseline', 'previous_run'))
+-    require(run.name == RUN and run != previous, 'fixed current run and distinct predecessor')
++    require(run == Path('/workspace/native-combat-20261013/runs')/RUN and pool == Path('/workspace/native-combat-20261013/pool')
++            and previous.parent == run.parent and run != previous, 'fixed case029 roots and actual distinct predecessor')
+     for p in roots.values():
+         require(p.is_dir() and not any(x.is_symlink() for x in (p, *p.parents)), 'unlinked existing scope')
+         require(not out.is_relative_to(p) and not p.is_relative_to(out), 'report/evidence scopes disjoint')
+@@ -276,10 +276,10 @@
+         equal([image['mode'], image['mtime_ns']], [pidx[marker]['mode'], pidx[marker]['mtime_ns']], 'old marker metadata')
+         expected_after = {name: row['after'] for name, row in freeze['paths'].items()}
+         expected_after.update({name: {k: row[k] for k in ('size', 'sha256')} for name, row in freeze['artifacts'].items()})
+-        require(len(expected_after) == 78 and sum(x['size'] for x in expected_after.values()) == 812880, 'fixed78 install corpus')
++        require(len(expected_after) == 79 and sum(x['size'] for x in expected_after.values()) == 814020, 'fixed79 install corpus')
+         journal = decoded(raw_evidence['install_journal'])
+         expected_order = list(freeze['paths']) + ['native_combat_capture.gd', 'native_capture_config.json', marker]
+-        equal([x['path'] for x in journal], expected_order, 'new78 source journal order/targets')
++        equal([x['path'] for x in journal], expected_order, 'new79 source journal order/targets')
+         for index, row in enumerate(journal):
+             require(set(row) == {'path', 'backup', 'before', 'after'}, 'closed new preimage row')
+             name = row['path']
+@@ -294,7 +294,7 @@
+                 equal(row['before'], expected, 'journal intermediate before bytes/metadata')
+                 require(row['backup'] == str(index), 'journal backup identity')
+                 equal(stable(journal_dir / row['backup'])['identity'], expected['identity'], 'new journal saved bytes')
+-        result['preimages'] = {'controls': 3, 'old_patch_backups': len(old_targets), 'old_marker': 1, 'new_journal': 78}
++        result['preimages'] = {'controls': 3, 'old_patch_backups': len(old_targets), 'old_marker': 1, 'new_journal': len(journal)}
+         no_process('process_after')
+         for key, row in evidence.items():
+             equal(descriptor(row), raw_evidence[key], 'critical evidence unchanged after:' + key)
+@@ -313,10 +313,10 @@
+     parser.add_argument('--output-new', required=True)
+     args = parser.parse_args()
+     out = path_of(args.output_new)
+-    require(out.parent == ROOT / 'data' and out.name.startswith('phase468-'), 'new local phase468 report directory only')
++    require(out.parent == ROOT / 'data' and out.name.startswith('phase508-readback-'), 'new local phase468 report directory only')
+     out.mkdir(exist_ok=False)
+     started = time.monotonic()
+-    result = {'schema': 'phase468-independent-readback-result/1', 'status': 'RUNNING', 'native': 0, 'models': 0,
++    result = {'schema': 'phase508-independent-readback-result/1', 'status': 'RUNNING', 'native': 0, 'models': 0,
+               'Expected_semantic_decoding': 0, 'restore_calls': 0, 'READY_writes': 0, 'helper_entries': {},
+               'compaction_module_loads': 0, 'readonly_lock_acquisitions': 0}
+     code = 1
+@@ -363,7 +363,7 @@
+                     opened.add(str(p))
+         sys.addaudithook(audit)
+         sys.dont_write_bytecode = True
+-        module = types.ModuleType('_phase468_frozen_compaction')
++        module = types.ModuleType('_phase508_frozen_compaction')
+         module.__file__ = str(path_of(HELPER['path']))
+         sys.modules[module.__name__] = module
+         exec(compile(helper_raw, module.__file__, 'exec'), module.__dict__)
+@@ -412,7 +412,7 @@
+         for p in sorted(out.iterdir()):
+             if p.is_file():
+                 files.append(dict(path=str(p.relative_to(ROOT)), **stable(p)['identity']))
+-        save(out / 'owned-files.json', {'schema': 'phase468-readback-output-owner/1', 'files': files, 'no_more_writes': True})
++        save(out / 'owned-files.json', {'schema': 'phase508-readback-output-owner/1', 'files': files, 'no_more_writes': True})
+         print(json.dumps({'status': result['status'], 'elapsed_seconds': result['elapsed_seconds']}), flush=True)
+     return code
+ 

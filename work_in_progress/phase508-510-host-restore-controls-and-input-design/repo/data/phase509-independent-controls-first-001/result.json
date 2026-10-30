@@ -1,0 +1,174 @@
+{
+  "schema": "phase509-finite-source-control-result/1",
+  "status": "PASS_FINITE_SOURCE_BINDING_SELECTION_NOT_PHYSICAL_OR_NATIVE",
+  "top_level_calls": 11,
+  "cases": [
+    {
+      "name": "01 exact502 tuple/derived graph",
+      "status": "PASS"
+    },
+    {
+      "name": "02 old tuple schema rejected",
+      "status": "PASS",
+      "rejection": "closed508 binding to actual502 Source required"
+    },
+    {
+      "name": "03 wrapper declaration hash mismatch",
+      "status": "PASS",
+      "rejection": "tuple leaf outside frozen graph"
+    },
+    {
+      "name": "04 derived origin mismatch",
+      "status": "PASS",
+      "rejection": "derived actual case/sourceauthority binding"
+    },
+    {
+      "name": "05 actual503 review accepted",
+      "status": "PASS"
+    },
+    {
+      "name": "06 foreign observer owner rejected",
+      "status": "PASS",
+      "rejection": "actual503 Source-only acceptance for exact502v4 required"
+    },
+    {
+      "name": "07 O-only old installed source distinct from reset baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "08 N-only journal image selected by target",
+      "status": "PASS"
+    },
+    {
+      "name": "09 overlap old installed A and reset-before B differ legitimately",
+      "status": "PASS"
+    },
+    {
+      "name": "10 desired absence selects no invented source",
+      "status": "PASS"
+    },
+    {
+      "name": "11 conflicting reset-time image authority",
+      "status": "PASS",
+      "rejection": "reset-time backup bytes bytes"
+    }
+  ],
+  "tested_module_imports": 2,
+  "host_plan_execute": 0,
+  "source_gate_calls": 0,
+  "physical_restore": 0,
+  "pool_baseline_resource_reads": 0,
+  "Native_Godot": 0,
+  "models": 0,
+  "Expected_decode": 0,
+  "loaded_repo_modules": {
+    "phase508_oracle_host": {
+      "path": "tests/phase508_oracle_host.py",
+      "size": 43974,
+      "sha256": "a5fc69909621cf6e828c73b30b46c14d516683226d8c88ac1d95e13eb7a1fcb1"
+    },
+    "phase508_oracle_storage": {
+      "path": "tests/phase508_oracle_storage.py",
+      "size": 21560,
+      "sha256": "77719d1146c06205e2562756b220a07070b75c61313dc39632ab171233937019"
+    },
+    "phase363_oracle_process": {
+      "path": "tests/phase363_oracle_process.py",
+      "size": 13665,
+      "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f"
+    },
+    "phase363_oracle_storage": {
+      "path": "tests/phase363_oracle_storage.py",
+      "size": 15496,
+      "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc"
+    },
+    "native_run_compaction": {
+      "path": "tests/native_run_compaction.py",
+      "size": 27304,
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260"
+    },
+    "phase508_restore_predecessor": {
+      "path": "tests/phase508_restore_predecessor.py",
+      "size": 27956,
+      "sha256": "1969dc3ffb8cf1993281f144119115225f3853f22c978b056e93a245cb35e126"
+    }
+  },
+  "function_entries": {
+    "phase363_oracle_storage.directory": 72,
+    "phase363_oracle_storage.member": 36,
+    "phase363_oracle_storage.read": 13,
+    "phase363_oracle_storage.regular_target": 72,
+    "phase508_oracle_host._payload_rows": 3,
+    "phase508_oracle_host.validate_active_source_tuple": 4,
+    "phase508_oracle_host.validate_observer_review": 2,
+    "phase508_oracle_storage._identity": 36,
+    "phase508_oracle_storage._read_source": 36,
+    "phase508_oracle_storage._source_descriptor": 36,
+    "phase508_oracle_storage._source_signature": 216,
+    "phase508_oracle_storage.check_source_descriptor": 36,
+    "phase508_restore_predecessor.check_image": 11,
+    "phase508_restore_predecessor.equal": 39,
+    "phase508_restore_predecessor.require": 80,
+    "phase508_restore_predecessor.row_record": 3,
+    "phase508_restore_predecessor.select_restore_images": 5
+  },
+  "read_open_counts": {
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/__future__.py": 1,
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/bisect.py": 1,
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.py": 1,
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/_endian.py": 1,
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/datetime.py": 1,
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/importlib/_abc.py": 1,
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/random.py": 1,
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/selectors.py": 1,
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/signal.py": 1,
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/struct.py": 1,
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py": 1,
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.py": 1,
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/threading.py": 1,
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/zipfile/__init__.py": 1,
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/zipfile/_path/__init__.py": 1,
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/zipfile/_path/glob.py": 1,
+    "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/after-source/Items/Exclusive/Squirrel.gd": 2,
+    "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/after-source/native_random_observer_sink_v7.gd": 3,
+    "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/collector.gd": 3,
+    "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/combined-source-freeze.json": 6,
+    "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/fixed-plan.json": 7,
+    "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/fixed-v8-fixture.json": 7,
+    "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/native-patch-source.json": 7,
+    "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/schema/phase502_whelp_observer_schema.py": 3,
+    "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/source-authority.json": 2,
+    "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/source-tuple.json": 6,
+    "/workspace/python-original-engine/repo/data/phase509-independent-controls-first-001/unused-bytecode-cache/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/__future__.cpython-312.pyc": 1,
+    "/workspace/python-original-engine/repo/data/phase509-independent-controls-first-001/unused-bytecode-cache/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/bisect.cpython-312.pyc": 1,
+    "/workspace/python-original-engine/repo/data/phase509-independent-controls-first-001/unused-bytecode-cache/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/__init__.cpython-312.pyc": 1,
+    "/workspace/python-original-engine/repo/data/phase509-independent-controls-first-001/unused-bytecode-cache/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/ctypes/_endian.cpython-312.pyc": 1,
+    "/workspace/python-original-engine/repo/data/phase509-independent-controls-first-001/unused-bytecode-cache/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/datetime.cpython-312.pyc": 1,
+    "/workspace/python-original-engine/repo/data/phase509-independent-controls-first-001/unused-bytecode-cache/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/importlib/_abc.cpython-312.pyc": 1,
+    "/workspace/python-original-engine/repo/data/phase509-independent-controls-first-001/unused-bytecode-cache/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/random.cpython-312.pyc": 1,
+    "/workspace/python-original-engine/repo/data/phase509-independent-controls-first-001/unused-bytecode-cache/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/selectors.cpython-312.pyc": 1,
+    "/workspace/python-original-engine/repo/data/phase509-independent-controls-first-001/unused-bytecode-cache/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/signal.cpython-312.pyc": 1,
+    "/workspace/python-original-engine/repo/data/phase509-independent-controls-first-001/unused-bytecode-cache/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/struct.cpython-312.pyc": 1,
+    "/workspace/python-original-engine/repo/data/phase509-independent-controls-first-001/unused-bytecode-cache/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.cpython-312.pyc": 1,
+    "/workspace/python-original-engine/repo/data/phase509-independent-controls-first-001/unused-bytecode-cache/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tempfile.cpython-312.pyc": 1,
+    "/workspace/python-original-engine/repo/data/phase509-independent-controls-first-001/unused-bytecode-cache/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/threading.cpython-312.pyc": 1,
+    "/workspace/python-original-engine/repo/data/phase509-independent-controls-first-001/unused-bytecode-cache/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/zipfile/__init__.cpython-312.pyc": 1,
+    "/workspace/python-original-engine/repo/data/phase509-independent-controls-first-001/unused-bytecode-cache/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/zipfile/_path/__init__.cpython-312.pyc": 1,
+    "/workspace/python-original-engine/repo/data/phase509-independent-controls-first-001/unused-bytecode-cache/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/zipfile/_path/glob.cpython-312.pyc": 1,
+    "/workspace/python-original-engine/repo/data/phase509-independent-controls-first-001/unused-bytecode-cache/workspace/python-original-engine/repo/tests/native_run_compaction.cpython-312.pyc": 1,
+    "/workspace/python-original-engine/repo/data/phase509-independent-controls-first-001/unused-bytecode-cache/workspace/python-original-engine/repo/tests/phase363_oracle_process.cpython-312.pyc": 1,
+    "/workspace/python-original-engine/repo/data/phase509-independent-controls-first-001/unused-bytecode-cache/workspace/python-original-engine/repo/tests/phase363_oracle_storage.cpython-312.pyc": 1,
+    "/workspace/python-original-engine/repo/data/phase509-independent-controls-first-001/unused-bytecode-cache/workspace/python-original-engine/repo/tests/phase508_oracle_host.cpython-312.pyc": 1,
+    "/workspace/python-original-engine/repo/data/phase509-independent-controls-first-001/unused-bytecode-cache/workspace/python-original-engine/repo/tests/phase508_oracle_storage.cpython-312.pyc": 1,
+    "/workspace/python-original-engine/repo/data/phase509-independent-controls-first-001/unused-bytecode-cache/workspace/python-original-engine/repo/tests/phase508_restore_predecessor.cpython-312.pyc": 1,
+    "/workspace/python-original-engine/repo/tests/native_run_compaction.py": 2,
+    "/workspace/python-original-engine/repo/tests/phase363_oracle_process.py": 2,
+    "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py": 2,
+    "/workspace/python-original-engine/repo/tests/phase502_prepare_whelp_observer_source_v4.py": 3,
+    "/workspace/python-original-engine/repo/tests/phase508_oracle_host.py": 2,
+    "/workspace/python-original-engine/repo/tests/phase508_oracle_storage.py": 2,
+    "/workspace/python-original-engine/repo/tests/phase508_restore_predecessor.py": 2
+  },
+  "wall_seconds": 0.3166523559993948,
+  "source_after_unchanged": true
+}

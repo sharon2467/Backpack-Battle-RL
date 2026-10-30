@@ -1,0 +1,74 @@
+{
+  "schema": "phase509-independent-static-source-review/1",
+  "status": "STATIC_PASS_PENDING_PRESEALED_FINITE_CONTROLS_ROOT_RELEASE",
+  "source_owner": {
+    "path": "data/phase508-case029-host-restore-source/source-owner.json",
+    "size": 28964,
+    "sha256": "3413539c3ba60ccd2941321289ed90e0e54f0c030a9540f8f273b7558f05b987"
+  },
+  "all_source_owner": {
+    "path": "data/phase508-case029-host-restore-source/owned-files.json",
+    "size": 6012,
+    "sha256": "1789652c720497833c94446918cd55248c3ec77079697638c3fa850bbb9f59d7"
+  },
+  "source_freeze": {
+    "path": "data/phase508-case029-host-restore-source/combined-source-freeze.json",
+    "size": 62542,
+    "sha256": "3e668a3714183a6d371eb14ef019d4a1fc7dbdf2897f80300989d760df285199"
+  },
+  "checks": {
+    "unique_repo_local_descriptors_verified": 166,
+    "absolute_origin_descriptors_physically_read": 0,
+    "complete_inverse_modules": 4,
+    "exact_prior_functions": 60,
+    "storage_functions_exact": 23,
+    "host_exact_functions": 9,
+    "restore_exact_functions": 18,
+    "reader_exact_functions": 10,
+    "production_prepare_calls_real_select_restore_images": true,
+    "required363_storage_import_in_source_graph": true,
+    "static_import_closure": [
+      "tests/phase508_oracle_host.py",
+      "tests/phase508_oracle_storage.py",
+      "tests/phase363_oracle_process.py",
+      "tests/phase363_oracle_storage.py",
+      "tests/native_run_compaction.py",
+      "tests/phase508_restore_predecessor.py"
+    ]
+  },
+  "findings": [],
+  "accepted_static": [
+    "New tuple derives sourceauthority/schema_case explicitly from actual502 metadata, requires503 receipt+owner and later independent509 host receipt; strictINT0 permissions preserved.",
+    "79/814020 corpus includes actualSquirrel wrapper binding; no new physical origin assertion made by this review.",
+    "O-only uses actual baseline/current reset authority and old desired installed backup without indexingN expected_after.",
+    "Overlap authenticates reset-time journal before separately from desired old installed image. N-only uses journal before byname; absent desired yieldsNone for existingaction unlink/skip.",
+    "All source selection/current graph validation remains beforeapply; directory topology changes reject; same-lock failed state, process visibility limitations, independent full readback then separateRootREADY remain.",
+    "Imports define functions/constants only; six selected repo modules plusstdlib needed for two tested modules. No top-level process/physical probe."
+  ],
+  "control_reduction": {
+    "top_level_calls": 11,
+    "binding_calls": 6,
+    "selector_calls": 5,
+    "strictINT0": "Static exact type(config[k]) is int and value==0 clause; no independent pure helper. source_gate explicitly forbidden, so do not manufacture dynamic coverage or run AST-extracted predicate.",
+    "physical_action": "Existing action/apply bodies exact. Test real pureselector result only; do not call action/prepare/apply or emulatefullpool.",
+    "source_reads": "validate_active_source_tuple only checks repo-local descriptors and reads sourceauthority JSON; its absolute origins remain metadata. verify_execute_payloads/source_gate prohibited."
+  },
+  "observations_not_blockers": [
+    "Some inherited docstrings/error labels mention old464/462/King. Executed constants/tuple/status/case are new508/502/zeroKing; do not use stale text as identity authority.",
+    "APIcontract describes verify_execute_payloads as a possiblepure binding helper, but it reads two actualbaseline origin leaves. Root explicitly excludes it from509; the harness will prohibit it."
+  ],
+  "pending": [
+    "Actualsourceauthority baseline origin physical checks, pool/readiness/resources/space and Squirrel destination/preimage remain future realgates.",
+    "Runtime/Native readiness and actualINPUT pipeline not established. No capture/restore permission granted."
+  ],
+  "activities": {
+    "imports": 0,
+    "controls": 0,
+    "compile": 0,
+    "model": 0,
+    "Native_Godot": 0,
+    "host_plan_execute": 0,
+    "pool_baseline_resource_reads": 0,
+    "Expected_decode": 0
+  }
+}

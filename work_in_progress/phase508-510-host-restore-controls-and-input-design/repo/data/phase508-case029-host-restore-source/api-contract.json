@@ -1,0 +1,59 @@
+{
+  "Native_ready": false,
+  "Root_review_binding": "Future actual independent review receipt and owner descriptors in a separate authorized Root config; no prefilled review SHA or selfhash cycle.",
+  "actual_INPUT_model_comparison_permissions": {
+    "Expected": 0,
+    "inputbuild": 0,
+    "models": 0
+  },
+  "actual_host_review": null,
+  "actual_root_config": null,
+  "control_limit": "Independent509 presealed <=12 only after Root gate; author zero calls",
+  "forbidden_during_Source_controls": [
+    "plan",
+    "execute",
+    "lease",
+    "prepare",
+    "restore",
+    "readback",
+    "realpool/resource/space probes"
+  ],
+  "host_review_required_fields": [
+    "schema",
+    "status",
+    "source_freeze",
+    "observer_source_owner",
+    "native INT0",
+    "models INT0"
+  ],
+  "host_review_schema": "phase509-independent-host-restore-source-review/1",
+  "host_review_status": "ACCEPTED_SOURCE_ONLY_PENDING_ROOT_EXECUTE",
+  "host_source": {
+    "path": "tests/phase508_oracle_host.py",
+    "sha256": "a5fc69909621cf6e828c73b30b46c14d516683226d8c88ac1d95e13eb7a1fcb1",
+    "size": 43974
+  },
+  "pure_restore_selection": "select_restore_images(old,baseline,old_targets,old_images,journal,journal_images,expected_after) -> O union N desired source images/None; production prepare calls this helper",
+  "pure_source_bindings": [
+    "validate_observer_review(value,receipt,source_tuple)",
+    "validate_active_source_tuple(root,freeze) [repo Source descriptors only, no lease/pool]",
+    "verify_execute_payloads(source_root,graph) [exact allowed Source references, no lease/pool]"
+  ],
+  "reader_source": {
+    "path": "tests/phase508_independent_predecessor_readback.py",
+    "sha256": "15f8b1f034fcf95244516643554ec75acbcede592f70ce51c0474a2a0c8a0c30",
+    "size": 25366
+  },
+  "restore_previous": "strict request previous_run under fixed runs root, then actual pending/controls/savedstate proof equality",
+  "restore_source": {
+    "path": "tests/phase508_restore_predecessor.py",
+    "sha256": "1969dc3ffb8cf1993281f144119115225f3853f22c978b056e93a245cb35e126",
+    "size": 27956
+  },
+  "schema": "phase508-source-API/1",
+  "storage_source": {
+    "path": "tests/phase508_oracle_storage.py",
+    "sha256": "77719d1146c06205e2562756b220a07070b75c61313dc39632ab171233937019",
+    "size": 21560
+  }
+}

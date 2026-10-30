@@ -1,0 +1,96 @@
+{
+  "schema": "phase509-finite-source-control-result/1",
+  "status": "STARTED",
+  "top_level_calls": 11,
+  "cases": [
+    {
+      "name": "01 exact502 tuple/derived graph",
+      "status": "PASS"
+    },
+    {
+      "name": "02 old tuple schema rejected",
+      "status": "PASS",
+      "rejection": "closed508 binding to actual502 Source required"
+    },
+    {
+      "name": "03 wrapper declaration hash mismatch",
+      "status": "PASS",
+      "rejection": "tuple leaf outside frozen graph"
+    },
+    {
+      "name": "04 derived origin mismatch",
+      "status": "PASS",
+      "rejection": "derived actual case/sourceauthority binding"
+    },
+    {
+      "name": "05 actual503 review accepted",
+      "status": "PASS"
+    },
+    {
+      "name": "06 foreign observer owner rejected",
+      "status": "PASS",
+      "rejection": "actual503 Source-only acceptance for exact502v4 required"
+    },
+    {
+      "name": "07 O-only old installed source distinct from reset baseline",
+      "status": "PASS"
+    },
+    {
+      "name": "08 N-only journal image selected by target",
+      "status": "PASS"
+    },
+    {
+      "name": "09 overlap old installed A and reset-before B differ legitimately",
+      "status": "PASS"
+    },
+    {
+      "name": "10 desired absence selects no invented source",
+      "status": "PASS"
+    },
+    {
+      "name": "11 conflicting reset-time image authority",
+      "status": "PASS",
+      "rejection": "reset-time backup bytes bytes"
+    }
+  ],
+  "tested_module_imports": 2,
+  "host_plan_execute": 0,
+  "source_gate_calls": 0,
+  "physical_restore": 0,
+  "pool_baseline_resource_reads": 0,
+  "Native_Godot": 0,
+  "models": 0,
+  "Expected_decode": 0,
+  "loaded_repo_modules": {
+    "phase508_oracle_host": {
+      "path": "tests/phase508_oracle_host.py",
+      "size": 43974,
+      "sha256": "a5fc69909621cf6e828c73b30b46c14d516683226d8c88ac1d95e13eb7a1fcb1"
+    },
+    "phase508_oracle_storage": {
+      "path": "tests/phase508_oracle_storage.py",
+      "size": 21560,
+      "sha256": "77719d1146c06205e2562756b220a07070b75c61313dc39632ab171233937019"
+    },
+    "phase363_oracle_process": {
+      "path": "tests/phase363_oracle_process.py",
+      "size": 13665,
+      "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f"
+    },
+    "phase363_oracle_storage": {
+      "path": "tests/phase363_oracle_storage.py",
+      "size": 15496,
+      "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc"
+    },
+    "native_run_compaction": {
+      "path": "tests/native_run_compaction.py",
+      "size": 27304,
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260"
+    },
+    "phase508_restore_predecessor": {
+      "path": "tests/phase508_restore_predecessor.py",
+      "size": 27956,
+      "sha256": "1969dc3ffb8cf1993281f144119115225f3853f22c978b056e93a245cb35e126"
+    }
+  }
+}
