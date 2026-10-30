@@ -1,0 +1,32 @@
+{
+  "after": {
+    "path": "data/phase502-whelp-observer-source-v4/after-source/Items/Exclusive/Squirrel.gd",
+    "sha256": "afbba6556077e0f30f6cd5d6abced0949cd64c5979e2554326ef1303076dd1e5",
+    "size": 547
+  },
+  "before": {
+    "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/Squirrel.gd",
+    "sha256": "c23b8aec966449cc60761007879b99c3528c4cbe94309914789954cea34de949",
+    "size": 508
+  },
+  "changed_functions": [
+    "playDropSound"
+  ],
+  "conserved_functions": [
+    "doCooldownEffect",
+    "playPickupSound"
+  ],
+  "edits": [
+    {
+      "after": "func playDropSound(volume = 0):\n\tvolume += impactSoundVolume\n\tvar pitch = get_node(\"/root/NativeRandomObserver\").squirrel_pitch(self, 0.9, 1.1)\n\t\n\tSound.playSound(pickupSound, volume - 6, pitch)",
+      "after_positions": [
+        352
+      ],
+      "before": "func playDropSound(volume = 0):\n\tvolume += impactSoundVolume\n\tvar pitch = Util.rng.randf_range(0.9, 1.1)\n\t\n\tSound.playSound(pickupSound, volume - 6, pitch)",
+      "occurrences": 1
+    }
+  ],
+  "inverse": "EXACT_COMPLETE_BYTES",
+  "language": "gd",
+  "new_functions": []
+}

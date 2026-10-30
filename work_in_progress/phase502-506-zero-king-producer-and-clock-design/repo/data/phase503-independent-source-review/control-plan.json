@@ -1,0 +1,89 @@
+{
+  "schema": "phase503-exact-finite-control-plan/1",
+  "status": "SOURCE_REVIEWED_NOT_EXECUTED_AWAITING_ROOT_RELEASE",
+  "cases": [
+    {
+      "id": "01",
+      "api": "validate_state",
+      "expectation": "valid Sapphire item199 ordered6INT"
+    },
+    {
+      "id": "02",
+      "api": "validate_state",
+      "expectation": "missing stackTypes rejects"
+    },
+    {
+      "id": "03",
+      "api": "validate_state",
+      "expectation": "BOOL member instead of INT rejects"
+    },
+    {
+      "id": "04",
+      "api": "validate_state",
+      "expectation": "reordered six members rejects"
+    },
+    {
+      "id": "05",
+      "api": "validate_record",
+      "expectation": "valid full Squirrel primitive envelope REAL .9/1.1, selected P:10"
+    },
+    {
+      "id": "06",
+      "api": "validate_record",
+      "expectation": "wrong typed endpoint rejects"
+    },
+    {
+      "id": "07",
+      "api": "validate_record",
+      "expectation": "foreign selected Squirrel label/role rejects"
+    },
+    {
+      "id": "08",
+      "api": "validate_record",
+      "expectation": "wrong site-label family rejects"
+    },
+    {
+      "id": "09",
+      "api": "_binding_validate_value",
+      "expectation": "valid29slot synthetic uniqueID binding"
+    },
+    {
+      "id": "10",
+      "api": "_binding_validate_value",
+      "expectation": "duplicate actual item nativeID rejects"
+    },
+    {
+      "id": "11",
+      "api": "_binding_validate_value",
+      "expectation": "wrong descriptor for fixed slot rejects"
+    },
+    {
+      "id": "12",
+      "api": "validate_single_king_fresh_facts",
+      "expectation": "nonempty kings rejects before any constructed factual truth"
+    }
+  ],
+  "top_level_helper_calls": 12,
+  "recursive_validator_calls": "reported separately if measured, not counted as independent cases",
+  "imports": "one frozen schema via exact source path; stdlib only",
+  "source_schema": {
+    "path": "data/phase502-whelp-observer-source-v4/schema/phase502_whelp_observer_schema.py",
+    "size": 197522,
+    "sha256": "d5531e3e9b119f0309140cb50dff2c7f545abb5ec3500d488bde29cacdb8f193"
+  },
+  "synthetic_only": true,
+  "zeroKing_positive_fact_envelope": "not constructed; static actual Source guard plus one early contamination reject only",
+  "partition": "static exact role-set assertion only; no substitute helper",
+  "harness": null,
+  "first_failure": "save and stop; no automatic fix/retry",
+  "prohibited": [
+    "producer regeneration",
+    "Godot parse",
+    "Native",
+    "model",
+    "host",
+    "pool",
+    "Expected decode",
+    "old full suites"
+  ]
+}

@@ -1,0 +1,20 @@
+--- /workspace/python-original-engine/repo/tests/phase503_independent_schema_controls.py
++++ /workspace/python-original-engine/repo/tests/phase503_independent_schema_controls_v2.py
+@@ -5,7 +5,7 @@
+ from pathlib import Path
+ from collections import Counter
+ ROOT=Path('/workspace/python-original-engine/repo')
+-SOURCE=ROOT/'data/phase503-independent-controls-source'
++SOURCE=ROOT/'data/phase503-independent-controls-source-v2'
+ def descriptor(path):
+     raw=path.read_bytes()
+     return dict(path=str(path.relative_to(ROOT)),size=len(raw),sha256=hashlib.sha256(raw).hexdigest())
+@@ -14,7 +14,7 @@
+ def main():
+     ap=argparse.ArgumentParser();ap.add_argument('--output-new',required=True);a=ap.parse_args()
+     out=Path(a.output_new).resolve()
+-    if out.parent!=ROOT/'data' or out.name!='phase503-independent-controls-first-001':raise ValueError('fixed new output')
++    if out.parent!=ROOT/'data' or out.name!='phase503-independent-controls-v2-001':raise ValueError('fixed new output')
+     out.mkdir(exist_ok=False)
+     result=dict(schema='phase503-actual-synthetic-controls/1',status='STARTED',schema_imports=0,top_level_calls=0,cases=[],native=0,Godot=0,models=0,host=0,Expected_decode=0,pool=0,producer=0)
+     started=time.monotonic();pins=json.loads((SOURCE/'pins.json').read_text());counts=Counter();schema_path=ROOT/pins['schema']['path']

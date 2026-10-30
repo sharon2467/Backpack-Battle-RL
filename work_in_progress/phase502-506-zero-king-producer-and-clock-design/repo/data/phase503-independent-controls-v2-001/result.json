@@ -1,0 +1,131 @@
+{
+  "schema": "phase503-actual-synthetic-controls/1",
+  "status": "PASS_12_SYNTHETIC_SCHEMA_CASES_NOT_NATIVE_EXECUTION",
+  "schema_imports": 1,
+  "top_level_calls": 12,
+  "cases": [
+    {
+      "id": "01",
+      "api": "validate_state",
+      "expected": "ACCEPT",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "02",
+      "api": "validate_state",
+      "expected": "REJECT",
+      "status": "PASS",
+      "error": "exact object keys required: {'activationsThisFrame': 'int', 'cachedAffectedItems': 'dictionary', 'consumed': 'bool', 'currentAffectedItems': 'dictionary', 'descriptorIndex': 'int', 'faceDirection': 'int', 'iterationCooldown': 'float', 'lastActivationTime': 'float', 'lastTriggerTime': 'float', 'ownerType': 'int', 'placed': 'bool', 'speedScale': 'float', 'triggerTime': 'float', 'triggersThisFrame': 'int', 'stackTypes': 'array'}"
+    },
+    {
+      "id": "03",
+      "api": "validate_state",
+      "expected": "REJECT",
+      "status": "PASS",
+      "error": "Sapphire actual ordered six INT nonMana stackTypes"
+    },
+    {
+      "id": "04",
+      "api": "validate_state",
+      "expected": "REJECT",
+      "status": "PASS",
+      "error": "Sapphire actual ordered six INT nonMana stackTypes"
+    },
+    {
+      "id": "05",
+      "api": "validate_record",
+      "expected": "ACCEPT",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "06",
+      "api": "validate_record",
+      "expected": "REJECT",
+      "status": "PASS",
+      "error": "original direct Squirrel exact REAL endpoints"
+    },
+    {
+      "id": "07",
+      "api": "validate_record",
+      "expected": "REJECT",
+      "status": "PASS",
+      "error": "fixed selected Squirrel pitch context"
+    },
+    {
+      "id": "08",
+      "api": "validate_record",
+      "expected": "REJECT",
+      "status": "PASS",
+      "error": "primitive source label family"
+    },
+    {
+      "id": "09",
+      "api": "_binding_validate_value",
+      "expected": "ACCEPT",
+      "status": "PASS",
+      "error": null
+    },
+    {
+      "id": "10",
+      "api": "_binding_validate_value",
+      "expected": "REJECT",
+      "status": "PASS",
+      "error": "actual item nativeID reused across slots"
+    },
+    {
+      "id": "11",
+      "api": "_binding_validate_value",
+      "expected": "REJECT",
+      "status": "PASS",
+      "error": "binding descriptor differs from SOURCE slot"
+    },
+    {
+      "id": "12",
+      "api": "validate_single_king_fresh_facts",
+      "expected": "REJECT",
+      "status": "PASS",
+      "error": "fixed zero-King facts/profile"
+    }
+  ],
+  "native": 0,
+  "Godot": 0,
+  "models": 0,
+  "host": 0,
+  "Expected_decode": 0,
+  "pool": 0,
+  "producer": 0,
+  "loaded_schema": {
+    "path": "data/phase502-whelp-observer-source-v4/schema/phase502_whelp_observer_schema.py",
+    "size": 197522,
+    "sha256": "d5531e3e9b119f0309140cb50dff2c7f545abb5ec3500d488bde29cacdb8f193"
+  },
+  "wall_seconds": 0.056609890998515766,
+  "all_schema_function_entries_during_top_calls": {
+    "<genexpr>": 315,
+    "_base_validate_primitive": 3,
+    "_base_validate_record": 4,
+    "_binding_cells": 31,
+    "_binding_id": 124,
+    "_binding_integer_value": 63,
+    "_binding_real_value": 62,
+    "_binding_same_source": 3318,
+    "_binding_validate_value": 3,
+    "_single_king_real": 62,
+    "decimal": 318,
+    "exact": 524,
+    "integer": 602,
+    "primitive_context": 3,
+    "scalar_number": 6,
+    "text": 12,
+    "validate_cache": 2,
+    "validate_primitive": 4,
+    "validate_record": 4,
+    "validate_single_king_fresh_facts": 1,
+    "validate_state": 4,
+    "validate_typed": 500
+  },
+  "nested_function_entries": 5953,
+  "source_and_vectors_after_unchanged": true
+}

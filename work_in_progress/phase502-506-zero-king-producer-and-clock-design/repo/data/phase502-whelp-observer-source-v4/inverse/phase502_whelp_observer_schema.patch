@@ -1,0 +1,401 @@
+--- data/phase462-joint-observer-source-v3/schema/phase462_king_basic_observer_schema.py
++++ data/phase502-whelp-observer-source-v4/schema/phase502_whelp_observer_schema.py
+@@ -7,16 +7,16 @@
+ from types import SimpleNamespace
+ 
+ 
+-VERSION = '7-king-basic-A-460'
+-PROFILE = 'observer7-king-basic-A-native-tape/1'
++VERSION = '7-whelp-family-A-502'
++PROFILE = 'observer7-whelp-family-A-native-tape/1'
+ CASE='KING-K1-A-353'
+ NATIVE_AUTHORIZED=False
+ 
+ 
+-DESCRIPTOR_IDS = frozenset({1,4,11,19,22,23,262})
+-
+-
+-CONTRACT = {'Timer_source_forms': {'Core/Buff.gd::gainTemporary:start': {'argc': 1, 'args': ['REALduration'], 'operation': 'start', 'role': 'buff:<side>:<type>'}, 'Core/Buff.gd::onTimeout:start': {'argc': 1, 'args': ['REALdelay'], 'operation': 'start', 'role': 'buff:<side>:<type>'}, 'Core/Character.gd::combatStart:tick': {'argc': 0, 'args': [], 'operation': 'start', 'role': 'tick:<side>'}, 'Interface/CombatTimer/CombatTimer.gd::dealFatigueDamage': {'argc': 1, 'args': ['INT1'], 'operation': 'start', 'role': 'fatigue:tick'}, 'Interface/CombatTimer/CombatTimer.gd::start': {'argc': 1, 'args': ['INT14'], 'operation': 'start', 'role': 'fatigue:start'}, 'Interface/CombatTimer/CombatTimer.gd::startFatigue': {'argc': 1, 'args': ['INT3'], 'operation': 'start', 'role': 'fatigue:tick'}, 'Items/CarrotGoobert.gd::doCooldownEffect:start': {'argc': 1, 'args': ['REALduration'], 'operation': 'start', 'role': 'particle:<instance>'}, 'all_known_stop_sites': {'argc': 0, 'args': [], 'operation': 'stop'}}, 'caps': {'array': 8192, 'depth': 16, 'descriptors': 7, 'dictionary': 512, 'failure_file_bytes': 4096, 'file_bytes': 268435456, 'first_error_bytes': 1024, 'flush_bytes': 4194304, 'host_capture_files': 64, 'native_ids': 8192, 'observer_files': 8, 'pending_rows': 64, 'record_bytes': 2097152, 'records': 300000, 'roles': 1024, 'sparse_nodes': 16384, 'string_utf8': 4096, 'total_bytes': 268435456}, 'computed_fields': {'allocation_counter': 'Game.combatLog.eventNum', 'connection_count': 'sum each EventBus.connections array length', 'event_count': 'CombatLog.events.size', 'native_reference': 'nativeintID retained; Objecttransientargs only; no Object saved', 'subtype_rules': 'goobert/carrot/potion include literalmergedItemfields; appropriate source-specific nullableconstructoronly'}, 'current_permissions': {'input_build': False, 'model': False, 'native': False}, 'envelope_exact': ['schema', 'sequence', 'channel', 'site', 'edge', 'subject', 'stamp', 'payload'], 'envelope_schema': 'observer7-record/1', 'failure_policy': 'boundedfirsterror durable+failedlatch; originalRNG/gameplay executes/returnsexactlyonce regardlessobserverrecordfailure; collector laterstops capturefalse', 'file_channels': {'allocation': 'observer7-allocations.jsonl', 'failure': 'observer7_failure.json', 'input': 'observer7-input.jsonl', 'lineage': 'observer7-lineage.jsonl', 'metadata': 'observer7-metadata.jsonl', 'primitive': 'observer7-primitives.jsonl', 'registration': 'observer7-registration.jsonl', 'runtime': 'observer7-runtime.jsonl'}, 'genuine_extraction_enabled': False, 'input_leaf_whitelist': ['fixture.json', 'player_fixture.json', 'observer7-input.jsonl', 'observer7-lineage.jsonl', 'observer7-metadata.jsonl', 'observer7-primitives.jsonl', 'king-clock-checkpoint.json', 'king-clock-passes.jsonl', 'king-input-facts.json', 'king-ui-authority.jsonl', 'king-rng-checkpoint.json'], 'lifecycle_api_exact': ['role', 'operation', 'argc', 'args', 'public_before', 'public_after'], 'primitive_context_exact': ['operation', 'item', 'target', 'ordinal', 'width', 'branch', 'stack', 'reflect_argument'], 'primitive_exact': ['kind', 'label', 'args', 'value', 'context'], 'primitive_sites': {'Items/Item.gd::adjustCooldown:belowMasterOpponent': {'args': ['REAL0.975', 'REAL1.05'], 'kind': 'randf_range'}, 'Items/Item.gd::adjustCooldown:other': {'args': ['REAL0.95', 'REAL1.05'], 'kind': 'randf_range'}, 'Utility/BalancedRange.gd::randIntRange': {'args': ['INTfrom', 'INTto'], 'kind': 'randi_range'}, 'Utility/DamageSource.gd::randDamage': {'args': ['INTminDamage', 'INTmaxDamage'], 'kind': 'randi_range'}, 'Utility/Util.gd::flip': {'args': [], 'kind': 'randf'}, 'Utility/Util.gd::pickRandomElement': {'args': ['INT0', 'INTsizeMinus1'], 'kind': 'randi_range'}, 'Utility/Util.gd::randPitch': {'kind': 'randf_range'}, 'Utility/Util.gd::roll': {'args': ['INT0', 'REALmaximum'], 'default_maximum': 'REAL100.0', 'kind': 'randf_range'}, 'fixed7fraction_shuffle': {'args': [], 'instance_context': True, 'kind': 'global_u32', 'widths': [7, 6, 5, 4, 3, 2]}}, 'raw_to_numeric_tape': 'onlylistedexactsiteconversion, retainedrawtypes/sourceview, directreturncopyunchanged; genuineextraction/modelviewdisabledpendinglatergate', 'return_semantics': 'SOURCE_EXPRESSION_BEFORE_ORIGINAL_TYPED_BOUNDARY', 'schema': 'phase357-king-typed-record-contract/1', 'stamp_exact': ['physics_frame', 'idle_frame', 'util_time', 'combat_time', 'phase'], 'state_schemas': {'auto_hide': {'emitting': 'bool', 'explosiveness': 'float', 'lifetime': 'float', 'one_shot': 'bool', 'speed_scale': 'float', 'timer': 'timer|null', 'visible': 'bool'}, 'buff': {'character': 'native_ref|null', 'cleanseProtectionChancePercent': 'float', 'current': 'int', 'nextTemporaryTimeout': 'int', 'permanentStacks': 'int', 'reflectChancePercent': 'float', 'resistChancePercent': 'float', 'resistStacks': 'int', 'temporaryStacks': 'temporary_array', 'timer': 'timer|null', 'type': 'int'}, 'character': {'allowStaminaOverflow': 'bool', 'autoRageItem': 'native_ref|null', 'battleRageBonusDur': 'float', 'battleRageTimer': 'timer', 'buffProtectStacks': 'int', 'critResistStacks': 'int', 'critResistance': 'float', 'critTokens': 'int', 'curHealth': 'float', 'curStamina': 'float', 'damageResistance': 'float', 'debuffReflectStacks': 'int', 'healingEfficiency': 'float', 'invulBubbleVisible': 'bool', 'invulnerabilityItem': 'native_ref|null', 'invulnerabilityTimer': 'timer', 'invulnerable': 'bool', 'isDead': 'bool', 'maxHealth': 'float', 'maxStamina': 'float', 'playerId': 'int', 'stunnedDuration': 'float', 'temporaryMaxHealth': 'float', 'temporaryMaxStamina': 'float', 'tickCounter': 'int', 'typedDamageFactors': 'dictionary', 'unhealingAmount': 'float'}, 'combat_log': {'eventNum': 'int', 'event_count': 'int', 'eventsLogged': 'int', 'loggingFinished': 'bool'}, 'combat_timer': {'combatTime': 'float', 'fatigueCounter': 'int', 'fatigueStartTimer': 'timer', 'fatigueTickTimer': 'timer', 'timeAdvance': 'float'}, 'event_bus': {'connection_count': 'int', 'loggingMode': 'int', 'signalQueue': 'array'}, 'game': {'allocation_counter': 'int', 'curClass': 'int', 'curMode': 'int', 'curRound': 'int', 'fightEnded': 'bool', 'roundResults': 'array'}, 'generic': {'native_id': 'id'}, 'goobert': {'activations': 'int', 'activationsThisFrame': 'int', 'activationsToTrigger': 'float', 'cachedAffectedItems': 'dictionary', 'consumed': 'bool', 'currentAffectedItems': 'dictionary', 'descriptorIndex': 'int', 'faceDirection': 'int', 'iterationCooldown': 'float', 'lastActivationTime': 'float', 'lastTriggerTime': 'float', 'ownerType': 'int', 'placed': 'bool', 'speedScale': 'float', 'triggerTime': 'float', 'triggersThisFrame': 'int'}, 'item': {'activationsThisFrame': 'int', 'cachedAffectedItems': 'dictionary', 'consumed': 'bool', 'currentAffectedItems': 'dictionary', 'descriptorIndex': 'int', 'faceDirection': 'int', 'iterationCooldown': 'float', 'lastActivationTime': 'float', 'lastTriggerTime': 'float', 'ownerType': 'int', 'placed': 'bool', 'speedScale': 'float', 'triggerTime': 'float', 'triggersThisFrame': 'int'}, 'king': {'activationParticles': 'auto_hide', 'activations': 'int', 'activationsThisFrame': 'int', 'activationsToTrigger': 'float', 'buffTimer': 'timer', 'cachedAffectedItems': 'dictionary', 'consumed': 'bool', 'currentAffectedItems': 'dictionary', 'descriptorIndex': 'int', 'faceDirection': 'int', 'invuCharges': 'int', 'iterationCooldown': 'float', 'lastActivationTime': 'float', 'lastTriggerTime': 'float', 'manaCost': 'float', 'ownerType': 'int', 'placed': 'bool', 'protectedBuffs': 'float', 'speedScale': 'float', 'triggerTime': 'float', 'triggersThisFrame': 'int'}, 'node': {'class': 'string', 'inside_tree': 'bool', 'internal_idle': 'bool', 'internal_physics': 'bool', 'name': 'string', 'native_id': 'id', 'ordinary_idle': 'bool', 'ordinary_physics': 'bool', 'path': 'string|nulloutsideTree', 'positions': 'int_array', 'priority': 'int', 'role': 'string|null'}, 'plain_item': {'activationsThisFrame': 'int', 'cachedAffectedItems': 'dictionary', 'consumed': 'bool', 'currentAffectedItems': 'dictionary', 'descriptorIndex': 'int', 'faceDirection': 'int', 'iterationCooldown': 'float', 'lastActivationTime': 'float', 'lastTriggerTime': 'float', 'ownerType': 'int', 'placed': 'bool', 'speedScale': 'float', 'triggerTime': 'float', 'triggersThisFrame': 'int'}, 'potion': {'activationsThisFrame': 'int', 'cachedAffectedItems': 'dictionary', 'consumed': 'bool', 'currentAffectedItems': 'dictionary', 'descriptorIndex': 'int', 'faceDirection': 'int', 'isFull': 'bool', 'iterationCooldown': 'float', 'lastActivationTime': 'float', 'lastTriggerTime': 'float', 'ownerType': 'int', 'placed': 'bool', 'speedScale': 'float', 'triggerTime': 'float', 'triggersThisFrame': 'int'}, 'temporary_constructor': {'amount': 'int', 'item': 'native_ref|null', 'timeout': 'float'}, 'timer': {'autostart': 'bool', 'node': 'node', 'one_shot': 'bool', 'paused': 'bool', 'process_mode': 'int', 'stopped': 'bool', 'time_left': 'float', 'wait_time': 'float'}, 'util': {'clockTime': 'float', 'frameCounter': 'int', 'time': 'float'}}, 'status': 'SOURCE_SCHEMA_IMPLEMENTED_ADMISSION_CLOSED', 'typed_exact': {'array': ['type', 'values'], 'bool': ['type', 'value'], 'damage_result': ['type', 'native_id', 'event', 'damageSource', 'damage', 'healthDamage', 'hit', 'critical', 'damageReduction'], 'damage_source': ['type', 'native_id', 'minDamage', 'maxDamage', 'types', 'accuracy', 'critChancePercent', 'origin', 'flags'], 'dictionary': ['type', 'entries'], 'event_ref': ['type', 'native_id', 'event_id'], 'float': ['type', 'binary64_be'], 'int': ['type', 'decimal'], 'native_ref': ['type', 'native_id', 'role', 'class'], 'null': ['type'], 'string': ['type', 'value'], 'temporary': ['type', 'native_id', 'ordinal', 'amount', 'timeout', 'item']}}
++DESCRIPTOR_IDS = frozenset([1, 11, 22, 23, 64, 164, 197, 199, 201])
++
++
++CONTRACT = {'Timer_source_forms': {'Core/Buff.gd::gainTemporary:start': {'argc': 1, 'args': ['REALduration'], 'operation': 'start', 'role': 'buff:<side>:<type>'}, 'Core/Buff.gd::onTimeout:start': {'argc': 1, 'args': ['REALdelay'], 'operation': 'start', 'role': 'buff:<side>:<type>'}, 'Core/Character.gd::combatStart:tick': {'argc': 0, 'args': [], 'operation': 'start', 'role': 'tick:<side>'}, 'Interface/CombatTimer/CombatTimer.gd::dealFatigueDamage': {'argc': 1, 'args': ['INT1'], 'operation': 'start', 'role': 'fatigue:tick'}, 'Interface/CombatTimer/CombatTimer.gd::start': {'argc': 1, 'args': ['INT14'], 'operation': 'start', 'role': 'fatigue:start'}, 'Interface/CombatTimer/CombatTimer.gd::startFatigue': {'argc': 1, 'args': ['INT3'], 'operation': 'start', 'role': 'fatigue:tick'}, 'Items/CarrotGoobert.gd::doCooldownEffect:start': {'argc': 1, 'args': ['REALduration'], 'operation': 'start', 'role': 'particle:<instance>'}, 'all_known_stop_sites': {'argc': 0, 'args': [], 'operation': 'stop'}}, 'caps': {'array': 8192, 'depth': 16, 'descriptors': 9, 'dictionary': 512, 'failure_file_bytes': 4096, 'file_bytes': 268435456, 'first_error_bytes': 1024, 'flush_bytes': 4194304, 'host_capture_files': 64, 'native_ids': 8192, 'observer_files': 8, 'pending_rows': 64, 'record_bytes': 2097152, 'records': 300000, 'roles': 1024, 'sparse_nodes': 16384, 'string_utf8': 4096, 'total_bytes': 268435456}, 'computed_fields': {'allocation_counter': 'Game.combatLog.eventNum', 'connection_count': 'sum each EventBus.connections array length', 'event_count': 'CombatLog.events.size', 'native_reference': 'nativeintID retained; Objecttransientargs only; no Object saved', 'subtype_rules': 'goobert/carrot/potion include literalmergedItemfields; appropriate source-specific nullableconstructoronly'}, 'current_permissions': {'input_build': False, 'model': False, 'native': False}, 'envelope_exact': ['schema', 'sequence', 'channel', 'site', 'edge', 'subject', 'stamp', 'payload'], 'envelope_schema': 'observer7-record/1', 'failure_policy': 'boundedfirsterror durable+failedlatch; originalRNG/gameplay executes/returnsexactlyonce regardlessobserverrecordfailure; collector laterstops capturefalse', 'file_channels': {'allocation': 'observer7-allocations.jsonl', 'failure': 'observer7_failure.json', 'input': 'observer7-input.jsonl', 'lineage': 'observer7-lineage.jsonl', 'metadata': 'observer7-metadata.jsonl', 'primitive': 'observer7-primitives.jsonl', 'registration': 'observer7-registration.jsonl', 'runtime': 'observer7-runtime.jsonl'}, 'genuine_extraction_enabled': False, 'input_leaf_whitelist': ['fixture.json', 'player_fixture.json', 'observer7-input.jsonl', 'observer7-lineage.jsonl', 'observer7-metadata.jsonl', 'observer7-primitives.jsonl', 'king-clock-checkpoint.json', 'king-clock-passes.jsonl', 'king-input-facts.json', 'king-ui-authority.jsonl', 'king-rng-checkpoint.json'], 'lifecycle_api_exact': ['role', 'operation', 'argc', 'args', 'public_before', 'public_after'], 'primitive_context_exact': ['operation', 'item', 'target', 'ordinal', 'width', 'branch', 'stack', 'reflect_argument'], 'primitive_exact': ['kind', 'label', 'args', 'value', 'context'], 'primitive_sites': {'Items/Item.gd::adjustCooldown:belowMasterOpponent': {'args': ['REAL0.975', 'REAL1.05'], 'kind': 'randf_range'}, 'Items/Item.gd::adjustCooldown:other': {'args': ['REAL0.95', 'REAL1.05'], 'kind': 'randf_range'}, 'Utility/BalancedRange.gd::randIntRange': {'args': ['INTfrom', 'INTto'], 'kind': 'randi_range'}, 'Utility/DamageSource.gd::randDamage': {'args': ['INTminDamage', 'INTmaxDamage'], 'kind': 'randi_range'}, 'Utility/Util.gd::flip': {'args': [], 'kind': 'randf'}, 'Utility/Util.gd::pickRandomElement': {'args': ['INT0', 'INTsizeMinus1'], 'kind': 'randi_range'}, 'Utility/Util.gd::randPitch': {'kind': 'randf_range'}, 'Utility/Util.gd::roll': {'args': ['INT0', 'REALmaximum'], 'default_maximum': 'REAL100.0', 'kind': 'randf_range'}, 'fixed7fraction_shuffle': {'args': [], 'instance_context': True, 'kind': 'global_u32', 'widths': [7, 6, 5, 4, 3, 2]}, 'Items/Exclusive/Squirrel.gd::playDropSound': {'kind': 'randf_range', 'args': ['REAL0.9', 'REAL1.1']}}, 'raw_to_numeric_tape': 'onlylistedexactsiteconversion, retainedrawtypes/sourceview, directreturncopyunchanged; genuineextraction/modelviewdisabledpendinglatergate', 'return_semantics': 'SOURCE_EXPRESSION_BEFORE_ORIGINAL_TYPED_BOUNDARY', 'schema': 'phase357-king-typed-record-contract/1', 'stamp_exact': ['physics_frame', 'idle_frame', 'util_time', 'combat_time', 'phase'], 'state_schemas': {'auto_hide': {'emitting': 'bool', 'explosiveness': 'float', 'lifetime': 'float', 'one_shot': 'bool', 'speed_scale': 'float', 'timer': 'timer|null', 'visible': 'bool'}, 'buff': {'character': 'native_ref|null', 'cleanseProtectionChancePercent': 'float', 'current': 'int', 'nextTemporaryTimeout': 'int', 'permanentStacks': 'int', 'reflectChancePercent': 'float', 'resistChancePercent': 'float', 'resistStacks': 'int', 'temporaryStacks': 'temporary_array', 'timer': 'timer|null', 'type': 'int'}, 'character': {'allowStaminaOverflow': 'bool', 'autoRageItem': 'native_ref|null', 'battleRageBonusDur': 'float', 'battleRageTimer': 'timer', 'buffProtectStacks': 'int', 'critResistStacks': 'int', 'critResistance': 'float', 'critTokens': 'int', 'curHealth': 'float', 'curStamina': 'float', 'damageResistance': 'float', 'debuffReflectStacks': 'int', 'healingEfficiency': 'float', 'invulBubbleVisible': 'bool', 'invulnerabilityItem': 'native_ref|null', 'invulnerabilityTimer': 'timer', 'invulnerable': 'bool', 'isDead': 'bool', 'maxHealth': 'float', 'maxStamina': 'float', 'playerId': 'int', 'stunnedDuration': 'float', 'temporaryMaxHealth': 'float', 'temporaryMaxStamina': 'float', 'tickCounter': 'int', 'typedDamageFactors': 'dictionary', 'unhealingAmount': 'float'}, 'combat_log': {'eventNum': 'int', 'event_count': 'int', 'eventsLogged': 'int', 'loggingFinished': 'bool'}, 'combat_timer': {'combatTime': 'float', 'fatigueCounter': 'int', 'fatigueStartTimer': 'timer', 'fatigueTickTimer': 'timer', 'timeAdvance': 'float'}, 'event_bus': {'connection_count': 'int', 'loggingMode': 'int', 'signalQueue': 'array'}, 'game': {'allocation_counter': 'int', 'curClass': 'int', 'curMode': 'int', 'curRound': 'int', 'fightEnded': 'bool', 'roundResults': 'array'}, 'generic': {'native_id': 'id'}, 'goobert': {'activations': 'int', 'activationsThisFrame': 'int', 'activationsToTrigger': 'float', 'cachedAffectedItems': 'dictionary', 'consumed': 'bool', 'currentAffectedItems': 'dictionary', 'descriptorIndex': 'int', 'faceDirection': 'int', 'iterationCooldown': 'float', 'lastActivationTime': 'float', 'lastTriggerTime': 'float', 'ownerType': 'int', 'placed': 'bool', 'speedScale': 'float', 'triggerTime': 'float', 'triggersThisFrame': 'int'}, 'item': {'activationsThisFrame': 'int', 'cachedAffectedItems': 'dictionary', 'consumed': 'bool', 'currentAffectedItems': 'dictionary', 'descriptorIndex': 'int', 'faceDirection': 'int', 'iterationCooldown': 'float', 'lastActivationTime': 'float', 'lastTriggerTime': 'float', 'ownerType': 'int', 'placed': 'bool', 'speedScale': 'float', 'triggerTime': 'float', 'triggersThisFrame': 'int'}, 'king': {'activationParticles': 'auto_hide', 'activations': 'int', 'activationsThisFrame': 'int', 'activationsToTrigger': 'float', 'buffTimer': 'timer', 'cachedAffectedItems': 'dictionary', 'consumed': 'bool', 'currentAffectedItems': 'dictionary', 'descriptorIndex': 'int', 'faceDirection': 'int', 'invuCharges': 'int', 'iterationCooldown': 'float', 'lastActivationTime': 'float', 'lastTriggerTime': 'float', 'manaCost': 'float', 'ownerType': 'int', 'placed': 'bool', 'protectedBuffs': 'float', 'speedScale': 'float', 'triggerTime': 'float', 'triggersThisFrame': 'int'}, 'node': {'class': 'string', 'inside_tree': 'bool', 'internal_idle': 'bool', 'internal_physics': 'bool', 'name': 'string', 'native_id': 'id', 'ordinary_idle': 'bool', 'ordinary_physics': 'bool', 'path': 'string|nulloutsideTree', 'positions': 'int_array', 'priority': 'int', 'role': 'string|null'}, 'plain_item': {'activationsThisFrame': 'int', 'cachedAffectedItems': 'dictionary', 'consumed': 'bool', 'currentAffectedItems': 'dictionary', 'descriptorIndex': 'int', 'faceDirection': 'int', 'iterationCooldown': 'float', 'lastActivationTime': 'float', 'lastTriggerTime': 'float', 'ownerType': 'int', 'placed': 'bool', 'speedScale': 'float', 'triggerTime': 'float', 'triggersThisFrame': 'int'}, 'potion': {'activationsThisFrame': 'int', 'cachedAffectedItems': 'dictionary', 'consumed': 'bool', 'currentAffectedItems': 'dictionary', 'descriptorIndex': 'int', 'faceDirection': 'int', 'isFull': 'bool', 'iterationCooldown': 'float', 'lastActivationTime': 'float', 'lastTriggerTime': 'float', 'ownerType': 'int', 'placed': 'bool', 'speedScale': 'float', 'triggerTime': 'float', 'triggersThisFrame': 'int'}, 'temporary_constructor': {'amount': 'int', 'item': 'native_ref|null', 'timeout': 'float'}, 'timer': {'autostart': 'bool', 'node': 'node', 'one_shot': 'bool', 'paused': 'bool', 'process_mode': 'int', 'stopped': 'bool', 'time_left': 'float', 'wait_time': 'float'}, 'util': {'clockTime': 'float', 'frameCounter': 'int', 'time': 'float'}, 'sapphire': {'activationsThisFrame': 'int', 'cachedAffectedItems': 'dictionary', 'consumed': 'bool', 'currentAffectedItems': 'dictionary', 'descriptorIndex': 'int', 'faceDirection': 'int', 'iterationCooldown': 'float', 'lastActivationTime': 'float', 'lastTriggerTime': 'float', 'ownerType': 'int', 'placed': 'bool', 'speedScale': 'float', 'triggerTime': 'float', 'triggersThisFrame': 'int', 'stackTypes': 'array'}}, 'status': 'SOURCE_SCHEMA_IMPLEMENTED_ADMISSION_CLOSED', 'typed_exact': {'array': ['type', 'values'], 'bool': ['type', 'value'], 'damage_result': ['type', 'native_id', 'event', 'damageSource', 'damage', 'healthDamage', 'hit', 'critical', 'damageReduction'], 'damage_source': ['type', 'native_id', 'minDamage', 'maxDamage', 'types', 'accuracy', 'critChancePercent', 'origin', 'flags'], 'dictionary': ['type', 'entries'], 'event_ref': ['type', 'native_id', 'event_id'], 'float': ['type', 'binary64_be'], 'int': ['type', 'decimal'], 'native_ref': ['type', 'native_id', 'role', 'class'], 'null': ['type'], 'string': ['type', 'value'], 'temporary': ['type', 'native_id', 'ordinal', 'amount', 'timeout', 'item']}}
+ CAPS=CONTRACT["caps"]
+ 
+ 
+@@ -245,6 +245,7 @@
+             'Utility/Util.gd::flip':('accuracy:','critical:','item_chance:','double_attack_effect:'),
+             'Utility/Util.gd::pickRandomElement':('random_stack:',),
+             'Utility/Util.gd::randPitch':('invulnerability_pitch:',),
++            'Items/Exclusive/Squirrel.gd::playDropSound':('squirrel_activation_pitch:',),
+             'Utility/BalancedRange.gd::randIntRange':('damage:',),
+             'Utility/DamageSource.gd::randDamage':('fatigue:','spikes:','poison:'),
+             'Items/Item.gd::adjustCooldown:belowMasterOpponent':('cooldown:',),
+@@ -352,25 +353,25 @@
+ 
+ 
+ 
+-SINGLE_KING_GENUINE_PROFILE = 'observer7-king-basic-A-native-tape/1'
+-
+-
+-SINGLE_KING_OBSERVER_VERSION = '7-king-basic-A-460'
+-
+-
+-SINGLE_KING_CASE = 'KING-BASIC-A-460'
++SINGLE_KING_GENUINE_PROFILE = 'observer7-whelp-family-A-native-tape/1'
++
++
++SINGLE_KING_OBSERVER_VERSION = '7-whelp-family-A-502'
++
++
++SINGLE_KING_CASE = 'WHELP-FAMILY-A-502'
+ 
+ 
+ SINGLE_KING_TERMINAL = 'first-actual-idle-after-at-least-two-future-physics/1'
+ 
+ 
+-SINGLE_KING_ITEMS = frozenset({1,4,11,19,22,23,262})
+-
+-
+-SINGLE_KING_FIXTURE_SHA256 = '20c259d7a7b99ef18f006b049c362fde21830cbb557d5879016282bf7451c0a2'
+-
+-
+-SINGLE_KING_ROLES = frozenset(['P:0', 'P:1', 'P:2', 'P:3', 'P:4', 'P:5', 'P:6', 'P:7', 'P:8', 'P:9', 'P:10', 'P:11', 'P:12', 'P:13', 'O:0', 'O:1', 'O:2', 'O:3', 'O:4', 'O:5', 'O:6', 'O:7', 'O:8', 'O:9', 'O:10', 'O:11'])
++SINGLE_KING_ITEMS = frozenset([1, 11, 22, 23, 64, 164, 197, 199, 201])
++
++
++SINGLE_KING_FIXTURE_SHA256 = '5b499110a3d4f8a4538620c19a3e8f34e5379bb40a0fb2d3410307ed3bf2923e'
++
++
++SINGLE_KING_ROLES = frozenset(['P:0', 'P:1', 'P:2', 'P:3', 'P:4', 'P:5', 'P:6', 'P:7', 'P:8', 'P:9', 'P:10', 'P:11', 'P:12', 'P:13', 'P:14', 'P:15', 'O:0', 'O:1', 'O:2', 'O:3', 'O:4', 'O:5', 'O:6', 'O:7', 'O:8', 'O:9', 'O:10', 'O:11', 'O:12'])
+ 
+ 
+ _ui_CASE = 'NATIVE-V7-008-KING-UI-GUARDED-127'
+@@ -496,12 +497,12 @@
+ 
+ def validate_single_king_fixture(fixture):
+     if type(fixture) is not dict or canonical_sha(fixture) != SINGLE_KING_FIXTURE_SHA256:
+-        raise ValueError('single King outside predeclared fixed A fixture')
++        raise ValueError('zero-King outside predeclared Whelp fixture')
+     if any(type(s['character_class']) is not int or s['character_class'] != 0 for s in fixture['sides']):
+         raise ValueError('single King class0 only before RNG')
+     kings = [i['instance_id'] for s in fixture['sides'] for i in s['items'] if i['item_index'] == 262]
+-    if kings != ['P:6'] or any(type(i['item_index']) is not int or i['item_index'] not in SINGLE_KING_ITEMS for s in fixture['sides'] for i in s['items']):
+-        raise ValueError('single unsocketed P King/six item source domain')
++    if kings != [] or any(type(i['item_index']) is not int or i['item_index'] not in SINGLE_KING_ITEMS for s in fixture['sides'] for i in s['items']):
++        raise ValueError('zero-King nine-ID source domain')
+     return True
+ 
+ 
+@@ -531,6 +532,7 @@
+    opened=v;continue
+   _ui_need(kind!='open','duplicate open')
+   if kind=='bind':
++   raise ValueError('zero-King profile rejects King particle binding')
+    _ui_need(row['site']=='scene_instance','bind site');_ui_exact(v,('item_id','activation_id','drag_id','script','scene','pooled','inside_tree','generation'))
+    ids=[_ui_ident(v[k])for k in ('item_id','activation_id','drag_id')]
+    _ui_need(len(set(ids))==3 and opened['after']['root_id']not in ids,'distinct bound identities')
+@@ -555,7 +557,7 @@
+    elif not has_king:nonking_particles.add(rid)
+   elif kind=='roles':
+    _ui_need(row['site']=='configure' and not rolebound,'roles one-time');_ui_exact(v,('kings','selected_guards','using_controller'))
+-   _ui_need(v['using_controller']is False,'controller initial domain');_ui_need(type(v['kings'])is list and len(v['kings'])==1,'one selected King')
++   _ui_need(v['using_controller']is False,'controller initial domain');_ui_need(type(v['kings'])is list and len(v['kings'])==0,'zero selected Kings')
+    for r in v['kings']:
+     _ui_exact(r,('item_id','role'));oid=_ui_ident(r['item_id']);_ui_need(oid in bindings and re.fullmatch('[PO]:[0-9]+',r['role'])is not None,'bound selected role')
+     _ui_need(bindings[oid]['pooled']is False and bindings[oid]['generation']==1,'selected fresh nonpooled King')
+@@ -608,7 +610,7 @@
+    _ui_need(v['sites']==list(_ui_SITES) and v['king_clock_closed']is True and type(v['active_buff_calls'])is int and v['active_buff_calls']==0,'coverage/controls/closed source barrier')
+    closed=True
+   else:raise ValueError('unknown kind')
+- _ui_need(closed and len(rolemap)==1,'complete selected binding')
++ _ui_need(closed and len(rolemap)==0,'complete selected binding')
+  return dict(status='COMPLETE_INPUT_EVIDENCE',admission='NOT_ADMITTED_UNSUPPORTED_ENTRIES' if unsupported else 'ELIGIBLE_EMPTY_UNSUPPORTED',unsupported=unsupported,entries=entries,rows=len(rows),king_roles=rolemap,model_acceptance=False)
+ 
+ 
+@@ -691,51 +693,85 @@
+ 
+ 
+ def validate_single_king_fresh_facts(facts):
+-    _single_king_keys(facts,('schema','root_viewport','timers','kings','delayed_activation'),'King input facts')
+-    if facts['schema']!='phase355-king-input-facts/1':raise ValueError('facts schema')
+-    root=_single_king_node(facts['root_viewport'])
+-    if root['path']!='/root' or not root['inside_tree']:raise ValueError('root identity')
+-    # Each root flag is retained independently. No assumed idle/physics equality.
+-    kings=facts['kings']
+-    if type(kings)is not list or len(kings)!=1:raise ValueError('one fixed King')
+-    king=kings[0]
+-    _single_king_keys(king,('instance','node','sockets','gem_count','persistent','paramMult','paramAdd','doubleActivationChance','doubleAttackEffectChance','activation','drag'),'King facts')
+-    if king['instance']!='P:6' or _single_king_node(king['node'])['role']!='P:6':raise ValueError('fixed King identity')
+-    if type(king['gem_count'])is not int or king['gem_count']!=0 or king['persistent']is not False:raise ValueError('unsocketed/nonpersistent domain')
+-    if type(king['sockets'])is not list or len(king['sockets'])!=2:raise ValueError('exactly two empty sockets')
+-    ids=set()
+-    for socket in king['sockets']:
+-        _single_king_keys(socket,('node','gem'),'socket');n=_single_king_node(socket['node']);_single_king_typed(socket['gem'],'null')
+-        if n['native_id']in ids or not n['path'].startswith(king['node']['path']+'/Icon/Sockets/'):raise ValueError('distinct owned sockets')
+-        ids.add(n['native_id'])
+-    for field in ('paramMult','paramAdd'):
+-        if _single_king_typed(king[field],'dictionary')['entries']!=[]:raise ValueError('no modifiers')
+-    for field in ('doubleActivationChance','doubleAttackEffectChance'):_single_king_typed(king[field],'float','0000000000000000')
+-    for field in ('activation','drag'):_single_king_particle(king[field])
+-    expected={'invu:P':(0,'Character.scene.ready'),'invu:O':(0,'Character.scene.ready'),'king_buff:P:6':(0,'King.scene.instance'),'king_hide:P:6':(1,'AutoHide.Timer.new'),'king_drag:P:6':(1,'AutoHide.Timer.new')}
+-    _single_king_keys(facts['timers'],expected,'five selected Timer facts');timer_ids=set()
+-    for role,(mode,kind)in expected.items():
+-        fact=facts['timers'][role];_single_king_keys(fact,('lineage','current','private_provenance'),'fresh Timer fact')
+-        lineage=fact['lineage'];_single_king_keys(lineage,('timer_id','owner_id','kind','starts','stops','birth'),'birth lineage')
+-        birth=_single_king_timer(lineage['birth']);current=_single_king_timer(fact['current']);n=current['node']
+-        if lineage['kind']!=kind or type(lineage['starts'])is not int or lineage['starts']!=0 or type(lineage['stops'])is not int or lineage['stops']<0:raise ValueError('source no-start lineage')
+-        if lineage['timer_id']!=n['native_id'] or birth['node']['native_id']!=n['native_id'] or n['native_id']in timer_ids or n['role']!=role:raise ValueError('stable distinct Timer identity')
+-        timer_ids.add(n['native_id'])
+-        if type(lineage['owner_id'])is not str or re.fullmatch('[1-9][0-9]*',lineage['owner_id'])is None:raise ValueError('source owner')
+-        if fact['private_provenance']!='source_constructor_minus_one_no_start_not_public_zero_inference':raise ValueError('no invented private observation')
+-        for t in (birth,current):
+-            if t['process_mode']!=mode or t['autostart'] or t['paused'] or not t['stopped']:raise ValueError('fresh source Timer')
+-            _single_king_typed(t['wait_time'],'float','3ff0000000000000');_single_king_typed(t['time_left'],'float','0000000000000000')
+-            if any(t['node'][flag]for flag in ('ordinary_physics','internal_physics','ordinary_idle','internal_idle')):raise ValueError('fresh inactive Timer flags')
+-        if not current['one_shot'] or not n['inside_tree']:raise ValueError('configured in-tree Timer')
+-        if birth['one_shot']!=(kind!='AutoHide.Timer.new'):raise ValueError('actual birth flags, not configured defaults')
+-        if role.startswith('king_'):
+-            owner=king['node'] if role=='king_buff:P:6' else king['activation' if role=='king_hide:P:6' else 'drag']['node']
+-            if lineage['owner_id']!=owner['native_id'] or not n['path'].startswith(owner['path']+'/'):raise ValueError('Timer owner path')
+-            if role!='king_buff:P:6' and king['activation' if role=='king_hide:P:6' else 'drag']['timer']!=current:raise ValueError('particle Timer identity')
+-    delayed=facts['delayed_activation'];_single_king_keys(delayed,('target_id','method','delay','tree_timer_id','source','physics_frame','idle_frame'),'actual activation schedule')
+-    if delayed['method']!='activateItems' or delayed['source']!='Utility/Util.gd::callDelayed':raise ValueError('actual activation lineage')
+-    _single_king_typed(delayed['delay'],'float','4004000000000000');_single_king_counter(delayed['physics_frame']);_single_king_counter(delayed['idle_frame'])
++    exact(facts, ('schema','root_viewport','timers','kings','delayed_activation','items'))
++    if facts['schema'] != 'phase502-zero-king-input-facts/1' or facts['kings'] != []:
++        raise ValueError('fixed zero-King facts/profile')
++    root = _single_king_node(facts['root_viewport'])
++    if root['path'] != '/root' or not root['inside_tree']:
++        raise ValueError('actual root identity')
++    exact(facts['timers'], ('invu:P','invu:O'))
++    timer_ids = set()
++    for role, fact in facts['timers'].items():
++        exact(fact, ('lineage','current','private_provenance'))
++        lineage = fact['lineage']
++        exact(lineage, ('timer_id','owner_id','kind','starts','stops','birth'))
++        decimal(lineage['owner_id'], True)
++        if (lineage['kind'] != 'Character.scene.ready' or type(lineage['starts']) is not int
++                or lineage['starts'] != 0 or type(lineage['stops']) is not int or lineage['stops'] < 0):
++            raise ValueError('Character actual lifetime no-start ledger')
++        birth, current = _single_king_timer(lineage['birth']), _single_king_timer(fact['current'])
++        node = current['node']
++        if (lineage['timer_id'] != node['native_id'] or birth['node']['native_id'] != node['native_id']
++                or node['native_id'] in timer_ids or node['role'] != role):
++            raise ValueError('Character stable distinct Timer identity')
++        timer_ids.add(node['native_id'])
++        if fact['private_provenance'] != 'source_constructor_minus_one_no_start_not_public_zero_inference':
++            raise ValueError('source lineage is not private observation')
++        for timer in (birth,current):
++            if (type(timer['process_mode']) is not int or timer['process_mode'] != 0
++                    or timer['autostart'] is not False or timer['paused'] is not False or timer['stopped'] is not True):
++                raise ValueError('Character source Timer state')
++            _single_king_typed(timer['wait_time'],'float','3ff0000000000000')
++            _single_king_typed(timer['time_left'],'float','0000000000000000')
++            if any(timer['node'][flag] is not False for flag in ('ordinary_physics','internal_physics','ordinary_idle','internal_idle')):
++                raise ValueError('Character inactive source Timer flags')
++        if current['one_shot'] is not True or birth['one_shot'] is not True or node['inside_tree'] is not True:
++            raise ValueError('Character configured in-tree Timer')
++    items = facts['items']
++    if type(items) is not list or len(items) != len(FIXED_ROLES):
++        raise ValueError('complete29 selected item facts')
++    seen, natives, socket_ids = set(), set(), set()
++    for item in items:
++        exact(item, ('instance','node','descriptorIndex','sockets','gem_count','persistent','paramMult','paramAdd','doubleActivationChance','doubleAttackEffectChance'))
++        role = item['instance']
++        if type(role) is not str or role not in FIXED_ROLES or role in seen:
++            raise ValueError('unknown/duplicate zero-King item role')
++        seen.add(role)
++        node = _single_king_node(item['node'])
++        if node['role'] != role or node['native_id'] in natives or node['native_id'] in timer_ids:
++            raise ValueError('actual item identity association')
++        natives.add(node['native_id'])
++        if item['descriptorIndex'] != {'type':'int','decimal':str(ITEM_INDEX_BY_ROLE[role])}:
++            raise ValueError('actual item descriptor association')
++        if type(item['gem_count']) is not int or item['gem_count'] != 0 or item['persistent'] is not False:
++            raise ValueError('empty/nonpersistent fixed domain')
++        for key in ('paramMult','paramAdd'):
++            if _single_king_typed(item[key],'dictionary')['entries'] != []:
++                raise ValueError('no custom item modifiers')
++        for key in ('doubleActivationChance','doubleAttackEffectChance'):
++            _single_king_typed(item[key],'float','0000000000000000')
++        sockets = item['sockets']
++        if type(sockets) is not list or len(sockets) > 16:
++            raise ValueError('bounded actual sockets')
++        index = ITEM_INDEX_BY_ROLE[role]
++        if index in (64,197,199,201) and len(sockets) != 1 or index == 164 and len(sockets) != 0:
++            raise ValueError('Whelp/Squirrel actual socket count')
++        for socket in sockets:
++            exact(socket, ('node','gem'))
++            child = _single_king_node(socket['node'])
++            _single_king_typed(socket['gem'],'null')
++            if child['native_id'] in socket_ids or not child['path'].startswith(node['path']+'/Icon/Sockets/'):
++                raise ValueError('distinct owned socket')
++            socket_ids.add(child['native_id'])
++    if natives & socket_ids or timer_ids & socket_ids:
++        raise ValueError('item/socket/Timer identity aliases')
++    delayed = facts['delayed_activation']
++    exact(delayed, ('target_id','method','delay','tree_timer_id','source','physics_frame','idle_frame'))
++    decimal(delayed['target_id'],True); decimal(delayed['tree_timer_id'],True)
++    if delayed['method'] != 'activateItems' or delayed['source'] != 'Utility/Util.gd::callDelayed':
++        raise ValueError('actual delayed activation source')
++    _single_king_typed(delayed['delay'],'float','4004000000000000')
++    _single_king_counter(delayed['physics_frame']); _single_king_counter(delayed['idle_frame'])
+     return facts
+ 
+ 
+@@ -763,23 +799,9 @@
+ 
+ 
+ def validate_single_king_source_defaults(pre, act):
+-    """Proof-only observed fields. Never return these as model resource/charge state."""
+-    for record, charges in ((pre, 0), (act, 3)):
+-        rows = record['payload']['items']
+-        if type(rows) is not list:
+-            raise ValueError('single King source item rows required')
+-        matches = [row for row in rows if row.get('instance') == 'P:6']
+-        if len(matches) != 1:
+-            raise ValueError('one selected King source item state')
+-        fields = matches[0]['fields']
+-        for key, expected in (('descriptorIndex', 262), ('activations', 0), ('invuCharges', charges)):
+-            if fields.get(key) != dict(type='int', decimal=str(expected)):
+-                raise ValueError('single King source INT ' + key)
+-        for key, expected in (('activationsToTrigger', 6.0), ('protectedBuffs', 3.0), ('manaCost', 4.0)):
+-            if fields.get(key) != dict(type='float', binary64_be=struct.pack('>d', expected).hex()):
+-                raise ValueError('single King source REAL ' + key)
++    """Observed Basic defaults only; never model state or fixture predicate."""
+     for record, cooldown in ((pre, 0.0), (act, 5.0)):
+-        matches = [row for row in record['payload']['items'] if row.get('instance') == 'P:7']
++        matches = [row for row in record['payload']['items'] if row.get('instance') == 'P:9']
+         if len(matches) != 1:
+             raise ValueError('one selected Basic source item state')
+         fields = matches[0]['fields']
+@@ -832,13 +854,14 @@
+     guards = next(r['payload']['selected_guards'] for r in ui_rows if r['kind'] == 'roles')
+     if {g['item_id']: g['role'] for g in guards} != selected:
+         raise ValueError('complete selected UI/actual item join')
+-    king = facts['kings'][0]
+-    kid = king['node']['native_id']
+-    if king['node'] != byrole['item:P:6']['node'] or ui['king_roles'] != {kid: 'P:6'}:
+-        raise ValueError('single fresh King actual item join')
+-    binds = [r['payload'] for r in ui_rows if r['kind'] == 'bind' and r['payload']['item_id'] == kid]
+-    if len(binds) != 1 or any(binds[0][part + '_id'] != king[part]['node']['native_id'] for part in ('activation', 'drag')):
+-        raise ValueError('single King source particle join')
++    if ui['king_roles'] != {}:
++        raise ValueError('zero selected King role mapping')
++    fact_items = {item['instance']: item for item in facts['items']}
++    if set(fact_items) != set(SINGLE_KING_ROLES):
++        raise ValueError('all selected item facts join')
++    for role, item in fact_items.items():
++        if item['node'] != byrole['item:' + role]['node']:
++            raise ValueError('actual selected item facts/checkpoint node join')
+     for native, role in selected.items():
+         scenes = [r for r in lineage_records if r.get('edge') == 'scene_instance' and r['payload']['item_id'] == native]
+         ready = [r for r in lineage_records if r.get('site') == 'Items/Item.gd::_ready' and r.get('edge') == 'enter' and r['subject']['native_id'] == native]
+@@ -1027,14 +1050,14 @@
+     return strict_json_loads(raw.decode('utf-8'))
+ 
+ 
+-FIXED_FIXTURE = {'below_master': False, 'game_version': '1.1.8', 'mode': 'Unranked', 'round': 1, 'rules': 'default', 'schema': 1, 'sides': [{'character_class': 0, 'hp': 240.0, 'items': [{'f': 0, 'instance_id': 'P:0', 'item_index': 11, 'x': 0, 'y': 0}, {'f': 0, 'instance_id': 'P:1', 'item_index': 11, 'x': 2, 'y': 0}, {'f': 0, 'instance_id': 'P:2', 'item_index': 11, 'x': 4, 'y': 0}, {'f': 0, 'instance_id': 'P:3', 'item_index': 11, 'x': 0, 'y': 2}, {'f': 0, 'instance_id': 'P:4', 'item_index': 11, 'x': 2, 'y': 2}, {'f': 0, 'instance_id': 'P:5', 'item_index': 11, 'x': 4, 'y': 2}, {'f': 0, 'instance_id': 'P:6', 'item_index': 262, 'x': 2, 'y': 0}, {'f': 0, 'instance_id': 'P:7', 'item_index': 23, 'x': 4, 'y': 0}, {'f': 0, 'instance_id': 'P:8', 'item_index': 22, 'x': 1, 'y': 0}, {'f': 0, 'instance_id': 'P:9', 'item_index': 22, 'x': 1, 'y': 1}, {'f': 0, 'instance_id': 'P:10', 'item_index': 22, 'x': 1, 'y': 2}, {'f': 0, 'instance_id': 'P:11', 'item_index': 22, 'x': 4, 'y': 2}, {'f': 0, 'instance_id': 'P:12', 'item_index': 1, 'x': 0, 'y': 0}, {'f': 0, 'instance_id': 'P:13', 'item_index': 1, 'x': 0, 'y': 2}], 'side': 'P', 'stamina': 5.0}, {'character_class': 0, 'hp': 260.0, 'items': [{'f': 0, 'instance_id': 'O:0', 'item_index': 11, 'x': 0, 'y': 0}, {'f': 0, 'instance_id': 'O:1', 'item_index': 11, 'x': 2, 'y': 0}, {'f': 0, 'instance_id': 'O:2', 'item_index': 11, 'x': 4, 'y': 0}, {'f': 0, 'instance_id': 'O:3', 'item_index': 11, 'x': 0, 'y': 2}, {'f': 0, 'instance_id': 'O:4', 'item_index': 11, 'x': 2, 'y': 2}, {'f': 0, 'instance_id': 'O:5', 'item_index': 11, 'x': 4, 'y': 2}, {'f': 0, 'instance_id': 'O:6', 'item_index': 1, 'x': 1, 'y': 0}, {'f': 0, 'instance_id': 'O:7', 'item_index': 1, 'x': 3, 'y': 0}, {'f': 0, 'instance_id': 'O:8', 'item_index': 4, 'x': 0, 'y': 2}, {'f': 0, 'instance_id': 'O:9', 'item_index': 19, 'x': 4, 'y': 0}, {'f': 0, 'instance_id': 'O:10', 'item_index': 22, 'x': 2, 'y': 2}, {'f': 0, 'instance_id': 'O:11', 'item_index': 22, 'x': 3, 'y': 2}], 'side': 'O', 'stamina': 5.0}]}
++FIXED_FIXTURE = {'schema': 1, 'game_version': '1.1.8', 'mode': 'Unranked', 'round': 1, 'rules': 'default', 'below_master': None, 'sides': [{'side': 'P', 'character_class': 0, 'hp': 240.0, 'stamina': 5.0, 'items': [{'instance_id': 'P:0', 'item_index': 11, 'x': 0, 'y': 0, 'f': 0}, {'instance_id': 'P:1', 'item_index': 11, 'x': 2, 'y': 0, 'f': 0}, {'instance_id': 'P:2', 'item_index': 11, 'x': 4, 'y': 0, 'f': 0}, {'instance_id': 'P:3', 'item_index': 11, 'x': 6, 'y': 0, 'f': 0}, {'instance_id': 'P:4', 'item_index': 11, 'x': 0, 'y': 2, 'f': 0}, {'instance_id': 'P:5', 'item_index': 11, 'x': 2, 'y': 2, 'f': 0}, {'instance_id': 'P:6', 'item_index': 11, 'x': 4, 'y': 2, 'f': 0}, {'instance_id': 'P:7', 'item_index': 11, 'x': 6, 'y': 2, 'f': 0}, {'instance_id': 'P:8', 'item_index': 22, 'x': 1, 'y': 0, 'f': 0}, {'instance_id': 'P:9', 'item_index': 23, 'x': 0, 'y': 1, 'f': 0}, {'instance_id': 'P:10', 'item_index': 164, 'x': 2, 'y': 0, 'f': 0}, {'instance_id': 'P:11', 'item_index': 22, 'x': 3, 'y': 0, 'f': 0}, {'instance_id': 'P:12', 'item_index': 201, 'x': 4, 'y': 0, 'f': 0}, {'instance_id': 'P:13', 'item_index': 197, 'x': 6, 'y': 0, 'f': 0}, {'instance_id': 'P:14', 'item_index': 199, 'x': 4, 'y': 2, 'f': 0}, {'instance_id': 'P:15', 'item_index': 1, 'x': 6, 'y': 2, 'f': 0}]}, {'side': 'O', 'character_class': 0, 'hp': 300.0, 'stamina': 5.0, 'items': [{'instance_id': 'O:0', 'item_index': 11, 'x': 0, 'y': 0, 'f': 0}, {'instance_id': 'O:1', 'item_index': 11, 'x': 2, 'y': 0, 'f': 0}, {'instance_id': 'O:2', 'item_index': 11, 'x': 4, 'y': 0, 'f': 0}, {'instance_id': 'O:3', 'item_index': 11, 'x': 6, 'y': 0, 'f': 0}, {'instance_id': 'O:4', 'item_index': 11, 'x': 0, 'y': 2, 'f': 0}, {'instance_id': 'O:5', 'item_index': 11, 'x': 2, 'y': 2, 'f': 0}, {'instance_id': 'O:6', 'item_index': 11, 'x': 4, 'y': 2, 'f': 0}, {'instance_id': 'O:7', 'item_index': 11, 'x': 6, 'y': 2, 'f': 0}, {'instance_id': 'O:8', 'item_index': 64, 'x': 0, 'y': 0, 'f': 0}, {'instance_id': 'O:9', 'item_index': 1, 'x': 2, 'y': 0, 'f': 0}, {'instance_id': 'O:10', 'item_index': 1, 'x': 3, 'y': 0, 'f': 0}, {'instance_id': 'O:11', 'item_index': 22, 'x': 4, 'y': 0, 'f': 0}, {'instance_id': 'O:12', 'item_index': 22, 'x': 4, 'y': 1, 'f': 0}]}]}
+ 
+ 
+ # SOURCE template appended by phase357_prepare_schema_source.py; no imports/calls.
+ 
+ FIXED_ROLES = SINGLE_KING_ROLES
+-ITEM_INDEX_BY_ROLE = {'P:0': 11, 'P:1': 11, 'P:2': 11, 'P:3': 11, 'P:4': 11, 'P:5': 11, 'P:6': 262, 'P:7': 23, 'P:8': 22, 'P:9': 22, 'P:10': 22, 'P:11': 22, 'P:12': 1, 'P:13': 1, 'O:0': 11, 'O:1': 11, 'O:2': 11, 'O:3': 11, 'O:4': 11, 'O:5': 11, 'O:6': 1, 'O:7': 1, 'O:8': 4, 'O:9': 19, 'O:10': 22, 'O:11': 22}
+-TIMER_ROLES = frozenset(['tick:P','tick:O','fatigue:start','fatigue:tick','invu:P','invu:O','king_buff:P:6','king_hide:P:6','king_drag:P:6'] + ['buff:'+side+':'+str(category) for side in ('P','O') for category in range(100,111)] + ['aux:'+side+':'+name for side in ('P','O') for name in ('battleRageTimer','autoRageTimer')])
++ITEM_INDEX_BY_ROLE = {'P:0': 11, 'P:1': 11, 'P:2': 11, 'P:3': 11, 'P:4': 11, 'P:5': 11, 'P:6': 11, 'P:7': 11, 'P:8': 22, 'P:9': 23, 'P:10': 164, 'P:11': 22, 'P:12': 201, 'P:13': 197, 'P:14': 199, 'P:15': 1, 'O:0': 11, 'O:1': 11, 'O:2': 11, 'O:3': 11, 'O:4': 11, 'O:5': 11, 'O:6': 11, 'O:7': 11, 'O:8': 64, 'O:9': 1, 'O:10': 1, 'O:11': 22, 'O:12': 22}
++TIMER_ROLES = frozenset(['tick:P', 'tick:O', 'fatigue:start', 'fatigue:tick', 'buff:P:100', 'buff:P:101', 'buff:P:102', 'buff:P:103', 'buff:P:104', 'buff:P:105', 'buff:P:106', 'buff:P:107', 'buff:P:108', 'buff:P:109', 'buff:P:110', 'buff:O:100', 'buff:O:101', 'buff:O:102', 'buff:O:103', 'buff:O:104', 'buff:O:105', 'buff:O:106', 'buff:O:107', 'buff:O:108', 'buff:O:109', 'buff:O:110', 'invu:P', 'invu:O', 'aux:P:battleRageTimer', 'aux:P:autoRageTimer', 'aux:O:battleRageTimer', 'aux:O:autoRageTimer'])
+ KNOWN_REF_ROLES = FIXED_ROLES | TIMER_ROLES | {
+     'P', 'O', 'root_viewport', 'game', 'util', 'combat_timer', 'combat_log', 'event_bus',
+ }
+@@ -1083,7 +1106,7 @@
+ def validate_state(value, kind, constructor=False):
+     if kind not in CONTRACT['state_schemas']:
+         raise ValueError('unknown K1 state schema')
+-    if kind in ('item', 'goobert', 'king', 'potion', 'plain_item'):
++    if kind in ('item', 'goobert', 'king', 'potion', 'plain_item', 'sapphire'):
+         if type(value) is not dict or 'descriptorIndex' not in value:
+             raise ValueError('item descriptor raw identity required')
+         validate_typed(value['descriptorIndex'])
+@@ -1091,9 +1114,9 @@
+             raise ValueError('item descriptor INT')
+         index = decimal(value['descriptorIndex']['decimal'])
+         if index not in DESCRIPTOR_IDS:
+-            raise ValueError('item descriptor outside fixed seven IDs')
+-        actual = 'king' if index == 262 else 'goobert' if index == 23 else 'potion' if index == 19 else 'plain_item'
+-        if kind == 'king' and actual != 'king' or kind == 'potion' and actual != 'potion' or kind == 'goobert' and actual not in ('king', 'goobert') or kind == 'plain_item' and actual != 'plain_item':
++            raise ValueError('item descriptor outside fixed nine IDs')
++        actual = 'goobert' if index == 23 else 'sapphire' if index == 199 else 'plain_item'
++        if kind == 'king' and actual != 'king' or kind == 'potion' and actual != 'potion' or kind == 'goobert' and actual not in ('king', 'goobert') or kind == 'plain_item' and actual != 'plain_item' or kind == 'sapphire' and actual != 'sapphire':
+             raise ValueError('closed source Item subtype')
+         kind = actual
+     # Reuse the old field loop, bypass its ambiguous legacy item-shape dispatcher.
+@@ -1133,6 +1156,10 @@
+                     raise ValueError('ordered temporary ledger projection')
+             elif field['type'] not in expected.split('|'):
+                 raise ValueError('exact raw property type ' + kind + '.' + key)
++    if kind == 'sapphire':
++        wanted = {'type': 'array', 'values': [{'type': 'int', 'decimal': str(i)} for i in (101,102,103,104,106,107)]}
++        if value['stackTypes'] != wanted:
++            raise ValueError('Sapphire actual ordered six INT nonMana stackTypes')
+     for key in ('currentAffectedItems', 'cachedAffectedItems'):
+         if key in value:
+             validate_cache(value[key], key == 'currentAffectedItems')
+@@ -1145,10 +1172,10 @@
+ 
+ 
+ def primitive_context(label, kind):
+-    if label.startswith('invulnerability_pitch:'):
+-        if label != 'invulnerability_pitch:P:6' or kind != 'randf_range':
+-            raise ValueError('fixed selected King pitch context')
+-        return dict.fromkeys(CONTRACT['primitive_context_exact']) | {'item': 'P:6'}
++    if label.startswith('squirrel_activation_pitch:'):
++        if label != 'squirrel_activation_pitch:P:10' or kind != 'randf_range':
++            raise ValueError('fixed selected Squirrel pitch context')
++        return dict.fromkeys(CONTRACT['primitive_context_exact']) | {'item': 'P:10'}
+     result = _base_primitive_context(label, kind)
+     if result['item'] not in (None, 'null') and result['item'] not in FIXED_ROLES:
+         raise ValueError('primitive unknown selected item role')
+@@ -1156,9 +1183,9 @@
+ 
+ 
+ def validate_primitive(payload):
+-    if payload.get('label') == 'invulnerability_pitch:P:6':
++    if payload.get('label') == 'squirrel_activation_pitch:P:10':
+         if payload.get('args') != [{'type': 'float', 'binary64_be': '3feccccccccccccd'}, {'type': 'float', 'binary64_be': '3ff199999999999a'}]:
+-            raise ValueError('original randPitch0.1 exact REAL endpoints')
++            raise ValueError('original direct Squirrel exact REAL endpoints')
+     return _base_validate_primitive(payload)
+ 
+ 
+@@ -1240,8 +1267,6 @@
+         for key, kinds in expected.items():
+             if fields[key]['type'] not in kinds:
+                 raise ValueError('specific SOURCE callsite Variant ' + site + ':' + key)
+-        if site == 'Items/Item.gd::useMana' and row['subject'].get('role') == 'P:6' and fields['amount'] != {'type': 'float', 'binary64_be': '4010000000000000'}:
+-            raise ValueError('King Item.useMana keeps REAL4 before Character INT coercion')
+     if site in MATRIX['sites'] and edge in ('enter', 'return_explicit', 'return_implicit'):
+         if row['subject']['type'] != 'native_ref':
+             raise ValueError('method receiver actual native ref required')
+@@ -1736,8 +1761,8 @@
+ 
+ # phase360 auxiliary SOURCE interface; no projection or admission.
+ BINDING_MAX_BYTES = 2097152
+-BINDING_FIXED_PLAN = [{'side': 'P', 'input_slot': 0, 'instance_id': 'P:0', 'item_index': 11, 'x': 0, 'y': 0, 'f': 0, 'cells': [[0, 0], [0, 1], [1, 0], [1, 1]]}, {'side': 'P', 'input_slot': 1, 'instance_id': 'P:1', 'item_index': 11, 'x': 2, 'y': 0, 'f': 0, 'cells': [[2, 0], [2, 1], [3, 0], [3, 1]]}, {'side': 'P', 'input_slot': 2, 'instance_id': 'P:2', 'item_index': 11, 'x': 4, 'y': 0, 'f': 0, 'cells': [[4, 0], [4, 1], [5, 0], [5, 1]]}, {'side': 'P', 'input_slot': 3, 'instance_id': 'P:3', 'item_index': 11, 'x': 0, 'y': 2, 'f': 0, 'cells': [[0, 2], [0, 3], [1, 2], [1, 3]]}, {'side': 'P', 'input_slot': 4, 'instance_id': 'P:4', 'item_index': 11, 'x': 2, 'y': 2, 'f': 0, 'cells': [[2, 2], [2, 3], [3, 2], [3, 3]]}, {'side': 'P', 'input_slot': 5, 'instance_id': 'P:5', 'item_index': 11, 'x': 4, 'y': 2, 'f': 0, 'cells': [[4, 2], [4, 3], [5, 2], [5, 3]]}, {'side': 'P', 'input_slot': 6, 'instance_id': 'P:6', 'item_index': 262, 'x': 2, 'y': 0, 'f': 0, 'cells': [[2, 0], [2, 1], [2, 2], [3, 0], [3, 1], [3, 2]]}, {'side': 'P', 'input_slot': 7, 'instance_id': 'P:7', 'item_index': 23, 'x': 4, 'y': 0, 'f': 0, 'cells': [[4, 0], [4, 1], [5, 0], [5, 1]]}, {'side': 'P', 'input_slot': 8, 'instance_id': 'P:8', 'item_index': 22, 'x': 1, 'y': 0, 'f': 0, 'cells': [[1, 0]]}, {'side': 'P', 'input_slot': 9, 'instance_id': 'P:9', 'item_index': 22, 'x': 1, 'y': 1, 'f': 0, 'cells': [[1, 1]]}, {'side': 'P', 'input_slot': 10, 'instance_id': 'P:10', 'item_index': 22, 'x': 1, 'y': 2, 'f': 0, 'cells': [[1, 2]]}, {'side': 'P', 'input_slot': 11, 'instance_id': 'P:11', 'item_index': 22, 'x': 4, 'y': 2, 'f': 0, 'cells': [[4, 2]]}, {'side': 'P', 'input_slot': 12, 'instance_id': 'P:12', 'item_index': 1, 'x': 0, 'y': 0, 'f': 0, 'cells': [[0, 0], [0, 1]]}, {'side': 'P', 'input_slot': 13, 'instance_id': 'P:13', 'item_index': 1, 'x': 0, 'y': 2, 'f': 0, 'cells': [[0, 2], [0, 3]]}, {'side': 'O', 'input_slot': 0, 'instance_id': 'O:0', 'item_index': 11, 'x': 0, 'y': 0, 'f': 0, 'cells': [[0, 0], [0, 1], [1, 0], [1, 1]]}, {'side': 'O', 'input_slot': 1, 'instance_id': 'O:1', 'item_index': 11, 'x': 2, 'y': 0, 'f': 0, 'cells': [[2, 0], [2, 1], [3, 0], [3, 1]]}, {'side': 'O', 'input_slot': 2, 'instance_id': 'O:2', 'item_index': 11, 'x': 4, 'y': 0, 'f': 0, 'cells': [[4, 0], [4, 1], [5, 0], [5, 1]]}, {'side': 'O', 'input_slot': 3, 'instance_id': 'O:3', 'item_index': 11, 'x': 0, 'y': 2, 'f': 0, 'cells': [[0, 2], [0, 3], [1, 2], [1, 3]]}, {'side': 'O', 'input_slot': 4, 'instance_id': 'O:4', 'item_index': 11, 'x': 2, 'y': 2, 'f': 0, 'cells': [[2, 2], [2, 3], [3, 2], [3, 3]]}, {'side': 'O', 'input_slot': 5, 'instance_id': 'O:5', 'item_index': 11, 'x': 4, 'y': 2, 'f': 0, 'cells': [[4, 2], [4, 3], [5, 2], [5, 3]]}, {'side': 'O', 'input_slot': 6, 'instance_id': 'O:6', 'item_index': 1, 'x': 1, 'y': 0, 'f': 0, 'cells': [[1, 0], [1, 1]]}, {'side': 'O', 'input_slot': 7, 'instance_id': 'O:7', 'item_index': 1, 'x': 3, 'y': 0, 'f': 0, 'cells': [[3, 0], [3, 1]]}, {'side': 'O', 'input_slot': 8, 'instance_id': 'O:8', 'item_index': 4, 'x': 0, 'y': 2, 'f': 0, 'cells': [[0, 2], [0, 3], [1, 2], [1, 3]]}, {'side': 'O', 'input_slot': 9, 'instance_id': 'O:9', 'item_index': 19, 'x': 4, 'y': 0, 'f': 0, 'cells': [[4, 0], [4, 1]]}, {'side': 'O', 'input_slot': 10, 'instance_id': 'O:10', 'item_index': 22, 'x': 2, 'y': 2, 'f': 0, 'cells': [[2, 2]]}, {'side': 'O', 'input_slot': 11, 'instance_id': 'O:11', 'item_index': 22, 'x': 3, 'y': 2, 'f': 0, 'cells': [[3, 2]]}]
+-BINDING_SOURCE_CONTRACT = {'schema': 'phase360-binding-source-contract/1', 'schema_origin': {'path': 'tests/phase391_king_observer_schema.py', 'size': 208243, 'sha256': 'ffcddfd2cbe58307f7258c1aefad5586a9179c6c452dc59c3342f9047f31457c'}, 'producer_source_origin': {'path': 'data/phase462-joint-observer-source-v3/source-authority.json', 'size': 1054, 'sha256': '53fcd7f2ce1153d86b79f5cdf2c562cb0f86a00de800c4d6455d003ad54dfd63'}, 'fixed_slot_map': {'path': 'data/phase462-joint-observer-source-v3/fixed-plan.json', 'size': 21163, 'sha256': '06feb02caf7e29dc19e2aa402264c31739fde98c58f464bdfaf67db2ef1a0e9f'}, 'fixed_fixture': {'path': 'data/phase462-joint-observer-source-v3/fixed-v8-fixture.json', 'size': 3881, 'sha256': '209704d584e9719841834163758606afd5738f0de14fa90669627b1a52e39963'}, 'evidence_policy': 'SOURCE_ORIGIN_ONLY_NOT_INDEPENDENT_ACCEPTANCE_OR_RUNTIME_ADMISSION'}
++BINDING_FIXED_PLAN = [{'side': 'P', 'input_slot': 0, 'instance_id': 'P:0', 'item_index': 11, 'x': 0, 'y': 0, 'f': 0, 'cells': [[0, 0], [1, 0], [0, 1], [1, 1]]}, {'side': 'P', 'input_slot': 1, 'instance_id': 'P:1', 'item_index': 11, 'x': 2, 'y': 0, 'f': 0, 'cells': [[2, 0], [3, 0], [2, 1], [3, 1]]}, {'side': 'P', 'input_slot': 2, 'instance_id': 'P:2', 'item_index': 11, 'x': 4, 'y': 0, 'f': 0, 'cells': [[4, 0], [5, 0], [4, 1], [5, 1]]}, {'side': 'P', 'input_slot': 3, 'instance_id': 'P:3', 'item_index': 11, 'x': 6, 'y': 0, 'f': 0, 'cells': [[6, 0], [7, 0], [6, 1], [7, 1]]}, {'side': 'P', 'input_slot': 4, 'instance_id': 'P:4', 'item_index': 11, 'x': 0, 'y': 2, 'f': 0, 'cells': [[0, 2], [1, 2], [0, 3], [1, 3]]}, {'side': 'P', 'input_slot': 5, 'instance_id': 'P:5', 'item_index': 11, 'x': 2, 'y': 2, 'f': 0, 'cells': [[2, 2], [3, 2], [2, 3], [3, 3]]}, {'side': 'P', 'input_slot': 6, 'instance_id': 'P:6', 'item_index': 11, 'x': 4, 'y': 2, 'f': 0, 'cells': [[4, 2], [5, 2], [4, 3], [5, 3]]}, {'side': 'P', 'input_slot': 7, 'instance_id': 'P:7', 'item_index': 11, 'x': 6, 'y': 2, 'f': 0, 'cells': [[6, 2], [7, 2], [6, 3], [7, 3]]}, {'side': 'P', 'input_slot': 8, 'instance_id': 'P:8', 'item_index': 22, 'x': 1, 'y': 0, 'f': 0, 'cells': [[1, 0]]}, {'side': 'P', 'input_slot': 9, 'instance_id': 'P:9', 'item_index': 23, 'x': 0, 'y': 1, 'f': 0, 'cells': [[0, 1], [1, 1], [0, 2], [1, 2]]}, {'side': 'P', 'input_slot': 10, 'instance_id': 'P:10', 'item_index': 164, 'x': 2, 'y': 0, 'f': 0, 'cells': [[2, 0], [2, 1], [3, 1]]}, {'side': 'P', 'input_slot': 11, 'instance_id': 'P:11', 'item_index': 22, 'x': 3, 'y': 0, 'f': 0, 'cells': [[3, 0]]}, {'side': 'P', 'input_slot': 12, 'instance_id': 'P:12', 'item_index': 201, 'x': 4, 'y': 0, 'f': 0, 'cells': [[4, 0], [5, 0], [4, 1], [5, 1]]}, {'side': 'P', 'input_slot': 13, 'instance_id': 'P:13', 'item_index': 197, 'x': 6, 'y': 0, 'f': 0, 'cells': [[6, 0], [7, 0], [6, 1], [7, 1]]}, {'side': 'P', 'input_slot': 14, 'instance_id': 'P:14', 'item_index': 199, 'x': 4, 'y': 2, 'f': 0, 'cells': [[4, 2], [5, 2], [4, 3], [5, 3]]}, {'side': 'P', 'input_slot': 15, 'instance_id': 'P:15', 'item_index': 1, 'x': 6, 'y': 2, 'f': 0, 'cells': [[6, 2], [6, 3]]}, {'side': 'O', 'input_slot': 0, 'instance_id': 'O:0', 'item_index': 11, 'x': 0, 'y': 0, 'f': 0, 'cells': [[0, 0], [1, 0], [0, 1], [1, 1]]}, {'side': 'O', 'input_slot': 1, 'instance_id': 'O:1', 'item_index': 11, 'x': 2, 'y': 0, 'f': 0, 'cells': [[2, 0], [3, 0], [2, 1], [3, 1]]}, {'side': 'O', 'input_slot': 2, 'instance_id': 'O:2', 'item_index': 11, 'x': 4, 'y': 0, 'f': 0, 'cells': [[4, 0], [5, 0], [4, 1], [5, 1]]}, {'side': 'O', 'input_slot': 3, 'instance_id': 'O:3', 'item_index': 11, 'x': 6, 'y': 0, 'f': 0, 'cells': [[6, 0], [7, 0], [6, 1], [7, 1]]}, {'side': 'O', 'input_slot': 4, 'instance_id': 'O:4', 'item_index': 11, 'x': 0, 'y': 2, 'f': 0, 'cells': [[0, 2], [1, 2], [0, 3], [1, 3]]}, {'side': 'O', 'input_slot': 5, 'instance_id': 'O:5', 'item_index': 11, 'x': 2, 'y': 2, 'f': 0, 'cells': [[2, 2], [3, 2], [2, 3], [3, 3]]}, {'side': 'O', 'input_slot': 6, 'instance_id': 'O:6', 'item_index': 11, 'x': 4, 'y': 2, 'f': 0, 'cells': [[4, 2], [5, 2], [4, 3], [5, 3]]}, {'side': 'O', 'input_slot': 7, 'instance_id': 'O:7', 'item_index': 11, 'x': 6, 'y': 2, 'f': 0, 'cells': [[6, 2], [7, 2], [6, 3], [7, 3]]}, {'side': 'O', 'input_slot': 8, 'instance_id': 'O:8', 'item_index': 64, 'x': 0, 'y': 0, 'f': 0, 'cells': [[0, 0], [1, 0], [0, 1], [1, 1]]}, {'side': 'O', 'input_slot': 9, 'instance_id': 'O:9', 'item_index': 1, 'x': 2, 'y': 0, 'f': 0, 'cells': [[2, 0], [2, 1]]}, {'side': 'O', 'input_slot': 10, 'instance_id': 'O:10', 'item_index': 1, 'x': 3, 'y': 0, 'f': 0, 'cells': [[3, 0], [3, 1]]}, {'side': 'O', 'input_slot': 11, 'instance_id': 'O:11', 'item_index': 22, 'x': 4, 'y': 0, 'f': 0, 'cells': [[4, 0]]}, {'side': 'O', 'input_slot': 12, 'instance_id': 'O:12', 'item_index': 22, 'x': 4, 'y': 1, 'f': 0, 'cells': [[4, 1]]}]
++BINDING_SOURCE_CONTRACT = {'schema': 'phase360-binding-source-contract/1', 'schema_origin': {'path': 'data/phase462-joint-observer-source-v3/schema/phase462_king_basic_observer_schema.py', 'size': 196289, 'sha256': 'b2cafda5409b048f655f2f2668f915e3e69339ea801569d0420c775776aabd91'}, 'producer_source_origin': {'path': 'data/phase502-whelp-observer-source-v4/source-authority.json', 'size': 3492, 'sha256': '2ffbd2330149605cabaac0742d9dd425ba34cad470b340ed68e62b235ad8ac64'}, 'fixed_slot_map': {'path': 'data/phase502-whelp-observer-source-v4/fixed-plan.json', 'size': 25432, 'sha256': 'b9cfcae4f3324b0571281237ff6cae2ecaf8910fb8b64d3baccf13376821a50a'}, 'fixed_fixture': {'path': 'data/phase502-whelp-observer-source-v4/fixed-v8-fixture.json', 'size': 4290, 'sha256': 'b7b2fdf22b1a7e81800db8b7f3c0dade9f48d9189da3d1793d1d0f62b14ffdd5'}, 'evidence_policy': 'SOURCE_ORIGIN_ONLY_NO_NATIVE_ID_OR_ADMISSION'}
+ 
+ """Appended SOURCE template: auxiliary binding proof, never model admission.
+ 
+@@ -1809,7 +1834,7 @@
+     _binding_same_source(value['source_slot_table'], BINDING_FIXED_PLAN)
+     rows = value['actual_bindings']
+     if type(rows) is not list or len(rows) != len(BINDING_FIXED_PLAN):
+-        raise ValueError('exact26 actual slot bindings')
++        raise ValueError('exact29 actual slot bindings')
+     planned = {row['instance_id']: row for row in BINDING_FIXED_PLAN}
+     roles, natives, characters, inventories = set(), set(), {}, {}
+     descriptor_by_index, index_by_descriptor = {}, {}

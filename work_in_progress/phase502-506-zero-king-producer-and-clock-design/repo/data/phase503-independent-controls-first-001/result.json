@@ -1,0 +1,42 @@
+{
+  "schema": "phase503-actual-synthetic-controls/1",
+  "status": "FIRST_ERROR_STOPPED",
+  "schema_imports": 1,
+  "top_level_calls": 1,
+  "cases": [
+    {
+      "id": "01",
+      "api": "validate_state",
+      "expected": "ACCEPT",
+      "status": "STARTED"
+    }
+  ],
+  "native": 0,
+  "Godot": 0,
+  "models": 0,
+  "host": 0,
+  "Expected_decode": 0,
+  "pool": 0,
+  "producer": 0,
+  "loaded_schema": {
+    "path": "data/phase502-whelp-observer-source-v4/schema/phase502_whelp_observer_schema.py",
+    "size": 197522,
+    "sha256": "d5531e3e9b119f0309140cb50dff2c7f545abb5ec3500d488bde29cacdb8f193"
+  },
+  "error": {
+    "type": "AssertionError",
+    "message": "unexpected rejection: current ordered refs/bools versus prepared array cache",
+    "traceback": "Traceback (most recent call last):\n  File \"/workspace/python-original-engine/repo/tests/phase503_independent_schema_controls.py\", line 43, in main\n    assert error is None, 'unexpected rejection: '+str(error)\n           ^^^^^^^^^^^^^\nAssertionError: unexpected rejection: current ordered refs/bools versus prepared array cache\n"
+  },
+  "wall_seconds": 0.049756034999518306,
+  "all_schema_function_entries_during_top_calls": {
+    "decimal": 22,
+    "exact": 48,
+    "integer": 22,
+    "validate_cache": 1,
+    "validate_state": 1,
+    "validate_typed": 78
+  },
+  "nested_function_entries": 171,
+  "source_and_vectors_after_unchanged": true
+}

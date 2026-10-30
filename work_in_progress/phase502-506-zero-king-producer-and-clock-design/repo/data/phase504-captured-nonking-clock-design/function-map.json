@@ -1,0 +1,431 @@
+{
+  "activities": {
+    "Expected": 0,
+    "Native": 0,
+    "compile": 0,
+    "controls": 0,
+    "implementation": 0,
+    "imports": 0,
+    "models": 0,
+    "pool": 0
+  },
+  "base": "exact497 accepted by498",
+  "body_delta_policy": "Explicit profile/clock/cleanup/checker dispatch predicates only inside listed old methods; all other business statement slices exact497. prepare_only/kernels/shared helpers remain byte-exact.",
+  "engine_existing_changes": {
+    "functions": [
+      {
+        "end_line": 838,
+        "line": 837,
+        "name": "_integration_domain",
+        "sha256": "b2e8f7daf5a3b60d0b8cedeaf235c077d888cd27e42abceb9c1dcf2d4efedacf",
+        "signature": "def _integration_domain(data):"
+      },
+      {
+        "end_line": 1052,
+        "line": 971,
+        "name": "validate_runtime_inputs",
+        "sha256": "4271cd0db99938c78aba03a5dd000a56e0a92dc243f78425ac5a916dc7134995",
+        "signature": "def validate_runtime_inputs(runtime, fixture):"
+      },
+      {
+        "end_line": 1135,
+        "line": 1104,
+        "name": "build_runtime_scaffold",
+        "sha256": "92bf18bf17f53e94a8d021cc6e78c163e13c060986f724577802943c10afa143",
+        "signature": "def build_runtime_scaffold(dto):"
+      },
+      {
+        "end_line": 1319,
+        "line": 1211,
+        "name": "CombatEngine.__init__",
+        "sha256": "5ba51c4e306328be7ced3a6b0901bac387c75360423cbed3094b6dee1f774ecf",
+        "signature": "def __init__(self, fixture, random_source, runtime):"
+      },
+      {
+        "end_line": 1372,
+        "line": 1369,
+        "name": "CombatEngine._validate_pure441_prepared",
+        "sha256": "0ba143f3dbb387c94094d41d05c645daca451b7ceb42c1edd17a11a901ada4b8",
+        "signature": "def _validate_pure441_prepared(self):"
+      },
+      {
+        "end_line": 2077,
+        "line": 1945,
+        "name": "CombatEngine.activate_from_checkpoint",
+        "sha256": "77a0321db63c4f04a19f174539ae49d560e3e358549dc00bc71b4ed1aaad98bb",
+        "signature": "def activate_from_checkpoint(self):"
+      },
+      {
+        "end_line": 3432,
+        "line": 3426,
+        "name": "CombatEngine.death",
+        "sha256": "2d6fb88174b2ec360a26b79025dd6bcd9439bddcb29cbd93e52423e512a8275a",
+        "signature": "def death(self, character):"
+      },
+      {
+        "end_line": 3499,
+        "line": 3463,
+        "name": "CombatEngine.step",
+        "sha256": "02d628ae65cc4524a0dfc272aedc98b33133c5e58cecf0c330e31be70feb0311",
+        "signature": "def step(self, delta=NATIVE_PHYSICS_DELTA):"
+      },
+      {
+        "end_line": 3666,
+        "line": 3655,
+        "name": "CombatEngine.run",
+        "sha256": "4adb96becbe5ccdc9812b3d7efc91b53f928c84b8cfbdba1401545110482bd47",
+        "signature": "def run(self, max_seconds=120.0, delta=NATIVE_PHYSICS_DELTA):"
+      },
+      {
+        "end_line": 3546,
+        "line": 3501,
+        "name": "CombatEngine.finish",
+        "sha256": "dce6c99da9c618b94069d9bc07cd3ca0cf1612741ef2311aaf2b3ebdc9e4290f",
+        "signature": "def finish(self):"
+      },
+      {
+        "end_line": 1771,
+        "line": 1760,
+        "name": "CombatEngine._runtime_projection",
+        "sha256": "f2462c80a0a45e14b4895e8b90dc246079d295db080f41960f8382b1d9f40833",
+        "signature": "def _runtime_projection(self):"
+      },
+      {
+        "end_line": 3622,
+        "line": 3587,
+        "name": "CombatEngine.result",
+        "sha256": "6f4afc08dffe79efb7f888d65ee69f821953ffa646e360a0df84e9ef9d7ebef2",
+        "signature": "def result(self):"
+      },
+      {
+        "end_line": 1435,
+        "line": 1427,
+        "name": "CombatEngine._source_noninterfering_callback",
+        "sha256": "af4b24c9574991ee8274b68dc395a1888d755462207569a81e504f4e746a2dea",
+        "signature": "def _source_noninterfering_callback(self,role,mode,delta):"
+      }
+    ],
+    "source": {
+      "path": "data/phase497-source-three-whelps/staged/native_replay_v8/engine.py",
+      "sha256": "3111f334e05a3ce900f78d3ebcbe54da7e3a78935e23fa29bfe00352fd1bb40b",
+      "size": 244417
+    }
+  },
+  "future_changed_files": [
+    "native_replay_v8/engine.py",
+    "native_replay_v8/genuine.py"
+  ],
+  "future_conserved_module_count": 13,
+  "genuine_existing_dispatch_changes": {
+    "functions": [
+      {
+        "end_line": 149,
+        "line": 75,
+        "name": "validate_profile",
+        "sha256": "f4ceabbe870848bad5ba0ca12c2274ecca39846bb6f20a252e15883e406df07f",
+        "signature": "def validate_profile(data, fixture):"
+      },
+      {
+        "end_line": 225,
+        "line": 151,
+        "name": "validate_result_profile",
+        "sha256": "617e2a5a4d1b1d34e42f3fa9696a685615241b8c6a5c5fbc458a76c21c65037a",
+        "signature": "def validate_result_profile(runtime,fixture):"
+      },
+      {
+        "end_line": 244,
+        "line": 227,
+        "name": "observer_label",
+        "sha256": "bbd985903a2746e9006c71483cb208fa7af2b10ba887b4830bb0dc56671419e5",
+        "signature": "def observer_label(data):"
+      }
+    ],
+    "source": {
+      "path": "data/phase497-source-three-whelps/staged/native_replay_v8/genuine.py",
+      "sha256": "0592caf8baa0221d94235a9d2eef4355f9dabc1bfbb690ee2548d5f5613ee484",
+      "size": 246253
+    }
+  },
+  "kernel_same_as476": {
+    "frame_driver.py": true,
+    "timer_runtime.py": true
+  },
+  "new_functions": [
+    "_captured_whelp_profile",
+    "_captured_whelp_roles",
+    "_validate_captured_whelp_runtime",
+    "CombatEngine._validate_captured_whelp_state",
+    "CombatEngine._run_captured_clock"
+  ],
+  "new_genuine_functions": [
+    "validate_captured_whelp_fixture",
+    "validate_captured_whelp_profile"
+  ],
+  "old_captured_wiring_only": {
+    "functions": [
+      {
+        "end_line": 4083,
+        "line": 4075,
+        "name": "_joint_captured_roles",
+        "sha256": "6580a2dde9e33ac90b558ae1de115eb77c537d5efd38ed37ada7f92355706c6f",
+        "signature": "def _joint_captured_roles(fixture):"
+      },
+      {
+        "end_line": 4188,
+        "line": 4086,
+        "name": "_validate_joint_captured_runtime",
+        "sha256": "32b8a5ec7075a503dfe459fbf233d11a76299d8e2cd0abec43608ba817b0e641",
+        "signature": "def _validate_joint_captured_runtime(data, fixture, original):"
+      },
+      {
+        "end_line": 1395,
+        "line": 1375,
+        "name": "CombatEngine._validate_joint_captured_state",
+        "sha256": "734d1f3272b5f9c4d64f1e02d85f1745bcca89f3783822328c84effde75d3d48",
+        "signature": "def _validate_joint_captured_state(self, prepared):"
+      },
+      {
+        "end_line": 1368,
+        "line": 1365,
+        "name": "CombatEngine._validate_captured_constructed",
+        "sha256": "9af32e46bc675eeea52790506301fbbf3dffa406ab06d37ba81d57af5efa4910",
+        "signature": "def _validate_captured_constructed(self):"
+      },
+      {
+        "end_line": 1373,
+        "line": 1370,
+        "name": "CombatEngine._validate_captured_prepared",
+        "sha256": "2dd4881fdf61772a807273e5e17a20e1862669f500880464417250cb7253d0d9",
+        "signature": "def _validate_captured_prepared(self):"
+      }
+    ],
+    "source": {
+      "path": "data/phase476-joint-condition-repair/staged/native_replay_v8/engine.py",
+      "sha256": "e06bf6493baf0d5d4250c73ea13f6388a0925556e1aafde4043ab9a21871a118",
+      "size": 252264
+    }
+  },
+  "old_genuine_admission_only": {
+    "functions": [
+      {
+        "end_line": 1118,
+        "line": 1108,
+        "name": "validate_captured_joint_fixture",
+        "sha256": "3874a91ae0c902e5406bdd7ed10ac9a6096f4a267e83140c3bf9a140fb964327",
+        "signature": "def validate_captured_joint_fixture(fixture):"
+      },
+      {
+        "end_line": 1126,
+        "line": 1121,
+        "name": "validate_captured_joint_profile",
+        "sha256": "1b976824ea4dc9bacf995ef894ace74c25a03fc4776c92642f1ae7ddf864c006",
+        "signature": "def validate_captured_joint_profile(data, fixture):"
+      }
+    ],
+    "source": {
+      "path": "data/phase476-joint-condition-repair/staged/native_replay_v8/genuine.py",
+      "sha256": "2b16a2a79c4601e584cf1bb8e4ddbdbcca67be08d0c4a2c322cd6e21b21e55fe",
+      "size": 249070
+    }
+  },
+  "reused_exact_shared_slices": {
+    "functions": [
+      {
+        "end_line": 1168,
+        "line": 1145,
+        "name": "EngineFrameDriver",
+        "sha256": "71edc2ee0a0d332f0b5cdf536f7f5494d886c059d4075e90f0666c6075523cbe",
+        "signature": "class EngineFrameDriver(FrameDriver):"
+      },
+      {
+        "end_line": 1943,
+        "line": 1844,
+        "name": "CombatEngine.prepare_only",
+        "sha256": "f099a4e29466ab89f75589bc73c8cd77647f14c01dfdd3be11bd849be2332170",
+        "signature": "def prepare_only(self):"
+      },
+      {
+        "end_line": 1398,
+        "line": 1374,
+        "name": "CombatEngine._pure_business_snapshot",
+        "sha256": "8895b4bdc6ec823ceb7653da6176837f59c160285425c0a61a987d9553bc7258",
+        "signature": "def _pure_business_snapshot(self, stage):"
+      },
+      {
+        "end_line": 1403,
+        "line": 1400,
+        "name": "CombatEngine._pure_api_before",
+        "sha256": "12fb7e1090840d04a0f1faa50846adbb72569f58fcabee0d0979abae5cf88010",
+        "signature": "def _pure_api_before(self, role, operation, args):"
+      },
+      {
+        "end_line": 1409,
+        "line": 1405,
+        "name": "CombatEngine._pure_api_after",
+        "sha256": "e2d6f63ddc20cf1088bee15ef2bd748931dfb66f2cea5f964c605c1a8dbb6a1f",
+        "signature": "def _pure_api_after(self, role, operation, args, helper_status):"
+      },
+      {
+        "end_line": 1504,
+        "line": 1490,
+        "name": "CombatEngine._start_timer",
+        "sha256": "b589410f10fe20ab880b2d98888bf7625d5ee71dbdbf8a1ac0bc165dd46f4667",
+        "signature": "def _start_timer(self, role, *args):"
+      },
+      {
+        "end_line": 1512,
+        "line": 1506,
+        "name": "CombatEngine._stop_timer",
+        "sha256": "220a04f237ac8a3091adb2bfcb91afc13b404df0647f2a583d4272eb162d22a7",
+        "signature": "def _stop_timer(self, role):"
+      },
+      {
+        "end_line": 1537,
+        "line": 1514,
+        "name": "CombatEngine._timer_timeout",
+        "sha256": "a3d15ef495e44db9883a7168d6e41233c139017c52f9ba948088fa4473e32f38",
+        "signature": "def _timer_timeout(self, role):"
+      },
+      {
+        "end_line": 1563,
+        "line": 1543,
+        "name": "CombatEngine._king_ordinary",
+        "sha256": "349351c2f549411cdcdee643d83bfc02912cb941a4bac70d205c7a994a4e5026",
+        "signature": "def _king_ordinary(self,role,delta):"
+      },
+      {
+        "end_line": 1367,
+        "line": 1349,
+        "name": "CombatEngine._validate_pure441_constructed",
+        "sha256": "83eaace9362e8380d1165a38563f32a61713203128ef689b411be20f7729dbb5",
+        "signature": "def _validate_pure441_constructed(self):"
+      },
+      {
+        "end_line": 3896,
+        "line": 3890,
+        "name": "_assert_pure441_timer",
+        "sha256": "eb2e39a49e57ce2926bf9bacb3b8e164d636a7c485e15ea128db754fa4e8fe5b",
+        "signature": "def _assert_pure441_timer(node, initial):"
+      },
+      {
+        "end_line": 3925,
+        "line": 3899,
+        "name": "_build_pure441_scaffold",
+        "sha256": "d1467abcfef7b1dfb89f1328888923ea989130f7640c7deff36d73efba623d3f",
+        "signature": "def _build_pure441_scaffold(dto):"
+      },
+      {
+        "end_line": 2867,
+        "line": 2844,
+        "name": "CombatEngine.activate",
+        "sha256": "c06ec7b2948b6e896f4f19aa65173aa0049c66666c39bcd5a40796af0effd973",
+        "signature": "def activate(self, item):"
+      },
+      {
+        "end_line": 3424,
+        "line": 3369,
+        "name": "CombatEngine.attack",
+        "sha256": "8ba8e87066280a9001c899ba46ee43bc57f6be3b4f834b6e5c2e25740d8ab6c8",
+        "signature": "def attack(self, item, parent=None):"
+      },
+      {
+        "end_line": 3346,
+        "line": 3305,
+        "name": "CombatEngine.pre_item_damage",
+        "sha256": "c621bc2554c82d261b77d11b6efe11ddae2a8b0a9694acc5eaa8b5a8d7e3b7c9",
+        "signature": "def pre_item_damage(self, item, hit):"
+      },
+      {
+        "end_line": 2729,
+        "line": 2702,
+        "name": "CombatEngine.pick_random_stacks",
+        "sha256": "7382f8de10cdaa0c6a3b3f083dc2f2e8ac4099af31aaebffb5be3e526b4cdda7",
+        "signature": "def pick_random_stacks(self, item, stack_types, num_stacks, target, priority_stack=None):"
+      },
+      {
+        "end_line": 2756,
+        "line": 2750,
+        "name": "CombatEngine.give_random_buffs",
+        "sha256": "f53caffcb11ff93ce2b8b5bafec3a0d00445f710886f9e7c5e3b87998ae0007d",
+        "signature": "def give_random_buffs(self, item, num_buffs, parent=None, available_buffs=range(101, 108), target=None):"
+      },
+      {
+        "end_line": 2783,
+        "line": 2777,
+        "name": "CombatEngine.remove_random_buffs",
+        "sha256": "952b7a65956024eba8496ea4122a1c61c29f941fd8c0d3cd64f0c35a63244cef",
+        "signature": "def remove_random_buffs(self, item, num_buffs, parent=None):"
+      },
+      {
+        "end_line": 2793,
+        "line": 2785,
+        "name": "CombatEngine.steal_random_buff",
+        "sha256": "1bd3bfc42af017e3d0b4aae4d50d78631c61b669017d8013740d4e74775d45ab",
+        "signature": "def steal_random_buff(self, item, num_buffs, parent=None, possible_buffs=range(101, 108), priority_buff=None):"
+      },
+      {
+        "end_line": 2537,
+        "line": 2483,
+        "name": "CombatEngine.remove_stack",
+        "sha256": "43686ffb0be867d30bfaa58ff1e4c6d3cb7e2d7b39d666a7aed697e568af97e4",
+        "signature": "def remove_stack(self, item, side, stack_type, amount, parent=None, used=False):"
+      },
+      {
+        "end_line": 2540,
+        "line": 2539,
+        "name": "CombatEngine.use_stack",
+        "sha256": "3251b0c95d488bd0b7c6739577f858223187ab72473f92214b5a16a3e6c7fa13",
+        "signature": "def use_stack(self, item, side, stack_type, amount, parent=None):"
+      },
+      {
+        "end_line": 1639,
+        "line": 1633,
+        "name": "CombatEngine._fresh_goobert_targets",
+        "sha256": "fc3513aacae8419951def77a43b79d2533be2b0c1ee9e1012862d670f002bdc3",
+        "signature": "def _fresh_goobert_targets(self,item):"
+      },
+      {
+        "end_line": 2912,
+        "line": 2869,
+        "name": "CombatEngine.on_goobert_item_activated",
+        "sha256": "bb496a68d8686688cefec12fd1193b6f4ea0c34b3b1ffea528f9acd46e6d13fa",
+        "signature": "def on_goobert_item_activated(self, item, event):"
+      },
+      {
+        "end_line": 2967,
+        "line": 2943,
+        "name": "CombatEngine.special_goobert_effect",
+        "sha256": "49e11d223de381bc594b1a0407d9744d75a8d0d72f07b528a7e823e9768e5e07",
+        "signature": "def special_goobert_effect(self, item):"
+      }
+    ],
+    "source": {
+      "path": "data/phase497-source-three-whelps/staged/native_replay_v8/engine.py",
+      "sha256": "3111f334e05a3ce900f78d3ebcbe54da7e3a78935e23fa29bfe00352fd1bb40b",
+      "size": 244417
+    }
+  },
+  "schema": "phase504-function-level-minimum-design/1",
+  "source_original_character": {
+    "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Character.gd",
+    "sha256": "dc372965eaa048657caa1646d70aba85ff9b4b9677565eaa480bc195de027496",
+    "size": 48033
+  },
+  "source_original_combatEnd_lines": [
+    338,
+    347
+  ],
+  "status": "DESIGN_ONLY_NOT_IMPLEMENTED",
+  "unchanged_kernel_sources": [
+    {
+      "path": "data/phase497-source-three-whelps/staged/native_replay_v7/frame_driver.py",
+      "sha256": "9d8e361144e353a8d944e4490502c5301e7a92451771d35f22ab48f6277f64fd",
+      "size": 12318
+    },
+    {
+      "path": "data/phase497-source-three-whelps/staged/native_replay_v7/timer_runtime.py",
+      "sha256": "5b7c14ebb7c7511aa05a3411752c7f3341b925c00de31eedfacf4f9345f4a109",
+      "size": 38705
+    }
+  ]
+}

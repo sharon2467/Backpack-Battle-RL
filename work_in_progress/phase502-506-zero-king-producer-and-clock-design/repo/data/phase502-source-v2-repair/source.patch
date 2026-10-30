@@ -1,0 +1,22 @@
+--- tests/phase502_prepare_whelp_observer_source.py
++++ tests/phase502_prepare_whelp_observer_source_v2.py
+@@ -9,8 +9,8 @@
+ import traceback
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+-OUT = ROOT / 'data/phase502-whelp-observer-source'
+-SPEC = 'docs/phase502_whelp_observer_source_implementation_spec.md'
++OUT = ROOT / 'data/phase502-whelp-observer-source-v2'
++SPEC = 'docs/phase502_whelp_observer_source_v2_compile_repair_spec.md'
+ BASE = 'data/phase462-joint-observer-source-v3'
+ PROFILE = 'observer7-whelp-family-A-native-tape/1'
+ VERSION = '7-whelp-family-A-502'
+@@ -494,7 +494,7 @@
+         case_inputs=[dict(target=p.name,source=descriptor(p)) for p in sorted((OUT/'case-inputs').glob('*.json'))],
+         actual_pool_preimages_verified=False,host_ready=False,install_or_execute_authorized=False,
+         old_reference=dict(count=78,bytes=812880,applicable=False),
+-        restore_requirement='Actual predecessor union, new Squirrel preimage and touched-directory metadata; no hardcoded old80 restore count')))
++        restore_requirement='Actual predecessor union, new Squirrel preimage and touched-directory metadata; no hardcoded old80 restore count'))
+     save(OUT/'source-tuple.json',dict(schema='phase502-zero-king-observer-source-tuple/1',profile=PROFILE,
+         observer_version=VERSION,case=CASE,terminal_policy=old_patch['terminal_policy'],producer=descriptor(Path(__file__)),
+         sink=artifacts['sink'],collector=artifacts['collector'],schema_module=artifacts['schema'],

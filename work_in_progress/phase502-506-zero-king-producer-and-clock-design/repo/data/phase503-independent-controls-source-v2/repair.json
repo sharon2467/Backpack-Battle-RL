@@ -1,0 +1,36 @@
+{
+  "schema": "phase503-v2-repair/1",
+  "source502_unchanged": true,
+  "old_script": {
+    "path": "tests/phase503_independent_schema_controls.py",
+    "size": 4202,
+    "sha256": "e9337ab45c20a3592dac2eeb363f19eddbc1635a4325180ea71726cca92f7817"
+  },
+  "old_vectors": {
+    "path": "data/phase503-independent-controls-source/vectors.json",
+    "size": 205692,
+    "sha256": "041e103b404701748b6140a09d960d2125ca28d6a1f1e4dba5769b800340e5d5"
+  },
+  "new_script": {
+    "path": "tests/phase503_independent_schema_controls_v2.py",
+    "size": 4202,
+    "sha256": "121b71fb05d64b24348ae65df18aeb6062dbbb56f2165b39085ed4d64b73943d"
+  },
+  "new_vectors": {
+    "path": "data/phase503-independent-controls-source-v2/vectors.json",
+    "size": 205788,
+    "sha256": "ac47cb5a1795a4a5de5b1787812f8a0fbf1916f0a966c07c404c079ef32f348e"
+  },
+  "vector_changed_container_count": 16,
+  "case_ids": [
+    "01",
+    "02",
+    "03",
+    "04"
+  ],
+  "other_cases_and_expectations_exact": true,
+  "runner_change": "two source/output namespace literals only",
+  "new_imports": 0,
+  "new_helper_calls": 0,
+  "compile_only": 1
+}

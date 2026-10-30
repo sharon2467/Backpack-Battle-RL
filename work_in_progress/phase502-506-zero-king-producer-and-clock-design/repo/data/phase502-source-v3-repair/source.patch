@@ -1,0 +1,22 @@
+--- tests/phase502_prepare_whelp_observer_source_v2.py
++++ tests/phase502_prepare_whelp_observer_source_v3.py
+@@ -9,8 +9,8 @@
+ import traceback
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+-OUT = ROOT / 'data/phase502-whelp-observer-source-v2'
+-SPEC = 'docs/phase502_whelp_observer_source_v2_compile_repair_spec.md'
++OUT = ROOT / 'data/phase502-whelp-observer-source-v3'
++SPEC = 'docs/phase502_whelp_observer_source_v3_compile_repair_spec.md'
+ BASE = 'data/phase462-joint-observer-source-v3'
+ PROFILE = 'observer7-whelp-family-A-native-tape/1'
+ VERSION = '7-whelp-family-A-502'
+@@ -534,7 +534,7 @@
+         project_install_count=len(targets),project_install_source_bytes=total,
+         imports=0,schema_calls=0,models=0,Godot=0,Expected_reads=0,pool_operations=0,
+         actual_native_canAdd='UNOBSERVED',actual_native_below_master=None,
+-        later='Independent Source and limited Python synthetic controls only; no automatic parse/install/capture; nonKing realclock consumer phase504')))
++        later='Independent Source and limited Python synthetic controls only; no automatic parse/install/capture; nonKing realclock consumer phase504'))
+     owned = [descriptor(ROOT/SPEC),descriptor(Path(__file__))] + [descriptor(p) for p in sorted(OUT.rglob('*')) if p.is_file()] + external
+     # Keep one exact physical Source identity per path, including complete external closure.
+     unique = {}

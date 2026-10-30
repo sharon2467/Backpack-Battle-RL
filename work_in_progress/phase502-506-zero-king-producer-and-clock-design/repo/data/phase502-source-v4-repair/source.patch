@@ -1,0 +1,22 @@
+--- tests/phase502_prepare_whelp_observer_source_v3.py
++++ tests/phase502_prepare_whelp_observer_source_v4.py
+@@ -9,8 +9,8 @@
+ import traceback
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+-OUT = ROOT / 'data/phase502-whelp-observer-source-v3'
+-SPEC = 'docs/phase502_whelp_observer_source_v3_compile_repair_spec.md'
++OUT = ROOT / 'data/phase502-whelp-observer-source-v4'
++SPEC = 'docs/phase502_whelp_observer_source_v4_assignment_anchor_repair_spec.md'
+ BASE = 'data/phase462-joint-observer-source-v3'
+ PROFILE = 'observer7-whelp-family-A-native-tape/1'
+ VERSION = '7-whelp-family-A-502'
+@@ -108,7 +108,7 @@
+         nodes = [n for n in ast.parse(self.text).body if isinstance(n, ast.Assign)
+                  and any(isinstance(t, ast.Name) and t.id == name for t in n.targets)]
+         require(len(nodes) == 1, 'unique Python constant ' + name)
+-        self.replace(ast.get_source_segment(self.text, nodes[0]), name + ' = ' + expression)
++        self.replace('\n' + ast.get_source_segment(self.text, nodes[0]) + '\n', '\n' + name + ' = ' + expression + '\n')
+ 
+     def function(self, name, replacements):
+         functions = py_functions(self.text) if self.language == 'py' else gd_functions(self.text)

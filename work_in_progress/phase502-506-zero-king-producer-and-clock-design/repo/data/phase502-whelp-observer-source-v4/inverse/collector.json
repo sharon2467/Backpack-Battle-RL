@@ -1,0 +1,133 @@
+{
+  "after": {
+    "path": "data/phase502-whelp-observer-source-v4/collector.gd",
+    "sha256": "640bdb9b1a62e57827faed1775054d7450a411ca3b647f70f286b851436f1dfd",
+    "size": 64612
+  },
+  "before": {
+    "path": "data/phase462-joint-observer-source-v3/collector.gd",
+    "sha256": "feb22de0f4427b0412d136d9f56ee0ab17ab8d8044fc225244a69d9cc8ccf273",
+    "size": 64365
+  },
+  "changed_functions": [
+    "on_idle_source_cut",
+    "state_snapshot"
+  ],
+  "conserved_functions": [
+    "_initialize",
+    "after_activate",
+    "attach_source_listener",
+    "check_barrier",
+    "check_source_listener_order",
+    "collector_control_bound_value",
+    "collector_control_float_bits",
+    "collector_control_rows",
+    "collector_control_target",
+    "collector_diag_valid",
+    "collector_diagnostic_fallback",
+    "config_matches_source",
+    "encode",
+    "ensure_source_window",
+    "event_row",
+    "exact_keys",
+    "fail",
+    "fail_write_cap",
+    "fields",
+    "finish_source_cut",
+    "frames",
+    "freeze_events",
+    "histories",
+    "integer_between",
+    "native_ids",
+    "observe",
+    "observe_player_setup",
+    "observer7_precondition",
+    "old_player_exit_valid",
+    "on_combat_end",
+    "on_combat_start",
+    "on_shop_closed",
+    "phase",
+    "place_player_items",
+    "player_input_valid",
+    "player_membership_unchanged",
+    "player_setup_settled",
+    "player_spatial_evidence",
+    "preflight",
+    "read_player_fixture",
+    "register_inventory",
+    "rules_are_default",
+    "run_context",
+    "same_id_set",
+    "serializer_selftest",
+    "set_stage",
+    "setup_step",
+    "slot_spec",
+    "source_connection_target",
+    "source_control_record",
+    "source_control_snapshot",
+    "source_cut_reject_collector",
+    "source_is",
+    "source_terminal_receipt_matches",
+    "source_window_reject",
+    "stable_snapshot",
+    "start_controlled_combat",
+    "timeout_budget_selftest",
+    "timeout_budget_valid",
+    "write_json",
+    "write_jsonl",
+    "write_source_bytes"
+  ],
+  "edits": [
+    {
+      "after": "const SOURCE_P = {\"class\": 0, \"game_version\": \"1.1.8\", \"health\": 240, \"items\": [{\"f\": 0, \"item_index\": 11, \"x\": 0, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 2, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 4, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 6, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 0, \"y\": 2}, {\"f\": 0, \"item_index\": 11, \"x\": 2, \"y\": 2}, {\"f\": 0, \"item_index\": 11, \"x\": 4, \"y\": 2}, {\"f\": 0, \"item_index\": 11, \"x\": 6, \"y\": 2}, {\"f\": 0, \"item_index\": 22, \"x\": 1, \"y\": 0}, {\"f\": 0, \"item_index\": 23, \"x\": 0, \"y\": 1}, {\"f\": 0, \"item_index\": 164, \"x\": 2, \"y\": 0}, {\"f\": 0, \"item_index\": 22, \"x\": 3, \"y\": 0}, {\"f\": 0, \"item_index\": 201, \"x\": 4, \"y\": 0}, {\"f\": 0, \"item_index\": 197, \"x\": 6, \"y\": 0}, {\"f\": 0, \"item_index\": 199, \"x\": 4, \"y\": 2}, {\"f\": 0, \"item_index\": 1, \"x\": 6, \"y\": 2}], \"schema_version\": 1, \"stamina\": 5}",
+      "after_positions": [
+        404
+      ],
+      "before": "const SOURCE_P = {\"class\": 0, \"game_version\": \"1.1.8\", \"health\": 240, \"items\": [{\"f\": 0, \"item_index\": 11, \"x\": 0, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 2, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 4, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 0, \"y\": 2}, {\"f\": 0, \"item_index\": 11, \"x\": 2, \"y\": 2}, {\"f\": 0, \"item_index\": 11, \"x\": 4, \"y\": 2}, {\"f\": 0, \"item_index\": 262, \"x\": 2, \"y\": 0}, {\"f\": 0, \"item_index\": 23, \"x\": 4, \"y\": 0}, {\"f\": 0, \"item_index\": 22, \"x\": 1, \"y\": 0}, {\"f\": 0, \"item_index\": 22, \"x\": 1, \"y\": 1}, {\"f\": 0, \"item_index\": 22, \"x\": 1, \"y\": 2}, {\"f\": 0, \"item_index\": 22, \"x\": 4, \"y\": 2}, {\"f\": 0, \"item_index\": 1, \"x\": 0, \"y\": 0}, {\"f\": 0, \"item_index\": 1, \"x\": 0, \"y\": 2}], \"schema_version\": 1, \"stamina\": 5}",
+      "occurrences": 1
+    },
+    {
+      "after": "const SOURCE_O = {\"class\": 0, \"game_version\": \"1.1.8\", \"health\": 300, \"items\": [{\"f\": 0, \"item_index\": 11, \"x\": 0, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 2, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 4, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 6, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 0, \"y\": 2}, {\"f\": 0, \"item_index\": 11, \"x\": 2, \"y\": 2}, {\"f\": 0, \"item_index\": 11, \"x\": 4, \"y\": 2}, {\"f\": 0, \"item_index\": 11, \"x\": 6, \"y\": 2}, {\"f\": 0, \"item_index\": 64, \"x\": 0, \"y\": 0}, {\"f\": 0, \"item_index\": 1, \"x\": 2, \"y\": 0}, {\"f\": 0, \"item_index\": 1, \"x\": 3, \"y\": 0}, {\"f\": 0, \"item_index\": 22, \"x\": 4, \"y\": 0}, {\"f\": 0, \"item_index\": 22, \"x\": 4, \"y\": 1}], \"schema_version\": 1, \"stamina\": 5}",
+      "after_positions": [
+        1227
+      ],
+      "before": "const SOURCE_O = {\"class\": 0, \"game_version\": \"1.1.8\", \"health\": 260, \"items\": [{\"f\": 0, \"item_index\": 11, \"x\": 0, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 2, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 4, \"y\": 0}, {\"f\": 0, \"item_index\": 11, \"x\": 0, \"y\": 2}, {\"f\": 0, \"item_index\": 11, \"x\": 2, \"y\": 2}, {\"f\": 0, \"item_index\": 11, \"x\": 4, \"y\": 2}, {\"f\": 0, \"item_index\": 1, \"x\": 1, \"y\": 0}, {\"f\": 0, \"item_index\": 1, \"x\": 3, \"y\": 0}, {\"f\": 0, \"item_index\": 4, \"x\": 0, \"y\": 2}, {\"f\": 0, \"item_index\": 19, \"x\": 4, \"y\": 0}, {\"f\": 0, \"item_index\": 22, \"x\": 2, \"y\": 2}, {\"f\": 0, \"item_index\": 22, \"x\": 3, \"y\": 2}], \"schema_version\": 1, \"stamina\": 5}",
+      "occurrences": 1
+    },
+    {
+      "after": "const SOURCE_CONFIG = {\"case_id\": \"NATIVE-029-WHELP-FAMILY-A\", \"global_seed\": 50201, \"player_fixture_enabled\": true, \"schema\": \"native-combat-capture/1\", \"timeouts\": {\"battle_seconds\": 120, \"total_seconds\": 295}, \"util_seed\": 50202}",
+      "after_positions": [
+        1913
+      ],
+      "before": "const SOURCE_CONFIG = {\"case_id\": \"NATIVE-028-KING-BASIC-A\", \"global_seed\": 45701, \"player_fixture_enabled\": true, \"schema\": \"native-combat-capture/1\", \"timeouts\": {\"battle_seconds\": 120, \"total_seconds\": 295}, \"util_seed\": 45702}",
+      "occurrences": 1
+    },
+    {
+      "after": "const PLAYER_ITEM_WHITELIST = [1, 11, 22, 23, 64, 164, 197, 199, 201]",
+      "after_positions": [
+        2183
+      ],
+      "before": "const PLAYER_ITEM_WHITELIST = [1, 4, 11, 19, 22, 23, 262]",
+      "occurrences": 1
+    },
+    {
+      "after": "func state_snapshot():\n\tvar characters = []\n\tfor c in [game.PLAYER, game.OPPONENT]:\n\t\tif c == null:\n\t\t\tcontinue\n\t\tvar buffs = []\n\t\tfor key in c.buffs:\n\t\t\tbuffs.append({\"stack_type\": encode(key), \"fields\": fields(c.buffs[key], [\"type\", \"current\", \"permanentStacks\", \"resistChancePercent\", \"resistStacks\", \"reflectChancePercent\", \"cleanseProtectionChancePercent\", \"temporaryStacks\", \"nextTemporaryTimeout\"])})\n\t\tvar items = []\n\t\tfor item in c.INVENTORY.getItems():\n\t\t\tvar observer7_fields = {}\n\t\t\tif item.descriptor.itemIndex == 62:\n\t\t\t\tobserver7_fields = fields(item, [\"reflects\", \"heat\"])\n\t\t\tif item.descriptor.itemIndex == 179:\n\t\t\t\tobserver7_fields = fields(item, [\"manaNeeded\", \"cold\", \"spellSpeed\"])\n\t\t\tif item.descriptor.itemIndex == 332:\n\t\t\t\tobserver7_fields = fields(item, [\"buffFactor\", \"buffLimit\"])\n\t\t\tif item.descriptor.itemIndex == 374:\n\t\t\t\tobserver7_fields = fields(item, [\"cleanses\", \"potionSpeed\"])\n\t\t\tif item.descriptor.itemIndex == 32:\n\t\t\t\tobserver7_fields = fields(item,[\"manaCost\",\"tempDamBonus\",\"permDamBonus\"])\n\t\t\tif item.descriptor.itemIndex == 209:\n\t\t\t\tobserver7_fields = fields(item,[\"permDamBonus\"])\n\t\t\tif item.descriptor.itemIndex == 39:\n\t\t\t\tobserver7_fields = fields(item,[\"affectedItems\"])\n\t\t\tif item.descriptor.itemIndex == 3:\n\t\t\t\tobserver7_fields = fields(item,[\"broomBonusDam\"])\n\t\t\tif item.descriptor.itemIndex in [19,35,36,37,46,172]:\n\t\t\t\tobserver7_fields = fields(item,[\"isFull\"])\n\t\t\tif item.descriptor.itemIndex == 172:\n\t\t\t\tobserver7_fields = fields(item,[\"isFull\",\"healthThreshold\"])\n\t\t\tif item.descriptor.itemIndex == 129:\n\t\t\t\tobserver7_fields = fields(item, [\"activated\"])\n\t\t\tif source_is(item, \"res://Items/Goobert.gd\"):\n\t\t\t\tobserver7_fields = fields(item, [\"activations\", \"activationsToTrigger\"])\n\t\t\tif item.descriptor.itemIndex == 168:\n\t\t\t\tobserver7_fields = fields(item, [\"activations\", \"activationsToTrigger\", \"empower\"])\n\t\t\tif item.descriptor.itemIndex == 53:\n\t\t\t\tobserver7_fields = fields(item, [\"activations\", \"activationsToTrigger\", \"blindAmount\"])\n\t\t\telif item.descriptor.itemIndex == 54:\n\t\t\t\tobserver7_fields = fields(item, [\"activations\", \"activationsToTrigger\", \"dam\", \"vampirism\"])\n\t\t\telif item.descriptor.itemIndex == 52:\n\t\t\t\tobserver7_fields = fields(item, [\"activations\", \"activationsToTrigger\", \"affectedWeapons\"])\n\t\t\telif item.descriptor.itemIndex == 340:\n\t\t\t\tobserver7_fields = fields(item, [\"activations\", \"activationsToTrigger\", \"numBuffs\"])\n\t\t\telif item.descriptor.itemIndex == 400:\n\t\t\t\tobserver7_fields = fields(item, [\"activations\", \"activationsToTrigger\", \"luck\", \"luckNeeded\", \"regen\"])\n\t\t\telif item.descriptor.itemIndex == 469:\n\t\t\t\tobserver7_fields = fields(item, [\"activations\", \"activationsToTrigger\", \"vampirism\", \"regen\", \"stamina\", \"blind\", \"dambonus\"])\n\t\t\telif item.descriptor.itemIndex == 468:\n\t\t\t\tobserver7_fields = fields(item, [\"activations\", \"activationsToTrigger\", \"staminaThreshold\", \"stamina\", \"regen\"])\n\t\t\tif item.descriptor.itemIndex == 262:\n\t\t\t\tobserver7_fields = fields(item, [\"activations\", \"activationsToTrigger\", \"invuCharges\", \"protectedBuffs\", \"manaCost\"])\n\t\t\tif item.descriptor.itemIndex == 199:\n\t\t\t\tobserver7_fields = fields(item, [\"stackTypes\"])\n\t\t\tvar observer7_timers = {}\n\t\t\tif item.descriptor.itemIndex in [53, 168]:\n\t\t\t\tvar observer = get_root().get_node(\"NativeRandomObserver\")\n\t\t\t\tobserver.begin_encoding()\n\t\t\t\tobserver7_timers = {\"particleTimer\": observer.timer_state(item.particleTimer)}\n\t\t\titems.append({\"observer7_timers\": observer7_timers, \"observer7_fields\": observer7_fields, \"instance\": encode(item), \"fields\": fields(item, ITEM_FIELDS), \"physics_processing\": item.is_physics_processing(), \"chance_rng\": fields(item.chanceRng, RNG_FIELDS), \"damage_rng\": fields(item.damageRangeRng, [\"acc\"])})\n\t\tvar balanced = {}\n\t\tfor key in [\"accuracyRng\", \"critRng\", \"critResistanceRng\", \"stunResistanceRng\"]:\n\t\t\tbalanced[key] = fields(c.get(key), RNG_FIELDS)\n\t\tvar stats = {}\n\t\tfor stat_id in c.Stat.values():\n\t\t\tstats[stat_id] = c.getStat(stat_id)\n\t\tcharacters.append({\"stats\": encode(stats), \"instance\": encode(c), \"fields\": fields(c, CHAR_FIELDS), \"buffs\": buffs, \"items\": items, \"balanced_rng\": balanced, \"physics_processing\": c.is_physics_processing()})\n\treturn {\"event_bus\": {\"logging_mode\": encode(bus.loggingMode), \"pending_signal_count\": bus.signalQueue.size(), \"connection_count\": bus.connections.size()}, \"game\": fields(game, [\"curMode\", \"curClass\", \"curRound\", \"wins\", \"losses\", \"tries\", \"survivalMode\", \"fightEnded\", \"roundResults\", \"ropeSpeedups\", \"cubeAdvanced\", \"sandbagActive\", \"numTimesOutOfStamina\"]), \"characters\": characters, \"timer\": fields(game.combatTimer, [\"combatTime\", \"timeAdvance\", \"fatigueCounter\"]), \"rules\": fields(rules, [\"customRulesActive\", \"values\"])}",
+      "after_positions": [
+        30100
+      ],
+      "before": "func state_snapshot():\n\tvar characters = []\n\tfor c in [game.PLAYER, game.OPPONENT]:\n\t\tif c == null:\n\t\t\tcontinue\n\t\tvar buffs = []\n\t\tfor key in c.buffs:\n\t\t\tbuffs.append({\"stack_type\": encode(key), \"fields\": fields(c.buffs[key], [\"type\", \"current\", \"permanentStacks\", \"resistChancePercent\", \"resistStacks\", \"reflectChancePercent\", \"cleanseProtectionChancePercent\", \"temporaryStacks\", \"nextTemporaryTimeout\"])})\n\t\tvar items = []\n\t\tfor item in c.INVENTORY.getItems():\n\t\t\tvar observer7_fields = {}\n\t\t\tif item.descriptor.itemIndex == 62:\n\t\t\t\tobserver7_fields = fields(item, [\"reflects\", \"heat\"])\n\t\t\tif item.descriptor.itemIndex == 179:\n\t\t\t\tobserver7_fields = fields(item, [\"manaNeeded\", \"cold\", \"spellSpeed\"])\n\t\t\tif item.descriptor.itemIndex == 332:\n\t\t\t\tobserver7_fields = fields(item, [\"buffFactor\", \"buffLimit\"])\n\t\t\tif item.descriptor.itemIndex == 374:\n\t\t\t\tobserver7_fields = fields(item, [\"cleanses\", \"potionSpeed\"])\n\t\t\tif item.descriptor.itemIndex == 32:\n\t\t\t\tobserver7_fields = fields(item,[\"manaCost\",\"tempDamBonus\",\"permDamBonus\"])\n\t\t\tif item.descriptor.itemIndex == 209:\n\t\t\t\tobserver7_fields = fields(item,[\"permDamBonus\"])\n\t\t\tif item.descriptor.itemIndex == 39:\n\t\t\t\tobserver7_fields = fields(item,[\"affectedItems\"])\n\t\t\tif item.descriptor.itemIndex == 3:\n\t\t\t\tobserver7_fields = fields(item,[\"broomBonusDam\"])\n\t\t\tif item.descriptor.itemIndex in [19,35,36,37,46,172]:\n\t\t\t\tobserver7_fields = fields(item,[\"isFull\"])\n\t\t\tif item.descriptor.itemIndex == 172:\n\t\t\t\tobserver7_fields = fields(item,[\"isFull\",\"healthThreshold\"])\n\t\t\tif item.descriptor.itemIndex == 129:\n\t\t\t\tobserver7_fields = fields(item, [\"activated\"])\n\t\t\tif source_is(item, \"res://Items/Goobert.gd\"):\n\t\t\t\tobserver7_fields = fields(item, [\"activations\", \"activationsToTrigger\"])\n\t\t\tif item.descriptor.itemIndex == 168:\n\t\t\t\tobserver7_fields = fields(item, [\"activations\", \"activationsToTrigger\", \"empower\"])\n\t\t\tif item.descriptor.itemIndex == 53:\n\t\t\t\tobserver7_fields = fields(item, [\"activations\", \"activationsToTrigger\", \"blindAmount\"])\n\t\t\telif item.descriptor.itemIndex == 54:\n\t\t\t\tobserver7_fields = fields(item, [\"activations\", \"activationsToTrigger\", \"dam\", \"vampirism\"])\n\t\t\telif item.descriptor.itemIndex == 52:\n\t\t\t\tobserver7_fields = fields(item, [\"activations\", \"activationsToTrigger\", \"affectedWeapons\"])\n\t\t\telif item.descriptor.itemIndex == 340:\n\t\t\t\tobserver7_fields = fields(item, [\"activations\", \"activationsToTrigger\", \"numBuffs\"])\n\t\t\telif item.descriptor.itemIndex == 400:\n\t\t\t\tobserver7_fields = fields(item, [\"activations\", \"activationsToTrigger\", \"luck\", \"luckNeeded\", \"regen\"])\n\t\t\telif item.descriptor.itemIndex == 469:\n\t\t\t\tobserver7_fields = fields(item, [\"activations\", \"activationsToTrigger\", \"vampirism\", \"regen\", \"stamina\", \"blind\", \"dambonus\"])\n\t\t\telif item.descriptor.itemIndex == 468:\n\t\t\t\tobserver7_fields = fields(item, [\"activations\", \"activationsToTrigger\", \"staminaThreshold\", \"stamina\", \"regen\"])\n\t\t\tif item.descriptor.itemIndex == 262:\n\t\t\t\tobserver7_fields = fields(item, [\"activations\", \"activationsToTrigger\", \"invuCharges\", \"protectedBuffs\", \"manaCost\"])\n\t\t\tvar observer7_timers = {}\n\t\t\tif item.descriptor.itemIndex in [53, 168]:\n\t\t\t\tvar observer = get_root().get_node(\"NativeRandomObserver\")\n\t\t\t\tobserver.begin_encoding()\n\t\t\t\tobserver7_timers = {\"particleTimer\": observer.timer_state(item.particleTimer)}\n\t\t\titems.append({\"observer7_timers\": observer7_timers, \"observer7_fields\": observer7_fields, \"instance\": encode(item), \"fields\": fields(item, ITEM_FIELDS), \"physics_processing\": item.is_physics_processing(), \"chance_rng\": fields(item.chanceRng, RNG_FIELDS), \"damage_rng\": fields(item.damageRangeRng, [\"acc\"])})\n\t\tvar balanced = {}\n\t\tfor key in [\"accuracyRng\", \"critRng\", \"critResistanceRng\", \"stunResistanceRng\"]:\n\t\t\tbalanced[key] = fields(c.get(key), RNG_FIELDS)\n\t\tvar stats = {}\n\t\tfor stat_id in c.Stat.values():\n\t\t\tstats[stat_id] = c.getStat(stat_id)\n\t\tcharacters.append({\"stats\": encode(stats), \"instance\": encode(c), \"fields\": fields(c, CHAR_FIELDS), \"buffs\": buffs, \"items\": items, \"balanced_rng\": balanced, \"physics_processing\": c.is_physics_processing()})\n\treturn {\"event_bus\": {\"logging_mode\": encode(bus.loggingMode), \"pending_signal_count\": bus.signalQueue.size(), \"connection_count\": bus.connections.size()}, \"game\": fields(game, [\"curMode\", \"curClass\", \"curRound\", \"wins\", \"losses\", \"tries\", \"survivalMode\", \"fightEnded\", \"roundResults\", \"ropeSpeedups\", \"cubeAdvanced\", \"sandbagActive\", \"numTimesOutOfStamina\"]), \"characters\": characters, \"timer\": fields(game.combatTimer, [\"combatTime\", \"timeAdvance\", \"fatigueCounter\"]), \"rules\": fields(rules, [\"customRulesActive\", \"values\"])}",
+      "occurrences": 1
+    },
+    {
+      "after": "func on_idle_source_cut():\n\tif done or source_cut_frozen:\n\t\treturn source_cut_reject_collector(\"CUT_DUPLICATE_OR_DONE\")\n\tvar observer = get_root().get_node_or_null(\"NativeRandomObserver\")\n\tif observer == null or not observer.has_method(\"source_cut_control\") or observer.failed:\n\t\treturn source_cut_reject_collector(\"CUT_OBSERVER_FAILURE\")\n\tvar control = observer.source_cut_control()\n\tif control.phase != \"EMITTING\" or not control.dispatching or control.emit_count != 1 or control.receiver_id != str(get_instance_id()) or control.ack != null or typeof(control.script_emit_return_observed) != TYPE_BOOL or control.script_emit_return_observed or typeof(control.script_emit_return) != TYPE_NIL or typeof(control.native_emit_error_available) != TYPE_BOOL or control.native_emit_error_available or control.native_emit_error != null:\n\t\treturn source_cut_reject_collector(\"CUT_NOT_SYNCHRONOUS_DISPATCH\")\n\tif control.physics != Engine.get_physics_frames() or control.idle != Engine.get_idle_frames():\n\t\treturn source_cut_reject_collector(\"CUT_DISPATCH_FRAME_MISMATCH\")\n\tvar receipt = observer.source_completion_receipt()\n\tif not receipt.source_window_complete or not observer.closed or not check_source_listener_order() or Engine.is_in_physics_frame() or not receipt.clock_closed or not receipt.ui_closed or result_value == null:\n\t\treturn source_cut_reject_collector(\"CUT_COMPLETION_GUARD\")\n\tif not source_terminal_receipt_matches(receipt, control) or not observer.source_terminal_current():\n\t\treturn source_cut_reject_collector(\"CUT_FIRST_ACTUAL_ELIGIBLE_IDLE\")\n\t# Atomic synchronous once guard BEFORE any sampling or callback that can reenter.\n\tsource_cut_frozen = true\n\tbarrier_ok = check_barrier()\n\tvar snapshot = stable_snapshot() # Exactly one full terminal sampling; original getter chain.\n\tvar king_final = observer.source_runtime_snapshot() # Same existing readonly SOURCE sampling.\n\tif done or observer.failed:\n\t\treturn source_cut_reject_collector(\"CUT_SAMPLING_FAILURE\")\n\tvar count = snapshot.events.size()\n\tvar native_manifest = {\"schema\": \"native-combat-capture/1\", \"case_id\": config.case_id, \"config\": config, \"version\": game.VERSION, \"engine\": Engine.get_version_info(), \"main_scene\": ProjectSettings.get_setting(\"application/run/main_scene\"), \"physics_fps\": Engine.iterations_per_second, \"time_scale\": Engine.time_scale, \"collector_source\": \"phase502-zero-King-whelp-oracle-only\", \"clean_exit\": \"HOST_RECORD_SEPARATELY\", \"native_model_admission\": false}\n\tvar validation = {\"native_capture_written\": true, \"capture_complete\": false, \"host_validation_required\": true, \"native_checks_pass\": errors.empty() and barrier_ok and not observer.failed, \"end_barrier\": barrier_ok, \"layout\": legal_checks, \"errors\": errors.duplicate(), \"events\": count, \"result\": result_value, \"elapsed_ms\": OS.get_ticks_msec() - started, \"cut\": {\"physics\": Engine.get_physics_frames(), \"idle\": Engine.get_idle_frames(), \"preinternal\": true}, \"full_snapshot_reads\": 1, \"terminal_cut\": receipt.terminal_cut.duplicate(true)}\n\tsource_cut_payload = {\"instances\": instance_rows.duplicate(true), \"phases\": phases.duplicate(true), \"event_references\": event_references.duplicate(true), \"snapshot\": snapshot, \"native_manifest\": native_manifest, \"receipt\": receipt, \"king_cut\": {\"receipt\": receipt, \"connection_order\": source_connection_order.duplicate(true), \"actual_final\": king_final, \"source\": \"SAME_IDLE_INSIDE_SINK_AFTER_WRITE_BEFORE_NODE_INTERNAL\"}, \"validation\": validation, \"success\": errors.empty() and barrier_ok and not observer.failed, \"count\": count}\n\tif not source_control_record(\"on_idle_source_cut\", \"FROZEN_BEFORE_ACK\"):\n\t\treturn source_cut_reject_collector(\"CUT_FROZEN_DIAGNOSTIC_FAILED\")\n\tif not observer.ack_source_idle_cut(get_instance_id(), Engine.get_physics_frames(), Engine.get_idle_frames()):\n\t\treturn source_cut_reject_collector(\"CUT_ACK_REJECTED\")\n\treturn true",
+      "after_positions": [
+        44981
+      ],
+      "before": "func on_idle_source_cut():\n\tif done or source_cut_frozen:\n\t\treturn source_cut_reject_collector(\"CUT_DUPLICATE_OR_DONE\")\n\tvar observer = get_root().get_node_or_null(\"NativeRandomObserver\")\n\tif observer == null or not observer.has_method(\"source_cut_control\") or observer.failed:\n\t\treturn source_cut_reject_collector(\"CUT_OBSERVER_FAILURE\")\n\tvar control = observer.source_cut_control()\n\tif control.phase != \"EMITTING\" or not control.dispatching or control.emit_count != 1 or control.receiver_id != str(get_instance_id()) or control.ack != null or typeof(control.script_emit_return_observed) != TYPE_BOOL or control.script_emit_return_observed or typeof(control.script_emit_return) != TYPE_NIL or typeof(control.native_emit_error_available) != TYPE_BOOL or control.native_emit_error_available or control.native_emit_error != null:\n\t\treturn source_cut_reject_collector(\"CUT_NOT_SYNCHRONOUS_DISPATCH\")\n\tif control.physics != Engine.get_physics_frames() or control.idle != Engine.get_idle_frames():\n\t\treturn source_cut_reject_collector(\"CUT_DISPATCH_FRAME_MISMATCH\")\n\tvar receipt = observer.source_completion_receipt()\n\tif not receipt.source_window_complete or not observer.closed or not check_source_listener_order() or Engine.is_in_physics_frame() or not receipt.clock_closed or not receipt.ui_closed or result_value == null:\n\t\treturn source_cut_reject_collector(\"CUT_COMPLETION_GUARD\")\n\tif not source_terminal_receipt_matches(receipt, control) or not observer.source_terminal_current():\n\t\treturn source_cut_reject_collector(\"CUT_FIRST_ACTUAL_ELIGIBLE_IDLE\")\n\t# Atomic synchronous once guard BEFORE any sampling or callback that can reenter.\n\tsource_cut_frozen = true\n\tbarrier_ok = check_barrier()\n\tvar snapshot = stable_snapshot() # Exactly one full terminal sampling; original getter chain.\n\tvar king_final = observer.source_runtime_snapshot() # Same existing readonly SOURCE sampling.\n\tif done or observer.failed:\n\t\treturn source_cut_reject_collector(\"CUT_SAMPLING_FAILURE\")\n\tvar count = snapshot.events.size()\n\tvar native_manifest = {\"schema\": \"native-combat-capture/1\", \"case_id\": config.case_id, \"config\": config, \"version\": game.VERSION, \"engine\": Engine.get_version_info(), \"main_scene\": ProjectSettings.get_setting(\"application/run/main_scene\"), \"physics_fps\": Engine.iterations_per_second, \"time_scale\": Engine.time_scale, \"collector_source\": \"phase391-single-King-oracle-only\", \"clean_exit\": \"HOST_RECORD_SEPARATELY\", \"native_model_admission\": false}\n\tvar validation = {\"native_capture_written\": true, \"capture_complete\": false, \"host_validation_required\": true, \"native_checks_pass\": errors.empty() and barrier_ok and not observer.failed, \"end_barrier\": barrier_ok, \"layout\": legal_checks, \"errors\": errors.duplicate(), \"events\": count, \"result\": result_value, \"elapsed_ms\": OS.get_ticks_msec() - started, \"cut\": {\"physics\": Engine.get_physics_frames(), \"idle\": Engine.get_idle_frames(), \"preinternal\": true}, \"full_snapshot_reads\": 1, \"terminal_cut\": receipt.terminal_cut.duplicate(true)}\n\tsource_cut_payload = {\"instances\": instance_rows.duplicate(true), \"phases\": phases.duplicate(true), \"event_references\": event_references.duplicate(true), \"snapshot\": snapshot, \"native_manifest\": native_manifest, \"receipt\": receipt, \"king_cut\": {\"receipt\": receipt, \"connection_order\": source_connection_order.duplicate(true), \"actual_final\": king_final, \"source\": \"SAME_IDLE_INSIDE_SINK_AFTER_WRITE_BEFORE_NODE_INTERNAL\"}, \"validation\": validation, \"success\": errors.empty() and barrier_ok and not observer.failed, \"count\": count}\n\tif not source_control_record(\"on_idle_source_cut\", \"FROZEN_BEFORE_ACK\"):\n\t\treturn source_cut_reject_collector(\"CUT_FROZEN_DIAGNOSTIC_FAILED\")\n\tif not observer.ack_source_idle_cut(get_instance_id(), Engine.get_physics_frames(), Engine.get_idle_frames()):\n\t\treturn source_cut_reject_collector(\"CUT_ACK_REJECTED\")\n\treturn true",
+      "occurrences": 1
+    }
+  ],
+  "inverse": "EXACT_COMPLETE_BYTES",
+  "language": "gd",
+  "new_functions": []
+}

@@ -1,0 +1,11 @@
+{
+  "Expected": 0,
+  "Godot": 0,
+  "automatic_retry": false,
+  "error_type": "ValueError",
+  "message": "exact delta match: VERSION = '7-king-basic-A-460'",
+  "models": 0,
+  "pool_operations": 0,
+  "schema": "phase502-generation-first-error/1",
+  "traceback": "Traceback (most recent call last):\n  File \"/workspace/python-original-engine/repo/tests/phase502_prepare_whelp_observer_source_v3.py\", line 571, in main\n    ('schema',derive_schema(sources['schema'],plan,binding_contract),OUT/'schema/phase502_whelp_observer_schema.py',\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase502_prepare_whelp_observer_source_v3.py\", line 396, in derive_schema\n    for name, expression in constants.items(): delta.py_constant(name,expression)\n                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase502_prepare_whelp_observer_source_v3.py\", line 111, in py_constant\n    self.replace(ast.get_source_segment(self.text, nodes[0]), name + ' = ' + expression)\n  File \"/workspace/python-original-engine/repo/tests/phase502_prepare_whelp_observer_source_v3.py\", line 96, in replace\n    require(before != after and self.text.count(before) == count, 'exact delta match: ' + before[:100])\n  File \"/workspace/python-original-engine/repo/tests/phase502_prepare_whelp_observer_source_v3.py\", line 30, in require\n    raise ValueError(message)\nValueError: exact delta match: VERSION = '7-king-basic-A-460'\n"
+}

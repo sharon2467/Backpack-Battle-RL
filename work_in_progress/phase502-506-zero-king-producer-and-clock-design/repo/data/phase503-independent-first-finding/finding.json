@@ -1,0 +1,58 @@
+{
+  "schema": "phase503-first-error-finding/1",
+  "status": "HARNESS_VECTOR_SHAPE_ERROR_STOPPED_NO_RETRY",
+  "attribution": "Independent reviewer synthetic vector mistake, not502candidate failure",
+  "error": "case01 expected ACCEPT, actual ValueError current ordered refs/bools versus prepared array cache",
+  "source_rule": "schema validate_cache(value,current=True), lines1088-1091: each color value must be typed dictionary; prepared cache values are typed arrays",
+  "wrong_vector": "currentAffectedItems.colors0/2/4/7 values typed array values[]",
+  "required_vector": "same four values typed dictionary entries[]",
+  "minimal_proposed_repair": "New immutable vectors/harnessnamespace only; change these four leaf shapes in Sapphire cases01\u201304, all other cases/Source/expectations unchanged. Requires Root authorization; no Source schema repair.",
+  "actual": {
+    "schema_imports": 1,
+    "top_level_calls": 1,
+    "nested_schema_function_entries": 171,
+    "cases_passed": 0,
+    "not_called_case_ids": [
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12"
+    ],
+    "wall_seconds": 0.049756034999518306,
+    "source_vector_after_unchanged": true,
+    "native": 0,
+    "model": 0,
+    "Expected_decode": 0,
+    "pool": 0,
+    "producer": 0
+  },
+  "evidence": [
+    {
+      "path": "data/phase503-independent-controls-first-001/result.json",
+      "size": 1407,
+      "sha256": "8fff070f67f753de976d5a6fa2f86024dcfc9a9328188198ea3695c15abbadfb"
+    },
+    {
+      "path": "data/phase503-independent-controls-first-001/owned-files.json",
+      "size": 630,
+      "sha256": "5976089f71dd889f9ac52c359232be57a1af9cfd746b7c6616c4cc76c25cf0d4"
+    },
+    {
+      "path": "data/phase503-independent-controls-source/owned-files.json",
+      "size": 683,
+      "sha256": "b4e0485e5e55c28de651df02b8d384eebc2f62c376f3c03bead125d24f0c141d"
+    },
+    {
+      "path": "data/phase503-independent-controls-release/owned-files.json",
+      "size": 807,
+      "sha256": "cc5486cc9c496a540e76e24df95559ed1ddfc19b75281985e8e1aeaa765e3026"
+    }
+  ]
+}
