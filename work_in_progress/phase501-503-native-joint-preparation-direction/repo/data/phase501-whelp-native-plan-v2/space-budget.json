@@ -1,0 +1,67 @@
+{
+  "schema": "phase501-v2-space-and-stop-boundary/1",
+  "status": "BELOW_RESERVE_NO_NATIVE_RELEASE",
+  "assessment_created_utc": "2026-10-30T19:58:54.445271+00:00",
+  "threshold": {
+    "floor_bytes": 4294967296,
+    "attempt_reserve_bytes": 1610612736,
+    "total_required_bytes": 5905580032
+  },
+  "root_snapshot": {
+    "reported_utc": "2026-10-30T19:14Z",
+    "available_bytes": 5495771136,
+    "shortfall_bytes": 409808896
+  },
+  "local_snapshot": {
+    "source": "Read-only df -B1 /workspace during initial501 inspection; not a final under-lease gate",
+    "measurement_utc": null,
+    "available_bytes": 5608796160,
+    "shortfall_bytes": 296783872
+  },
+  "conditional_clone": {
+    "path": "/workspace/backpack-github-source-clone-20261025",
+    "observed_allocated_bytes": 396320768,
+    "historical_clean_HEAD": "8ac71d96f29d4e500d9f601bb2957372430c6432",
+    "historical_matching_remote": {
+      "path": "/workspace/checkpoints/phase494-496-acceptedSource-github-verification-20261030.json",
+      "size": 471,
+      "sha256": "ce70a3d13ad832e623bb5a32ed229452385982cc2110d329b9854d4e99de9fa6"
+    },
+    "Root_current_status": "ACTIVELY_IN_USE_FOR_FETCH_RESET_READBACK; Root reports newer6e53683; do not delete/rebuild/recheckHEAD inthisplan",
+    "currently_releasable": false,
+    "conditions": [
+      "Root explicitly stops using clone",
+      "Then-current clean tree and no uniqueignoredfiles confirmed",
+      "Then-current completeSource/evidence and recoveryentries verifiedremote",
+      "No operationaldependency/activeimport or outstandingpublication",
+      "Separate Root deletion/recreation authorization",
+      "Fresh actual reservegate before install and under lease"
+    ],
+    "hypothetical_available_bytes": 6005116928,
+    "hypothetical_margin_bytes": 99536896,
+    "not_guaranteed": true
+  },
+  "excluded_cleanup": [
+    "baseline",
+    "pool",
+    "unique run/evidence/journal/preimages",
+    "authoritative capsules",
+    "unverified unique smokeoutputs",
+    "active publication clone"
+  ],
+  "tiny_retained_directories": "Four checked receipts-onlydirs16\u201324KiB; not useful for currentshortfall",
+  "actions": {
+    "deleted": 0,
+    "moved": 0,
+    "cleanup_authorizations": 0,
+    "threshold_reduction": false
+  },
+  "wall_budgets": {
+    "parse": 30,
+    "collector_battle_OS_ticks": 120,
+    "collector_total_OS_ticks": 295,
+    "native_runner": 300
+  },
+  "Source_model_budget": "Separate120 simulated ceiling; wall deadline external",
+  "estimate": "Reference467host132.7076s/native94.3095s and401host142.949s; roughly2\u20133minutes host-scale, not promise from49816simseconds"
+}

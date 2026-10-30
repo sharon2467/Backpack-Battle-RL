@@ -1,0 +1,287 @@
+{
+  "schema": "phase501-v2-source-seam-preimages/1",
+  "Source_changes_in501": 0,
+  "python_preimages": [
+    {
+      "source": {
+        "path": "tests/phase464_oracle_host_v2.py",
+        "size": 41285,
+        "sha256": "0c7397d099ebcdd5d7b4aeed0eb0615a9d929a5fed4dd35766eb6da98731ba9f"
+      },
+      "functions": [
+        {
+          "name": "source_gate",
+          "line": 67,
+          "end_line": 122,
+          "sha256": "3d69fdb69cc16cc3ea363e9889ca57e8fa8cc4d0e58d138314d6b0bd86ce7fd8"
+        },
+        {
+          "name": "plan",
+          "line": 141,
+          "end_line": 162,
+          "sha256": "8abfd22046a8a2ff34c8a0b555ff1dae43138d8c0047f71ce3467990392acf27"
+        },
+        {
+          "name": "execute",
+          "line": 208,
+          "end_line": 276,
+          "sha256": "c0729c4304b75e0fa086977ce733ad037828a69c77cdd6f4bf6a06d123f32bde"
+        },
+        {
+          "name": "resolve_execute_payloads",
+          "line": 360,
+          "end_line": 392,
+          "sha256": "54f10f4aed051967dfa2ef5e069ce531bcb20abdb9d4d1f659265c055a312d9e"
+        },
+        {
+          "name": "validate_active_source_tuple",
+          "line": 440,
+          "end_line": 488,
+          "sha256": "b0b45e14753cc05d5633a0e4e933e82a79958dfcbbe9c506f7d05be1f0b04efe"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "tests/phase470_joint_input_bridge.py",
+        "size": 35514,
+        "sha256": "d70d31b13226da2f08627986c260f32aba6520cb745bbc5dbc6bf069a5936394"
+      },
+      "functions": [
+        {
+          "name": "verify_raw_inputs",
+          "line": 140,
+          "end_line": 145,
+          "sha256": "78247349c7e86af2cca8be8e6b343f1fe0d68ef6d44a46de854d4f63589d2b71"
+        },
+        {
+          "name": "project_fixture",
+          "line": 229,
+          "end_line": 241,
+          "sha256": "5cb7158ac9cf62cc7e59909570205813e5f98e79739f3b22eb16a68f0170f1fd"
+        },
+        {
+          "name": "project_runtime",
+          "line": 244,
+          "end_line": 357,
+          "sha256": "26ed6331acdd433bec5433c3c41edd4343cf7a408ae0c522ccdd7bc1d143a797"
+        },
+        {
+          "name": "project_primitives",
+          "line": 360,
+          "end_line": 394,
+          "sha256": "604e3515a7a8243da64ca5c3bea13543c674eeca963dec3c5c41598b040f39f1"
+        },
+        {
+          "name": "validate_initial_consumer_coverage",
+          "line": 397,
+          "end_line": 415,
+          "sha256": "51566257bb4b733c6d438302e9e97845c8846245e977714addafc30af62d762f"
+        },
+        {
+          "name": "project_from_bytes",
+          "line": 437,
+          "end_line": 445,
+          "sha256": "15fbf17213726f31bb3ab1afdfdbb223a5703c23e6177435b4145ed0c9952beb"
+        },
+        {
+          "name": "build_from_files",
+          "line": 470,
+          "end_line": 506,
+          "sha256": "e535647dd6bb484a694f153c16738895e43ca3c2f6924b6b415535a09f1574d1"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "tests/phase470_joint_initial_receipt.py",
+        "size": 18125,
+        "sha256": "67cede8069561f03113008b1797be22248b1d2f69751c970c91c11060c2a6f4e"
+      },
+      "functions": [
+        {
+          "name": "build_initial_receipt",
+          "line": 121,
+          "end_line": 232,
+          "sha256": "83fb113bedd5055e1f5f6cdd951933446a6bd48d14ac0a7c4a21ccb1226b6383"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "tests/phase476_joint_business_output.py",
+        "size": 44908,
+        "sha256": "23c5bec3eee0449bc0bccf9e6a216e288aec50895bfd3e4223506fc9971976b1"
+      },
+      "functions": [
+        {
+          "name": "bindings",
+          "line": 98,
+          "end_line": 123,
+          "sha256": "9adce5e670f2fa38a85989cb8bc8281b5c47219c49b3a445ffef10fe299b5dda"
+        },
+        {
+          "name": "project_native_final",
+          "line": 299,
+          "end_line": 311,
+          "sha256": "ebde5c6d773c7d21ca85db04725253ed2a9fa3a97f386566724d8ecbdb00f7c1"
+        },
+        {
+          "name": "project_native_callbacks",
+          "line": 440,
+          "end_line": 460,
+          "sha256": "3de6885d2e9699e2366f01f6c2f70f33148a4d94b21b903434ff5efe151371cb"
+        },
+        {
+          "name": "project_native_api",
+          "line": 486,
+          "end_line": 511,
+          "sha256": "491ebcb08bbccc398be4b577391ee3dac40fdd84a00c283c3c72a56490e8af0d"
+        },
+        {
+          "name": "project_native",
+          "line": 604,
+          "end_line": 613,
+          "sha256": "0d5ba00faed662a11b1431624b62be575eb4608c17f1131224a9e78f3c1ccfb9"
+        },
+        {
+          "name": "project_model",
+          "line": 616,
+          "end_line": 630,
+          "sha256": "9085571cecb8d3d8e6171d6db35a4089751afe6983f5bee0bbc5a2fda77b8682"
+        },
+        {
+          "name": "compare_decoded",
+          "line": 644,
+          "end_line": 646,
+          "sha256": "0f80ccafc445bc818bbf2eb00f91371a529d9e572590d8ec3868b2e9b04980c3"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "tests/phase469_restore_fixed_predecessor_v2.py",
+        "size": 25605,
+        "sha256": "94dbb8256bab5447f91828a59a255b7e699594337856cf9fce6bd3e1f2921cf3"
+      },
+      "functions": [
+        {
+          "name": "no_process",
+          "line": 163,
+          "end_line": 168,
+          "sha256": "870166498a0bc2f1d8028ab7f04d2d7e73bef1f0064951639eb2d3dd5a915193"
+        },
+        {
+          "name": "prepare",
+          "line": 194,
+          "end_line": 327,
+          "sha256": "a54cde952883b9d94ff4e4df42886e83b12f3528b92f66a67db698581bd19b9a"
+        },
+        {
+          "name": "restore",
+          "line": 395,
+          "end_line": 419,
+          "sha256": "3cf2ba390a839ccf0d7dbf3fa8026b7404e2ae00a45c19daef4db6a02306e9ff"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "data/phase476-joint-condition-repair/staged/native_replay_v8/engine.py",
+        "size": 252264,
+        "sha256": "e06bf6493baf0d5d4250c73ea13f6388a0925556e1aafde4043ab9a21871a118"
+      },
+      "functions": [
+        {
+          "name": "CombatEngine.__init__",
+          "line": 1199,
+          "end_line": 1310,
+          "sha256": "120e64ce6acc1bcd7a4da35c58cbd27bda87ae4b828f323a4bdfa818d69658c5"
+        },
+        {
+          "name": "CombatEngine.death",
+          "line": 3412,
+          "end_line": 3418,
+          "sha256": "83b1f7bae453d47415ea1373fe24c3bb609214ab96723872bd0f8d6e6dbc0460"
+        },
+        {
+          "name": "CombatEngine.step",
+          "line": 3449,
+          "end_line": 3485,
+          "sha256": "1aba741b23ade4984ceddde0fb648563e2095a43be0ec73b7da98a64fb0b901f"
+        },
+        {
+          "name": "CombatEngine.finish",
+          "line": 3487,
+          "end_line": 3532,
+          "sha256": "b99d1d00a3b79cc021048ffec81a2d7a50266e3db4a5e17c93cafe64c6bf763a"
+        },
+        {
+          "name": "CombatEngine.run",
+          "line": 3641,
+          "end_line": 3652,
+          "sha256": "628ce70964b94493bd16e1d4180a9b30bbb03754704cd78678ac7ff92c633088"
+        }
+      ]
+    }
+  ],
+  "observer_source": [
+    {
+      "path": "tests/phase462_prepare_joint_observer_source_v3.py",
+      "size": 25716,
+      "sha256": "284453b399afb68a6c8ada19cbcb1cedba972cfbeb2b1aad5cd10080148c9db3"
+    },
+    {
+      "path": "data/phase462-joint-observer-source-v3/collector.gd",
+      "size": 64365,
+      "sha256": "feb22de0f4427b0412d136d9f56ee0ab17ab8d8044fc225244a69d9cc8ccf273"
+    },
+    {
+      "path": "data/phase462-joint-observer-source-v3/after-source/native_random_observer_sink_v7.gd",
+      "size": 102572,
+      "sha256": "3d3d0cefe90c0e4bd3590d01800b1a05b0ff3398f7e4d245935a122e526a190a"
+    },
+    {
+      "path": "data/phase462-joint-observer-source-v3/schema/phase462_king_basic_observer_schema.py",
+      "size": 196289,
+      "sha256": "b2cafda5409b048f655f2f2668f915e3e69339ea801569d0420c775776aabd91"
+    },
+    {
+      "path": "data/phase462-joint-observer-source-v3/source-tuple.json",
+      "size": 1729,
+      "sha256": "1a77916bf7d5f5a50936c576c3d9ff72b91d821742173f6e39af9c8be0913f57"
+    },
+    {
+      "path": "data/phase462-joint-observer-source-v3/native-patch-source.json",
+      "size": 30619,
+      "sha256": "9f8289d4ae7b80d4f3be2ed090c183416538cf776a7aca2f94ff88e3879b4889"
+    },
+    {
+      "path": "data/phase359-king-producer-source/after-source/Items/Item.gd",
+      "size": 178363,
+      "sha256": "2fc1d658db352a7ecae8c2bfb60640a019284992a9c5f9a14c87baea50721631"
+    }
+  ],
+  "original_squirrel_pitch": {
+    "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/Squirrel.gd",
+    "size": 508,
+    "sha256": "c23b8aec966449cc60761007879b99c3528c4cbe94309914789954cea34de949"
+  },
+  "future_delta": [
+    "9descriptor/29slot/profile; exactsubtype/emptySocket/state binding; actualSapphirestackTypes sixINTarray",
+    "OneSquirrelselectedpitch wrapper forwards unchanged REALargs/return; generic take/give pickers alreadylabelled",
+    "ZeroKing facts retains Characterbirthledger andactualdelayedclock; no requiredKingstate",
+    "Fixed host/reviews/closure/actualmanifest countbytes; proposed79installtargets notmeasured yet",
+    "26businessTimer2cuts=52privatefacts plus8Character facts; raw32includes6inactiveboundeddiagnosticroles",
+    "NewnonKingcapturedclock/terminal driver admission; constructor/step/run/finish/death/callbackSource review; nofakeKing",
+    "8sectionadapter29aliases26timers/emptyKing/casecontracts; decoder/strictbits/ordersemantics retained",
+    "Restoreactualtargetunion/newjournal andreadback; exactoperationalhelpers/scopedprocessguard reused"
+  ],
+  "not_analyzed_to_completion": [
+    "ExactminimalnonKingcaptured FrameDriver patch andfinitecontrols",
+    "FutureSourcegeneratorinverse/precise install bytes",
+    "ActualnewAutoHide subjectdiagnostic binding in finitewindow",
+    "ActualnativeIDs/cuts/flags/lifetime/cache/order/clock/Tape/branch value",
+    "Actualpool/currentresources/predecessor/spacegate/restorejournal"
+  ]
+}
