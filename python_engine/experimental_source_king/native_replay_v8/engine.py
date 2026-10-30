@@ -40,6 +40,19 @@ def assert_model_source_stable():
 
 
 CATALOG = {
+    64: dict(name="Ruby Whelp",shape=((0,0),(1,0),(0,1),(1,1)),bag=False,
+             ranged=True,pet=True,fire=True,effect=True,cooldown=2.1,stamina=0.0,accuracy=90.0,
+             min_damage=5,max_damage=10,heat=5,reflect_stacks=3,socket_count=1,default_gem=None),
+    197: dict(name="Emerald Whelp",shape=((0,0),(1,0),(0,1),(1,1)),bag=False,
+              ranged=True,pet=True,effect=True,cooldown=2.1,stamina=0.0,accuracy=90.0,
+              min_damage=5,max_damage=10,lucky=3,poison=3,socket_count=1,default_gem=None),
+    199: dict(name="Sapphire Whelp",shape=((0,0),(1,0),(0,1),(1,1)),bag=False,
+              ranged=True,pet=True,magic=True,effect=True,cooldown=2.1,stamina=0.0,accuracy=90.0,
+              min_damage=5,max_damage=10,mana=6,mana_cost=1,block=10,
+              random_buff_types=(101,102,103,104,106,107),socket_count=1,default_gem=None),
+    201: dict(name="Amethyst Whelp",shape=((0,0),(1,0),(0,1),(1,1)),bag=False,
+              ranged=True,pet=True,dark=True,effect=True,cooldown=2.1,stamina=0.0,accuracy=90.0,
+              min_damage=5,max_damage=10,start_debuffs=4,remove_buffs=1,socket_count=1,default_gem=None),
     164: dict(name="Squirrel",shape=((0,0),(0,1),(1,1)),
               stars=((0,-1),(-1,0),(1,0),(-1,1),(2,1),(0,2),(1,2)),
               bag=False,pet=True,nature=True,cooldown=4.0,pet_speed_percent=15.0,buff_steal=1,
@@ -202,7 +215,7 @@ GOOBERT_IDS = frozenset({262,23,38,52,53,54,168,205,296,400,468}) | RAINBOW_GOOB
 STATE_PARTICLE_IDS = frozenset({53,168})
 POTION_IDS = frozenset({19,35,36,37,46,172})
 CACHED_AFFECTED_IDS = GOOBERT_IDS | POTION_IDS | frozenset({5,6,21,22,117,124}) | frozenset({18,29,82,83,84,164,179,332,351,374})
-EMPOWERABLE_WEAPON_IDS = frozenset([29, 82, 83, 84, 182, 233, 234, 235, 0, 1, 2, 3, 12, 14, 15, 27, 28, 30, 32, 208, 209])
+EMPOWERABLE_WEAPON_IDS = frozenset([64, 197, 199, 201, 29, 82, 83, 84, 182, 233, 234, 235, 0, 1, 2, 3, 12, 14, 15, 27, 28, 30, 32, 208, 209])
 
 EVENT_TYPES = {"LoseHealth": 5, "Activation": 0, "DealDamage": 1, "CriticalDamage": 2,
                "MissedAttack": 3, "InvulnerableStart": 7, "InvulnerableEnd": 8, "Health": 12, "Stamina": 13,
@@ -211,7 +224,7 @@ EVENT_TYPES = {"LoseHealth": 5, "Activation": 0, "DealDamage": 1, "CriticalDamag
                "TemporaryMaxHealth": 19, "Empower": 106, "Poison": 108, "Heat": 107, "Cold": 110, "Stun": 9,
                "BattleRageStart": 21, "BattleRageEnd": 22, "Win": 111, "Loss": 112}
 DEBUFF_TYPES = ("Blind", "Poison", "Cold")
-GAINED_STACK_FLAGS = {164:254,35:4,37:0,46:16,50:8,29:0,82:0,83:0,84:0,182:0,233:16,234:2,235:1792,129:0,262:0,204:254,220:254,340:254,416:766,74:776,169:584,219:648,401:524,469:524,53:512,54:8,52:0,400:6,468:4,38:256,205:128,296:0,168: 64, 0: 0, 1: 0, 2: 0, 3: 512, 4: 0, 5: 0, 6: 0, 7: 4, 8: 16, 10: 0, 11: 0, 12: 0, 14: 0, 15: 0, 16: 16, 17: 0, 18: 0, 19: 0, 20: 512, 21: 256, 22: 34, 23: 0, 24: 2, 26: 0, 27: 16, 28: 8, 30: 256, 32: 0, 34: 66, 36: 256, 39: 0, 48: 8, 62: 128, 67: 0, 117: 128, 124: 64, 172: 32, 179: 1024, 208: 0, 209: 128, 332: 254, 351: 0, 374: 0, 405: 0}
+GAINED_STACK_FLAGS = {64:128,197:258,199:254,201:1792,164:254,35:4,37:0,46:16,50:8,29:0,82:0,83:0,84:0,182:0,233:16,234:2,235:1792,129:0,262:0,204:254,220:254,340:254,416:766,74:776,169:584,219:648,401:524,469:524,53:512,54:8,52:0,400:6,468:4,38:256,205:128,296:0,168: 64, 0: 0, 1: 0, 2: 0, 3: 512, 4: 0, 5: 0, 6: 0, 7: 4, 8: 16, 10: 0, 11: 0, 12: 0, 14: 0, 15: 0, 16: 16, 17: 0, 18: 0, 19: 0, 20: 512, 21: 256, 22: 34, 23: 0, 24: 2, 26: 0, 27: 16, 28: 8, 30: 256, 32: 0, 34: 66, 36: 256, 39: 0, 48: 8, 62: 128, 67: 0, 117: 128, 124: 64, 172: 32, 179: 1024, 208: 0, 209: 128, 332: 254, 351: 0, 374: 0, 405: 0}
 STACK_NAMES_BY_TYPE = {value: name for name, value in EVENT_TYPES.items() if 100 <= value <= 110}
 
 
@@ -1971,12 +1984,26 @@ class CombatEngine:
                 self.change_debuff_resistance(item.side, 3)
             elif item.item_index == 62:
                 self.change_debuff_reflection(item.side, item.definition["reflect_stacks"])
+            if item.item_index == 64:
+                self.change_debuff_reflection(item.side, item.definition["reflect_stacks"])
         for identity in self.preparation_order:
             item = self.items[identity]
             if item.item_index == 164:
                 num_affected = len(self.affected_items(item))
                 if num_affected > 0:
                     self.add_speed(item, num_affected * item.definition["pet_speed_percent"] / 100.0)
+            if item.item_index == 64:
+                self.give_stack(item, item.side, "Heat", item.definition["heat"])
+                self.activate(item)
+            elif item.item_index == 197:
+                self.give_stack(item, item.side, "Lucky", item.definition["lucky"])
+                self.activate(item)
+            elif item.item_index == 199:
+                self.give_stack(item, item.side, "Mana", item.definition["mana"])
+                self.activate(item)
+            if item.item_index == 201:
+                self.inflict_random_debuffs(item, item.definition["start_debuffs"])
+                self.activate(item)
             if item.item_index in (29, 82, 83, 84):
                 if item.item_index in (29, 82, 84):
                     for affected in self.affected_items(item):
@@ -3279,6 +3306,15 @@ class CombatEngine:
         """Execute one native early override; return its temporary damage."""
         defender_side = "O" if item.side == "P" else "P"
         if hit:
+            if item.item_index == 197:
+                self.give_stack(item, defender_side, "Poison", item.definition["poison"])
+            elif item.item_index == 199:
+                paid = self.try_use_mana(item, item.definition["mana_cost"])
+                if paid is not None:
+                    self.give_stack(item, item.side, "Block", item.definition["block"], paid["id"])
+                    self.give_random_buffs(item, 1, paid["id"], available_buffs=item.definition["random_buff_types"])
+            if item.item_index == 201:
+                self.remove_random_buffs(item, item.definition["remove_buffs"])
             if item.item_index == 84:
                 self.add_bonus_damage(item, item.definition["growth_damage"])
                 self.add_speed(item, item.definition["growth_speed"])

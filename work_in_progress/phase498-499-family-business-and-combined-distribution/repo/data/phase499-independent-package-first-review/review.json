@@ -1,0 +1,218 @@
+{
+  "schema": "phase499-independent-package-first-review/1",
+  "status": "BLOCKED_README_EVIDENCE_CATEGORY_ERROR_VERIFIER_NOT_RUN",
+  "package_owner": {
+    "path": "data/phase499-combined-experimental-distribution/owned-files.json",
+    "size": 6145,
+    "sha256": "a85501f8083ca36ae8cbc582ba75dc55c763b6af63a05c39cd2f9dc33bb8276a"
+  },
+  "manifest": {
+    "path": "data/phase499-combined-experimental-distribution/package/manifest.json",
+    "size": 5032,
+    "sha256": "182dc9a21b244a2db335532ecc3a7c27bee5a1ef3e275229d0944b18b7f8c94f"
+  },
+  "readme_preimage": {
+    "path": "data/phase499-independent-package-first-review/README.preimage.md",
+    "size": 13726,
+    "sha256": "fcf8a3f02f83025f4f32f6ba17dbb070187c18ecbb4507e7bac19c4c1154671c"
+  },
+  "finding": {
+    "quote": "Whelp201 removedMana7 times and Squirrel stole it6 times.",
+    "correct": "Whelp201 removed7 positive buffs (Heat4/Mana3); Squirrel stole6 (Heat1/Mana5).",
+    "evidence_source": {
+      "path": "data/phase498-independent-business-first-001/natural-source-output.json",
+      "size": 386300,
+      "sha256": "e1d1e3816a858da13d34e662ace44e18354722d3d4cc1d551beb4568965c196d"
+    },
+    "actual_category_evidence": {
+      "P:amethyst": {
+        "counts": {
+          "107": 4,
+          "105": 3
+        },
+        "events": [
+          {
+            "id": 19,
+            "type": 107,
+            "parent": null,
+            "target": 1,
+            "params": {
+              "amount": -1,
+              "used": false,
+              "reflected": false
+            }
+          },
+          {
+            "id": 55,
+            "type": 105,
+            "parent": null,
+            "target": 1,
+            "params": {
+              "amount": -1,
+              "used": false,
+              "reflected": false
+            }
+          },
+          {
+            "id": 81,
+            "type": 107,
+            "parent": null,
+            "target": 1,
+            "params": {
+              "amount": -1,
+              "used": false,
+              "reflected": false
+            }
+          },
+          {
+            "id": 121,
+            "type": 107,
+            "parent": null,
+            "target": 1,
+            "params": {
+              "amount": -1,
+              "used": false,
+              "reflected": false
+            }
+          },
+          {
+            "id": 156,
+            "type": 105,
+            "parent": null,
+            "target": 1,
+            "params": {
+              "amount": -1,
+              "used": false,
+              "reflected": false
+            }
+          },
+          {
+            "id": 179,
+            "type": 107,
+            "parent": null,
+            "target": 1,
+            "params": {
+              "amount": -1,
+              "used": false,
+              "reflected": false
+            }
+          },
+          {
+            "id": 212,
+            "type": 105,
+            "parent": null,
+            "target": 1,
+            "params": {
+              "amount": -1,
+              "used": false,
+              "reflected": false
+            }
+          }
+        ]
+      },
+      "P:squirrel": {
+        "counts": {
+          "107": 1,
+          "105": 5
+        },
+        "events": [
+          {
+            "id": 34,
+            "type": 107,
+            "parent": null,
+            "target": 1,
+            "params": {
+              "amount": -1,
+              "used": false,
+              "reflected": false
+            }
+          },
+          {
+            "id": 68,
+            "type": 105,
+            "parent": null,
+            "target": 1,
+            "params": {
+              "amount": -1,
+              "used": false,
+              "reflected": false
+            }
+          },
+          {
+            "id": 106,
+            "type": 105,
+            "parent": null,
+            "target": 1,
+            "params": {
+              "amount": -1,
+              "used": false,
+              "reflected": false
+            }
+          },
+          {
+            "id": 141,
+            "type": 105,
+            "parent": null,
+            "target": 1,
+            "params": {
+              "amount": -1,
+              "used": false,
+              "reflected": false
+            }
+          },
+          {
+            "id": 187,
+            "type": 105,
+            "parent": null,
+            "target": 1,
+            "params": {
+              "amount": -1,
+              "used": false,
+              "reflected": false
+            }
+          },
+          {
+            "id": 227,
+            "type": 105,
+            "parent": null,
+            "target": 1,
+            "params": {
+              "amount": -1,
+              "used": false,
+              "reflected": false
+            }
+          }
+        ]
+      }
+    },
+    "minimal_repair": "Immutable packagev2 README sentence and manifest only. Keep Source/examples/lineage/verifier exact; firstpackage/owner unchanged."
+  },
+  "completed_static": {
+    "owner_payloads": 28,
+    "manifest_payloads": 26,
+    "physical_files": 27,
+    "source_exact497": 15,
+    "old_examples_exact491v2": 7,
+    "new_example_exact498_presealed": 1,
+    "all_examples": 8,
+    "verifier_exact491v2": true,
+    "Python_snippets_AST_only": 3,
+    "ordinary_single_link_files": true,
+    "API_and_scope": "OldSquirrel/API/CLI/batch boundaries described separately fromfixedfiveexperimentalentry; native478 evidence separate fromSourcefreshseed. No otherblockingmetadatafinding."
+  },
+  "pending": "Unique trustedmanifest read-only verifier after repair; no candidate test or battle required.",
+  "calls": {
+    "candidate_imports": 0,
+    "model": 0,
+    "Native": 0,
+    "Expected": 0,
+    "oldtests": 0,
+    "verifier": 0
+  },
+  "sealed_output_read": "Existing498 Source output only; no recomparison or new model.",
+  "metadata_seal_error": {
+    "path": "data/phase499-independent-package-first-review/metadata-seal-first-error.json",
+    "size": 418,
+    "sha256": "0a32e58548647855c54f254e5d27f74f0590ee72e2db371f236902bc34f0dcf6"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "phase498-independent-source-review/1",
+  "status": "PASS_LIMITED_NEW_CALLER_DELTA_PENDING_FUNCTIONAL_CONTROLS",
+  "source_owner": {
+    "path": "data/phase497-source-three-whelps/owned-files.json",
+    "size": 4445,
+    "sha256": "9d60cd3d5165b8810eb145a02ae9cb78614112936ca526bc613a2135f482302f"
+  },
+  "freeze": {
+    "path": "data/phase497-source-three-whelps/candidate-source-freeze.json",
+    "size": 4548,
+    "sha256": "e42fff469b2f3c74f9e1e4f48d3400654ce81c456a3d520991c332321bbdda66"
+  },
+  "owner_payloads": 22,
+  "conserved_modules": [
+    "godot_pcg_integer.py",
+    "native_replay_v7/__init__.py",
+    "native_replay_v7/frame_driver.py",
+    "native_replay_v7/timer_runtime.py",
+    "native_replay_v8/__init__.py",
+    "native_replay_v8/__main__.py",
+    "native_replay_v8/compare.py",
+    "native_replay_v8/genuine.py",
+    "native_replay_v8/histories.py",
+    "native_replay_v8/observed.py",
+    "native_replay_v8/randomness.py",
+    "native_replay_v8/state.py",
+    "original_rng.py"
+  ],
+  "function_delta": {
+    "headless.py": {
+      "changed": [
+        "validate_experimental_nonking_layout",
+        "HeadlessBattle._result_view",
+        "initialize_experimental_nonking"
+      ],
+      "exact": 38,
+      "added": [],
+      "removed": []
+    },
+    "native_replay_v8/engine.py": {
+      "changed": [
+        "CombatEngine.activate_from_checkpoint",
+        "CombatEngine.pre_item_damage"
+      ],
+      "exact": 237,
+      "added": [],
+      "removed": []
+    }
+  },
+  "conclusions": [
+    "Exact495 ancestry retains private descriptor write and defensive-copy getter.",
+    "Ruby64 reflection added to preloop;Heat5/EmeraldLucky3/SapphireMana6 added to startloop with realactivate. Allpre beforeanystart preserved.",
+    "EmeraldhitPoison3 andSapphireactualpaidMana1->Block10 thenfixedsixcategorygive_random_buffs withsamepaidID. No helper/picker/loss/gain/queue/attackbody edits.",
+    "Fixedexperimentalset expanded; oldITEMS/oldinitialize/Squirrel/CLI/batch/King gate bodies exact. Descriptivekind lists derive from fixedset.",
+    "No new Timer/PRNG/DTO or giver-block receiver; catalog81/formal75. BuffBlockcap100000 comes from sharedOriginalBuff+unchangedgainpath for targetedcontinuationcontrol."
+  ],
+  "candidate_imports": 0,
+  "model": 0,
+  "Native": 0,
+  "Expected": 0,
+  "blockers": []
+}

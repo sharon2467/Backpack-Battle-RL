@@ -1,5 +1,10 @@
 # Standalone Python battle-engine checkpoints
 
+## Current experimental distribution (2026-10-30)
+
+The [experimental Source package](experimental_source_king/README.md) now contains exact497 Source, independently accepted in498 for a fixed five-kind non-King extension plus the retained bounded King domains. `initialize_experimental_nonking` admits the fixed extra set164/201/64/197/199 under class0/defaults; legacy Squirrel/CLI/batch/formal gates are retained. Formal support remains75; this Source catalog registers81 and does not claim new native parity or full engine/RL completion. The detailed older snapshots and355/356 states below are historical; use [current recovery work](../recovery_checkpoint/CURRENT-WORK.md) for the active engineering checkpoint.
+
+
 This directory packages the existing Python reconstruction of Backpack Battles 1.1.8 combat. It is a **partial implementation**, not the complete original engine. The playable implementation uses Python's standard library; it does not launch Godot, read original-game assets, or need a captured random tape.
 
 | Snapshot | Default item ingress | Status |
@@ -37,7 +42,7 @@ The separate isolated package validation retained873 events,784 random returns,2
 
 The JSON root has exactly `schema: "headless-layout/1"`, boolean `below_master`, and two ordered `sides` named `P` and `O`. Each side has `character_class` (integer 0 or 2), `items`, and optional initial `hp`/`stamina`. Each placement preserves `instance_id`, numeric `item_index`, `x`, `y`, and rotation field `f` (0, 1, 2 or 3 quarter-turns). Bags precede ordinary items; item bodies must be valid, covered and non-overlapping. See the two complete JSON examples.
 
-Only the admitted default configurations are accepted. Unsupported fields, items, classes, gems and modifiers fail validation. The runtime catalogue contains 76 registered descriptions; that is not a claim of complete support. In particular, King Goobert is not admitted by the formal `candidate75/` entry point; the separately labelled experimental package has its finite six-ID King and seven-ID King+basic Source domains.
+Only the admitted default configurations are accepted. Unsupported fields, items, classes, gems and modifiers fail validation. The frozen formal75 runtime catalogue contains76 registered descriptions; the newer experimental Source catalogue is81, with no formal-support promotion. In particular, King Goobert is not admitted by the formal `candidate75/` entry point; the separately labelled experimental package has finite six/seven/eight-ID King domains and the explicitly closed experimental non-King interface.
 
 Production seeds use the recorded `headless-sha256-domains/1` policy to derive distinct global/Util seed domains. This does not claim mathematical independence or reproduce a native session's independently seeded streams. Historical exact original-game comparisons used conditional primitive replay; they are a different validation path from the fresh headless API.
 

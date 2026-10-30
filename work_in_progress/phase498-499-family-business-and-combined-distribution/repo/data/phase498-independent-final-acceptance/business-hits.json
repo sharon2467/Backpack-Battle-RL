@@ -1,0 +1,701 @@
+{
+  "schema": "phase498-independent-business-hits/1",
+  "scope": "Read-only extraction of sealed Source outputs, no native comparison",
+  "natural_output": {
+    "path": "data/phase498-independent-business-first-001/natural-source-output.json",
+    "size": 386300,
+    "sha256": "e1d1e3816a858da13d34e662ace44e18354722d3d4cc1d551beb4568965c196d"
+  },
+  "summary": {
+    "status": "EXPERIMENTAL_SOURCE_NOT_NATIVE",
+    "output": {
+      "path": "data/phase498-independent-business-first-001/natural-source-output.json",
+      "size": 386300,
+      "sha256": "e1d1e3816a858da13d34e662ace44e18354722d3d4cc1d551beb4568965c196d"
+    },
+    "hook_trace": {
+      "path": "data/phase498-independent-business-first-001/natural-measured-hooks.json",
+      "size": 1389,
+      "sha256": "22c7a568dc19ad12611701da6b80892fdb0aad1c8b0d85efc821108f396b2403"
+    },
+    "seed": 49801,
+    "items": 29,
+    "events": 232,
+    "draws": 304,
+    "timers": 26,
+    "winner": "P",
+    "simulated_seconds": 16.000000834465027,
+    "Sapphire_payments": 7,
+    "Sapphire_failed_zeroMana_hooks": 0,
+    "Sapphire_rewards": 7,
+    "Emerald_poison_events": 7,
+    "Ruby_heat_events": 1,
+    "Amethyst_losses": 7,
+    "Squirrel_losses": 6,
+    "reflected_Amethyst_events": 2,
+    "HIT": {
+      "Sapphire_paid": "HIT",
+      "Sapphire_zeroMana": "NOT_HIT",
+      "Ruby_pre_reflection": "HIT",
+      "protection_cap_double": "SYNTHETIC_ONLY_UNLESS_SEALED_TRACE_SHOWS_HIT"
+    },
+    "no_seed_or_layout_tuning": true,
+    "source_rng": {
+      "schema": "source-headless-two-stream-state/1",
+      "util": {
+        "schema": "original-source-rng-snapshot/1",
+        "state": 2947270596638651567,
+        "current_seed": 11623564765751100496,
+        "increment": 2885390081777926815
+      },
+      "global_rng": {
+        "state": 555751671301698019,
+        "current_seed": 13045356344795280072,
+        "increment": 2885390081777926815
+      },
+      "audit_length": 304,
+      "seed_policy": "headless-sha256-domains/1",
+      "native_seed_parity": "PENDING_CUSTOM_BINARY_NUMERIC_AND_SESSION_CONSUMPTION"
+    }
+  },
+  "Ruby_pre_stage": {
+    "actual_provision": [
+      {
+        "mode": "natural",
+        "side": "O",
+        "amount": 3,
+        "before": 0,
+        "after": 3,
+        "heat": 0,
+        "draws": 9,
+        "events": 0,
+        "labels": [
+          "cooldown:P:squirrel",
+          "cooldown:P:berry1",
+          "cooldown:P:sword",
+          "cooldown:P:amethyst",
+          "cooldown:P:emerald",
+          "cooldown:P:berry0",
+          "cooldown:P:sapphire",
+          "cooldown:O:sword0",
+          "cooldown:O:ruby"
+        ]
+      }
+    ],
+    "start_reflected_Amethyst": [
+      {
+        "id": 0,
+        "sequence": 0,
+        "timestamp": 0.0,
+        "parent": null,
+        "origin": "P:amethyst",
+        "target": 0,
+        "type": 108,
+        "params": {
+          "amount": 1,
+          "used": false,
+          "reflected": true
+        }
+      },
+      {
+        "id": 2,
+        "sequence": 2,
+        "timestamp": 0.0,
+        "parent": null,
+        "origin": "P:amethyst",
+        "target": 0,
+        "type": 110,
+        "params": {
+          "amount": 2,
+          "used": false,
+          "reflected": true
+        }
+      }
+    ],
+    "Heat_and_Activation": [
+      {
+        "id": 8,
+        "sequence": 8,
+        "timestamp": 0.0,
+        "parent": null,
+        "origin": "O:ruby",
+        "target": 1,
+        "type": 107,
+        "params": {
+          "amount": 5,
+          "used": false,
+          "reflected": false
+        }
+      },
+      {
+        "id": 9,
+        "sequence": 9,
+        "timestamp": 0.0,
+        "parent": null,
+        "origin": "O:ruby",
+        "target": null,
+        "type": 0,
+        "params": {}
+      }
+    ]
+  },
+  "Emerald": {
+    "startup_and_first_early": [
+      {
+        "id": 4,
+        "sequence": 4,
+        "timestamp": 0.0,
+        "parent": null,
+        "origin": "P:emerald",
+        "target": 0,
+        "type": 101,
+        "params": {
+          "amount": 3,
+          "used": false,
+          "reflected": false
+        }
+      },
+      {
+        "id": 5,
+        "sequence": 5,
+        "timestamp": 0.0,
+        "parent": null,
+        "origin": "P:emerald",
+        "target": null,
+        "type": 0,
+        "params": {}
+      },
+      {
+        "id": 22,
+        "sequence": 22,
+        "timestamp": 2.166666779667139,
+        "parent": null,
+        "origin": "P:emerald",
+        "target": 1,
+        "type": 108,
+        "params": {
+          "amount": 3,
+          "used": false,
+          "reflected": false
+        }
+      },
+      {
+        "id": 23,
+        "sequence": 23,
+        "timestamp": 2.166666779667139,
+        "parent": null,
+        "origin": "P:emerald",
+        "target": null,
+        "type": 1,
+        "params": {
+          "damage": 9
+        }
+      },
+      {
+        "id": 24,
+        "sequence": 24,
+        "timestamp": 2.166666779667139,
+        "parent": null,
+        "origin": "P:emerald",
+        "target": null,
+        "type": 0,
+        "params": {}
+      }
+    ],
+    "early_hook_calls": 7,
+    "all_natural_own_hooks_hit": true,
+    "poison_events": 7
+  },
+  "Sapphire": {
+    "actual_paid_chains": [
+      {
+        "paid": {
+          "id": 25,
+          "sequence": 25,
+          "timestamp": 2.2666667848825455,
+          "parent": null,
+          "origin": "P:sapphire",
+          "target": 0,
+          "type": 105,
+          "params": {
+            "amount": -1,
+            "used": true,
+            "reflected": false
+          }
+        },
+        "rewards": [
+          {
+            "id": 26,
+            "sequence": 26,
+            "timestamp": 2.2666667848825455,
+            "parent": 25,
+            "origin": "P:sapphire",
+            "target": 0,
+            "type": 100,
+            "params": {
+              "amount": 10,
+              "used": false,
+              "reflected": false
+            }
+          },
+          {
+            "id": 27,
+            "sequence": 27,
+            "timestamp": 2.2666667848825455,
+            "parent": 25,
+            "origin": "P:sapphire",
+            "target": 0,
+            "type": 101,
+            "params": {
+              "amount": 1,
+              "used": false,
+              "reflected": false
+            }
+          }
+        ]
+      },
+      {
+        "paid": {
+          "id": 63,
+          "sequence": 63,
+          "timestamp": 4.450000232085586,
+          "parent": null,
+          "origin": "P:sapphire",
+          "target": 0,
+          "type": 105,
+          "params": {
+            "amount": -1,
+            "used": true,
+            "reflected": false
+          }
+        },
+        "rewards": [
+          {
+            "id": 64,
+            "sequence": 64,
+            "timestamp": 4.450000232085586,
+            "parent": 63,
+            "origin": "P:sapphire",
+            "target": 0,
+            "type": 100,
+            "params": {
+              "amount": 10,
+              "used": false,
+              "reflected": false
+            }
+          },
+          {
+            "id": 65,
+            "sequence": 65,
+            "timestamp": 4.450000232085586,
+            "parent": 63,
+            "origin": "P:sapphire",
+            "target": 0,
+            "type": 106,
+            "params": {
+              "amount": 1,
+              "used": false,
+              "reflected": false
+            }
+          }
+        ]
+      },
+      {
+        "paid": {
+          "id": 87,
+          "sequence": 87,
+          "timestamp": 6.500000339001417,
+          "parent": null,
+          "origin": "P:sapphire",
+          "target": 0,
+          "type": 105,
+          "params": {
+            "amount": -1,
+            "used": true,
+            "reflected": false
+          }
+        },
+        "rewards": [
+          {
+            "id": 88,
+            "sequence": 88,
+            "timestamp": 6.500000339001417,
+            "parent": 87,
+            "origin": "P:sapphire",
+            "target": 0,
+            "type": 100,
+            "params": {
+              "amount": 10,
+              "used": false,
+              "reflected": false
+            }
+          },
+          {
+            "id": 89,
+            "sequence": 89,
+            "timestamp": 6.500000339001417,
+            "parent": 87,
+            "origin": "P:sapphire",
+            "target": 0,
+            "type": 107,
+            "params": {
+              "amount": 1,
+              "used": false,
+              "reflected": false
+            }
+          }
+        ]
+      },
+      {
+        "paid": {
+          "id": 124,
+          "sequence": 124,
+          "timestamp": 8.56666711345315,
+          "parent": null,
+          "origin": "P:sapphire",
+          "target": 0,
+          "type": 105,
+          "params": {
+            "amount": -1,
+            "used": true,
+            "reflected": false
+          }
+        },
+        "rewards": [
+          {
+            "id": 125,
+            "sequence": 125,
+            "timestamp": 8.56666711345315,
+            "parent": 124,
+            "origin": "P:sapphire",
+            "target": 0,
+            "type": 100,
+            "params": {
+              "amount": 10,
+              "used": false,
+              "reflected": false
+            }
+          },
+          {
+            "id": 126,
+            "sequence": 126,
+            "timestamp": 8.56666711345315,
+            "parent": 124,
+            "origin": "P:sapphire",
+            "target": 0,
+            "type": 106,
+            "params": {
+              "amount": 1,
+              "used": false,
+              "reflected": false
+            }
+          }
+        ]
+      },
+      {
+        "paid": {
+          "id": 149,
+          "sequence": 149,
+          "timestamp": 10.616667220368981,
+          "parent": null,
+          "origin": "P:sapphire",
+          "target": 0,
+          "type": 105,
+          "params": {
+            "amount": -1,
+            "used": true,
+            "reflected": false
+          }
+        },
+        "rewards": [
+          {
+            "id": 150,
+            "sequence": 150,
+            "timestamp": 10.616667220368981,
+            "parent": 149,
+            "origin": "P:sapphire",
+            "target": 0,
+            "type": 100,
+            "params": {
+              "amount": 10,
+              "used": false,
+              "reflected": false
+            }
+          },
+          {
+            "id": 151,
+            "sequence": 151,
+            "timestamp": 10.616667220368981,
+            "parent": 149,
+            "origin": "P:sapphire",
+            "target": 0,
+            "type": 106,
+            "params": {
+              "amount": 1,
+              "used": false,
+              "reflected": false
+            }
+          }
+        ]
+      },
+      {
+        "paid": {
+          "id": 182,
+          "sequence": 182,
+          "timestamp": 12.78333400003612,
+          "parent": null,
+          "origin": "P:sapphire",
+          "target": 0,
+          "type": 105,
+          "params": {
+            "amount": -1,
+            "used": true,
+            "reflected": false
+          }
+        },
+        "rewards": [
+          {
+            "id": 183,
+            "sequence": 183,
+            "timestamp": 12.78333400003612,
+            "parent": 182,
+            "origin": "P:sapphire",
+            "target": 0,
+            "type": 100,
+            "params": {
+              "amount": 10,
+              "used": false,
+              "reflected": false
+            }
+          },
+          {
+            "id": 184,
+            "sequence": 184,
+            "timestamp": 12.78333400003612,
+            "parent": 182,
+            "origin": "P:sapphire",
+            "target": 0,
+            "type": 107,
+            "params": {
+              "amount": 1,
+              "used": false,
+              "reflected": false
+            }
+          }
+        ]
+      },
+      {
+        "paid": {
+          "id": 215,
+          "sequence": 215,
+          "timestamp": 14.816667439416051,
+          "parent": null,
+          "origin": "P:sapphire",
+          "target": 0,
+          "type": 105,
+          "params": {
+            "amount": -1,
+            "used": true,
+            "reflected": false
+          }
+        },
+        "rewards": [
+          {
+            "id": 216,
+            "sequence": 216,
+            "timestamp": 14.816667439416051,
+            "parent": 215,
+            "origin": "P:sapphire",
+            "target": 0,
+            "type": 100,
+            "params": {
+              "amount": 10,
+              "used": false,
+              "reflected": false
+            }
+          },
+          {
+            "id": 217,
+            "sequence": 217,
+            "timestamp": 14.816667439416051,
+            "parent": 215,
+            "origin": "P:sapphire",
+            "target": 0,
+            "type": 102,
+            "params": {
+              "amount": 1,
+              "used": false,
+              "reflected": false
+            }
+          }
+        ]
+      }
+    ],
+    "measured_own_hooks": [
+      {
+        "item": "P:sapphire",
+        "item_index": 199,
+        "hit": true,
+        "mana_before": 6,
+        "mana_after": 5,
+        "events": [
+          25,
+          26,
+          27
+        ]
+      },
+      {
+        "item": "P:sapphire",
+        "item_index": 199,
+        "hit": true,
+        "mana_before": 7,
+        "mana_after": 6,
+        "events": [
+          63,
+          64,
+          65
+        ]
+      },
+      {
+        "item": "P:sapphire",
+        "item_index": 199,
+        "hit": true,
+        "mana_before": 7,
+        "mana_after": 6,
+        "events": [
+          87,
+          88,
+          89
+        ]
+      },
+      {
+        "item": "P:sapphire",
+        "item_index": 199,
+        "hit": true,
+        "mana_before": 9,
+        "mana_after": 8,
+        "events": [
+          124,
+          125,
+          126
+        ]
+      },
+      {
+        "item": "P:sapphire",
+        "item_index": 199,
+        "hit": true,
+        "mana_before": 9,
+        "mana_after": 8,
+        "events": [
+          149,
+          150,
+          151
+        ]
+      },
+      {
+        "item": "P:sapphire",
+        "item_index": 199,
+        "hit": true,
+        "mana_before": 10,
+        "mana_after": 9,
+        "events": [
+          182,
+          183,
+          184
+        ]
+      },
+      {
+        "item": "P:sapphire",
+        "item_index": 199,
+        "hit": true,
+        "mana_before": 10,
+        "mana_after": 9,
+        "events": [
+          215,
+          216,
+          217
+        ]
+      }
+    ],
+    "reward_categories_observed": [
+      101,
+      102,
+      106,
+      107
+    ],
+    "nonMana6mapping_scope": "All six mappings proven in synthetic realcaller components; natural sample need not hit allsix.",
+    "P_Mana_history": {
+      "event_numbers": [
+        -1,
+        6,
+        25,
+        43,
+        45,
+        63,
+        69,
+        87,
+        102,
+        104,
+        107,
+        124,
+        142,
+        149,
+        154,
+        161,
+        182,
+        188,
+        215,
+        228
+      ],
+      "values": [
+        0,
+        6,
+        5,
+        6,
+        7,
+        6,
+        7,
+        6,
+        7,
+        8,
+        9,
+        8,
+        9,
+        8,
+        9,
+        10,
+        9,
+        10,
+        9,
+        10
+      ]
+    }
+  },
+  "existing_interaction": {
+    "Amethyst_actual_losses": 7,
+    "Squirrel_actual_losses": 6,
+    "ordered_Squirrel_cache": [
+      "P:berry0",
+      "P:goobert",
+      "P:berry1",
+      "P:amethyst"
+    ],
+    "actual_Squirrel_speed": 0.6,
+    "scope": "One mixedliveSourcepool; not a counterfactual or allcombination proof."
+  },
+  "natural_NOT_HIT": [
+    "SapphirezeroMana failure:0 measuredhit hooks withmana_before0",
+    "Emerald/Sapphiremiss:all14 measurednewearlyhooks hit",
+    "Rawzero double:0 zero double_attack_effect primitive returns",
+    "Blockcap/protectedMana use:synthetic controls only; no suchnaturalclaim"
+  ],
+  "synthetic_proven": [
+    "Ruby pre provision beforeallstart gains whileHeatonlystart",
+    "Emeraldmiss/zero-damagehit/double-ownPoison ordering",
+    "Sapphiremiss/noMana, usedMana bypassprotection, samepaidparent, sixindices mapexcludingMana",
+    "Blockcap100000 leavesrewardoperation intact",
+    "oneMana double secondfails;twoMana double distinctpaidparents",
+    "persistentexperimentaldescriptor/publicdefensivecopy"
+  ],
+  "additional_model_calls": 0
+}

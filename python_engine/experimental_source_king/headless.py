@@ -26,6 +26,8 @@ from native_replay_v8.state import strict_json_loads
 ITEMS = frozenset({0, 1, 2, 4, 5, 6, 10, 11, 14, 15, 16, 19, 21, 22, 24, 26, 30, 67, 117, 129, 208, 405, 182, 233, 234, 235, 29, 82, 83, 84, 17, 18, 34, 50, 35, 36, 37, 46, 3, 12, 27, 28, 7, 8, 20, 39, 48, 124, 209, 32, 172, 23, 38, 205, 296, 52, 54, 400, 468, 53, 168, 204, 340, 62, 179, 332, 351, 374, 74, 169, 219, 220, 401, 416, 469})
 SQUIRREL_SOURCE_ITEMS = frozenset({164})
 SQUIRREL_SOURCE_EXTENSION = 'source-headless-squirrel-default/1'
+EXPERIMENTAL_NONKING_ITEMS = frozenset({64,164,197,199,201})
+EXPERIMENTAL_NONKING_EXTENSION = 'source-headless-experimental-nonking-defaults/1'
 # Original Bag.getBagLayerPriority: Unique first, then resource Icon/Border.
 # Static facts for admitted default resources; no visual object is constructed.
 BAG_LAYERS = {11: 0, 26: 1, 67: 2, 129: 2, 405: 1}
@@ -54,6 +56,16 @@ def validate_squirrel_layout(layout):
             or any(item['item_index'] in (129, 262) for item in entries)
             or not any(item['item_index'] == 164 for item in entries)):
         raise ValueError('experimental Squirrel Source requires class0, at least one164 and no King/rage')
+    return fixture
+
+
+def validate_experimental_nonking_layout(layout):
+    fixture = _validate_layout_items(layout, ITEMS | EXPERIMENTAL_NONKING_ITEMS)
+    entries = [item for side in fixture['sides'] for item in side['items']]
+    if (any(side['character_class'] != 0 for side in fixture['sides'])
+            or any(item['item_index'] in (129, 262) for item in entries)
+            or not any(item['item_index'] in EXPERIMENTAL_NONKING_ITEMS for item in entries)):
+        raise ValueError('experimental nonKing Source requires class0, at least one fixed experimental item and no King/rage')
     return fixture
 
 
@@ -394,9 +406,18 @@ class HeadlessBattle:
                                              'Game_session_reconstruction', 'whole_engine_RL']))
         if any(item['item_index'] == 164 for side in self._engine.fixture['sides'] for item in side['items']):
             value['coverage'].update(items=sorted(ITEMS | SQUIRREL_SOURCE_ITEMS),classes=[0],formal_support=75,
-                experimental_items=[164],catalog_registered=77,source_extension=SQUIRREL_SOURCE_EXTENSION,
+                experimental_items=[164],catalog_registered=len(CATALOG),source_extension=SQUIRREL_SOURCE_EXTENSION,
                 status='EXPERIMENTAL_SOURCE_SQUIRREL_NOT_NATIVE_VALIDATED',
                 remaining=['Squirrel_native_comparison','other_classes_modifiers_gems','native_seed_session_parity','full_engine_RL'])
+            value['source_rng'] = self._engine.random.snapshot()
+        if self.initialization.get('source_extension') == EXPERIMENTAL_NONKING_EXTENSION:
+            extras = sorted({item['item_index'] for side in self._engine.fixture['sides'] for item in side['items']
+                             if item['item_index'] in EXPERIMENTAL_NONKING_ITEMS})
+            value['coverage'].update(items=sorted(ITEMS | EXPERIMENTAL_NONKING_ITEMS),classes=[0],formal_support=75,
+                experimental_items=extras,experimental_kinds=sorted(EXPERIMENTAL_NONKING_ITEMS),catalog_registered=len(CATALOG),
+                source_extension=EXPERIMENTAL_NONKING_EXTENSION,status='EXPERIMENTAL_NONKING_SOURCE_NOT_NATIVE_VALIDATED',
+                remaining=['experimental_item_native_comparison','other_classes_modifiers_gems',
+                           'native_seed_session_parity','full_engine_RL'])
             value['source_rng'] = self._engine.random.snapshot()
         if self._engine.source_king_mode:
             value['coverage'].update(items=sorted(SOURCE_KING_ITEMS), classes=[0],
@@ -453,6 +474,21 @@ def initialize_squirrel(layout, seed):
         raise ValueError('uint64 headless seed required')
     fixture = validate_squirrel_layout(layout)
     return _initialize_fixture(fixture, seed)
+
+
+def initialize_experimental_nonking(layout, seed):
+    if type(seed) is not int or not 0 <= seed <= MASK64:
+        raise ValueError('uint64 headless seed required')
+    fixture = validate_experimental_nonking_layout(layout)
+    battle = _initialize_fixture(fixture, seed)
+    extras = sorted({item['item_index'] for side in fixture['sides'] for item in side['items']
+                     if item['item_index'] in EXPERIMENTAL_NONKING_ITEMS})
+    battle._initialization.update(origin=EXPERIMENTAL_NONKING_EXTENSION,source_extension=EXPERIMENTAL_NONKING_EXTENSION,
+        formal_support=75,experimental_items=extras,catalog_registered=len(CATALOG),
+        initialization_origin='FRESH_MODEL_OBJECTS_SOURCE_FACTORY',native_equivalence='UNVERIFIED_FOR_EXPERIMENTAL_LAYOUT_OR_SEED',
+        domain=dict(items=sorted(ITEMS | EXPERIMENTAL_NONKING_ITEMS),experimental_kinds=sorted(EXPERIMENTAL_NONKING_ITEMS),
+                    requires_experimental=True,classes=[0],King=False,rage=False))
+    return battle
 
 
 def _initialize_fixture(fixture, seed):
