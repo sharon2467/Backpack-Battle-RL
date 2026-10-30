@@ -1,0 +1,50 @@
+{
+  "schema": "phase482-v2-source-api-contract/1",
+  "profile": "source-headless-king-mirror-poison-fixed60/1",
+  "staged": "data/phase482-source-king-mirror-poison-v2/staged",
+  "public_API_unchanged": [
+    "headless.validate_layout(layout)",
+    "headless.initialize(layout,seed)",
+    "HeadlessBattle.step()",
+    "HeadlessBattle.snapshot()",
+    "HeadlessBattle.result()",
+    "HeadlessBattle.run(max_seconds=120.0)",
+    "headless.run_batch(jobs,max_seconds=120.0,keep_results=False)"
+  ],
+  "domain": {
+    "items": [
+      1,
+      4,
+      11,
+      19,
+      21,
+      22,
+      262,
+      332
+    ],
+    "global_King": 1,
+    "global_Mirror": 1,
+    "global_Fly_Agaric": 1,
+    "Mirror_same_side_as_King": true,
+    "Fly_opposite_King": true,
+    "classes": [
+      0
+    ],
+    "business_Timers": 33
+  },
+  "initialization": "prepare+activate; inspect real prepare boundary before activation when checking zero combat draws",
+  "batch": "All jobs cheap-validated before any RNG/compute; catches only realTimeoutError.",
+  "provider": "Internal CombatRandom; no public external Tape/DTO",
+  "result": "Existing Source business outputs and diagnostics; new profile-specific domain/coverage metadata only",
+  "instance_module_policy": "Import only this staged15 set in a fresh interpreter; do not mix old formal/Source modules",
+  "Source_freeze": {
+    "path": "data/phase482-source-king-mirror-poison-v2/candidate-source-freeze.json",
+    "size": 4685,
+    "sha256": "1e89c11d175bc7094c27ffe7b471317c19c5726819e1e10b24b8bbdcfba50357"
+  },
+  "remaining": [
+    "Independent Source review and presealed finite controls",
+    "At most one separately authorized natural Source battle; author does not run",
+    "Per-layout native/seed equivalence and generalKing unclaimed"
+  ]
+}
