@@ -1,0 +1,61 @@
+{
+  "schema": "phase490-independent-source-review/1",
+  "status": "PASS_FINITE_SOURCE_DELTA_RUNTIME_CONTROLS_PENDING",
+  "source_owner": {
+    "path": "data/phase489-source-squirrel/owned-files.json",
+    "size": 4359,
+    "sha256": "c8fdff5b35ea530631e1ac6a07569b56f029b17d8ad8e2c4c8663766c7584130"
+  },
+  "source_freeze": {
+    "path": "data/phase489-source-squirrel/candidate-source-freeze.json",
+    "size": 4443,
+    "sha256": "0f3c525e944a0d42616193587574f27b5adf594b6afd0a79b1cfbe9ca42dc289"
+  },
+  "exact_modules": [
+    "godot_pcg_integer.py",
+    "native_replay_v7/__init__.py",
+    "native_replay_v7/frame_driver.py",
+    "native_replay_v7/timer_runtime.py",
+    "native_replay_v8/__init__.py",
+    "native_replay_v8/__main__.py",
+    "native_replay_v8/compare.py",
+    "native_replay_v8/genuine.py",
+    "native_replay_v8/histories.py",
+    "native_replay_v8/observed.py",
+    "native_replay_v8/randomness.py",
+    "native_replay_v8/state.py",
+    "original_rng.py"
+  ],
+  "changed_functions": {
+    "headless.py": [
+      "validate_layout",
+      "HeadlessBattle._result_view",
+      "initialize"
+    ],
+    "native_replay_v8/engine.py": [
+      "CombatEngine.activate_from_checkpoint",
+      "CombatEngine.new_caller_target_caches",
+      "CombatEngine.affected_items",
+      "CombatEngine.activate",
+      "CombatEngine.trigger"
+    ]
+  },
+  "added_functions": {
+    "headless.py": [
+      "initialize_squirrel",
+      "validate_squirrel_layout",
+      "_validate_layout_items",
+      "_initialize_fixture"
+    ],
+    "native_replay_v8/engine.py": []
+  },
+  "private_layout_body_exact_after_two_declared_substitutions": true,
+  "common_initialize_body_exact_except_actual164_metadata": true,
+  "old_seed_then_layout_validation_order_retained": true,
+  "business_judgment": "164 PetORFood cache and samepredicate fallback, exactcount*15.0/100.0 at combatStart, realstealthenactivate, pitchaftermetrics/tooltipoutsideendedbelowlimiter matchOriginal. Shared steal/helper/Timer/RNG/genuine/King bodies exact.",
+  "nonKing_run_budget": "engine.run checks elapsed>=max_seconds until finalized;120 simulated seconds, separate wall cap. NoKing FrameDriver terminal contract must not be imposed on this nonKing path.",
+  "candidate_imports": 0,
+  "model_calls": 0,
+  "native": 0,
+  "Expected": 0
+}

@@ -40,6 +40,10 @@ def assert_model_source_stable():
 
 
 CATALOG = {
+    164: dict(name="Squirrel",shape=((0,0),(0,1),(1,1)),
+              stars=((0,-1),(-1,0),(1,0),(-1,1),(2,1),(0,2),(1,2)),
+              bag=False,pet=True,nature=True,cooldown=4.0,pet_speed_percent=15.0,buff_steal=1,
+              socket_count=0,default_gem=None),
     35: dict(name="Strong Health Potion",shape=((0,0),(0,1)),bag=False,potion=True,priority=1001,
              health_threshold=0.5,heal=24,cleanse_poison=4,regeneration=3.0,socket_count=0,default_gem=None),
     37: dict(name="Stone Skin Potion",shape=((0,0),(0,1)),bag=False,potion=True,
@@ -197,7 +201,7 @@ BUFF_GOOBERT_IDS = frozenset({204,220,340,416})
 GOOBERT_IDS = frozenset({262,23,38,52,53,54,168,205,296,400,468}) | RAINBOW_GOOBERT_IDS | BUFF_GOOBERT_IDS
 STATE_PARTICLE_IDS = frozenset({53,168})
 POTION_IDS = frozenset({19,35,36,37,46,172})
-CACHED_AFFECTED_IDS = GOOBERT_IDS | POTION_IDS | frozenset({5,6,21,22,117,124}) | frozenset({18,29,82,83,84,179,332,351,374})
+CACHED_AFFECTED_IDS = GOOBERT_IDS | POTION_IDS | frozenset({5,6,21,22,117,124}) | frozenset({18,29,82,83,84,164,179,332,351,374})
 EMPOWERABLE_WEAPON_IDS = frozenset([29, 82, 83, 84, 182, 233, 234, 235, 0, 1, 2, 3, 12, 14, 15, 27, 28, 30, 32, 208, 209])
 
 EVENT_TYPES = {"LoseHealth": 5, "Activation": 0, "DealDamage": 1, "CriticalDamage": 2,
@@ -207,7 +211,7 @@ EVENT_TYPES = {"LoseHealth": 5, "Activation": 0, "DealDamage": 1, "CriticalDamag
                "TemporaryMaxHealth": 19, "Empower": 106, "Poison": 108, "Heat": 107, "Cold": 110, "Stun": 9,
                "BattleRageStart": 21, "BattleRageEnd": 22, "Win": 111, "Loss": 112}
 DEBUFF_TYPES = ("Blind", "Poison", "Cold")
-GAINED_STACK_FLAGS = {35:4,37:0,46:16,50:8,29:0,82:0,83:0,84:0,182:0,233:16,234:2,235:1792,129:0,262:0,204:254,220:254,340:254,416:766,74:776,169:584,219:648,401:524,469:524,53:512,54:8,52:0,400:6,468:4,38:256,205:128,296:0,168: 64, 0: 0, 1: 0, 2: 0, 3: 512, 4: 0, 5: 0, 6: 0, 7: 4, 8: 16, 10: 0, 11: 0, 12: 0, 14: 0, 15: 0, 16: 16, 17: 0, 18: 0, 19: 0, 20: 512, 21: 256, 22: 34, 23: 0, 24: 2, 26: 0, 27: 16, 28: 8, 30: 256, 32: 0, 34: 66, 36: 256, 39: 0, 48: 8, 62: 128, 67: 0, 117: 128, 124: 64, 172: 32, 179: 1024, 208: 0, 209: 128, 332: 254, 351: 0, 374: 0, 405: 0}
+GAINED_STACK_FLAGS = {164:254,35:4,37:0,46:16,50:8,29:0,82:0,83:0,84:0,182:0,233:16,234:2,235:1792,129:0,262:0,204:254,220:254,340:254,416:766,74:776,169:584,219:648,401:524,469:524,53:512,54:8,52:0,400:6,468:4,38:256,205:128,296:0,168: 64, 0: 0, 1: 0, 2: 0, 3: 512, 4: 0, 5: 0, 6: 0, 7: 4, 8: 16, 10: 0, 11: 0, 12: 0, 14: 0, 15: 0, 16: 16, 17: 0, 18: 0, 19: 0, 20: 512, 21: 256, 22: 34, 23: 0, 24: 2, 26: 0, 27: 16, 28: 8, 30: 256, 32: 0, 34: 66, 36: 256, 39: 0, 48: 8, 62: 128, 67: 0, 117: 128, 124: 64, 172: 32, 179: 1024, 208: 0, 209: 128, 332: 254, 351: 0, 374: 0, 405: 0}
 STACK_NAMES_BY_TYPE = {value: name for name, value in EVENT_TYPES.items() if 100 <= value <= 110}
 
 
@@ -1969,6 +1973,10 @@ class CombatEngine:
                 self.change_debuff_reflection(item.side, item.definition["reflect_stacks"])
         for identity in self.preparation_order:
             item = self.items[identity]
+            if item.item_index == 164:
+                num_affected = len(self.affected_items(item))
+                if num_affected > 0:
+                    self.add_speed(item, num_affected * item.definition["pet_speed_percent"] / 100.0)
             if item.item_index in (29, 82, 83, 84):
                 if item.item_index in (29, 82, 84):
                     for affected in self.affected_items(item):
@@ -2078,6 +2086,8 @@ class CombatEngine:
                 def eligible(other):
                     if other.definition["bag"] or other is item:
                         return False
+                    if item.item_index == 164:
+                        return other.definition.get("pet", False) or other.definition.get("food", False)
                     if item.definition.get("food"):
                         return other.definition.get("food", False) and other.item_index != item.item_index
                     if item.item_index in (29, 82, 84):
@@ -2165,6 +2175,8 @@ class CombatEngine:
             return targets
         candidates = [other for other in self.side_items[item.side]
                       if other is not item and other.cells & item.stars and not other.definition["bag"]]
+        if item.item_index == 164:
+            return [other for other in candidates if other.definition.get("pet") or other.definition.get("food")]
         if item.definition.get("food"):
             return [other for other in candidates if other.definition.get("food") and other.item_index != item.item_index]
         if item.definition.get("potion"):
@@ -2824,6 +2836,8 @@ class CombatEngine:
                 self.histories.item_metric(item, 4)
             if item.has_cooldown:
                 self.histories.tooltip(item, 9, event_num=event["id"] if event is not None else None)
+        if item.item_index == 164:
+            self.random.randf_range('squirrel_activation_pitch:' + item.instance_id, 0.9, 1.1)
 
     def on_goobert_item_activated(self, item, event):
         if item.double_activation_chance != 0.0:
@@ -3170,6 +3184,10 @@ class CombatEngine:
         item.iteration_cooldown = self.adjust_cooldown(item)
         item.trigger_time += item.iteration_cooldown
         char = self.characters[item.side]
+        if item.item_index == 164:
+            self.steal_random_buff(item, item.definition["buff_steal"])
+            self.activate(item)
+            return
         if item.item_index == 50:
             self.health_to_block(item,item.definition["health_cost"],item.definition["converted_block"])
             self.activate(item)

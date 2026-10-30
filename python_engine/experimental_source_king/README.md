@@ -1,6 +1,6 @@
-# Experimental Source King combat: six, seven and eight IDs
+# Experimental Source combat: bounded King domains and Squirrel
 
-Standalone Python Source simulator. **Formal support remains75 non-King items.** Three separate experimental King domains are available, with class0/default legal layouts and exactly one global King:
+Standalone Python Source simulator. **Formal support remains75 non-King items.** The explicit `initialize_squirrel` API additionally accepts the bounded non-King Squirrel164 Source extension described below. The retained directory name is compatible with previous King distributions. Three separate experimental King domains are available, with class0/default legal layouts and exactly one global King:
 
 - Six IDs: `1,4,11,19,22,262`.
 - Seven IDs: six plus one basic Goobert23 on the King's side.
@@ -8,9 +8,9 @@ Standalone Python Source simulator. **Formal support remains75 non-King items.**
 
 King identity/side may vary. Extra King/Basic/Mirror/Fly, wrong side relationships, other75×King mixes, SpikedShield16/RangerBag67 in the eight-ID branch, rage, gems and modifiers are rejected. Non-King formal75 behavior remains separate.
 
-The15 Source files are exact frozen482v2 bytes, independently accepted in483 for the finite eight-ID Source extension;13 modules and the shared business/Timer/RNG algorithms are conserved from458. Historical453/454 six-ID and459 seven-ID Source evidence is retained, without rerunning those old complete battles on this package. Phase483 passed17 ingress/component controls and one remaining natural Source integration:409events,474combat-provider audit entries and33Timers. It naturally hit Mirror activation/allocation, Poison reflection and zero/nonzero Poison ticks across King invulnerability; positive-buff protection accumulated to18 without consumption. These are fresh Source observations, not a new native comparison. The first natural attempt stopped at its chosen10 simulated-second ceiling; its error is preserved, and only the remaining natural case was rerun with a120 simulated-second ceiling. No candidate algorithm changed.
+The15 Source files are exact frozen489 bytes, independently accepted in490 for the finite Squirrel Source extension. Relative to the accepted482v2 package,13 modules are byte-exact and only engine/headless changed; the shared steal/Timer/RNG algorithms and King6/7/8/genuine admission are conserved. Phase483 independently accepted the finite eight-ID Source extension on482v2. Historical453/454 six-ID and459 seven-ID Source evidence is retained, without rerunning those old complete battles on this package. Phase483 passed17 ingress/component controls and one remaining natural Source integration:409events,474combat-provider audit entries and33Timers. It naturally hit Mirror activation/allocation, Poison reflection and zero/nonzero Poison ticks across King invulnerability; positive-buff protection accumulated to18 without consumption. These are fresh Source observations, not a new native comparison. The first natural attempt stopped at its chosen10 simulated-second ceiling; its error is preserved, and only the remaining natural case was rerun with a120 simulated-second ceiling. No candidate algorithm changed.
 
-Phase478 passed all eight strict business sections for one fixed26-item King+Basic native case using its original primitive Tape:366 events,422 selected primitive records and33 business Timers. The captured candidate and corrected INPUT are separately frozen engineering artifacts; the15 Source files in this package are now exact482v2, with their shared business algorithms conserved. Phase451 separately passed a different fixed King case. These results do not claim native equality for every public Source layout or seed. Production all-seed/platform parity is not a prerequisite for Tape-based business validation; no new numeric probe is included. This remains an experimental partial engine and does not complete the RL environment. Old453/455 six-ID package remains available in the recovery checkpoint and Git history.
+Phase478 passed all eight strict business sections for one fixed26-item King+Basic native case using its original primitive Tape:366 events,422 selected primitive records and33 business Timers. The captured candidate and corrected INPUT are separately frozen engineering artifacts; the15 Source files in this package are now exact489, with their shared business algorithms conserved. Phase451 separately passed a different fixed King case. These results do not claim native equality for every public Source layout or seed. Production all-seed/platform parity is not a prerequisite for Tape-based business validation; no new numeric probe is included. This remains an experimental partial engine and does not complete the RL environment. Old453/455 six-ID package remains available in the recovery checkpoint and Git history.
 
 ## Runtime
 
@@ -60,6 +60,26 @@ result = battle.result()
 Layouts use `headless-layout/1`: explicit `below_master`, ordered P/O sides and item entries with `item_index, x, y, f, instance_id`. IDs are unique; rotations are0..3. Bags precede ordinary items; cells must lie on the9×7 board, ordinary cells must be bag-covered and nonoverlapping. HP/stamina may be supplied as accepted integer-valued numbers. Root seeds are uint64 integers; bool is rejected. Captured clocks, private state, external RNG objects, GUI facts and modifiers are not layout fields.
 
 The Source seed policy is `headless-sha256-domains/1`: independent global and Util streams reuse the existing Source PCG implementations, with continuous global state after preparation shuffle. King scheduling is an explicit60physics+60idle Source policy, not a replay of retail idle timing. Results expose Source-only coverage and pending native seed-parity labels plus actual stream states. Some runtime coverage descriptions predate478 and still conservatively say that joint native comparison is pending; this documentation and lineage record the later fixed-case acceptance without changing those historical code bytes. Different seeds need not yield different winners.
+
+## Squirrel164 Source API
+
+`validate_squirrel_layout(layout)` and `initialize_squirrel(layout, seed)` require at least one Squirrel164, otherwise only the old75 non-King items, class0 and default rules. King262, other classes, rage, gems, modifiers and external RNG/private state are outside this interface. Old `ITEMS75`, `validate_layout`, `initialize`, CLI and `run_batch` still reject164; use the explicit Python API. No new batch or CLI route is implied.
+
+```python
+import json
+import headless
+
+with open('examples/job-Squirrel.json', encoding='utf-8') as stream:
+    job = json.load(stream)
+battle = headless.initialize_squirrel(job['layout'], job['seed'])
+result = battle.run(max_seconds=120.0)
+with open('../result-Squirrel.json', 'w', encoding='utf-8') as stream:
+    json.dump(result, stream, ensure_ascii=False)
+```
+
+The example is byte-exact490's pre-outcome22-item request with seed49001. Packaging did not run it again. Independent490 passed19 finite controls including one natural completion:313events/411combat-provider audit entries/26Timers, terminal34.000001773s andP winner. Natural repeated stealing produced10loss/10gain events,11Activation events,12pitch draws and11selection draws. The activation-tail pitch draw is retained because it shares the combat Util RNG stream even without audio objects. A natural count difference is not labeled a direct terminal-tail branch observation. Actual component controls separately proved ordered unique Pet-or-Food neighbors, exact startup speed arithmetic, protected loss0 with picked gain1 under the same parent, empty target, three pitch tails/fourth limiter return, and an ended allowed activation with no event but one pitch draw. Protected removal is component evidence, not a naturally observed protection-consumption claim.
+
+Coverage labels remain `EXPERIMENTAL_SOURCE_SQUIRREL_NOT_NATIVE_VALIDATED`, formal_support75 and experimental_items[164]. Runtime catalog77 includes experimental King and Squirrel; it is not formal77. No Squirrel native capture/comparison or arbitrary75×164 session guarantee follows. `max_seconds` is simulated time; use an external process deadline separately if needed. Lifecycle is the same `step/snapshot/result/run` API, with non-King completion determined by the engine's finalized state.
 
 ## Byte verification and lineage
 

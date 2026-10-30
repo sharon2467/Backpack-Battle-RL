@@ -1,0 +1,50 @@
+{
+  "schema": "phase491-independent-first-static-review/1",
+  "status": "SOURCE_AND_INPUT_BYTES_PASS_METADATA_CORRECTION_NEEDED_BEFORE_VERIFIER",
+  "owner": {
+    "path": "data/phase491-squirrel-distribution/owned-files.json",
+    "size": 5573,
+    "sha256": "f61dc9c202daf8837020e55ba1205c9bf83c0e332c275232139cccd8ce423a1b"
+  },
+  "manifest": {
+    "path": "data/phase491-squirrel-distribution/package/manifest.json",
+    "size": 4843,
+    "sha256": "a593ffeb6ae3cd393bfcd97dc4f6aeb9440b3b7036fd518599739de75b7d91f5"
+  },
+  "README": {
+    "path": "data/phase491-squirrel-distribution/package/README.md",
+    "size": 10620,
+    "sha256": "e912693617492a658bfa1897a9e2adffa90ba61fcc0deecd88506f366eacc128"
+  },
+  "source15_exact": true,
+  "old_examples_exact": [
+    "jobs-RL-smoke.json",
+    "jobs.json",
+    "layout-A.json",
+    "layout-B.json",
+    "layout-King-Basic.json",
+    "layout-King-Mirror-Poison.json"
+  ],
+  "verifier_exact": true,
+  "new_job_exact": true,
+  "manifest_payloads": 25,
+  "physical_files": 26,
+  "python_snippets_AST": 2,
+  "findings": [
+    {
+      "kind": "stale_source_identity",
+      "text": "the15 Source files in this package are now exact482v2",
+      "required": "Replace with exact489 and conserved shared algorithms; current physical runtime is489."
+    },
+    {
+      "kind": "ambiguous_control_count",
+      "text": "Independent490 passed19 finite controls plus one natural completion",
+      "required": "Say19 controls including one natural completion (18 preceding cases+case19 natural), avoiding implied20."
+    }
+  ],
+  "verifier_calls": 0,
+  "candidate_imports": 0,
+  "battle": 0,
+  "native": 0,
+  "Expected": 0
+}

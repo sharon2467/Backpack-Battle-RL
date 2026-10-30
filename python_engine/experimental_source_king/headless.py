@@ -24,6 +24,8 @@ from native_replay_v8.randomness import _bits
 from native_replay_v8.state import strict_json_loads
 
 ITEMS = frozenset({0, 1, 2, 4, 5, 6, 10, 11, 14, 15, 16, 19, 21, 22, 24, 26, 30, 67, 117, 129, 208, 405, 182, 233, 234, 235, 29, 82, 83, 84, 17, 18, 34, 50, 35, 36, 37, 46, 3, 12, 27, 28, 7, 8, 20, 39, 48, 124, 209, 32, 172, 23, 38, 205, 296, 52, 54, 400, 468, 53, 168, 204, 340, 62, 179, 332, 351, 374, 74, 169, 219, 220, 401, 416, 469})
+SQUIRREL_SOURCE_ITEMS = frozenset({164})
+SQUIRREL_SOURCE_EXTENSION = 'source-headless-squirrel-default/1'
 # Original Bag.getBagLayerPriority: Unique first, then resource Icon/Border.
 # Static facts for admitted default resources; no visual object is constructed.
 BAG_LAYERS = {11: 0, 26: 1, 67: 2, 129: 2, 405: 1}
@@ -42,6 +44,20 @@ def derive_stream_seeds(root_seed):
 
 
 def validate_layout(layout):
+    return _validate_layout_items(layout, ITEMS | {262})
+
+
+def validate_squirrel_layout(layout):
+    fixture = _validate_layout_items(layout, ITEMS | SQUIRREL_SOURCE_ITEMS)
+    entries = [item for side in fixture['sides'] for item in side['items']]
+    if (any(side['character_class'] != 0 for side in fixture['sides'])
+            or any(item['item_index'] in (129, 262) for item in entries)
+            or not any(item['item_index'] == 164 for item in entries)):
+        raise ValueError('experimental Squirrel Source requires class0, at least one164 and no King/rage')
+    return fixture
+
+
+def _validate_layout_items(layout, allowed_items):
     """Resolve source defaults and validate the entire closed ingress before RNGs."""
     if type(layout) is not dict or set(layout) != {'schema', 'below_master', 'sides'}:
         raise ValueError('closed headless layout fields required')
@@ -60,7 +76,7 @@ def validate_layout(layout):
         ordinary_seen = False
         bag_seen = False
         for item in side['items']:
-            if type(item) is not dict or type(item.get('item_index')) is not int or item['item_index'] not in ITEMS | {262}:
+            if type(item) is not dict or type(item.get('item_index')) is not int or item['item_index'] not in allowed_items:
                 raise ValueError('item outside75 default headless family')
             if CATALOG[item['item_index']]['bag']:
                 if ordinary_seen:
@@ -376,6 +392,12 @@ class HeadlessBattle:
                                   status='source_initialized_not_per_layout_native_validation',
                                   remaining=['other_items_classes', 'modifiers_gems_custom_rules',
                                              'Game_session_reconstruction', 'whole_engine_RL']))
+        if any(item['item_index'] == 164 for side in self._engine.fixture['sides'] for item in side['items']):
+            value['coverage'].update(items=sorted(ITEMS | SQUIRREL_SOURCE_ITEMS),classes=[0],formal_support=75,
+                experimental_items=[164],catalog_registered=77,source_extension=SQUIRREL_SOURCE_EXTENSION,
+                status='EXPERIMENTAL_SOURCE_SQUIRREL_NOT_NATIVE_VALIDATED',
+                remaining=['Squirrel_native_comparison','other_classes_modifiers_gems','native_seed_session_parity','full_engine_RL'])
+            value['source_rng'] = self._engine.random.snapshot()
         if self._engine.source_king_mode:
             value['coverage'].update(items=sorted(SOURCE_KING_ITEMS), classes=[0],
                 status='source_single_King_six_ID_domain_not_native_validated',
@@ -423,6 +445,17 @@ def initialize(layout, seed):
     if type(seed) is not int or not 0 <= seed <= MASK64:
         raise ValueError('uint64 headless seed required')
     fixture = validate_layout(layout)
+    return _initialize_fixture(fixture, seed)
+
+
+def initialize_squirrel(layout, seed):
+    if type(seed) is not int or not 0 <= seed <= MASK64:
+        raise ValueError('uint64 headless seed required')
+    fixture = validate_squirrel_layout(layout)
+    return _initialize_fixture(fixture, seed)
+
+
+def _initialize_fixture(fixture, seed):
     topology = source_runtime_topology(fixture)
     if _has_king(fixture):source_pure_business_defaults(fixture)
     else:_validate_runtime_nodes(topology,fixture)
@@ -452,6 +485,11 @@ def initialize(layout, seed):
         if runtime.data['profile_id']==SOURCE_KING_MIRROR_POISON_PROFILE:
             descriptor['domain']=dict(items=sorted(SOURCE_KING_MIRROR_POISON_ITEMS),classes=[0],global_max_King=1,
                                       global_Mirror=1,global_Fly_Agaric=1,Mirror_same_side_as_King=True,Fly_opposite_King=True)
+    if any(item['item_index'] == 164 for side in fixture['sides'] for item in side['items']):
+        descriptor.update(origin=SQUIRREL_SOURCE_EXTENSION,source_extension=SQUIRREL_SOURCE_EXTENSION,
+            formal_support=75,experimental_items=[164],initialization_origin='FRESH_MODEL_OBJECTS_SOURCE_FACTORY',
+            native_equivalence='UNVERIFIED_FOR_SQUIRREL_LAYOUT_OR_SEED',
+            domain=dict(items=sorted(ITEMS | SQUIRREL_SOURCE_ITEMS),classes=[0],requires_Squirrel=True,King=False,rage=False))
     return HeadlessBattle(engine, descriptor)
 
 
