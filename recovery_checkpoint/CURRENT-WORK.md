@@ -67,3 +67,7 @@ Reuse the fixed read-only baseline/pool; do not create a full Game copy per case
 ## Actual Whelp interface first failure preserved
 
 [494 first execution](../work_in_progress/phase494-first-execution-descriptor-failure/README.md) passed four ingress groups/ten rejections, then exposed a real descriptor write to a deep-copy property. One unit ctor/prepare/activation executed; complete battles/natural runs0. Remaining05–17 are unaccepted. First output/exception/seals are retained;495 will be an immutable one-function interface repair, with combat algorithms and the old public getter unchanged. No original capture or automatic retry occurred.
+
+## Whelp/Squirrel Source accepted after preserved first error
+
+[494–496 acceptedSource](../work_in_progress/phase494-496-whelp-source-accepted-and-family-plan/README.md) contains full standalone495Source15, the presealed request and an invocation requiring no old cloud files. One receiver-only descriptor fix, fourteen modules/allbusiness algorithms conserved; independentremaining05–17PASS joined with old01–04 gives17groups without repeats. Sole natural22-item case:279events375draws26Timers;WhelpMana removal7/Squirrelsteal8/sharedPet speed0.6. No new native/Expected run. Formal75/generalKing remain;catalog78 only registered. Direct public package remains489 until a later combined distribution. Subsequent496 three-Whelp group is frozen static design only; its paused draft remains.

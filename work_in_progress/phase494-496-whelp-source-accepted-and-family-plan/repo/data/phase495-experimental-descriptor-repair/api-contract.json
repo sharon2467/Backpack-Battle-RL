@@ -1,0 +1,23 @@
+{
+  "schema": "phase495-descriptor-repair-api/1",
+  "source_freeze": {
+    "path": "data/phase495-experimental-descriptor-repair/candidate-source-freeze.json",
+    "size": 4705,
+    "sha256": "4595eee5690ccfb683097b14221eda2da944e0cded49aee1668f95f4ef5522b1"
+  },
+  "staged": "data/phase495-experimental-descriptor-repair/staged",
+  "API": [
+    "headless.validate_experimental_nonking_layout(layout)",
+    "headless.initialize_experimental_nonking(layout,seed)"
+  ],
+  "unchanged_contract": {
+    "path": "data/phase493-source-amethyst-whelp/api-contract.json",
+    "size": 1817,
+    "sha256": "5b8dabeab4661595de0038991e2633353c57a87a7ee081ace75646653f3e3e9d"
+  },
+  "repair": "Actual private _initialization update of own new instance, not public deepcopy view",
+  "public_initialization_getter": "Still defensive deepcopy; callers cannot mutate instance metadata through returned dict",
+  "initialization": "Still exactly one ctor/prepare/activate; same fixture/business/seed/state",
+  "remaining": "Independent minimal continuation from494 first error; author no retry/runtime",
+  "no_native_or_formal_upgrade": true
+}

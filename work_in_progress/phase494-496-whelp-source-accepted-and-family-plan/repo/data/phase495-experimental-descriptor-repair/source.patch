@@ -1,0 +1,11 @@
+--- data/phase493-source-amethyst-whelp/staged/headless.py
++++ data/phase495-experimental-descriptor-repair/staged/headless.py
+@@ -483,7 +483,7 @@
+     battle = _initialize_fixture(fixture, seed)
+     extras = sorted({item['item_index'] for side in fixture['sides'] for item in side['items']
+                      if item['item_index'] in EXPERIMENTAL_NONKING_ITEMS})
+-    battle.initialization.update(origin=EXPERIMENTAL_NONKING_EXTENSION,source_extension=EXPERIMENTAL_NONKING_EXTENSION,
++    battle._initialization.update(origin=EXPERIMENTAL_NONKING_EXTENSION,source_extension=EXPERIMENTAL_NONKING_EXTENSION,
+         formal_support=75,experimental_items=extras,catalog_registered=len(CATALOG),
+         initialization_origin='FRESH_MODEL_OBJECTS_SOURCE_FACTORY',native_equivalence='UNVERIFIED_FOR_EXPERIMENTAL_LAYOUT_OR_SEED',
+         domain=dict(items=sorted(ITEMS | EXPERIMENTAL_NONKING_ITEMS),experimental_kinds=[164,201],

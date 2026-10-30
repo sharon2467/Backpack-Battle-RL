@@ -1,0 +1,230 @@
+{
+  "schema": "phase496-v2-prospective-api-delta/1",
+  "prospective_base": {
+    "path": "data/phase495-experimental-descriptor-repair/candidate-source-freeze.json",
+    "size": 4705,
+    "sha256": "4595eee5690ccfb683097b14221eda2da944e0cded49aee1668f95f4ef5522b1"
+  },
+  "base_status": "Compile-only repair; remaining functional acceptance pending at freeze; no successor implementation released",
+  "existing_affected_engine": {
+    "source": {
+      "path": "data/phase495-experimental-descriptor-repair/staged/native_replay_v8/engine.py",
+      "size": 242408,
+      "sha256": "d8f7aca2bc530e99b6adccd87196375c7664f65f659715bbed9d4c1c2e9fc56f"
+    },
+    "functions": [
+      {
+        "name": "CombatEngine.activate_from_checkpoint",
+        "line": 1935,
+        "end_line": 2056,
+        "sha256": "9a3dbef7e13180177791614123a5fd55acdb2beb3165a1e477e1fb7c9bc8fab9"
+      },
+      {
+        "name": "CombatEngine.pre_item_damage",
+        "line": 3284,
+        "end_line": 3318,
+        "sha256": "edcbf23b4f4b0903dbe58ca0a5898f6b057a7884d1667d788f4c0c89a890f5dc"
+      }
+    ]
+  },
+  "module_literals": [
+    "CATALOG+64/197/199",
+    "EMPOWERABLE_WEAPON_IDS+64/197/199",
+    "GAINED_STACK_FLAGS64=128,197=258,199=254"
+  ],
+  "shared_engine_exact_intention": {
+    "source": {
+      "path": "data/phase495-experimental-descriptor-repair/staged/native_replay_v8/engine.py",
+      "size": 242408,
+      "sha256": "d8f7aca2bc530e99b6adccd87196375c7664f65f659715bbed9d4c1c2e9fc56f"
+    },
+    "functions": [
+      {
+        "name": "CombatEngine.set_logging_mode",
+        "line": 1786,
+        "end_line": 1789,
+        "sha256": "d8d1fe98dce636efb38410a1dfdfe5407abfbd08939d6ab22dfdc768299c0e7f"
+      },
+      {
+        "name": "CombatEngine.flush_logging_queue",
+        "line": 1814,
+        "end_line": 1819,
+        "sha256": "43e633366dbbe0c64a2b505495eb227fac0c3065a6d97a74b730319f251eb043"
+      },
+      {
+        "name": "CombatEngine.damage_bounds",
+        "line": 2213,
+        "end_line": 2221,
+        "sha256": "2a9598bc7647193735857ff68bbf9e865f7433432fe604cd29e45d34bb266e2c"
+      },
+      {
+        "name": "CombatEngine.change_debuff_reflection",
+        "line": 2261,
+        "end_line": 2263,
+        "sha256": "25b4d3dcc606130a70e673097331f4bc62d60603e86ed02a01687410ca2763b8"
+      },
+      {
+        "name": "CombatEngine._gain_stacks",
+        "line": 2390,
+        "end_line": 2460,
+        "sha256": "361c6dcbd43b2c24f0dd5c8a480250c1e643d9fdbd4c8021f206f1ad8b792efc"
+      },
+      {
+        "name": "CombatEngine.remove_stack",
+        "line": 2462,
+        "end_line": 2516,
+        "sha256": "ff7b0fe7bf8738900a8302a3e87a01a0b031bb0f719ec6a34427e4ed4d84efff"
+      },
+      {
+        "name": "CombatEngine.try_use_mana",
+        "line": 2521,
+        "end_line": 2524,
+        "sha256": "974889bf65a3efc19394444c27c350e7dd8b6e15b9f0f80e128a3706d4650905"
+      },
+      {
+        "name": "CombatEngine.give_stack",
+        "line": 2557,
+        "end_line": 2564,
+        "sha256": "2b917975701aabf03fb967a8e1370e446e7564568904ba1e3828f8cc004fe171"
+      },
+      {
+        "name": "CombatEngine.pick_random_stacks_to_give",
+        "line": 2710,
+        "end_line": 2720,
+        "sha256": "2554a7967c932d60eadc9376a9c04e3e1c23a1bb1d379d14cf67349ae24aea9f"
+      },
+      {
+        "name": "CombatEngine.give_random_buffs",
+        "line": 2729,
+        "end_line": 2735,
+        "sha256": "08cce75fac1ec755d05e16ad09d54f36f03eb8402b7eb4c60332ed42bfe136ca"
+      },
+      {
+        "name": "CombatEngine.activate",
+        "line": 2823,
+        "end_line": 2846,
+        "sha256": "eead715715b28c4f8be0aeda55b75d350d26905b3412a40a3eca562e0abd7fd2"
+      },
+      {
+        "name": "CombatEngine.weapon_attack",
+        "line": 2994,
+        "end_line": 3000,
+        "sha256": "f9a2a331231725bc93dde2f063b64c7f7d055325e30bdbf34d25ab739747387e"
+      },
+      {
+        "name": "CombatEngine.trigger",
+        "line": 3189,
+        "end_line": 3282,
+        "sha256": "b8079443922a5ada24e60c840479fc99cf181bc58543b3d780f602e18312deb2"
+      },
+      {
+        "name": "CombatEngine.attack_effect_count",
+        "line": 3320,
+        "end_line": 3325,
+        "sha256": "4a3da880db3c3e95b9b0d6089749e02463f46f1f6736d1fa531263b6febfb6a2"
+      },
+      {
+        "name": "CombatEngine.attack",
+        "line": 3341,
+        "end_line": 3396,
+        "sha256": "548860eda747375e9d9827d6564365717221fcea1652f0bb59a9c93d074e9970"
+      }
+    ]
+  },
+  "headless_existing_interface_seams": {
+    "source": {
+      "path": "data/phase495-experimental-descriptor-repair/staged/headless.py",
+      "size": 35718,
+      "sha256": "8e8f8071c4f576ac605eada19030ef8f8b260e874d401576a036bef06ba3fa5c"
+    },
+    "functions": [
+      {
+        "name": "validate_experimental_nonking_layout",
+        "line": 62,
+        "end_line": 69,
+        "sha256": "11f77e3478a8ee75559ccfab98c55d37b900847bee374365434be110dbb2ac46"
+      },
+      {
+        "name": "HeadlessBattle._result_view",
+        "line": 396,
+        "end_line": 462,
+        "sha256": "1e50705c9f1fc1a38313cb3f5d0c3848bb439ec766caaf556db8281c91657e2f"
+      },
+      {
+        "name": "initialize_experimental_nonking",
+        "line": 479,
+        "end_line": 491,
+        "sha256": "e0406b8be61056c0b04492376ba6458f8d0e64c4b676b24a70c4e3b6960c28c8"
+      }
+    ]
+  },
+  "headless_shared_exact_intention": {
+    "source": {
+      "path": "data/phase495-experimental-descriptor-repair/staged/headless.py",
+      "size": 35718,
+      "sha256": "8e8f8071c4f576ac605eada19030ef8f8b260e874d401576a036bef06ba3fa5c"
+    },
+    "functions": [
+      {
+        "name": "validate_layout",
+        "line": 48,
+        "end_line": 49,
+        "sha256": "042c28acb02c27b9f71af86debbeb3cb92e5a3900cad26b3923aee275f530a1c"
+      },
+      {
+        "name": "validate_squirrel_layout",
+        "line": 52,
+        "end_line": 59,
+        "sha256": "e3560f7384f597d8bf4647d23c8badb22e18d2fde224a9c2efbfd88e616834b9"
+      },
+      {
+        "name": "_validate_layout_items",
+        "line": 72,
+        "end_line": 108,
+        "sha256": "032f1fe000162833a2115962adc3ad40dc99dd1fdc64f4155c258af752b6c6ca"
+      },
+      {
+        "name": "initialize",
+        "line": 465,
+        "end_line": 469,
+        "sha256": "21988cf280c7ca5edc55b96e94256a052b0952312deb20aafc06ae4491b048de"
+      },
+      {
+        "name": "initialize_squirrel",
+        "line": 472,
+        "end_line": 476,
+        "sha256": "31b44d0bb9ffdee1ccd4c0f6af30f0c51789b47b6236359eb9943bff503664fe"
+      },
+      {
+        "name": "_initialize_fixture",
+        "line": 494,
+        "end_line": 529,
+        "sha256": "0194bdccb3f7f9bf03021766834d38b114bdfdbf59317323fb94564ef8967cd5"
+      },
+      {
+        "name": "run_batch",
+        "line": 567,
+        "end_line": 599,
+        "sha256": "b7f7073bc01eae3ef4dddf6a41085d5129c62ffb0fc52052707aa9ca26da5148"
+      },
+      {
+        "name": "main",
+        "line": 602,
+        "end_line": 617,
+        "sha256": "1f049c8d72a9b3060e928c3a195b1e510f251b7ec5951297031de8ad2ffb1153"
+      }
+    ]
+  },
+  "new_API_functions": 0,
+  "expanded_fixed_Source_extras": [
+    64,
+    164,
+    197,
+    199,
+    201
+  ],
+  "new_genuine_or_King_profile": false,
+  "old_admission_boundaries_preserved": true,
+  "anticipated_modified_modules": 2,
+  "anticipated_conserved_modules": 13
+}

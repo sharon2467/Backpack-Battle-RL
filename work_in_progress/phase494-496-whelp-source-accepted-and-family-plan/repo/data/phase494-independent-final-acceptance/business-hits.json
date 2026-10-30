@@ -1,0 +1,461 @@
+{
+  "schema": "phase494-independent-business-hits/1",
+  "scope": "READ_ONLY_SUMMARY_OF_SEALED_SOURCE_OUTPUT_NOT_NATIVE",
+  "natural_output": {
+    "path": "data/phase494-independent-remaining-v2-001/natural-source-output.json",
+    "size": 337759,
+    "sha256": "4778a8e425652ce3987e648636daf7f5e13ce65cb6135062d956f17a552e0683"
+  },
+  "natural_summary": {
+    "status": "EXPERIMENTAL_SOURCE_NOT_NATIVE",
+    "output": {
+      "path": "data/phase494-independent-remaining-v2-001/natural-source-output.json",
+      "size": 337759,
+      "sha256": "4778a8e425652ce3987e648636daf7f5e13ce65cb6135062d956f17a552e0683"
+    },
+    "seed": 49401,
+    "items": 22,
+    "events": 279,
+    "draws": 375,
+    "timers": 26,
+    "winner": "P",
+    "simulated_seconds": 31.00000161677599,
+    "activations": {
+      "P:whelp": 15,
+      "P:squirrel": 12
+    },
+    "losses": {
+      "P:whelp": 7,
+      "P:squirrel": 8
+    },
+    "startup_draws": 4,
+    "source_rng": {
+      "schema": "source-headless-two-stream-state/1",
+      "util": {
+        "schema": "original-source-rng-snapshot/1",
+        "state": 17743647567755682938,
+        "current_seed": 7980139319354460711,
+        "increment": 2885390081777926815
+      },
+      "global_rng": {
+        "state": 8504680830663592097,
+        "current_seed": 207496824779176199,
+        "increment": 2885390081777926815
+      },
+      "audit_length": 375,
+      "seed_policy": "headless-sha256-domains/1",
+      "native_seed_parity": "PENDING_CUSTOM_BINARY_NUMERIC_AND_SESSION_CONSUMPTION"
+    },
+    "HIT": {
+      "Whelp_removal": "HIT",
+      "Squirrel_steal": "HIT",
+      "same_category_pool": "HIT",
+      "Pet_speed": "HIT",
+      "natural_protection": "NOT_CLAIMED",
+      "natural_double": "NOT_CLAIMED"
+    },
+    "no_input_tuning": true
+  },
+  "startup": {
+    "picks": [
+      1,
+      2,
+      2,
+      2
+    ],
+    "expected_category_order": "Poison108,Blind109,Cold110",
+    "actual_grouped_events": [
+      {
+        "id": 0,
+        "sequence": 0,
+        "timestamp": 0.0,
+        "parent": null,
+        "origin": "P:whelp",
+        "target": 1,
+        "type": 109,
+        "params": {
+          "amount": 1,
+          "used": false,
+          "reflected": false
+        }
+      },
+      {
+        "id": 1,
+        "sequence": 1,
+        "timestamp": 0.0,
+        "parent": null,
+        "origin": "P:whelp",
+        "target": 1,
+        "type": 110,
+        "params": {
+          "amount": 3,
+          "used": false,
+          "reflected": false
+        }
+      },
+      {
+        "id": 2,
+        "sequence": 2,
+        "timestamp": 0.0,
+        "parent": null,
+        "origin": "P:whelp",
+        "target": null,
+        "type": 0,
+        "params": {}
+      }
+    ],
+    "result": "Blind1 thenCold3 thenActivation; all null parents. The controlled synthetic vector separately proves noncategory-sorted first-key order."
+  },
+  "shared_mana_pool": {
+    "events": [
+      {
+        "id": 28,
+        "sequence": 28,
+        "timestamp": 4.36666689440608,
+        "parent": null,
+        "origin": "P:whelp",
+        "target": 1,
+        "type": 105,
+        "params": {
+          "amount": -1,
+          "used": false,
+          "reflected": false
+        }
+      },
+      {
+        "id": 35,
+        "sequence": 35,
+        "timestamp": 4.883333588019013,
+        "parent": null,
+        "origin": "P:squirrel",
+        "target": 1,
+        "type": 105,
+        "params": {
+          "amount": -1,
+          "used": false,
+          "reflected": false
+        }
+      },
+      {
+        "id": 69,
+        "sequence": 69,
+        "timestamp": 9.833333846181631,
+        "parent": null,
+        "origin": "P:squirrel",
+        "target": 1,
+        "type": 105,
+        "params": {
+          "amount": -1,
+          "used": false,
+          "reflected": false
+        }
+      },
+      {
+        "id": 82,
+        "sequence": 82,
+        "timestamp": 10.700000558048487,
+        "parent": null,
+        "origin": "P:whelp",
+        "target": 1,
+        "type": 105,
+        "params": {
+          "amount": -1,
+          "used": false,
+          "reflected": false
+        }
+      },
+      {
+        "id": 94,
+        "sequence": 94,
+        "timestamp": 12.31666730903089,
+        "parent": null,
+        "origin": "P:squirrel",
+        "target": 1,
+        "type": 105,
+        "params": {
+          "amount": -1,
+          "used": false,
+          "reflected": false
+        }
+      },
+      {
+        "id": 99,
+        "sequence": 99,
+        "timestamp": 12.850000670179725,
+        "parent": null,
+        "origin": "P:whelp",
+        "target": 1,
+        "type": 105,
+        "params": {
+          "amount": -1,
+          "used": false,
+          "reflected": false
+        }
+      },
+      {
+        "id": 130,
+        "sequence": 130,
+        "timestamp": 16.883334213867784,
+        "parent": null,
+        "origin": "P:whelp",
+        "target": 1,
+        "type": 105,
+        "params": {
+          "amount": -1,
+          "used": false,
+          "reflected": false
+        }
+      },
+      {
+        "id": 139,
+        "sequence": 139,
+        "timestamp": 17.483334245160222,
+        "parent": null,
+        "origin": "P:squirrel",
+        "target": 1,
+        "type": 105,
+        "params": {
+          "amount": -1,
+          "used": false,
+          "reflected": false
+        }
+      },
+      {
+        "id": 155,
+        "sequence": 155,
+        "timestamp": 19.083334328606725,
+        "parent": null,
+        "origin": "P:whelp",
+        "target": 1,
+        "type": 105,
+        "params": {
+          "amount": -1,
+          "used": false,
+          "reflected": false
+        }
+      },
+      {
+        "id": 168,
+        "sequence": 168,
+        "timestamp": 20.016667710617185,
+        "parent": null,
+        "origin": "P:squirrel",
+        "target": 1,
+        "type": 105,
+        "params": {
+          "amount": -1,
+          "used": false,
+          "reflected": false
+        }
+      },
+      {
+        "id": 190,
+        "sequence": 190,
+        "timestamp": 22.60000117868185,
+        "parent": null,
+        "origin": "P:squirrel",
+        "target": 1,
+        "type": 105,
+        "params": {
+          "amount": -1,
+          "used": false,
+          "reflected": false
+        }
+      },
+      {
+        "id": 201,
+        "sequence": 201,
+        "timestamp": 23.300001215189695,
+        "parent": null,
+        "origin": "P:whelp",
+        "target": 1,
+        "type": 105,
+        "params": {
+          "amount": -1,
+          "used": false,
+          "reflected": false
+        }
+      },
+      {
+        "id": 241,
+        "sequence": 241,
+        "timestamp": 27.40000142902136,
+        "parent": null,
+        "origin": "P:squirrel",
+        "target": 1,
+        "type": 105,
+        "params": {
+          "amount": -1,
+          "used": false,
+          "reflected": false
+        }
+      },
+      {
+        "id": 244,
+        "sequence": 244,
+        "timestamp": 27.500001434236765,
+        "parent": null,
+        "origin": "P:whelp",
+        "target": 1,
+        "type": 105,
+        "params": {
+          "amount": -1,
+          "used": false,
+          "reflected": false
+        }
+      },
+      {
+        "id": 267,
+        "sequence": 267,
+        "timestamp": 29.90000155940652,
+        "parent": null,
+        "origin": "P:squirrel",
+        "target": 1,
+        "type": 105,
+        "params": {
+          "amount": -1,
+          "used": false,
+          "reflected": false
+        }
+      }
+    ],
+    "O_mana_history": {
+      "event_numbers": [
+        -1,
+        22,
+        24,
+        28,
+        35,
+        55,
+        59,
+        69,
+        82,
+        85,
+        89,
+        94,
+        99,
+        119,
+        122,
+        130,
+        139,
+        151,
+        155,
+        158,
+        168,
+        186,
+        190,
+        197,
+        201,
+        230,
+        232,
+        241,
+        244,
+        263,
+        267,
+        275
+      ],
+      "values": [
+        0,
+        1,
+        2,
+        1,
+        0,
+        1,
+        2,
+        1,
+        0,
+        1,
+        2,
+        1,
+        0,
+        1,
+        2,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        2,
+        1,
+        0,
+        1,
+        0,
+        1
+      ]
+    },
+    "P_mana_history": {
+      "event_numbers": [
+        -1,
+        18,
+        20,
+        36,
+        46,
+        48,
+        70,
+        76,
+        78,
+        95,
+        108,
+        140,
+        169,
+        191,
+        242,
+        268
+      ],
+      "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    },
+    "conclusion": "Seven Whelp removals and eight Squirrel steals remove from the same live O Mana history. Whelp removals have no corresponding own gain; Squirrel has its real gain events.",
+    "causal_limit": "Shared state and chronological writes observed; no alternate-seed/counterfactual run performed."
+  },
+  "Pet_speed": {
+    "ordered_cache": [
+      "P:berry0",
+      "P:goobert",
+      "P:berry1",
+      "P:whelp"
+    ],
+    "actual_speed_scale": 0.6,
+    "arithmetic": "4 * 15.0 / 100.0",
+    "scope": "Real initialized mixedlayout, no synthetic cache override."
+  },
+  "synthetic_only": [
+    "four picks0,2,0,1 -> Poison2/Cold1/Blind1 grouping and reflection draw ordering",
+    "hit later blocked or invulnerable still removes;miss no picker",
+    "protected positive-buff loss actual0 with no stolen gain",
+    "raw0 default double repeats only own hook",
+    "alreadydead defender earlyreturn",
+    "positiveSpikes/Vampirism with default0 ranged/effectlimits",
+    "Whetstone+1 and Empower damage bounds"
+  ],
+  "natural_NOT_HIT_or_unproven": {
+    "default_raw0_double": "NOT_HIT: no zero return in Whelp double_attack_effect rows",
+    "natural_protected_loss": "NOT_HIT: no protected event; no protection source in this fixed layout",
+    "natural_invu": "OUTSIDE_THIS_NONKING_LAYOUT; synthetic assertion only",
+    "native_numeric_seed_or_joint_case": "NOT_EVALUATED",
+    "other_old75_experimental_combinations": "NOT_TESTED"
+  },
+  "no_additional_model_calls": true
+}
