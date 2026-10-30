@@ -1,0 +1,12 @@
+{
+  "Expected": 0,
+  "Godot": 0,
+  "automatic_retry": false,
+  "error_type": "ValueError",
+  "generated_module_imports": 0,
+  "message": "unique Source anchor: e441_timer(node,initial)\n    ordinary=sorted((n for n in configs if n['kind']=='ordinary'),key=lambda n:(n['priority'],t",
+  "models": 0,
+  "pool": 0,
+  "schema": "phase505-first-source-error/1",
+  "traceback": "Traceback (most recent call last):\n  File \"/workspace/python-original-engine/repo/tests/phase505_prepare_captured_nonking_source.py\", line 237, in main\n    engines=engine_source(texts['native_replay_v8/engine.py'])\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase505_prepare_captured_nonking_source.py\", line 213, in engine_source\n    edit.append(add);edit.inverse();return edit\n    ^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase505_prepare_captured_nonking_source.py\", line 59, in append\n    self.replace(self.text[-200:],self.text[-200:]+'\\n\\n'+text.rstrip()+'\\n')\n  File \"/workspace/python-original-engine/repo/tests/phase505_prepare_captured_nonking_source.py\", line 50, in replace\n    require(before!=after and self.text.count(before)==1,'unique Source anchor: '+before[:120])\n  File \"/workspace/python-original-engine/repo/tests/phase505_prepare_captured_nonking_source.py\", line 19, in require\n    if not ok:raise ValueError(message)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: unique Source anchor: e441_timer(node,initial)\n    ordinary=sorted((n for n in configs if n['kind']=='ordinary'),key=lambda n:(n['priority'],t\n"
+}

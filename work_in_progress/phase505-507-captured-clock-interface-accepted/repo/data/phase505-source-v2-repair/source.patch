@@ -1,0 +1,47 @@
+--- tests/phase505_prepare_captured_nonking_source.py
++++ tests/phase505_prepare_captured_nonking_source_v2.py
+@@ -8,8 +8,8 @@
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+ BASE = ROOT/'data/phase497-source-three-whelps/staged'
+-OUT = ROOT/'data/phase505-captured-nonking-source'
+-SPEC = ROOT/'docs/phase505_captured_nonking_source_implementation_spec.md'
++OUT = ROOT/'data/phase505-captured-nonking-source-v2'
++SPEC = ROOT/'docs/phase505_captured_nonking_source_v2_append_repair_spec.md'
+ OLD_CAPTURED = ROOT/'data/phase476-joint-condition-repair/staged/native_replay_v8/engine.py'
+ PROFILE = 'pure-combat-whelp-family-A-captured/1'
+ SCHEMA = 'native-v8-pure-combat-runtime-input/whelp-family-1'
+@@ -55,8 +55,13 @@
+         for old,new in edits:
+             require(after.count(old)==1,'unique function anchor '+name+': '+old[:100]);after=after.replace(old,new)
+         self.replace(before,after)
+-    def append(self,text):
+-        self.replace(self.text[-200:],self.text[-200:]+'\n\n'+text.rstrip()+'\n')
++    def append(self,text,expected_name):
++        last=ast.parse(self.text).body[-1]
++        require(isinstance(last,ast.FunctionDef) and last.name==expected_name,'exact final top-level function name')
++        require(not ''.join(self.text.splitlines(True)[last.end_lineno:]).strip(),'only whitespace after final function')
++        anchor=ast.get_source_segment(self.text,last)
++        require(self.text.count(anchor)==1,'unique complete final function body')
++        self.replace(anchor,anchor+'\n\n'+text.rstrip()+'\n')
+     def inverse(self):
+         raw=self.text
+         for row in reversed(self.edits):
+@@ -96,7 +101,7 @@
+         raise ValueError('captured Whelp exact14 profile/terminal')
+     return True
+ '''])
+-    edit.append(add);edit.inverse();return edit
++    edit.append(add,'validate_pure441_profile');edit.inverse();return edit
+ 
+ 
+ STATE_METHOD = '''    def _validate_captured_whelp_state(self, prepared):
+@@ -210,7 +215,7 @@
+ 
+ 
+ '''+new
+-    edit.append(add);edit.inverse();return edit
++    edit.append(add,'_build_source_pure_scaffold');edit.inverse();return edit
+ 
+ 
+ def main():

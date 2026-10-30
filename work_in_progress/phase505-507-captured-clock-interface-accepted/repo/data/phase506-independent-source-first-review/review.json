@@ -1,0 +1,67 @@
+{
+  "schema": "phase506-independent-source-first-review/1",
+  "status": "BLOCK_NEW_TOPOLOGY_ADMISSION_STATIC_NO_COMPONENT_EXECUTED",
+  "source_owner": {
+    "path": "data/phase505-captured-nonking-source-v2/owned-files.json",
+    "size": 10369,
+    "sha256": "2740f17af9b6b08b1d10ff2bb8812f5c2e150681ba42030c60f57283eff0c6fc"
+  },
+  "candidate_freeze": {
+    "path": "data/phase505-captured-nonking-source-v2/candidate-source-freeze.json",
+    "size": 4687,
+    "sha256": "b1b7fac6dc6719a70e1c0fb14ff39151e7bac60a275b856bfd921c6a3326c76d"
+  },
+  "engine": {
+    "path": "data/phase505-captured-nonking-source-v2/staged/native_replay_v8/engine.py",
+    "size": 259276,
+    "sha256": "2c8c90f9b95797816d369f34a1ccc4f21ddf0eed3e8befb707ac93ef1c639f31"
+  },
+  "genuine": {
+    "path": "data/phase505-captured-nonking-source-v2/staged/native_replay_v8/genuine.py",
+    "size": 248840,
+    "sha256": "1c56c2bcf93d4099f0cefb883381cdc093ccc77cec8998b1a763e5994b1e0978"
+  },
+  "identity_checks": {
+    "owner_refs": 51,
+    "inverse_edit_counts": {
+      "engine": 17,
+      "genuine": 4
+    },
+    "complete_inverse_exact": true,
+    "unchanged_modules_exact497": 13
+  },
+  "blocking_finding": {
+    "function": "_validate_captured_whelp_runtime",
+    "source_lines": [
+      4233,
+      4252
+    ],
+    "problem": "position-prefix to name-prefix map lacks reverse name-prefix to position uniqueness. Duplicate full paths are rejected, but equal ancestor paths at different positions are not.",
+    "static_counterexample": "Choose two ordinary business Timer nodes, not invu, and otherwise unoccupied allowed root-child positions a!=b. Set their unique full paths to /root/Ghost/X and /root/Ghost/Y; name X/Y; positions[-1,a,0] and[-1,b,0]; synchronously change matching configs. All current full-path/full-position sets stay unique, root-prefix agrees, the forward map records the same root/Ghost names under distinct position keys. No current check rejects the duplicate ancestor path.",
+    "consequence": "_build_pure441_scaffold creates two distinct sibling ancestors named Ghost; emitted actual path identity no longer describes a unique tree topology. This contradicts the new exact raw/config topology admission contract.",
+    "not_executed": true,
+    "minimal_repair": "In only the new validator add reverse tuple(names[:j])->tuple(pos[:j]) consistency, as existing497 legacy _validate_runtime_nodes does. Do not change TimerRuntime/FrameDriver or existing profiles.",
+    "required_negative": "One fresh synthetic topology alias mutation should reject at admission before provider draws."
+  },
+  "remaining_static_findings": [
+    "No additional blocking defect found in the finite clock/cleanup/pure-snapshot wiring reviewed.",
+    "captured_clock_mode remains independent of falseking_mode and emptyking_states; EngineFrameDriver selected; finite result checks barrier and trailing exhaustion.",
+    "All32 real TimerRecord instances retained, six inactive callback bindings reject; finish preserves P/Otick/Buff/battleRage/autoRage/invu order and API trace.",
+    "pure_combat_mode selects business snapshots and avoids old integration-FX inactive_auxiliaries DTO path.",
+    "31noop exact(role,mode) guard is before legacy prefix guard. Exact497 item/RNG/history/prepare and13module conservation remains the baseline.",
+    "The newvalidator is a supported typed-value gate, not a64+8provenance verifier; external Nativeinput/launcher proof remains pending."
+  ],
+  "next_action": "Preserve505v2. Root decides immutable minimal topology repair; then review delta and freeze exact506vectors/harness. No component call occurred and no failing runtime attempt is claimed.",
+  "activities": {
+    "candidate_imports": 0,
+    "compile": 0,
+    "helpers": 0,
+    "constructors": 0,
+    "steps": 0,
+    "fullbattle": 0,
+    "Godot": 0,
+    "Expected_decode": 0,
+    "host": 0,
+    "pool": 0
+  }
+}

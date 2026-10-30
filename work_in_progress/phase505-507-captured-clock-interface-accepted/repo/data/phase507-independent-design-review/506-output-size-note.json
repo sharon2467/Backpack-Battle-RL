@@ -1,0 +1,166 @@
+{
+  "schema": "phase507-existing506-size-note/1",
+  "source": {
+    "path": "data/phase506-independent-interface-first-001/primary-output.json",
+    "size": 10215683,
+    "sha256": "9fb729e2f953a2d1579dedf1d00f3a154e14f77ad528228868adcf8087afc42a"
+  },
+  "method": "Read only sealed synthetic output JSON. Exact original serialization confirmed. Per top-level value byte count includes its original two-space nesting; keys/separators/braces are remainder. No model invocation or performance benchmark.",
+  "top_level_sizes": [
+    {
+      "key": "pure_combat_diagnostics",
+      "exact_nested_value_bytes": 5767677,
+      "percent_of_file": 56.459
+    },
+    {
+      "key": "captured_terminal",
+      "exact_nested_value_bytes": 3217875,
+      "percent_of_file": 31.499
+    },
+    {
+      "key": "histories",
+      "exact_nested_value_bytes": 803538,
+      "percent_of_file": 7.866
+    },
+    {
+      "key": "final",
+      "exact_nested_value_bytes": 332916,
+      "percent_of_file": 3.259
+    },
+    {
+      "key": "runtime_trace",
+      "exact_nested_value_bytes": 73913,
+      "percent_of_file": 0.724
+    },
+    {
+      "key": "fixture",
+      "exact_nested_value_bytes": 4745,
+      "percent_of_file": 0.046
+    },
+    {
+      "key": "random_inputs",
+      "exact_nested_value_bytes": 3931,
+      "percent_of_file": 0.038
+    },
+    {
+      "key": "allocated_events",
+      "exact_nested_value_bytes": 2891,
+      "percent_of_file": 0.028
+    },
+    {
+      "key": "events",
+      "exact_nested_value_bytes": 2841,
+      "percent_of_file": 0.028
+    },
+    {
+      "key": "schedule_trace",
+      "exact_nested_value_bytes": 2101,
+      "percent_of_file": 0.021
+    },
+    {
+      "key": "model_source_sha256",
+      "exact_nested_value_bytes": 1083,
+      "percent_of_file": 0.011
+    },
+    {
+      "key": "coverage",
+      "exact_nested_value_bytes": 1004,
+      "percent_of_file": 0.01
+    },
+    {
+      "key": "scheduling",
+      "exact_nested_value_bytes": 587,
+      "percent_of_file": 0.006
+    },
+    {
+      "key": "random_alignment",
+      "exact_nested_value_bytes": 45,
+      "percent_of_file": 0.0
+    },
+    {
+      "key": "observer_version",
+      "exact_nested_value_bytes": 43,
+      "percent_of_file": 0.0
+    },
+    {
+      "key": "implementation",
+      "exact_nested_value_bytes": 36,
+      "percent_of_file": 0.0
+    },
+    {
+      "key": "model_package",
+      "exact_nested_value_bytes": 18,
+      "percent_of_file": 0.0
+    },
+    {
+      "key": "comparison_status",
+      "exact_nested_value_bytes": 15,
+      "percent_of_file": 0.0
+    },
+    {
+      "key": "event_references",
+      "exact_nested_value_bytes": 2,
+      "percent_of_file": 0.0
+    },
+    {
+      "key": "schema",
+      "exact_nested_value_bytes": 1,
+      "percent_of_file": 0.0
+    }
+  ],
+  "top_level_syntax_remainder_bytes": 421,
+  "diagnostic_snapshot_count": 3,
+  "exact_duplicate_snapshots": [],
+  "final_model_equals_top_level_final": true,
+  "terminal_business_keys": {
+    "post_cleanup": [
+      "schema",
+      "stage",
+      "clock",
+      "off_clock",
+      "combat_time_bits",
+      "timers",
+      "processing_nodes",
+      "characters",
+      "items",
+      "model_current_target_cache",
+      "king",
+      "invu_origins",
+      "event_num",
+      "events",
+      "allocated_events",
+      "histories",
+      "logging_mode",
+      "pending_signals",
+      "tape_position",
+      "tape_audit_length"
+    ],
+    "final": [
+      "schema",
+      "stage",
+      "clock",
+      "off_clock",
+      "combat_time_bits",
+      "timers",
+      "processing_nodes",
+      "characters",
+      "items",
+      "model_current_target_cache",
+      "king",
+      "invu_origins",
+      "event_num",
+      "events",
+      "allocated_events",
+      "histories",
+      "logging_mode",
+      "pending_signals",
+      "tape_position",
+      "tape_audit_length"
+    ]
+  },
+  "history_repetition": {
+    "diagnostic_post_equals_top": true,
+    "diagnostic_final_equals_top": true
+  },
+  "interpretation": "Large size is chiefly repeated structured diagnostics, including three recorded snapshots plus separately exposed post-cleanup/final snapshots and two terminal model/business snapshots; histories appear in multiple envelopes. These are same-instance observation artifacts, not multiple full battles. No serialization contract change proposed."
+}

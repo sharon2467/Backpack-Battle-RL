@@ -1,0 +1,24 @@
+--- data/phase505-captured-nonking-source-v2/staged/native_replay_v8/engine.py
++++ data/phase505-captured-nonking-source-v3/staged/native_replay_v8/engine.py
+@@ -4219,6 +4219,7 @@
+     if type(rows) is not list or len(rows) != 67:
+         raise ValueError('captured Whelp processing67 required')
+     table, native_ids, paths, positions, prefixes = {}, set(), set(), set(), {}
++    path_positions = {}
+     for node in rows:
+         _keys(node, NODE_INPUT_KEYS, 'pure processing node')
+         role = node['role']
+@@ -4239,9 +4240,10 @@
+         for flag in ('ordinary_physics','internal_physics','ordinary_idle','internal_idle'):
+             if type(node[flag]) is not bool:raise ValueError('captured Whelp independent bool flags')
+         for j in range(1,len(names)+1):
+-            prefix = tuple(pos[:j])
+-            if prefix in prefixes and prefixes[prefix] != tuple(names[:j]):raise ValueError('captured Whelp sparse prefix conflict')
+-            prefixes[prefix] = tuple(names[:j])
++            prefix = tuple(pos[:j]); name_path = tuple(names[:j])
++            if prefix in prefixes and prefixes[prefix] != name_path:raise ValueError('captured Whelp sparse prefix conflict')
++            if name_path in path_positions and path_positions[name_path] != prefix:raise ValueError('captured Whelp reverse sparse prefix conflict')
++            prefixes[prefix] = name_path; path_positions[name_path] = prefix
+         if role == 'root_viewport':
+             if node['path']!='/root' or pos!=[-1] or node['priority']!=0 or node['class']!='Viewport' or (node['ordinary_physics'],node['internal_physics'],node['ordinary_idle'],node['internal_idle']) != (False,True,False,False):
+                 raise ValueError('captured Whelp root flags')

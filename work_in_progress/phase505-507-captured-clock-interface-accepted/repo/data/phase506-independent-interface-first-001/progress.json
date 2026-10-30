@@ -1,0 +1,182 @@
+{
+  "schema": "phase506-actual-synthetic-interface/1",
+  "status": "STARTED",
+  "negative_calls": 16,
+  "negatives": [
+    {
+      "name": "01 missing diagnostic private value",
+      "status": "PASS",
+      "error_type": "ValueError",
+      "error": "unknown/missing pure timer fields keys"
+    },
+    {
+      "name": "02 Character BOOL alias",
+      "status": "PASS",
+      "error_type": "ValueError",
+      "error": "unsupported captured Whelp character initial values"
+    },
+    {
+      "name": "03 Timer mode BOOL alias",
+      "status": "PASS",
+      "error_type": "ValueError",
+      "error": "captured Whelp unsupported typed Timer state/config"
+    },
+    {
+      "name": "04 duplicate native identity",
+      "status": "PASS",
+      "error_type": "ValueError",
+      "error": "captured Whelp native identity"
+    },
+    {
+      "name": "05 reverse ancestor alias",
+      "status": "PASS",
+      "error_type": "ValueError",
+      "error": "captured Whelp reverse sparse prefix conflict"
+    },
+    {
+      "name": "06 old441 profile cannot admit new fixture",
+      "status": "PASS",
+      "error_type": "ValueError",
+      "error": "single King outside predeclared fixed A fixture"
+    },
+    {
+      "name": "07 unknown diagnostic initial field",
+      "status": "PASS",
+      "error_type": "ValueError",
+      "error": "unknown/missing pure timer fields keys"
+    },
+    {
+      "name": "08 prepare/activation order mismatch",
+      "status": "PASS",
+      "error_type": "ValueError",
+      "error": "captured Whelp different prepare/activate order unsupported"
+    },
+    {
+      "name": "09 fabricated King fixture",
+      "status": "PASS",
+      "error_type": "ValueError",
+      "error": "captured Whelp exact29 geometry/order/class0/default/noKing fixture"
+    },
+    {
+      "name": "10 None provider",
+      "status": "PASS",
+      "error_type": "ValueError",
+      "error": "captured Whelp requires exact TapeRandom; no fallback"
+    },
+    {
+      "name": "11 object provider",
+      "status": "PASS",
+      "error_type": "ValueError",
+      "error": "captured Whelp requires exact TapeRandom; no fallback"
+    },
+    {
+      "name": "12 foreign idle",
+      "status": "PASS",
+      "error_type": "ValueError",
+      "error": "unknown captured no-op callback role/mode"
+    },
+    {
+      "name": "13 BOOL Game mode",
+      "status": "PASS",
+      "error_type": "ValueError",
+      "error": "unknown captured no-op callback role/mode"
+    },
+    {
+      "name": "14 inactive timeout",
+      "status": "PASS",
+      "error_type": "ValueError",
+      "error": "inactive captured Timer timeout: aux:P:battleRageTimer"
+    },
+    {
+      "name": "15 trailing clock through result",
+      "status": "PASS",
+      "error_type": "ValueError",
+      "error": "trailing frame records after computed terminal cutoff"
+    },
+    {
+      "name": "16 premature EOF via engine.step",
+      "status": "PASS",
+      "error_type": "IncompleteFrameStream",
+      "error": "EOF is not a rule-derived terminal barrier"
+    }
+  ],
+  "checks": [
+    "constructed emptyKing exact32 records/31noops/Tape0",
+    "not legacyP6King",
+    "tree order independent of reversed input rows",
+    "prepare offclock/Tape0 Basic/cache/Sapphire",
+    "activation consumed exact20 startup draws",
+    "primary computed barrier all7passes/noKing/dualterminal",
+    "ended Squirrel pitch preserved after real callback",
+    "six inactive real API stops ordered",
+    "inactive never started or timed out",
+    "native argument Variants INT14/tickargc0",
+    "no finalidle callbacks; retained all32diagnostics",
+    "actual supplied Util clocks and counters",
+    "readonly sameinstance snapshots/result",
+    "trailing rejection no advance",
+    "EOF no phantom terminal or winner",
+    "exact released operation bounds"
+  ],
+  "ctor_entered": 4,
+  "ctor_success": 2,
+  "ctor_rejected": 2,
+  "prepare_calls": 2,
+  "logical_activate_calls": 2,
+  "step_attempts": 9,
+  "positive_result_calls": 2,
+  "fullbattle_runs": 0,
+  "Godot": 0,
+  "Expected": 0,
+  "host": 0,
+  "pool": 0,
+  "native": 0,
+  "candidate_package_imports": 1,
+  "loaded_modules": {
+    "native_replay_v7.timer_runtime": {
+      "path": "data/phase505-captured-nonking-source-v3/staged/native_replay_v7/timer_runtime.py",
+      "size": 38705,
+      "sha256": "5b7c14ebb7c7511aa05a3411752c7f3341b925c00de31eedfacf4f9345f4a109"
+    },
+    "native_replay_v7": {
+      "path": "data/phase505-captured-nonking-source-v3/staged/native_replay_v7/__init__.py",
+      "size": 389,
+      "sha256": "82b496191ffa3ec2761b83bf4de9267089d077b777ee38e4b93ab0cb824c4612"
+    },
+    "native_replay_v7.frame_driver": {
+      "path": "data/phase505-captured-nonking-source-v3/staged/native_replay_v7/frame_driver.py",
+      "size": 12318,
+      "sha256": "9d8e361144e353a8d944e4490502c5301e7a92451771d35f22ab48f6277f64fd"
+    },
+    "native_replay_v8.randomness": {
+      "path": "data/phase505-captured-nonking-source-v3/staged/native_replay_v8/randomness.py",
+      "size": 7063,
+      "sha256": "676d42a69937394dc1bd8ff23268a08dc41fe9604f7e56213bb968ab331b9139"
+    },
+    "native_replay_v8.genuine": {
+      "path": "data/phase505-captured-nonking-source-v3/staged/native_replay_v8/genuine.py",
+      "size": 248840,
+      "sha256": "1c56c2bcf93d4099f0cefb883381cdc093ccc77cec8998b1a763e5994b1e0978"
+    },
+    "native_replay_v8.histories": {
+      "path": "data/phase505-captured-nonking-source-v3/staged/native_replay_v8/histories.py",
+      "size": 8508,
+      "sha256": "d9b3f270b53f328f5958647fdaba86532ff3d9db11b272d9a7d0d2aef1db0b05"
+    },
+    "native_replay_v8.state": {
+      "path": "data/phase505-captured-nonking-source-v3/staged/native_replay_v8/state.py",
+      "size": 15114,
+      "sha256": "21478fecea4c888f701ff8991fb2cf75519670c602ed2bd9d17874e238c54bd1"
+    },
+    "native_replay_v8.engine": {
+      "path": "data/phase505-captured-nonking-source-v3/staged/native_replay_v8/engine.py",
+      "size": 259501,
+      "sha256": "c3a433ff3ea0336ccee5741f09306f7db6c77831242bbd4d2c92dedd0671720f"
+    },
+    "native_replay_v8": {
+      "path": "data/phase505-captured-nonking-source-v3/staged/native_replay_v8/__init__.py",
+      "size": 618,
+      "sha256": "805cc7035f10e96bfc217ef52f6ac175323ea83c69fb6e678fcd97a5bbcc3d7b"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "after": {
+    "path": "data/phase505-captured-nonking-source-v3/staged/native_replay_v8/engine.py",
+    "sha256": "c3a433ff3ea0336ccee5741f09306f7db6c77831242bbd4d2c92dedd0671720f",
+    "size": 259501
+  },
+  "before": {
+    "path": "data/phase505-captured-nonking-source-v2/staged/native_replay_v8/engine.py",
+    "sha256": "2c8c90f9b95797816d369f34a1ccc4f21ddf0eed3e8befb707ac93ef1c639f31",
+    "size": 259276
+  },
+  "edits": [
+    {
+      "after": "    table, native_ids, paths, positions, prefixes = {}, set(), set(), set(), {}\n    path_positions = {}",
+      "before": "    table, native_ids, paths, positions, prefixes = {}, set(), set(), set(), {}",
+      "position": 3390
+    },
+    {
+      "after": "            prefix = tuple(pos[:j]); name_path = tuple(names[:j])\n            if prefix in prefixes and prefixes[prefix] != name_path:raise ValueError('captured Whelp sparse prefix conflict')\n            if name_path in path_positions and path_positions[name_path] != prefix:raise ValueError('captured Whelp reverse sparse prefix conflict')\n            prefixes[prefix] = name_path; path_positions[name_path] = prefix",
+      "before": "            prefix = tuple(pos[:j])\n            if prefix in prefixes and prefixes[prefix] != tuple(names[:j]):raise ValueError('captured Whelp sparse prefix conflict')\n            prefixes[prefix] = tuple(names[:j])",
+      "position": 5285
+    }
+  ],
+  "schema": "phase505-v3-validator-complete-inverse/1",
+  "whole_module_inverse_exact": true
+}
