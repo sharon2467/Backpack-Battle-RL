@@ -1,0 +1,338 @@
+{
+  "schema": "phase488-squirrel-source-facts/1",
+  "status": "DESIGN_SOURCE_FACTS_NOT_NATIVE_RUNTIME",
+  "catalog_registered": 76,
+  "selected": 164,
+  "deferred": 201,
+  "CSV_source": {
+    "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Sheets/CSV/ItemData.csv",
+    "size": 80933,
+    "sha256": "26f5433cf37cd33c066dd505672fcb292e7570ede8c823c5a10f9bc21208a473"
+  },
+  "exact_selected_rows": {
+    "162": {
+      "name": "Bowl of Treats",
+      "id": "162",
+      "rarity": "Unique",
+      "type": "Food",
+      "extraTypes": "Nature",
+      "shop": "Ranger>Beastmaster",
+      "price": "10",
+      "staminaCost": "",
+      "minDam": "",
+      "maxDam": "",
+      "cd": "4",
+      "accuracy": "",
+      "chance": "20",
+      "chance2": "",
+      "shopChance": "30",
+      "block": "",
+      "p1": "2",
+      "p2": "25:foodspeed",
+      "p3": "100",
+      "p4": "",
+      "p5": "",
+      "material": "Wood",
+      "canActivate": "",
+      "recipes": "",
+      "gateItem": "",
+      "tags": "",
+      "gain": "Buff",
+      "use": "",
+      "remove": "",
+      "threshold": "",
+      "weight": "",
+      "p6": "",
+      "p7": "",
+      "p8": "",
+      "p9": "",
+      "p10": "",
+      "appropriated": "",
+      "demo": "no",
+      "earliestRound": "",
+      "latestRound": "",
+      "requires": "",
+      "version": "0.9.0",
+      "animation": "VerySquishyJump",
+      "physics": "",
+      "textEffect": "",
+      "class_override": ""
+    },
+    "164": {
+      "name": "Squirrel",
+      "id": "164",
+      "rarity": "Rare",
+      "type": "Pet",
+      "extraTypes": "Nature",
+      "shop": "no",
+      "price": "5",
+      "staminaCost": "",
+      "minDam": "",
+      "maxDam": "",
+      "cd": "4",
+      "accuracy": "",
+      "chance": "",
+      "chance2": "",
+      "shopChance": "",
+      "block": "",
+      "p1": "15:petspeed",
+      "p2": "1:buffsteal",
+      "p3": "",
+      "p4": "",
+      "p5": "",
+      "material": "",
+      "canActivate": "",
+      "recipes": "Shortbow>Squirrel Archer",
+      "gateItem": "Bowl of Treats",
+      "tags": "",
+      "gain": "Buff",
+      "use": "",
+      "remove": "",
+      "threshold": "",
+      "weight": "",
+      "p6": "",
+      "p7": "",
+      "p8": "",
+      "p9": "",
+      "p10": "",
+      "appropriated": "",
+      "demo": "",
+      "earliestRound": "",
+      "latestRound": "",
+      "requires": "",
+      "version": "0.9.0",
+      "animation": "VerySquishyJump",
+      "physics": "Floaty",
+      "textEffect": "",
+      "class_override": ""
+    },
+    "201": {
+      "name": "Amethyst Whelp",
+      "id": "201",
+      "rarity": "Godly",
+      "type": "Ranged Weapon",
+      "extraTypes": "Pet,Dark,Effect",
+      "shop": "no",
+      "price": "14",
+      "staminaCost": "0",
+      "minDam": "5",
+      "maxDam": "10",
+      "cd": "2.1",
+      "accuracy": "90",
+      "chance": "",
+      "chance2": "",
+      "shopChance": "",
+      "block": "",
+      "p1": "4",
+      "p2": "",
+      "p3": "",
+      "p4": "",
+      "p5": "",
+      "material": "Dragon",
+      "canActivate": "",
+      "recipes": "",
+      "gateItem": "Amethyst Egg",
+      "tags": "Dragon",
+      "gain": "Debuff",
+      "use": "",
+      "remove": "Buff",
+      "threshold": "",
+      "weight": "",
+      "p6": "",
+      "p7": "",
+      "p8": "",
+      "p9": "",
+      "p10": "",
+      "appropriated": "",
+      "demo": "",
+      "earliestRound": "",
+      "latestRound": "",
+      "requires": "",
+      "version": "0.9.0",
+      "animation": "SquishyJump",
+      "physics": "Dense",
+      "textEffect": "",
+      "class_override": ""
+    }
+  },
+  "Squirrel": {
+    "scene": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/Squirrel.tscn",
+      "size": 2043,
+      "sha256": "f4e8dbc243ea45989dd44a1687e45c8c0e1900abc1fa983cf3e52d773df10372"
+    },
+    "script": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/Squirrel.gd",
+      "size": 508,
+      "sha256": "c23b8aec966449cc60761007879b99c3528c4cbe94309914789954cea34de949"
+    },
+    "parent": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/ForestFriend.gd",
+      "size": 236,
+      "sha256": "d1d067d4526a53313e28df3fd3a441415c76a2fcb1368d823d51f3d30eb57147"
+    },
+    "raw_collision_map": [
+      {
+        "x": -1,
+        "y": -2,
+        "tile": 4,
+        "flags": 0
+      },
+      {
+        "x": -2,
+        "y": -1,
+        "tile": 4,
+        "flags": 0
+      },
+      {
+        "x": -1,
+        "y": -1,
+        "tile": 3,
+        "flags": 0
+      },
+      {
+        "x": 0,
+        "y": -1,
+        "tile": 4,
+        "flags": 0
+      },
+      {
+        "x": -2,
+        "y": 0,
+        "tile": 4,
+        "flags": 0
+      },
+      {
+        "x": -1,
+        "y": 0,
+        "tile": 3,
+        "flags": 0
+      },
+      {
+        "x": 0,
+        "y": 0,
+        "tile": 3,
+        "flags": 0
+      },
+      {
+        "x": 1,
+        "y": 0,
+        "tile": 4,
+        "flags": 0
+      },
+      {
+        "x": -1,
+        "y": 1,
+        "tile": 4,
+        "flags": 0
+      },
+      {
+        "x": 0,
+        "y": 1,
+        "tile": 4,
+        "flags": 0
+      }
+    ],
+    "normalized_shape": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "normalized_primary_stars": [
+      [
+        0,
+        -1
+      ],
+      [
+        -1,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        -1,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        2
+      ]
+    ],
+    "normalization": "Signed16 packed TileMap x/y; subtract occupied min x/y; Item.Tiles Collision3/Affected4",
+    "socket_count": 0,
+    "default_gem": null,
+    "pet_speed_percent": 15.0,
+    "buff_steal": 1,
+    "cooldown": 4.0,
+    "gained_stack_flags": 254
+  },
+  "availability": {
+    "shop_no": "Not ordinary shop, not an unreleased flag",
+    "gate": "Bowl of Treats162; no acquisition/economy implementation",
+    "demo_cell": "",
+    "release_mapping": "Empty demo→Demo→isReleased true; scene route additionally requires Game.loadExclusiveContent",
+    "scene_route": "res://Items/Exclusive/Squirrel.tscn; direct typed script; not Unreleased directory",
+    "native_instantiation_or_canAdd_observed": false
+  },
+  "original_refs": [
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Sheets/ItemBook.gd",
+      "size": 48708,
+      "sha256": "6b0f0b78c0ee1a0529e7740b424b157837b614cbd74c3e8f22886f9509cb9d84"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/ItemDescriptor.gd",
+      "size": 8254,
+      "sha256": "5c4959baed459c1981bf0fb9c2d39ace7f99f916925b03b05e3359cd55694794"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Game.gd",
+      "size": 145148,
+      "sha256": "f3688bfdf39b95a8ed6a77d9a7ad058a95a0aaa4bcb6d297bc953425add4b9c9"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "size": 170717,
+      "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Buff.gd",
+      "size": 8827,
+      "sha256": "3efabb72eb0b337e30ebc924347aba40bd1039a3c5f718b761b0ee78b48ab8bb"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/AmethystWhelp.gd",
+      "size": 193,
+      "sha256": "12392ce3d85ccf4b14d39a442df6d43f0d2a305407e62e046172e365b90b5d34"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/AmethystWhelp.tscn",
+      "size": 2455,
+      "sha256": "514c12491a53db2e91dfde67511686719d81de7e23252bc675f8314109b79b5a"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/Chainsaw.gd",
+      "size": 1762,
+      "sha256": "e4122ccba2a8949d4dc0248da22afd3d7bd9f4914c1af253fbdbb43dd076c397"
+    }
+  ]
+}

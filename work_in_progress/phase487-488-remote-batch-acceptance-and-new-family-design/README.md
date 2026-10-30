@@ -1,0 +1,9 @@
+# Remote standalone batch accepted; next unported family designed
+
+487 independently verified the trusted remote24payload/15Source package once, then executed exactly one predeclared mixed2job Source batch with keep_results=True. Both completed in declared order:8-ID seed48701 produced398events/466provider audit entries;7-ID seed48702 produced362events/423provider audit entries. No single-job reference or old seed/test/native/Expected was rerun. Twenty-five package files were unchanged before/after; the tested code commit is549af3d3c53b6188f637885fee85889ba6b4e9e8 and inner manifest aa9d88147e1cd5334406afb6d007786987d03895b99fbdf6759eb5817cc5e297.
+
+The two-job compute sample took0.858342s wall/0.858363s CPU, about2.33007jobs/s. Linux process peakRSS79700KiB (~77.8MiB) includes interpreter, imports, both retained instances/results and instrumentation; it is not per-job memory or a general RL benchmark. Formal75/general King/native all-seed/full-engine completion claims are unchanged.
+
+488 independently accepted a static design for one genuinely unregistered battle item, Squirrel164, using existing ForestFriend/Item shared rules. This adds a real producer for buff stealing, ordered Pet-or-Food star caching and the original15% per-affected combat-start speed arithmetic. The activation-tail pitch RNG consumes the shared Util stream and must be preserved without sound/render objects. Protected loss can be zero while the picked amount is still granted, with the original trigger parent. Release/scene/gating evidence is scoped; shop=no is not treated as a battle impossibility. Only an explicit Source initialize_squirrel API is proposed; old75/King/genuine entry points stay unchanged.
+
+489 isolated implementation is pending, not accepted here. No new capture or Expected-derived input is authorized by this design.

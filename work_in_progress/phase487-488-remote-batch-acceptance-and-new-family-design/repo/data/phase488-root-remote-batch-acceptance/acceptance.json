@@ -1,0 +1,38 @@
+{
+  "schema": "phase488-root-remote-batch-acceptance/1",
+  "status": "ACCEPTED_REMOTE_SOURCE_DISTRIBUTION_AND_TWO_JOB_BATCH_SMOKE",
+  "review": {
+    "path": "data/phase487-independent-final-acceptance/review.json",
+    "size": 7741,
+    "sha256": "d5b85165823f496d88a75e52f9b7d218f155e166dae1da4f79b2c18af9f9f427"
+  },
+  "tested_remote_commit": "549af3d3c53b6188f637885fee85889ba6b4e9e8",
+  "manifest": "aa9d88147e1cd5334406afb6d007786987d03895b99fbdf6759eb5817cc5e297",
+  "completed_new_jobs": 2,
+  "batch_calls": 1,
+  "verifier_calls": 1,
+  "jobs_in_order": [
+    {
+      "seed": 48701,
+      "profile": "source-headless-king-mirror-poison-fixed60/1",
+      "events": 398,
+      "provider_audit_entries": 466
+    },
+    {
+      "seed": 48702,
+      "profile": "source-headless-king-basic-goobert-fixed60/1",
+      "events": 362,
+      "provider_audit_entries": 423
+    }
+  ],
+  "batch_wall_seconds": 0.858342,
+  "batch_CPU_seconds": 0.858363,
+  "jobs_per_second": 2.33007,
+  "process_peak_RSS_KiB": 79700,
+  "measurement_limits": "Two fresh Source computations; includes retained results/instrumentation; Linux process peak includes interpreter/import/two instances/results, not per-job memory. Not general RL throughput or native seed-equivalence.",
+  "formal_support": 75,
+  "general_King_admitted": false,
+  "whole_engine_RL_complete": false,
+  "next": "488 single new Squirrel164 ForestFriend/buff-steal family;489 implementation after independent design acceptance, no new native capture.",
+  "utc": "2026-10-30T18:50:55.566009+00:00"
+}

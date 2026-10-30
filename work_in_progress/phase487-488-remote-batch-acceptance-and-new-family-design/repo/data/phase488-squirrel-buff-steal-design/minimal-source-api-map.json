@@ -1,0 +1,256 @@
+{
+  "schema": "phase488-source-change-and-reuse-map/1",
+  "baseline_freeze": {
+    "path": "data/phase482-source-king-mirror-poison-v2/candidate-source-freeze.json",
+    "size": 4685,
+    "sha256": "1e89c11d175bc7094c27ffe7b471317c19c5726819e1e10b24b8bbdcfba50357"
+  },
+  "anticipated_modified_modules": [
+    "native_replay_v8/engine.py",
+    "headless.py"
+  ],
+  "anticipated_conserved_modules": 13,
+  "engine_changes": {
+    "source": {
+      "path": "data/phase482-source-king-mirror-poison-v2/staged/native_replay_v8/engine.py",
+      "size": 240725,
+      "sha256": "6ab932db790a2f3243c47ed6afca4a3f7683a979ca8ad7d6f3143b00591ce641"
+    },
+    "functions": [
+      {
+        "name": "CombatEngine.activate_from_checkpoint",
+        "line": 1928,
+        "end_line": 2042,
+        "sha256": "93d85bd7346d3e3f3b9e8c6ea6cb98483be0cd657de3730f462620b32967012f"
+      },
+      {
+        "name": "CombatEngine.new_caller_target_caches",
+        "line": 2071,
+        "end_line": 2123,
+        "sha256": "2e983522f8eecf728e282414322da3a7555080a21c6d6db50c127a66c94beeb6"
+      },
+      {
+        "name": "CombatEngine.affected_items",
+        "line": 2145,
+        "end_line": 2182,
+        "sha256": "445661ff883fe9f94b204b7a17d5050632bfbdce97d5ec7d01d769f03058568b"
+      },
+      {
+        "name": "CombatEngine.activate",
+        "line": 2805,
+        "end_line": 2826,
+        "sha256": "8aa408f246a8836f16b06c93fd932cabd641a4fc4968fa1348e90e093ecc9caf"
+      },
+      {
+        "name": "CombatEngine.trigger",
+        "line": 3169,
+        "end_line": 3258,
+        "sha256": "b03aeabde57b32c1a4b29eb53ed873f1e4c9ab9873e6ce8f8b748ac7b1697f95"
+      }
+    ]
+  },
+  "engine_module_literals": [
+    "CATALOG164",
+    "CACHED_AFFECTED_IDS+164",
+    "GAINED_STACK_FLAGS164=254"
+  ],
+  "headless_extraction_seams": {
+    "source": {
+      "path": "data/phase482-source-king-mirror-poison-v2/staged/headless.py",
+      "size": 30940,
+      "sha256": "5826aeaeabbb3c21a2687db4aa3428c9fbfc18895df97d4abe9b3c8da44a6f13"
+    },
+    "functions": [
+      {
+        "name": "validate_layout",
+        "line": 44,
+        "end_line": 80,
+        "sha256": "b20c5d32fa4c8bd8349ea3b11f2d92d79bc6c0aad85411fb4ca6ac56c6529692"
+      },
+      {
+        "name": "HeadlessBattle._result_view",
+        "line": 368,
+        "end_line": 419,
+        "sha256": "43e21166adabdb159a6faba3209d916b0f0a9b479a8208eabb1890aaeff1d956"
+      },
+      {
+        "name": "initialize",
+        "line": 422,
+        "end_line": 455,
+        "sha256": "1b7a11c37fad546c3a8f59b67e22ba5ab3dcd6f4b2d74e152ae1d4c12f4abccd"
+      }
+    ]
+  },
+  "new_explicit_API": [
+    "validate_squirrel_layout(layout)",
+    "initialize_squirrel(layout,seed)"
+  ],
+  "new_private_extractions": [
+    "_validate_layout_items(layout,closed_host_items)",
+    "_initialize_fixture(fixture,seed)"
+  ],
+  "private_parameters_not_public_proof": true,
+  "preserve_business": {
+    "source": {
+      "path": "data/phase482-source-king-mirror-poison-v2/staged/native_replay_v8/engine.py",
+      "size": 240725,
+      "sha256": "6ab932db790a2f3243c47ed6afca4a3f7683a979ca8ad7d6f3143b00591ce641"
+    },
+    "functions": [
+      {
+        "name": "CombatEngine.king_effect",
+        "line": 1573,
+        "end_line": 1584,
+        "sha256": "319c43a76a47e57ef781d5dd0f9767ae37f68dfddc44bd7eb4ae5229e84dfe91"
+      },
+      {
+        "name": "CombatEngine.set_logging_mode",
+        "line": 1779,
+        "end_line": 1782,
+        "sha256": "d8d1fe98dce636efb38410a1dfdfe5407abfbd08939d6ab22dfdc768299c0e7f"
+      },
+      {
+        "name": "CombatEngine.flush_logging_queue",
+        "line": 1807,
+        "end_line": 1812,
+        "sha256": "43e633366dbbe0c64a2b505495eb227fac0c3065a6d97a74b730319f251eb043"
+      },
+      {
+        "name": "CombatEngine.add_speed",
+        "line": 2184,
+        "end_line": 2187,
+        "sha256": "2aa15d44a2e206ccc16f7fbe1a65cbb357cf3ca609a9f01b8123b1c9bca6218f"
+      },
+      {
+        "name": "CombatEngine._gain_stacks",
+        "line": 2372,
+        "end_line": 2442,
+        "sha256": "361c6dcbd43b2c24f0dd5c8a480250c1e643d9fdbd4c8021f206f1ad8b792efc"
+      },
+      {
+        "name": "CombatEngine.remove_stack",
+        "line": 2444,
+        "end_line": 2498,
+        "sha256": "ff7b0fe7bf8738900a8302a3e87a01a0b031bb0f719ec6a34427e4ed4d84efff"
+      },
+      {
+        "name": "CombatEngine.give_stack",
+        "line": 2539,
+        "end_line": 2546,
+        "sha256": "2b917975701aabf03fb967a8e1370e446e7564568904ba1e3828f8cc004fe171"
+      },
+      {
+        "name": "CombatEngine.get_stack_fraction",
+        "line": 2555,
+        "end_line": 2611,
+        "sha256": "c24e4578f4194aab1303277e1be2af7a37f7304cc240c645e7dc9b3203afffae"
+      },
+      {
+        "name": "CombatEngine.remove_buffs_fraction",
+        "line": 2622,
+        "end_line": 2630,
+        "sha256": "c2230e17864430eaac888edd28e4c461f79f8c2c6b55d6194005be1a3e0e4d0d"
+      },
+      {
+        "name": "CombatEngine.steal_buffs_fraction",
+        "line": 2638,
+        "end_line": 2646,
+        "sha256": "bc94e6f519c17b405a85322cb3b445dfbd8ed527c6bd8345cd87c76185be193e"
+      },
+      {
+        "name": "CombatEngine.pick_random_stacks",
+        "line": 2663,
+        "end_line": 2690,
+        "sha256": "32ef03ec2030d410ac39972be8947d6ba3cfefe33c733321e50a5ef8b79d57ea"
+      },
+      {
+        "name": "CombatEngine.remove_random_buffs",
+        "line": 2738,
+        "end_line": 2744,
+        "sha256": "e89b156a3fd10e5c8951398b18e81ed848254c4acab3361aa54deff4489cc901"
+      },
+      {
+        "name": "CombatEngine.steal_random_buff",
+        "line": 2746,
+        "end_line": 2754,
+        "sha256": "f8281220a9528425cb123e254f037457a70a0ed65bc4eaa00bf0ce9d951a31db"
+      }
+    ]
+  },
+  "preserve_old_API": {
+    "source": {
+      "path": "data/phase482-source-king-mirror-poison-v2/staged/headless.py",
+      "size": 30940,
+      "sha256": "5826aeaeabbb3c21a2687db4aa3428c9fbfc18895df97d4abe9b3c8da44a6f13"
+    },
+    "functions": [
+      {
+        "name": "derive_stream_seeds",
+        "line": 35,
+        "end_line": 41,
+        "sha256": "dc0419fd00943aec7960e5b32ebfc7a8514a1aa20e7c69cd7e53f138f7b2037e"
+      },
+      {
+        "name": "preparation_order",
+        "line": 170,
+        "end_line": 179,
+        "sha256": "8dadb28e8ed075d04fdd9a4ae20c771e01a76fdefe684b02711683142611e8b0"
+      },
+      {
+        "name": "runtime_inputs",
+        "line": 252,
+        "end_line": 270,
+        "sha256": "8f4d8d4ff5462049d210a2ac58c3598b84c2d12edd0086186d48e8121a59021a"
+      },
+      {
+        "name": "HeadlessBattle.step",
+        "line": 344,
+        "end_line": 347,
+        "sha256": "c7ed7c112a0a5fc2e5a74527304da997a0d5c62e81681e3baac9724a95b94e71"
+      },
+      {
+        "name": "HeadlessBattle.snapshot",
+        "line": 349,
+        "end_line": 356,
+        "sha256": "e82c483b2293a15e44b95b587c108d7bba6c9113164d310649f27f39d55881ff"
+      },
+      {
+        "name": "HeadlessBattle.run",
+        "line": 358,
+        "end_line": 362,
+        "sha256": "109bfc6fca092d0b29170499c575797a1d62ba3e19a497cea4e10eabcefdfd9d"
+      },
+      {
+        "name": "HeadlessBattle.result",
+        "line": 364,
+        "end_line": 366,
+        "sha256": "ae01c8cba154f20f50e676efa1e0cbda9c453cc81214e49ab69eb272934d49f4"
+      },
+      {
+        "name": "run_batch",
+        "line": 493,
+        "end_line": 525,
+        "sha256": "b7f7073bc01eae3ef4dddf6a41085d5129c62ffb0fc52052707aa9ca26da5148"
+      },
+      {
+        "name": "main",
+        "line": 528,
+        "end_line": 543,
+        "sha256": "1f049c8d72a9b3060e928c3a195b1e510f251b7ec5951297031de8ad2ffb1153"
+      }
+    ]
+  },
+  "new_domain": {
+    "allowed_source_items": "old75 defaults plus164",
+    "requires164": true,
+    "classes": [
+      0
+    ],
+    "King": false,
+    "rage": false,
+    "public_old_initialize_accepts164": false,
+    "old_run_batch_accepts164": false,
+    "formal_support": 75
+  },
+  "no_genuine_or_King_profile_change": true
+}

@@ -1,0 +1,53 @@
+{
+  "schema": "phase488-independent-design-review/1",
+  "status": "ACCEPTED_FINITE_DESIGN_FOR_NEXT_ISOLATED_SOURCE_BLOCK_NOT_NATIVE",
+  "design_owner": {
+    "path": "data/phase488-squirrel-buff-steal-design/owned-files.json",
+    "size": 881,
+    "sha256": "ce99f189de3885adfe6eb0987f6f861ee360f59dd2170df2ebb9bd31c387eedc"
+  },
+  "spec": {
+    "path": "docs/phase488_squirrel_buff_steal_family_design_spec.md",
+    "size": 14458,
+    "sha256": "c74a69551011b1639bb849f3f026a419ba6c069f236e35afd01298a2b9a608d9"
+  },
+  "verified_source_refs": 15,
+  "verified_function_slices": 30,
+  "shared_function_slices": 22,
+  "decision": "Squirrel164 is a concrete unported production caller. The design includes inherited ForestFriend cache/start behavior and shared Util pitch tail, so implementation is more than catalog admission. No unresolved finite design blocker.",
+  "verified_rules": [
+    "Scene binds Squirrel.gd -> ForestFriend.gd -> Item; CSV164 Pet/Nature, cooldown4, speed15, steal1; TileMap signed16 decoding yields exact L3shape/sevenstars.",
+    "Pet OR Food target predicate includes same-type otherPet, excludes self, and must preserve ordered unique identity cache for rotations and earlier/later insertion.",
+    "All preCombatStart cooldowns precede ForestFriend combatStart count*15.0/100.0 selfspeed; parent start has no Squirrel activation or sockets effect in selected default descriptor.",
+    "Real trigger cooldown -> steal_random_buff1 -> activate; repeatable, not consumed.",
+    "Shared steal helper gives picked/requested count regardless of protected actual loss, preserving same explicit triggerEvent for loss and gain and delayed log order.",
+    "Item.activate limiter precedes shared RNG tail; only first three same-time activations reach Squirrel pitch. Ended state suppresses gameplay log block but not allowed pitch tail.",
+    "Release mapping and Exclusive resource loading are separate Source predicates; no executed native canAdd/acquisition claim."
+  ],
+  "minimal_implementation_conditions": [
+    "Keep ITEMS75 and old initialize/validate_layout/run_batch closed; new explicit initialize_squirrel/validate_squirrel_layout fixed75+164 only, at leastone164,class0,noKing/rage/gems/modifiers.",
+    "Two modules only with narrow private validation/initialization extraction;13others conserved, genuine/captured and King6/7/8 untouched.",
+    "Review extracted old bodies for semantic/validation-order conservation, not only equal function counts.",
+    "Stable pitch semantic label and full startup/RNG audit required; do not classify shared draw as disposable GUI.",
+    "New metadata must distinguish catalog77 and experimental164 from formal75; natural Source exposure does not upgrade native."
+  ],
+  "minimal_independent_obligations": [
+    "Ingressnew/old gates and correctdescriptor/geometry.",
+    "Real preparation/start zero/nonzero PetORFood count, same-typePet and ordering/rotation; exactspeedbits, no extra startActivation.",
+    "Fulltrigger empty and unprotected/protected steal, selector and cooldown/pitch order, delayed losses/gains and originalparent/history.",
+    "Activationtail exact first3/fourthreturn/endedallowed state, without replacing real shared methods.",
+    "At mostone presealed natural nonKinglayout/seed with buffproducer;120simseconds and separatewallcap, reportHIT/NOT_HIT."
+  ],
+  "limitations": [
+    "Source-only design and later finite controls are not Squirrel native comparison or formal76 acceptance.",
+    "All75x164 combinations are not proved by a finitecase; explicit experimental admission retains that limitation.",
+    "201deferred; no acquisition/economy or additionalitem implementation.",
+    "Future native capture may need Squirrel Utilpitch wrapper; not authorized here."
+  ],
+  "author_design_imports_not_repeated": true,
+  "independent_candidate_imports": 0,
+  "model_calls": 0,
+  "native_runs": 0,
+  "Expected_reads": 0,
+  "pool_operations": 0
+}

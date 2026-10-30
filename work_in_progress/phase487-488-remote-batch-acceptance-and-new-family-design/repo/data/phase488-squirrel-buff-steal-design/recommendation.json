@@ -1,0 +1,73 @@
+{
+  "schema": "phase488-unported-rule-family-design/1",
+  "status": "FROZEN_DESIGN_ONLY_REVIEW_PENDING",
+  "selected": "Squirrel164: first actual production buff-steal caller plus inheritedForestFriend",
+  "deferred": "AmethystWhelp201: start random-debuff+early-hit removal is larger and not implemented now",
+  "helper_census": {
+    "scope": "Only four named helper invocations in original Items/**/*.gd",
+    "model_current75_production_callers": 0,
+    "original_real_callers_exist": true,
+    "fraction_callers": [
+      "Items/Exclusive/Chainsaw.gd"
+    ],
+    "random_caller_selected": "Items/Exclusive/Squirrel.gd",
+    "random_caller_deferred": "Items/Exclusive/AmethystWhelp.gd",
+    "other_callers_out_of_scope": "Gems/cards/chess/other exclusive item families; no catalog denominator census"
+  },
+  "required_semantics": [
+    "ForestFriend Pet OR Food cache; same-kind Pet allowed; unique object not hit cells",
+    "After parent combatStart count>0 speed=count*15.0/100.0; no startActivation",
+    "4s repeat trigger steals1 then activates",
+    "Requested gain survives protected actual loss0; same supplied triggerEvent, not loss-parent link",
+    "Delayed logging order and exact selection bounds/history/metrics",
+    "Squirrel activation-tail Util REAL range(.9,1.1) after metric/tooltip; no draw on fourth limiter return, still draw after ended allowed call"
+  ],
+  "native_evidence": {
+    "old025": "Accepted fraction/logging/loss pipeline Source controls; natural Mirror cases, protected native events NOT_HIT",
+    "old178": "Historical King/Mirror mixed evidence, not164",
+    "fixed478": "King+Basic conditionalTape eight sections, not164",
+    "fresh483_487": "Source component/integration/finitebatch, not native164",
+    "current_Squirrel_native_production_comparison": "NOT_ESTABLISHED_IN_THE_SELECTED_EVIDENCE",
+    "new_capture_authorized": false,
+    "future_minimum": "One separately predeclared Squirrel layout/capture if native admission requested; actualinitialbindings+pitchprimitive site+fullTapeclock; no Expected-derived inputs"
+  },
+  "refs": [
+    {
+      "path": "docs/phase025-v6-independent-acceptance.md",
+      "size": 9398,
+      "sha256": "bdc3f97e74dce451bc8ddc35f10938444d580efc3f8ac778b9b5bf49c467e6d8"
+    },
+    {
+      "path": "docs/phase178_king_actual_independent_review.md",
+      "size": 3879,
+      "sha256": "dbe858edeafc5f756aef34e9939a68b10c7412ed36ddb5fa9c079496b13a3905"
+    },
+    {
+      "path": "data/phase478-independent-final-acceptance/review.json",
+      "size": 6712,
+      "sha256": "239ba225fde750d14cbd1f7914bd83f3cd858307c29a906875c530cb58bc8ba8"
+    },
+    {
+      "path": "data/phase483-independent-final-acceptance/review.json",
+      "size": 6066,
+      "sha256": "609dea2b9a3fdcbf7693db4109999c980d0c741f253ea88f02ab1e8883eced2b"
+    },
+    {
+      "path": "data/phase487-independent-final-acceptance/review.json",
+      "size": 7741,
+      "sha256": "d5b85165823f496d88a75e52f9b7d218f155e166dae1da4f79b2c18af9f9f427"
+    }
+  ],
+  "author_activity": {
+    "Source_read_AST_csv_and_document_only": true,
+    "compile": 0,
+    "imports": 0,
+    "models": 0,
+    "native": 0,
+    "Expected": 0,
+    "pool": 0,
+    "old_tests": 0,
+    "old_outputs": 0
+  },
+  "next": "Independent488 short design review; Root selects489 isolatedSource before implementation"
+}
