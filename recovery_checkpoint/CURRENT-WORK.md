@@ -51,3 +51,7 @@ Reuse the fixed read-only baseline/pool; do not create a full Game copy per case
 ## Next unported rule family
 
 488 design for Squirrel164/ForestFriend/buff-stealing has passed bounded independent static review. It uses an explicit Source-only initializer; old75 and King/genuine admission remain unchanged. Preserve ordered Pet-or-Food caching, `count*15.0/100.0`, picked-versus-actual-loss semantics, trigger parents and activation-tail shared RNG.489 implementation is in preparation, not yet accepted. This moves actual unported behavior forward; no new native collection is part of the design.
+
+## Frozen new item family, independent acceptance pending
+
+[489 Squirrel Source](../work_in_progress/phase489-squirrel-source-frozen/README.md) preserves the new non-King `initialize_squirrel` candidate and all15 Source files. Author compile-only15 passed; thirteen modules and265 unchanged function slices are conserved. Independent490 Source review accepted extraction/cache/steal/pitch sequencing, but actual finite functional controls are pending. Formal75 and the direct Source8 distribution remain as previously accepted. Do not infer native Squirrel parity or promote the candidate from a design/static review.
