@@ -1,0 +1,113 @@
+{
+  "schema": "phase563-independent-mixed-design-review/1",
+  "status": "DESIGN_PASS",
+  "scope": "Finite Source162+385 mixed12 admission over accepted558. Static review only; no implementation or mixed runtime acceptance.",
+  "bindings": {
+    "spec": {
+      "path": "docs/phase562_finite_mixed_bowl_enchanted_source_design_spec.md",
+      "size": 10821,
+      "sha256": "e125f4d057acb4bc43fa6a8d90bbebb53e5e246295fe5c9203de29abcaa2fcd6"
+    },
+    "source_pins": {
+      "path": "data/phase562-finite-mixed-source-design/source-pins.json",
+      "size": 8058,
+      "sha256": "36844a6cf790c3e6d1e37d3aefa9f8bc3ae85ed782a2d0266800829951e3770b"
+    },
+    "owner": {
+      "path": "data/phase562-finite-mixed-source-design/owned-files.json",
+      "size": 499,
+      "sha256": "8528130c3a35752c1000de93f0776ed577026bfe014dd39663bc599146fcd505"
+    },
+    "base_freeze": {
+      "path": "data/phase558-source-bowl-treats/candidate-source-freeze.json",
+      "size": 3839,
+      "sha256": "0ce6289185c03b8a6b42f84ad2dd282b761aaff34a3d5413694747c5428ac23e"
+    }
+  },
+  "verified_pins": {
+    "owner_payloads": 2,
+    "Original_leaves": 8,
+    "Source_modules": 1,
+    "reused_proof_descriptors": 6,
+    "selected_Source_slices": 16,
+    "new_crossed_inheritance_census_files": 7,
+    "method": "Byte SHA/size, Source text, exact line slices and anchored own-method declarations; no candidate evaluation."
+  },
+  "findings": [
+    {
+      "topic": "Crossed receiver predicates",
+      "result": "PASS",
+      "evidence": "Item.gd500–502 computes has_method for onPreDealDamage_early/onPreDealDamage_late/onDealtDamage;4126–4129 ORs exactly these. Bowl162/Banana5 inherit Food→Item and Squirrel164 inherits ForestFriend→Item; bounded parent-chain declarations contain none.385 script extendsItem, only canAffect/onPrepare/doCooldownEffect; CSV385 has Skill and empty extraTypes.",
+      "conclusion": "Newly permitted162/5/164 do not become385 attack-effect receivers, and385 does not become Bowl globalPet/Food or Squirrel Pet-or-Food target under closed defaults. Existing four positive weapon receivers and231 predicate proof reused. No broad75 census or dynamic type/script/gem domain claimed."
+    },
+    {
+      "topic": "Finite mixed admission",
+      "result": "PASS_WITH_IMPLEMENTATION_OBLIGATION",
+      "evidence": "Presence is derived from actual typed complete-fixture item entries. Both callers use fixed union{1,5,11,14,22,32,162,164,231,233,234,385}; class0/default/noKing/noGems/noRage, maxone of each caller per side.",
+      "conclusion": "Add one immutable union constant and a both-caller branch in each existing validator. Preserve original absent/standalone branch text and error behavior. Full validate_fixture must still invoke both validators after ordinary shape/identity/default checks; one private validator only proves its own caller bound, not complete admission. Same/opposite-side callers allowed while real effects stay same-side."
+    },
+    {
+      "topic": "Disjoint modifier lifecycle",
+      "result": "PASS",
+      "evidence": "Actual558 prepare checks both expected fields at item entry, sets that source cache_prepared, applies its entire callback/RNG-free setter loop, then checks that field. Later receivers reset neither field. Bowl and Skill operate in separate item_index branches and separate fields. End-of-prepare validates both.",
+      "conclusion": "Bowl-first/Skill-first/receiver-first orders do not create new partial-contribution observation across the two fields. Bowl contributes0/.2 only to164/231; Skill contributes0/.25 only to cached14/32/233/234. No union item receives both positive fields. No generic modifier framework or prepare rewrite needed; retain setters/checkers byte-exact."
+    },
+    {
+      "topic": "Cache and spatial interactions",
+      "result": "PASS",
+      "evidence": "Existing ordered cache builder distinguishes385 four receiver IDs,231Pet,164PetORFood and Food different-descriptor. It processes real cells and existing blockers/dedup.",
+      "conclusion": "No cache algorithm change. Mixed placement must test newly adjacent negative targets and actual ordering, not simply compare independent old cache lists. Food occupying a Spear star changes real empty-cell count through existing occupancy rules, without becoming a385 receiver. No collision/target assumptions invented by membership union."
+    },
+    {
+      "topic": "Shared buffs, stamina and history",
+      "result": "PASS_DESIGN_NOT_RUNTIME",
+      "evidence": "Existing on_stack_changed dispatch includes only seven beneficial stack names for registered231 and passes signed delta*coefficient into current-event stat20. Block is excluded. Actual558 least/random, early Staff Mana use, Shortbow hooks, Spear and Pet trigger paths are unchanged.",
+      "conclusion": "New interaction controls should cover real buff gains→231 regen and repeated Staff Mana loss/exhaustion→negative feedback, with actual parent and global history ordering; Spear Block loss must not be mislabeled as231 feedback. Keep source listener timing and random2 queue-flush behavior, not a duplicate expected implementation."
+    },
+    {
+      "topic": "Primitive chronology and effect distinction",
+      "result": "PASS_DESIGN_NOT_RUNTIME",
+      "evidence": "Pet extra flip follows full first effect/activate/pitch and only runs when live positive; attack-effect flip precedes accuracy and repeats appropriate own hooks, with independent Shortbow chance draws.",
+      "conclusion": "Conserve all existing business bodies. Mixed gains/uses can change later RNG bounds and conditional consumption; preseal directed rows and one natural input without post-result realignment, reused returns, sorting or outcome tuning. Individual553/559 acceptance is not mixed acceptance."
+    }
+  ],
+  "minimum_next_implementation": {
+    "base": "exact558 fifteen-file copy",
+    "changed_files": [
+      "native_replay_v8/engine.py"
+    ],
+    "exact_files": 14,
+    "new_constant": "fixed mixed12 domain",
+    "modified_existing_functions": [
+      "validate_bowl_fixture",
+      "validate_enchanted_fixture"
+    ],
+    "business_prepare_cache_modifier_trigger_attack_history_Timer_FrameDriver_RNG_bodies": "byte-exact required",
+    "headless_public_APIs": "unchanged",
+    "catalog_registered": 84,
+    "formal_support": 75,
+    "new_runtime_dependencies": 0
+  },
+  "future_independent_controls": "At most eight directed interaction groups and one new presealed Source case per562, bound to actual frozen implementation before Root execution release. Reuse old helper/kernel proof; do not rerun553/559/546. Exact layout/seed/calls/draw budgets remain future, not fabricated here.",
+  "execution": {
+    "implementation": 0,
+    "candidate_import": 0,
+    "candidate_compile": 0,
+    "SUT_helper": 0,
+    "component_constructor": 0,
+    "model": 0,
+    "tests": 0,
+    "Native": 0,
+    "Expected_payload_reads": 0,
+    "UI": 0,
+    "pool": 0
+  },
+  "blocking_findings": [],
+  "limitations": [
+    "Design only; mixed Source implementation and runtime acceptance pending.",
+    "Current public package560 remains finite mutually-exclusive domains until separately implemented/accepted/published. This review does not mutate it.",
+    "No Native162/231/385 or general combinations/seed-law admission; formal75 unchanged.",
+    "No current disk/resource/READY gate was performed. Future Native capture needs separate actual lawful inputs and fresh operational gates.",
+    "Old fixed029 evidence does not supply mixed identities/clock/cache/RNG or justify Expected-derived inputs."
+  ]
+}

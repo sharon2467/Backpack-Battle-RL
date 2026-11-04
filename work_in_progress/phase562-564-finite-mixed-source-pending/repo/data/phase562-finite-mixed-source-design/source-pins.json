@@ -1,0 +1,257 @@
+{
+  "Original": [
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f",
+      "size": 170717
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Food.gd",
+      "sha256": "e0ff858b55f1f5a2d8e1b06ee155a4f7444ba7f4cd903bbee2b09780bfb20a23",
+      "size": 187
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/ForestFriend.gd",
+      "sha256": "d1d067d4526a53313e28df3fd3a441415c76a2fcb1368d823d51f3d30eb57147",
+      "size": 236
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/BowlofTreats.gd",
+      "sha256": "eb7dab954433ec19ad719a80ff93ba1b511aad026e5d640f6c58fc6a07887604",
+      "size": 975
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/Squirrel.gd",
+      "sha256": "c23b8aec966449cc60761007879b99c3528c4cbe94309914789954cea34de949",
+      "size": 508
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Banana.gd",
+      "sha256": "34f0516d8615a93129edb30e59598a62183a7a10947ad83c65445f7323f157f0",
+      "size": 74
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/EnchantedWeapons.gd",
+      "sha256": "5b8ce556c4ac56c6e6b7e3749ba8cf761d3380174c467bae4bef98976264abec",
+      "size": 270
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Sheets/CSV/ItemData.csv",
+      "sha256": "26f5433cf37cd33c066dd505672fcb292e7570ede8c823c5a10f9bc21208a473",
+      "size": 80933
+    }
+  ],
+  "actual_execution": {
+    "Expected": 0,
+    "Native": 0,
+    "UI": 0,
+    "candidate_import": 0,
+    "compile": 0,
+    "helper": 0,
+    "implementation": 0,
+    "model": 0,
+    "pool": 0,
+    "test": 0
+  },
+  "model_source": {
+    "path": "data/phase558-source-bowl-treats/staged/native_replay_v8/engine.py",
+    "sha256": "0489cd111d1ab72abbfe0e06d4de8170dfb6acec7f99fb73b85dacce188bd4a6",
+    "size": 258296
+  },
+  "new_crossed_method_census": [
+    {
+      "extends": "extends RigidBody2D",
+      "file": "Items/Item.gd",
+      "own_attack_effect_methods": []
+    },
+    {
+      "extends": "extends Item",
+      "file": "Items/Food.gd",
+      "own_attack_effect_methods": []
+    },
+    {
+      "extends": "extends Item",
+      "file": "Items/Exclusive/ForestFriend.gd",
+      "own_attack_effect_methods": []
+    },
+    {
+      "extends": "extends Food",
+      "file": "Items/Exclusive/BowlofTreats.gd",
+      "own_attack_effect_methods": []
+    },
+    {
+      "extends": "extends \"res://Items/Exclusive/ForestFriend.gd\"",
+      "file": "Items/Exclusive/Squirrel.gd",
+      "own_attack_effect_methods": []
+    },
+    {
+      "extends": "extends Food",
+      "file": "Items/Banana.gd",
+      "own_attack_effect_methods": []
+    },
+    {
+      "extends": "extends Item",
+      "file": "Items/Exclusive/EnchantedWeapons.gd",
+      "own_attack_effect_methods": []
+    }
+  ],
+  "proposed_delta": {
+    "catalog_registered": 84,
+    "changed_files": [
+      "native_replay_v8/engine.py"
+    ],
+    "exact_files": 14,
+    "max_each_caller_per_side": 1,
+    "mixed_ids": [
+      1,
+      5,
+      11,
+      14,
+      22,
+      32,
+      162,
+      164,
+      231,
+      233,
+      234,
+      385
+    ],
+    "modified_existing_functions": [
+      "validate_bowl_fixture",
+      "validate_enchanted_fixture"
+    ],
+    "new_public_API": false
+  },
+  "reused_proofs": [
+    {
+      "path": "data/phase558-source-bowl-treats/candidate-source-freeze.json",
+      "sha256": "0ce6289185c03b8a6b42f84ad2dd282b761aaff34a3d5413694747c5428ac23e",
+      "size": 3839
+    },
+    {
+      "path": "data/phase558-source-bowl-treats/owned-files.json",
+      "sha256": "2ccbbc2ee65113f62451dc49ba31b0e5d8296467109099086c50d60c2d928b77",
+      "size": 4766
+    },
+    {
+      "path": "data/phase559-independent-final-acceptance/review.json",
+      "sha256": "42a1665ed8ff882b7c1c4356a1ba78787eac4bd8a0fff517a5ceed1cc0fb81cc",
+      "size": 15275
+    },
+    {
+      "path": "data/phase556-bowl-extra-activation-design/source-pins.json",
+      "sha256": "d4a835b1813d402c7d389f872eb719a7c19b40474f00d51b134112624a046ff9",
+      "size": 10107
+    },
+    {
+      "path": "data/phase549-enchanted-weapons-design/source-pins.json",
+      "sha256": "4d9e0b0b926a7dbbf5114577ba71d4fe959de5f26016951a2a62b78716e18f8b",
+      "size": 12207
+    },
+    {
+      "path": "data/phase550-independent-enchanted-weapons-design-review/review.json",
+      "sha256": "6155adf2ffae6a539820333b07cf5a32e9f7a369c1163577a0ea20069c6110ac",
+      "size": 8689
+    }
+  ],
+  "schema": "phase562-mixed-design-source-pins/1",
+  "selected_AST_slices": [
+    {
+      "end_line": 434,
+      "function": "validate_fixture",
+      "line": 380,
+      "sha256": "5e0eff2e8d68b0b71a58ee379cd1ebc7797deb719e20b8c502589bfe9f8b86d4"
+    },
+    {
+      "end_line": 377,
+      "function": "validate_bowl_fixture",
+      "line": 368,
+      "sha256": "dae3b7317280fb0d6b73df197090b4bb07b2cd0f0a43b0f1d829da39e01c888a"
+    },
+    {
+      "end_line": 365,
+      "function": "validate_enchanted_fixture",
+      "line": 356,
+      "sha256": "053ad3a62f25524421a7ff160143d97ad259e43357cf0898e244eeaec7007169"
+    },
+    {
+      "end_line": 2012,
+      "function": "CombatEngine.prepare_only",
+      "line": 1888,
+      "sha256": "43e4f742b13e3342e7919fbca3229ad236499ed6d9d5a3b8488d6eeb8bea5221"
+    },
+    {
+      "end_line": 2233,
+      "function": "CombatEngine.new_caller_target_caches",
+      "line": 2175,
+      "sha256": "8abd44140846ac47024d06b92e33498c615f42930756c95ab083f756c21433e7"
+    },
+    {
+      "end_line": 2298,
+      "function": "CombatEngine.affected_items",
+      "line": 2255,
+      "sha256": "11bf53638ae8de855a2c4446bc1aeb5d0b3c65f618bb267cfa8d0e3fc79fcc4a"
+    },
+    {
+      "end_line": 3345,
+      "function": "CombatEngine._validate_bowl_double_activation_chance",
+      "line": 3328,
+      "sha256": "ec0dfd7d559820102829755c6ea58062d1dc656889a30966548cf3092bfe6a71"
+    },
+    {
+      "end_line": 3358,
+      "function": "CombatEngine.give_bowl_double_activation_chance",
+      "line": 3347,
+      "sha256": "ed88b8df5aa7d601603a1d316555849b38e1ed3c532df77954006ffbe5884673"
+    },
+    {
+      "end_line": 3556,
+      "function": "CombatEngine._validate_attack_effect_chance",
+      "line": 3538,
+      "sha256": "81bf9c8c4184001ace90edd821b5491cabae2f2dc83b91850f6035dafa5d0f91"
+    },
+    {
+      "end_line": 3570,
+      "function": "CombatEngine.give_double_attack_effect_chance",
+      "line": 3558,
+      "sha256": "bf15d7920a6fa37f915341bf454ab4f6b37084e19a24ed2c88e429984a2db869"
+    },
+    {
+      "end_line": 3371,
+      "function": "CombatEngine._pet_cooldown_effect",
+      "line": 3360,
+      "sha256": "79801bb595760a8e572301c0f4be4da4934edbab9b1a615e5bfe7d68c79b924d"
+    },
+    {
+      "end_line": 3387,
+      "function": "CombatEngine._bowl_cooldown_effect",
+      "line": 3373,
+      "sha256": "f10f518fc1be57987a4703c97fdefbd912bf9a51aa571a0bd4f19bcc4e929e1b"
+    },
+    {
+      "end_line": 3493,
+      "function": "CombatEngine.trigger",
+      "line": 3389,
+      "sha256": "0f5b4d3e2255187a3e16bf1f0fa0160c168916d112b5187c72ed2225a6d877c4"
+    },
+    {
+      "end_line": 3536,
+      "function": "CombatEngine.pre_item_damage",
+      "line": 3495,
+      "sha256": "32ce26b9a9afceb024f2826584aad5294f3c3da8f442d057443ecf39b27dd4e5"
+    },
+    {
+      "end_line": 2352,
+      "function": "CombatEngine.on_stack_changed",
+      "line": 2331,
+      "sha256": "501d42544cadae893582d9f1cd9179c3c18560c4e162d135f52dea44e497dd88"
+    },
+    {
+      "end_line": 2356,
+      "function": "CombatEngine.give_stamina_regeneration",
+      "line": 2354,
+      "sha256": "6990cd18cef75d17d5f7845eca8ca873aaaa9e3b6fac9d8032e15934fdaca87f"
+    }
+  ],
+  "status": "DESIGN_ONLY_NO_CODE_OR_RUNTIME"
+}

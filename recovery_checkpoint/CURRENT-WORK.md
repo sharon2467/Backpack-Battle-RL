@@ -1,5 +1,10 @@
 # Current original → Python combat checkpoint
 
+## Current finite mixed integration (564)
+
+The fixed mixed12 Source candidate is frozen in `work_in_progress/phase562-564-finite-mixed-source-pending`. Only one admission constant and two both-caller validator branches changed; all combat functions and fourteen Source files remain exact558. Dynamic mixed validation is pending. The installed public package is still accepted558, with separate162/385 domains. Catalog84/formal75 and Native boundaries are unchanged.
+
+
 The whole project is **IN_PROGRESS**. Original BackpackBattles1.1.8 GD is the behavior authority;the runtime is Python and Godot is only the oracle. Scope is pure combat,without GUI/shop replication. Formal bounded support remains75;the Source catalog has81registered kinds,which is not general81-item/native admission. Fullengine andRLremain unfinished.
 
 ## Latest actual comparison
