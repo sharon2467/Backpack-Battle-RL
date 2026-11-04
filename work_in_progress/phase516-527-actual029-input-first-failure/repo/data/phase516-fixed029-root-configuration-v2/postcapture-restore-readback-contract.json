@@ -1,0 +1,77 @@
+{
+  "failed_partial_rule": "Missing exact pending or complete journal/backups/pool-before blocks unchanged restore; preserve first error.",
+  "readback_output_new": "/workspace/python-original-engine/repo/data/phase508-readback-case029-first-001",
+  "readback_template": {
+    "baseline": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles",
+    "case_id": "NATIVE-029-WHELP-FAMILY-A",
+    "evidence": {
+      "controls_manifest": null,
+      "install_journal": null,
+      "patch_inventory": null,
+      "pending_state": null,
+      "previous_bundle_manifest": null,
+      "previous_proof": null,
+      "restore_owner": null,
+      "restore_receipt": null
+    },
+    "host_source_freeze": {
+      "path": "data/phase508-case029-host-restore-source/combined-source-freeze.json",
+      "sha256": "3e668a3714183a6d371eb14ef019d4a1fc7dbdf2897f80300989d760df285199",
+      "size": 62542
+    },
+    "pool": "/workspace/native-combat-20261013/pool",
+    "previous_run": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06",
+    "relocations": {},
+    "run": "/workspace/native-combat-20261013/runs/original029-whelp-family-A-single-001",
+    "schema": "phase508-fixed-predecessor-readback-request/1"
+  },
+  "ready_commit": "Root exact saved state bytes/mode/mtime only after independent physical PASS; writer/reader READY_writes=0",
+  "request_binding": "Root binds actual complete descriptors after stopped writers and exact failed/PENDING association.",
+  "restore_expected_paths": {
+    "controls_manifest": "/workspace/native-combat-20261013/runs/original029-whelp-family-A-single-001/output/predecessor-control-preimages/manifest.json",
+    "install_journal": "/workspace/native-combat-20261013/runs/original029-whelp-family-A-single-001/output/source-preimages/preimages.json",
+    "patch_inventory": "/workspace/native-combat-20261013/runs/original029-whelp-family-A-single-001/output/previous-source-preimages/inventory.json",
+    "pending_state": "/workspace/native-combat-20261013/pool/state.json",
+    "pool_before": "/workspace/native-combat-20261013/runs/original029-whelp-family-A-single-001/output/pool-before.json",
+    "previous_baseline": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/compaction/baseline-files.json",
+    "previous_bundle_manifest": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/compaction/bundle-manifest.json",
+    "previous_host_manifest": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/host_manifest.json",
+    "previous_project": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/compaction/project-files.json",
+    "previous_proof": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/compaction/pool-roundtrip.json",
+    "previous_provenance": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/pool-provenance.json",
+    "previous_staged": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06/output/compaction/staged-inputs.json"
+  },
+  "restore_output_new": "/workspace/python-original-engine/repo/data/phase508-restore-case029-first-001",
+  "restore_template": {
+    "case_id": "NATIVE-029-WHELP-FAMILY-A",
+    "evidence": {
+      "controls_manifest": null,
+      "install_journal": null,
+      "patch_inventory": null,
+      "pending_state": null,
+      "pool_before": null,
+      "previous_baseline": null,
+      "previous_bundle_manifest": null,
+      "previous_host_manifest": null,
+      "previous_project": null,
+      "previous_proof": null,
+      "previous_provenance": null,
+      "previous_staged": null
+    },
+    "previous_run": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06",
+    "root_restore_authorized": false,
+    "schema": "phase508-fixed-predecessor-restore-request/1",
+    "source_freeze": {
+      "path": "data/phase508-case029-host-restore-source/combined-source-freeze.json",
+      "sha256": "3e668a3714183a6d371eb14ef019d4a1fc7dbdf2897f80300989d760df285199",
+      "size": 62542
+    },
+    "writer": {
+      "path": "tests/phase508_restore_predecessor.py",
+      "sha256": "1969dc3ffb8cf1993281f144119115225f3853f22c978b056e93a245cb35e126",
+      "size": 27956
+    }
+  },
+  "schema": "phase516-future-binding-contract-not-runtime-request/1",
+  "status": "NOT_EXECUTABLE_NEW_EVIDENCE_NOT_YET_CREATED"
+}

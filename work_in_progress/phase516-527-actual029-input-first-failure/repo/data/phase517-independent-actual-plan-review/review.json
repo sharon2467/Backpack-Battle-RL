@@ -1,0 +1,101 @@
+{
+  "schema": "phase517-independent-actual-plan-metadata-review/1",
+  "status": "PASS_SAVED_READONLY_PLAN_METADATA_NO_CONFLICT_PENDING_EXECUTE_FRESH_GATES",
+  "inputs": [
+    {
+      "path": "data/phase518-root-plan-first-001/before.json",
+      "size": 863,
+      "sha256": "1fee5795a2b723cc8036e76e16e9bbae2582410c9d20fa5edd81167af62ee086"
+    },
+    {
+      "path": "data/phase518-root-plan-first-001/invocation.json",
+      "size": 995,
+      "sha256": "b159964299af4c56066854c9ff88d6bc7790d83628a0245d29e76778f7ccead7"
+    },
+    {
+      "path": "data/phase518-root-plan-first-001/execution.json",
+      "size": 974,
+      "sha256": "d37ea8ea820bd71758b449b0211aa353202c1f87f9bf6ee7c466ff18debe6cb5"
+    },
+    {
+      "path": "data/phase518-root-plan-first-001/stdout.json",
+      "size": 69959,
+      "sha256": "f5c2138af9d51b3b901c605119dc7de87b5350c455245c62df8ce83db5c9f780"
+    },
+    {
+      "path": "data/phase518-root-plan-first-001/stderr.txt",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "config": {
+    "path": "data/phase516-fixed029-root-configuration-v2/oracle-acceptance.json",
+    "sha256": "a45ecceaaabb98f77717ea0b2256066e0549ff0dcd6f33e69c531f7832d8d73d",
+    "size": 3584
+  },
+  "checks": {
+    "argv_equals_frozen516_plan": true,
+    "exit_code": 0,
+    "wall_seconds": 11.340180065999903,
+    "stderr_bytes": 0,
+    "state_before_after": {
+      "path": "/workspace/native-combat-20261013/pool/state.json",
+      "size": 4243,
+      "sha256": "e92ce49332709fe5cf71665b8add0f2ee47acaff4a04c5318f9d06ff0a543431"
+    },
+    "state_bytes_unchanged": true,
+    "fixed_case": "NATIVE-029-WHELP-FAMILY-A",
+    "attempt": 1,
+    "previous_run": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06",
+    "seeds": {
+      "global": 50201,
+      "util": 50202
+    },
+    "fresh_plan_budget": {
+      "reserve": 4294967296,
+      "attempt": 1610612736,
+      "free": 5932371968,
+      "required": 5905580032
+    },
+    "margin_at_plan_sample": 26791936,
+    "source_owner_freeze_reviews_match516": true,
+    "patches": 76,
+    "artifacts": 3,
+    "target_count": 79,
+    "target_bytes": 814020,
+    "driver_descriptors": 147,
+    "Squirrel_target": {
+      "target": "Items/Exclusive/Squirrel.gd",
+      "source": {
+        "path": "data/phase502-whelp-observer-source-v4/after-source/Items/Exclusive/Squirrel.gd",
+        "sha256": "afbba6556077e0f30f6cd5d6abced0949cd64c5979e2554326ef1303076dd1e5",
+        "size": 547
+      },
+      "before": {
+        "sha256": "c23b8aec966449cc60761007879b99c3528c4cbe94309914789954cea34de949",
+        "size": 508
+      }
+    }
+  },
+  "limits": [
+    "This independently checks saved actual plan output and invocation identities, not a second physical inventory or Source/resource re-execution.",
+    "Successful actual plan records existing source/resource/check_ready/process/budget checks; it acquired no execution lease and invoked no Godot.",
+    "Execute must perform its own current plan/Source/resource verification and lease readiness/budget checks. The small free margin is not reserved by this review.",
+    "Normal failed/PENDING plus complete journals/backups is required for unchanged restoration. Generic failed/partial cannot be relabeled to satisfy it.",
+    "No capture, Native facts, restoration or independent fullinventory readback is yet accepted here. Capture completeness and process cleanup will be assessed from later sealed controls under release."
+  ],
+  "next_evidence_contract": "docs/phase517_independent_case029_preflight_readback_spec.md",
+  "reviewer_calls": {
+    "host": 0,
+    "plan": 0,
+    "execute": 0,
+    "restore": 0,
+    "reader": 0,
+    "schema": 0,
+    "model": 0,
+    "Native": 0,
+    "pool_inventory": 0,
+    "Expected_business": 0
+  },
+  "source_changes": 0
+}

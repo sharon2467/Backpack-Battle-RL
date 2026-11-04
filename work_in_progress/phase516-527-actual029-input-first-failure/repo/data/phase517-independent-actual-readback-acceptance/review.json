@@ -1,0 +1,169 @@
+{
+  "schema": "phase517-independent-actual-readback-acceptance/1",
+  "status": "ACCEPTED_PREDECESSOR_PHYSICAL_READBACK_ROOT_READY_PENDING",
+  "case_id": "NATIVE-029-WHELP-FAMILY-A",
+  "reader_invocations": 1,
+  "runtime": {
+    "exit_code": 0,
+    "wall_seconds": 29.24700322300032,
+    "reader_invocations": 1,
+    "reader_pid": 1595
+  },
+  "reader_elapsed_seconds": 29.148411245999796,
+  "scope": "One authorized frozen phase508 reader invocation using exact phase523 request; no restoration, READY commit, game execution, or business comparison.",
+  "evidence": {
+    "request": {
+      "path": "/workspace/python-original-engine/repo/data/phase523-fixed029-independent-readback-request/readback-request.json",
+      "size": 2688,
+      "sha256": "bd008f717e1fbbbb0a618a540949c8ddcb22e8272cb55f7a82b7583192180cde"
+    },
+    "reader": {
+      "path": "/workspace/python-original-engine/repo/tests/phase508_independent_predecessor_readback.py",
+      "size": 25366,
+      "sha256": "15f8b1f034fcf95244516643554ec75acbcede592f70ce51c0474a2a0c8a0c30"
+    },
+    "reader_result": {
+      "path": "data/phase508-readback-case029-first-001/result.json",
+      "size": 3609060,
+      "sha256": "d2c476edf0bdac6e54bc16cd82401d349fd6bbbd6cb4303985f9b584f707c040"
+    },
+    "reader_owner": {
+      "path": "data/phase508-readback-case029-first-001/owned-files.json",
+      "size": 1480,
+      "sha256": "d6c441f1473eed55eb057fe4413c5bd97114a338904b95056a75d4876e2d9928"
+    },
+    "invocation_owner": {
+      "path": "data/phase517-independent-readback-invocation-first-001/owned-files.json",
+      "size": 1302,
+      "sha256": "970d3d654536deb20dbac2947ffa36fe7529cdc31346f692e8a592961fbd531e"
+    },
+    "writer_receipt": {
+      "path": "data/phase508-restore-case029-first-001/result.json",
+      "sha256": "bd7e282ae0153e031dbea5710996baa609335d55f862d94c4e51e8dca8a3eab8",
+      "size": 7203
+    }
+  },
+  "output_seal_verification": {
+    "reader_payloads": 7,
+    "invocation_payloads": 6,
+    "all_size_sha256_match": true
+  },
+  "physical_verification": {
+    "inventory_checks": {
+      "previous-bundle-actual": {
+        "entries": 17,
+        "regular_files": 15,
+        "manifest_file_bytes_not_total_io": 17267581
+      },
+      "baseline-actual": {
+        "entries": 15665,
+        "regular_files": 15418,
+        "manifest_file_bytes_not_total_io": 616167851
+      },
+      "project-actual": {
+        "entries": 15669,
+        "regular_files": 15422,
+        "manifest_file_bytes_not_total_io": 616396845
+      },
+      "staged-actual": {
+        "entries": 3,
+        "regular_files": 2,
+        "manifest_file_bytes_not_total_io": 3273
+      },
+      "previous-driver-actual": {
+        "entries": 198,
+        "regular_files": 197,
+        "manifest_file_bytes_not_total_io": 2804691
+      }
+    },
+    "preimages": {
+      "controls": 3,
+      "old_patch_backups": 75,
+      "old_marker": 1,
+      "new_journal": 79
+    },
+    "retained_structure": {
+      "output": {
+        "fields": [
+          "schema",
+          "entries"
+        ],
+        "entries": 210
+      },
+      "data": {
+        "fields": [
+          "schema",
+          "entries"
+        ],
+        "entries": 4
+      },
+      "user": {
+        "fields": [
+          "schema",
+          "entries"
+        ],
+        "entries": 173
+      }
+    },
+    "retained_scope": "Physical hash-only of old retained capture bytes; Expected semantic decoding0. Existing c.retained output-root-mtime/generated exclusions and relaxed user-special representation preserved.",
+    "physical_paths_sha_mode_mtime_and_directory_metadata": "PASS under frozen existing inventory/retained contracts; existing generated/output-root-mtime exclusions and relaxed user-special representation retained",
+    "manifest_bytes_are_not_total_IO": true,
+    "unique_physically_opened_paths": 31590
+  },
+  "actual_calls": {
+    "process_check": 2,
+    "inventory": 8,
+    "load_bundle": 1,
+    "overlay_plan": 1,
+    "validate_archive": 1,
+    "retained": 1
+  },
+  "compaction_module_loads": 1,
+  "readonly_exclusive_lock_acquisitions": 1,
+  "process_scope": {
+    "before_active_matches": [],
+    "after_active_matches": [],
+    "before_inspection_gaps": 24,
+    "after_inspection_gaps": 24,
+    "before_complete": false,
+    "after_complete": false,
+    "global_completeness_claimed": false,
+    "operational_scope": "original-readable-reference-check-with-exclusive-pool-lock/1",
+    "reader_pid": 1595,
+    "reader_exited": true
+  },
+  "pending_state_unchanged": {
+    "path": "/workspace/native-combat-20261013/pool/state.json",
+    "sha256": "ae802c882579aab2306d98f4f66b1d409006343aae15764a54a8c4a249e70191",
+    "size": 628
+  },
+  "source_after": {
+    "script": {
+      "size": 25366,
+      "sha256": "15f8b1f034fcf95244516643554ec75acbcede592f70ce51c0474a2a0c8a0c30"
+    },
+    "compaction": {
+      "path": "tests/native_run_compaction.py",
+      "size": 27304,
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260"
+    },
+    "host_source_freeze": {
+      "path": "data/phase508-case029-host-restore-source/combined-source-freeze.json",
+      "size": 62542,
+      "sha256": "3e668a3714183a6d371eb14ef019d4a1fc7dbdf2897f80300989d760df285199"
+    },
+    "unchanged": true
+  },
+  "boundaries": {
+    "pool_state_writes": 0,
+    "READY_writes": 0,
+    "restore_calls": 0,
+    "models": 0,
+    "native": 0,
+    "Expected_semantic_decoding": 0,
+    "Expected_physical_hash_reads": "Old retained capture bytes physically read and hashed; not zero total reads. No Expected business semantic decoding/projection.",
+    "formal75_or_new_native_business_admission_upgrade": false
+  },
+  "remaining": "Root separately decides and performs exact predecessor state/READY commit. This result establishes physical restoration, not new combat-input or model-equivalence acceptance.",
+  "prior_capture_limits": "Native029 capture complete but process_clean_exit false; prior owned-zombie diagnostic retained, not reinterpreted as clean/reaped."
+}

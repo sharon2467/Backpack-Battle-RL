@@ -1,0 +1,155 @@
+{
+  "schema": "phase524-scoped-ready-commit/1",
+  "status": "PREPARED_NO_WRITE",
+  "independent_acceptance": {
+    "path": "/workspace/python-original-engine/repo/data/phase517-independent-actual-readback-acceptance/review.json",
+    "size": 6024,
+    "sha256": "d6bc43c619fabd2c0e95838541b815740890297ba2aa5d9920b7412e4b545ee0"
+  },
+  "readback": {
+    "path": "/workspace/python-original-engine/repo/data/phase508-readback-case029-first-001/result.json",
+    "size": 3609060,
+    "sha256": "d2c476edf0bdac6e54bc16cd82401d349fd6bbbd6cb4303985f9b584f707c040"
+  },
+  "restore": {
+    "path": "/workspace/python-original-engine/repo/data/phase508-restore-case029-first-001/result.json",
+    "size": 7203,
+    "sha256": "bd7e282ae0153e031dbea5710996baa609335d55f862d94c4e51e8dca8a3eab8"
+  },
+  "READY_writes": 0,
+  "project_data_writes": 0,
+  "new_original_or_model": 0,
+  "global_process_completeness_claimed": false,
+  "process_scope": "Only actual task-owned leaders/members and endedhost/writer/reader with exclusive realpoollock",
+  "saved_process_records": [
+    {
+      "descriptor": {
+        "path": "/workspace/native-combat-20261013/runs/original029-whelp-family-A-single-001/output/parse-monitor-result.json",
+        "size": 2912,
+        "sha256": "18881aa1bfe459546dbacccf465e7be8ba5f62bc818694426f4c0e9d28a32fde"
+      },
+      "pgid": 1063,
+      "live_remaining": [],
+      "zombies_not_claimed_reaped": [
+        1073
+      ]
+    },
+    {
+      "descriptor": {
+        "path": "/workspace/native-combat-20261013/runs/original029-whelp-family-A-single-001/output/native-monitor-result.json",
+        "size": 24098,
+        "sha256": "2333e013741baf84aaa80130cf52c8ad52d1a43feaca72d40d790f3be976ab70"
+      },
+      "pgid": 1122,
+      "live_remaining": [],
+      "zombies_not_claimed_reaped": [
+        1132
+      ]
+    },
+    {
+      "descriptor": {
+        "path": "/workspace/native-combat-20261013/runs/original029-whelp-family-A-single-001/output/parse-process-result.json",
+        "size": 2979,
+        "sha256": "296abc4076776121c60ba8b890dd6873bf6cbe8e37fc5d5131aefa4f23714e04"
+      },
+      "pgid": 1063,
+      "live_remaining": [],
+      "zombies_not_claimed_reaped": [
+        1073
+      ]
+    },
+    {
+      "descriptor": {
+        "path": "/workspace/native-combat-20261013/runs/original029-whelp-family-A-single-001/output/native-process-result.json",
+        "size": 24157,
+        "sha256": "2b7a9e405506b63b9e23e9d37824c6808b4d8f060c1f50f21f19b10480f32994"
+      },
+      "pgid": 1122,
+      "live_remaining": [],
+      "zombies_not_claimed_reaped": [
+        1132
+      ]
+    },
+    {
+      "invocation": {
+        "path": "/workspace/python-original-engine/repo/data/phase519-root-execute-first-001/invocation.json",
+        "size": 1310,
+        "sha256": "d781033c222759a952fe2e84b64fa9b5f6501fac03ce79ff58a7b9438a25e7ce"
+      },
+      "returned": {
+        "path": "/workspace/python-original-engine/repo/data/phase519-root-execute-first-001/execution.json",
+        "size": 979,
+        "sha256": "f9ea33ee5331eb256abb815758273717fff3c47a19912591b3091bbd8f4d52c8"
+      }
+    },
+    {
+      "invocation": {
+        "path": "/workspace/python-original-engine/repo/data/phase522-root-restore-invocation-first-001/invocation.json",
+        "size": 684,
+        "sha256": "e99207f478b8d7d22b58705a1001f81a7d035ceb03965383761f0b46e2292b9d"
+      },
+      "returned": {
+        "path": "/workspace/python-original-engine/repo/data/phase522-root-restore-invocation-first-001/execution.json",
+        "size": 950,
+        "sha256": "933163491ec1e1cb4907e6a55de8b707beb67a3237e895ed7a90279705b42448"
+      }
+    }
+  ],
+  "actual_lock": {
+    "pid": 1682,
+    "fd": 3,
+    "device": 27,
+    "inode": 1966152,
+    "exclusive_nonblocking_acquired": true
+  },
+  "targeted_owned_PID_observations": [
+    {
+      "pid": 1054,
+      "observation": "absent"
+    },
+    {
+      "pid": 1063,
+      "observation": "absent"
+    },
+    {
+      "pid": 1073,
+      "state": "Z",
+      "pgrp": "1063",
+      "starttime": "106734",
+      "observation": "zombie,notreaped,notexecutingwriter"
+    },
+    {
+      "pid": 1122,
+      "observation": "absent"
+    },
+    {
+      "pid": 1132,
+      "state": "Z",
+      "pgrp": "1122",
+      "starttime": "107157",
+      "observation": "zombie,notreaped,notexecutingwriter"
+    },
+    {
+      "pid": 1462,
+      "observation": "absent"
+    },
+    {
+      "pid": 1595,
+      "observation": "absent"
+    }
+  ],
+  "pending_before": {
+    "path": "/workspace/native-combat-20261013/pool/state.json",
+    "size": 628,
+    "sha256": "ae802c882579aab2306d98f4f66b1d409006343aae15764a54a8c4a249e70191"
+  },
+  "saved_state": {
+    "descriptor": {
+      "path": "/workspace/native-combat-20261013/runs/original029-whelp-family-A-single-001/output/predecessor-control-preimages/0",
+      "size": 4243,
+      "sha256": "e92ce49332709fe5cf71665b8add0f2ee47acaff4a04c5318f9d06ff0a543431"
+    },
+    "mode": 384,
+    "mtime_ns": 1793007805399408434
+  }
+}

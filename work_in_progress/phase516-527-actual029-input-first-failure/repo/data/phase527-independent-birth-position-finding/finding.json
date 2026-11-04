@@ -1,0 +1,198 @@
+{
+  "schema": "phase527-independent-birth-position-finding/1",
+  "status": "CONFIRMED_UNNECESSARY_CROSS_TIME_POSITION_INVARIANT",
+  "failure": {
+    "path": "data/phase511-case029-actual-input-first-001/first-error.json",
+    "reason": "CHARACTER_BIRTH_ACTUAL_PARENT",
+    "function": "tests/phase511_initial_receipt.py::validate_ledger",
+    "line": 94,
+    "offending_conjunct": "bn['positions'][:-1]==owner['positions']"
+  },
+  "input_evidence": {
+    "king-input-facts.json": {
+      "path": "/workspace/native-combat-20261013/runs/original029-whelp-family-A-single-001/output/capture/king-input-facts.json",
+      "sha256": "9e9f44e4890bfc5a23fd49d2469d5dd37e2b95eda6a181d8592dc2063147e9f6",
+      "size": 24001
+    },
+    "observer7-input.jsonl": {
+      "path": "/workspace/native-combat-20261013/runs/original029-whelp-family-A-single-001/output/capture/observer7-input.jsonl",
+      "sha256": "9be6765e9fef34fe83efa8c21ed52d9355574c4cb07df37b3d658df03b958785",
+      "size": 251354
+    }
+  },
+  "observations": {
+    "P": {
+      "timer_id": "47767",
+      "owner_id": "47611",
+      "kind": "Character.scene.ready",
+      "birth_positions": [
+        -1,
+        19,
+        3,
+        0,
+        7
+      ],
+      "current_positions": [
+        -1,
+        18,
+        3,
+        0,
+        7
+      ],
+      "current_owner_positions": [
+        -1,
+        18,
+        3,
+        0
+      ],
+      "birth_and_current_path": "/root/Main/Player/Character/InvulnerabilityTimer",
+      "starts": 0,
+      "stops": 0
+    },
+    "O": {
+      "timer_id": "84681",
+      "owner_id": "84525",
+      "kind": "Character.scene.ready",
+      "birth_and_current_positions": [
+        -1,
+        18,
+        1,
+        4,
+        0,
+        5
+      ],
+      "current_owner_positions": [
+        -1,
+        18,
+        1,
+        4,
+        0
+      ],
+      "birth_and_current_path": "/root/Main/Combat/Opponent/Character/InvulnerabilityTimer",
+      "starts": 0,
+      "stops": 0
+    },
+    "current_cuts": [
+      {
+        "physical_line": 1,
+        "sequence": 108,
+        "site": "Core/Game.gd::prepareItems"
+      },
+      {
+        "physical_line": 4,
+        "sequence": 1120,
+        "site": "Core/Game.gd::activateItems"
+      }
+    ],
+    "shared_values": {
+      "class": "Timer",
+      "name": "InvulnerabilityTimer",
+      "birth_role": null,
+      "inside_tree": true,
+      "process_mode_INT": 0,
+      "ordinary_and_internal_flags": false,
+      "paused": false,
+      "autostart": false,
+      "one_shot": true,
+      "stopped": true,
+      "wait_time_binary64_be": "3ff0000000000000",
+      "public_time_left_binary64_be": "0000000000000000"
+    },
+    "current_parent_prefix_and_path_match_at_each_cut": true,
+    "fact_current_timer_equals_selected_cut_timer": "same observed relevant identities, positions/config/flags; production full equality not rerun"
+  },
+  "source_evidence": [
+    {
+      "descriptor": {
+        "path": "/workspace/python-original-engine/repo/tests/phase511_initial_receipt.py",
+        "size": 16790,
+        "sha256": "b504aef3f5c60af9d95a03aa0e975334ac9caa7723a3622badba6aec4e7f7b68"
+      },
+      "lines": [
+        73,
+        97
+      ],
+      "meaning": "validate_timer above separately retains same-cut parent path/position; validate_ledger adds birth-prefix versus current-owner equality"
+    },
+    {
+      "descriptor": {
+        "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Core/Character.gd",
+        "size": 55679,
+        "sha256": "4e37b2f5d044e015be5dd75fca37577bdb9fc870dd2e32cad5198c36649df984"
+      },
+      "lines": [
+        121,
+        141
+      ],
+      "meaning": "onready InvulnerabilityTimer child reference and first _ready call timer_birth(invulnerabilityTimer,self,Character.scene.ready) bind actual owner identity directly"
+    },
+    {
+      "descriptor": {
+        "path": "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/after-source/native_random_observer_sink_v7.gd",
+        "size": 102916,
+        "sha256": "41d500e34557cf731baea0c3e150e3d0d0815d26b5bea87c21ab3a81cd2b7162"
+      },
+      "lines": [
+        188,
+        200,
+        744,
+        779,
+        793
+      ],
+      "meaning": "node_state serializes current ancestor get_index values; timer_birth stores timer/owner IDs and birth state; king_timer_fact verifies owner/kind/zero starts before current snapshot"
+    },
+    {
+      "descriptor": {
+        "path": "/workspace/python-original-engine/repo/data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/node.cpp",
+        "size": 95163,
+        "sha256": "0c2e3230b37644c8496f5b1aee59f428de6a497a380c247613c489e44cd508a9"
+      },
+      "lines": [
+        409,
+        441,
+        1351,
+        1403
+      ],
+      "meaning": "move_child and remove_child renumber sibling positions; ancestor get_index is mutable independently of descendant UID/path/parent identity"
+    }
+  ],
+  "conclusion": "Absolute ancestor sibling-index vectors are observations at their own times, not object identity or a lifetime no-start condition. Comparing the birth vector with a later owner vector adds an unsupported stability requirement. The actual first difference is Main sibling position19 versus18; no Timer ownership/identity difference is shown.",
+  "acceptable_minimal_repair": {
+    "remove_only_cross_time_position_equality": true,
+    "retain": [
+      "Exact born Timer UID and recorded owner UID join to actual current owner",
+      "Character.scene.ready kind and zero starts/nonnegative stops strictINT",
+      "Birth timer schema/constructor validation, positions typed/shape validation, class/name/inside_tree/path",
+      "Exact birth/current config types/values and inactiveflags",
+      "Birth path equals current timer path and actual owner path/name",
+      "Every current-cut timer-parent path and position equality via validate_timer",
+      "Full fact.current versus timer equality",
+      "Unchanged full Source G02/Character rules and all other64+8 guards"
+    ],
+    "preserve_original_birth_positions_in_receipt": true,
+    "not_acceptable": [
+      "Replace recorded birth positions with current positions",
+      "Ignore UID/owner/path mismatch",
+      "Relax current-cut parent position checks",
+      "Infer privateleft from publiczero",
+      "Copy old case cuts/values or Expected data"
+    ]
+  },
+  "limits": [
+    "No specific sibling removal/reorder event was traced or claimed. Exact cause is not needed to reject a general immutable-address premise.",
+    "This is a bridge guard issue, not a producer missing-field finding or Native combat difference.",
+    "No claim that remaining complete projection or all72premises pass after repair."
+  ],
+  "independent_work_counts": {
+    "lawful_files_read_hash_and_JSON_decoded": 2,
+    "selected_checkpoint_records_examined": 2,
+    "Expected_payload_reads": 0,
+    "schema_imports_or_calls": 0,
+    "bridge_or_initial_helper_calls": 0,
+    "builds": 0,
+    "models": 0,
+    "Native": 0,
+    "Source_modifications": 0
+  },
+  "next": "Author immutable one-predicate repair plus mechanical pin/context rebinding; independent minimal changed-boundary checks before separately released actual build retry."
+}

@@ -1,0 +1,59 @@
+{
+  "schema": "phase517-readonly-review-postcheck-errata/1",
+  "source_changes": 0,
+  "first": {
+    "finding": {
+      "path": "/workspace/python-original-engine/repo/data/phase517-independent-capture-control-review/first-error.json",
+      "size": 3086,
+      "sha256": "4b9b9d218a7fb61868cad2483b14b4e20da0be5bb723a17d412555e1202d3795"
+    },
+    "owner": {
+      "path": "/workspace/python-original-engine/repo/data/phase517-independent-capture-control-review/first-error-owner.json",
+      "size": 317,
+      "sha256": "e76839b71f3c819ebe23c08fe0c02780bf75d1b3982f486a87234b951d0b8866"
+    },
+    "cause": "JSON object order in saved plan is not the frozen explicit artifact installation order; existing Source specifies collector/config/marker."
+  },
+  "second": {
+    "finding": {
+      "path": "/workspace/python-original-engine/repo/data/phase517-independent-capture-control-review-v2/first-error.json",
+      "size": 143,
+      "sha256": "8327c5b13cc21fca20e9c01d322db5b2d1f6f2d6055bc79543c8e1162f491354"
+    },
+    "owner": {
+      "path": "/workspace/python-original-engine/repo/data/phase517-independent-capture-control-review-v2/owned-files.json",
+      "size": 310,
+      "sha256": "f312fa666a7b124a05bbc59c67dba3d15920ff020ffc6ff23727b42ea35be364"
+    },
+    "cause": "Test-owned postcheck wrongly required newjournal backupmtime equal originaltargetmtime. install writes raw bytes to new backup files; originalmetadata is recorded separately.",
+    "source_evidence": [
+      {
+        "path": "tests/phase508_oracle_storage.py",
+        "lines": [
+          246,
+          247,
+          248
+        ]
+      },
+      {
+        "path": "tests/phase508_restore_predecessor.py",
+        "lines": [
+          209,
+          222
+        ]
+      }
+    ],
+    "observed_first_backup": {
+      "target": "Core/Buff.gd",
+      "bytes": 8827,
+      "sha256": "3efabb72eb0b337e30ebc924347aba40bd1039a3c5f718b761b0ee78b48ab8bb",
+      "original_mtime_ns": 1791988580462259824,
+      "backup_mtime_ns": 1793802416255308302,
+      "bytes_equal": true
+    }
+  },
+  "handling": "Both original error records retained unchanged. Root authorized remaining-only routine readonly correction; no host/Source/capture/restore rerun. Passed capture/control checks reused. Newbackup validated bytes-only; original targetmetadata and old/controlcopy2 metadata stay strict.",
+  "readonly_review_attempts": 3,
+  "first_two_stopped": true,
+  "third_completed": true
+}

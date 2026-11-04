@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "/workspace/python-original-engine/repo/tests/phase513_input_bridge.py", line 570, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/workspace/python-original-engine/repo/tests/phase513_input_bridge.py", line 567, in main
+    print(json.dumps(build_from_files(args.output_new,{'path':args.request,'size':args.request_size,'sha256':args.request_sha256}),sort_keys=True))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/python-original-engine/repo/tests/phase513_input_bridge.py", line 545, in build_from_files
+    bundle,proof,receipt,witness=project_from_bytes(raw12,request_raw,request_pin,context_raw,schema_raw)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/python-original-engine/repo/tests/phase513_input_bridge.py", line 513, in project_from_bytes
+    receipt=build_initial_receipt(decoded,aliases,schema)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/python-original-engine/repo/tests/phase511_initial_receipt.py", line 201, in build_initial_receipt
+    result['lifetime_witnesses'][role] = validate_ledger(facts, role, maps[1][parent_role][1]['node'], maps[1][role][1]['timer'], schema)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/python-original-engine/repo/tests/phase511_initial_receipt.py", line 94, in validate_ledger
+    require(bn['inside_tree'] is True and bn['path']==timer['node']['path']
+  File "/workspace/python-original-engine/repo/tests/phase511_initial_receipt.py", line 17, in require
+    raise ValueError(message)
+ValueError: CHARACTER_BIRTH_ACTUAL_PARENT

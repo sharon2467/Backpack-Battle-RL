@@ -1,0 +1,10 @@
+{
+  "schema": "phase524-read-count-erratum/1",
+  "original_review_sha256": "0f47c9adefc33c49665096c77f503ad980f83a6c96e9af22cbf00dcf95553c16",
+  "correction": {
+    "state_file_read": 2,
+    "saved_state_file_read": 2
+  },
+  "reason": "Each file was read once for byte equality and once by descriptor construction. Original report counted only the first read. No additional state read or operation was performed to produce this erratum.",
+  "acceptance_unchanged": true
+}

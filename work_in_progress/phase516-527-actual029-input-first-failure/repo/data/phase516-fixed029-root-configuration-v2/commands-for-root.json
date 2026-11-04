@@ -1,0 +1,81 @@
+{
+  "attempt": 1,
+  "case_id": "NATIVE-029-WHELP-FAMILY-A",
+  "cwd": "/workspace/python-original-engine/repo",
+  "execute_argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-B",
+    "/workspace/python-original-engine/repo/tests/phase508_oracle_host.py",
+    "--source-root",
+    "/workspace/python-original-engine/repo",
+    "--task-root",
+    "/workspace/godotsteam-startup-20261013",
+    "--baseline",
+    "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles",
+    "--pool",
+    "/workspace/native-combat-20261013/pool",
+    "--runs-root",
+    "/workspace/native-combat-20261013/runs",
+    "--config",
+    "data/phase516-fixed029-root-configuration-v2/oracle-acceptance.json",
+    "--config-size",
+    "3584",
+    "--config-sha256",
+    "a45ecceaaabb98f77717ea0b2256066e0549ff0dcd6f33e69c531f7832d8d73d",
+    "--execute"
+  ],
+  "guards": "Independent config review; Root fresh Source/resource/READY/process/space/preimage gates; no retry",
+  "limits": {
+    "attempt_bytes": 1610612736,
+    "collector_total_seconds": 295,
+    "free_floor_bytes": 4294967296,
+    "internal_battle_seconds": 120,
+    "kill_grace_seconds": 0.5,
+    "monitor_poll_seconds": 0.05,
+    "native_wall_seconds": 300,
+    "parse_wall_seconds": 30,
+    "term_grace_seconds": 5.0
+  },
+  "observed_predecessor": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06",
+  "plan_argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-B",
+    "/workspace/python-original-engine/repo/tests/phase508_oracle_host.py",
+    "--source-root",
+    "/workspace/python-original-engine/repo",
+    "--task-root",
+    "/workspace/godotsteam-startup-20261013",
+    "--baseline",
+    "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles",
+    "--pool",
+    "/workspace/native-combat-20261013/pool",
+    "--runs-root",
+    "/workspace/native-combat-20261013/runs",
+    "--config",
+    "data/phase516-fixed029-root-configuration-v2/oracle-acceptance.json",
+    "--config-size",
+    "3584",
+    "--config-sha256",
+    "a45ecceaaabb98f77717ea0b2256066e0549ff0dcd6f33e69c531f7832d8d73d",
+    "--plan"
+  ],
+  "process_count": {
+    "expected_compare_max": 0,
+    "input_build_max": 0,
+    "model_max": 0,
+    "native_battle_max": 1,
+    "parse_max": 1
+  },
+  "root_config": {
+    "path": "data/phase516-fixed029-root-configuration-v2/oracle-acceptance.json",
+    "sha256": "a45ecceaaabb98f77717ea0b2256066e0549ff0dcd6f33e69c531f7832d8d73d",
+    "size": 3584
+  },
+  "run": "/workspace/native-combat-20261013/runs/original029-whelp-family-A-single-001",
+  "schema": "phase516-root-command-proposal/1",
+  "seeds": {
+    "global_seed": 50201,
+    "util_seed": 50202
+  },
+  "status": "PREPARED_NOT_INVOKED"
+}

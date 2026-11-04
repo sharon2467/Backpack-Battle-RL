@@ -1,0 +1,120 @@
+{
+  "request_owner": {
+    "path": "/workspace/python-original-engine/repo/data/phase523-fixed029-independent-readback-request/owned-files.json",
+    "size": 1321,
+    "sha256": "c564eba13afbfeb93cf2b3ddd476ba16188dadeb75b57466c9e8f4b2c8448f49"
+  },
+  "source_request_refs": [
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase523-fixed029-independent-readback-request/readback-request.json",
+      "size": 2688,
+      "sha256": "bd008f717e1fbbbb0a618a540949c8ddcb22e8272cb55f7a82b7583192180cde"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase523-fixed029-independent-readback-request/commands-for-independent-root.json",
+      "size": 1452,
+      "sha256": "5cb61204ccb449ea509c6d69df847862809aeb7113610af2b9b00df131d6ad11"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase523-fixed029-independent-readback-request/preparation-receipt.json",
+      "size": 1779,
+      "sha256": "767be30ba1a638cb20143a56729535c2a1a0757ef97104b0f6726e547ad095fb"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase523_fixed029_actual_independent_readback_request_spec.md",
+      "size": 3780,
+      "sha256": "dd7d0f72d92493f51bd7e440626fa5cd4d69538041bf96a2c4ec38b24849aabd"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase508_independent_predecessor_readback.py",
+      "size": 25366,
+      "sha256": "15f8b1f034fcf95244516643554ec75acbcede592f70ce51c0474a2a0c8a0c30"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase508-case029-host-restore-source/combined-source-freeze.json",
+      "size": 62542,
+      "sha256": "3e668a3714183a6d371eb14ef019d4a1fc7dbdf2897f80300989d760df285199"
+    }
+  ],
+  "writer_pending_refs": [
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase508-restore-case029-first-001/result.json",
+      "size": 7203,
+      "sha256": "bd7e282ae0153e031dbea5710996baa609335d55f862d94c4e51e8dca8a3eab8"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase508-restore-case029-first-001/owned-files.json",
+      "size": 659,
+      "sha256": "aa6ad313b20311e0f937a0d3c6a5cc01f03a79539642576a1ba85131d234ba18"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/pool/state.json",
+      "size": 628,
+      "sha256": "ae802c882579aab2306d98f4f66b1d409006343aae15764a54a8c4a249e70191"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase508-restore-case029-first-001/progress.jsonl",
+      "size": 43737,
+      "sha256": "8d23691c5f6ded11a920f691bc9b769a932d984a882fc6e171d40b973820dc8b"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase508-restore-case029-first-001/restore-plan.json",
+      "size": 91843,
+      "sha256": "8794c1f90abd0d8b625e95b1414b46f2346edf680caeeedfb1318c40d3ad76fd"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase508-restore-case029-first-001/result.json",
+      "size": 7203,
+      "sha256": "bd7e282ae0153e031dbea5710996baa609335d55f862d94c4e51e8dca8a3eab8"
+    }
+  ],
+  "pending": {
+    "control_preimages": {
+      "manifest": {
+        "sha256": "aea2905dff7d5e9a75a2a238eff3fbaa3d8343ad9da7ee7fcad170210f5917e3",
+        "size": 1266
+      },
+      "path": "/workspace/native-combat-20261013/runs/original029-whelp-family-A-single-001/output/predecessor-control-preimages",
+      "restored": false
+    },
+    "previous_run": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06",
+    "reason": "PENDING_INDEPENDENT_PREDECESSOR_RESTORE",
+    "run": "/workspace/native-combat-20261013/runs/original029-whelp-family-A-single-001",
+    "status": "failed",
+    "utc": "2026-11-04T14:28:28.012556+00:00"
+  },
+  "commands": {
+    "READY_writes_allowed": 0,
+    "argv": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "-B",
+      "/workspace/python-original-engine/repo/tests/phase508_independent_predecessor_readback.py",
+      "--config",
+      "/workspace/python-original-engine/repo/data/phase523-fixed029-independent-readback-request/readback-request.json",
+      "--config-sha256",
+      "bd008f717e1fbbbb0a618a540949c8ddcb22e8272cb55f7a82b7583192180cde",
+      "--output-new",
+      "/workspace/python-original-engine/repo/data/phase508-readback-case029-first-001"
+    ],
+    "attempt": 1,
+    "cwd": "/workspace/python-original-engine/repo",
+    "deadline_seconds": 300,
+    "first_error": "Stop and preserve report; READY blocked; no automatic retry",
+    "model_calls_allowed": 0,
+    "output_new": "/workspace/python-original-engine/repo/data/phase508-readback-case029-first-001",
+    "pool_writes_allowed": 0,
+    "reader": {
+      "path": "tests/phase508_independent_predecessor_readback.py",
+      "sha256": "15f8b1f034fcf95244516643554ec75acbcede592f70ce51c0474a2a0c8a0c30",
+      "size": 25366
+    },
+    "request": {
+      "path": "data/phase523-fixed029-independent-readback-request/readback-request.json",
+      "sha256": "bd008f717e1fbbbb0a618a540949c8ddcb22e8272cb55f7a82b7583192180cde",
+      "size": 2688
+    },
+    "restore_calls_allowed": 0,
+    "schema": "phase523-independent-readback-command-proposal/1",
+    "status": "NOT_INVOKED_ROOT_COORDINATES_INDEPENDENT_READER"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "schema": "phase517-capture-review-first-postcheck-error/1",
+  "status": "STOPPED_REVIEW_HARNESS_ORDER_ASSUMPTION_NOT_CAPTURE_FAILURE",
+  "exception": "AssertionError",
+  "inline_line": 51,
+  "incorrect_assertion": "[x['path'] for x in journal] == list(expected)",
+  "incorrect_expected_construction": "expected = {patch.target: patch.source}; expected.update(plan.execute_payloads.artifacts)",
+  "actual_saved_plan_artifact_key_iteration": [
+    ".native-random-observer-disposable",
+    "native_capture_config.json",
+    "native_combat_capture.gd"
+  ],
+  "actual_journal_last_three": [
+    "native_combat_capture.gd",
+    "native_capture_config.json",
+    ".native-random-observer-disposable"
+  ],
+  "production_order_contract": "list(freeze.paths) + [native_combat_capture.gd, native_capture_config.json, .native-random-observer-disposable]",
+  "why": "Saved readonly-plan.json uses sorted JSON object keys; dictionary order is not the explicit artifact installation order. Previous independent Source read already records the explicit order.",
+  "checks_completed_before_failure": [
+    "capture complete/process metadata and parse/native separate states",
+    "six terminal/control physical SHA checks",
+    "three small control objects and1089 terminal-pass joins/P16 O13 layout control",
+    "archive proof bundle/provenance hashes and retained metadata joins12lawful+21other leaves; no business payload read",
+    "147 driver Source descriptor/provenance/bundle hash joins, no driver Source replay",
+    "three original state/fixture backup bytes+mode+mtime checks",
+    "79journal count and814020after bytes"
+  ],
+  "not_completed": [
+    "exact journal order postcheck under correct explicit contract",
+    "new preimage backup hashes/metadata",
+    "old patch andmarker backup hashes",
+    "actual pendingstate and targeted knownPID stat checks",
+    "final independent capture-control acceptance"
+  ],
+  "Source_or_pool_writes": 0,
+  "host_restore_reader_calls": 0,
+  "model_Native_calls": 0,
+  "business_Expected_decode": 0,
+  "automatic_retry": false,
+  "passed_checks_not_to_repeat": true,
+  "minimal_remaining_request": "Use the frozen explicit installation order; finish only remaining backup/pending/knownPID metadata checks and seal final. No schema/model/host/restore/readback call.",
+  "evidence": [
+    {
+      "path": "/workspace/native-combat-20261013/runs/original029-whelp-family-A-single-001/output/readonly-plan.json",
+      "size": 69959,
+      "sha256": "d25031af239698e455e08f6119cfbc11bc0d869ff574b27bcbd293af04c5f674"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original029-whelp-family-A-single-001/output/source-preimages/preimages.json",
+      "size": 31807,
+      "sha256": "a7b1982cdec8e14e5bba9882243af7c2cf0af48e419bdabbb59e498902a796b8"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase508_independent_predecessor_readback.py",
+      "size": 25366,
+      "sha256": "15f8b1f034fcf95244516643554ec75acbcede592f70ce51c0474a2a0c8a0c30"
+    }
+  ],
+  "utc": "2026-11-04T14:33:37.978139+00:00"
+}

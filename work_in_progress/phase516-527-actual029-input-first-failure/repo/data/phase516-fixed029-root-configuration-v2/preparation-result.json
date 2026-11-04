@@ -1,0 +1,48 @@
+{
+  "actual_blockers": [],
+  "author_counts": {
+    "Native": 0,
+    "configuration_assembly_attempts": 2,
+    "execute": 0,
+    "first_inline_failed_before_output": 1,
+    "models": 0,
+    "operational_imports": 0,
+    "plan": 0,
+    "pool_writes": 0
+  },
+  "authorization_basis": "Root 2026-11-04 explicit fixed029 oracle-only authorization, not Source/helperPASS",
+  "changed_config_keys": [
+    "root_oracle_authorized",
+    "reviews.host_source",
+    "resources"
+  ],
+  "config": {
+    "path": "data/phase516-fixed029-root-configuration-v2/oracle-acceptance.json",
+    "sha256": "a45ecceaaabb98f77717ea0b2256066e0549ff0dcd6f33e69c531f7832d8d73d",
+    "size": 3584
+  },
+  "fresh_space_margin": 26873856,
+  "quota": "UNKNOWN_NO_GUESS; trusted<=30/userpause checkpoint and stop",
+  "resource_identity_source": {
+    "path": "data/phase467-root-native-king-basic-001/oracle-acceptance.json",
+    "sha256": "e24471ccf2783c8a47b226b0452387abd1c8eb66c4dd14d08c1fbc001968d5c2",
+    "size": 3601
+  },
+  "resource_pins_matched": 6,
+  "schema": "phase516-configuration-preparation/1",
+  "selected_source_refs": 19,
+  "status": "CANDIDATE_FROZEN_ROOT_AND_INDEPENDENT_REVIEW_PENDING",
+  "template": {
+    "path": "data/phase508-case029-host-restore-source/root-config-source-template.json",
+    "sha256": "13cfbc1643f7daa647a088f8db7a00c1ba9c6b9b5b1d457f83ffc96a67e3042e",
+    "size": 2096
+  },
+  "unchanged_operational_source": true,
+  "uncompleted_gates": [
+    "independent exact config review",
+    "Root actual full Source/resource/READY/process/space plan",
+    "lease/install actual ancestor/preimage gates",
+    "native parse/capture",
+    "actual restoration/readback/Root state commit"
+  ]
+}
