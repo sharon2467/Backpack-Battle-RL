@@ -1,0 +1,107 @@
+{
+  "schema": "phase552-independent-first-error/1",
+  "status": "STOPPED_HARNESS_INPUT_ABI_ERROR_NO_BUSINESS_RESULT",
+  "classification": "Synthetic component ingress HP1000 violates unchanged validated1..999; not candidate implementation difference",
+  "first_error": {
+    "path": "data/phase552-independent-business-first-001/first-error.json",
+    "size": 1096,
+    "sha256": "054c37d3b04b36984e361f521701701d7c02e17c6eae463bd828a4a1bb77d125"
+  },
+  "actual_result": {
+    "path": "data/phase552-independent-business-first-001/result.json",
+    "size": 276,
+    "sha256": "6c2d198f001cb18e25683d7e8f12b3ad06faf071b0d03002bc72c42f7951b058"
+  },
+  "actual_owner": {
+    "path": "data/phase552-independent-business-first-001/owned-files.json",
+    "size": 1165,
+    "sha256": "a00f5cde4a19cefe0846d850b710e8dafaea9f25d9e4c1a0bd9366b0d9529183"
+  },
+  "invocation": {
+    "path": "data/phase552-independent-invocation-first-001/execution.json",
+    "size": 166,
+    "sha256": "bf5c230eb7a90970e578e7bea5ac8cf83b762173c1129585e5f0759b2fa4ad87"
+  },
+  "invocation_owner": {
+    "path": "data/phase552-independent-invocation-first-001/owned-files.json",
+    "size": 978,
+    "sha256": "f62e41fe04201b2e344a9143b3806bc0d036ee038db2c0fa4931b9fe1e2c185e"
+  },
+  "source_owner": {
+    "path": "data/phase551-source-enchanted-weapons/owned-files.json",
+    "size": 4924,
+    "sha256": "32f2119dd711c0d05d84e9631596188beb4b64514dc30819f931d35e240a50d4"
+  },
+  "harness_owner": {
+    "path": "data/phase552-exact-business-source/owned-files.json",
+    "size": 2178,
+    "sha256": "4d833f939c769c0651c5dd4e105762b5cb61f79515d848b01311cf29ae00466d"
+  },
+  "release": {
+    "path": "data/phase552-root-single-business-release/release.json",
+    "size": 1338,
+    "sha256": "f1b3013e31ef63956801499172e382bab76287668785737e58cf1a8e930776d0"
+  },
+  "source_location": {
+    "path": "data/phase551-source-enchanted-weapons/staged/native_replay_v8/engine.py",
+    "function": "validate_fixture",
+    "lines": [
+      379,
+      385
+    ],
+    "rule": "finite integral hp1..999; stamina0..999",
+    "body_unchanged_from545": true
+  },
+  "input_location": {
+    "path": "data/phase552-exact-business-source/synthetic-layout.json",
+    "P_hp": 1000,
+    "O_hp": 1000
+  },
+  "observations": {
+    "passed_groups": 0,
+    "top_direct_calls": 1,
+    "top_call": "validate_component",
+    "nested_trace": [
+      "validate_experimental_nonking_layout",
+      "_validate_layout_items",
+      "validate_fixture"
+    ],
+    "nested_entry_counters": "not separately instrumented; traceback proves current chain only",
+    "candidate_import_processes": 1,
+    "loaded_local_modules": 12,
+    "component_ctor": 0,
+    "component_prepare": 0,
+    "component_activate_checkpoint": 0,
+    "component_step": 0,
+    "component_run": 0,
+    "natural_ctor": 0,
+    "natural_run": 0,
+    "unit_draws": 0,
+    "Native": 0,
+    "Expected": 0,
+    "old_tests": 0,
+    "pool": 0
+  },
+  "execution": {
+    "exit_code": 1,
+    "outer_wall_seconds": 0.26474559199959913,
+    "timed_out": false,
+    "pid": 8320,
+    "child_reaped": true,
+    "attempts": 1,
+    "model_retries": 0
+  },
+  "source_input_pins": 39,
+  "source_input_after_exact": true,
+  "limits": [
+    "No business family has passed; previously accepted static Source conservation remains static only",
+    "No complete battle or native/support acceptance",
+    "Old original files, raw first error, failed plan/input/script retained without edits",
+    "No retry or remaining-case execution"
+  ],
+  "proposed_minimal_repair_not_performed": [
+    "New immutable harness/input only: unit ingress hp999 rather than1000; reset hp999.0 and invulnerable unchangedHP assertion999.0 consistently",
+    "Keep natural24items seed55201/max120sim, all551Source/rows/geometry/finitecases unchanged",
+    "All groups remain unexecuted; future attempt needs Root release, not remaining-pass reuse"
+  ]
+}

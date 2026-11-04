@@ -1,0 +1,282 @@
+{
+  "schema": "phase552-exact-vectors/1",
+  "rows": {
+    "count_zero": [
+      {
+        "kind": "randf",
+        "label": "double_attack_effect:P:sword",
+        "args": [],
+        "value_bits": "0000000000000000"
+      }
+    ],
+    "count_above_zero": [
+      {
+        "kind": "randf",
+        "label": "double_attack_effect:P:sword",
+        "args": [],
+        "value_bits": "0000000000000001"
+      }
+    ],
+    "count_quarter": [
+      {
+        "kind": "randf",
+        "label": "double_attack_effect:P:staff",
+        "args": [],
+        "value_bits": "3fd0000000000000"
+      }
+    ],
+    "count_above_quarter": [
+      {
+        "kind": "randf",
+        "label": "double_attack_effect:P:staff",
+        "args": [],
+        "value_bits": "3fd0000000000001"
+      }
+    ],
+    "staff_hit": [
+      {
+        "kind": "randf",
+        "label": "double_attack_effect:P:staff",
+        "args": [],
+        "value_bits": "3fd0000000000000"
+      },
+      {
+        "kind": "randf",
+        "label": "accuracy:O:P:staff",
+        "args": [],
+        "value_bits": "0000000000000000"
+      },
+      {
+        "kind": "randi_range",
+        "label": "damage:P:staff",
+        "args": [
+          10,
+          12
+        ],
+        "value": 10
+      }
+    ],
+    "staff_miss_partial": [
+      {
+        "kind": "randf",
+        "label": "double_attack_effect:P:staff",
+        "args": [],
+        "value_bits": "3fd0000000000000"
+      },
+      {
+        "kind": "randf",
+        "label": "accuracy:O:P:staff",
+        "args": [],
+        "value_bits": "3ff0000000000000"
+      }
+    ],
+    "staff_hit_empty": [
+      {
+        "kind": "randf",
+        "label": "double_attack_effect:P:staff",
+        "args": [],
+        "value_bits": "3fd0000000000000"
+      },
+      {
+        "kind": "randf",
+        "label": "accuracy:O:P:staff",
+        "args": [],
+        "value_bits": "0000000000000000"
+      },
+      {
+        "kind": "randi_range",
+        "label": "damage:P:staff",
+        "args": [
+          6,
+          8
+        ],
+        "value": 6
+      }
+    ],
+    "spear_hit": [
+      {
+        "kind": "randf",
+        "label": "double_attack_effect:P:spear",
+        "args": [],
+        "value_bits": "3fd0000000000000"
+      },
+      {
+        "kind": "randf",
+        "label": "accuracy:O:P:spear",
+        "args": [],
+        "value_bits": "0000000000000000"
+      },
+      {
+        "kind": "randi_range",
+        "label": "damage:P:spear",
+        "args": [
+          3,
+          8
+        ],
+        "value": 3
+      }
+    ],
+    "spear_invu": [
+      {
+        "kind": "randf",
+        "label": "double_attack_effect:P:spear",
+        "args": [],
+        "value_bits": "0000000000000000"
+      },
+      {
+        "kind": "randf",
+        "label": "accuracy:O:P:spear",
+        "args": [],
+        "value_bits": "0000000000000000"
+      },
+      {
+        "kind": "randi_range",
+        "label": "damage:P:spear",
+        "args": [
+          3,
+          8
+        ],
+        "value": 3
+      }
+    ],
+    "spear_miss": [
+      {
+        "kind": "randf",
+        "label": "double_attack_effect:P:spear",
+        "args": [],
+        "value_bits": "3fd0000000000000"
+      },
+      {
+        "kind": "randf",
+        "label": "accuracy:O:P:spear",
+        "args": [],
+        "value_bits": "3ff0000000000000"
+      }
+    ],
+    "thorn_hit": [
+      {
+        "kind": "randf",
+        "label": "double_attack_effect:P:thorn",
+        "args": [],
+        "value_bits": "3fd0000000000000"
+      },
+      {
+        "kind": "randf",
+        "label": "accuracy:O:P:thorn",
+        "args": [],
+        "value_bits": "0000000000000000"
+      },
+      {
+        "kind": "randi_range",
+        "label": "damage:P:thorn",
+        "args": [
+          2,
+          3
+        ],
+        "value": 2
+      },
+      {
+        "kind": "randf",
+        "label": "item_chance:P:thorn:primary",
+        "args": [],
+        "value_bits": "0000000000000000"
+      },
+      {
+        "kind": "randf",
+        "label": "item_chance:P:thorn:primary",
+        "args": [],
+        "value_bits": "3ff0000000000000"
+      }
+    ],
+    "lucky_hit": [
+      {
+        "kind": "randf",
+        "label": "double_attack_effect:P:luckybow",
+        "args": [],
+        "value_bits": "3fd0000000000000"
+      },
+      {
+        "kind": "randf",
+        "label": "item_chance:P:luckybow:primary",
+        "args": [],
+        "value_bits": "0000000000000000"
+      },
+      {
+        "kind": "randf",
+        "label": "item_chance:P:luckybow:primary",
+        "args": [],
+        "value_bits": "3ff0000000000000"
+      },
+      {
+        "kind": "randi_range",
+        "label": "damage:P:luckybow",
+        "args": [
+          3,
+          4
+        ],
+        "value": 3
+      }
+    ],
+    "skill_normal": [
+      {
+        "kind": "randf_range",
+        "label": "cooldown:P:enchanted",
+        "args": [
+          "3fee666666666666",
+          "3ff0cccccccccccd"
+        ],
+        "value_bits": "3ff0000000000000"
+      },
+      {
+        "kind": "randi_range",
+        "label": "least_buff:P:enchanted:P:0",
+        "args": [
+          0,
+          6
+        ],
+        "value": 0
+      }
+    ],
+    "skill_ended": [
+      {
+        "kind": "randf_range",
+        "label": "cooldown:P:enchanted",
+        "args": [
+          "3fee666666666666",
+          "3ff0cccccccccccd"
+        ],
+        "value_bits": "3ff0000000000000"
+      },
+      {
+        "kind": "randi_range",
+        "label": "least_buff:P:enchanted:P:0",
+        "args": [
+          0,
+          6
+        ],
+        "value": 0
+      }
+    ],
+    "skill_limiter": [
+      {
+        "kind": "randf_range",
+        "label": "cooldown:P:enchanted",
+        "args": [
+          "3fee666666666666",
+          "3ff0cccccccccccd"
+        ],
+        "value_bits": "3ff0000000000000"
+      },
+      {
+        "kind": "randi_range",
+        "label": "least_buff:P:enchanted:P:0",
+        "args": [
+          0,
+          6
+        ],
+        "value": 0
+      }
+    ]
+  },
+  "unit_draws": 35
+}
