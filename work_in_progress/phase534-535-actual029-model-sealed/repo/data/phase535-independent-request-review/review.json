@@ -1,0 +1,66 @@
+{
+  "schema": "phase535-independent-fixed-model-request-review/1",
+  "status": "READONLY_REQUEST_AND_JOIN_PASS_NOT_EXECUTED",
+  "request": {
+    "path": "data/phase535-root-actual029-model-request/model-request.json",
+    "size": 3216,
+    "sha256": "6b1201e2df671b8f9264dbb407b1a3043ac1e356c76ed80e79f0377879e5ad79"
+  },
+  "launcher": {
+    "path": "tests/phase533_whelp_tape_run.py",
+    "size": 27635,
+    "sha256": "32db2611b79c142ea36b354c60cde3bd7a7843365daf8b4427d82f24d5cd50cd"
+  },
+  "closed_keys": 17,
+  "fixed_literal_descriptors_exact": 12,
+  "root_authorized": true,
+  "actual534acceptance": {
+    "path": "data/phase534-independent-final-acceptance/review.json",
+    "size": 11373,
+    "sha256": "8429daa537ee95425c6df1b0cebf1682d4c996e1fac993d8d730e93c62eee05e"
+  },
+  "business_closure": {
+    "receipt": {
+      "path": "data/phase534-independent-controls-first-001/business-closure.json",
+      "size": 13015,
+      "sha256": "d259e751937722f8185fe4d14fac0a3ca20321b2e0725c02e7046235fd16a20b"
+    },
+    "owner": {
+      "path": "data/phase534-independent-controls-first-001/business-closure-owner.json",
+      "size": 666,
+      "sha256": "688c4bc5b500cd01f8c73b01dd2568c08747a0b885912b8015c7af4dbcb8432d"
+    }
+  },
+  "joined": {
+    "path": "data/phase534-independent-controls-first-001/joined-bindings.json",
+    "size": 2840,
+    "sha256": "8bb14de9c1cd0d5e456578b3cdb1514a57d027a633a96634e6e6c9689cf5b47e"
+  },
+  "Source_part": {
+    "path": "data/phase534-b2-source-applicability/source-receipt.json",
+    "size": 29381,
+    "sha256": "14bd0f157f0d544b0bb1aba4979d3018206c9550eb62fee97209f57a2ddef088"
+  },
+  "checks": [
+    "Exact Root-selected request SHA and frozen launcher; AST literal comparison only, no launcher function call.",
+    "All fixed12 Source/accepted artifact descriptors match frozen533 literals; no raw INPUT or Expected payload read.",
+    "Actual receipt and owner exact; all3 owner refs SHA verified; joined guard canonicalSHA and static Source receipt linked to same bundle/proof/505freeze/502tuple.",
+    "New planned output absent; Python-I-B /tmp, fixed60s outer cap and first-error retention per535SPEC.",
+    "534 control/B2 acceptance is complete; actual model prepare/B1/activation/run/strict8 are still pending."
+  ],
+  "scope": {
+    "SUT_imports": 0,
+    "SUT_helper_calls": 0,
+    "constructors": 0,
+    "model_runs": 0,
+    "UI_raw_reads": 0,
+    "Expected_reads": 0,
+    "Native": 0,
+    "pool_operations": 0
+  },
+  "spec": {
+    "path": "docs/phase535_actual029_single_model_execution_spec.md",
+    "size": 1677,
+    "sha256": "0309a06e84e0e7155805aa4286a2f5bfc3bcb83e78a4ed7f7100148505826843"
+  }
+}

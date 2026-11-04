@@ -1,0 +1,75 @@
+{
+  "schema": "phase534-exact-execution-plan/1",
+  "status": "FROZEN_NOT_EXECUTED_PENDING_ROOT_RELEASE",
+  "script": {
+    "path": "tests/phase534_independent_wrapper_controls.py",
+    "size": 14511,
+    "sha256": "2d798cba6f73a71f020bcc6de8fc3425361fb757d4c0908fce20d7eeed1ec541"
+  },
+  "pins": {
+    "path": "data/phase534-exact-control-source/pins.json",
+    "size": 11531,
+    "sha256": "551ef090ce4cfd6f5a266546bc8ca82f35720d6f1f194eb91d0d98cc52661a7d"
+  },
+  "vectors": {
+    "path": "data/phase534-exact-control-source/vectors.json",
+    "size": 21543,
+    "sha256": "64e24dca08330b3b568bedaf4fa8270f41cdf4d5d1d9ba01d4227885ee1f5199"
+  },
+  "source_review": {
+    "path": "data/phase534-independent-source-review/review.json",
+    "size": 3571,
+    "sha256": "2b5fdb7979f26651d747301cf122617b4ab21bccbf5fe11181b7765ebbc409f4"
+  },
+  "command": [
+    "python",
+    "-I",
+    "-B",
+    "/workspace/python-original-engine/repo/tests/phase534_independent_wrapper_controls.py"
+  ],
+  "cwd": "/tmp",
+  "output": "data/phase534-independent-controls-first-001",
+  "wall_seconds": {
+    "parent_internal": 20,
+    "outer": 25,
+    "CLI_child_internal": 8,
+    "CLI_child_outer": 10
+  },
+  "pure_top_calls": {
+    "validate_prepared_business_view": 6,
+    "project_model_callbacks": 1,
+    "_api_pairs": 1,
+    "first_difference": 3,
+    "_terminal_model": 1
+  },
+  "other_calls": {
+    "extract_shared_callback_guard": 1,
+    "invalid_CLI_main": 1,
+    "invalid_CLI_validate_request": 1
+  },
+  "parent_imports": {
+    "launcher": 1,
+    "adapter": 1,
+    "guard": 1
+  },
+  "child_imports": {
+    "launcher_as_main": 1
+  },
+  "candidate_imports": 0,
+  "observational_prepared_business_view_calls": 0,
+  "models": 0,
+  "original_record_reads": {
+    "king-ui-authority.jsonl": 1,
+    "other": 0
+  },
+  "Expected_reads": 0,
+  "approved_prior_tests_replayed": 0,
+  "nested_calls": "Profiled separately by actual absolute file/function, never mixed with top-case counts.",
+  "first_unexpected": "Save raw per-case/CLI output and result; stop without further cases/UI or retry.",
+  "future_not_accepted": [
+    "ActualB1uniqueinstance",
+    "fullmodel",
+    "strict8comparison",
+    "Native/general/formal75 expansion"
+  ]
+}

@@ -1,0 +1,239 @@
+{
+  "schema": "phase534-independent-final-wrapper-B2-acceptance/1",
+  "status": "ACCEPTED_SOURCE_INTERFACES_AND_ACTUAL_B2_NOT_MODEL_VALIDATED",
+  "actual_result": {
+    "path": "data/phase534-independent-controls-first-001/result.json",
+    "size": 22640,
+    "sha256": "a026a796e5c3ebc36a64d5f8fac8f024cf166029bc0f85c41465ad941a72040e"
+  },
+  "actual_owner": {
+    "path": "data/phase534-independent-controls-first-001/owned-files.json",
+    "size": 3715,
+    "sha256": "45f8decc5d1240d869ce930734a37789342395bced554d1ae95da9a6c68ac591"
+  },
+  "invocation_owner": {
+    "path": "data/phase534-independent-batch-invocation-first-001/owned-files.json",
+    "size": 865,
+    "sha256": "4dfce5fd0c151e997705cde61829a525048c32cfc99f773c8dab84518d00a6f0"
+  },
+  "Source_review": {
+    "path": "data/phase534-independent-source-review/review.json",
+    "size": 3571,
+    "sha256": "2b5fdb7979f26651d747301cf122617b4ab21bccbf5fe11181b7765ebbc409f4"
+  },
+  "Source_owner": {
+    "path": "data/phase533-captured029-launcher-output-source/owned-files.json",
+    "size": 9564,
+    "sha256": "2fde9d2be01bf6b383f448aa28373d40a871eadc5338be0240fc1386762efa7b"
+  },
+  "exact_control_owner": {
+    "path": "data/phase534-exact-control-source/owned-files.json",
+    "size": 1728,
+    "sha256": "4f48bb30600dfc34225a2952e48b4928c182184837d882108bb5226f5e887d7c"
+  },
+  "Root_release": {
+    "path": "data/phase534-root-exact-batch-release/release.json",
+    "size": 885,
+    "sha256": "9a9b82b674ba03a2f1c75fb138946703fd3913f20ee920c052db9a57e5289087"
+  },
+  "business_closure": {
+    "receipt": {
+      "path": "data/phase534-independent-controls-first-001/business-closure.json",
+      "size": 13015,
+      "sha256": "d259e751937722f8185fe4d14fac0a3ca20321b2e0725c02e7046235fd16a20b"
+    },
+    "owner": {
+      "path": "data/phase534-independent-controls-first-001/business-closure-owner.json",
+      "size": 666,
+      "sha256": "688c4bc5b500cd01f8c73b01dd2568c08747a0b885912b8015c7af4dbcb8432d"
+    }
+  },
+  "joined_Source_and_actual": {
+    "path": "data/phase534-independent-controls-first-001/joined-bindings.json",
+    "size": 2840,
+    "sha256": "8bb14de9c1cd0d5e456578b3cdb1514a57d027a633a96634e6e6c9689cf5b47e"
+  },
+  "static_Source_part": {
+    "path": "data/phase534-b2-source-applicability/source-receipt.json",
+    "size": 29381,
+    "sha256": "14bd0f157f0d544b0bb1aba4979d3018206c9550eb62fee97209f57a2ddef088"
+  },
+  "actual_control_summary": {
+    "attempts": 1,
+    "pure_cases_passed": 12,
+    "top_calls": {
+      "validate_prepared_business_view": 6,
+      "project_model_callbacks": 1,
+      "_api_pairs": 1,
+      "first_difference": 3,
+      "_terminal_model": 1,
+      "extract_shared_callback_guard": 1
+    },
+    "nested_profile_counts": {
+      "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::validate_prepared_business_view": 6,
+      "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::check": 899,
+      "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::<genexpr>": 469,
+      "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::real_bits": 2,
+      "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::same": 1,
+      "/workspace/python-original-engine/repo/tests/phase533_whelp_business_output.py::project_model_callbacks": 1,
+      "/workspace/python-original-engine/repo/tests/phase533_whelp_business_output.py::require": 12,
+      "/workspace/python-original-engine/repo/tests/phase533_whelp_business_output.py::_api_pairs": 1,
+      "/workspace/python-original-engine/repo/tests/phase533_whelp_business_output.py::first_difference": 10,
+      "/workspace/python-original-engine/repo/tests/phase533_whelp_business_output.py::bits": 4,
+      "/workspace/python-original-engine/repo/tests/phase533_whelp_business_output.py::_terminal_model": 1,
+      "/workspace/python-original-engine/repo/tests/phase533_shared_callback_guard.py::extract_shared_callback_guard": 1,
+      "/workspace/python-original-engine/repo/tests/phase533_shared_callback_guard.py::strict": 1115,
+      "/workspace/python-original-engine/repo/tests/phase533_shared_callback_guard.py::pairs": 8899,
+      "/workspace/python-original-engine/repo/tests/phase533_shared_callback_guard.py::one": 3,
+      "/workspace/python-original-engine/repo/tests/phase533_shared_callback_guard.py::equal": 3,
+      "/workspace/python-original-engine/repo/tests/phase533_shared_callback_guard.py::<genexpr>": 116
+    },
+    "parent_Source_imports": {
+      "launcher": {
+        "count": 1,
+        "file": "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py"
+      },
+      "adapter": {
+        "count": 1,
+        "file": "/workspace/python-original-engine/repo/tests/phase533_whelp_business_output.py"
+      },
+      "guard": {
+        "count": 1,
+        "file": "/workspace/python-original-engine/repo/tests/phase533_shared_callback_guard.py"
+      }
+    },
+    "CLI": {
+      "returncode": 17,
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-I",
+        "-B",
+        "/workspace/python-original-engine/repo/tests/phase534_independent_wrapper_controls.py",
+        "--cli-child"
+      ],
+      "stdout": {
+        "status": "EXPECTED_REJECTION",
+        "error": {
+          "type": "ValueError",
+          "message": "closed17 fixed Root model request/authorization"
+        },
+        "calls": {
+          "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::main": 1,
+          "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::path_of": 1,
+          "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::pin": 1,
+          "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::<genexpr>": 7,
+          "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::check": 2,
+          "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::strict_json": 1,
+          "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::pairs": 1,
+          "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::validate_request": 1
+        },
+        "candidate_modules": [],
+        "audited_reads": [
+          "/workspace/python-original-engine/repo/data/phase534-exact-control-source/invalid-request.json"
+        ]
+      }
+    },
+    "outer_wall_seconds": 0.38412647000041034,
+    "internal_wall_seconds": 0.30540265800027555,
+    "stderr_bytes": 0,
+    "56_before_and_after_SHA_equal": true,
+    "top_vs_nested": "first_difference3direct,10total including recursive/Timer-pair nested entries; real_bits2 nested. UI strict1115 and pairs8899 are parser nested calls, not additional extraction attempts."
+  },
+  "actual_B2": {
+    "raw_descriptor": {
+      "path": "/workspace/native-combat-20261013/runs/original029-whelp-family-A-single-001/output/capture/king-ui-authority.jsonl",
+      "sha256": "466317b74494e8055f827ce3fca0efccf6ec3e1c69b7d3df8c7cf374a906ddce",
+      "size": 595770
+    },
+    "raw_file_reads": 1,
+    "JSONL_rows_decoded": 1115,
+    "role_guards": 29,
+    "role_bind_sequence": 1069,
+    "model_noop_slots": 31,
+    "entries": 33,
+    "entries_by_site": {
+      "Utility/AutoHideParticles.gd::deactivate": 6,
+      "Utility/AutoHideParticles.gd::activate": 14,
+      "Utility/AutoHideParticles.gd::startTimer": 13
+    },
+    "relevant_critical_entries": [],
+    "selected_item_entries": [],
+    "open_input_disabled": true,
+    "open_picking": false,
+    "close": {
+      "phase": "idle_pre_internal_flush",
+      "completed": true,
+      "failed": false,
+      "overflow": false,
+      "dropped": 0,
+      "entries": 33,
+      "unsupported": 0,
+      "rows_before_close": 1114,
+      "sites": [
+        "Items/Item.gd::respondToHover",
+        "Items/Item.gd::respondToHoverEnd",
+        "Items/Item.gd::_process:dragged",
+        "Items/Item.gd::_process:rigid",
+        "Items/Item.gd::activateDragParticles",
+        "Items/Item.gd::deactivateDragParticles",
+        "Items/Item.gd::onAddedToGridStorage",
+        "Items/Item.gd::deactivateParticles",
+        "Utility/AutoHideParticles.gd::activate",
+        "Utility/AutoHideParticles.gd::deactivate",
+        "Utility/AutoHideParticles.gd::startTimer",
+        "Utility/AutoHideParticles.gd::instantClear"
+      ],
+      "controls": {
+        "root_id": "1548",
+        "disable_input": true,
+        "physics_object_picking": false,
+        "ordinary_physics": false,
+        "ordinary_idle": false,
+        "internal_physics": true,
+        "internal_idle": false
+      },
+      "king_clock_closed": true,
+      "active_buff_calls": 0
+    },
+    "covered_last_clock_pair": [
+      1418,
+      177
+    ],
+    "close_clock_pair": [
+      1418,
+      177
+    ],
+    "full_FX_UI_gate_called": false,
+    "joined_basis": "Exact fixed9 Source chain/query receipt14bd... joined to this actual one-file guard through owned receipt+joined descriptors and common bundle/proof/505freeze/502tuple. Not just inherited444 generic prose.",
+    "interpretation": "33 AutoHideParticles entries are presentation-domain entries retained in evidence, not silently reported as zero UI activity. Selected Item hover/drag/rigid/other selected UI entries are zero. Existing ordinary dispatch/callback Source argument applies conditionally to these actual guards."
+  },
+  "read_scope": {
+    "original_UI": 1,
+    "other_original_INPUT_raw": 0,
+    "Expected": 0,
+    "sealed531_bundle_witness_initial": "Read as accepted artifacts for six pure validator calls; no bridge/reprojection or repeated531 acceptance.",
+    "Source_and_artifact_hashes": "56 preflight plus56 after; audit list covers after-install reads, not all preflight IO. Child preload reads and its request read are separately recorded by code/child report.",
+    "source_changes": 0,
+    "old_tests_replayed": 0,
+    "pool_operations": 0
+  },
+  "not_validated": {
+    "observational_prepared_business_view_calls": 0,
+    "candidate_imports": 0,
+    "constructors": 0,
+    "actual_same_instance_B1": "PENDING unique actual prepare_only instance",
+    "model_runs": 0,
+    "whole_output_projection": 0,
+    "strict8comparison": 0,
+    "new_Native": 0
+  },
+  "scope_limits": [
+    "The positive prepared-view test is a synthetic value for a real pure predicate, not a fakeEngine or actual runtime proof.",
+    "All29 primary Native current/cache equality holds in the pinned witness and is fixed INPUT consistency; model cache equivalence only six consumed roles.",
+    "Conditional297-selected-primitive business semantics; no GUI equality, global/same-seed RNG-law equivalence or arbitrary native/script injection claim.",
+    "31no-op slots are modeled partition under this owned B2 proof, never fabricated Native callback samples.",
+    "Complete UI footer is coverage evidence, not battle termination. Originalcapture nonclean-exit disclosure remains unchanged.",
+    "This acceptance does not execute/release a model, compare Expected, enlarge formal75 or grant general Native support."
+  ],
+  "next_required": "Root-selected exact model request must bind this actual receipt/owner and joined Source part, then one same-instance actual B1/model/seal; strict8 comparison only after output seal and separate release."
+}

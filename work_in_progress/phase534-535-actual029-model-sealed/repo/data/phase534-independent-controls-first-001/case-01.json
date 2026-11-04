@@ -1,0 +1,55 @@
+{
+  "id": "01",
+  "function": "validate_prepared_business_view",
+  "error": null,
+  "value": {
+    "schema": "phase533-same-instance-prepared-business-gate/1",
+    "status": "PASS_PRE_ACTIVATION_SAME_INSTANCE",
+    "consumer_cache_roles": [
+      "O:11",
+      "O:12",
+      "P:10",
+      "P:11",
+      "P:8",
+      "P:9"
+    ],
+    "caches": {
+      "O:11": [],
+      "O:12": [],
+      "P:10": [
+        "P:8",
+        "P:9",
+        "P:11",
+        "P:12"
+      ],
+      "P:11": [],
+      "P:8": [],
+      "P:9": [
+        "P:10"
+      ]
+    },
+    "listeners": {
+      "P:10": [
+        "P:9"
+      ]
+    },
+    "Basic": {
+      "activations": 0,
+      "threshold": 5,
+      "iterationCooldown_bits": "4014000000000000",
+      "triggerTime_bits": "4014000000000000"
+    },
+    "Sapphire_types": [
+      101,
+      102,
+      103,
+      104,
+      106,
+      107
+    ],
+    "timer_count": 32,
+    "Tape_position": 0,
+    "passes_consumed": 0,
+    "scope": "Actual business consumed cache order/Basic/Sapphire; no UI model replication or Native listener sample assertion"
+  }
+}

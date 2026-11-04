@@ -2,6 +2,10 @@
 
 The original BackpackBattles1.1.8 → standalone Python → RL project is **IN_PROGRESS**. Original GD is behavior authority; Godot is oracle only. Pure combat excludes GUI/shop. Event order, explicit parents, state histories, selected RNG, typed Timer APIs, callbacks and terminal cuts remain strict. Primitive-Tape comparisons and fresh Source runs are distinct evidence.
 
+## Actual029 Python model sealed (535), Native comparison pending
+
+[534–535 actual controls and sealed model](../work_in_progress/phase534-535-actual029-model-sealed/README.md) preserves independent12pure+1invalidCLI+1existingUI PASS and one actual Python run. Same-instance prepared-state gate passed;all297primitive inputs consumed,232events/1089clockpasses. Raw model outputSHA `76ddddc57e33423e8f78e3cb409612a550f0f4c28aec0ad35f0aaa3b322a9213` is sealed. Reuse it for the pending independent strict8 comparison;do not rerun battle. No actual029Native equality or promotion is claimed.
+
 ## Captured029 wrapper Source frozen (533)
 
 [533 thin wrapper Source checkpoint](../work_in_progress/phase533-captured029-wrapper-source/README.md) preserves the three compile-checked modules and immutable candidate15 before runtime validation. Independent534 controls and actual callback-window extraction are pending. No actual029 Python output or strict8 result is claimed.

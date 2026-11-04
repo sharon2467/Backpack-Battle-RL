@@ -1,0 +1,457 @@
+{
+  "schema": "phase534-independent-exact-controls/1",
+  "status": "PASS_WRAPPER_CONTROLS_AND_JOINED_B2_NOT_MODEL_VALIDATED",
+  "completed": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12"
+  ],
+  "top_calls": {
+    "validate_prepared_business_view": 6,
+    "project_model_callbacks": 1,
+    "_api_pairs": 1,
+    "first_difference": 3,
+    "_terminal_model": 1,
+    "extract_shared_callback_guard": 1
+  },
+  "imports": {
+    "launcher": {
+      "count": 1,
+      "file": "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py"
+    },
+    "adapter": {
+      "count": 1,
+      "file": "/workspace/python-original-engine/repo/tests/phase533_whelp_business_output.py"
+    },
+    "guard": {
+      "count": 1,
+      "file": "/workspace/python-original-engine/repo/tests/phase533_shared_callback_guard.py"
+    }
+  },
+  "calls": {
+    "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::validate_prepared_business_view": 6,
+    "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::check": 899,
+    "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::<genexpr>": 469,
+    "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::real_bits": 2,
+    "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::same": 1,
+    "/workspace/python-original-engine/repo/tests/phase533_whelp_business_output.py::project_model_callbacks": 1,
+    "/workspace/python-original-engine/repo/tests/phase533_whelp_business_output.py::require": 12,
+    "/workspace/python-original-engine/repo/tests/phase533_whelp_business_output.py::_api_pairs": 1,
+    "/workspace/python-original-engine/repo/tests/phase533_whelp_business_output.py::first_difference": 10,
+    "/workspace/python-original-engine/repo/tests/phase533_whelp_business_output.py::bits": 4,
+    "/workspace/python-original-engine/repo/tests/phase533_whelp_business_output.py::_terminal_model": 1,
+    "/workspace/python-original-engine/repo/tests/phase533_shared_callback_guard.py::extract_shared_callback_guard": 1,
+    "/workspace/python-original-engine/repo/tests/phase533_shared_callback_guard.py::strict": 1115,
+    "/workspace/python-original-engine/repo/tests/phase533_shared_callback_guard.py::pairs": 8899,
+    "/workspace/python-original-engine/repo/tests/phase533_shared_callback_guard.py::one": 3,
+    "/workspace/python-original-engine/repo/tests/phase533_shared_callback_guard.py::equal": 3,
+    "/workspace/python-original-engine/repo/tests/phase533_shared_callback_guard.py::<genexpr>": 116
+  },
+  "reads": [],
+  "candidate_imports": 0,
+  "model_calls": 0,
+  "schema_imports": 0,
+  "Expected_reads": 0,
+  "Native_calls": 0,
+  "actual_UI_reads": 1,
+  "invalid_CLI": {
+    "returncode": 17,
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "-I",
+      "-B",
+      "/workspace/python-original-engine/repo/tests/phase534_independent_wrapper_controls.py",
+      "--cli-child"
+    ],
+    "stdout": {
+      "status": "EXPECTED_REJECTION",
+      "error": {
+        "type": "ValueError",
+        "message": "closed17 fixed Root model request/authorization"
+      },
+      "calls": {
+        "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::main": 1,
+        "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::path_of": 1,
+        "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::pin": 1,
+        "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::<genexpr>": 7,
+        "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::check": 2,
+        "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::strict_json": 1,
+        "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::pairs": 1,
+        "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py::validate_request": 1
+      },
+      "candidate_modules": [],
+      "audited_reads": [
+        "/workspace/python-original-engine/repo/data/phase534-exact-control-source/invalid-request.json"
+      ]
+    }
+  },
+  "actual_UI_read_attempts": 1,
+  "actual_UI_decode_attempts": 1,
+  "B2": {
+    "receipt": {
+      "path": "data/phase534-independent-controls-first-001/business-closure.json",
+      "size": 13015,
+      "sha256": "d259e751937722f8185fe4d14fac0a3ca20321b2e0725c02e7046235fd16a20b"
+    },
+    "Source_applicability": {
+      "path": "data/phase534-b2-source-applicability/source-receipt.json",
+      "size": 29381,
+      "sha256": "14bd0f157f0d544b0bb1aba4979d3018206c9550eb62fee97209f57a2ddef088"
+    },
+    "guard_canonical_sha256": "e2cd587f6c8295c8155dabbb8485a2027232a2a5a4d7b259a3cf1aaed340b671"
+  },
+  "elapsed_wall_seconds": 0.30540265800027555,
+  "audit_reads": [
+    "/workspace/python-original-engine/repo/data/phase534-independent-controls-first-001/invalid-cli.stdout",
+    "/workspace/python-original-engine/repo/data/phase534-independent-controls-first-001/invalid-cli.stderr",
+    "/workspace/native-combat-20261013/runs/original029-whelp-family-A-single-001/output/capture/king-ui-authority.jsonl",
+    "/workspace/python-original-engine/repo/data/phase505-captured-nonking-source-v3/candidate-source-freeze.json",
+    "/workspace/python-original-engine/repo/data/phase505-captured-nonking-source-v3/staged/godot_pcg_integer.py",
+    "/workspace/python-original-engine/repo/data/phase505-captured-nonking-source-v3/staged/headless.py",
+    "/workspace/python-original-engine/repo/data/phase505-captured-nonking-source-v3/staged/native_replay_v7/__init__.py",
+    "/workspace/python-original-engine/repo/data/phase505-captured-nonking-source-v3/staged/native_replay_v7/frame_driver.py",
+    "/workspace/python-original-engine/repo/data/phase505-captured-nonking-source-v3/staged/native_replay_v7/timer_runtime.py",
+    "/workspace/python-original-engine/repo/data/phase505-captured-nonking-source-v3/staged/native_replay_v8/__init__.py",
+    "/workspace/python-original-engine/repo/data/phase505-captured-nonking-source-v3/staged/native_replay_v8/__main__.py",
+    "/workspace/python-original-engine/repo/data/phase505-captured-nonking-source-v3/staged/native_replay_v8/compare.py",
+    "/workspace/python-original-engine/repo/data/phase505-captured-nonking-source-v3/staged/native_replay_v8/engine.py",
+    "/workspace/python-original-engine/repo/data/phase505-captured-nonking-source-v3/staged/native_replay_v8/genuine.py",
+    "/workspace/python-original-engine/repo/data/phase505-captured-nonking-source-v3/staged/native_replay_v8/histories.py",
+    "/workspace/python-original-engine/repo/data/phase505-captured-nonking-source-v3/staged/native_replay_v8/observed.py",
+    "/workspace/python-original-engine/repo/data/phase505-captured-nonking-source-v3/staged/native_replay_v8/randomness.py",
+    "/workspace/python-original-engine/repo/data/phase505-captured-nonking-source-v3/staged/native_replay_v8/state.py",
+    "/workspace/python-original-engine/repo/data/phase505-captured-nonking-source-v3/staged/original_rng.py",
+    "/workspace/python-original-engine/repo/data/phase511-case029-actual-input-repaired-001/initial-receipt.json",
+    "/workspace/python-original-engine/repo/data/phase511-case029-actual-input-repaired-001/input-bundle.json",
+    "/workspace/python-original-engine/repo/data/phase511-case029-actual-input-repaired-001/input-proof.json",
+    "/workspace/python-original-engine/repo/data/phase511-case029-actual-input-repaired-001/input-seal.json",
+    "/workspace/python-original-engine/repo/data/phase511-case029-actual-input-repaired-001/owned-files.json",
+    "/workspace/python-original-engine/repo/data/phase511-case029-actual-input-repaired-001/prepared-witness.json",
+    "/workspace/python-original-engine/repo/data/phase526-launcher-output-design-v2/B2-external-closure-task.json",
+    "/workspace/python-original-engine/repo/data/phase526-launcher-output-design-v2/api-contract.json",
+    "/workspace/python-original-engine/repo/data/phase526-launcher-output-design-v2/comparison-contract.json",
+    "/workspace/python-original-engine/repo/data/phase526-launcher-output-design-v2/control-plan.json",
+    "/workspace/python-original-engine/repo/data/phase526-launcher-output-design-v2/owned-files.json",
+    "/workspace/python-original-engine/repo/data/phase532-independent-design-review/owned-files.json",
+    "/workspace/python-original-engine/repo/data/phase532-independent-design-review/review.json",
+    "/workspace/python-original-engine/repo/data/phase533-captured029-launcher-output-source/adapter-vs476.patch",
+    "/workspace/python-original-engine/repo/data/phase533-captured029-launcher-output-source/compile-only.json",
+    "/workspace/python-original-engine/repo/data/phase533-captured029-launcher-output-source/conservation.json",
+    "/workspace/python-original-engine/repo/data/phase533-captured029-launcher-output-source/external-contract.json",
+    "/workspace/python-original-engine/repo/data/phase533-captured029-launcher-output-source/function-api.json",
+    "/workspace/python-original-engine/repo/data/phase533-captured029-launcher-output-source/guard-vs475-source.patch",
+    "/workspace/python-original-engine/repo/data/phase533-captured029-launcher-output-source/launcher-vs476.patch",
+    "/workspace/python-original-engine/repo/data/phase533-captured029-launcher-output-source/preparation/phase533_assemble_adapter.py",
+    "/workspace/python-original-engine/repo/data/phase533-captured029-launcher-output-source/preparation/phase533_assemble_guard.py",
+    "/workspace/python-original-engine/repo/data/phase533-captured029-launcher-output-source/preparation/phase533_assemble_launcher.py",
+    "/workspace/python-original-engine/repo/data/phase533-captured029-launcher-output-source/source-freeze.json",
+    "/workspace/python-original-engine/repo/docs/phase533_captured029_launcher_output_implementation_spec.md",
+    "/workspace/python-original-engine/repo/tests/phase475_independent_joint_interfaces.py",
+    "/workspace/python-original-engine/repo/tests/phase476_joint_business_output.py",
+    "/workspace/python-original-engine/repo/tests/phase476_joint_tape_run.py",
+    "/workspace/python-original-engine/repo/tests/phase533_shared_callback_guard.py",
+    "/workspace/python-original-engine/repo/tests/phase533_whelp_business_output.py",
+    "/workspace/python-original-engine/repo/tests/phase533_whelp_tape_run.py",
+    "/workspace/python-original-engine/repo/data/phase533-captured029-launcher-output-source/owned-files.json",
+    "/workspace/python-original-engine/repo/data/phase534-b2-source-applicability/source-receipt.json",
+    "/workspace/python-original-engine/repo/data/phase534-b2-source-applicability/owned-files.json",
+    "/workspace/python-original-engine/repo/data/phase534-independent-source-review/review.json",
+    "/workspace/python-original-engine/repo/data/phase534-independent-source-review/owned-files.json",
+    "/workspace/python-original-engine/repo/tests/phase534_independent_wrapper_controls.py",
+    "/workspace/python-original-engine/repo/docs/phase534_exact_wrapper_controls_spec.md",
+    "/workspace/python-original-engine/repo/data/phase534-exact-control-source/vectors.json",
+    "/workspace/python-original-engine/repo/data/phase534-exact-control-source/invalid-request.json",
+    "/workspace/python-original-engine/repo/data/phase534-exact-control-source/pins.json"
+  ],
+  "source_and_input_after": [
+    {
+      "path": "data/phase505-captured-nonking-source-v3/candidate-source-freeze.json",
+      "size": 4729,
+      "sha256": "e3f2a86713ef097cae77858f0868fdd70b7487cdeadeaa7fcf11ebb184d550ad"
+    },
+    {
+      "path": "data/phase505-captured-nonking-source-v3/staged/godot_pcg_integer.py",
+      "size": 2198,
+      "sha256": "c084075fdb566b91348ed5a5776d3808b161c23da144e8f5db33e5b48cd694ca"
+    },
+    {
+      "path": "data/phase505-captured-nonking-source-v3/staged/headless.py",
+      "size": 35796,
+      "sha256": "f89cd8839a59c3124a24454897a0ef0299726d91bf4eee7a0ac31f454067b400"
+    },
+    {
+      "path": "data/phase505-captured-nonking-source-v3/staged/native_replay_v7/__init__.py",
+      "size": 389,
+      "sha256": "82b496191ffa3ec2761b83bf4de9267089d077b777ee38e4b93ab0cb824c4612"
+    },
+    {
+      "path": "data/phase505-captured-nonking-source-v3/staged/native_replay_v7/frame_driver.py",
+      "size": 12318,
+      "sha256": "9d8e361144e353a8d944e4490502c5301e7a92451771d35f22ab48f6277f64fd"
+    },
+    {
+      "path": "data/phase505-captured-nonking-source-v3/staged/native_replay_v7/timer_runtime.py",
+      "size": 38705,
+      "sha256": "5b7c14ebb7c7511aa05a3411752c7f3341b925c00de31eedfacf4f9345f4a109"
+    },
+    {
+      "path": "data/phase505-captured-nonking-source-v3/staged/native_replay_v8/__init__.py",
+      "size": 618,
+      "sha256": "805cc7035f10e96bfc217ef52f6ac175323ea83c69fb6e678fcd97a5bbcc3d7b"
+    },
+    {
+      "path": "data/phase505-captured-nonking-source-v3/staged/native_replay_v8/__main__.py",
+      "size": 1436,
+      "sha256": "b808649da7470e72669ad7639ef01577187e9692e9ade3745e18b0f21eea647a"
+    },
+    {
+      "path": "data/phase505-captured-nonking-source-v3/staged/native_replay_v8/compare.py",
+      "size": 38087,
+      "sha256": "4af52ee400acf1460c9e28faf5a760d05753d1de7218a00d4a740712a40fdd22"
+    },
+    {
+      "path": "data/phase505-captured-nonking-source-v3/staged/native_replay_v8/engine.py",
+      "size": 259501,
+      "sha256": "c3a433ff3ea0336ccee5741f09306f7db6c77831242bbd4d2c92dedd0671720f"
+    },
+    {
+      "path": "data/phase505-captured-nonking-source-v3/staged/native_replay_v8/genuine.py",
+      "size": 248840,
+      "sha256": "1c56c2bcf93d4099f0cefb883381cdc093ccc77cec8998b1a763e5994b1e0978"
+    },
+    {
+      "path": "data/phase505-captured-nonking-source-v3/staged/native_replay_v8/histories.py",
+      "size": 8508,
+      "sha256": "d9b3f270b53f328f5958647fdaba86532ff3d9db11b272d9a7d0d2aef1db0b05"
+    },
+    {
+      "path": "data/phase505-captured-nonking-source-v3/staged/native_replay_v8/observed.py",
+      "size": 2323,
+      "sha256": "0a04fb2b03e48cd1cd9a3e43425deddef56c7906105dadeaefafa81ac84a6fd1"
+    },
+    {
+      "path": "data/phase505-captured-nonking-source-v3/staged/native_replay_v8/randomness.py",
+      "size": 7063,
+      "sha256": "676d42a69937394dc1bd8ff23268a08dc41fe9604f7e56213bb968ab331b9139"
+    },
+    {
+      "path": "data/phase505-captured-nonking-source-v3/staged/native_replay_v8/state.py",
+      "size": 15114,
+      "sha256": "21478fecea4c888f701ff8991fb2cf75519670c602ed2bd9d17874e238c54bd1"
+    },
+    {
+      "path": "data/phase505-captured-nonking-source-v3/staged/original_rng.py",
+      "size": 2439,
+      "sha256": "5f7024f6c3dbbb2b105962a79a8bf39db40b3fa87bd9c115f2dd578b8082d60e"
+    },
+    {
+      "path": "data/phase511-case029-actual-input-repaired-001/initial-receipt.json",
+      "size": 435088,
+      "sha256": "83701f6de308034805f6046d4cca7c98a8a51b2ef0fa6768d580960fa298d8dd"
+    },
+    {
+      "path": "data/phase511-case029-actual-input-repaired-001/input-bundle.json",
+      "size": 287000,
+      "sha256": "a065e481a8ea3d0d145a68ab4fcc945a923a51c75159f289af74083c15dfe5ab"
+    },
+    {
+      "path": "data/phase511-case029-actual-input-repaired-001/input-proof.json",
+      "size": 205581,
+      "sha256": "2a08a12c8573a1b596cc39293000b11140bc7a3fe4e783dc0dca5c1e8e65b7ea"
+    },
+    {
+      "path": "data/phase511-case029-actual-input-repaired-001/input-seal.json",
+      "size": 1932,
+      "sha256": "855c7f59509675f5669d9dcb74882cfea3f234dc6807036bac97e09c2f6e47f3"
+    },
+    {
+      "path": "data/phase511-case029-actual-input-repaired-001/owned-files.json",
+      "size": 1849,
+      "sha256": "e3296d781b70fe9545c1acfb5cf1cb2539194151aa2d28b7a915b03d2b8c887e"
+    },
+    {
+      "path": "data/phase511-case029-actual-input-repaired-001/prepared-witness.json",
+      "size": 107596,
+      "sha256": "09e4ac2c58aabfdcb64a74729fe8aaade912ff22aa4c00467bc2220f8165cebf"
+    },
+    {
+      "path": "data/phase526-launcher-output-design-v2/B2-external-closure-task.json",
+      "size": 4487,
+      "sha256": "8ccb4ac83a7b5defce0d4e266111548604fd21a83320aac2ebcccca6b6f1a576"
+    },
+    {
+      "path": "data/phase526-launcher-output-design-v2/api-contract.json",
+      "size": 5798,
+      "sha256": "69b6403ee6676754380cc25d9a7906695e5f5cdf5b39fbcf079fc57bfe99dccd"
+    },
+    {
+      "path": "data/phase526-launcher-output-design-v2/comparison-contract.json",
+      "size": 5229,
+      "sha256": "a261b2b262350653ee31d69bed5706f3feb54893b4e577f49f3337a270ef66a3"
+    },
+    {
+      "path": "data/phase526-launcher-output-design-v2/control-plan.json",
+      "size": 2353,
+      "sha256": "2c755b1cde87ef0e8c4d6a8e4551f3758a778fe1d23d1f45226ef4a5e8f1c316"
+    },
+    {
+      "path": "data/phase526-launcher-output-design-v2/owned-files.json",
+      "size": 9011,
+      "sha256": "e0d53933ef3e9a6a89453ad472bbddd585fdc8f4a50b1f72f663bf4851a9b492"
+    },
+    {
+      "path": "data/phase532-independent-design-review/owned-files.json",
+      "size": 289,
+      "sha256": "ee7feadc8e2433c498961fe1cc0b382836785c6e9d3fae0cb1fc006ab1ebc587"
+    },
+    {
+      "path": "data/phase532-independent-design-review/review.json",
+      "size": 5852,
+      "sha256": "0513eb61f015d2e927bf0749ab1c48b0d78c2c408a6af0ed43068fc5f385e74e"
+    },
+    {
+      "path": "data/phase533-captured029-launcher-output-source/adapter-vs476.patch",
+      "size": 31984,
+      "sha256": "e8435c291f93585dac4846e7de660614bc5c9199a25c5cf3a3812d8c164fe5fa"
+    },
+    {
+      "path": "data/phase533-captured029-launcher-output-source/compile-only.json",
+      "size": 1092,
+      "sha256": "234ea159ddbd67da57a33cec548dc6b1bdf71efb403ebeda2914e0d028f62415"
+    },
+    {
+      "path": "data/phase533-captured029-launcher-output-source/conservation.json",
+      "size": 11417,
+      "sha256": "bf13ccb15998c8bb7e5cdc3b4840e507259f4fa28086804a730abbf0a04f6128"
+    },
+    {
+      "path": "data/phase533-captured029-launcher-output-source/external-contract.json",
+      "size": 5555,
+      "sha256": "e7de3b66b7da2ab6f5e6a2d9d4a9706f286b40b7cf23b77376700c66456ebda1"
+    },
+    {
+      "path": "data/phase533-captured029-launcher-output-source/function-api.json",
+      "size": 7281,
+      "sha256": "93aee983ef0b2486fb782c0d3a84df7d45647c64d28e9c3c83e37a67c8a636d7"
+    },
+    {
+      "path": "data/phase533-captured029-launcher-output-source/guard-vs475-source.patch",
+      "size": 29942,
+      "sha256": "000d1a69a529666728ed3a9b9ea62abb172b03782457ad67f38cddf8e51bc45c"
+    },
+    {
+      "path": "data/phase533-captured029-launcher-output-source/launcher-vs476.patch",
+      "size": 36342,
+      "sha256": "0ac73b0de800cdb108f1c32ebb1a10f70d18bdc92e07ca1d9b6b447fbd6d5eac"
+    },
+    {
+      "path": "data/phase533-captured029-launcher-output-source/preparation/phase533_assemble_adapter.py",
+      "size": 13179,
+      "sha256": "67797b3cff464d4d9a00418fad407afd0aaebc6eabcaf57329a23ec818237c2f"
+    },
+    {
+      "path": "data/phase533-captured029-launcher-output-source/preparation/phase533_assemble_guard.py",
+      "size": 4340,
+      "sha256": "a2ef81a0e6bcadec487fe4b89c77146bbbd30f208c2a05e5dd92dd93735750c0"
+    },
+    {
+      "path": "data/phase533-captured029-launcher-output-source/preparation/phase533_assemble_launcher.py",
+      "size": 21746,
+      "sha256": "b95e55a4ad7d8e4c02a2a06471d0030ec5e77b829450d78113537b617f899020"
+    },
+    {
+      "path": "data/phase533-captured029-launcher-output-source/source-freeze.json",
+      "size": 3105,
+      "sha256": "f03c8cfdfdd610ff1214003c33b7c605dcfc5a902531003f384561073ab79504"
+    },
+    {
+      "path": "docs/phase533_captured029_launcher_output_implementation_spec.md",
+      "size": 5335,
+      "sha256": "a65eaa7f2a477222d13a76b10ae1818a1b83486b50f5b2fcc54b88284c323ca4"
+    },
+    {
+      "path": "tests/phase475_independent_joint_interfaces.py",
+      "size": 26535,
+      "sha256": "70a7182c59a8bad2a69c43f8303d96e358b946a760e951bc4ea6d0c15a0889c2"
+    },
+    {
+      "path": "tests/phase476_joint_business_output.py",
+      "size": 44908,
+      "sha256": "23c5bec3eee0449bc0bccf9e6a216e288aec50895bfd3e4223506fc9971976b1"
+    },
+    {
+      "path": "tests/phase476_joint_tape_run.py",
+      "size": 13140,
+      "sha256": "6041037025d16079aa4ea129a29c8bc04d686a691f71cc5a6f6f6e4190456ed5"
+    },
+    {
+      "path": "tests/phase533_shared_callback_guard.py",
+      "size": 9634,
+      "sha256": "3a78d45e720ca60438577e8c737f4845b6625a6b53659165cb0dce2c223ff91b"
+    },
+    {
+      "path": "tests/phase533_whelp_business_output.py",
+      "size": 47207,
+      "sha256": "8e5cf40ff790a7db616ebac54deb9a5bf3b6410c7e300e866542179089668e54"
+    },
+    {
+      "path": "tests/phase533_whelp_tape_run.py",
+      "size": 27635,
+      "sha256": "32db2611b79c142ea36b354c60cde3bd7a7843365daf8b4427d82f24d5cd50cd"
+    },
+    {
+      "path": "data/phase533-captured029-launcher-output-source/owned-files.json",
+      "size": 9564,
+      "sha256": "2fde9d2be01bf6b383f448aa28373d40a871eadc5338be0240fc1386762efa7b"
+    },
+    {
+      "path": "data/phase534-b2-source-applicability/source-receipt.json",
+      "size": 29381,
+      "sha256": "14bd0f157f0d544b0bb1aba4979d3018206c9550eb62fee97209f57a2ddef088"
+    },
+    {
+      "path": "data/phase534-b2-source-applicability/owned-files.json",
+      "size": 5560,
+      "sha256": "e4f7a0cda6ed0f1fa8ec4a9868d0bbe2609965a8b150b19705211b63b43da4a0"
+    },
+    {
+      "path": "data/phase534-independent-source-review/review.json",
+      "size": 3571,
+      "sha256": "2b5fdb7979f26651d747301cf122617b4ab21bccbf5fe11181b7765ebbc409f4"
+    },
+    {
+      "path": "data/phase534-independent-source-review/owned-files.json",
+      "size": 263,
+      "sha256": "e212007ad806768ed5f3072e04f544b9d1957d7e0a133f46b3680eea97868733"
+    },
+    {
+      "path": "tests/phase534_independent_wrapper_controls.py",
+      "size": 14511,
+      "sha256": "2d798cba6f73a71f020bcc6de8fc3425361fb757d4c0908fce20d7eeed1ec541"
+    },
+    {
+      "path": "docs/phase534_exact_wrapper_controls_spec.md",
+      "size": 5078,
+      "sha256": "8289b75f47dd4a8c6fca5eb1b9eb372a1de566b7fb4f5ab46fe0ef8167de00a1"
+    },
+    {
+      "path": "data/phase534-exact-control-source/vectors.json",
+      "size": 21543,
+      "sha256": "64e24dca08330b3b568bedaf4fa8270f41cdf4d5d1d9ba01d4227885ee1f5199"
+    },
+    {
+      "path": "data/phase534-exact-control-source/invalid-request.json",
+      "size": 504,
+      "sha256": "398ee180fdb73aec96eefb9bdc770f632491b62f39d9aa0e48aea1ed7886e148"
+    }
+  ]
+}
