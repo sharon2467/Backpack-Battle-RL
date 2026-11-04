@@ -1,0 +1,159 @@
+{
+  "IO": {
+    "allow": [
+      "pinned candidate15",
+      "exact launcher/config/input artifacts",
+      "stdlib",
+      "new model output"
+    ],
+    "deny": [
+      "Nativecapture",
+      "pool/baseline",
+      "Expected files",
+      "secrets/dot conversations",
+      "network/subprocess/fork/exec"
+    ],
+    "model_expected_reads": 0,
+    "pycache": "new unused output prefix; dontwritebytecode; fresh __file__ and all15hash checks"
+  },
+  "actual_helper_or_model_calls": 0,
+  "adapter_binding_function": "bindings(bundle,input_proof,root_binding)",
+  "adapter_root_binding_closed_keys": [
+    "schema",
+    "input_bundle",
+    "input_canonical_sha256",
+    "input_proof",
+    "input_proof_canonical_sha256",
+    "candidate_freeze",
+    "contract"
+  ],
+  "candidate_core": "Exact505v3 all15; no modifications",
+  "fixed_bindings": {
+    "candidate_acceptance": {
+      "path": "data/phase506-independent-final-acceptance/review.json",
+      "sha256": "7199a5dd9cbd52a99ff7a7ebf6d2e01bd88c7c92990799019093de688dbc03a0",
+      "size": 8697
+    },
+    "candidate_freeze": {
+      "path": "data/phase505-captured-nonking-source-v3/candidate-source-freeze.json",
+      "sha256": "e3f2a86713ef097cae77858f0868fdd70b7487cdeadeaa7fcf11ebb184d550ad",
+      "size": 4729
+    },
+    "comparison_contract": {
+      "path": "data/phase526-launcher-output-design-v2/comparison-contract.json",
+      "sha256": "a261b2b262350653ee31d69bed5706f3feb54893b4e577f49f3337a270ef66a3",
+      "size": 5229
+    },
+    "input_abi": {
+      "path": "data/phase513-input-bridge-source/abi.json",
+      "sha256": "53c702e214a0ac4b4e94201f3628c404e6d6c2abba86a270acf68fe3e292430c",
+      "size": 1436
+    },
+    "input_acceptance": {
+      "path": "data/phase531-independent-final-acceptance/review.json",
+      "sha256": "63ada068467e130ed8561444d22e41b5e0b90746c70e9388f154dcf6878d1c35",
+      "size": 5571
+    },
+    "input_acceptance_owner": {
+      "path": "data/phase531-independent-final-acceptance/owned-files.json",
+      "sha256": "1858994d175be9ea2a76ea2ddcb486cda5eee68098c77fe55dd668a06170463b",
+      "size": 284
+    },
+    "input_artifacts": {
+      "initial-receipt.json": {
+        "path": "data/phase511-case029-actual-input-repaired-001/initial-receipt.json",
+        "sha256": "83701f6de308034805f6046d4cca7c98a8a51b2ef0fa6768d580960fa298d8dd",
+        "size": 435088
+      },
+      "input-bundle.json": {
+        "path": "data/phase511-case029-actual-input-repaired-001/input-bundle.json",
+        "sha256": "a065e481a8ea3d0d145a68ab4fcc945a923a51c75159f289af74083c15dfe5ab",
+        "size": 287000
+      },
+      "input-proof.json": {
+        "path": "data/phase511-case029-actual-input-repaired-001/input-proof.json",
+        "sha256": "2a08a12c8573a1b596cc39293000b11140bc7a3fe4e783dc0dca5c1e8e65b7ea",
+        "size": 205581
+      },
+      "input-seal.json": {
+        "path": "data/phase511-case029-actual-input-repaired-001/input-seal.json",
+        "sha256": "855c7f59509675f5669d9dcb74882cfea3f234dc6807036bac97e09c2f6e47f3",
+        "size": 1932
+      },
+      "owned-files.json": {
+        "path": "data/phase511-case029-actual-input-repaired-001/owned-files.json",
+        "sha256": "e3296d781b70fe9545c1acfb5cf1cb2539194151aa2d28b7a915b03d2b8c887e",
+        "size": 1849
+      },
+      "prepared-witness.json": {
+        "path": "data/phase511-case029-actual-input-repaired-001/prepared-witness.json",
+        "sha256": "09e4ac2c58aabfdcb64a74729fe8aaade912ff22aa4c00467bc2220f8165cebf",
+        "size": 107596
+      }
+    },
+    "input_source_owner": {
+      "path": "data/phase528-input-birth-guard-repair-source/owned-files.json",
+      "sha256": "33f1174edd6dce9573bbed7fe46ba33838f4e880ff9e75cd0547ff7175296025",
+      "size": 6273
+    }
+  },
+  "future_unknown": {
+    "actual_external_B2closure_receipt": null,
+    "actual_model_output": null,
+    "launcher_source_descriptor": null,
+    "launcher_source_owner": null,
+    "model_events": null,
+    "winner": null
+  },
+  "implementation_phase": "Root proposed533 after independent532designPASS; no Source created here",
+  "known_input_identity": {
+    "activation_after_sequence": 1121,
+    "bundle_canonical_sha256": "f975cd71337e3c06b76a3d6d1e2652318184f96d41f74e2acf59e4cf02e66eb7",
+    "fixture_canonical_sha256": "73fb01ae30e0baf0b5c696c5721280e6ac38d0b11a1b145d124a71d4c80562e8",
+    "proof_canonical_sha256": "bfc6b49f12af432afd88fe73427994aef9778086ad4b6ffdef83649a58b27c37"
+  },
+  "launcher_pipeline": [
+    "descriptor/source authentication",
+    "one fresh candidate import",
+    "one exactTape+CombatEngine",
+    "prepare_only",
+    "prepared_business_view+pure witness validation same object",
+    "activate_from_checkpoint",
+    "one engine.run",
+    "Tape.assert_consumed",
+    "raw model-output first",
+    "15Source/INPUT afterchecks+seal"
+  ],
+  "limits": {
+    "model_simulated_seconds": 120,
+    "one_actual_comparison_after_seal": 1,
+    "one_model_run": 1,
+    "proposed_external_model_wall_seconds": 60
+  },
+  "model_request_closed_keys": [
+    "schema",
+    "case_id",
+    "launcher",
+    "candidate_freeze",
+    "input_source_owner",
+    "input_abi",
+    "input_bundle",
+    "input_proof",
+    "initial_receipt",
+    "prepared_witness",
+    "input_seal",
+    "input_owner",
+    "input_acceptance",
+    "candidate_acceptance",
+    "business_closure",
+    "comparison_contract",
+    "root_model_authorized"
+  ],
+  "model_request_schema": "phase533-root-captured-whelp-model-request/1",
+  "pure_adapter_entry": "compare_decoded(native_outputs,sealed_result,accepted_bundle,input_proof,root_binding)",
+  "pure_gate_signatures": [
+    "prepared_business_view(engine,bundle)",
+    "validate_prepared_business_view(view,bundle,witness,initial)"
+  ],
+  "schema": "phase526-code-bound-launcher-adapter-design/1"
+}

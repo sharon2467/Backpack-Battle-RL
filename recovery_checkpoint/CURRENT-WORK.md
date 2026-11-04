@@ -2,6 +2,10 @@
 
 The original BackpackBattles1.1.8 → standalone Python → RL project is **IN_PROGRESS**. Original GD is behavior authority; Godot is oracle only. Pure combat excludes GUI/shop. Event order, explicit parents, state histories, selected RNG, typed Timer APIs, callbacks and terminal cuts remain strict. Primitive-Tape comparisons and fresh Source runs are distinct evidence.
 
+## Captured029 launcher design accepted (532)
+
+[526–532 frozen design](../work_in_progress/phase526-532-captured029-wrapper-design/README.md) passes independent design review only. The next step is533 thin launcher/output-adapter implementation, independent finite controls and one bounded extraction from the existing lawful UI record; no additional original capture. Actual same-instance prepared-state acceptance, Python model output and strict8 comparison remain pending.
+
 ## Latest actual029 INPUT acceptance (531)
 
 [528–531 actual INPUT checkpoint](../work_in_progress/phase528-531-actual029-input-accepted/README.md) supersedes the prior INPUT-blocked frontier. Minimal Source-supported birth-coordinate guard repair and exactly three independent ledger controls passed. One repaired actual build produced the sealed 287000-byte bundle (SHA256 `a065e481a8ea3d0d145a68ab4fcc945a923a51c75159f289af74083c15dfe5ab`): 297 primitive draws, 1089 clock passes, 32 timers and 29 items. Independent531 direct-JSON checking passed 72 derived plus 388 direct initial fields and complete Tape/clock/prepare-witness mapping. Original failure527 and original birth coordinates remain retained.
