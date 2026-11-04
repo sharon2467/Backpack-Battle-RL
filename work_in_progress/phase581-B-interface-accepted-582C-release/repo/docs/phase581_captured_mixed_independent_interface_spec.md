@@ -1,0 +1,19 @@
+# Phase581 finite captured-mixed interface acceptance
+
+## Requirements
+Independently review580 against exact564 Source and578 ABI. Only frozen engine/genuine shell changes are allowed; all13other modules and entireprepare_only/business methods stay exact. Test one successful synthetic captured constructor andprepare, no activation/step/run, Tape/pass0. Synthetic UID/private values/clock are interface vectors, not Native evidence or certification of actual72 premises.
+
+## Design
+Static39owner pins/2wholeinverse/13files/224engine+33genuine oldfunction bodies establish conservation. The newprepared checker runs after the entire unchanged modifier setter loops, so cache_prepared alone is never treated as all contributions complete. Expected0/.2/.25 comes from live preparedSource callers and caches; coefficient from the actualCharacterbase timesSource0.7/100; no native witness is injected. EmptyKing and independentcaptured flag select32actualTimerRecords,31exactnoop slots and EngineFrameDriver. Sixinactive timeout callbacks reject.
+
+No repeat506 clock lifecycle: finish/death/step/result/runtimeprojection/noop callback match505v3 after profileconstant rename; finite runner changes only three error strings Whelp→mixed. FrameDriver,TimerRuntime and EngineFrameDriver class bodies stay exact. Thus sixstop order, bothterminal snapshots, finiteEOF/barrier and sameinstance diagnostics have static port evidence; no newdynamic terminalPASS is claimed. ActualNativeclock/B2/B1/INPUT/context/strict8 remain pending.
+
+## Realize
+Freeze one explicit29fixture with below_master=False tagged synthetic, exactgeometry with neutralBOOL matching580hash,32private-1 Timer DTOs+P/O Character support values,67processing/66configs, one explicitidlepass. Synthetic names/UIDs are distinguishable and coordinates internally coherent. Empty exactTape. These vectors do not use Source fresh60+60 or oldNative IDs/cuts and are never passed to the INPUT bridge.
+
+One fresh isolated process imports exactstaged package only. Thirteen top controls:2fixture rejects(BOOLtype andgeometry);3runtime rejects(missingauxprivate,CharacterBOOL alias,reverseancestor conflict);1Noneprovider constructor rejection;1successful constructor;1prepare;3actualprepared stagechecker rejects(missing Bowl contribution,missing385contribution,wrong Wolfcoefficient);1foreignidle callback reject;1inactive Timer timeout handler reject.Ledger is11reject+2success=13. Constructor entered2/success1/providerreject1, prepare1; TapeRandom constructor1(empty), gameplaydraw0. Stageprestate corruptions are explicitunit mutations restored in finally; checker must leave bad value untouched. Positiveprepare must show real.2Pet/.25fourWeapon, Wolfregistered coefficient and Bowlledger0, allcacheprepared; both stages Tape/pass0 and noKing. Snapshot readbacks before/after allmutations verify no hidden repair/advance; profile diagnostic snapshot counts separate.
+
+Every SUT operation is entered/counted; firstunexpected saves partial/result/owner and stops withoutfix/retry. Preload exactstdlib closure before audit (includingdataclasses/typing/random), use freshpycache prefix and no bytecodewriting. Strictreadscope staged15+protocolpins/newoutput only; no otherrepo dependencies. Per-file origins and sourcepins before/after. Fifteensecond internal alarm/twentysecond outer timeout. Productionmodule imports/hashes allowed; no schema/Expected/Native/pool/host.
+
+## Acceptance Criteria / Tests
+13top as exactledger,11expectedreject reasons and2success. Stateconstructor+prepare pass on the sameinstance withoutdraw/clock advance.Exactly32TimerRecords/6inactive/31noop/67processing/66config, actual inputstillunknown. NofakeP6King or oldBasic/Sapphire shortcut. Do not claimfulllifecycle, real72proof, newNativepurity/canAdd, B1, outputcomparison, generalKing/formal75 or publicpackage promotion. Sourcefreeze/inputs/plan/harness must be sealed before Root releases any SUT call.

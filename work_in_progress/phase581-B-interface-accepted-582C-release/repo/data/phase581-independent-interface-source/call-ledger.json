@@ -1,0 +1,99 @@
+{
+  "schema": "phase581-frozen-call-ledger/1",
+  "cases": [
+    {
+      "id": "01_BOOL_type",
+      "api": "genuine.validate_captured_mixed_fixture",
+      "expected": "REJECT",
+      "first_reject_fragment": "explicit actual belowMaster BOOL"
+    },
+    {
+      "id": "02_geometry",
+      "api": "genuine.validate_captured_mixed_fixture",
+      "expected": "REJECT",
+      "first_reject_fragment": "exact29 geometry"
+    },
+    {
+      "id": "03_missing_aux_private",
+      "api": "validate_runtime_inputs",
+      "expected": "REJECT",
+      "first_reject_fragment": "pure timer fields"
+    },
+    {
+      "id": "04_character_BOOL_alias",
+      "api": "validate_runtime_inputs",
+      "expected": "REJECT",
+      "first_reject_fragment": "character initial values"
+    },
+    {
+      "id": "05_reverse_ancestor",
+      "api": "validate_runtime_inputs",
+      "expected": "REJECT",
+      "first_reject_fragment": "reverse sparse prefix conflict"
+    },
+    {
+      "id": "06_no_provider",
+      "api": "CombatEngine.__init__",
+      "expected": "REJECT",
+      "first_reject_fragment": "exact TapeRandom"
+    },
+    {
+      "id": "07_construct",
+      "api": "CombatEngine.__init__",
+      "expected": "ACCEPT",
+      "first_reject_fragment": null
+    },
+    {
+      "id": "08_prepare",
+      "api": "CombatEngine.prepare_only",
+      "expected": "ACCEPT",
+      "first_reject_fragment": null
+    },
+    {
+      "id": "09_missing_Bowl",
+      "api": "CombatEngine._validate_captured_mixed_state",
+      "expected": "REJECT",
+      "first_reject_fragment": "double activation differs from actual prepared global Bowl contributions"
+    },
+    {
+      "id": "10_missing_385",
+      "api": "CombatEngine._validate_captured_mixed_state",
+      "expected": "REJECT",
+      "first_reject_fragment": "double attack effect chance differs from actual prepared385 contributions"
+    },
+    {
+      "id": "11_wrong_coefficient",
+      "api": "CombatEngine._validate_captured_mixed_state",
+      "expected": "REJECT",
+      "first_reject_fragment": "captured mixed actual prepared Wolper coefficient"
+    },
+    {
+      "id": "12_foreign_idle",
+      "api": "CombatEngine._source_noninterfering_callback",
+      "expected": "REJECT",
+      "first_reject_fragment": "unknown captured no-op callback role/mode"
+    },
+    {
+      "id": "13_inactive_timeout",
+      "api": "bound actual aux:P:battleRageTimer timeout callback",
+      "expected": "REJECT",
+      "first_reject_fragment": "inactive captured Timer timeout: aux:P:battleRageTimer"
+    }
+  ],
+  "top_total": 13,
+  "success": 2,
+  "reject": 11,
+  "ctor_entered": 2,
+  "ctor_success": 1,
+  "ctor_provider_reject": 1,
+  "prepare": 1,
+  "explicit_readonly_snapshots": 2,
+  "activation": 0,
+  "step": 0,
+  "run": 0,
+  "TapeRandom_constructor": 1,
+  "synthetic_Tape_records": 0,
+  "draws": 0,
+  "passes": 0,
+  "remarks": "nested production calls profiled separately; one real production timeout lambda tested, no fakehandler"
+}

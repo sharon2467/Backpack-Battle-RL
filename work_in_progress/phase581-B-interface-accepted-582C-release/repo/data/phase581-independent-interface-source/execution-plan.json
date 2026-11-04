@@ -1,0 +1,58 @@
+{
+  "schema": "phase581-exact-interface-execution-plan/1",
+  "status": "FROZEN_PENDING_ROOT_RELEASE",
+  "cwd": "/tmp",
+  "argv": [
+    "python",
+    "-I",
+    "-B",
+    "/workspace/python-original-engine/repo/tests/phase581_independent_captured_prepare_controls.py",
+    "--pins",
+    "/workspace/python-original-engine/repo/data/phase581-independent-interface-source/pins.json",
+    "--output-new",
+    "/workspace/python-original-engine/repo/data/phase581-independent-interface-first-001"
+  ],
+  "inner_seconds": 15,
+  "outer_seconds": 20,
+  "top_calls": 13,
+  "expected_reject": 11,
+  "successful_ctor": 1,
+  "rejected_ctor": 1,
+  "prepare": 1,
+  "activation": 0,
+  "step": 0,
+  "run": 0,
+  "Tape_draws": 0,
+  "clock_passes": 0,
+  "explicit_snapshot_reads": 2,
+  "package_imports": 1,
+  "Source_pins_before_after": 24,
+  "script": {
+    "path": "tests/phase581_independent_captured_prepare_controls.py",
+    "size": 11990,
+    "sha256": "808bd50e543663c86ccc48f9a48d9e1b09776620154f01506d7fa12c8451abb4"
+  },
+  "inputs": {
+    "path": "data/phase581-independent-interface-source/inputs.json",
+    "size": 69246,
+    "sha256": "6b9e513c185d3db68fd594044b7b08e4bcfad199648751c034d896e5f9c0bbaf"
+  },
+  "ledger": {
+    "path": "data/phase581-independent-interface-source/call-ledger.json",
+    "size": 2969,
+    "sha256": "76ba8d78da6517b182a2c38ef5d3105ecefc9fe02c6fb7f39fbb6da987728840"
+  },
+  "pins": {
+    "path": "data/phase581-independent-interface-source/pins.json",
+    "size": 4834,
+    "sha256": "e52c34c3568f76c71d9160b710593b13787e27e238b13029ac9355da0b1cdb3f"
+  },
+  "forbidden": [
+    "Native/Godot/schema/Expected/pool/host",
+    "old Sourcecase or506 lifecycle reruns",
+    "activate/step/run/fullbattle",
+    "fakeEngine or invented Native receipt"
+  ],
+  "first_unexpected": "stop and seal partial/error; no fix/retry",
+  "scope": "Syntheticcaptured constructor/prepare only; static505 lifecycle port evidence separate; no actual030facts"
+}

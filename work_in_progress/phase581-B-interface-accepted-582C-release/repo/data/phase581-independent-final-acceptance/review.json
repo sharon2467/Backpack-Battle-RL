@@ -1,0 +1,237 @@
+{
+  "schema": "phase581-independent-final-acceptance/1",
+  "status": "PASS_SOURCE_AND_FINITE_SYNTHETIC_CAPTURED_INTERFACE_ONLY",
+  "scope": "Single synthetic captured constructor/prepare; no activation or full model; not Native acceptance",
+  "source_owner": {
+    "path": "data/phase581-independent-interface-source/owned-files.json",
+    "size": 1671,
+    "sha256": "b5180decd3cda921f0286581c8d8fcd43f2b225447f7b6757ad40053835e9a99"
+  },
+  "static_review": {
+    "path": "data/phase581-independent-interface-source/static-review.json",
+    "size": 3018,
+    "sha256": "534c8b098750e7fb1ad997a562cfa64875e237ded3d2b276c7a5b10814422a7a"
+  },
+  "conservation_evidence": {
+    "path": "data/phase581-independent-interface-source/conservation-evidence.json",
+    "size": 4628,
+    "sha256": "6adf989fcd3b46298bd1e3a2b9036de92f604bf6cf81747f9a0cccb4867bf6fb"
+  },
+  "candidate_owner": {
+    "path": "data/phase580-captured-mixed-source/owned-files.json",
+    "size": 7804,
+    "sha256": "5e1435f563ce06d3957139f24ef168be816b06a6763a03d4f50a346dc98026d9"
+  },
+  "candidate_freeze": {
+    "path": "data/phase580-captured-mixed-source/candidate-source-freeze.json",
+    "size": 4809,
+    "sha256": "e332b765f3bd48c6df63c1ffd047f82654fe0c0465e9886275d287b42160a51b"
+  },
+  "input_ABI": {
+    "path": "data/phase578-mixed-input-bridge-source/abi.json",
+    "size": 1362,
+    "sha256": "897a40ea9594be1c8adac869345646c1f6df8f9732e8663dfbd433cbff2c7eff"
+  },
+  "actual_result": {
+    "path": "data/phase581-independent-interface-first-001/result.json",
+    "size": 371600,
+    "sha256": "cc31dc413584e4630d456d51537f1f9a7c4b2d10b06af370cea819481b72635e"
+  },
+  "actual_owner": {
+    "path": "data/phase581-independent-interface-first-001/owned-files.json",
+    "size": 291,
+    "sha256": "0ebdc5bfcf09b5d987aa82ace5ced6ef8f805fb0d25e92357a981de137eefae0"
+  },
+  "root_execution": {
+    "path": "data/phase581-root-unique-captured-interface-release/execution.json",
+    "size": 162,
+    "sha256": "3185957255f85f9e8611227329b7341762c7c9bd5472727ca3df30914394d9ba"
+  },
+  "root_journal_owner": {
+    "path": "data/phase581-root-unique-captured-interface-release/owned-files.json",
+    "size": 1241,
+    "sha256": "97738997d5e0dfb0496f95164d3319b0fb5ebc089c7c74340dd3e228d525075e"
+  },
+  "inputs": {
+    "path": "data/phase581-independent-interface-source/inputs.json",
+    "size": 69246,
+    "sha256": "6b9e513c185d3db68fd594044b7b08e4bcfad199648751c034d896e5f9c0bbaf"
+  },
+  "script": {
+    "path": "tests/phase581_independent_captured_prepare_controls.py",
+    "size": 11990,
+    "sha256": "808bd50e543663c86ccc48f9a48d9e1b09776620154f01506d7fa12c8451abb4"
+  },
+  "cases": [
+    {
+      "id": "01_BOOL_type",
+      "status": "PASS",
+      "expected_reject": "explicit actual belowMaster BOOL",
+      "first_reject": "captured mixed requires explicit actual belowMaster BOOL"
+    },
+    {
+      "id": "02_geometry",
+      "status": "PASS",
+      "expected_reject": "exact29 geometry",
+      "first_reject": "captured mixed exact29 geometry/order/class0/default/noKing fixture"
+    },
+    {
+      "id": "03_missing_aux_private",
+      "status": "PASS",
+      "expected_reject": "pure timer fields",
+      "first_reject": "unknown/missing pure timer fields keys"
+    },
+    {
+      "id": "04_character_BOOL_alias",
+      "status": "PASS",
+      "expected_reject": "character initial values",
+      "first_reject": "unsupported captured mixed character initial values"
+    },
+    {
+      "id": "05_reverse_ancestor",
+      "status": "PASS",
+      "expected_reject": "reverse sparse prefix conflict",
+      "first_reject": "captured mixed reverse sparse prefix conflict"
+    },
+    {
+      "id": "06_no_provider",
+      "status": "PASS",
+      "expected_reject": "exact TapeRandom",
+      "first_reject": "captured mixed requires exact TapeRandom; no fallback"
+    },
+    {
+      "id": "07_construct",
+      "status": "PASS"
+    },
+    {
+      "id": "08_prepare",
+      "status": "PASS"
+    },
+    {
+      "id": "09_missing_Bowl",
+      "status": "PASS",
+      "expected_reject": "double activation differs from actual prepared global Bowl contributions",
+      "first_reject": "double activation differs from actual prepared global Bowl contributions"
+    },
+    {
+      "id": "10_missing_385",
+      "status": "PASS",
+      "expected_reject": "double attack effect chance differs from actual prepared385 contributions",
+      "first_reject": "double attack effect chance differs from actual prepared385 contributions"
+    },
+    {
+      "id": "11_wrong_coefficient",
+      "status": "PASS",
+      "expected_reject": "captured mixed actual prepared Wolper coefficient",
+      "first_reject": "captured mixed actual prepared Wolper coefficient"
+    },
+    {
+      "id": "12_foreign_idle",
+      "status": "PASS",
+      "expected_reject": "unknown captured no-op callback role/mode",
+      "first_reject": "unknown captured no-op callback role/mode"
+    },
+    {
+      "id": "13_inactive_timeout",
+      "status": "PASS",
+      "expected_reject": "inactive captured Timer timeout: aux:P:battleRageTimer",
+      "first_reject": "inactive captured Timer timeout: aux:P:battleRageTimer"
+    }
+  ],
+  "actual_counts": {
+    "top_controls": 13,
+    "expected_reject": 11,
+    "successful_controls": 2,
+    "constructor_entered": 2,
+    "constructor_success": 1,
+    "None_provider_rejected_constructor": 1,
+    "prepare": 1,
+    "package_imports_completed": 1,
+    "loaded_package_files": 9,
+    "TapeRandom_constructor": 1,
+    "Tape_draws": 0,
+    "clock_passes": 0,
+    "explicit_snapshot_reads": 2,
+    "activate": 0,
+    "step": 0,
+    "fullrun": 0,
+    "schema": 0,
+    "Native": 0,
+    "Expected": 0,
+    "pool": 0,
+    "reviewer_new_SUT": 0
+  },
+  "Source_before_after_current_exact": 24,
+  "execution": {
+    "exit": 0,
+    "pid": 16467,
+    "reaped": true,
+    "outer_timeout": false,
+    "outer_wall_seconds": 0.7340569330008293,
+    "stdout_bytes": 0,
+    "stderr_bytes": 0
+  },
+  "harness_seconds": 0.6295579649995489,
+  "observed_positive": {
+    "TimerRecords": 32,
+    "timeout_connections": 32,
+    "inactive_timer_roles": [
+      "aux:P:battleRageTimer",
+      "aux:P:autoRageTimer",
+      "invu:P",
+      "aux:O:battleRageTimer",
+      "aux:O:autoRageTimer",
+      "invu:O"
+    ],
+    "all32_private_left_bits_le": "000000000000f0bf",
+    "all32_processing": false,
+    "all32_stopped": true,
+    "king_states": {},
+    "noop_slots": 31,
+    "noop_slots_evidence": "Frozen successful constructor assertion compares exact Game0/Game1 + every owned29 Item idle; no separate native callback/window proof",
+    "all29_cache_prepared": true,
+    "Bowl_double_activation": {
+      "P:13": 0.2,
+      "P:14": 0.2,
+      "O:4": 0.0
+    },
+    "Enchanted_double_attack_effect": {
+      "P:15": 0.25,
+      "P:16": 0.25,
+      "P:17": 0.25,
+      "P:18": 0.25
+    },
+    "Wolves_listener": {
+      "P:13": true,
+      "O:4": true
+    },
+    "Wolves_coefficient_bits_be": "3f7cac083126e978",
+    "actual_Character_bases": {
+      "P": 1.0,
+      "O": 1.0
+    },
+    "Bowl_ledger_REAL": 0.0,
+    "profile_stage_checker_calls": 5,
+    "profile_real_Bowl_setter_calls": 2,
+    "profile_real_385_setter_calls": 4,
+    "driver_class": "EngineFrameDriver"
+  },
+  "negative_state_integrity": {
+    "three_stage_corruptions": "missing Bowl .2, missing385 .25, incorrect Wolf coefficient all reach exact intended first rejection; frozen harness asserts bad field remains bad before finally restoring it",
+    "snapshots": "Two real snapshot reads; exact canonical equality asserted in executed frozen harness and result true. Only pre-negative snapshot persisted; no claim of independently re-comparing a second serialized snapshot file.",
+    "postcheck": "Saved final scalar checkpoint still prepared/unactivated, Tape audit empty/pass0/emptyKing; foreignidle and realinactive handler reject without advancing."
+  },
+  "static_lifecycle_reuse": {
+    "reference": "505v3 accepted shell, not business baseline",
+    "segments": "finish/death/step/result/runtime_projection/noop callback normalized profileconstant exact; finite runner only3error-text replacements; EngineFrameDriver/TimerRuntime/FrameDriver and complete564prepare/business exact",
+    "new_dynamic_terminal_claim": false,
+    "scope": "Sixstop order/dualterminal/EOF/barrier remain static port claims this phase; no new lifecycle simulated."
+  },
+  "remaining": [
+    "Actual Native029/030 values are not used; synthetic UID/geometryBOOL/privatevalues/clock are not evidence of actual G02/72cut premises.",
+    "A future actual12 INPUT projection/acceptance, immutable boundcontext and B1 sameinstance comparisons remain pending.",
+    "C launcher/finalaux/strict8 implementation+independent gates remain later; no actualfullmodel orNative capture authorization implied.",
+    "31noop constructor/foreignrole refusal does not establish actual new UI callback window noninterference.",
+    "No ABI-affecting defect found; formal75/generalKing/native support not upgraded."
+  ]
+}
