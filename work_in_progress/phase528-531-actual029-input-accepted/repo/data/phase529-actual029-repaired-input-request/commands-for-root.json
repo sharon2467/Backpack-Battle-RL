@@ -1,0 +1,42 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-B",
+    "/workspace/python-original-engine/repo/tests/phase528_input_bridge.py",
+    "--request",
+    "/workspace/python-original-engine/repo/data/phase529-actual029-repaired-input-request/input-request.json",
+    "--request-size",
+    "3732",
+    "--request-sha256",
+    "6ba42c7346d23fdd559ba57ce51c38697a141f96fbfa045d3b3643aea45649a7",
+    "--output-new",
+    "/workspace/python-original-engine/repo/data/phase511-case029-actual-input-repaired-001"
+  ],
+  "bridge": {
+    "path": "tests/phase528_input_bridge.py",
+    "sha256": "a25c033845e560594fc11825ed1cf303a5cd00b4251423ce9515dbec256df245",
+    "size": 43763
+  },
+  "build_max": 1,
+  "cwd": "/workspace/python-original-engine/repo",
+  "expected_allowed": 0,
+  "first_error": "Preserve failed output and stop; no automatic retry or Source gate relaxation",
+  "models_allowed": 0,
+  "output_new": "/workspace/python-original-engine/repo/data/phase511-case029-actual-input-repaired-001",
+  "prerequisites": [
+    "Root accepts independent528Source/directed controls",
+    "Root explicit actualbuild release"
+  ],
+  "request": {
+    "path": "data/phase529-actual029-repaired-input-request/input-request.json",
+    "sha256": "6ba42c7346d23fdd559ba57ce51c38697a141f96fbfa045d3b3643aea45649a7",
+    "size": 3732
+  },
+  "schema": "phase529-proposed-repaired-input-build-command/1",
+  "source_context": {
+    "path": "data/phase528-input-birth-guard-repair-source/source-context.json",
+    "sha256": "cbd0862d9ce5d0a7d57db71612bf4945c672f4c9963d77648e72605c06f99d95",
+    "size": 7440
+  },
+  "status": "NOT_INVOKED_ROOT_ACTUALBUILD_RELEASE_PENDING"
+}

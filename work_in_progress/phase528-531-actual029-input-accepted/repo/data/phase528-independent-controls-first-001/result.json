@@ -1,0 +1,222 @@
+{
+  "status": "PASS_EXACT3_SYNTHETIC_LEDGER_ONLY",
+  "cases": [
+    {
+      "name": "same_identity_birth19_current18",
+      "expected": {
+        "kind": "accept",
+        "value": {
+          "file": "king-input-facts.json",
+          "pointer": "/timers/invu:P/lineage",
+          "native_owner": "900002",
+          "lineage": {
+            "timer_id": "900002",
+            "owner_id": "900001",
+            "kind": "Character.scene.ready",
+            "starts": 0,
+            "stops": 0,
+            "birth": {
+              "node": {
+                "native_id": "900002",
+                "role": null,
+                "path": "/root/Main/Player/Character/InvulnerabilityTimer",
+                "name": "InvulnerabilityTimer",
+                "class": "Timer",
+                "positions": [
+                  -1,
+                  19,
+                  3,
+                  0,
+                  7
+                ],
+                "priority": 0,
+                "inside_tree": true,
+                "ordinary_physics": false,
+                "internal_physics": false,
+                "ordinary_idle": false,
+                "internal_idle": false
+              },
+              "process_mode": 0,
+              "wait_time": {
+                "type": "float",
+                "binary64_be": "3ff0000000000000"
+              },
+              "time_left": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "one_shot": true,
+              "autostart": false,
+              "paused": false,
+              "stopped": true
+            }
+          }
+        }
+      },
+      "actual": {
+        "file": "king-input-facts.json",
+        "pointer": "/timers/invu:P/lineage",
+        "native_owner": "900002",
+        "lineage": {
+          "timer_id": "900002",
+          "owner_id": "900001",
+          "kind": "Character.scene.ready",
+          "starts": 0,
+          "stops": 0,
+          "birth": {
+            "node": {
+              "native_id": "900002",
+              "role": null,
+              "path": "/root/Main/Player/Character/InvulnerabilityTimer",
+              "name": "InvulnerabilityTimer",
+              "class": "Timer",
+              "positions": [
+                -1,
+                19,
+                3,
+                0,
+                7
+              ],
+              "priority": 0,
+              "inside_tree": true,
+              "ordinary_physics": false,
+              "internal_physics": false,
+              "ordinary_idle": false,
+              "internal_idle": false
+            },
+            "process_mode": 0,
+            "wait_time": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "time_left": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "one_shot": true,
+            "autostart": false,
+            "paused": false,
+            "stopped": true
+          }
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "name": "wrong_owner_uid",
+      "expected": {
+        "kind": "reject",
+        "message": "INITIAL_LEDGER_OWNER_KIND"
+      },
+      "actual_error": "INITIAL_LEDGER_OWNER_KIND",
+      "status": "PASS"
+    },
+    {
+      "name": "wrong_birth_timer_uid",
+      "expected": {
+        "kind": "reject",
+        "message": "INITIAL_BIRTH_ID_CLASS_NAME"
+      },
+      "actual_error": "INITIAL_BIRTH_ID_CLASS_NAME",
+      "status": "PASS"
+    }
+  ],
+  "module_loads": {
+    "schema_module": 1,
+    "initial": 1
+  },
+  "top_validate_ledger_calls": 3,
+  "module_entries": {
+    "schema_module:<module>": 1,
+    "schema_module:<genexpr>": 14,
+    "schema_module:FramePass": 1,
+    "schema_module:ClockSchedule": 1,
+    "initial:<module>": 1,
+    "initial:<genexpr>": 28,
+    "initial:validate_ledger": 3,
+    "initial:require": 30,
+    "schema_module:validate_state": 4,
+    "schema_module:exact": 12,
+    "schema_module:text": 6,
+    "schema_module:decimal": 2,
+    "schema_module:integer": 16,
+    "schema_module:validate_typed": 16,
+    "schema_module:scalar_number": 4,
+    "initial:same": 8
+  },
+  "actual_capture_reads": 0,
+  "Expected_reads": 0,
+  "models": 0,
+  "Native": 0,
+  "whole_projection_calls": 0,
+  "build_calls": 0,
+  "source_after": [
+    {
+      "path": "tests/phase528_independent_exact3_controls.py",
+      "size": 7277,
+      "sha256": "73ba0f609f32a5d379fee5698b224660e0bcec2c39d203bc6cf8ea6b9ca5695b"
+    },
+    {
+      "path": "data/phase528-independent-exact-controls-source/vectors.json",
+      "size": 15465,
+      "sha256": "cf5b7b113b3be2ebdf735e4b7f8d5f36e7c8095581adeeea86ca9fc52a7a7948"
+    },
+    {
+      "path": "tests/phase528_initial_receipt.py",
+      "size": 16745,
+      "sha256": "95173bc927049e101c7a3d696ebad050eabf744adb5ddec00ba3db9e3650963a"
+    },
+    {
+      "path": "data/phase502-whelp-observer-source-v4/schema/phase502_whelp_observer_schema.py",
+      "size": 197522,
+      "sha256": "d5531e3e9b119f0309140cb50dff2c7f545abb5ec3500d488bde29cacdb8f193"
+    },
+    {
+      "path": "tests/phase528_input_bridge.py",
+      "size": 43763,
+      "sha256": "a25c033845e560594fc11825ed1cf303a5cd00b4251423ce9515dbec256df245"
+    },
+    {
+      "path": "data/phase528-input-birth-guard-repair-source/source-context.json",
+      "size": 7440,
+      "sha256": "cbd0862d9ce5d0a7d57db71612bf4945c672f4c9963d77648e72605c06f99d95"
+    },
+    {
+      "path": "data/phase528-input-birth-guard-repair-source/source-freeze.json",
+      "size": 1769,
+      "sha256": "dfb7a5959f1636b61c3438f6c2a5d5054ac7e9f5920fa188b5dcdeb6958057f6"
+    },
+    {
+      "path": "data/phase528-input-birth-guard-repair-source/owned-files.json",
+      "size": 6273,
+      "sha256": "33f1174edd6dce9573bbed7fe46ba33838f4e880ff9e75cd0547ff7175296025"
+    },
+    {
+      "path": "data/phase528-independent-exact-controls-source/static-review.json",
+      "size": 1574,
+      "sha256": "80782f80cb4ac8328f05f4906139746b5f7c813064431c35fef2ac4a85fcaf56"
+    },
+    {
+      "path": "docs/phase528_independent_exact3_controls_spec.md",
+      "size": 2400,
+      "sha256": "2a806c02d9b3990d119b0bf534c2e5fb1a08b271868018703ff1891399d0ce33"
+    }
+  ],
+  "elapsed_seconds": 0.09990170699984446,
+  "opened_read_paths_after_audit": [
+    "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/schema/phase502_whelp_observer_schema.py",
+    "/workspace/python-original-engine/repo/data/phase528-independent-exact-controls-source/static-review.json",
+    "/workspace/python-original-engine/repo/data/phase528-independent-exact-controls-source/vectors.json",
+    "/workspace/python-original-engine/repo/data/phase528-input-birth-guard-repair-source/owned-files.json",
+    "/workspace/python-original-engine/repo/data/phase528-input-birth-guard-repair-source/source-context.json",
+    "/workspace/python-original-engine/repo/data/phase528-input-birth-guard-repair-source/source-freeze.json",
+    "/workspace/python-original-engine/repo/docs/phase528_independent_exact3_controls_spec.md",
+    "/workspace/python-original-engine/repo/tests/phase528_independent_exact3_controls.py",
+    "/workspace/python-original-engine/repo/tests/phase528_initial_receipt.py",
+    "/workspace/python-original-engine/repo/tests/phase528_input_bridge.py"
+  ],
+  "pins": {
+    "path": "/workspace/python-original-engine/repo/data/phase528-independent-exact-controls-source/pins.json",
+    "sha256": "8eeba80ff6cb5e2bda727826598ac1920becb668cf6502f6aeafe1506371fe8f"
+  }
+}

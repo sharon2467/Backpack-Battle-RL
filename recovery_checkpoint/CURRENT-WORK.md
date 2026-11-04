@@ -2,6 +2,12 @@
 
 The original BackpackBattles1.1.8 → standalone Python → RL project is **IN_PROGRESS**. Original GD is behavior authority; Godot is oracle only. Pure combat excludes GUI/shop. Event order, explicit parents, state histories, selected RNG, typed Timer APIs, callbacks and terminal cuts remain strict. Primitive-Tape comparisons and fresh Source runs are distinct evidence.
 
+## Latest actual029 INPUT acceptance (531)
+
+[528–531 actual INPUT checkpoint](../work_in_progress/phase528-531-actual029-input-accepted/README.md) supersedes the prior INPUT-blocked frontier. Minimal Source-supported birth-coordinate guard repair and exactly three independent ledger controls passed. One repaired actual build produced the sealed 287000-byte bundle (SHA256 `a065e481a8ea3d0d145a68ab4fcc945a923a51c75159f289af74083c15dfe5ab`): 297 primitive draws, 1089 clock passes, 32 timers and 29 items. Independent531 direct-JSON checking passed 72 derived plus 388 direct initial fields and complete Tape/clock/prepare-witness mapping. Original failure527 and original birth coordinates remain retained.
+
+Status is **INPUT_ONLY_NOT_RUNTIME_VALIDATED**. Actual same-instance prepare gate, callback closure, launcher/output mapping, one sealed Python model output and strict eight-section comparison remain pending. No new model, capture or promotion occurred in this checkpoint. Public SDK497 and formal75 remain unchanged.
+
 ## Current runnable Source
 
 Use [experimental package instructions](../python_engine/experimental_source_king/README.md). The compatibility directory now contains exact497Source15, eight examples and a trusted read-only verifier. Trusted inner manifest SHA256:`187d227dac0379f3cda07840bf16403f2cb527a7958e06e71cccc00740c753af`. Python3.12/standard library; no original assets, capture files, old cloud paths or Godot needed at runtime. Same-host isolated execution/readback has been tested; fresh-OS validation is not claimed.

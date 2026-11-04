@@ -1,0 +1,113 @@
+{
+  "schema": "phase528-independent-guard-repair-acceptance/1",
+  "status": "ACCEPTED_SOURCE_DELTA_AND_EXACT3_SYNTHETIC_LEDGER_CONTROLS",
+  "static_review": {
+    "path": "data/phase528-independent-exact-controls-source/static-review.json",
+    "size": 1574,
+    "sha256": "80782f80cb4ac8328f05f4906139746b5f7c813064431c35fef2ac4a85fcaf56"
+  },
+  "Source_harness_owner": {
+    "path": "data/phase528-independent-exact-controls-source/owned-files.json",
+    "size": 2472,
+    "sha256": "2d6c885da49187e1f4d3f9d16955dbde9afd67ac59bfed0fd46965e31b14de54"
+  },
+  "release": {
+    "path": "data/phase528-root-exact3-release/release.json",
+    "size": 751,
+    "sha256": "c351e2d8e3f91d52399f4f79323a19a8a0339622d70746b2dab335654c328f13"
+  },
+  "actual_result": {
+    "path": "data/phase528-independent-controls-first-001/result.json",
+    "size": 7518,
+    "sha256": "7f1e63a6c16f65c2b14707688875e3ea397c5181a0497dd0d60f8ce3d2a4c177"
+  },
+  "actual_owner": {
+    "path": "data/phase528-independent-controls-first-001/owned-files.json",
+    "size": 282,
+    "sha256": "152eb81d9bc297eaf17815efb1d864760fedc2ec6c37f3ca6ad957d4ce92fdcf"
+  },
+  "invocation_owner": {
+    "path": "data/phase528-independent-control-invocation-first-001/owned-files.json",
+    "size": 844,
+    "sha256": "87031717bddcd52cbc36978e1c4e8b9b595394b22f733d87d9425f5eaec5e0e8"
+  },
+  "execution": {
+    "attempt": 1,
+    "fresh_processes": 1,
+    "exit_code": 0,
+    "wall_seconds": 0.16448516799982826
+  },
+  "actual_counts": {
+    "fresh_processes": 1,
+    "schema_module_loads": 1,
+    "initial_module_loads": 1,
+    "validate_ledger_top": 3,
+    "schema_validate_state_nested": 4,
+    "cases_passed": 3,
+    "retries": 0
+  },
+  "observed_cases": [
+    {
+      "name": "same_identity_birth19_current18",
+      "status": "PASS",
+      "expected": "accept",
+      "rejection": null
+    },
+    {
+      "name": "wrong_owner_uid",
+      "status": "PASS",
+      "expected": "reject",
+      "rejection": "INITIAL_LEDGER_OWNER_KIND"
+    },
+    {
+      "name": "wrong_birth_timer_uid",
+      "status": "PASS",
+      "expected": "reject",
+      "rejection": "INITIAL_BIRTH_ID_CLASS_NAME"
+    }
+  ],
+  "positive_birth_positions_preserved": [
+    -1,
+    19,
+    3,
+    0,
+    7
+  ],
+  "all_case_inputs_unchanged": true,
+  "source_after_10_pins_exact": true,
+  "repair_boundary": "Only cross-time birth ancestor-prefix equality removed. Exact born/current UID, owner, source kind, path, name, config, flags, zero starts and current-cut validate_timer parent path/position checks retained. Recorded birth positions are not rewritten.",
+  "forbidden_actual_calls": {
+    "validate_timer": 0,
+    "build_initial_receipt": 0,
+    "bridge_import": 0,
+    "project_from_bytes": 0,
+    "build_from_files": 0,
+    "actual_raw12_reads": 0,
+    "Expected_reads": 0,
+    "model": 0,
+    "Native": 0,
+    "pool": 0
+  },
+  "prior_error_preserved": {
+    "path": "data/phase511-case029-actual-input-first-001/first-error.json",
+    "size": 6261,
+    "sha256": "dee82088884371440ca4dc54721982efaa5aee84f781aee8fdc6aa0ba988f358"
+  },
+  "prior_finding": {
+    "path": "data/phase527-independent-birth-position-finding/finding.json",
+    "size": 7268,
+    "sha256": "679567e9b9edc5d30f6bc9ba4c535f23ef1b2b130e754e32b422f65e340716e4"
+  },
+  "request_review": {
+    "path": "data/phase529-independent-request-review/review.json",
+    "size": 1863,
+    "sha256": "165f147d8112448a16740862445e58dd84add95451213785d7518a60a7428455"
+  },
+  "remaining": [
+    "Root separately releases one first repaired actual INPUT projection using unchanged12descriptors",
+    "Actual64+8 premises and complete projection not yet accepted",
+    "Actual ordered prepared witness, branch/cache and same-instance B1 gate remain pending",
+    "No new candidate run or strict8 comparison authorized by this result"
+  ],
+  "formal75_or_Native_admission_upgrade": false
+}

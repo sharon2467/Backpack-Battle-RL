@@ -1,0 +1,36 @@
+{
+  "G02_or_Character_rule_domain_changed": false,
+  "actual_input_facts_pin": {
+    "path": "/workspace/native-combat-20261013/runs/original029-whelp-family-A-single-001/output/capture/king-input-facts.json",
+    "sha256": "9e9f44e4890bfc5a23fd49d2469d5dd37e2b95eda6a181d8592dc2063147e9f6",
+    "size": 24001
+  },
+  "birth_positions": "Preserved raw ledger positions unchanged; no invented birth owner coordinates",
+  "finding": {
+    "path": "data/phase527-independent-birth-position-finding/finding.json",
+    "sha256": "679567e9b9edc5d30f6bc9ba4c535f23ef1b2b130e754e32b422f65e340716e4",
+    "size": 7268
+  },
+  "first_build_failure": {
+    "path": "data/phase511-case029-actual-input-first-001/first-error.json",
+    "sha256": "dee82088884371440ca4dc54721982efaa5aee84f781aee8fdc6aa0ba988f358",
+    "size": 6261
+  },
+  "removed_only": "bn['positions'][:-1]==owner['positions']",
+  "retained": [
+    "birth Timer native ID/current ID",
+    "ledger actual owner ID/current cut owner ID",
+    "Character.scene.ready kind",
+    "schema constructor validation",
+    "birth class/name/path/inside_tree",
+    "all config values/strict types",
+    "all four inactive birth flags",
+    "lifetime zero starts/nonnegative stops",
+    "facts current exact cut join",
+    "samecut validate_timer parent path+full positions",
+    "crosscut role/native bijection"
+  ],
+  "schema": "phase528-birth-owner-source-repair/1",
+  "source_reason": "positions is repeated ancestor get_index at observation time, not persistent identity; direct Character_ready owner argument and native UID are retained",
+  "specific_root_sibling_removal_event": "NOT_IDENTIFIED_NOT_NEEDED"
+}

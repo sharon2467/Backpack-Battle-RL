@@ -1,0 +1,11 @@
+--- tests/phase511_initial_receipt.py
++++ tests/phase528_initial_receipt.py
+@@ -92,7 +92,7 @@
+     for field in ('ordinary_physics','internal_physics','ordinary_idle','internal_idle'):
+         require(type(bn[field]) is bool and bn[field] is False,'BIRTH_INACTIVE_FLAGS')
+     require(bn['inside_tree'] is True and bn['path']==timer['node']['path']
+-            and bn['path']==owner['path']+'/'+bn['name'] and bn['positions'][:-1]==owner['positions'],'CHARACTER_BIRTH_ACTUAL_PARENT')
++            and bn['path']==owner['path']+'/'+bn['name'],'CHARACTER_BIRTH_ACTUAL_PARENT')
+     require(same(fact['current'],timer),'FACTS_CURRENT_CUT_JOIN')
+     return {'file':'king-input-facts.json','pointer':'/timers/'+role+'/lineage',
+             'native_owner':timer['node']['native_id'],'lineage':deepcopy(ledger)}
