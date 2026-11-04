@@ -1,0 +1,13 @@
+{
+  "Expected": 0,
+  "Godot": 0,
+  "automatic_retry": false,
+  "error_type": "ValueError",
+  "generated_schema_imports": 0,
+  "message": "exact delta match: \nTIMER_ROLES = frozenset(['tick:P', 'tick:O', 'fatigue:start', 'fatigue:tick', 'buff:P:100', 'buff:P",
+  "models": 0,
+  "pool_operations": 0,
+  "schema": "phase572-generation-first-error/1",
+  "schema_helper_calls": 0,
+  "traceback": "Traceback (most recent call last):\n  File \"/workspace/python-original-engine/repo/tests/phase572_prepare_mixed_observer_source.py\", line 614, in main\n    ('schema',derive_schema(sources['schema'],plan,contract),OUT/'schema/phase572_mixed_observer_schema.py',\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase572_prepare_mixed_observer_source.py\", line 435, in derive_schema\n    for name,value in values.items():d.py_constant(name,value)\n                                     ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase572_prepare_mixed_observer_source.py\", line 109, in py_constant\n    self.replace('\\n' + ast.get_source_segment(self.text, nodes[0]) + '\\n', '\\n' + name + ' = ' + expression + '\\n')\n  File \"/workspace/python-original-engine/repo/tests/phase572_prepare_mixed_observer_source.py\", line 94, in replace\n    require(before != after and self.text.count(before) == count, 'exact delta match: ' + before[:100])\n  File \"/workspace/python-original-engine/repo/tests/phase572_prepare_mixed_observer_source.py\", line 28, in require\n    raise ValueError(message)\nValueError: exact delta match: \nTIMER_ROLES = frozenset(['tick:P', 'tick:O', 'fatigue:start', 'fatigue:tick', 'buff:P:100', 'buff:P\n"
+}

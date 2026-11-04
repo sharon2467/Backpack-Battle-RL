@@ -1,0 +1,180 @@
+{
+  "actual_previous": null,
+  "all23_storage_functions_exact": true,
+  "complete_inverse": true,
+  "inherited_driver_files_exact": [
+    {
+      "path": "tests/phase363_oracle_process.py",
+      "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f",
+      "size": 13665
+    },
+    {
+      "path": "tests/phase363_oracle_storage.py",
+      "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc",
+      "size": 15496
+    },
+    {
+      "path": "tests/native_run_compaction.py",
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260",
+      "size": 27304
+    },
+    {
+      "path": "tests/godotsteam_offline_exec.py",
+      "sha256": "78beb697959d28b45c40f7a93174d22c67f711c077f5f7dcfb22ca10e69dd961",
+      "size": 4218
+    }
+  ],
+  "modules": {
+    "host": {
+      "after": {
+        "path": "tests/phase590_oracle_host.py",
+        "sha256": "a034d77ba22937ba5e638c40f5d3711e1141bdfd5e4691592dd2baaf9bf12b6b",
+        "size": 47098
+      },
+      "before": {
+        "path": "tests/phase508_oracle_host.py",
+        "sha256": "a5fc69909621cf6e828c73b30b46c14d516683226d8c88ac1d95e13eb7a1fcb1",
+        "size": 43974
+      },
+      "changed_functions": [
+        "execute",
+        "plan",
+        "source_gate",
+        "validate_active_source_tuple",
+        "validate_observer_review"
+      ],
+      "exact_functions": [
+        "_payload_rows",
+        "backup_predecessor_controls",
+        "collect_capture_metadata",
+        "descriptor",
+        "execute_driver_descriptors",
+        "load_terminal_schema",
+        "main",
+        "read_control",
+        "read_terminal_expected_controls",
+        "resolve_execute_payloads",
+        "resource_gate",
+        "verify_execute_payloads",
+        "verify_owner"
+      ],
+      "new_functions": []
+    },
+    "reader": {
+      "after": {
+        "path": "tests/phase590_independent_predecessor_readback.py",
+        "sha256": "17bcaeb33ea7cfdd440f0231d0ac33fdca02b14871c298e0ca7bb027b55a07da",
+        "size": 25372
+      },
+      "before": {
+        "path": "tests/phase508_independent_predecessor_readback.py",
+        "sha256": "15f8b1f034fcf95244516643554ec75acbcede592f70ce51c0474a2a0c8a0c30",
+        "size": 25366
+      },
+      "changed_functions": [
+        "main",
+        "readback"
+      ],
+      "exact_functions": [
+        "decoded",
+        "descriptor",
+        "difference",
+        "equal",
+        "path_of",
+        "relocate",
+        "require",
+        "save",
+        "signature",
+        "stable"
+      ],
+      "new_functions": []
+    },
+    "restore": {
+      "after": {
+        "path": "tests/phase590_restore_predecessor.py",
+        "sha256": "06604457afbc94aaf50dd16c1661b5a7dd1314c96ae6e53ff4f2273d1a67b5a2",
+        "size": 27962
+      },
+      "before": {
+        "path": "tests/phase508_restore_predecessor.py",
+        "sha256": "1969dc3ffb8cf1993281f144119115225f3853f22c978b056e93a245cb35e126",
+        "size": 27956
+      },
+      "changed_functions": [
+        "load_modules",
+        "main",
+        "prepare",
+        "validate_request"
+      ],
+      "exact_functions": [
+        "action",
+        "apply",
+        "check_image",
+        "decoded",
+        "descriptor",
+        "equal",
+        "finish_metadata",
+        "image_record",
+        "no_process",
+        "path_of",
+        "public_action",
+        "recheck_target",
+        "require",
+        "restore",
+        "row_record",
+        "save",
+        "select_restore_images",
+        "signature",
+        "stable"
+      ],
+      "new_functions": []
+    },
+    "storage": {
+      "after": {
+        "path": "tests/phase590_oracle_storage.py",
+        "sha256": "e2079576bec0f5f60b0cf4b5934ce394b0142c6b49de1cf1e11aa5ebb083b9b7",
+        "size": 21560
+      },
+      "before": {
+        "path": "tests/phase508_oracle_storage.py",
+        "sha256": "77719d1146c06205e2562756b220a07070b75c61313dc39632ab171233937019",
+        "size": 21560
+      },
+      "changed_functions": [],
+      "exact_functions": [
+        "_identity",
+        "_read_source",
+        "_source_descriptor",
+        "_source_signature",
+        "archive_streaming",
+        "atomic_image",
+        "budget",
+        "check_ready",
+        "check_source_descriptor",
+        "directory",
+        "install",
+        "lease",
+        "map_recorded",
+        "member",
+        "pin",
+        "preflight_install_payloads",
+        "read",
+        "read_source_payload",
+        "regular_target",
+        "reset_previous",
+        "state_write",
+        "sync",
+        "write_new"
+      ],
+      "new_functions": []
+    }
+  },
+  "no_previous_or_state_backfill": true,
+  "operational_calls": 0,
+  "schema": "phase590-source-conservation/1",
+  "selector_O_union_N_and_fixture_restore_exact": true,
+  "storage_constant_only": {
+    "MAX_INSTALL_BYTES": 817389,
+    "MAX_INSTALL_PAYLOADS": 79
+  }
+}

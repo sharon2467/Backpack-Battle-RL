@@ -1,0 +1,62 @@
+{
+  "Native_ready": false,
+  "actual_config": null,
+  "controls_forbidden": [
+    "plan",
+    "execute",
+    "lease",
+    "prepare",
+    "restore",
+    "readback",
+    "actualpool/resource/space/baseline"
+  ],
+  "host": {
+    "path": "tests/phase590_oracle_host.py",
+    "sha256": "a034d77ba22937ba5e638c40f5d3711e1141bdfd5e4691592dd2baaf9bf12b6b",
+    "size": 47098
+  },
+  "host_review_fields": [
+    "schema/status exact",
+    "source_freeze actual",
+    "observer_source_owner exact",
+    "native/models strictINT0"
+  ],
+  "host_review_receipt": null,
+  "host_review_schema": "phase587-independent-host-restore-source-review/1",
+  "host_review_status": "ACCEPTED_SOURCE_ONLY_PENDING_ROOT_EXECUTE",
+  "operation_permissions": {
+    "Expected_comparison": 0,
+    "inputbuild": 0,
+    "models": 0
+  },
+  "pure_interfaces": [
+    "validate_observer_review(value,receipt,source_tuple)",
+    "validate_active_source_tuple(root,freeze)",
+    "resolve_execute_payloads(source_root,freeze,driver_descriptors=())",
+    "verify_execute_payloads(source_root,graph)",
+    "select_restore_images(old,baseline,old_targets,old_images,journal,journal_images,expected_after)"
+  ],
+  "readback_evidence_count": 8,
+  "readback_output_prefix": "phase590-readback-",
+  "readback_request_schema": "phase590-fixed-predecessor-readback-request/1",
+  "reader": {
+    "path": "tests/phase590_independent_predecessor_readback.py",
+    "sha256": "17bcaeb33ea7cfdd440f0231d0ac33fdca02b14871c298e0ca7bb027b55a07da",
+    "size": 25372
+  },
+  "restore": {
+    "path": "tests/phase590_restore_predecessor.py",
+    "sha256": "06604457afbc94aaf50dd16c1661b5a7dd1314c96ae6e53ff4f2273d1a67b5a2",
+    "size": 27962
+  },
+  "restore_evidence_count": 12,
+  "restore_output_prefix": "phase590-restore-",
+  "restore_request_schema": "phase590-fixed-predecessor-restore-request/1",
+  "retained_control_decoding": "Existing six terminal/control metadata leaves only; business Expected remains opaque; no zero-all-Expecteddecode claim",
+  "schema": "phase590-source-API/1",
+  "storage": {
+    "path": "tests/phase590_oracle_storage.py",
+    "sha256": "e2079576bec0f5f60b0cf4b5934ce394b0142c6b49de1cf1e11aa5ebb083b9b7",
+    "size": 21560
+  }
+}
