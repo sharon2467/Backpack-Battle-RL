@@ -1,0 +1,147 @@
+{
+  "schema": "phase584-root-unique-C-control-release/1",
+  "utc": "2026-11-04T22:08:44.382668+00:00",
+  "owner": {
+    "path": "/workspace/python-original-engine/repo/data/phase584-independent-C-control-source/owned-files.json",
+    "size": 2504,
+    "sha256": "bd71e77bfdcf22e8cc2b2fc98da7273d8a1f68f5b6647e184797a664e154d710"
+  },
+  "plan": {
+    "path": "/workspace/python-original-engine/repo/data/phase584-independent-C-control-source/execution-plan.json",
+    "size": 7275,
+    "sha256": "9dff1d85b1cd9327efe2096cec8723d5f2a6bce0df7f465f83db24e606e61ff3"
+  },
+  "pins90_exact": true,
+  "scope": "16C controls/real ctor+explicit synthetic finalized flags only;no prepare/activate/run/INPUT/Expected/Native",
+  "budget": {
+    "schema": "phase584-exact-call-ledger/1",
+    "controls": [
+      {
+        "id": "01_actual_getter_synthetic_final",
+        "production_function": "final_business_view",
+        "expected": "POSITIVE",
+        "first_rejection": null
+      },
+      {
+        "id": "02_actual_getter_wrong_stage",
+        "production_function": "final_business_view",
+        "expected": "REJECT",
+        "first_rejection": "actual post-run finalized getter stage"
+      },
+      {
+        "id": "03_aux_origin_positive",
+        "production_function": "validate_final_aux_origin",
+        "expected": "POSITIVE",
+        "first_rejection": null
+      },
+      {
+        "id": "04_aux_wrong_canonical",
+        "production_function": "validate_final_aux_origin",
+        "expected": "REJECT",
+        "first_rejection": "same externally authenticated sealed model/aux canonical bytes"
+      },
+      {
+        "id": "05_aux_foreign_stage",
+        "production_function": "validate_final_aux_origin",
+        "expected": "REJECT",
+        "first_rejection": "actual final getter stage/Source"
+      },
+      {
+        "id": "06_aux_foreign_owner",
+        "production_function": "validate_final_aux_origin",
+        "expected": "REJECT",
+        "first_rejection": "same final getter owner/subtype"
+      },
+      {
+        "id": "07_aux_missing_property",
+        "production_function": "validate_final_aux_origin",
+        "expected": "REJECT",
+        "first_rejection": "exact getter properties"
+      },
+      {
+        "id": "08_aux_rawINT_not_projectedREAL",
+        "production_function": "validate_final_aux_origin",
+        "expected": "REJECT",
+        "first_rejection": "Source float projection distinct from raw type"
+      },
+      {
+        "id": "09_B2_pretty_physical_distinct_canonical",
+        "production_function": "extract_shared_callback_guard",
+        "expected": "POSITIVE",
+        "first_rejection": null
+      },
+      {
+        "id": "10_B2_physical_SHA_as_canonical",
+        "production_function": "extract_shared_callback_guard",
+        "expected": "REJECT",
+        "first_rejection": "AssertionError at explicit bundle canonical comparison"
+      },
+      {
+        "id": "11_B2_missing_fifth_key",
+        "production_function": "extract_shared_callback_guard",
+        "expected": "REJECT",
+        "first_rejection": "AssertionError at closed5 binding"
+      },
+      {
+        "id": "12_unknown_callback_before_noop",
+        "production_function": "project_model_callbacks",
+        "expected": "REJECT",
+        "first_rejection": "model callback bound identity"
+      },
+      {
+        "id": "13_closed20_no_verified_shortcut",
+        "production_function": "bindings",
+        "expected": "REJECT",
+        "first_rejection": "closed20 external comparison binding"
+      },
+      {
+        "id": "14_closed17_false_Root_auth",
+        "production_function": "validate_request",
+        "expected": "REJECT",
+        "first_rejection": "closed17 Root model request"
+      },
+      {
+        "id": "15_unbound_actual_descriptors",
+        "production_function": "validate_request",
+        "expected": "REJECT",
+        "first_rejection": "UNBOUND_ACTUAL_INPUT_OR_SOURCE_REQUEST"
+      },
+      {
+        "id": "16_prepared_gate_foreign_stage",
+        "production_function": "validate_prepared_business_view",
+        "expected": "REJECT",
+        "first_rejection": "same-instance prepared zeroKing stage"
+      }
+    ],
+    "direct_C": 16,
+    "positives": 3,
+    "expected_rejects": 13,
+    "module_imports": {
+      "C": 3,
+      "candidate_package": 1
+    },
+    "production_setup": {
+      "TapeRandom_empty": 1,
+      "CombatEngine_constructor": 1,
+      "explicit_snapshot": 1,
+      "prepare": 0,
+      "activate": 0,
+      "step": 0,
+      "run": 0,
+      "finish": 0,
+      "death": 0
+    },
+    "ctor_internal_snapshots": "Record separately in profile; not another explicit control or completed battle.",
+    "C_nested_calls": "Record exact filenames/qualnames, not promoted to additional top controls.",
+    "synthetic_fields_changed": [
+      "engine.finalized=False→True",
+      "frame_driver.finalized=False→True",
+      "frame_driver.finalized=True→False→True for stage-negative"
+    ],
+    "Tape_pass_consumption": 0,
+    "actual_capture_schema_UI_INPUT_comparison": 0,
+    "scope": "Production object/getters tested under explicit synthetic finalized prestate, not actual run or B1."
+  },
+  "outer_seconds": 25,
+  "firsterrorstop_no_retry": true
+}

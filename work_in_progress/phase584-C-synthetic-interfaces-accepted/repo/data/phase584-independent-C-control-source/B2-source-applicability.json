@@ -1,0 +1,326 @@
+{
+  "schema": "phase584-finite12-B2-source-applicability/1",
+  "status": "STATIC_APPLICABILITY_PASS_ACTUAL_WINDOW_PENDING",
+  "candidate_scope": [
+    1,
+    5,
+    11,
+    14,
+    22,
+    32,
+    162,
+    164,
+    231,
+    233,
+    234,
+    385
+  ],
+  "reuse": [
+    {
+      "path": "data/phase444-independent-b2-review/review.json",
+      "size": 5883,
+      "sha256": "6fd0cee7140edd8771257d071a3cb92f24bf319ebd2abcc3175e758ebab73945"
+    },
+    {
+      "path": "data/phase444-root-b2-callee-supplement/source-argument.json",
+      "size": 22238,
+      "sha256": "ad90cd5fd7e484947be5fb0ecdf5bde98d5634f5e8e85c504098da5d1a8fe2ec"
+    },
+    {
+      "path": "data/phase534-b2-source-applicability/source-receipt.json",
+      "size": 29381,
+      "sha256": "14bd0f157f0d544b0bb1aba4979d3018206c9550eb62fee97209f57a2ddef088"
+    },
+    {
+      "path": "data/phase563-independent-mixed-design-review/review.json",
+      "size": 7612,
+      "sha256": "443707983bec52e00875d8a98691c82fb82d402336ffae426367c7f850ec5107"
+    }
+  ],
+  "census": [
+    {
+      "source": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Weapon.gd",
+        "size": 298,
+        "sha256": "6acd1030b6e29521647df3718d48a865bdaeaced19f3190cb310f63e890253a2"
+      },
+      "extends": "extends Item",
+      "ordinary_overrides": [],
+      "own_functions": [
+        "_ready",
+        "attack",
+        "doCooldownEffect"
+      ]
+    },
+    {
+      "source": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Bag.gd",
+        "size": 6520,
+        "sha256": "104ad86cfe3be4b189799b34b04a2fa4fcaa95883eb6e6ee286018b33ad8afb4"
+      },
+      "extends": "extends Item",
+      "ordinary_overrides": [
+        "_process"
+      ],
+      "own_functions": [
+        "_ready",
+        "getHoverPriority",
+        "isBag",
+        "showBagBorderForItem",
+        "canApplyEffect",
+        "canBePicked",
+        "canBeLocked",
+        "resetZ",
+        "addToInventory",
+        "getBagLayerPriority",
+        "hasBagEffect",
+        "_process",
+        "reactToDropResult",
+        "onRemoveFromInventory",
+        "getTopLeftGlobal",
+        "getBottomRightGlobal",
+        "isEmpty",
+        "getItemsInside",
+        "getEmptyCells",
+        "getEmptyGlobalPositions",
+        "getAffectedItemsInside",
+        "previewCanAffect",
+        "prepare",
+        "combatToShop",
+        "getCraftableNeighbors",
+        "onItemAdded",
+        "onAffectedItemInsideAdded",
+        "onItemRemoved",
+        "onAffectedItemInsideRemoved",
+        "pushItemsInsideToStorage",
+        "onDraggedWithParentStart",
+        "onDraggedWithParentEnd",
+        "getNumAffectedInside",
+        "getNumAffectedInside_type",
+        "getBagMultiplicity",
+        "discard"
+      ]
+    },
+    {
+      "source": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Food.gd",
+        "size": 187,
+        "sha256": "e0ff858b55f1f5a2d8e1b06ee155a4f7444ba7f4cd903bbee2b09780bfb20a23"
+      },
+      "extends": "extends Item",
+      "ordinary_overrides": [],
+      "own_functions": [
+        "canAffect",
+        "prepare"
+      ]
+    },
+    {
+      "source": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Banana.gd",
+        "size": 74,
+        "sha256": "34f0516d8615a93129edb30e59598a62183a7a10947ad83c65445f7323f157f0"
+      },
+      "extends": "extends Food",
+      "ordinary_overrides": [],
+      "own_functions": [
+        "doCooldownEffect"
+      ]
+    },
+    {
+      "source": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Blueberries.gd",
+        "size": 140,
+        "sha256": "13ad54f17dc6e4d12977f5c46b79e624530d77a68cef18092a4fc9089357a155"
+      },
+      "extends": "extends Food",
+      "ordinary_overrides": [],
+      "own_functions": [
+        "doCooldownEffect"
+      ]
+    },
+    {
+      "source": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/BowlofTreats.gd",
+        "size": 975,
+        "sha256": "eb7dab954433ec19ad719a80ff93ba1b511aad026e5d640f6c58fc6a07887604"
+      },
+      "extends": "extends Food",
+      "ordinary_overrides": [],
+      "own_functions": [
+        "canAffect_global",
+        "onPrepare",
+        "doCooldownEffect",
+        "getGatedDescriptor"
+      ]
+    },
+    {
+      "source": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/ForestFriend.gd",
+        "size": 236,
+        "sha256": "d1d067d4526a53313e28df3fd3a441415c76a2fcb1368d823d51f3d30eb57147"
+      },
+      "extends": "extends Item",
+      "ordinary_overrides": [],
+      "own_functions": [
+        "canAffect",
+        "combatStart"
+      ]
+    },
+    {
+      "source": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/Squirrel.gd",
+        "size": 508,
+        "sha256": "c23b8aec966449cc60761007879b99c3528c4cbe94309914789954cea34de949"
+      },
+      "extends": "extends \"res://Items/Exclusive/ForestFriend.gd\"",
+      "ordinary_overrides": [],
+      "own_functions": [
+        "doCooldownEffect",
+        "playPickupSound",
+        "playDropSound"
+      ]
+    },
+    {
+      "source": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Wolpertinger.gd",
+        "size": 522,
+        "sha256": "5607b4eea0e69fa4f1f46f2a646e1c3a4c12668be75c45269cf0a2ce6b258ea2"
+      },
+      "extends": "extends Item",
+      "ordinary_overrides": [],
+      "own_functions": [
+        "canAffect",
+        "onPrepare",
+        "doCooldownEffect",
+        "onBuffChanged"
+      ]
+    },
+    {
+      "source": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/EnchantedWeapons.gd",
+        "size": 270,
+        "sha256": "5b8ce556c4ac56c6e6b7e3749ba8cf761d3380174c467bae4bef98976264abec"
+      },
+      "extends": "extends Item",
+      "ordinary_overrides": [],
+      "own_functions": [
+        "canAffect",
+        "onPrepare",
+        "doCooldownEffect"
+      ]
+    },
+    {
+      "source": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Spear.gd",
+        "size": 338,
+        "sha256": "3854241d238f7e928d381b8803df9456a05810bd12d9fcddf41f6037d96669da"
+      },
+      "extends": "extends Weapon",
+      "ordinary_overrides": [],
+      "own_functions": [
+        "affectsEmpty",
+        "canAffect",
+        "onPrepare",
+        "onPreDealDamage_late"
+      ]
+    },
+    {
+      "source": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/MagicStaff.gd",
+        "size": 558,
+        "sha256": "bdc6aa5d90109e66f492af8d8808c268a638d0714a425d736411a0e337c67344"
+      },
+      "extends": "extends Weapon",
+      "ordinary_overrides": [],
+      "own_functions": [
+        "onPreDealDamage_early"
+      ]
+    },
+    {
+      "source": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/ThornShortbow.gd",
+        "size": 291,
+        "sha256": "4571fc8e2b13a9be0a8a2e64f9f68866df913c8b083356a28d0c0d39365a6a5e"
+      },
+      "extends": "extends Weapon",
+      "ordinary_overrides": [],
+      "own_functions": [
+        "onDealtDamage"
+      ]
+    },
+    {
+      "source": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/LuckyShortbow.gd",
+        "size": 281,
+        "sha256": "b0a89ba570340e0ee8e10dd0879c36429b48a3daa08e4c9a5b26bd996e1b3f2a"
+      },
+      "extends": "extends Weapon",
+      "ordinary_overrides": [],
+      "own_functions": [
+        "onPreDealDamage_early"
+      ]
+    }
+  ],
+  "query_delta": [
+    {
+      "path": "Items/Food.gd",
+      "function": "canAffect",
+      "source": "func canAffect(item):\n\treturn item.hasType(Type.Food) and item.descriptor != descriptor",
+      "sha256": "f9236e8c4ae4d45b577f7871361fd5e122f7b74b5cab33becab52888a177bb01"
+    },
+    {
+      "path": "Items/Exclusive/BowlofTreats.gd",
+      "function": "canAffect_global",
+      "source": "func canAffect_global(item):\n\treturn item.hasType(Type.Pet)",
+      "sha256": "d76abadbc92ec0f280d6e95fa2210776a2c0ad442c08a04917eb417123059039"
+    },
+    {
+      "path": "Items/Exclusive/ForestFriend.gd",
+      "function": "canAffect",
+      "source": "func canAffect(item):\n\treturn item.hasType(Type.Pet) or item.hasType(Type.Food)",
+      "sha256": "df7181a435759b9c2e34abff9ea78754a5659329011ab12648cc86ebb2cb0488"
+    },
+    {
+      "path": "Items/Wolpertinger.gd",
+      "function": "canAffect",
+      "source": "func canAffect(item):\n\treturn item.hasType(Type.Pet)",
+      "sha256": "4a5eff0ded940e9b72d2d2d707fc9acc3760dd8c75d54d5111bc82ff11354656"
+    },
+    {
+      "path": "Items/Exclusive/EnchantedWeapons.gd",
+      "function": "canAffect",
+      "source": "func canAffect(item):\n\treturn item.hasAttackEffect()",
+      "sha256": "02acd4258e0cc1b18a0005a1cb156109dbe56805f7ca6ea454f698f5c2aa8fa8"
+    },
+    {
+      "path": "Items/Spear.gd",
+      "function": "affectsEmpty",
+      "source": "func affectsEmpty(color):\n\treturn true",
+      "sha256": "363db5c6f6d7d6379d0eb5b68200d82ec6a743257e8f3e04e77aa4540a037820"
+    },
+    {
+      "path": "Items/Spear.gd",
+      "function": "canAffect",
+      "source": "func canAffect(item):\n\treturn false",
+      "sha256": "78870db347995b266768b601b1a7c5b310044e9a8a18b73bd44c41e5be3d787c"
+    }
+  ],
+  "Item_hasAttackEffect": {
+    "wholefile": {
+      "path": "data/phase572-mixed-observer-source-v2/after-source/Items/Item.gd",
+      "size": 178614,
+      "sha256": "11fb434eaa028eb965e10883d84ef7028ee96bdfbf2f53bdc71af64332ae0429"
+    },
+    "Source": "func hasAttackEffect() -> bool:\n\treturn (hasPreDealDamageEarlyEffect or \n\t\t\thasPreDealDamageLateEffect or \n\t\t\thasDealtDamageEffect)",
+    "sha256": "829c092c9032341feb86a6ab82b6b421f788c1ce859cf34d533693c589f2d046"
+  },
+  "conclusion": [
+    "Only Bag adds ordinary _process, wholly dragged-guarded by prior444/534 proof; no new ordinary override in the finite new caller/receiver classes. Multilevel base callback remains accounted.",
+    "Bowl inherits Food spatial predicate and adds Pet-only global read; Wolper Pet query; Enchanted hasAttackEffect reads precomputed three handler-presence BOOLs; Spear affectsEmpty true/canAffect false. No query emits combat events, writes caches/stats/Timer or calls RNG.",
+    "All finite subclasses retain the Item cached-highlight route and inherited readonly secondary/type/activation queries from444; do not require Game hover targets globally absent.",
+    "Bowl gated shop RNG and Squirrel pickup/drop pitch are not classified as noop. They are outside these ordinary callee routes; combat pitch remains selected Tape business.",
+    "Future actual fullwindow must establish picking/input/controller/focus/drag/rigid branches for new29boundUIDs; no actualUI read or Nativepurity claim here. Candidate31slots only conditional on this Source argument plus future actualwindow."
+  ],
+  "actual_UI_reads": 0,
+  "candidate_calls": 0
+}

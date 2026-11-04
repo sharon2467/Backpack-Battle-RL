@@ -1,0 +1,114 @@
+{
+  "schema": "phase444-independent-B2-joined-review/1",
+  "status": "ACCEPTED_FIXED_CONDITIONAL_TAPE_SHARED_CALLBACK_DOMAIN",
+  "evidence": [
+    {
+      "path": "docs/phase443_b2_shared_callback_guard_spec.md",
+      "size": 2538,
+      "sha256": "03e5483229fc6e4190ac7fae9fe25cd6bde8de2f11f183b2ffca9776fb966bb1"
+    },
+    {
+      "path": "data/phase443-root-b2-reference/facts.json",
+      "size": 11217,
+      "sha256": "3f38c650cbe67b1280e1c78605c16ff992a18432653a970b44d35b41337b71be"
+    },
+    {
+      "path": "data/phase443-root-b2-reference/source-argument.json",
+      "size": 17011,
+      "sha256": "e97e34c12e5328b0517f3f9ad4ad32372d613c41c2370fc324652267185e8131"
+    },
+    {
+      "path": "data/phase444-root-b2-callee-supplement/source-argument.json",
+      "size": 22238,
+      "sha256": "ad90cd5fd7e484947be5fb0ecdf5bde98d5634f5e8e85c504098da5d1a8fe2ec"
+    }
+  ],
+  "owners": [
+    {
+      "path": "data/phase443-root-b2-reference/owned-files.json",
+      "size": 705,
+      "sha256": "548e23faece7320cac5ab69fe2720c3985517bbe1da116f99d163c7d960b2062"
+    },
+    {
+      "path": "data/phase444-root-b2-callee-supplement/owned-files.json",
+      "size": 266,
+      "sha256": "5b9e644cae838eba901044ecfcb51376bc575abe037efa541a5ab31b1323285f"
+    }
+  ],
+  "prior443_source_review": {
+    "path": "data/phase443-independent-source-review/review.json",
+    "size": 8288,
+    "sha256": "3b56a951938887173b52992c25c705e7e81cc8e9063f9d8cca97efe18c4f9f23"
+  },
+  "source_checks": {
+    "prior_session_original_argument_refs": 29,
+    "prior_unique_files": 7,
+    "new_supplement_refs": 35,
+    "new_unique_files": 21,
+    "new_function_slices": 17,
+    "new_scene_script_bindings": 6,
+    "new_drift": []
+  },
+  "guards": [
+    {
+      "id": "drag_rigid",
+      "decision": "ACCEPT",
+      "basis": "Pinned actual391 patch maps original Game/Item before SHA to after SHA. Item hooks are first inside dragged/rigid branches before transform/business/direct-primitive effects. Root factual extraction has zero Item entries globally in complete no-drop/no-overflow window spanning selected birth to final preinternal; this is branch evidence, not initialfalse inference."
+    },
+    {
+      "id": "focus",
+      "decision": "ACCEPT_IN_ORDINARY_G02_DOMAIN",
+      "basis": "Selected39 begin focus/hovered/draggedfalse. gainFocus positive focus write synchronously reaches unconditional respondToHover hook; no selected entry. Existing bounded ordinary script writer/dispatch census excludes other positive writers for these selected no-gem objects. Initialfalse alone is insufficient."
+    },
+    {
+      "id": "controller",
+      "decision": "ACCEPT_IN_ORDINARY_G02_DOMAIN",
+      "basis": "Sink checks inputdisabled/picking/controller at every physics/idle signal and UI write; completed window is failure-free. usingController positive assignment is in Game._input; stored Viewport::_vp_input exits on disable_input before dispatch. This joins ordinary bounded writer census; polling alone is not an arbitrary transient-write proof."
+    },
+    {
+      "id": "Game_idle_and_display_tails",
+      "decision": "ACCEPT",
+      "basis": "Reviewed recalculateCursor/getCursorType/custom cursor helpers/software Cursor and Item shadow/lock/sprite operations have presentation-only effects in admitted domain; no relevant combat/cache/Timer/log or selected primitive effect."
+    },
+    {
+      "id": "residual_nonCombat_highlight",
+      "decision": "ACCEPT",
+      "basis": "No globalfocus=null or all-interval Combat assumption. Actual six scene/script chains: Weapon/Shield/Bag primary false; Potion target.hasType; Food target.hasType+descriptor comparison; Goobert target.canActivate. Other colors inherited false. canAffectDraggedItem reads cached arrays and membership; Inventory.isHovered only membership. Actual Item-derived target canActivate/hasType/isBag queries (including MagicRing override) are read-only. Caller uses booleans only for sprite.modulate; no lazy cache writes, RNG, Timer or log."
+    },
+    {
+      "id": "derived_Bag",
+      "decision": "ACCEPT",
+      "basis": "Node call_multilevel includes base and derived processing. Bag additional _process tail is dragged-only; same excluded drag branch and no mid-callback drag writer in the reviewed admitted path. Do not assume override suppresses Item._process."
+    }
+  ],
+  "native_leaf_refs": [
+    {
+      "path": "data/phase251-logic-reset-timer-source-plan/Godot3.6.2/scene/main/node.cpp",
+      "size": 95163,
+      "sha256": "0c2e3230b37644c8496f5b1aee59f428de6a497a380c247613c489e44cd508a9"
+    },
+    {
+      "path": "data/phase027-implementation-design/full-source/upstream/scene/main/viewport.cpp",
+      "size": 115545,
+      "sha256": "6eb44227474694932b3ad8f093b032f47f95f1c1ed364c742a3662bd33044ef7"
+    }
+  ],
+  "limits": [
+    "Fixed selected39 plus Game physics/idle and accepted ordinaryG02 source/dispatch/provenance domain only; no foreign script/native hook or binary reproducible-build proof.",
+    "Root existing rawUI factual extraction read1; independent reviewer rawUI/original12 reads0, no extraction rerun.",
+    "Conditional all365 selected primitive ABI/order/arguments/results and all business logs/state remain strict. No same-seed/global-generator or GUI equality claim.",
+    "116 presentation exclusions remain; UI footer is coverage evidence only, never gameplay input or terminal stopping rule.",
+    "Existing815 public-redaction/migration limits remain; reconstructed old analysis is not original bytes.",
+    "B1/B5 and interface/actual model acceptance are separate. This B2 acceptance does not release a model run or admit King."
+  ],
+  "activity": {
+    "new_original_capture": 0,
+    "original12_reads": 0,
+    "raw_UI_reads": 0,
+    "model_calls": 0,
+    "old_controls": 0,
+    "source_edits": 0
+  },
+  "model_release": false,
+  "King_admitted": false
+}

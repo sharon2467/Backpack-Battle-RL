@@ -1,0 +1,187 @@
+{
+  "schema": "phase584-exact-execution-plan/1",
+  "status": "FROZEN_NOT_EXECUTED_REQUIRES_ROOT_RELEASE",
+  "argv": [
+    "python",
+    "-I",
+    "-B",
+    "/workspace/python-original-engine/repo/tests/phase584_independent_C_controls.py",
+    "--pins",
+    "/workspace/python-original-engine/repo/data/phase584-independent-C-control-source/pins.json",
+    "--output-new",
+    "/workspace/python-original-engine/repo/data/phase584-independent-controls-first-001"
+  ],
+  "cwd": "/tmp",
+  "inner_wall_seconds": 20,
+  "outer_wall_seconds": 25,
+  "fresh_processes": 1,
+  "script": {
+    "path": "tests/phase584_independent_C_controls.py",
+    "size": 13399,
+    "sha256": "9a3b44b4b419990ed8178770dd673fe74637693c29983783fa706c98eabd24e4"
+  },
+  "pins": {
+    "path": "data/phase584-independent-C-control-source/pins.json",
+    "size": 18222,
+    "sha256": "ce4c1d81383fb830ca759eb80f080d3eaf0c457e3c1f6c6ef4326a3479849102"
+  },
+  "vectors": {
+    "path": "data/phase584-independent-C-control-source/vectors.json",
+    "size": 10045,
+    "sha256": "b0793f84281cf54196c3ec071e05b985d814b2feb41e74b4e71e001049d3ea77"
+  },
+  "ledger": {
+    "path": "data/phase584-independent-C-control-source/call-ledger.json",
+    "size": 4197,
+    "sha256": "f148b28419685f74215b3019f012b7c8b884ef525e4cee3e6a2de2cff290a5e2"
+  },
+  "Source_review": {
+    "path": "data/phase584-independent-C-control-source/static-review.json",
+    "size": 5785,
+    "sha256": "71240eb605978c7a4ca67e3366e81f8d6ffcd68e8466f4270c69de4b169ea8ed"
+  },
+  "Source_applicability": {
+    "path": "data/phase584-independent-C-control-source/B2-source-applicability.json",
+    "size": 11176,
+    "sha256": "1a20ff403e44da35ef6cef99ffa89452f2c7396c0274dff1cdc0e466f77966ad"
+  },
+  "budget": {
+    "schema": "phase584-exact-call-ledger/1",
+    "controls": [
+      {
+        "id": "01_actual_getter_synthetic_final",
+        "production_function": "final_business_view",
+        "expected": "POSITIVE",
+        "first_rejection": null
+      },
+      {
+        "id": "02_actual_getter_wrong_stage",
+        "production_function": "final_business_view",
+        "expected": "REJECT",
+        "first_rejection": "actual post-run finalized getter stage"
+      },
+      {
+        "id": "03_aux_origin_positive",
+        "production_function": "validate_final_aux_origin",
+        "expected": "POSITIVE",
+        "first_rejection": null
+      },
+      {
+        "id": "04_aux_wrong_canonical",
+        "production_function": "validate_final_aux_origin",
+        "expected": "REJECT",
+        "first_rejection": "same externally authenticated sealed model/aux canonical bytes"
+      },
+      {
+        "id": "05_aux_foreign_stage",
+        "production_function": "validate_final_aux_origin",
+        "expected": "REJECT",
+        "first_rejection": "actual final getter stage/Source"
+      },
+      {
+        "id": "06_aux_foreign_owner",
+        "production_function": "validate_final_aux_origin",
+        "expected": "REJECT",
+        "first_rejection": "same final getter owner/subtype"
+      },
+      {
+        "id": "07_aux_missing_property",
+        "production_function": "validate_final_aux_origin",
+        "expected": "REJECT",
+        "first_rejection": "exact getter properties"
+      },
+      {
+        "id": "08_aux_rawINT_not_projectedREAL",
+        "production_function": "validate_final_aux_origin",
+        "expected": "REJECT",
+        "first_rejection": "Source float projection distinct from raw type"
+      },
+      {
+        "id": "09_B2_pretty_physical_distinct_canonical",
+        "production_function": "extract_shared_callback_guard",
+        "expected": "POSITIVE",
+        "first_rejection": null
+      },
+      {
+        "id": "10_B2_physical_SHA_as_canonical",
+        "production_function": "extract_shared_callback_guard",
+        "expected": "REJECT",
+        "first_rejection": "AssertionError at explicit bundle canonical comparison"
+      },
+      {
+        "id": "11_B2_missing_fifth_key",
+        "production_function": "extract_shared_callback_guard",
+        "expected": "REJECT",
+        "first_rejection": "AssertionError at closed5 binding"
+      },
+      {
+        "id": "12_unknown_callback_before_noop",
+        "production_function": "project_model_callbacks",
+        "expected": "REJECT",
+        "first_rejection": "model callback bound identity"
+      },
+      {
+        "id": "13_closed20_no_verified_shortcut",
+        "production_function": "bindings",
+        "expected": "REJECT",
+        "first_rejection": "closed20 external comparison binding"
+      },
+      {
+        "id": "14_closed17_false_Root_auth",
+        "production_function": "validate_request",
+        "expected": "REJECT",
+        "first_rejection": "closed17 Root model request"
+      },
+      {
+        "id": "15_unbound_actual_descriptors",
+        "production_function": "validate_request",
+        "expected": "REJECT",
+        "first_rejection": "UNBOUND_ACTUAL_INPUT_OR_SOURCE_REQUEST"
+      },
+      {
+        "id": "16_prepared_gate_foreign_stage",
+        "production_function": "validate_prepared_business_view",
+        "expected": "REJECT",
+        "first_rejection": "same-instance prepared zeroKing stage"
+      }
+    ],
+    "direct_C": 16,
+    "positives": 3,
+    "expected_rejects": 13,
+    "module_imports": {
+      "C": 3,
+      "candidate_package": 1
+    },
+    "production_setup": {
+      "TapeRandom_empty": 1,
+      "CombatEngine_constructor": 1,
+      "explicit_snapshot": 1,
+      "prepare": 0,
+      "activate": 0,
+      "step": 0,
+      "run": 0,
+      "finish": 0,
+      "death": 0
+    },
+    "ctor_internal_snapshots": "Record separately in profile; not another explicit control or completed battle.",
+    "C_nested_calls": "Record exact filenames/qualnames, not promoted to additional top controls.",
+    "synthetic_fields_changed": [
+      "engine.finalized=False→True",
+      "frame_driver.finalized=False→True",
+      "frame_driver.finalized=True→False→True for stage-negative"
+    ],
+    "Tape_pass_consumption": 0,
+    "actual_capture_schema_UI_INPUT_comparison": 0,
+    "scope": "Production object/getters tested under explicit synthetic finalized prestate, not actual run or B1."
+  },
+  "read_scope": "Exact pinned Source/metadata and synthetic vectors only. All needed stdlib loaded before audit. Candidate imports use only fixed580 staged package. No actualrawINPUT/UI/Expected/pool/network.",
+  "write_scope": "Only fresh data/phase584-independent-controls-first-001; all production Source unchanged.",
+  "first_error_policy": "Stop at first unexpected error; save partial cases/raw getter/model snapshot/traceback/Sourceafter; no retry.",
+  "limitations": [
+    "Same explicit synthetic prestate approved by Root, not actual finalrun/B1/Native.",
+    "Raw result derived from real one snapshot; four definition getters measured, no FakeEngine/method patch.",
+    "Pure aux API requires only two canonical entries; complete20binding and physical sharedseal remain external operational prerequisites, tested here only rejection of extra verified shortcut.",
+    "Three synthetic UIrows do not certify actual complete window.",
+    "Current actual C modelrequest and comparison templates remain unbound; no model release follows from these controls alone."
+  ]
+}

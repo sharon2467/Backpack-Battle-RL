@@ -1,0 +1,494 @@
+{
+  "schema": "phase584-independent-final-acceptance/1",
+  "status": "PASS_SOURCE_AND_FINITE_SYNTHETIC_C_INTERFACES_ONLY",
+  "scope": "583 v2 C launcher/adapter/B2 Source plus16 finite synthetic controls. Not actual postrun, actual B1/B2, Native or strict8 acceptance. Project remains incomplete.",
+  "bindings": {
+    "static_review": {
+      "path": "data/phase584-independent-C-control-source/static-review.json",
+      "size": 5785,
+      "sha256": "71240eb605978c7a4ca67e3366e81f8d6ffcd68e8466f4270c69de4b169ea8ed"
+    },
+    "static_finite12_B2": {
+      "path": "data/phase584-independent-C-control-source/B2-source-applicability.json",
+      "size": 11176,
+      "sha256": "1a20ff403e44da35ef6cef99ffa89452f2c7396c0274dff1cdc0e466f77966ad"
+    },
+    "Source_control_owner": {
+      "path": "data/phase584-independent-C-control-source/owned-files.json",
+      "size": 2504,
+      "sha256": "bd71e77bfdcf22e8cc2b2fc98da7273d8a1f68f5b6647e184797a664e154d710"
+    },
+    "execution_plan": {
+      "path": "data/phase584-independent-C-control-source/execution-plan.json",
+      "size": 7275,
+      "sha256": "9dff1d85b1cd9327efe2096cec8723d5f2a6bce0df7f465f83db24e606e61ff3"
+    },
+    "call_ledger": {
+      "path": "data/phase584-independent-C-control-source/call-ledger.json",
+      "size": 4197,
+      "sha256": "f148b28419685f74215b3019f012b7c8b884ef525e4cee3e6a2de2cff290a5e2"
+    },
+    "vectors": {
+      "path": "data/phase584-independent-C-control-source/vectors.json",
+      "size": 10045,
+      "sha256": "b0793f84281cf54196c3ec071e05b985d814b2feb41e74b4e71e001049d3ea77"
+    },
+    "pins": {
+      "path": "data/phase584-independent-C-control-source/pins.json",
+      "size": 18222,
+      "sha256": "ce4c1d81383fb830ca759eb80f080d3eaf0c457e3c1f6c6ef4326a3479849102"
+    },
+    "actual_result": {
+      "path": "data/phase584-independent-controls-first-001/result.json",
+      "size": 483083,
+      "sha256": "f450e82264b38521d4bff1e033f122f76bd83d45933a6f21c5ce8556b849770c"
+    },
+    "actual_owner": {
+      "path": "data/phase584-independent-controls-first-001/owned-files.json",
+      "size": 290,
+      "sha256": "4bf4a801d85676c22f020cf890da4b57f797440e858e029876f4a31cd93ba5c8"
+    },
+    "Root_release": {
+      "path": "data/phase584-root-unique-C-control-release/release.json",
+      "size": 5239,
+      "sha256": "75e0160f1eddac48047b3f94f7f7853dbb101e8682f8a07ea6898b9cf14b242e"
+    },
+    "Root_execution": {
+      "path": "data/phase584-root-unique-C-control-release/execution.json",
+      "size": 162,
+      "sha256": "384ee428f6cf25b4e58e92849a238c75289e046df8ded8e150ddf25c4a9d6252"
+    },
+    "Root_owner": {
+      "path": "data/phase584-root-unique-C-control-release/owned-files.json",
+      "size": 1424,
+      "sha256": "8028eb7e1f3be3a5cf5b2c26e6f773c9acfe6a714be5d6e4c0c4a9d89e1e1289"
+    },
+    "C_Source_owner": {
+      "path": "data/phase582-mixed-launcher-output-source-v2/owned-files.json",
+      "size": 11805,
+      "sha256": "47fdbdb4329461bfe9a9ba2bcc21eecad8a582d84e104cda0ecc2090daad9c49"
+    },
+    "C_Source_freeze": {
+      "path": "data/phase582-mixed-launcher-output-source-v2/source-freeze.json",
+      "size": 12136,
+      "sha256": "b93a3ad66a2623bfff39c572f920d16284d5da4004d9834307b9eda415ee8675"
+    }
+  },
+  "readonly_verification": {
+    "source_owner_refs": 12,
+    "actual_owner_refs": 1,
+    "Root_owner_refs": 6,
+    "before_after_current_pins_exact": 90,
+    "candidate_reexecution": 0,
+    "C_reexecution": 0,
+    "Native": 0,
+    "Expected": 0,
+    "actual_UI": 0,
+    "actual_INPUT": 0,
+    "method": "Read persisted result/tracebacks/profiles/import origins and independently hash existing files. Static AST enumerates only driver method names to establish explicit zero calls."
+  },
+  "source_acceptance_reused": {
+    "owner_refs_exact": 59,
+    "whole_module_inverses": 3,
+    "neutral_AST_and_body_plus_LF_hash_helpers": 20,
+    "v1partial_v2_function_sets_exact": {
+      "launcher": 14,
+      "adapter": 39,
+      "B2": 3
+    },
+    "B_candidate_modules_unchanged": 15,
+    "strict_sections": 8,
+    "actual_binding_keys": {
+      "request": 17,
+      "comparison": 20,
+      "B2": 5
+    }
+  },
+  "actual_invocation": {
+    "argv": [
+      "python",
+      "-I",
+      "-B",
+      "/workspace/python-original-engine/repo/tests/phase584_independent_C_controls.py",
+      "--pins",
+      "/workspace/python-original-engine/repo/data/phase584-independent-C-control-source/pins.json",
+      "--output-new",
+      "/workspace/python-original-engine/repo/data/phase584-independent-controls-first-001"
+    ],
+    "cwd": "/tmp",
+    "pid": 17633,
+    "reaped": true,
+    "exit": 0,
+    "stdout_bytes": 0,
+    "stderr_bytes": 0,
+    "outer_timeout": false,
+    "outer_wall_seconds": 0.5415358690006542,
+    "harness_wall_seconds": 0.4377505159973225,
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "executions": 1
+  },
+  "counts": {
+    "C_direct": 16,
+    "positive": 3,
+    "expected_reject": 13,
+    "C_module_evaluations": 3,
+    "explicit_candidate_package_import": 1,
+    "candidate_module_evaluations": 9,
+    "real_Engine_constructor": 1,
+    "empty_Tape_constructor": 1,
+    "explicit_Engine_snapshot": 1,
+    "total_Engine_snapshot_profile": 1,
+    "constructor_internal_pure_business_snapshot": 1,
+    "prepare": 0,
+    "activate": 0,
+    "step": 0,
+    "run": 0,
+    "Tape_draws": 0,
+    "clock_passes": 0,
+    "actual_B1": 0,
+    "actual_B2": 0,
+    "actual_comparison": 0
+  },
+  "controls": [
+    {
+      "id": "01_actual_getter_synthetic_final",
+      "status": "PASS",
+      "expected_reject": null
+    },
+    {
+      "id": "02_actual_getter_wrong_stage",
+      "status": "PASS",
+      "expected_reject": "actual post-run finalized getter stage",
+      "first_reject": "actual post-run finalized getter stage",
+      "first_reject_type": "ValueError",
+      "source": "tests/phase583_mixed_tape_run.py:214",
+      "deep_gate_after_rebound_synthetic_canonical": false
+    },
+    {
+      "id": "03_aux_origin_positive",
+      "status": "PASS",
+      "expected_reject": null
+    },
+    {
+      "id": "04_aux_wrong_canonical",
+      "status": "PASS",
+      "expected_reject": "same externally authenticated sealed model/aux canonical bytes",
+      "first_reject": "same externally authenticated sealed model/aux canonical bytes",
+      "first_reject_type": "ValueError",
+      "source": "tests/phase583_mixed_business_output.py:660",
+      "deep_gate_after_rebound_synthetic_canonical": false
+    },
+    {
+      "id": "05_aux_foreign_stage",
+      "status": "PASS",
+      "expected_reject": "actual final getter stage/Source",
+      "first_reject": "actual final getter stage/Source",
+      "first_reject_type": "ValueError",
+      "source": "tests/phase583_mixed_business_output.py:662",
+      "deep_gate_after_rebound_synthetic_canonical": true
+    },
+    {
+      "id": "06_aux_foreign_owner",
+      "status": "PASS",
+      "expected_reject": "same final getter owner/subtype",
+      "first_reject": "same final getter owner/subtype",
+      "first_reject_type": "ValueError",
+      "source": "tests/phase583_mixed_business_output.py:669",
+      "deep_gate_after_rebound_synthetic_canonical": true
+    },
+    {
+      "id": "07_aux_missing_property",
+      "status": "PASS",
+      "expected_reject": "exact getter properties",
+      "first_reject": "exact getter properties",
+      "first_reject_type": "ValueError",
+      "source": "tests/phase583_mixed_business_output.py:670",
+      "deep_gate_after_rebound_synthetic_canonical": true
+    },
+    {
+      "id": "08_aux_rawINT_not_projectedREAL",
+      "status": "PASS",
+      "expected_reject": "Source float projection distinct from raw type",
+      "first_reject": "Source float projection distinct from raw type",
+      "first_reject_type": "ValueError",
+      "source": "tests/phase583_mixed_business_output.py:675",
+      "deep_gate_after_rebound_synthetic_canonical": true
+    },
+    {
+      "id": "09_B2_pretty_physical_distinct_canonical",
+      "status": "PASS",
+      "expected_reject": null
+    },
+    {
+      "id": "10_B2_physical_SHA_as_canonical",
+      "status": "PASS",
+      "expected_reject": "ASSERTION",
+      "first_reject": "",
+      "first_reject_type": "AssertionError",
+      "source": "tests/phase583_shared_callback_guard.py:34",
+      "deep_gate_after_rebound_synthetic_canonical": false
+    },
+    {
+      "id": "11_B2_missing_fifth_key",
+      "status": "PASS",
+      "expected_reject": "ASSERTION",
+      "first_reject": "",
+      "first_reject_type": "AssertionError",
+      "source": "tests/phase583_shared_callback_guard.py:27",
+      "deep_gate_after_rebound_synthetic_canonical": false
+    },
+    {
+      "id": "12_unknown_callback_before_noop",
+      "status": "PASS",
+      "expected_reject": "model callback bound identity",
+      "first_reject": "model callback bound identity",
+      "first_reject_type": "ValueError",
+      "source": "tests/phase583_mixed_business_output.py:476",
+      "deep_gate_after_rebound_synthetic_canonical": false
+    },
+    {
+      "id": "13_closed20_no_verified_shortcut",
+      "status": "PASS",
+      "expected_reject": "closed20 external comparison binding",
+      "first_reject": "closed20 external comparison binding",
+      "first_reject_type": "ValueError",
+      "source": "tests/phase583_mixed_business_output.py:103",
+      "deep_gate_after_rebound_synthetic_canonical": false
+    },
+    {
+      "id": "14_closed17_false_Root_auth",
+      "status": "PASS",
+      "expected_reject": "closed17 Root model request",
+      "first_reject": "closed17 Root model request",
+      "first_reject_type": "ValueError",
+      "source": "tests/phase583_mixed_tape_run.py:110",
+      "deep_gate_after_rebound_synthetic_canonical": false
+    },
+    {
+      "id": "15_unbound_actual_descriptors",
+      "status": "PASS",
+      "expected_reject": "UNBOUND_ACTUAL_INPUT_OR_SOURCE_REQUEST",
+      "first_reject": "UNBOUND_ACTUAL_INPUT_OR_SOURCE_REQUEST",
+      "first_reject_type": "ValueError",
+      "source": "tests/phase583_mixed_tape_run.py:111",
+      "deep_gate_after_rebound_synthetic_canonical": false
+    },
+    {
+      "id": "16_prepared_gate_foreign_stage",
+      "status": "PASS",
+      "expected_reject": "same-instance prepared zeroKing stage",
+      "first_reject": "same-instance prepared zeroKing stage",
+      "first_reject_type": "ValueError",
+      "source": "tests/phase583_mixed_tape_run.py:175",
+      "deep_gate_after_rebound_synthetic_canonical": false
+    }
+  ],
+  "actual_getters": [
+    {
+      "owner": "P:13",
+      "item_index": 231,
+      "property": "numBuffs",
+      "getter": "definition['least_buffs']",
+      "raw_type": "int",
+      "raw_value": 3,
+      "projected_type": "INT",
+      "projected_value": 3
+    },
+    {
+      "owner": "O:4",
+      "item_index": 231,
+      "property": "numBuffs",
+      "getter": "definition['least_buffs']",
+      "raw_type": "int",
+      "raw_value": 3,
+      "projected_type": "INT",
+      "projected_value": 3
+    },
+    {
+      "owner": "P:19",
+      "item_index": 385,
+      "property": "buffs",
+      "getter": "definition['least_buffs']",
+      "raw_type": "int",
+      "raw_value": 1,
+      "projected_type": "INT",
+      "projected_value": 1
+    },
+    {
+      "owner": "P:15",
+      "item_index": 32,
+      "property": "manaCost",
+      "getter": "definition['mana_cost']",
+      "raw_type": "int",
+      "raw_value": 3,
+      "projected_type": "REAL",
+      "projected_value": 3.0
+    },
+    {
+      "owner": "P:15",
+      "item_index": 32,
+      "property": "tempDamBonus",
+      "getter": "definition['temporary_damage']",
+      "raw_type": "int",
+      "raw_value": 6,
+      "projected_type": "REAL",
+      "projected_value": 6.0
+    },
+    {
+      "owner": "P:15",
+      "item_index": 32,
+      "property": "permDamBonus",
+      "getter": "definition['permanent_damage']",
+      "raw_type": "int",
+      "raw_value": 2,
+      "projected_type": "REAL",
+      "projected_value": 2.0
+    }
+  ],
+  "getter_observation_boundary": {
+    "actual_objects": "One real frozen580 CombatEngine/ItemState set, real definition getter and real snapshot. No fakeEngine/method stubs/patch.",
+    "synthetic_assignments": [
+      {
+        "field": "engine.finalized",
+        "before": false,
+        "after": true,
+        "authority": "explicit synthetic prestate, not completed run"
+      },
+      {
+        "field": "engine.frame_driver.finalized",
+        "before": false,
+        "after": true,
+        "authority": "explicit synthetic prestate, not completed run"
+      },
+      {
+        "field": "engine.frame_driver.finalized",
+        "before": true,
+        "after": false,
+        "authority": "negative stage"
+      },
+      {
+        "field": "engine.frame_driver.finalized",
+        "before": false,
+        "after": true,
+        "authority": "restore unit prestate"
+      }
+    ],
+    "measured_output": "Matches presealed six property expectations across4owners; Source-based Staff float cast separately represented.",
+    "not_proved": "Flags were assigned by the test. No model run, cleanup barrier or terminal lifecycle occurred. POST_RUN_SAME_INSTANCE_FINAL_READ is the helper format label under explicit synthetic prestate, not evidence of true postrun.",
+    "winner": null
+  },
+  "aux_negative_depth": "Canonical-negative04 stops at canonical identity. Cases05–08 are canonically rebound test copies and reach the intended stage, owner, exact-field or REAL-cast check; they are not misreported as deep checks after a hash mismatch. Mutated input canonical immutability assertions passed; no separate before/after snapshots of each copy were serialized.",
+  "B2": {
+    "pretty_physical_sha256": "0d102d89902e99a8c25310ed635c84bb20b3a1be277d9c4e5b217822ec2d8a44",
+    "canonical_sha256": "4b0bd16c0929f10609971a270eafbc7d2bd3eb98f602f3ab482d3ab82519ae5a",
+    "different": true,
+    "correct_pair_accepted": true,
+    "wrong_physical_as_canonical_first_reject": "tests/phase583_shared_callback_guard.py:34",
+    "missing_fifth_key_first_reject": "tests/phase583_shared_callback_guard.py:27",
+    "synthetic_rows": 3,
+    "synthetic_roles": 29,
+    "modeled_noop_slots": 31,
+    "returned_status": "ACTUAL_FIXED29_WINDOW_MATCHES_SOURCE_GUARD",
+    "actual_evidence": false,
+    "scope": "Raw API ACTUAL-named status preserved but explicitly synthetic. Does not replace a new actual complete window. Future actual B2 must join finite12Source applicability with measured window and bound INPUT identities."
+  },
+  "profile_evidence": {
+    "C_direct_functions": {
+      "final_business_view": 2,
+      "validate_final_aux_origin": 6,
+      "extract_shared_callback_guard": 3,
+      "project_model_callbacks": 1,
+      "bindings": 1,
+      "validate_request": 2,
+      "validate_prepared_business_view": 1
+    },
+    "Engine_zero_methods": {
+      "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/engine.py:CombatEngine.prepare_only": 0,
+      "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/engine.py:CombatEngine.activate_from_checkpoint": 0,
+      "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/engine.py:CombatEngine.step": 0,
+      "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/engine.py:CombatEngine.run": 0,
+      "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/engine.py:CombatEngine.finish": 0,
+      "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/engine.py:CombatEngine.death": 0,
+      "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/engine.py:CombatEngine._run_captured_clock": 0,
+      "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/engine.py:CombatEngine.trigger": 0,
+      "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/engine.py:CombatEngine.attack": 0,
+      "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/engine.py:CombatEngine._source_noninterfering_callback": 0,
+      "/workspace/python-original-engine/repo/tests/phase583_mixed_tape_run.py:main": 0,
+      "/workspace/python-original-engine/repo/tests/phase583_mixed_tape_run.py:prepared_business_view": 0,
+      "/workspace/python-original-engine/repo/tests/phase583_mixed_tape_run.py:read_descriptor": 0,
+      "/workspace/python-original-engine/repo/tests/phase583_mixed_business_output.py:compare_decoded": 0,
+      "/workspace/python-original-engine/repo/tests/phase583_mixed_business_output.py:project_model": 0,
+      "/workspace/python-original-engine/repo/tests/phase583_mixed_business_output.py:project_native": 0,
+      "/workspace/python-original-engine/repo/tests/phase583_mixed_business_output.py:project_model_final": 0
+    },
+    "all_EngineFrameDriver_methods": {
+      "__init__": 1,
+      "_util_physics": 0,
+      "_util_idle": 0,
+      "snapshot": 0
+    },
+    "all_FrameDriver_methods": {
+      "__init__": 1,
+      "_util_physics": 0,
+      "_util_idle": 0,
+      "activate": 0,
+      "request_end": 0,
+      "_flush_cleanup": 0,
+      "step": 0,
+      "snapshot": 0,
+      "run": 0
+    },
+    "all_TapeRandom_methods": {
+      "__init__": 1,
+      "_validate": 0,
+      "_take": 0,
+      "randf": 0,
+      "randf_range": 0,
+      "randi_range": 0,
+      "global_u32": 0,
+      "assert_consumed": 0
+    },
+    "interpretation": "Both drivers initialize once; all nonconstructor driver methods are zero. TimerRuntime configure/connect/set-processing during constructor are initialization, not a frame pass. No inference solely from self-reported0 fields."
+  },
+  "import_origins": {
+    "candidate": {
+      "native_replay_v7.timer_runtime": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v7/timer_runtime.py",
+      "native_replay_v7": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v7/__init__.py",
+      "native_replay_v7.frame_driver": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v7/frame_driver.py",
+      "native_replay_v8.randomness": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/randomness.py",
+      "native_replay_v8.genuine": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/genuine.py",
+      "native_replay_v8.histories": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/histories.py",
+      "native_replay_v8.state": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/state.py",
+      "native_replay_v8.engine": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/engine.py",
+      "native_replay_v8": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/__init__.py"
+    },
+    "C": {
+      "launcher": "/workspace/python-original-engine/repo/tests/phase583_mixed_tape_run.py",
+      "adapter": "/workspace/python-original-engine/repo/tests/phase583_mixed_business_output.py",
+      "B2": "/workspace/python-original-engine/repo/tests/phase583_shared_callback_guard.py"
+    }
+  },
+  "read_audit": {
+    "distinct_open_paths": 102,
+    "attempt_count": 142,
+    "all_paths": "PinnedSource/metadata or fresh-output unused bytecode-cache path attempts only.",
+    "missing_pyc_attempts": 12,
+    "pyc_files_created": 0,
+    "limitations": "Counts cover audit-controlled opens, not a chronological full I/O trace or a claim every attempted open succeeded. Synthetic vectors were loaded by the host before audit; no actual Native carrier was accessed."
+  },
+  "pending": [
+    "New actual lawful INPUT72/newUID/cuts/branch/cache witness and final immutable context/receipt authentication.",
+    "Actual same-instance constructor/prepare B1 positive and full actual selected Tape run.",
+    "Actual complete UI window under finite12Source argument; synthetic B2 format success does not satisfy it.",
+    "Actual raw model/gate/finalaux common output seal and externally authenticated closed20 comparison binding.",
+    "Exactly one future strict8 comparison after actual model/output release; no expected values used for input/projection repair."
+  ],
+  "history_preserved": [
+    "582 original helper hash final-LF failure and583 repair provenance remain immutable.",
+    "584 static utility diagnostics retained; no dynamic firsterror exists in this sole batch."
+  ],
+  "formal_support": 75,
+  "Native_support_upgrade": false,
+  "general_scope_upgrade": false,
+  "project_complete": false
+}

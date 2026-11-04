@@ -1,0 +1,157 @@
+{
+  "B2": "extract_shared_callback_guard(raw,bundle,pin_value,root_binding)",
+  "B2_binding_keys": [
+    "schema",
+    "input_bundle",
+    "input_proof",
+    "source_basis",
+    "input_bundle_canonical_sha256"
+  ],
+  "actual_B2": null,
+  "actual_input": null,
+  "actual_model": null,
+  "author_calls": 0,
+  "auxiliary_shape": {
+    "Staff_type": "raw Python int or float, notBOOL/nonfinite; recorded unmodified; projected REAL=float(raw) by separately Source-pinned Original float getter rule",
+    "Wolf_Skill_type": "raw int strictly (notBOOL), projected INT3/INT1 without floatcast",
+    "all_values_in_this_design": null,
+    "exact_items": {
+      "O:4": 231,
+      "P:13": 231,
+      "P:15": 32,
+      "P:19": 385
+    },
+    "exact_keys": [
+      "schema",
+      "case_id",
+      "profile",
+      "stage",
+      "finalized",
+      "driver_finalized",
+      "tape_position",
+      "passes_consumed",
+      "projection_rule",
+      "items"
+    ],
+    "per_item_exact_keys": [
+      "instance_id",
+      "item_index",
+      "properties"
+    ],
+    "per_property_exact_keys": [
+      "getter",
+      "raw_type",
+      "raw_value",
+      "projected_type",
+      "projected_value"
+    ],
+    "profile": "pure-combat-mixed-modifiers-A-captured/1",
+    "prohibited": [
+      "asdict.definition",
+      "independent item manaCost attribute assumption",
+      ".get fallback",
+      "Catalog default repair",
+      "prepare snapshot substituted for final measurement",
+      "Expected/witness fill"
+    ],
+    "properties": {
+      "O:4": {
+        "numBuffs": "definition['least_buffs']"
+      },
+      "P:13": {
+        "numBuffs": "definition['least_buffs']"
+      },
+      "P:15": {
+        "manaCost": "definition['mana_cost']",
+        "permDamBonus": "definition['permanent_damage']",
+        "tempDamBonus": "definition['temporary_damage']"
+      },
+      "P:19": {
+        "buffs": "definition['least_buffs']"
+      }
+    },
+    "stage": "POST_RUN_SAME_INSTANCE_FINAL_READ"
+  },
+  "comparison_binding_keys": [
+    "schema",
+    "input_bundle",
+    "input_canonical_sha256",
+    "input_proof",
+    "input_proof_canonical_sha256",
+    "input_seal",
+    "input_owner",
+    "candidate_freeze",
+    "contract",
+    "prepared_witness",
+    "prepare_gate",
+    "prepare_gate_canonical_sha256",
+    "final_aux",
+    "final_aux_canonical_sha256",
+    "model_output",
+    "model_output_canonical_sha256",
+    "output_seal",
+    "output_owner",
+    "adapter_source",
+    "projection_rule"
+  ],
+  "external_authentication": "Independent I/O authenticates physical descriptors and outputseal ownership before pureprojection; pure code checks explicit canonical/data/source/type association, no bool shortcut",
+  "final": "final_business_view(engine,result)",
+  "model_request_keys": [
+    "schema",
+    "case_id",
+    "launcher",
+    "candidate_freeze",
+    "input_source_owner",
+    "input_abi",
+    "input_bundle",
+    "input_proof",
+    "initial_receipt",
+    "prepared_witness",
+    "input_seal",
+    "input_owner",
+    "input_acceptance",
+    "candidate_acceptance",
+    "business_closure",
+    "comparison_contract",
+    "root_model_authorized"
+  ],
+  "modules": {
+    "B2": {
+      "path": "tests/phase583_shared_callback_guard.py",
+      "sha256": "8135d94dc867d9ee5545578ddd68a1c8a3f13b8a0812910f531de13ce6b728a5",
+      "size": 10277
+    },
+    "adapter": {
+      "path": "tests/phase583_mixed_business_output.py",
+      "sha256": "7e77bb077c056903d7b03f7ac52b0913ab2e8ae11c69b74e0c732b1d6564a01e",
+      "size": 51117
+    },
+    "launcher": {
+      "path": "tests/phase583_mixed_tape_run.py",
+      "sha256": "7067c27a55c07c15e7087d73bb658c876675263511fd592c3bdcecbe3730fc16",
+      "size": 31555
+    }
+  },
+  "prepare": "prepared_business_view(engine,bundle); validate_prepared_business_view(view,bundle,witness,initial)",
+  "pure_compare": "compare_decoded(native_outputs,sealed_result,accepted_bundle,input_proof,sealed_final_aux,root_binding)",
+  "pure_projection": "project_model(result,bundle,input_proof,sealed_final_aux,root_binding)",
+  "schema": "phase582-C-api/1",
+  "source_bound": {
+    "candidate_acceptance": {
+      "path": "/workspace/python-original-engine/repo/data/phase581-independent-final-acceptance/review.json",
+      "sha256": "cc08dad18a8d6d0c263b828e8154a44010ba3cffca134bd0305e75f7016846d8",
+      "size": 9023
+    },
+    "candidate_freeze": {
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/candidate-source-freeze.json",
+      "sha256": "e332b765f3bd48c6df63c1ffd047f82654fe0c0465e9886275d287b42160a51b",
+      "size": 4809
+    },
+    "input_context": {
+      "path": "/workspace/python-original-engine/repo/data/phase582-root-candidate-context-binding/source-context-candidate-bound.json",
+      "sha256": "ac15fe29b5609f504f389d5a642f5e47b8357a01dee10a4c25f204671e4d741b",
+      "size": 8442
+    }
+  },
+  "status": "SOURCE_ONLY_UNBOUND_NOT_RUNTIME_RELEASE"
+}

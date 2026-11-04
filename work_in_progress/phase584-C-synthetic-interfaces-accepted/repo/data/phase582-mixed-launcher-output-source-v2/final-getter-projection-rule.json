@@ -1,0 +1,22 @@
+{
+  "Original_rule": {
+    "path": "data/phase576-mixed-captured-consumer-design/source-preimages.json",
+    "sha256": "36b54f36626e81010e6e6ca07ae19b2199a47b0c70deff73974e12936cbd2d37",
+    "size": 14096
+  },
+  "case_id": "NATIVE-030-MIXED-MODIFIERS-A",
+  "default_or_expected_fallback": false,
+  "getter_source": {
+    "path": "data/phase580-captured-mixed-source/staged/native_replay_v8/engine.py",
+    "sha256": "8604d13ac1f1259fb09774876bf32049204aeb798fecbcc52ec781adf7a8c17a",
+    "size": 276325
+  },
+  "mapping": {
+    "Skill_buffs": "liveitem.definition['least_buffs']; strictINT1",
+    "Staff": "liveitem.definition['mana_cost'/'temporary_damage'/'permanent_damage']; record rawINT/REAL unmodified then explicit float(raw) as Original REAL",
+    "Wolf_numBuffs": "liveitem.definition['least_buffs']; strictINT3"
+  },
+  "measure": "same actual instance after run returns finalized",
+  "raw_type_is_not_projected_type": true,
+  "schema": "phase582-final-getter-projection-rule/1"
+}

@@ -1,0 +1,22 @@
+{
+  "schema": "phase584-static-utility-diagnostics/1",
+  "candidate_calls": 0,
+  "source_unchanged": true,
+  "items": [
+    {
+      "operation": "whole CATALOG ast.literal_eval",
+      "error": "ValueError: dict(...) nodes are Call, not literal",
+      "resolution": "Read bounded32/231/385 static Source text; no SUT evaluation"
+    },
+    {
+      "operation": "selected Source map paths",
+      "error": "TypeError treating files dict as list",
+      "resolution": "Read actual keyed metadata structure only"
+    },
+    {
+      "operation": "hasAttackEffect text assertion",
+      "error": "AssertionError: utility guessed hasOnPreDealDamage_early; actual Source uses hasPreDealDamageEarlyEffect",
+      "resolution": "Read actual three BOOL names and preserve exact Source body. No implementation/source issue or candidate run."
+    }
+  ]
+}

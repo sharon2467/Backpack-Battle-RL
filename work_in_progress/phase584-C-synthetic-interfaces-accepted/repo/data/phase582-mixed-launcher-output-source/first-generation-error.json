@@ -1,0 +1,13 @@
+{
+  "C_imports": 0,
+  "Expected": 0,
+  "Native": 0,
+  "automatic_retry": false,
+  "error_type": "ValueError",
+  "helper_SUT": 0,
+  "message": "20helper exact require",
+  "models": 0,
+  "pool": 0,
+  "schema": "phase582-C-source-first-error/1",
+  "traceback": "Traceback (most recent call last):\n  File \"/workspace/python-original-engine/repo/tests/phase582_prepare_mixed_output_source.py\", line 364, in main\n    body=funcs(ad.text)[row['name']].encode();require(len(body)==row['size'] and digest(body)==row['sha256'],'20helper exact '+row['name'])\n                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/tests/phase582_prepare_mixed_output_source.py\", line 20, in require\n    if not ok:raise ValueError(message)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: 20helper exact require\n"
+}
