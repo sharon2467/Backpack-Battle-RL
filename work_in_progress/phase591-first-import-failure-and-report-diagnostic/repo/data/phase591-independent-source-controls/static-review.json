@@ -1,0 +1,339 @@
+{
+  "schema": "phase591-independent-static-source-review/1",
+  "status": "STATIC_SOURCE_PASS_FINITE_CONTROLS_NOT_RUN",
+  "source_owner": {
+    "path": "data/phase590-case030-host-restore-source/owned-files.json",
+    "size": 36294,
+    "sha256": "0a9cc8bf345ad2dd08a4a381f170770d420a385718fdf3211f53d7e740530b4a"
+  },
+  "derived_freeze": {
+    "path": "data/phase590-case030-host-restore-source/combined-source-freeze.json",
+    "size": 65460,
+    "sha256": "2655616e809ea39c7cf6f4d3d6eed24dd68cce2cf134b7d499c213cee292f6b6"
+  },
+  "repo_owner_leaves_exact": 175,
+  "absolute_origin_descriptors_metadata_only": [
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Sheets/CSV/ItemData.csv",
+      "sha256": "26f5433cf37cd33c066dd505672fcb292e7570ede8c823c5a10f9bc21208a473",
+      "size": 80933
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Sheets/ItemBook.gd",
+      "sha256": "6b0f0b78c0ee1a0529e7740b424b157837b614cbd74c3e8f22886f9509cb9d84",
+      "size": 48708
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f",
+      "size": 170717
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Wolpertinger.gd",
+      "sha256": "5607b4eea0e69fa4f1f46f2a646e1c3a4c12668be75c45269cf0a2ce6b258ea2",
+      "size": 522
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Wolpertinger.tscn",
+      "sha256": "69c0834d5d21b5adb9e6484c71261b0a305ccc192d651cf6ddd14be138ebe462",
+      "size": 1402
+    }
+  ],
+  "absolute_files_opened": 0,
+  "modules": {
+    "tests/phase590_independent_predecessor_readback.py": {
+      "before": {
+        "path": "tests/phase508_independent_predecessor_readback.py",
+        "sha256": "15f8b1f034fcf95244516643554ec75acbcede592f70ce51c0474a2a0c8a0c30",
+        "size": 25366
+      },
+      "after": {
+        "path": "tests/phase590_independent_predecessor_readback.py",
+        "sha256": "17bcaeb33ea7cfdd440f0231d0ac33fdca02b14871c298e0ca7bb027b55a07da",
+        "size": 25372
+      },
+      "full_inverse_exact": true,
+      "changed_functions": [
+        "main",
+        "readback"
+      ],
+      "exact_functions": [
+        "decoded",
+        "descriptor",
+        "difference",
+        "equal",
+        "path_of",
+        "relocate",
+        "require",
+        "save",
+        "signature",
+        "stable"
+      ],
+      "new_functions": []
+    },
+    "tests/phase590_oracle_host.py": {
+      "before": {
+        "path": "tests/phase508_oracle_host.py",
+        "sha256": "a5fc69909621cf6e828c73b30b46c14d516683226d8c88ac1d95e13eb7a1fcb1",
+        "size": 43974
+      },
+      "after": {
+        "path": "tests/phase590_oracle_host.py",
+        "sha256": "a034d77ba22937ba5e638c40f5d3711e1141bdfd5e4691592dd2baaf9bf12b6b",
+        "size": 47098
+      },
+      "full_inverse_exact": true,
+      "changed_functions": [
+        "execute",
+        "plan",
+        "source_gate",
+        "validate_active_source_tuple",
+        "validate_observer_review"
+      ],
+      "exact_functions": [
+        "_payload_rows",
+        "backup_predecessor_controls",
+        "collect_capture_metadata",
+        "descriptor",
+        "execute_driver_descriptors",
+        "load_terminal_schema",
+        "main",
+        "read_control",
+        "read_terminal_expected_controls",
+        "resolve_execute_payloads",
+        "resource_gate",
+        "verify_execute_payloads",
+        "verify_owner"
+      ],
+      "new_functions": []
+    },
+    "tests/phase590_oracle_storage.py": {
+      "before": {
+        "path": "tests/phase508_oracle_storage.py",
+        "sha256": "77719d1146c06205e2562756b220a07070b75c61313dc39632ab171233937019",
+        "size": 21560
+      },
+      "after": {
+        "path": "tests/phase590_oracle_storage.py",
+        "sha256": "e2079576bec0f5f60b0cf4b5934ce394b0142c6b49de1cf1e11aa5ebb083b9b7",
+        "size": 21560
+      },
+      "full_inverse_exact": true,
+      "changed_functions": [],
+      "exact_functions": [
+        "_identity",
+        "_read_source",
+        "_source_descriptor",
+        "_source_signature",
+        "archive_streaming",
+        "atomic_image",
+        "budget",
+        "check_ready",
+        "check_source_descriptor",
+        "directory",
+        "install",
+        "lease",
+        "map_recorded",
+        "member",
+        "pin",
+        "preflight_install_payloads",
+        "read",
+        "read_source_payload",
+        "regular_target",
+        "reset_previous",
+        "state_write",
+        "sync",
+        "write_new"
+      ],
+      "new_functions": []
+    },
+    "tests/phase590_restore_predecessor.py": {
+      "before": {
+        "path": "tests/phase508_restore_predecessor.py",
+        "sha256": "1969dc3ffb8cf1993281f144119115225f3853f22c978b056e93a245cb35e126",
+        "size": 27956
+      },
+      "after": {
+        "path": "tests/phase590_restore_predecessor.py",
+        "sha256": "06604457afbc94aaf50dd16c1661b5a7dd1314c96ae6e53ff4f2273d1a67b5a2",
+        "size": 27962
+      },
+      "full_inverse_exact": true,
+      "changed_functions": [
+        "load_modules",
+        "main",
+        "prepare",
+        "validate_request"
+      ],
+      "exact_functions": [
+        "action",
+        "apply",
+        "check_image",
+        "decoded",
+        "descriptor",
+        "equal",
+        "finish_metadata",
+        "image_record",
+        "no_process",
+        "path_of",
+        "public_action",
+        "recheck_target",
+        "require",
+        "restore",
+        "row_record",
+        "save",
+        "select_restore_images",
+        "signature",
+        "stable"
+      ],
+      "new_functions": []
+    }
+  },
+  "import_closure": {
+    "tests/native_run_compaction.py": [
+      "__future__",
+      "argparse",
+      "contextlib",
+      "ctypes",
+      "datetime",
+      "fcntl",
+      "hashlib",
+      "json",
+      "os",
+      "pathlib",
+      "shutil",
+      "stat",
+      "tempfile",
+      "zipfile"
+    ],
+    "tests/phase363_oracle_storage.py": [
+      "pathlib",
+      "contextlib",
+      "fcntl",
+      "hashlib",
+      "json",
+      "os",
+      "shutil",
+      "stat",
+      "zipfile",
+      "native_run_compaction"
+    ],
+    "tests/phase363_oracle_process.py": [
+      "pathlib",
+      "os",
+      "shutil",
+      "signal",
+      "selectors",
+      "subprocess",
+      "sys",
+      "time",
+      "math",
+      "phase363_oracle_storage"
+    ],
+    "tests/phase590_oracle_storage.py": [
+      "pathlib",
+      "contextlib",
+      "fcntl",
+      "hashlib",
+      "json",
+      "os",
+      "shutil",
+      "stat",
+      "zipfile",
+      "native_run_compaction"
+    ],
+    "tests/phase590_oracle_host.py": [
+      "pathlib",
+      "argparse",
+      "hashlib",
+      "json",
+      "os",
+      "re",
+      "shutil",
+      "stat",
+      "phase590_oracle_storage",
+      "phase363_oracle_process"
+    ]
+  },
+  "scope": [
+    "Exact575 Source.owner/schema/counts and type-is-int zero gates; no missing==None",
+    "Actual tuple closed27 keys (author narrative28 is count typo only), three false authority flags, unknown Native values, two seeds/labels, required new leaves",
+    "Full frozen graph79/817389; three case inputs separate",
+    "Host source_gate exact new hostreview schema/status/owner/freeze/native-modelINT0; real authorization remains false template",
+    "Restore previous/BUNDLE/evidence unbound until actual authorized pending evidence; no old029 predecessor fill",
+    "No selfhash cycle; host/storage in derivedfreeze, restore/reader later totalowner",
+    "Storage23/selector/apply/process/lease/physical lifecycle preserved; author conservation independently checked",
+    "Some inherited error messages still mention old phase numbers; bindings are new exact values, text not authority"
+  ],
+  "not_executed": [
+    "any candidate module import/helper",
+    "source_gate/plan/execute/resource_gate",
+    "lease/install/prepare/restore/readback",
+    "baseline/pool/Native/model/Expected/oldtests"
+  ],
+  "remaining": "Exact10 planned finite controls require Root release; no operational acceptance yet.",
+  "hostreview_dynamic_coverage": {
+    "called": false,
+    "reason": "Actual source_gate verifies full owner including five absolute Original-origin files and requires actual new independently owned hostreview. This finite batch does neither and fabricates no approval.",
+    "guard_body_same_as_508": true,
+    "guard_body_sha256": "925d5abd00958138a7fec4ee4a9bf0dcbdaf6d2145e4a58cfb92788c9812495a",
+    "new_constants": "HOST_REVIEW_SCHEMA phase587-independent-host-restore-source-review/1; status ACCEPTED_SOURCE_ONLY_PENDING_ROOT_EXECUTE; observerowner actual572v2; Source freeze actual590",
+    "future_receipt": "Only after successful finite-control adjudication create separately owned host-source-review.json matching schema/status/source_freeze/observer_source_owner/native/models strictINT0. Current static review is not that acceptance."
+  },
+  "stdlib_preload_static_check": {
+    "candidate_top_level_imports": [
+      "__future__",
+      "argparse",
+      "contextlib",
+      "ctypes",
+      "datetime",
+      "fcntl",
+      "hashlib",
+      "json",
+      "math",
+      "native_run_compaction",
+      "os",
+      "pathlib",
+      "phase363_oracle_process",
+      "phase363_oracle_storage",
+      "phase590_oracle_storage",
+      "re",
+      "selectors",
+      "shutil",
+      "signal",
+      "stat",
+      "subprocess",
+      "sys",
+      "tempfile",
+      "time",
+      "zipfile"
+    ],
+    "explicitly_preloaded_stdlib": [
+      "argparse",
+      "contextlib",
+      "copy",
+      "ctypes",
+      "datetime",
+      "fcntl",
+      "hashlib",
+      "json",
+      "math",
+      "os",
+      "pathlib",
+      "re",
+      "selectors",
+      "shutil",
+      "signal",
+      "stat",
+      "subprocess",
+      "sys",
+      "tempfile",
+      "time",
+      "traceback",
+      "types",
+      "zipfile"
+    ],
+    "all_needed_top_level_stdlib_preloaded": true,
+    "modules_evaluated_now": 0
+  }
+}

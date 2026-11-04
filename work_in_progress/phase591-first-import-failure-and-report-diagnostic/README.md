@@ -1,0 +1,9 @@
+# First591 import failure andseparate report-owner diagnostic
+
+Oneattempt pid19141 reaped/exit1/no stdoutstderr,0.289536899souter. Module evaluation attempted1/completed0;top controls0. Firstnative_run_compaction module imports stdlib__future__,which the self-authored narrowread audit had not preloaded. It stopped at__future__.pyc before business tests. This was not a platform denial orproduction business difference. All32Source/input pins remain byte-exact. No pool/baseline/resource/Native/model/Expected oroldtest execution occurred.
+
+The original actualresult,first-error andincorrect inner owned-files.json are preserved byte-for-byte. The original innerowner does NOT validate result.json:report writing appends an audit path to the in-memory result,then owner generation reserializes that changed object (claimed24546B versus actual24443B). The independent592 preparation diagnostic records this secondmetadata defect andbinds actual physical bytes. This archive FILES.json independently covers actual bytes;it does not repair orlegitimize the historical wrong innerowner.
+
+Only an immutable592 harness correction is authorized:pre-audit import__future__,newnamespace/output,serialize result text once anduse the identicaltext forwriting andowner hash. Production Source,tenvectors,assertions,readscope andforbidden operations must remain unchanged. The serialized write-audit snapshot precedes its ownreport write,not a complete reportwrite trace. Root has not released another SUT attempt inthisarchive. No591PASS is claimed.
+
+Restore prior590Source checkpoint,then overlay repo/ here as historicalinputs/failure evidence. Do not rerun this failed harness orsuccessful oldcases during recovery. Future correctedplan needs explicit uniqueRoot release andindependent adjudication;Native030 remains separately unauthorized. Formal75 andpublicruntime564 unchanged;whole engine/RL incomplete.

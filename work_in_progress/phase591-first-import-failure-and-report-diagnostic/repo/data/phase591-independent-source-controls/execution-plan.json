@@ -1,0 +1,64 @@
+{
+  "schema": "phase591-exact-source-binding-execution-plan/1",
+  "status": "FROZEN_PENDING_ROOT_EXECUTION_RELEASE",
+  "argv": [
+    "python",
+    "-I",
+    "-B",
+    "/workspace/python-original-engine/repo/tests/phase591_independent_binding_controls.py",
+    "--pins",
+    "/workspace/python-original-engine/repo/data/phase591-independent-source-controls/pins.json",
+    "--pins-sha256",
+    "add5c698e139e59d6f0e38803927e21d231ff975cfd0529820e4b1f586aaa308"
+  ],
+  "cwd": "/tmp",
+  "new_output": "data/phase591-independent-controls-first-001",
+  "inner_deadline_seconds": 15,
+  "outer_deadline_seconds": 20,
+  "script": {
+    "path": "tests/phase591_independent_binding_controls.py",
+    "size": 7527,
+    "sha256": "5c1947b7a3e73b34c443eecf7f8f24fd5d131e5e28d0dfb2e7427fb713ce8ac4"
+  },
+  "pins": {
+    "path": "data/phase591-independent-source-controls/pins.json",
+    "size": 6418,
+    "sha256": "add5c698e139e59d6f0e38803927e21d231ff975cfd0529820e4b1f586aaa308"
+  },
+  "pin_count": 32,
+  "top_calls": 10,
+  "positive": 2,
+  "expected_rejections": 8,
+  "api_counts": {
+    "validate_observer_review": 7,
+    "validate_active_source_tuple": 3
+  },
+  "new_processes": 1,
+  "real_module_evaluations_imports": 5,
+  "candidate_schema_imports": 0,
+  "source_read_scope": "Only exact repo pinned leaves. Five absolute descriptors are compared as metadata but those paths are forbidden reads. No pool/baseline/resources/capture/Expected.",
+  "profile": "Every function entry in five exact source modules counted; forbidden operational names raise before executing function body. Nested descriptor/hash/read/tuple helper calls are real and separately reported.",
+  "inputs": "Frozen actual575 receipt and observer/freeze metadata with explicit copy mutations; no capture or approval fixture.",
+  "first_failure": "Preserve first error and partial cases, source pins after; stop no retry.",
+  "forbidden": [
+    "source_gate",
+    "hostreview runtime validation",
+    "verify_execute_payloads",
+    "resolve_execute_payloads",
+    "select_restore_images",
+    "plan",
+    "lease",
+    "prepare",
+    "install",
+    "execute",
+    "restore",
+    "readback",
+    "inventory",
+    "resource/budget",
+    "Native",
+    "model",
+    "Expected",
+    "oldtests"
+  ],
+  "after_success": "Independent readonly adjudication plus owned host-source-review.json with actual new590 freeze/observerowner and native/models strictINT0. No automatic operational continuation."
+}
