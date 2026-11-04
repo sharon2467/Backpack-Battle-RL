@@ -1,0 +1,52 @@
+{
+  "Source_runtime_acceptance": "PENDING_INDEPENDENT552",
+  "class_domain": [
+    0
+  ],
+  "double_effect_flip": "exactly one randf then 1+int(raw<=chance), default0 unchanged",
+  "double_effect_label": "double_attack_effect:<identity>",
+  "existing_methods": [
+    "CombatEngine.prepare_only()",
+    "CombatEngine.attack_effect_count(item)",
+    "CombatEngine.trigger(item)"
+  ],
+  "extra_items": [
+    64,
+    164,
+    197,
+    199,
+    201,
+    231,
+    385
+  ],
+  "formal_support": 75,
+  "guards": "actual owned/prepared385+actual cache, strict finite REAL equals0/.25; no reset or repair",
+  "initializer": "headless.initialize_experimental_nonking(layout,seed)",
+  "max385_per_side": 1,
+  "new_methods": [
+    "validate_enchanted_fixture(fixture)",
+    "CombatEngine._validate_attack_effect_chance(item)",
+    "CombatEngine.give_double_attack_effect_chance(source,target)"
+  ],
+  "positive_receivers": [
+    14,
+    32,
+    233,
+    234
+  ],
+  "private_component_seam": "Existing CombatEngine(fixture,random_source,runtime) and strict TapeRandom in synthetic component path; no new public Tape ingress",
+  "schema": "phase551-api/1",
+  "setter_return": "None; no callback/RNG/general expected checker inside setter loop",
+  "validator": "headless.validate_experimental_nonking_layout(layout)",
+  "when385_fixture_ids": [
+    1,
+    11,
+    14,
+    22,
+    32,
+    231,
+    233,
+    234,
+    385
+  ]
+}

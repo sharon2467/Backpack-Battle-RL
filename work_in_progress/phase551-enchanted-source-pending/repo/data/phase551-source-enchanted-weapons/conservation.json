@@ -1,0 +1,79 @@
+{
+  "all_headless_functions_exact": true,
+  "attack_three_loops_receivers_shortbow_roll_and_least_kernels": "byte exact; included among unchanged old functions",
+  "catalog_registered": 83,
+  "changed_files": [
+    "headless.py",
+    "native_replay_v8/engine.py"
+  ],
+  "changed_functions": [
+    "CombatEngine.affected_items",
+    "CombatEngine.attack_effect_count",
+    "CombatEngine.new_caller_target_caches",
+    "CombatEngine.new_caller_target_caches.eligible",
+    "CombatEngine.prepare_only",
+    "CombatEngine.trigger",
+    "validate_fixture"
+  ],
+  "exact_files": [
+    "godot_pcg_integer.py",
+    "native_replay_v7/__init__.py",
+    "native_replay_v7/frame_driver.py",
+    "native_replay_v7/timer_runtime.py",
+    "native_replay_v8/__init__.py",
+    "native_replay_v8/__main__.py",
+    "native_replay_v8/compare.py",
+    "native_replay_v8/genuine.py",
+    "native_replay_v8/histories.py",
+    "native_replay_v8/observed.py",
+    "native_replay_v8/randomness.py",
+    "native_replay_v8/state.py",
+    "original_rng.py"
+  ],
+  "exact_old_engine_function_count": 235,
+  "formal_support": 75,
+  "function_deltas": [
+    {
+      "after_sha256": "11bf53638ae8de855a2c4446bc1aeb5d0b3c65f618bb267cfa8d0e3fc79fcc4a",
+      "before_sha256": "021479731382d8b8c8f18375656cacf92f73c8bf425dccc9b6e21000776631fc",
+      "name": "CombatEngine.affected_items"
+    },
+    {
+      "after_sha256": "df81b156d5188e4c3508c47584aec902ba4b42e293cf1b5fd80b52cb559b5891",
+      "before_sha256": "4a3da880db3c3e95b9b0d6089749e02463f46f1f6736d1fa531263b6febfb6a2",
+      "name": "CombatEngine.attack_effect_count"
+    },
+    {
+      "after_sha256": "8abd44140846ac47024d06b92e33498c615f42930756c95ab083f756c21433e7",
+      "before_sha256": "e2d2673d4c1462a3e2ad9771e2f0b36e4ef433a9888ddf779cec093f14102d67",
+      "name": "CombatEngine.new_caller_target_caches"
+    },
+    {
+      "after_sha256": "bc38de85db6e3fa3d6700736e58ee00ad5c51c95f751784b2b9947d2584347d5",
+      "before_sha256": "4c932c87abfbeb6497bcd11e5aa7743e517ef4c289b9267ae4ee14e47f114420",
+      "name": "CombatEngine.new_caller_target_caches.eligible"
+    },
+    {
+      "after_sha256": "92373c336ae7139f66a8e37314b0fdc277f007c09780dad535c20e1d2d46e908",
+      "before_sha256": "491a9f754aec7a0a95e03d0c7079264eef6a5bce4f4be1a190816acfa671a14a",
+      "name": "CombatEngine.prepare_only"
+    },
+    {
+      "after_sha256": "29cf29c469d3a6339cd3801852274af98e5c8a00be1fb0ea673afa84c0f81cbb",
+      "before_sha256": "3e28b464ba9a5d89b56334af0dc5df88d216696e5cadcd28810d3ae02d2d4cb5",
+      "name": "CombatEngine.trigger"
+    },
+    {
+      "after_sha256": "f536f89f4f458dcaa26032035af4b59e589070b6c5b2f117ea74310c7f741dca",
+      "before_sha256": "e679668ed31504cf9e6ec341729aaee1c881a69e4f695827646272b5f2aab5fe",
+      "name": "validate_fixture"
+    }
+  ],
+  "new_functions": [
+    "CombatEngine._validate_attack_effect_chance",
+    "CombatEngine.give_double_attack_effect_chance",
+    "validate_enchanted_fixture"
+  ],
+  "old_engine_function_count": 242,
+  "schema": "phase551-conservation/1"
+}
