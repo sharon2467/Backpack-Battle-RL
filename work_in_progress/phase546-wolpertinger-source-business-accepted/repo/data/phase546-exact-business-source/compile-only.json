@@ -1,0 +1,128 @@
+{
+  "schema": "phase546-harness-compile-only/1",
+  "status": "PASS",
+  "script": {
+    "path": "tests/phase546_independent_wolpertinger_business.py",
+    "size": 23697,
+    "sha256": "30b30874752237da4b5c6ff4d52a52b82452a399970b62082752163d87b309df"
+  },
+  "builtin_compile": 1,
+  "candidate_imports": 0,
+  "candidate_calls": 0,
+  "stdlib_preload": "All Source stdlib roots explicitly imported before audit. Traceback capture stores frames without lazy source-line reads.",
+  "source_imports_static": {
+    "godot_pcg_integer.py": [],
+    "headless.py": [
+      "argparse",
+      "copy",
+      "godot_pcg_integer",
+      "hashlib",
+      "json",
+      "math",
+      "native_replay_v8.engine",
+      "native_replay_v8.randomness",
+      "native_replay_v8.state",
+      "original_rng",
+      "pathlib"
+    ],
+    "native_replay_v7/__init__.py": [
+      ".timer_runtime"
+    ],
+    "native_replay_v7/frame_driver.py": [
+      ".timer_runtime",
+      "dataclasses",
+      "json",
+      "math",
+      "re",
+      "struct"
+    ],
+    "native_replay_v7/timer_runtime.py": [
+      "dataclasses",
+      "hashlib",
+      "json",
+      "math",
+      "re",
+      "struct",
+      "typing"
+    ],
+    "native_replay_v8/__init__.py": [
+      ".engine",
+      ".randomness",
+      ".state"
+    ],
+    "native_replay_v8/__main__.py": [
+      ".engine",
+      ".randomness",
+      ".state",
+      "argparse",
+      "json",
+      "pathlib"
+    ],
+    "native_replay_v8/compare.py": [
+      ".engine",
+      ".genuine",
+      ".state",
+      "argparse",
+      "copy",
+      "hashlib",
+      "json",
+      "pathlib",
+      "re",
+      "struct"
+    ],
+    "native_replay_v8/engine.py": [
+      ".genuine",
+      ".histories",
+      ".randomness",
+      ".state",
+      "copy",
+      "dataclasses",
+      "hashlib",
+      "math",
+      "native_replay_v7.frame_driver",
+      "native_replay_v7.timer_runtime",
+      "pathlib",
+      "re",
+      "struct",
+      "types"
+    ],
+    "native_replay_v8/genuine.py": [
+      "hashlib",
+      "json",
+      "math",
+      "re",
+      "struct"
+    ],
+    "native_replay_v8/histories.py": [
+      "copy"
+    ],
+    "native_replay_v8/observed.py": [
+      ".compare",
+      ".engine",
+      ".randomness",
+      ".state",
+      "argparse",
+      "json",
+      "pathlib"
+    ],
+    "native_replay_v8/randomness.py": [
+      "copy",
+      "dataclasses",
+      "math",
+      "random",
+      "re",
+      "struct"
+    ],
+    "native_replay_v8/state.py": [
+      ".histories",
+      "copy",
+      "json",
+      "math"
+    ],
+    "original_rng.py": [
+      "godot_pcg_integer",
+      "math",
+      "struct"
+    ]
+  }
+}

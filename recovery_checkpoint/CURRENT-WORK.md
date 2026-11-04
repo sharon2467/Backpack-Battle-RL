@@ -20,6 +20,10 @@ Strict029scope is onefixedcase/conditionalTape,not allseed/alllayout or generalK
 
 Earlier independent fixedKing451(375events365Tape) and fixed26King+Basic478(366events422Tape33Timers) remain accepted under their exact contracts. Source498family29item natural232events304draw26Timers is separateSourceevidence. Neither nearbywinrates norSource-only tests replace Nativeacceptance. The historic detailed summary is preserved in RESUME-HISTORY-through538.json and immutable work_in_progress archives;current RESUME-STATE.json takes precedence.
 
+## Wolpertinger231 Source business accepted (546)
+
+[546 independentSource evidence](../work_in_progress/phase546-wolpertinger-source-business-accepted/README.md) passes8directedfamilies andonefixed22-itemSourcebattle:171events/236draws/1096steps. Positiveandnegative staminafeedback,Sapphireuse,Amethystloss andpaidSwordattacksHIT;Squirrel_lossNOT_HIT. ThisacceptsnewSourcecatalog82experimental,notNativeorformal75promotion. PortableexactSource547package isnext;do not rerun acceptedbattleforpackaging.
+
 ## Next isolatedSource block: Wolpertinger231
 
 [543–545 Source pendingindependentcontrols](../work_in_progress/phase543-545-wolpertinger-source-pending/README.md) implements least-buff allocation and buff-delta stamina feedback in an isolated copy of497. Onlyengine/headlesschange;13files conserved.546finiteSourcecontrols and onepreselectednewSourcecase remainpending;no newNativeorformaladmission. Current publicSDK497 is unchanged.

@@ -1,0 +1,70 @@
+{
+  "schema": "phase546-exact-call-ledger/1",
+  "direct_order": [
+    "validate_experimental_nonking_layout",
+    "old_initialize",
+    "old_squirrel",
+    "old_batch",
+    "runtime_inputs",
+    "CombatEngine",
+    "pre_registration_gain",
+    "prepare_only",
+    "get_least_ordered",
+    "emit_parent",
+    "give_least_aggregate",
+    "get_least_singleton",
+    "get_least_count_0",
+    "get_least_count_-1",
+    "give_least_zero",
+    "get_least_sentinel_reject",
+    "trigger_cap",
+    "set_logging_delayed",
+    "give_least_amplified",
+    "emit_later_marker",
+    "flush_logging_queue",
+    "gain_mana",
+    "lose_mana",
+    "use_mana",
+    "protected_loss",
+    "give_block",
+    "give_poison",
+    "give_opponent",
+    "capped_gain",
+    "explicit_zero_dispatch",
+    "ended_dispatch",
+    "give_stamina_regeneration_zero",
+    "initialize_experimental_nonking",
+    "HeadlessBattle.run"
+  ],
+  "direct_calls_if_all_complete": 34,
+  "expected_direct_raises": [
+    "old_initialize",
+    "old_squirrel",
+    "old_batch",
+    "get_least_sentinel_reject"
+  ],
+  "semantic_scope": "Direct production operation entrypoints; nested calls counted separately in actual-call-ledger. Readonly diagnostic logger/snapshot/cache/state access is not a new case or battle and does not have a preassigned total.",
+  "expected_successful_engine_constructors": {
+    "unit": 1,
+    "natural": 1
+  },
+  "expected_rejected_engine_constructors": 0,
+  "expected_prepare_only": {
+    "unit": 1,
+    "natural": 1
+  },
+  "expected_activate_from_checkpoint": {
+    "unit": 0,
+    "natural": 1
+  },
+  "expected_full_run": {
+    "unit": 0,
+    "natural": 1
+  },
+  "expected_unit_steps": 0,
+  "natural_steps": "runtime-measured until one finalization",
+  "unit_draws": 16,
+  "natural_draws": "measured only; no predeclared outcome",
+  "families": 8,
+  "natural_groups": 1
+}

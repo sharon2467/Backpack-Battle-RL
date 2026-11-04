@@ -1,0 +1,206 @@
+{
+  "schema": "phase546-independent-vectors/1",
+  "unit_scope": "SOURCE_SYNTHETIC_INTERNAL_PRESTATES_NOT_NATIVE",
+  "caches": {
+    "P:wolf": [
+      "P:squirrel",
+      "P:sapphire"
+    ],
+    "P:wolf2": [
+      "P:sapphire"
+    ],
+    "O:wolf0": []
+  },
+  "speed_additions": {
+    "P:wolf": 0.3,
+    "P:wolf2": 0.15,
+    "O:wolf0": 0.0
+  },
+  "P_base_stamina_regen": 0.1,
+  "draws": {
+    "ordered": [
+      {
+        "kind": "randi_range",
+        "label": "least_buff:P:wolf:P:0",
+        "args": [
+          0,
+          6
+        ],
+        "value": 2
+      },
+      {
+        "kind": "randi_range",
+        "label": "least_buff:P:wolf:P:1",
+        "args": [
+          0,
+          5
+        ],
+        "value": 0
+      },
+      {
+        "kind": "randi_range",
+        "label": "least_buff:P:wolf:P:2",
+        "args": [
+          0,
+          4
+        ],
+        "value": 4
+      }
+    ],
+    "aggregate": [
+      {
+        "kind": "randi_range",
+        "label": "least_buff:P:wolf:P:0",
+        "args": [
+          0,
+          1
+        ],
+        "value": 0
+      },
+      {
+        "kind": "randi_range",
+        "label": "least_buff:P:wolf:P:1",
+        "args": [
+          0,
+          0
+        ],
+        "value": 0
+      },
+      {
+        "kind": "randi_range",
+        "label": "least_buff:P:wolf:P:2",
+        "args": [
+          0,
+          1
+        ],
+        "value": 1
+      }
+    ],
+    "singleton": [
+      {
+        "kind": "randi_range",
+        "label": "least_buff:P:wolf:P:0",
+        "args": [
+          0,
+          0
+        ],
+        "value": 0
+      }
+    ],
+    "cap_trigger": [
+      {
+        "kind": "randf_range",
+        "label": "cooldown:P:wolf",
+        "args": [
+          "3fee666666666666",
+          "3ff0cccccccccccd"
+        ],
+        "value_bits": "3ff0000000000000"
+      },
+      {
+        "kind": "randi_range",
+        "label": "least_buff:P:wolf:P:0",
+        "args": [
+          0,
+          6
+        ],
+        "value": 0
+      },
+      {
+        "kind": "randi_range",
+        "label": "least_buff:P:wolf:P:1",
+        "args": [
+          0,
+          5
+        ],
+        "value": 0
+      },
+      {
+        "kind": "randi_range",
+        "label": "least_buff:P:wolf:P:2",
+        "args": [
+          0,
+          4
+        ],
+        "value": 0
+      }
+    ],
+    "amplified_delayed": [
+      {
+        "kind": "randi_range",
+        "label": "least_buff:P:wolf:P:0",
+        "args": [
+          0,
+          1
+        ],
+        "value": 0
+      },
+      {
+        "kind": "randi_range",
+        "label": "least_buff:P:wolf:P:1",
+        "args": [
+          0,
+          0
+        ],
+        "value": 0
+      },
+      {
+        "kind": "randi_range",
+        "label": "least_buff:P:wolf:P:2",
+        "args": [
+          0,
+          1
+        ],
+        "value": 1
+      },
+      {
+        "kind": "randf_range",
+        "label": "buff:amplify:P:P:wolf:Lucky:0",
+        "args": [
+          "0000000000000000",
+          "4059000000000000"
+        ],
+        "value_bits": "4049000000000000"
+      }
+    ],
+    "excluded_debuff": [
+      {
+        "kind": "randf_range",
+        "label": "reflect:P:P:wolf:Poison",
+        "args": [
+          "0000000000000000",
+          "4059000000000000"
+        ],
+        "value_bits": "4049000000000000"
+      }
+    ]
+  },
+  "ordered_picks": [
+    [
+      103,
+      1
+    ],
+    [
+      101,
+      1
+    ],
+    [
+      107,
+      1
+    ]
+  ],
+  "aggregate_picks": [
+    [
+      101,
+      1
+    ],
+    [
+      105,
+      2
+    ]
+  ],
+  "unit_expected_draws": 16,
+  "natural_seed": 54601,
+  "natural_items": 22,
+  "synthetic_items": 24
+}

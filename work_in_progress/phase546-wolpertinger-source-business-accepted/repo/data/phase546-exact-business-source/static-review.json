@@ -1,0 +1,62 @@
+{
+  "schema": "phase546-independent-static-review/1",
+  "status": "SOURCE_PASS_PENDING_EXACT_BATCH_RELEASE",
+  "source_owner": {
+    "path": "data/phase545-source-wolpertinger/owned-files.json",
+    "size": 4814,
+    "sha256": "2aa03706706189ade70dd43ce5f8975d428664ac8c3fc5e999d3fd82ef4b4cad"
+  },
+  "candidate_freeze": {
+    "path": "data/phase545-source-wolpertinger/candidate-source-freeze.json",
+    "size": 3854,
+    "sha256": "50e8e6847e13f4f69e9959b3e7b5412b6ed8d1a5ef1677534aab00b6ccce8508"
+  },
+  "owner_refs_verified": 24,
+  "changed_files": [
+    "headless.py",
+    "native_replay_v8/engine.py"
+  ],
+  "exact_modules": 13,
+  "engine_existing_functions": 239,
+  "engine_exact_functions": 233,
+  "changed_functions": [
+    "CombatEngine.prepare_only",
+    "CombatEngine.new_caller_target_caches",
+    "CombatEngine.new_caller_target_caches.eligible",
+    "CombatEngine.affected_items",
+    "CombatEngine.on_stack_changed",
+    "CombatEngine.trigger"
+  ],
+  "new_functions": [
+    "CombatEngine.get_least_stacks",
+    "CombatEngine.give_least_buffs",
+    "CombatEngine.give_stamina_regeneration"
+  ],
+  "headless_all_function_bodies_exact": true,
+  "findings": [],
+  "static_counter_note": "First preparation-only AST counter omitted nested eligible under for; assertion stopped before writing inputs. Recursive AST traversal now independently confirms239/233/6/3. No SUT import/call or candidate defect.",
+  "source_conclusions": [
+    "All virtual picks precede aggregated give_stack; ordered picked dict; no helper set_logging_mode/flush.",
+    "10000 sentinel and singleton randi_range preserved; positive empty minima fails closed.",
+    "prepare add_speed including zero precedes registration and (0.7*base_stamina_regen)/100.0.",
+    "Only own seven beneficial dispatched signals reach registered231; zero actual dispatch invokes helper and stat20 snapshot; unchanged StatHistory may deduplicate.",
+    "Existing global event_num remains authoritative during delayed flush; no rebind to old event id.",
+    "Pet-only cache uses unchanged cell-order/dedup/append process. Old public gates functions exact; only explicit experimental allowlist adds231."
+  ],
+  "reference_review": {
+    "path": "data/phase544-independent-wolpertinger-design-review/review.json",
+    "size": 10601,
+    "sha256": "1ed358c4b5dadc84d2f5826aaa581ad3956f41b8f15661faf0fccc343c0952a6"
+  },
+  "counters": {
+    "candidate_import": 0,
+    "helper": 0,
+    "model": 0,
+    "Native": 0,
+    "Expected": 0
+  },
+  "limits": [
+    "No dynamic correctness claim",
+    "No Native or general domain promotion"
+  ]
+}
