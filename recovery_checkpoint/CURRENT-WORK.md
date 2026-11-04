@@ -1,58 +1,39 @@
-# Current original → Python combat checkpoint
+# Original Backpack Battles → standalone Python combat
 
-## Current finite mixed integration (564)
+The project is **IN_PROGRESS**. Original Backpack Battles1.1.8 GD is the behavior authority. Runtime is standalone Python; Godot is only the comparison oracle. Scope is combat without GUI or shop simulation. Formal bounded support remains **75**. The experimental Source catalog registers **84** kinds; this count is not general Original admission. Full engine coverage and the RL interface are unfinished.
 
-The fixed mixed12 Source candidate is frozen in `work_in_progress/phase562-564-finite-mixed-source-pending`. Only one admission constant and two both-caller validator branches changed; all combat functions and fourteen Source files remain exact558. Dynamic mixed validation is pending. The installed public package is still accepted558, with separate162/385 domains. Catalog84/formal75 and Native boundaries are unchanged.
+## Current implementation
 
+The public [experimental_nonking package](../python_engine/experimental_nonking/README.md) is exact accepted Source558:15 Source files,21 payloads plus manifest, three examples. Trusted manifest SHA256 is `e8bbd692998b1e7a27f377f5bff6714028c9073961522a3963f7cd9664199a7f`. Runtime uses Python stdlib and needs no Original files, Godot or network. Python3.12.14 was executed;3.10 compatibility is syntax-only. The [561 independent remote check](../work_in_progress/phase561-remote-portable-source558-accepted/README.md) verified, imported and validated all three examples from a separate HTTPS clone, with zero engine construction, RNG or battles. This is same-host isolation, not a fresh OS test.
 
-The whole project is **IN_PROGRESS**. Original BackpackBattles1.1.8 GD is the behavior authority;the runtime is Python and Godot is only the oracle. Scope is pure combat,without GUI/shop replication. Formal bounded support remains75;the Source catalog has81registered kinds,which is not general81-item/native admission. Fullengine andRLremain unfinished.
+The [564 finite mixed candidate](../work_in_progress/phase562-564-finite-mixed-source-pending/README.md) adds a fixed both-caller domain `{1,5,11,14,22,32,162,164,231,233,234,385}`. Only one admission constant and two validator branches changed; fourteen other Source files and every combat algorithm remain exact558. Current status: **first independent test stopped at a prepare-speed assertion (expected0.15, actual0.0); Source/geometry diagnosis pending**. Six negative controls passed, one component prepared, zero Tape draws and zero natural battles. The [565 first failure](../work_in_progress/phase565-mixed-first-prepare-failure/README.md) is preserved. Public558 still uses separate162 and385 domains. Both source multiplicity checks and all ordinary layout/identity/default gates remain required.
 
-## Latest actual comparison
+The [legacy Source497 package](../python_engine/experimental_source_king/README.md) remains unchanged, including its bounded APIs and eight examples. Its trusted manifest SHA256 is `187d227dac0379f3cda07840bf16403f2cb527a7958e06e71cccc00740c753af`.
 
-[539–542 accepted029 evidence](../work_in_progress/phase539-542-actual029-strict8-accepted/README.md) establishes exact equality for all8business sections of one fixed29-item/nine-kind zeroKing case:232events,297Originalprimitiveinputs,32Timers and1089actualclockpasses. Events,references,histories,RNG,finalstate,callbacks,TimerAPI and cuts have no firstdifference. Original contract SHA`a261b2b262350653ee31d69bed5706f3feb54893b4e577f49f3337a270ef66a3` is retained. This is an actual capturedOriginal-vs-Python comparison,not a synthetic control or winrate estimate.
+## Actual Original comparison
 
-The Original was captured once519 and Python ran once535. Reuse the original sealed model SHA`76ddddc57e33423e8f78e3cb409612a550f0f4c28aec0ad35f0aaa3b322a9213`;do not rerun battle. [534–535 model/gate](../work_in_progress/phase534-535-actual029-model-sealed/README.md) carries actual same-instance prepared-state acceptance and rawoutput/seal. [536 firstfailure](../work_in_progress/phase536-actual029-first-projection-failure/README.md) remains:the adapter mistook a Python property for an asdict field and stopped before valuecomparison. [537–538 Sourceproof](../work_in_progress/phase537-538-sapphire-provenance-design-accepted/README.md) and539repair explicitly carry the original measured Sapphire type sequence to final via a boundedSourceinvariant. All final ordered-six-INT fields stay compared;no Expected/catalog default is filled.540five directedcontrols passed before541realcomparison.
+[539–542 accepted029 evidence](../work_in_progress/phase539-542-actual029-strict8-accepted/README.md) proves all eight strict sections equal for one fixed29-item/nine-kind case:232 events,297 Original primitive inputs,32 Timers and1089 clock passes. Events, references, histories, RNG, final state, callbacks, Timer APIs and cut checks have no first difference. Contract SHA256 is `a261b2b262350653ee31d69bed5706f3feb54893b4e577f49f3337a270ef66a3`.
 
-## Current portable experimental nonKing package (558; verified561)
+Original capture519 and Python battle535 each ran once. The original sealed model SHA256 is `76ddddc57e33423e8f78e3cb409612a550f0f4c28aec0ad35f0aaa3b322a9213`. Reuse it; do not repeat those battles for comparison or packaging. The [536 projection failure](../work_in_progress/phase536-actual029-first-projection-failure/README.md) is preserved. The [537–538 bounded Source proof](../work_in_progress/phase537-538-sapphire-provenance-design-accepted/README.md) and539 adapter use the original same-instance measured Sapphire type sequence plus a temporal invariant; this is not a direct final-state sample and does not fill values from Expected or catalog defaults.
 
-Use [experimental_nonking](../python_engine/experimental_nonking/README.md):exactaccepted55815Source/Pythonstdlib,21payload+manifest22files.TrustedmanifestSHA`e8bbd692998b1e7a27f377f5bff6714028c9073961522a3963f7cd9664199a7f`. [561uniqueREMOTEverification](../work_in_progress/phase561-remote-portable-source558-accepted/README.md) ranfromindependentHTTPSclone:verify1/import1/publicvalidate22/24/23,27pinsafterexact,Ctor/RNG/battle0.13candidateimportoriginsremote-onlyunderboundedreadscope;notcompleteper-openlog/freshOS/Originalrestore. Source559businessacceptedseparately,formal75/Source84experimental;1627-IDand3859-IDdomainscurrentlymutuallyexclusive. NewNativeadmissionpending. Previousversions/legacy497retained,noSourcebattlererunforpublication.
+Earlier fixed King451(375 events/365 inputs) and fixed26 King+Basic478(366 events/422 inputs/33 Timers) retain their exact bounded contracts. These fixed cases do not grant general King, arbitrary layout or all-seed admission. Native primitive input injection is accepted; platform-wide bit-identical production RNG is not a project goal.
 
-## Runnable standalone package
+## Additional Source business evidence
 
-Use [experimentalSource497 instructions](../python_engine/experimental_source_king/README.md). Exact15Source/26payload/eightexamples/trustedreadonly verifier remain unchanged. Inner manifest SHA`187d227dac0379f3cda07840bf16403f2cb527a7958e06e71cccc00740c753af`. Python3.12/stdlib;no Originalassets,capturefiles,oldcloudpaths or Godot at runtime. Formal75 and bounded experimental APIs retain their documented class/default/gem/modifier limits. Fixed029PASS does not automatically widen those gates. Samehost isolatedreadback/execution is verified;freshOS is not claimed.
+These are independently tested Python Source cases, **not new Original captures or comparisons**:
 
-## Recovery evidence and limits
+| Family | Evidence | New natural case | Important limits |
+| --- | --- | --- | --- |
+| Wolpertinger231 | [546](../work_in_progress/phase546-wolpertinger-source-business-accepted/README.md) |171 events/236 draws/1096 steps | Positive and negative buff feedback hit; Squirrel loss did not hit. |
+| Enchanted Weapons385 | [553](../work_in_progress/phase553-enchanted-source-business-accepted/README.md) |151 events/203 draws/1055 steps | Staff and Spear doubles hit; Thorn/Lucky doubles and positive Spear Block loss were controlled only in components.552 invalid-HP first failure is retained. |
+| Bowl of Treats162 | [559](../work_in_progress/phase559-bowl-source-business-accepted/README.md) |466 events/466 draws/1860 steps | Four extra Pet effects hit; activation limiter, ended and90→115 ledger edge cases remain component-only. |
 
-The original029 complete capsule is [519Native record](../work_in_progress/phase519-original029-native-record/README.md):487files/124607186B,ZIP SHA`43448b8f9ee1a472187be9f93e74ba09e2587d743a7d391d86c5ce3307408fc0`. Its CRC/allmemberSHA and remoteallfileSHA were checked. capture_complete=true **process_clean_exit=false** remains disclosed. Predecessor physical restore/readback/RootscopedREADY completed524;do not repeatrestoration/inventory/capture. [528–531 acceptedINPUT](../work_in_progress/phase528-531-actual029-input-accepted/README.md) retains the Source-supported ancestor-index guard repair,originalfailure,actual72Source-derived+388direct fields and exact297Tape/1089clock inputs. All requiredmaterials are in brancharchives;historicalabsolute paths are provenance and must be explicitly relocated during recovery.
+Native231/385/162 and their combined interactions are pending. Synthetic component prestates are explicitly marked and are not Original initial-state evidence. Accepted cases must not be rerun merely to create another artifact.
 
-Strict029scope is onefixedcase/conditionalTape,not allseed/alllayout or generalKing/newfivekind admission.31modeled callbacknoops have boundedactualwindow+Sourceclosure,not107debugcompleteequality. LaternativeprivateTimer values were not directlysampled. Sapphirefinalproperty uses originalsameinstance measuredgate+Sourceinvariant,not a directserializedfinalsample. Eventorder/parents/history/typedRNG/TimerAPI/terminalfields stay strict.
+## Recovery and next work
 
-Earlier independent fixedKing451(375events365Tape) and fixed26King+Basic478(366events422Tape33Timers) remain accepted under their exact contracts. Source498family29item natural232events304draw26Timers is separateSourceevidence. Neither nearbywinrates norSource-only tests replace Nativeacceptance. The historic detailed summary is preserved in RESUME-HISTORY-through538.json and immutable work_in_progress archives;current RESUME-STATE.json takes precedence.
+Use the branch recovery instructions and current `RESUME-STATE.json`; older markers in immutable archives describe their historical stage. [519 Original029 capsule](../work_in_progress/phase519-original029-native-record/README.md) contains487 files/124607186 uncompressed bytes, ZIP SHA256 `43448b8f9ee1a472187be9f93e74ba09e2587d743a7d391d86c5ce3307408fc0`. CRC and all-member hashes were verified locally and remotely. Capture completed, but **process_clean_exit=false** is retained despite exit0. Predecessor restoration/readback completed524 and must not be repeated as routine verification. [528–531 input evidence](../work_in_progress/phase528-531-actual029-input-accepted/README.md) preserves the ancestor-index guard repair, first failure and72 derived plus388 direct fields.
 
-## Wolpertinger231 Source business accepted (546)
+Historic absolute paths are provenance and must be explicitly relocated on recovery. Native private Timer values after the initial cut were not directly sampled. The31 modeled no-op callbacks have bounded Source/actual-window closure, not all107 debug callbacks. The historical detailed state is in `RESUME-HISTORY-through538.json`.
 
-[546 independentSource evidence](../work_in_progress/phase546-wolpertinger-source-business-accepted/README.md) passes8directedfamilies andonefixed22-itemSourcebattle:171events/236draws/1096steps. Positiveandnegative staminafeedback,Sapphireuse,Amethystloss andpaidSwordattacksHIT;Squirrel_lossNOT_HIT. ThisacceptsnewSourcecatalog82experimental,notNativeorformal75promotion. PortableexactSource547package isnext;do not rerun acceptedbattleforpackaging.
-
-## Next isolatedSource block: Wolpertinger231
-
-[543–545 Source pendingindependentcontrols](../work_in_progress/phase543-545-wolpertinger-source-pending/README.md) implements least-buff allocation and buff-delta stamina feedback in an isolated copy of497. Onlyengine/headlesschange;13files conserved.546finiteSourcecontrols and onepreselectednewSourcecase remainpending;no newNativeorformaladmission. Current publicSDK497 is unchanged.
-
-## EnchantedWeapons385 Source business accepted (553)
-
-[553Sourceevidence](../work_in_progress/phase553-enchanted-source-business-accepted/README.md) accepts8directedfamiliesandonefixed24-itemcase:151events/203draws,Staffdouble1/Speardouble2. Thorn/LuckydoublesandpositiveSpearBlockLossNOT_HITnaturally,coveredonlybydirectedSourcecomponents. Preserve552invalidHPfirsterror;553correctsonlyunitHP999,notSource/seed. Sourcecatalog83experimental/formal75unchanged,Native385pending. Portable551update554/555isnext;current545packagebelowunchangeduntilacceptance.
-
-## Next bounded rule: EnchantedWeapons385
-
-[549–550design](../work_in_progress/phase549-550-enchanted-weapons-design/README.md) acceptsafinitenonzeroattack-effectmodifierdomain,notyetimplementation/runtimeacceptance. Real1-cell/12starSkillgeometry,4receivers/9fixtureIDs/persideone;allotheraffectedreceiversexplicitlyexcluded. Preserveeffect-onlyrepetition/RNG/parents,singleattackandActivation.551Sourceimplementation/552independentplanareinprogress;noNative/modelrunyet,currentportable545unchanged.
-
-## Bowl162 Source business accepted (559)
-
-[559Sourceevidence](../work_in_progress/phase559-bowl-source-business-accepted/README.md) accepts8families+onefixed23-itemcase:466events/466draws/4extraPeteffects,dualBowlledger100andrealSquirrel/Wolperfeedback. Limit4/5,endedand90→115remainunit-only/notnaturalHIT. Sourcecatalog84experimental/formal75,Native162pending. Exact558portableupdate560/561isnext;currentpublic551unchangeduntilverifiedupdate,nooldcasebattle rerun.
-
-## Next bounded rule: Bowl162
-
-[556–557design](../work_in_progress/phase556-557-bowl-extra-activation-design/README.md) isacceptedforafinitetwo-Petextraactivation/Foodspeedfamily,notyetbusinessruntimeacceptance.558implementation/559finiteplanareactive;currentSource83portablepackageunchanged,Source84onlyproposed. Originalzerochanceskip/firsteffect-before-extraroll/limiter/ledgerovershootsemanticsarekept,notreplacedbyintuitivefixes. NoautonewNative.
-
-## Next work
-
-Select one remaining sharedcombat rulefamily using actualcurrentSPEC/unsupportedgates and OriginalSource,then implement and independentlyverify its smallest useful block. Reuse existing evidence;do not reopen UI/G02/platformRNG audits. No newOriginalcapture is automatically started. Before anyfutureauthorizedcapture,recheck space against5905580032B;use the fixedpool and preserve uniqueoriginals/errors. Only reliably backed duplicateworkcopies may be freed.
+Next: independent finite controls plus one presealed mixed Source case for564, with separate HIT/NOT_HIT reporting. New Original capture is not automatically released. Any future authorized capture must recheck the5905580032-byte startup gate, reuse the fixed pool, preserve unique raw evidence and keep input, model output and Expected separate. Only verified duplicate work copies may be removed. Continue toward representative business interactions and strict event comparison; do not expand GUI or platform RNG audits.

@@ -1,0 +1,245 @@
+{
+  "schema": "phase565-exact-synthetic-vectors/1",
+  "rows": {
+    "bowl_skill_staff": [
+      {
+        "kind": "randf_range",
+        "label": "cooldown:P:bowl",
+        "args": [
+          "3fee666666666666",
+          "3ff0cccccccccccd"
+        ],
+        "value_bits": "3ff0000000000000"
+      },
+      {
+        "kind": "randi_range",
+        "label": "random_stack:P:bowl:P:give:0",
+        "args": [
+          0,
+          6
+        ],
+        "value": 4
+      },
+      {
+        "kind": "randi_range",
+        "label": "random_stack:P:bowl:P:give:1",
+        "args": [
+          0,
+          6
+        ],
+        "value": 4
+      },
+      {
+        "kind": "randf_range",
+        "label": "cooldown:P:enchanted",
+        "args": [
+          "3fee666666666666",
+          "3ff0cccccccccccd"
+        ],
+        "value_bits": "3ff0000000000000"
+      },
+      {
+        "kind": "randi_range",
+        "label": "least_buff:P:enchanted:P:0",
+        "args": [
+          0,
+          5
+        ],
+        "value": 0
+      },
+      {
+        "kind": "randf",
+        "label": "double_attack_effect:P:staff",
+        "args": [],
+        "value_bits": "3fd0000000000000"
+      },
+      {
+        "kind": "randf",
+        "label": "accuracy:O:P:staff",
+        "args": [],
+        "value_bits": "0000000000000000"
+      },
+      {
+        "kind": "randi_range",
+        "label": "damage:P:staff",
+        "args": [
+          8,
+          10
+        ],
+        "value": 8
+      }
+    ],
+    "squirrel_thorn": [
+      {
+        "kind": "randf_range",
+        "label": "cooldown:P:sq",
+        "args": [
+          "3fee666666666666",
+          "3ff0cccccccccccd"
+        ],
+        "value_bits": "3ff0000000000000"
+      },
+      {
+        "kind": "randi_range",
+        "label": "random_stack:P:sq:O:take:0",
+        "args": [
+          0,
+          0
+        ],
+        "value": 0
+      },
+      {
+        "kind": "randf_range",
+        "label": "squirrel_activation_pitch:P:sq",
+        "args": [
+          "3feccccccccccccd",
+          "3ff199999999999a"
+        ],
+        "value_bits": "3ff0000000000000"
+      },
+      {
+        "kind": "randf",
+        "label": "double_activation:P:sq",
+        "args": [],
+        "value_bits": "3fc999999999999a"
+      },
+      {
+        "kind": "randi_range",
+        "label": "random_stack:P:sq:O:take:0",
+        "args": [
+          0,
+          0
+        ],
+        "value": 0
+      },
+      {
+        "kind": "randf_range",
+        "label": "squirrel_activation_pitch:P:sq",
+        "args": [
+          "3feccccccccccccd",
+          "3ff199999999999a"
+        ],
+        "value_bits": "3ff0000000000000"
+      },
+      {
+        "kind": "randf",
+        "label": "double_attack_effect:P:thorn",
+        "args": [],
+        "value_bits": "3fd0000000000000"
+      },
+      {
+        "kind": "randf",
+        "label": "accuracy:O:P:thorn",
+        "args": [],
+        "value_bits": "0000000000000000"
+      },
+      {
+        "kind": "randi_range",
+        "label": "damage:P:thorn",
+        "args": [
+          2,
+          3
+        ],
+        "value": 2
+      },
+      {
+        "kind": "randf",
+        "label": "item_chance:P:thorn:primary",
+        "args": [],
+        "value_bits": "0000000000000000"
+      },
+      {
+        "kind": "randf",
+        "label": "item_chance:P:thorn:primary",
+        "args": [],
+        "value_bits": "3ff0000000000000"
+      }
+    ],
+    "spear_block": [
+      {
+        "kind": "randf",
+        "label": "double_attack_effect:P:spear",
+        "args": [],
+        "value_bits": "3fd0000000000000"
+      },
+      {
+        "kind": "randf",
+        "label": "accuracy:O:P:spear",
+        "args": [],
+        "value_bits": "0000000000000000"
+      },
+      {
+        "kind": "randi_range",
+        "label": "damage:P:spear",
+        "args": [
+          3,
+          8
+        ],
+        "value": 3
+      }
+    ],
+    "lucky_early": [
+      {
+        "kind": "randf",
+        "label": "double_attack_effect:P:luckybow",
+        "args": [],
+        "value_bits": "3fd0000000000000"
+      },
+      {
+        "kind": "randf",
+        "label": "item_chance:P:luckybow:primary",
+        "args": [],
+        "value_bits": "0000000000000000"
+      },
+      {
+        "kind": "randf",
+        "label": "item_chance:P:luckybow:primary",
+        "args": [],
+        "value_bits": "3ff0000000000000"
+      },
+      {
+        "kind": "randi_range",
+        "label": "damage:P:luckybow",
+        "args": [
+          3,
+          4
+        ],
+        "value": 3
+      }
+    ]
+  },
+  "unit_draws": 26,
+  "types": {
+    "bowl_skill_staff": [
+      105,
+      0,
+      101,
+      0,
+      105,
+      1,
+      0
+    ],
+    "squirrel_thorn": [
+      105,
+      105,
+      0,
+      105,
+      105,
+      0,
+      1,
+      104,
+      0
+    ],
+    "spear_block": [
+      100,
+      100,
+      1,
+      0
+    ],
+    "lucky_early": [
+      101,
+      1,
+      0
+    ]
+  }
+}

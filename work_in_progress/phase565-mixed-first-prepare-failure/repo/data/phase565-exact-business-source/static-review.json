@@ -1,0 +1,26 @@
+{
+  "status": "SOURCE_PASS_NOT_EXECUTED",
+  "owner": {
+    "path": "data/phase564-source-finite-mixed/owned-files.json",
+    "size": 4802,
+    "sha256": "a77486321cd984821b598b1e34482a1018e9a48b7b736c7bbcb6bf4e6224a51d"
+  },
+  "verified_owner_refs": 24,
+  "source_files": 15,
+  "changed_files": [
+    "native_replay_v8/engine.py"
+  ],
+  "changed_functions": [
+    "validate_enchanted_fixture",
+    "validate_bowl_fixture"
+  ],
+  "all_other_functions_exact": 244,
+  "full_module_inverse_exact": true,
+  "full_validate_fixture_exact": true,
+  "both_multiplicity_gates": "Full validate_fixture calls both guards; each mixed branch checks its own caller count per side; no short circuit between guards.",
+  "business_scope": "mixed twelve IDs, class0, max1 Bowl and1 Enchanted per side; absent/single bytes preserved",
+  "Native": 0,
+  "SUT_import": 0,
+  "SUT_calls": 0,
+  "old_tests": 0
+}
