@@ -2,6 +2,10 @@
 
 The original BackpackBattles1.1.8 → standalone Python → RL project is **IN_PROGRESS**. Original GD is behavior authority; Godot is oracle only. Pure combat excludes GUI/shop. Event order, explicit parents, state histories, selected RNG, typed Timer APIs, callbacks and terminal cuts remain strict. Primitive-Tape comparisons and fresh Source runs are distinct evidence.
 
+## Captured029 wrapper Source frozen (533)
+
+[533 thin wrapper Source checkpoint](../work_in_progress/phase533-captured029-wrapper-source/README.md) preserves the three compile-checked modules and immutable candidate15 before runtime validation. Independent534 controls and actual callback-window extraction are pending. No actual029 Python output or strict8 result is claimed.
+
 ## Captured029 launcher design accepted (532)
 
 [526–532 frozen design](../work_in_progress/phase526-532-captured029-wrapper-design/README.md) passes independent design review only. The next step is533 thin launcher/output-adapter implementation, independent finite controls and one bounded extraction from the existing lawful UI record; no additional original capture. Actual same-instance prepared-state acceptance, Python model output and strict8 comparison remain pending.

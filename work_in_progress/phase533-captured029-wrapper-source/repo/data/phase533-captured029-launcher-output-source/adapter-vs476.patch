@@ -1,0 +1,333 @@
+--- tests/phase476_joint_business_output.py
++++ tests/phase533_whelp_business_output.py
+@@ -1,4 +1,4 @@
+-"""Fixed028 joint output-only business projection; no file, model, schema or launcher imports.
++"""Fixed029 zeroKing output-only business projection; no file, model, schema or launcher imports.
+ 
+ Call only from the independent output stage after its exact result/source/input
+ seal. This module has no I/O and cannot authorize a battle or manufacture inputs.
+@@ -10,14 +10,14 @@
+ import re
+ import struct
+ 
+-PROFILE = 'pure-combat-king-basic-A-captured/1'
+-NATIVE_PROFILE = 'observer7-king-basic-A-native-tape/1'
+-CONTRACT_SHA256 = '71c681047140d3bc13d91b24be590dcb598cb3454edac394288c64e01cb3ecef'
+-# Actual lawful joint INPUT checkpoint1149 immediately precedes activation enter1150.
+-# This is a pinned INPUT-origin cut, not an EXPECTED-dependent callback selector.
+-ACTIVATION_AFTER_SEQUENCE = 1150
++PROFILE = 'pure-combat-whelp-family-A-captured/1'
++NATIVE_PROFILE = 'observer7-whelp-family-A-native-tape/1'
++CONTRACT_SHA256 = 'a261b2b262350653ee31d69bed5706f3feb54893b4e577f49f3337a270ef66a3'
++# Actual activation sequence is authenticated through the accepted INPUT proof.
++# No Native Expected-dependent callback selector or old fixed1150.
++ACTIVATION_AFTER_SEQUENCE = None
+ STACKS = dict(enumerate(('Block','Lucky','Regeneration','Vampirism','Spikes','Mana','Empower','Heat','Poison','Blind','Cold'),100))
+-UI_TIMERS = frozenset(('king_hide:P:6','king_drag:P:6'))
++UI_TIMERS = frozenset()
+ EXPECTED_LEAVES = frozenset(('events.jsonl','event_references.json','histories.json','final_state.json',
+     'observer7-runtime.jsonl','king-post-cleanup-source.json','king-final-source.json',
+     'king-capture-endpoint.json','king-collector-cut.json'))
+@@ -30,11 +30,11 @@
+ KING_KEYS = ('activations','activationsToTrigger','invuCharges','protectedBuffs','manaCost')
+ # Generated below from the accepted fixed bundle and the frozen391 SOURCE ABI.
+ NATIVE_SITES = frozenset(('Core/Buff.gd::TemporaryStacks._init', 'Core/Buff.gd::changeCleanseProtectionChance', 'Core/Buff.gd::changeCurrentLogShowLabel', 'Core/Buff.gd::changeReflectChance', 'Core/Buff.gd::changeResistChance', 'Core/Buff.gd::combatEnd', 'Core/Buff.gd::gainTemporary', 'Core/Buff.gd::init', 'Core/Buff.gd::loseStacks', 'Core/Buff.gd::onTimeout', 'Core/Character.gd::_physics_process', 'Core/Character.gd::_ready', 'Core/Character.gd::changeBuffProtectStacks', 'Core/Character.gd::changeDebuffReflectStacks', 'Core/Character.gd::changeMaxHealthTemporary', 'Core/Character.gd::cleanse', 'Core/Character.gd::combatEnd', 'Core/Character.gd::combatStart', 'Core/Character.gd::endBattleRage', 'Core/Character.gd::endStun', 'Core/Character.gd::gainMana', 'Core/Character.gd::gainStacks', 'Core/Character.gd::gainStacksTemporary', 'Core/Character.gd::invulnerabilityEnded', 'Core/Character.gd::loseHealth', 'Core/Character.gd::makeInvulnerable', 'Core/Character.gd::onTick', 'Core/Character.gd::prepare', 'Core/Character.gd::startBattleRage', 'Core/Character.gd::stun', 'Core/Character.gd::takeDamage', 'Core/Character.gd::useMana', 'Core/Character.gd::useStacks', 'Core/CombatLog.gd::createEvent', 'Core/CombatLog.gd::createEvent_BattleRageEnd', 'Core/CombatLog.gd::createEvent_BattleRageStart', 'Core/CombatLog.gd::createEvent_InvulnerableEnd', 'Core/CombatLog.gd::createEvent_InvulnerableStart', 'Core/CombatLog.gd::createEvent_Stack', 'Core/CombatLog.gd::createEvent_StackTemporary', 'Core/CombatLog.gd::createEvent_StackTimeout', 'Core/CombatLog.gd::logEvent', 'Core/CombatLog.gd::onCombatEnd', 'Core/CombatLog.gd::snapshotItemState', 'Core/Game.gd::activateItems', 'Core/Game.gd::combatEndDeferred', 'Core/Game.gd::endCombat', 'Core/Game.gd::prepareItems', 'Interface/CombatTimer/CombatTimer.gd::_physics_process', 'Interface/CombatTimer/CombatTimer.gd::combatEnd', 'Interface/CombatTimer/CombatTimer.gd::dealFatigueDamage', 'Interface/CombatTimer/CombatTimer.gd::start', 'Interface/CombatTimer/CombatTimer.gd::startFatigue', 'Items/Exclusive/KingGoobert.gd::buffEnded', 'Items/Exclusive/KingGoobert.gd::doCooldownEffect', 'Items/Exclusive/KingGoobert.gd::onCombatEnd', 'Items/Exclusive/KingGoobert.gd::onStateChanged', 'Items/Exclusive/KingGoobert.gd::prepare', 'Items/HealthPotion.gd::onDamaged', 'Items/HealthPotion.gd::onPrepare', 'Items/HealthPotion.gd::onTriggerPotion', 'Items/Item.gd::_physics_process', 'Items/Item.gd::_ready', 'Items/Item.gd::activate', 'Items/Item.gd::addBonusDamage', 'Items/Item.gd::cleanseRandomDebuffs', 'Items/Item.gd::combatEnd', 'Items/Item.gd::consume', 'Items/Item.gd::getMostStacks', 'Items/Item.gd::giveMana', 'Items/Item.gd::giveMana_capped', 'Items/Item.gd::giveMaxHealth', 'Items/Item.gd::giveMostBuffs', 'Items/Item.gd::healthToBlock', 'Items/Item.gd::miniActivate', 'Items/Item.gd::pickRandomStacks', 'Items/Item.gd::prepare', 'Items/Item.gd::rollChance', 'Items/Item.gd::stealLife', 'Items/Item.gd::tryUseMana', 'Items/Item.gd::useMana', 'Items/ItemDescriptor.gd::instantiate', 'Items/ItemDescriptor.gd::instantiate_pooled', 'Items/Potion.gd::activate', 'Items/Potion.gd::consumePotion', 'Items/Potion.gd::prepare', 'Items/Potion.gd::triggerPotion', 'Items/Weapon.gd::attack', 'Items/Weapon.gd::doCooldownEffect', 'Sheets/ItemBook.gd::detectMentionedStacks', 'Utility/AutoHideParticles.gd::_ready', 'Utility/AutoHideParticles.gd::activate', 'Utility/AutoHideParticles.gd::deactivate', 'Utility/AutoHideParticles.gd::instantClear', 'Utility/AutoHideParticles.gd::startTimer', 'Utility/AutoHideParticles.gd::timeout', 'Utility/EventBus.gd::connectEvent', 'Utility/EventBus.gd::disconnectAll', 'Utility/EventBus.gd::emitAndLog', 'Utility/EventBus.gd::flushLoggingQueue', 'Utility/Util.gd::_physics_process', 'Utility/Util.gd::_process', 'Utility/Util.gd::changeTimer', 'Items/Goobert.gd::prepare', 'Items/Goobert.gd::onItemActivated', 'Items/Goobert.gd::doCooldownEffect', 'Items/Food.gd::prepare'))
+-MODEL_SOURCE_HASHES = {'component:__init__.py': '82b496191ffa3ec2761b83bf4de9267089d077b777ee38e4b93ab0cb824c4612', 'component:frame_driver.py': '9d8e361144e353a8d944e4490502c5301e7a92451771d35f22ab48f6277f64fd', 'component:timer_runtime.py': '5b7c14ebb7c7511aa05a3411752c7f3341b925c00de31eedfacf4f9345f4a109', '__init__.py': '805cc7035f10e96bfc217ef52f6ac175323ea83c69fb6e678fcd97a5bbcc3d7b', '__main__.py': 'b808649da7470e72669ad7639ef01577187e9692e9ade3745e18b0f21eea647a', 'compare.py': '4af52ee400acf1460c9e28faf5a760d05753d1de7218a00d4a740712a40fdd22', 'engine.py': 'e06bf6493baf0d5d4250c73ea13f6388a0925556e1aafde4043ab9a21871a118', 'genuine.py': '2b16a2a79c4601e584cf1bb8e4ddbdbcca67be08d0c4a2c322cd6e21b21e55fe', 'histories.py': 'd9b3f270b53f328f5958647fdaba86532ff3d9db11b272d9a7d0d2aef1db0b05', 'observed.py': '0a04fb2b03e48cd1cd9a3e43425deddef56c7906105dadeaefafa81ac84a6fd1', 'randomness.py': '676d42a69937394dc1bd8ff23268a08dc41fe9604f7e56213bb968ab331b9139', 'state.py': '21478fecea4c888f701ff8991fb2cf75519670c602ed2bd9d17874e238c54bd1'}
+-
+-CANDIDATE_FREEZE = {'path': 'data/phase476-joint-condition-repair/candidate-source-freeze.json', 'size': 5234, 'sha256': 'ebd99ad8fbe50247b520a005314d6b0714895d7014081c199cba03791f11bc09'}
+-CONTRACT_DESCRIPTOR = {'path': 'data/phase466-captured-joint-bridge-design/comparison-contract.json', 'size': 4636, 'sha256': '71c681047140d3bc13d91b24be590dcb598cb3454edac394288c64e01cb3ecef'}
+-FIXTURE_CANONICAL_SHA256 = '61895d66013fd6fa604ab0be8c3bc386ae20d680c78a6a888b2c7cf1c7825c59'
++MODEL_SOURCE_HASHES = {'component:__init__.py': '82b496191ffa3ec2761b83bf4de9267089d077b777ee38e4b93ab0cb824c4612', 'component:frame_driver.py': '9d8e361144e353a8d944e4490502c5301e7a92451771d35f22ab48f6277f64fd', 'component:timer_runtime.py': '5b7c14ebb7c7511aa05a3411752c7f3341b925c00de31eedfacf4f9345f4a109', '__init__.py': '805cc7035f10e96bfc217ef52f6ac175323ea83c69fb6e678fcd97a5bbcc3d7b', '__main__.py': 'b808649da7470e72669ad7639ef01577187e9692e9ade3745e18b0f21eea647a', 'compare.py': '4af52ee400acf1460c9e28faf5a760d05753d1de7218a00d4a740712a40fdd22', 'engine.py': 'c3a433ff3ea0336ccee5741f09306f7db6c77831242bbd4d2c92dedd0671720f', 'genuine.py': '1c56c2bcf93d4099f0cefb883381cdc093ccc77cec8998b1a763e5994b1e0978', 'histories.py': 'd9b3f270b53f328f5958647fdaba86532ff3d9db11b272d9a7d0d2aef1db0b05', 'observed.py': '0a04fb2b03e48cd1cd9a3e43425deddef56c7906105dadeaefafa81ac84a6fd1', 'randomness.py': '676d42a69937394dc1bd8ff23268a08dc41fe9604f7e56213bb968ab331b9139', 'state.py': '21478fecea4c888f701ff8991fb2cf75519670c602ed2bd9d17874e238c54bd1'}
++
++CANDIDATE_FREEZE = {'path': 'data/phase505-captured-nonking-source-v3/candidate-source-freeze.json', 'sha256': 'e3f2a86713ef097cae77858f0868fdd70b7487cdeadeaa7fcf11ebb184d550ad', 'size': 4729}
++CONTRACT_DESCRIPTOR = {'path': 'data/phase526-launcher-output-design-v2/comparison-contract.json', 'sha256': 'a261b2b262350653ee31d69bed5706f3feb54893b4e577f49f3337a270ef66a3', 'size': 5229}
++FIXTURE_CANONICAL_SHA256 = '73fb01ae30e0baf0b5c696c5721280e6ac38d0b11a1b145d124a71d4c80562e8'
+ 
+ 
+ def require(condition, reason):
+@@ -95,32 +95,30 @@
+     return value
+ 
+ 
+-def bindings(bundle,root_binding):
+-    keys(root_binding,('schema','input_bundle','input_canonical_sha256','candidate_freeze','contract'),'closed external comparison binding')
+-    require(root_binding['schema']=='phase474-fixed-comparison-binding/1','external binding schema')
+-    for name in ('input_bundle','candidate_freeze','contract'):
++def bindings(bundle,input_proof,root_binding):
++    keys(root_binding,('schema','input_bundle','input_canonical_sha256','input_proof','input_proof_canonical_sha256','candidate_freeze','contract'),'closed fixed029 external comparison binding')
++    require(root_binding['schema']=='phase533-fixed029-comparison-binding/1','external binding schema')
++    for name in ('input_bundle','input_proof','candidate_freeze','contract'):
+         row=root_binding[name];keys(row,('path','size','sha256'),'actual descriptor shape')
+-        require(type(row['path']) is str and row['path'] and type(row['size']) is int and row['size']>0
+-                and type(row['sha256']) is str and re.fullmatch('[0-9a-f]{64}',row['sha256']) is not None,'actual descriptor types')
+-    require(root_binding['candidate_freeze']==CANDIDATE_FREEZE and root_binding['contract']==CONTRACT_DESCRIPTOR,'exact candidate and pre-Expected contract')
+-    digest=root_binding['input_canonical_sha256']
+-    require(type(digest) is str and re.fullmatch('[0-9a-f]{64}',digest) is not None
+-            and type(bundle) is dict and canonical_sha(bundle)==digest,'authenticated actual INPUT canonical identity')
+-    require(set(bundle)=={'schema','fixture','runtime','draws','synthetic_seed'} and bundle['schema']=='native-v8-input-only/1'
+-            and bundle['synthetic_seed'] is None and canonical_sha(bundle['fixture'])==FIXTURE_CANONICAL_SHA256,'exact captured joint envelope/fixture')
+-    data=bundle['runtime']
+-    require(data['schema']=='native-v8-pure-combat-runtime-input/king-basic-1' and data['profile_id']==PROFILE
+-            and data['mode']=='genuine' and len(data['timer_initial'])==33,'joint profile/33Timer')
+-    table={n['role']:deepcopy(n) for n in data['processing_nodes']}
+-    require(len(data['processing_nodes'])==len(table)==65,'joint65 processing roles')
+-    native={n['native_id']:name for name,n in table.items()}
+-    require(len(native)==65,'native identity bijection')
++        require(type(row['path']) is str and row['path'] and type(row['size']) is int and row['size']>0 and type(row['sha256']) is str and re.fullmatch('[0-9a-f]{64}',row['sha256']) is not None,'actual descriptor types')
++    require(root_binding['candidate_freeze']==CANDIDATE_FREEZE and root_binding['contract']==CONTRACT_DESCRIPTOR,'exact505 and pre-Expected contract')
++    require(root_binding['input_bundle']==INPUT_BUNDLE and root_binding['input_proof']==INPUT_PROOF,'actual531 accepted INPUT/proof descriptors')
++    require(canonical_sha(bundle)==root_binding['input_canonical_sha256']==INPUT_CANONICAL_SHA256,'actual bundle canonical bytes')
++    require(canonical_sha(input_proof)==root_binding['input_proof_canonical_sha256']==PROOF_CANONICAL_SHA256,'actual proof canonical bytes')
++    require(type(bundle) is dict and set(bundle)=={'schema','fixture','runtime','draws','synthetic_seed'} and bundle['schema']=='native-v8-input-only/1' and bundle['synthetic_seed'] is None and canonical_sha(bundle['fixture'])==FIXTURE_CANONICAL_SHA256,'actual fixed029 envelope/fixture')
++    data=bundle['runtime'];require(data['schema']=='native-v8-pure-combat-runtime-input/whelp-family-1' and data['profile_id']==PROFILE and data['mode']=='genuine' and len(data['timer_initial'])==32 and len(data['nodes'])==66,'fixed029 raw32/66')
++    table={n['role']:deepcopy(n) for n in data['processing_nodes']};require(len(table)==len(data['processing_nodes'])==67,'fixed67processing')
++    native={n['native_id']:name for name,n in table.items()};require(len(native)==67,'native identity bijection')
+     items={i['instance_id']:i for side in bundle['fixture']['sides'] for i in side['items']}
+-    require(len(items)==26 and items['P:6']['item_index']==262 and items['P:7']['item_index']==23
+-            and items['P:12']['item_index']==1 and items['O:9']['item_index']==19,'joint26 subtype bindings')
++    require(len(items)==29 and all(type(i['item_index']) is int and i['item_index'] in {1,11,22,23,64,164,197,199,201} for i in items.values()),'fixed9ID zeroKing membership')
++    for identity,index in {'P:9':23,'P:10':164,'P:12':201,'P:13':197,'P:14':199,'O:8':64}.items():require(items[identity]['item_index']==index,'fixed subtype identity')
+     expected={'root_viewport','game','util','combat_timer','character:P','character:O'}|set(data['timer_initial'])|{'item:'+i for i in items}
+-    require(set(table)==expected,'complete bound business graph')
+-    return dict(nodes=table,native=native,timers=frozenset(data['timer_initial']),items=items)
++    require(set(table)==expected,'complete67role graph')
++    origin=input_proof['field_origins']['runtime.checkpoint'];other=input_proof['field_origins']['runtime.activate_order']
++    require(origin['file']==other['file']=='observer7-input.jsonl' and type(origin['sequence']) is int and origin['sequence']>0 and origin['sequence']==other['sequence'] and data['checkpoint']['source_phase']=='Core/Game.gd::activateItems:enter','actual INPUT activation sequence witness')
++    inactive=frozenset('invu:'+s for s in ('P','O'))|frozenset('aux:'+s+':'+n for s in ('P','O') for n in ('battleRageTimer','autoRageTimer'))
++    require(len(inactive)==6 and inactive<=set(data['timer_initial']),'actual six inactive timers retained')
++    return dict(nodes=table,native=native,timers=frozenset(data['timer_initial']),items=items,inactive_timers=inactive,activation_after_sequence=origin['sequence'])
+ 
+ 
+ def decode_native(value, bound=None):
+@@ -269,13 +267,14 @@
+ 
+ 
+ def _basic_fields(item,bound):
+-    if item['instance']=='P:7':
+-        require(bound['items']['P:7']['item_index']==23,'bound Basic subtype')
+-        fields=item['fields']
+-        require('activations' in fields and type(fields['activations']) is int,'Basic INT counter required')
++    identity=item['instance'];index=bound['items'][identity]['item_index'];fields=item['fields']
++    if index==23:
++        require(identity=='P:9' and type(fields.get('activations')) is int,'Basic bound INT counter')
+         for name in ('activationsToTrigger','iterationCooldown','triggerTime'):
+-            require(name in fields and type(fields[name]) is float,'Basic REAL field required: '+name)
+-            bits(fields[name])
++            require(type(fields.get(name)) is float,'Basic REAL field '+name);bits(fields[name])
++    if index==199:
++        require(identity=='P:14' and type(fields.get('stackTypes')) is list,'Sapphire typed list')
++        require(all(type(x) is int for x in fields['stackTypes']) and fields['stackTypes']==[101,102,103,104,106,107],'Sapphire ordered six INT')
+ 
+ 
+ def _rule_state(native,bound):
+@@ -290,9 +289,9 @@
+             extra=item.pop('observer7_fields')
+             require(type(extra) is dict and not (set(extra)&set(item['fields'])),'subtype fields disjoint')
+             item['fields'].update(extra)
+-            require(item.pop('observer7_timers')=={},'joint seven-ID empty particle wrapper')
++            require(item.pop('observer7_timers')=={},'fixed9ID empty particle wrapper')
+             _basic_fields(item,bound)
+-    require(seen==set(bound['items']),'all26 terminal items')
++    require(seen==set(bound['items']),'all29 terminal items')
+     return dict(characters=chars,rules=deepcopy(native['rules']))
+ 
+ 
+@@ -312,28 +311,26 @@
+ 
+ 
+ def project_model_final(result,bound):
+-    final=result['final'];rule=deepcopy(final['native_rule_state'])
+-    require([c['instance'] for c in rule['characters']]==['P','O'],'model ordered characters')
++    final=result['final'];rule=deepcopy(final['native_rule_state']);business=result['captured_terminal']['final']['business']
++    require([c['instance'] for c in rule['characters']]==['P','O'] and business['king']=={},'zeroKing same final business state')
++    keys(business['invu_origins'],('P','O'),'same-instance invu origins')
+     rule['rules']['values']=restore_integer_table(rule['rules']['values']);seen=set()
+     for char in rule['characters']:
+-        char['stats']=restore_integer_table(char['stats'])
+-        char['fields']['typedDamageFactors']=restore_integer_table(char['fields']['typedDamageFactors'])
+-        require('invulBubbleVisible' in char['fields'],'model legacy bubble envelope')
+-        del char['fields']['invulBubbleVisible']
++        side=char['instance'];char['stats']=restore_integer_table(char['stats']);char['fields']['typedDamageFactors']=restore_integer_table(char['fields']['typedDamageFactors'])
++        require('invulBubbleVisible' not in char['fields'] and 'invulnerabilityItem' not in char['fields'],'nonKing state projection shape')
++        origin=business['invu_origins'][side];require(origin is None or type(origin) is str and origin in bound['items'],'same-instance origin alias')
++        char['fields']['invulnerabilityItem']=origin
++        require(first_difference(char['fields']['invulnerable'],business['characters'][side]['invulnerable']) is None,'same final invulnerable state')
+         for item in char['items']:
+-            identity=item['instance'];require(identity in bound['items'] and identity not in seen,'model26 identity')
+-            seen.add(identity)
+-            for name in ('buffPowers','buffAmplificationChances'):
+-                item['fields'][name]=restore_integer_table(item['fields'][name])
+-            if bound['items'][identity]['item_index']==19:
+-                actual=final['items'][identity]
+-                require(type(actual['item_index']) is int and actual['item_index']==19 and type(actual['potion_full']) is bool,'same-instance HealthPotion live bool')
+-                require('isFull' not in item['fields'],'unexpected preexisting pure isFull')
+-                item['fields']['isFull']=actual['potion_full']
++            identity=item['instance'];require(identity in bound['items'] and identity not in seen,'model29 identity');seen.add(identity)
++            for name in ('buffPowers','buffAmplificationChances'):item['fields'][name]=restore_integer_table(item['fields'][name])
++            if bound['items'][identity]['item_index']==199:
++                live=final['items'][identity];require(type(live['item_index']) is int and live['item_index']==199 and 'stackTypes' not in item['fields'],'same-instance Sapphire subtype')
++                values=live['definition']['random_buff_types'];require(type(values) is list and all(type(x) is int for x in values),'sealed live definition typedstack')
++                item['fields']['stackTypes']=deepcopy(values)
+             _basic_fields(item,bound)
+-    require(seen==set(bound['items']),'complete model26')
+-    return dict(native_rule_state=rule,game=deepcopy(final['game']),event_bus=deepcopy(final['event_bus']),
+-        timer=dict(combatTime=final['timestamp'],timeAdvance=final['time_advance'],fatigueCounter=final['fatigue_counter']),winner=final['winner'])
++    require(seen==set(bound['items']),'complete model29')
++    return dict(native_rule_state=rule,game=deepcopy(final['game']),event_bus=deepcopy(final['event_bus']),timer=dict(combatTime=final['timestamp'],timeAdvance=final['time_advance'],fatigueCounter=final['fatigue_counter']),winner=final['winner'])
+ 
+ 
+ def _typed_rng(rule):
+@@ -429,7 +426,7 @@
+         owner=_subject(row,bound);require(owner in ('character:P','character:O'),'Character timeout owner')
+         return ('tick:' if site.endswith('onTick') else 'invu:')+owner[-1],0,False
+     if site=='Items/Exclusive/KingGoobert.gd::buffEnded':
+-        require(_subject(row,bound)=='item:P:6','King timeout owner');return 'king_buff:P:6',0,False
++        require(False,'King timeout outside zeroKing domain')
+     if site=='Core/Buff.gd::onTimeout':
+         state=row['payload']['state'];side=decode_native(state['character'],bound);category=decode_native(state['type'],bound)
+         require(side in ('P','O') and type(category) is int and category in STACKS,'Buff timeout association')
+@@ -441,7 +438,7 @@
+     result=[];header=bundle['runtime']['frame_clock']['checkpoint']
+     start=(header['physics_frame'],header['idle_frame'])
+     for row in rows:
+-        if row['sequence']<=ACTIVATION_AFTER_SEQUENCE:continue
++        if row['sequence']<=bound['activation_after_sequence']:continue
+         if row['edge']!='enter':continue
+         selected=_callback_role(row,bound)
+         if selected is None:continue
+@@ -450,7 +447,7 @@
+         # No business callback is part of the activation idle tail. An unexpected
+         # selected entry after the exact sequence cut is never silently skipped.
+         require((p,i)!=start,'unmodeled same-activation-frame business callback')
+-        name,mode,ordinary=selected;delta=None
++        name,mode,ordinary=selected;require(name not in bound['inactive_timers'],'inactive timer callback');delta=None
+         if ordinary:
+             args=decode_native(row['payload']['arguments'],bound);keys(args,('delta',),'callback delta argument')
+             delta=bits(args['delta'])
+@@ -468,8 +465,9 @@
+         name=row['role'];mode=row['mode']
+         require(type(name) is str and name in bound['nodes'],'model callback bound identity')
+         require(type(mode) is int and mode in (0,1),'model callback mode INT0/1')
++        require(name not in bound['inactive_timers'],'inactive timer model callback')
+         if (name,mode) in noop_slots:
+-            continue  # Exact28-slot Source-only partition; new-case guard required externally, inherited444 rule; no native rows fabricated.
++            continue  # Exact31-slot Source-only partition; new-case guard required externally, inherited444 rule; no native rows fabricated.
+         require(name in bound['nodes'] and (name=='util' or name=='combat_timer' or name.startswith(('character:','item:')) or name in bound['timers']),'unknown model callback')
+         rows.append({k:row[k] for k in ('role','mode','physics_frame','idle_frame','delta_bits','util_time_bits','combat_time_bits')})
+     return rows
+@@ -486,7 +484,7 @@
+ def project_native_api(rows,bundle,bound):
+     result=[];header=bundle['runtime']['frame_clock']['checkpoint']
+     for row in rows:
+-        if row['sequence']<=ACTIVATION_AFTER_SEQUENCE:continue
++        if row['sequence']<=bound['activation_after_sequence']:continue
+         if row['edge'] not in ('timer_before','timer_after'):continue
+         payload=row['payload'];name=role(payload['role'])
+         if name in UI_TIMERS:continue
+@@ -514,7 +512,7 @@
+ def project_model_api(result,bound):
+     rows=[]
+     for row in result['pure_combat_diagnostics']['api']:
+-        name=row['role'];require(name in bound['timers'],'model Timer33 role')
++        name=row['role'];require(name in bound['timers'],'model raw32Timer role')
+         require(type(row['argc']) is int and len(row['args'])==row['argc'],'model argc')
+         for arg in row['args']:decode_native(arg,bound)
+         if row['edge']=='after':
+@@ -534,13 +532,12 @@
+         if name in UI_TIMERS:continue
+         require(name in bound['timers'] and name not in timers,'snapshot Timer identity')
+         timers[name]=_native_timer(timer,name,bound)
+-    require(set(timers)==bound['timers'],'snapshot complete33 Timers')
++    require(set(timers)==bound['timers'],'snapshot complete32 Timers')
+     chars={}
+     for side in ('P','O'):
+         item=value['characters_invu'][side]
+         chars[side]={k:decode_native(item[k],bound) for k in ('invulnerable','invulnerabilityItem','buffProtectStacks')}
+-    kings=value['king_source_state'];keys(kings,('P:6',),'one King snapshot')
+-    king={k:decode_native(kings['P:6']['fields'][k],bound) for k in KING_KEYS}
++    keys(value['king_source_state'],(),'zeroKing Native snapshot');king={}
+     root=value['nodes'];require(len(root)==1,'source snapshot root only')
+     raw=root[0]['node'] if 'node' in root[0] else root[0]
+     return dict(timers=timers,root=_node(raw,'root_viewport',bound),characters=chars,king=king,
+@@ -552,12 +549,10 @@
+ 
+ def _snapshot_model(driver,bound):
+     value=driver['business'];timers={name:_model_timer(t['public'],name,bound) for name,t in value['timers'].items()}
+-    require(set(timers)==bound['timers'],'model snapshot33')
++    require(set(timers)==bound['timers'],'model snapshot32')
+     chars={s:dict(invulnerable=value['characters'][s]['invulnerable'],invulnerabilityItem=value['invu_origins'][s],
+         buffProtectStacks=value['characters'][s]['buff_protect_stacks']) for s in ('P','O')}
+-    king_rows=[item for c in driver['model']['native_rule_state']['characters'] for item in c['items'] if item['instance']=='P:6']
+-    require(len(king_rows)==1,'same-cut King state')
+-    king={k:deepcopy(king_rows[0]['fields'][k]) for k in KING_KEYS}
++    require(value['king']=={},'same-cut emptyKing state');king={}
+     node=[n for n in value['processing_nodes'] if n['role']=='root_viewport'];require(len(node)==1,'model root row')
+     c=value['clock'];require(value['off_clock'] is False,'runtime cut is on actual clock')
+     return dict(timers=timers,root=_node(node[0],'root_viewport',bound),characters=chars,king=king,
+@@ -591,7 +586,7 @@
+ 
+ 
+ def _terminal_model(result,bundle):
+-    driver=result['king_terminal'];cleanup=driver['post_cleanup'];final=driver['final'];passes=bundle['runtime']['frame_clock']['passes'];trace=driver['passes']
++    driver=result['captured_terminal'];cleanup=driver['post_cleanup'];final=driver['final'];passes=bundle['runtime']['frame_clock']['passes'];trace=driver['passes']
+     require(len(trace)==len(passes)==final['passes_consumed'],'full model clock exhaustion')
+     for index,(record,source) in enumerate(zip(trace,passes)):
+         expected=dict(index=index,kind=source['kind'],end_phase='idle_pre_internal_flush' if index==len(passes)-1 else source['kind']+'_tail',completed=index!=len(passes)-1)
+@@ -601,9 +596,9 @@
+         physics_frame=final['physics_frame'],idle_frame=final['idle_frame'],future_physics=final['physics_frame']-cleanup['physics_frame'])
+ 
+ 
+-def project_native(native,bundle,root_binding):
++def project_native(native,bundle,input_proof,root_binding):
+     keys(native,EXPECTED_LEAVES,'closed native output leaves')
+-    bound=bindings(bundle,root_binding);rows=_runtime_rows(native['observer7-runtime.jsonl'],bound)
++    bound=bindings(bundle,input_proof,root_binding);rows=_runtime_rows(native['observer7-runtime.jsonl'],bound)
+     final=project_native_final(native['final_state.json'],bound)
+     cleanup=_snapshot_native(native['king-post-cleanup-source.json'],bound);last=_snapshot_native(native['king-final-source.json'],bound)
+     return dict(events=project_events(native['events.jsonl'],bound),event_references=project_references(native['event_references.json'],bound),
+@@ -613,9 +608,9 @@
+         cuts=dict(cleanup=cleanup,final=last,terminal=_terminal_native(native,bundle,cleanup,last,bound)))
+ 
+ 
+-def project_model(result,bundle,root_binding):
+-    bound=bindings(bundle,root_binding)
+-    require(result['observer_version']=='observer7-king-basic-A-captured-candidate471' and result['final']['runtime']['profile']==PROFILE,'joint471 model result')
++def project_model(result,bundle,input_proof,root_binding):
++    bound=bindings(bundle,input_proof,root_binding)
++    require(result['observer_version']=='observer7-502-zeroKing-whelp-candidate505' and result['final']['runtime']['profile']==PROFILE,'joint471 model result')
+     require(result['model_source_sha256']==MODEL_SOURCE_HASHES,'exact candidate+component Source hashes')
+     require(first_difference(result['fixture'],bundle['fixture']) is None,'model fixture')
+     diag=result['pure_combat_diagnostics']
+@@ -626,8 +621,8 @@
+     return dict(events=deepcopy(result['events']),event_references=deepcopy(result['event_references']),histories=restore_histories(result['histories']),
+         rng=dict(primitives=deepcopy(result['random_inputs']),states=_typed_rng(final['native_rule_state'])),final=final,
+         callbacks=project_model_callbacks(result,bound),timer_api=project_model_api(result,bound),
+-        cuts=dict(cleanup=_snapshot_model(result['king_terminal']['post_cleanup'],bound),
+-            final=_snapshot_model(result['king_terminal']['final'],bound),terminal=_terminal_model(result,bundle)))
++        cuts=dict(cleanup=_snapshot_model(result['captured_terminal']['post_cleanup'],bound),
++            final=_snapshot_model(result['captured_terminal']['final'],bound),terminal=_terminal_model(result,bundle)))
+ 
+ 
+ def compare_projected(native,model):
+@@ -635,12 +630,17 @@
+     differences={name:first_difference(native[name],model[name],'$.'+name) for name in SECTIONS}
+     return dict(schema='phase445-strict-business-output-result/1',status='PASS' if not any(differences.values()) else 'FAIL',
+         first_differences=differences,contract_sha256=CONTRACT_SHA256,
+-        scope='fixed joint26 conditional Tape business events/parents/histories/RNG/final/Timer/callback/clock',
++        scope='fixed029 raw32/29 zeroKing conditional Tape business events/parents/histories/RNG/final/Timer/callback/clock',
+         observation_limits=dict(observer_debug_sites=107,complete_method_enter_return_equality='NOT_CLAIMED',
+-            noop_slots='28 modeled, inherited finite444 rule requires new-case applicability; no native ordinary entry rows',
++            noop_slots='31 modeled under owned actual B2 Sourceclosure; no fabricated Native noop samples',
+             later_private_Timer='MODEL_DIAGNOSTIC_ONLY_NOT_NATIVE_SAMPLED',same_seed_global_generator='NOT_CLAIMED'))
+ 
+ 
+-def compare_decoded(native_outputs,sealed_result,accepted_bundle,root_binding):
++def compare_decoded(native_outputs,sealed_result,accepted_bundle,input_proof,root_binding):
+     """Pure output projection. Independent caller authenticates raw INPUT/output/EXPECTED seals first."""
+-    return compare_projected(project_native(native_outputs,accepted_bundle,root_binding),project_model(sealed_result,accepted_bundle,root_binding))
++    return compare_projected(project_native(native_outputs,accepted_bundle,input_proof,root_binding),project_model(sealed_result,accepted_bundle,input_proof,root_binding))
++
++INPUT_BUNDLE = {'path': 'data/phase511-case029-actual-input-repaired-001/input-bundle.json', 'sha256': 'a065e481a8ea3d0d145a68ab4fcc945a923a51c75159f289af74083c15dfe5ab', 'size': 287000}
++INPUT_PROOF = {'path': 'data/phase511-case029-actual-input-repaired-001/input-proof.json', 'sha256': '2a08a12c8573a1b596cc39293000b11140bc7a3fe4e783dc0dca5c1e8e65b7ea', 'size': 205581}
++INPUT_CANONICAL_SHA256 = 'f975cd71337e3c06b76a3d6d1e2652318184f96d41f74e2acf59e4cf02e66eb7'
++PROOF_CANONICAL_SHA256 = 'bfc6b49f12af432afd88fe73427994aef9778086ad4b6ffdef83649a58b27c37'
