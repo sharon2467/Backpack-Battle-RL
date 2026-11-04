@@ -2,6 +2,10 @@
 
 The original BackpackBattles1.1.8 → standalone Python → RL project is **IN_PROGRESS**. Original GD is behavior authority; Godot is oracle only. Pure combat excludes GUI/shop. Event order, explicit parents, state histories, selected RNG, typed Timer APIs, callbacks and terminal cuts remain strict. Primitive-Tape comparisons and fresh Source runs are distinct evidence.
 
+## Actual029 first comparison stopped at projection (536)
+
+[536 retained failure](../work_in_progress/phase536-actual029-first-projection-failure/README.md) records one actual attempt:9Native leaves authenticated and decoded,Native projection completed,model-final projection raised KeyError for a property absent from serialized items. Eight-section value comparison was not reached;no Native PASS. Next537must establish a minimal Source-backed mapping from the existing same-instance sealed gate without dropping fields or rerunning the model.
+
 ## Actual029 Python model sealed (535), Native comparison pending
 
 [534–535 actual controls and sealed model](../work_in_progress/phase534-535-actual029-model-sealed/README.md) preserves independent12pure+1invalidCLI+1existingUI PASS and one actual Python run. Same-instance prepared-state gate passed;all297primitive inputs consumed,232events/1089clockpasses. Raw model outputSHA `76ddddc57e33423e8f78e3cb409612a550f0f4c28aec0ad35f0aaa3b322a9213` is sealed. Reuse it for the pending independent strict8 comparison;do not rerun battle. No actual029Native equality or promotion is claimed.

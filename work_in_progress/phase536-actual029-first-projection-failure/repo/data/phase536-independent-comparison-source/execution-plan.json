@@ -1,0 +1,59 @@
+{
+  "schema": "phase536-exact-comparison-invocation-plan/1",
+  "status": "FROZEN_NOT_EXECUTED_PENDING_ROOT_RELEASE",
+  "script": {
+    "path": "tests/phase536_independent_actual_compare.py",
+    "size": 13650,
+    "sha256": "01b127bc1e97f08d73dd8a5374bc05d65e9cd0b8b752b982f013aa05542da4bb"
+  },
+  "pins": {
+    "path": "data/phase536-independent-comparison-source/pins.json",
+    "size": 2667,
+    "sha256": "247d00ce57c8af0eb299ed82138d7fe0ffa9e41c75cc68831aaf227c876231f6"
+  },
+  "binding": {
+    "path": "data/phase536-independent-comparison-source/comparison-binding.json",
+    "size": 1080,
+    "sha256": "62a2b39d04e1baacb7c2df536a4afbc67f4323d16edd68c08d57ebad5ceb4f11"
+  },
+  "model_seal": {
+    "path": "data/phase533-case029-actual-model-first-001/output-seal.json",
+    "size": 924,
+    "sha256": "25937268b2355264cf94abdd00e3bc3ce358256ce4c25a2d09f3068326b8d96a"
+  },
+  "model_output": {
+    "size": 15266600,
+    "sha256": "76ddddc57e33423e8f78e3cb409612a550f0f4c28aec0ad35f0aaa3b322a9213"
+  },
+  "command": [
+    "python",
+    "-I",
+    "-B",
+    "/workspace/python-original-engine/repo/tests/phase536_independent_actual_compare.py",
+    "--pins-sha256",
+    "247d00ce57c8af0eb299ed82138d7fe0ffa9e41c75cc68831aaf227c876231f6"
+  ],
+  "cwd": "/tmp",
+  "outer_wall_seconds": 60,
+  "internal_wall_seconds": 50,
+  "output": "data/phase536-case029-comparison-first-001",
+  "maximum": {
+    "fresh_process": 1,
+    "adapter_import": 1,
+    "compare_decoded": 1,
+    "Expected_payload_files": 9,
+    "model_calls": 0,
+    "Native_calls": 0,
+    "original_INPUT12_reads": 0
+  },
+  "actual_prepared_gate": "Pinned535 same-instance prepare/gate success; no extra B1 invocation",
+  "Expected_read_release": false,
+  "failure": "Stop and preserve first projection/ABI exception or strict8 differences, no retry/model rerun",
+  "static_checks": {
+    "script_AST": "PASS without import",
+    "watched18_relation": "Exact metadata match",
+    "capsule_expected_pins": "Opaque manifest descriptors only",
+    "eight_sections_contract": "Unchanged526",
+    "candidate": "505 unchanged; hashes checked at actual compare, no import"
+  }
+}

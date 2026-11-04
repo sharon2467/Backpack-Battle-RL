@@ -1,0 +1,121 @@
+{
+  "schema": "phase536-independent-first-output-ABI-finding/1",
+  "status": "BLOCKED_MODEL_FINAL_PROJECTION_NO_BUSINESS_COMPARISON",
+  "classification": "533 output adapter assumption inconsistent with frozen505 serialized ItemState shape; not a candidate combat divergence or Native protocol failure.",
+  "actual_result": {
+    "path": "data/phase536-case029-comparison-first-001/result.json",
+    "size": 21856,
+    "sha256": "e8d4b3c0a4026bbbfb6ad9895d0db4045a10591ac336d515a103585206cde065"
+  },
+  "actual_owner": {
+    "path": "data/phase536-case029-comparison-first-001/owned-files.json",
+    "size": 511,
+    "sha256": "0edb7d4e242b01bbdea8dc41c5f5ec89cd3637506d7dc03544c44353e38d31ff"
+  },
+  "invocation_owner": {
+    "path": "data/phase536-independent-comparison-invocation-first-001/owned-files.json",
+    "size": 896,
+    "sha256": "ddf64cfcff4c42bbadd472b02e389231f89a64ae08df9d61283d7ed621b90139"
+  },
+  "error": {
+    "stage": "single_compare_decoded",
+    "type": "KeyError",
+    "message": "'definition'",
+    "traceback_frames": [
+      {
+        "file": "/workspace/python-original-engine/repo/tests/phase536_independent_actual_compare.py",
+        "line": 151,
+        "function": "main"
+      },
+      {
+        "file": "/workspace/python-original-engine/repo/tests/phase536_independent_actual_compare.py",
+        "line": 64,
+        "function": "counted"
+      },
+      {
+        "file": "/workspace/python-original-engine/repo/tests/phase533_whelp_business_output.py",
+        "line": 641,
+        "function": "compare_decoded"
+      },
+      {
+        "file": "/workspace/python-original-engine/repo/tests/phase536_independent_actual_compare.py",
+        "line": 64,
+        "function": "counted"
+      },
+      {
+        "file": "/workspace/python-original-engine/repo/tests/phase533_whelp_business_output.py",
+        "line": 620,
+        "function": "project_model"
+      },
+      {
+        "file": "/workspace/python-original-engine/repo/tests/phase536_independent_actual_compare.py",
+        "line": 64,
+        "function": "counted"
+      },
+      {
+        "file": "/workspace/python-original-engine/repo/tests/phase533_whelp_business_output.py",
+        "line": 329,
+        "function": "project_model_final"
+      }
+    ]
+  },
+  "Source_evidence": [
+    {
+      "source": {
+        "path": "data/phase505-captured-nonking-source-v3/staged/native_replay_v8/engine.py",
+        "size": 259501,
+        "sha256": "c3a433ff3ea0336ccee5741f09306f7db6c77831242bbd4d2c92dedd0671720f"
+      },
+      "line_start": 454,
+      "line_end": 505,
+      "sha256": "8db0dd3891709e694a8592798d4005e3b76af4e44c6bff48c8befc5edbc37fa9",
+      "text": "@dataclass\nclass ItemState:\n    instance_id: str\n    item_index: int\n    side: str\n    cells: set\n    stars: set = field(default_factory=set)\n    ordered_cells: list = field(default_factory=list)\n    activations_this_frame: int = 0\n    last_activation_frame: int = -1\n    last_activation_time: float = 0.0\n    last_trigger_time: float = 0.0\n    triggers_this_frame: int = 0\n    cache_prepared: bool = False\n    orientation: int = 0\n    top_left: tuple = (0, 0)\n    cooldown_active: bool = False\n    ammunition: int = 1\n    iteration_cooldown: float = 0.0\n    trigger_time: float = 0.0\n    speed_scale: float = 0.0\n    crit_chance: float = 0.0\n    damage_range: BalancedRange = field(default_factory=BalancedRange)\n    chance_rng: BalancedRng = field(default_factory=BalancedRng)\n    buff_powers: dict = field(default_factory=lambda: {key: 1.0 for key in range(100, 111)})\n    buff_amplification_chances: dict = field(default_factory=lambda: {key: 0.0 for key in range(100, 111)})\n    spikes_given: int = 0\n    broom_bonus_damage: int = 0\n    potion_full: bool = True\n    boots_has_activated: bool = False\n    rage_has_activated: bool = False\n    goobert_activations: int = 0\n    steel_affected_weapons: list = field(default_factory=list)\n    double_activation_chance: float = 0.0\n    double_attack_effect_chance: float = 0.0\n    spear_block_removal: int = 0\n    consumed: bool = False\n    damage: int = 0\n    activations: int = 0\n    misses: int = 0\n    out_of_stamina: int = 0\n    bonus_damage: int = 0\n    varying_damage: float = 0.0\n    bonus_max_only: float = 0.0\n    healing: int = 0\n    overheal: float = 0.0\n\n    @property\n    def definition(self):\n        return CATALOG[self.item_index]\n\n    @property\n"
+    },
+    {
+      "source": {
+        "path": "data/phase505-captured-nonking-source-v3/staged/native_replay_v8/engine.py",
+        "size": 259501,
+        "sha256": "c3a433ff3ea0336ccee5741f09306f7db6c77831242bbd4d2c92dedd0671720f"
+      },
+      "line_start": 3608,
+      "line_end": 3633,
+      "sha256": "c76663e6e65c0eeebdf40eb6bf6dd2ef830810f40baef313dad474b432727f72",
+      "text": "        for identity, item in self.items.items():\n            item_states[identity] = asdict(item)\n            item_states[identity][\"cells\"] = sorted(item.cells)\n            item_states[identity][\"stars\"] = sorted(item.stars)\n            item_states[identity][\"physics_processing\"] = item.cooldown_active and not self.finalized\n            item_states[identity][\"owner_type\"] = 1 if item.side == \"P\" else 3\n        characters = {side: asdict(c) for side, c in self.characters.items()}\n        for side, character in characters.items():\n            character[\"battle_raging\"] = self.is_battle_raging(side)\n            character[\"physics_processing\"] = self.activated and not self.finalized\n        first_result = 0 if self.winner == \"P\" else 1 if self.winner == \"O\" else 3\n        game = dict(curMode=1, curClass=self.fixture[\"sides\"][0][\"character_class\"], curRound=2 if self.finalized else 1,\n                    wins=int(self.winner == \"P\"), losses=int(self.winner == \"O\"),\n                    tries=5 - int(self.winner == \"O\"), survivalMode=False,\n                    fightEnded=self.ended, roundResults=[first_result] + [3] * 17,\n                    ropeSpeedups={}, cubeAdvanced={}, sandbagActive=False,\n                    numTimesOutOfStamina=sum(item.out_of_stamina for item in self.side_items[\"P\"]))\n        return dict(runtime=self._runtime_projection(), winner=self.winner, round=2 if self.finalized else 1, timestamp=self.time,\n                    game=game, characters=characters, native_rule_state=native_rule_state(self),\n                    items=item_states, pre_cleanup_hp=getattr(self, \"pre_cleanup_hp\", None),\n                    fatigue_counter=self.fatigue_counter, time_advance=0.0,\n                    event_bus=dict(logging_mode=self.logging_mode, pending_signal_count=len(self.signal_queue), connection_count=0) if self.finalized else None)\n\n    def event_references(self):\n        references = {}\n        def visit(identity, visiting):\n"
+    }
+  ],
+  "explanation": "ItemState.definition is a Python @property returning CATALOG[item_index]. snapshot serializes dataclass fields with asdict(item), not properties. Therefore final.items[P:14] has no definition field, but533 project_model_final line329 indexes it. This was missed in the preceding static interface review; actual failure is now preserved without retry.",
+  "actual_counts": {
+    "Expected_files_read_and_SHA_verified": 9,
+    "Expected_bytes": 76692445,
+    "strict_json_loads_total": 36446,
+    "compare_decoded": 1,
+    "project_native": 1,
+    "project_model": 1,
+    "compare_projected": 0,
+    "model_runs": 0,
+    "candidate_imports": 0,
+    "new_Native": 0,
+    "original_INPUT12_reads": 0
+  },
+  "partial_progress": "All native projection expressions completed before entering model final projection; no eight-section value comparison executed. Native projection itself is not business PASS.",
+  "Source_after_exact": [
+    {
+      "path": "tests/phase533_whelp_business_output.py",
+      "size": 47207,
+      "sha256": "8e5cf40ff790a7db616ebac54deb9a5bf3b6410c7e300e866542179089668e54"
+    },
+    {
+      "path": "tests/phase536_independent_actual_compare.py",
+      "size": 13650,
+      "sha256": "01b127bc1e97f08d73dd8a5374bc05d65e9cd0b8b752b982f013aa05542da4bb"
+    }
+  ],
+  "no_mutations_or_retry": true,
+  "repair_boundaries": [
+    "Preserve533/536 source, raw535 model output/seal, actualB1 gate, original Expected descriptors and failed result.",
+    "Any minimal new mapping must use existing authenticated model/prepare evidence plus explicit Source semantics; never fill a business value from Expected.",
+    "Do not rerun535 model or recapture. New immutable adapter/host version and narrow affected checks require Root scope before re-comparison.",
+    "Same-instance serialized final definition premise is invalid; actual prepared-gate Sapphire_types already exists but using it for final state requires a Source-backed unchanged-field argument, not an unqualified substitution."
+  ],
+  "scope": "No formal75/generalNative upgrade; actual strict8 remains unaccepted; Native complete/nonclean-exit fact unchanged."
+}
