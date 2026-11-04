@@ -26,7 +26,7 @@ from native_replay_v8.state import strict_json_loads
 ITEMS = frozenset({0, 1, 2, 4, 5, 6, 10, 11, 14, 15, 16, 19, 21, 22, 24, 26, 30, 67, 117, 129, 208, 405, 182, 233, 234, 235, 29, 82, 83, 84, 17, 18, 34, 50, 35, 36, 37, 46, 3, 12, 27, 28, 7, 8, 20, 39, 48, 124, 209, 32, 172, 23, 38, 205, 296, 52, 54, 400, 468, 53, 168, 204, 340, 62, 179, 332, 351, 374, 74, 169, 219, 220, 401, 416, 469})
 SQUIRREL_SOURCE_ITEMS = frozenset({164})
 SQUIRREL_SOURCE_EXTENSION = 'source-headless-squirrel-default/1'
-EXPERIMENTAL_NONKING_ITEMS = frozenset({64,164,197,199,201,231,385})
+EXPERIMENTAL_NONKING_ITEMS = frozenset({64,162,164,197,199,201,231,385})
 EXPERIMENTAL_NONKING_EXTENSION = 'source-headless-experimental-nonking-defaults/1'
 # Original Bag.getBagLayerPriority: Unique first, then resource Icon/Border.
 # Static facts for admitted default resources; no visual object is constructed.

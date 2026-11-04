@@ -2,17 +2,18 @@
 
 Portable Python3.10+ standard-library package. No Godot, original assets, shared pool,
 network access or third-party libraries are required to run the Python model.
-The fifteen Source files are byte-exact accepted phase551; packaging changes no rules.
+The fifteen Source files are byte-exact accepted phase558; packaging changes no rules.
 
 ## Supported entry and limits
 
 Use `headless.initialize_experimental_nonking(layout, seed)` and
 `headless.validate_experimental_nonking_layout(layout)` for the closed experimental
-nonKing domain. It contains the existing75 default items plus these seven experiments:
+nonKing domain. It contains the existing75 default items plus these eight experiments:
 
 | ID | Item | Source rule |
 | --- | --- | --- |
 | 64 | Ruby Whelp | pre-start reflection, startup Heat, effect attacks |
+| 162 | Bowl of Treats | finite global Pet extra cooldown effect and spatial Food speed budget |
 | 164 | Squirrel | Pet-or-Food star speed and buff stealing |
 | 197 | Emerald Whelp | startup Lucky and attack Poison |
 | 199 | Sapphire Whelp | startup Mana and paid Mana→Block/nonMana reward |
@@ -20,16 +21,17 @@ nonKing domain. It contains the existing75 default items plus these seven experi
 | 231 | Wolpertinger | Pet star speed, least-buff selection, buff-delta stamina regeneration |
 | 385 | Enchanted Weapons | finite positive own-attack-effect repetition and least1 buff |
 
-This entry requires at least one of the seven experimental items, class0, Source default
+This entry requires at least one of the eight experimental items, class0, Source default
 modifiers, no King262, no socketed gems and no rage bag129. It accepts a uint64 seed
 (strict integer, not bool). It does not expose an arbitrary allowlist. The unchanged
 old `initialize`, CLI, `run_batch`, `initialize_squirrel` and King-specific gates keep
 their previous scopes; the CLI/batch do not admit these new experimental layouts.
 Do not call old CLI with the supplied example. Wolpertinger is a Pet, not a Weapon.
 
-Catalog83 is registration: formal75 + seven nonKing experiments + separately restricted
-King262. Without385, the previous545 admission domain is unchanged (its registry was82);
-this new exact551 Source reports catalog_registered83 even for a layout without385. Formal support remains75. A finite Source case does not prove all combinations,
+Catalog84 is registration: formal75 + eight nonKing experiments + separately restricted
+King262. Without162, previous551 admission is unchanged (its registry was83), including
+the385 rule below. Without either162 or385, the prior545 admission is retained.
+This new exact558 Source reports catalog_registered84 even when both callers are absent. Formal support remains75. A finite Source case does not prove all combinations,
 all classes, all modifiers, arbitrary King mixes, full-engine RL or Native seed parity.
 The included legacy modules/CLI remain for exact Source preservation, not an expanded
 captured-input, Oracle or Tape public entry. No Original files are runtime dependencies.
@@ -42,6 +44,16 @@ not silently treated as unaffected.385 uses its real1-cell body and12 stars;
 the modifier repeats own early/late/dealt effects, not raw damage or Activation.
 Multiple overlapping Skill contributions and arbitrary Skill/King mixes are outside
 this finite domain. The same explicit API is used; no per-item initializer is added.
+
+When162 is present, the **complete fixture** is instead limited to IDs
+`{1,5,11,22,162,164,231}`, class0 and at most one162 per side. Its global same-side
+Pet modifier covers only Squirrel164/Wolpertinger231 in this finite domain, while
+its star cache affects different Food.162 uses its actual2-cell/eight-star shape.
+The positive roll happens after the complete first cooldown effect, not at attack
+effect count or by duplicating raw damage/Activation. Food speed has its real per-Bowl
+ledger. Whelps, Gooberts, King and385 are excluded from this162 domain.
+The162 and385 fixture domains are currently **mutually exclusive**. There is no
+new mixed162+385 admission, arbitrary allowlist or per-item public initializer.
 
 ## Run the API
 
@@ -79,21 +91,22 @@ The explicit nonKing API is single-battle; this package adds no experimental bat
 
 The second example is the original24-item presealed55201 input used by553:
 use `examples/layout-Enchanted-Weapons.json` and seed55201 with the same API
-command above. No outcome is embedded in either layout. These commands reproduce
-Source inputs, not original-engine seed/session results.
+command above. The third example, `examples/layout-Bowl-Treats.json`, is the
+presealed23-item559 input; use seed55901 with that same API. No outcome is embedded
+in any layout. These commands reproduce Source inputs, not original-engine seed/session results.
 
-A minimal no-battle smoke command only imports and validates both examples:
+A minimal no-battle smoke command only imports and validates all three examples:
 
 ```sh
 python -B - <<'PY'
 import json
 from pathlib import Path
 from headless import validate_experimental_nonking_layout
-for name, count in [('layout-Wolpertinger.json', 22), ('layout-Enchanted-Weapons.json', 24)]:
+for name, count in [('layout-Wolpertinger.json', 22), ('layout-Enchanted-Weapons.json', 24), ('layout-Bowl-Treats.json', 23)]:
     layout = json.loads((Path('examples') / name).read_text())
     fixture = validate_experimental_nonking_layout(layout)
     assert sum(len(side['items']) for side in fixture['sides']) == count
-print('VALIDATED_TWO_INPUTS_NO_ENGINE_CONSTRUCTION')
+print('VALIDATED_THREE_INPUTS_NO_ENGINE_CONSTRUCTION')
 PY
 ```
 
@@ -109,17 +122,24 @@ Thorn/Lucky double and positive Spear loss were NOT_HIT, with their stated behav
 covered by directed components. The552 first harness failure (HP1000 outside1..999)
 is retained;553 repaired only that test fixture and did not retry a battle outcome.
 These are finite Source results, not arbitrary receiver validation.
-Wolpertinger and Enchanted Weapons Native comparisons remain pending.
+Independent559 accepted eight finite Bowl Source families and one presealed natural
+case, without changing558. The natural case hit four extra Pet effects, both Bowl
+ledgers100 and actual Squirrel loss/Wolpertinger negative stamina feedback. The
+fourth/fifth Activation limiter, already-ended tail and synthetic90→115 ledger
+distinction were unit-only evidence, not natural or Native hits. Older546 Squirrel-loss
+NOT_HIT and553 Thorn/Lucky-double/positive-Spear-loss NOT_HIT disclosures retain their
+per-case meaning; the new case does not retroactively claim those old cases hit them.
+Wolpertinger, Enchanted Weapons and Bowl Native comparisons remain pending.
 
 Separately, fixed original029 has a strict eight-section conditional-Tape comparison
 for its29-item whelp/Squirrel-family layout. That validates that fixed captured
-case with actual Native clocks/inputs; it does not include231/385 or establish production
+case with actual Native clocks/inputs; it does not include162/231/385 or establish production
 seed/session equivalence. This package uses fresh Source objects and the existing
 two-stream `headless-sha256-domains/1` policy, not captured Native history or a replay
 bundle. Current conservative code coverage/native-pending labels are retained exactly.
 
-The read-only verifier imports no battle modules. The manifest pins all20 listed payloads
-(15 Source, this README, two examples, lineage, verifier); the manifest itself is pinned
+The read-only verifier imports no battle modules. The manifest pins all21 listed payloads
+(15 Source, this README, three examples, lineage, verifier); the manifest itself is pinned
 externally to avoid a self-hash cycle. It checks bounded stable ordinary single-link
 files and exact15 Source membership. It verifies listed bytes, not arbitrary added
 files or Python execution safety. Evidence paths in `source-lineage.json` are provenance,

@@ -1,0 +1,718 @@
+--- 554/README.md
++++ 560/README.md
+@@ -2,17 +2,18 @@
+ 
+ Portable Python3.10+ standard-library package. No Godot, original assets, shared pool,
+ network access or third-party libraries are required to run the Python model.
+-The fifteen Source files are byte-exact accepted phase551; packaging changes no rules.
++The fifteen Source files are byte-exact accepted phase558; packaging changes no rules.
+ 
+ ## Supported entry and limits
+ 
+ Use `headless.initialize_experimental_nonking(layout, seed)` and
+ `headless.validate_experimental_nonking_layout(layout)` for the closed experimental
+-nonKing domain. It contains the existing75 default items plus these seven experiments:
++nonKing domain. It contains the existing75 default items plus these eight experiments:
+ 
+ | ID | Item | Source rule |
+ | --- | --- | --- |
+ | 64 | Ruby Whelp | pre-start reflection, startup Heat, effect attacks |
++| 162 | Bowl of Treats | finite global Pet extra cooldown effect and spatial Food speed budget |
+ | 164 | Squirrel | Pet-or-Food star speed and buff stealing |
+ | 197 | Emerald Whelp | startup Lucky and attack Poison |
+ | 199 | Sapphire Whelp | startup Mana and paid Mana→Block/nonMana reward |
+@@ -20,16 +21,17 @@
+ | 231 | Wolpertinger | Pet star speed, least-buff selection, buff-delta stamina regeneration |
+ | 385 | Enchanted Weapons | finite positive own-attack-effect repetition and least1 buff |
+ 
+-This entry requires at least one of the seven experimental items, class0, Source default
++This entry requires at least one of the eight experimental items, class0, Source default
+ modifiers, no King262, no socketed gems and no rage bag129. It accepts a uint64 seed
+ (strict integer, not bool). It does not expose an arbitrary allowlist. The unchanged
+ old `initialize`, CLI, `run_batch`, `initialize_squirrel` and King-specific gates keep
+ their previous scopes; the CLI/batch do not admit these new experimental layouts.
+ Do not call old CLI with the supplied example. Wolpertinger is a Pet, not a Weapon.
+ 
+-Catalog83 is registration: formal75 + seven nonKing experiments + separately restricted
+-King262. Without385, the previous545 admission domain is unchanged (its registry was82);
+-this new exact551 Source reports catalog_registered83 even for a layout without385. Formal support remains75. A finite Source case does not prove all combinations,
++Catalog84 is registration: formal75 + eight nonKing experiments + separately restricted
++King262. Without162, previous551 admission is unchanged (its registry was83), including
++the385 rule below. Without either162 or385, the prior545 admission is retained.
++This new exact558 Source reports catalog_registered84 even when both callers are absent. Formal support remains75. A finite Source case does not prove all combinations,
+ all classes, all modifiers, arbitrary King mixes, full-engine RL or Native seed parity.
+ The included legacy modules/CLI remain for exact Source preservation, not an expanded
+ captured-input, Oracle or Tape public entry. No Original files are runtime dependencies.
+@@ -42,6 +44,16 @@
+ the modifier repeats own early/late/dealt effects, not raw damage or Activation.
+ Multiple overlapping Skill contributions and arbitrary Skill/King mixes are outside
+ this finite domain. The same explicit API is used; no per-item initializer is added.
++
++When162 is present, the **complete fixture** is instead limited to IDs
++`{1,5,11,22,162,164,231}`, class0 and at most one162 per side. Its global same-side
++Pet modifier covers only Squirrel164/Wolpertinger231 in this finite domain, while
++its star cache affects different Food.162 uses its actual2-cell/eight-star shape.
++The positive roll happens after the complete first cooldown effect, not at attack
++effect count or by duplicating raw damage/Activation. Food speed has its real per-Bowl
++ledger. Whelps, Gooberts, King and385 are excluded from this162 domain.
++The162 and385 fixture domains are currently **mutually exclusive**. There is no
++new mixed162+385 admission, arbitrary allowlist or per-item public initializer.
+ 
+ ## Run the API
+ 
+@@ -79,21 +91,22 @@
+ 
+ The second example is the original24-item presealed55201 input used by553:
+ use `examples/layout-Enchanted-Weapons.json` and seed55201 with the same API
+-command above. No outcome is embedded in either layout. These commands reproduce
+-Source inputs, not original-engine seed/session results.
++command above. The third example, `examples/layout-Bowl-Treats.json`, is the
++presealed23-item559 input; use seed55901 with that same API. No outcome is embedded
++in any layout. These commands reproduce Source inputs, not original-engine seed/session results.
+ 
+-A minimal no-battle smoke command only imports and validates both examples:
++A minimal no-battle smoke command only imports and validates all three examples:
+ 
+ ```sh
+ python -B - <<'PY'
+ import json
+ from pathlib import Path
+ from headless import validate_experimental_nonking_layout
+-for name, count in [('layout-Wolpertinger.json', 22), ('layout-Enchanted-Weapons.json', 24)]:
++for name, count in [('layout-Wolpertinger.json', 22), ('layout-Enchanted-Weapons.json', 24), ('layout-Bowl-Treats.json', 23)]:
+     layout = json.loads((Path('examples') / name).read_text())
+     fixture = validate_experimental_nonking_layout(layout)
+     assert sum(len(side['items']) for side in fixture['sides']) == count
+-print('VALIDATED_TWO_INPUTS_NO_ENGINE_CONSTRUCTION')
++print('VALIDATED_THREE_INPUTS_NO_ENGINE_CONSTRUCTION')
+ PY
+ ```
+ 
+@@ -109,17 +122,24 @@
+ covered by directed components. The552 first harness failure (HP1000 outside1..999)
+ is retained;553 repaired only that test fixture and did not retry a battle outcome.
+ These are finite Source results, not arbitrary receiver validation.
+-Wolpertinger and Enchanted Weapons Native comparisons remain pending.
++Independent559 accepted eight finite Bowl Source families and one presealed natural
++case, without changing558. The natural case hit four extra Pet effects, both Bowl
++ledgers100 and actual Squirrel loss/Wolpertinger negative stamina feedback. The
++fourth/fifth Activation limiter, already-ended tail and synthetic90→115 ledger
++distinction were unit-only evidence, not natural or Native hits. Older546 Squirrel-loss
++NOT_HIT and553 Thorn/Lucky-double/positive-Spear-loss NOT_HIT disclosures retain their
++per-case meaning; the new case does not retroactively claim those old cases hit them.
++Wolpertinger, Enchanted Weapons and Bowl Native comparisons remain pending.
+ 
+ Separately, fixed original029 has a strict eight-section conditional-Tape comparison
+ for its29-item whelp/Squirrel-family layout. That validates that fixed captured
+-case with actual Native clocks/inputs; it does not include231/385 or establish production
++case with actual Native clocks/inputs; it does not include162/231/385 or establish production
+ seed/session equivalence. This package uses fresh Source objects and the existing
+ two-stream `headless-sha256-domains/1` policy, not captured Native history or a replay
+ bundle. Current conservative code coverage/native-pending labels are retained exactly.
+ 
+-The read-only verifier imports no battle modules. The manifest pins all20 listed payloads
+-(15 Source, this README, two examples, lineage, verifier); the manifest itself is pinned
++The read-only verifier imports no battle modules. The manifest pins all21 listed payloads
++(15 Source, this README, three examples, lineage, verifier); the manifest itself is pinned
+ externally to avoid a self-hash cycle. It checks bounded stable ordinary single-link
+ files and exact15 Source membership. It verifies listed bytes, not arbitrary added
+ files or Python execution safety. Evidence paths in `source-lineage.json` are provenance,
+--- 554/examples/layout-Bowl-Treats.json
++++ 560/examples/layout-Bowl-Treats.json
+@@ -0,0 +1,183 @@
++{
++  "schema": "headless-layout/1",
++  "below_master": true,
++  "sides": [
++    {
++      "side": "P",
++      "character_class": 0,
++      "hp": 180,
++      "stamina": 5,
++      "items": [
++        {
++          "item_index": 11,
++          "x": 0,
++          "y": 0,
++          "f": 0,
++          "instance_id": "P:bag0"
++        },
++        {
++          "item_index": 11,
++          "x": 2,
++          "y": 0,
++          "f": 0,
++          "instance_id": "P:bag1"
++        },
++        {
++          "item_index": 11,
++          "x": 4,
++          "y": 0,
++          "f": 0,
++          "instance_id": "P:bag2"
++        },
++        {
++          "item_index": 11,
++          "x": 0,
++          "y": 2,
++          "f": 0,
++          "instance_id": "P:bag3"
++        },
++        {
++          "item_index": 11,
++          "x": 2,
++          "y": 2,
++          "f": 0,
++          "instance_id": "P:bag4"
++        },
++        {
++          "item_index": 11,
++          "x": 4,
++          "y": 2,
++          "f": 0,
++          "instance_id": "P:bag5"
++        },
++        {
++          "item_index": 162,
++          "x": 1,
++          "y": 1,
++          "f": 0,
++          "instance_id": "P:bowl"
++        },
++        {
++          "item_index": 5,
++          "x": 3,
++          "y": 0,
++          "f": 0,
++          "instance_id": "P:banana"
++        },
++        {
++          "item_index": 22,
++          "x": 1,
++          "y": 0,
++          "f": 0,
++          "instance_id": "P:berry"
++        },
++        {
++          "item_index": 231,
++          "x": 0,
++          "y": 2,
++          "f": 0,
++          "instance_id": "P:wolf"
++        },
++        {
++          "item_index": 164,
++          "x": 4,
++          "y": 2,
++          "f": 0,
++          "instance_id": "P:sq"
++        },
++        {
++          "item_index": 1,
++          "x": 5,
++          "y": 0,
++          "f": 0,
++          "instance_id": "P:sword"
++        }
++      ]
++    },
++    {
++      "side": "O",
++      "character_class": 0,
++      "hp": 180,
++      "stamina": 5,
++      "items": [
++        {
++          "item_index": 11,
++          "x": 0,
++          "y": 0,
++          "f": 0,
++          "instance_id": "O:bag0"
++        },
++        {
++          "item_index": 11,
++          "x": 2,
++          "y": 0,
++          "f": 0,
++          "instance_id": "O:bag1"
++        },
++        {
++          "item_index": 11,
++          "x": 4,
++          "y": 0,
++          "f": 0,
++          "instance_id": "O:bag2"
++        },
++        {
++          "item_index": 11,
++          "x": 0,
++          "y": 2,
++          "f": 0,
++          "instance_id": "O:bag3"
++        },
++        {
++          "item_index": 11,
++          "x": 2,
++          "y": 2,
++          "f": 0,
++          "instance_id": "O:bag4"
++        },
++        {
++          "item_index": 11,
++          "x": 4,
++          "y": 2,
++          "f": 0,
++          "instance_id": "O:bag5"
++        },
++        {
++          "item_index": 231,
++          "x": 0,
++          "y": 0,
++          "f": 0,
++          "instance_id": "O:wolf"
++        },
++        {
++          "item_index": 164,
++          "x": 2,
++          "y": 0,
++          "f": 0,
++          "instance_id": "O:sq"
++        },
++        {
++          "item_index": 22,
++          "x": 4,
++          "y": 0,
++          "f": 0,
++          "instance_id": "O:berry"
++        },
++        {
++          "item_index": 1,
++          "x": 5,
++          "y": 0,
++          "f": 0,
++          "instance_id": "O:sword"
++        },
++        {
++          "item_index": 162,
++          "x": 4,
++          "y": 3,
++          "f": 0,
++          "instance_id": "O:bowl"
++        }
++      ]
++    }
++  ]
++}
+--- 554/headless.py
++++ 560/headless.py
+@@ -26,7 +26,7 @@
+ ITEMS = frozenset({0, 1, 2, 4, 5, 6, 10, 11, 14, 15, 16, 19, 21, 22, 24, 26, 30, 67, 117, 129, 208, 405, 182, 233, 234, 235, 29, 82, 83, 84, 17, 18, 34, 50, 35, 36, 37, 46, 3, 12, 27, 28, 7, 8, 20, 39, 48, 124, 209, 32, 172, 23, 38, 205, 296, 52, 54, 400, 468, 53, 168, 204, 340, 62, 179, 332, 351, 374, 74, 169, 219, 220, 401, 416, 469})
+ SQUIRREL_SOURCE_ITEMS = frozenset({164})
+ SQUIRREL_SOURCE_EXTENSION = 'source-headless-squirrel-default/1'
+-EXPERIMENTAL_NONKING_ITEMS = frozenset({64,164,197,199,201,231,385})
++EXPERIMENTAL_NONKING_ITEMS = frozenset({64,162,164,197,199,201,231,385})
+ EXPERIMENTAL_NONKING_EXTENSION = 'source-headless-experimental-nonking-defaults/1'
+ # Original Bag.getBagLayerPriority: Unique first, then resource Icon/Border.
+ # Static facts for admitted default resources; no visual object is constructed.
+--- 554/manifest.json
++++ 560/manifest.json
+@@ -1,14 +1,20 @@
+ {
+   "schema": "experimental-nonking-package-manifest/1",
+-  "status": "EXACT551_ACCEPTED553_PENDING_INDEPENDENT555_PACKAGE_ACCEPTANCE",
++  "status": "EXACT558_ACCEPTED559_PENDING_INDEPENDENT561_PACKAGE_ACCEPTANCE",
+   "public_target": "python_engine/experimental_nonking",
+   "source_file_count": 15,
+   "files": [
+     {
+       "path": "README.md",
+       "kind": "documentation",
+-      "size": 7178,
+-      "sha256": "4ea3486f4e8b3221fcb786b055f6a3627c5b6a8cb0ce252e7ca4edca9c05fa67"
++      "size": 8840,
++      "sha256": "1539d583721b46eb76ec893ac73ab2008d363053490f85d8fe24c492e30d90f5"
++    },
++    {
++      "path": "examples/layout-Bowl-Treats.json",
++      "kind": "example",
++      "size": 3475,
++      "sha256": "d3c7e782ad5ccb1ab240d23d49f25d8618700762c81bb13c262c6e68738e2b49"
+     },
+     {
+       "path": "examples/layout-Enchanted-Weapons.json",
+@@ -31,8 +37,8 @@
+     {
+       "path": "headless.py",
+       "kind": "source",
+-      "size": 35804,
+-      "sha256": "0394faa59b1c611ccab042d57cf0341fc231aed5192a8e22327e56ede43b636f"
++      "size": 35808,
++      "sha256": "767c9236eb930870c66b221c871a9c530b0af408bb9d6ac740a77a5149e1ebee"
+     },
+     {
+       "path": "native_replay_v7/__init__.py",
+@@ -73,8 +79,8 @@
+     {
+       "path": "native_replay_v8/engine.py",
+       "kind": "source",
+-      "size": 252318,
+-      "sha256": "db0964b13a1409e03dcc59b470b065991b54ccd11e684974d523968575b541d0"
++      "size": 258296,
++      "sha256": "0489cd111d1ab72abbfe0e06d4de8170dfb6acec7f99fb73b85dacce188bd4a6"
+     },
+     {
+       "path": "native_replay_v8/genuine.py",
+@@ -115,8 +121,8 @@
+     {
+       "path": "source-lineage.json",
+       "kind": "lineage",
+-      "size": 3081,
+-      "sha256": "598264a29d040a7701135b58a60988cc68584c455b4194165862c2ce2be26998"
++      "size": 3016,
++      "sha256": "d17706eb4b3a4378ef70ef3f669c97ec2b44f57c8a42e035befea7cca8886712"
+     },
+     {
+       "path": "verify_manifest.py",
+--- 554/native_replay_v8/engine.py
++++ 560/native_replay_v8/engine.py
+@@ -40,6 +40,10 @@
+ 
+ 
+ CATALOG = {
++    162: dict(name="Bowl of Treats",shape=((0,0),(1,0)),
++              stars=((-1,-1),(0,-1),(1,-1),(2,-1),(-1,0),(2,0),(0,1),(1,1)),
++              bag=False,food=True,nature=True,cooldown=4.0,chance=20.0,random_buffs=2,
++              food_speed=25.0,max_food_speed=100.0,socket_count=0,default_gem=None),
+     385: dict(name="Enchanted Weapons",shape=((0,0),),
+               stars=((2,-3),(3,-3),(1,-2),(2,-2),(3,-2),(-1,-1),(0,-1),(1,-1),(2,-1),(1,0),(-1,1),(1,1)),
+               bag=False,skill=True,cooldown=5.2,chance=25.0,least_buffs=1,socket_count=0,default_gem=None),
+@@ -221,9 +225,11 @@
+ GOOBERT_IDS = frozenset({262,23,38,52,53,54,168,205,296,400,468}) | RAINBOW_GOOBERT_IDS | BUFF_GOOBERT_IDS
+ STATE_PARTICLE_IDS = frozenset({53,168})
+ POTION_IDS = frozenset({19,35,36,37,46,172})
++BOWL_PET_IDS = frozenset({164,231})
++BOWL_FIXTURE_IDS = frozenset({1,5,11,22,162,164,231})
+ ENCHANTED_ATTACK_EFFECT_RECEIVERS = frozenset({14,32,233,234})
+ ENCHANTED_FIXTURE_IDS = frozenset({1,11,14,22,32,231,233,234,385})
+-CACHED_AFFECTED_IDS = GOOBERT_IDS | POTION_IDS | frozenset({5,6,21,22,117,124}) | frozenset({18,29,82,83,84,164,179,231,332,351,374,385})
++CACHED_AFFECTED_IDS = GOOBERT_IDS | POTION_IDS | frozenset({5,6,21,22,117,124,162}) | frozenset({18,29,82,83,84,164,179,231,332,351,374,385})
+ EMPOWERABLE_WEAPON_IDS = frozenset([64, 197, 199, 201, 29, 82, 83, 84, 182, 233, 234, 235, 0, 1, 2, 3, 12, 14, 15, 27, 28, 30, 32, 208, 209])
+ 
+ EVENT_TYPES = {"LoseHealth": 5, "Activation": 0, "DealDamage": 1, "CriticalDamage": 2,
+@@ -233,7 +239,7 @@
+                "TemporaryMaxHealth": 19, "Empower": 106, "Poison": 108, "Heat": 107, "Cold": 110, "Stun": 9,
+                "BattleRageStart": 21, "BattleRageEnd": 22, "Win": 111, "Loss": 112}
+ DEBUFF_TYPES = ("Blind", "Poison", "Cold")
+-GAINED_STACK_FLAGS = {385:254,231:254,64:128,197:258,199:254,201:1792,164:254,35:4,37:0,46:16,50:8,29:0,82:0,83:0,84:0,182:0,233:16,234:2,235:1792,129:0,262:0,204:254,220:254,340:254,416:766,74:776,169:584,219:648,401:524,469:524,53:512,54:8,52:0,400:6,468:4,38:256,205:128,296:0,168: 64, 0: 0, 1: 0, 2: 0, 3: 512, 4: 0, 5: 0, 6: 0, 7: 4, 8: 16, 10: 0, 11: 0, 12: 0, 14: 0, 15: 0, 16: 16, 17: 0, 18: 0, 19: 0, 20: 512, 21: 256, 22: 34, 23: 0, 24: 2, 26: 0, 27: 16, 28: 8, 30: 256, 32: 0, 34: 66, 36: 256, 39: 0, 48: 8, 62: 128, 67: 0, 117: 128, 124: 64, 172: 32, 179: 1024, 208: 0, 209: 128, 332: 254, 351: 0, 374: 0, 405: 0}
++GAINED_STACK_FLAGS = {162:254,385:254,231:254,64:128,197:258,199:254,201:1792,164:254,35:4,37:0,46:16,50:8,29:0,82:0,83:0,84:0,182:0,233:16,234:2,235:1792,129:0,262:0,204:254,220:254,340:254,416:766,74:776,169:584,219:648,401:524,469:524,53:512,54:8,52:0,400:6,468:4,38:256,205:128,296:0,168: 64, 0: 0, 1: 0, 2: 0, 3: 512, 4: 0, 5: 0, 6: 0, 7: 4, 8: 16, 10: 0, 11: 0, 12: 0, 14: 0, 15: 0, 16: 16, 17: 0, 18: 0, 19: 0, 20: 512, 21: 256, 22: 34, 23: 0, 24: 2, 26: 0, 27: 16, 28: 8, 30: 256, 32: 0, 34: 66, 36: 256, 39: 0, 48: 8, 62: 128, 67: 0, 117: 128, 124: 64, 172: 32, 179: 1024, 208: 0, 209: 128, 332: 254, 351: 0, 374: 0, 405: 0}
+ STACK_NAMES_BY_TYPE = {value: name for name, value in EVENT_TYPES.items() if 100 <= value <= 110}
+ 
+ 
+@@ -356,6 +362,18 @@
+             or any(sum(entry["item_index"] == 385 for entry in side["items"]) > 1
+                    for side in fixture["sides"])):
+         raise ValueError("Enchanted Weapons Source requires class0, finite nine-ID fixture and at most one385 per side")
++    return True
++
++
++def validate_bowl_fixture(fixture):
++    if not any(entry["item_index"] == 162 for side in fixture["sides"] for entry in side["items"]):
++        return True
++    if (any(side["character_class"] != 0 for side in fixture["sides"])
++            or any(entry["item_index"] not in BOWL_FIXTURE_IDS
++                   for side in fixture["sides"] for entry in side["items"])
++            or any(sum(entry["item_index"] == 162 for entry in side["items"]) > 1
++                   for side in fixture["sides"])):
++        raise ValueError("Bowl Source requires class0, finite seven-ID fixture and at most one162 per side")
+     return True
+ 
+ 
+@@ -411,6 +429,7 @@
+             if cells & filled_cells:
+                 raise ValueError("ordinary item collision")
+             filled_cells |= cells
++    validate_bowl_fixture(fixture)
+     validate_enchanted_fixture(fixture)
+     return True
+ 
+@@ -508,6 +527,7 @@
+     goobert_activations: int = 0
+     steel_affected_weapons: list = field(default_factory=list)
+     double_activation_chance: float = 0.0
++    bowl_speed_bonus_given: float = 0.0
+     double_attack_effect_chance: float = 0.0
+     spear_block_removal: int = 0
+     consumed: bool = False
+@@ -1877,6 +1897,7 @@
+         for identity in self.preparation_order:
+             bag = self.items[identity]
+             self._validate_attack_effect_chance(bag)
++            self._validate_bowl_double_activation_chance(bag)
+             if bag.item_index in (26, 67, 405, 129):
+                 inside = self.inside_items(bag)
+                 self.bag_inside_cache[identity] = inside
+@@ -1910,6 +1931,15 @@
+             bag.chance_rng.reset()
+             bag.damage_range.acc = 0.0
+             bag.spikes_given = 0
++            if bag.item_index == 162:
++                bag.bowl_speed_bonus_given = 0.0
++                # Global inventory Pet predicate, not Bowl's spatial Food cache.
++                # No checker/callback/RNG enters the partially applied loop.
++                for target in self.side_items[bag.side]:
++                    if target.item_index in BOWL_PET_IDS:
++                        self.give_bowl_double_activation_chance(bag, target)
++                for target in self.items.values():
++                    self._validate_bowl_double_activation_chance(target)
+             if bag.item_index == 385:
+                 # cache_prepared is already true. Apply the entire callback-free
+                 # loop before the expected-contribution checker can observe it.
+@@ -1973,6 +2003,8 @@
+                 self.histories.tooltip(bag, 9)
+         for target in self.items.values():
+             self._validate_attack_effect_chance(target)
++        for target in self.items.values():
++            self._validate_bowl_double_activation_chance(target)
+         self.prepared = True
+         if self.pure_combat_mode:
+             self._validate_pure441_prepared()
+@@ -3293,6 +3325,67 @@
+         modifier = item.speed_scale + (char.heat - char.cold) * 0.02
+         return max(0.1, min(10.0, 1.0 + modifier if modifier >= 0 else 1.0 / (1.0 - modifier)))
+ 
++    def _validate_bowl_double_activation_chance(self, item):
++        if (self.items.get(getattr(item, "instance_id", None)) is not item
++                or not any(candidate is item for candidate in self.side_items[item.side])):
++            raise ValueError("owned inventory double activation target required")
++        chance = item.double_activation_chance
++        if type(chance) is not float or not math.isfinite(chance):
++            raise ValueError("finite REAL double activation chance required")
++        expected = 0.0
++        for source in self.side_items[item.side]:
++            if source.item_index != 162 or source.cache_prepared is not True:
++                continue
++            if (self.items.get(source.instance_id) is not source or source.side != item.side
++                    or type(source.definition["chance"]) is not float or source.definition["chance"] != 20.0):
++                raise ValueError("owned prepared162 with exact Source chance20 required")
++            if item.item_index in BOWL_PET_IDS:
++                expected += source.definition["chance"] / 100.0
++        if chance != expected:
++            raise ValueError("double activation differs from actual prepared global Bowl contributions")
++
++    def give_bowl_double_activation_chance(self, source, target):
++        if (self.items.get(getattr(source, "instance_id", None)) is not source
++                or source.item_index != 162 or source.cache_prepared is not True
++                or not any(candidate is source for candidate in self.side_items[source.side])
++                or self.items.get(getattr(target, "instance_id", None)) is not target
++                or target.side != source.side or target.item_index not in BOWL_PET_IDS
++                or not any(candidate is target for candidate in self.side_items[source.side])
++                or type(source.definition["chance"]) is not float or source.definition["chance"] != 20.0):
++            raise ValueError("owned prepared162 and its actual same-inventory global Pet required")
++        if type(target.double_activation_chance) is not float or target.double_activation_chance != 0.0:
++            raise ValueError("missing zero Bowl pre-contribution or duplicate application")
++        target.double_activation_chance += source.definition["chance"] / 100.0
++
++    def _pet_cooldown_effect(self, item):
++        if (self.items.get(getattr(item, "instance_id", None)) is not item
++                or item.item_index not in BOWL_PET_IDS):
++            raise ValueError("owned finite cooldown Pet required")
++        if item.item_index == 231:
++            self.give_least_buffs(item, item.definition["least_buffs"])
++            self.activate(item)
++            return
++        if item.item_index == 164:
++            self.steal_random_buff(item, item.definition["buff_steal"])
++            self.activate(item)
++            return
++
++    def _bowl_cooldown_effect(self, item):
++        if self.items.get(getattr(item, "instance_id", None)) is not item or item.item_index != 162:
++            raise ValueError("owned Bowl cooldown caller required")
++        self._validate_bowl_double_activation_chance(item)
++        if (type(item.bowl_speed_bonus_given) is not float or not math.isfinite(item.bowl_speed_bonus_given)
++                or item.bowl_speed_bonus_given < 0.0):
++            raise ValueError("finite nonnegative REAL Bowl speed ledger required")
++        self.give_random_buffs(item, item.definition["random_buffs"])
++        if item.bowl_speed_bonus_given < item.definition["max_food_speed"]:
++            for target in self.affected_items(item):
++                cur_bonus = min(item.definition["food_speed"],
++                                item.definition["max_food_speed"] - item.bowl_speed_bonus_given)
++                self.add_speed(target, cur_bonus / 100.0)
++            item.bowl_speed_bonus_given += item.definition["food_speed"]
++        self.activate(item)
++
+     def trigger(self, item):
+         item.iteration_cooldown = self.adjust_cooldown(item)
+         item.trigger_time += item.iteration_cooldown
+@@ -3301,13 +3394,16 @@
+             self.give_least_buffs(item, item.definition["least_buffs"])
+             self.activate(item)
+             return
+-        if item.item_index == 231:
+-            self.give_least_buffs(item, item.definition["least_buffs"])
+-            self.activate(item)
++        if item.item_index == 162:
++            self._bowl_cooldown_effect(item)
+             return
+-        if item.item_index == 164:
+-            self.steal_random_buff(item, item.definition["buff_steal"])
+-            self.activate(item)
++        if item.item_index in BOWL_PET_IDS:
++            self._validate_bowl_double_activation_chance(item)
++            self._pet_cooldown_effect(item)
++            # The complete first effect, including Squirrel pitch, has returned.
++            if item.double_activation_chance > 0.0 and self.random.randf(
++                    "double_activation:" + item.instance_id) <= item.double_activation_chance:
++                self._pet_cooldown_effect(item)
+             return
+         if item.item_index == 50:
+             self.health_to_block(item,item.definition["health_cost"],item.definition["converted_block"])
+--- 554/source-lineage.json
++++ 560/source-lineage.json
+@@ -1,65 +1,73 @@
+ {
+-  "schema": "experimental-nonking-source-lineage/2",
++  "schema": "experimental-nonking-source-lineage/3",
+   "public_target": "python_engine/experimental_nonking",
+-  "code": "exact15 accepted551; packaging code edits0",
++  "code": "exact15 accepted558; packaging code edits0",
+   "source_freeze": {
+-    "path": "data/phase551-source-enchanted-weapons/candidate-source-freeze.json",
+-    "size": 3929,
+-    "sha256": "00e56dd5f6a32704da116a1a4f06c54abf50eb0943175f6bb1ea674e3bc61a10"
++    "path": "data/phase558-source-bowl-treats/candidate-source-freeze.json",
++    "size": 3839,
++    "sha256": "0ce6289185c03b8a6b42f84ad2dd282b761aaff34a3d5413694747c5428ac23e"
+   },
+   "source_owner": {
+-    "path": "data/phase551-source-enchanted-weapons/owned-files.json",
+-    "size": 4924,
+-    "sha256": "32f2119dd711c0d05d84e9631596188beb4b64514dc30819f931d35e240a50d4"
++    "path": "data/phase558-source-bowl-treats/owned-files.json",
++    "size": 4766,
++    "sha256": "2ccbbc2ee65113f62451dc49ba31b0e5d8296467109099086c50d60c2d928b77"
+   },
+   "independent_Source_acceptance": {
+-    "path": "data/phase553-independent-final-acceptance/review.json",
+-    "size": 17775,
+-    "sha256": "1e0ec4304c920863e25bae1e8ec66c692a08d372b7fbc2f0f17aac0990027fbf"
++    "path": "data/phase559-independent-final-acceptance/review.json",
++    "size": 15275,
++    "sha256": "42a1665ed8ff882b7c1c4356a1ba78787eac4bd8a0fff517a5ceed1cc0fb81cc"
+   },
+   "independent_Source_acceptance_owner": {
+-    "path": "data/phase553-independent-final-acceptance/owned-files.json",
+-    "size": 247,
+-    "sha256": "d6603921ff3ec2c825ed51ddfb83210ec15b73ed5d159e8f5c26343a5db45cb2"
++    "path": "data/phase559-independent-final-acceptance/owned-files.json",
++    "size": 259,
++    "sha256": "295d03931706bc26fce0b1054bcf0ee877cdf98c86da6277d1555b34a56b0544"
+   },
+   "previous_package_manifest": {
+-    "path": "data/phase547-portable-nonking-package/package/manifest.json",
+-    "size": 3723,
+-    "sha256": "1b1a4c5e9128044d02ac56e8ea8d7cdcfa42f5010239fd843b7820ba2ba50ea4"
++    "path": "data/phase554-portable-nonking-package/package/manifest.json",
++    "size": 3920,
++    "sha256": "3ba9018b2e2c4b025d3d0ff8422c50e59d04e5fe7bc2b6b7f27e8a51ffdf1e13"
+   },
+   "previous_lineage": {
+-    "path": "data/phase547-portable-nonking-package/package/source-lineage.json",
+-    "size": 2328,
+-    "sha256": "e3dd489aef4fd75252e7b066383ee8400b9a0745f198e900f41097b93c165430"
++    "path": "data/phase554-portable-nonking-package/package/source-lineage.json",
++    "size": 3081,
++    "sha256": "598264a29d040a7701135b58a60988cc68584c455b4194165862c2ce2be26998"
+   },
+-  "example_Wolpertinger": "byte-exact547 example from presealed546; seed54601",
+-  "example_Enchanted_source": {
+-    "path": "data/phase553-exact-business-source/natural-job.json",
+-    "size": 4059,
+-    "sha256": "be3682c83128f2e355ccfe04d99ebd829357dc0e15aea1202fc4ea0a177e3ce5"
++  "retained_exact_examples": [
++    "layout-Wolpertinger.json",
++    "layout-Enchanted-Weapons.json"
++  ],
++  "Bowl_presealed_job": {
++    "path": "data/phase559-exact-business-source/natural-job.json",
++    "size": 3896,
++    "sha256": "1a0a79f9af2cb96f1d7fddda9fe93630a23563ea1a0cdf44740bdab00784acf7"
+   },
+-  "example_Enchanted_source_owner": {
+-    "path": "data/phase553-exact-business-source/owned-files.json",
+-    "size": 2907,
+-    "sha256": "e6bf534c3eee6247ab82cd5e779344ff989b25d1da56a343942a840cb28f8281"
++  "Bowl_presealed_owner": {
++    "path": "data/phase559-exact-business-source/owned-files.json",
++    "size": 1922,
++    "sha256": "1f871a91e8929eb84414ed9fb186e0f99c8f8e2993645b0c68f0eea22c343d70"
+   },
+-  "example_Enchanted_preserved_preseal": {
+-    "path": "data/phase552-exact-business-source/natural-job.json",
+-    "size": 4059,
+-    "sha256": "be3682c83128f2e355ccfe04d99ebd829357dc0e15aea1202fc4ea0a177e3ce5"
+-  },
+-  "example_Enchanted_layout_canonical_sha256": "cc1aa769a35587e77418a95801f3c2410a3c971431075619db16b7a32ba7d0cb",
+-  "example_Enchanted_seed": 55201,
++  "Bowl_layout_canonical_sha256": "3632755e7fffcd766b004b3b46fbf10c1ecee86a26dc747a9d7a9fdcf274f131",
++  "Bowl_example_seed": 55901,
+   "formal_support": 75,
+-  "catalog_registered": 83,
++  "catalog_registered": 84,
+   "experimental_nonKing_items": [
+     64,
++    162,
+     164,
+     197,
+     199,
+     201,
+     231,
+     385
++  ],
++  "when162_fixture_ids": [
++    1,
++    5,
++    11,
++    22,
++    162,
++    164,
++    231
+   ],
+   "when385_fixture_ids": [
+     1,
+@@ -72,20 +80,22 @@
+     234,
+     385
+   ],
+-  "max385_per_side": 1,
+-  "when385_absent": "previous545 admission unchanged; current registry still83",
+-  "Native_231_385": "PENDING",
+-  "general_King": "NOT_ADMITTED",
++  "max_each_caller_per_side": 1,
++  "domains_mutually_exclusive": true,
++  "absent162": "old551 admission unchanged; new registry84",
++  "Native_162_231_385": "PENDING",
+   "Native_seed_session_parity": "PENDING",
+-  "natural553_HIT": [
+-    "Staff_double1",
+-    "Spear_double2"
++  "natural559_HIT": [
++    "four extra Pet effects",
++    "both Bowl ledgers100",
++    "Squirrel loss20",
++    "Wolper positive113/negative20 feedback"
+   ],
+-  "natural553_NOT_HIT": [
+-    "Thorn_double",
+-    "Lucky_double",
+-    "positive_Spear_loss"
++  "unit_only": [
++    "Activation fourth/fifth limiter",
++    "already-ended tail",
++    "nearcap90 to115"
+   ],
+-  "runtime_evidence_dependencies": "NONE; engineering paths only provenance",
+-  "verifier": "byte-exact547; listed-byte verification without battle imports"
++  "runtime_evidence_dependencies": "NONE; engineering paths are provenance only",
++  "verifier": "byte-exact554; no battle module imports"
+ }
