@@ -1,0 +1,171 @@
+{
+  "schema": "phase592-harness-first-error-and-repair/1",
+  "classification": "SELF_AUTHORED_PREAUDIT_STDLIB_PRELOAD_OMISSION_AND_REPORT_OWNER_BOOKKEEPING_NOT_PLATFORM_DENIAL_OR_SUT_BUSINESS_FAILURE",
+  "actual_first_attempt": {
+    "result_actual": {
+      "path": "data/phase591-independent-controls-first-001/result.json",
+      "size": 24443,
+      "sha256": "b5f4c008226612a0ef3e8d519a0acf5c556c60e2c0612979ab01a739031c3f8b"
+    },
+    "first_error": {
+      "path": "data/phase591-independent-controls-first-001/first-error.json",
+      "size": 1403,
+      "sha256": "5a407bdf0504913a9080727c3d3cba202d9f78cf4e22aeffe0042fce36ca1b0e"
+    },
+    "original_owner_preserved_but_result_entry_incorrect": {
+      "path": "data/phase591-independent-controls-first-001/owned-files.json",
+      "size": 453,
+      "sha256": "7dbb9bc8b379fe8d1b97df73ae239d00dae0e72b4c47952b67f2e7f429ff4511"
+    },
+    "module_eval_attempts": 1,
+    "module_imports_completed": 0,
+    "top_entered": 0,
+    "top_completed": 0,
+    "pins_after_exact": 32
+  },
+  "cause": "native_run_compaction.py line2 imports __future__; old static check wrongly exempted __future__. READ_SCOPE correctly rejected stdlib pyc. Independently, result write audit mutation caused owner second serialization to differ from actual file bytes.",
+  "repair": {
+    "before": {
+      "path": "tests/phase591_independent_binding_controls.py",
+      "size": 7527,
+      "sha256": "5c1947b7a3e73b34c443eecf7f8f24fd5d131e5e28d0dfb2e7427fb713ce8ac4"
+    },
+    "after": {
+      "path": "tests/phase592_independent_binding_controls.py",
+      "size": 7582,
+      "sha256": "76c97f0445d842a3d2c26ae030f33270ebe68bcbdf1f3180531667aa6d245dd3"
+    },
+    "exact_replacements": [
+      {
+        "before": "import re, types, copy, traceback\n",
+        "after": "import re, types, copy, traceback\nimport __future__\n"
+      },
+      {
+        "before": "OUT = ROOT/'data/phase591-independent-controls-first-001'",
+        "after": "OUT = ROOT/'data/phase592-independent-controls-first-001'"
+      },
+      {
+        "before": "        (OUT/'result.json').write_text(json.dumps(result,indent=2)+'\\n')",
+        "after": "        result_text=json.dumps(result,indent=2)+'\\n'\n        (OUT/'result.json').write_text(result_text)"
+      },
+      {
+        "before": "                data=json.dumps(result if name=='result.json' else result['first_error'],indent=2)+'\\n'",
+        "after": "                data=result_text if name=='result.json' else json.dumps(result['first_error'],indent=2)+'\\n'"
+      }
+    ],
+    "full_inverse_exact": true,
+    "candidate_Source_changed": false,
+    "candidate_inputs_assertions_audit_scope_exact": true,
+    "result_write_log_scope": "Snapshot before serializing result; not complete report-stage write audit. Permission enforcement unchanged.",
+    "vectors_unchanged": {
+      "path": "data/phase591-independent-source-controls/vectors.json",
+      "size": 483501,
+      "sha256": "00cf727fc11ed803a60eb61cc6ebcee22dac2e880647b03fbe7f948343bf63c9"
+    },
+    "actual_new_source_imports_or_calls": 0
+  },
+  "static_import_inventory": {
+    "native_run_compaction": [
+      "__future__",
+      "argparse",
+      "contextlib",
+      "ctypes",
+      "datetime",
+      "fcntl",
+      "hashlib",
+      "json",
+      "os",
+      "pathlib",
+      "shutil",
+      "stat",
+      "tempfile",
+      "zipfile"
+    ],
+    "phase363_oracle_storage": [
+      "pathlib",
+      "contextlib",
+      "fcntl",
+      "hashlib",
+      "json",
+      "os",
+      "shutil",
+      "stat",
+      "zipfile",
+      "native_run_compaction"
+    ],
+    "phase363_oracle_process": [
+      "pathlib",
+      "os",
+      "shutil",
+      "signal",
+      "selectors",
+      "subprocess",
+      "sys",
+      "time",
+      "math",
+      "phase363_oracle_storage"
+    ],
+    "phase590_oracle_storage": [
+      "pathlib",
+      "contextlib",
+      "fcntl",
+      "hashlib",
+      "json",
+      "os",
+      "shutil",
+      "stat",
+      "zipfile",
+      "native_run_compaction"
+    ],
+    "phase590_oracle_host": [
+      "pathlib",
+      "argparse",
+      "hashlib",
+      "json",
+      "os",
+      "re",
+      "shutil",
+      "stat",
+      "phase590_oracle_storage",
+      "phase363_oracle_process"
+    ]
+  },
+  "explicit_preloaded_stdlib": [
+    "__future__",
+    "argparse",
+    "contextlib",
+    "copy",
+    "ctypes",
+    "datetime",
+    "fcntl",
+    "hashlib",
+    "json",
+    "math",
+    "os",
+    "pathlib",
+    "re",
+    "selectors",
+    "shutil",
+    "signal",
+    "stat",
+    "subprocess",
+    "sys",
+    "tempfile",
+    "time",
+    "traceback",
+    "types",
+    "zipfile"
+  ],
+  "unloaded_top_level_stdlib_after_repair": [],
+  "preparation_first_error": {
+    "path": "data/phase592-independent-binding-harness-repair/preparation-first-error.json",
+    "size": 1431,
+    "sha256": "643548afc90ae502a04a8292604b7f76d563a52eb828a4d64f0f693a4d4ad845"
+  },
+  "preparation_first_error_owner": {
+    "path": "data/phase592-independent-binding-harness-repair/preparation-first-error-owner.json",
+    "size": 861,
+    "sha256": "0d798e51170748c1f18cd86e842cbecbdca07abd0ace4e3744fe02801c5548eb"
+  },
+  "scope_note": "Static only; new production imports and ten controls require Root release. Actual future hostreview/source_gate not exercised. No Native readiness claim."
+}

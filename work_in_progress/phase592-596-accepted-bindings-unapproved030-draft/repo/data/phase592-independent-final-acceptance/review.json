@@ -1,0 +1,278 @@
+{
+  "schema": "phase592-independent-final-acceptance/1",
+  "status": "ACCEPTED_SOURCE_AND_TEN_FINITE_BINDING_CONTROLS_ONLY",
+  "utc": "2026-11-04T22:40:59.242097+00:00",
+  "source_freeze": {
+    "path": "data/phase590-case030-host-restore-source/combined-source-freeze.json",
+    "size": 65460,
+    "sha256": "2655616e809ea39c7cf6f4d3d6eed24dd68cce2cf134b7d499c213cee292f6b6"
+  },
+  "observer_source_owner": {
+    "path": "data/phase572-mixed-observer-source-v2/source-owner.json",
+    "size": 29475,
+    "sha256": "3f35f3a12a45d698b77362ed86143adbda9d85352b1c2a34ee1387a83ba728c6"
+  },
+  "static_review": {
+    "path": "data/phase591-independent-source-controls/static-review.json",
+    "size": 10150,
+    "sha256": "7c615b279f3bff21b1c73d5382cd15c80e59deb73e2ee1abe1a10d8aa87da4e9"
+  },
+  "source_total_owner": {
+    "path": "data/phase590-case030-host-restore-source/owned-files.json",
+    "size": 36294,
+    "sha256": "0a9cc8bf345ad2dd08a4a381f170770d420a385718fdf3211f53d7e740530b4a"
+  },
+  "source_host_owner": {
+    "path": "data/phase590-case030-host-restore-source/source-owner.json",
+    "size": 31851,
+    "sha256": "e1ecfd07d7c1ee2495fd2491e72591a0d1124808283628755b7ab0e58b36522a"
+  },
+  "actual_result": {
+    "path": "data/phase592-independent-controls-first-001/result.json",
+    "size": 38637,
+    "sha256": "5542e6b1b4d9b4375499a4f5012ec98fa844895ecdee9032bb4e6b91be4d4c45"
+  },
+  "actual_inner_owner": {
+    "path": "data/phase592-independent-controls-first-001/owned-files.json",
+    "size": 258,
+    "sha256": "c607d55e0f74b5ff9dca34076be2626d03626fde6a75573672944e44680950d4"
+  },
+  "Root_invocation_owner": {
+    "path": "data/phase592-root-unique-binding-release/owned-files.json",
+    "size": 1412,
+    "sha256": "c041f28d1c3e37e461259bff19270b59ce7519f9b4351bbe31e9370f7a24f384"
+  },
+  "Root_execution": {
+    "path": "data/phase592-root-unique-binding-release/execution.json",
+    "size": 163,
+    "sha256": "bca6c42971b4d54eb50ea8a8dca32bb1d9755c758069f41ef767ec24aa6e9a61"
+  },
+  "exact_plan": {
+    "path": "data/phase592-independent-binding-harness-repair/execution-plan.json",
+    "size": 3458,
+    "sha256": "a619db8a5f4f3a1c475da2a2dda0e356f7497c842e2ea7cb9bc1d8cfa5aa8d6f"
+  },
+  "repair_owner": {
+    "path": "data/phase592-independent-binding-harness-repair/owned-files.json",
+    "size": 2525,
+    "sha256": "d1d75bfaa74f4f0b10e3e16a5c8399772082b3c1bd46ff7e7fa5a504ebc687fe"
+  },
+  "vectors": {
+    "path": "data/phase591-independent-source-controls/vectors.json",
+    "size": 483501,
+    "sha256": "00cf727fc11ed803a60eb61cc6ebcee22dac2e880647b03fbe7f948343bf63c9"
+  },
+  "verdicts": [
+    {
+      "id": "01_actual575_positive",
+      "api": "validate_observer_review",
+      "status": "PASS",
+      "first_reject": null,
+      "input_canonical_unchanged": "849d6254a9be3ccdb5ca821b7f42e90f4024374ffb39fb11257675d2e9bf5d5d"
+    },
+    {
+      "id": "02_missing_Source",
+      "api": "validate_observer_review",
+      "status": "PASS",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "575 required actual Source/zero_calls fields"
+      },
+      "input_canonical_unchanged": "e9efe3d7e3ebbe306b55adfdd82dca3ff99c786958251f16cfd3b9e5e06cb8d7"
+    },
+    {
+      "id": "03_wrong_schema_descriptor",
+      "api": "validate_observer_review",
+      "status": "PASS",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "575 actual Source field: schema"
+      },
+      "input_canonical_unchanged": "cccc112a77ea01fcdba927930c52ff3b273ca65ee3fa4c72df79192066bf3ecf"
+    },
+    {
+      "id": "04_bool_Native",
+      "api": "validate_observer_review",
+      "status": "PASS",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "575 Source-only exact integer zero: Native"
+      },
+      "input_canonical_unchanged": "a118986e6bd0b71e502a63e0711e958b809e328a09a59e395fa193221c2b9157"
+    },
+    {
+      "id": "05_bool_King_count",
+      "api": "validate_observer_review",
+      "status": "PASS",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "575 actual Source field: King_count"
+      },
+      "input_canonical_unchanged": "91d1365902a0e54868e79bd02d9500649993eae555918e08fb454a3354bed410"
+    },
+    {
+      "id": "06_historical_receipt_shape",
+      "api": "validate_observer_review",
+      "status": "PASS",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "exact575 Source-only receipt and tuple binding required"
+      },
+      "input_canonical_unchanged": "0b1527ffee8aeff0c8e4b20f1feb8fba51e0186266fdb8b003fb4be4de296438"
+    },
+    {
+      "id": "07_wrong_tuple",
+      "api": "validate_observer_review",
+      "status": "PASS",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "exact575 Source-only receipt and tuple binding required"
+      },
+      "input_canonical_unchanged": "27dbdd0b270e6012a350b3bbb5eed554e95fc62be0c267d49af0f7e1cb27a02f"
+    },
+    {
+      "id": "08_actual_frozen_tuple_positive",
+      "api": "validate_active_source_tuple",
+      "status": "PASS",
+      "first_reject": null,
+      "input_canonical_unchanged": "c58410491e4cc63225c4ecb4ce68f3c43ad9774caf06740a346d74315176070d"
+    },
+    {
+      "id": "09_old_profile",
+      "api": "validate_active_source_tuple",
+      "status": "PASS",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "host case/run/profile mismatch"
+      },
+      "input_canonical_unchanged": "2d9dae6bc84ae36d0a545746bf1a4abc1666b6c7fff913c3c77f4f3cc3f2b816"
+    },
+    {
+      "id": "10_missing_default_p1_leaf",
+      "api": "validate_active_source_tuple",
+      "status": "PASS",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "tuple leaf outside frozen graph"
+      },
+      "input_canonical_unchanged": "f4dd0e613a391a759addb8fe65ff03488ee103758557a9810a4d64778aaeed05"
+    }
+  ],
+  "calls": {
+    "this_attempt_module_eval_attempts": 5,
+    "this_attempt_completed_module_imports": 5,
+    "direct_entered_completed": 10,
+    "positive": 2,
+    "expected_reject": 8,
+    "observer_review_calls": 7,
+    "active_source_tuple_calls": 3,
+    "prior591_module_eval_attempts": 1,
+    "prior591_completed_imports": 0,
+    "prior591_top_calls": 0,
+    "cumulative_eval_attempts": 6,
+    "cumulative_completed_imports": 5,
+    "cumulative_top_calls": 10,
+    "nested_profile_actual": {
+      "/workspace/python-original-engine/repo/tests/native_run_compaction.py::<module>": 1,
+      "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py::<module>": 1,
+      "/workspace/python-original-engine/repo/tests/phase363_oracle_process.py::<module>": 1,
+      "/workspace/python-original-engine/repo/tests/phase590_oracle_storage.py::<module>": 1,
+      "/workspace/python-original-engine/repo/tests/phase590_oracle_host.py::<module>": 1,
+      "/workspace/python-original-engine/repo/tests/phase590_oracle_host.py::validate_observer_review": 7,
+      "/workspace/python-original-engine/repo/tests/phase590_oracle_host.py::validate_active_source_tuple": 3,
+      "/workspace/python-original-engine/repo/tests/phase590_oracle_storage.py::check_source_descriptor": 28,
+      "/workspace/python-original-engine/repo/tests/phase590_oracle_storage.py::_read_source": 28,
+      "/workspace/python-original-engine/repo/tests/phase590_oracle_storage.py::_source_descriptor": 28,
+      "/workspace/python-original-engine/repo/tests/phase590_oracle_storage.py::_identity": 28,
+      "/workspace/python-original-engine/repo/tests/phase590_oracle_storage.py::<genexpr>": 2860,
+      "/workspace/python-original-engine/repo/tests/phase590_oracle_storage.py::directory": 56,
+      "/workspace/python-original-engine/repo/tests/phase590_oracle_storage.py::member": 28,
+      "/workspace/python-original-engine/repo/tests/phase590_oracle_storage.py::regular_target": 56,
+      "/workspace/python-original-engine/repo/tests/phase590_oracle_storage.py::_source_signature": 168,
+      "/workspace/python-original-engine/repo/tests/phase590_oracle_storage.py::read": 10,
+      "/workspace/python-original-engine/repo/tests/phase590_oracle_host.py::_payload_rows": 2
+    },
+    "forbidden_named_functions_observed": []
+  },
+  "origins": {
+    "native_run_compaction": "/workspace/python-original-engine/repo/tests/native_run_compaction.py",
+    "phase363_oracle_storage": "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py",
+    "phase363_oracle_process": "/workspace/python-original-engine/repo/tests/phase363_oracle_process.py",
+    "phase590_oracle_storage": "/workspace/python-original-engine/repo/tests/phase590_oracle_storage.py",
+    "phase590_oracle_host": "/workspace/python-original-engine/repo/tests/phase590_oracle_host.py"
+  },
+  "read_scope": {
+    "audit_events": 108,
+    "unique_paths": 32,
+    "by_stage": {
+      "before": 33,
+      "module_load": 5,
+      "controls": 38,
+      "after": 32
+    },
+    "all_paths_in_exact_repo_pin_allowlist": true,
+    "absolute_Original_origins_opened": 0,
+    "baseline_pool_resources_capture_Expected_reads": 0,
+    "schema_file_bytes_hashed_but_schema_eval": 0,
+    "report_write_log": "result.writes=[] is a pre-serialization snapshot, not evidence of zero report writes or a complete report-stage log. Audit write guard remained active."
+  },
+  "pins": {
+    "count": 32,
+    "before_after_actual_current_exact": true
+  },
+  "owner_fix": {
+    "this_actual_inner_owner_every_descriptor_matches_file_bytes": true,
+    "prior591_original_inner_owner_preserved": {
+      "path": "data/phase591-independent-controls-first-001/owned-files.json",
+      "size": 453,
+      "sha256": "7dbb9bc8b379fe8d1b97df73ae239d00dae0e72b4c47952b67f2e7f429ff4511"
+    },
+    "prior591_wrong_result_entry": {
+      "path": "data/phase591-independent-controls-first-001/result.json",
+      "size": 24546,
+      "sha256": "ea17caec8a92cf17bf59346b3dd0a46a6a1f0e4f6a68235a2f98422b8e488997"
+    },
+    "prior591_actual_result": {
+      "path": "data/phase591-independent-controls-first-001/result.json",
+      "size": 24443,
+      "sha256": "b5f4c008226612a0ef3e8d519a0acf5c556c60e2c0612979ab01a739031c3f8b"
+    },
+    "prior591_first_error": {
+      "path": "data/phase591-independent-controls-first-001/first-error.json",
+      "size": 1403,
+      "sha256": "5a407bdf0504913a9080727c3d3cba202d9f78cf4e22aeffe0042fce36ca1b0e"
+    },
+    "preparation_error": {
+      "path": "data/phase592-independent-binding-harness-repair/preparation-first-error.json",
+      "size": 1431,
+      "sha256": "643548afc90ae502a04a8292604b7f76d563a52eb828a4d64f0f693a4d4ad845"
+    },
+    "interpretation": "591 remains failed; incorrect inner result descriptor preserved. 592 serializes once and actual ownership now matches; no claim of original591 owner integrity."
+  },
+  "static_only": {
+    "physical": "Four full Source inverses/function inventories, storage23 and physical/process/lease/archive/O-union-N-union-F kernels preserved in591 static review; no restoration reexecution.",
+    "future_hostreview": "Guard body same as508 with new bindings; source_gate/deep hostreview not dynamically exercised.",
+    "selector": "select_restore_images static exact only; no509 rerun.",
+    "five_absolute_authorities": "Reviewer/SUT metadata closure only; Root separate hashing is not this runtime resource check."
+  },
+  "wall": {
+    "harness_seconds": 0.10290317000180949,
+    "root_outer_seconds": 0.18334820399832097,
+    "pid": 19328,
+    "reaped": true,
+    "exit": 0,
+    "stdout_stderr_bytes": 0
+  },
+  "final_review_preparation_diagnostic": {
+    "first_readonly_owner_check": "Initially compared Root absolute descriptor.path to locally normalized repo-relative descriptor.path and stopped with AssertionError before report creation. Bytes were not different.",
+    "correction": "Verify same resolved exact file path and exact size/SHA independently; Root owner now passes. No SUT or original artifact changed; no dynamic retry."
+  },
+  "native": 0,
+  "models": 0,
+  "Expected": 0,
+  "operational_calls": 0,
+  "new_calls_during_final_review": 0,
+  "next_required": "Complete reviewable030 runtime config, actual independent receipt/owner binding, explicit Root Native release and fresh operational gates. No automatic hostplan/install/capture. ActualINPUT/B1/B2/model/strict8 remain future work.",
+  "host_consumable_receipt_path": "data/phase592-independent-final-acceptance/host-source-review.json",
+  "limits": "Source+finitebindings only, not operational readiness or Native/formal75 upgrade."
+}

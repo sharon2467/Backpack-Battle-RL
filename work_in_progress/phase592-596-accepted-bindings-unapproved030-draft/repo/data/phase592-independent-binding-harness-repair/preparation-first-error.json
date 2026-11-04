@@ -1,0 +1,32 @@
+{
+  "schema": "phase592-preparation-first-error/1",
+  "stage": "static verification of591 actualowner before newscript creation",
+  "exception": "AssertionError: reported result descriptor != actual result bytes",
+  "expected": {
+    "path": "data/phase591-independent-controls-first-001/result.json",
+    "size": 24546,
+    "sha256": "ea17caec8a92cf17bf59346b3dd0a46a6a1f0e4f6a68235a2f98422b8e488997"
+  },
+  "actual": {
+    "path": "data/phase591-independent-controls-first-001/result.json",
+    "size": 24443,
+    "sha256": "b5f4c008226612a0ef3e8d519a0acf5c556c60e2c0612979ab01a739031c3f8b"
+  },
+  "actual_owner": {
+    "path": "data/phase591-independent-controls-first-001/owned-files.json",
+    "size": 453,
+    "sha256": "7dbb9bc8b379fe8d1b97df73ae239d00dae0e72b4c47952b67f2e7f429ff4511"
+  },
+  "first_error_descriptor_exact": true,
+  "cause": "audit open-write appends result.json to in-memory result.writes after json.dumps generated file bytes; later owner recomputes different JSON with extra103bytes. No file tampering inferred.",
+  "production_source_changed": false,
+  "old_files_modified": false,
+  "new_harness_created": false,
+  "new_SUT_imports_or_calls": 0,
+  "prior_attempt_counts": {
+    "module_eval_attempts": 1,
+    "module_imports_completed": 0,
+    "direct_calls": 0
+  },
+  "next_step": "Root decision on minimal result serialization/owner accounting fix; current authorization onlypreload+OUT retained."
+}
