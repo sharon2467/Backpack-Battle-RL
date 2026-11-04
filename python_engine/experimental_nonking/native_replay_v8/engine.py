@@ -40,6 +40,9 @@ def assert_model_source_stable():
 
 
 CATALOG = {
+    385: dict(name="Enchanted Weapons",shape=((0,0),),
+              stars=((2,-3),(3,-3),(1,-2),(2,-2),(3,-2),(-1,-1),(0,-1),(1,-1),(2,-1),(1,0),(-1,1),(1,1)),
+              bag=False,skill=True,cooldown=5.2,chance=25.0,least_buffs=1,socket_count=0,default_gem=None),
     231: dict(name="Wolpertinger",shape=((0,0),(1,0),(0,1),(1,1)),
               stars=((0,-1),(1,-1),(-1,0),(2,0),(-1,1),(2,1),(0,2),(1,2)),
               bag=False,pet=True,nature=True,cooldown=5.0,stamina_regen_percent=0.7,
@@ -218,7 +221,9 @@ BUFF_GOOBERT_IDS = frozenset({204,220,340,416})
 GOOBERT_IDS = frozenset({262,23,38,52,53,54,168,205,296,400,468}) | RAINBOW_GOOBERT_IDS | BUFF_GOOBERT_IDS
 STATE_PARTICLE_IDS = frozenset({53,168})
 POTION_IDS = frozenset({19,35,36,37,46,172})
-CACHED_AFFECTED_IDS = GOOBERT_IDS | POTION_IDS | frozenset({5,6,21,22,117,124}) | frozenset({18,29,82,83,84,164,179,231,332,351,374})
+ENCHANTED_ATTACK_EFFECT_RECEIVERS = frozenset({14,32,233,234})
+ENCHANTED_FIXTURE_IDS = frozenset({1,11,14,22,32,231,233,234,385})
+CACHED_AFFECTED_IDS = GOOBERT_IDS | POTION_IDS | frozenset({5,6,21,22,117,124}) | frozenset({18,29,82,83,84,164,179,231,332,351,374,385})
 EMPOWERABLE_WEAPON_IDS = frozenset([64, 197, 199, 201, 29, 82, 83, 84, 182, 233, 234, 235, 0, 1, 2, 3, 12, 14, 15, 27, 28, 30, 32, 208, 209])
 
 EVENT_TYPES = {"LoseHealth": 5, "Activation": 0, "DealDamage": 1, "CriticalDamage": 2,
@@ -228,7 +233,7 @@ EVENT_TYPES = {"LoseHealth": 5, "Activation": 0, "DealDamage": 1, "CriticalDamag
                "TemporaryMaxHealth": 19, "Empower": 106, "Poison": 108, "Heat": 107, "Cold": 110, "Stun": 9,
                "BattleRageStart": 21, "BattleRageEnd": 22, "Win": 111, "Loss": 112}
 DEBUFF_TYPES = ("Blind", "Poison", "Cold")
-GAINED_STACK_FLAGS = {231:254,64:128,197:258,199:254,201:1792,164:254,35:4,37:0,46:16,50:8,29:0,82:0,83:0,84:0,182:0,233:16,234:2,235:1792,129:0,262:0,204:254,220:254,340:254,416:766,74:776,169:584,219:648,401:524,469:524,53:512,54:8,52:0,400:6,468:4,38:256,205:128,296:0,168: 64, 0: 0, 1: 0, 2: 0, 3: 512, 4: 0, 5: 0, 6: 0, 7: 4, 8: 16, 10: 0, 11: 0, 12: 0, 14: 0, 15: 0, 16: 16, 17: 0, 18: 0, 19: 0, 20: 512, 21: 256, 22: 34, 23: 0, 24: 2, 26: 0, 27: 16, 28: 8, 30: 256, 32: 0, 34: 66, 36: 256, 39: 0, 48: 8, 62: 128, 67: 0, 117: 128, 124: 64, 172: 32, 179: 1024, 208: 0, 209: 128, 332: 254, 351: 0, 374: 0, 405: 0}
+GAINED_STACK_FLAGS = {385:254,231:254,64:128,197:258,199:254,201:1792,164:254,35:4,37:0,46:16,50:8,29:0,82:0,83:0,84:0,182:0,233:16,234:2,235:1792,129:0,262:0,204:254,220:254,340:254,416:766,74:776,169:584,219:648,401:524,469:524,53:512,54:8,52:0,400:6,468:4,38:256,205:128,296:0,168: 64, 0: 0, 1: 0, 2: 0, 3: 512, 4: 0, 5: 0, 6: 0, 7: 4, 8: 16, 10: 0, 11: 0, 12: 0, 14: 0, 15: 0, 16: 16, 17: 0, 18: 0, 19: 0, 20: 512, 21: 256, 22: 34, 23: 0, 24: 2, 26: 0, 27: 16, 28: 8, 30: 256, 32: 0, 34: 66, 36: 256, 39: 0, 48: 8, 62: 128, 67: 0, 117: 128, 124: 64, 172: 32, 179: 1024, 208: 0, 209: 128, 332: 254, 351: 0, 374: 0, 405: 0}
 STACK_NAMES_BY_TYPE = {value: name for name, value in EVENT_TYPES.items() if 100 <= value <= 110}
 
 
@@ -342,6 +347,18 @@ def fixture_from_custom_opponent(data, player_data=None):
     return fixture
 
 
+def validate_enchanted_fixture(fixture):
+    if not any(entry["item_index"] == 385 for side in fixture["sides"] for entry in side["items"]):
+        return True
+    if (any(side["character_class"] != 0 for side in fixture["sides"])
+            or any(entry["item_index"] not in ENCHANTED_FIXTURE_IDS
+                   for side in fixture["sides"] for entry in side["items"])
+            or any(sum(entry["item_index"] == 385 for entry in side["items"]) > 1
+                   for side in fixture["sides"])):
+        raise ValueError("Enchanted Weapons Source requires class0, finite nine-ID fixture and at most one385 per side")
+    return True
+
+
 def validate_fixture(fixture):
     if set(fixture) != {"schema", "game_version", "mode", "round", "below_master", "rules", "sides"}:
         raise ValueError("unknown or missing fixture field")
@@ -394,6 +411,7 @@ def validate_fixture(fixture):
             if cells & filled_cells:
                 raise ValueError("ordinary item collision")
             filled_cells |= cells
+    validate_enchanted_fixture(fixture)
     return True
 
 
@@ -1858,8 +1876,7 @@ class CombatEngine:
             character.stun_resistance_rng.reset()
         for identity in self.preparation_order:
             bag = self.items[identity]
-            if bag.double_attack_effect_chance != 0.0:
-                raise ValueError("unsupported nonzero double attack effect modifier")
+            self._validate_attack_effect_chance(bag)
             if bag.item_index in (26, 67, 405, 129):
                 inside = self.inside_items(bag)
                 self.bag_inside_cache[identity] = inside
@@ -1893,6 +1910,13 @@ class CombatEngine:
             bag.chance_rng.reset()
             bag.damage_range.acc = 0.0
             bag.spikes_given = 0
+            if bag.item_index == 385:
+                # cache_prepared is already true. Apply the entire callback-free
+                # loop before the expected-contribution checker can observe it.
+                for target in self.affected_items(bag):
+                    self.give_double_attack_effect_chance(bag, target)
+                for target in self.items.values():
+                    self._validate_attack_effect_chance(target)
             if bag.item_index == 231:
                 self.add_speed(bag, len(self.affected_items(bag)) * bag.definition["pet_speed_percent"] / 100.0)
                 bag.wolpertinger_buff_listener_registered = True
@@ -1947,6 +1971,8 @@ class CombatEngine:
                 bag.speed_scale += speed
                 self.histories.tooltip(bag, 3)
                 self.histories.tooltip(bag, 9)
+        for target in self.items.values():
+            self._validate_attack_effect_chance(target)
         self.prepared = True
         if self.pure_combat_mode:
             self._validate_pure441_prepared()
@@ -2124,6 +2150,8 @@ class CombatEngine:
                 def eligible(other):
                     if other.definition["bag"] or other is item:
                         return False
+                    if item.item_index == 385:
+                        return other.item_index in ENCHANTED_ATTACK_EFFECT_RECEIVERS
                     if item.item_index == 231:
                         return other.definition.get("pet", False)
                     if item.item_index == 164:
@@ -2215,6 +2243,8 @@ class CombatEngine:
             return targets
         candidates = [other for other in self.side_items[item.side]
                       if other is not item and other.cells & item.stars and not other.definition["bag"]]
+        if item.item_index == 385:
+            return [other for other in candidates if other.item_index in ENCHANTED_ATTACK_EFFECT_RECEIVERS]
         if item.item_index == 231:
             return [other for other in candidates if other.definition.get("pet")]
         if item.item_index == 164:
@@ -3267,6 +3297,10 @@ class CombatEngine:
         item.iteration_cooldown = self.adjust_cooldown(item)
         item.trigger_time += item.iteration_cooldown
         char = self.characters[item.side]
+        if item.item_index == 385:
+            self.give_least_buffs(item, item.definition["least_buffs"])
+            self.activate(item)
+            return
         if item.item_index == 231:
             self.give_least_buffs(item, item.definition["least_buffs"])
             self.activate(item)
@@ -3405,10 +3439,43 @@ class CombatEngine:
         self.add_bonus_damage(item, item.definition["permanent_damage"])
         return item.definition["temporary_damage"]
 
+    def _validate_attack_effect_chance(self, item):
+        if self.items.get(getattr(item, "instance_id", None)) is not item:
+            raise ValueError("owned attack-effect target required")
+        chance = item.double_attack_effect_chance
+        if type(chance) is not float or not math.isfinite(chance):
+            raise ValueError("finite REAL double attack effect chance required")
+        expected = 0.0
+        for source in self.side_items[item.side]:
+            if source.item_index != 385 or source.cache_prepared is not True:
+                continue
+            if (self.items.get(source.instance_id) is not source
+                    or type(source.definition["chance"]) is not float or source.definition["chance"] != 25.0):
+                raise ValueError("owned prepared385 with exact Source chance25 required")
+            if any(target is item for target in self.affected_items(source)):
+                if item.item_index not in ENCHANTED_ATTACK_EFFECT_RECEIVERS:
+                    raise ValueError("unproved positive attack-effect receiver")
+                expected += source.definition["chance"] / 100.0
+        if chance != expected:
+            raise ValueError("double attack effect chance differs from actual prepared385 contributions")
+
+    def give_double_attack_effect_chance(self, source, target):
+        if (self.items.get(getattr(source, "instance_id", None)) is not source
+                or source.item_index != 385 or source.cache_prepared is not True
+                or self.items.get(getattr(target, "instance_id", None)) is not target
+                or target.side != source.side or target.item_index not in ENCHANTED_ATTACK_EFFECT_RECEIVERS
+                or not any(affected is target for affected in self.affected_items(source))
+                or type(source.definition["chance"]) is not float or source.definition["chance"] != 25.0):
+            raise ValueError("owned prepared385 and its actual cached finite receiver required")
+        # One385 per side: exclude the current, not-yet-applied contribution.
+        # Do not call the generic checker while its cache flag is already true.
+        if type(target.double_attack_effect_chance) is not float or target.double_attack_effect_chance != 0.0:
+            raise ValueError("missing zero Source pre-contribution or duplicate modifier application")
+        target.double_attack_effect_chance += source.definition["chance"] / 100.0
+
     def attack_effect_count(self, item):
-        """The native default-zero flip still draws and succeeds at raw zero."""
-        if item.double_attack_effect_chance != 0.0:
-            raise ValueError("unsupported nonzero double attack effect modifier")
+        """The native flip draws once, including default chance0/raw0."""
+        self._validate_attack_effect_chance(item)
         raw = self.random.randf(f"double_attack_effect:{item.instance_id}")
         return 1 + int(raw <= item.double_attack_effect_chance)
 
