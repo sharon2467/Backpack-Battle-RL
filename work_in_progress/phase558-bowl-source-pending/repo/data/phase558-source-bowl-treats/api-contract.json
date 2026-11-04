@@ -1,0 +1,54 @@
+{
+  "class_domain": [
+    0
+  ],
+  "extra_items": [
+    64,
+    162,
+    164,
+    197,
+    199,
+    201,
+    231,
+    385
+  ],
+  "extra_label": "double_activation:<identity>",
+  "extra_order": "complete first effect/pitch then live positive chance one randf<=chance then at most second effect",
+  "formal_support": 75,
+  "initializer": "headless.initialize_experimental_nonking(layout,seed)",
+  "ledger": "real ItemState.bowl_speed_bonus_given REAL0.0; reset prepare; once per uncapped call+25 after targetloop, empty still+25;90=>10 each=>115",
+  "max162_per_side": 1,
+  "methods": [
+    "CombatEngine._pet_cooldown_effect(item)",
+    "CombatEngine._bowl_cooldown_effect(item)",
+    "CombatEngine._validate_bowl_double_activation_chance(item)",
+    "CombatEngine.give_bowl_double_activation_chance(source,target)",
+    "CombatEngine.trigger(item)"
+  ],
+  "new_functions": [
+    "CombatEngine._bowl_cooldown_effect",
+    "CombatEngine._pet_cooldown_effect",
+    "CombatEngine._validate_bowl_double_activation_chance",
+    "CombatEngine.give_bowl_double_activation_chance",
+    "validate_bowl_fixture"
+  ],
+  "positive_Pets": [
+    164,
+    231
+  ],
+  "private_component_seam": "Existing CombatEngine(fixture,random_source,runtime) with strict TapeRandom in synthetic component path; no public Tape entry",
+  "runtime_acceptance": "PENDING_INDEPENDENT559",
+  "schema": "phase558-api/1",
+  "serialization": "unchanged snapshot/asdict; existing double_activation_chance mapping retained",
+  "validator": "headless.validate_experimental_nonking_layout(layout)",
+  "when162_fixture_ids": [
+    1,
+    5,
+    11,
+    22,
+    162,
+    164,
+    231
+  ],
+  "zero_chance": "no extra primitive"
+}

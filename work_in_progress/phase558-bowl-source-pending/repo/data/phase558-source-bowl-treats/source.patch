@@ -1,0 +1,205 @@
+--- 551/headless.py
++++ 558/headless.py
+@@ -26,7 +26,7 @@
+ ITEMS = frozenset({0, 1, 2, 4, 5, 6, 10, 11, 14, 15, 16, 19, 21, 22, 24, 26, 30, 67, 117, 129, 208, 405, 182, 233, 234, 235, 29, 82, 83, 84, 17, 18, 34, 50, 35, 36, 37, 46, 3, 12, 27, 28, 7, 8, 20, 39, 48, 124, 209, 32, 172, 23, 38, 205, 296, 52, 54, 400, 468, 53, 168, 204, 340, 62, 179, 332, 351, 374, 74, 169, 219, 220, 401, 416, 469})
+ SQUIRREL_SOURCE_ITEMS = frozenset({164})
+ SQUIRREL_SOURCE_EXTENSION = 'source-headless-squirrel-default/1'
+-EXPERIMENTAL_NONKING_ITEMS = frozenset({64,164,197,199,201,231,385})
++EXPERIMENTAL_NONKING_ITEMS = frozenset({64,162,164,197,199,201,231,385})
+ EXPERIMENTAL_NONKING_EXTENSION = 'source-headless-experimental-nonking-defaults/1'
+ # Original Bag.getBagLayerPriority: Unique first, then resource Icon/Border.
+ # Static facts for admitted default resources; no visual object is constructed.
+--- 551/native_replay_v8/engine.py
++++ 558/native_replay_v8/engine.py
+@@ -40,6 +40,10 @@
+ 
+ 
+ CATALOG = {
++    162: dict(name="Bowl of Treats",shape=((0,0),(1,0)),
++              stars=((-1,-1),(0,-1),(1,-1),(2,-1),(-1,0),(2,0),(0,1),(1,1)),
++              bag=False,food=True,nature=True,cooldown=4.0,chance=20.0,random_buffs=2,
++              food_speed=25.0,max_food_speed=100.0,socket_count=0,default_gem=None),
+     385: dict(name="Enchanted Weapons",shape=((0,0),),
+               stars=((2,-3),(3,-3),(1,-2),(2,-2),(3,-2),(-1,-1),(0,-1),(1,-1),(2,-1),(1,0),(-1,1),(1,1)),
+               bag=False,skill=True,cooldown=5.2,chance=25.0,least_buffs=1,socket_count=0,default_gem=None),
+@@ -221,9 +225,11 @@
+ GOOBERT_IDS = frozenset({262,23,38,52,53,54,168,205,296,400,468}) | RAINBOW_GOOBERT_IDS | BUFF_GOOBERT_IDS
+ STATE_PARTICLE_IDS = frozenset({53,168})
+ POTION_IDS = frozenset({19,35,36,37,46,172})
++BOWL_PET_IDS = frozenset({164,231})
++BOWL_FIXTURE_IDS = frozenset({1,5,11,22,162,164,231})
+ ENCHANTED_ATTACK_EFFECT_RECEIVERS = frozenset({14,32,233,234})
+ ENCHANTED_FIXTURE_IDS = frozenset({1,11,14,22,32,231,233,234,385})
+-CACHED_AFFECTED_IDS = GOOBERT_IDS | POTION_IDS | frozenset({5,6,21,22,117,124}) | frozenset({18,29,82,83,84,164,179,231,332,351,374,385})
++CACHED_AFFECTED_IDS = GOOBERT_IDS | POTION_IDS | frozenset({5,6,21,22,117,124,162}) | frozenset({18,29,82,83,84,164,179,231,332,351,374,385})
+ EMPOWERABLE_WEAPON_IDS = frozenset([64, 197, 199, 201, 29, 82, 83, 84, 182, 233, 234, 235, 0, 1, 2, 3, 12, 14, 15, 27, 28, 30, 32, 208, 209])
+ 
+ EVENT_TYPES = {"LoseHealth": 5, "Activation": 0, "DealDamage": 1, "CriticalDamage": 2,
+@@ -233,7 +239,7 @@
+                "TemporaryMaxHealth": 19, "Empower": 106, "Poison": 108, "Heat": 107, "Cold": 110, "Stun": 9,
+                "BattleRageStart": 21, "BattleRageEnd": 22, "Win": 111, "Loss": 112}
+ DEBUFF_TYPES = ("Blind", "Poison", "Cold")
+-GAINED_STACK_FLAGS = {385:254,231:254,64:128,197:258,199:254,201:1792,164:254,35:4,37:0,46:16,50:8,29:0,82:0,83:0,84:0,182:0,233:16,234:2,235:1792,129:0,262:0,204:254,220:254,340:254,416:766,74:776,169:584,219:648,401:524,469:524,53:512,54:8,52:0,400:6,468:4,38:256,205:128,296:0,168: 64, 0: 0, 1: 0, 2: 0, 3: 512, 4: 0, 5: 0, 6: 0, 7: 4, 8: 16, 10: 0, 11: 0, 12: 0, 14: 0, 15: 0, 16: 16, 17: 0, 18: 0, 19: 0, 20: 512, 21: 256, 22: 34, 23: 0, 24: 2, 26: 0, 27: 16, 28: 8, 30: 256, 32: 0, 34: 66, 36: 256, 39: 0, 48: 8, 62: 128, 67: 0, 117: 128, 124: 64, 172: 32, 179: 1024, 208: 0, 209: 128, 332: 254, 351: 0, 374: 0, 405: 0}
++GAINED_STACK_FLAGS = {162:254,385:254,231:254,64:128,197:258,199:254,201:1792,164:254,35:4,37:0,46:16,50:8,29:0,82:0,83:0,84:0,182:0,233:16,234:2,235:1792,129:0,262:0,204:254,220:254,340:254,416:766,74:776,169:584,219:648,401:524,469:524,53:512,54:8,52:0,400:6,468:4,38:256,205:128,296:0,168: 64, 0: 0, 1: 0, 2: 0, 3: 512, 4: 0, 5: 0, 6: 0, 7: 4, 8: 16, 10: 0, 11: 0, 12: 0, 14: 0, 15: 0, 16: 16, 17: 0, 18: 0, 19: 0, 20: 512, 21: 256, 22: 34, 23: 0, 24: 2, 26: 0, 27: 16, 28: 8, 30: 256, 32: 0, 34: 66, 36: 256, 39: 0, 48: 8, 62: 128, 67: 0, 117: 128, 124: 64, 172: 32, 179: 1024, 208: 0, 209: 128, 332: 254, 351: 0, 374: 0, 405: 0}
+ STACK_NAMES_BY_TYPE = {value: name for name, value in EVENT_TYPES.items() if 100 <= value <= 110}
+ 
+ 
+@@ -356,6 +362,18 @@
+             or any(sum(entry["item_index"] == 385 for entry in side["items"]) > 1
+                    for side in fixture["sides"])):
+         raise ValueError("Enchanted Weapons Source requires class0, finite nine-ID fixture and at most one385 per side")
++    return True
++
++
++def validate_bowl_fixture(fixture):
++    if not any(entry["item_index"] == 162 for side in fixture["sides"] for entry in side["items"]):
++        return True
++    if (any(side["character_class"] != 0 for side in fixture["sides"])
++            or any(entry["item_index"] not in BOWL_FIXTURE_IDS
++                   for side in fixture["sides"] for entry in side["items"])
++            or any(sum(entry["item_index"] == 162 for entry in side["items"]) > 1
++                   for side in fixture["sides"])):
++        raise ValueError("Bowl Source requires class0, finite seven-ID fixture and at most one162 per side")
+     return True
+ 
+ 
+@@ -411,6 +429,7 @@
+             if cells & filled_cells:
+                 raise ValueError("ordinary item collision")
+             filled_cells |= cells
++    validate_bowl_fixture(fixture)
+     validate_enchanted_fixture(fixture)
+     return True
+ 
+@@ -508,6 +527,7 @@
+     goobert_activations: int = 0
+     steel_affected_weapons: list = field(default_factory=list)
+     double_activation_chance: float = 0.0
++    bowl_speed_bonus_given: float = 0.0
+     double_attack_effect_chance: float = 0.0
+     spear_block_removal: int = 0
+     consumed: bool = False
+@@ -1877,6 +1897,7 @@
+         for identity in self.preparation_order:
+             bag = self.items[identity]
+             self._validate_attack_effect_chance(bag)
++            self._validate_bowl_double_activation_chance(bag)
+             if bag.item_index in (26, 67, 405, 129):
+                 inside = self.inside_items(bag)
+                 self.bag_inside_cache[identity] = inside
+@@ -1910,6 +1931,15 @@
+             bag.chance_rng.reset()
+             bag.damage_range.acc = 0.0
+             bag.spikes_given = 0
++            if bag.item_index == 162:
++                bag.bowl_speed_bonus_given = 0.0
++                # Global inventory Pet predicate, not Bowl's spatial Food cache.
++                # No checker/callback/RNG enters the partially applied loop.
++                for target in self.side_items[bag.side]:
++                    if target.item_index in BOWL_PET_IDS:
++                        self.give_bowl_double_activation_chance(bag, target)
++                for target in self.items.values():
++                    self._validate_bowl_double_activation_chance(target)
+             if bag.item_index == 385:
+                 # cache_prepared is already true. Apply the entire callback-free
+                 # loop before the expected-contribution checker can observe it.
+@@ -1973,6 +2003,8 @@
+                 self.histories.tooltip(bag, 9)
+         for target in self.items.values():
+             self._validate_attack_effect_chance(target)
++        for target in self.items.values():
++            self._validate_bowl_double_activation_chance(target)
+         self.prepared = True
+         if self.pure_combat_mode:
+             self._validate_pure441_prepared()
+@@ -3293,6 +3325,67 @@
+         modifier = item.speed_scale + (char.heat - char.cold) * 0.02
+         return max(0.1, min(10.0, 1.0 + modifier if modifier >= 0 else 1.0 / (1.0 - modifier)))
+ 
++    def _validate_bowl_double_activation_chance(self, item):
++        if (self.items.get(getattr(item, "instance_id", None)) is not item
++                or not any(candidate is item for candidate in self.side_items[item.side])):
++            raise ValueError("owned inventory double activation target required")
++        chance = item.double_activation_chance
++        if type(chance) is not float or not math.isfinite(chance):
++            raise ValueError("finite REAL double activation chance required")
++        expected = 0.0
++        for source in self.side_items[item.side]:
++            if source.item_index != 162 or source.cache_prepared is not True:
++                continue
++            if (self.items.get(source.instance_id) is not source or source.side != item.side
++                    or type(source.definition["chance"]) is not float or source.definition["chance"] != 20.0):
++                raise ValueError("owned prepared162 with exact Source chance20 required")
++            if item.item_index in BOWL_PET_IDS:
++                expected += source.definition["chance"] / 100.0
++        if chance != expected:
++            raise ValueError("double activation differs from actual prepared global Bowl contributions")
++
++    def give_bowl_double_activation_chance(self, source, target):
++        if (self.items.get(getattr(source, "instance_id", None)) is not source
++                or source.item_index != 162 or source.cache_prepared is not True
++                or not any(candidate is source for candidate in self.side_items[source.side])
++                or self.items.get(getattr(target, "instance_id", None)) is not target
++                or target.side != source.side or target.item_index not in BOWL_PET_IDS
++                or not any(candidate is target for candidate in self.side_items[source.side])
++                or type(source.definition["chance"]) is not float or source.definition["chance"] != 20.0):
++            raise ValueError("owned prepared162 and its actual same-inventory global Pet required")
++        if type(target.double_activation_chance) is not float or target.double_activation_chance != 0.0:
++            raise ValueError("missing zero Bowl pre-contribution or duplicate application")
++        target.double_activation_chance += source.definition["chance"] / 100.0
++
++    def _pet_cooldown_effect(self, item):
++        if (self.items.get(getattr(item, "instance_id", None)) is not item
++                or item.item_index not in BOWL_PET_IDS):
++            raise ValueError("owned finite cooldown Pet required")
++        if item.item_index == 231:
++            self.give_least_buffs(item, item.definition["least_buffs"])
++            self.activate(item)
++            return
++        if item.item_index == 164:
++            self.steal_random_buff(item, item.definition["buff_steal"])
++            self.activate(item)
++            return
++
++    def _bowl_cooldown_effect(self, item):
++        if self.items.get(getattr(item, "instance_id", None)) is not item or item.item_index != 162:
++            raise ValueError("owned Bowl cooldown caller required")
++        self._validate_bowl_double_activation_chance(item)
++        if (type(item.bowl_speed_bonus_given) is not float or not math.isfinite(item.bowl_speed_bonus_given)
++                or item.bowl_speed_bonus_given < 0.0):
++            raise ValueError("finite nonnegative REAL Bowl speed ledger required")
++        self.give_random_buffs(item, item.definition["random_buffs"])
++        if item.bowl_speed_bonus_given < item.definition["max_food_speed"]:
++            for target in self.affected_items(item):
++                cur_bonus = min(item.definition["food_speed"],
++                                item.definition["max_food_speed"] - item.bowl_speed_bonus_given)
++                self.add_speed(target, cur_bonus / 100.0)
++            item.bowl_speed_bonus_given += item.definition["food_speed"]
++        self.activate(item)
++
+     def trigger(self, item):
+         item.iteration_cooldown = self.adjust_cooldown(item)
+         item.trigger_time += item.iteration_cooldown
+@@ -3301,13 +3394,16 @@
+             self.give_least_buffs(item, item.definition["least_buffs"])
+             self.activate(item)
+             return
+-        if item.item_index == 231:
+-            self.give_least_buffs(item, item.definition["least_buffs"])
+-            self.activate(item)
++        if item.item_index == 162:
++            self._bowl_cooldown_effect(item)
+             return
+-        if item.item_index == 164:
+-            self.steal_random_buff(item, item.definition["buff_steal"])
+-            self.activate(item)
++        if item.item_index in BOWL_PET_IDS:
++            self._validate_bowl_double_activation_chance(item)
++            self._pet_cooldown_effect(item)
++            # The complete first effect, including Squirrel pitch, has returned.
++            if item.double_activation_chance > 0.0 and self.random.randf(
++                    "double_activation:" + item.instance_id) <= item.double_activation_chance:
++                self._pet_cooldown_effect(item)
+             return
+         if item.item_index == 50:
+             self.health_to_block(item,item.definition["health_cost"],item.definition["converted_block"])
