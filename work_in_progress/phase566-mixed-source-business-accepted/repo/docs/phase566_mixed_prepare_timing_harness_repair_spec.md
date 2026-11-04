@@ -1,0 +1,15 @@
+# Phase566 remaining mixed Source controls: prepare timing correction
+
+## 1. Requirements
+Preserve phase565 Source, inputs, harness, first failure and Root invocation. Correct only the test's premature Squirrel speed expectation. Candidate564 and all business code remain unchanged. No dynamic calls during this preparation; Root must release a new exact attempt. No Native/Expected/pool/old battles.
+
+## 2. Design
+The fixed P:Squirrel cells are(0,3),(0,4),(1,4); its ordered stars are(0,2),(-1,3),(1,3),(-1,4),(2,4),(0,5),(1,5). Only Bowl162 at(2,4),(3,4) is an eligible Pet-or-Food hit. Thus cache=[P:bowl] is correct. ForestFriend.combatStart calls parent then addSpeed(1*15/100)=.15; it has no onPrepare override, and Item.onPrepare is pass. Component prepare_only has not entered combatStart, so actual Source-expected speed is0.0. The natural initialize will still run the real combatStart; no manual speed injection is introduced.
+
+Original Item.adjustCooldown returns base cooldown times its jitter; speed is applied to later physics time decrement, not to this draw or triggerTime addition. Synthetic reset sets triggerTime0 and the frozen P:Squirrel cooldown draw is1.0; production trigger therefore sets iterationCooldown4.0/triggerTime4.0. Extra effect adds neither cooldown nor triggerTime. These existing assertions and all26 Tape rows remain unchanged. PREP_SPEED now records the correct0.0 at the existing boundary; no new production calls or reordering.
+
+## 3. Realize
+New immutable script/plan namespace phase566. One assertion changes `.15`→`0.0`. Skip six already-passed gate rejects and their group completion; retain one positive public validation needed to construct the new real component. The first attempt cannot be resumed because its process was reaped. All remaining component functions, four Tape segments, natural geometry/seed56501/120 simulated seconds, failure preservation and audit mechanisms remain unchanged. Main expects4new rejects and8new PASS records (seven remaining families+one natural), and records the old group as reused evidence rather than newly executed. New exact ledger has18direct calls; new attempt1component ctor/prepare(no checkpoint activate/step/run)+1natural ctor/prepare/activate/run. Cumulative at most2component constructors/prepares+1natural, with first attempt26draws not consumed (actual0).
+
+## 4. Acceptance Criteria / Tests
+Static Source/lifecycle finding, full565→566 diff and changed-sites list precede Root release. Original565 owner, all36 original pins, old actual owner and Root invocation hashes must remain exact. Synthetic/natural layouts, preparation cache contract and all26 draws are byte-identical copies. New batch35s inner/40s outer, no automatic retry; raw segments/results saved before postchecks. First unexpected error stops and preserves partial state. Success means only finite Source mixed12 interaction acceptance; no formal75/Native expansion. Six prior ingress rejects are not rerun. Current remaining controls/model execution count is0.

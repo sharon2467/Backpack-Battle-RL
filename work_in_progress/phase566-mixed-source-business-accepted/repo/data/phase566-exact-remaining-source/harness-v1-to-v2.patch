@@ -1,0 +1,63 @@
+--- tests/phase565_independent_mixed_business.py
++++ tests/phase566_independent_mixed_remaining.py
+@@ -3,8 +3,8 @@
+ from pathlib import Path
+ ROOT=Path(__file__).resolve().parents[1]
+ SRC=ROOT/'data/phase564-source-finite-mixed'
+-PLAN=ROOT/'data/phase565-exact-business-source'
+-OUT=ROOT/'data/phase565-independent-business-first-001'
++PLAN=ROOT/'data/phase566-exact-remaining-source'
++OUT=ROOT/'data/phase566-independent-remaining-first-001'
+ MODE='preflight';STAGE='preflight';ACTIVE=None
+ COUNTS={};SUCCEEDED={};DIRECT=[];PASSES=[];REJECTS=[];HOOKS=[];PREP=[];SETTERS=[];PREP_SPEED={}
+ 
+@@ -121,16 +121,9 @@
+ 
+ def gates(h,unit):
+  global MODE,STAGE
+- MODE='gate';STAGE='gate';fixture=call('validate_component',h.validate_experimental_nonking_layout,copy.deepcopy(unit))
+- # Geometrically valid O additions ensure rejection reaches mixed admission.
+- for label,k,fragment in [('reject_duplicate_bowl',162,'at most one162'),('reject_duplicate_skill',385,'at most one385'),('reject_outside',201,'finite twelve-ID')]:
+-  bad=copy.deepcopy(unit);bad['sides'][1]['items'].append(dict(item_index=k,x=2,y=2,f=0,instance_id='O:extra'))
+-  # Duplicate source belongs to P, where its original lives; move the extra to free P cells.
+-  if k in(162,385):bad['sides'][1]['items'].pop();bad['sides'][0]['items'].append(dict(item_index=k,x=3,y=0,f=0,instance_id='P:extra'))
+-  reject(label,h.validate_experimental_nonking_layout,bad);assert fragment in REJECTS[-1]['error']
+- bad=copy.deepcopy(unit);bad['sides'][0]['character_class']=2;reject('reject_class',h.validate_experimental_nonking_layout,bad);assert 'class0' in REJECTS[-1]['error']
+- reject('reject_old_initialize',h.initialize,unit,56501);reject('reject_old_batch',h.run_batch,[dict(layout=unit,seed=56501)])
+- check('01_complete_mixed_admission_both_multiplicities',copy.deepcopy(REJECTS));return fixture
++ MODE='gate';STAGE='gate'
++ # Prior565group01/six rejects passed; only fixture resolution for this new instance.
++ return call('validate_component',h.validate_experimental_nonking_layout,copy.deepcopy(unit))
+ 
+ 
+ def prestack(e,side,name,n):
+@@ -157,7 +150,7 @@
+  for key in('bowl_caches','skill_caches','pet_caches'):strict({i:[x.instance_id for x in e.affected_items_cache[i]]for i in contract[key]},contract[key])
+  for i,x in e.items.items():strict(x.double_activation_chance,.2 if i in contract['global_Pets']else 0.0);strict(x.double_attack_effect_chance,.25 if i in contract['skill_receivers']else 0.0)
+  for i in contract['spatial_false_skill']:assert e.items[i].cells & skill.stars;assert e.items[i]not in e.affected_items_cache[skill.instance_id]
+- strict(spear.spear_block_removal,4);strict(sq.speed_scale,.15);strict(bowl.speed_scale,.2);strict(e.items['P:wolf'].speed_scale,0.0)
++ strict(spear.spear_block_removal,4);strict(sq.speed_scale,0.0);strict(bowl.speed_scale,.2);strict(e.items['P:wolf'].speed_scale,0.0)
+  PREP_SPEED={i:x.speed_scale for i,x in e.items.items()};save('component-prepared.json',dict(prepare=PREP[-1],setters=SETTERS,view=view(e),contract=contract));check('02_disjoint_global_spatial_fields_complete_prepare')
+  sq.double_activation_chance=0.0
+  try:reject('reject_missing_pet',e._validate_bowl_double_activation_chance,sq);strict(sq.double_activation_chance,0.0)
+@@ -252,11 +245,11 @@
+   observe(hs.CombatHistories,'snapshot','Histories.snapshot')
+   observe(m.TapeRandom,'_take','Tape._take')
+   fixture=gates(h,unit);components(h,m,hs,fixture,contract,vectors);natural(h,job)
+-  strict([x['label']for x in DIRECT],ledger['direct_order']);strict(len(REJECTS),10);strict(len(PASSES),9)
++  strict([x['label']for x in DIRECT],ledger['direct_order']);strict(len(REJECTS),4);strict(len(PASSES),8)
+   for mode in('unit','natural'):
+    strict(COUNTS[mode+':Engine.__init__'],1);strict(COUNTS[mode+':Engine.prepare_only'],1)
+   strict(COUNTS['natural:Engine.activate_from_checkpoint'],1);strict(COUNTS['natural:Engine.run'],1)
+-  status='PASS_EIGHT_SOURCE_FAMILIES_ONE_NATURAL_NOT_NATIVE'
++  status='PASS_SEVEN_REMAINING_SOURCE_FAMILIES_ONE_NATURAL_NOT_NATIVE'
+  except BaseException as ex:
+   save('first-error.json',dict(stage=STAGE,type=type(ex).__name__,error=str(ex),traceback=[dict(file=x.tb_frame.f_code.co_filename,line=x.tb_lineno,function=x.tb_frame.f_code.co_name)for x in frames(ex.__traceback__)],calls=COUNTS,direct=DIRECT))
+   if ACTIVE is not None and hasattr(ACTIVE,'events'):save('same-instance-partial.json',dict(events=ACTIVE.events,audit=getattr(ACTIVE.random,'audit',None),view=view(ACTIVE)))
+@@ -270,5 +263,5 @@
+ 
+ 
+ if __name__=='__main__':
+- def deadline(sig,frame):raise TimeoutError('565 whole-process35s wall budget')
++ def deadline(sig,frame):raise TimeoutError('566 whole-process35s wall budget')
+  signal.signal(signal.SIGALRM,deadline);signal.alarm(35);sys.exit(main())

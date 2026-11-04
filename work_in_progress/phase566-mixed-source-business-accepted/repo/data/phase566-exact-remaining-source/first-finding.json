@@ -1,0 +1,153 @@
+{
+  "status": "HARNESS_EXPECTATION_ERROR_NOT_CANDIDATE_FAILURE",
+  "first_error": {
+    "path": "data/phase565-independent-business-first-001/first-error.json",
+    "size": 2245,
+    "sha256": "be0a8a5c4f51ef3cd31535cbd2741a0b1a885d90c893a0f4d330df417d0b8ade"
+  },
+  "old_actual_owner": {
+    "path": "data/phase565-independent-business-first-001/owned-files.json",
+    "size": 1497,
+    "sha256": "5e87de6845ad7a9def40a1e464dcdf046cb2f62f23423d319b847ecdabbcd5eb"
+  },
+  "old_source_owner": {
+    "path": "data/phase565-exact-business-source/owned-files.json",
+    "size": 2573,
+    "sha256": "6ddb0e29a7951adec88bdfff0a3132119aed0204402b524722f0a353e04fbc2b"
+  },
+  "root_invocation_owner": {
+    "path": "data/phase565-root-unique-source-release/owned-files.json",
+    "size": 1172,
+    "sha256": "5b77b1637efee461f0f3246f3ebec995d35283a74fe8409521ed50f0ee6fe8e8"
+  },
+  "Source": [
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/ForestFriend.gd",
+      "size": 236,
+      "sha256": "d1d067d4526a53313e28df3fd3a441415c76a2fcb1368d823d51f3d30eb57147",
+      "lines": "1-10: no onPrepare override, combatStart parent then count>0 speed"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/Squirrel.gd",
+      "size": 508,
+      "sha256": "c23b8aec966449cc60761007879b99c3528c4cbe94309914789954cea34de949",
+      "lines": "1-18: inheritsForestFriend; no onPrepare override"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "size": 170717,
+      "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f",
+      "lines": "3355-3377 prepare/start;3788 adjustCooldown;4409 trigger;4438 physics decrement;4855 addSpeed"
+    },
+    {
+      "path": "data/phase564-source-finite-mixed/staged/native_replay_v8/engine.py",
+      "size": 259634,
+      "sha256": "2a29367a60d55937bfd139ad16cc4b228c3616acf28f6d37f826c15284f9feff",
+      "lines": "prepare_only only applies231speed; activate_from_checkpoint2077-2080 applies164speed;trigger3406;adjust_cooldown unchanged"
+    }
+  ],
+  "geometry": {
+    "Squirrel_cells": [
+      [
+        0,
+        3
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        4
+      ]
+    ],
+    "Squirrel_stars": [
+      [
+        0,
+        2
+      ],
+      [
+        -1,
+        3
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        -1,
+        4
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        5
+      ]
+    ],
+    "Bowl_cells": [
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        4
+      ]
+    ],
+    "intersection": [
+      [
+        2,
+        4
+      ]
+    ],
+    "ordered_eligible_cache": [
+      "P:bowl"
+    ]
+  },
+  "conclusion": "The spatial cache is correct; .15 belongs to combatStart, not prepare_only. Correct prepared speed0.0 follows Original Source independently of failure output.",
+  "trigger_time": {
+    "reset": 0.0,
+    "base_cooldown": 4.0,
+    "frozen_jitter": 1.0,
+    "expected_iteration_and_trigger": 4.0,
+    "speed_in_adjustCooldown": false,
+    "extra_effect_adjustments": 0,
+    "existing_assertions_unchanged": true
+  },
+  "actual_first_attempt": {
+    "passed_groups": 1,
+    "direct_calls": 10,
+    "expected_rejects": 6,
+    "component_ctor": 1,
+    "prepare": 1,
+    "checkpoint_activate": 0,
+    "Tape_draws": 0,
+    "natural": 0,
+    "fullrun": 0,
+    "source_input_pins_unchanged": 36
+  },
+  "remaining_execution": "NOT_RELEASED_NOT_EXECUTED",
+  "SUT_calls_this_review": 0,
+  "Native": 0,
+  "Expected": 0,
+  "source_slices": {
+    "path": "data/phase566-exact-remaining-source/necessary-source-slices.json",
+    "size": 7155,
+    "sha256": "ad260bec44188be513a38057eb6fbaf387d79d9afe86023ee37f9cc2989d9d78"
+  },
+  "remaining_expectation_review": {
+    "prepared_Bowl_speed": ".2 from two Food targets in prepare, unchanged",
+    "prepared_Wolper_speed": "0 from no Pet targets in prepare, unchanged",
+    "Squirrel_after_prepare": "0; PREP_SPEED/reset now retains0 naturally",
+    "Squirrel_iteration_trigger": "4 from frozen jitter1/base4; independent of speed",
+    "natural_start": "real initialize invokes combatStart, untouched; no candidate-output fitting",
+    "other_expected_values": "Modifier fields/global cache/ordered weapons/ledger/RNG/events/parents/feedback remain original565 byte-exact expectations"
+  }
+}

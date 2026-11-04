@@ -1,0 +1,59 @@
+--- tests/phase561_independent_portable_package.py
++++ tests/phase568_independent_portable_package.py
+@@ -2,10 +2,10 @@
+ import argparse,dataclasses,hashlib,importlib,json,math,os,random,re,signal,stat,struct,sys,time,types,typing
+ from pathlib import Path
+ ROOT=Path(__file__).resolve().parents[1]
+-PLAN=ROOT/'data/phase561-independent-package-source'
++PLAN=ROOT/'data/phase568-independent-package-source'
+ PACKAGE=Path('/workspace/backpack-github-receipt-clone-20261030/python_engine/experimental_nonking')
+-OUT=ROOT/'data/phase561-independent-package-first-001'
+-TRUSTED='e8bbd692998b1e7a27f377f5bff6714028c9073961522a3963f7cd9664199a7f'
++OUT=ROOT/'data/phase568-independent-package-first-001'
++TRUSTED='e381ce4ff39994d41df5b26fa9c60b604f4307b1c41270acc43bceb66bcb83c6'
+ COUNTS={};STAGE='preflight'
+ FORBIDDEN={'initialize','initialize_squirrel','initialize_experimental_nonking','_initialize_fixture','run_batch','CombatEngine.__init__','HeadlessBattle.__init__','CombatRandom.__init__','GodotPCGInteger.__init__','OriginalRNG.__init__','CombatEngine.prepare_only','CombatEngine.activate_from_checkpoint','CombatEngine.run','CombatEngine.step','HeadlessBattle.run','HeadlessBattle.step'}
+ def sha(b):return hashlib.sha256(b).hexdigest()
+@@ -25,7 +25,7 @@
+   save('before.json',refs)
+   allowed={str((ROOT/x['path']).resolve())for x in refs}|{str((PLAN/'pins.json').resolve())}
+   original_files=sorted(str(p.relative_to(PACKAGE))for p in PACKAGE.rglob('*')if p.is_file())
+-  assert len(original_files)==22
++  assert len(original_files)==23
+   sys.dont_write_bytecode=True;sys.pycache_prefix=str(OUT/'unused-bytecode-cache');sys.path.insert(0,str(PACKAGE))
+   def audit(event,args):
+    if event=='open':
+@@ -47,7 +47,7 @@
+   STAGE='verifier_import';v=importlib.import_module('verify_manifest');assert Path(v.__file__).resolve()==PACKAGE/'verify_manifest.py'
+   assert not any(x=='headless'or x.startswith(('native_replay_v7','native_replay_v8'))for x in sys.modules)
+   STAGE='verifier_call';verified=v.verify(PACKAGE,TRUSTED);save('verifier-result.json',verified)
+-  assert verified==dict(status='VERIFIED_LISTED_PACKAGE_BYTES',files=21,source_files=15,manifest_sha256=TRUSTED,battle_modules_imported=0,battle_calls=0)
++  assert verified==dict(status='VERIFIED_LISTED_PACKAGE_BYTES',files=22,source_files=15,manifest_sha256=TRUSTED,battle_modules_imported=0,battle_calls=0)
+   sys.addaudithook(audit)
+   STAGE='headless_import';h=importlib.import_module('headless')
+   for name,mod in list(sys.modules.items()):
+@@ -55,7 +55,7 @@
+     p=Path(mod.__file__).resolve();assert str(p)in allowed and p.is_relative_to(PACKAGE),(name,p)
+     imports.append(dict(name=name,path=str(p),sha256=sha(p.read_bytes())))
+   validated=[]
+-  for name,count,kinds in [('Wolpertinger',22,{1,11,164,199,201,231}),('Enchanted-Weapons',24,{1,11,14,22,32,231,233,234,385}),('Bowl-Treats',23,{1,5,11,22,162,164,231})]:
++  for name,count,kinds in [('Mixed-Modifiers',29,{1,5,11,14,22,32,162,164,231,233,234,385})]:
+    layout=json.loads((PACKAGE/('examples/layout-'+name+'.json')).read_bytes())
+    STAGE='public_validate_'+name;fixture=h.validate_experimental_nonking_layout(layout);save('returned-fixture-'+name+'.json',fixture)
+    assert fixture['schema']==1 and fixture['rules']=='default' and fixture['mode']=='Unranked'
+@@ -64,7 +64,7 @@
+    assert {x['item_index']for s in fixture['sides']for x in s['items']}==kinds
+    validated.append(dict(example=name,items=count,returned_fixture=True))
+   sys.setprofile(None);STAGE='postcheck';save('validated-examples.json',validated)
+-  assert COUNTS['verify_manifest.py:verify']==1 and COUNTS['headless.py:validate_experimental_nonking_layout']==3
++  assert COUNTS['verify_manifest.py:verify']==1 and COUNTS['headless.py:validate_experimental_nonking_layout']==1
+   assert not forbidden
+   assert sorted(str(p.relative_to(PACKAGE))for p in PACKAGE.rglob('*')if p.is_file())==original_files
+   status='PASS_EXACT_PORTABLE_PACKAGE_IMPORT_PUBLIC_VALIDATE_NO_CTOR'
+@@ -79,5 +79,5 @@
+   save('result.json',result);save('owned-files.json',dict(files=[pin(p)for p in sorted(OUT.iterdir())if p.is_file()],sealed=True))
+  print(json.dumps(result));return 0 if status.startswith('PASS')else 1
+ if __name__=='__main__':
+- def timeout(signum,frame):raise TimeoutError('phase56120second wall deadline')
++ def timeout(signum,frame):raise TimeoutError('phase56820second wall deadline')
+  signal.signal(signal.SIGALRM,timeout);signal.alarm(20);sys.exit(main())

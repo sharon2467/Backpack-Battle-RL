@@ -1,0 +1,91 @@
+{
+  "schema": "phase566-exact-remaining-execution/1",
+  "status": "FROZEN_AWAITING_ROOT_RELEASE",
+  "argv": [
+    "python",
+    "-I",
+    "-B",
+    "/workspace/python-original-engine/repo/tests/phase566_independent_mixed_remaining.py"
+  ],
+  "cwd": "/tmp",
+  "output_new": "/workspace/python-original-engine/repo/data/phase566-independent-remaining-first-001",
+  "pins": {
+    "path": "data/phase566-exact-remaining-source/pins.json",
+    "size": 8176,
+    "sha256": "211b72747c6582a5f3e86112070dd4791bcc1931c7485448235b1ae70668ea9c"
+  },
+  "inner_wall_seconds": 35,
+  "outer_wall_seconds": 40,
+  "natural_max_sim_seconds": 120.0,
+  "budget": {
+    "direct_order": [
+      "validate_component",
+      "runtime_inputs",
+      "component_ctor",
+      "prepare_only",
+      "reject_missing_pet",
+      "reject_missing_weapon",
+      "reject_duplicate_pet_setter",
+      "reject_duplicate_weapon_setter",
+      "chain_bowl",
+      "chain_skill",
+      "chain_staff",
+      "chain_squirrel",
+      "chain_thorn",
+      "spear_block",
+      "lucky_early",
+      "final_snapshot",
+      "natural_initialize",
+      "natural_run"
+    ],
+    "direct_calls": 18,
+    "expected_rejects": 4,
+    "unit_Tape_draws": 26,
+    "unit": {
+      "ctor": 1,
+      "prepare": 1,
+      "checkpoint_activate": 0,
+      "step": 0,
+      "run": 0
+    },
+    "natural": {
+      "ctor": 1,
+      "prepare": 1,
+      "checkpoint_activate": 1,
+      "run": 1
+    },
+    "groups": 7,
+    "natural_cases": 1,
+    "Native": 0,
+    "Expected": 0,
+    "old_tests": 0,
+    "reused_prior_groups": 1,
+    "reused_prior_rejects": 6
+  },
+  "first_attempt": {
+    "passed_groups": 1,
+    "direct_calls": 10,
+    "expected_rejects": 6,
+    "component_ctor": 1,
+    "prepare": 1,
+    "checkpoint_activate": 0,
+    "Tape_draws": 0,
+    "natural": 0,
+    "fullrun": 0,
+    "source_input_pins_unchanged": 36
+  },
+  "prior_pass_reuse": {
+    "path": "data/phase565-independent-business-first-001/owned-files.json",
+    "size": 1497,
+    "sha256": "5e87de6845ad7a9def40a1e464dcdf046cb2f62f23423d319b847ecdabbcd5eb"
+  },
+  "source_timing_evidence": {
+    "path": "data/phase566-exact-remaining-source/necessary-source-slices.json",
+    "size": 7155,
+    "sha256": "ad260bec44188be513a38057eb6fbaf387d79d9afe86023ee37f9cc2989d9d78"
+  },
+  "diagnostics": "One direct histories.snapshot plus nested diagnostics; counted separately, no model outcomes replaced.",
+  "candidate_calls_so_far": 0,
+  "stop_on_first_unexpected": true,
+  "no_retry": true
+}

@@ -229,6 +229,7 @@ BOWL_PET_IDS = frozenset({164,231})
 BOWL_FIXTURE_IDS = frozenset({1,5,11,22,162,164,231})
 ENCHANTED_ATTACK_EFFECT_RECEIVERS = frozenset({14,32,233,234})
 ENCHANTED_FIXTURE_IDS = frozenset({1,11,14,22,32,231,233,234,385})
+MIXED_BOWL_ENCHANTED_FIXTURE_IDS = frozenset({1,5,11,14,22,32,162,164,231,233,234,385})
 CACHED_AFFECTED_IDS = GOOBERT_IDS | POTION_IDS | frozenset({5,6,21,22,117,124,162}) | frozenset({18,29,82,83,84,164,179,231,332,351,374,385})
 EMPOWERABLE_WEAPON_IDS = frozenset([64, 197, 199, 201, 29, 82, 83, 84, 182, 233, 234, 235, 0, 1, 2, 3, 12, 14, 15, 27, 28, 30, 32, 208, 209])
 
@@ -356,6 +357,14 @@ def fixture_from_custom_opponent(data, player_data=None):
 def validate_enchanted_fixture(fixture):
     if not any(entry["item_index"] == 385 for side in fixture["sides"] for entry in side["items"]):
         return True
+    if any(entry["item_index"] == 162 for side in fixture["sides"] for entry in side["items"]):
+        if (any(side["character_class"] != 0 for side in fixture["sides"])
+                or any(entry["item_index"] not in MIXED_BOWL_ENCHANTED_FIXTURE_IDS
+                       for side in fixture["sides"] for entry in side["items"])
+                or any(sum(entry["item_index"] == 385 for entry in side["items"]) > 1
+                       for side in fixture["sides"])):
+            raise ValueError("Mixed Bowl/Enchanted Source requires class0, finite twelve-ID fixture and at most one385 per side")
+        return True
     if (any(side["character_class"] != 0 for side in fixture["sides"])
             or any(entry["item_index"] not in ENCHANTED_FIXTURE_IDS
                    for side in fixture["sides"] for entry in side["items"])
@@ -367,6 +376,14 @@ def validate_enchanted_fixture(fixture):
 
 def validate_bowl_fixture(fixture):
     if not any(entry["item_index"] == 162 for side in fixture["sides"] for entry in side["items"]):
+        return True
+    if any(entry["item_index"] == 385 for side in fixture["sides"] for entry in side["items"]):
+        if (any(side["character_class"] != 0 for side in fixture["sides"])
+                or any(entry["item_index"] not in MIXED_BOWL_ENCHANTED_FIXTURE_IDS
+                       for side in fixture["sides"] for entry in side["items"])
+                or any(sum(entry["item_index"] == 162 for entry in side["items"]) > 1
+                       for side in fixture["sides"])):
+            raise ValueError("Mixed Bowl/Enchanted Source requires class0, finite twelve-ID fixture and at most one162 per side")
         return True
     if (any(side["character_class"] != 0 for side in fixture["sides"])
             or any(entry["item_index"] not in BOWL_FIXTURE_IDS

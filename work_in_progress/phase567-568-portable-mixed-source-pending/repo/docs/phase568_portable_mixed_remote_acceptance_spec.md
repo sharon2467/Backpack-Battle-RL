@@ -1,0 +1,14 @@
+# Phase568 unique remote mixed-package acceptance
+
+## 1. Requirements
+Independently verify package567's exact accepted564 Source15, manifest, lineage and presealed mixed29 example. No candidate execution before Root release. Only one remote smoke: read-only verifier1, fresh headless import1, public validate_experimental_nonking_layout1 for the new mixed29 example. Do not repeat validation of the three old examples or any battle. No constructors/RNG/initialize/prepare/activate/step/run, Native, Expected or pool access.
+
+## 2. Design
+Reuse the accepted561 harness, changing only phase namespace, trusted manifest, physical/payload counts and the one example/call expectation. Remote package root is `/workspace/backpack-github-receipt-clone-20261030/python_engine/experimental_nonking`. Expected remote pins derive from the frozen local package; they are not a claim that remote deployment has happened. Root supplies actual commit/fresh HTTPS byte-readback receipt and release in separate before-invocation metadata. Frozen plan retains PENDING until that release; no local duplicate smoke. Same selected host/independent clone is not a fresh OS or Original restoration.
+
+## 3. Realize
+`pin`/`save`/`frames` are unchanged561. `main` checks protocol/23 remote package pins, creates one new output directory, verifies exactly22 listed payloads/15 Source against trusted SHA, imports only remote package modules, validates the one packaged layout and expects a returned default fixture with29 entries and exact12 kinds. Fixture sides/typed values must preserve layout input. Existing profiling rejects Engine/RNG/initializer/battle entry; read audit restricts candidate-stage reads to remote package, with stdlib already loaded. Source imports are recorded and all pins read back afterward. Full read-open logging is not claimed. Finalization enters its existing reporting stage before reading host protocol pins. No code or framework redesign.
+
+## 4. Acceptance Criteria / Tests
+Static: all567 owner refs/22manifest payloads+manifest checked;15 files exact564; old3examples/verifier exact560; mixed layout equals565 presealed natural-job.layout with original order/identity and no outcome. README scope84registered/75formal, conditional mixed12/max1caller each side and Source-vs-Native limitations must be accurate. Parse embedded Python snippets and package files with feature_version3.10 solely as syntax checks, not runtime compatibility evidence.
+Actual release: one Python-I-B process/cwd/tmp,20s inner/25s outer; verify1/importheadless1/publicvalidate1→29; model/RNG entry0. One first unexpected error stops with evidence, no retry. Record actual runtime version (currently3.12), import origins/read scope/profiles/before-after hashes. Acceptance is portable Source distribution only, no new rule or Native/general/formal expansion.

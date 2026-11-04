@@ -1,0 +1,584 @@
+--- 560/README.md
++++ 567/README.md
+@@ -2,7 +2,7 @@
+ 
+ Portable Python3.10+ standard-library package. No Godot, original assets, shared pool,
+ network access or third-party libraries are required to run the Python model.
+-The fifteen Source files are byte-exact accepted phase558; packaging changes no rules.
++The fifteen Source files are byte-exact phase564, independently accepted for the finite mixed Source case566; packaging changes no rules.
+ 
+ ## Supported entry and limits
+ 
+@@ -31,12 +31,12 @@
+ Catalog84 is registration: formal75 + eight nonKing experiments + separately restricted
+ King262. Without162, previous551 admission is unchanged (its registry was83), including
+ the385 rule below. Without either162 or385, the prior545 admission is retained.
+-This new exact558 Source reports catalog_registered84 even when both callers are absent. Formal support remains75. A finite Source case does not prove all combinations,
++This exact564 Source reports catalog_registered84 even when both callers are absent. Formal support remains75. A finite Source case does not prove all combinations,
+ all classes, all modifiers, arbitrary King mixes, full-engine RL or Native seed parity.
+ The included legacy modules/CLI remain for exact Source preservation, not an expanded
+ captured-input, Oracle or Tape public entry. No Original files are runtime dependencies.
+ 
+-When385 is present, the **complete fixture** is additionally limited to IDs
++When385 alone (without162) is present, the **complete fixture** is additionally limited to IDs
+ `{1,11,14,22,32,231,233,234,385}`, class0 and at most one385 per side. Four
+ positive receivers are Spear14, Magic Staff32, Thorn Shortbow233 and Lucky
+ Shortbow234. Unknown receivers, including Whelps, are rejected in that fixture,
+@@ -45,15 +45,21 @@
+ Multiple overlapping Skill contributions and arbitrary Skill/King mixes are outside
+ this finite domain. The same explicit API is used; no per-item initializer is added.
+ 
+-When162 is present, the **complete fixture** is instead limited to IDs
++When162 alone (without385) is present, the **complete fixture** is instead limited to IDs
+ `{1,5,11,22,162,164,231}`, class0 and at most one162 per side. Its global same-side
+ Pet modifier covers only Squirrel164/Wolpertinger231 in this finite domain, while
+ its star cache affects different Food.162 uses its actual2-cell/eight-star shape.
+ The positive roll happens after the complete first cooldown effect, not at attack
+ effect count or by duplicating raw damage/Activation. Food speed has its real per-Bowl
+ ledger. Whelps, Gooberts, King and385 are excluded from this162 domain.
+-The162 and385 fixture domains are currently **mutually exclusive**. There is no
+-new mixed162+385 admission, arbitrary allowlist or per-item public initializer.
++When both162 and385 are present anywhere in the **complete fixture**, the fixed
++mixed domain is `{1,5,11,14,22,32,162,164,231,233,234,385}`. There may be at most
++one162 and one385 on each side; callers can be on the same or opposing side.
++Class0/default/noKing/noGems/no rage remains. Individual caller and absent-caller
++domains above stay unchanged. This is a fixed union12, not all75×modifier admission,
++a caller-supplied allowlist or a new per-item public initializer. Registry stays84.
++Modifier/prepare/cache/RNG/history/Timer business functions are exact558; only the
++two paired admission branches and one fixed constant differ in564.
+ 
+ ## Run the API
+ 
+@@ -93,20 +99,22 @@
+ use `examples/layout-Enchanted-Weapons.json` and seed55201 with the same API
+ command above. The third example, `examples/layout-Bowl-Treats.json`, is the
+ presealed23-item559 input; use seed55901 with that same API. No outcome is embedded
+-in any layout. These commands reproduce Source inputs, not original-engine seed/session results.
++in any layout. The fourth example, `examples/layout-Mixed-Modifiers.json`, is
++the presealed565 mixed29 input used unchanged by566; use seed56501 with that same
++API. These commands reproduce Source inputs, not original-engine seed/session results.
+ 
+-A minimal no-battle smoke command only imports and validates all three examples:
++The minimal distribution smoke imports and validates only the new mixed example;
++it constructs no Engine and does not rerun old examples or any battle:
+ 
+ ```sh
+ python -B - <<'PY'
+ import json
+ from pathlib import Path
+ from headless import validate_experimental_nonking_layout
+-for name, count in [('layout-Wolpertinger.json', 22), ('layout-Enchanted-Weapons.json', 24), ('layout-Bowl-Treats.json', 23)]:
+-    layout = json.loads((Path('examples') / name).read_text())
+-    fixture = validate_experimental_nonking_layout(layout)
+-    assert sum(len(side['items']) for side in fixture['sides']) == count
+-print('VALIDATED_THREE_INPUTS_NO_ENGINE_CONSTRUCTION')
++layout = json.loads(Path('examples/layout-Mixed-Modifiers.json').read_text())
++fixture = validate_experimental_nonking_layout(layout)
++assert sum(len(side['items']) for side in fixture['sides']) == 29
++print('VALIDATED_MIXED29_NO_ENGINE_CONSTRUCTION')
+ PY
+ ```
+ 
+@@ -129,7 +137,16 @@
+ distinction were unit-only evidence, not natural or Native hits. Older546 Squirrel-loss
+ NOT_HIT and553 Thorn/Lucky-double/positive-Spear-loss NOT_HIT disclosures retain their
+ per-case meaning; the new case does not retroactively claim those old cases hit them.
+-Wolpertinger, Enchanted Weapons and Bowl Native comparisons remain pending.
++Independent566 accepted eight directed Source families joined from565's initial
++gate and566's remaining controls, plus one unchanged
++presealed56501 case after preserving565's first test-fixture failure.564 Source,
++layout and seed were not changed to fit output. The natural case hit Pet extra1,
++weapon double6, Bowl4/Skill3 activations, Food speed8, Wolper gain47/loss5 feedback,
++Mana payment1 and Thorn attack-parent3. Positive Spear Block loss was NOT_HIT in
++that natural case; its declared component behavior passed. It had29 items,
++222 events,273 selected Source draws and26 business Timers. Counts describe that
++finite Source case, not predictions for arbitrary inputs or Native observations.
++Wolpertinger, Enchanted Weapons, Bowl and their joint Native comparison remain pending.
+ 
+ Separately, fixed original029 has a strict eight-section conditional-Tape comparison
+ for its29-item whelp/Squirrel-family layout. That validates that fixed captured
+@@ -138,8 +155,8 @@
+ two-stream `headless-sha256-domains/1` policy, not captured Native history or a replay
+ bundle. Current conservative code coverage/native-pending labels are retained exactly.
+ 
+-The read-only verifier imports no battle modules. The manifest pins all21 listed payloads
+-(15 Source, this README, three examples, lineage, verifier); the manifest itself is pinned
++The read-only verifier imports no battle modules. The manifest pins all22 listed payloads
++(15 Source, this README, four examples, lineage, verifier); the manifest itself is pinned
+ externally to avoid a self-hash cycle. It checks bounded stable ordinary single-link
+ files and exact15 Source membership. It verifies listed bytes, not arbitrary added
+ files or Python execution safety. Evidence paths in `source-lineage.json` are provenance,
+--- 560/examples/layout-Mixed-Modifiers.json
++++ 567/examples/layout-Mixed-Modifiers.json
+@@ -0,0 +1,225 @@
++{
++  "schema": "headless-layout/1",
++  "below_master": true,
++  "sides": [
++    {
++      "side": "P",
++      "character_class": 0,
++      "hp": 180,
++      "stamina": 5,
++      "items": [
++        {
++          "item_index": 11,
++          "x": 0,
++          "y": 0,
++          "f": 0,
++          "instance_id": "P:bag0"
++        },
++        {
++          "item_index": 11,
++          "x": 2,
++          "y": 0,
++          "f": 0,
++          "instance_id": "P:bag1"
++        },
++        {
++          "item_index": 11,
++          "x": 4,
++          "y": 0,
++          "f": 0,
++          "instance_id": "P:bag2"
++        },
++        {
++          "item_index": 11,
++          "x": 6,
++          "y": 0,
++          "f": 0,
++          "instance_id": "P:bag3"
++        },
++        {
++          "item_index": 11,
++          "x": 0,
++          "y": 2,
++          "f": 0,
++          "instance_id": "P:bag4"
++        },
++        {
++          "item_index": 11,
++          "x": 2,
++          "y": 2,
++          "f": 0,
++          "instance_id": "P:bag5"
++        },
++        {
++          "item_index": 11,
++          "x": 4,
++          "y": 2,
++          "f": 0,
++          "instance_id": "P:bag6"
++        },
++        {
++          "item_index": 11,
++          "x": 6,
++          "y": 2,
++          "f": 0,
++          "instance_id": "P:bag7"
++        },
++        {
++          "item_index": 11,
++          "x": 0,
++          "y": 4,
++          "f": 0,
++          "instance_id": "P:bag8"
++        },
++        {
++          "item_index": 11,
++          "x": 2,
++          "y": 4,
++          "f": 0,
++          "instance_id": "P:bag9"
++        },
++        {
++          "item_index": 11,
++          "x": 4,
++          "y": 4,
++          "f": 0,
++          "instance_id": "P:bag10"
++        },
++        {
++          "item_index": 11,
++          "x": 6,
++          "y": 4,
++          "f": 0,
++          "instance_id": "P:bag11"
++        },
++        {
++          "item_index": 162,
++          "x": 2,
++          "y": 4,
++          "f": 0,
++          "instance_id": "P:bowl"
++        },
++        {
++          "item_index": 231,
++          "x": 0,
++          "y": 0,
++          "f": 0,
++          "instance_id": "P:wolf"
++        },
++        {
++          "item_index": 164,
++          "x": 0,
++          "y": 3,
++          "f": 0,
++          "instance_id": "P:sq"
++        },
++        {
++          "item_index": 32,
++          "x": 6,
++          "y": 0,
++          "f": 0,
++          "instance_id": "P:staff"
++        },
++        {
++          "item_index": 14,
++          "x": 5,
++          "y": 1,
++          "f": 0,
++          "instance_id": "P:spear"
++        },
++        {
++          "item_index": 233,
++          "x": 2,
++          "y": 1,
++          "f": 0,
++          "instance_id": "P:thorn"
++        },
++        {
++          "item_index": 234,
++          "x": 4,
++          "y": 1,
++          "f": 0,
++          "instance_id": "P:luckybow"
++        },
++        {
++          "item_index": 385,
++          "x": 3,
++          "y": 3,
++          "f": 0,
++          "instance_id": "P:enchanted"
++        },
++        {
++          "item_index": 5,
++          "x": 4,
++          "y": 4,
++          "f": 0,
++          "instance_id": "P:banana"
++        },
++        {
++          "item_index": 22,
++          "x": 2,
++          "y": 3,
++          "f": 0,
++          "instance_id": "P:berry"
++        },
++        {
++          "item_index": 1,
++          "x": 7,
++          "y": 4,
++          "f": 0,
++          "instance_id": "P:sword"
++        }
++      ]
++    },
++    {
++      "side": "O",
++      "character_class": 0,
++      "hp": 180,
++      "stamina": 5,
++      "items": [
++        {
++          "item_index": 11,
++          "x": 0,
++          "y": 0,
++          "f": 0,
++          "instance_id": "O:bag0"
++        },
++        {
++          "item_index": 11,
++          "x": 2,
++          "y": 0,
++          "f": 0,
++          "instance_id": "O:bag1"
++        },
++        {
++          "item_index": 11,
++          "x": 0,
++          "y": 2,
++          "f": 0,
++          "instance_id": "O:bag2"
++        },
++        {
++          "item_index": 11,
++          "x": 2,
++          "y": 2,
++          "f": 0,
++          "instance_id": "O:bag3"
++        },
++        {
++          "item_index": 231,
++          "x": 0,
++          "y": 0,
++          "f": 0,
++          "instance_id": "O:wolf"
++        },
++        {
++          "item_index": 1,
++          "x": 3,
++          "y": 0,
++          "f": 0,
++          "instance_id": "O:sword"
++        }
++      ]
++    }
++  ]
++}
+--- 560/manifest.json
++++ 567/manifest.json
+@@ -1,14 +1,14 @@
+ {
+   "schema": "experimental-nonking-package-manifest/1",
+-  "status": "EXACT558_ACCEPTED559_PENDING_INDEPENDENT561_PACKAGE_ACCEPTANCE",
++  "status": "EXACT564_MIXED_SOURCE_ACCEPTED566_PENDING_INDEPENDENT_DISTRIBUTION",
+   "public_target": "python_engine/experimental_nonking",
+   "source_file_count": 15,
+   "files": [
+     {
+       "path": "README.md",
+       "kind": "documentation",
+-      "size": 8840,
+-      "sha256": "1539d583721b46eb76ec893ac73ab2008d363053490f85d8fe24c492e30d90f5"
++      "size": 10208,
++      "sha256": "c4cdc2715bfa30cb9ff3de47900a7dac435dfff24ab4e66b800f9058a2a80b1d"
+     },
+     {
+       "path": "examples/layout-Bowl-Treats.json",
+@@ -21,6 +21,12 @@
+       "kind": "example",
+       "size": 3624,
+       "sha256": "4783691a284b3bb37fc6410fbd7e8dfda021bb4d936c2c60a639df9e514c93e1"
++    },
++    {
++      "path": "examples/layout-Mixed-Modifiers.json",
++      "kind": "example",
++      "size": 4313,
++      "sha256": "37399051f6294cc26aa5e3d61ed25d525050907a3817659ab234f6bcd209cfb7"
+     },
+     {
+       "path": "examples/layout-Wolpertinger.json",
+@@ -79,8 +85,8 @@
+     {
+       "path": "native_replay_v8/engine.py",
+       "kind": "source",
+-      "size": 258296,
+-      "sha256": "0489cd111d1ab72abbfe0e06d4de8170dfb6acec7f99fb73b85dacce188bd4a6"
++      "size": 259634,
++      "sha256": "2a29367a60d55937bfd139ad16cc4b228c3616acf28f6d37f826c15284f9feff"
+     },
+     {
+       "path": "native_replay_v8/genuine.py",
+@@ -121,8 +127,8 @@
+     {
+       "path": "source-lineage.json",
+       "kind": "lineage",
+-      "size": 3016,
+-      "sha256": "d17706eb4b3a4378ef70ef3f669c97ec2b44f57c8a42e035befea7cca8886712"
++      "size": 2969,
++      "sha256": "cf4977292153b2ce6d468642f186e9c8ce80a63423a25c9543817e534adb0051"
+     },
+     {
+       "path": "verify_manifest.py",
+--- 560/native_replay_v8/engine.py
++++ 567/native_replay_v8/engine.py
+@@ -229,6 +229,7 @@
+ BOWL_FIXTURE_IDS = frozenset({1,5,11,22,162,164,231})
+ ENCHANTED_ATTACK_EFFECT_RECEIVERS = frozenset({14,32,233,234})
+ ENCHANTED_FIXTURE_IDS = frozenset({1,11,14,22,32,231,233,234,385})
++MIXED_BOWL_ENCHANTED_FIXTURE_IDS = frozenset({1,5,11,14,22,32,162,164,231,233,234,385})
+ CACHED_AFFECTED_IDS = GOOBERT_IDS | POTION_IDS | frozenset({5,6,21,22,117,124,162}) | frozenset({18,29,82,83,84,164,179,231,332,351,374,385})
+ EMPOWERABLE_WEAPON_IDS = frozenset([64, 197, 199, 201, 29, 82, 83, 84, 182, 233, 234, 235, 0, 1, 2, 3, 12, 14, 15, 27, 28, 30, 32, 208, 209])
+ 
+@@ -356,6 +357,14 @@
+ def validate_enchanted_fixture(fixture):
+     if not any(entry["item_index"] == 385 for side in fixture["sides"] for entry in side["items"]):
+         return True
++    if any(entry["item_index"] == 162 for side in fixture["sides"] for entry in side["items"]):
++        if (any(side["character_class"] != 0 for side in fixture["sides"])
++                or any(entry["item_index"] not in MIXED_BOWL_ENCHANTED_FIXTURE_IDS
++                       for side in fixture["sides"] for entry in side["items"])
++                or any(sum(entry["item_index"] == 385 for entry in side["items"]) > 1
++                       for side in fixture["sides"])):
++            raise ValueError("Mixed Bowl/Enchanted Source requires class0, finite twelve-ID fixture and at most one385 per side")
++        return True
+     if (any(side["character_class"] != 0 for side in fixture["sides"])
+             or any(entry["item_index"] not in ENCHANTED_FIXTURE_IDS
+                    for side in fixture["sides"] for entry in side["items"])
+@@ -367,6 +376,14 @@
+ 
+ def validate_bowl_fixture(fixture):
+     if not any(entry["item_index"] == 162 for side in fixture["sides"] for entry in side["items"]):
++        return True
++    if any(entry["item_index"] == 385 for side in fixture["sides"] for entry in side["items"]):
++        if (any(side["character_class"] != 0 for side in fixture["sides"])
++                or any(entry["item_index"] not in MIXED_BOWL_ENCHANTED_FIXTURE_IDS
++                       for side in fixture["sides"] for entry in side["items"])
++                or any(sum(entry["item_index"] == 162 for entry in side["items"]) > 1
++                       for side in fixture["sides"])):
++            raise ValueError("Mixed Bowl/Enchanted Source requires class0, finite twelve-ID fixture and at most one162 per side")
+         return True
+     if (any(side["character_class"] != 0 for side in fixture["sides"])
+             or any(entry["item_index"] not in BOWL_FIXTURE_IDS
+--- 560/source-lineage.json
++++ 567/source-lineage.json
+@@ -1,101 +1,78 @@
+ {
+-  "schema": "experimental-nonking-source-lineage/3",
++  "schema": "experimental-nonking-source-lineage/4",
+   "public_target": "python_engine/experimental_nonking",
+-  "code": "exact15 accepted558; packaging code edits0",
++  "code": "exact15 frozen564; only engine admission differs from560; packaging Source edits0",
+   "source_freeze": {
+-    "path": "data/phase558-source-bowl-treats/candidate-source-freeze.json",
+-    "size": 3839,
+-    "sha256": "0ce6289185c03b8a6b42f84ad2dd282b761aaff34a3d5413694747c5428ac23e"
++    "path": "data/phase564-source-finite-mixed/candidate-source-freeze.json",
++    "size": 3854,
++    "sha256": "1cf6f925d5bf91ae4b587e17001d80e052932317b8bfa3671aa17e7ff2f073d5"
+   },
+   "source_owner": {
+-    "path": "data/phase558-source-bowl-treats/owned-files.json",
+-    "size": 4766,
+-    "sha256": "2ccbbc2ee65113f62451dc49ba31b0e5d8296467109099086c50d60c2d928b77"
++    "path": "data/phase564-source-finite-mixed/owned-files.json",
++    "size": 4802,
++    "sha256": "a77486321cd984821b598b1e34482a1018e9a48b7b736c7bbcb6bf4e6224a51d"
+   },
+-  "independent_Source_acceptance": {
+-    "path": "data/phase559-independent-final-acceptance/review.json",
+-    "size": 15275,
+-    "sha256": "42a1665ed8ff882b7c1c4356a1ba78787eac4bd8a0fff517a5ceed1cc0fb81cc"
++  "independent_mixed_Source_acceptance": {
++    "path": "data/phase566-independent-final-acceptance/review.json",
++    "size": 24506,
++    "sha256": "37609aabbdfd5cfce50f02a7c4677f499282328903be0136d540e62747476c49"
+   },
+-  "independent_Source_acceptance_owner": {
+-    "path": "data/phase559-independent-final-acceptance/owned-files.json",
+-    "size": 259,
+-    "sha256": "295d03931706bc26fce0b1054bcf0ee877cdf98c86da6277d1555b34a56b0544"
++  "independent_mixed_Source_acceptance_owner": {
++    "path": "data/phase566-independent-final-acceptance/owned-files.json",
++    "size": 435,
++    "sha256": "236c70056c490a816498396d1a76053f30b6567b1a7a27ab17261af1785984a5"
+   },
+   "previous_package_manifest": {
+-    "path": "data/phase554-portable-nonking-package/package/manifest.json",
+-    "size": 3920,
+-    "sha256": "3ba9018b2e2c4b025d3d0ff8422c50e59d04e5fe7bc2b6b7f27e8a51ffdf1e13"
++    "path": "data/phase560-portable-nonking-package/package/manifest.json",
++    "size": 4111,
++    "sha256": "e8bbd692998b1e7a27f377f5bff6714028c9073961522a3963f7cd9664199a7f"
+   },
+   "previous_lineage": {
+-    "path": "data/phase554-portable-nonking-package/package/source-lineage.json",
+-    "size": 3081,
+-    "sha256": "598264a29d040a7701135b58a60988cc68584c455b4194165862c2ce2be26998"
++    "path": "data/phase560-portable-nonking-package/package/source-lineage.json",
++    "size": 3016,
++    "sha256": "d17706eb4b3a4378ef70ef3f669c97ec2b44f57c8a42e035befea7cca8886712"
+   },
+   "retained_exact_examples": [
+     "layout-Wolpertinger.json",
+-    "layout-Enchanted-Weapons.json"
++    "layout-Enchanted-Weapons.json",
++    "layout-Bowl-Treats.json"
+   ],
+-  "Bowl_presealed_job": {
+-    "path": "data/phase559-exact-business-source/natural-job.json",
+-    "size": 3896,
+-    "sha256": "1a0a79f9af2cb96f1d7fddda9fe93630a23563ea1a0cdf44740bdab00784acf7"
++  "new_presealed_job": {
++    "path": "data/phase565-exact-business-source/natural-job.json",
++    "size": 4818,
++    "sha256": "7b7fcb86a0fe82640f024488c15472ab31b2d56143c526e9ed67c8c32638d51e"
+   },
+-  "Bowl_presealed_owner": {
+-    "path": "data/phase559-exact-business-source/owned-files.json",
+-    "size": 1922,
+-    "sha256": "1f871a91e8929eb84414ed9fb186e0f99c8f8e2993645b0c68f0eea22c343d70"
++  "new_presealed_owner": {
++    "path": "data/phase565-exact-business-source/owned-files.json",
++    "size": 2573,
++    "sha256": "6ddb0e29a7951adec88bdfff0a3132119aed0204402b524722f0a353e04fbc2b"
+   },
+-  "Bowl_layout_canonical_sha256": "3632755e7fffcd766b004b3b46fbf10c1ecee86a26dc747a9d7a9fdcf274f131",
+-  "Bowl_example_seed": 55901,
++  "new_layout_transform": "extract layout only; preserve typed values/order/geometry/identity; no outcome",
++  "new_layout_canonical_sha256": "9fc21af267491c14526ae4bda4acb97fa967119715a9f072396267325f8790b5",
++  "new_example_seed": 56501,
++  "catalog_registered": 84,
+   "formal_support": 75,
+-  "catalog_registered": 84,
+-  "experimental_nonKing_items": [
+-    64,
+-    162,
+-    164,
+-    197,
+-    199,
+-    201,
+-    231,
+-    385
+-  ],
+-  "when162_fixture_ids": [
++  "when_both_callers_ids": [
+     1,
+     5,
+-    11,
+-    22,
+-    162,
+-    164,
+-    231
+-  ],
+-  "when385_fixture_ids": [
+-    1,
+     11,
+     14,
+     22,
+     32,
++    162,
++    164,
+     231,
+     233,
+     234,
+     385
+   ],
+-  "max_each_caller_per_side": 1,
+-  "domains_mutually_exclusive": true,
+-  "absent162": "old551 admission unchanged; new registry84",
+-  "Native_162_231_385": "PENDING",
++  "max162_per_side": 1,
++  "max385_per_side": 1,
++  "caller_sides": "same or opposite; both multiplicities checked by full entry",
++  "old_single_and_absent_domains": "unchanged",
++  "native_joint": "PENDING; fresh Source seed simulation is distinct from conditional Native Tape",
+   "Native_seed_session_parity": "PENDING",
+-  "natural559_HIT": [
+-    "four extra Pet effects",
+-    "both Bowl ledgers100",
+-    "Squirrel loss20",
+-    "Wolper positive113/negative20 feedback"
+-  ],
+-  "unit_only": [
+-    "Activation fourth/fifth limiter",
+-    "already-ended tail",
+-    "nearcap90 to115"
+-  ],
+-  "runtime_evidence_dependencies": "NONE; engineering paths are provenance only",
+-  "verifier": "byte-exact554; no battle module imports"
++  "runtime_dependencies": "Python3.10+stdlib+package only; provenance paths not required",
++  "distribution_acceptance": "NOT_RECORDED_HERE; future unique remote smoke belongs to independent archive",
++  "verifier": "exact560"
+ }

@@ -1,0 +1,85 @@
+{
+  "slices": [
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/ForestFriend.gd",
+      "start_line": 1,
+      "end_line": 10,
+      "size": 235,
+      "sha256": "9ba6baa23f6deac2c07e9df9954d3867ef329a16bbf02e260279ec1570ca7666",
+      "text": "extends Item\n\nfunc canAffect(item):\n\treturn item.hasType(Type.Pet) or item.hasType(Type.Food)\n\nfunc combatStart():\n\t.combatStart()\n\tvar numAffected = getNumAffectedItems()\n\tif numAffected > 0:\n\t\taddSpeed(numAffected * getP1() / 100.0)\n"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/Squirrel.gd",
+      "start_line": 1,
+      "end_line": 18,
+      "size": 508,
+      "sha256": "c23b8aec966449cc60761007879b99c3528c4cbe94309914789954cea34de949",
+      "text": "extends \"res://Items/Exclusive/ForestFriend.gd\"\n\nconst pickupSound = preload(\"res://Assets/Sound/Squirrel.wav\")\nconst dropSound = preload(\"res://Assets/Sound/Squirrel2.wav\")\n\nfunc doCooldownEffect():\n\tstealRandomBuff(1)\n\tactivate()\n\nfunc playPickupSound():\n\tvar pitch = Util.rng.randf_range(0.9, 1.1)\n\tSound.playSound_process(pickupSound, - 6, pitch)\n\nfunc playDropSound(volume = 0):\n\tvolume += impactSoundVolume\n\tvar pitch = Util.rng.randf_range(0.9, 1.1)\n\t\n\tSound.playSound(pickupSound, volume - 6, pitch)\n"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "start_line": 3355,
+      "end_line": 3377,
+      "size": 446,
+      "sha256": "4971f29b6ffb5b03b43a2e8878b326d9f3667441aecb2b8b1d4e92f5adf8d896",
+      "text": "func onPrepare():\n\tpass\n\nfunc preCombatStart():\n\tfor gem in getGemsNoNull():\n\t\tgem.preCombatStart()\n\t\n\tif hasCooldown():\n\t\titerationCooldown = adjustCooldown()\n\t\ttriggerTime = iterationCooldown\n\t\tactivateCooldown()\n\t\tGame.combatLog.snapshotItemTooltipStat(self, Stat.Cooldown)\n\t\n\tonPreCombatStart()\n\nfunc onPreCombatStart():\n\tpass\n\nfunc hasStartofBattle() -> bool:\n\treturn has_method(\"onCombatStart\")\n\nfunc combatStart():\n\tupdateShaderRotation()\n"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "start_line": 3788,
+      "end_line": 3796,
+      "size": 323,
+      "sha256": "d50deab2912ebd1306fae0fbeb479d0f613e1c566da1649c685fbb86e6dc0a5f",
+      "text": "func adjustCooldown():\n\tvar adjustedCooldown = getCooldown()\n\tif ownerType == Owner.Opponent and (Game.isBelowLeague(Game.Leagues.Master) or Game.curMode == Game.Mode.Lobbies):\n\t\tadjustedCooldown *= Util.rng.randf_range(0.975, 1.05)\n\telse:\n\t\tadjustedCooldown *= Util.rng.randf_range(0.95, 1.05)\n\t\n\treturn adjustedCooldown\n\n"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "start_line": 4409,
+      "end_line": 4417,
+      "size": 204,
+      "sha256": "5c7acadf2ae653d427c8e0da56e41d9f0d888d7b4d09e8780ec068c0878f88c1",
+      "text": "func trigger():\n\titerationCooldown = adjustCooldown()\n\ttriggerTime += iterationCooldown\n\t\n\tdoCooldownEffect()\n\t\n\tif doubleActivationChance > 0 and Util.flip(doubleActivationChance):\n\t\tdoCooldownEffect()\n\n"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "start_line": 4438,
+      "end_line": 4445,
+      "size": 132,
+      "sha256": "39fc57a8bff1ce0e8ee6fc134470922f6f8d8dae6723be0550fd5ca2264e3fe9",
+      "text": "\t\ttriggerTime -= delta * getSpeed()\n\t\tshowCooldown(1.0 - (triggerTime / iterationCooldown))\n\t\tif triggerTime <= 0:\n\t\t\ttrigger()\n\n\n\n\n"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "start_line": 4855,
+      "end_line": 4859,
+      "size": 165,
+      "sha256": "aef26ed0d32975e61c721e607e9aa3da2e3e59d3ae7a1a8d69fd3c8c4a79f116",
+      "text": "func addSpeed(amount):\n\tspeedScale += amount\n\tGame.combatLog.snapshotItemTooltipStat(self, Stat.Speed)\n\tGame.combatLog.snapshotItemTooltipStat(self, Stat.Cooldown)\n\n"
+    },
+    {
+      "path": "data/phase564-source-finite-mixed/staged/native_replay_v8/engine.py",
+      "start_line": 1973,
+      "end_line": 1982,
+      "size": 568,
+      "sha256": "e9f4b61ece81efd56dcbb442b954b58a0adb73b4e79e99d63f287a57d0a41231",
+      "text": "                bag.steel_affected_weapons.extend(self.steel_secondary_cache[bag.instance_id])\n            if bag.item_index in STATE_PARTICLE_IDS:\n                self.set_item_state(bag, False)\n            if bag.item_index == 14:\n                bag.spear_block_removal = (bag.definition[\"block_per_empty_cell\"]\n                                          * self.empty_affected_cells(bag))\n            if bag.item_index == 34:\n                bag.boots_has_activated = False\n            if bag.definition.get(\"potion\"):\n                self.set_item_state(bag, True)\n"
+    },
+    {
+      "path": "data/phase564-source-finite-mixed/staged/native_replay_v8/engine.py",
+      "start_line": 2074,
+      "end_line": 2081,
+      "size": 458,
+      "sha256": "76c07eb871e0af6d6224acbaa43aa5589d6913bc3566f9ae47dc60e62ff0bc81",
+      "text": "                self.change_debuff_reflection(item.side, item.definition[\"reflect_stacks\"])\n        for identity in self.preparation_order:\n            item = self.items[identity]\n            if item.item_index == 164:\n                num_affected = len(self.affected_items(item))\n                if num_affected > 0:\n                    self.add_speed(item, num_affected * item.definition[\"pet_speed_percent\"] / 100.0)\n            if item.item_index == 64:\n"
+    },
+    {
+      "path": "data/phase564-source-finite-mixed/staged/native_replay_v8/engine.py",
+      "start_line": 3406,
+      "end_line": 3426,
+      "size": 1049,
+      "sha256": "794eaf0be6f2585acc9158c753c8a304e1a2d1aa8e2cfdeafc7f04bdb9558064",
+      "text": "    def trigger(self, item):\n        item.iteration_cooldown = self.adjust_cooldown(item)\n        item.trigger_time += item.iteration_cooldown\n        char = self.characters[item.side]\n        if item.item_index == 385:\n            self.give_least_buffs(item, item.definition[\"least_buffs\"])\n            self.activate(item)\n            return\n        if item.item_index == 162:\n            self._bowl_cooldown_effect(item)\n            return\n        if item.item_index in BOWL_PET_IDS:\n            self._validate_bowl_double_activation_chance(item)\n            self._pet_cooldown_effect(item)\n            # The complete first effect, including Squirrel pitch, has returned.\n            if item.double_activation_chance > 0.0 and self.random.randf(\n                    \"double_activation:\" + item.instance_id) <= item.double_activation_chance:\n                self._pet_cooldown_effect(item)\n            return\n        if item.item_index == 50:\n            self.health_to_block(item,item.definition[\"health_cost\"],item.definition[\"converted_block\"])\n"
+    }
+  ],
+  "method": "read-only fixed lines; no SUT imports/calls"
+}

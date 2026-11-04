@@ -1,0 +1,11 @@
+# Finite mixed Source business acceptance
+
+Independent566 accepts564 finite mixed12 after the frozen565 first test stopped at a lifecycle expectation. The Original ForestFriend applies its speed at combatStart, not prepare_only.566 corrects that one test expectation and reuses the six already passed admission rejects. Candidate Source, layout, seed56501,26 Tape rows and all other business expectations remain exact. No natural battle was repeated.
+
+Joined evidence:8 directed families plus one new Source natural case,29 items (16 bags/13 ordinary),222 events,273 draws,975 steps,26 Timers. Natural extras:1 Pet effect,6 weapon doubles,47 positive/5 negative Wolper feedback,1 Staff Mana payment and3 parented Thorn gains. Spear Block loss did not naturally hit; the positive Block10 case and feedback exclusion are component-only. Cumulative28 direct calls/10 expected rejects,2 component constructors/prepares (including first failed test),1 natural constructor/prepare/activate/fullrun. Component26 draws plus natural273. Root processes were reaped;0.884673491 seconds combined outer wall is validation latency, not RL throughput.
+
+All Source/input36 and42 pins remained exact. All first failures remain:565 speed assertion,566 metadata path error before SUT, and readonly report history-list formatting error after execution. The report correction reran no SUT. Final independent verdict SHA256:37609aabbdfd5cfce50f02a7c4677f499282328903be0136d540e62747476c49.
+
+Catalog84/formal75 unchanged. This is Source-only, not an Original capture/comparison or general King admission. Installed public package remains558 until the separate567 distribution checkpoint. Candidate Source lives in the prior phase562-564 archive. Overlay this repo/ evidence onto the recovered repo; no successful battle needs repetition.
+
+The included joint Native followup is DESIGN ONLY:two transparent primitive observations,three typed state families and new fixed-case metadata/schema/input bindings. No source installation or capture is authorized by this archive. The old029 record lacks those new input observations; its identities/clocks/values must not be reused. Future capture still needs Source controls, actual setup evidence and fresh space above5905580032 bytes.
