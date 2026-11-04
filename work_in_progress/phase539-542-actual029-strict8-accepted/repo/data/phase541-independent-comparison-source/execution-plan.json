@@ -1,0 +1,67 @@
+{
+  "schema": "phase541-exact-comparison-invocation-plan/1",
+  "status": "FROZEN_NOT_EXECUTED_PENDING_ROOT_RELEASE",
+  "script": {
+    "path": "tests/phase541_independent_actual_compare.py",
+    "size": 15464,
+    "sha256": "ec28e84eee43bcda7d036dc646b26ae365b374eb1f376452d5c0fd429b46c6b1"
+  },
+  "pins": {
+    "path": "data/phase541-independent-comparison-source/pins.json",
+    "size": 4828,
+    "sha256": "5d62edb95cc79d26bf3e945ff71ab84755492cf4104472c53579b6b20ac409bc"
+  },
+  "binding": {
+    "path": "data/phase541-independent-comparison-source/comparison-binding.json",
+    "size": 1603,
+    "sha256": "fd8af483f8c46d611a74495d1dba34fa3fb5c61a14366051d79baeb3ad65c547"
+  },
+  "model_seal": {
+    "path": "data/phase533-case029-actual-model-first-001/output-seal.json",
+    "size": 924,
+    "sha256": "25937268b2355264cf94abdd00e3bc3ce358256ce4c25a2d09f3068326b8d96a"
+  },
+  "model_output": {
+    "size": 15266600,
+    "sha256": "76ddddc57e33423e8f78e3cb409612a550f0f4c28aec0ad35f0aaa3b322a9213"
+  },
+  "command": [
+    "python",
+    "-I",
+    "-B",
+    "/workspace/python-original-engine/repo/tests/phase541_independent_actual_compare.py",
+    "--pins-sha256",
+    "5d62edb95cc79d26bf3e945ff71ab84755492cf4104472c53579b6b20ac409bc"
+  ],
+  "cwd": "/tmp",
+  "outer_wall_seconds": 60,
+  "internal_wall_seconds": 50,
+  "output": "data/phase541-case029-comparison-first-001",
+  "maximum": {
+    "fresh_process": 1,
+    "adapter_import": 1,
+    "compare_decoded": 1,
+    "Expected_payload_files": 9,
+    "model_calls": 0,
+    "Native_calls": 0,
+    "original_INPUT12_reads": 0
+  },
+  "actual_prepared_gate": "Original535 same-instance gate; no new B1 invocation",
+  "Expected_read_release": false,
+  "prior_failure": "Preserved536 projection KeyError; compare_projected0, nine payloads previously decoded once",
+  "failure": "Stop and preserve first projection/ABI exception or strict8 differences; no retry/model rerun",
+  "mechanical_changes": [
+    "Newstage/output/self bindings",
+    "539adapter and closed10 binding",
+    "540acceptance/result and preserved536 failure metadata",
+    "Authenticate original gate+fixed537addendum; explicit gate argument",
+    "Additional new helper call counter"
+  ],
+  "static_checks": {
+    "script_AST": "PASS without import",
+    "binding": "byteexact539template",
+    "model": "same original535 SHA76dddd",
+    "Expected": "same opaque descriptor index/capsule; payload not read",
+    "eight_sections": "same original526 contract; adapter comparator unchanged"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schema": "phase540-exact-execution-plan/1",
+  "status": "FROZEN_NOT_EXECUTED_AWAIT_ROOT_RELEASE",
+  "argv": [
+    "python",
+    "-I",
+    "-B",
+    "/workspace/python-original-engine/repo/tests/phase540_independent_provenance_controls.py",
+    "--pins-sha256",
+    "d8d777dad8d68e0896aa398d3ff646b55448bb0be46620154859b975b1bfff12"
+  ],
+  "cwd": "/tmp",
+  "internal_wall_seconds": 15,
+  "outer_wall_seconds": 20,
+  "output_new": "data/phase540-independent-controls-first-001",
+  "cases": 5,
+  "direct_api_calls": 6,
+  "expected_entries": {
+    "bindings": 2,
+    "project_model_final": 1,
+    "validate_sapphire_gate_origin": 4
+  },
+  "adapter_imports": 1,
+  "candidate_imports": 0,
+  "model_runs": 0,
+  "Expected_reads": 0,
+  "comparisons": 0,
+  "no_retry": true
+}

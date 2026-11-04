@@ -1,0 +1,28 @@
+{
+  "schema": "phase540-exact-five-provenance-vectors/1",
+  "case_ids": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05"
+  ],
+  "positive": "Original pinned535 model+gate, exact531 bundle/proof and539 binding; no complete fake capture.",
+  "missing_binding_key": "prepare_gate",
+  "mutated_passes_consumed": 1,
+  "report_first_element_delta": 1,
+  "wrong_final_item_index": 197,
+  "operations": {
+    "01": "bindings once then project_model_final; assert P:14 fields.stackTypes strict6INT equals measured view and distinct list",
+    "02": "deepcopy root_binding, delete prepare_gate; bindings rejects closed-key predicate",
+    "03": "deepcopy original gate; view.passes_consumed=1; original canonical retained",
+    "04": "deepcopy original gate; report.Sapphire_types[0]+=1; original view and canonical retained",
+    "05": "copy only result/final/items/P14 mapping spine; item_index=197; other real model data unchanged"
+  },
+  "expected_first_rejections": {
+    "02": "closed fixed029 external comparison binding",
+    "03": "exact original sealed gate canonical identity",
+    "04": "exact original sealed gate canonical identity",
+    "05": "same instance final/bound Sapphire subtype"
+  }
+}

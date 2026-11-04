@@ -1,0 +1,94 @@
+--- tests/phase533_whelp_business_output.py
++++ tests/phase539_whelp_business_output.py
+@@ -96,11 +96,12 @@
+ 
+ 
+ def bindings(bundle,input_proof,root_binding):
+-    keys(root_binding,('schema','input_bundle','input_canonical_sha256','input_proof','input_proof_canonical_sha256','candidate_freeze','contract'),'closed fixed029 external comparison binding')
+-    require(root_binding['schema']=='phase533-fixed029-comparison-binding/1','external binding schema')
+-    for name in ('input_bundle','input_proof','candidate_freeze','contract'):
++    keys(root_binding,('schema','input_bundle','input_canonical_sha256','input_proof','input_proof_canonical_sha256','candidate_freeze','contract','prepare_gate','prepare_gate_canonical_sha256','provenance_addendum'),'closed fixed029 external comparison binding')
++    require(root_binding['schema']=='phase539-fixed029-comparison-binding/1','external binding schema')
++    for name in ('input_bundle','input_proof','candidate_freeze','contract','prepare_gate','provenance_addendum'):
+         row=root_binding[name];keys(row,('path','size','sha256'),'actual descriptor shape')
+         require(type(row['path']) is str and row['path'] and type(row['size']) is int and row['size']>0 and type(row['sha256']) is str and re.fullmatch('[0-9a-f]{64}',row['sha256']) is not None,'actual descriptor types')
++    require(root_binding['prepare_gate']==PREPARE_GATE and root_binding['prepare_gate_canonical_sha256']==PREPARE_GATE_CANONICAL_SHA256 and root_binding['provenance_addendum']==PROVENANCE_ADDENDUM,'exact original sealed gate and Source provenance addendum')
+     require(root_binding['candidate_freeze']==CANDIDATE_FREEZE and root_binding['contract']==CONTRACT_DESCRIPTOR,'exact505 and pre-Expected contract')
+     require(root_binding['input_bundle']==INPUT_BUNDLE and root_binding['input_proof']==INPUT_PROOF,'actual531 accepted INPUT/proof descriptors')
+     require(canonical_sha(bundle)==root_binding['input_canonical_sha256']==INPUT_CANONICAL_SHA256,'actual bundle canonical bytes')
+@@ -310,7 +311,8 @@
+         timer=value['timer'],winner='P' if code==0 else 'O')
+ 
+ 
+-def project_model_final(result,bound):
++def project_model_final(result,bound,sealed_prepare_gate,root_binding):
++    sapphire_types=validate_sapphire_gate_origin(sealed_prepare_gate,result,bound,root_binding)
+     final=result['final'];rule=deepcopy(final['native_rule_state']);business=result['captured_terminal']['final']['business']
+     require([c['instance'] for c in rule['characters']]==['P','O'] and business['king']=={},'zeroKing same final business state')
+     keys(business['invu_origins'],('P','O'),'same-instance invu origins')
+@@ -326,8 +328,7 @@
+             for name in ('buffPowers','buffAmplificationChances'):item['fields'][name]=restore_integer_table(item['fields'][name])
+             if bound['items'][identity]['item_index']==199:
+                 live=final['items'][identity];require(type(live['item_index']) is int and live['item_index']==199 and 'stackTypes' not in item['fields'],'same-instance Sapphire subtype')
+-                values=live['definition']['random_buff_types'];require(type(values) is list and all(type(x) is int for x in values),'sealed live definition typedstack')
+-                item['fields']['stackTypes']=deepcopy(values)
++                item['fields']['stackTypes']=deepcopy(sapphire_types)
+             _basic_fields(item,bound)
+     require(seen==set(bound['items']),'complete model29')
+     return dict(native_rule_state=rule,game=deepcopy(final['game']),event_bus=deepcopy(final['event_bus']),timer=dict(combatTime=final['timestamp'],timeAdvance=final['time_advance'],fatigueCounter=final['fatigue_counter']),winner=final['winner'])
+@@ -608,7 +609,7 @@
+         cuts=dict(cleanup=cleanup,final=last,terminal=_terminal_native(native,bundle,cleanup,last,bound)))
+ 
+ 
+-def project_model(result,bundle,input_proof,root_binding):
++def project_model(result,bundle,input_proof,sealed_prepare_gate,root_binding):
+     bound=bindings(bundle,input_proof,root_binding)
+     require(result['observer_version']=='observer7-502-zeroKing-whelp-candidate505' and result['final']['runtime']['profile']==PROFILE,'joint471 model result')
+     require(result['model_source_sha256']==MODEL_SOURCE_HASHES,'exact candidate+component Source hashes')
+@@ -617,7 +618,7 @@
+     require(diag['tape_position']==diag['tape_records']==len(bundle['draws']),'complete selected primitive Tape')
+     require(len(diag['snapshots'])==3 and [s['stage'] for s in diag['snapshots']]==['constructed_off_clock','prepare_off_clock','pre_activate'],'three initial same-instance stages')
+     for snapshot in diag['snapshots'][:2]:require(snapshot['clock'] is None and snapshot['off_clock'] is True,'prepare/constructor off-clock')
+-    final=project_model_final(result,bound)
++    final=project_model_final(result,bound,sealed_prepare_gate,root_binding)
+     return dict(events=deepcopy(result['events']),event_references=deepcopy(result['event_references']),histories=restore_histories(result['histories']),
+         rng=dict(primitives=deepcopy(result['random_inputs']),states=_typed_rng(final['native_rule_state'])),final=final,
+         callbacks=project_model_callbacks(result,bound),timer_api=project_model_api(result,bound),
+@@ -636,11 +637,35 @@
+             later_private_Timer='MODEL_DIAGNOSTIC_ONLY_NOT_NATIVE_SAMPLED',same_seed_global_generator='NOT_CLAIMED'))
+ 
+ 
+-def compare_decoded(native_outputs,sealed_result,accepted_bundle,input_proof,root_binding):
++def compare_decoded(native_outputs,sealed_result,accepted_bundle,input_proof,sealed_prepare_gate,root_binding):
+     """Pure output projection. Independent caller authenticates raw INPUT/output/EXPECTED seals first."""
+-    return compare_projected(project_native(native_outputs,accepted_bundle,input_proof,root_binding),project_model(sealed_result,accepted_bundle,input_proof,root_binding))
++    return compare_projected(project_native(native_outputs,accepted_bundle,input_proof,root_binding),project_model(sealed_result,accepted_bundle,input_proof,sealed_prepare_gate,root_binding))
+ 
+ INPUT_BUNDLE = {'path': 'data/phase511-case029-actual-input-repaired-001/input-bundle.json', 'sha256': 'a065e481a8ea3d0d145a68ab4fcc945a923a51c75159f289af74083c15dfe5ab', 'size': 287000}
+ INPUT_PROOF = {'path': 'data/phase511-case029-actual-input-repaired-001/input-proof.json', 'sha256': '2a08a12c8573a1b596cc39293000b11140bc7a3fe4e783dc0dca5c1e8e65b7ea', 'size': 205581}
+ INPUT_CANONICAL_SHA256 = 'f975cd71337e3c06b76a3d6d1e2652318184f96d41f74e2acf59e4cf02e66eb7'
+ PROOF_CANONICAL_SHA256 = 'bfc6b49f12af432afd88fe73427994aef9778086ad4b6ffdef83649a58b27c37'
++
++
++def validate_sapphire_gate_origin(gate,result,bound,root_binding):
++    require(root_binding['prepare_gate']==PREPARE_GATE and root_binding['prepare_gate_canonical_sha256']==PREPARE_GATE_CANONICAL_SHA256 and root_binding['provenance_addendum']==PROVENANCE_ADDENDUM,'original gate/addendum binding')
++    require(type(gate) is dict and canonical_sha(gate)==root_binding['prepare_gate_canonical_sha256'],'exact original sealed gate canonical identity')
++    keys(gate,('gate','view','input_witness','actual_same_instance'),'sealed same-instance gate envelope')
++    require(gate['input_witness']==PREPARED_WITNESS and gate['actual_same_instance'] is True,'actual gate witness/source association')
++    report=gate['gate'];view=gate['view']
++    require(type(report) is dict and report.get('schema')=='phase533-same-instance-prepared-business-gate/1' and report.get('status')=='PASS_PRE_ACTIVATION_SAME_INSTANCE','original observed gate status')
++    require(type(view) is dict and view.get('profile')==PROFILE and view.get('prepared') is True and view.get('activated') is False and view.get('king_mode') is False and view.get('king_states')=={},'captured zeroKing prepared gate stage')
++    for name in ('tape_position','tape_audit_length','passes_consumed'):
++        require(type(view.get(name)) is int and view[name]==0,'original gate before Tape/clock progress')
++    prepared=view['items']['P:14'];final=result['final']['items']['P:14'];item=bound['items']['P:14']
++    require(type(prepared['item_index']) is int and prepared['item_index']==199 and prepared['cache_prepared'] is True,'prepared Sapphire actual subtype')
++    require(type(final['item_index']) is int and final['item_index']==199 and final['instance_id']=='P:14' and type(item['item_index']) is int and item['item_index']==199,'same instance final/bound Sapphire subtype')
++    measured=view['Sapphire_types'];reported=report['Sapphire_types']
++    for values in (measured,reported):require(type(values) is list and len(values)==6 and all(type(x) is int for x in values),'measured ordered six strictINT')
++    require(first_difference(measured,reported) is None,'same measured view/report Sapphire types')
++    return deepcopy(measured)
++
++PREPARE_GATE = {'path': 'data/phase533-case029-actual-model-first-001/prepare-gate.json', 'sha256': '6378a809548899ab2c59a54f1bcd9654b08466ecd32f1486f59d0897f7b3caaa', 'size': 12334}
++PREPARE_GATE_CANONICAL_SHA256 = '5e4b18548488c31b45d0e3fd4250da1c08addc6c6d0bcd110a6eacb04dbb545d'
++PROVENANCE_ADDENDUM = {'path': 'data/phase537-sapphire-gate-provenance-design/provenance-addendum.json', 'sha256': 'b19eb10db1dae493d161e351a1ee7066980671cb20440e8fb61e721044895f70', 'size': 2194}
++PREPARED_WITNESS = {'path': 'data/phase511-case029-actual-input-repaired-001/prepared-witness.json', 'sha256': '09e4ac2c58aabfdcb64a74729fe8aaade912ff22aa4c00467bc2220f8165cebf', 'size': 107596}

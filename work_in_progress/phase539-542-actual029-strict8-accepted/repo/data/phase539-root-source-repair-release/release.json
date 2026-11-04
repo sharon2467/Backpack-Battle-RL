@@ -1,0 +1,21 @@
+{
+  "schema": "phase539-root-minimal-mapping-repair-source-release/1",
+  "utc": "2026-11-04T16:23:42.514691+00:00",
+  "independent_design_review": {
+    "path": "data/phase538-independent-provenance-design-review/review.json",
+    "size": 7477,
+    "sha256": "c87d08140febe807a3e2cb2f8de3a89fc5669fde1cb6dc251989d142b56b31c5"
+  },
+  "scope": "new pureadapter successor only;explicit originalsameinstance sealedgate binding+Sourceinvariant provenance;keepall8fields/equality",
+  "allowed": "write539SPEC/newSource/diff/conservation/pins;compileonly",
+  "forbidden": {
+    "oldfile_edits": true,
+    "core_changes": true,
+    "RawModel_or_gate_changes": true,
+    "model_reruns": true,
+    "SUT_helpers": true,
+    "Expected_or_UI_reads": true,
+    "Native": true
+  },
+  "future": "independent540Source+atmost5controls,thenRootsingleactualcompareofunchanged535sealedmodel"
+}

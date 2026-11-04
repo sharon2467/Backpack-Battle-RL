@@ -1,0 +1,115 @@
+{
+  "schema": "phase540-independent-final-acceptance/1",
+  "status": "ACCEPTED_539_SOURCE_AND_FIVE_PROVENANCE_CONTROLS_NOT_STRICT_COMPARISON",
+  "source_review": {
+    "path": "data/phase540-independent-source-review/review.json",
+    "size": 2990,
+    "sha256": "9feae3e69e1bff0a76199a6ca6a885fd6e4f73ccc739545941e4bc3970478b51"
+  },
+  "source_owner": {
+    "path": "data/phase539-sealed-sapphire-provenance-source/owned-files.json",
+    "size": 6829,
+    "sha256": "46e836a56b430fa8bddd4296b596753518e869f575d30ac29dc5ade709998a42"
+  },
+  "harness_owner": {
+    "path": "data/phase540-exact-control-source/owned-files.json",
+    "size": 1587,
+    "sha256": "84c6beab744f81fb00055650b3cd30a0aeb377ad33694473d1c095f07bf172ed"
+  },
+  "actual_result": {
+    "path": "data/phase540-independent-controls-first-001/result.json",
+    "size": 23509,
+    "sha256": "e9ca4e0102a11969e180afe69ba4070fccd9f097068d0a73f9644913b4fd29ec"
+  },
+  "actual_owner": {
+    "path": "data/phase540-independent-controls-first-001/owned-files.json",
+    "size": 658,
+    "sha256": "a1586b0f6f801ab36cad16d04ff874f6c35dbda15e6b3f9a732b3fc5c9cfe595"
+  },
+  "invocation_owner": {
+    "path": "data/phase540-independent-invocation-first-001/owned-files.json",
+    "size": 839,
+    "sha256": "2e5f1d117d128e0680a7b55a7882df9cfc5e4b03435cb18fec5530b2dbf538fc"
+  },
+  "cases": [
+    {
+      "case": "01",
+      "status": "PASS_MODEL_FINAL_ONLY",
+      "stackTypes": [
+        101,
+        102,
+        103,
+        104,
+        106,
+        107
+      ],
+      "value_origin": "original sealed gate /view/Sapphire_types"
+    },
+    {
+      "case": "02",
+      "status": "PASS_EXPECTED_REJECTION",
+      "first_rejection": "closed fixed029 external comparison binding"
+    },
+    {
+      "case": "03",
+      "status": "PASS_EXPECTED_REJECTION",
+      "first_rejection": "exact original sealed gate canonical identity"
+    },
+    {
+      "case": "04",
+      "status": "PASS_EXPECTED_REJECTION",
+      "first_rejection": "exact original sealed gate canonical identity"
+    },
+    {
+      "case": "05",
+      "status": "PASS_EXPECTED_REJECTION",
+      "first_rejection": "same instance final/bound Sapphire subtype"
+    }
+  ],
+  "direct_calls": [
+    "bindings",
+    "project_model_final",
+    "bindings",
+    "validate_sapphire_gate_origin",
+    "validate_sapphire_gate_origin",
+    "validate_sapphire_gate_origin"
+  ],
+  "entered": {
+    "bindings": 2,
+    "project_model_final": 1,
+    "validate_sapphire_gate_origin": 4
+  },
+  "fresh_processes": 1,
+  "adapter_imports": 1,
+  "physical_pin_checks": {
+    "before": 48,
+    "after": 48,
+    "all_unchanged": true,
+    "original_model_and_gate_hash_reads_each": 2,
+    "original_model_and_gate_JSON_decodes_each": 1
+  },
+  "execution": {
+    "exit_code": 0,
+    "stderr_bytes": 0,
+    "internal_wall_seconds": 0.7880468839994137,
+    "outer_wall_seconds": 0.9159598750011355
+  },
+  "zero_calls": {
+    "candidate_imports": 0,
+    "model_runs": 0,
+    "comparisons": 0,
+    "Expected_payload_reads": 0,
+    "Native": 0,
+    "UI_extractions": 0,
+    "old_test_replays": 0
+  },
+  "interpretation": "The repaired final model field is copied from the original measured same-instance gate under the accepted exact Source invariant. Case03/04 actual first rejection is canonical identity; no deep typed predicate execution claim. Final projection is diagnostic, not a replacement model or Native equality evidence.",
+  "preserved_failure": {
+    "path": "data/phase536-independent-first-finding/finding.json",
+    "size": 9015,
+    "sha256": "1168b59469cbb0d5669a4419b1c3e1482193bf471537e03a251d777dff7f5906"
+  },
+  "remaining": "Root release required for new541 strict-eight comparison of the same535 sealed model and nine original Expected descriptors. No model rerun. All actual business equality still pending.",
+  "formal_support": 75,
+  "general_admission_changed": false
+}

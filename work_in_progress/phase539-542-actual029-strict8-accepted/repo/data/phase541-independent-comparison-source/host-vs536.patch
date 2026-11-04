@@ -1,0 +1,109 @@
+--- tests/phase536_independent_actual_compare.py
++++ tests/phase541_independent_actual_compare.py
+@@ -1,4 +1,4 @@
+-"""One sealed029 strict8 comparison using exact533 adapter; never runs a model."""
++"""One sealed029 strict8 comparison using exact539 adapter; never runs a model."""
+ from pathlib import Path
+ from collections import Counter
+ from copy import deepcopy
+@@ -18,11 +18,11 @@
+ import types
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+-SOURCE = 'tests/phase533_whelp_business_output.py'
+-SOURCE_SHA = '8e5cf40ff790a7db616ebac54deb9a5bf3b6410c7e300e866542179089668e54'
++SOURCE = 'tests/phase539_whelp_business_output.py'
++SOURCE_SHA = 'b061e1fe4a0a82d110052a0c3a094d82d5e3286805bc6fd5aa6e4752ad3045de'
+ MODEL = ROOT/'data/phase533-case029-actual-model-first-001'
+-STAGE = ROOT/'data/phase536-independent-comparison-source'
+-OUT = ROOT/'data/phase536-case029-comparison-first-001'
++STAGE = ROOT/'data/phase541-independent-comparison-source'
++OUT = ROOT/'data/phase541-case029-comparison-first-001'
+ INDEX = 'data/phase532-root-opaque-expected-descriptors/expected-descriptors.json'
+ CONTROL = 'data/phase534-independent-controls-first-001/result.json'
+ FINAL = 'data/phase534-independent-final-acceptance/review.json'
+@@ -33,7 +33,7 @@
+     OUT.mkdir(exist_ok=False)
+     began=time.monotonic();reads=[];calls=Counter();pins=[];expected_opens=[];output_refs=[]
+     stage='preflight'
+-    report=dict(schema='phase536-independent-actual-comparison/1',status='RUNNING',prior_comparison_attempt=None,prior_EXPECTED_business_decodes=0,formal_support=75)
++    report=dict(schema='phase541-independent-actual-comparison/1',status='RUNNING',prior_comparison_attempt='data/phase536-case029-comparison-first-001/result.json',prior_EXPECTED_payload_files_decoded=9,prior_compare_projected_calls=0,formal_support=75)
+     def dump(path,value):
+         raw=(json.dumps(value,ensure_ascii=False,allow_nan=False,indent=2)+'\n').encode()
+         with path.open('xb') as f:f.write(raw);f.flush();os.fsync(f.fileno())
+@@ -55,9 +55,9 @@
+         config=json.loads(pins_raw);descriptors={p['path']:p for p in config['files']}
+         assert descriptors[SOURCE]['sha256']==SOURCE_SHA
+         sys.dont_write_bytecode=True
+-        raw=pinned(SOURCE,descriptors[SOURCE]);A=types.ModuleType('phase536_adapter');A.__file__=str(ROOT/SOURCE)
++        raw=pinned(SOURCE,descriptors[SOURCE]);A=types.ModuleType('phase541_adapter');A.__file__=str(ROOT/SOURCE)
+         exec(compile(raw,str(ROOT/SOURCE),'exec'),A.__dict__)
+-        count_names=('compare_decoded','compare_projected','project_native','project_model','project_native_final','project_model_final','project_native_callbacks','project_model_callbacks','project_native_api','project_model_api','_snapshot_native','_snapshot_model','_terminal_native','_terminal_model','bindings','strict_json_loads')
++        count_names=('compare_decoded','compare_projected','project_native','project_model','project_native_final','project_model_final','project_native_callbacks','project_model_callbacks','project_native_api','project_model_api','_snapshot_native','_snapshot_model','_terminal_native','_terminal_model','bindings','strict_json_loads','validate_sapphire_gate_origin')
+         for name in count_names:
+             original=getattr(A,name)
+             def counted(*args,_name=name,_fn=original,**kwargs):
+@@ -65,12 +65,20 @@
+             setattr(A,name,functools.wraps(original)(counted))
+         def load(path,want=None):return A.strict_json_loads(pinned(path,want))
+         def fixed(path):return load(path,descriptors[str(path)])
+-        pinned('tests/phase536_independent_actual_compare.py',descriptors['tests/phase536_independent_actual_compare.py'])
++        pinned('tests/phase541_independent_actual_compare.py',descriptors['tests/phase541_independent_actual_compare.py'])
++        repair_final=fixed('data/phase540-independent-final-acceptance/review.json')
++        assert repair_final['status']=='ACCEPTED_539_SOURCE_AND_FIVE_PROVENANCE_CONTROLS_NOT_STRICT_COMPARISON'
++        repair_controls=fixed('data/phase540-independent-controls-first-001/result.json')
++        assert repair_controls['status']=='PASS_FIVE_PROVENANCE_CONTROLS_NOT_NATIVE_COMPARISON' and repair_controls['completed']==['01','02','03','04','05']
++        assert repair_controls['entered']==dict(bindings=2,project_model_final=1,validate_sapphire_gate_origin=4)
++        assert repair_controls['candidate_imports']==repair_controls['model_runs']==repair_controls['Expected_payload_reads']==repair_controls['comparisons']==0
++        prior=fixed('data/phase536-case029-comparison-first-001/result.json')
++        assert prior['status']=='FAIL_FIRST_CARRIER_OR_PROJECTION_ERROR_NO_RETRY' and prior['calls'].get('compare_projected',0)==0
+         final=fixed(FINAL);assert final['status']=='ACCEPTED_SOURCE_INTERFACES_AND_ACTUAL_B2_NOT_MODEL_VALIDATED'
+         controls=fixed(CONTROL);assert controls['status']=='PASS_WRAPPER_CONTROLS_AND_JOINED_B2_NOT_MODEL_VALIDATED' and controls['completed']==[f'{i:02}' for i in range(1,13)]
+         assert controls['model_calls']==controls['candidate_imports']==controls['Expected_reads']==controls['Native_calls']==0
+-        binding=fixed('data/phase536-independent-comparison-source/comparison-binding.json')
+-        assert set(binding)=={'schema','input_bundle','input_canonical_sha256','input_proof','input_proof_canonical_sha256','candidate_freeze','contract'}
++        binding=fixed('data/phase541-independent-comparison-source/comparison-binding.json')
++        assert set(binding)=={'schema','input_bundle','input_canonical_sha256','input_proof','input_proof_canonical_sha256','candidate_freeze','contract','prepare_gate','prepare_gate_canonical_sha256','provenance_addendum'}
+         contract=load(binding['contract']['path'],binding['contract']);assert set(contract['sections'])==set(A.SECTIONS)
+         index=fixed(INDEX);expected={Path(row['path']).name:row for row in index['descriptors']}
+         assert len(expected)==9 and set(expected)==set(A.EXPECTED_LEAVES)
+@@ -90,6 +98,12 @@
+         assert execution['calls']==dict(candidate_import_attempts=1,construct_attempts=1,prepare_attempts=1,prepared_gate_attempts=1,activate_attempts=1,full_run_attempts=1)
+         assert execution['tape_position']==execution['tape_records']==297 and execution['full_clock_passes']==1089
+         assert execution['expected_reads']==execution['new_original_capture']==execution['comparator_calls']==0
++        assert binding['prepare_gate']==dict(path=str((MODEL/'prepare-gate.json').relative_to(ROOT)),**model_seal['files']['prepare-gate.json'])
++        assert A.canonical_sha(gate)==binding['prepare_gate_canonical_sha256']==A.PREPARE_GATE_CANONICAL_SHA256
++        assert binding['provenance_addendum']==A.PROVENANCE_ADDENDUM
++        addendum=load(binding['provenance_addendum']['path'],binding['provenance_addendum'])
++        assert addendum['prepare_gate']==binding['prepare_gate'] and addendum['old_comparison_contract']==binding['contract']
++        assert addendum['model_output']==dict(path=str((MODEL/'model-output.json').relative_to(ROOT)),**model_seal['files']['model-output.json'])
+         assert gate['actual_same_instance'] is True and gate['gate']['status']=='PASS_PRE_ACTIVATION_SAME_INSTANCE'
+         assert gate['gate']['Tape_position']==gate['gate']['passes_consumed']==0 and gate['gate']['timer_count']==32
+         assert before['input_bundle']==binding['input_bundle'] and before['input_proof']==binding['input_proof'] and before['candidate_freeze']==binding['candidate_freeze']
+@@ -138,7 +152,7 @@
+             if writing:assert path.is_relative_to(OUT),'write outside comparison output'
+             else:assert str(path) in allowed or path.is_relative_to(OUT),'unapproved comparator read '+str(path)
+             reads.append(dict(path=str(path),operation='write' if writing else 'read'))
+-        output_refs.append(dump(OUT/'before.json',dict(schema='phase536-before-Expected/1',pins=pins.copy(),expected_index=index,model_already_sealed=True,model_output_payload_reads_this_attempt=1,EXPECTED_reads_so_far=0,comparison_binding=binding,actual_B1=gate['gate'],business_closure=request['business_closure'],frozen_contract_sha256=A.CONTRACT_SHA256,provenance_limit='Existing029 complete capture; process_clean_exit=false preserved; no recapture or schema replay')))
++        output_refs.append(dump(OUT/'before.json',dict(schema='phase541-before-Expected/1',pins=pins.copy(),expected_index=index,model_already_sealed=True,model_output_payload_reads_this_attempt=1,EXPECTED_reads_so_far=0,comparison_binding=binding,actual_B1=gate['gate'],business_closure=request['business_closure'],frozen_contract_sha256=A.CONTRACT_SHA256,provenance_limit='Existing029 complete capture; process_clean_exit=false preserved; no recapture or schema replay')))
+         sys.addaudithook(audit)
+         stage='read_and_decode_nine_EXPECTED_leaves';native={}
+         for name,want in expected.items():
+@@ -148,7 +162,7 @@
+                 native[name]=[A.strict_json_loads(line) for line in lines]
+             else:native[name]=A.strict_json_loads(raw)
+         stage='single_compare_decoded'
+-        comparison=A.compare_decoded(native,result,bundle,proof,binding)
++        comparison=A.compare_decoded(native,result,bundle,proof,gate,binding)
+         assert calls['compare_decoded']==1
+         output_refs.append(dump(OUT/'comparison.json',comparison))
+         report['status']='PASS_EIGHT_BUSINESS_SECTIONS_ROOT_ACCEPTANCE_PENDING' if comparison['status']=='PASS' else 'FAIL_STRICT_BUSINESS_DIFFERENCES'
+@@ -163,7 +177,7 @@
+     finally:
+         signal.setitimer(signal.ITIMER_REAL,0)
+         report.update(elapsed_seconds=time.monotonic()-began,calls=dict(calls),pins=pins,EXPECTED_payload_open_attempts=expected_opens,EXPECTED_payload_successful_pins=[p for p in pins if '/output/capture/' in p['path']],accesses_after_Expected_gate=reads.copy(),model_invocations=0,original_INPUT12_reads=0,new_native_capture=0,contract_sha256='a261b2b262350653ee31d69bed5706f3feb54893b4e577f49f3337a270ef66a3',model_imports=0,native_capture_complete=True,native_process_clean_exit=False)
+-        output_refs.append(dump(OUT/'result.json',report));dump(OUT/'owned-files.json',dict(schema='phase536-actual-comparison-owner/1',status=report['status'],files=output_refs))
++        output_refs.append(dump(OUT/'result.json',report));dump(OUT/'owned-files.json',dict(schema='phase541-actual-comparison-owner/1',status=report['status'],files=output_refs))
+     print(json.dumps(dict(status=report['status'],elapsed_seconds=report['elapsed_seconds'],calls=report['calls'],output=str(OUT))))
+     return 0 if report['status'].startswith('PASS') else 1
+ 

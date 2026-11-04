@@ -1,0 +1,40 @@
+{
+  "actual_author_calls": 0,
+  "external_required_checks": [
+    "Authenticate original535rawmodel/output-seal/gate descriptors and same seal membership before JSON projection",
+    "Root original request/candidate/Source identity chain",
+    "No mutated raw output or regenerated model"
+  ],
+  "final_projection": "project_model_final(result,bound,sealed_prepare_gate,root_binding)",
+  "fixed_aux_bindings": {
+    "prepare_gate": {
+      "path": "data/phase533-case029-actual-model-first-001/prepare-gate.json",
+      "sha256": "6378a809548899ab2c59a54f1bcd9654b08466ecd32f1486f59d0897f7b3caaa",
+      "size": 12334
+    },
+    "prepare_gate_canonical_sha256": "5e4b18548488c31b45d0e3fd4250da1c08addc6c6d0bcd110a6eacb04dbb545d",
+    "provenance_addendum": {
+      "path": "data/phase537-sapphire-gate-provenance-design/provenance-addendum.json",
+      "sha256": "b19eb10db1dae493d161e351a1ee7066980671cb20440e8fb61e721044895f70",
+      "size": 2194
+    }
+  },
+  "maximum_directed_controls": 5,
+  "model_projection": "project_model(result,bundle,input_proof,sealed_prepare_gate,root_binding)",
+  "pure_compare": "compare_decoded(native_outputs,sealed_result,accepted_bundle,input_proof,sealed_prepare_gate,root_binding)",
+  "pure_helper": "validate_sapphire_gate_origin(gate,result,bound,root_binding)",
+  "root_binding_closed_keys": [
+    "schema",
+    "input_bundle",
+    "input_canonical_sha256",
+    "input_proof",
+    "input_proof_canonical_sha256",
+    "candidate_freeze",
+    "contract",
+    "prepare_gate",
+    "prepare_gate_canonical_sha256",
+    "provenance_addendum"
+  ],
+  "root_binding_schema": "phase539-fixed029-comparison-binding/1",
+  "schema": "phase539-explicit-gate-comparison-api/1"
+}

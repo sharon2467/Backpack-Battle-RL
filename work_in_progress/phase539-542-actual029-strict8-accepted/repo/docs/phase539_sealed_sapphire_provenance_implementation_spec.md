@@ -1,0 +1,17 @@
+# Phase539 sealed Sapphire provenance implementation
+
+## 1. Requirements
+Implement only the537design/538accepted provenance repair in new `tests/phase539_whelp_business_output.py`. Preserve533adapter,505candidate15, original535model/gate/seal,536firsterror and old526comparison contract. No model/Native rerun, Source/helper import/call, comparison/UI/Expected/pool operation. Author compile/static conservation only; independent540 runs at most five directed provenance controls before a separately released actual comparison.
+
+## 2. Design
+Sapphire's definition property is not serialized by dataclass asdict. Replace only that invalid source access with the explicit original sealed_prepare_gate.view.Sapphire_types, tied to descriptor/canonical identity and the accepted537Source no-writer invariant through final. Strict final ordered6INT field and all8comparison semantics stay. Add the immutable537provenance addendum beside the unchanged oldcontract; no default/catalog/witness/Expected fallback and no raw output rewrite.
+
+## 3. Realize
+* Copy533adapter verbatim. `bindings(bundle,input_proof,root_binding)` changes only its closed shape/schema and exact gate/addendum identity checks: old7fields plus prepare_gate,prepare_gate_canonical_sha256,provenance_addendum. New schema phase539-fixed029-comparison-binding/1. All prior profile/alias/cutoff/Source/INPUT rules retained.
+* Add `validate_sapphire_gate_origin(gate,result,bound,root_binding)`: require exact pinned original canonicalgate+addendum, actual four-key gate shape/input_witness, same-instance prior PASS and prepared/unactivated/zeroTape/pass/captured zeroKing view, strict P14 index199 in gate/final/bound plus final instance_idP14. Both report and view Sapphire lists must be identical length6 with every member exactINT; return deepcopy of measured view list. Invariant Source proof is pinned by fixedaddendum; external independent caller must first authenticate original model/gate/output-seal relationship. Descriptor/Source association is required in addition to recorded booleans.
+* `project_model_final(result,bound,sealed_prepare_gate,root_binding)` invokes that helper once and uses its list only where old definition access failed. Other final mappings/fields untouched.
+* `project_model(result,bundle,input_proof,sealed_prepare_gate,root_binding)` and `compare_decoded(native_outputs,sealed_result,accepted_bundle,input_proof,sealed_prepare_gate,root_binding)` only propagate explicitaux. Native/projected8logic and20helpers remain byte-exact. No launcher or model object changes.
+* Write diff, actual API/new10-key binding template, old→new body conservation, candidate15 byte identities, compile-only receipt and Source owner/freeze to new phase539 Source directory. Actual Root wrapper/harness execution not included. Keep original535model descriptor and6378gate from existing537metadata; do not read any Native Expected.
+
+## 4. Acceptance criteria
+Only four prior functions change (binding metadata, final source mapping and two signature propagations), one narrow new helper;20specifiedhelpers and all other functions exact. Compile one new module, no exec/import. Source reviewer checks sole value source is explicit measured gate and strict6INT check retained.540 executes at most five predetermined helper/provenance controls using original sealedmodel/gate; same capture/model reused for later strict8. No claim of business comparison PASS before that actual result. Quota trusted<=30/userpause checkpoints/stops; no invented quota.
