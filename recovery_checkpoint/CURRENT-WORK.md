@@ -2,6 +2,10 @@
 
 The original BackpackBattles1.1.8 → standalone Python → RL project is **IN_PROGRESS**. Original GD is behavior authority; Godot is oracle only. Pure combat excludes GUI/shop. Event order, explicit parents, state histories, selected RNG, typed Timer APIs, callbacks and terminal cuts remain strict. Primitive-Tape comparisons and fresh Source runs are distinct evidence.
 
+## Sapphire provenance repair design accepted (538)
+
+[537–538 bounded proof/design](../work_in_progress/phase537-538-sapphire-provenance-design-accepted/README.md) establishes the exact-run Source invariant needed to carry the same-instance measured Sapphire_types from the original sealedgate to final. This repairs the nonexistent serialized-property assumption while retaining all strict final fields. Newadapter539 and independent540controls/comparison remain pending;do not rerun the original535model.
+
 ## Actual029 first comparison stopped at projection (536)
 
 [536 retained failure](../work_in_progress/phase536-actual029-first-projection-failure/README.md) records one actual attempt:9Native leaves authenticated and decoded,Native projection completed,model-final projection raised KeyError for a property absent from serialized items. Eight-section value comparison was not reached;no Native PASS. Next537must establish a minimal Source-backed mapping from the existing same-instance sealed gate without dropping fields or rerunning the model.

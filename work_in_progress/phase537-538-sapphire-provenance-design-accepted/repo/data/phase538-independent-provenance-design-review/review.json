@@ -1,0 +1,125 @@
+{
+  "schema": "phase538-independent-sapphire-provenance-design-review/1",
+  "status": "DESIGN_PASS_BOUNDED_SOURCE_INVARIANT_NOT_COMPARISON_ACCEPTANCE",
+  "requirement": "Repair the missing serialized ItemState.definition projection using the original measured same-instance prepare gate, retaining the exact final ordered six INT field and all eight comparison sections.",
+  "checked": {
+    "frozen_design_owner_references": 29,
+    "owner_reference_drift": 0,
+    "candidate_source_files_in_static_writer_review": 15,
+    "candidate_imports": 0,
+    "SUT_helper_calls": 0,
+    "comparisons": 0,
+    "model_runs": 0,
+    "Native_runs": 0,
+    "Expected_payload_reads": 0,
+    "pool_operations": 0
+  },
+  "design_findings": [
+    {
+      "topic": "Bounded temporal invariant",
+      "decision": "PASS",
+      "basis": "On exact505 candidate15 and sole533 Tape launcher execution, CATALOG is initialized once and no admitted postimport writer to its Sapphire definition row was found. This is a no-writer proof for this execution domain, not universal immutability of a Python dict."
+    },
+    {
+      "topic": "P14 identity and property",
+      "decision": "PASS",
+      "basis": "ItemState.definition returns CATALOG[self.item_index]. The single ItemState constructor and self.items initial construction/insertion precede the gate. No postconstruction item_index/definition store/delete or items replacement was found. The item_index annotation at engine line457 is a declaration, not a runtime mutation after the gate. Final strict P:14/item_index199 must still be validated by the repaired adapter."
+    },
+    {
+      "topic": "Aliases and dynamic writers",
+      "decision": "PASS",
+      "basis": "Definition aliases at engine3005/3030 are readonly and outside fixed9IDs; topology SimpleNamespace aliases do not write catalog rows. Six dynamic setattr sites resolve to CharacterState stack fields or NodeRecord/TimerRecord processing flags, not ItemState/CATALOG. Sapphire forwards the tuple to give/pick; _stack_picker_inputs first copies list(stack_types), and subsequent selection mutates no original definition row."
+    },
+    {
+      "topic": "Sole same-instance measurement chain",
+      "decision": "PASS",
+      "basis": "533 launcher225-228 constructs once, prepare_only, observes and seals gate, then activates and runs the same engine. Original output-seal binds gate/model/execution and Root request. Execution records each of the six stage attempts once and original Source/input after checks. No new model payload read was needed for this review; final P14 shape remains an explicit runtime adapter guard."
+    },
+    {
+      "topic": "Actual gate identity",
+      "decision": "PASS",
+      "gate_canonical_sha256": "5e4b18548488c31b45d0e3fd4250da1c08addc6c6d0bcd110a6eacb04dbb545d",
+      "basis": "Independently recalculated canonical hash; exact four top keys, actual_same_instance, prepared/unactivated captured profile, empty King state, zero Tape and pass position, report/view ordered six INT lists agree. This is the original measured gate, not an inferred catalog/witness value."
+    },
+    {
+      "topic": "Auxiliary binding",
+      "decision": "PASS_DESIGN_REQUIREMENT",
+      "basis": "New API explicitly accepts sealed_prepare_gate. Closed binding extends the previous seven fields by exact gate descriptor/canonical hash and provenance-addendum descriptor. Caller must authenticate original output-seal membership of model and gate plus Source/request chain; helper must reject absent/foreign/corrupt gate, retain strict final identity and typed ordered-list validation, and return a copy of measured view.Sapphire_types."
+    },
+    {
+      "topic": "Strict comparison semantics",
+      "decision": "UNCHANGED_REQUIRED",
+      "basis": "Old contract and raw outputs remain immutable. Native final stackTypes is independently projected and compared. No field removal, optionalization, value replacement from Expected/CATALOG/witness, sorting, or type relaxation is allowed."
+    }
+  ],
+  "implementation_and_control_boundary": {
+    "implementation_review_pending": true,
+    "maximum_new_directed_helper_cases": 5,
+    "cases": [
+      "Original sealed gate/model model-side mapping positive",
+      "Missing or foreign gate binding rejection",
+      "Canonical gate mutation rejection",
+      "Report/view disagreement or BOOL member rejection",
+      "Final P14 item_index/identity mismatch rejection"
+    ],
+    "case_interpretation": "Canonical authentication may reject altered report/view/type cases before the deeper predicate. Record the actual rejection site; do not claim deeper branch coverage or weaken canonical checks to reach it. Source review still verifies the explicit typed checks.",
+    "model_rerun_allowed": false,
+    "Expected_reads_in_this_phase": false,
+    "next_comparison": "Only after immutable adapter repair and independent directed controls; reuse the original sealed model."
+  },
+  "limits": [
+    "The final model field will be supported by an actual earlier same-instance measurement plus a bounded Source invariant, not a directly serialized final definition sample.",
+    "This invariant does not establish Native stackTypes equality; the next strict comparison must determine it.",
+    "Phase536 remains a preserved projection failure with compare_projected=0 and no business PASS.",
+    "No formal75, generalKing, all-layout, seed equivalence or complete engine claim is added."
+  ],
+  "blockers": [],
+  "read_only_tool_note": "An earlier metadata read used a nonexistent comparison-addendum filename; corrected to provenance-addendum.json. This was no SUT execution, candidate failure, or data mutation.",
+  "evidence": [
+    {
+      "path": "data/phase537-sapphire-gate-provenance-design/owned-files.json",
+      "size": 6297,
+      "sha256": "d1231b3d11903862cc7fc3a621f43de718fc0930df25e82636a0f4d23a85f126"
+    },
+    {
+      "path": "docs/phase537_sapphire_sealed_gate_provenance_repair_design_spec.md",
+      "size": 8885,
+      "sha256": "642ebba0d2fda5d8e3a240de2d0d365ac68d552a4a384a22d4e31950f5d59ed1"
+    },
+    {
+      "path": "data/phase537-sapphire-gate-provenance-design/source-proof.json",
+      "size": 15023,
+      "sha256": "631793f6e66a9d10876e86a2b5eeafd5e58b580058976efd4f13523b58f39952"
+    },
+    {
+      "path": "data/phase537-sapphire-gate-provenance-design/provenance-addendum.json",
+      "size": 2194,
+      "sha256": "b19eb10db1dae493d161e351a1ee7066980671cb20440e8fb61e721044895f70"
+    },
+    {
+      "path": "data/phase537-sapphire-gate-provenance-design/api-and-controls.json",
+      "size": 2492,
+      "sha256": "b66ba61a20b20bc363f5427272362537e81e9b1e3abccf2108cc2b346c49f1ef"
+    },
+    {
+      "path": "data/phase533-case029-actual-model-first-001/output-seal.json",
+      "size": 924,
+      "sha256": "25937268b2355264cf94abdd00e3bc3ce358256ce4c25a2d09f3068326b8d96a"
+    },
+    {
+      "path": "data/phase533-case029-actual-model-first-001/prepare-gate.json",
+      "size": 12334,
+      "sha256": "6378a809548899ab2c59a54f1bcd9654b08466ecd32f1486f59d0897f7b3caaa"
+    },
+    {
+      "path": "data/phase533-case029-actual-model-first-001/execution.json",
+      "size": 21503,
+      "sha256": "c54f73ffe34bdabd61476e72b910199eba1e31e6b3d12a7dad1890e82bbbdf13"
+    },
+    {
+      "path": "data/phase536-independent-first-finding/finding.json",
+      "size": 9015,
+      "sha256": "1168b59469cbb0d5669a4419b1c3e1482193bf471537e03a251d777dff7f5906"
+    }
+  ]
+}

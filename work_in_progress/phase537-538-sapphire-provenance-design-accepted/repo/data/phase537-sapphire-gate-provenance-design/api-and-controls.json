@@ -1,0 +1,63 @@
+{
+  "author_execution": {
+    "Expected": 0,
+    "Native": 0,
+    "compare": 0,
+    "helper": 0,
+    "model": 0,
+    "pool": 0
+  },
+  "existing_20_helpers_and_all_other_8section_projections": "unchanged except signature propagation/closed binding metadata",
+  "external_wrapper_required_raw_auth": [
+    "original output-seal model+gate membership",
+    "original model/gate/Source hashes and actual Root request chain"
+  ],
+  "fixed_new_bindings": {
+    "prepare_gate": {
+      "path": "data/phase533-case029-actual-model-first-001/prepare-gate.json",
+      "sha256": "6378a809548899ab2c59a54f1bcd9654b08466ecd32f1486f59d0897f7b3caaa",
+      "size": 12334
+    },
+    "prepare_gate_canonical_sha256": "5e4b18548488c31b45d0e3fd4250da1c08addc6c6d0bcd110a6eacb04dbb545d",
+    "provenance_addendum": {
+      "path": "data/phase537-sapphire-gate-provenance-design/provenance-addendum.json",
+      "sha256": "b19eb10db1dae493d161e351a1ee7066980671cb20440e8fb61e721044895f70",
+      "size": 2194
+    }
+  },
+  "future_implementation_authorized": false,
+  "helper_required_guards": [
+    "exact original canonical gate identity",
+    "four gate keys/input_witness actual pin/status/actualsameinstance",
+    "prepared unactivated zeroTape/pass/captured profile",
+    "P14 gate and model final strict199/instance identity",
+    "gate/report and view lists equal/length6/allstrictINT",
+    "return measured view list, never Source literal/witness/Expected"
+  ],
+  "maximum_directed_cases": 5,
+  "minimum_cases": [
+    "original sealed model+gate model-only mapping positive",
+    "missing or foreign gate binding reject",
+    "mutated canonical gate reject",
+    "gate/report disagreement or BOOL member reject",
+    "wrong final P14 index reject"
+  ],
+  "model_projection": "project_model/project_model_final receive explicit sealed_prepare_gate auxiliary",
+  "new_pure_helper": "validate_sapphire_gate_origin(gate,result,bound,root_binding) -> deepcopy of measured view.Sapphire_types",
+  "pure_compare": "compare_decoded(native_outputs,sealed_result,accepted_bundle,input_proof,sealed_prepare_gate,root_binding)",
+  "root_binding_added_fields": [
+    "prepare_gate",
+    "prepare_gate_canonical_sha256",
+    "provenance_addendum"
+  ],
+  "root_binding_previous_fields": [
+    "schema",
+    "input_bundle",
+    "input_canonical_sha256",
+    "input_proof",
+    "input_proof_canonical_sha256",
+    "candidate_freeze",
+    "contract"
+  ],
+  "schema": "phase537-minimal-aux-provenance-interface-design/1"
+}
