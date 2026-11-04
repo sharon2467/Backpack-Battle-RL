@@ -1,0 +1,25 @@
+--- tests/phase555_independent_portable_package.py
++++ tests/phase555_independent_portable_package_v2.py
+@@ -2,7 +2,7 @@
+ import argparse,dataclasses,hashlib,importlib,json,math,os,random,re,signal,stat,struct,sys,time,types,typing
+ from pathlib import Path
+ ROOT=Path(__file__).resolve().parents[1]
+-PLAN=ROOT/'data/phase555-independent-package-source'
++PLAN=ROOT/'data/phase555-independent-package-source-v2'
+ PACKAGE=Path('/workspace/backpack-github-receipt-clone-20261030/python_engine/experimental_nonking')
+ OUT=ROOT/'data/phase555-independent-package-first-001'
+ TRUSTED='3ba9018b2e2c4b025d3d0ff8422c50e59d04e5fe7bc2b6b7f27e8a51ffdf1e13'
+@@ -71,11 +71,11 @@
+  except BaseException as exc:
+   sys.setprofile(None);save('first-error.json',dict(stage=STAGE,type=type(exc).__name__,message=str(exc),traceback=list(frames(exc.__traceback__)),calls=COUNTS))
+  finally:
+-  signal.alarm(0);sys.setprofile(None)
++  signal.alarm(0);sys.setprofile(None);finalize_from=STAGE;STAGE='finalize'
+   after=[pin(ROOT/x['path'])for x in refs];save('after.json',after)
+   if after!=refs:status='FAILED_SOURCE_DRIFT'
+   save('imports.json',imports)
+-  result=dict(status=status,stage=STAGE,wall_seconds=time.monotonic()-t,python_version=sys.version,calls=COUNTS,forbidden_entries=forbidden,Source_input_pins=len(refs),unchanged=after==refs,constructors=0 if not forbidden else'REJECTED_BEFORE_BODY',Native=0,Expected=0,battles=0,old_tests=0,auto_retry=False)
++  result=dict(status=status,stage=finalize_from,wall_seconds=time.monotonic()-t,python_version=sys.version,calls=COUNTS,forbidden_entries=forbidden,Source_input_pins=len(refs),unchanged=after==refs,constructors=0 if not forbidden else'REJECTED_BEFORE_BODY',Native=0,Expected=0,battles=0,old_tests=0,auto_retry=False)
+   save('result.json',result);save('owned-files.json',dict(files=[pin(p)for p in sorted(OUT.iterdir())if p.is_file()],sealed=True))
+  print(json.dumps(result));return 0 if status.startswith('PASS')else 1
+ if __name__=='__main__':

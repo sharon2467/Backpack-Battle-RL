@@ -1,0 +1,29 @@
+{
+  "schema": "phase555-v2-reporting-lifecycle/1",
+  "status": "PREEXECUTION_STATIC_HARNESS_REPAIR_NOT_SUT_ERROR",
+  "old_owner": {
+    "path": "data/phase555-independent-package-source/owned-files.json",
+    "size": 1245,
+    "sha256": "7654bcb615a01143af7d4f82fdf1131e565b66e489278b544c10f8753f5a1059"
+  },
+  "old_script": {
+    "path": "tests/phase555_independent_portable_package.py",
+    "size": 6527,
+    "sha256": "0afb71b79db48f8e519567d340fd017c8205fd0d2aecd1daee6b9f7359360d43"
+  },
+  "new_script": {
+    "path": "tests/phase555_independent_portable_package_v2.py",
+    "size": 6575,
+    "sha256": "64cbe68c6835d3665e68c762d3c092d8d511026ceddd90b2d7d9bcf2873f4dcd"
+  },
+  "changes": [
+    "PLAN namespace",
+    "finally saves originalstage and switches tofinalize before afterpin metadata reads",
+    "result reports saved originalstage"
+  ],
+  "candidate_read_guard_exact": true,
+  "verify_and_two_validators_exact": true,
+  "candidate_calls": 0,
+  "compile_only": 1,
+  "Root_remote_readback_pending": true
+}
