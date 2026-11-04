@@ -1,0 +1,45 @@
+--- tests/phase582_prepare_mixed_output_source.py
++++ tests/phase583_prepare_mixed_output_source_v2.py
+@@ -7,11 +7,11 @@
+ import stat
+ import traceback
+ ROOT=Path(__file__).resolve().parents[1]
+-OUT=ROOT/'data/phase582-mixed-launcher-output-source'
+-SPEC='docs/phase582_mixed_launcher_output_implementation_spec.md'
+-LAUNCHER=ROOT/'tests/phase582_mixed_tape_run.py'
+-ADAPTER=ROOT/'tests/phase582_mixed_business_output.py'
+-B2=ROOT/'tests/phase582_shared_callback_guard.py'
++OUT=ROOT/'data/phase582-mixed-launcher-output-source-v2'
++SPEC='docs/phase583_mixed_C_helper_hash_repair_spec.md'
++LAUNCHER=ROOT/'tests/phase583_mixed_tape_run.py'
++ADAPTER=ROOT/'tests/phase583_mixed_business_output.py'
++B2=ROOT/'tests/phase583_shared_callback_guard.py'
+ CASE='NATIVE-030-MIXED-MODIFIERS-A'
+ PROFILE='pure-combat-mixed-modifiers-A-captured/1'
+ SCHEMA='native-v8-pure-combat-runtime-input/mixed-modifiers-1'
+@@ -360,8 +360,14 @@
+         ld=launcher_delta(known,basis,pin(B2),contract,projection,context_pin)
+         l_report=ld.finish(LAUNCHER,['validate_request','prepared_business_view','validate_prepared_business_view','main'])
+         neutral=plan['adapter20_exact']
++        neutral_census=[]
+         for row in neutral:
+-            body=funcs(ad.text)[row['name']].encode();require(len(body)==row['size'] and digest(body)==row['sha256'],'20helper exact '+row['name'])
++            body=funcs(ad.text)[row['name']]
++            require(body==funcs(ad.before)[row['name']],'20helper AST body exact '+row['name'])
++            complete=(body+'\n').encode()
++            require(len(complete)==row['size'] and digest(complete)==row['sha256'],'20helper complete-line size/SHA exact '+row['name'])
++            neutral_census.append(dict(name=row['name'],AST_body_exact=True,complete_line_size=len(complete),complete_line_sha256=digest(complete),original_report=row))
++        save(OUT/'neutral-helper-line-ending-census.json',dict(schema='phase583-helper-census/1',functions=neutral_census,AST_body_exact_count=20,original_size_SHA_exact_count=20,helper_executions=0))
+         for name in plan['launcher5_exact']:require(funcs(ld.before)[name]==funcs(ld.text)[name],'launcher5 exact '+name)
+         after=[pin(ROOT/r['path']) for r in freeze['files']];require(candidate_before==after,'candidate15 after exact')
+         model_request={k:None for k in interfaces['model_request']['exact_keys']}
+@@ -395,6 +401,9 @@
+         save(OUT/'first-generation-result.json',dict(schema='phase582-first-generation/1',status='SOURCE_ONLY_COMPILED_PENDING_INDEPENDENT583',Source_generation_invocations=1,actual_Input_bound=False,actual_B2_bound=False,model_request_runnable=False,comparison_runnable=False,author_SUT_calls=0))
+         external=[pin(ROOT/p) for p in expected]+[pin(ROOT/'data/phase582-root-candidate-context-binding/binding.json'),pin(ROOT/'data/phase582-root-candidate-context-binding/source-context-candidate-bound.json'),pin(ROOT/'data/phase582-mixed-launcher-output-plan/owned-files.json'),pin(ROOT/'docs/phase582_B2_canonical_binding_implementation_addendum_spec.md'),pin(ROOT/SPEC),pin(Path(__file__))]
+         external += candidate_before+[pin(ROOT/'data/phase576-mixed-captured-consumer-design/source-preimages.json'),pin(ROOT/'data/phase562-finite-mixed-source-design/source-pins.json')]
++        provenance_paths=[ROOT/'tests/phase582_prepare_mixed_output_source.py',ROOT/'tests/phase582_mixed_tape_run.py',ROOT/'tests/phase582_mixed_business_output.py',ROOT/'tests/phase582_shared_callback_guard.py',ROOT/'data/phase582-mixed-launcher-output-source/partial-source-owner.json',ROOT/'data/phase582-mixed-launcher-output-source/first-generation-error.json',ROOT/'docs/phase582_mixed_launcher_output_implementation_spec.md']
++        external += [pin(p) for p in provenance_paths]
++        write(OUT/'producer-v1-to-v2.patch',''.join(difflib.unified_diff(read(provenance_paths[0]).decode().splitlines(True),read(Path(__file__)).decode().splitlines(True),fromfile=str(provenance_paths[0].relative_to(ROOT)),tofile=str(Path(__file__).relative_to(ROOT)))).encode())
+         owned=[pin(p) for p in sorted(OUT.iterdir()) if p.is_file()]+[pin(p) for p in (LAUNCHER,ADAPTER,B2)]+external
+         unique={}
+         for p in owned:require(p['path'] not in unique or unique[p['path']]==p,'unique Source descriptor');unique[p['path']]=p
