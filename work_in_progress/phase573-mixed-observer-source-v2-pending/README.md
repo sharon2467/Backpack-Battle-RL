@@ -1,0 +1,9 @@
+# Frozen mixed observer Source v2, pending independent acceptance
+
+The immutable573 generator revision succeeded once after the preserved572 no-op failure. It removes only the unnecessary TIMER_ROLES rewrite, asserts the inherited full AST expression equals the planned roles and keeps Delta strict. Mechanical namespaces/provenance changed; old572 files remain intact.
+
+Author-reported output:79 installation targets/817389 bytes, four full inverses,107 sites/MATRIX,74 inherited targets, Util/Squirrel/clock bodies conserved. Two Python objects compiled; generated schema import/helper/test/model/Godot/Native/Expected/pool calls remain zero. These are Source and compilation facts, not independent acceptance or actual Original purity.574 independent Source review and finite schema plan are pending. Accepted public Source564 is unchanged.
+
+All145 owner references plus the owner are included. `repo/` retains engineering-relative paths. Five Original baseline preimages are stored safely under `external/absolute/`, with explicit mapping in RESTORE-MAP.json; they are not runtime dependencies of the standalone engine. To regenerate producer artifacts in another selected cloud workspace, first restore the matching Original resource baseline from existing checkpoints or this pinned subset at its explicit paths; never overwrite a differing file silently. No old cloud file is the only copy of these referenced inputs.
+
+Source case030/Native stream seeds57101 and57102 are preselected in a nonoperational draft. Actual Native identities, clocks, caches, descriptor availability/canAdd and BelowMaster are unobserved; the fixture keeps BelowMaster null. The predicted Source Timer-role set is not measured new topology. No installation, parse or capture is released. See the separate572 first-error archive for the complete failure and prior generator.

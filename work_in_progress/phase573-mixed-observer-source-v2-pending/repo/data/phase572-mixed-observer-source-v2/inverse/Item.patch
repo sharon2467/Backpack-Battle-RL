@@ -1,0 +1,32 @@
+--- data/phase359-king-producer-source/after-source/Items/Item.gd
++++ data/phase572-mixed-observer-source-v2/after-source/Items/Item.gd
+@@ -4440,7 +4440,7 @@
+ 	
+ 	doCooldownEffect()
+ 	
+-	if doubleActivationChance > 0 and Util.flip(doubleActivationChance):
++	if doubleActivationChance > 0 and Util.flip(doubleActivationChance, "double_activation:" + NativeRandomObserver.item_id(self)):
+ 		doCooldownEffect()
+ 
+ func doCooldownEffect():
+@@ -5583,6 +5583,7 @@
+ 	var pickedStacks: = {}
+ 	
+ 	
++	var observer_least_ordinal = 0
+ 	while numStacks > 0:
+ 		var leastStacksCount: int = 10000
+ 		var leastStacks = []
+@@ -5593,10 +5594,11 @@
+ 				leastStacks.push_back(stackType)
+ 			elif priorStacks[stackType] == leastStacksCount:
+ 				leastStacks.push_back(stackType)
+-		var stackToGive = Util.pickRandomElement(leastStacks)
++		var stackToGive = Util.pickRandomElement(leastStacks, "least_buff:" + NativeRandomObserver.item_id(self) + ":" + NativeRandomObserver.side(target) + ":" + str(observer_least_ordinal))
+ 		Util.dictAdd(pickedStacks, stackToGive, 1)
+ 		Util.dictAdd(priorStacks, stackToGive, 1)
+ 		numStacks -= 1
++		observer_least_ordinal += 1
+ 	
+ 	return pickedStacks
+ 
