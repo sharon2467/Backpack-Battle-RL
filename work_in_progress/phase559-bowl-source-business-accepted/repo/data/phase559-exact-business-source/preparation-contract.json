@@ -1,0 +1,101 @@
+{
+  "order": [
+    "P:bag0",
+    "P:bag1",
+    "P:bag2",
+    "P:bag3",
+    "P:bag4",
+    "P:bag5",
+    "P:bowl",
+    "P:banana",
+    "P:berry",
+    "P:wolf",
+    "P:sq",
+    "P:sword",
+    "O:bag0",
+    "O:bag1",
+    "O:bag2",
+    "O:bag3",
+    "O:bag4",
+    "O:bag5",
+    "O:wolf",
+    "O:sq",
+    "O:berry",
+    "O:sword",
+    "O:bowl"
+  ],
+  "bowl_caches": {
+    "P:bowl": [
+      "P:banana",
+      "P:berry"
+    ],
+    "O:bowl": []
+  },
+  "pet_caches": {
+    "P:wolf": [],
+    "P:sq": [
+      "P:banana"
+    ],
+    "O:wolf": [
+      "O:sq"
+    ],
+    "O:sq": [
+      "O:wolf"
+    ]
+  },
+  "global_Pets": [
+    "P:wolf",
+    "P:sq",
+    "O:wolf",
+    "O:sq"
+  ],
+  "P_targets_prepared": false,
+  "O_targets_prepared": true,
+  "bowl_shape": [
+    [
+      0,
+      0
+    ],
+    [
+      1,
+      0
+    ]
+  ],
+  "bowl_stars": [
+    [
+      -1,
+      -1
+    ],
+    [
+      0,
+      -1
+    ],
+    [
+      1,
+      -1
+    ],
+    [
+      2,
+      -1
+    ],
+    [
+      -1,
+      0
+    ],
+    [
+      2,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      1
+    ]
+  ],
+  "unit_items": 23,
+  "natural_items": 23,
+  "inventory_mutation_scope": "No live inventory callback execution. Original3hooks and unchanged cache algorithm reviewed statically; actual spatial/global/dedup/empty fixture semantics tested."
+}

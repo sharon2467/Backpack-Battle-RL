@@ -40,6 +40,10 @@ Earlier independent fixedKing451(375events365Tape) and fixed26King+Basic478(366e
 
 [549–550design](../work_in_progress/phase549-550-enchanted-weapons-design/README.md) acceptsafinitenonzeroattack-effectmodifierdomain,notyetimplementation/runtimeacceptance. Real1-cell/12starSkillgeometry,4receivers/9fixtureIDs/persideone;allotheraffectedreceiversexplicitlyexcluded. Preserveeffect-onlyrepetition/RNG/parents,singleattackandActivation.551Sourceimplementation/552independentplanareinprogress;noNative/modelrunyet,currentportable545unchanged.
 
+## Bowl162 Source business accepted (559)
+
+[559Sourceevidence](../work_in_progress/phase559-bowl-source-business-accepted/README.md) accepts8families+onefixed23-itemcase:466events/466draws/4extraPeteffects,dualBowlledger100andrealSquirrel/Wolperfeedback. Limit4/5,endedand90→115remainunit-only/notnaturalHIT. Sourcecatalog84experimental/formal75,Native162pending. Exact558portableupdate560/561isnext;currentpublic551unchangeduntilverifiedupdate,nooldcasebattle rerun.
+
 ## Next bounded rule: Bowl162
 
 [556–557design](../work_in_progress/phase556-557-bowl-extra-activation-design/README.md) isacceptedforafinitetwo-Petextraactivation/Foodspeedfamily,notyetbusinessruntimeacceptance.558implementation/559finiteplanareactive;currentSource83portablepackageunchanged,Source84onlyproposed. Originalzerochanceskip/firsteffect-before-extraroll/limiter/ledgerovershootsemanticsarekept,notreplacedbyintuitivefixes. NoautonewNative.

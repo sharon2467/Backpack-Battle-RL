@@ -1,0 +1,51 @@
+{
+  "schema": "phase559-independent-static/1",
+  "status": "SOURCE_PASS_PENDING_EXACT_CONTROLS",
+  "author_owner_sha256": "2ccbbc2ee65113f62451dc49ba31b0e5d8296467109099086c50d60c2d928b77",
+  "owner_refs_exact": 24,
+  "changed_files": [
+    "headless.py",
+    "native_replay_v8/engine.py"
+  ],
+  "unchanged_files": 13,
+  "old_engine_functions": 245,
+  "unchanged_old_engine_functions": 242,
+  "changed_old_functions": [
+    "validate_fixture",
+    "CombatEngine.prepare_only",
+    "CombatEngine.trigger"
+  ],
+  "new_functions": [
+    "CombatEngine._bowl_cooldown_effect",
+    "CombatEngine._pet_cooldown_effect",
+    "CombatEngine._validate_bowl_double_activation_chance",
+    "CombatEngine.give_bowl_double_activation_chance",
+    "validate_bowl_fixture"
+  ],
+  "headless_functions_exact": true,
+  "findings": [
+    "Real dataclass ledger is reset in actual prepare and mutated in actual Bowl effect; snapshot asdict remains unchanged.",
+    "Setter loop is callback-free after source cache_prepared flag, followed by expected-contribution validation only after loop; later receiver prepare does not reset chance.",
+    "Old nonPet trigger and header preserved apart from new Bowl dispatch; two Pet statements use real helper and first complete activate/pitch before one live positive flip.",
+    "Fourth/fifth activation early return does not terminate helper outer trigger; no new ended guard or recursive trigger.",
+    "Food target/cache/prepare common algorithm unchanged;162 CACHED_AFFECTED_IDS addition activates true Food semantics, global modifier independently scans same-side164/231.",
+    "NoBowl new checker enforces existing zero chance; no old public provider/admission expansion beyond162 experimental extra and conditional seven-ID gate."
+  ],
+  "direct_source_execution": {
+    "imports": 0,
+    "helpers": 0,
+    "constructors": 0,
+    "models": 0,
+    "Native": 0,
+    "Expected": 0
+  },
+  "remaining": "Exact synthetic controls and one fixed natural Source case require Root release; no Native qualification.",
+  "extractor_scope": "All AST nested functions recursively, including branch-local definitions.",
+  "harness_static_self_review": {
+    "syntax_compile_only": 2,
+    "candidate_compile_import_calls": 0,
+    "geometry": "Independent literal shape arithmetic confirms23 nonoverlapping ordinary items covered by bags.",
+    "prepare_cache": "P insertion-later Food order banana then berry; O empty Food targets; each O Pet has only the other Pet as an eligible starred target.",
+    "delta_count": "245 old functions traversed recursively including branch-local definitions;242 exact."
+  }
+}

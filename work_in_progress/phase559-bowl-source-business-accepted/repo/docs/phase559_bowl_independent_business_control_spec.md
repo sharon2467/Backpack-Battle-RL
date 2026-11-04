@@ -1,0 +1,38 @@
+# Phase559 — finite independent Bowl162 business acceptance plan
+
+## 1. Requirements
+
+Review the forthcoming frozen558 implementation against accepted557 Source design, then prepare at most eight directed families and one new Source natural case. This document is planning only: candidate API, vectors, seeds, geometry, exact calls and RNG rows are deliberately unbound until558 freezes. No candidate import, controls, battle, Native, Expected or pool activity is authorized by this document.
+
+Use one or at most two genuine production component engines plus one natural engine. Component prestates are explicitly synthetic, never Native facts. Reuse accepted shared kernels by byte conservation; do not rerun old battles or old control suites. No fake engine, replacement business implementation or whole fake capture. Preserve formal75 and Native admission.
+
+## 2. Design
+
+Bind to actual558 APIs and source paths after freeze. Static review checks exact551 baseline, engine/headless delta, thirteen unchanged modules, moved Squirrel/Wolper effect statements and unaffected trigger branches. Review prepare completion timing separately from cache readiness. The proposed positive modifier is owned global Pet selection; Food speed uses ordered spatial different-descriptor Food selection. These must stay distinct.
+
+Provisional setup A contains Bowl, both admitted Pets and multiple different Food targets, with explicit instance identities and geometry. Setup B is needed only if the real API cannot cover opposite prepare ordering and an empty Food-target view in A without pretending a runtime inventory operation exists. A second genuine engine is preferable to a fake inventory callback or fabricated cache algorithm. Reuse existing Source cache/hook proof for unsupported runtime insertion/removal: compare pre-prepare fixture compositions if necessary, and do not claim live inventory mutation coverage. Neither setup is a captured input.
+
+Component random input may use the already accepted private strict-row seam if the actual558 engine supports it. No public provider gate changes. Predeclare every label, argument, context, width, return and order from Original Source before execution. Do not obtain expected rows from candidate output. Effect calls and outer trigger calls must be counted separately from nested activation, stack, history and pitch calls.
+
+Natural case will use the finite seven-ID domain and include Bowl, Squirrel, Wolpertinger, different Food and an ordinary weapon where legal. Freeze one seed, full identity/geometry input and execution ceiling before any candidate run. Proposed ceiling is120 simulated seconds with35 wall seconds, subject to the actual existing nonKing API. No seed hunt or layout change after observing output. Natural unobserved branches remain NOT_HIT.
+
+## 3. Realize
+
+No harness or guessed new API is created now. After558 freeze, enumerate its real signatures, authenticate source owner/freeze, and bind the following families to genuine production methods. Reduce redundant calls; publish exact constructor, direct-call, reject, nested-call and draw budgets before asking Root for execution release.
+
+1. Admission, geometry and target predicates: seven-ID conditional domain, max one Bowl per side, forbidden real Pet/385 combinations reject before RNG; noBowl and old narrow entry semantics conserved. Check global same-side Squirrel/Wolper even outside Bowl stars, spatial different Food ordered/deduplicated, same descriptor excluded. Inventory addition/removal implications are limited to the existing three hooks/static proof and actual available setup APIs, not invented operations.
+2. Prepare lifecycle: ledger REAL0 reset, global modifier0/.2 exactly once, Bowl before/after receiver prepare, receiver chance retained. Wrong type/value, missing/duplicate contribution and foreign ownership reject through actual available observational guards. Do not assert a completed contribution midway through setter loop; no invented prepare RNG or events.
+3. Extra-effect trigger: chance0 consumes zero extra draw; positive fail/success and inclusive boundary consume exactly one live post-first-effect roll. One cooldown adjustment and trigger-time increment, at most two actual effects, no recursive trigger, second adjustment, extra attackEffect roll or duplicate outer trigger. Checks may include cooldown state and narrow actual method call counters, not surrogate behavior.
+4. Squirrel sequencing and limiter: actual steal/effect then activate/pitch precedes extra roll; second effect/picker/pitch follows. Third then fourth attempts preserve first pitch and suppress fourth activation only. First attempt already fourth still permits positive roll and second effect with fifth suppressed activation. Preserve effects despite missing Activation return. Record ordinary null parents and existing event allocation/metrics rules.
+5. Ended and suppressed-gain boundaries: actual production ended/empty-opponent/capped behavior and queue semantics, retaining in-limit ended pitch where Source requires it; never add an outer ended cancellation. Distinguish effect entry, actual gain/loss, event allocation, logged events and suppressed activation. Synthetic prestate is not a natural death claim.
+6. Food speed and ledger: random2 then each ordered target speed addition; multiple targets share pre-loop ledger; one ledger increment after loop. Empty targets still add25 below cap; at cap buffs/activation still run. Synthetic ledger90 gives10% per target then serializes115. Retain REAL ledger and existing double_activation_chance serialization without reconstructing definition or history state.
+7. History timing and Wolper interaction: random2 delayed flush completes before target Speed3 then Cooldown9 snapshots at actual current global event_num, including zero-delta snapshot calls where applicable. Preserve history dedup semantics. Wolper least/beneficial callback/stamina feedback runs through actual existing methods for both effects; listener prepare order unchanged. Do not assign a future Bowl Activation parent or next_event to earlier snapshots.
+8. Conservation and natural observations: unaffected activate/pitch, attack/three effect loops, Goobert, least/random/steal, histories, Timer/FrameDriver/RNG and old gates are checked by bounded source conservation. The one natural case records actually observed extra activation, pitch, Food speed ledger/cap, steal and Wolper feedback, with explicit HIT/NOT_HIT. No claim that every component boundary occurs naturally.
+
+The natural output must be sealed before result postchecks. Stop at the first unexpected candidate or harness failure; preserve partial output, raw error, input and source identity. No automatic repair/retry or continuing remaining calls after an unexpected failure.
+
+## 4. Acceptance Criteria / Tests
+
+Current deliverable is PLAN_ONLY_PENDING_558_SOURCE; every candidate/runtime call remains zero. Final exact vectors/harness/pins require558 freeze, Source review and Root release. Target ceiling remains <=8 families, <=2 component constructors and <=1 natural constructor/fullrun; no component fullrun is planned. Actual lesser counts and random budget must be stated after API binding, not guessed here.
+
+A later Source acceptance requires all executed directed expectations, same source before/after, authentic loaded paths, accurate entered/success/rejected call ledger, one bounded natural output and honest HIT/NOT_HIT. Source-only success does not establish Native162, general Pet combinations, fresh same-seed Native behavior or formal75 expansion. No GUI, G02, old RNG-law or broad75 audit is added.
