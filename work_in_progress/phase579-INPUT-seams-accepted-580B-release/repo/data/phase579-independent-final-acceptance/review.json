@@ -1,0 +1,198 @@
+{
+  "schema": "phase579-independent-final-acceptance/1",
+  "status": "PASS_SOURCE_AND_FINITE_SYNTHETIC_SEAMS_ONLY",
+  "source_static_review": {
+    "path": "data/phase579-independent-source/static-review.json",
+    "size": 3749,
+    "sha256": "91758f295acd6fe9d43e6830c9ac3a1d9ef92ff4b3b43f8c9d603ba06c8d3932"
+  },
+  "source_owner": {
+    "path": "data/phase579-independent-source/owned-files.json",
+    "size": 1231,
+    "sha256": "70cf44a09ffa9fa9cbf56b61aba014ae46c231d34e95bd41a4b7a80ced62eedd"
+  },
+  "actual_result": {
+    "path": "data/phase579-independent-controls-first-001/result.json",
+    "size": 100672,
+    "sha256": "3aba33330a09d55876e88f267e4879d696c87f8aec79353a22bacc256fd2c3c5"
+  },
+  "actual_owner": {
+    "path": "data/phase579-independent-controls-first-001/owned-files.json",
+    "size": 290,
+    "sha256": "1515a57520003cf33b745be207de24134bc5b37045ce31318d7c12f605a338b9"
+  },
+  "root_execution": {
+    "path": "data/phase579-root-unique-INPUT-seam-release/execution.json",
+    "size": 163,
+    "sha256": "34efde2e575ae3d2b4f4074fd5f8f99771040684c134eeab37559589408cc5aa"
+  },
+  "root_release_owner": {
+    "path": "data/phase579-root-unique-INPUT-seam-release/owned-files.json",
+    "size": 1193,
+    "sha256": "dcaea88b41d6583aa8d53f3ae32547f7ecd340007b92fab24bdeed795cf82204"
+  },
+  "plan": {
+    "path": "data/phase579-independent-source/execution-plan.json",
+    "size": 2760,
+    "sha256": "395ff525168eea2664154f3137ca5850f822c178360f18d240d4030488d083a0"
+  },
+  "script": {
+    "path": "tests/phase579_independent_input_seam_controls.py",
+    "size": 9181,
+    "sha256": "187b58866818247d7826372958fbab09d74a253033d46836b9d2f74eecbd6b61"
+  },
+  "vectors": {
+    "path": "data/phase579-independent-source/vectors.json",
+    "size": 772491,
+    "sha256": "70c870743a9dfec740006c2c7cf45055a07813898fa72241ae3a8e9a2f7e289d"
+  },
+  "source_578_owner": {
+    "path": "data/phase578-mixed-input-bridge-source/owned-files.json",
+    "size": 5899,
+    "sha256": "256eab377efe8bcc5a84e03f19008cb7fc25f4adf928c1ada2e26491fdf1cc0e"
+  },
+  "source_578_freeze": {
+    "path": "data/phase578-mixed-input-bridge-source/source-freeze.json",
+    "size": 6203,
+    "sha256": "9d6ccbf59c82f75d51175742f1232482c349daa35fd1aa72b8d1d44cea35b84f"
+  },
+  "ABI": {
+    "path": "data/phase578-mixed-input-bridge-source/abi.json",
+    "size": 1362,
+    "sha256": "897a40ea9594be1c8adac869345646c1f6df8f9732e8663dfbd433cbff2c7eff"
+  },
+  "cases": [
+    {
+      "id": "01_null_candidate",
+      "api": "authenticate_request",
+      "expected": "REJECT",
+      "status": "PASS",
+      "first_reject": "CANDIDATE_SOURCE_UNBOUND"
+    },
+    {
+      "id": "02_null_interface",
+      "api": "authenticate_request",
+      "expected": "REJECT",
+      "status": "PASS",
+      "first_reject": "CANDIDATE_SOURCE_UNBOUND"
+    },
+    {
+      "id": "03_fixed_source_drift",
+      "api": "authenticate_request",
+      "expected": "REJECT",
+      "status": "PASS",
+      "first_reject": "NO_CALLER_PROOF_FLAGS_OR_SOURCE_DRIFT"
+    },
+    {
+      "id": "04_boolean_permission",
+      "api": "authenticate_request",
+      "expected": "REJECT",
+      "status": "PASS",
+      "first_reject": "REQUEST_STRICT_INT0"
+    },
+    {
+      "id": "05_order_typed_resources",
+      "api": "project_prepared_witnesses",
+      "expected": "ACCEPT",
+      "status": "PASS"
+    },
+    {
+      "id": "06_missing_identity",
+      "api": "project_prepared_witnesses",
+      "expected": "REJECT",
+      "status": "PASS",
+      "first_reject": "PREPARED29_ACTUAL_SPECIAL_IDENTITIES"
+    },
+    {
+      "id": "07_wrong_mixed_descriptor",
+      "api": "project_prepared_witnesses",
+      "expected": "REJECT",
+      "status": "PASS",
+      "first_reject": "PREPARED_MIXED_DESCRIPTOR_ROLE"
+    },
+    {
+      "id": "08_missing_character",
+      "api": "project_prepared_witnesses",
+      "expected": "REJECT",
+      "status": "PASS",
+      "first_reject": "PREPARED_CHARACTER_RESOURCE_PAIR"
+    },
+    {
+      "id": "09_public_unbound_no_IO",
+      "api": "build_from_files",
+      "expected": "REJECT",
+      "status": "PASS",
+      "first_reject": "CANDIDATE_SOURCE_UNBOUND"
+    }
+  ],
+  "actual_counts": {
+    "top_controls": 9,
+    "positive": 1,
+    "expected_reject": 8,
+    "module_eval_attempts": 2,
+    "completed_module_imports": 2,
+    "initial_module_callable_API_calls": 0,
+    "initial_import_time_genexpr_calls": 28,
+    "schema_evals": 0,
+    "authenticate_top": 4,
+    "authenticate_nested_public": 1,
+    "witness_top": 4,
+    "public_unbound_build_entered": 1,
+    "successful_INPUT_builds": 0,
+    "public_request_context_reads": 2,
+    "public_raw_reads": 0,
+    "public_schema_reads": 0,
+    "public_output_writes": 0,
+    "full_receipt": 0,
+    "fullprojection": 0,
+    "actualINPUT": 0,
+    "model": 0,
+    "Native": 0,
+    "Expected": 0,
+    "pool": 0,
+    "reruns_by_reviewer": 0
+  },
+  "execution": {
+    "exit": 0,
+    "pid": 15806,
+    "reaped": true,
+    "outer_timeout": false,
+    "outer_wall_seconds": 0.49414459099716623,
+    "stdout_bytes": 0,
+    "stderr_bytes": 0
+  },
+  "harness_seconds": 0.4451625760011666,
+  "Source_runtime_pins_before_after_current_exact": 13,
+  "positive_readback": {
+    "all29_observation_fields_and_refs": "canonical exact versus presealed synthetic vector",
+    "cache_order": [
+      "P:21",
+      "P:20"
+    ],
+    "current_order": [
+      "P:21",
+      "P:20"
+    ],
+    "two_character_resource_cuts": "typed REAL bits and input refs retained exactly",
+    "subtypes": "Bowl REAL ledger/Wolf INT numBuffs+REAL coefficient/Enchanted INT buffs retained, not cast to scalar",
+    "copy_semantics": "Frozen harness mutates returned numBuffs and Character base bits after saving return; input canonical unchanged. Independently checked raw saved return/inputs and exact harness; no SUT rerun."
+  },
+  "public_failclosed": {
+    "first_reject": "CANDIDATE_SOURCE_UNBOUND",
+    "read_opens": {
+      "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/request-template.json": 1,
+      "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/source-context-template.json": 1
+    },
+    "unused_output_absent_at_call_and_final_readback": true,
+    "source_rules_verified_before": "request/context authentication rejects before Source metadata reading/schema loading/raw reading/output creation",
+    "audit_scope": "Captured open counters include runtime pins after validation; per-case public read delta exactly2, writes0. No schema payload among runtime pins."
+  },
+  "boundary": [
+    "Initial module functions0 means no callable production receipt APIs; import-time module/genexpr evaluation is explicitly recorded, not suppressed.",
+    "Typed validation authority is real mandatory fulljoin and572 validators previously exercised in575. The witness helper preserves already validated observations; this projection positive is NOT standalone typed validation or Native certification.",
+    "Static review includes2complete inverses/30owner refs/initial2changed8conserved+reader8changed21conserved. Prior verified kernel/typed schema suites not rerun.",
+    "32/66/67 runtime14 are frozen Source ABI constraints, not actual Native facts. New context candidate/interface slots remain null and actual request12pins unbound.",
+    "Actual72premises/full INPUT/branch/clock/Tape/ordered actual witnesses, B captured candidate/context semantics, same-instance B1, C output mapping/strict8 and Native canAdd/record acceptance remain pending.",
+    "No ABI-affecting defect found in this acceptance; A may support later B Source preparation. No model execution, formal75/general domain/Native promotion authorized."
+  ]
+}

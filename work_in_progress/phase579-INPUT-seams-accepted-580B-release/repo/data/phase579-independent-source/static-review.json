@@ -1,0 +1,77 @@
+{
+  "schema": "phase579-independent-static-review/1",
+  "status": "SOURCE_STATIC_PASS_CONTROLS_NOT_EXECUTED",
+  "source_owner": {
+    "path": "data/phase578-mixed-input-bridge-source/owned-files.json",
+    "size": 5899,
+    "sha256": "256eab377efe8bcc5a84e03f19008cb7fc25f4adf928c1ada2e26491fdf1cc0e"
+  },
+  "verified_owner_refs": 30,
+  "inverse": "Both complete postimages reversed to exact528 bytes; unique spans and whole bytes checked",
+  "initial_changed": [
+    "validate_ledger",
+    "build_initial_receipt"
+  ],
+  "initial_conserved": 8,
+  "reader_changed": [
+    "authenticate_request",
+    "load_schema",
+    "project_runtime",
+    "project_prepared_witnesses",
+    "validate_initial_consumer_coverage",
+    "project_decoded",
+    "verify_source_context",
+    "build_from_files"
+  ],
+  "reader_conserved": 21,
+  "findings": [
+    "Unbound slots reject during authenticate before input_descriptors validation, Source metadata verification, schema read/eval and output mkdir. Public entry reads only selected request/context before authentication.",
+    "Fixed9 bindings and rules exact; future slots must be explicit closed descriptors in repo/data/phase*/ fixed leaf paths. Root-selected request/context SHA is external authority, not a cryptographic caller identity. Future metadata receipt shape alone is not semantic interface acceptance; Source explicitly disclaims it.",
+    "project_from_bytes retains caller-authenticated Source closure precondition and verifies actual raw12 hashes before schema eval/fulljoin. No fake metadata receipt can certify B1/runtime/model release.",
+    "New Character base/live REAL and Item common/subtype typed fields use same-cut UID/field refs as DIRECT_OBSERVATION;72 count remains only64Timer+8Character SOURCE_DERIVED. 528 birth/current-position repair and same-cut validate_timer exact.",
+    "Full real572 typed/lineage/mixed-prepared join remains mandatory before receipt/witness projection. New witness helper is a projection, not standalone typed validator; no fakeSchema test or invalid deep typed proof claim.",
+    "29 ordered cache/current observations retain native identities, bits and field refs; five special descriptor checks and both character sides. Only seven actual business cache consumers need future B1; all-color current dictionaries are provenance, not GUI emulation.",
+    "Frozen runtime14/32/66/67/31noops are closed Source constraints, not new Native counts; full Tape/branch/fixture/rawphysical functions exact.",
+    "No new candidate metadata, actual12pins, Native data, actual72 proof, B1, output or strict8 acceptance exists. B/C remain later blocks."
+  ],
+  "actual_counts": {
+    "SUT_imports": 0,
+    "schema_loads": 0,
+    "helpers": 0,
+    "build": 0,
+    "model": 0,
+    "Native": 0,
+    "Expected": 0
+  },
+  "scope": "Independent static only; finite9 pending Root release",
+  "imports": {
+    "phase578_initial_receipt": [
+      "from copy import deepcopy",
+      "import json",
+      "import re"
+    ],
+    "phase578_input_bridge": [
+      "import argparse",
+      "from copy import deepcopy",
+      "import hashlib",
+      "import json",
+      "import math",
+      "import os",
+      "from pathlib import Path",
+      "import re",
+      "import stat",
+      "import struct",
+      "import sys",
+      "import types",
+      "from phase578_initial_receipt import build_initial_receipt, value_index"
+    ]
+  },
+  "harness_preload": "all two-module stdlib explicitly imported before audit; initial exact module registered before bridge import; schema module never loaded",
+  "checks": {
+    "owner_descriptors": 30,
+    "full_inverse_exact": 2,
+    "AST_only_syntax_harness": true,
+    "Source_compile_or_eval": false,
+    "runtime_top_calls_pending": 9
+  }
+}

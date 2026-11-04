@@ -1,0 +1,78 @@
+{
+  "schema": "phase579-exact-execution-plan/1",
+  "status": "FROZEN_PENDING_ROOT_RELEASE",
+  "cwd": "/tmp",
+  "argv": [
+    "python",
+    "-I",
+    "-B",
+    "/workspace/python-original-engine/repo/tests/phase579_independent_input_seam_controls.py",
+    "--pins",
+    "/workspace/python-original-engine/repo/data/phase579-independent-source/pins.json",
+    "--output-new",
+    "/workspace/python-original-engine/repo/data/phase579-independent-controls-first-001"
+  ],
+  "inner_seconds": 15,
+  "outer_seconds": 20,
+  "top_calls": 9,
+  "positive": 1,
+  "expected_reject": 8,
+  "per_api": {
+    "authenticate_request": 4,
+    "project_prepared_witnesses": 4,
+    "build_from_files": 1
+  },
+  "nested_api": {
+    "authenticate_request": 1
+  },
+  "module_imports": 2,
+  "schema_imports": 0,
+  "initial_function_calls": 0,
+  "full_receipt": 0,
+  "fullprojection": 0,
+  "raw12": 0,
+  "model": 0,
+  "Native": 0,
+  "Expected": 0,
+  "public_unbound_build": {
+    "request": {
+      "path": "data/phase578-mixed-input-bridge-source/request-template.json",
+      "size": 877,
+      "sha256": "02fb0bf226be13c15990dace92c6bc9594331c01335d4edac0abc3011197c2c2"
+    },
+    "context": {
+      "path": "data/phase578-mixed-input-bridge-source/source-context-template.json",
+      "size": 7534,
+      "sha256": "00ee837cff65ca3a03f247f03c448e2fea3c912e414765a1cfedeb8a39670f10"
+    },
+    "output_must_remain_absent": "/workspace/python-original-engine/repo/data/phase578-independent-unbound-579-never-created",
+    "SUT_read_opens": 2,
+    "schema_read_opens": 0,
+    "raw12_read_opens": 0,
+    "output_writes": 0,
+    "successful_INPUT_builds": 0
+  },
+  "source_pin_count": 13,
+  "script": {
+    "path": "tests/phase579_independent_input_seam_controls.py",
+    "size": 9181,
+    "sha256": "187b58866818247d7826372958fbab09d74a253033d46836b9d2f74eecbd6b61"
+  },
+  "vectors": {
+    "path": "data/phase579-independent-source/vectors.json",
+    "size": 772491,
+    "sha256": "70c870743a9dfec740006c2c7cf45055a07813898fa72241ae3a8e9a2f7e289d"
+  },
+  "pins": {
+    "path": "data/phase579-independent-source/pins.json",
+    "size": 2673,
+    "sha256": "d57cc2bb3737b3160ab1893b3f3a8e948ff195a3e2a80c0f03a576f128860408"
+  },
+  "first_unexpected": "stop/seal exception and partial case results; no retry/Source changes",
+  "boundaries": [
+    "Synthetic receipt-shaped projection input only; no complete fake capture, fakeSchema or fakeEngine",
+    "New initial typed validation is statically reviewed plus prior real572/575 schema evidence; projection helper positive is not standalone deep validation proof",
+    "No old controls rerun, no actual capture bytes/Expected/pool/host",
+    "Candidate B/interface semantic acceptance unbound; no actualINPUT/runtime/B1 acceptance"
+  ]
+}

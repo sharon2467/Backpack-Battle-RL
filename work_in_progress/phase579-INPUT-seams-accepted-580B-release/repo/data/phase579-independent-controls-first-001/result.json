@@ -1,0 +1,2863 @@
+{
+  "schema": "phase579-independent-actual/1",
+  "status": "PASS_SOURCE_SYNTHETIC_SEAMS_ONLY",
+  "scope": "SOURCE_SYNTHETIC_CHANGED_SEAMS_ONLY",
+  "cases": [
+    {
+      "id": "01_null_candidate",
+      "api": "authenticate_request",
+      "expected": "REJECT",
+      "reason": "CANDIDATE_SOURCE_UNBOUND",
+      "status": "PASS",
+      "first_reject": "CANDIDATE_SOURCE_UNBOUND",
+      "input_unchanged": true
+    },
+    {
+      "id": "02_null_interface",
+      "api": "authenticate_request",
+      "expected": "REJECT",
+      "reason": "CANDIDATE_SOURCE_UNBOUND",
+      "status": "PASS",
+      "first_reject": "CANDIDATE_SOURCE_UNBOUND",
+      "input_unchanged": true
+    },
+    {
+      "id": "03_fixed_source_drift",
+      "api": "authenticate_request",
+      "expected": "REJECT",
+      "reason": "NO_CALLER_PROOF_FLAGS_OR_SOURCE_DRIFT",
+      "status": "PASS",
+      "first_reject": "NO_CALLER_PROOF_FLAGS_OR_SOURCE_DRIFT",
+      "input_unchanged": true
+    },
+    {
+      "id": "04_boolean_permission",
+      "api": "authenticate_request",
+      "expected": "REJECT",
+      "reason": "REQUEST_STRICT_INT0",
+      "status": "PASS",
+      "first_reject": "REQUEST_STRICT_INT0",
+      "input_unchanged": true
+    },
+    {
+      "id": "05_order_typed_resources",
+      "api": "project_prepared_witnesses",
+      "expected": "ACCEPT",
+      "reason": null,
+      "status": "PASS",
+      "returned": {
+        "schema": "phase578-lawful-prepared-witness/1",
+        "stage": "pre_activate",
+        "status": "OBSERVED_INPUT_NOT_MODEL_EQUIVALENCE",
+        "gate": "EXTERNAL_SAME_INSTANCE_BUSINESS_PREPARE_GATE_REQUIRED_BEFORE_ACTIVATION",
+        "items": {
+          "P:0": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90000",
+              "pointer": "/synthetic/P:0/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 11,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90000",
+                "pointer": "/synthetic/P:0/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90000",
+                "pointer": "/synthetic/P:0/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90000",
+                "pointer": "/synthetic/P:0/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90000",
+                "pointer": "/synthetic/P:0/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90000",
+                "pointer": "/synthetic/P:0/doubleAttackEffectChance"
+              }
+            },
+            "native_id": "90000",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "P:1": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90001",
+              "pointer": "/synthetic/P:1/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 11,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90001",
+                "pointer": "/synthetic/P:1/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90001",
+                "pointer": "/synthetic/P:1/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90001",
+                "pointer": "/synthetic/P:1/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90001",
+                "pointer": "/synthetic/P:1/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90001",
+                "pointer": "/synthetic/P:1/doubleAttackEffectChance"
+              }
+            },
+            "native_id": "90001",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "P:2": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90002",
+              "pointer": "/synthetic/P:2/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 11,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90002",
+                "pointer": "/synthetic/P:2/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90002",
+                "pointer": "/synthetic/P:2/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90002",
+                "pointer": "/synthetic/P:2/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90002",
+                "pointer": "/synthetic/P:2/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90002",
+                "pointer": "/synthetic/P:2/doubleAttackEffectChance"
+              }
+            },
+            "native_id": "90002",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "P:3": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90003",
+              "pointer": "/synthetic/P:3/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 11,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90003",
+                "pointer": "/synthetic/P:3/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90003",
+                "pointer": "/synthetic/P:3/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90003",
+                "pointer": "/synthetic/P:3/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90003",
+                "pointer": "/synthetic/P:3/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90003",
+                "pointer": "/synthetic/P:3/doubleAttackEffectChance"
+              }
+            },
+            "native_id": "90003",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "P:4": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90004",
+              "pointer": "/synthetic/P:4/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 11,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90004",
+                "pointer": "/synthetic/P:4/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90004",
+                "pointer": "/synthetic/P:4/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90004",
+                "pointer": "/synthetic/P:4/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90004",
+                "pointer": "/synthetic/P:4/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90004",
+                "pointer": "/synthetic/P:4/doubleAttackEffectChance"
+              }
+            },
+            "native_id": "90004",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "P:5": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90005",
+              "pointer": "/synthetic/P:5/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 11,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90005",
+                "pointer": "/synthetic/P:5/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90005",
+                "pointer": "/synthetic/P:5/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90005",
+                "pointer": "/synthetic/P:5/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90005",
+                "pointer": "/synthetic/P:5/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90005",
+                "pointer": "/synthetic/P:5/doubleAttackEffectChance"
+              }
+            },
+            "native_id": "90005",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "P:6": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90006",
+              "pointer": "/synthetic/P:6/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 11,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90006",
+                "pointer": "/synthetic/P:6/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90006",
+                "pointer": "/synthetic/P:6/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90006",
+                "pointer": "/synthetic/P:6/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90006",
+                "pointer": "/synthetic/P:6/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90006",
+                "pointer": "/synthetic/P:6/doubleAttackEffectChance"
+              }
+            },
+            "native_id": "90006",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "P:7": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90007",
+              "pointer": "/synthetic/P:7/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 11,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90007",
+                "pointer": "/synthetic/P:7/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90007",
+                "pointer": "/synthetic/P:7/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90007",
+                "pointer": "/synthetic/P:7/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90007",
+                "pointer": "/synthetic/P:7/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90007",
+                "pointer": "/synthetic/P:7/doubleAttackEffectChance"
+              }
+            },
+            "native_id": "90007",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "P:8": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90008",
+              "pointer": "/synthetic/P:8/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 11,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90008",
+                "pointer": "/synthetic/P:8/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90008",
+                "pointer": "/synthetic/P:8/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90008",
+                "pointer": "/synthetic/P:8/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90008",
+                "pointer": "/synthetic/P:8/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90008",
+                "pointer": "/synthetic/P:8/doubleAttackEffectChance"
+              }
+            },
+            "native_id": "90008",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "P:9": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90009",
+              "pointer": "/synthetic/P:9/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 11,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90009",
+                "pointer": "/synthetic/P:9/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90009",
+                "pointer": "/synthetic/P:9/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90009",
+                "pointer": "/synthetic/P:9/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90009",
+                "pointer": "/synthetic/P:9/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90009",
+                "pointer": "/synthetic/P:9/doubleAttackEffectChance"
+              }
+            },
+            "native_id": "90009",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "P:10": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90010",
+              "pointer": "/synthetic/P:10/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 11,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90010",
+                "pointer": "/synthetic/P:10/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90010",
+                "pointer": "/synthetic/P:10/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90010",
+                "pointer": "/synthetic/P:10/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90010",
+                "pointer": "/synthetic/P:10/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90010",
+                "pointer": "/synthetic/P:10/doubleAttackEffectChance"
+              }
+            },
+            "native_id": "90010",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "P:11": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90011",
+              "pointer": "/synthetic/P:11/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 11,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90011",
+                "pointer": "/synthetic/P:11/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90011",
+                "pointer": "/synthetic/P:11/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90011",
+                "pointer": "/synthetic/P:11/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90011",
+                "pointer": "/synthetic/P:11/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90011",
+                "pointer": "/synthetic/P:11/doubleAttackEffectChance"
+              }
+            },
+            "native_id": "90011",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "P:12": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90012",
+              "pointer": "/synthetic/P:12/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 162,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "speedBonusGiven": {
+                "type": "float",
+                "binary64_be": "4039000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90012",
+                "pointer": "/synthetic/P:12/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90012",
+                "pointer": "/synthetic/P:12/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90012",
+                "pointer": "/synthetic/P:12/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90012",
+                "pointer": "/synthetic/P:12/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90012",
+                "pointer": "/synthetic/P:12/doubleAttackEffectChance"
+              },
+              "speedBonusGiven": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90012",
+                "pointer": "/synthetic/P:12/speedBonusGiven"
+              }
+            },
+            "native_id": "90012",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "P:13": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90013",
+              "pointer": "/synthetic/P:13/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": [
+                      {
+                        "type": "native_ref",
+                        "role": "P:21",
+                        "native_id": "90021",
+                        "class": "Node2D"
+                      },
+                      {
+                        "type": "native_ref",
+                        "role": "P:20",
+                        "native_id": "90020",
+                        "class": "Node2D"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": [
+                      {
+                        "key": {
+                          "type": "native_ref",
+                          "role": "P:21",
+                          "native_id": "90021",
+                          "class": "Node2D"
+                        },
+                        "value": {
+                          "type": "bool",
+                          "value": true
+                        }
+                      },
+                      {
+                        "key": {
+                          "type": "native_ref",
+                          "role": "P:20",
+                          "native_id": "90020",
+                          "class": "Node2D"
+                        },
+                        "value": {
+                          "type": "bool",
+                          "value": true
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "item_index": 231,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "numBuffs": {
+                "type": "int",
+                "decimal": "3"
+              },
+              "staminaRegenPerBuff": {
+                "type": "float",
+                "binary64_be": "3f7cac083126e979"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90013",
+                "pointer": "/synthetic/P:13/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90013",
+                "pointer": "/synthetic/P:13/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90013",
+                "pointer": "/synthetic/P:13/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90013",
+                "pointer": "/synthetic/P:13/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90013",
+                "pointer": "/synthetic/P:13/doubleAttackEffectChance"
+              },
+              "numBuffs": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90013",
+                "pointer": "/synthetic/P:13/numBuffs"
+              },
+              "staminaRegenPerBuff": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90013",
+                "pointer": "/synthetic/P:13/staminaRegenPerBuff"
+              }
+            },
+            "native_id": "90013",
+            "ordered_cache_aliases": [
+              {
+                "color": {
+                  "type": "int",
+                  "decimal": "0"
+                },
+                "ordered_roles": [
+                  "P:21",
+                  "P:20"
+                ],
+                "ordered_native_ids": [
+                  "90021",
+                  "90020"
+                ]
+              }
+            ],
+            "ordered_current_aliases": [
+              {
+                "color": {
+                  "type": "int",
+                  "decimal": "0"
+                },
+                "ordered_members": [
+                  {
+                    "role": "P:21",
+                    "native_id": "90021",
+                    "value": {
+                      "type": "bool",
+                      "value": true
+                    }
+                  },
+                  {
+                    "role": "P:20",
+                    "native_id": "90020",
+                    "value": {
+                      "type": "bool",
+                      "value": true
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "P:14": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90014",
+              "pointer": "/synthetic/P:14/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 164,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90014",
+                "pointer": "/synthetic/P:14/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90014",
+                "pointer": "/synthetic/P:14/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90014",
+                "pointer": "/synthetic/P:14/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90014",
+                "pointer": "/synthetic/P:14/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90014",
+                "pointer": "/synthetic/P:14/doubleAttackEffectChance"
+              }
+            },
+            "native_id": "90014",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "P:15": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90015",
+              "pointer": "/synthetic/P:15/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 32,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90015",
+                "pointer": "/synthetic/P:15/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90015",
+                "pointer": "/synthetic/P:15/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90015",
+                "pointer": "/synthetic/P:15/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90015",
+                "pointer": "/synthetic/P:15/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90015",
+                "pointer": "/synthetic/P:15/doubleAttackEffectChance"
+              }
+            },
+            "native_id": "90015",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "P:16": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90016",
+              "pointer": "/synthetic/P:16/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 14,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90016",
+                "pointer": "/synthetic/P:16/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90016",
+                "pointer": "/synthetic/P:16/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90016",
+                "pointer": "/synthetic/P:16/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90016",
+                "pointer": "/synthetic/P:16/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90016",
+                "pointer": "/synthetic/P:16/doubleAttackEffectChance"
+              }
+            },
+            "native_id": "90016",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "P:17": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90017",
+              "pointer": "/synthetic/P:17/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 233,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90017",
+                "pointer": "/synthetic/P:17/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90017",
+                "pointer": "/synthetic/P:17/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90017",
+                "pointer": "/synthetic/P:17/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90017",
+                "pointer": "/synthetic/P:17/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90017",
+                "pointer": "/synthetic/P:17/doubleAttackEffectChance"
+              }
+            },
+            "native_id": "90017",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "P:18": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90018",
+              "pointer": "/synthetic/P:18/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 234,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90018",
+                "pointer": "/synthetic/P:18/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90018",
+                "pointer": "/synthetic/P:18/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90018",
+                "pointer": "/synthetic/P:18/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90018",
+                "pointer": "/synthetic/P:18/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90018",
+                "pointer": "/synthetic/P:18/doubleAttackEffectChance"
+              }
+            },
+            "native_id": "90018",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "P:19": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90019",
+              "pointer": "/synthetic/P:19/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 385,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "buffs": {
+                "type": "int",
+                "decimal": "1"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90019",
+                "pointer": "/synthetic/P:19/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90019",
+                "pointer": "/synthetic/P:19/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90019",
+                "pointer": "/synthetic/P:19/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90019",
+                "pointer": "/synthetic/P:19/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90019",
+                "pointer": "/synthetic/P:19/doubleAttackEffectChance"
+              },
+              "buffs": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90019",
+                "pointer": "/synthetic/P:19/buffs"
+              }
+            },
+            "native_id": "90019",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "P:20": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90020",
+              "pointer": "/synthetic/P:20/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 5,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90020",
+                "pointer": "/synthetic/P:20/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90020",
+                "pointer": "/synthetic/P:20/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90020",
+                "pointer": "/synthetic/P:20/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90020",
+                "pointer": "/synthetic/P:20/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90020",
+                "pointer": "/synthetic/P:20/doubleAttackEffectChance"
+              }
+            },
+            "native_id": "90020",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "P:21": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90021",
+              "pointer": "/synthetic/P:21/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 22,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90021",
+                "pointer": "/synthetic/P:21/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90021",
+                "pointer": "/synthetic/P:21/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90021",
+                "pointer": "/synthetic/P:21/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90021",
+                "pointer": "/synthetic/P:21/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90021",
+                "pointer": "/synthetic/P:21/doubleAttackEffectChance"
+              }
+            },
+            "native_id": "90021",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "P:22": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90022",
+              "pointer": "/synthetic/P:22/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 1,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90022",
+                "pointer": "/synthetic/P:22/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90022",
+                "pointer": "/synthetic/P:22/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90022",
+                "pointer": "/synthetic/P:22/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90022",
+                "pointer": "/synthetic/P:22/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90022",
+                "pointer": "/synthetic/P:22/doubleAttackEffectChance"
+              }
+            },
+            "native_id": "90022",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "O:0": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90023",
+              "pointer": "/synthetic/O:0/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 11,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90023",
+                "pointer": "/synthetic/O:0/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90023",
+                "pointer": "/synthetic/O:0/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90023",
+                "pointer": "/synthetic/O:0/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90023",
+                "pointer": "/synthetic/O:0/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90023",
+                "pointer": "/synthetic/O:0/doubleAttackEffectChance"
+              }
+            },
+            "native_id": "90023",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "O:1": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90024",
+              "pointer": "/synthetic/O:1/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 11,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90024",
+                "pointer": "/synthetic/O:1/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90024",
+                "pointer": "/synthetic/O:1/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90024",
+                "pointer": "/synthetic/O:1/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90024",
+                "pointer": "/synthetic/O:1/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90024",
+                "pointer": "/synthetic/O:1/doubleAttackEffectChance"
+              }
+            },
+            "native_id": "90024",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "O:2": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90025",
+              "pointer": "/synthetic/O:2/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 11,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90025",
+                "pointer": "/synthetic/O:2/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90025",
+                "pointer": "/synthetic/O:2/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90025",
+                "pointer": "/synthetic/O:2/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90025",
+                "pointer": "/synthetic/O:2/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90025",
+                "pointer": "/synthetic/O:2/doubleAttackEffectChance"
+              }
+            },
+            "native_id": "90025",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "O:3": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90026",
+              "pointer": "/synthetic/O:3/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 11,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90026",
+                "pointer": "/synthetic/O:3/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90026",
+                "pointer": "/synthetic/O:3/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90026",
+                "pointer": "/synthetic/O:3/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90026",
+                "pointer": "/synthetic/O:3/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90026",
+                "pointer": "/synthetic/O:3/doubleAttackEffectChance"
+              }
+            },
+            "native_id": "90026",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "O:4": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90027",
+              "pointer": "/synthetic/O:4/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 231,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "numBuffs": {
+                "type": "int",
+                "decimal": "3"
+              },
+              "staminaRegenPerBuff": {
+                "type": "float",
+                "binary64_be": "3f7cac083126e979"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90027",
+                "pointer": "/synthetic/O:4/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90027",
+                "pointer": "/synthetic/O:4/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90027",
+                "pointer": "/synthetic/O:4/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90027",
+                "pointer": "/synthetic/O:4/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90027",
+                "pointer": "/synthetic/O:4/doubleAttackEffectChance"
+              },
+              "numBuffs": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90027",
+                "pointer": "/synthetic/O:4/numBuffs"
+              },
+              "staminaRegenPerBuff": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90027",
+                "pointer": "/synthetic/O:4/staminaRegenPerBuff"
+              }
+            },
+            "native_id": "90027",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          },
+          "O:5": {
+            "input_ref": {
+              "file": "observer7-input.jsonl",
+              "line": 2,
+              "sequence": 200,
+              "native_owner": "90028",
+              "pointer": "/synthetic/O:5/"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": []
+            },
+            "item_index": 1,
+            "typed_fields": {
+              "speedScale": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "iterationCooldown": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "triggerTime": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleActivationChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              },
+              "doubleAttackEffectChance": {
+                "type": "float",
+                "binary64_be": "0000000000000000"
+              }
+            },
+            "typed_field_refs": {
+              "speedScale": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90028",
+                "pointer": "/synthetic/O:5/speedScale"
+              },
+              "iterationCooldown": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90028",
+                "pointer": "/synthetic/O:5/iterationCooldown"
+              },
+              "triggerTime": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90028",
+                "pointer": "/synthetic/O:5/triggerTime"
+              },
+              "doubleActivationChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90028",
+                "pointer": "/synthetic/O:5/doubleActivationChance"
+              },
+              "doubleAttackEffectChance": {
+                "file": "observer7-input.jsonl",
+                "line": 2,
+                "sequence": 200,
+                "native_owner": "90028",
+                "pointer": "/synthetic/O:5/doubleAttackEffectChance"
+              }
+            },
+            "native_id": "90028",
+            "ordered_cache_aliases": [],
+            "ordered_current_aliases": []
+          }
+        },
+        "comparison_scope": "Only actual business-consumed target/cache order via B1 mapping; full color/current dictionaries are provenance, not Python UI state.",
+        "characters": {
+          "P": {
+            "native_id": "91000",
+            "baseStaminaRegen": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "staminaRegen": {
+              "type": "float",
+              "binary64_be": "3ff01cac083126e9"
+            },
+            "baseStaminaRegen_ref": {
+              "file": "observer7-input.jsonl",
+              "pointer": "/synthetic/pre_activate/P/baseStaminaRegen"
+            },
+            "staminaRegen_ref": {
+              "file": "observer7-input.jsonl",
+              "pointer": "/synthetic/pre_activate/P/staminaRegen"
+            }
+          },
+          "O": {
+            "native_id": "91001",
+            "baseStaminaRegen": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "staminaRegen": {
+              "type": "float",
+              "binary64_be": "3ff01cac083126e9"
+            },
+            "baseStaminaRegen_ref": {
+              "file": "observer7-input.jsonl",
+              "pointer": "/synthetic/pre_activate/O/baseStaminaRegen"
+            },
+            "staminaRegen_ref": {
+              "file": "observer7-input.jsonl",
+              "pointer": "/synthetic/pre_activate/O/staminaRegen"
+            }
+          }
+        },
+        "pre_prepare_characters": {
+          "P": {
+            "native_id": "91000",
+            "baseStaminaRegen": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "staminaRegen": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "baseStaminaRegen_ref": {
+              "file": "observer7-input.jsonl",
+              "pointer": "/synthetic/pre_prepare/P/baseStaminaRegen"
+            },
+            "staminaRegen_ref": {
+              "file": "observer7-input.jsonl",
+              "pointer": "/synthetic/pre_prepare/P/staminaRegen"
+            }
+          },
+          "O": {
+            "native_id": "91001",
+            "baseStaminaRegen": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "staminaRegen": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "baseStaminaRegen_ref": {
+              "file": "observer7-input.jsonl",
+              "pointer": "/synthetic/pre_prepare/O/baseStaminaRegen"
+            },
+            "staminaRegen_ref": {
+              "file": "observer7-input.jsonl",
+              "pointer": "/synthetic/pre_prepare/O/staminaRegen"
+            }
+          }
+        },
+        "source_default_p1": {
+          "source_default_p1": {
+            "path": "data/phase572-mixed-observer-source-v2/source-default-p1-rule.json",
+            "size": 3020,
+            "sha256": "a5e2eb856eb82197357c5871282c41dfb48c5cd38cc7b5bec7fcc8734bc99ef9"
+          },
+          "observed_p1": false,
+          "actual_coefficient": "observed REAL0.7*same-cut actual base/100, validated by572 fulljoin",
+          "same_instance_gate": "REQUIRED_EXTERNAL_NOT_EXECUTED"
+        }
+      },
+      "input_unchanged": true
+    },
+    {
+      "id": "06_missing_identity",
+      "api": "project_prepared_witnesses",
+      "expected": "REJECT",
+      "reason": "PREPARED29_ACTUAL_SPECIAL_IDENTITIES",
+      "status": "PASS",
+      "first_reject": "PREPARED29_ACTUAL_SPECIAL_IDENTITIES",
+      "input_unchanged": true
+    },
+    {
+      "id": "07_wrong_mixed_descriptor",
+      "api": "project_prepared_witnesses",
+      "expected": "REJECT",
+      "reason": "PREPARED_MIXED_DESCRIPTOR_ROLE",
+      "status": "PASS",
+      "first_reject": "PREPARED_MIXED_DESCRIPTOR_ROLE",
+      "input_unchanged": true
+    },
+    {
+      "id": "08_missing_character",
+      "api": "project_prepared_witnesses",
+      "expected": "REJECT",
+      "reason": "PREPARED_CHARACTER_RESOURCE_PAIR",
+      "status": "PASS",
+      "first_reject": "PREPARED_CHARACTER_RESOURCE_PAIR",
+      "input_unchanged": true
+    },
+    {
+      "id": "09_public_unbound_no_IO",
+      "api": "build_from_files",
+      "expected": "REJECT",
+      "reason": "CANDIDATE_SOURCE_UNBOUND",
+      "status": "PASS",
+      "first_reject": "CANDIDATE_SOURCE_UNBOUND",
+      "read_open_counts": {
+        "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/request-template.json": 1,
+        "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/source-context-template.json": 1
+      },
+      "write_open_counts": {},
+      "public_output_absent": true,
+      "raw12_reads": 0,
+      "schema_reads": 0,
+      "input_unchanged": true
+    }
+  ],
+  "direct_entered": 9,
+  "module_eval_attempts": 2,
+  "module_imports_completed": 2,
+  "schema_evals": 0,
+  "full_receipt": 0,
+  "raw12_decode": 0,
+  "full_projection": 0,
+  "models": 0,
+  "Native": 0,
+  "Expected": 0,
+  "pool": 0,
+  "before": [
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase579_independent_input_seam_controls.py",
+      "size": 9181,
+      "sha256": "187b58866818247d7826372958fbab09d74a253033d46836b9d2f74eecbd6b61"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase579_mixed_input_bridge_independent_control_spec.md",
+      "size": 3879,
+      "sha256": "670699590ca9d6d66be43bd0739502124a70603e752e0c3256a3863999a25db4"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase579-independent-source/static-review.json",
+      "size": 3749,
+      "sha256": "91758f295acd6fe9d43e6830c9ac3a1d9ef92ff4b3b43f8c9d603ba06c8d3932"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase579-independent-source/vectors.json",
+      "size": 772491,
+      "sha256": "70c870743a9dfec740006c2c7cf45055a07813898fa72241ae3a8e9a2f7e289d"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase578_initial_receipt.py",
+      "size": 18104,
+      "sha256": "b0bda89872eae4310bf32788954077b838364895a424d27120ef77b34905aaf5"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase578_input_bridge.py",
+      "size": 46200,
+      "sha256": "168c604bb3e954d1b9a502d395d010f991fd0cbc8e44f97a2f7dfab6dd1dabd6"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/owned-files.json",
+      "size": 5899,
+      "sha256": "256eab377efe8bcc5a84e03f19008cb7fc25f4adf928c1ada2e26491fdf1cc0e"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/source-freeze.json",
+      "size": 6203,
+      "sha256": "9d6ccbf59c82f75d51175742f1232482c349daa35fd1aa72b8d1d44cea35b84f"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/request-template.json",
+      "size": 877,
+      "sha256": "02fb0bf226be13c15990dace92c6bc9594331c01335d4edac0abc3011197c2c2"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/source-context-template.json",
+      "size": 7534,
+      "sha256": "00ee837cff65ca3a03f247f03c448e2fea3c912e414765a1cfedeb8a39670f10"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/abi.json",
+      "size": 1362,
+      "sha256": "897a40ea9594be1c8adac869345646c1f6df8f9732e8663dfbd433cbff2c7eff"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/typed-witness-contract.json",
+      "size": 860,
+      "sha256": "7715df01902b1295eb8c763993b152a58a64e69ff38e9c578ffbe69b9d68c1f6"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/conservation.json",
+      "size": 1030,
+      "sha256": "e4e922227a4888d55d43ffa0297b38d5e027649c5b4bb1ccaf8fcaca2cf33051"
+    }
+  ],
+  "after": [
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase579_independent_input_seam_controls.py",
+      "size": 9181,
+      "sha256": "187b58866818247d7826372958fbab09d74a253033d46836b9d2f74eecbd6b61"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase579_mixed_input_bridge_independent_control_spec.md",
+      "size": 3879,
+      "sha256": "670699590ca9d6d66be43bd0739502124a70603e752e0c3256a3863999a25db4"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase579-independent-source/static-review.json",
+      "size": 3749,
+      "sha256": "91758f295acd6fe9d43e6830c9ac3a1d9ef92ff4b3b43f8c9d603ba06c8d3932"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase579-independent-source/vectors.json",
+      "size": 772491,
+      "sha256": "70c870743a9dfec740006c2c7cf45055a07813898fa72241ae3a8e9a2f7e289d"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase578_initial_receipt.py",
+      "size": 18104,
+      "sha256": "b0bda89872eae4310bf32788954077b838364895a424d27120ef77b34905aaf5"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase578_input_bridge.py",
+      "size": 46200,
+      "sha256": "168c604bb3e954d1b9a502d395d010f991fd0cbc8e44f97a2f7dfab6dd1dabd6"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/owned-files.json",
+      "size": 5899,
+      "sha256": "256eab377efe8bcc5a84e03f19008cb7fc25f4adf928c1ada2e26491fdf1cc0e"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/source-freeze.json",
+      "size": 6203,
+      "sha256": "9d6ccbf59c82f75d51175742f1232482c349daa35fd1aa72b8d1d44cea35b84f"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/request-template.json",
+      "size": 877,
+      "sha256": "02fb0bf226be13c15990dace92c6bc9594331c01335d4edac0abc3011197c2c2"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/source-context-template.json",
+      "size": 7534,
+      "sha256": "00ee837cff65ca3a03f247f03c448e2fea3c912e414765a1cfedeb8a39670f10"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/abi.json",
+      "size": 1362,
+      "sha256": "897a40ea9594be1c8adac869345646c1f6df8f9732e8663dfbd433cbff2c7eff"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/typed-witness-contract.json",
+      "size": 860,
+      "sha256": "7715df01902b1295eb8c763993b152a58a64e69ff38e9c578ffbe69b9d68c1f6"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/conservation.json",
+      "size": 1030,
+      "sha256": "e4e922227a4888d55d43ffa0297b38d5e027649c5b4bb1ccaf8fcaca2cf33051"
+    }
+  ],
+  "pins_unchanged": true,
+  "seconds": 0.4451625760011666,
+  "profile": {
+    "/workspace/python-original-engine/repo/tests/phase578_initial_receipt.py:<module>": 1,
+    "/workspace/python-original-engine/repo/tests/phase578_initial_receipt.py:<genexpr>": 28,
+    "/workspace/python-original-engine/repo/tests/phase578_input_bridge.py:<module>": 1,
+    "/workspace/python-original-engine/repo/tests/phase578_input_bridge.py:Rejected": 1,
+    "/workspace/python-original-engine/repo/tests/phase578_input_bridge.py:authenticate_request": 5,
+    "/workspace/python-original-engine/repo/tests/phase578_input_bridge.py:require": 823,
+    "/workspace/python-original-engine/repo/tests/phase578_input_bridge.py:canonical": 12,
+    "/workspace/python-original-engine/repo/tests/phase578_input_bridge.py:strict_json": 10,
+    "/workspace/python-original-engine/repo/tests/phase578_input_bridge.py:pairs": 163,
+    "/workspace/python-original-engine/repo/tests/phase578_input_bridge.py:<genexpr>": 49,
+    "/workspace/python-original-engine/repo/tests/phase578_input_bridge.py:same": 38,
+    "/workspace/python-original-engine/repo/tests/phase578_input_bridge.py:project_prepared_witnesses": 4,
+    "/workspace/python-original-engine/repo/tests/phase578_input_bridge.py:build_from_files": 1,
+    "/workspace/python-original-engine/repo/tests/phase578_input_bridge.py:read_pinned": 2,
+    "/workspace/python-original-engine/repo/tests/phase578_input_bridge.py:physical": 4,
+    "/workspace/python-original-engine/repo/tests/phase578_input_bridge.py:<lambda>": 10
+  },
+  "audit_read_open_counts": {
+    "/workspace/python-original-engine/repo/tests/phase578_initial_receipt.py": 2,
+    "/workspace/python-original-engine/repo/tests/phase578_input_bridge.py": 2,
+    "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/request-template.json": 2,
+    "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/source-context-template.json": 2,
+    "/workspace/python-original-engine/repo/tests/phase579_independent_input_seam_controls.py": 1,
+    "/workspace/python-original-engine/repo/docs/phase579_mixed_input_bridge_independent_control_spec.md": 1,
+    "/workspace/python-original-engine/repo/data/phase579-independent-source/static-review.json": 1,
+    "/workspace/python-original-engine/repo/data/phase579-independent-source/vectors.json": 1,
+    "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/owned-files.json": 1,
+    "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/source-freeze.json": 1,
+    "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/abi.json": 1,
+    "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/typed-witness-contract.json": 1,
+    "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/conservation.json": 1
+  },
+  "audit_write_open_counts": {},
+  "public_output_absent": true,
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]"
+}
