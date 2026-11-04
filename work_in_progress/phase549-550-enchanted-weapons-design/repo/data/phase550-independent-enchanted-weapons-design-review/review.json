@@ -1,0 +1,219 @@
+{
+  "schema": "phase550-independent385-design-review/1",
+  "status": "DESIGN_PASS_WITH_EXPLICIT_PREPARE_LIFECYCLE_OBLIGATION",
+  "decision": "The finite nine-ID Source extension is implementable in engine/headless only, preserving13 other modules and existing attack/least/Timer/RNG algorithms. No new generic Skill/modifier framework is necessary. This accepts a design, not an implementation, component behavior, Native placement or new Native equality.",
+  "authenticated": {
+    "owner": {
+      "path": "data/phase549-enchanted-weapons-design/owned-files.json",
+      "size": 511,
+      "sha256": "3065dbf318eb15f599de126643897a1f4bb52afe12c2a98ab63ddedb0b145100"
+    },
+    "payloads": 2,
+    "original_leaf_pins": 20,
+    "base_reuse_pins": 4,
+    "model_source_files": 2,
+    "selected_function_slices": 20
+  },
+  "scope": {
+    "base": "exact accepted545 portable15",
+    "new_item": 385,
+    "when385_present_fixture_ids": [
+      1,
+      11,
+      14,
+      22,
+      32,
+      231,
+      233,
+      234,
+      385
+    ],
+    "max385_per_side": 1,
+    "positive_receivers": [
+      14,
+      32,
+      233,
+      234
+    ],
+    "explicit_negative_support": [
+      1,
+      11,
+      22,
+      231,
+      385
+    ],
+    "class_domain": [
+      0
+    ],
+    "noKing": true,
+    "noRage": true,
+    "noGems": true,
+    "formal_support": 75,
+    "when385_absent": "existing545 domain unchanged",
+    "old_public_gates": "do not admit385"
+  },
+  "geometry": {
+    "actual_scene": {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/EnchantedWeapons.tscn",
+      "size": 2716,
+      "sha256": "5e0bd53d57daacc995df5439da82967d9a22eb6aa0207cfc34441390f859db78"
+    },
+    "collision_tile3": [
+      [
+        -1,
+        -1
+      ]
+    ],
+    "normalized_shape": [
+      [
+        0,
+        0
+      ]
+    ],
+    "normalized_stars_in_serialized_order": [
+      [
+        2,
+        -3
+      ],
+      [
+        3,
+        -3
+      ],
+      [
+        1,
+        -2
+      ],
+      [
+        2,
+        -2
+      ],
+      [
+        3,
+        -2
+      ],
+      [
+        -1,
+        -1
+      ],
+      [
+        0,
+        -1
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        2,
+        -1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        -1,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "ordinary_inventory_coverage_required": true,
+    "Native_canAdd_executed": false,
+    "limits": "Serialized Source geometry/order is available; actual Native placement/cache order for a new case remains unobserved."
+  },
+  "source_semantics": [
+    {
+      "fact": "385 extends Item; canAffect uses hasAttackEffect OR of three own-method flags; onPrepare adds chance25/100 to ordered affected receivers; cooldown gives least1 thenactivate.",
+      "source": "Items/Exclusive/EnchantedWeapons.gd1-14; Item.gd500-502,4108-4129"
+    },
+    {
+      "fact": "Inventory canAdd/addByTopLeft/addItem uses collision/bag cells with no selected Skill bypass; no separate CharacterItem slot is required.",
+      "source": "Inventory.gd203-221,595-617; Item.gd1066-1102"
+    },
+    {
+      "fact": "One effectCount flip occurs after dead guard and before accuracy. Own early32/234 loops follow one common early signal; own late14 only onhit includingzero damage; own dealt233 loops after one attack event/common notifications. Neither accuracy nor damage/critical pipeline nor weapon Activation is duplicated.",
+      "source": "Character.gd494-655; accepted545 attack3429-3484/weapon_attack3071-3077"
+    },
+    {
+      "fact": "MagicStaff pays Mana even onmiss and each successful owncallback grows permanent damage and contributes temporary damage; Spear consumes remainingBlock each latecallback; Thorn grants Spikes with actual attackevent.id; Lucky early grants retain null parent.",
+      "source": "MagicStaff.gd; Spear.gd; Exclusive/ThornShortbow.gd; Exclusive/LuckyShortbow.gd"
+    },
+    {
+      "fact": "Util.flip always calls randf and uses<=; raw0 atchance0 still doubles. Each Shortbow owncallback performs its own item BalancedRng roll; neither flip norShortbow returns can be reused as another call.",
+      "source": "Util.gd1010-1011; Item.gd4390-4394; accepted545 roll_item_chance3049-3052"
+    },
+    {
+      "fact": "Current double_attack_effect_chance is already real state, exported by snapshot asdict and native_rule_state.doubleAttackEffectChance. No third serialization module change is needed for this field.",
+      "source": "accepted545 engine.ItemState493/snapshot3608; native_replay_v8/state.py67"
+    },
+    {
+      "fact": "Original prepare resets chanceRng/damageRange but not doubleAttackEffectChance. Its0 reset belongs to shopEntered, before the new fresh-combat preparation; a later receiver prepare must not erase an earlier skill contribution.",
+      "source": "Item.gd3344-3355,3432-3452"
+    }
+  ],
+  "lifecycle_obligation": {
+    "actual_existing_order": "545prepare item-entry zero guard1861 occurs before cache_prepared=True1893 and the current onPrepare branch.",
+    "flag_meaning": "cache_prepared is not independently a receipt that every385 setter has completed.",
+    "acceptable_minimum": "At initial or per-item entry, validate only completed previous385 contributions. Mark current385 cache prepared, perform the entire ordinary additive setter loop without callbacks/RNG/validator reentry, then validate all receivers at end-of-prepare and at attack consumption. A separate initial all-zero plus final all-expected guard is also sufficient for fresh constructors.",
+    "prohibited": "Do not call the generic expected-chance validator between marking current385 prepared and applying its first/all grants: it would incorrectly expect0.25 while the target is still0. A setter precondition must exclude its own unapplied contribution, or leave consistency validation until the complete loop.",
+    "sequential_cases": [
+      "skill before receiver:0→0.25 must survive receiverprepare",
+      "skill after receiver:receiver initially0, final0.25",
+      "unaffected and opposing targets remain0",
+      "duplicate/missing/nonfinite/nonREAL/injected positive contribution must reject, never repair/reset/clamp"
+    ],
+    "ownership": "Require source and target object identity in engine.items, own side, actual finite receiver membership and actual ordered cache membership; do not use a user-supplied proof flag."
+  },
+  "planned_conservation": [
+    "13 modules byte-exact545",
+    "attack/weapon_attack/pre_item_damage/late_item_damage/on_item_dealt_damage/roll_item_chance byte-exact",
+    "least selection/grant/history/queue/Timer/RNG unchanged",
+    "old public gate behavior unchanged without385"
+  ],
+  "future_minimal_controls": [
+    "geometry/ordered own-side targets/negative supporting IDs and preRNG finite-domain rejection",
+    "skill-before and skill-after preparation, missing/duplicate/source-injected chance refusals",
+    "one flip beforeaccuracy;0/0.25/adjacentgreater boundaries and separate Shortbow RNG",
+    "MagicStaff hit/miss/payment exhaustion with one damage event/Activation",
+    "Spear miss/hit/invulnerablezero/Block exhaustion",
+    "Thorn repeated distinct rolls sameparent and Lucky independent early nullparent rolls",
+    "385 least1/currentlogging/cooldown/Activation with allocator conservation",
+    "old domain and shared event/history counts; at most one presealed Source battle with HIT/NOT_HIT"
+  ],
+  "runtime_unknowns": [
+    "All new positive-chance implementation and dynamic controls are pending.",
+    "New385 Native setup/legal placement/UID/cache/initial inputs/clock/RNG caller/strict comparison are unobserved.",
+    "Other positive receivers, Whelps and multiple385 per side remain excluded, not falsely classified as no effect.",
+    "No exhaustive75/GUI/G02/seed audit or new observation was performed."
+  ],
+  "counters": {
+    "candidate_imports": 0,
+    "compile": 0,
+    "SUT_helpers": 0,
+    "tests": 0,
+    "model": 0,
+    "Native": 0,
+    "Expected": 0,
+    "pool": 0
+  },
+  "references": [
+    {
+      "path": "docs/phase549_enchanted_weapons_positive_attack_effect_design_spec.md",
+      "size": 14309,
+      "sha256": "3c4d0b4f38caa5eddad7d4ae79bc8d0aec860ba4f7a255e7b46113fb006144da"
+    },
+    {
+      "path": "data/phase549-enchanted-weapons-design/source-pins.json",
+      "size": 12207,
+      "sha256": "4d9e0b0b926a7dbbf5114577ba71d4fe959de5f26016951a2a62b78716e18f8b"
+    },
+    {
+      "path": "data/phase545-source-wolpertinger/staged/native_replay_v8/state.py",
+      "size": 15114,
+      "sha256": "21478fecea4c888f701ff8991fb2cf75519670c602ed2bd9d17874e238c54bd1"
+    }
+  ]
+}
