@@ -1,0 +1,2084 @@
+{
+  "schema": "phase575-independent-actual/1",
+  "status": "PASS_SOURCE_SYNTHETIC_HELPERS_ONLY",
+  "synthetic": true,
+  "actual_native_data": false,
+  "cases": [
+    {
+      "id": "01",
+      "group": 1,
+      "api": "validate_state",
+      "expected": "ACCEPT",
+      "input_sha256": "b28041917b264a9a15d50e354c784b8c23ca55ab14c797bd5a1e02dd08affc03",
+      "status": "PASS",
+      "return_sha256": "d017900daab0cebd057e38cc738cbf86a77f6c24bd3461c7e5299a38aa31f492",
+      "seconds": 0.0010706290013331454,
+      "input_unchanged": true
+    },
+    {
+      "id": "02",
+      "group": 1,
+      "api": "validate_state",
+      "expected": "ACCEPT",
+      "input_sha256": "9824fdbe5141c850b951bbb79f7985a8a056e6d9b11ac362b72f85fb37c2290b",
+      "status": "PASS",
+      "return_sha256": "8db0cc325ea933df00346ffc873c56aba4901b2a557c69c74ba24db798c8b3cf",
+      "seconds": 0.0003585169979487546,
+      "input_unchanged": true
+    },
+    {
+      "id": "03",
+      "group": 1,
+      "api": "validate_state",
+      "expected": "ACCEPT",
+      "input_sha256": "a84acedc5196139e4b6a99f5bb2f075c616693b79941eb3f7df83eeda895d0ef",
+      "status": "PASS",
+      "return_sha256": "d3e536d824a612e8b1dff8617a3099913353b36dc91ba7f92a185ee709ad643d",
+      "seconds": 0.00033683900255709887,
+      "input_unchanged": true
+    },
+    {
+      "id": "04",
+      "group": 2,
+      "api": "validate_state",
+      "expected": "REJECT_VALUEERROR",
+      "input_sha256": "29f329e2477dce8bb1bfc3d80bd4449287ef5265f71a7febab065faa63597dde",
+      "status": "PASS",
+      "observed_exception": "exact object keys required: {'activationsThisFrame': 'int', 'cachedAffectedItems': 'dictionary', 'consumed': 'bool', 'currentAffectedItems': 'dictionary', 'descriptorIndex': 'int', 'faceDirection': 'int', 'iterationCooldown': 'float', 'lastActivationTime': 'float', 'lastTriggerTime': 'float', 'ownerType': 'int', 'placed': 'bool', 'speedScale': 'float', 'triggerTime': 'float', 'triggersThisFrame': 'int', 'doubleActivationChance': 'float', 'doubleAttackEffectChance': 'float', 'speedBonusGiven': 'float'}",
+      "first_reject": "exact object keys required: {'activationsThisFrame': 'int', 'cachedAffectedItems': 'dictionary', 'consumed': 'bool', 'currentAffectedItems': 'dictionary', 'descriptorIndex': 'int', 'faceDirection': 'int', 'iterationCooldown': 'float', 'lastActivationTime': 'float', 'lastTriggerTime': 'float', 'ownerType': 'int', 'placed': 'bool', 'speedScale': 'float', 'triggerTime': 'float', 'triggersThisFrame': 'int', 'doubleActivationChance': 'float', 'doubleAttackEffectChance': 'float', 'speedBonusGiven': 'float'}",
+      "seconds": 6.398400000762194e-05,
+      "input_unchanged": true
+    },
+    {
+      "id": "05",
+      "group": 2,
+      "api": "validate_state",
+      "expected": "REJECT_VALUEERROR",
+      "input_sha256": "17516dbc58454816cad69ba0f45f0e3fe2f84ad4bf8b34b8b8e15d8207096db2",
+      "status": "PASS",
+      "observed_exception": "exact raw property type wolper.numBuffs",
+      "first_reject": "exact raw property type wolper.numBuffs",
+      "seconds": 0.00022450600226875395,
+      "input_unchanged": true
+    },
+    {
+      "id": "06",
+      "group": 2,
+      "api": "validate_state",
+      "expected": "REJECT_VALUEERROR",
+      "input_sha256": "b796e77b5d7f406eb7b5a801176a1c3b9a2d68ae0393b72b4a4991240e90d3ac",
+      "status": "PASS",
+      "observed_exception": "exact raw property type wolper.staminaRegenPerBuff",
+      "first_reject": "exact raw property type wolper.staminaRegenPerBuff",
+      "seconds": 0.0002181960007874295,
+      "input_unchanged": true
+    },
+    {
+      "id": "07",
+      "group": 2,
+      "api": "validate_state",
+      "expected": "REJECT_VALUEERROR",
+      "input_sha256": "cd9424c988fc5a05b8905e5384fc68c4620905e926af838bc660f11b147932df",
+      "status": "PASS",
+      "observed_exception": "closed source Item subtype",
+      "first_reject": "closed source Item subtype",
+      "seconds": 3.383100192877464e-05,
+      "input_unchanged": true
+    },
+    {
+      "id": "08",
+      "group": 3,
+      "api": "validate_record",
+      "expected": "ACCEPT",
+      "input_sha256": "de6e5ac6b744b5f0311d9b485a7bb8bf68981c0e0870b00e13abf2920b8dc903",
+      "status": "PASS",
+      "return_sha256": "3659965620d9ca0220b862e8fa0f491ae90ff44bb8097100035063617815d938",
+      "seconds": 0.0002073780015052762,
+      "input_unchanged": true
+    },
+    {
+      "id": "09",
+      "group": 3,
+      "api": "validate_record",
+      "expected": "REJECT_VALUEERROR",
+      "input_sha256": "f658d9fcbf6cc5d74b0852e1deae18f87b94331c9f57583ee220e8e1d23d46b7",
+      "status": "PASS",
+      "observed_exception": "fixed Pet positive-only extra-activation primitive",
+      "first_reject": "fixed Pet positive-only extra-activation primitive",
+      "seconds": 0.00014295100118033588,
+      "input_unchanged": true
+    },
+    {
+      "id": "10",
+      "group": 4,
+      "api": "validate_record",
+      "expected": "ACCEPT",
+      "input_sha256": "cb645d735bde232c2cc7d005fd18b47eddf032e8e56aae91f1455efddcee7a40",
+      "status": "PASS",
+      "return_sha256": "64090907f42b9118b41030c97cd7ddc0a96f98938a5e6b23d848afe4e8d8de8b",
+      "seconds": 0.0006043159992259461,
+      "input_unchanged": true
+    },
+    {
+      "id": "11",
+      "group": 4,
+      "api": "validate_record",
+      "expected": "REJECT_VALUEERROR",
+      "input_sha256": "6a950830a947341316b3ddf770e41ecc5a058cbf0ec4344b30062bbc378df745",
+      "status": "PASS",
+      "observed_exception": "least-buff actual target/call ordinal",
+      "first_reject": "least-buff actual target/call ordinal",
+      "seconds": 0.00014559199917130172,
+      "input_unchanged": true
+    },
+    {
+      "id": "12",
+      "group": 4,
+      "api": "validate_record",
+      "expected": "REJECT_VALUEERROR",
+      "input_sha256": "742f4da8fc967580499798966b4ebda2a3f77bca639e8b56f3a19de9d2db93aa",
+      "status": "PASS",
+      "observed_exception": "least-buff bounded actual INT upper endpoint",
+      "first_reject": "least-buff bounded actual INT upper endpoint",
+      "seconds": 7.457900210283697e-05,
+      "input_unchanged": true
+    },
+    {
+      "id": "13",
+      "group": 5,
+      "api": "validate_record",
+      "expected": "ACCEPT",
+      "input_sha256": "048a82546ddf7bb0fab5a4fcfef462211b4032baa5068c934bce61c710236e4c",
+      "status": "PASS",
+      "return_sha256": "ab0a1aaed083668fcfde87786092f7c9620ac5c9f325a6b1207220f87fc17162",
+      "seconds": 0.00017165200188173912,
+      "input_unchanged": true
+    },
+    {
+      "id": "14",
+      "group": 5,
+      "api": "validate_record",
+      "expected": "REJECT_VALUEERROR",
+      "input_sha256": "1263207e064356572dd44466c84c83c01331c4dd316091b92e773fa4eef5e830",
+      "status": "PASS",
+      "observed_exception": "fixed selected Squirrel pitch context",
+      "first_reject": "fixed selected Squirrel pitch context",
+      "seconds": 6.32779992884025e-05,
+      "input_unchanged": true
+    },
+    {
+      "id": "15",
+      "group": 6,
+      "api": "validate_record",
+      "expected": "ACCEPT",
+      "input_sha256": "e98c104904e75b9cb2c3972100236a63c85001e76224bd984414df31ca7b83a6",
+      "status": "PASS",
+      "return_sha256": "b1d23e0252c55e45d4efaa8698a42fc7bdfc0501e5bdd800350e01145e8b07a7",
+      "seconds": 0.0005085129996587057,
+      "input_unchanged": true
+    },
+    {
+      "id": "16",
+      "group": 6,
+      "api": "validate_record",
+      "expected": "REJECT_VALUEERROR",
+      "input_sha256": "0ba5d3d8d9cdb97278fe7e92cd4235c7bd5a49764032f6545886939d1f1ddb46",
+      "status": "PASS",
+      "observed_exception": "Food.prepare receiver must be fixed-profile Food descriptor INT5/22/162",
+      "first_reject": "Food.prepare receiver must be fixed-profile Food descriptor INT5/22/162",
+      "seconds": 0.0005391929989855271,
+      "input_unchanged": true
+    },
+    {
+      "id": "17",
+      "group": 7,
+      "api": "validate_resources",
+      "expected": "ACCEPT",
+      "input_sha256": "491ad62a031fed9e4b0fc6ac0a59b154dd28fb9959d40826a6c7057b10ed8c73",
+      "status": "PASS",
+      "return_sha256": "737f1ebd4ac35ad66e2565b9f2280e5726edc3d25e77e62b987ae7c45926f48d",
+      "seconds": 0.0027087910020782147,
+      "input_unchanged": true
+    },
+    {
+      "id": "18",
+      "group": 7,
+      "api": "validate_resources",
+      "expected": "REJECT_VALUEERROR",
+      "input_sha256": "788bfd38374f4dc4a9a8a1a2e1338fb8a4ef71777b160addc2037fe3e7966649",
+      "status": "PASS",
+      "observed_exception": "source resource actual Character owner",
+      "first_reject": "source resource actual Character owner",
+      "seconds": 0.0001639340007386636,
+      "input_unchanged": true
+    },
+    {
+      "id": "19",
+      "group": 8,
+      "api": "_validate_mixed_prepared_facts",
+      "expected": "ACCEPT",
+      "input_sha256": "8a8c50840adf155a2cf17d0a4513aad18633c51b8a949cb4dad9447064d1c41a",
+      "status": "PASS",
+      "return_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+      "seconds": 0.029610313002194744,
+      "input_unchanged": true
+    },
+    {
+      "id": "20",
+      "group": 8,
+      "api": "_validate_mixed_prepared_facts",
+      "expected": "REJECT_VALUEERROR",
+      "input_sha256": "c07b4c337fe12f9fd8814f25a0b8691439ebc9ed7c07702347ef38d24628b3db",
+      "status": "PASS",
+      "observed_exception": "prepared cache receiver/UID/class/same-side association",
+      "first_reject": "prepared cache receiver/UID/class/same-side association",
+      "seconds": 0.02949643399915658,
+      "input_unchanged": true
+    },
+    {
+      "id": "21",
+      "group": 8,
+      "api": "_validate_mixed_prepared_facts",
+      "expected": "REJECT_VALUEERROR",
+      "input_sha256": "d75987b5a20a6f33e1de9c9925d34625b28c31811e2425d5533433196810a872",
+      "status": "PASS",
+      "observed_exception": "Wolper observed REAL coefficient/source-default/actual base relationship",
+      "first_reject": "Wolper observed REAL coefficient/source-default/actual base relationship",
+      "seconds": 0.030929906999517698,
+      "input_unchanged": true
+    },
+    {
+      "id": "22",
+      "group": 8,
+      "api": "_validate_mixed_prepared_facts",
+      "expected": "REJECT_VALUEERROR",
+      "input_sha256": "4ce27eedd86f0a44c2ef503e361cf253beff944048bedb038fe24779e460737b",
+      "status": "PASS",
+      "observed_exception": "fixed zero-King facts/profile",
+      "first_reject": "fixed zero-King facts/profile",
+      "seconds": 0.001489459002186777,
+      "input_unchanged": true
+    }
+  ],
+  "direct_entered": 22,
+  "schema_imports": 1,
+  "full_capture_validations": 0,
+  "models": 0,
+  "Native": 0,
+  "Expected": 0,
+  "pool": 0,
+  "before": [
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/after-source/Items/Item.gd",
+      "size": 178614,
+      "sha256": "11fb434eaa028eb965e10883d84ef7028ee96bdfbf2f53bdc71af64332ae0429"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/after-source/native_random_observer_sink_v7.gd",
+      "size": 105711,
+      "sha256": "a4daa16ffd957ca8f8158f456f7cd3aab2bf8dec385fff13e85806e0d6e023de"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/binding-source-contract.json",
+      "size": 953,
+      "sha256": "78f92d4178d3f04c88c168b724cf61c90e72dab9d814b28f34840c82904e2383"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/case-inputs/custom_opponent.json",
+      "size": 585,
+      "sha256": "07fa05c47df31b06145471a3710c8e5a2ef0b67d1c49a89dadad79f283ea5424"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/case-inputs/custom_player.json",
+      "size": 1915,
+      "sha256": "da55a52433bf6ccb98cd69633729a9bf287c1475a2c5e4d15d3adedc44f157ea"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/case-inputs/native_capture_config.json",
+      "size": 240,
+      "sha256": "8755cd0dce426ac29dca4fde7c2fac96dde2036255648a8e4b72594b7cdb8f36"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/collector.gd",
+      "size": 64932,
+      "sha256": "51ed1ebd6762fe93306ae97e732fca65ffa82dc41355023f7ce7418473d8a21c"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/compile-only.json",
+      "size": 299,
+      "sha256": "ad9c907aaf4247238fa8d8707f2eed43011fbc6ac8ab642b6b5f4b75404c1f8a"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/conservation.json",
+      "size": 32610,
+      "sha256": "2b3068490298dfe949debbe32f0c7c412d18dd782eed881173c7121a12408448"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/first-generation-result.json",
+      "size": 801,
+      "sha256": "d385f3f3f2d91a906938664e03f14e935bf90cdbc69b228a224dfc117c281106"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/fixed-plan.json",
+      "size": 25245,
+      "sha256": "0ffdfe84818ccccd594de3dae3ad087e38a33f9c58328c5c94146bee2ecc0bd4"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/fixed-v8-fixture.json",
+      "size": 4297,
+      "sha256": "70a6a2adf352251d3c6666c018837918b3f95c30688ea3a2b209b10828bf39e0"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/generation-started.json",
+      "size": 461,
+      "sha256": "6f9883736308b846930da3ea925263eb9d168eee92225015adbeece01f38ee37"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/install-targets.json",
+      "size": 36191,
+      "sha256": "1e07fce489d5443bfaecc447e9e84fa664e5b275996a6b204a57557f87e4638a"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/inverse/Item.json",
+      "size": 17804,
+      "sha256": "d7591cd33914e5c7befbccc3f2929c809ac3a64e9ed4ce8ba9a4709ce1af8d60"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/inverse/Item.patch",
+      "size": 1170,
+      "sha256": "e4074b204590d6d7b865f473486257feca66e76619b221770695eb2a49e36254"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/inverse/collector.json",
+      "size": 25874,
+      "sha256": "b09013fc25ba89ec1596ca6d8824fb39c6780ccb7b6bb32eb80fc8a87d165b43"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/inverse/collector.patch",
+      "size": 8397,
+      "sha256": "92cb3e633ed39a879c8db3359340373890f96942a84586ad26b1cac9281e3c62"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/inverse/native_random_observer_sink_v7.json",
+      "size": 56485,
+      "sha256": "315d73287053e20ff4ca7ab49ef88ef067565cbeb17285be3b9b5e7f3f8f53d6"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/inverse/native_random_observer_sink_v7.patch",
+      "size": 39200,
+      "sha256": "f9b48a6152c0399948b7ae427a15375f4c10e2010e18298e870b717924236d8f"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/inverse/phase572_mixed_observer_schema.json",
+      "size": 133176,
+      "sha256": "95acc22c5a8774e17cda7c5cddf25ae52228e8fdbee591bb18c4deb3bc361603"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/inverse/phase572_mixed_observer_schema.patch",
+      "size": 57594,
+      "sha256": "cb929bd03469b6d5ef74dbd194eb0e2db10480f7db50a35283a4aa6db7d49013"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/native-patch-source.json",
+      "size": 31087,
+      "sha256": "f12cd2632cbba79d8c01dfb1448221a867eac084ff6f63e61447c7df2a136e86"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/producer-v1-to-v2.patch",
+      "size": 18901,
+      "sha256": "08439969964b6cedbd7e88191c4bff3d413cfd6d2b5c950d40cfccf24a5e94b4"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/schema/phase572_mixed_observer_schema.py",
+      "size": 206103,
+      "sha256": "fd7da3dd9c95e44de14b09557130659a0ab6d20713f447695fc19a89e5ee9b43"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/source-authority.json",
+      "size": 10120,
+      "sha256": "1f4dc976d91ad6c1b313b6c1d52601acfdb26a1fbb5fe6bfe626e587a1d56d40"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/source-before.json",
+      "size": 40180,
+      "sha256": "42b343db8811d7bbc96e011cae7d27916f87b342d863821b3506e6ea7c6d43ed"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/source-default-p1-rule.json",
+      "size": 3020,
+      "sha256": "a5e2eb856eb82197357c5871282c41dfb48c5cd38cc7b5bec7fcc8734bc99ef9"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/source-tuple.json",
+      "size": 2870,
+      "sha256": "7134099050c0847030bdf824f986cf95ab9258f222a866a898f57099610cf086"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/collector.gd",
+      "size": 64612,
+      "sha256": "640bdb9b1a62e57827faed1775054d7450a411ca3b647f70f286b851436f1dfd"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Item.gd",
+      "size": 178363,
+      "sha256": "2fc1d658db352a7ecae8c2bfb60640a019284992a9c5f9a14c87baea50721631"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/schema/phase502_whelp_observer_schema.py",
+      "size": 197522,
+      "sha256": "d5531e3e9b119f0309140cb50dff2c7f545abb5ec3500d488bde29cacdb8f193"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/after-source/native_random_observer_sink_v7.gd",
+      "size": 102916,
+      "sha256": "41d500e34557cf731baea0c3e150e3d0d0815d26b5bea87c21ab3a81cd2b7162"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/Util.gd",
+      "size": 46276,
+      "sha256": "d437e9338c8c4587c0cddd29e848bef54e8b621169dd364ceaa341fbc7a1e507"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/native-patch-source.json",
+      "size": 31034,
+      "sha256": "3425d9aff911e076c57b7dc89e48e67003e95a42df99ffff732f002b132e77fc"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/combined-source-freeze.json",
+      "size": 58760,
+      "sha256": "04e152576b706f66da05d33fe493670604eca14110cbe98e73ee5f3703afb44a"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/source-owner.json",
+      "size": 27181,
+      "sha256": "48a578c6d8f9f2189e5241432d6e0b14fed8a5d4fda948ca73b0ab62dd6c8d8f"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/source-tuple.json",
+      "size": 2001,
+      "sha256": "026877626166fe632c08bd3cba28aec191561373b2167f3c6d15d1f1fac86658"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/after-source/Items/Exclusive/Squirrel.gd",
+      "size": 547,
+      "sha256": "afbba6556077e0f30f6cd5d6abced0949cd64c5979e2554326ef1303076dd1e5"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase565-exact-business-source/natural-job.json",
+      "size": 4818,
+      "sha256": "7b7fcb86a0fe82640f024488c15472ab31b2d56143c526e9ed67c8c32638d51e"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase564-source-finite-mixed/staged/native_replay_v8/engine.py",
+      "size": 259634,
+      "sha256": "2a29367a60d55937bfd139ad16cc4b228c3616acf28f6d37f826c15284f9feff"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase569-mixed-producer-schema-design/fixed-source-alias-map.json",
+      "size": 5915,
+      "sha256": "da6c362b9bcfc45a7b2e94461562a49533292c8cf248b791d8d3e7738255b91a"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase569-mixed-producer-schema-design/source-preimages-and-boundaries.json",
+      "size": 10723,
+      "sha256": "7a3b64b7bf0c9cd6c692244dc78686c84d19e72b4fed509f90cb962ee1db2a3e"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase571-mixed-producer-conditions-addendum/conditions-and-authorities.json",
+      "size": 7312,
+      "sha256": "91bda709b856028774002c81dae0a3a34892010ba915f549b6915fd2e649c92f"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-root-source-implementation-release/release.json",
+      "size": 1966,
+      "sha256": "5a287112857848d5b1e9a7b4e1f521fdc24e4759fdc140c1d2ac1343156f3b09"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase571-root-future030-source-binding/source-binding.json",
+      "size": 1265,
+      "sha256": "09c8e95ba808339412e2259fa4577e32332f9399e23b44995eba313b8614816b"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase572_food_receiver_binding_addendum_spec.md",
+      "size": 1184,
+      "sha256": "886fed4a5fa8db1aa541f7a82e96551abc1ed26ebde22f729f732abff8a54693"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Sheets/CSV/ItemData.csv",
+      "size": 80933,
+      "sha256": "26f5433cf37cd33c066dd505672fcb292e7570ede8c823c5a10f9bc21208a473"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Sheets/ItemBook.gd",
+      "size": 48708,
+      "sha256": "6b0f0b78c0ee1a0529e7740b424b157837b614cbd74c3e8f22886f9509cb9d84"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "size": 170717,
+      "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Wolpertinger.gd",
+      "size": 522,
+      "sha256": "5607b4eea0e69fa4f1f46f2a646e1c3a4c12668be75c45269cf0a2ce6b258ea2"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Wolpertinger.tscn",
+      "size": 1402,
+      "sha256": "69c0834d5d21b5adb9e6484c71261b0a305ccc192d651cf6ddd14be138ebe462"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase570-independent-mixed-producer-design-review/review.json",
+      "size": 10914,
+      "sha256": "c5aee2755561feeb2cb6db07f47c8feb238efc39ee4248941daf181e907caa98"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase570-independent-mixed-producer-design-review/owned-files.json",
+      "size": 272,
+      "sha256": "f414e138ed4e43115123925ba0330f2c07306545eb68aff29928408c03fe9f79"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase569-mixed-producer-schema-design/owned-files.json",
+      "size": 731,
+      "sha256": "dd26b088be8ae594f4a0dc5c4b3cc2c42c68bd46026971109a2e2e8ed326ed6e"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase543-next-shared-combat-family-plan/actual-source-candidates.json",
+      "size": 2936,
+      "sha256": "3fdd4eb3476ca880dc3a4a8ed7302dc408ba28259067a2c69a9b8fc2ce6bbc45"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase543-next-shared-combat-family-plan/source-pins.json",
+      "size": 5984,
+      "sha256": "4b1046882c6c46680d2c2f321490e6781016496a7547b2cad303df3019682138"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase544-independent-wolpertinger-design-review/review.json",
+      "size": 10601,
+      "sha256": "1ed358c4b5dadc84d2f5826aaa581ad3956f41b8f15661faf0fccc343c0952a6"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase545-source-wolpertinger/source-context.json",
+      "size": 7040,
+      "sha256": "4900d657df442793bac0db0493e8d30fad41ac45f710418d95ff8cf37e9e6459"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase571-root-future030-source-binding/owned-files.json",
+      "size": 454,
+      "sha256": "ddcad30477274d30e0307195a1e8f2de75cad4c183daed9ee50ba4a6c732dcf2"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase528-input-birth-guard-repair-source/source-context.json",
+      "size": 7440,
+      "sha256": "cbd0862d9ce5d0a7d57db71612bf4945c672f4c9963d77648e72605c06f99d95"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase528_initial_receipt.py",
+      "size": 16745,
+      "sha256": "95173bc927049e101c7a3d696ebad050eabf744adb5ddec00ba3db9e3650963a"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase566-independent-final-acceptance/review.json",
+      "size": 24506,
+      "sha256": "37609aabbdfd5cfce50f02a7c4677f499282328903be0136d540e62747476c49"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase564_joint_native_followup_plan_spec.md",
+      "size": 13385,
+      "sha256": "87e5ae43ad5af37f034c5d33bad6417befe4a99360d5a6f40010398144329ff4"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-root-food-binding-addendum/release.json",
+      "size": 697,
+      "sha256": "48e5abc63f07364973d5c7e0d5d572c6951563ae2f56297b1aef9b86d3d461aa"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase572_prepare_mixed_observer_source.py",
+      "size": 51626,
+      "sha256": "989f78b852190e698595a9073f611f60b9c1cef9522ddc16ff787e3db5f77f99"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase572_mixed_observer_source_implementation_spec.md",
+      "size": 6843,
+      "sha256": "5fd558762d8501c2c797aa744c6488d66126ff5cc0b89932e658f82bd2ffe31d"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source/partial-source-owner.json",
+      "size": 2646,
+      "sha256": "8afd2ad9609cddf0b2ed8f34c0460a580517f2e1d7a64d874d31e0e9606a3279"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source/first-generation-error.json",
+      "size": 1735,
+      "sha256": "e92b86e7f11dbf6c5c46ddaab21dbe7237422bc33881abb2627c4dfe4a99e78d"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Core/Buff.gd",
+      "size": 13374,
+      "sha256": "a1bfe97c556bfa3b3110988ec7d4f78cbefb7a1ddc2e2d80f31fcb968e817916"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Core/Character.gd",
+      "size": 55679,
+      "sha256": "4e37b2f5d044e015be5dd75fca37577bdb9fc870dd2e32cad5198c36649df984"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Core/CombatLog.gd",
+      "size": 38792,
+      "sha256": "4850aa479e6a6615a1833f469147a23b3c88ccb9cfc35c519c4de90aa1984a31"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Core/Game.gd",
+      "size": 145943,
+      "sha256": "fafe9612858a25b95d8d6149531b50869dbd9709719bd5d2ab6b070b6b8283b1"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Interface/CombatTimer/CombatTimer.gd",
+      "size": 8469,
+      "sha256": "70d396e088ac50aac7bd16165cc264ad8917a633fec9fa00d383f911f9936dd0"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/AcornCollar.gd",
+      "size": 694,
+      "sha256": "e8ad55cf3ebfc0f6fd0e86ae37eb5d201b38612ce3dd1e09fa8fc9f27d42c256"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/BloodAmulet.gd",
+      "size": 265,
+      "sha256": "3aa65c5e4177b1e7e13ca333000c2e5d6dfb11d9735cb13039b52a107331861b"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/BloodGoobert.gd",
+      "size": 618,
+      "sha256": "a1d0698d58ad1098a443bc1d6f0243219026e65417e0e356a6c7e8dac888d981"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Broom.gd",
+      "size": 1504,
+      "sha256": "9377c41d5ebfc044d1f7dedb05b356792ef4d869eb0e018933e49a32cd2dcab9"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/BurningTorch.gd",
+      "size": 838,
+      "sha256": "dcfa4b28cbad820c765d3fce199cf729ce7bd892ddfe3f0896124a0a76175508"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Carrot.gd",
+      "size": 326,
+      "sha256": "bff5b767f527cf8bbf28c80b0cba61a92cb57fae21c6149d794274028983a406"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/CarrotGoobert.gd",
+      "size": 2071,
+      "sha256": "b15f1a3028c48de02f02d6fa538d4d667ea56dc6cd4b6bc1b5bf6e47f06c3262"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Crossblades.gd",
+      "size": 1115,
+      "sha256": "bad61e36a5a4a0d667844d7ec840b75cea220b91f20155ede095fb81944adafb"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Dagger.gd",
+      "size": 353,
+      "sha256": "c987180883ee797dcdc2858402ac0e35b6718384bdcdc8567a6863c18e9f9853"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/BerserkerBag.gd",
+      "size": 2012,
+      "sha256": "76c9ab63fd16b9d72e8216ec79aa3bf8a4195f6e460072d374ffa37f8af174dd"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/BookofIce.gd",
+      "size": 899,
+      "sha256": "59893771895efe36d3efc995d71adc036657a9959751fb45725ea498d92f75ab"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/BroccoliGoobert.gd",
+      "size": 469,
+      "sha256": "ad1d9f056c4f6a3094daef4cfb984ce2a3f2590ce020cec61a5322f44fa3fa01"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/CheeseGoobert.gd",
+      "size": 291,
+      "sha256": "cb2160eca99f7c30c08f624b59c38bcd0960ff384ec93e71f034617bf6af2b26"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/ChiliGoobert.gd",
+      "size": 273,
+      "sha256": "53b19c9a63b688b61b641378398ab481e03205218292d988717b94f972bad0c9"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/CupcakeGoobert.gd",
+      "size": 327,
+      "sha256": "2651a63a441db7f83f91fb2ced2a1cc309a4c1de6a7895a3a87e8bef392f1b22"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/KingGoobert.gd",
+      "size": 3101,
+      "sha256": "d40b72f75f8455c407fb0425520396139f6e8f9213449c9a86368ad21eb4fcf5"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/LuckyShortbow.gd",
+      "size": 519,
+      "sha256": "e75d49b40ed1ec7662936a5b8a8983398136b918bd3da8a494d1178bfcc394b6"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/MagicMirror.gd",
+      "size": 787,
+      "sha256": "145deace8efacaf3bc269cdc35b0790cdb75411b51742bef3be989c2d9ea7d48"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/PoisonShortbow.gd",
+      "size": 806,
+      "sha256": "218a981c14e7eb1e6cd3e1c88e7a34de1fcc74d0a6e59b2c6253ee20a4d26283"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertAdventurer.gd",
+      "size": 460,
+      "sha256": "a9ca94a4eaa83983ee6463692c1fdd45dc8277264cc5ac91c4e8ceefd98dfd61"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertBerserker.gd",
+      "size": 472,
+      "sha256": "35a83c9b53dbd605267f068459baeaeec02579ed9c134dafc7382097ca898e77"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertEngineer.gd",
+      "size": 686,
+      "sha256": "05b9d469d8d24e985a9218850e8fe36f9d318df900a2755151956ce7b9d8c2dd"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertMage.gd",
+      "size": 445,
+      "sha256": "9ae16d18c386718fd4ffa8bcd4abb6c0e2fcd9b64a0d3bb89277714aa25ef0d3"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertPyromancer.gd",
+      "size": 458,
+      "sha256": "a7176ae6dc44c905fa62bf14d2d8f5a07900c3e96698ee975e55f2a16b5d8d28"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/Shelly.gd",
+      "size": 792,
+      "sha256": "f1136f326bc12bd3d5dc59718d34531f1e043030055ddeb3d11400009f14bd26"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/ShepherdsCrook.gd",
+      "size": 767,
+      "sha256": "df8752d79d3f3521907cf908f05fd0cd1eb0f364c440d97b90d0cea6a1c2a638"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/ThornShortbow.gd",
+      "size": 513,
+      "sha256": "3a15e80d1e8793b5fd5637520f5e724aa305131ed5452b6021328587cb9f0162"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/ToastGoobert.gd",
+      "size": 487,
+      "sha256": "4c3c98ae1d9050ae18e574d843d63c5d97954b978583e46296aa6a5945122a5a"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/FalconBlade.gd",
+      "size": 1255,
+      "sha256": "bd314a100ad7d430391e1a2cf1e7be8d0682051173cbb4a48281fd5f806ed8c3"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Food.gd",
+      "size": 337,
+      "sha256": "07a477dc16365fa0d5e8cfaca3cf9aacaca76eaef4b9d3d05740b5f874340d37"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/GlovesofHaste.gd",
+      "size": 381,
+      "sha256": "f691f2b91cba3f47b4f206ee90ddd6e6abbbc8b3559d7be05964d495ee15bd2f"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Goobert.gd",
+      "size": 1579,
+      "sha256": "7a7b70e9a230b551feca7e00df2fe5e241b97c7aeb15f060e792c15ff4015ebb"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Hammer.gd",
+      "size": 613,
+      "sha256": "677319b42f42ac16969e1f06b1bd288c8bb7a6c81cd7f5164765d1f806e234cf"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/HealingHerbs.gd",
+      "size": 252,
+      "sha256": "7b58d615f6b5f34072398c007be55f5b4e3e014c67e4c2d68e671061546a8848"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/HealthPotion.gd",
+      "size": 1226,
+      "sha256": "2aee9abd515cf5f8f2b6cf0df860ea1fef5399c11a8e38e506d4dc03dfcc6e4f"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/HeroLongsword.gd",
+      "size": 603,
+      "sha256": "af9c32d88f42e1b6ca80d9df9e5ac5f0368204c2a8c2fd9ff708e68434147696"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/HeroSword.gd",
+      "size": 377,
+      "sha256": "fb408bfb575560a94420ec19214d018c7ab5f7762c4f3dbad2399a236e04af7c"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/HungryBlade.gd",
+      "size": 1580,
+      "sha256": "1a979542490be1f9ec1c8a5e3af6cbe3ba35975f79809443f07a7461254c4c20"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/ItemDescriptor.gd",
+      "size": 8740,
+      "sha256": "710a3dd4cf4d172d46771ed04b743fa9e0d8ab266715443e2c4907b459b7f032"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/LeatherArmor.gd",
+      "size": 495,
+      "sha256": "c77be3f5ac7cf97683c5dcc4dc3b365c9e91cf48adc891aa8b44796ee4180a47"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/LeatherBoots.gd",
+      "size": 1047,
+      "sha256": "36cfc2e0a8ea70acdbe4817c91444f9feeb9606cd9ff48355c21c7b8eb20409f"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/LightGoobert.gd",
+      "size": 2147,
+      "sha256": "1a7a8fa4968c3753dbf57047bcac2f12f7df98287c63e1ba30f70f2187805274"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/MagicStaff.gd",
+      "size": 770,
+      "sha256": "607a380bc9654e72523aba0583dc33c5a726c331db54a908d43869393c8c6f49"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/ManaPotion.gd",
+      "size": 1731,
+      "sha256": "24a4bdd4c9da2adcfc4eda0fe6e5e49cf0949c7701bc53c8bc7a7a46d3e4ddcf"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/PestilenceFlask.gd",
+      "size": 1224,
+      "sha256": "cb93c0033c02aa540ed7eb53dbba9ce86c2e80351e1acfc0220956958fb5dffa"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/PocketSand.gd",
+      "size": 244,
+      "sha256": "d65605b604be96ab73af306b1fe068ab33fb11e7881c8ece79832839ffe60a80"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/PoisonGoobert.gd",
+      "size": 260,
+      "sha256": "04204af1e3eccc7f1edace5aefa0317db4da1f58a71ef802a8442b285f0acdfa"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Potion.gd",
+      "size": 5914,
+      "sha256": "c7561edf1dce2cc8ce48c8b15edd5cf63be765668287d9a80b504e458b118f70"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/RainbowGoobert.gd",
+      "size": 417,
+      "sha256": "1075d5eaf882e54de5c319f4af03e79a0d6293c2360ad6fde0e7d13b68a0e2b0"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/RainbowGoobertRanger.gd",
+      "size": 427,
+      "sha256": "4da6e8f24a700f1bdc64ced76a706e21b40c62181ec6b11b0707dae5c45c87c5"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/RangerCollar.gd",
+      "size": 582,
+      "sha256": "d00b1af3e3898d87c12902d5fb51f659fd0a41212944c8d889a5633f6cc0e674"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/RubyEgg.gd",
+      "size": 881,
+      "sha256": "13b9833b3cd200c4d936fdc60b552d81000c5a2ebfc405f2a3dda509c0f57557"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/SteelGoobert.gd",
+      "size": 881,
+      "sha256": "597cefc918621feeed7a470386615fbfc30ec302a1f4b2f7e2d59a3badd73991"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/StoneSkinPotion.gd",
+      "size": 1088,
+      "sha256": "d0188088fa83f31b471ba1b032c5786b0b68606d588926e223661879def0702d"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/StrongHealthPotion.gd",
+      "size": 437,
+      "sha256": "888db1bc9f7c8ee7db2c9ec6010914c033c05ef012c61c56fa33995f2c8d45d5"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/StrongStoneSkinPotion.gd",
+      "size": 485,
+      "sha256": "1ad294e75bdbc8ddb50571413f6a9bff2192fb7ec15a6967e6829b626ec53768"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/ThornWhip.gd",
+      "size": 1020,
+      "sha256": "79f80f3eeb360641cfe8806a341c3b327a10e035e62c01456dca146bfe1ab84d"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/VampiricArmor.gd",
+      "size": 544,
+      "sha256": "f2759c81f610153550b06d27ca8581e5470607397e899819665ee47ac6c8ccf7"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/WalrusTusk.gd",
+      "size": 242,
+      "sha256": "ce66c530124d007a6007e74456bcbdb46f1bda94cab75f405b4745b946aded70"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Weapon.gd",
+      "size": 649,
+      "sha256": "e1870f0dd5c8c23b84aca154ffbdfec8f4418b37c740d7bd94f7764ec8bd5295"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Sheets/ItemBook.gd",
+      "size": 48895,
+      "sha256": "e13f74aaeb9fb8837abcc16034f68700414c9cc8f86a45c6ff7c13df27335d72"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/AutoHideParticles.gd",
+      "size": 3282,
+      "sha256": "be98d47071983af16d9cb044ab54834336025522298e07dba65eadcf1d63771b"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/BalancedRandom.gd",
+      "size": 1717,
+      "sha256": "f7a8be7df85bb8cae2162cfc685c6420dc12905c7c8ef5bfb83449bbca880fe6"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/BalancedRange.gd",
+      "size": 636,
+      "sha256": "411c1c69781adaf9484edc321214aec275b7f6747efed5852d6c89aee7406857"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/DamageSource.gd",
+      "size": 4003,
+      "sha256": "0a4ee286ec2ad447c63af0bd6e65ce57f8861a50c807d5eb8cbada67de38e3ba"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/EventBus.gd",
+      "size": 4674,
+      "sha256": "777aaaef92f93020c537df46d1ac5c52f495a1e43f713ae797bb83c958c57802"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/project.godot",
+      "size": 34801,
+      "sha256": "feacc964aad20cd8c7734c4b269d31a0c3946c6231c6910fe3e6942c4751164d"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase362-oracle-capture-source/disposable-marker.txt",
+      "size": 28,
+      "sha256": "3135fd7d3ad7e72d218ca18c0782bc69a437f38e76013cc7ee224100e9b76fc1"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase573_prepare_mixed_observer_source_v2.py",
+      "size": 52996,
+      "sha256": "47349530d29ea623af76f0d5550ba6cded04ea5c62fcf80e30ed4b90c5ba100e"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase573_mixed_observer_noop_repair_spec.md",
+      "size": 2102,
+      "sha256": "e0576d157e48dbc8779a3cae4e5056888d17d1d265e0ce9b233794247683736d"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/combined-source-freeze.json",
+      "size": 61333,
+      "sha256": "8db47db5bfa19a2bd3607192a5f1e9b3054f65951f44ba0fed9447715f09e254"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/source-owner.json",
+      "size": 29475,
+      "sha256": "3f35f3a12a45d698b77362ed86143adbda9d85352b1c2a34ee1387a83ba728c6"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase574_independent_schema_controls.py",
+      "size": 5488,
+      "sha256": "6d73a23126bff957dc3d73f9ca3e8b23793cf3c70778ff8074f6b3fd1bf2cc9c"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase574_independent_mixed_schema_controls_spec.md",
+      "size": 3015,
+      "sha256": "82cd5cf4a3c92fd6968ea2178f29d449c7597cb32217d7a60218631dc62f029d"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase574-independent-schema-source/vectors.json",
+      "size": 710768,
+      "sha256": "42e7c44448ca2f2088ab62a6dde1084d7074351215856f175931579298fb2eb4"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase574-independent-schema-source/static-review.json",
+      "size": 4919,
+      "sha256": "387ed74c453ab9ff82c539e8841464aa1c0df3f4109398ac2423e935b0a05514"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase574-independent-schema-source/execution-plan.json",
+      "size": 2514,
+      "sha256": "27ff964941855cc56003280f55b5163dd3c69815d3e7780680856b58677cd6f8"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase575_independent_schema_controls.py",
+      "size": 5501,
+      "sha256": "18b5380fbee9c148f5fc5c880d387cf8a7b3e35de5c3753c25e92415adabcf52"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase575_schema_harness_preload_repair_spec.md",
+      "size": 1782,
+      "sha256": "9ffbf3df79d01aa2de8e36c516799e536e0e18e4735176b4afdab95c034e53d0"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase575-independent-schema-source/vectors.json",
+      "size": 710768,
+      "sha256": "42e7c44448ca2f2088ab62a6dde1084d7074351215856f175931579298fb2eb4"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase575-independent-schema-source/first-finding.json",
+      "size": 1452,
+      "sha256": "80e21437793247ef3fe7a449e6778c049b678fab99967651ec4cc57ca0d97260"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase575-independent-schema-source/import-closure.json",
+      "size": 4059,
+      "sha256": "7224dd9accd06e19c09296ab97c8c0b657e0e10d0a4ee7cb61e5627a39677a73"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase575-independent-schema-source/harness-v1-to-v2.patch",
+      "size": 3558,
+      "sha256": "c5aec44a8ce5929465a4c9dbd4dbfcf111174441eb6dfa23d8a07c98cd83936f"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase575-independent-schema-source/execution-plan.json",
+      "size": 3084,
+      "sha256": "588908f10d2fae1193263651211b3ed33906ba87e541dbe82035cc708f6d95ba"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase574-independent-controls-first-001/result.json",
+      "size": 92155,
+      "sha256": "22193ebd74bcc47dd65eb0ed6c0973ab343f2f2f5c8082c1b42901bc1b098bcc"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase574-independent-controls-first-001/first-error.json",
+      "size": 1715,
+      "sha256": "afdc865640284dc2ea501f2680ade44008f44b12958885c11ae09b6a76a8b1cb"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase574-independent-controls-first-001/owned-files.json",
+      "size": 523,
+      "sha256": "6ad7277011188d4fce27a3a3ee3ad00e580325e6d1b233f3ddff147f6f8abb2c"
+    }
+  ],
+  "after": [
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/after-source/Items/Item.gd",
+      "size": 178614,
+      "sha256": "11fb434eaa028eb965e10883d84ef7028ee96bdfbf2f53bdc71af64332ae0429"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/after-source/native_random_observer_sink_v7.gd",
+      "size": 105711,
+      "sha256": "a4daa16ffd957ca8f8158f456f7cd3aab2bf8dec385fff13e85806e0d6e023de"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/binding-source-contract.json",
+      "size": 953,
+      "sha256": "78f92d4178d3f04c88c168b724cf61c90e72dab9d814b28f34840c82904e2383"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/case-inputs/custom_opponent.json",
+      "size": 585,
+      "sha256": "07fa05c47df31b06145471a3710c8e5a2ef0b67d1c49a89dadad79f283ea5424"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/case-inputs/custom_player.json",
+      "size": 1915,
+      "sha256": "da55a52433bf6ccb98cd69633729a9bf287c1475a2c5e4d15d3adedc44f157ea"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/case-inputs/native_capture_config.json",
+      "size": 240,
+      "sha256": "8755cd0dce426ac29dca4fde7c2fac96dde2036255648a8e4b72594b7cdb8f36"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/collector.gd",
+      "size": 64932,
+      "sha256": "51ed1ebd6762fe93306ae97e732fca65ffa82dc41355023f7ce7418473d8a21c"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/compile-only.json",
+      "size": 299,
+      "sha256": "ad9c907aaf4247238fa8d8707f2eed43011fbc6ac8ab642b6b5f4b75404c1f8a"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/conservation.json",
+      "size": 32610,
+      "sha256": "2b3068490298dfe949debbe32f0c7c412d18dd782eed881173c7121a12408448"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/first-generation-result.json",
+      "size": 801,
+      "sha256": "d385f3f3f2d91a906938664e03f14e935bf90cdbc69b228a224dfc117c281106"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/fixed-plan.json",
+      "size": 25245,
+      "sha256": "0ffdfe84818ccccd594de3dae3ad087e38a33f9c58328c5c94146bee2ecc0bd4"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/fixed-v8-fixture.json",
+      "size": 4297,
+      "sha256": "70a6a2adf352251d3c6666c018837918b3f95c30688ea3a2b209b10828bf39e0"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/generation-started.json",
+      "size": 461,
+      "sha256": "6f9883736308b846930da3ea925263eb9d168eee92225015adbeece01f38ee37"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/install-targets.json",
+      "size": 36191,
+      "sha256": "1e07fce489d5443bfaecc447e9e84fa664e5b275996a6b204a57557f87e4638a"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/inverse/Item.json",
+      "size": 17804,
+      "sha256": "d7591cd33914e5c7befbccc3f2929c809ac3a64e9ed4ce8ba9a4709ce1af8d60"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/inverse/Item.patch",
+      "size": 1170,
+      "sha256": "e4074b204590d6d7b865f473486257feca66e76619b221770695eb2a49e36254"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/inverse/collector.json",
+      "size": 25874,
+      "sha256": "b09013fc25ba89ec1596ca6d8824fb39c6780ccb7b6bb32eb80fc8a87d165b43"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/inverse/collector.patch",
+      "size": 8397,
+      "sha256": "92cb3e633ed39a879c8db3359340373890f96942a84586ad26b1cac9281e3c62"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/inverse/native_random_observer_sink_v7.json",
+      "size": 56485,
+      "sha256": "315d73287053e20ff4ca7ab49ef88ef067565cbeb17285be3b9b5e7f3f8f53d6"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/inverse/native_random_observer_sink_v7.patch",
+      "size": 39200,
+      "sha256": "f9b48a6152c0399948b7ae427a15375f4c10e2010e18298e870b717924236d8f"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/inverse/phase572_mixed_observer_schema.json",
+      "size": 133176,
+      "sha256": "95acc22c5a8774e17cda7c5cddf25ae52228e8fdbee591bb18c4deb3bc361603"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/inverse/phase572_mixed_observer_schema.patch",
+      "size": 57594,
+      "sha256": "cb929bd03469b6d5ef74dbd194eb0e2db10480f7db50a35283a4aa6db7d49013"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/native-patch-source.json",
+      "size": 31087,
+      "sha256": "f12cd2632cbba79d8c01dfb1448221a867eac084ff6f63e61447c7df2a136e86"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/producer-v1-to-v2.patch",
+      "size": 18901,
+      "sha256": "08439969964b6cedbd7e88191c4bff3d413cfd6d2b5c950d40cfccf24a5e94b4"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/schema/phase572_mixed_observer_schema.py",
+      "size": 206103,
+      "sha256": "fd7da3dd9c95e44de14b09557130659a0ab6d20713f447695fc19a89e5ee9b43"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/source-authority.json",
+      "size": 10120,
+      "sha256": "1f4dc976d91ad6c1b313b6c1d52601acfdb26a1fbb5fe6bfe626e587a1d56d40"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/source-before.json",
+      "size": 40180,
+      "sha256": "42b343db8811d7bbc96e011cae7d27916f87b342d863821b3506e6ea7c6d43ed"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/source-default-p1-rule.json",
+      "size": 3020,
+      "sha256": "a5e2eb856eb82197357c5871282c41dfb48c5cd38cc7b5bec7fcc8734bc99ef9"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/source-tuple.json",
+      "size": 2870,
+      "sha256": "7134099050c0847030bdf824f986cf95ab9258f222a866a898f57099610cf086"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/collector.gd",
+      "size": 64612,
+      "sha256": "640bdb9b1a62e57827faed1775054d7450a411ca3b647f70f286b851436f1dfd"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Item.gd",
+      "size": 178363,
+      "sha256": "2fc1d658db352a7ecae8c2bfb60640a019284992a9c5f9a14c87baea50721631"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/schema/phase502_whelp_observer_schema.py",
+      "size": 197522,
+      "sha256": "d5531e3e9b119f0309140cb50dff2c7f545abb5ec3500d488bde29cacdb8f193"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/after-source/native_random_observer_sink_v7.gd",
+      "size": 102916,
+      "sha256": "41d500e34557cf731baea0c3e150e3d0d0815d26b5bea87c21ab3a81cd2b7162"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/Util.gd",
+      "size": 46276,
+      "sha256": "d437e9338c8c4587c0cddd29e848bef54e8b621169dd364ceaa341fbc7a1e507"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/native-patch-source.json",
+      "size": 31034,
+      "sha256": "3425d9aff911e076c57b7dc89e48e67003e95a42df99ffff732f002b132e77fc"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/combined-source-freeze.json",
+      "size": 58760,
+      "sha256": "04e152576b706f66da05d33fe493670604eca14110cbe98e73ee5f3703afb44a"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/source-owner.json",
+      "size": 27181,
+      "sha256": "48a578c6d8f9f2189e5241432d6e0b14fed8a5d4fda948ca73b0ab62dd6c8d8f"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/source-tuple.json",
+      "size": 2001,
+      "sha256": "026877626166fe632c08bd3cba28aec191561373b2167f3c6d15d1f1fac86658"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/after-source/Items/Exclusive/Squirrel.gd",
+      "size": 547,
+      "sha256": "afbba6556077e0f30f6cd5d6abced0949cd64c5979e2554326ef1303076dd1e5"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase565-exact-business-source/natural-job.json",
+      "size": 4818,
+      "sha256": "7b7fcb86a0fe82640f024488c15472ab31b2d56143c526e9ed67c8c32638d51e"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase564-source-finite-mixed/staged/native_replay_v8/engine.py",
+      "size": 259634,
+      "sha256": "2a29367a60d55937bfd139ad16cc4b228c3616acf28f6d37f826c15284f9feff"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase569-mixed-producer-schema-design/fixed-source-alias-map.json",
+      "size": 5915,
+      "sha256": "da6c362b9bcfc45a7b2e94461562a49533292c8cf248b791d8d3e7738255b91a"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase569-mixed-producer-schema-design/source-preimages-and-boundaries.json",
+      "size": 10723,
+      "sha256": "7a3b64b7bf0c9cd6c692244dc78686c84d19e72b4fed509f90cb962ee1db2a3e"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase571-mixed-producer-conditions-addendum/conditions-and-authorities.json",
+      "size": 7312,
+      "sha256": "91bda709b856028774002c81dae0a3a34892010ba915f549b6915fd2e649c92f"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-root-source-implementation-release/release.json",
+      "size": 1966,
+      "sha256": "5a287112857848d5b1e9a7b4e1f521fdc24e4759fdc140c1d2ac1343156f3b09"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase571-root-future030-source-binding/source-binding.json",
+      "size": 1265,
+      "sha256": "09c8e95ba808339412e2259fa4577e32332f9399e23b44995eba313b8614816b"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase572_food_receiver_binding_addendum_spec.md",
+      "size": 1184,
+      "sha256": "886fed4a5fa8db1aa541f7a82e96551abc1ed26ebde22f729f732abff8a54693"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Sheets/CSV/ItemData.csv",
+      "size": 80933,
+      "sha256": "26f5433cf37cd33c066dd505672fcb292e7570ede8c823c5a10f9bc21208a473"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Sheets/ItemBook.gd",
+      "size": 48708,
+      "sha256": "6b0f0b78c0ee1a0529e7740b424b157837b614cbd74c3e8f22886f9509cb9d84"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "size": 170717,
+      "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Wolpertinger.gd",
+      "size": 522,
+      "sha256": "5607b4eea0e69fa4f1f46f2a646e1c3a4c12668be75c45269cf0a2ce6b258ea2"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Wolpertinger.tscn",
+      "size": 1402,
+      "sha256": "69c0834d5d21b5adb9e6484c71261b0a305ccc192d651cf6ddd14be138ebe462"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase570-independent-mixed-producer-design-review/review.json",
+      "size": 10914,
+      "sha256": "c5aee2755561feeb2cb6db07f47c8feb238efc39ee4248941daf181e907caa98"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase570-independent-mixed-producer-design-review/owned-files.json",
+      "size": 272,
+      "sha256": "f414e138ed4e43115123925ba0330f2c07306545eb68aff29928408c03fe9f79"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase569-mixed-producer-schema-design/owned-files.json",
+      "size": 731,
+      "sha256": "dd26b088be8ae594f4a0dc5c4b3cc2c42c68bd46026971109a2e2e8ed326ed6e"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase543-next-shared-combat-family-plan/actual-source-candidates.json",
+      "size": 2936,
+      "sha256": "3fdd4eb3476ca880dc3a4a8ed7302dc408ba28259067a2c69a9b8fc2ce6bbc45"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase543-next-shared-combat-family-plan/source-pins.json",
+      "size": 5984,
+      "sha256": "4b1046882c6c46680d2c2f321490e6781016496a7547b2cad303df3019682138"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase544-independent-wolpertinger-design-review/review.json",
+      "size": 10601,
+      "sha256": "1ed358c4b5dadc84d2f5826aaa581ad3956f41b8f15661faf0fccc343c0952a6"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase545-source-wolpertinger/source-context.json",
+      "size": 7040,
+      "sha256": "4900d657df442793bac0db0493e8d30fad41ac45f710418d95ff8cf37e9e6459"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase571-root-future030-source-binding/owned-files.json",
+      "size": 454,
+      "sha256": "ddcad30477274d30e0307195a1e8f2de75cad4c183daed9ee50ba4a6c732dcf2"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase528-input-birth-guard-repair-source/source-context.json",
+      "size": 7440,
+      "sha256": "cbd0862d9ce5d0a7d57db71612bf4945c672f4c9963d77648e72605c06f99d95"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase528_initial_receipt.py",
+      "size": 16745,
+      "sha256": "95173bc927049e101c7a3d696ebad050eabf744adb5ddec00ba3db9e3650963a"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase566-independent-final-acceptance/review.json",
+      "size": 24506,
+      "sha256": "37609aabbdfd5cfce50f02a7c4677f499282328903be0136d540e62747476c49"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase564_joint_native_followup_plan_spec.md",
+      "size": 13385,
+      "sha256": "87e5ae43ad5af37f034c5d33bad6417befe4a99360d5a6f40010398144329ff4"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-root-food-binding-addendum/release.json",
+      "size": 697,
+      "sha256": "48e5abc63f07364973d5c7e0d5d572c6951563ae2f56297b1aef9b86d3d461aa"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase572_prepare_mixed_observer_source.py",
+      "size": 51626,
+      "sha256": "989f78b852190e698595a9073f611f60b9c1cef9522ddc16ff787e3db5f77f99"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase572_mixed_observer_source_implementation_spec.md",
+      "size": 6843,
+      "sha256": "5fd558762d8501c2c797aa744c6488d66126ff5cc0b89932e658f82bd2ffe31d"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source/partial-source-owner.json",
+      "size": 2646,
+      "sha256": "8afd2ad9609cddf0b2ed8f34c0460a580517f2e1d7a64d874d31e0e9606a3279"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source/first-generation-error.json",
+      "size": 1735,
+      "sha256": "e92b86e7f11dbf6c5c46ddaab21dbe7237422bc33881abb2627c4dfe4a99e78d"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Core/Buff.gd",
+      "size": 13374,
+      "sha256": "a1bfe97c556bfa3b3110988ec7d4f78cbefb7a1ddc2e2d80f31fcb968e817916"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Core/Character.gd",
+      "size": 55679,
+      "sha256": "4e37b2f5d044e015be5dd75fca37577bdb9fc870dd2e32cad5198c36649df984"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Core/CombatLog.gd",
+      "size": 38792,
+      "sha256": "4850aa479e6a6615a1833f469147a23b3c88ccb9cfc35c519c4de90aa1984a31"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Core/Game.gd",
+      "size": 145943,
+      "sha256": "fafe9612858a25b95d8d6149531b50869dbd9709719bd5d2ab6b070b6b8283b1"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Interface/CombatTimer/CombatTimer.gd",
+      "size": 8469,
+      "sha256": "70d396e088ac50aac7bd16165cc264ad8917a633fec9fa00d383f911f9936dd0"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/AcornCollar.gd",
+      "size": 694,
+      "sha256": "e8ad55cf3ebfc0f6fd0e86ae37eb5d201b38612ce3dd1e09fa8fc9f27d42c256"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/BloodAmulet.gd",
+      "size": 265,
+      "sha256": "3aa65c5e4177b1e7e13ca333000c2e5d6dfb11d9735cb13039b52a107331861b"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/BloodGoobert.gd",
+      "size": 618,
+      "sha256": "a1d0698d58ad1098a443bc1d6f0243219026e65417e0e356a6c7e8dac888d981"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Broom.gd",
+      "size": 1504,
+      "sha256": "9377c41d5ebfc044d1f7dedb05b356792ef4d869eb0e018933e49a32cd2dcab9"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/BurningTorch.gd",
+      "size": 838,
+      "sha256": "dcfa4b28cbad820c765d3fce199cf729ce7bd892ddfe3f0896124a0a76175508"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Carrot.gd",
+      "size": 326,
+      "sha256": "bff5b767f527cf8bbf28c80b0cba61a92cb57fae21c6149d794274028983a406"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/CarrotGoobert.gd",
+      "size": 2071,
+      "sha256": "b15f1a3028c48de02f02d6fa538d4d667ea56dc6cd4b6bc1b5bf6e47f06c3262"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Crossblades.gd",
+      "size": 1115,
+      "sha256": "bad61e36a5a4a0d667844d7ec840b75cea220b91f20155ede095fb81944adafb"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Dagger.gd",
+      "size": 353,
+      "sha256": "c987180883ee797dcdc2858402ac0e35b6718384bdcdc8567a6863c18e9f9853"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/BerserkerBag.gd",
+      "size": 2012,
+      "sha256": "76c9ab63fd16b9d72e8216ec79aa3bf8a4195f6e460072d374ffa37f8af174dd"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/BookofIce.gd",
+      "size": 899,
+      "sha256": "59893771895efe36d3efc995d71adc036657a9959751fb45725ea498d92f75ab"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/BroccoliGoobert.gd",
+      "size": 469,
+      "sha256": "ad1d9f056c4f6a3094daef4cfb984ce2a3f2590ce020cec61a5322f44fa3fa01"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/CheeseGoobert.gd",
+      "size": 291,
+      "sha256": "cb2160eca99f7c30c08f624b59c38bcd0960ff384ec93e71f034617bf6af2b26"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/ChiliGoobert.gd",
+      "size": 273,
+      "sha256": "53b19c9a63b688b61b641378398ab481e03205218292d988717b94f972bad0c9"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/CupcakeGoobert.gd",
+      "size": 327,
+      "sha256": "2651a63a441db7f83f91fb2ced2a1cc309a4c1de6a7895a3a87e8bef392f1b22"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/KingGoobert.gd",
+      "size": 3101,
+      "sha256": "d40b72f75f8455c407fb0425520396139f6e8f9213449c9a86368ad21eb4fcf5"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/LuckyShortbow.gd",
+      "size": 519,
+      "sha256": "e75d49b40ed1ec7662936a5b8a8983398136b918bd3da8a494d1178bfcc394b6"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/MagicMirror.gd",
+      "size": 787,
+      "sha256": "145deace8efacaf3bc269cdc35b0790cdb75411b51742bef3be989c2d9ea7d48"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/PoisonShortbow.gd",
+      "size": 806,
+      "sha256": "218a981c14e7eb1e6cd3e1c88e7a34de1fcc74d0a6e59b2c6253ee20a4d26283"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertAdventurer.gd",
+      "size": 460,
+      "sha256": "a9ca94a4eaa83983ee6463692c1fdd45dc8277264cc5ac91c4e8ceefd98dfd61"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertBerserker.gd",
+      "size": 472,
+      "sha256": "35a83c9b53dbd605267f068459baeaeec02579ed9c134dafc7382097ca898e77"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertEngineer.gd",
+      "size": 686,
+      "sha256": "05b9d469d8d24e985a9218850e8fe36f9d318df900a2755151956ce7b9d8c2dd"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertMage.gd",
+      "size": 445,
+      "sha256": "9ae16d18c386718fd4ffa8bcd4abb6c0e2fcd9b64a0d3bb89277714aa25ef0d3"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertPyromancer.gd",
+      "size": 458,
+      "sha256": "a7176ae6dc44c905fa62bf14d2d8f5a07900c3e96698ee975e55f2a16b5d8d28"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/Shelly.gd",
+      "size": 792,
+      "sha256": "f1136f326bc12bd3d5dc59718d34531f1e043030055ddeb3d11400009f14bd26"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/ShepherdsCrook.gd",
+      "size": 767,
+      "sha256": "df8752d79d3f3521907cf908f05fd0cd1eb0f364c440d97b90d0cea6a1c2a638"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/ThornShortbow.gd",
+      "size": 513,
+      "sha256": "3a15e80d1e8793b5fd5637520f5e724aa305131ed5452b6021328587cb9f0162"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/ToastGoobert.gd",
+      "size": 487,
+      "sha256": "4c3c98ae1d9050ae18e574d843d63c5d97954b978583e46296aa6a5945122a5a"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/FalconBlade.gd",
+      "size": 1255,
+      "sha256": "bd314a100ad7d430391e1a2cf1e7be8d0682051173cbb4a48281fd5f806ed8c3"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Food.gd",
+      "size": 337,
+      "sha256": "07a477dc16365fa0d5e8cfaca3cf9aacaca76eaef4b9d3d05740b5f874340d37"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/GlovesofHaste.gd",
+      "size": 381,
+      "sha256": "f691f2b91cba3f47b4f206ee90ddd6e6abbbc8b3559d7be05964d495ee15bd2f"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Goobert.gd",
+      "size": 1579,
+      "sha256": "7a7b70e9a230b551feca7e00df2fe5e241b97c7aeb15f060e792c15ff4015ebb"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Hammer.gd",
+      "size": 613,
+      "sha256": "677319b42f42ac16969e1f06b1bd288c8bb7a6c81cd7f5164765d1f806e234cf"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/HealingHerbs.gd",
+      "size": 252,
+      "sha256": "7b58d615f6b5f34072398c007be55f5b4e3e014c67e4c2d68e671061546a8848"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/HealthPotion.gd",
+      "size": 1226,
+      "sha256": "2aee9abd515cf5f8f2b6cf0df860ea1fef5399c11a8e38e506d4dc03dfcc6e4f"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/HeroLongsword.gd",
+      "size": 603,
+      "sha256": "af9c32d88f42e1b6ca80d9df9e5ac5f0368204c2a8c2fd9ff708e68434147696"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/HeroSword.gd",
+      "size": 377,
+      "sha256": "fb408bfb575560a94420ec19214d018c7ab5f7762c4f3dbad2399a236e04af7c"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/HungryBlade.gd",
+      "size": 1580,
+      "sha256": "1a979542490be1f9ec1c8a5e3af6cbe3ba35975f79809443f07a7461254c4c20"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/ItemDescriptor.gd",
+      "size": 8740,
+      "sha256": "710a3dd4cf4d172d46771ed04b743fa9e0d8ab266715443e2c4907b459b7f032"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/LeatherArmor.gd",
+      "size": 495,
+      "sha256": "c77be3f5ac7cf97683c5dcc4dc3b365c9e91cf48adc891aa8b44796ee4180a47"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/LeatherBoots.gd",
+      "size": 1047,
+      "sha256": "36cfc2e0a8ea70acdbe4817c91444f9feeb9606cd9ff48355c21c7b8eb20409f"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/LightGoobert.gd",
+      "size": 2147,
+      "sha256": "1a7a8fa4968c3753dbf57047bcac2f12f7df98287c63e1ba30f70f2187805274"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/MagicStaff.gd",
+      "size": 770,
+      "sha256": "607a380bc9654e72523aba0583dc33c5a726c331db54a908d43869393c8c6f49"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/ManaPotion.gd",
+      "size": 1731,
+      "sha256": "24a4bdd4c9da2adcfc4eda0fe6e5e49cf0949c7701bc53c8bc7a7a46d3e4ddcf"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/PestilenceFlask.gd",
+      "size": 1224,
+      "sha256": "cb93c0033c02aa540ed7eb53dbba9ce86c2e80351e1acfc0220956958fb5dffa"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/PocketSand.gd",
+      "size": 244,
+      "sha256": "d65605b604be96ab73af306b1fe068ab33fb11e7881c8ece79832839ffe60a80"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/PoisonGoobert.gd",
+      "size": 260,
+      "sha256": "04204af1e3eccc7f1edace5aefa0317db4da1f58a71ef802a8442b285f0acdfa"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Potion.gd",
+      "size": 5914,
+      "sha256": "c7561edf1dce2cc8ce48c8b15edd5cf63be765668287d9a80b504e458b118f70"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/RainbowGoobert.gd",
+      "size": 417,
+      "sha256": "1075d5eaf882e54de5c319f4af03e79a0d6293c2360ad6fde0e7d13b68a0e2b0"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/RainbowGoobertRanger.gd",
+      "size": 427,
+      "sha256": "4da6e8f24a700f1bdc64ced76a706e21b40c62181ec6b11b0707dae5c45c87c5"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/RangerCollar.gd",
+      "size": 582,
+      "sha256": "d00b1af3e3898d87c12902d5fb51f659fd0a41212944c8d889a5633f6cc0e674"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/RubyEgg.gd",
+      "size": 881,
+      "sha256": "13b9833b3cd200c4d936fdc60b552d81000c5a2ebfc405f2a3dda509c0f57557"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/SteelGoobert.gd",
+      "size": 881,
+      "sha256": "597cefc918621feeed7a470386615fbfc30ec302a1f4b2f7e2d59a3badd73991"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/StoneSkinPotion.gd",
+      "size": 1088,
+      "sha256": "d0188088fa83f31b471ba1b032c5786b0b68606d588926e223661879def0702d"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/StrongHealthPotion.gd",
+      "size": 437,
+      "sha256": "888db1bc9f7c8ee7db2c9ec6010914c033c05ef012c61c56fa33995f2c8d45d5"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/StrongStoneSkinPotion.gd",
+      "size": 485,
+      "sha256": "1ad294e75bdbc8ddb50571413f6a9bff2192fb7ec15a6967e6829b626ec53768"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/ThornWhip.gd",
+      "size": 1020,
+      "sha256": "79f80f3eeb360641cfe8806a341c3b327a10e035e62c01456dca146bfe1ab84d"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/VampiricArmor.gd",
+      "size": 544,
+      "sha256": "f2759c81f610153550b06d27ca8581e5470607397e899819665ee47ac6c8ccf7"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/WalrusTusk.gd",
+      "size": 242,
+      "sha256": "ce66c530124d007a6007e74456bcbdb46f1bda94cab75f405b4745b946aded70"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Weapon.gd",
+      "size": 649,
+      "sha256": "e1870f0dd5c8c23b84aca154ffbdfec8f4418b37c740d7bd94f7764ec8bd5295"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Sheets/ItemBook.gd",
+      "size": 48895,
+      "sha256": "e13f74aaeb9fb8837abcc16034f68700414c9cc8f86a45c6ff7c13df27335d72"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/AutoHideParticles.gd",
+      "size": 3282,
+      "sha256": "be98d47071983af16d9cb044ab54834336025522298e07dba65eadcf1d63771b"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/BalancedRandom.gd",
+      "size": 1717,
+      "sha256": "f7a8be7df85bb8cae2162cfc685c6420dc12905c7c8ef5bfb83449bbca880fe6"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/BalancedRange.gd",
+      "size": 636,
+      "sha256": "411c1c69781adaf9484edc321214aec275b7f6747efed5852d6c89aee7406857"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/DamageSource.gd",
+      "size": 4003,
+      "sha256": "0a4ee286ec2ad447c63af0bd6e65ce57f8861a50c807d5eb8cbada67de38e3ba"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/EventBus.gd",
+      "size": 4674,
+      "sha256": "777aaaef92f93020c537df46d1ac5c52f495a1e43f713ae797bb83c958c57802"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/project.godot",
+      "size": 34801,
+      "sha256": "feacc964aad20cd8c7734c4b269d31a0c3946c6231c6910fe3e6942c4751164d"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase362-oracle-capture-source/disposable-marker.txt",
+      "size": 28,
+      "sha256": "3135fd7d3ad7e72d218ca18c0782bc69a437f38e76013cc7ee224100e9b76fc1"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase573_prepare_mixed_observer_source_v2.py",
+      "size": 52996,
+      "sha256": "47349530d29ea623af76f0d5550ba6cded04ea5c62fcf80e30ed4b90c5ba100e"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase573_mixed_observer_noop_repair_spec.md",
+      "size": 2102,
+      "sha256": "e0576d157e48dbc8779a3cae4e5056888d17d1d265e0ce9b233794247683736d"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/combined-source-freeze.json",
+      "size": 61333,
+      "sha256": "8db47db5bfa19a2bd3607192a5f1e9b3054f65951f44ba0fed9447715f09e254"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/source-owner.json",
+      "size": 29475,
+      "sha256": "3f35f3a12a45d698b77362ed86143adbda9d85352b1c2a34ee1387a83ba728c6"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase574_independent_schema_controls.py",
+      "size": 5488,
+      "sha256": "6d73a23126bff957dc3d73f9ca3e8b23793cf3c70778ff8074f6b3fd1bf2cc9c"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase574_independent_mixed_schema_controls_spec.md",
+      "size": 3015,
+      "sha256": "82cd5cf4a3c92fd6968ea2178f29d449c7597cb32217d7a60218631dc62f029d"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase574-independent-schema-source/vectors.json",
+      "size": 710768,
+      "sha256": "42e7c44448ca2f2088ab62a6dde1084d7074351215856f175931579298fb2eb4"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase574-independent-schema-source/static-review.json",
+      "size": 4919,
+      "sha256": "387ed74c453ab9ff82c539e8841464aa1c0df3f4109398ac2423e935b0a05514"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase574-independent-schema-source/execution-plan.json",
+      "size": 2514,
+      "sha256": "27ff964941855cc56003280f55b5163dd3c69815d3e7780680856b58677cd6f8"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase575_independent_schema_controls.py",
+      "size": 5501,
+      "sha256": "18b5380fbee9c148f5fc5c880d387cf8a7b3e35de5c3753c25e92415adabcf52"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase575_schema_harness_preload_repair_spec.md",
+      "size": 1782,
+      "sha256": "9ffbf3df79d01aa2de8e36c516799e536e0e18e4735176b4afdab95c034e53d0"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase575-independent-schema-source/vectors.json",
+      "size": 710768,
+      "sha256": "42e7c44448ca2f2088ab62a6dde1084d7074351215856f175931579298fb2eb4"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase575-independent-schema-source/first-finding.json",
+      "size": 1452,
+      "sha256": "80e21437793247ef3fe7a449e6778c049b678fab99967651ec4cc57ca0d97260"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase575-independent-schema-source/import-closure.json",
+      "size": 4059,
+      "sha256": "7224dd9accd06e19c09296ab97c8c0b657e0e10d0a4ee7cb61e5627a39677a73"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase575-independent-schema-source/harness-v1-to-v2.patch",
+      "size": 3558,
+      "sha256": "c5aec44a8ce5929465a4c9dbd4dbfcf111174441eb6dfa23d8a07c98cd83936f"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase575-independent-schema-source/execution-plan.json",
+      "size": 3084,
+      "sha256": "588908f10d2fae1193263651211b3ed33906ba87e541dbe82035cc708f6d95ba"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase574-independent-controls-first-001/result.json",
+      "size": 92155,
+      "sha256": "22193ebd74bcc47dd65eb0ed6c0973ab343f2f2f5c8082c1b42901bc1b098bcc"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase574-independent-controls-first-001/first-error.json",
+      "size": 1715,
+      "sha256": "afdc865640284dc2ea501f2680ade44008f44b12958885c11ae09b6a76a8b1cb"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase574-independent-controls-first-001/owned-files.json",
+      "size": 523,
+      "sha256": "6ad7277011188d4fce27a3a3ee3ad00e580325e6d1b233f3ddff147f6f8abb2c"
+    }
+  ],
+  "source_pins_unchanged": true,
+  "seconds": 0.427009781000379,
+  "schema_function_calls": {
+    "<module>": 1,
+    "<genexpr>": 691,
+    "FramePass": 1,
+    "ClockSchedule": 1,
+    "validate_state": 337,
+    "validate_typed": 17000,
+    "exact": 10693,
+    "decimal": 5536,
+    "integer": 5564,
+    "scalar_number": 225,
+    "validate_cache": 361,
+    "validate_record": 9,
+    "_base_validate_record": 9,
+    "text": 471,
+    "validate_primitive": 7,
+    "_base_validate_primitive": 6,
+    "primitive_context": 6,
+    "argument_fields": 38,
+    "validate_resources": 8,
+    "_single_king_typed": 619,
+    "_single_king_keys": 733,
+    "_single_king_real": 445,
+    "_validate_mixed_prepared_facts": 4,
+    "validate_single_king_fresh_facts": 4,
+    "_single_king_node": 102,
+    "_single_king_timer": 12,
+    "_single_king_counter": 6,
+    "validate_single_king_source_defaults": 3,
+    "_binding_checkpoint": 9,
+    "_binding_id": 603,
+    "_binding_integer_value": 36
+  },
+  "read_open_counts": {
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/schema/phase572_mixed_observer_schema.py": 2,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/after-source/Items/Item.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/after-source/native_random_observer_sink_v7.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/binding-source-contract.json": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/case-inputs/custom_opponent.json": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/case-inputs/custom_player.json": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/case-inputs/native_capture_config.json": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/collector.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/compile-only.json": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/conservation.json": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/first-generation-result.json": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/fixed-plan.json": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/fixed-v8-fixture.json": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/generation-started.json": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/install-targets.json": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/inverse/Item.json": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/inverse/Item.patch": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/inverse/collector.json": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/inverse/collector.patch": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/inverse/native_random_observer_sink_v7.json": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/inverse/native_random_observer_sink_v7.patch": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/inverse/phase572_mixed_observer_schema.json": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/inverse/phase572_mixed_observer_schema.patch": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/native-patch-source.json": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/producer-v1-to-v2.patch": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/source-authority.json": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/source-before.json": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/source-default-p1-rule.json": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/source-tuple.json": 1,
+    "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/collector.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Item.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/schema/phase502_whelp_observer_schema.py": 1,
+    "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/after-source/native_random_observer_sink_v7.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/Util.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/native-patch-source.json": 1,
+    "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/combined-source-freeze.json": 1,
+    "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/source-owner.json": 1,
+    "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/source-tuple.json": 1,
+    "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/after-source/Items/Exclusive/Squirrel.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase565-exact-business-source/natural-job.json": 1,
+    "/workspace/python-original-engine/repo/data/phase564-source-finite-mixed/staged/native_replay_v8/engine.py": 1,
+    "/workspace/python-original-engine/repo/data/phase569-mixed-producer-schema-design/fixed-source-alias-map.json": 1,
+    "/workspace/python-original-engine/repo/data/phase569-mixed-producer-schema-design/source-preimages-and-boundaries.json": 1,
+    "/workspace/python-original-engine/repo/data/phase571-mixed-producer-conditions-addendum/conditions-and-authorities.json": 1,
+    "/workspace/python-original-engine/repo/data/phase572-root-source-implementation-release/release.json": 1,
+    "/workspace/python-original-engine/repo/data/phase571-root-future030-source-binding/source-binding.json": 1,
+    "/workspace/python-original-engine/repo/docs/phase572_food_receiver_binding_addendum_spec.md": 1,
+    "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Sheets/CSV/ItemData.csv": 1,
+    "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Sheets/ItemBook.gd": 1,
+    "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd": 1,
+    "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Wolpertinger.gd": 1,
+    "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Wolpertinger.tscn": 1,
+    "/workspace/python-original-engine/repo/data/phase570-independent-mixed-producer-design-review/review.json": 1,
+    "/workspace/python-original-engine/repo/data/phase570-independent-mixed-producer-design-review/owned-files.json": 1,
+    "/workspace/python-original-engine/repo/data/phase569-mixed-producer-schema-design/owned-files.json": 1,
+    "/workspace/python-original-engine/repo/data/phase543-next-shared-combat-family-plan/actual-source-candidates.json": 1,
+    "/workspace/python-original-engine/repo/data/phase543-next-shared-combat-family-plan/source-pins.json": 1,
+    "/workspace/python-original-engine/repo/data/phase544-independent-wolpertinger-design-review/review.json": 1,
+    "/workspace/python-original-engine/repo/data/phase545-source-wolpertinger/source-context.json": 1,
+    "/workspace/python-original-engine/repo/data/phase571-root-future030-source-binding/owned-files.json": 1,
+    "/workspace/python-original-engine/repo/data/phase528-input-birth-guard-repair-source/source-context.json": 1,
+    "/workspace/python-original-engine/repo/tests/phase528_initial_receipt.py": 1,
+    "/workspace/python-original-engine/repo/data/phase566-independent-final-acceptance/review.json": 1,
+    "/workspace/python-original-engine/repo/docs/phase564_joint_native_followup_plan_spec.md": 1,
+    "/workspace/python-original-engine/repo/data/phase572-root-food-binding-addendum/release.json": 1,
+    "/workspace/python-original-engine/repo/tests/phase572_prepare_mixed_observer_source.py": 1,
+    "/workspace/python-original-engine/repo/docs/phase572_mixed_observer_source_implementation_spec.md": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source/partial-source-owner.json": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source/first-generation-error.json": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Core/Buff.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Core/Character.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Core/CombatLog.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Core/Game.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Interface/CombatTimer/CombatTimer.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/AcornCollar.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/BloodAmulet.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/BloodGoobert.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Broom.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/BurningTorch.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Carrot.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/CarrotGoobert.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Crossblades.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Dagger.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/BerserkerBag.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/BookofIce.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/BroccoliGoobert.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/CheeseGoobert.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/ChiliGoobert.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/CupcakeGoobert.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/KingGoobert.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/LuckyShortbow.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/MagicMirror.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/PoisonShortbow.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertAdventurer.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertBerserker.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertEngineer.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertMage.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/RainbowGoobertPyromancer.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/Shelly.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/ShepherdsCrook.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/ThornShortbow.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Exclusive/ToastGoobert.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/FalconBlade.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Food.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/GlovesofHaste.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Goobert.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Hammer.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/HealingHerbs.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/HealthPotion.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/HeroLongsword.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/HeroSword.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/HungryBlade.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/ItemDescriptor.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/LeatherArmor.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/LeatherBoots.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/LightGoobert.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/MagicStaff.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/ManaPotion.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/PestilenceFlask.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/PocketSand.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/PoisonGoobert.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Potion.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/RainbowGoobert.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/RainbowGoobertRanger.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/RangerCollar.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/RubyEgg.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/SteelGoobert.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/StoneSkinPotion.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/StrongHealthPotion.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/StrongStoneSkinPotion.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/ThornWhip.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/VampiricArmor.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/WalrusTusk.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Items/Weapon.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Sheets/ItemBook.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/AutoHideParticles.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/BalancedRandom.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/BalancedRange.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/DamageSource.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/Utility/EventBus.gd": 1,
+    "/workspace/python-original-engine/repo/data/phase359-king-producer-source/after-source/project.godot": 1,
+    "/workspace/python-original-engine/repo/data/phase362-oracle-capture-source/disposable-marker.txt": 1,
+    "/workspace/python-original-engine/repo/tests/phase573_prepare_mixed_observer_source_v2.py": 1,
+    "/workspace/python-original-engine/repo/docs/phase573_mixed_observer_noop_repair_spec.md": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/combined-source-freeze.json": 1,
+    "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/source-owner.json": 1,
+    "/workspace/python-original-engine/repo/tests/phase574_independent_schema_controls.py": 1,
+    "/workspace/python-original-engine/repo/docs/phase574_independent_mixed_schema_controls_spec.md": 1,
+    "/workspace/python-original-engine/repo/data/phase574-independent-schema-source/vectors.json": 1,
+    "/workspace/python-original-engine/repo/data/phase574-independent-schema-source/static-review.json": 1,
+    "/workspace/python-original-engine/repo/data/phase574-independent-schema-source/execution-plan.json": 1,
+    "/workspace/python-original-engine/repo/tests/phase575_independent_schema_controls.py": 1,
+    "/workspace/python-original-engine/repo/docs/phase575_schema_harness_preload_repair_spec.md": 1,
+    "/workspace/python-original-engine/repo/data/phase575-independent-schema-source/vectors.json": 1,
+    "/workspace/python-original-engine/repo/data/phase575-independent-schema-source/first-finding.json": 1,
+    "/workspace/python-original-engine/repo/data/phase575-independent-schema-source/import-closure.json": 1,
+    "/workspace/python-original-engine/repo/data/phase575-independent-schema-source/harness-v1-to-v2.patch": 1,
+    "/workspace/python-original-engine/repo/data/phase575-independent-schema-source/execution-plan.json": 1,
+    "/workspace/python-original-engine/repo/data/phase574-independent-controls-first-001/result.json": 1,
+    "/workspace/python-original-engine/repo/data/phase574-independent-controls-first-001/first-error.json": 1,
+    "/workspace/python-original-engine/repo/data/phase574-independent-controls-first-001/owned-files.json": 1
+  },
+  "read_scope": "pinned source/vector files and new output only after audit installation; preaudit pin verification separate",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]"
+}

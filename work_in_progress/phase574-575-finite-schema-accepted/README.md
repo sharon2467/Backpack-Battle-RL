@@ -1,0 +1,11 @@
+# Source and finite synthetic schema acceptance
+
+574 independently reviewed the frozen573v2 observer Source:145 references, four full inverses,107 sites/MATRIX,74 inherited targets, Utility/Squirrel/clock conservation and the mandatory prepared-facts join. Its first actual test stopped during module evaluation because the test's own read guard blocked unpreloaded stdlib dataclasses. Zero controls ran; that failure remains here.
+
+575 changes only preaudit dataclasses preload and stage namespaces. Candidate Source,22 vectors, assertions and strict file scope remain exact. The actual new batch passed all22 top-level calls:9 positive/13 expected rejects across8 groups. The new prepared helper accepted its explicit synthetic positive and rejected foreign cache UID and wrong coefficient at the intended checks. Every argument canonical representation and all161 Source/input pins remained unchanged. Across both attempts:module evaluation2, completed schema import1, controls22. Processes were reaped; no stdout/stderr or outer timeout.
+
+Independent final SHA256:526d09b0de3948ff8932d7064dc6ef934c6674cfb89d8a6621f203c056edd3a7. These are synthetic helper shapes, not a full capture or Native lineage/input certificate. Complete binding/capture, real Godot purity, setup/canAdd, actual UIDs/cuts/clock/Tape/BelowMaster, model and Expected comparison remain unexecuted. Formal75/catalog84 unchanged; accepted public Source564 runtime remains unchanged.
+
+All failures remain:572 no-op generation guard,574 stdlib import,575 metadata-only duplicate-keyword parse error. The earlier Git readback caught five Source preimages excluded by the repository ignore rule; the five exact manifested texts were added without changing ignore rules or force-pushing. Complete573v2 archive is verified at b33ef1c931a57436d42a4a4f7606bfa60098fdb3 (149 payloads/3190912B/all hashes). Do not use incomplete92b830d as that archive's full backup.
+
+Restore the prior573v2 Source archive first, then overlay this repo/ evidence. No successful old battle needs repeating. Source case030/stream seeds57101 and57102 remain a nonoperational draft. Next is a bounded INPUT/captured-consumer Source adaptation plan; no Original installation or capture is released by this checkpoint.

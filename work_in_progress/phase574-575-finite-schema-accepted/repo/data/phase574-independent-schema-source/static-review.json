@@ -1,0 +1,123 @@
+{
+  "schema": "phase574-independent-source-review/1",
+  "status": "STATIC_SOURCE_PASS_DYNAMIC_PENDING",
+  "source_owner": {
+    "path": "data/phase572-mixed-observer-source-v2/source-owner.json",
+    "size": 29475,
+    "sha256": "3f35f3a12a45d698b77362ed86143adbda9d85352b1c2a34ee1387a83ba728c6"
+  },
+  "source_freeze": {
+    "path": "data/phase572-mixed-observer-source-v2/combined-source-freeze.json",
+    "size": 61333,
+    "sha256": "8db47db5bfa19a2bd3607192a5f1e9b3054f65951f44ba0fed9447715f09e254"
+  },
+  "source_tuple": {
+    "path": "data/phase572-mixed-observer-source-v2/source-tuple.json",
+    "size": 2870,
+    "sha256": "7134099050c0847030bdf824f986cf95ab9258f222a866a898f57099610cf086"
+  },
+  "owner_refs_verified": 145,
+  "full_inverse_checks": [
+    {
+      "name": "Item",
+      "full_reverse_exact": true,
+      "edits": 2,
+      "changed_functions": [
+        "getLeastStacks",
+        "trigger"
+      ],
+      "new_functions": []
+    },
+    {
+      "name": "native_random_observer_sink_v7",
+      "full_reverse_exact": true,
+      "edits": 11,
+      "changed_functions": [
+        "bind_fixed_inventory",
+        "context",
+        "rng_initial_capture",
+        "selected_king_facts",
+        "source_resources",
+        "state",
+        "ui_open"
+      ],
+      "new_functions": []
+    },
+    {
+      "name": "collector",
+      "full_reverse_exact": true,
+      "edits": 6,
+      "changed_functions": [
+        "on_idle_source_cut",
+        "state_snapshot"
+      ],
+      "new_functions": []
+    },
+    {
+      "name": "phase572_mixed_observer_schema",
+      "full_reverse_exact": true,
+      "edits": 25,
+      "changed_functions": [
+        "_base_validate_record",
+        "join_binding_provenance",
+        "primitive_context",
+        "validate_primitive",
+        "validate_record",
+        "validate_resources",
+        "validate_single_king_fresh_facts",
+        "validate_single_king_source_defaults",
+        "validate_state"
+      ],
+      "new_functions": [
+        "_validate_mixed_prepared_facts"
+      ]
+    }
+  ],
+  "conservation": {
+    "schema_old_changed": 9,
+    "schema_added": 1,
+    "schema_old_AST_exact": 67,
+    "MATRIX_Timer_API_statement_exact": true,
+    "Timer_roles_assignment_exact": true,
+    "GD_SITES_exact": true,
+    "inherited_targets": 74,
+    "Util_Squirrel_sources_unchanged": true,
+    "actual_install_targets": 79,
+    "actual_install_bytes": 817389
+  },
+  "findings": [
+    "Two Item deltas only label existing single native Utility call and add a local least ordinal; args/return/business branches and Util bytes remain exact. This is static transparency, not actual Godot purity.",
+    "Closed primitive label/context/caller/target/kind/ordinal and bounded least endpoint checks agree with fixed29 profile; existing strict transport/value decoder remains.",
+    "New descriptor-dispatched subtype schemas and common modifier REAL fields match producer reads. Coefficient NIL-or-REAL prestate is distinct from required postprepare REAL; numBuffs3/buffs1 and Bowl REAL ledger are strict.",
+    "Source-derived default p1=.7 is explicitly non-observed and bound to571/default descriptor premise; same-cut actual base/coefficient relationship is mandatory. No new getter or catalog/output inference.",
+    "Full29 identity/lineage loop precedes unconditional prepared helper call; after-mutation hash follows. Complete public caller body is exact, pooledFalse remains mandatory. Shape-only entry alone is not complete admission.",
+    "NewFood.prepare strict INT5/22/162 only; existing role/descriptor relation retained. No caller broadening to every fixed descriptor.",
+    "Collector common arrays, timer/clock bodies and inherited107 boundary remain; profile/case/config aliases changed to030/57101/57102 only as frozen Source draft, not execution authorization.",
+    "573 repair drops only no-op TIMER_ROLES replacement and asserts inherited exact expression.572 failure remains; newSource full inverse remains strict."
+  ],
+  "dynamic_plan": {
+    "groups": 8,
+    "direct_calls": 22,
+    "positive": 9,
+    "expected_reject": 13,
+    "schema_loads": 1,
+    "inner_wall_seconds": 15,
+    "outer_wall_seconds": 20,
+    "authorized_to_execute": false,
+    "wholecapture_or_binding_fulljoin_calls": 0
+  },
+  "limits": [
+    "Direct four-argument helper vectors intentionally do not claim complete capture/lineage validation. Mandatory placement and pooled check are static; helper association itself will receive a real positive and two deep negatives.",
+    "No actualNativeIDs/cuts/clock/Tape, canAdd/default availability or belowMaster observation exists for this case.",
+    "No Source modification/import/compile/SUT/model/Godot/Expected/pool operation occurred in574 preparation."
+  ],
+  "execution_counts": {
+    "schema_imports": 0,
+    "SUT_calls": 0,
+    "compile": 0,
+    "model": 0,
+    "Native": 0,
+    "Expected": 0,
+    "pool": 0
+  }
+}

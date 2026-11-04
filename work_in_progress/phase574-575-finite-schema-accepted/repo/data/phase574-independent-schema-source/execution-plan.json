@@ -1,0 +1,98 @@
+{
+  "schema": "phase574-exact-execution-plan/1",
+  "status": "FROZEN_PENDING_ROOT_RELEASE",
+  "cwd": "/tmp",
+  "argv": [
+    "python",
+    "-I",
+    "-B",
+    "/workspace/python-original-engine/repo/tests/phase574_independent_schema_controls.py",
+    "--pins",
+    "/workspace/python-original-engine/repo/data/phase574-independent-schema-source/pins.json",
+    "--output-new",
+    "/workspace/python-original-engine/repo/data/phase574-independent-controls-first-001"
+  ],
+  "inner_seconds": 15,
+  "outer_seconds": 20,
+  "groups": 8,
+  "direct_calls": 22,
+  "positive": 9,
+  "expected_reject": 13,
+  "schema_imports": 1,
+  "per_api": {
+    "_validate_mixed_prepared_facts": 4,
+    "validate_record": 9,
+    "validate_resources": 2,
+    "validate_state": 7
+  },
+  "group_cases": {
+    "1": [
+      "01",
+      "02",
+      "03"
+    ],
+    "2": [
+      "04",
+      "05",
+      "06",
+      "07"
+    ],
+    "3": [
+      "08",
+      "09"
+    ],
+    "4": [
+      "10",
+      "11",
+      "12"
+    ],
+    "5": [
+      "13",
+      "14"
+    ],
+    "6": [
+      "15",
+      "16"
+    ],
+    "7": [
+      "17",
+      "18"
+    ],
+    "8": [
+      "19",
+      "20",
+      "21",
+      "22"
+    ]
+  },
+  "mutation_check": "canonical input bytes unchanged around every API; Source pins before/after",
+  "nested_calls": "Actual schema function profile separately records nested validate_state/resources/facts/default/checkpoint calls; not counted as additional top controls.",
+  "forbidden": [
+    "fullcapture validation",
+    "producer regeneration",
+    "Godot parse/native",
+    "models",
+    "Expected",
+    "real capture inputs",
+    "pool",
+    "host",
+    "old test batches"
+  ],
+  "first_unexpected": "stop, seal result/first-error/owner; no retry or fixes",
+  "minimal_helper_shapes": "Synthetic29 role state rows and required node topology plus real typed dependencies; no actual birth/capture certificate, no monkeypatch or fake Schema.",
+  "source": {
+    "path": "data/phase572-mixed-observer-source-v2/schema/phase572_mixed_observer_schema.py",
+    "size": 206103,
+    "sha256": "fd7da3dd9c95e44de14b09557130659a0ab6d20713f447695fc19a89e5ee9b43"
+  },
+  "script": {
+    "path": "tests/phase574_independent_schema_controls.py",
+    "size": 5488,
+    "sha256": "6d73a23126bff957dc3d73f9ca3e8b23793cf3c70778ff8074f6b3fd1bf2cc9c"
+  },
+  "vectors": {
+    "path": "data/phase574-independent-schema-source/vectors.json",
+    "size": 710768,
+    "sha256": "42e7c44448ca2f2088ab62a6dde1084d7074351215856f175931579298fb2eb4"
+  }
+}

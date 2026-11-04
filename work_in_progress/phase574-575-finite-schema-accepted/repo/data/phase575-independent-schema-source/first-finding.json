@@ -1,0 +1,32 @@
+{
+  "schema": "phase575-harness-first-finding/1",
+  "status": "HARNESS_PRELOAD_DEFECT_NOT_CANDIDATE_OR_PLATFORM_DENIAL",
+  "error": "audit rejected stdlib dataclasses.py because harness did not preload dataclasses before restricted reads",
+  "actual_result": {
+    "path": "data/phase574-independent-controls-first-001/result.json",
+    "size": 92155,
+    "sha256": "22193ebd74bcc47dd65eb0ed6c0973ab343f2f2f5c8082c1b42901bc1b098bcc"
+  },
+  "first_error": {
+    "path": "data/phase574-independent-controls-first-001/first-error.json",
+    "size": 1715,
+    "sha256": "afdc865640284dc2ea501f2680ade44008f44b12958885c11ae09b6a76a8b1cb"
+  },
+  "actual_owner": {
+    "path": "data/phase574-independent-controls-first-001/owned-files.json",
+    "size": 523,
+    "sha256": "6ad7277011188d4fce27a3a3ee3ad00e580325e6d1b233f3ddff147f6f8abb2c"
+  },
+  "counts": {
+    "schema_eval_attempts": 1,
+    "completed_schema_imports": 0,
+    "direct_controls": 0,
+    "passed_controls": 0
+  },
+  "legacy_field_interpretation": "574 result.schema_imports=1 increments before exec; it counts an eval attempt, not completed import.575 preserves that instrumentation and reports completion separately in independent interpretation.",
+  "old_source_and_vectors_unchanged": true,
+  "remaining": 22,
+  "platform_permissions_changed": false,
+  "audit_scope_relaxed": false,
+  "actual_error_scope": "READ_SCOPE emitted by our own audit hook, not the platform filesystem sandbox"
+}

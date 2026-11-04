@@ -1,0 +1,174 @@
+{
+  "schema": "phase575-static-import-closure/1",
+  "method": "AST inspection only; no candidate/module eval or test probe",
+  "schema_source": {
+    "path": "data/phase572-mixed-observer-source-v2/schema/phase572_mixed_observer_schema.py",
+    "size": 206103,
+    "sha256": "fd7da3dd9c95e44de14b09557130659a0ab6d20713f447695fc19a89e5ee9b43"
+  },
+  "schema_import_statements": [
+    {
+      "line": 4,
+      "text": "import hashlib, json, math, re, struct"
+    },
+    {
+      "line": 5,
+      "text": "from copy import deepcopy"
+    },
+    {
+      "line": 6,
+      "text": "from dataclasses import dataclass"
+    },
+    {
+      "line": 7,
+      "text": "from types import SimpleNamespace"
+    }
+  ],
+  "dataclasses": {
+    "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/dataclasses.py",
+    "size": 62085,
+    "sha256": "d242aea5fcf6408b1c1f622442f88f68b9526ce1f8bd2890d74a144677c427d9"
+  },
+  "dataclasses_all_import_statements": [
+    {
+      "line": 1,
+      "text": "import re"
+    },
+    {
+      "line": 2,
+      "text": "import sys"
+    },
+    {
+      "line": 3,
+      "text": "import copy"
+    },
+    {
+      "line": 4,
+      "text": "import types"
+    },
+    {
+      "line": 5,
+      "text": "import inspect"
+    },
+    {
+      "line": 6,
+      "text": "import keyword"
+    },
+    {
+      "line": 7,
+      "text": "import functools"
+    },
+    {
+      "line": 8,
+      "text": "import itertools"
+    },
+    {
+      "line": 9,
+      "text": "import abc"
+    },
+    {
+      "line": 10,
+      "text": "import _thread"
+    },
+    {
+      "line": 11,
+      "text": "from types import FunctionType, GenericAlias"
+    }
+  ],
+  "inspect": {
+    "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/inspect.py",
+    "size": 127125,
+    "sha256": "5c54ebf0bfdc25397750e5d0f63800751650ee50e65325ff3ea4069c9bfa5f75"
+  },
+  "inspect_top_level_imports": [
+    {
+      "line": 144,
+      "text": "import abc"
+    },
+    {
+      "line": 145,
+      "text": "import ast"
+    },
+    {
+      "line": 146,
+      "text": "import dis"
+    },
+    {
+      "line": 147,
+      "text": "import collections.abc"
+    },
+    {
+      "line": 148,
+      "text": "import enum"
+    },
+    {
+      "line": 149,
+      "text": "import importlib.machinery"
+    },
+    {
+      "line": 150,
+      "text": "import itertools"
+    },
+    {
+      "line": 151,
+      "text": "import linecache"
+    },
+    {
+      "line": 152,
+      "text": "import os"
+    },
+    {
+      "line": 153,
+      "text": "import re"
+    },
+    {
+      "line": 154,
+      "text": "import sys"
+    },
+    {
+      "line": 155,
+      "text": "import tokenize"
+    },
+    {
+      "line": 156,
+      "text": "import token"
+    },
+    {
+      "line": 157,
+      "text": "import types"
+    },
+    {
+      "line": 158,
+      "text": "import functools"
+    },
+    {
+      "line": 159,
+      "text": "import builtins"
+    },
+    {
+      "line": 160,
+      "text": "from keyword import iskeyword"
+    },
+    {
+      "line": 161,
+      "text": "from operator import attrgetter"
+    },
+    {
+      "line": 162,
+      "text": "from collections import namedtuple, OrderedDict"
+    },
+    {
+      "line": 163,
+      "text": "from weakref import ref as make_weakref"
+    }
+  ],
+  "resolution": "Explicit import dataclasses at harness module top completes its normal stdlib imports (including inspect and its dependencies) before audit installation. Other schema direct modules hashlib/json/math/re/struct/copy/types were already preloaded. No new stdlib allowlist or file permission.",
+  "typing": "No schema typing import or use. dataclasses _get_field reads sys.modules.get(typing); it does not import typing. All imports in dataclasses occur at module top. No explicit typing preload is required.",
+  "conservation": {
+    "all_harness_function_AST_bodies_exact_after_namespace_normalization": true,
+    "source_schema_unchanged": true,
+    "vectors_raw_exact": true,
+    "all_22_expected_results_unchanged": true,
+    "only_import_addition": "dataclasses"
+  }
+}

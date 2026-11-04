@@ -1,0 +1,8 @@
+{
+  "status": "FAIL_FIRST_UNEXPECTED",
+  "error_type": "PermissionError",
+  "error": "READ_SCOPE /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/dataclasses.py",
+  "traceback": "Traceback (most recent call last):\n  File \"/workspace/python-original-engine/repo/tests/phase574_independent_schema_controls.py\", line 50, in main\n    result['schema_imports']+=1;exec(compile(SCHEMA.read_bytes(),str(SCHEMA),'exec'),module.__dict__)\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/schema/phase572_mixed_observer_schema.py\", line 6, in <module>\n    from dataclasses import dataclass\n  File \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1331, in _find_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 935, in _load_unlocked\n  File \"<frozen importlib._bootstrap_external>\", line 995, in exec_module\n  File \"<frozen importlib._bootstrap_external>\", line 1132, in get_code\n  File \"<frozen importlib._bootstrap_external>\", line 1190, in get_data\n  File \"/workspace/python-original-engine/repo/tests/phase574_independent_schema_controls.py\", line 42, in audit\n    if path not in allowed and not path.startswith(str(out)+os.sep):raise PermissionError('READ_SCOPE '+path)\n                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nPermissionError: READ_SCOPE /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/dataclasses.py\n",
+  "direct_entered": 0,
+  "schema_imports": 1
+}
