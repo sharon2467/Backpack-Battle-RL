@@ -1,0 +1,61 @@
+--- data/phase564-source-finite-mixed/staged/native_replay_v8/genuine.py
++++ data/phase580-captured-mixed-source/staged/native_replay_v8/genuine.py
+@@ -73,6 +73,9 @@
+ 
+ 
+ def validate_profile(data, fixture):
++    if data.get('profile_id') == CAPTURED_MIXED_PROFILE:
++        validate_captured_mixed_profile(data, fixture)
++        return
+     if data.get('profile_id') == PURE441_PROFILE:
+         validate_pure441_profile(data, fixture)
+         return
+@@ -149,6 +152,11 @@
+         raise ValueError('genuine input outside code-approved finite source/lineage domain')
+ 
+ def validate_result_profile(runtime,fixture):
++    if runtime.get('profile') == CAPTURED_MIXED_PROFILE:
++        validate_captured_mixed_fixture(fixture)
++        if runtime.get('mode') != 'genuine' or runtime.get('terminal_profile') != SINGLE_KING_TERMINAL:
++            raise ValueError('captured mixed result profile/terminal')
++        return
+     if runtime.get('profile') == PURE441_PROFILE:
+         validate_single_king_fixture(fixture)
+         if runtime.get('mode') != 'genuine' or runtime.get('terminal_profile') != SINGLE_KING_TERMINAL:
+@@ -225,6 +233,7 @@
+         raise ValueError('BLOCKED_INHERITED_INPUT: completed genuine finite-profile result required')
+ 
+ def observer_label(data):
++    if data.get('profile_id') == CAPTURED_MIXED_PROFILE:return 'observer7-572-zeroKing-mixed-candidate580'
+     if data.get('profile_id') == PURE441_PROFILE:return 'observer7-390-fixed441-pure-candidate443'
+     if data.get('profile_id') == SINGLE_KING_GENUINE_PROFILE:return 'observer7-355-single-king-A'
+     if data.get('profile_id') == RAINBOW75_PROFILE:return 'observer7-324-headless-rainbow75-battle'
+@@ -1077,3 +1086,28 @@
+             or data.get('mode') != 'genuine' or data.get('terminal_profile') != SINGLE_KING_TERMINAL):
+         raise ValueError('fixed441 pure input ABI/profile/terminal required')
+     return True
++
++#580 closed captured mixed interface. No native data/admission is created.
++CAPTURED_MIXED_PROFILE = 'pure-combat-mixed-modifiers-A-captured/1'
++CAPTURED_MIXED_SCHEMA = 'native-v8-pure-combat-runtime-input/mixed-modifiers-1'
++CAPTURED_MIXED_GEOMETRY_SHA256 = '9438223fde7cd7df14e99840e0086f50d72f55a81a4b0e58191a083084f4d83a'
++CAPTURED_MIXED_CONTRACT = {'native_profile': 'observer7-mixed-modifiers-A-native-tape/1', 'native_observer_version': '7-mixed-modifiers-A-572', 'observer_source_tuple': {'path': 'data/phase572-mixed-observer-source-v2/source-tuple.json', 'size': 2870, 'sha256': '7134099050c0847030bdf824f986cf95ab9258f222a866a898f57099610cf086'}, 'input_ABI': {'path': 'data/phase578-mixed-input-bridge-source/abi.json', 'size': 1362, 'sha256': '897a40ea9594be1c8adac869345646c1f6df8f9732e8663dfbd433cbff2c7eff'}, 'scope': 'Closed mixed29 conditional actual Tape/fullclock interface only; actual030 input applicability and launcher gate pending', 'timer_initial_domain': 'SOURCE_SUPPORTED_G02_INACTIVE_VALUES_NOT_ALL_NATIVE_FRESH_HISTORY', 'role_policy': {'raw_timers': 32, 'business_timers': 26, 'inactive_timers': 6, 'total_configs': '32+5+actualitems', 'processing': '1+totalconfigs', 'actual_native_counts': None}, 'actual_input_bundle': None, 'actual_initial64_character8_receipts': None, 'actual_launcher_binding': None, 'input_binding_status': 'PENDING_EXTERNAL_ACTUAL_INPUT_ACCEPTANCE_AND_CODE_BOUND_LAUNCHER', 'comparison_status': 'NOT_EVALUATED'}
++PROFILES = PROFILES | {CAPTURED_MIXED_PROFILE}
++
++
++def validate_captured_mixed_fixture(fixture):
++    if type(fixture) is not dict or type(fixture.get('below_master')) is not bool:
++        raise ValueError('captured mixed requires explicit actual belowMaster BOOL')
++    neutral = dict(fixture, below_master=None)
++    if canonical_sha(neutral) != CAPTURED_MIXED_GEOMETRY_SHA256:
++        raise ValueError('captured mixed exact29 geometry/order/class0/default/noKing fixture')
++    return True
++
++
++def validate_captured_mixed_profile(data, fixture):
++    validate_captured_mixed_fixture(fixture)
++    if (data.get('schema') != CAPTURED_MIXED_SCHEMA or data.get('profile_id') != CAPTURED_MIXED_PROFILE
++            or data.get('mode') != 'genuine' or data.get('terminal_profile') != SINGLE_KING_TERMINAL):
++        raise ValueError('captured mixed exact14 profile/terminal')
++    return True
++

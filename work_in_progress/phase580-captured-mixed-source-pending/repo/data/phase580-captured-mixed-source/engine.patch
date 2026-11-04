@@ -1,0 +1,387 @@
+--- data/phase564-source-finite-mixed/staged/native_replay_v8/engine.py
++++ data/phase580-captured-mixed-source/staged/native_replay_v8/engine.py
+@@ -18,6 +18,7 @@
+ 
+ from .randomness import BalancedRange, BalancedRng, SeededRandom, TapeRandom
+ from .genuine import PURE441_PROFILE, PURE441_SCHEMA, PURE441_CONTRACT, validate_pure441_profile
++from .genuine import CAPTURED_MIXED_PROFILE, CAPTURED_MIXED_SCHEMA, CAPTURED_MIXED_CONTRACT, validate_captured_mixed_profile
+ from .histories import CombatHistories
+ from .state import native_rule_state
+ 
+@@ -896,7 +897,7 @@
+ 
+ 
+ def _integration_domain(data):
+-    return _pure441_profile(data) or data.get('profile_id') in (KING_INTEGRATION_PROFILE, KING_GENUINE_PROFILE, SINGLE_KING_GENUINE_PROFILE)
++    return _captured_mixed_profile(data) or _pure441_profile(data) or data.get('profile_id') in (KING_INTEGRATION_PROFILE, KING_GENUINE_PROFILE, SINGLE_KING_GENUINE_PROFILE)
+ 
+ 
+ def _validate_processing_inputs(data,fixture):
+@@ -1031,6 +1032,8 @@
+ 
+ def validate_runtime_inputs(runtime, fixture):
+     data = deepcopy(runtime.data if isinstance(runtime, RuntimeDTO) else runtime)
++    if _captured_mixed_profile(data):
++        return _validate_captured_mixed_runtime(data, fixture, runtime)
+     if _source_pure_profile(data):
+         return _validate_source_pure_runtime(data, fixture, runtime)
+     if _pure441_profile(data):
+@@ -1163,6 +1166,8 @@
+ 
+ 
+ def build_runtime_scaffold(dto):
++    if _captured_mixed_profile(dto):
++        return _build_pure441_scaffold(dto)
+     if _source_pure_profile(dto):
+         return _build_source_pure_scaffold(dto)
+     if _pure441_profile(dto):
+@@ -1273,14 +1278,17 @@
+         self.model_source_sha256 = assert_model_source_stable()
+         self.fixture = deepcopy(fixture if fixture is not None else starter_fixture())
+         validate_fixture(self.fixture)
+-        source_runtime = validate_runtime_inputs(runtime, self.fixture) if _source_king_profile(runtime) or _single_king_genuine_profile(runtime) or _pure441_profile(runtime) or _source_pure_profile(runtime) else None
++        source_runtime = validate_runtime_inputs(runtime, self.fixture) if _source_king_profile(runtime) or _single_king_genuine_profile(runtime) or _pure441_profile(runtime) or _source_pure_profile(runtime) or _captured_mixed_profile(runtime) else None
+         if _source_pure_profile(runtime) and (random_source is None or isinstance(random_source,(TapeRandom,SeededRandom))):
+             raise ValueError('Source pure requires explicit Source seed provider; no Tape/Python seed fallback')
+         if _pure441_profile(runtime) and type(random_source) is not TapeRandom:
+             raise ValueError('fixed441 pure candidate requires actual TapeRandom; no seed fallback')
++        if _captured_mixed_profile(runtime) and type(random_source) is not TapeRandom:
++            raise ValueError('captured mixed requires exact TapeRandom; no fallback')
+         self.random = random_source if random_source is not None else SeededRandom(0)
+         self.runtime_inputs = source_runtime if source_runtime is not None else validate_runtime_inputs(runtime, self.fixture)
+-        self.pure_combat_mode = _pure441_profile(self.runtime_inputs)
++        self.captured_clock_mode = _captured_mixed_profile(self.runtime_inputs)
++        self.pure_combat_mode = _pure441_profile(self.runtime_inputs) or self.captured_clock_mode
+         self.source_pure_mode = _source_pure_profile(self.runtime_inputs)
+         self.pure_snapshots = []
+         self.pure_api_trace = []
+@@ -1338,6 +1346,7 @@
+         self.source_king_mode=_source_king_profile(self.runtime_inputs) or self.source_pure_mode
+         self.integration_mode=_integration_domain(self.runtime_inputs.data)
+         self.processing_inputs={n['role']:n for n in self.runtime_inputs.data.get('processing_nodes',[])}
++        self.captured_noop_slots = frozenset({('game',0),('game',1)} | {('item:'+identity,1) for identity in self.items}) if self.captured_clock_mode else frozenset()
+         self.king_states={}
+         self.invu_origins={'P':None,'O':None}
+         self.invu_bubbles={'P':False,'O':False}
+@@ -1353,15 +1362,24 @@
+                 self.characters[side].invulnerable = values['invulnerable']
+                 self.characters[side].buff_protect_stacks = values['buffProtectStacks']
+                 self.invu_origins[side] = values['invulnerabilityItem']
+-            self.king_states['P:12'] = dict(invuCharges=0, protectedBuffs=3.0, manaCost=4.0)
++            if not self.captured_clock_mode:
++                self.king_states['P:12'] = dict(invuCharges=0, protectedBuffs=3.0, manaCost=4.0)
+         elif self.king_mode:
+             for identity,facts in self.runtime_inputs.data['king_particles'].items():
+                 self.king_states[identity]=dict(invuCharges=0,protectedBuffs=3.0,manaCost=4.0,crown=0,
+                     visible=False,emitting=False,drag_visible=False,drag_emitting=False,
+                     light_visible=True,light_modulate=[1.0,1.0,1.0,1.0],particle_facts=deepcopy(facts['activation']['getters']if self.integration_mode else facts))
+-        self._connect_runtime_callbacks()
+-        self.frame_driver=(HeadlessKingFrameDriver(self) if self.source_king_mode else EngineFrameDriver(self)) if self.king_mode else None
+-        if self.king_mode:
++        if self.captured_clock_mode:
++            for role, node in self.runtime_roles.items():
++                if isinstance(node, TimerRecord):
++                    if role in CAPTURED_MIXED_INACTIVE:
++                        self.timer_runtime.connect_timeout(node, lambda timer, role=role: (_ for _ in ()).throw(ValueError('inactive captured Timer timeout: ' + role)))
++                    else:
++                        self.timer_runtime.connect_timeout(node, lambda timer, role=role: self._timer_timeout(role))
++        else:
++            self._connect_runtime_callbacks()
++        self.frame_driver=(HeadlessKingFrameDriver(self) if self.source_king_mode else EngineFrameDriver(self)) if (self.king_mode or self.captured_clock_mode) else None
++        if self.king_mode or self.captured_clock_mode:
+             for role in self.ordinary_roles:
+                 if role!='util':
+                     node=self.runtime_roles[role]
+@@ -1375,9 +1393,65 @@
+                         self.timer_runtime.connect_ordinary(self.runtime_roles[role],lambda node,delta,role=role:self._source_noninterfering_callback(role,1,delta),1)
+                         self.timer_runtime.set_ordinary_processing(self.runtime_roles[role],True,1)
+         if self.pure_combat_mode:
+-            self._validate_pure441_constructed()
++            if self.captured_clock_mode:self._validate_captured_mixed_state(False)
++            else:self._validate_pure441_constructed()
+             self.pure_snapshots.append(self._pure_business_snapshot('constructed_off_clock'))
+         if self.source_pure_mode:self._validate_source_pure_state(False)
++
++    def _validate_captured_mixed_state(self, prepared):
++        if (type(prepared) is not bool or self.prepared is not prepared or not self.captured_clock_mode
++                or self.king_mode or self.king_states or self.source_king_mode or self.source_pure_mode):
++            raise ValueError('captured mixed actual zeroKing preparation stage')
++        self._validate_pure441_constructed()
++        expected = {row['instance_id']:row['item_index'] for side in self.fixture['sides'] for row in side['items']}
++        if set(self.items) != set(expected):
++            raise ValueError('captured mixed actual fixed identity set')
++        for identity,item in self.items.items():
++            if (type(item.item_index) is not int or item.item_index != expected[identity]
++                    or item.instance_id != identity or item.cache_prepared is not prepared):
++                raise ValueError('captured mixed actual item/descriptor/cache stage')
++            self._validate_attack_effect_chance(item)
++            self._validate_bowl_double_activation_chance(item)
++            if not prepared and (item.double_activation_chance != 0.0 or item.double_attack_effect_chance != 0.0):
++                raise ValueError('captured mixed constructor chance0 domain')
++            if item.item_index == 162:
++                if type(item.bowl_speed_bonus_given) is not float or _float_bits(item.bowl_speed_bonus_given) != _float_bits(0.0):
++                    raise ValueError('captured mixed Bowl actual initial/prepare REAL0 ledger')
++            elif item.item_index == 231:
++                if type(item.definition['least_buffs']) is not int or item.definition['least_buffs'] != 3:
++                    raise ValueError('captured mixed Wolper Source count INT3')
++                if item.wolpertinger_buff_listener_registered is not prepared:
++                    raise ValueError('captured mixed Wolper actual listener stage')
++                coefficient = item.wolpertinger_stamina_regen_per_buff
++                if not prepared:
++                    if coefficient is not None:
++                        raise ValueError('captured mixed Python constructor coefficient; not Native pre-value')
++                else:
++                    percent = item.definition['stamina_regen_percent']
++                    base = self.characters[item.side].base_stamina_regen
++                    if (type(percent) is not float or percent != 0.7 or type(base) is not float or not math.isfinite(base)
++                            or type(coefficient) is not float or not math.isfinite(coefficient)
++                            or _float_bits(coefficient) != _float_bits((percent * base) / 100.0)):
++                        raise ValueError('captured mixed actual prepared Wolper coefficient')
++            elif item.item_index == 385:
++                if type(item.definition['least_buffs']) is not int or item.definition['least_buffs'] != 1:
++                    raise ValueError('captured mixed Enchanted Source count INT1')
++        if self.frame_driver.pass_index != 0:
++            raise ValueError('captured mixed constructor/prepare may not advance actual clock')
++
++    def _run_captured_clock(self, max_seconds, delta):
++        if not self.captured_clock_mode:
++            raise ValueError('finite captured mixed clock only')
++        if (type(max_seconds) not in (int,float) or not math.isfinite(max_seconds)
++                or not 0 < max_seconds <= 120.0 or type(delta) is not float or delta != NATIVE_PHYSICS_DELTA):
++            raise ValueError('captured mixed finite simulated budget and sealed clock delta')
++        if not self.prepared:self.prepare_only()
++        if not self.activated:self.activate_from_checkpoint()
++        while not self.frame_driver.finalized:
++            if not self.ended and self.elapsed >= max_seconds:
++                raise TimeoutError('captured mixed simulated combat budget exhausted')
++            self.step(delta)
++        return self.result()
+ 
+     def _validate_source_pure_state(self,prepared):
+         data=self.runtime_inputs.data
+@@ -1428,6 +1502,7 @@
+             raise ValueError('fixed441 constructor may not consume activation Tape')
+ 
+     def _validate_pure441_prepared(self):
++        if self.captured_clock_mode:return self._validate_captured_mixed_state(True)
+         self._validate_pure441_constructed()
+         if not self.prepared or self.king_states['P:12']['invuCharges'] != self.items['P:12'].definition['charges']:
+             raise ValueError('pure King prepare business state mismatch')
+@@ -1486,6 +1561,9 @@
+             util_time_bits=_float_bits(d.util_time),util_clock_time_bits=_float_bits(d.util_clock_time)))
+ 
+     def _source_noninterfering_callback(self,role,mode,delta):
++        if self.captured_clock_mode:
++            if type(mode) is not int or type(role) is not str or (role,mode) not in self.captured_noop_slots:
++                raise ValueError('unknown captured no-op callback role/mode')
+         if not self.integration_mode or not(role=='game' or mode==1 and role.startswith('item:')):
+             raise ValueError('unknown noninterference callback')
+         self._integration_callback(role,mode,delta)
+@@ -1823,7 +1901,7 @@
+                     util_time=self.util_time,combat_time=self.time,activated=self.activated,
+                     pending_terminal=self.pending_terminal,terminal_profile=self.runtime_inputs.data['terminal_profile'],
+                     timers=self._timer_snapshot(),ordinary_order=list(self.ordinary_roles))
+-        if self.king_mode:
++        if self.king_mode or self.captured_clock_mode:
+             d=self.frame_driver
+             result.update(util_clock_time=d.util_clock_time,util_frame_counter=d.util_frame_counter,
+                           phase=d.phase,passes_consumed=d.pass_index,physics_frame=d.physics_frame,idle_frame=d.idle_frame,
+@@ -2029,7 +2107,7 @@
+         if self.source_pure_mode:self._validate_source_pure_state(True)
+ 
+     def activate_from_checkpoint(self):
+-        if self.king_mode and not self.frame_driver.activated:
++        if (self.king_mode or self.captured_clock_mode) and not self.frame_driver.activated:
+             if not self.prepared:raise ValueError('activate requires prepared combat')
+             return self.frame_driver.activate(lambda driver:self.activate_from_checkpoint())
+         if not self.prepared or self.activated:
+@@ -3669,7 +3747,7 @@
+             self.ended = True
+             self.winner = "P" if self.characters["O"].hp <= 0 else "O"
+             self.pending_terminal = True
+-            if self.king_mode:self.frame_driver.request_end(lambda driver:self.finish())
++            if self.king_mode or self.captured_clock_mode:self.frame_driver.request_end(lambda driver:self.finish())
+ 
+     def fatigue_tick(self):
+         self.mark_schedule("fatigue_tick", 0.0)
+@@ -3701,7 +3779,7 @@
+         return event
+ 
+     def step(self, delta=NATIVE_PHYSICS_DELTA):
+-        if self.king_mode:
++        if self.king_mode or self.captured_clock_mode:
+             if type(delta)is not float or delta!=NATIVE_PHYSICS_DELTA:raise ValueError('King delta comes from sealed frame clock')
+             if not self.prepared:self.prepare_only()
+             if not self.activated:self.activate_from_checkpoint()
+@@ -3761,7 +3839,7 @@
+                     role='aux:'+side+':'+name
+                     if self.pure_combat_mode or self.source_pure_mode:self._stop_timer(role)
+                     else:self.runtime_trace.append(dict(kind='inactive_aux_stop',role=role,source='Character.combatEnd',before=self._integration_aux_timer(role),after=self._integration_aux_timer(role)))
+-            if self.king_mode:self._stop_timer('invu:'+side)
++            if self.king_mode or self.captured_clock_mode:self._stop_timer('invu:'+side)
+         self.fatigue_counter = 0
+         self._stop_timer('fatigue:start')
+         self._stop_timer('fatigue:tick')
+@@ -3825,7 +3903,7 @@
+         return references
+ 
+     def result(self):
+-        if self.king_mode:
++        if self.king_mode or self.captured_clock_mode:
+             if not self.frame_driver.finalized:raise ValueError('King source terminal barrier incomplete')
+             if self.source_king_mode:self.frame_driver.complete()
+             else:self.frame_driver.run()  # Finite records still require exact exhaustion.
+@@ -3851,9 +3929,13 @@
+             result['king_terminal']=dict(post_cleanup=deepcopy(self.frame_driver.post_cleanup_snapshot),
+                                         final=deepcopy(self.frame_driver.final_snapshot),
+                                         passes=deepcopy(self.frame_driver.pass_trace))
++        if self.captured_clock_mode:
++            result['captured_terminal']=dict(post_cleanup=deepcopy(self.frame_driver.post_cleanup_snapshot),
++                                             final=deepcopy(self.frame_driver.final_snapshot),
++                                             passes=deepcopy(self.frame_driver.pass_trace))
+         if self.pure_combat_mode:
+             result['pure_combat_diagnostics'] = dict(schema='phase443-same-instance-business/1',
+-                contract=deepcopy(PURE441_CONTRACT), snapshots=deepcopy(self.pure_snapshots),
++                contract=deepcopy(CAPTURED_MIXED_CONTRACT if self.captured_clock_mode else PURE441_CONTRACT), snapshots=deepcopy(self.pure_snapshots),
+                 post_cleanup=deepcopy(self.frame_driver.post_cleanup_snapshot['business']),
+                 final=deepcopy(self.frame_driver.final_snapshot['business']),
+                 api=deepcopy(self.pure_api_trace), callbacks=[deepcopy(x) for x in self.runtime_trace if x.get('kind')=='source_callback'],
+@@ -3893,6 +3975,7 @@
+         return self.result()
+ 
+     def run(self, max_seconds=120.0, delta=NATIVE_PHYSICS_DELTA):
++        if self.captured_clock_mode:return self._run_captured_clock(max_seconds,delta)
+         if self.source_king_mode:
+             return self._run_source_king(max_seconds, delta)
+         if not self.prepared:
+@@ -4330,3 +4413,130 @@
+                 _assert_pure441_timer(node,initial)
+     ordinary=sorted((n for n in configs if n['kind']=='ordinary'),key=lambda n:(n['priority'],tuple(n['positions'])))
+     return runtime,records,[n['role'] for n in ordinary]
++
++CAPTURED_MIXED_INACTIVE = frozenset(['invu:P','invu:O'] + ['aux:'+side+':'+name for side in ('P','O') for name in ('battleRageTimer','autoRageTimer')])
++
++
++def _captured_mixed_profile(runtime):
++    data = runtime.data if isinstance(runtime, RuntimeDTO) else runtime
++    return type(data) is dict and data.get('profile_id') == CAPTURED_MIXED_PROFILE
++
++
++def _captured_mixed_roles(fixture):
++    roles = _required_roles(fixture)
++    roles['game'] = 'ordinary'
++    for side in ('P','O'):
++        roles['invu:'+side] = 'timer'
++        for name in ('battleRageTimer','autoRageTimer'):
++            roles['aux:'+side+':'+name] = 'timer'
++    if (len(roles) != 32 + 5 + sum(len(side['items']) for side in fixture['sides']) or len([role for role,kind in roles.items() if kind == 'timer']) != 32
++            or _has_king(fixture) or _has_rage(fixture)):
++        raise ValueError('captured mixed raw32/26business+6inactive noKing roles')
++    return roles
++
++
++def _validate_captured_mixed_runtime(data, fixture, original):
++    validate_captured_mixed_profile(data, fixture)
++    _keys(data, ('schema','mode','profile_id','checkpoint','environment','nodes','timer_initial',
++                 'initial_items','initial_characters','prepare_order','activate_order','terminal_profile',
++                 'frame_clock','processing_nodes'), 'captured mixed runtime14')
++    _keys(data['environment'], ('fps','scale','paused'), 'pure environment')
++    env = data['environment']
++    if type(env['fps']) is not int or env['fps'] != 60 or type(env['scale']) is not float or env['scale'] != 1.0 or env['paused'] is not False:
++        raise ValueError('captured mixed fixed60 scale1 unpaused required')
++    _keys(data['checkpoint'], ('util_time_bits','combat_time_bits','source_phase'), 'pure checkpoint')
++    checkpoint = data['checkpoint']
++    util_time = _be_float(checkpoint['util_time_bits'])
++    if util_time < 0 or checkpoint['combat_time_bits'] != _float_bits(0.0) or checkpoint['source_phase'] != 'Core/Game.gd::activateItems:enter':
++        raise ValueError('captured mixed activation checkpoint')
++    clock = decode_clock(data['frame_clock'])
++    if _float_bits(clock.util_time) != checkpoint['util_time_bits']:
++        raise ValueError('captured mixed checkpoint/clock mismatch')
++    ids = {i['instance_id'] for side in fixture['sides'] for i in side['items']}
++    for field in ('prepare_order','activate_order'):
++        order = data[field]
++        if type(order) is not list or len(order) != len(ids) or any(type(i) is not str for i in order) or set(order) != ids:
++            raise ValueError('captured mixed exact29 item order')
++    if data['prepare_order'] != data['activate_order']:
++        raise ValueError('captured mixed different prepare/activate order unsupported')
++    _keys(data['initial_items'], ids, 'pure initial items')
++    for values in data['initial_items'].values():
++        _keys(values, ('lastActivationTime_bits','lastTriggerTime_bits','activationsThisFrame','triggersThisFrame','dragged','moveback_running','cache_fresh'), 'pure emitted item scalars')
++        if any(values[k] != _float_bits(0.0) for k in ('lastActivationTime_bits','lastTriggerTime_bits')):
++            raise ValueError('captured mixed limiter bits differ from fixed input domain')
++        if any(type(values[k]) is not int or values[k] != 0 for k in ('activationsThisFrame','triggersThisFrame')):
++            raise ValueError('captured mixed limiter integer domain')
++        if values['dragged'] is not False or values['moveback_running'] is not False or values['cache_fresh'] is not True:
++            raise ValueError('captured mixed emitted drag/tween/cache predicate')
++    _keys(data['initial_characters'], ('P','O'), 'pure initial characters')
++    for values in data['initial_characters'].values():
++        _keys(values, ('invulnerable','invulnerabilityItem','buffProtectStacks'), 'pure character fields')
++        if values['invulnerable'] is not False or values['invulnerabilityItem'] is not None or type(values['buffProtectStacks']) is not int or values['buffProtectStacks'] != 0:
++            raise ValueError('unsupported captured mixed character initial values')
++    required = _captured_mixed_roles(fixture)
++    rows = data['processing_nodes']
++    if type(rows) is not list or len(rows) != 1 + len(required):
++        raise ValueError('captured mixed processing67 required')
++    table, native_ids, paths, positions, prefixes = {}, set(), set(), set(), {}
++    path_positions = {}
++    for node in rows:
++        _keys(node, NODE_INPUT_KEYS, 'pure processing node')
++        role = node['role']
++        if type(role) is not str or role not in set(required) | {'root_viewport'} or role in table:
++            raise ValueError('captured mixed unknown/duplicate role')
++        if type(node['native_id']) is not str or re.fullmatch('[1-9][0-9]*',node['native_id']) is None or node['native_id'] in native_ids:
++            raise ValueError('captured mixed native identity')
++        if type(node['path']) is not str or not (node['path']=='/root' or node['path'].startswith('/root/')) or node['path'] in paths:
++            raise ValueError('captured mixed actual path')
++        names, pos = node['path'].split('/')[1:], node['positions']
++        if type(pos) is not list or len(pos) != len(names) or not pos or pos[0] != -1 or any(type(x) is not int for x in pos) or any(not 0 <= x <= 4096 for x in pos[1:]) or tuple(pos) in positions:
++            raise ValueError('captured mixed actual sparse coordinates')
++        if node['name'] != names[-1] or type(node['priority']) is not int or not -(2**31) <= node['priority'] < 2**31 or type(node['class']) is not str or node['inside_tree'] is not True:
++            raise ValueError('captured mixed node scalar types')
++        expected_class = 'Viewport' if role == 'root_viewport' else 'Timer' if required[role] == 'timer' else 'RigidBody2D' if role.startswith('item:') else 'Node2D'
++        if node['class'] != expected_class:
++            raise ValueError('captured mixed role/native class association')
++        for flag in ('ordinary_physics','internal_physics','ordinary_idle','internal_idle'):
++            if type(node[flag]) is not bool:raise ValueError('captured mixed independent bool flags')
++        for j in range(1,len(names)+1):
++            prefix = tuple(pos[:j]); name_path = tuple(names[:j])
++            if prefix in prefixes and prefixes[prefix] != name_path:raise ValueError('captured mixed sparse prefix conflict')
++            if name_path in path_positions and path_positions[name_path] != prefix:raise ValueError('captured mixed reverse sparse prefix conflict')
++            prefixes[prefix] = name_path; path_positions[name_path] = prefix
++        if role == 'root_viewport':
++            if node['path']!='/root' or pos!=[-1] or node['priority']!=0 or node['class']!='Viewport' or (node['ordinary_physics'],node['internal_physics'],node['ordinary_idle'],node['internal_idle']) != (False,True,False,False):
++                raise ValueError('captured mixed root flags')
++        else:
++            if node['internal_physics'] or node['internal_idle']:raise ValueError('captured mixed initial native internal flags')
++            expected = (True,True) if role in ('game','util') else (True,False) if role.startswith('character:') else (False,True) if role.startswith('item:') else (False,False)
++            if (node['ordinary_physics'],node['ordinary_idle']) != expected:raise ValueError('captured mixed initial ordinary memberships')
++        table[role]=node;native_ids.add(node['native_id']);paths.add(node['path']);positions.add(tuple(pos))
++    if set(table) != set(required)|{'root_viewport'}:raise ValueError('captured mixed complete processing roles')
++    configs = data['nodes']
++    if type(configs) is not list or len(configs)!=len(required):raise ValueError('captured mixed config66 required')
++    seen=set()
++    for config in configs:
++        _keys(config, ('role','path','positions','priority','kind'), 'pure node config')
++        role=config['role']
++        if type(role) is not str or role not in required or role in seen or type(config['kind']) is not str or config['kind']!=required[role]:raise ValueError('captured mixed node kind/role')
++        actual=table[role]
++        if type(config['positions']) is not list or any(type(x) is not int for x in config['positions']):raise ValueError('captured mixed typed config positions')
++        if any(type(config[k]) is not type(actual[k]) or config[k]!=actual[k] for k in ('path','positions','priority')):raise ValueError('captured mixed raw/config topology')
++        seen.add(role)
++    timers={role for role,kind in required.items() if kind=='timer'}
++    _keys(data['timer_initial'],timers,'raw32 timer values')
++    if len(timers)!=32:raise ValueError('captured mixed exact32 timers')
++    for role, initial in data['timer_initial'].items():
++        _keys(initial, ('wait_time_bits','one_shot','process_mode','autostart','paused','private_left_bits'), 'pure timer fields')
++        wait=_be_float(initial['wait_time_bits'])
++        if wait!=1.0 or f32(wait)!=wait or type(initial['one_shot']) is not bool or initial['one_shot'] != (not role.startswith('tick:')) or type(initial['process_mode']) is not int or initial['process_mode']!=0 or initial['autostart'] is not False or initial['paused'] is not False or initial['private_left_bits'] != _float_bits(-1.0) or table[role]['class']!='Timer':
++            raise ValueError('captured mixed unsupported typed Timer state/config')
++    for side in ('P','O'):
++        timer,parent=table['invu:'+side],table['character:'+side]
++        if (len(timer['positions']) != len(parent['positions']) + 1 or timer['positions'][:-1] != parent['positions']
++                or timer['path'] != parent['path'] + '/InvulnerabilityTimer'):
++            raise ValueError('captured mixed actual Character-owned invulnerability Timer')
++    if isinstance(original,RuntimeDTO) and (type(original.prepare_order) is not tuple or original.prepare_order!=tuple(data['prepare_order']) or type(original.util_time) is not float or _float_bits(original.util_time)!=checkpoint['util_time_bits']):
++        raise ValueError('captured mixed RuntimeDTO convenience mismatch')
++    return RuntimeDTO(data,tuple(data['prepare_order']),util_time)
++
