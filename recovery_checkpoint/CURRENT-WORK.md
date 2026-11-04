@@ -32,6 +32,10 @@ Earlier independent fixedKing451(375events365Tape) and fixed26King+Basic478(366e
 
 [543–545 Source pendingindependentcontrols](../work_in_progress/phase543-545-wolpertinger-source-pending/README.md) implements least-buff allocation and buff-delta stamina feedback in an isolated copy of497. Onlyengine/headlesschange;13files conserved.546finiteSourcecontrols and onepreselectednewSourcecase remainpending;no newNativeorformaladmission. Current publicSDK497 is unchanged.
 
+## EnchantedWeapons385 Source business accepted (553)
+
+[553Sourceevidence](../work_in_progress/phase553-enchanted-source-business-accepted/README.md) accepts8directedfamiliesandonefixed24-itemcase:151events/203draws,Staffdouble1/Speardouble2. Thorn/LuckydoublesandpositiveSpearBlockLossNOT_HITnaturally,coveredonlybydirectedSourcecomponents. Preserve552invalidHPfirsterror;553correctsonlyunitHP999,notSource/seed. Sourcecatalog83experimental/formal75unchanged,Native385pending. Portable551update554/555isnext;current545packagebelowunchangeduntilacceptance.
+
 ## Next bounded rule: EnchantedWeapons385
 
 [549–550design](../work_in_progress/phase549-550-enchanted-weapons-design/README.md) acceptsafinitenonzeroattack-effectmodifierdomain,notyetimplementation/runtimeacceptance. Real1-cell/12starSkillgeometry,4receivers/9fixtureIDs/persideone;allotheraffectedreceiversexplicitlyexcluded. Preserveeffect-onlyrepetition/RNG/parents,singleattackandActivation.551Sourceimplementation/552independentplanareinprogress;noNative/modelrunyet,currentportable545unchanged.

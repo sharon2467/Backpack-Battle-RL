@@ -1,0 +1,598 @@
+{
+  "schema": "phase553-independent-final/1",
+  "status": "ACCEPTED_FINITE_ENCHANTED_WEAPONS_SOURCE_NOT_NATIVE",
+  "reviewer": "independent timer_invariant_review_astra; not551 author",
+  "source": {
+    "owner": {
+      "path": "data/phase551-source-enchanted-weapons/owned-files.json",
+      "size": 4924,
+      "sha256": "32f2119dd711c0d05d84e9631596188beb4b64514dc30819f931d35e240a50d4"
+    },
+    "freeze": {
+      "path": "data/phase551-source-enchanted-weapons/candidate-source-freeze.json",
+      "size": 3929,
+      "sha256": "00e56dd5f6a32704da116a1a4f06c54abf50eb0943175f6bb1ea674e3bc61a10"
+    },
+    "independent_static_review": {
+      "path": "data/phase552-exact-business-source/static-review.json",
+      "size": 2462,
+      "sha256": "8674ea995e742fff04a91133dfc27382cf92aed6271b0611c88d898ece2708f8"
+    },
+    "delta": "exact545base15: engine/headless only,13modules exact;235oldenginefunctions and allheadlessfunctions exact; threeattackloops/Shortbow/least/Timer/RNG unchanged"
+  },
+  "harness": {
+    "owner": {
+      "path": "data/phase553-exact-business-source/owned-files.json",
+      "size": 2907,
+      "sha256": "e6bf534c3eee6247ab82cd5e779344ff989b25d1da56a343942a840cb28f8281"
+    },
+    "script": {
+      "path": "tests/phase553_independent_enchanted_business.py",
+      "size": 21453,
+      "sha256": "c9c6fb3bce867c5ead2f30b8c506d4889cc5790c8e677a74da355150ec9ba110"
+    },
+    "pins": {
+      "path": "data/phase553-exact-business-source/pins.json",
+      "size": 7728,
+      "sha256": "ef3e4c4e0bbeb9674c11b49fba7703c5cc32cf54ddd33a561a1cb52b6658d470"
+    },
+    "release": {
+      "path": "data/phase553-root-single-revised-business-release/release.json",
+      "size": 1534,
+      "sha256": "0986e6be43780934f6bfd542b8a9f4f1792419011fa846b27d623787a17f4d46"
+    }
+  },
+  "actual": {
+    "result": {
+      "path": "data/phase553-independent-business-first-001/result.json",
+      "size": 2936,
+      "sha256": "f47f96c2b7d4d010c9c6f517415fedaac9caef91469f98ba10dc24d07212eb0c"
+    },
+    "owner": {
+      "path": "data/phase553-independent-business-first-001/owned-files.json",
+      "size": 4904,
+      "sha256": "800773bc903b11769b3bc6cf61c67af761da5c24208a9a272b8c87f483e38108"
+    },
+    "owned_payloads_verified": 29,
+    "invocation_owner": {
+      "path": "data/phase553-independent-invocation-first-001/owned-files.json",
+      "size": 979,
+      "sha256": "80c29ee8b1842ae8566eff1e620aa35c34639e788ca64b6627ca6c5c8cd8317b"
+    },
+    "invocation": {
+      "exit_code": 0,
+      "outer_wall_seconds": 0.5153588370012585,
+      "timed_out": false,
+      "pid": 8521,
+      "child_reaped": true,
+      "attempts": 1,
+      "model_retries": 0
+    },
+    "source_input_pins": 39,
+    "source_input_before_after_current_exact": true,
+    "old552_preserved_files": 28
+  },
+  "groups": [
+    "01_geometry_cache_closed_admission",
+    "02_prepare_before_after_and_reject_no_repair",
+    "08_serialization_and_body_conservation",
+    "03_effect_flip_zero_quarter_nextafter",
+    "04_staff_early_hit_miss_independent_mana",
+    "05_spear_late_hit_miss_zero_damage_block_exhaustion",
+    "06_shortbow_independent_chances_and_parents",
+    "07_skill_cooldown_least_then_activation_ended_limiter",
+    "09_single_presealed_natural"
+  ],
+  "actual_call_scope": {
+    "direct_semantic_calls": 36,
+    "expected_rejections": 12,
+    "component": {
+      "ctor": 1,
+      "prepare": 1,
+      "checkpoint_activate": 0,
+      "step": 0,
+      "run": 0,
+      "item_weapon_attacks": 8,
+      "item_activate_entries": 11,
+      "strict_tape_draws": 35,
+      "synthetic_units": "explicit unit state; not native observations"
+    },
+    "natural": {
+      "ctor": 1,
+      "prepare": 1,
+      "checkpoint_activate": 1,
+      "fullrun": 1,
+      "step": 1055,
+      "CombatRandom": 1,
+      "derive_stream_seeds": 2,
+      "PCG_constructions": 3,
+      "global_and_combat_seed_provider_counts_distinct": true
+    },
+    "complete_nested_ledger": {
+      "path": "data/phase553-independent-business-first-001/actual-call-ledger.json",
+      "size": 8042,
+      "sha256": "9075b355a2bc9a7af8a91456313b8c000703540c454f66cede83f9b1ccbc85fb"
+    },
+    "candidate_import_processes_this_attempt": 1,
+    "Native": 0,
+    "Expected": 0,
+    "pool": 0,
+    "old_tests": 0
+  },
+  "prepare_evidence": {
+    "evidence": {
+      "path": "data/phase553-independent-business-first-001/component-prepared.json",
+      "size": 3834,
+      "sha256": "fd20f1d8c640a9bc73999fdad7ba30bdaf205170c4c852574f2bbc6a0f9c37c8"
+    },
+    "component_items": 32,
+    "caches": {
+      "P:enchanted": [
+        "P:spear",
+        "P:staff",
+        "P:thorn",
+        "P:luckybow"
+      ],
+      "O:enchanted": [
+        "O:staff",
+        "O:luckybow",
+        "O:thorn",
+        "O:spear"
+      ]
+    },
+    "setter_successes": 8,
+    "P_before_target_preparation": [
+      false,
+      false,
+      false,
+      false
+    ],
+    "O_after_target_preparation": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "prepare_draws0": true,
+    "source_setter_no_events_or_draws": true,
+    "read_only_serialized_modifier": {
+      "path": "data/phase553-independent-business-first-001/prepared-serialized-state.json",
+      "size": 113613,
+      "sha256": "7df37cabf00e2a9d332a46e853c6b84c246f02ddbcdd7561e7629228f6eb13c3"
+    }
+  },
+  "business_evidence": {
+    "boundaries": "chance0/raw0→2; nextafter0→1;chance.25/raw.25→2;nextafter.25→1; oneeffectflip each",
+    "repeated_own_effects": "Each doubled realweapon attack entered2early+2dealt;6hits had2late each,2misses had0late;commonattacked/damaged eachonce;1attackresult+1Activation each",
+    "staff": "Mana6 hit pays3+3,permanent+4,temp12,one22damage;Mana3 miss paysonce/permanent+2;Mana0 hit failsbothpayments,damage6",
+    "spear": "real removal8 consumesBlock10 as8+2; invu raw0 still removesBlock3 and emitsone0damage;miss no removal",
+    "shortbows": "Thorn separate0/1 rolls produce oneSpikes parent18 sameactualattack18;Lucky separate0/1 rolls produce oneLucky21 nullparent beforeattack22",
+    "skill": "cooldown thenleast1 thenactivate;ended still allocatesunloggedgain26 andchangesLucky but no regen/Activation;fourthlimiter stillgain27/regen but noActivation",
+    "segments": {
+      "staff_hit": {
+        "evidence": {
+          "path": "data/phase553-independent-business-first-001/segment-staff_hit.json",
+          "size": 7127,
+          "sha256": "b2b949cf2b36ce7cc10bc6f5590977e6835e07932a9a3d539da2414ddf4a90d1"
+        },
+        "event_sequence": [
+          {
+            "id": 0,
+            "type": 105,
+            "parent": null,
+            "params": {
+              "amount": -3,
+              "used": true,
+              "reflected": false
+            }
+          },
+          {
+            "id": 1,
+            "type": 105,
+            "parent": null,
+            "params": {
+              "amount": -3,
+              "used": true,
+              "reflected": false
+            }
+          },
+          {
+            "id": 2,
+            "type": 1,
+            "parent": null,
+            "params": {
+              "damage": 22
+            }
+          },
+          {
+            "id": 3,
+            "type": 0,
+            "parent": null,
+            "params": {}
+          }
+        ],
+        "allocated": 4,
+        "draws": 3
+      },
+      "staff_miss_partial": {
+        "evidence": {
+          "path": "data/phase553-independent-business-first-001/segment-staff_miss_partial.json",
+          "size": 6192,
+          "sha256": "ccd7f3c421097ebac02783a15a5f9244c1a718412e2b3fe6205479d8e53643af"
+        },
+        "event_sequence": [
+          {
+            "id": 4,
+            "type": 105,
+            "parent": null,
+            "params": {
+              "amount": -3,
+              "used": true,
+              "reflected": false
+            }
+          },
+          {
+            "id": 5,
+            "type": 3,
+            "parent": null,
+            "params": {}
+          },
+          {
+            "id": 6,
+            "type": 0,
+            "parent": null,
+            "params": {}
+          }
+        ],
+        "allocated": 3,
+        "draws": 2
+      },
+      "staff_hit_empty": {
+        "evidence": {
+          "path": "data/phase553-independent-business-first-001/segment-staff_hit_empty.json",
+          "size": 6080,
+          "sha256": "47adf413788682d6a909d5e2158cefc7668091b1968173d39c728f4fc40df324"
+        },
+        "event_sequence": [
+          {
+            "id": 7,
+            "type": 1,
+            "parent": null,
+            "params": {
+              "damage": 6
+            }
+          },
+          {
+            "id": 8,
+            "type": 0,
+            "parent": null,
+            "params": {}
+          }
+        ],
+        "allocated": 2,
+        "draws": 3
+      },
+      "spear_hit": {
+        "evidence": {
+          "path": "data/phase553-independent-business-first-001/segment-spear_hit.json",
+          "size": 6804,
+          "sha256": "b7bdf2f9d60096e5e85f50140b309174195e7f24ee55209256379cfd3c4fe372"
+        },
+        "event_sequence": [
+          {
+            "id": 9,
+            "type": 100,
+            "parent": null,
+            "params": {
+              "amount": -8,
+              "used": false,
+              "reflected": false
+            }
+          },
+          {
+            "id": 10,
+            "type": 100,
+            "parent": null,
+            "params": {
+              "amount": -2,
+              "used": false,
+              "reflected": false
+            }
+          },
+          {
+            "id": 11,
+            "type": 1,
+            "parent": null,
+            "params": {
+              "damage": 3
+            }
+          },
+          {
+            "id": 12,
+            "type": 0,
+            "parent": null,
+            "params": {}
+          }
+        ],
+        "allocated": 4,
+        "draws": 3
+      },
+      "spear_invu": {
+        "evidence": {
+          "path": "data/phase553-independent-business-first-001/segment-spear_invu.json",
+          "size": 6438,
+          "sha256": "a1693860488016fd8a3872aaec87e8e845b9e62ab7289736363c9c161066956a"
+        },
+        "event_sequence": [
+          {
+            "id": 13,
+            "type": 100,
+            "parent": null,
+            "params": {
+              "amount": -3,
+              "used": false,
+              "reflected": false
+            }
+          },
+          {
+            "id": 14,
+            "type": 1,
+            "parent": null,
+            "params": {
+              "damage": 0
+            }
+          },
+          {
+            "id": 15,
+            "type": 0,
+            "parent": null,
+            "params": {}
+          }
+        ],
+        "allocated": 3,
+        "draws": 3
+      },
+      "spear_miss": {
+        "evidence": {
+          "path": "data/phase553-independent-business-first-001/segment-spear_miss.json",
+          "size": 5549,
+          "sha256": "57965842627bd3235287cb680c4b790fa32eae419744d84d26d11170230c2343"
+        },
+        "event_sequence": [
+          {
+            "id": 16,
+            "type": 3,
+            "parent": null,
+            "params": {}
+          },
+          {
+            "id": 17,
+            "type": 0,
+            "parent": null,
+            "params": {}
+          }
+        ],
+        "allocated": 2,
+        "draws": 2
+      },
+      "thorn_hit": {
+        "evidence": {
+          "path": "data/phase553-independent-business-first-001/segment-thorn_hit.json",
+          "size": 7013,
+          "sha256": "b733bc5e88804274d5e6f08eee66d6b980ef1abe6294e1146aaeddb6b7f8f5a3"
+        },
+        "event_sequence": [
+          {
+            "id": 18,
+            "type": 1,
+            "parent": null,
+            "params": {
+              "damage": 2
+            }
+          },
+          {
+            "id": 19,
+            "type": 104,
+            "parent": 18,
+            "params": {
+              "amount": 1,
+              "used": false,
+              "reflected": false
+            }
+          },
+          {
+            "id": 20,
+            "type": 0,
+            "parent": null,
+            "params": {}
+          }
+        ],
+        "allocated": 3,
+        "draws": 5
+      },
+      "lucky_hit": {
+        "evidence": {
+          "path": "data/phase553-independent-business-first-001/segment-lucky_hit.json",
+          "size": 6898,
+          "sha256": "72df2cfa6b72ee1fe1787225de8b3ea7e1577b7adc959a27b87eb682f3f8ce1c"
+        },
+        "event_sequence": [
+          {
+            "id": 21,
+            "type": 101,
+            "parent": null,
+            "params": {
+              "amount": 1,
+              "used": false,
+              "reflected": false
+            }
+          },
+          {
+            "id": 22,
+            "type": 1,
+            "parent": null,
+            "params": {
+              "damage": 3
+            }
+          },
+          {
+            "id": 23,
+            "type": 0,
+            "parent": null,
+            "params": {}
+          }
+        ],
+        "allocated": 3,
+        "draws": 4
+      },
+      "skill_normal": {
+        "evidence": {
+          "path": "data/phase553-independent-business-first-001/segment-skill_normal.json",
+          "size": 4650,
+          "sha256": "dae3a36f0ce9cb6b0f75407fc11a23a383afec7e3f1293adb51f3d915e8c0f95"
+        },
+        "event_sequence": [
+          {
+            "id": 24,
+            "type": 101,
+            "parent": null,
+            "params": {
+              "amount": 1,
+              "used": false,
+              "reflected": false
+            }
+          },
+          {
+            "id": 25,
+            "type": 0,
+            "parent": null,
+            "params": {}
+          }
+        ],
+        "allocated": 2,
+        "draws": 2
+      },
+      "skill_ended": {
+        "evidence": {
+          "path": "data/phase553-independent-business-first-001/segment-skill_ended.json",
+          "size": 3941,
+          "sha256": "85b3d6a3ff0d49a0bb4a5ed9882bcb69b990ca3b79a5ee2bd4ad9c040b531d59"
+        },
+        "event_sequence": [],
+        "allocated": 1,
+        "draws": 2
+      },
+      "skill_limiter": {
+        "evidence": {
+          "path": "data/phase553-independent-business-first-001/segment-skill_limiter.json",
+          "size": 4330,
+          "sha256": "93b639d3624a22ef18aa6180a6791478c02b1a81cb61b9ff6e72abf5f054a236"
+        },
+        "event_sequence": [
+          {
+            "id": 27,
+            "type": 101,
+            "parent": null,
+            "params": {
+              "amount": 1,
+              "used": false,
+              "reflected": false
+            }
+          }
+        ],
+        "allocated": 1,
+        "draws": 2
+      }
+    }
+  },
+  "natural": {
+    "status": "SOURCE_ONLY_NOT_NATIVE",
+    "raw": {
+      "path": "data/phase553-independent-business-first-001/natural-source-output.json",
+      "size": 312288,
+      "sha256": "38339cd7b75e6d4ed76a728da84a26a4c0b53de9770a9380ca43c827cb0f694d"
+    },
+    "seed": 55201,
+    "items": 24,
+    "events": 151,
+    "draws": 203,
+    "sim_seconds": 17.58333425037563,
+    "winner": "P",
+    "measures": {
+      "staff_double": 1,
+      "staff_attack": 6,
+      "spear_double": 2,
+      "spear_attack": 6,
+      "thorn_double": 0,
+      "thorn_attack": 6,
+      "luckybow_double": 0,
+      "luckybow_attack": 9,
+      "skill_activation": 3,
+      "skill_gain": 3,
+      "wolf_regen": 28,
+      "spear_positive_loss": 0
+    },
+    "HIT": {
+      "staff_double": "HIT",
+      "staff_attack": "HIT",
+      "spear_double": "HIT",
+      "spear_attack": "HIT",
+      "thorn_double": "NOT_HIT",
+      "thorn_attack": "HIT",
+      "luckybow_double": "NOT_HIT",
+      "luckybow_attack": "HIT",
+      "skill_activation": "HIT",
+      "skill_gain": "HIT",
+      "wolf_regen": "HIT",
+      "spear_positive_loss": "NOT_HIT"
+    },
+    "natural_spear_positive_loss_required": false
+  },
+  "natural_qualification": {
+    "HIT": [
+      "Staff double1",
+      "Spear double2",
+      "allfourreceiver attacks",
+      "Skill3gains/3activations",
+      "Wolpertinger28 nonzero regen calls"
+    ],
+    "NOT_HIT": [
+      "Thorn double0",
+      "LuckyShortbow double0",
+      "positive Spear Block loss0 (predeclared naturalgeometry has0emptyabove)"
+    ],
+    "no_layout_or_seed_tuning": true,
+    "no_counterfactual_or_native_claim": true
+  },
+  "resource": {
+    "harness_wall_seconds": 0.3897780970000895,
+    "outer_wall_seconds": 0.5153588370012585,
+    "peak_rss_kib": 41720,
+    "small_single_case_not_general_performance": true
+  },
+  "history": {
+    "first_attempt_finding": {
+      "path": "data/phase552-independent-first-error-review/finding.json",
+      "size": 3908,
+      "sha256": "1fc31ccfce2342be879a9e6e874bca317a21b71d602ca0916006dd0cdc77405d"
+    },
+    "first_attempt": "HP1000 invalid under unchanged1..999; first directvalidator rejected,0groups/0ctor/0battle; actual candidate import occurred",
+    "repair": "Only two unit ingressHP+reset/invuassert999; path/diagnostic rebind; original552 unmodified",
+    "cumulative": {
+      "freshprocesses": 2,
+      "direct_calls": 37,
+      "successful_component_ctor": 1,
+      "successful_natural_ctor": 1,
+      "fullbattle": 1,
+      "natural_attempts": 1,
+      "old_failed_attempt_completed_battles": 0
+    }
+  },
+  "limitations": [
+    "Finite Source acceptance only; catalog83 is registration count, formal support remains75",
+    "When385 present fixture is exact finite9ID domain/class0/default/maxone385perside; no full75 positive-receiver proof",
+    "Freshseed55201 computation is not originalengine seed equivalence or new Native record comparison",
+    "Historical fixed029 strictTape evidence remains unchanged; it is not evidence for385",
+    "No additional execution or retry during final evidence verification"
+  ]
+}

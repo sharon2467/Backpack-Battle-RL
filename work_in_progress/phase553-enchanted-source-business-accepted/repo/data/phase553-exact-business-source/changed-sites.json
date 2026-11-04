@@ -1,0 +1,57 @@
+{
+  "schema": "phase553-changed-sites/1",
+  "sites": [
+    {
+      "file": "tests/phase553_independent_enchanted_business.py",
+      "line": 6,
+      "kind": "PLAN namespace",
+      "before": "PLAN=ROOT/'data/phase552-exact-business-source'",
+      "after": "PLAN=ROOT/'data/phase553-exact-business-source'"
+    },
+    {
+      "file": "tests/phase553_independent_enchanted_business.py",
+      "line": 7,
+      "kind": "new output namespace",
+      "before": "OUT=ROOT/'data/phase552-independent-business-first-001'",
+      "after": "OUT=ROOT/'data/phase553-independent-business-first-001'"
+    },
+    {
+      "file": "tests/phase553_independent_enchanted_business.py",
+      "line": 76,
+      "kind": "reset HP",
+      "before": "c.dead=False;c.hp=1000.0;c.stamina=5.0",
+      "after": "c.dead=False;c.hp=999.0;c.stamina=5.0"
+    },
+    {
+      "file": "tests/phase553_independent_enchanted_business.py",
+      "line": 163,
+      "kind": "invu unchanged HP assertion",
+      "before": "if name=='spear_invu':strict(e.characters['O'].hp,1000.0);",
+      "after": "if name=='spear_invu':strict(e.characters['O'].hp,999.0);"
+    },
+    {
+      "file": "tests/phase553_independent_enchanted_business.py",
+      "line": 251,
+      "kind": "diagnostic namespace",
+      "before": "TimeoutError('552 whole-process35s wall budget')",
+      "after": "TimeoutError('553 whole-process35s wall budget')"
+    },
+    {
+      "file": "data/phase553-exact-business-source/synthetic-layout.json",
+      "json_pointer": "/sides/0/hp",
+      "kind": "component ingress HP",
+      "before": 1000,
+      "after": 999
+    },
+    {
+      "file": "data/phase553-exact-business-source/synthetic-layout.json",
+      "json_pointer": "/sides/1/hp",
+      "kind": "component ingress HP",
+      "before": 1000,
+      "after": 999
+    }
+  ],
+  "hp_code_sites": 2,
+  "hp_input_sites": 2,
+  "namespace_diagnostic_sites": 3
+}

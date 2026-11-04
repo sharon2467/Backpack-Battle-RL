@@ -1,0 +1,59 @@
+--- tests/phase552_independent_enchanted_business.py
++++ tests/phase553_independent_enchanted_business.py
+@@ -3,8 +3,8 @@
+ from pathlib import Path
+ ROOT=Path(__file__).resolve().parents[1]
+ SRC=ROOT/'data/phase551-source-enchanted-weapons'
+-PLAN=ROOT/'data/phase552-exact-business-source'
+-OUT=ROOT/'data/phase552-independent-business-first-001'
++PLAN=ROOT/'data/phase553-exact-business-source'
++OUT=ROOT/'data/phase553-independent-business-first-001'
+ MODE='preflight';STAGE='preflight';ACTIVE=None
+ COUNTS={};SUCCEEDED={};DIRECT=[];PASSES=[];REJECTS=[];HOOKS=[];PREP=[];SETTERS=[]
+ 
+@@ -73,7 +73,7 @@
+  assert not e.signal_queue
+  e.ended=False;e.pending_terminal=False;e.util_time=20.0;e.logging_mode=1
+  for c in e.characters.values():
+-  c.dead=False;c.hp=1000.0;c.stamina=5.0;c.stamina_regen=1.0;c.invulnerable=False;c.buff_protect_stacks=0;c.debuff_reflect_stacks=0;c.debuff_resist_stacks=0
++  c.dead=False;c.hp=999.0;c.stamina=5.0;c.stamina_regen=1.0;c.invulnerable=False;c.buff_protect_stacks=0;c.debuff_reflect_stacks=0;c.debuff_resist_stacks=0
+   c.accuracy.reset(-1.0);c.critical.reset(-1.0)
+   for k,fields in c.buff_fields.items():
+    name={100:'block',101:'lucky',102:'regeneration',103:'vampirism',104:'spikes',105:'mana',106:'empower',107:'heat',108:'poison',109:'blind',110:'cold'}[k]
+@@ -160,7 +160,7 @@
+   if 'staff' in name:
+    paid=[x for x in r['events']if x['type']==105];strict([x['params']['amount']for x in paid],[-3]*(2 if name=='staff_hit'else 1 if name=='staff_miss_partial'else 0));assert all(x['params']['used']is True and x['parent']is None for x in paid)
+   if name=='spear_hit':strict([x['params']['amount']for x in r['events']if x['type']==100],[-8,-2]);strict(e.characters['O'].block,0)
+-  if name=='spear_invu':strict(e.characters['O'].hp,1000.0);strict(e.characters['O'].block,0)
++  if name=='spear_invu':strict(e.characters['O'].hp,999.0);strict(e.characters['O'].block,0)
+   if name=='spear_miss':strict(e.characters['O'].block,10)
+   if name=='thorn_hit':strict(r['events'][1]['parent'],r['result']['id']);strict(e.characters['P'].spikes,1)
+   if name=='lucky_hit':strict(r['events'][0]['parent'],None);strict(e.characters['P'].lucky,1);assert r['events'][0]['id']<r['result']['id']
+@@ -248,5 +248,5 @@
+   save('result.json',result);save('owned-files.json',dict(files=[pin(p)for p in sorted(OUT.iterdir())if p.is_file()],sealed=True))
+  print(json.dumps(result));return 0 if status.startswith('PASS')else 1
+ if __name__=='__main__':
+- def deadline(sig,frame):raise TimeoutError('552 whole-process35s wall budget')
++ def deadline(sig,frame):raise TimeoutError('553 whole-process35s wall budget')
+  signal.signal(signal.SIGALRM,deadline);signal.alarm(35);sys.exit(main())
+
+--- data/phase552-exact-business-source/synthetic-layout.json
++++ data/phase553-exact-business-source/synthetic-layout.json
+@@ -5,7 +5,7 @@
+     {
+       "side": "P",
+       "character_class": 0,
+-      "hp": 1000,
++      "hp": 999,
+       "stamina": 5,
+       "items": [
+         {
+@@ -153,7 +153,7 @@
+     {
+       "side": "O",
+       "character_class": 0,
+-      "hp": 1000,
++      "hp": 999,
+       "stamina": 5,
+       "items": [
+         {

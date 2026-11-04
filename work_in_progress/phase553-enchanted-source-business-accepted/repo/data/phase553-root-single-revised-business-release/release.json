@@ -1,0 +1,43 @@
+{
+  "schema": "phase553-root-single-HP-corrected-business-release/1",
+  "utc": "2026-11-04T18:29:33.227793+00:00",
+  "plan": {
+    "path": "data/phase553-exact-business-source/execution-plan.json",
+    "size": 2129,
+    "sha256": "d299f36d0ebc1b61c867d1334eb891e20e78ebab65e88c92028518206c2796b2"
+  },
+  "script_sha256": "c9c6fb3bce867c5ead2f30b8c506d4889cc5790c8e677a74da355150ec9ba110",
+  "pins_sha256": "ef3e4c4e0bbeb9674c11b49fba7703c5cc32cf54ddd33a561a1cb52b6658d470",
+  "Root_owner15refs_exact": true,
+  "Root_full_552to553_patch_review": "only2unitHPinput+reset/invuassertHP999,3namespace/diagnosticchanges",
+  "preserved": [
+    "all551Source",
+    "552originalharness/vectors/failure",
+    "35unitdrawsbyteexact",
+    "24itemnatural55201byteexact",
+    "36direct12rejectledgerbyteexact"
+  ],
+  "released": "one revisedexact8family+oneSourcecase,notretryofunchangedfailedharness",
+  "maximum": {
+    "freshprocess": 1,
+    "component_ctor": 1,
+    "component_prepare": 1,
+    "component_activate_step_fullrun": 0,
+    "natural_ctor": 1,
+    "natural_prepare": 1,
+    "natural_activate": 1,
+    "natural_fullrun": 1,
+    "direct_calls": 36,
+    "expected_rejects": 12,
+    "unit_draws": 35,
+    "innerwall_seconds": 35,
+    "outerwall_seconds": 40,
+    "natural_sim_seconds": 120,
+    "Native": 0,
+    "Expected": 0,
+    "old_tests": 0,
+    "pool": 0
+  },
+  "first_unexpected": "stop preserve partial/error nofurtherSourceorharnessrepair+executionwithoutnewfrozenreview",
+  "scope": "Source-only notformal75/Nativeadmission"
+}
