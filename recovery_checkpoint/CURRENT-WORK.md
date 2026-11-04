@@ -40,6 +40,10 @@ Earlier independent fixedKing451(375events365Tape) and fixed26King+Basic478(366e
 
 [549–550design](../work_in_progress/phase549-550-enchanted-weapons-design/README.md) acceptsafinitenonzeroattack-effectmodifierdomain,notyetimplementation/runtimeacceptance. Real1-cell/12starSkillgeometry,4receivers/9fixtureIDs/persideone;allotheraffectedreceiversexplicitlyexcluded. Preserveeffect-onlyrepetition/RNG/parents,singleattackandActivation.551Sourceimplementation/552independentplanareinprogress;noNative/modelrunyet,currentportable545unchanged.
 
+## Next bounded rule: Bowl162
+
+[556–557design](../work_in_progress/phase556-557-bowl-extra-activation-design/README.md) isacceptedforafinitetwo-Petextraactivation/Foodspeedfamily,notyetbusinessruntimeacceptance.558implementation/559finiteplanareactive;currentSource83portablepackageunchanged,Source84onlyproposed. Originalzerochanceskip/firsteffect-before-extraroll/limiter/ledgerovershootsemanticsarekept,notreplacedbyintuitivefixes. NoautonewNative.
+
 ## Next work
 
 Select one remaining sharedcombat rulefamily using actualcurrentSPEC/unsupportedgates and OriginalSource,then implement and independentlyverify its smallest useful block. Reuse existing evidence;do not reopen UI/G02/platformRNG audits. No newOriginalcapture is automatically started. Before anyfutureauthorizedcapture,recheck space against5905580032B;use the fixedpool and preserve uniqueoriginals/errors. Only reliably backed duplicateworkcopies may be freed.

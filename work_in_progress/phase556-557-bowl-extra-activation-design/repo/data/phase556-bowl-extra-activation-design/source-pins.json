@@ -1,0 +1,268 @@
+{
+  "Original": [
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/BowlofTreats.gd",
+      "sha256": "eb7dab954433ec19ad719a80ff93ba1b511aad026e5d640f6c58fc6a07887604",
+      "size": 975
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/BowlofTreats.tscn",
+      "sha256": "e95a17ae04df21ddc3bb7cbd3101a7ea7ce24d40839aaffea0c81a7b615167fa",
+      "size": 1409
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f",
+      "size": 170717
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Food.gd",
+      "sha256": "e0ff858b55f1f5a2d8e1b06ee155a4f7444ba7f4cd903bbee2b09780bfb20a23",
+      "size": 187
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Goobert.gd",
+      "sha256": "8fda35f3740fe787231d4c69c38eaab1938127c1a01e076df70252cc4212e723",
+      "size": 1076
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Weapon.gd",
+      "sha256": "6acd1030b6e29521647df3718d48a865bdaeaced19f3190cb310f63e890253a2",
+      "size": 298
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/Squirrel.gd",
+      "sha256": "c23b8aec966449cc60761007879b99c3528c4cbe94309914789954cea34de949",
+      "size": 508
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/ForestFriend.gd",
+      "sha256": "d1d067d4526a53313e28df3fd3a441415c76a2fcb1368d823d51f3d30eb57147",
+      "size": 236
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Wolpertinger.gd",
+      "sha256": "5607b4eea0e69fa4f1f46f2a646e1c3a4c12668be75c45269cf0a2ce6b258ea2",
+      "size": 522
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/WoodenSword.gd",
+      "sha256": "73da9754b6b59acf6fa5a2526f5acf994c367ba19f6d63706a76fa70b87714ce",
+      "size": 210
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Banana.gd",
+      "sha256": "34f0516d8615a93129edb30e59598a62183a7a10947ad83c65445f7323f157f0",
+      "size": 74
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Blueberries.gd",
+      "sha256": "13ad54f17dc6e4d12977f5c46b79e624530d77a68cef18092a4fc9089357a155",
+      "size": 140
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Bag.gd",
+      "sha256": "104ad86cfe3be4b189799b34b04a2fa4fcaa95883eb6e6ee286018b33ad8afb4",
+      "size": 6520
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Sheets/CSV/ItemData.csv",
+      "sha256": "26f5433cf37cd33c066dd505672fcb292e7570ede8c823c5a10f9bc21208a473",
+      "size": 80933
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Utility/Util.gd",
+      "sha256": "596e7f7a9308ea03957e5c9f6e5cb43aa1591e1e0fd13217e2f2c70368970a36",
+      "size": 44381
+    }
+  ],
+  "Source_modules": [
+    {
+      "path": "data/phase551-source-enchanted-weapons/staged/native_replay_v8/engine.py",
+      "sha256": "db0964b13a1409e03dcc59b470b065991b54ccd11e684974d523968575b541d0",
+      "size": 252318
+    },
+    {
+      "path": "data/phase551-source-enchanted-weapons/staged/headless.py",
+      "sha256": "0394faa59b1c611ccab042d57cf0341fc231aed5192a8e22327e56ede43b636f",
+      "size": 35804
+    },
+    {
+      "path": "data/phase551-source-enchanted-weapons/staged/native_replay_v8/histories.py",
+      "sha256": "d9b3f270b53f328f5958647fdaba86532ff3d9db11b272d9a7d0d2aef1db0b05",
+      "size": 8508
+    }
+  ],
+  "execution": {
+    "Expected": 0,
+    "Native": 0,
+    "SUT_helper": 0,
+    "UI": 0,
+    "candidate_import": 0,
+    "compile": 0,
+    "implementation": 0,
+    "model": 0,
+    "pool": 0,
+    "test": 0
+  },
+  "fields": {
+    "existing": "double_activation_chance REAL0.0/.2, already mapped by state.py",
+    "new": "bowl_speed_bonus_given REAL0.0, reset then per-cooldown additive ledger; asdict serialized"
+  },
+  "preparation_notes": [
+    "One initial Squirrel path guess and one CombatLog path guess were absent; authoritative Squirrel path was found by bounded filename search; no SUT execution or Source mutation.",
+    "Food inventory cache hooks reused; no new Food combat listener; no full75/Goobert/Weapon survey."
+  ],
+  "reused_evidence": [
+    {
+      "path": "data/phase551-source-enchanted-weapons/candidate-source-freeze.json",
+      "sha256": "00e56dd5f6a32704da116a1a4f06c54abf50eb0943175f6bb1ea674e3bc61a10",
+      "size": 3929
+    },
+    {
+      "path": "data/phase551-source-enchanted-weapons/owned-files.json",
+      "sha256": "32f2119dd711c0d05d84e9631596188beb4b64514dc30819f931d35e240a50d4",
+      "size": 4924
+    },
+    {
+      "path": "data/phase553-independent-final-acceptance/review.json",
+      "sha256": "1e0ec4304c920863e25bae1e8ec66c692a08d372b7fbc2f0f17aac0990027fbf",
+      "size": 17775
+    },
+    {
+      "path": "data/phase543-next-shared-combat-family-plan/actual-source-candidates.json",
+      "sha256": "3fdd4eb3476ca880dc3a4a8ed7302dc408ba28259067a2c69a9b8fc2ce6bbc45",
+      "size": 2936
+    }
+  ],
+  "schema": "phase556-source-pins/1",
+  "scope": {
+    "class_domain": [
+      0
+    ],
+    "max162_per_side": 1,
+    "no162": "accepted551 admission unchanged",
+    "other_Pets": "excluded real receivers, not falsely marked unaffected",
+    "positive_Pets": [
+      164,
+      231
+    ],
+    "when162_fixture_ids": [
+      1,
+      5,
+      11,
+      22,
+      162,
+      164,
+      231
+    ]
+  },
+  "selected_functions": [
+    {
+      "end_line": 415,
+      "file": "data/phase551-source-enchanted-weapons/staged/native_replay_v8/engine.py",
+      "function": "validate_fixture",
+      "line": 362,
+      "sha256": "f536f89f4f458dcaa26032035af4b59e589070b6c5b2f117ea74310c7f741dca"
+    },
+    {
+      "end_line": 1980,
+      "file": "data/phase551-source-enchanted-weapons/staged/native_replay_v8/engine.py",
+      "function": "CombatEngine.prepare_only",
+      "line": 1868,
+      "sha256": "92373c336ae7139f66a8e37314b0fdc277f007c09780dad535c20e1d2d46e908"
+    },
+    {
+      "end_line": 3397,
+      "file": "data/phase551-source-enchanted-weapons/staged/native_replay_v8/engine.py",
+      "function": "CombatEngine.trigger",
+      "line": 3296,
+      "sha256": "29cf29c469d3a6339cd3801852274af98e5c8a00be1fb0ea673afa84c0f81cbb"
+    },
+    {
+      "end_line": 2953,
+      "file": "data/phase551-source-enchanted-weapons/staged/native_replay_v8/engine.py",
+      "function": "CombatEngine.activate",
+      "line": 2930,
+      "sha256": "eead715715b28c4f8be0aeda55b75d350d26905b3412a40a3eca562e0abd7fd2"
+    },
+    {
+      "end_line": 2998,
+      "file": "data/phase551-source-enchanted-weapons/staged/native_replay_v8/engine.py",
+      "function": "CombatEngine.on_goobert_item_activated",
+      "line": 2955,
+      "sha256": "02a1dffd63d1ef26de1dd85bb34d8095bcc9bf865ef7d9b51a95b178eeed74cb"
+    },
+    {
+      "end_line": 2271,
+      "file": "data/phase551-source-enchanted-weapons/staged/native_replay_v8/engine.py",
+      "function": "CombatEngine.add_speed",
+      "line": 2268,
+      "sha256": "2aa15d44a2e206ccc16f7fbe1a65cbb357cf3ca609a9f01b8123b1c9bca6218f"
+    },
+    {
+      "end_line": 2201,
+      "file": "data/phase551-source-enchanted-weapons/staged/native_replay_v8/engine.py",
+      "function": "CombatEngine.new_caller_target_caches",
+      "line": 2143,
+      "sha256": "8abd44140846ac47024d06b92e33498c615f42930756c95ab083f756c21433e7"
+    },
+    {
+      "end_line": 2266,
+      "file": "data/phase551-source-enchanted-weapons/staged/native_replay_v8/engine.py",
+      "function": "CombatEngine.affected_items",
+      "line": 2223,
+      "sha256": "11bf53638ae8de855a2c4446bc1aeb5d0b3c65f618bb267cfa8d0e3fc79fcc4a"
+    },
+    {
+      "end_line": 2842,
+      "file": "data/phase551-source-enchanted-weapons/staged/native_replay_v8/engine.py",
+      "function": "CombatEngine.give_random_buffs",
+      "line": 2836,
+      "sha256": "08cce75fac1ec755d05e16ad09d54f36f03eb8402b7eb4c60332ed42bfe136ca"
+    },
+    {
+      "end_line": 2834,
+      "file": "data/phase551-source-enchanted-weapons/staged/native_replay_v8/engine.py",
+      "function": "CombatEngine.give_least_buffs",
+      "line": 2830,
+      "sha256": "09386490ec2e76ed12ee74ebdf159bd9d9e1046bb05e3ebd08c0e9bc78e322b2"
+    },
+    {
+      "end_line": 2879,
+      "file": "data/phase551-source-enchanted-weapons/staged/native_replay_v8/engine.py",
+      "function": "CombatEngine.steal_random_buff",
+      "line": 2871,
+      "sha256": "f8281220a9528425cb123e254f037457a70a0ed65bc4eaa00bf0ce9d951a31db"
+    },
+    {
+      "end_line": 3698,
+      "file": "data/phase551-source-enchanted-weapons/staged/native_replay_v8/engine.py",
+      "function": "CombatEngine.snapshot",
+      "line": 3675,
+      "sha256": "ea915366315a8584b33887c137fdc741f53867a3b1ec530808d100a0f1b065d9"
+    },
+    {
+      "end_line": 69,
+      "file": "data/phase551-source-enchanted-weapons/staged/headless.py",
+      "function": "validate_experimental_nonking_layout",
+      "line": 62,
+      "sha256": "eb5b2c900179f4a2bc062af5a75c27cbca41f677cf6baae8585afee676d2471c"
+    },
+    {
+      "end_line": 491,
+      "file": "data/phase551-source-enchanted-weapons/staged/headless.py",
+      "function": "initialize_experimental_nonking",
+      "line": 479,
+      "sha256": "d81be7064379ba0194449f6a5b042139fe8589ccc022fa4af6fdd0f8b5a3fc0f"
+    },
+    {
+      "end_line": 125,
+      "file": "data/phase551-source-enchanted-weapons/staged/native_replay_v8/histories.py",
+      "function": "CombatHistories.tooltip",
+      "line": 123,
+      "sha256": "8373749fbeb346003586c5e12586a0aeae8b876b26b79beed23a6d35c9d53bb6"
+    }
+  ],
+  "status": "DESIGN_ONLY_NOT_IMPLEMENTED"
+}

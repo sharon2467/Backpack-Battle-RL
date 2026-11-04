@@ -1,0 +1,105 @@
+{
+  "schema": "phase557-independent-bowl-design-review/1",
+  "status": "DESIGN_PASS",
+  "reviewer": "independent timer_invariant_review_astra",
+  "scope": "Frozen phase556 finite Bowl162 Source design; no implementation or dynamic acceptance.",
+  "inputs": [
+    {
+      "path": "docs/phase556_bowl_extra_activation_food_speed_design_spec.md",
+      "size": 15234,
+      "sha256": "f4e61bcc6cce4dda46ce9bbe0e578740cab64a1f3619125ffa2666168c4711f0"
+    },
+    {
+      "path": "data/phase556-bowl-extra-activation-design/source-pins.json",
+      "size": 10107,
+      "sha256": "d4a835b1813d402c7d389f872eb719a7c19b40474f00d51b134112624a046ff9"
+    },
+    {
+      "path": "data/phase556-bowl-extra-activation-design/owned-files.json",
+      "size": 501,
+      "sha256": "96f6113def1c077174ca5c42e7abfc3ac28dc3e0d3e39fe7f2a73a6533d07684"
+    }
+  ],
+  "verification": {
+    "owner_payloads_exact": 2,
+    "Original_leaf_pins_exact": 15,
+    "Source_module_pins_exact": 3,
+    "reused_evidence_pins_exact": 4,
+    "selected_function_slice_pins_exact": 15,
+    "method": "Existing text and byte SHA review, bounded source reads and arithmetic decoding of scene tile coordinates. No candidate import, compilation or evaluation. Earlier hash checks reused; no old controls repeated."
+  },
+  "baseline": {
+    "phase": 551,
+    "candidate_source_freeze_sha256": "00e56dd5f6a32704da116a1a4f06c54abf50eb0943175f6bb1ea674e3bc61a10",
+    "accepted_Source_result_sha256": "1e0ec4304c920863e25bae1e8ec66c692a08d372b7fbc2f0f17aac0990027fbf",
+    "new_block": "Isolated fifteen-file copy; engine/headless only may change, thirteen modules remain exact."
+  },
+  "findings": [
+    {
+      "topic": "Finite admission and actual receivers",
+      "decision": "PASS",
+      "facts": "When162 occurs, entire fixture restricted to IDs1/5/11/22/162/164/231, class0/default, max one Bowl per side. Only164/231 are positive Pet receivers in this domain. Whelps/Gooberts/King are excluded real receivers, not falsely classified unaffected;385 also excluded. Without162 the accepted551 domain and old narrow APIs remain unchanged.",
+      "limit": "Gated descriptor Source is not proof of Native legal acquisition/canAdd."
+    },
+    {
+      "topic": "Metadata and geometry",
+      "decision": "PASS",
+      "facts": "CSV162 cooldown4/chance20/random2/speed25/max100 and Food/Nature identity agree. Scene tile3 cells normalize to(0,0),(1,0); tile4 ordered stars normalize to(-1,-1),(0,-1),(1,-1),(2,-1),(-1,0),(2,0),(0,1),(1,1).",
+      "source": "BowlofTreats.gd/tscn and CSV; no Godot parsing/execution."
+    },
+    {
+      "topic": "Prepare lifecycle and target separation",
+      "decision": "PASS_WITH_IMPLEMENTATION_OBLIGATION",
+      "facts": "Bowl.onPrepare resets REAL ledger0 and scans all same-inventory Pets independently of stars. Food.canAffect is spatial Food with different descriptor. Item.prepare freezes its cache and invokes onPrepare before Food.prepare adds own count*0.1 speed. Baseline551 generic Food speed is already after per-item onPrepare dispatch. Squirrel retains Pet OR Food and Wolper Pet-only caches.",
+      "obligation": "Apply20/100 once, preserve receiver chance when receiver prepares later, do not treat cache_prepared as completed setter loop. Setter has no callback/RNG; expected0/.2 observational checks must not run midway against unfinished contributions. Missing/duplicate/unowned/nonfinite or wrong chance rejects instead of repairing."
+    },
+    {
+      "topic": "One trigger, complete effects, live positive flip",
+      "decision": "PASS",
+      "facts": "Original Item.trigger4409–4416 adjusts cooldown and increments triggerTime once, invokes full first effect, then reads live positive chance and draws one Util.flip(raw<=chance), optionally invoking effect once again. No recursion, second adjust or newly introduced ended/activation-result condition. Chance0 consumes no extra-effect draw, unlike attackEffectCount default-zero behavior.",
+      "obligation": "Extract only existing Squirrel steal→activate and Wolper least→activate branches into tiny production helper. First Squirrel pitch remains before extra roll, second picker/pitch after it. Preserve all nonPet branches and unchanged kernels."
+    },
+    {
+      "topic": "Limiter and ended boundaries",
+      "decision": "PASS",
+      "facts": "Original activate fourth+ attempt returns normally before event/metric/pitch; this does not cancel effect or Item.trigger remaining positive roll. First attempt already fourth can still roll and execute second effect with fifth suppressed activation. First-third event/pitch may occur then fourth suppression. Already-ended in-limit activation reaches Squirrel pitch while event/metrics are suppressed; no new trigger-ended check.",
+      "obligation": "Directed controls must use actual production effects/activate and label synthetic same-time/ended prestates; no event or missing pitch is not proof no effect/draw occurred."
+    },
+    {
+      "topic": "Food speed ledger",
+      "decision": "PASS",
+      "facts": "Bowl first giveRandomBuffs2, then if ledger<100 gives min(25,100-ledger)/100 to each affected Food using same pre-loop ledger; only after target loop adds25 once, even for empty list. At cap, buffs and activate still execute. Synthetic90 gives10% each and stores115, not100.",
+      "obligation": "Real mutable ItemState.bowl_speed_bonus_given REAL0 reset/onPrepare, serialized by existing asdict; no reconstruction from history. Existing double_activation_chance stays real serialized field. Do not add an invented ledger tooltip/event."
+    },
+    {
+      "topic": "Cache hooks, histories and current event",
+      "decision": "PASS",
+      "facts": "Existing Item.addToInventory item_added/item_removed/item_type_changed hooks and ordered affected caches suffice under fixed inventory. Food adds no combat buff listener. Wolper listener remains its own prepare position. Random2 existing delayed flush precedes Food speed loop. add_speed snapshots Speed3 then Cooldown9 at current global event_num, including calls at zero, with existing history dedup.",
+      "obligation": "Do not bind snapshots to cached buff id, future Bowl Activation or next_event; do not add listener/modifier framework."
+    }
+  ],
+  "minimum_next_block": "Root may release isolated two-file Source implementation of finite gate/metadata/cache, one real ledger, narrow setter/checker, tiny two-Pet effect helper and Bowl branch. After freeze, independent exact source delta and at most eight directed families plus one presealed Source case; no extra broad audit required.",
+  "blocking_findings": [],
+  "execution": {
+    "candidate_import": 0,
+    "candidate_compile": 0,
+    "SUT_helpers": 0,
+    "component_constructors": 0,
+    "models": 0,
+    "battles": 0,
+    "tests": 0,
+    "Native": 0,
+    "Godot_parse": 0,
+    "Expected_payload_reads": 0,
+    "pool_operations": 0,
+    "implementation_changes": 0
+  },
+  "limitations": [
+    "Design acceptance is not implementation/control PASS.",
+    "Future Native162 requires actual legal fixture/ownership, subtype/ledger capture, lawful identities/prepared caches/clock/RNG and strict comparison; old029 contains no162/231.",
+    "Natural extra effect/steal/cap/loss branches must report HIT/NOT_HIT without input reroll.",
+    "No general Pet/Weapon/Goobert/385 combination claim. Formal75 and current Native admission unchanged.",
+    "No fresh resource/space gate performed or inferred."
+  ],
+  "read_diagnostic": "One post-context source-path lookup omitted native_replay_v8 and returned file-not-found; authoritative path was read from frozen directory listing and corrected. Read-only lookup error, not SUT failure; no Source mutation or execution."
+}
