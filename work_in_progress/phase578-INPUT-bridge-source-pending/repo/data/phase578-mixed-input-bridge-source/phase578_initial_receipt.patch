@@ -1,0 +1,102 @@
+--- tests/phase528_initial_receipt.py
++++ tests/phase578_initial_receipt.py
+@@ -9,7 +9,7 @@
+           + ('invu:P', 'invu:O'))
+ ZERO = {'type': 'float', 'binary64_be': '0000000000000000'}
+ MINUS_ONE = {'type': 'float', 'binary64_be': 'bff0000000000000'}
+-SOURCE_PREMISES = ('Accepted G02 ordinary legitimate native Timer processing invariant, closed modes/no escaped inherited flag writers/reentry; not publiczero proof.', 'Accepted438 Character pre-ready caller/default domain plus actual two invu birth/owner/monotonic lifetime zero-start ledgers; no resets assumed.', '502v4/503 fixed nine-ID zeroKing producer domain and accepted shared native rule origins are Source premises; no old instance audit or Native seed law.', '32 actual new Timer identities at two uniquely located cuts: pausedfalse/internalflagsfalse supports private-1; no fresh-history assertion for every native object.')
++SOURCE_PREMISES = ('Accepted G02 ordinary legitimate native Timer processing invariant, closed modes/no escaped inherited flag writers/reentry; not publiczero proof.', 'Accepted438 Character pre-ready caller/default domain plus actual two invu birth/owner/monotonic lifetime zero-start ledgers; no resets assumed.', '572v2/575 fixed twelve-ID zeroKing Source domain; Source-only synthetic acceptance is not new actual object/application or Native seed law.', '32 actual new Timer identities at two uniquely located cuts: pausedfalse/internalflagsfalse supports private-1; no fresh-history assertion for every native object.')
+ 
+ 
+ def require(value, message):
+@@ -75,7 +75,7 @@
+ 
+ 
+ def validate_ledger(facts,role,owner,timer,schema):
+-    require(type(facts) is dict and facts.get('schema')=='phase502-zero-king-input-facts/1' and facts.get('kings')==[],'INITIAL_ZERO_KING_FACTS')
++    require(type(facts) is dict and facts.get('schema')=='phase572-zero-king-input-facts/1' and facts.get('kings')==[],'INITIAL_ZERO_KING_FACTS')
+     fact=facts['timers'].get(role)
+     require(type(fact) is dict and set(fact)=={'lineage','current','private_provenance'},'INITIAL_FACT_SHAPE')
+     ledger=fact['lineage']
+@@ -106,9 +106,9 @@
+         cuts.append(matches[0])
+     require(cuts[0]['sequence'] < cuts[1]['sequence'],'ACTUAL_INITIAL_CUT_ORDER')
+     schema.validate_single_king_fresh_facts(decoded['king-input-facts.json'])
+-    result = {'schema': 'phase511-actual-object-initial-receipt/1', 'profile': 'pure-combat-whelp-family-A-captured/1',
++    result = {'schema': 'phase578-actual-object-initial-receipt/1', 'profile': 'pure-combat-mixed-modifiers-A-captured/1',
+               'status': 'SOURCE_SUPPORTED_INITIAL_INPUT_ONLY', 'source_premises': list(SOURCE_PREMISES),
+-              'values': [], 'timer_witnesses': [], 'lifetime_witnesses': {}, 'prepare_observations': {},
++              'values': [], 'timer_witnesses': [], 'lifetime_witnesses': {}, 'prepare_observations': {}, 'resource_observations': {},
+               'model_release': False, 'publiczero_is_proof': False}
+     def put(field, phase, role, value, refs, rule=None):
+         result['values'].append({'key': [field, phase, role], 'actual_value': deepcopy(value), 'input_refs': deepcopy(refs),
+@@ -131,7 +131,7 @@
+             require(node['role'] == inner and aliases['role_to_native'].get(inner) == node['native_id']
+                     and aliases['native_to_role'].get(node['native_id']) == inner, 'INITIAL_NODE_ALIAS')
+             nodes[raw_role] = (i, wrapper); current_ids[raw_role] = node['native_id']
+-        require(len(nodes) == len(set(current_ids.values())) == 67 and (ids is None or current_ids == ids), 'INITIAL_COMPLETE_CROSSCUT_BIJECTION')
++        require(len(nodes) == len(set(current_ids.values())) == 1 + len(COMMON) + 5 + len(schema.FIXED_ROLES) and (ids is None or current_ids == ids), 'INITIAL_COMPLETE_CROSSCUT_BIJECTION')
+         ids = current_ids
+         require(record['subject'] == {'type': 'native_ref', 'native_id': current_ids['game'], 'role': 'game', 'class': 'Node2D'}, 'CUT_GAME_OWNER')
+         resources = payload['source_resources']
+@@ -160,12 +160,24 @@
+             result['timer_witnesses'].append({'phase': phase, 'role': role, 'owner_ref': ref(record, f'/payload/nodes/{pi}/node', parent['native_id'], line),
+                    'timer_refs': refs, 'native_id': timer['node']['native_id'], 'parent_id': parent['native_id'],
+                    'native_node': deepcopy(timer['node']), 'typed_witness': {k: deepcopy(timer[k]) for k in ('paused', 'process_mode', 'autostart', 'time_left', 'stopped')}})
++        result['resource_observations'][phase] = {}
+         for si, resource in enumerate(resources):
+             side = resource['side']; owner = nodes['character:' + side][1]['node']
+             require(resource['native_id'] == owner['native_id'] and owner['class'] == 'Node2D' and owner['name'] == 'Character', 'CHARACTER_RESOURCE_ALIAS')
+             schema.validate_typed(resource['buffProtectStacks']); require(resource['buffProtectStacks']['type'] == 'int', 'CHARACTER_PROTECT_TYPED')
+             put('Character.buffProtectStacks', phase, side, resource['buffProtectStacks'],
+                 [ref(record, f'/payload/source_resources/{si}/buffProtectStacks', owner['native_id'], line)])
++            observed_resources = {}
++            for field in ('baseStaminaRegen','staminaRegen'):
++                value = resource[field]
++                schema.validate_typed(value); require(value['type'] == 'float','ACTUAL_CHARACTER_RESOURCE_REAL')
++                schema.scalar_number(value)
++                source_ref = ref(record, f'/payload/source_resources/{si}/{field}', owner['native_id'], line)
++                put('Character.' + field, phase, side, value, [source_ref])
++                observed_resources[field] = deepcopy(value)
++                observed_resources[field + '_ref'] = source_ref
++            observed_resources['native_id'] = owner['native_id']
++            result['resource_observations'][phase][side] = observed_resources
+             for field, value in (('invulnerable', {'type': 'bool', 'value': False}), ('invulnerabilityItem', {'type': 'null'})):
+                 put('Character.' + field, phase, side, value,
+                     [ref(record, f'/payload/nodes/{nodes["invu:" + side][0]}/timer', nodes['invu:' + side][1]['node']['native_id'], line),
+@@ -183,16 +195,25 @@
+             require(same(fields['cachedAffectedItems'], item['cachedAffectedItems']) and same(fields['currentAffectedItems'], item['currentAffectedItems']), 'ITEM_CACHE_DUAL')
+             observations[role] = {'input_ref': ref(record, f'/payload/items/{ii}', aliases['role_to_native'][role], line),
+                 'cachedAffectedItems': deepcopy(item['cachedAffectedItems']), 'currentAffectedItems': deepcopy(item['currentAffectedItems'])}
+-            if role == 'P:9':
+-                threshold='4014000000000000';integer(fields['activations'],0)
+-                require(same(fields['activationsToTrigger'],{'type':'float','binary64_be':threshold}),'BASIC_TYPED_THRESHOLD5')
+-                for field in ('iterationCooldown','triggerTime'):
+-                    require(same(fields[field],ZERO if phase=='pre_prepare' else {'type':'float','binary64_be':threshold}),'BASIC_PREPARE_STAGE_'+field)
+-                observations[role]['goobert_state']={k:deepcopy(fields[k]) for k in ('activations','activationsToTrigger','iterationCooldown','triggerTime')}
+-            if role == 'P:14':
+-                expected={'type':'array','values':[{'type':'int','decimal':str(i)} for i in (101,102,103,104,106,107)]}
+-                require(same(fields['stackTypes'],expected),'SAPPHIRE_ORDERED_SIX_INT')
+-                observations[role]['stackTypes']=deepcopy(fields['stackTypes'])
++            index = schema.ITEM_INDEX_BY_ROLE[role]
++            required_fields = ['speedScale','iterationCooldown','triggerTime','doubleActivationChance','doubleAttackEffectChance']
++            if index == 162:required_fields += ['speedBonusGiven']
++            elif index == 231:required_fields += ['numBuffs','staminaRegenPerBuff']
++            elif index == 385:required_fields += ['buffs']
++            observed_fields, field_refs = {}, {}
++            for field in required_fields:
++                value = fields[field];schema.validate_typed(value)
++                allowed = ('int',) if field in ('numBuffs','buffs') else (('null','float') if field == 'staminaRegenPerBuff' and phase == 'pre_prepare' else ('float',))
++                require(value['type'] in allowed,'MIXED_DIRECT_TYPED_' + field)
++                if value['type'] == 'float':schema.scalar_number(value)
++                observed_fields[field] = deepcopy(value)
++                field_refs[field] = ref(record, f'/payload/items/{ii}/fields/{field}', aliases['role_to_native'][role], line)
++                put('Item.' + field, phase, role, value, [field_refs[field]])
++            if index == 231:integer(fields['numBuffs'],3)
++            if index == 385:integer(fields['buffs'],1)
++            observations[role]['item_index'] = index
++            observations[role]['typed_fields'] = observed_fields
++            observations[role]['typed_field_refs'] = field_refs
+         result['prepare_observations'][phase] = observations
+         maps.append(nodes)
+     facts = decoded['king-input-facts.json']
