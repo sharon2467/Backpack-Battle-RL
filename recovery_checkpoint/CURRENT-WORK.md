@@ -20,6 +20,10 @@ Strict029scope is onefixedcase/conditionalTape,not allseed/alllayout or generalK
 
 Earlier independent fixedKing451(375events365Tape) and fixed26King+Basic478(366events422Tape33Timers) remain accepted under their exact contracts. Source498family29item natural232events304draw26Timers is separateSourceevidence. Neither nearbywinrates norSource-only tests replace Nativeacceptance. The historic detailed summary is preserved in RESUME-HISTORY-through538.json and immutable work_in_progress archives;current RESUME-STATE.json takes precedence.
 
+## Next isolatedSource block: Wolpertinger231
+
+[543–545 Source pendingindependentcontrols](../work_in_progress/phase543-545-wolpertinger-source-pending/README.md) implements least-buff allocation and buff-delta stamina feedback in an isolated copy of497. Onlyengine/headlesschange;13files conserved.546finiteSourcecontrols and onepreselectednewSourcecase remainpending;no newNativeorformaladmission. Current publicSDK497 is unchanged.
+
 ## Next work
 
 Select one remaining sharedcombat rulefamily using actualcurrentSPEC/unsupportedgates and OriginalSource,then implement and independentlyverify its smallest useful block. Reuse existing evidence;do not reopen UI/G02/platformRNG audits. No newOriginalcapture is automatically started. Before anyfutureauthorizedcapture,recheck space against5905580032B;use the fixedpool and preserve uniqueoriginals/errors. Only reliably backed duplicateworkcopies may be freed.

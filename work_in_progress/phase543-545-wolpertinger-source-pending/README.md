@@ -1,0 +1,9 @@
+# Wolpertinger231 Source implemented, independent runtime controls pending
+
+543/544select and review one new sharedbusiness family:least-buff virtual balancing followed by aggregated grants,and actualbeneficial-buff delta→stamina-regeneration feedback.545isolatedSource starts from exact49715,changesonlyengine/headless,conserves13files/233existingenginefunctions. Newmethods get_least_stacks,give_least_buffs,give_stamina_regeneration;existingexperimentalnonKing setadds231,formal/King/oldnarrowroutes unchanged. Sourcecatalog82 is proposedexperimental registration,notformal orNative admission.
+
+All15files compile;author Sourceowner2aa03706706189ade70dd43ce5f8975d428664ac8c3fc5e999d3fd82ef4b4cad/24leaves. No candidateimport/helper/model/test/Native/Expected run byauthor. Independent546Source review/exact8-family+atmost1newSourcebattle is pending at this checkpoint. The current publicSDK497 and all old505/539/541caseevidence remain immutable.
+
+Importantimplementation contracts:allvirtualleastchoices precede realgrants;singletonstillconsumes RNG;preserve10000sentinel/currentlogging/noimplicitflush. PreparationaddSpeed(including0snapshot)→registration→(p1*baseStaminaRegen)/100. Actualnormallycapped/protected0changes do not emit,butalreadydispatched0callbackstill snapshots;historymaydeduplicate. Regenhistoryusescurrentglobalevent_num,notstale callbackevent.id. Newlivecoefficients are actualdataclassfields,not nonexistentserializedproperties.
+
+Verify FILES.json andoverlayrepo/. Fullnewstaged15+Sourcefreeze/context/conservation/patch/base-list/implementationSPEC and543/544Sourceplanreview included. ExistingbranchbaseOriginalresources supplysourceauthority;thereisno newOriginalcapture. FreshNativeadmission requires a later actualrecordandspace/authorization,not automatic. Formal75 and fullprojectIN_PROGRESS remain. See recovery CURRENT-WORK for completed actual029strict8;do notrerun it for thisnewfamily.

@@ -1,0 +1,156 @@
+--- 497/headless.py
++++ 545/headless.py
+@@ -26,7 +26,7 @@
+ ITEMS = frozenset({0, 1, 2, 4, 5, 6, 10, 11, 14, 15, 16, 19, 21, 22, 24, 26, 30, 67, 117, 129, 208, 405, 182, 233, 234, 235, 29, 82, 83, 84, 17, 18, 34, 50, 35, 36, 37, 46, 3, 12, 27, 28, 7, 8, 20, 39, 48, 124, 209, 32, 172, 23, 38, 205, 296, 52, 54, 400, 468, 53, 168, 204, 340, 62, 179, 332, 351, 374, 74, 169, 219, 220, 401, 416, 469})
+ SQUIRREL_SOURCE_ITEMS = frozenset({164})
+ SQUIRREL_SOURCE_EXTENSION = 'source-headless-squirrel-default/1'
+-EXPERIMENTAL_NONKING_ITEMS = frozenset({64,164,197,199,201})
++EXPERIMENTAL_NONKING_ITEMS = frozenset({64,164,197,199,201,231})
+ EXPERIMENTAL_NONKING_EXTENSION = 'source-headless-experimental-nonking-defaults/1'
+ # Original Bag.getBagLayerPriority: Unique first, then resource Icon/Border.
+ # Static facts for admitted default resources; no visual object is constructed.
+--- 497/native_replay_v8/engine.py
++++ 545/native_replay_v8/engine.py
+@@ -40,6 +40,10 @@
+ 
+ 
+ CATALOG = {
++    231: dict(name="Wolpertinger",shape=((0,0),(1,0),(0,1),(1,1)),
++              stars=((0,-1),(1,-1),(-1,0),(2,0),(-1,1),(2,1),(0,2),(1,2)),
++              bag=False,pet=True,nature=True,cooldown=5.0,stamina_regen_percent=0.7,
++              least_buffs=3,pet_speed_percent=15.0,socket_count=0,default_gem=None),
+     64: dict(name="Ruby Whelp",shape=((0,0),(1,0),(0,1),(1,1)),bag=False,
+              ranged=True,pet=True,fire=True,effect=True,cooldown=2.1,stamina=0.0,accuracy=90.0,
+              min_damage=5,max_damage=10,heat=5,reflect_stacks=3,socket_count=1,default_gem=None),
+@@ -214,7 +218,7 @@
+ GOOBERT_IDS = frozenset({262,23,38,52,53,54,168,205,296,400,468}) | RAINBOW_GOOBERT_IDS | BUFF_GOOBERT_IDS
+ STATE_PARTICLE_IDS = frozenset({53,168})
+ POTION_IDS = frozenset({19,35,36,37,46,172})
+-CACHED_AFFECTED_IDS = GOOBERT_IDS | POTION_IDS | frozenset({5,6,21,22,117,124}) | frozenset({18,29,82,83,84,164,179,332,351,374})
++CACHED_AFFECTED_IDS = GOOBERT_IDS | POTION_IDS | frozenset({5,6,21,22,117,124}) | frozenset({18,29,82,83,84,164,179,231,332,351,374})
+ EMPOWERABLE_WEAPON_IDS = frozenset([64, 197, 199, 201, 29, 82, 83, 84, 182, 233, 234, 235, 0, 1, 2, 3, 12, 14, 15, 27, 28, 30, 32, 208, 209])
+ 
+ EVENT_TYPES = {"LoseHealth": 5, "Activation": 0, "DealDamage": 1, "CriticalDamage": 2,
+@@ -224,7 +228,7 @@
+                "TemporaryMaxHealth": 19, "Empower": 106, "Poison": 108, "Heat": 107, "Cold": 110, "Stun": 9,
+                "BattleRageStart": 21, "BattleRageEnd": 22, "Win": 111, "Loss": 112}
+ DEBUFF_TYPES = ("Blind", "Poison", "Cold")
+-GAINED_STACK_FLAGS = {64:128,197:258,199:254,201:1792,164:254,35:4,37:0,46:16,50:8,29:0,82:0,83:0,84:0,182:0,233:16,234:2,235:1792,129:0,262:0,204:254,220:254,340:254,416:766,74:776,169:584,219:648,401:524,469:524,53:512,54:8,52:0,400:6,468:4,38:256,205:128,296:0,168: 64, 0: 0, 1: 0, 2: 0, 3: 512, 4: 0, 5: 0, 6: 0, 7: 4, 8: 16, 10: 0, 11: 0, 12: 0, 14: 0, 15: 0, 16: 16, 17: 0, 18: 0, 19: 0, 20: 512, 21: 256, 22: 34, 23: 0, 24: 2, 26: 0, 27: 16, 28: 8, 30: 256, 32: 0, 34: 66, 36: 256, 39: 0, 48: 8, 62: 128, 67: 0, 117: 128, 124: 64, 172: 32, 179: 1024, 208: 0, 209: 128, 332: 254, 351: 0, 374: 0, 405: 0}
++GAINED_STACK_FLAGS = {231:254,64:128,197:258,199:254,201:1792,164:254,35:4,37:0,46:16,50:8,29:0,82:0,83:0,84:0,182:0,233:16,234:2,235:1792,129:0,262:0,204:254,220:254,340:254,416:766,74:776,169:584,219:648,401:524,469:524,53:512,54:8,52:0,400:6,468:4,38:256,205:128,296:0,168: 64, 0: 0, 1: 0, 2: 0, 3: 512, 4: 0, 5: 0, 6: 0, 7: 4, 8: 16, 10: 0, 11: 0, 12: 0, 14: 0, 15: 0, 16: 16, 17: 0, 18: 0, 19: 0, 20: 512, 21: 256, 22: 34, 23: 0, 24: 2, 26: 0, 27: 16, 28: 8, 30: 256, 32: 0, 34: 66, 36: 256, 39: 0, 48: 8, 62: 128, 67: 0, 117: 128, 124: 64, 172: 32, 179: 1024, 208: 0, 209: 128, 332: 254, 351: 0, 374: 0, 405: 0}
+ STACK_NAMES_BY_TYPE = {value: name for name, value in EVENT_TYPES.items() if 100 <= value <= 110}
+ 
+ 
+@@ -464,6 +468,8 @@
+     last_trigger_time: float = 0.0
+     triggers_this_frame: int = 0
+     cache_prepared: bool = False
++    wolpertinger_buff_listener_registered: bool = False
++    wolpertinger_stamina_regen_per_buff: float | None = None
+     orientation: int = 0
+     top_left: tuple = (0, 0)
+     cooldown_active: bool = False
+@@ -1887,6 +1893,11 @@
+             bag.chance_rng.reset()
+             bag.damage_range.acc = 0.0
+             bag.spikes_given = 0
++            if bag.item_index == 231:
++                self.add_speed(bag, len(self.affected_items(bag)) * bag.definition["pet_speed_percent"] / 100.0)
++                bag.wolpertinger_buff_listener_registered = True
++                bag.wolpertinger_stamina_regen_per_buff = (bag.definition["stamina_regen_percent"]
++                    * self.characters[bag.side].base_stamina_regen) / 100.0
+             if bag.item_index == 52:
+                 bag.steel_affected_weapons.extend(self.steel_secondary_cache[bag.instance_id])
+             if bag.item_index in STATE_PARTICLE_IDS:
+@@ -2113,6 +2124,8 @@
+                 def eligible(other):
+                     if other.definition["bag"] or other is item:
+                         return False
++                    if item.item_index == 231:
++                        return other.definition.get("pet", False)
+                     if item.item_index == 164:
+                         return other.definition.get("pet", False) or other.definition.get("food", False)
+                     if item.definition.get("food"):
+@@ -2202,6 +2215,8 @@
+             return targets
+         candidates = [other for other in self.side_items[item.side]
+                       if other is not item and other.cells & item.stars and not other.definition["bag"]]
++        if item.item_index == 231:
++            return [other for other in candidates if other.definition.get("pet")]
+         if item.item_index == 164:
+             return [other for other in candidates if other.definition.get("pet") or other.definition.get("food")]
+         if item.definition.get("food"):
+@@ -2258,7 +2273,13 @@
+             item = self.items[identity]
+             if item.side != side:
+                 continue
+-            if item.item_index == 27 and stack_type == "Spikes":
++            if (item.item_index == 231 and item.wolpertinger_buff_listener_registered
++                    and stack_type in ("Lucky", "Regeneration", "Vampirism", "Spikes", "Mana", "Empower", "Heat")):
++                coefficient = item.wolpertinger_stamina_regen_per_buff
++                if type(coefficient) is not float:
++                    raise ValueError("registered Wolpertinger requires prepared REAL coefficient")
++                self.give_stamina_regeneration(side, amount * coefficient)
++            elif item.item_index == 27 and stack_type == "Spikes":
+                 self.change_varying_damage(item, float(amount))
+             elif item.item_index == 28 and stack_type == "Vampirism":
+                 self.add_max_damage(item, amount)
+@@ -2267,6 +2288,10 @@
+                     self.consume_potion(item)
+             elif item.item_index == 172 and stack_type == "Mana":
+                 self.on_mana_changed(item, amount, event)
++
++    def give_stamina_regeneration(self, side, amount):
++        self.characters[side].stamina_regen += amount
++        self.histories.character(side, 20)
+ 
+     def on_mana_changed(self, potion, amount, event):
+         if not potion.potion_full or amount >= 0:
+@@ -2747,6 +2772,37 @@
+             self.remove_stack(item, item.side, self._stack_name(category), count, parent)
+         self.flush_logging_queue()
+ 
++    def get_least_stacks(self, item, num_stacks, target=None, available_stacks=range(101, 108)):
++        target = item.side if target is None else target
++        categories = self._stack_picker_inputs(available_stacks, num_stacks, target)
++        if any(category not in range(101, 108) for category in categories):
++            raise ValueError("least buffs require beneficial categories101 through107")
++        prior = {category: getattr(self.characters[target], self._stack_name(category).lower())
++                 for category in categories}
++        picked = {}
++        for index in range(num_stacks):
++            least_count = 10000
++            minima = []
++            for category, count in prior.items():
++                if count < least_count:
++                    least_count = count
++                    minima = [category]
++                elif count == least_count:
++                    minima.append(category)
++            if not minima:
++                raise ValueError("unsupported least-stack domain: Original10000 sentinel has no candidate")
++            raw = self.random.randi_range(f"least_buff:{item.instance_id}:{target}:{index}", 0, len(minima) - 1)
++            category = minima[raw]
++            picked[category] = picked.get(category, 0) + 1
++            prior[category] += 1
++        return picked
++
++    def give_least_buffs(self, item, num_buffs, parent=None, available_buffs=range(101, 108), target=None):
++        target = item.side if target is None else target
++        picked = self.get_least_stacks(item, num_buffs, target, available_buffs)
++        for category, count in picked.items():
++            self.give_stack(item, target, self._stack_name(category), count, parent)
++
+     def give_random_buffs(self, item, num_buffs, parent=None, available_buffs=range(101, 108), target=None):
+         target = item.side if target is None else target
+         picked = self.pick_random_stacks_to_give(item, available_buffs, num_buffs, target)
+@@ -3211,6 +3267,10 @@
+         item.iteration_cooldown = self.adjust_cooldown(item)
+         item.trigger_time += item.iteration_cooldown
+         char = self.characters[item.side]
++        if item.item_index == 231:
++            self.give_least_buffs(item, item.definition["least_buffs"])
++            self.activate(item)
++            return
+         if item.item_index == 164:
+             self.steal_random_buff(item, item.definition["buff_steal"])
+             self.activate(item)

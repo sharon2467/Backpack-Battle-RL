@@ -1,0 +1,40 @@
+{
+  "allocator_return": "ordered picked dict",
+  "class_domain": [
+    0
+  ],
+  "component_seam": "Existing CombatEngine(fixture, random_source, runtime); strict TapeRandom private synthetic seam only. No headless Tape ingress.",
+  "defaults_only": true,
+  "extras": [
+    64,
+    164,
+    197,
+    199,
+    201,
+    231
+  ],
+  "formal_support": 75,
+  "grant_return": "None",
+  "initializer": "headless.initialize_experimental_nonking(layout, seed)",
+  "least_label": "least_buff:<item.instance_id>:<target>:<zero-based unit ordinal>",
+  "methods": [
+    "CombatEngine.get_least_stacks(item,num_stacks,target=None,available_stacks=range(101,108))",
+    "CombatEngine.give_least_buffs(item,num_buffs,parent=None,available_buffs=range(101,108),target=None)",
+    "CombatEngine.give_stamina_regeneration(side,amount)",
+    "CombatEngine.on_stack_changed(side,stack_type,amount,event)",
+    "CombatEngine.prepare_only()",
+    "CombatEngine.trigger(item)"
+  ],
+  "no_King": true,
+  "no_rage": true,
+  "observation": "Snapshot existing stat20 at current global event_num; already-dispatched zero delta still snapshots; history may deduplicate.",
+  "runtime_acceptance": "PENDING_INDEPENDENT546",
+  "schema": "phase545-api/1",
+  "sentinel": 10000,
+  "sentinel_empty": "ValueError before invalid choice; no generalized fallback",
+  "state_fields": {
+    "wolpertinger_buff_listener_registered": "BOOL false before prepare; true at onPrepare registration",
+    "wolpertinger_stamina_regen_per_buff": "None before prepare; REAL (p1*base_stamina_regen)/100.0 after registration"
+  },
+  "validator": "headless.validate_experimental_nonking_layout(layout)"
+}

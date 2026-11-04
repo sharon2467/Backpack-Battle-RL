@@ -1,0 +1,188 @@
+{
+  "schema": "phase544-independent-231-design-review/1",
+  "status": "DESIGN_PASS_WITH_EXPLICIT_SOURCE_SEMANTIC_OBLIGATIONS",
+  "selected_scope": {
+    "item": 231,
+    "base": "exact497 portable SDK15",
+    "changed_files": [
+      "native_replay_v8/engine.py",
+      "headless.py"
+    ],
+    "other_modules_to_conserve": 13,
+    "new_public_API": false,
+    "new_formal_admission": false,
+    "new_Native_authorization": false,
+    "deferred_items": [
+      385,
+      162
+    ]
+  },
+  "identity_checks": {
+    "543_owner_payloads": 4,
+    "payload_drift": 0,
+    "direct_source_reference_count": 13,
+    "reused_543_descriptors_matched": 8
+  },
+  "decision": "The proposed two-file implementation is sufficient for the selected Source-only rule. No new generic listener/clock/history framework is needed. Exact functions and eight directed families below must be retained in545 implementation SPEC; this is design acceptance, not executed behavior or Native acceptance.",
+  "function_level_obligations": [
+    {
+      "functions": "get_least_stacks + give_least_buffs",
+      "Source": "Item.gd5513-5545; Game.gd5095-5096; Util.gd452-453",
+      "required": "Build ordered local prior counts for Lucky through Heat (seven categories, excluding Block/debuffs). For each requested unit, derive the current tied minima, call one source choice including singleton, increment virtual prior and aggregate in first-selected order. Only after all picks grant aggregates using original parent and existing logging mode. No giveRandomBuffs delayed-mode/flush substitution; actual caps/amplification/callbacks cannot alter prior picks. Preserve Original sentinel leastStacksCount=10000 or explicitly restrict helper domain before unsupported virtual states; do not silently replace arbitrary unsupported behavior with a generalized allocator."
+    },
+    {
+      "functions": "CATALOG/ItemState/new_caller_target_caches",
+      "Source": "Wolpertinger.gd1-21/scene; existing497 cache helper2106+",
+      "required": "231 Pet-only affected predicate, existing ordered/deduplicated spatial+instance cache and self exclusion. Store real prepared coefficient as a dataclass field (None before prepare, REAL after); no serialized definition property assumption. Metadata is Source-derived explicit-instance support, not a new canAdd/shop simulation claim."
+    },
+    {
+      "functions": "prepare_only new231 branch",
+      "Source": "Wolpertinger.gd9-13; Item.gd3344+/4855+/5677+",
+      "required": "Preserve addSpeed(numAffected*p3/100.0), then beneficial signal registration, then coefficient=(p1*character.base_stamina_regen)/100.0 in this order. addSpeed is called even for zero affected targets, retaining speed/cooldown tooltip snapshot calls. Listener membership starts at onPrepare registration, not construction; use existing preparation order plus explicit prepared coefficient/registration state. No activation at prepare. Do not change all listeners or start order."
+    },
+    {
+      "functions": "on_stack_changed + give_stamina_regeneration",
+      "Source": "Wolpertinger.gd19-21; Character.gd1103-1105; EventBus.gd57-96; CombatLog.gd517-526",
+      "required": "Own beneficial signals only, same ordered registered231 receivers. Delta*prepared coefficient changes live stamina_regen, then histories.character(side,20) at current global event_num. Do not use callback event.id or next_event: delayed flush can have a later global event counter. Preserve existing ended/queue semantics and any actual nested callbacks."
+    },
+    {
+      "functions": "Zero behavior and history",
+      "Source": "Buff.gd48-50,76-193,199-312; Character.gd1103-1105; existing histories.StatHistory.add_value",
+      "required": "Normal gain cap/resist or protected zero loss does not emit a buff-change callback. A real/synthetic already-dispatched zero amount still reaches Wolpertinger onBuffChanged and Character.giveStaminaRegeneration without an amount==0 early return; snapshot call occurs, and existing same-value/type history dedup may suppress a new history row. Direct setStacks is not an emitted buff change. Distinguish callback invocation, state delta and appended history row."
+    },
+    {
+      "functions": "trigger231 + existing stamina scheduling",
+      "Source": "Wolpertinger.gd15-17; existing497 live stamina_regen integration1555/3491",
+      "required": "least3 grant flow then existing activate, with original parent/default/null and limiter/ended behavior. Read the resulting live stamina_regen in existing character tick; no extra clock or Timer changes."
+    },
+    {
+      "functions": "closed experimental nonKing validation/metadata",
+      "required": "Add only231 to the existing fixed extras set alongside164/201/64/197/199, class0/default/noKing and atLeastOneExtra rules. Preserve formal75/oldinitialize/CLI/batch/Squirrel/King gates. Registered catalog82 is not formal82."
+    }
+  ],
+  "future_directed_families": [
+    "Tie order + one choice per requested unit",
+    "Virtual rebalancing and first-selected aggregation before all grants",
+    "Singleton choice and zero requested count, including caller activate distinction",
+    "Caps/amplification and instant/delayed logging without preselection feedback",
+    "Gain/loss/used/protected-zero versus explicitly emitted zero; exclude Block/debuff/opponent",
+    "Pet cache/dedup and listener registration/prepare order",
+    "Exact coefficient arithmetic, zero-speed snapshots, current-event history and stamina consumption feedback",
+    "Closed new API admission and unchanged old narrow gates"
+  ],
+  "natural_case_boundary": {
+    "maximum_new_source_battles": 1,
+    "layout_seed": "Must be fixed before execution; not selected in this review",
+    "intent": "231 plus existing164/199 and a stamina weapon, opposing201 if selected by the later fixed plan",
+    "report_HIT_NOT_HIT": true,
+    "new_Native": false
+  },
+  "no_new_blockers": true,
+  "limits": [
+    "New231 logic and future Source-only case are not Native validation. Matching real caller/choice context/typed coefficient and actual identity-clock initial premises require separately authorized evidence.",
+    "505/539/541 captured implementation, old outputs and536 failure remain immutable; no029 rerun.",
+    "Fresh space/resource gate5905580032 remains mandatory for any future Native attempt; no space check/cleanup/collection in this review."
+  ],
+  "execution_counts": {
+    "candidate_imports": 0,
+    "SUT_helpers": 0,
+    "models": 0,
+    "tests": 0,
+    "Native": 0,
+    "Expected_payload_reads": 0,
+    "pool_or_resource_operations": 0
+  },
+  "preparation_note": "The first metadata read guessed candidate-source-facts.json and returned file-not-found; actual filename was then taken from the owner (actual-source-candidates.json). No candidate/Source execution or evidence alteration.",
+  "evidence": [
+    {
+      "path": "data/phase543-next-shared-combat-family-plan/owned-files.json",
+      "size": 959,
+      "sha256": "95294a6bfa588b9feb913f15bd643874b4a71b5d5d41c44dc6de038276b80171"
+    },
+    {
+      "path": "data/phase543-next-shared-combat-family-plan/successor-plan.json",
+      "sha256": "42822c89f77fed0335d0dbab77cd0dc695b4cdf8f192c1ff056dc6b6211191b0",
+      "size": 2393
+    },
+    {
+      "path": "data/phase543-next-shared-combat-family-plan/source-pins.json",
+      "sha256": "4b1046882c6c46680d2c2f321490e6781016496a7547b2cad303df3019682138",
+      "size": 5984
+    },
+    {
+      "path": "data/phase543-next-shared-combat-family-plan/actual-source-candidates.json",
+      "sha256": "3fdd4eb3476ca880dc3a4a8ed7302dc408ba28259067a2c69a9b8fc2ce6bbc45",
+      "size": 2936
+    },
+    {
+      "path": "docs/phase543_next_shared_combat_family_shortlist_spec.md",
+      "sha256": "5ce0413b50684de68ee8bd70e588aff3db8f1002b2542351c073ff95a95d452a",
+      "size": 12911
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Wolpertinger.gd",
+      "size": 522,
+      "sha256": "5607b4eea0e69fa4f1f46f2a646e1c3a4c12668be75c45269cf0a2ce6b258ea2"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Wolpertinger.tscn",
+      "size": 1402,
+      "sha256": "69c0834d5d21b5adb9e6484c71261b0a305ccc192d651cf6ddd14be138ebe462"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "size": 170717,
+      "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Character.gd",
+      "size": 48033,
+      "sha256": "dc372965eaa048657caa1646d70aba85ff9b4b9677565eaa480bc195de027496"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Game.gd",
+      "size": 145148,
+      "sha256": "f3688bfdf39b95a8ed6a77d9a7ad058a95a0aaa4bcb6d297bc953425add4b9c9"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/Buff.gd",
+      "size": 8827,
+      "sha256": "3efabb72eb0b337e30ebc924347aba40bd1039a3c5f718b761b0ee78b48ab8bb"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Core/CombatLog.gd",
+      "size": 35028,
+      "sha256": "502ba9802874c189798001a59c4135ca6591efaec80b007559760b12dc0bf638"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Utility/EventBus.gd",
+      "size": 2321,
+      "sha256": "ff9a8424cacd109104dc1598c4d0fee8a285f125f3c89c54fb0f11c479b4f788"
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Utility/Util.gd",
+      "size": 44381,
+      "sha256": "596e7f7a9308ea03957e5c9f6e5cb43aa1591e1e0fd13217e2f2c70368970a36"
+    },
+    {
+      "path": "data/phase497-source-three-whelps/staged/native_replay_v8/engine.py",
+      "size": 244417,
+      "sha256": "3111f334e05a3ce900f78d3ebcbe54da7e3a78935e23fa29bfe00352fd1bb40b"
+    },
+    {
+      "path": "data/phase497-source-three-whelps/staged/headless.py",
+      "size": 35796,
+      "sha256": "f89cd8839a59c3124a24454897a0ef0299726d91bf4eee7a0ac31f454067b400"
+    },
+    {
+      "path": "data/phase497-source-three-whelps/staged/native_replay_v8/histories.py",
+      "size": 8508,
+      "sha256": "d9b3f270b53f328f5958647fdaba86532ff3d9db11b272d9a7d0d2aef1db0b05"
+    },
+    {
+      "path": "data/phase497-source-three-whelps/staged/native_replay_v8/state.py",
+      "size": 15114,
+      "sha256": "21478fecea4c888f701ff8991fb2cf75519670c602ed2bd9d17874e238c54bd1"
+    }
+  ]
+}

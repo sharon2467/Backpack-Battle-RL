@@ -1,0 +1,75 @@
+{
+  "all_headless_functions_exact": true,
+  "catalog_registered": 82,
+  "changed_files": [
+    "headless.py",
+    "native_replay_v8/engine.py"
+  ],
+  "changed_functions": [
+    "CombatEngine.prepare_only",
+    "CombatEngine.new_caller_target_caches",
+    "CombatEngine.new_caller_target_caches.eligible",
+    "CombatEngine.affected_items",
+    "CombatEngine.on_stack_changed",
+    "CombatEngine.trigger"
+  ],
+  "deltas": [
+    {
+      "after_sha256": "491a9f754aec7a0a95e03d0c7079264eef6a5bce4f4be1a190816acfa671a14a",
+      "before_sha256": "c37175397412a8af6038b0a1e4b992b27ccb4ecd176eb5e1c9816eb02fa17bad",
+      "function": "CombatEngine.prepare_only"
+    },
+    {
+      "after_sha256": "e2d2673d4c1462a3e2ad9771e2f0b36e4ef433a9888ddf779cec093f14102d67",
+      "before_sha256": "6ce18fb658f39f42906f06e56c750d7830534356b26d003ca6a14010bc9f7eeb",
+      "function": "CombatEngine.new_caller_target_caches"
+    },
+    {
+      "after_sha256": "4c932c87abfbeb6497bcd11e5aa7743e517ef4c289b9267ae4ee14e47f114420",
+      "before_sha256": "c89fc8f9eb39ae0480715e538d6f4eda1c6bc6431df45e9ae924a647fb2939ad",
+      "function": "CombatEngine.new_caller_target_caches.eligible"
+    },
+    {
+      "after_sha256": "021479731382d8b8c8f18375656cacf92f73c8bf425dccc9b6e21000776631fc",
+      "before_sha256": "484e8500644baf19b1906712f5363818093c32b874e758ded39a7703a1535d1f",
+      "function": "CombatEngine.affected_items"
+    },
+    {
+      "after_sha256": "501d42544cadae893582d9f1cd9179c3c18560c4e162d135f52dea44e497dd88",
+      "before_sha256": "fa103fe1d81f6cf26335998a094ee7291517319a8eff199df9c087681628bb00",
+      "function": "CombatEngine.on_stack_changed"
+    },
+    {
+      "after_sha256": "3e28b464ba9a5d89b56334af0dc5df88d216696e5cadcd28810d3ae02d2d4cb5",
+      "before_sha256": "b8079443922a5ada24e60c840479fc99cf181bc58543b3d780f602e18312deb2",
+      "function": "CombatEngine.trigger"
+    }
+  ],
+  "exact_existing_engine_functions": 233,
+  "exact_files": [
+    "godot_pcg_integer.py",
+    "native_replay_v7/__init__.py",
+    "native_replay_v7/frame_driver.py",
+    "native_replay_v7/timer_runtime.py",
+    "native_replay_v8/__init__.py",
+    "native_replay_v8/__main__.py",
+    "native_replay_v8/compare.py",
+    "native_replay_v8/genuine.py",
+    "native_replay_v8/histories.py",
+    "native_replay_v8/observed.py",
+    "native_replay_v8/randomness.py",
+    "native_replay_v8/state.py",
+    "original_rng.py"
+  ],
+  "existing_engine_functions": 239,
+  "formal_support": 75,
+  "kernel_modules_exact": true,
+  "new_functions": [
+    "CombatEngine.get_least_stacks",
+    "CombatEngine.give_least_buffs",
+    "CombatEngine.give_stamina_regeneration"
+  ],
+  "old_admission_functions_unchanged": true,
+  "old_weapon_sets_unchanged": true,
+  "schema": "phase545-conservation/1"
+}
