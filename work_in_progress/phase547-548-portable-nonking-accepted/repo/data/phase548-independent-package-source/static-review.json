@@ -1,0 +1,62 @@
+{
+  "schema": "phase548-independent-package-static/1",
+  "status": "STATIC_PASS_PENDING_EXACT_SMOKE_RELEASE",
+  "owner": {
+    "path": "data/phase547-portable-nonking-package/owned-files.json",
+    "size": 4992,
+    "sha256": "c8364dafe66dc96fb2a4e46ae89449f6e0553e1a1f6a8ad5280fb5354a253267"
+  },
+  "manifest": {
+    "path": "data/phase547-portable-nonking-package/package/manifest.json",
+    "size": 3723,
+    "sha256": "1b1a4c5e9128044d02ac56e8ea8d7cdcfa42f5010239fd843b7820ba2ba50ea4"
+  },
+  "owner_refs_checked": 24,
+  "payloads": 19,
+  "physical_files": 20,
+  "exact545_sources": 15,
+  "example_items": 22,
+  "example_canonical_equal_presealed546": true,
+  "example_no_outcome_fields": true,
+  "verifier_only_schema_constant_delta": true,
+  "local_import_roots": [
+    "godot_pcg_integer",
+    "native_replay_v7",
+    "native_replay_v8",
+    "original_rng"
+  ],
+  "stdlib_import_roots": [
+    "argparse",
+    "copy",
+    "dataclasses",
+    "hashlib",
+    "json",
+    "math",
+    "pathlib",
+    "random",
+    "re",
+    "struct",
+    "types",
+    "typing"
+  ],
+  "syntax_only": {
+    "Source15_feature_version": "3.10",
+    "README_snippets": 2,
+    "executed": false,
+    "current_runtime_metadata": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "Python310_runtime_tested": false
+  },
+  "scope_notes": [
+    "Actual smoke validates layout and returns fixture; it does not initialize/construct/prepare/activate/run.",
+    "README explicitly separates Source546 from Native fixed029 and preserves Squirrel_loss NOT_HIT and231 Native pending.",
+    "Manifest SHA is external; README has no cyclic own hash.",
+    "Portable imports are closed within15 sources plus stdlib; model_source_hashes reads local module files only.",
+    "Legacy explicit captured/CLI modules remain in byte-exact distribution; no legacy captured path is executed by public smoke."
+  ],
+  "findings": [],
+  "candidate_imports": 0,
+  "verifier_calls": 0,
+  "validate_calls": 0,
+  "battles": 0,
+  "preseal_metadata_note": "An unexecuted static check initially used the wrong old schema spelling experimental-source-package-manifest/1; actual frozen491 value is experimental-source-king-package-manifest/1. Assertion stopped before report creation. Reading the actual constant and comparing exact replacement confirms the declared single-constant delta. No package defect or SUT invocation occurred."
+}
