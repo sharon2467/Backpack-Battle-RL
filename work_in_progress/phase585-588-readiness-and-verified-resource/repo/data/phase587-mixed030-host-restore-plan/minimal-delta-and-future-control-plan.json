@@ -1,0 +1,148 @@
+{
+  "binding": {
+    "Native_values": "UNOBSERVED",
+    "case": "NATIVE-030-MIXED-MODIFIERS-A",
+    "case_inputs": 3,
+    "global_seed": 57101,
+    "patches": 76,
+    "profile": "observer7-mixed-modifiers-A-native-tape/1",
+    "project_artifacts": 3,
+    "project_bytes": 817389,
+    "project_targets": 79,
+    "run": "original030-mixed-modifiers-A-single-001",
+    "source_case": "MIXED-MODIFIERS-A-572",
+    "terminal_policy": "first-actual-idle-after-at-least-two-future-physics/1",
+    "util_seed": 57102,
+    "version": "7-mixed-modifiers-A-572"
+  },
+  "changed_functions": {
+    "host": [
+      "validate_observer_review",
+      "source_gate",
+      "plan",
+      "execute",
+      "validate_active_source_tuple"
+    ],
+    "reader": [
+      "readback",
+      "main"
+    ],
+    "restore": [
+      "load_modules",
+      "validate_request",
+      "prepare",
+      "main"
+    ],
+    "storage": []
+  },
+  "current_operation": {
+    "Expected": 0,
+    "Original": 0,
+    "Source_generation": 0,
+    "cleanup": 0,
+    "compile": 0,
+    "execute": 0,
+    "helper": 0,
+    "hostplan": 0,
+    "imports": 0,
+    "pool": 0,
+    "resources": 0
+  },
+  "exact_body_rules": {
+    "host": "all nonbinding functions incl physicalbackup/resource/processmetadata/terminalcontrol/parser bodies exact; resolve/verify payload bodies may remain exact through constants",
+    "inherited_import_closure": "363process+363storage+native_run_compaction+offline wholefiles exact and explicitly pinned",
+    "reader": "same fullinventory/readlock/process/retained/statechecks; onlycase/run/size/outputlabels",
+    "restore": "select_restore_images/action/apply/restore/no_process/metadata complete unchanged; prepare only newsize andlabels",
+    "storage": "all23 bodies, count79constant unchanged/bytes814020\u2192817389only"
+  },
+  "freeze_order": [
+    "host/storage and Sourceauthority/observer/drivergraph",
+    "derivedfreeze doesnotselfhash restorationSource that embedsfreezehash",
+    "restore/readback embedrealderivedfreeze",
+    "totalSourceowner+inverse/census",
+    "futureindependentreview actualreceipt",
+    "futureRootconfig explicitdescriptor"
+  ],
+  "future_host_review": {
+    "owner": null,
+    "receipt": null,
+    "required": [
+      "newderivedfreeze actual descriptor",
+      "observer_source_owner exact",
+      "native/models strictINT0"
+    ],
+    "schema": "phase587-independent-host-restore-source-review/1",
+    "source_freeze": null,
+    "status": "ACCEPTED_SOURCE_ONLY_PENDING_ROOT_EXECUTE"
+  },
+  "future_pure_controls": {
+    "allowed_after_independent_Source_and_Root_release": true,
+    "forbidden": [
+      "plan",
+      "lease",
+      "prepare",
+      "execute",
+      "restore",
+      "readback",
+      "inventory",
+      "budget",
+      "actualpool/resources/baseline"
+    ],
+    "proposed_new_checks": [
+      "575missingkey/old503shape/owner/schema/strictINT0reject",
+      "tuplemissingnewrequiredkey/oldrolemap/oldseedsreject",
+      "wrong79bytecorpus/repeatedtarget/missingpayloadreject",
+      "wrongnewhostreview freeze/owner/permissionreject"
+    ],
+    "restore_selection": "AST/fullbodyexact first; only necessary newbinding vectors on real shared select_restore_images if independent reviewer finds value; do not repeat old509suite"
+  },
+  "observer_review": {
+    "owner_field": "Source.owner",
+    "receipt": {
+      "path": "data/phase575-independent-final-acceptance/review.json",
+      "sha256": "526d09b0de3948ff8932d7064dc6ef934c6674cfb89d8a6621f203c056edd3a7",
+      "size": 31553
+    },
+    "schema": "phase575-independent-final-acceptance/1",
+    "schema_field": "Source.schema",
+    "status": "ACCEPTED_SOURCE_AND_FINITE_SYNTHETIC_SCHEMA_ONLY",
+    "tuple_rule": "fixed actual Source tuple descriptor plus observerfreeze/owner closure;575hasnoaccepted_source_tuple",
+    "zero_fields": "zero_calls.Native/model strictINT0, other existingSourceonlyscope retained"
+  },
+  "operational_pins_pending": [
+    {
+      "object": "current READY/state/previous_run",
+      "when": "fresh preflight and lease snapshot beforebusy/reset"
+    },
+    {
+      "object": "targetordinary/ancestor/sourcebefore/preimages",
+      "when": "future preflight/install journal, notSourceplanning"
+    },
+    {
+      "object": "resource/binary/space actualreceipts",
+      "when": "freshfutureoperationalgate"
+    },
+    {
+      "object": "savedstate/controls/oldpatch/newjournal/poolbefore",
+      "when": "actual run lock/installation, neverfake"
+    },
+    {
+      "object": "restore12evidence andreader8evidence/receipts/owners",
+      "when": "after actualattempt andappropriate restorephase"
+    },
+    {
+      "object": "Rootoracleconfig/authorization plusactualreviewpins",
+      "when": "afterfutureSourceacceptance+newNativeauthorization"
+    }
+  ],
+  "proposed_new_files": [
+    "tests/phase587_oracle_host.py",
+    "tests/phase587_oracle_storage.py",
+    "tests/phase587_restore_predecessor.py",
+    "tests/phase587_independent_predecessor_readback.py"
+  ],
+  "proposed_output": "data/phase587-case030-host-restore-source",
+  "rollout": "FutureSourcegenerationrelease still required. No capture authorization or lowering5905580032gate.",
+  "schema": "phase587-minimal-adaptation-plan/1",
+  "status": "SPEC_ONLY_NO_SOURCE_GENERATION_AUTHORIZED"
+}

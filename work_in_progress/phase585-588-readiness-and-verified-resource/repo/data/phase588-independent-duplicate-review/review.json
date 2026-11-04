@@ -1,0 +1,118 @@
+{
+  "schema": "phase588-independent-duplicate-review/1",
+  "status": "PASS_EXACT_DUPLICATE_ELIGIBLE_FOR_SCOPED_ROOT_RELEASE",
+  "utc": "2026-11-04T22:19:17.118814+00:00",
+  "verification_seconds": 2.127523223996832,
+  "target": "/workspace/checkpoint-validation/physical-phase023-v4-accepted",
+  "source_proof": {
+    "path": "/workspace/python-original-engine/repo/data/phase588-verified-duplicate-space/proof.json",
+    "size": 421313,
+    "sha256": "13e0b7240e1ed2b76b99cdc685d5cb9a3d03a6043defa9ab6828ae238ebfd2c3"
+  },
+  "source_proof_owner": {
+    "path": "/workspace/python-original-engine/repo/data/phase588-verified-duplicate-space/owned-files.json",
+    "size": 292,
+    "sha256": "6ad72f2a276eaddb493150585deb0425c9b4a7308e2b08a2f509564313ab83f1"
+  },
+  "historical_receipt": {
+    "path": "/workspace/checkpoints/phase023-v4-accepted-private-verification.json",
+    "size": 2327,
+    "sha256": "022103675079ba835e62523064573e46923ef3b30f8bbf9709091cb29d6655a0"
+  },
+  "spec": {
+    "path": "/workspace/python-original-engine/repo/docs/phase588_verified_duplicate_space_spec.md",
+    "size": 2533,
+    "sha256": "467be7e1f03a24584d180dd478038314f4276dcdaddce52152b0f6153670b8e9"
+  },
+  "retained_archives": [
+    {
+      "path": "/workspace/checkpoints/python-original-engine-phase023-v4-accepted-current.zip",
+      "size": 53399855,
+      "sha256": "5ff8634636055f3e50044172a300fae53ff03f86dbbc30e8a7f3440eb00a44b2"
+    },
+    {
+      "path": "/workspace/checkpoint-validation/v4-accepted-downloads/python-original-engine-phase023-v4-accepted-current.zip",
+      "size": 53399855,
+      "sha256": "5ff8634636055f3e50044172a300fae53ff03f86dbbc30e8a7f3440eb00a44b2"
+    }
+  ],
+  "independent_results": {
+    "regular_single_link_files": 1232,
+    "directories_including_root": 205,
+    "file_bytes": 571272546,
+    "exact_file_and_directory_sets": true,
+    "all_file_SHA_size_mode_mtime_dev_inode_nlink_match_root_proof": true,
+    "directory_identity_mode_mtime_matches_root_proof": true,
+    "ancestor_identity_stable": [
+      {
+        "path": "/",
+        "dev": 27,
+        "ino": 262145,
+        "mode": 493
+      },
+      {
+        "path": "/workspace",
+        "dev": 27,
+        "ino": 9223372036854775903,
+        "mode": 493
+      },
+      {
+        "path": "/workspace/checkpoint-validation",
+        "dev": 27,
+        "ino": 1982062,
+        "mode": 448
+      },
+      {
+        "path": "/workspace/checkpoint-validation/physical-phase023-v4-accepted",
+        "dev": 27,
+        "ino": 131784,
+        "mode": 448
+      }
+    ],
+    "both_archives_complete_SHA_verified": true,
+    "retained_archives_distinct_inodes": true,
+    "first_archive_all_1232_members_decompressed_to_EOF_with_CRC_and_SHA_size_match": true,
+    "second_archive_identical_complete_bytes_established_by_size_and_SHA": true,
+    "manifest_entries_verified": 1231,
+    "symlinks_special_files_extras": 0,
+    "exact_path_ps_matches": []
+  },
+  "role_scope": {
+    "independent_reviewer": "No runtime, cwd, subprocess or write use of this historical copy; only this authorized readonly metadata/hash pass. All opened file handles closed before report.",
+    "root_confirmation": "Root reports prior readonly proof process reaped exit0, no remaining background process/FD and no relative-cwd use.",
+    "sol_confirmation_via_root": "Sol confirms entire current/587 phase no cwd, relative path, FD or subprocess use of exact copy; operations confined to live repo.",
+    "active_roles": "Root + Sol587 + Astra588 only, per Root coordination.",
+    "global_process_completeness_claimed": false,
+    "limitations": "Exact-path ps cannot discover all open FDs or relative uses; task-scoped role declarations close known task activity only, not global platform visibility."
+  },
+  "authorization_assessment": "Matches stated user authorization to release reliably restore-verified duplicate working copies while preserving unique evidence: historical successful physical restoration is bound to same archive SHA, current tree is byte-exact, and two ordinary retained archives remain outside target. This review does not delete or itself grant broader resource/Native authority.",
+  "root_release_conditions": [
+    "Root must recheck root and ancestor identity and each proof-listed file identity/stat immediately before unlink; halt on any mismatch, extra, new writer or unknown relevant use.",
+    "Only unlink still-matching proof-listed files beneath exact target; remove only verified empty directories. No blind recursive removal.",
+    "Preserve both retained ZIPs, historical receipt, proof/review, live Source, other checkpoints and all unique evidence.",
+    "Save actual removal receipt and measure fresh free space separately; verified logical payload bytes are not a claim of actual freed blocks. Native authorization and fresh resource gates remain separate."
+  ],
+  "physical_read_disclosure": {
+    "current_tree_bytes_hashed": 571272546,
+    "retained_zip_compressed_bytes_hashed": 106799710,
+    "zip_member_uncompressed_bytes_hashed": 571272546,
+    "historical_Expected_business_bytes_may_be_in_physical_hashes": true,
+    "Expected_semantic_decode": 0,
+    "decoded_metadata_only": [
+      "Root proof and owner",
+      "historical restoration receipt",
+      "HANDOVER-MANIFEST.json"
+    ]
+  },
+  "operations": {
+    "deletions": 0,
+    "restore_drills": 0,
+    "candidate_imports": 0,
+    "SUT_calls": 0,
+    "model_battles": 0,
+    "Native_calls": 0,
+    "Library_calls": 0,
+    "bytes_freed_claimed": null
+  },
+  "remaining_blockers": "No target-specific byte/known-task-writer blocker found. Root immediate pre-unlink identity/quiescence checks remain mandatory; no claim of global process completeness or Native execution readiness."
+}

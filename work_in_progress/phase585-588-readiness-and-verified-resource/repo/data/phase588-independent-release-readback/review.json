@@ -1,0 +1,114 @@
+{
+  "schema": "phase588-independent-release-readback/1",
+  "status": "PASS_EXACT_RELEASE_JOURNAL_AND_RETAINED_EVIDENCE_READBACK",
+  "utc": "2026-11-04T22:21:13.236967+00:00",
+  "root_release": {
+    "path": "/workspace/python-original-engine/repo/data/phase588-duplicate-release-first-001/release.json",
+    "size": 1359,
+    "sha256": "a86bade12adeb0966e7ee19ce3a3b30ee16db44d72072c2bb992bdcda419502d"
+  },
+  "root_owner": {
+    "path": "/workspace/python-original-engine/repo/data/phase588-duplicate-release-first-001/owned-files.json",
+    "size": 523,
+    "sha256": "ae9863c32957911d03975bf4bfb2d96f7a1e80dcf0780f2269b03eb58a3b23b2"
+  },
+  "removed_files_journal": {
+    "path": "/workspace/python-original-engine/repo/data/phase588-duplicate-release-first-001/removed-files.jsonl",
+    "size": 240382,
+    "sha256": "4df9e8ae7c17d35214d8dd92438981c2d8515fb772e0794e6c297d15de814783"
+  },
+  "original_proof": {
+    "path": "/workspace/python-original-engine/repo/data/phase588-verified-duplicate-space/proof.json",
+    "size": 421313,
+    "sha256": "13e0b7240e1ed2b76b99cdc685d5cb9a3d03a6043defa9ab6828ae238ebfd2c3"
+  },
+  "prior_independent_review": {
+    "path": "/workspace/python-original-engine/repo/data/phase588-independent-duplicate-review/review.json",
+    "size": 5756,
+    "sha256": "180efc2df1dcd63432496844a8efd1273469ac7359fdaec21a529b78c80b6dc5"
+  },
+  "target": "/workspace/checkpoint-validation/physical-phase023-v4-accepted",
+  "target_lexists": false,
+  "journal_verification": {
+    "rows": 1232,
+    "unique_paths": 1232,
+    "exact_original_order": true,
+    "each_path_size_SHA_dev_inode_matches_original_proof": true,
+    "extra_rows_or_paths": 0,
+    "payload_bytes": 571272546,
+    "reported_removed_directory_count_matches_original_proof": 205,
+    "directory_deletion_call_count_independently_observed": false
+  },
+  "retained_evidence_current": [
+    {
+      "descriptor": {
+        "path": "/workspace/checkpoints/python-original-engine-phase023-v4-accepted-current.zip",
+        "size": 53399855,
+        "sha256": "5ff8634636055f3e50044172a300fae53ff03f86dbbc30e8a7f3440eb00a44b2"
+      },
+      "current_stat": {
+        "dev": 27,
+        "ino": 1983155,
+        "mode": 384,
+        "mtime_ns": 1791994949532003991,
+        "nlink": 1
+      }
+    },
+    {
+      "descriptor": {
+        "path": "/workspace/checkpoint-validation/v4-accepted-downloads/python-original-engine-phase023-v4-accepted-current.zip",
+        "size": 53399855,
+        "sha256": "5ff8634636055f3e50044172a300fae53ff03f86dbbc30e8a7f3440eb00a44b2"
+      },
+      "current_stat": {
+        "dev": 27,
+        "ino": 131771,
+        "mode": 384,
+        "mtime_ns": 1791995055026766600,
+        "nlink": 1
+      }
+    },
+    {
+      "descriptor": {
+        "path": "/workspace/checkpoints/phase023-v4-accepted-private-verification.json",
+        "size": 2327,
+        "sha256": "022103675079ba835e62523064573e46923ef3b30f8bbf9709091cb29d6655a0"
+      },
+      "current_stat": {
+        "dev": 27,
+        "ino": 1983159,
+        "mode": 384,
+        "mtime_ns": 1791995103126199049,
+        "nlink": 1
+      }
+    }
+  ],
+  "retained_files_ordinary_single_link_stable_reads": true,
+  "retained_archive_inodes_distinct": true,
+  "space": {
+    "source": "Root release receipt; arithmetic independently verified, not a fresh free-space gate",
+    "before": 5502201856,
+    "after": 6076989440,
+    "delta": 574787584,
+    "reported_native_margin": 171409408
+  },
+  "physical_read_disclosure": {
+    "retained_compressed_archive_bytes_hashed": 106799710,
+    "historical_receipt_bytes_hashed": 2327,
+    "historical_Expected_bytes_present_in_archive_physical_hashes": true,
+    "Expected_semantic_decode": 0,
+    "new_case_Expected_reads": 0,
+    "archive_decompression": 0,
+    "removed_tree_rehash": 0
+  },
+  "operations": {
+    "deletion": 0,
+    "restore": 0,
+    "SUT": 0,
+    "Native": 0,
+    "model": 0,
+    "INPUT_projection": 0
+  },
+  "scope": "Readonly post-release corroboration of journal against frozen proof, target absence, and exact retained ZIP/receipt integrity. Prior independent full-byte review supplies pre-removal identity; not a new restore drill or observation of every unlink. No global process-completeness claim.",
+  "remaining_blockers": "None for this narrowly scoped release readback. Native execution remains unauthorized and requires its separate fresh resource/readiness gates."
+}
