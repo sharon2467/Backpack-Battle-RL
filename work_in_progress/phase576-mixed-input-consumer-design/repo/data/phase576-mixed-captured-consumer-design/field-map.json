@@ -1,0 +1,41 @@
+{
+  "schema": "phase576-field-seams/1",
+  "status": "DESIGN_ONLY_NO_CAPTURE_OR_CODE",
+  "Source_case": "NATIVE-030-MIXED-MODIFIERS-A",
+  "proposed_runtime_schema": "native-v8-pure-combat-runtime-input/mixed-modifiers-1",
+  "proposed_runtime_profile": "pure-combat-mixed-modifiers-A-captured/1",
+  "actual_Native": {"UIDs": null, "cuts": null, "counts": null, "below_master": null, "Tape": null, "clock": null, "cache_order": null, "canAdd": null},
+  "topology_policy": {
+    "meaning": "Source closed role formula; future actual INPUT must satisfy, not inherited029 observations",
+    "raw_timer_roles": "existing two Character tick +22Buff +2fatigue +2invu +4aux",
+    "raw_timer_expected": 32,
+    "business_timer_expected": 26,
+    "inactive_timer_expected": 6,
+    "config_formula": "raw_timer_roles +5 non-root ordinary roles +actual selected item roles",
+    "processing_formula": "configs +actual root",
+    "fixed29_projection": {"configs": 66, "processing": 67},
+    "mismatch": "reject; no truncation/dropping/029UID substitution"
+  },
+  "observations": [
+    {"Native": "source_resources[side].baseStaminaRegen/staminaRegen", "type": "REAL finite exact bits", "input": "direct refs in initial receipt and prepared witness Character panels, both cuts", "prepare_gate": "same-instance actual base_stamina_regen/stamina_regen against actual postprepare resources; Source0.7 coefficient relation separate", "final": "existing native_rule_state character fields/stats20/history preserved"},
+    {"Native": "all common Item.doubleActivationChance/doubleAttackEffectChance", "type": "REAL", "input": "direct refs/prepared typed witness; initial runtime DTO remains existing subset", "prepare_gate": "same owned items; actual0/.2/.25; actual cached385 targets, no repair or reset", "final": "already native_rule_state fields from actual final dataclass, unchanged state.py"},
+    {"Native": "P:12 Bowl.speedBonusGiven", "type": "REAL ledger, prepare0", "input": "actual both cuts and witness", "prepare_gate": "item.bowl_speed_bonus_given exact bits", "final": "result.final.items[P:12].bowl_speed_bonus_given, not a default/cap clamp"},
+    {"Native": "P:13/O:4 Wolper.staminaRegenPerBuff", "type": "pre NIL-or-REAL; post REAL", "input": "preserve actual pre; actual post0.7*same-cut base/100 validated by572 fulljoin", "prepare_gate": "actual item.wolpertinger_stamina_regen_per_buff; constructor None not forced into Native pre; post exact", "final": "result.final.items[role].wolpertinger_stamina_regen_per_buff from same final dataclass"},
+    {"Native": "P:13/O:4 Wolper.numBuffs", "type": "postready INT3", "input": "actual typed count and direct UID refs", "prepare_gate": "actual live definition[least_buffs] strictINT and registered listener state; no Native listener boolean claimed", "final": "explicit same-instance postrun getter in raw finalaux; no result.definition/property guess"},
+    {"Native": "P:19 Enchanted.buffs", "type": "postready INT1", "input": "actual typed count and refs", "prepare_gate": "actual live definition[least_buffs] plus actual cache and chance receiver relation", "final": "explicit same-instance postrun getter in finalaux, strictINT"},
+    {"Native": "P:15 Staff.manaCost/tempDamBonus/permDamBonus", "type": "REAL from Original getP1/2/3 -> float", "input": "fixed default descriptor/source premise; no additional runtime DTO fields", "prepare_gate": "actual definition values may be measured as needed, no Native prepare getter invented", "final": "finalaux direct raw mana_cost/temporary_damage/permanent_damage with Python type, separate exact Source float cast; seal raw+projection source; not Catalog fallback"},
+    {"Native": "29items cachedAffectedItems/currentAffectedItems/order/speedScale/cooldowns", "type": "native typed dictionary/REAL", "input": "all colors/current relations retained provenance; actual aliases/order kept", "prepare_gate": "business consumers P12/P13/P14/P19/P20/P21/O4 only; exact predicate/filter/order; no UI reconstruction", "final": "existing full item fields/metrics/history, no suppression"},
+    {"Native": "double_activation:P13/P14 and least_buff:P13/O4/P19 labels", "type": "randf /randi_range with exact context/args/ordinal", "input": "generic Tape transport exact existing project_primitives;572 validator", "prepare_gate": "Tape/pass zero before activation", "final": "full supplied Tape audit order and complete consumption; ended/limiter-tail preserved"}
+  ],
+  "eight_sections_unchanged_semantics": ["events", "event_references", "histories", "rng", "final", "callbacks", "timer_api", "cuts"],
+  "cut_limits": "No per-cut Bowl/Wolper/Enchanted state invented: those fields are sampled in final/INPUT, not existing cleanup snapshot.",
+  "model_seal_order": ["one same-instance constructor", "prepare_only", "observational actual B1", "activate", "one finite actual-clock run", "rawmodel +same-instance finalaux +preparegate sealed", "independent Expected identities/decode/strict8"],
+  "future_finalaux": {
+    "raw_getter_type_is_preserved": true,
+    "Staff_projected_REAL_is_not_raw_getter_type": true,
+    "direct_indexing_no_defaults": true,
+    "same_instance_postrun": true,
+    "raw_and_projection_origin_owned_by_common_seal": true,
+    "does_not_authorize_or_fill_INPUT": true
+  }
+}
