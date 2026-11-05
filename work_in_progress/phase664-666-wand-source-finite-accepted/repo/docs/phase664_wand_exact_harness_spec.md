@@ -1,0 +1,21 @@
+# 664 — exact executable Wand controls, preparation only
+
+## 1. Requirements
+Implement the accepted663 plan without importing or calling candidate Source during preparation. Preserve662 Source and source-job bytes. Execution requires a separate Root release. The single future process performs21 component subcases/23 directed calls/6 expected rejects, then at most one natural job only after all component assertions pass. No old battle, Native, Expected or pool access.
+
+## 2. Design
+One actual CombatEngine and one prepare_only use the frozen15-item layout with an explicitly synthetic deterministic preparation order (P then O, original layout entry order). A real production TapeRandom supplies22 predefined rows:17 integer selections and5 cooldown REAL factors1.0. Component lifecycle activate_from_checkpoint/step/run stay zero; trigger's item-level activate is counted separately. After controls, the unchanged public initialize_experimental_nonking creates one independent natural instance using66301 and120 simulated seconds. Whole-process wall limits are35 inner/40 outer.
+
+Use sys.setprofile for real function-entry counts and selected argument/return observations, with no production wrappers, replacement methods or fake engine. Preload the static standard-library import closure before a fixed Source/pins/output-only audit. Record concrete import origins. Each report is serialized once, written once and its owner descriptor derived from exactly those bytes.
+
+## 3. Realize
+`vectors.json` fixes six layout gates and all component prestates/primitive rows. The old public gate removes both231 instances so its first rejection is truly422, not the earlier231. The class1 negative intentionally reaches the existing P/O class0-or2 guard; class0 restriction in validate_wand_fixture remains statically reviewed rather than misrepresented as dynamically hit. Foreign164 fits within the replaced231 footprint. Duplicate422 replaces the P sword/blueberries pair with a disjoint two-cell Wand; no geometric collision is used as a substitute rejection.
+
+Reset explicitly synthetic Character counts and permanent-stack records, disable temporary/reflect/resist/amplification state, set stamina_regen1.0, and reset Wand limiter/trigger fields. Keep events/global event_num and histories intact. Preserve real prepared Wolper listeners, caches and coefficient. No manual callback, flush, fabricated event or parent. History dedup is checked against actual pre-call history, not reset to make rows appear.
+
+`strict` checks type and binary64 equality. Expected cooldown uses the Source expression3.3*1.0 and trigger_time += it. Expected Wolper coefficient uses `(0.7*1.0)/100.0`; successive signed deltas are accumulated in production order and stat20 is `(regen-1)*100.0`. No tolerance. NULL-parent case explicitly calls amount0 helper then real give_stack and item activate; it is a synthetic composition, not a reachable default threshold conversion claim. Direct-call ledger excludes constructor, prepare and runtime_inputs setup, which are recorded separately; nested real methods are profiled.
+
+The runner seals each component segment before assertions and natural raw output immediately after the sole run returns, before terminal/HIT assertions. Failure saves traceback, actual ledgers, partial same-instance state, Source-after hashes and owner, then exits; it cannot begin natural after component failure. It never retries or edits Source. Expected errors require exact message, unchanged input, no draw, and no constructor entry. A fresh process is required; no runtime probes are permitted while freezing this harness.
+
+## 4. Acceptance Criteria / Tests
+All21 subcases,23 directed calls,6 exact rejects and22 Tape rows must match; component ctor/prepare1 each, no checkpoint activation/step/run. Natural ctor/prepare/activation/run each1, fixed seed/layout, at most one complete result. Record native/Expected/old-model counts0, actual nested/profile/step counts, source/pins before-after, imported paths, wall/peakRSS, and actual HIT/NOT_HIT. Unknown natural branch coverage remains NOT_HIT; no seed or layout tuning. Final result cannot promote formal75, general support or Native equivalence. Preparation only compiles the harness buffer and examines its AST; zero candidate imports/calls.

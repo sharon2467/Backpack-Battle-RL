@@ -1,0 +1,52 @@
+{
+  "schema": "phase664-wand-executable-plan/1",
+  "status": "FROZEN_NOT_EXECUTED_REQUIRES_ROOT_RELEASE",
+  "script": {
+    "path": "tests/phase664_independent_wand_business.py",
+    "size": 22113,
+    "sha256": "8f539022b3a67dcf2c3dd74a8c84cfbfc1256556e94f7f57d72e27bc3a2f2f7e"
+  },
+  "pins": {
+    "path": "data/phase664-wand-exact-harness/pins.json",
+    "size": 7947,
+    "sha256": "09d08c290e9e688dbb0f96484081b68c644082e8c119dcee65388a32d9bf2d26"
+  },
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-I",
+    "-B",
+    "/workspace/python-original-engine/repo/tests/phase664_independent_wand_business.py",
+    "--pins-sha256",
+    "09d08c290e9e688dbb0f96484081b68c644082e8c119dcee65388a32d9bf2d26"
+  ],
+  "cwd": "/tmp",
+  "output_new": "/workspace/python-original-engine/repo/data/phase664-independent-wand-first-001",
+  "inner_wall_seconds": 35,
+  "outer_wall_seconds": 40,
+  "source_pins": 41,
+  "component_subcases": 21,
+  "direct_calls": 23,
+  "expected_rejects": 6,
+  "component_draws": 22,
+  "component_ctor": 1,
+  "component_prepare": 1,
+  "component_engine_activate": 0,
+  "component_step": 0,
+  "component_run": 0,
+  "natural_only_after_all_components_PASS": true,
+  "natural_max_ctor_prepare_activate_run_each": 1,
+  "natural_job": {
+    "path": "data/phase662-wand422-source/source-job.json",
+    "size": 2967,
+    "sha256": "b5597c364a595e8a786fd141c6a664f79e59851e3a528fbdb03a22da39e51480"
+  },
+  "natural_seed": 66301,
+  "natural_simulated_seconds": 120,
+  "natural_items": 15,
+  "first_unexpected": "preserve and stop, no retry and no natural if component failed",
+  "capture_process_receipt": "Root records before argv/PID/deadline/stdout/stderr/exit/reaped once; harness does not spawn subprocesses",
+  "Native": 0,
+  "Expected": 0,
+  "pool": 0,
+  "old_battles": 0
+}

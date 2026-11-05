@@ -1,0 +1,202 @@
+{
+  "schema": "phase666-independent-wand-finite-final/1",
+  "status": "ACCEPTED_SOURCE85_FINITE_WAND_NOT_NATIVE",
+  "utc": "2026-11-05T13:06:59.486957+00:00",
+  "source_owner": {
+    "path": "data/phase662-wand422-source/owned-files.json",
+    "size": 6222,
+    "sha256": "205f5a23cc3059c40e981fc2701ed23cff16e78b4350bf95c0f6ba4c5cf083d1"
+  },
+  "candidate_freeze": {
+    "path": "data/phase662-wand422-source/candidate-source-freeze.json",
+    "size": 4440,
+    "sha256": "9761cd6ba037f16cef4b060e32186e95976ec333aad2cabb7374073cbb2d49c1"
+  },
+  "static_review": {
+    "path": "data/phase663-independent-wand-source-review/review.json",
+    "size": 3556,
+    "sha256": "53f7fb22048c9ffec2be33a753a80817b44dace3fae419194da7fd084830f625"
+  },
+  "plan": {
+    "path": "data/phase663-independent-wand-source-review/verification-plan.json",
+    "size": 7382,
+    "sha256": "75b093d9e425bf4d3fd1ee7e44946773f9fbef48cc35cfb480e8e85ce7a2fb06"
+  },
+  "harness_owner": {
+    "path": "data/phase664-wand-exact-harness/owned-files.json",
+    "size": 1520,
+    "sha256": "ae3ffb97b6ba55ba5e30af6113b658c9b4aa49fad3b0222122203bf57b38200e"
+  },
+  "actual_owner": {
+    "path": "data/phase664-independent-wand-first-001/owned-files.json",
+    "size": 4183,
+    "sha256": "7c520d4dadd1017c29ea2ac70dfa9dd730014242e387157ffa91d914b625929c"
+  },
+  "actual_result": {
+    "path": "data/phase664-independent-wand-first-001/result.json",
+    "size": 40609,
+    "sha256": "e7a5e3ec77be40b04b559607664d532428f3bc7cc6bd4005893981b6ab391700"
+  },
+  "Root_owner": {
+    "path": "data/phase665-root-wand-components-and-sourcecase-invocation/owned-files.json",
+    "size": 1107,
+    "sha256": "77b2e628faf75d5a3d7d26a00e296a0af721736785c50ea137d49b49b67f65a0"
+  },
+  "Root_execution": {
+    "path": "data/phase665-root-wand-components-and-sourcecase-invocation/execution.json",
+    "size": 140,
+    "sha256": "33769b732c7ab74b70f3f49ce3aaae178335b61117e0e1c61e1d0406ff09569a"
+  },
+  "owned_refs_verified": {
+    "actual": 25,
+    "Root": 5
+  },
+  "pins_before_after_and_current_exact": 41,
+  "actual_counts": {
+    "families": 8,
+    "subcases_passed": 21,
+    "direct_calls": 23,
+    "expected_rejects": 6,
+    "controlled_draws": 22,
+    "INT": 17,
+    "cooldown_REAL": 5,
+    "constructors_total": 2,
+    "lifecycle": {
+      "component": {
+        "__init__": 1,
+        "prepare_only": 1,
+        "activate_from_checkpoint": 0,
+        "step": 0,
+        "run": 0,
+        "trigger": 5,
+        "activate": 6,
+        "remove_most_buffs": 14,
+        "give_stamina_regeneration": 18
+      },
+      "natural": {
+        "__init__": 1,
+        "prepare_only": 1,
+        "activate_from_checkpoint": 1,
+        "step": 1800,
+        "run": 1,
+        "trigger": 80,
+        "activate": 80,
+        "remove_most_buffs": 0,
+        "give_stamina_regeneration": 59
+      }
+    }
+  },
+  "first_rejections": [
+    {
+      "name": "old_public_rejects422",
+      "error": "item outside75 default headless family"
+    },
+    {
+      "name": "foreign164",
+      "error": "Wand Source requires class0, finite five-ID fixture and at most one422 per side"
+    },
+    {
+      "name": "two_wands_one_side",
+      "error": "Wand Source requires class0, finite five-ID fixture and at most one422 per side"
+    },
+    {
+      "name": "nondefault_class1",
+      "error": "ordered P/O Ranger0 or Berserker2 required"
+    },
+    {
+      "name": "strict_BOOL_use",
+      "error": "most-buff removal requires strict BOOL use and finite nonnegative source amount"
+    },
+    {
+      "name": "strict_amount_BOOL",
+      "error": "most-buff removal requires strict BOOL use and finite nonnegative source amount"
+    }
+  ],
+  "component_evidence": [
+    "Three live9-to10 cases: least grant then real use event then Empower with that exact event parent, followed by Activation; one cooldown3.3*1.0 each.",
+    "Ordered most tie, singleton/allzero real chooser draws, subset excludes larger Empower99, clamp actual available2 and zero request returnsNone only after draw.",
+    "Opponent protection emits protected event/actualLoss0/None; own use loses1 and retains protection, both preserve actual allocated parent.",
+    "Fourth sameframe activate omits Activation event while least/use/Empower and single cooldown still happen.",
+    "NULL helper+give+activate is an explicitly synthetic amount0 composition, not a default natural threshold branch.",
+    "Real Wolper +c/-c/+c and global event_num/stat20 dedup checked. c=0.006999999999999999; intermediate gain then loss retains0.9999999999999999 rather than rounding to1.0.",
+    "class1 negative is the existing class enum guard; its first rejection is not mislabeled as new Wand class0 deep validation."
+  ],
+  "natural": {
+    "raw_output": {
+      "path": "data/phase664-independent-wand-first-001/natural-source-output.json",
+      "size": 274741,
+      "sha256": "4bd3ed79e8a8b5526c8f3c8a394e30c183204c254a27732fb1c617ca405fecbc"
+    },
+    "summary": {
+      "path": "data/phase664-independent-wand-first-001/natural-summary.json",
+      "size": 939,
+      "sha256": "92ca574582a1e67a2059f0d58e9b8afc8d972a3cabd8bd22a0624776408efdc0"
+    },
+    "job": {
+      "path": "data/phase662-wand422-source/source-job.json",
+      "size": 2967,
+      "sha256": "b5597c364a595e8a786fd141c6a664f79e59851e3a528fbdb03a22da39e51480"
+    },
+    "seed": 66301,
+    "items": 15,
+    "simulated_seconds": 30.000001564621925,
+    "steps": 1800,
+    "events": 298,
+    "draws": 297,
+    "winner": "P",
+    "measures": {
+      "Wand_least_grant": 9,
+      "Wand_conversion": 0,
+      "Wand_Empower_actual_use_parent": 0,
+      "Wand_activation": 9,
+      "Wolper_positive_feedback": 59,
+      "Wolper_negative_feedback": 0,
+      "Wand_limited_activate": 0
+    },
+    "HIT": {
+      "Wand_least_grant": "HIT",
+      "Wand_conversion": "NOT_HIT",
+      "Wand_Empower_actual_use_parent": "NOT_HIT",
+      "Wand_activation": "HIT",
+      "Wolper_positive_feedback": "HIT",
+      "Wolper_negative_feedback": "NOT_HIT",
+      "Wand_limited_activate": "NOT_HIT"
+    },
+    "raw_sealed_before_postchecks": true,
+    "one_run": true
+  },
+  "execution": {
+    "pid": 10226,
+    "reaped": true,
+    "exit": 0,
+    "outer_wall_seconds": 8.539302563000092,
+    "harness_wall_seconds": 8.453591812998638,
+    "peak_rss_kib": 46308
+  },
+  "scope": {
+    "actual_imports": 12,
+    "import_paths_and_hashes_exact": true,
+    "candidate_activity_reads_only_staged_source": true,
+    "Original_Source_hash_reads_in_report_phase": 5,
+    "production_functions_unpatched": true,
+    "profile_pending_frames": 0,
+    "report_write_audit": "pre-result serialization snapshot, not a complete report-phase write log",
+    "this_review_SUT_calls": 0,
+    "Native": 0,
+    "Expected": 0,
+    "pool": 0,
+    "old_battles": 0
+  },
+  "remaining": [
+    "Threshold conversion/parented Empower/negative Wolper feedback/limiter remain natural NOT_HIT; they have finite component evidence only. No rerun or reseed.",
+    "Source85 finite experimental acceptance only; formal75/generalKing/whole-engine RL not promoted.",
+    "No Native422 canAdd/purity/strict comparison or Native seed-session equivalence;66301 not compared to57101.",
+    "Existing fixed030strict8 remains a distinct earlier case and was not rerun."
+  ],
+  "no_blocker_for_finite_Source_acceptance": true,
+  "review_diagnostic": {
+    "path": "data/phase666-independent-wand-finite-final/review-metadata-diagnostic.json",
+    "size": 420,
+    "sha256": "a0d4bf80069b96adf771e1edf24c2649189e0306dbcb773c0c43d57add4daed0"
+  }
+}

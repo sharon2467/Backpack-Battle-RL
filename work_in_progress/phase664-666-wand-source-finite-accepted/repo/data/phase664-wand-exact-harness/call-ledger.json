@@ -1,0 +1,71 @@
+{
+  "schema": "phase664-exact-call-ledger/1",
+  "direct_order": [
+    "new_domain_positive",
+    "old_public_rejects422",
+    "foreign164",
+    "two_wands_one_side",
+    "nondefault_class1",
+    "no_wand_old_experimental",
+    "below_threshold",
+    "threshold_105",
+    "threshold_101",
+    "threshold_102",
+    "most_tie",
+    "most_singleton",
+    "most_allzero",
+    "clamp",
+    "request_zero",
+    "opponent_protected",
+    "own_use_ignores_protection",
+    "NULL_helper",
+    "NULL_Empower",
+    "NULL_activate",
+    "limiter_fourth",
+    "strict_BOOL_use",
+    "strict_amount_BOOL"
+  ],
+  "direct_count": 23,
+  "subcases": 21,
+  "expected_rejects": 6,
+  "unit_primitives": {
+    "total": 22,
+    "INT": 17,
+    "cooldown_REAL": 5
+  },
+  "component_setup_calls": [
+    "runtime_inputs",
+    "TapeRandom",
+    "component_ctor",
+    "component_prepare_only"
+  ],
+  "component_lifecycle": {
+    "ctor": 1,
+    "prepare_only": 1,
+    "activate_from_checkpoint": 0,
+    "step": 0,
+    "run": 0
+  },
+  "component_item_activate": {
+    "trigger_nested": 5,
+    "explicit_NULL_composition": 1
+  },
+  "natural_setup_calls": [
+    "natural_initialize",
+    "natural_run"
+  ],
+  "natural_lifecycle": {
+    "ctor": 1,
+    "prepare": 1,
+    "activate_from_checkpoint": 1,
+    "run": 1,
+    "step": "actual bounded result, not prefilled"
+  },
+  "diagnostics": {
+    "natural_random_snapshot_explicit": 1,
+    "headless_done_property_explicit": 1,
+    "production_functions_not_wrapped": true,
+    "sys_setprofile": true
+  },
+  "dynamic_execution_authorized": false
+}
