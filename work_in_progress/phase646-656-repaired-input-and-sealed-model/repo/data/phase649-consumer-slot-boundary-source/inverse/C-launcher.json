@@ -1,0 +1,34 @@
+{
+  "schema": "phase649-full-source-inverse/1",
+  "before": {
+    "path": "tests/phase621_mixed_tape_run.py",
+    "size": 31520,
+    "sha256": "dc07ef763a33424a352e01d6e86dffa091148e7a7535686fce420e798e29f5fe"
+  },
+  "after": {
+    "path": "tests/phase649_mixed_tape_run.py",
+    "size": 31532,
+    "sha256": "e166b47c2d22d9e264b9b4e9e2a6455340d86ce8667dbf6a4db55826742f8fae"
+  },
+  "replacements": [
+    {
+      "offset": 689,
+      "before": "\nINPUT_SOURCE = {'path': 'data/phase621-hooks110-rebinding-source/input/owned-files.json', 'size': 3444, 'sha256': '1d710151ab4a51a3d4d18e9103d6a232020c471f0d23f332b70e7042bd7333ae'}\n",
+      "after": "\nINPUT_SOURCE = {'path': 'data/phase649-consumer-slot-boundary-source/input/owned-files.json', 'size': 3453, 'sha256': '78c63be1665c93705d71f65f6d46c913b45fda96905b83ada80a79a792690eed'}\n",
+      "label": "exact AST full line:INPUT_SOURCE"
+    },
+    {
+      "offset": 4696,
+      "before": "\nCANDIDATE_CONTEXT = {'path': 'data/phase621-hooks110-rebinding-source/input/source-context.json', 'size': 8502, 'sha256': '00cfabe5a263ec9259f833477ba8f819307880b6223f41662453cdd609a21fe1'}\n",
+      "after": "\nCANDIDATE_CONTEXT = {'path': 'data/phase649-consumer-slot-boundary-source/input/source-context.json', 'size': 8484, 'sha256': '2662c5c08221968e753333e1cf6e9484c6f4f5932afe5f1fb95d30a091efaefb'}\n",
+      "label": "exact AST full line:CANDIDATE_CONTEXT"
+    },
+    {
+      "offset": 1257,
+      "before": "\nFIXED_INPUTS = {'candidate_freeze': {'path': '/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/candidate-source-freeze.json', 'size': 4809, 'sha256': 'e332b765f3bd48c6df63c1ffd047f82654fe0c0465e9886275d287b42160a51b'}, 'candidate_acceptance': {'path': '/workspace/python-original-engine/repo/data/phase581-independent-final-acceptance/review.json', 'size': 9023, 'sha256': 'cc08dad18a8d6d0c263b828e8154a44010ba3cffca134bd0305e75f7016846d8'}, 'input_source_owner': {'path': 'data/phase621-hooks110-rebinding-source/input/owned-files.json', 'size': 3444, 'sha256': '1d710151ab4a51a3d4d18e9103d6a232020c471f0d23f332b70e7042bd7333ae'}, 'input_abi': {'path': 'data/phase578-mixed-input-bridge-source/abi.json', 'size': 1362, 'sha256': '897a40ea9594be1c8adac869345646c1f6df8f9732e8663dfbd433cbff2c7eff'}, 'comparison_contract': {'path': 'data/phase621-hooks110-rebinding-source/output/comparison-contract.json', 'size': 3202, 'sha256': '9281c61529a841bd23fc7debdda4d7a5f5fc6d3e056b070fceb8e0971f810346'}}\n",
+      "after": "\nFIXED_INPUTS = {'candidate_freeze': {'path': '/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/candidate-source-freeze.json', 'size': 4809, 'sha256': 'e332b765f3bd48c6df63c1ffd047f82654fe0c0465e9886275d287b42160a51b'}, 'candidate_acceptance': {'path': '/workspace/python-original-engine/repo/data/phase581-independent-final-acceptance/review.json', 'size': 9023, 'sha256': 'cc08dad18a8d6d0c263b828e8154a44010ba3cffca134bd0305e75f7016846d8'}, 'input_source_owner': {'path': 'data/phase649-consumer-slot-boundary-source/input/owned-files.json', 'size': 3453, 'sha256': '78c63be1665c93705d71f65f6d46c913b45fda96905b83ada80a79a792690eed'}, 'input_abi': {'path': 'data/phase578-mixed-input-bridge-source/abi.json', 'size': 1362, 'sha256': '897a40ea9594be1c8adac869345646c1f6df8f9732e8663dfbd433cbff2c7eff'}, 'comparison_contract': {'path': 'data/phase621-hooks110-rebinding-source/output/comparison-contract.json', 'size': 3202, 'sha256': '9281c61529a841bd23fc7debdda4d7a5f5fc6d3e056b070fceb8e0971f810346'}}\n",
+      "label": "exact AST full line:FIXED_INPUTS"
+    }
+  ],
+  "exact": true
+}

@@ -1,0 +1,168 @@
+{
+  "schema": "phase647-independent-input-first-error-review/1",
+  "status": "CONFIRMED_CONSUMER_SCHEMA_FIXED_PLAN_RANGE_DEFECT",
+  "utc": "2026-11-05T11:26:05.516672+00:00",
+  "evidence": {
+    "request": {
+      "path": "data/phase644-root-actual002-input-build-first-001/input-request.json",
+      "size": 3775,
+      "sha256": "b87052c482777066a6afe93beda1154ef5eb78ab445eb4df69d62970c2dcb692"
+    },
+    "binding": {
+      "path": "/workspace/native-combat-20261013/runs/original030-mixed-modifiers-A-single-002/output/capture/king-slot-bindings.json",
+      "size": 15178,
+      "sha256": "ed52d0b1765a70b06ed501949204666d61fd2a7a2887cd5c86c0128ebb1c4437"
+    },
+    "schema": {
+      "path": "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py",
+      "size": 208143,
+      "sha256": "a33d2b90669388e9b3b1973a70234a5ec672f480167c27a26e07245fff84f45c"
+    },
+    "fixed_plan": {
+      "path": "data/phase572-mixed-observer-source-v2/fixed-plan.json",
+      "size": 25245,
+      "sha256": "0ffdfe84818ccccd594de3dae3ad087e38a33f9c58328c5c94146bee2ecc0bd4"
+    },
+    "stderr": {
+      "path": "data/phase644-root-actual002-input-build-first-001/stderr.txt",
+      "size": 2287,
+      "sha256": "5216ce3f934c5640fc057046484b979f1a14847d1a9ae85a3f765ad00da98c27"
+    },
+    "execution": {
+      "path": "data/phase644-root-actual002-input-build-first-001/execution.json",
+      "size": 113,
+      "sha256": "16be4fada1206202b0140f9f0f952d7dd55261d64a08f1bfb5409d008764b5ca"
+    },
+    "partial_first_error": {
+      "path": "data/phase578-case030-single002-actual-input-first-001/first-error.json",
+      "size": 6828,
+      "sha256": "1af939e9b864b2609422d37dea8aaa5ed57da87f175e2539bbcb44a8793e9cea"
+    },
+    "bridge": {
+      "path": "tests/phase621_input_bridge.py",
+      "size": 46253,
+      "sha256": "29edf5627c66256bc4f0ee2299343a2904577323961417444797b726cfc7df2d"
+    },
+    "context": {
+      "path": "data/phase621-hooks110-rebinding-source/input/source-context.json",
+      "size": 8502,
+      "sha256": "00cfabe5a263ec9259f833477ba8f819307880b6223f41662453cdd609a21fe1"
+    },
+    "launcher": {
+      "path": "tests/phase621_mixed_tape_run.py",
+      "size": 31520,
+      "sha256": "dc07ef763a33424a352e01d6e86dffa091148e7a7535686fce420e798e29f5fe"
+    }
+  },
+  "finding": {
+    "first_failure": "schema line1913 integer(row[input_slot],0,19), first actual offending row P:20",
+    "second_same_function_defect": "line1938 integer(row[inventory_encounter_index],0,19); actual P:20..22 would also exceed it after first repair",
+    "observed_ranges": {
+      "P": {
+        "count": 23,
+        "input_slot": [
+          0,
+          22
+        ],
+        "inventory_encounter_index": [
+          0,
+          22
+        ]
+      },
+      "O": {
+        "count": 6,
+        "input_slot": [
+          0,
+          5
+        ],
+        "inventory_encounter_index": [
+          0,
+          5
+        ]
+      }
+    },
+    "affected_rows": [
+      {
+        "instance_id": "P:20",
+        "input_slot": 20,
+        "inventory_encounter_index": 20,
+        "item_index": {
+          "type": "int",
+          "decimal": "5"
+        },
+        "native_id": "82102",
+        "descriptor_id": "8442",
+        "character_id": "47611",
+        "inventory_id": "48429"
+      },
+      {
+        "instance_id": "P:21",
+        "input_slot": 21,
+        "inventory_encounter_index": 21,
+        "item_index": {
+          "type": "int",
+          "decimal": "22"
+        },
+        "native_id": "82152",
+        "descriptor_id": "8839",
+        "character_id": "47611",
+        "inventory_id": "48429"
+      },
+      {
+        "instance_id": "P:22",
+        "input_slot": 22,
+        "inventory_encounter_index": 22,
+        "item_index": {
+          "type": "int",
+          "decimal": "1"
+        },
+        "native_id": "82196",
+        "descriptor_id": "8346",
+        "character_id": "47611",
+        "inventory_id": "48429"
+      }
+    ],
+    "three_way_exact": "AST-literal BINDING_FIXED_PLAN ==572 fixed-plan.slots==actual source_slot_table; all29 actual role/input_slot/item_index directly match fixed plan; encounter sequence per side is consecutive",
+    "classification": "Consumer pure validation contradicts its already frozen fixed layout; not evidence of producer mutation or invalid capture. Only first input_slot rejection was executed by644; second is a static definite range conflict, not a second run."
+  },
+  "minimal_repair": {
+    "scope": "new immutable schema copy, change only two range ceilings in _binding_validate_value to fixed-plan-derived per-side upper bounds",
+    "formula": "For this fixed contiguous plan: count of BINDING_FIXED_PLAN rows with spec.side minus1 (P22/O5); derive from trusted fixed plan, never from submitted rows/native outputs. input_slot can equivalently use trusted per-side max input_slot.",
+    "retain": [
+      "strict type(value) is int (BOOL/REAL rejected)",
+      "fixed_plan and source_slot_table exact equality",
+      "exact29 rows and role membership/uniqueness",
+      "input_slot equality to role spec",
+      "typed descriptor/index/orientation and exact geometry",
+      "UID uniqueness/side owner/inventory/descriptor bijection",
+      "final complete roles/sides and exact unsorted encounter sequence"
+    ],
+    "no_producer_change_required": true,
+    "validation_limits": "Static diagnosis does not establish full carrier/fulljoin/initial receipt/fullprojection success beyond this blocker; future directed controls and one new explicitly released build remain necessary."
+  },
+  "minimal_identity_rebinding": [
+    "Schema: new immutable path,size,SHA plus explicit old-schema derivation/diff owner; old610 observer Source/tuple/612 acceptance remain historical original producer provenance, not rewritten as acceptance of new consumer schema.",
+    "A bridge: SCHEMA_PIN and FIXED_SOURCE_BINDINGS.schema_module updated; only own new bridge path in authenticate_request closed whitelist changes. load_schema VERSION/PROFILE checks and body can remain exact if schema VERSION/PROFILE retained.",
+    "New immutable source-context: top schema_module, fixed_source_bindings.schema_module and corresponding source_pins schema/bridge descriptors mechanically rebind; preserve initial578, B580, ABI/profile, producer tuple/owner/acceptance, rules and actual12 descriptors. New Input Source owner/freeze binds schema derivation and bridge/context; request changes only source_context.",
+    "Later C launcher immutable identity rebind: INPUT_SOURCE points to new Input owner, CANDIDATE_CONTEXT to new context; launcher self-pin/Source-owner/freeze and future model-request launcher descriptor follow. Existing request/proof context equality checks stay strict; no business function rewrite.",
+    "No host/storage/restore/Original patch regeneration or new capture needed for this pure consumer repair. Rawcapture, prior644failure and old Sources remain immutable."
+  ],
+  "operations": {
+    "candidate_or_schema_imports": 0,
+    "SUT_helpers": 0,
+    "builds": 0,
+    "models": 0,
+    "Native": 0,
+    "Expected_reads": 0,
+    "pool_reads_writes": 0,
+    "lawful_payload_unique_files_decoded": 1
+  },
+  "source_slice": {
+    "path": "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py",
+    "function": "_binding_validate_value",
+    "start_line": 1884,
+    "end_line": 1949,
+    "utf8_size": 4131,
+    "sha256": "959a179966e515897d06c88084399c7f4a0d66a78854bbe65ea337e9ff26b599"
+  }
+}

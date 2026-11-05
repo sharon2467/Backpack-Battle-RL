@@ -1,0 +1,63 @@
+[
+  {
+    "name": "actual29_positive",
+    "mutation": null,
+    "expected": null
+  },
+  {
+    "name": "BOOL_input_slot",
+    "mutation": [
+      "P:20",
+      "input_slot",
+      true
+    ],
+    "expected": "integer range/type"
+  },
+  {
+    "name": "P_slot23",
+    "mutation": [
+      "P:20",
+      "input_slot",
+      23
+    ],
+    "expected": "integer range/type"
+  },
+  {
+    "name": "O_slot6",
+    "mutation": [
+      "O:5",
+      "input_slot",
+      6
+    ],
+    "expected": "integer range/type"
+  },
+  {
+    "name": "BOOL_encounter",
+    "mutation": [
+      "P:20",
+      "inventory_encounter_index",
+      true
+    ],
+    "expected": "integer range/type"
+  },
+  {
+    "name": "encounter_duplicate_gap",
+    "mutation": [
+      "P:21",
+      "inventory_encounter_index",
+      20
+    ],
+    "expected": "actual inventory encounter order; never sorted into place"
+  },
+  {
+    "name": "duplicate_native_UID",
+    "mutation": [
+      "P:21",
+      "native_id",
+      {
+        "copy_from": "P:20"
+      }
+    ],
+    "expected": "actual item nativeID reused across slots"
+  }
+]

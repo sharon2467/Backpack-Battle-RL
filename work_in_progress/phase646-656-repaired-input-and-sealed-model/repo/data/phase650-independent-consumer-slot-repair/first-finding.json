@@ -1,0 +1,72 @@
+{
+  "schema": "phase650-independent-firstfinding/1",
+  "status": "STOPPED_HARNESS_MUTATED_CARRIER_MISSING_TERMINAL_LF",
+  "result": {
+    "path": "data/phase650-independent-controls-first-001/result.json",
+    "size": 46780,
+    "sha256": "94c503660013f75a0c99e66fb5769babb5678d74afb05caa79463cc5ee18355a"
+  },
+  "actual_owner": {
+    "path": "data/phase650-independent-controls-first-001/owned-files.json",
+    "size": 522,
+    "sha256": "c385006d8c26f76f6684ed74a675eb5258c0ea17532c8da4f4a68d4a7e09a624"
+  },
+  "invocation_owner": {
+    "path": "data/phase650-independent-control-invocation/owned-files.json",
+    "size": 1009,
+    "sha256": "07c9414267e246894240f19c35c4eba8a67ed5003fcd0215e1645a503e5258f8"
+  },
+  "first_error": {
+    "path": "data/phase650-independent-controls-first-001/first-error.json",
+    "size": 533,
+    "sha256": "f461ac49edfdcd56aadafc17389dd893ebe4bb8aeaab0c6ab63d266155b3df39"
+  },
+  "source_review": {
+    "path": "data/phase650-independent-consumer-slot-repair/static-review.json",
+    "size": 1493,
+    "sha256": "127bf9ce726bf70a2f517979a9fbb23ea7c4ec74719f639cc8714f8ad209c791"
+  },
+  "counts": {
+    "schema_eval_attempts": 1,
+    "schema_imports_completed": 1,
+    "top_carrier_entered": 2,
+    "accepted_positive": 1,
+    "accepted_negative": 0,
+    "unexecuted_negative": 5,
+    "BOOL_negative_rejected_at_wrong_outer_gate": 1
+  },
+  "actual_profile": {
+    "<module>": 1,
+    "validate_binding_carrier": 2,
+    "_binding_validate_value": 1,
+    "join_binding_provenance": 0,
+    "validate_sources_with_binding": 0,
+    "decode_sources": 0,
+    "validate_source_carriers": 0
+  },
+  "first_reject": "auxiliary single JSON terminal newline",
+  "intended_reject": "integer range/type",
+  "cause": "Harness json.dumps mutation serialization omits terminal LF. Public validate_binding_carrier rejects before _binding_validate_value for the BOOL case; this is a predictable carrier-format preparation error, not schema rejection mismatch at the intended typed guard.",
+  "source_and_input_pins_unchanged": true,
+  "pin_count": 62,
+  "actual_owner_hashes_valid": true,
+  "control_period_io": [
+    {
+      "stage": "control:BOOL_input_slot",
+      "path": "/workspace/python-original-engine/repo/tests/phase650_independent_carrier_controls.py"
+    }
+  ],
+  "minimal_future_correction": "Only a new immutable harness version may append exactly one LF to mutated serialized JSON, retaining same mutations/expected messages/Source/input. Reuse accepted raw positive; remaining six negative cases require separate explicit release. No correction or retry performed here.",
+  "scope": [
+    "Real immutable29 carrier successfully validated by the repaired schema once, including P20..22.",
+    "No fulljoin, completeINPUT, model or Native acceptance; no successor build release inferred.",
+    "Source review remains static PASS; seven-case batch not accepted. All original Source/harness/vectors/result/error retained."
+  ],
+  "operations": {
+    "fullINPUT_builds": 0,
+    "models": 0,
+    "Native": 0,
+    "Expected_reads": 0,
+    "retries": 0
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "schema": "phase649-consumer-slot-conservation/1",
+  "modules": [
+    {
+      "file": {
+        "path": "data/phase649-consumer-slot-boundary-source/schema/phase649_consumer_schema.py",
+        "size": 208283,
+        "sha256": "64bfef9ce8180f2fc27ee155669bbd92ab692c9f12fe9e9be6098ad0445ccf03"
+      },
+      "changed_functions": [
+        "_binding_validate_value"
+      ],
+      "exact_functions": [
+        "_base_primitive_context",
+        "_base_validate_primitive",
+        "_base_validate_record",
+        "_base_validate_state",
+        "_binding_cells",
+        "_binding_check_channels",
+        "_binding_checkpoint",
+        "_binding_id",
+        "_binding_integer_value",
+        "_binding_one",
+        "_binding_real_value",
+        "_binding_same_source",
+        "_counter",
+        "_keys",
+        "_nonnegative_real",
+        "_real",
+        "_rng_decimal",
+        "_rng_int64",
+        "_rng_keys",
+        "_rng_real",
+        "_single_king_counter",
+        "_single_king_keys",
+        "_single_king_node",
+        "_single_king_particle",
+        "_single_king_real",
+        "_single_king_rng_checkpoint",
+        "_single_king_timer",
+        "_single_king_typed",
+        "_single_king_validate_ui",
+        "_terminal_clock_rows",
+        "_terminal_connection_table",
+        "_terminal_cut_matches",
+        "_terminal_dispatch_shape",
+        "_terminal_emitting_connections",
+        "_terminal_native_id",
+        "_transport_only_decode",
+        "_ui_controls",
+        "_ui_exact",
+        "_ui_ident",
+        "_ui_integer",
+        "_ui_need",
+        "_ui_require_admission",
+        "_validate_call_pairs",
+        "_validate_mixed_prepared_facts",
+        "argument_fields",
+        "canonical_sha",
+        "decimal",
+        "decode_clock",
+        "decode_sources",
+        "exact",
+        "f32",
+        "integer",
+        "join_binding_provenance",
+        "primitive_context",
+        "scalar_number",
+        "strict_json",
+        "strict_json_loads",
+        "text",
+        "validate_binding_carrier",
+        "validate_cache",
+        "validate_observation_records",
+        "validate_primitive",
+        "validate_record",
+        "validate_resources",
+        "validate_single_king_fixture",
+        "validate_single_king_fresh_facts",
+        "validate_single_king_input_provenance",
+        "validate_single_king_source_defaults",
+        "validate_single_king_ui_authority",
+        "validate_source_carriers",
+        "validate_sources_with_binding",
+        "validate_state",
+        "validate_terminal_diagnostics",
+        "validate_terminal_evidence",
+        "validate_terminal_receipt",
+        "validate_typed"
+      ],
+      "full_inverse": true
+    },
+    {
+      "file": {
+        "path": "tests/phase649_input_bridge.py",
+        "size": 46241,
+        "sha256": "5d792d3713b798cbaf7ba3a52b5b44dcaa02215141cbc669332d86065ddebdac"
+      },
+      "changed_functions": [
+        "authenticate_request"
+      ],
+      "exact_functions": [
+        "build_from_files",
+        "canonical",
+        "decode_lawful12",
+        "derive_branch_witness",
+        "fingerprint",
+        "load_schema",
+        "main",
+        "model_role",
+        "one",
+        "physical",
+        "project_decoded",
+        "project_fixture",
+        "project_from_bytes",
+        "project_order",
+        "project_prepared_witnesses",
+        "project_primitives",
+        "project_runtime",
+        "read_pinned",
+        "require",
+        "same",
+        "save_new",
+        "source_value",
+        "strict_json",
+        "typed_scalar",
+        "validate_auxiliary_joins",
+        "validate_initial_consumer_coverage",
+        "verify_raw_inputs",
+        "verify_source_context"
+      ],
+      "full_inverse": true
+    },
+    {
+      "file": {
+        "path": "tests/phase649_mixed_tape_run.py",
+        "size": 31532,
+        "sha256": "e166b47c2d22d9e264b9b4e9e2a6455340d86ce8667dbf6a4db55826742f8fae"
+      },
+      "changed_functions": [],
+      "exact_functions": [
+        "check",
+        "final_business_view",
+        "main",
+        "owned_contains",
+        "path_of",
+        "pin",
+        "prepared_business_view",
+        "read_descriptor",
+        "real_bits",
+        "same",
+        "strict_json",
+        "validate_prepared_business_view",
+        "validate_request",
+        "write_json"
+      ],
+      "full_inverse": true
+    }
+  ],
+  "retained": {
+    "adapter": {
+      "path": "tests/phase621_mixed_business_output.py",
+      "size": 51283,
+      "sha256": "cb48328cc0a8274516e33367640af7933676c47950fff11f1b1d54f37b435558"
+    },
+    "B2": {
+      "path": "tests/phase621_shared_callback_guard.py",
+      "size": 10282,
+      "sha256": "6742fe2cf640c73c1fa99539de5c61f83b39e25062ef2aeb9cfa1a49d7f116a3"
+    },
+    "initial": {
+      "path": "tests/phase578_initial_receipt.py",
+      "size": 18104,
+      "sha256": "b0bda89872eae4310bf32788954077b838364895a424d27120ef77b34905aaf5"
+    },
+    "candidate_freeze": {
+      "path": "data/phase580-captured-mixed-source/candidate-source-freeze.json",
+      "size": 4809,
+      "sha256": "e332b765f3bd48c6df63c1ffd047f82654fe0c0465e9886275d287b42160a51b"
+    },
+    "contract": {
+      "path": "data/phase621-hooks110-rebinding-source/output/comparison-contract.json",
+      "size": 3202,
+      "sha256": "9281c61529a841bd23fc7debdda4d7a5f5fc6d3e056b070fceb8e0971f810346"
+    }
+  },
+  "schema_declaration_identity_unchanged": true,
+  "producer110_and_host_recovery_unchanged": true,
+  "other_schema_helpers_exact": true,
+  "source_rules_exact": true,
+  "context_only_schema_and_self_source_pins_changed": true,
+  "fixed_plan": {
+    "path": "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py",
+    "size": 208143,
+    "sha256": "a33d2b90669388e9b3b1973a70234a5ec672f480167c27a26e07245fff84f45c"
+  },
+  "trusted_side_counts": {
+    "P": 23,
+    "O": 6
+  },
+  "strict_INT_identity_geometry_unsorted_encounter_unchanged": true,
+  "C_all_function_bodies_exact": true,
+  "compile_objects": 3,
+  "actual_build_calls": 0,
+  "model_calls": 0
+}

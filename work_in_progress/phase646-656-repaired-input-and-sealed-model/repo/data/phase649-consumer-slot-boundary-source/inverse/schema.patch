@@ -1,0 +1,28 @@
+--- schema-old
++++ data/phase649-consumer-slot-boundary-source/schema/phase649_consumer_schema.py
+@@ -1883,6 +1883,7 @@
+ 
+ def _binding_validate_value(value, fixed_plan):
+     _binding_same_source(fixed_plan, BINDING_FIXED_PLAN)
++    side_limits = {side: sum(spec['side'] == side for spec in BINDING_FIXED_PLAN) - 1 for side in ('P', 'O')}
+     exact(value, ('schema', 'source_slot_table', 'actual_bindings',
+                   'raw_early_rows_unchanged', 'model_input_admitted', 'remaining_interface'))
+     if (value['schema'] != 'phase359-source-slot-bindings/1'
+@@ -1910,7 +1911,7 @@
+         spec = planned[role]
+         side = spec['side']
+         sides.append(side)
+-        if integer(row['input_slot'], 0, 19) != spec['input_slot']:
++        if integer(row['input_slot'], 0, side_limits[side]) != spec['input_slot']:
+             raise ValueError('binding original fixture slot differs')
+         if _binding_integer_value(row['item_index']) != spec['item_index']:
+             raise ValueError('binding descriptor differs from SOURCE slot')
+@@ -1935,7 +1936,7 @@
+                 or descriptor in index_by_descriptor and index_by_descriptor[descriptor] != index):
+             raise ValueError('actual descriptor/index association inconsistent')
+         descriptor_by_index[index], index_by_descriptor[descriptor] = descriptor, index
+-        position = integer(row['inventory_encounter_index'], 0, 19)
++        position = integer(row['inventory_encounter_index'], 0, side_limits[side])
+         encountered[side].append(position)
+     if roles != set(planned) or sides != [row['side'] for row in BINDING_FIXED_PLAN]:
+         raise ValueError('exact fixed sides and source traversal groups')

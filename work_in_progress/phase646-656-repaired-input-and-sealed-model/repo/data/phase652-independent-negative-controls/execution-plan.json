@@ -1,0 +1,47 @@
+{
+  "schema": "phase652-exact-plan/1",
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-I",
+    "-B",
+    "/workspace/python-original-engine/repo/tests/phase652_independent_carrier_controls.py",
+    "--pins",
+    "/workspace/python-original-engine/repo/data/phase652-independent-negative-controls/pins.json",
+    "--pins-sha256",
+    "ec0cb808c776b8354266d82710afa0d518d01736efd98d7225e77dde419f2342",
+    "--vectors",
+    "/workspace/python-original-engine/repo/data/phase652-independent-negative-controls/vectors.json",
+    "--output-new",
+    "/workspace/python-original-engine/repo/data/phase652-independent-controls-first-001"
+  ],
+  "cwd": "/tmp",
+  "inner_seconds": 15,
+  "outer_seconds": 20,
+  "public_carrier_calls": 6,
+  "schema_imports": 1,
+  "positive": 0,
+  "expected_rejects": 6,
+  "pins": 62,
+  "fullINPUT": 0,
+  "models": 0,
+  "Native": 0,
+  "Expected": 0,
+  "retry": false,
+  "compile_only": 1,
+  "vectors_exact_650_tail": true,
+  "script": {
+    "path": "tests/phase652_independent_carrier_controls.py",
+    "size": 6276,
+    "sha256": "b77183f189565efb8430b0d833bd3420b38117239e728d0c99a2fcf4139de37f"
+  },
+  "pins_descriptor": {
+    "path": "data/phase652-independent-negative-controls/pins.json",
+    "size": 13480,
+    "sha256": "ec0cb808c776b8354266d82710afa0d518d01736efd98d7225e77dde419f2342"
+  },
+  "release": {
+    "path": "data/phase651-root-negative-harness-v2-release/release.json",
+    "size": 640,
+    "sha256": "8a9ce9e73cc647e3ccbae78f86f060629c68ea8ded292c4237b481dff9acc6d4"
+  }
+}

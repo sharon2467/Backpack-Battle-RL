@@ -1,0 +1,157 @@
+{
+  "schema": "phase652-independent-consumer-repair-acceptance/1",
+  "status": "ACCEPTED_SOURCE_AND_SEVEN_UNIQUE_CARRIER_CONTROLS_NOT_FULL_INPUT",
+  "utc": "2026-11-05T11:40:49.480674+00:00",
+  "consumer_source_owner": {
+    "path": "data/phase649-consumer-slot-boundary-source/owned-files.json",
+    "size": 8257,
+    "sha256": "15fede97e40cae4035e71c674ab56d61454b6febad664f2915a799fb55c1dbd4"
+  },
+  "consumer_freeze": {
+    "path": "data/phase649-consumer-slot-boundary-source/source-freeze.json",
+    "size": 10057,
+    "sha256": "4d14b843ae26494f34ae60bbfe0911c1710c88627069bc82b371ec4538b8c6d7"
+  },
+  "independent_source_review": {
+    "path": "data/phase650-independent-consumer-slot-repair/static-review.json",
+    "size": 1493,
+    "sha256": "127bf9ce726bf70a2f517979a9fbb23ea7c4ec74719f639cc8714f8ad209c791"
+  },
+  "actual_positive_result": {
+    "path": "data/phase650-independent-controls-first-001/result.json",
+    "size": 46780,
+    "sha256": "94c503660013f75a0c99e66fb5769babb5678d74afb05caa79463cc5ee18355a"
+  },
+  "old_harness_failure": {
+    "path": "data/phase650-independent-consumer-slot-repair/first-finding.json",
+    "size": 3083,
+    "sha256": "5f9d394f20461e3bd494dcda904d5eb787efe396e8ff93c54a7121d0bacd7fd6"
+  },
+  "actual_six_negative_result": {
+    "path": "data/phase652-independent-controls-first-001/result.json",
+    "size": 47389,
+    "sha256": "22ef53613bd398f24ca95b0b59d8721a98f36589930f4dc91c4b59dfa7e2186c"
+  },
+  "actual_owner": {
+    "path": "data/phase652-independent-controls-first-001/owned-files.json",
+    "size": 289,
+    "sha256": "6182bd1fd4b9dc3336e88d4b1da98ed55c2324467454c3627d3d67ed475ff087"
+  },
+  "execution": {
+    "pid": 7977,
+    "reaped": true,
+    "exit": 0,
+    "timed_out": false,
+    "elapsed_seconds": 0.314960431001964,
+    "invocations": 1
+  },
+  "validated_owners": {
+    "data/phase652-independent-controls-first-001/owned-files.json": 1,
+    "data/phase650-independent-controls-first-001/owned-files.json": 2,
+    "data/phase652-independent-control-invocation/owned-files.json": 5,
+    "data/phase652-independent-negative-controls/owned-files.json": 6
+  },
+  "six_actual_cases": [
+    {
+      "name": "BOOL_input_slot",
+      "status": "PASS",
+      "first_reject": "integer range/type",
+      "input_sha256": "26558c4bb97ec8c71f94c119181f13e7f8ba0c14f09bf926310ecf788adbde3f",
+      "input_unchanged": true,
+      "fixed_plan_unchanged": true
+    },
+    {
+      "name": "P_slot23",
+      "status": "PASS",
+      "first_reject": "integer range/type",
+      "input_sha256": "5d4e8e3a8a12c29e47be9c769532e8ee4b1f268b753137d913e46a9bae3d8685",
+      "input_unchanged": true,
+      "fixed_plan_unchanged": true
+    },
+    {
+      "name": "O_slot6",
+      "status": "PASS",
+      "first_reject": "integer range/type",
+      "input_sha256": "aac2ca02ad2ae24737c26ce8de18b4637af4b8faedca235c8814555f284f665c",
+      "input_unchanged": true,
+      "fixed_plan_unchanged": true
+    },
+    {
+      "name": "BOOL_encounter",
+      "status": "PASS",
+      "first_reject": "integer range/type",
+      "input_sha256": "7381648352a92ad393f538ff30f47d364cf0778cfdabe13f2a5fc2f42ce80866",
+      "input_unchanged": true,
+      "fixed_plan_unchanged": true
+    },
+    {
+      "name": "encounter_duplicate_gap",
+      "status": "PASS",
+      "first_reject": "actual inventory encounter order; never sorted into place",
+      "input_sha256": "5f4bf1a4462b4823b8b80bdfb1d1782a3cbd9b3cf93ea6c899b840ac4ea5c7e3",
+      "input_unchanged": true,
+      "fixed_plan_unchanged": true
+    },
+    {
+      "name": "duplicate_native_UID",
+      "status": "PASS",
+      "first_reject": "actual item nativeID reused across slots",
+      "input_sha256": "132c1105b59968136559c3797de909707f096d460a9c4b283c76649190c2e123",
+      "input_unchanged": true,
+      "fixed_plan_unchanged": true
+    }
+  ],
+  "new_counts": {
+    "schema_eval": 1,
+    "schema_import_completed": 1,
+    "public_carrier": 6,
+    "private_binding": 6,
+    "positive": 0,
+    "negative": 6,
+    "source_pins_before_after": 62,
+    "controls_IO": 0
+  },
+  "cumulative_counts": {
+    "schema_eval_attempts": 2,
+    "schema_imports_completed": 2,
+    "public_carrier_calls": 8,
+    "private_binding_calls": 7,
+    "accepted_unique_controls": 7,
+    "positive": 1,
+    "negative": 6,
+    "prior_transport_failure_preserved": 1
+  },
+  "loaded_schema": {
+    "name": "_phase652_exact649_consumer_schema",
+    "file": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/schema/phase649_consumer_schema.py",
+    "sha256": "64bfef9ce8180f2fc27ee155669bbd92ab692c9f12fe9e9be6098ad0445ccf03",
+    "VERSION": "7-mixed-modifiers-A-610-hooks110",
+    "PROFILE": "observer7-mixed-modifiers-A-hooks110-native-tape/1"
+  },
+  "source_input_unchanged": true,
+  "inputs_plan_immutable": true,
+  "exact_first_rejections": true,
+  "forbidden_profile": {
+    "join_binding_provenance": 0,
+    "validate_sources_with_binding": 0,
+    "decode_sources": 0,
+    "validate_source_carriers": 0
+  },
+  "read_scope": "Same immutable lawful king-slot-bindings only as Native carrier; pinned source/metadata plus stdlib. No other raw12 payload or Expected. New controls themselves performed no file IO.",
+  "write_report_scope": "Inner owner hashes verified against actual result bytes; serialized result audit snapshot predates report writes and is not claimed as complete report write log.",
+  "acceptance": "Trusted plan-derived side bounds P22/O5 admit the real fixed29 carrier and preserve strict INT, role-slot, identity/geometry and unsorted encounter sequence validation. Six targeted negatives rejected at their predeclared intended reasons. Original650 failed transport case remains preserved, not silently accepted.",
+  "limits": [
+    "Local carrier-only check, not complete eleven-carrier provenance join, actual72/branch/prepared witness/fullINPUT acceptance, runtime/model or strict8.",
+    "Producer610/612 provenance and raw002capture unchanged;649 is a consumer validation repair.",
+    "No host/recovery or new Native invocation; formal75/general domain unchanged.",
+    "Root must separately bind same immutable12 input descriptors to the new context and release one complete build."
+  ],
+  "operations": {
+    "full_INPUT_builds": 0,
+    "models": 0,
+    "Native": 0,
+    "Expected_reads": 0,
+    "pool_operations": 0,
+    "positive_reruns": 0
+  }
+}

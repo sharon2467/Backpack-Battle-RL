@@ -1,0 +1,51 @@
+{
+  "schema": {
+    "path": "data/phase649-consumer-slot-boundary-source/schema/phase649_consumer_schema.py",
+    "size": 208283,
+    "sha256": "64bfef9ce8180f2fc27ee155669bbd92ab692c9f12fe9e9be6098ad0445ccf03"
+  },
+  "status": "PASS_SOURCE_DELTA",
+  "owner_leaves": 42,
+  "modules": [
+    {
+      "module": "schema",
+      "full_inverse_exact": true,
+      "function_count": 77,
+      "changed_functions": [
+        "_binding_validate_value"
+      ]
+    },
+    {
+      "module": "A",
+      "full_inverse_exact": true,
+      "function_count": 29,
+      "changed_functions": [
+        "authenticate_request"
+      ]
+    },
+    {
+      "module": "C-launcher",
+      "full_inverse_exact": true,
+      "function_count": 14,
+      "changed_functions": []
+    }
+  ],
+  "B580files_exact": 15,
+  "adapter_B2_initial_contract_retained": true,
+  "context_only_schema_and_bridge_rebind": true,
+  "Sourceowner": {
+    "path": "data/phase649-consumer-slot-boundary-source/owned-files.json",
+    "size": 8257,
+    "sha256": "15fede97e40cae4035e71c674ab56d61454b6febad664f2915a799fb55c1dbd4"
+  },
+  "input": {
+    "path": "/workspace/native-combat-20261013/runs/original030-mixed-modifiers-A-single-002/output/capture/king-slot-bindings.json",
+    "size": 15178,
+    "sha256": "ed52d0b1765a70b06ed501949204666d61fd2a7a2887cd5c86c0128ebb1c4437"
+  },
+  "SUT_calls": 0,
+  "limitations": [
+    "Producer evidence remains original610/612;649 is consumer-only repair.",
+    "No actual fullINPUT acceptance."
+  ]
+}

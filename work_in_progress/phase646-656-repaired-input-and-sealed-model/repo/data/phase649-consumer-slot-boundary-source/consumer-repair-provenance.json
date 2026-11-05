@@ -1,0 +1,38 @@
+{
+  "schema": "phase649-consumer-slot-repair-provenance/1",
+  "role": "CONSUMER_VALIDATION_ONLY_NOT_NATIVE_PRODUCER",
+  "before": {
+    "path": "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py",
+    "size": 208143,
+    "sha256": "a33d2b90669388e9b3b1973a70234a5ec672f480167c27a26e07245fff84f45c"
+  },
+  "after": {
+    "path": "data/phase649-consumer-slot-boundary-source/schema/phase649_consumer_schema.py",
+    "size": 208283,
+    "sha256": "64bfef9ce8180f2fc27ee155669bbd92ab692c9f12fe9e9be6098ad0445ccf03"
+  },
+  "producer_source_owner": {
+    "path": "data/phase610-three-selected-hook-source-v2/source-owner.json",
+    "size": 34004,
+    "sha256": "ac6e00700048b876a654e5837415a794c4c00bf7b7d3618d95267f50ab1db156"
+  },
+  "producer_acceptance": {
+    "path": "data/phase612-independent-final-acceptance/source-acceptance.json",
+    "size": 2149,
+    "sha256": "792949a478ecc560d8aa488791c7b4a359500954ca46fb4c7a36eda5f4e922e5"
+  },
+  "producer_acceptance_scope": "Original110producer/old610schema only;not649consumer acceptance",
+  "independent_consumer_acceptance": null,
+  "independent_review_stage": "650_PENDING",
+  "trusted_plan_counts": {
+    "P": 23,
+    "O": 6
+  },
+  "side_limits": {
+    "P": 22,
+    "O": 5
+  },
+  "raw002_changed": false,
+  "models_allowed": 0,
+  "Expected_allowed": 0
+}

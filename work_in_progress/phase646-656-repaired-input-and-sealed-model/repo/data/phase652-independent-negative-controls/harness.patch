@@ -1,0 +1,50 @@
+--- tests/phase650_independent_carrier_controls.py
++++ tests/phase652_independent_carrier_controls.py
+@@ -8,7 +8,7 @@
+     def resolve(s):
+         p=pathlib.Path(s);return p if p.is_absolute() else repo/p
+     allowed={str(resolve(p['path'])) for p in pins['files']}|{str(pathlib.Path(args.pins)),str(pathlib.Path(args.vectors))}
+-    reads=[];writes=[];stage='setup';counts={};result={'schema':'phase650-actual-controls/1','status':'RUNNING','pid':os.getpid(),'schema_eval_attempts':0,'schema_imports_completed':0,'top_calls_entered':0,'cases':[],'fullINPUT':0,'models':0,'Native':0,'Expected':0}
++    reads=[];writes=[];stage='setup';counts={};result={'schema':'phase652-actual-controls/1','status':'RUNNING','pid':os.getpid(),'schema_eval_attempts':0,'schema_imports_completed':0,'top_calls_entered':0,'cases':[],'fullINPUT':0,'models':0,'Native':0,'Expected':0}
+     def alarm(a,b):raise TimeoutError('inner15seconddeadline')
+     signal.signal(signal.SIGALRM,alarm);signal.alarm(15)
+     def audit(event,a):
+@@ -34,9 +34,9 @@
+         return rows
+     error=None;started=time.monotonic()
+     try:
+-        result['before']=hashes();vectors=json.loads(pathlib.Path(args.vectors).read_bytes());assert len(vectors)==7
++        result['before']=hashes();vectors=json.loads(pathlib.Path(args.vectors).read_bytes());assert len(vectors)==6
+         actualraw=resolve(pins['lawful_input']['path']).read_bytes();actual=json.loads(actualraw);schema_raw=resolve(pins['schema_source']['path']).read_bytes()
+-        name='_phase650_exact649_consumer_schema';m=types.ModuleType(name);m.__file__=schemafile;sys.modules[name]=m
++        name='_phase652_exact649_consumer_schema';m=types.ModuleType(name);m.__file__=schemafile;sys.modules[name]=m
+         stage='schema_load';result['schema_eval_attempts']=1;sys.setprofile(profile);exec(compile(schema_raw,schemafile,'exec'),m.__dict__);result['schema_imports_completed']=1
+         result['loaded_schema']={'name':name,'file':m.__file__,'sha256':hashlib.sha256(schema_raw).hexdigest(),'VERSION':m.VERSION,'PROFILE':m.PROFILE}
+         frozen_plan=copy.deepcopy(m.BINDING_FIXED_PLAN)
+@@ -46,7 +46,7 @@
+                 role,field,new=mutation;row=next(r for r in value['actual_bindings'] if r['instance_id']==role)
+                 if isinstance(new,dict):new=next(r for r in value['actual_bindings'] if r['instance_id']==new['copy_from'])[field]
+                 row[field]=new
+-            raw=actualraw if mutation is None else json.dumps(value,separators=(',',':')).encode();raw_before=hashlib.sha256(raw).hexdigest();stage='control:'+v['name'];result['top_calls_entered']+=1;got=None
++            raw=actualraw if mutation is None else json.dumps(value,separators=(',',':')).encode()+b'\n';raw_before=hashlib.sha256(raw).hexdigest();stage='control:'+v['name'];result['top_calls_entered']+=1;got=None
+             try:ret=m.validate_binding_carrier(raw,m.BINDING_FIXED_PLAN)
+             except ValueError as e:got=str(e)
+             if v['expected'] is None:
+@@ -54,7 +54,7 @@
+             else:assert got==v['expected'],(v['name'],got,v['expected'])
+             assert m.BINDING_FIXED_PLAN==frozen_plan and hashlib.sha256(raw).hexdigest()==raw_before
+             result['cases'].append({'name':v['name'],'status':'PASS','first_reject':got,'input_sha256':raw_before,'input_unchanged':True,'fixed_plan_unchanged':True})
+-        result['status']='PASS';result['positive']=1;result['expected_rejects']=6
++        result['status']='PASS';result['positive']=0;result['expected_rejects']=6
+     except BaseException as e:
+         error={'type':type(e).__name__,'message':str(e),'traceback':traceback.format_exc(),'automatic_retry':False};result['status']='FAIL';result['first_error']=error
+     finally:
+@@ -64,7 +64,7 @@
+         owned=[]
+         for n,s in blobs.items():
+             raw=s.encode();(output/n).write_bytes(raw);owned.append({'path':str(output/n),'size':len(raw),'sha256':hashlib.sha256(raw).hexdigest()})
+-        (output/'owned-files.json').write_text(json.dumps({'schema':'phase650-actual-owner/1','files':owned},indent=2)+'\n')
++        (output/'owned-files.json').write_text(json.dumps({'schema':'phase652-actual-owner/1','files':owned},indent=2)+'\n')
+     return 0 if result['status']=='PASS' else 1
+ 
+ if __name__=='__main__':raise SystemExit(main())

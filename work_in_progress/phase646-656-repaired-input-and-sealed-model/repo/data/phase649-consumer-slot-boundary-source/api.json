@@ -1,0 +1,44 @@
+{
+  "schema": "phase649-consumer-repair-API/1",
+  "carrier_function": "_binding_validate_value(value,fixed_plan)",
+  "public_carrier_function": "validate_binding_carrier(binding_bytes,fixed_plan)",
+  "schema_module": {
+    "path": "data/phase649-consumer-slot-boundary-source/schema/phase649_consumer_schema.py",
+    "size": 208283,
+    "sha256": "64bfef9ce8180f2fc27ee155669bbd92ab692c9f12fe9e9be6098ad0445ccf03"
+  },
+  "trusted_side_limits": {
+    "P": 22,
+    "O": 5
+  },
+  "new_bridge": {
+    "path": "tests/phase649_input_bridge.py",
+    "size": 46241,
+    "sha256": "5d792d3713b798cbaf7ba3a52b5b44dcaa02215141cbc669332d86065ddebdac"
+  },
+  "new_launcher": {
+    "path": "tests/phase649_mixed_tape_run.py",
+    "size": 31532,
+    "sha256": "e166b47c2d22d9e264b9b4e9e2a6455340d86ce8667dbf6a4db55826742f8fae"
+  },
+  "input_CLI": [
+    "--request",
+    "--request-size",
+    "--request-sha256",
+    "--output-new"
+  ],
+  "input_output_prefix": "phase578-",
+  "model_CLI": [
+    "--config",
+    "--config-sha256",
+    "--output"
+  ],
+  "model_output_prefix": "phase582-",
+  "model_request_keys": 17,
+  "Root_input_request_keys": 7,
+  "Root_actual_pins": null,
+  "Source_imports": 0,
+  "helper_tests": 0,
+  "INPUT_builds": 0,
+  "models": 0
+}

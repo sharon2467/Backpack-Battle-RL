@@ -1,0 +1,8 @@
+{
+  "schema": "phase654-readonly-review-diagnostic/1",
+  "error": "KeyError:pointer",
+  "cause": "Review utility treated a file-level initial receipt origin as a value-pointer origin. Production output correctly has both forms.",
+  "correction": "Apply pointer equality only to origins that contain pointer; no Source/input/SUT change.",
+  "SUT_calls": 0,
+  "candidate_failure": false
+}

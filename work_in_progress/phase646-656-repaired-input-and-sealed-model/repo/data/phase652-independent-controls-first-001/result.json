@@ -1,0 +1,1236 @@
+{
+  "schema": "phase652-actual-controls/1",
+  "status": "PASS",
+  "pid": 7977,
+  "schema_eval_attempts": 1,
+  "schema_imports_completed": 1,
+  "top_calls_entered": 6,
+  "cases": [
+    {
+      "name": "BOOL_input_slot",
+      "status": "PASS",
+      "first_reject": "integer range/type",
+      "input_sha256": "26558c4bb97ec8c71f94c119181f13e7f8ba0c14f09bf926310ecf788adbde3f",
+      "input_unchanged": true,
+      "fixed_plan_unchanged": true
+    },
+    {
+      "name": "P_slot23",
+      "status": "PASS",
+      "first_reject": "integer range/type",
+      "input_sha256": "5d4e8e3a8a12c29e47be9c769532e8ee4b1f268b753137d913e46a9bae3d8685",
+      "input_unchanged": true,
+      "fixed_plan_unchanged": true
+    },
+    {
+      "name": "O_slot6",
+      "status": "PASS",
+      "first_reject": "integer range/type",
+      "input_sha256": "aac2ca02ad2ae24737c26ce8de18b4637af4b8faedca235c8814555f284f665c",
+      "input_unchanged": true,
+      "fixed_plan_unchanged": true
+    },
+    {
+      "name": "BOOL_encounter",
+      "status": "PASS",
+      "first_reject": "integer range/type",
+      "input_sha256": "7381648352a92ad393f538ff30f47d364cf0778cfdabe13f2a5fc2f42ce80866",
+      "input_unchanged": true,
+      "fixed_plan_unchanged": true
+    },
+    {
+      "name": "encounter_duplicate_gap",
+      "status": "PASS",
+      "first_reject": "actual inventory encounter order; never sorted into place",
+      "input_sha256": "5f4bf1a4462b4823b8b80bdfb1d1782a3cbd9b3cf93ea6c899b840ac4ea5c7e3",
+      "input_unchanged": true,
+      "fixed_plan_unchanged": true
+    },
+    {
+      "name": "duplicate_native_UID",
+      "status": "PASS",
+      "first_reject": "actual item nativeID reused across slots",
+      "input_sha256": "132c1105b59968136559c3797de909707f096d460a9c4b283c76649190c2e123",
+      "input_unchanged": true,
+      "fixed_plan_unchanged": true
+    }
+  ],
+  "fullINPUT": 0,
+  "models": 0,
+  "Native": 0,
+  "Expected": 0,
+  "before": [
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/owned-files.json",
+      "size": 8257,
+      "sha256": "15fede97e40cae4035e71c674ab56d61454b6febad664f2915a799fb55c1dbd4"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/compile-only.json",
+      "size": 763,
+      "sha256": "a5d2e77f3ee930a33de87a834af7e6f0eb4efcbf49eb4497f40268fc011a9f96"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/conservation.json",
+      "size": 6102,
+      "sha256": "77336a999f51e7daf1a8065b784cb9b10e7b330f234efb7bdea9c6b28cf5f27f"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/consumer-repair-provenance.json",
+      "size": 1340,
+      "sha256": "bfd99bbd0cf77e45959b713fe2fc7e174447ac069aa81c230a3f27c9d30acc63"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/input/owned-files.json",
+      "size": 3453,
+      "sha256": "78c63be1665c93705d71f65f6d46c913b45fda96905b83ada80a79a792690eed"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/input/request-template.json",
+      "size": 443,
+      "sha256": "58021e4f2835cd6b553b084f359614a791257cc1d67972a66a078c8a66f54920"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/input/source-context.json",
+      "size": 8484,
+      "sha256": "2662c5c08221968e753333e1cf6e9484c6f4f5932afe5f1fb95d30a091efaefb"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/inverse/A.json",
+      "size": 13794,
+      "sha256": "76d5218f2b109febe4c8c1f0d0625d5683c0b5fd6b11d4bef62fc6daa47504a0"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/inverse/A.patch",
+      "size": 7756,
+      "sha256": "583033bb3b19b9247b349e09c34c6b75916d9050244e16424a9df923b24110de"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/inverse/C-launcher.json",
+      "size": 3623,
+      "sha256": "36b126bbf3152463976f15de0671bbcf872f5dc5840c38f07cac26f56a1611a8"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/inverse/C-launcher.patch",
+      "size": 6236,
+      "sha256": "91f6361047e7cfdfbf02e9cb0ddae4e98a6af8142fc69db70a1b0a6a22506c61"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/inverse/schema.json",
+      "size": 9193,
+      "sha256": "f79d5a7177e910d4de0df2b84ce0ced1b34a7d7fb154ed4ba0c72f46d98f3a73"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/inverse/schema.patch",
+      "size": 1706,
+      "sha256": "c556bbe46a5916fa82304f10eae8d9e7495dc8c96972e240fd547b28da11b404"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/output/model-request-template.json",
+      "size": 1617,
+      "sha256": "f6ae8d14f791492403b1380670309aa06ba57b55d007bcfcf6f90dde140d4388"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/schema/phase649_consumer_schema.py",
+      "size": 208283,
+      "sha256": "64bfef9ce8180f2fc27ee155669bbd92ab692c9f12fe9e9be6098ad0445ccf03"
+    },
+    {
+      "path": "tests/phase649_input_bridge.py",
+      "size": 46241,
+      "sha256": "5d792d3713b798cbaf7ba3a52b5b44dcaa02215141cbc669332d86065ddebdac"
+    },
+    {
+      "path": "tests/phase649_mixed_tape_run.py",
+      "size": 31532,
+      "sha256": "e166b47c2d22d9e264b9b4e9e2a6455340d86ce8667dbf6a4db55826742f8fae"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py",
+      "size": 208143,
+      "sha256": "a33d2b90669388e9b3b1973a70234a5ec672f480167c27a26e07245fff84f45c"
+    },
+    {
+      "path": "tests/phase621_input_bridge.py",
+      "size": 46253,
+      "sha256": "29edf5627c66256bc4f0ee2299343a2904577323961417444797b726cfc7df2d"
+    },
+    {
+      "path": "tests/phase621_mixed_tape_run.py",
+      "size": 31520,
+      "sha256": "dc07ef763a33424a352e01d6e86dffa091148e7a7535686fce420e798e29f5fe"
+    },
+    {
+      "path": "docs/phase648_consumer_slot_boundary_repair_spec.md",
+      "size": 3586,
+      "sha256": "2c3f7058e4af71af93e0674e84ceeec5fd701701a7088c43cf80d535a61735db"
+    },
+    {
+      "path": "docs/phase649_consumer_slot_boundary_implementation_addendum.md",
+      "size": 4109,
+      "sha256": "87b6394a3e1a708ce0c7927e11bc6602ac34d27a428f26b931a674f2c6c7f595"
+    },
+    {
+      "path": "data/phase647-independent-input-first-error-review/review.json",
+      "size": 7529,
+      "sha256": "1cadb76d0942b3008509cb4637d5274c16b6312637ca94d3b42a2f39edffe6e8"
+    },
+    {
+      "path": "tests/phase649_prepare_consumer_slot_boundary_source.py",
+      "size": 12088,
+      "sha256": "4be7a37e262d67ebf3d2f34f7c44254efc4e0861ad3e7a2a488e987bdbddefd8"
+    },
+    {
+      "path": "tests/phase621_mixed_business_output.py",
+      "size": 51283,
+      "sha256": "cb48328cc0a8274516e33367640af7933676c47950fff11f1b1d54f37b435558"
+    },
+    {
+      "path": "tests/phase621_shared_callback_guard.py",
+      "size": 10282,
+      "sha256": "6742fe2cf640c73c1fa99539de5c61f83b39e25062ef2aeb9cfa1a49d7f116a3"
+    },
+    {
+      "path": "tests/phase578_initial_receipt.py",
+      "size": 18104,
+      "sha256": "b0bda89872eae4310bf32788954077b838364895a424d27120ef77b34905aaf5"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/candidate-source-freeze.json",
+      "size": 4809,
+      "sha256": "e332b765f3bd48c6df63c1ffd047f82654fe0c0465e9886275d287b42160a51b"
+    },
+    {
+      "path": "data/phase621-hooks110-rebinding-source/output/comparison-contract.json",
+      "size": 3202,
+      "sha256": "9281c61529a841bd23fc7debdda4d7a5f5fc6d3e056b070fceb8e0971f810346"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/candidate-source-freeze.json",
+      "size": 4809,
+      "sha256": "e332b765f3bd48c6df63c1ffd047f82654fe0c0465e9886275d287b42160a51b"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase581-independent-final-acceptance/review.json",
+      "size": 9023,
+      "sha256": "cc08dad18a8d6d0c263b828e8154a44010ba3cffca134bd0305e75f7016846d8"
+    },
+    {
+      "path": "data/phase438-root-character8-acceptance/acceptance.json",
+      "size": 1482,
+      "sha256": "c4fc10ff4196083eab5c3f1169bfa00bb080712ab49cb2947bcebbc0b60f28a5"
+    },
+    {
+      "path": "data/phase572-mixed-observer-source-v2/source-default-p1-rule.json",
+      "size": 3020,
+      "sha256": "a5e2eb856eb82197357c5871282c41dfb48c5cd38cc7b5bec7fcc8734bc99ef9"
+    },
+    {
+      "path": "data/phase438-native-timer-source-review/source-ledger.json",
+      "size": 2689,
+      "sha256": "cb88ff66ce1151338f453b3f7f08811f87d80f1e96a7a5a9aa4e8ad656e860b0"
+    },
+    {
+      "path": "data/phase612-independent-final-acceptance/source-acceptance.json",
+      "size": 2149,
+      "sha256": "792949a478ecc560d8aa488791c7b4a359500954ca46fb4c7a36eda5f4e922e5"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/source-owner.json",
+      "size": 34004,
+      "sha256": "ac6e00700048b876a654e5837415a794c4c00bf7b7d3618d95267f50ab1db156"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/source-tuple.json",
+      "size": 2916,
+      "sha256": "d6d33c940c4bcf49ac81b5572a3fee9439172fdc5c7cef096d37e4f60cae8b21"
+    },
+    {
+      "path": "data/phase439-root-timer64-acceptance/acceptance.json",
+      "size": 2052,
+      "sha256": "c32a013aa58598fd15a6658c220dba67073062a4e3f022f84c5b8b0408d25b78"
+    },
+    {
+      "path": "data/phase578-mixed-input-bridge-source/branch-source-rule.json",
+      "size": 2002,
+      "sha256": "8dff488d2cffefe574ee60fada29eed47a6103ec78e54ba7c5829c006d1d82e2"
+    },
+    {
+      "path": "data/phase578-mixed-input-bridge-source/abi.json",
+      "size": 1362,
+      "sha256": "897a40ea9594be1c8adac869345646c1f6df8f9732e8663dfbd433cbff2c7eff"
+    },
+    {
+      "path": "data/phase578-mixed-input-bridge-source/typed-witness-contract.json",
+      "size": 860,
+      "sha256": "7715df01902b1295eb8c763993b152a58a64e69ff38e9c578ffbe69b9d68c1f6"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/source-freeze.json",
+      "size": 10057,
+      "sha256": "4d14b843ae26494f34ae60bbfe0911c1710c88627069bc82b371ec4538b8c6d7"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/api.json",
+      "size": 1242,
+      "sha256": "ce20e57a6cc41fc13c2d2573e433883debdce966b2dd7b5ff4ff1ec76581ec0c"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/godot_pcg_integer.py",
+      "size": 2198,
+      "sha256": "c084075fdb566b91348ed5a5776d3808b161c23da144e8f5db33e5b48cd694ca"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/headless.py",
+      "size": 35808,
+      "sha256": "767c9236eb930870c66b221c871a9c530b0af408bb9d6ac740a77a5149e1ebee"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/native_replay_v7/__init__.py",
+      "size": 389,
+      "sha256": "82b496191ffa3ec2761b83bf4de9267089d077b777ee38e4b93ab0cb824c4612"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/native_replay_v7/frame_driver.py",
+      "size": 12318,
+      "sha256": "9d8e361144e353a8d944e4490502c5301e7a92451771d35f22ab48f6277f64fd"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/native_replay_v7/timer_runtime.py",
+      "size": 38705,
+      "sha256": "5b7c14ebb7c7511aa05a3411752c7f3341b925c00de31eedfacf4f9345f4a109"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/native_replay_v8/__init__.py",
+      "size": 618,
+      "sha256": "805cc7035f10e96bfc217ef52f6ac175323ea83c69fb6e678fcd97a5bbcc3d7b"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/native_replay_v8/__main__.py",
+      "size": 1436,
+      "sha256": "b808649da7470e72669ad7639ef01577187e9692e9ade3745e18b0f21eea647a"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/native_replay_v8/compare.py",
+      "size": 38087,
+      "sha256": "4af52ee400acf1460c9e28faf5a760d05753d1de7218a00d4a740712a40fdd22"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/native_replay_v8/engine.py",
+      "size": 276325,
+      "sha256": "8604d13ac1f1259fb09774876bf32049204aeb798fecbcc52ec781adf7a8c17a"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/native_replay_v8/genuine.py",
+      "size": 249126,
+      "sha256": "94a44c7cd1a92e2613ebdfa77a19c41896dbebb34b247d0290999605a1a34cac"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/native_replay_v8/histories.py",
+      "size": 8508,
+      "sha256": "d9b3f270b53f328f5958647fdaba86532ff3d9db11b272d9a7d0d2aef1db0b05"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/native_replay_v8/observed.py",
+      "size": 2323,
+      "sha256": "0a04fb2b03e48cd1cd9a3e43425deddef56c7906105dadeaefafa81ac84a6fd1"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/native_replay_v8/randomness.py",
+      "size": 7063,
+      "sha256": "676d42a69937394dc1bd8ff23268a08dc41fe9604f7e56213bb968ab331b9139"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/native_replay_v8/state.py",
+      "size": 15114,
+      "sha256": "21478fecea4c888f701ff8991fb2cf75519670c602ed2bd9d17874e238c54bd1"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/original_rng.py",
+      "size": 2439,
+      "sha256": "5f7024f6c3dbbb2b105962a79a8bf39db40b3fa87bd9c115f2dd578b8082d60e"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original030-mixed-modifiers-A-single-002/output/capture/king-slot-bindings.json",
+      "size": 15178,
+      "sha256": "ed52d0b1765a70b06ed501949204666d61fd2a7a2887cd5c86c0128ebb1c4437"
+    },
+    {
+      "path": "docs/phase652_independent_negative_carrier_completion_spec.md",
+      "size": 1237,
+      "sha256": "94a5998ac15c96c32c48cc76dff04c4868a290d2bee0dcc9d7d887f1560c1ec8"
+    },
+    {
+      "path": "data/phase652-independent-negative-controls/vectors.json",
+      "size": 997,
+      "sha256": "8cc3f8f1d859652d6dff47aeb684ecd78d892ec7df36ce351a9e4d7398a040f2"
+    },
+    {
+      "path": "tests/phase652_independent_carrier_controls.py",
+      "size": 6276,
+      "sha256": "b77183f189565efb8430b0d833bd3420b38117239e728d0c99a2fcf4139de37f"
+    }
+  ],
+  "loaded_schema": {
+    "name": "_phase652_exact649_consumer_schema",
+    "file": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/schema/phase649_consumer_schema.py",
+    "sha256": "64bfef9ce8180f2fc27ee155669bbd92ab692c9f12fe9e9be6098ad0445ccf03",
+    "VERSION": "7-mixed-modifiers-A-610-hooks110",
+    "PROFILE": "observer7-mixed-modifiers-A-hooks110-native-tape/1"
+  },
+  "positive": 0,
+  "expected_rejects": 6,
+  "profile": {
+    "<module>": 1,
+    "<genexpr>": 1817,
+    "FramePass": 1,
+    "ClockSchedule": 1,
+    "validate_binding_carrier": 6,
+    "strict_json_loads": 6,
+    "pairs": 1224,
+    "_binding_validate_value": 6,
+    "_binding_same_source": 6672,
+    "exact": 1197,
+    "integer": 2364,
+    "_binding_integer_value": 280,
+    "validate_typed": 1120,
+    "decimal": 1120,
+    "_binding_real_value": 280,
+    "_single_king_real": 280,
+    "_binding_cells": 140,
+    "_binding_id": 560
+  },
+  "after": [
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/owned-files.json",
+      "size": 8257,
+      "sha256": "15fede97e40cae4035e71c674ab56d61454b6febad664f2915a799fb55c1dbd4"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/compile-only.json",
+      "size": 763,
+      "sha256": "a5d2e77f3ee930a33de87a834af7e6f0eb4efcbf49eb4497f40268fc011a9f96"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/conservation.json",
+      "size": 6102,
+      "sha256": "77336a999f51e7daf1a8065b784cb9b10e7b330f234efb7bdea9c6b28cf5f27f"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/consumer-repair-provenance.json",
+      "size": 1340,
+      "sha256": "bfd99bbd0cf77e45959b713fe2fc7e174447ac069aa81c230a3f27c9d30acc63"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/input/owned-files.json",
+      "size": 3453,
+      "sha256": "78c63be1665c93705d71f65f6d46c913b45fda96905b83ada80a79a792690eed"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/input/request-template.json",
+      "size": 443,
+      "sha256": "58021e4f2835cd6b553b084f359614a791257cc1d67972a66a078c8a66f54920"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/input/source-context.json",
+      "size": 8484,
+      "sha256": "2662c5c08221968e753333e1cf6e9484c6f4f5932afe5f1fb95d30a091efaefb"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/inverse/A.json",
+      "size": 13794,
+      "sha256": "76d5218f2b109febe4c8c1f0d0625d5683c0b5fd6b11d4bef62fc6daa47504a0"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/inverse/A.patch",
+      "size": 7756,
+      "sha256": "583033bb3b19b9247b349e09c34c6b75916d9050244e16424a9df923b24110de"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/inverse/C-launcher.json",
+      "size": 3623,
+      "sha256": "36b126bbf3152463976f15de0671bbcf872f5dc5840c38f07cac26f56a1611a8"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/inverse/C-launcher.patch",
+      "size": 6236,
+      "sha256": "91f6361047e7cfdfbf02e9cb0ddae4e98a6af8142fc69db70a1b0a6a22506c61"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/inverse/schema.json",
+      "size": 9193,
+      "sha256": "f79d5a7177e910d4de0df2b84ce0ced1b34a7d7fb154ed4ba0c72f46d98f3a73"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/inverse/schema.patch",
+      "size": 1706,
+      "sha256": "c556bbe46a5916fa82304f10eae8d9e7495dc8c96972e240fd547b28da11b404"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/output/model-request-template.json",
+      "size": 1617,
+      "sha256": "f6ae8d14f791492403b1380670309aa06ba57b55d007bcfcf6f90dde140d4388"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/schema/phase649_consumer_schema.py",
+      "size": 208283,
+      "sha256": "64bfef9ce8180f2fc27ee155669bbd92ab692c9f12fe9e9be6098ad0445ccf03"
+    },
+    {
+      "path": "tests/phase649_input_bridge.py",
+      "size": 46241,
+      "sha256": "5d792d3713b798cbaf7ba3a52b5b44dcaa02215141cbc669332d86065ddebdac"
+    },
+    {
+      "path": "tests/phase649_mixed_tape_run.py",
+      "size": 31532,
+      "sha256": "e166b47c2d22d9e264b9b4e9e2a6455340d86ce8667dbf6a4db55826742f8fae"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py",
+      "size": 208143,
+      "sha256": "a33d2b90669388e9b3b1973a70234a5ec672f480167c27a26e07245fff84f45c"
+    },
+    {
+      "path": "tests/phase621_input_bridge.py",
+      "size": 46253,
+      "sha256": "29edf5627c66256bc4f0ee2299343a2904577323961417444797b726cfc7df2d"
+    },
+    {
+      "path": "tests/phase621_mixed_tape_run.py",
+      "size": 31520,
+      "sha256": "dc07ef763a33424a352e01d6e86dffa091148e7a7535686fce420e798e29f5fe"
+    },
+    {
+      "path": "docs/phase648_consumer_slot_boundary_repair_spec.md",
+      "size": 3586,
+      "sha256": "2c3f7058e4af71af93e0674e84ceeec5fd701701a7088c43cf80d535a61735db"
+    },
+    {
+      "path": "docs/phase649_consumer_slot_boundary_implementation_addendum.md",
+      "size": 4109,
+      "sha256": "87b6394a3e1a708ce0c7927e11bc6602ac34d27a428f26b931a674f2c6c7f595"
+    },
+    {
+      "path": "data/phase647-independent-input-first-error-review/review.json",
+      "size": 7529,
+      "sha256": "1cadb76d0942b3008509cb4637d5274c16b6312637ca94d3b42a2f39edffe6e8"
+    },
+    {
+      "path": "tests/phase649_prepare_consumer_slot_boundary_source.py",
+      "size": 12088,
+      "sha256": "4be7a37e262d67ebf3d2f34f7c44254efc4e0861ad3e7a2a488e987bdbddefd8"
+    },
+    {
+      "path": "tests/phase621_mixed_business_output.py",
+      "size": 51283,
+      "sha256": "cb48328cc0a8274516e33367640af7933676c47950fff11f1b1d54f37b435558"
+    },
+    {
+      "path": "tests/phase621_shared_callback_guard.py",
+      "size": 10282,
+      "sha256": "6742fe2cf640c73c1fa99539de5c61f83b39e25062ef2aeb9cfa1a49d7f116a3"
+    },
+    {
+      "path": "tests/phase578_initial_receipt.py",
+      "size": 18104,
+      "sha256": "b0bda89872eae4310bf32788954077b838364895a424d27120ef77b34905aaf5"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/candidate-source-freeze.json",
+      "size": 4809,
+      "sha256": "e332b765f3bd48c6df63c1ffd047f82654fe0c0465e9886275d287b42160a51b"
+    },
+    {
+      "path": "data/phase621-hooks110-rebinding-source/output/comparison-contract.json",
+      "size": 3202,
+      "sha256": "9281c61529a841bd23fc7debdda4d7a5f5fc6d3e056b070fceb8e0971f810346"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/candidate-source-freeze.json",
+      "size": 4809,
+      "sha256": "e332b765f3bd48c6df63c1ffd047f82654fe0c0465e9886275d287b42160a51b"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase581-independent-final-acceptance/review.json",
+      "size": 9023,
+      "sha256": "cc08dad18a8d6d0c263b828e8154a44010ba3cffca134bd0305e75f7016846d8"
+    },
+    {
+      "path": "data/phase438-root-character8-acceptance/acceptance.json",
+      "size": 1482,
+      "sha256": "c4fc10ff4196083eab5c3f1169bfa00bb080712ab49cb2947bcebbc0b60f28a5"
+    },
+    {
+      "path": "data/phase572-mixed-observer-source-v2/source-default-p1-rule.json",
+      "size": 3020,
+      "sha256": "a5e2eb856eb82197357c5871282c41dfb48c5cd38cc7b5bec7fcc8734bc99ef9"
+    },
+    {
+      "path": "data/phase438-native-timer-source-review/source-ledger.json",
+      "size": 2689,
+      "sha256": "cb88ff66ce1151338f453b3f7f08811f87d80f1e96a7a5a9aa4e8ad656e860b0"
+    },
+    {
+      "path": "data/phase612-independent-final-acceptance/source-acceptance.json",
+      "size": 2149,
+      "sha256": "792949a478ecc560d8aa488791c7b4a359500954ca46fb4c7a36eda5f4e922e5"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/source-owner.json",
+      "size": 34004,
+      "sha256": "ac6e00700048b876a654e5837415a794c4c00bf7b7d3618d95267f50ab1db156"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/source-tuple.json",
+      "size": 2916,
+      "sha256": "d6d33c940c4bcf49ac81b5572a3fee9439172fdc5c7cef096d37e4f60cae8b21"
+    },
+    {
+      "path": "data/phase439-root-timer64-acceptance/acceptance.json",
+      "size": 2052,
+      "sha256": "c32a013aa58598fd15a6658c220dba67073062a4e3f022f84c5b8b0408d25b78"
+    },
+    {
+      "path": "data/phase578-mixed-input-bridge-source/branch-source-rule.json",
+      "size": 2002,
+      "sha256": "8dff488d2cffefe574ee60fada29eed47a6103ec78e54ba7c5829c006d1d82e2"
+    },
+    {
+      "path": "data/phase578-mixed-input-bridge-source/abi.json",
+      "size": 1362,
+      "sha256": "897a40ea9594be1c8adac869345646c1f6df8f9732e8663dfbd433cbff2c7eff"
+    },
+    {
+      "path": "data/phase578-mixed-input-bridge-source/typed-witness-contract.json",
+      "size": 860,
+      "sha256": "7715df01902b1295eb8c763993b152a58a64e69ff38e9c578ffbe69b9d68c1f6"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/source-freeze.json",
+      "size": 10057,
+      "sha256": "4d14b843ae26494f34ae60bbfe0911c1710c88627069bc82b371ec4538b8c6d7"
+    },
+    {
+      "path": "data/phase649-consumer-slot-boundary-source/api.json",
+      "size": 1242,
+      "sha256": "ce20e57a6cc41fc13c2d2573e433883debdce966b2dd7b5ff4ff1ec76581ec0c"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/godot_pcg_integer.py",
+      "size": 2198,
+      "sha256": "c084075fdb566b91348ed5a5776d3808b161c23da144e8f5db33e5b48cd694ca"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/headless.py",
+      "size": 35808,
+      "sha256": "767c9236eb930870c66b221c871a9c530b0af408bb9d6ac740a77a5149e1ebee"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/native_replay_v7/__init__.py",
+      "size": 389,
+      "sha256": "82b496191ffa3ec2761b83bf4de9267089d077b777ee38e4b93ab0cb824c4612"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/native_replay_v7/frame_driver.py",
+      "size": 12318,
+      "sha256": "9d8e361144e353a8d944e4490502c5301e7a92451771d35f22ab48f6277f64fd"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/native_replay_v7/timer_runtime.py",
+      "size": 38705,
+      "sha256": "5b7c14ebb7c7511aa05a3411752c7f3341b925c00de31eedfacf4f9345f4a109"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/native_replay_v8/__init__.py",
+      "size": 618,
+      "sha256": "805cc7035f10e96bfc217ef52f6ac175323ea83c69fb6e678fcd97a5bbcc3d7b"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/native_replay_v8/__main__.py",
+      "size": 1436,
+      "sha256": "b808649da7470e72669ad7639ef01577187e9692e9ade3745e18b0f21eea647a"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/native_replay_v8/compare.py",
+      "size": 38087,
+      "sha256": "4af52ee400acf1460c9e28faf5a760d05753d1de7218a00d4a740712a40fdd22"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/native_replay_v8/engine.py",
+      "size": 276325,
+      "sha256": "8604d13ac1f1259fb09774876bf32049204aeb798fecbcc52ec781adf7a8c17a"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/native_replay_v8/genuine.py",
+      "size": 249126,
+      "sha256": "94a44c7cd1a92e2613ebdfa77a19c41896dbebb34b247d0290999605a1a34cac"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/native_replay_v8/histories.py",
+      "size": 8508,
+      "sha256": "d9b3f270b53f328f5958647fdaba86532ff3d9db11b272d9a7d0d2aef1db0b05"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/native_replay_v8/observed.py",
+      "size": 2323,
+      "sha256": "0a04fb2b03e48cd1cd9a3e43425deddef56c7906105dadeaefafa81ac84a6fd1"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/native_replay_v8/randomness.py",
+      "size": 7063,
+      "sha256": "676d42a69937394dc1bd8ff23268a08dc41fe9604f7e56213bb968ab331b9139"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/native_replay_v8/state.py",
+      "size": 15114,
+      "sha256": "21478fecea4c888f701ff8991fb2cf75519670c602ed2bd9d17874e238c54bd1"
+    },
+    {
+      "path": "data/phase580-captured-mixed-source/staged/original_rng.py",
+      "size": 2439,
+      "sha256": "5f7024f6c3dbbb2b105962a79a8bf39db40b3fa87bd9c115f2dd578b8082d60e"
+    },
+    {
+      "path": "/workspace/native-combat-20261013/runs/original030-mixed-modifiers-A-single-002/output/capture/king-slot-bindings.json",
+      "size": 15178,
+      "sha256": "ed52d0b1765a70b06ed501949204666d61fd2a7a2887cd5c86c0128ebb1c4437"
+    },
+    {
+      "path": "docs/phase652_independent_negative_carrier_completion_spec.md",
+      "size": 1237,
+      "sha256": "94a5998ac15c96c32c48cc76dff04c4868a290d2bee0dcc9d7d887f1560c1ec8"
+    },
+    {
+      "path": "data/phase652-independent-negative-controls/vectors.json",
+      "size": 997,
+      "sha256": "8cc3f8f1d859652d6dff47aeb684ecd78d892ec7df36ce351a9e4d7398a040f2"
+    },
+    {
+      "path": "tests/phase652_independent_carrier_controls.py",
+      "size": 6276,
+      "sha256": "b77183f189565efb8430b0d833bd3420b38117239e728d0c99a2fcf4139de37f"
+    }
+  ],
+  "pins_unchanged": true,
+  "elapsed_seconds": 0.15880761800144683,
+  "read_audit": [
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/owned-files.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/compile-only.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/conservation.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/consumer-repair-provenance.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/input/owned-files.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/input/request-template.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/input/source-context.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/inverse/A.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/inverse/A.patch"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/inverse/C-launcher.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/inverse/C-launcher.patch"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/inverse/schema.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/inverse/schema.patch"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/output/model-request-template.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/schema/phase649_consumer_schema.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/tests/phase649_input_bridge.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/tests/phase649_mixed_tape_run.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/tests/phase621_input_bridge.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/tests/phase621_mixed_tape_run.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/docs/phase648_consumer_slot_boundary_repair_spec.md"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/docs/phase649_consumer_slot_boundary_implementation_addendum.md"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase647-independent-input-first-error-review/review.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/tests/phase649_prepare_consumer_slot_boundary_source.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/tests/phase621_mixed_business_output.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/tests/phase621_shared_callback_guard.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/tests/phase578_initial_receipt.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/candidate-source-freeze.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase621-hooks110-rebinding-source/output/comparison-contract.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/candidate-source-freeze.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase581-independent-final-acceptance/review.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase438-root-character8-acceptance/acceptance.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/source-default-p1-rule.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase438-native-timer-source-review/source-ledger.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase612-independent-final-acceptance/source-acceptance.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/source-owner.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/source-tuple.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase439-root-timer64-acceptance/acceptance.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/branch-source-rule.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/abi.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/typed-witness-contract.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/source-freeze.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/api.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/godot_pcg_integer.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/headless.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v7/__init__.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v7/frame_driver.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v7/timer_runtime.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/__init__.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/__main__.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/compare.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/engine.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/genuine.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/histories.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/observed.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/randomness.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/state.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/original_rng.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/native-combat-20261013/runs/original030-mixed-modifiers-A-single-002/output/capture/king-slot-bindings.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/docs/phase652_independent_negative_carrier_completion_spec.md"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase652-independent-negative-controls/vectors.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/tests/phase652_independent_carrier_controls.py"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase652-independent-negative-controls/vectors.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/native-combat-20261013/runs/original030-mixed-modifiers-A-single-002/output/capture/king-slot-bindings.json"
+    },
+    {
+      "stage": "setup",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/schema/phase649_consumer_schema.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/owned-files.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/compile-only.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/conservation.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/consumer-repair-provenance.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/input/owned-files.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/input/request-template.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/input/source-context.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/inverse/A.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/inverse/A.patch"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/inverse/C-launcher.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/inverse/C-launcher.patch"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/inverse/schema.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/inverse/schema.patch"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/output/model-request-template.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/schema/phase649_consumer_schema.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/tests/phase649_input_bridge.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/tests/phase649_mixed_tape_run.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/tests/phase621_input_bridge.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/tests/phase621_mixed_tape_run.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/docs/phase648_consumer_slot_boundary_repair_spec.md"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/docs/phase649_consumer_slot_boundary_implementation_addendum.md"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase647-independent-input-first-error-review/review.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/tests/phase649_prepare_consumer_slot_boundary_source.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/tests/phase621_mixed_business_output.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/tests/phase621_shared_callback_guard.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/tests/phase578_initial_receipt.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/candidate-source-freeze.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase621-hooks110-rebinding-source/output/comparison-contract.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/candidate-source-freeze.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase581-independent-final-acceptance/review.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase438-root-character8-acceptance/acceptance.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/source-default-p1-rule.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase438-native-timer-source-review/source-ledger.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase612-independent-final-acceptance/source-acceptance.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/source-owner.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/source-tuple.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase439-root-timer64-acceptance/acceptance.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/branch-source-rule.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/abi.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase578-mixed-input-bridge-source/typed-witness-contract.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/source-freeze.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase649-consumer-slot-boundary-source/api.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/godot_pcg_integer.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/headless.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v7/__init__.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v7/frame_driver.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v7/timer_runtime.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/__init__.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/__main__.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/compare.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/engine.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/genuine.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/histories.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/observed.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/randomness.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/native_replay_v8/state.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase580-captured-mixed-source/staged/original_rng.py"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/native-combat-20261013/runs/original030-mixed-modifiers-A-single-002/output/capture/king-slot-bindings.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/docs/phase652_independent_negative_carrier_completion_spec.md"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/data/phase652-independent-negative-controls/vectors.json"
+    },
+    {
+      "stage": "after",
+      "path": "/workspace/python-original-engine/repo/tests/phase652_independent_carrier_controls.py"
+    }
+  ],
+  "write_audit_before_report": [],
+  "write_audit_limit": "Snapshot before report serialization; not a complete report-phase write log.",
+  "schema_control_IO": [],
+  "forbidden_profile": {
+    "join_binding_provenance": 0,
+    "validate_sources_with_binding": 0,
+    "decode_sources": 0,
+    "validate_source_carriers": 0
+  }
+}
