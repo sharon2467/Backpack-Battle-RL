@@ -214,7 +214,7 @@
     "execution_authority": false
   },
   "captured_consumer_next": {
-    "status": "597FIXED030_CONDITIONAL_EXECUTION_AUTHORIZED;599ACTUAL_READONLY_PLAN_ACCEPTED",
+    "status": "600FIRST_FIXED030_ATTEMPT_FAILED_INCOMPLETE;602GENUINE_FAILURE_RECOVERY_SOURCE_GENERATION",
     "archive": "work_in_progress/phase576-mixed-input-consumer-design",
     "Source_plan_sha256": "501df27e04ccd8865b077753c7c00694ba58e22d1c5a916a1fbf75079053e1b3",
     "actual_topology_branch_and_inputs": "UNOBSERVED",
@@ -242,7 +242,7 @@
     "C_firstfailure_archive": "work_in_progress/phase582-C-first-generation-failure",
     "C_import_helpers": "16finite synthetic controls/3C moduleevals only",
     "C_partial_modules": "immutable583 Source frozen;584 independently accepted synthetic interfaces",
-    "next": "Rootexecute once per597/599;oneparse30 andbattle300 only. Firsterrorstop,retainrecoveryevidence.",
+    "next": "602failure-specific Source\u2192independentfinitecontrols\u2192actualfilesrestore\u2192independentreadback\u2192RootREADY;thenobserverhookSourcefix. NeverfabricatePENDING oracceptpartialINPUT.",
     "C_Source_archive": "work_in_progress/phase583-thin-C-source-v2-pending",
     "C_v2_source_owner_sha256": "47fdbdb4329461bfe9a9ba2bcc21eecad8a582d84e104cda0ecc2090daad9c49",
     "C_v2_freeze_sha256": "b93a3ad66a2623bfff39c572f920d16284d5da4004d9834307b9eda415ee8675",
@@ -268,11 +268,15 @@
     "unapproved_config_draft": "data/phase595-root-source-bound-config-draft/oracle-configuration-source-bound-NOT-AUTHORIZED.json",
     "unapproved_draft_sha256": "95cae9579a71a58c724a3f316f716e829e635bc97ce22da93394babd23525518",
     "draft_independent_review_sha256": "7ccfc173f2564743e53b7f07620a7b7a08d9d860dbdca0e32edaa9eb8407a718",
-    "actual_new_Native_capture": 0,
-    "Native_authority": "CONDITIONAL_SINGLE_FIXED030_AFTER_REPEATED_FRESH_LOCK_GATES",
+    "actual_new_Native_capture": "ONE_ATTEMPT_INCOMPLETE",
+    "Native_authority": "SPENT_SINGLE_ATTEMPT_NO_RETRY",
     "actual_preflight_archive": "work_in_progress/phase597-599-fixed030-resume-preflight",
     "actual_oracle_config": "data/phase597-resume030-conditional-release/oracle-acceptance.json",
-    "actual_oracle_config_sha256": "e5ccc41095e84fc644175910e229240a9749562ea1d98bb9d8e5fae17f51b7fd"
+    "actual_oracle_config_sha256": "e5ccc41095e84fc644175910e229240a9749562ea1d98bb9d8e5fae17f51b7fd",
+    "partial030_archive": "work_in_progress/phase600-602-original030-partial-and-recovery-design",
+    "actual030_capture_complete": false,
+    "actual030_first_failure": "SOURCE_UNKNOWN_SELECTED_HOOK Items/Exclusive/ThornShortbow.gd::onDealtDamage seq4906",
+    "actual030_python_model": 0
   },
   "verified_duplicate_release_588": {
     "archive": "work_in_progress/phase585-588-readiness-and-verified-resource",

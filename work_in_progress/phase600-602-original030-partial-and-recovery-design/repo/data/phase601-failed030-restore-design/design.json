@@ -1,0 +1,41 @@
+{
+  "schema": "phase601-fixed-failed030-recovery-design/1",
+  "status": "DESIGN_ONLY_AWAITING_INDEPENDENT_REVIEW_AND_ACTUAL_ROOT_SNAPSHOT",
+  "case": "NATIVE-030-MIXED-MODIFIERS-A",
+  "run": "original030-mixed-modifiers-A-single-001",
+  "state_shape": [
+    "status",
+    "run",
+    "reason",
+    "utc"
+  ],
+  "state_bytes_descriptor": null,
+  "failure_authority": null,
+  "failure_authority_owner": null,
+  "unbound_is_rejection": true,
+  "restore_request_keys": 7,
+  "restore_evidence_count": 12,
+  "readback_request_keys": 9,
+  "readback_evidence_count": 8,
+  "state_writes": 0,
+  "implementation": 0,
+  "helper_imports": 0,
+  "pool_reads": 0,
+  "pool_writes": 0,
+  "Native": 0,
+  "model": 0,
+  "Expected": 0,
+  "finite_association_controls_max": 6,
+  "unchanged_kernels": [
+    "select_restore_images",
+    "apply",
+    "physical",
+    "atomic/fsync",
+    "mode/mtime",
+    "O_union_N_union_F",
+    "lock",
+    "process",
+    "fullinventory",
+    "state_unchanged_readback"
+  ]
+}
