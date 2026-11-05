@@ -1,0 +1,104 @@
+--- public564/headless.py
++++ phase662/headless.py
+@@ -26,7 +26,7 @@
+ ITEMS = frozenset({0, 1, 2, 4, 5, 6, 10, 11, 14, 15, 16, 19, 21, 22, 24, 26, 30, 67, 117, 129, 208, 405, 182, 233, 234, 235, 29, 82, 83, 84, 17, 18, 34, 50, 35, 36, 37, 46, 3, 12, 27, 28, 7, 8, 20, 39, 48, 124, 209, 32, 172, 23, 38, 205, 296, 52, 54, 400, 468, 53, 168, 204, 340, 62, 179, 332, 351, 374, 74, 169, 219, 220, 401, 416, 469})
+ SQUIRREL_SOURCE_ITEMS = frozenset({164})
+ SQUIRREL_SOURCE_EXTENSION = 'source-headless-squirrel-default/1'
+-EXPERIMENTAL_NONKING_ITEMS = frozenset({64,162,164,197,199,201,231,385})
++EXPERIMENTAL_NONKING_ITEMS = frozenset({64,162,164,197,199,201,231,385,422})
+ EXPERIMENTAL_NONKING_EXTENSION = 'source-headless-experimental-nonking-defaults/1'
+ # Original Bag.getBagLayerPriority: Unique first, then resource Icon/Border.
+ # Static facts for admitted default resources; no visual object is constructed.
+--- public564/native_replay_v8/engine.py
++++ phase662/native_replay_v8/engine.py
+@@ -40,6 +40,9 @@
+ 
+ 
+ CATALOG = {
++    422: dict(name="Wand",shape=((0,0),(0,1)),bag=False,magic=True,accessory=True,wood=True,
++              cooldown=3.3,mana_threshold=10,lucky_threshold=10,regeneration_threshold=10,
++              empower=1,buffs_to_use=1,buff_subset=(105,101,102),socket_count=0,default_gem=None),
+     162: dict(name="Bowl of Treats",shape=((0,0),(1,0)),
+               stars=((-1,-1),(0,-1),(1,-1),(2,-1),(-1,0),(2,0),(0,1),(1,1)),
+               bag=False,food=True,nature=True,cooldown=4.0,chance=20.0,random_buffs=2,
+@@ -230,6 +233,7 @@
+ ENCHANTED_ATTACK_EFFECT_RECEIVERS = frozenset({14,32,233,234})
+ ENCHANTED_FIXTURE_IDS = frozenset({1,11,14,22,32,231,233,234,385})
+ MIXED_BOWL_ENCHANTED_FIXTURE_IDS = frozenset({1,5,11,14,22,32,162,164,231,233,234,385})
++WAND_FIXTURE_IDS = frozenset({1,11,22,231,422})
+ CACHED_AFFECTED_IDS = GOOBERT_IDS | POTION_IDS | frozenset({5,6,21,22,117,124,162}) | frozenset({18,29,82,83,84,164,179,231,332,351,374,385})
+ EMPOWERABLE_WEAPON_IDS = frozenset([64, 197, 199, 201, 29, 82, 83, 84, 182, 233, 234, 235, 0, 1, 2, 3, 12, 14, 15, 27, 28, 30, 32, 208, 209])
+ 
+@@ -391,6 +395,18 @@
+             or any(sum(entry["item_index"] == 162 for entry in side["items"]) > 1
+                    for side in fixture["sides"])):
+         raise ValueError("Bowl Source requires class0, finite seven-ID fixture and at most one162 per side")
++    return True
++
++
++def validate_wand_fixture(fixture):
++    if not any(entry["item_index"] == 422 for side in fixture["sides"] for entry in side["items"]):
++        return True
++    if (any(side["character_class"] != 0 for side in fixture["sides"])
++            or any(entry["item_index"] not in WAND_FIXTURE_IDS
++                   for side in fixture["sides"] for entry in side["items"])
++            or any(sum(entry["item_index"] == 422 for entry in side["items"]) > 1
++                   for side in fixture["sides"])):
++        raise ValueError("Wand Source requires class0, finite five-ID fixture and at most one422 per side")
+     return True
+ 
+ 
+@@ -448,6 +464,7 @@
+             filled_cells |= cells
+     validate_bowl_fixture(fixture)
+     validate_enchanted_fixture(fixture)
++    validate_wand_fixture(fixture)
+     return True
+ 
+ 
+@@ -3066,6 +3083,25 @@
+                 maximum = value
+         return picked
+ 
++    def remove_most_buffs(self, item, num_buffs, parent=None, use=False, available_buffs=range(101, 108)):
++        if self.items.get(getattr(item, "instance_id", None)) is not item:
++            raise ValueError("most-buff removal requires an owned item")
++        if (type(use) is not bool or type(num_buffs) not in (int, float)
++                or not math.isfinite(num_buffs) or num_buffs < 0):
++            raise ValueError("most-buff removal requires strict BOOL use and finite nonnegative source amount")
++        target = item.side if use else ("O" if item.side == "P" else "P")
++        picked = self.get_most_stacks(target, available_buffs)
++        if not picked:
++            raise ValueError("empty most-buff candidate selection has no admitted source index")
++        index = self.random.randi_range(f"most_buff:{item.instance_id}:{target}", 0, len(picked) - 1)
++        stack_type = self._stack_name(picked[index])
++        to_remove = min(num_buffs, getattr(self.characters[target], stack_type.lower()))
++        if to_remove == 0:
++            return None
++        if use:
++            return self.use_stack(item, target, stack_type, to_remove, parent)
++        return self.remove_stack(item, target, stack_type, to_remove, parent)
++
+     def give_most_buffs(self, item, num_buffs, parent=None, available_buffs=range(101, 108)):
+         if type(num_buffs) not in (int, float) or not math.isfinite(num_buffs):
+             raise ValueError("most-buff amount must be a finite source number")
+@@ -3407,6 +3443,19 @@
+         item.iteration_cooldown = self.adjust_cooldown(item)
+         item.trigger_time += item.iteration_cooldown
+         char = self.characters[item.side]
++        if item.item_index == 422:
++            definition = item.definition
++            self.give_least_buffs(item, 1, None, definition["buff_subset"])
++            # Read live stacks after the complete synchronous least-buff grant.
++            if (char.mana >= definition["mana_threshold"]
++                    or char.lucky >= definition["lucky_threshold"]
++                    or char.regeneration >= definition["regeneration_threshold"]):
++                used = self.remove_most_buffs(item, definition["buffs_to_use"], None, True,
++                                              definition["buff_subset"])
++                self.give_stack(item, item.side, "Empower", definition["empower"],
++                                None if used is None else used["id"])
++            self.activate(item)
++            return
+         if item.item_index == 385:
+             self.give_least_buffs(item, item.definition["least_buffs"])
+             self.activate(item)

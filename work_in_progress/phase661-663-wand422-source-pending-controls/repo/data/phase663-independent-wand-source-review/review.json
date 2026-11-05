@@ -1,0 +1,70 @@
+{
+  "schema": "phase663-independent-wand-source-review/1",
+  "status": "STATIC_SOURCE_ACCEPTED_FINITE_EXECUTION_PENDING_ROOT_RELEASE",
+  "utc": "2026-11-05T12:48:43.041510+00:00",
+  "source_owner": {
+    "path": "data/phase662-wand422-source/owned-files.json",
+    "size": 6222,
+    "sha256": "205f5a23cc3059c40e981fc2701ed23cff16e78b4350bf95c0f6ba4c5cf083d1"
+  },
+  "candidate_freeze": {
+    "path": "data/phase662-wand422-source/candidate-source-freeze.json",
+    "size": 4440,
+    "sha256": "9761cd6ba037f16cef4b060e32186e95976ec333aad2cabb7374073cbb2d49c1"
+  },
+  "source_job": {
+    "path": "data/phase662-wand422-source/source-job.json",
+    "size": 2967,
+    "sha256": "b5597c364a595e8a786fd141c6a664f79e59851e3a528fbdb03a22da39e51480"
+  },
+  "verified": {
+    "owner_refs_actual_SHA": 27,
+    "baseline_modules_actual_SHA": 15,
+    "original_authority_files_actual_SHA": 5,
+    "full_module_inverse15_exact": true,
+    "unchanged_modules": 13,
+    "engine_old_functions": 250,
+    "engine_unchanged_old_functions": 248,
+    "engine_changed_old_functions": [
+      "validate_fixture",
+      "CombatEngine.trigger"
+    ],
+    "engine_new_functions": [
+      "validate_wand_fixture",
+      "CombatEngine.remove_most_buffs"
+    ],
+    "headless_old_functions": 41,
+    "headless_all_functions_byte_exact": true,
+    "headless_only_constant_addition": 422,
+    "old84_definitions_preserved_by_inverse": true
+  },
+  "source_semantics": [
+    "Original Wand.gd: complete giveLeastBuffs(1,own,null,[105,101,102]) precedes live ANY Mana/Lucky/Regeneration >=10, then removeMostBuffs(1,null,true,subset), actual returned event parent for Empower1, then activate unconditionally.",
+    "Item.gd getMostStacks/removeMostBuffs retains supplied order, one real chooser even singleton/allzero, min only after chooser, zero returns null; own use versus opponent loss uses existing kernels.",
+    "Candidate trigger retains exactly one existing adjust_cooldown and trigger_time increment before Wand branch; base cooldown is3.3 and iteration cooldown retains existing jitter. No double cooldown or extra fight-ended guard introduced.",
+    "No added delayed logging/flush, protection, rounding, history, RNG or Timer implementation. Existing use/remove/give/least/most/activate/prepare bodies byte exact.",
+    "Wolper listener registration and Source arithmetic (0.7*baseStaminaRegen)/100 remain exact; stack gain/use notifications synchronously update stat20 under actual event numbering.",
+    "Conditional five-ID domain, maxoneWandperside/class0/default inherited geometry/gem constraints. No422 returns immediately; old Bowl/Enchanted gates and old public API bodies unchanged. Scene/CSV identity does not prove Native canAdd."
+  ],
+  "authority": {
+    "path": "data/phase662-wand422-source/original-source-pins.json",
+    "size": 1630,
+    "sha256": "aa5c74cbe9a785de20556ae861e0e8270a7f171e6c5d5018eaa732712cdfd685"
+  },
+  "no_blocker_found": true,
+  "execution_counts": {
+    "candidate_import": 0,
+    "helper": 0,
+    "constructor": 0,
+    "prepare": 0,
+    "model": 0,
+    "Native": 0,
+    "Expected": 0
+  },
+  "limits": [
+    "Static Source acceptance only; directed controls and natural run not yet executed.",
+    "Catalog85 experimental finiteSource; formal75/generalKing/Native qualification unchanged.",
+    "The zero-amount NULL-parent chain is an explicitly synthetic helper composition, not a naturally reachable default Wand threshold result.",
+    "Public default Source seed policy is not a claim of Native seed-session equivalence."
+  ]
+}

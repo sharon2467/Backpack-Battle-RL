@@ -1,0 +1,331 @@
+{
+  "schema": "phase661-next-bounded-business-selection/1",
+  "status": "READONLY_SELECTION_NO_IMPLEMENTATION",
+  "recommendation": {
+    "item": 422,
+    "name": "Wand",
+    "family": "Ordered least-subset grant then most-subset own-buff use and parented conversion",
+    "why": "Already explicitly deferred in543; it supplies one missing reusable removeMostBuffs production caller, reuses implemented least/most pickers and buff/event/history/timer mechanisms, and needs no new damage/modifier/state subsystem.",
+    "current_registry": 84,
+    "formal_count": 75,
+    "proposed_First_Source_scope": "422only, defaultparameters/class0/closedexperimental nonKing API; preserve existing modifier finite-domain refusals and old formal/CLI/batch/Squirrel/King gates",
+    "Source_implementation_modules_estimate": [
+      "native_replay_v8/engine.py",
+      "headless.py"
+    ],
+    "new_helper": "remove_most_buffs(item,num_buffs,parent=None,use=False,available_buffs=...)",
+    "next_step": "Root releases one short function-level design+independent review for422 only;then isolated2fileSource port/compile;independent directed6\u20138families+one presealed new mixed Sourcecase. No new Native now.",
+    "no_new_per_item_API": true,
+    "no_new_framework": true,
+    "existing_captured_B580_029_030_unchanged": true
+  },
+  "candidates": [
+    {
+      "rank": 1,
+      "item": 422,
+      "name": "Wand",
+      "Original": {
+        "script": {
+          "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/Wand.gd",
+          "size": 708,
+          "sha256": "4fa914980c00b8a73c199aba0e8f5de5f226b6ea21041df89f0c04e15cb42c5f"
+        },
+        "scene": {
+          "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/Wand.tscn",
+          "size": 1737,
+          "sha256": "ad0419ab6060cb66ca3d7b793dc8e47630db3bf6300089ba1e58487965205b74"
+        },
+        "CSV": {
+          "id": "422",
+          "name": "Wand",
+          "demo": "",
+          "shop": "Mage",
+          "type": "Accessory",
+          "extraTypes": "Magic",
+          "cd": "3.3",
+          "minDam": "",
+          "p1": "10:manat",
+          "p2": "10:luckt",
+          "p3": "10:regent",
+          "p4": "1:empower",
+          "p5": "1:use",
+          "recipes": "Rainbow Orb>Prismatic Wand,Book of Darkness>Wand of Dissonance",
+          "version": "1.0.0"
+        },
+        "release": "demo empty\u2192ReleaseState.Demo by ItemBook719\u2013726; actual registered published tier, shopMage/version1.0.0;Exclusive loading gate remains. Not proof class0canAdd or economy."
+      },
+      "exact_behavior": [
+        "buff subset order Mana105,Lucky101,Regeneration102",
+        "giveLeastBuffs1 targetself/nullparent first;complete synchronous effects before reading live three counts",
+        "if ANY live count>=its10 threshold,removeMostBuffs1,nullparent,use=True,subset",
+        "giveEmpower1 parent=returned useEvent even when helper returnsNULL;then activate with original defaults",
+        "3.3s defaultCD;generic cooldown/activation/limiter timing unchanged"
+      ],
+      "Python_gap": [
+        "422missing from catalog/admission and cooldown dispatch",
+        "removeMostBuffs helper missing;get_most_stacks and give_least_buffs already exist",
+        "need exact min(requested,current),zero-removal NULL after RNG,return real event,useStack vs loseStack branch,live logging-mode/no implicitflush"
+      ],
+      "pitfalls": [
+        "Most tie order and singleton still one randi_range draw;allzero also chooses before returningNULL.",
+        "Subset excludes other buffs even if larger;least virtualcounts/first-pick order inherited exact.",
+        "used=True bypasses protection as existing use semantics;do not add resist/cleanse roll.",
+        "Empower parent is use event,not Activation;Wolper negative/positive buff feedback and global-event history order follow synchronous callbacks."
+      ]
+    },
+    {
+      "rank": 2,
+      "item": 436,
+      "name": "Prismatic Wand",
+      "Original": {
+        "script": {
+          "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/PrismaticWand.gd",
+          "size": 679,
+          "sha256": "66551f50054e12bab89bc933378de0809e5c15adf9596e7ee4321cae141e7aa7"
+        },
+        "scene": {
+          "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/PrismaticWand.tscn",
+          "size": 2819,
+          "sha256": "3958604ae985d3453a14d390ba18e3e0f0b5182b8a22bcc88a1e5c7e84c7e2d1"
+        },
+        "CSV": {
+          "id": "436",
+          "name": "Prismatic Wand",
+          "demo": "",
+          "shop": "no",
+          "type": "Accessory",
+          "extraTypes": "Magic,Vampiric,Holy,Dark",
+          "cd": "4.5",
+          "minDam": "",
+          "p1": "20:manat",
+          "p2": "20:luckt",
+          "p3": "20:regent",
+          "p4": "5:empower",
+          "p5": "5:use",
+          "recipes": "",
+          "version": "1.0.0"
+        },
+        "release": "demo empty\u2192Demo;shop=no is not unpublished:422recipe explicitly yields PrismaticWand. Original script is separate extendsItem,not Wand inheritance."
+      },
+      "exact_behavior": [
+        "giveAllBuffs before live threshold reads",
+        "threshold20 on sameMana/Lucky/Regen subset;removeMost5 use=True\u2192Empower5 parent=useEvent\u2192activate",
+        "defaultCD4.5"
+      ],
+      "Python_gap": [
+        "436not registered",
+        "give_all_buffs helper/production caller not present;needs exact all7 order/logging semantics",
+        "reuse422most-use conversion after it is implemented"
+      ],
+      "disposition": "Defer one step: adds all-buff grant grouping and bulk5 consumption;do not treat it as metadata-only clone of422."
+    },
+    {
+      "rank": 3,
+      "item": 509,
+      "name": "Wand of Dissonance",
+      "Original": {
+        "script": {
+          "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/WandofDissonance.gd",
+          "size": 1071,
+          "sha256": "f923bfb421dcd96b572b7fead3155ceea20ed3d9a3207adecc3f6a38e5c4bf1c"
+        },
+        "scene": {
+          "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/WandofDissonance.tscn",
+          "size": 2979,
+          "sha256": "2a2bf30dd9033bf463b5aa8abefbdb5e32f0319069fae08786a40bc457fe1df0"
+        },
+        "CSV": {
+          "id": "509",
+          "name": "Wand of Dissonance",
+          "demo": "no",
+          "shop": "no",
+          "type": "Accessory",
+          "extraTypes": "Dark,Magic",
+          "cd": "2.9",
+          "minDam": "8",
+          "p1": "7:healtht",
+          "p2": "4:mana",
+          "p3": "3:luck",
+          "p4": "3:regen",
+          "p5": "5:dam",
+          "recipes": "",
+          "version": "1.1.0"
+        },
+        "release": "demo=no\u2192ReleaseState.Full;Wand recipe explicitly yields it,version1.1.0. shop=no not unreleased. Exclusive gate/canAdd still separate."
+      },
+      "exact_behavior": [
+        "HP must be strictly greater thanhealthUsed7;loseHealth theneffectDamage using same returned parent event",
+        "mostMana/Lucky/Regen chooses type then grants per-type4/3/3,not least choice",
+        "activate outside HP conditional",
+        "Dark affected cache:Spell contributes doubleeffectfactor;onready DamageSource creation"
+      ],
+      "Python_gap": [
+        "509unregistered",
+        "deal_effect_damage currently expressly restricts caller54;new damage-source/effectfactor path required",
+        "nonzero spatial Dark/Spell effectdamagefactor and weightedmost-reward handling need bounded design"
+      ],
+      "disposition": "Defer: larger newdamage/modifier family;not shortest next block. No falsehasAttackEffect/Spell assumptions or full75scan."
+    }
+  ],
+  "source_reuse": {
+    "base": "Current accepted public564business15 (new Native030 used captured580shell) remains unchanged in this selection",
+    "catalog_source": {
+      "path": "/workspace/backpack-python-publish-20261025/python_engine/experimental_nonking/native_replay_v8/engine.py",
+      "size": 259634,
+      "sha256": "2a29367a60d55937bfd139ad16cc4b228c3616acf28f6d37f826c15284f9feff"
+    },
+    "registered_ids_verified_by_static_AST_keys": 84,
+    "selected_candidates_absent": [
+      422,
+      436,
+      509
+    ],
+    "existing_helper_preimages": {
+      "get_least_stacks": {
+        "line": 2854,
+        "end_line": 2877,
+        "size_with_LF": 1310,
+        "sha256_with_LF": "59efd9a8f4173ec9d06fce59c8b48a2880575b0cd4b3a26363e11d3966d573ef"
+      },
+      "give_least_buffs": {
+        "line": 2879,
+        "end_line": 2883,
+        "size_with_LF": 374,
+        "sha256_with_LF": "0eeb1611ea1d7495d17b5e6cdebcd891e87e68d42d5e59f0860a8bbb2326a900"
+      },
+      "get_most_stacks": {
+        "line": 3049,
+        "end_line": 3067,
+        "size_with_LF": 919,
+        "sha256_with_LF": "45c0159d35a17ac5408b4b7d32cd59c5920fff383955529745c8bb73f926562d"
+      },
+      "give_most_buffs": {
+        "line": 3069,
+        "end_line": 3076,
+        "size_with_LF": 616,
+        "sha256_with_LF": "0172201445ae610a83379f77aa4d04bebf0a5d133235470cddcf592bc4b778e7"
+      },
+      "give_stack": {
+        "line": 2682,
+        "end_line": 2689,
+        "size_with_LF": 421,
+        "sha256_with_LF": "0b7ab7ee320afcd06e3c206bea601d4c56f56c5eaf2e2adcdc691a6956f50aac"
+      },
+      "use_stack": {
+        "line": 2643,
+        "end_line": 2644,
+        "size_with_LF": 150,
+        "sha256_with_LF": "dc57c2a2703bd553c5b7c6c1dcbb4dd7a1247cd09d3f40912d976c74f01fca35"
+      },
+      "lose_health": {
+        "line": 2659,
+        "end_line": 2671,
+        "size_with_LF": 654,
+        "sha256_with_LF": "0c06418eeeaa02a70a2ecb75a00c5a9354542c77832d0ba7f35979b2ee87ed9f"
+      },
+      "activate": {
+        "line": 2979,
+        "end_line": 3002,
+        "size_with_LF": 1149,
+        "sha256_with_LF": "b6116550037341fd2cff05637f6725e2d80e731ab9a3999d3fd415104bdd62d9"
+      }
+    },
+    "explicit_prior_shortlist": {
+      "path": "docs/phase543_next_shared_combat_family_shortlist_spec.md",
+      "size": 12911,
+      "sha256": "5ce0413b50684de68ee8bd70e588aff3db8f1002b2542351c073ff95a95d452a"
+    },
+    "prior_facts": {
+      "path": "data/phase543-next-shared-combat-family-plan/actual-source-candidates.json",
+      "size": 2936,
+      "sha256": "3fdd4eb3476ca880dc3a4a8ed7302dc408ba28259067a2c69a9b8fc2ce6bbc45"
+    },
+    "old_scope_table": {
+      "path": "docs/native_coverage_scope.md",
+      "size": 31716,
+      "sha256": "ddac76fe4f3471764533d230ccb6ecac357811a8a2ce3240976674aee220bd1e"
+    },
+    "Original_shared_sources": [
+      {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+        "size": 170717,
+        "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f"
+      },
+      {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Sheets/ItemBook.gd",
+        "size": 48708,
+        "sha256": "6b0f0b78c0ee1a0529e7740b424b157837b614cbd74c3e8f22886f9509cb9d84"
+      },
+      {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Sheets/CSV/ItemData.csv",
+        "size": 80933,
+        "sha256": "26f5433cf37cd33c066dd505672fcb292e7570ede8c823c5a10f9bc21208a473"
+      }
+    ],
+    "release_state_source_lines": "ItemBook719\u2013726;Exclusive scene loading759\u2013771",
+    "shape_scope": "Wand/Prismatic each2occupied cells in scene;no stars for422.509adds spatialstars. No instantiate/canAdd called."
+  },
+  "historical_oracle": {
+    "indexes": {
+      "data/phase205-weapon-port/native-source-plan.json": {
+        "pin": {
+          "path": "data/phase205-weapon-port/native-source-plan.json",
+          "size": 11255,
+          "sha256": "009961bd943a8023c7c854a63aca42c9a7411f0d5dee8e56d6b83f1aa29f3838"
+        },
+        "kind": "HISTORICAL_SOURCE_PROFILE_METADATA_NOT_COMPLETE_CARRIER_PROOF",
+        "descriptor_count": 71,
+        "selected_candidates_in_profile": []
+      },
+      "data/phase214-potion-port/native-source-plan.json": {
+        "pin": {
+          "path": "data/phase214-potion-port/native-source-plan.json",
+          "size": 13727,
+          "sha256": "9967382ba53d133a1220c3355cd335809741c258d8cbad6271adea3125f22c66"
+        },
+        "kind": "HISTORICAL_SOURCE_PROFILE_METADATA_NOT_COMPLETE_CARRIER_PROOF",
+        "descriptor_count": 75,
+        "selected_candidates_in_profile": []
+      }
+    },
+    "other_known_index": {
+      "path": "data/phase178-independent-final/summary.json",
+      "size": 2317,
+      "sha256": "1bee98265c70769454306ddac2ce848e88a9e293d98fa965079305c891ccf54b"
+    },
+    "record_sufficiency": "No sufficient lawfulINPUT package for422/436/509 is established by these existing indexes.205/214 are historicalSource profiles,not proof an absent item has a capture.178known8ID/030fixed12cases do not supply these callers. No rawpackage scan and no claim that no record exists anywhere.",
+    "usable_evidence": "Reuse accepted least/most/buff/event/Timer kernels and historical typedPrimitive conventions as Source dependencies;do not reuse unrelated actualUID/cuts/initialrows/Tape orExpectedvalues.",
+    "future_minimum_observation": "Only after Source422port+independent acceptance and explicit Root release:one new jointly valid Wand+Wolper+supportedMana/regen source+opponent case with fixedlayout/seed,legalsetup and full lawful12/actualclock/branch+initialpremises. Need thresholdconversion and paidparent/gain-loss histories;NOT_HIT staysNOT_HIT. Existing observer metadata/picker-label caller applicability must be narrowly bound;no assumption current12IDprofile accepts422.",
+    "new_Native_authorized": false
+  },
+  "proposed_acceptance": {
+    "directed_families": [
+      "least subset/tie/singleton selection and no-threshold branch",
+      "9\u219210 live post-grant threshold crossing;sourceordered parameter thresholds",
+      "most tie/order and singleton real RNG;subset excludes unrelatedlargestbuff",
+      "mostmin(requested,count),zeroNULL afterchoice andno extra loggingflush",
+      "use=True versus lost/protected helperbranch;actual returned event vsNULL parent",
+      "WandEmpower event-parent chain,activation tail/limiter and unchangedgeneric cooldown",
+      "Wolper synchronous gain/loss stamina/history currentevent feedback",
+      "oldentry rejection/currentpublic API identity/defaultparameter caps"
+    ],
+    "bounded_Source_case": "One presealed new422+231+supportedMana source/Squirrel orStaff fixture,Root chooses layout/seed before run;naturalcoverage reported,not chosen by output. Existing162/385finitefixtures keep their old rejection.",
+    "pass_is": "Sourcefinitecaller/helper behavior only,formal75/nativegeneral/RL not promoted",
+    "existing_tests_not_repeated": true
+  },
+  "limits": [
+    "At most these3candidateitems/relatedfamilies; no519completiondenominator or fullOriginalsurvey.",
+    "No Sourceimplementation/import/compile/test/model/battle/Native/newcapture/Expectedsemantic input reconstruction.",
+    "Scene/release-state/recipe evidence establishes registered publishedcontent,not freshNativecanAdd/class0/shop legality."
+  ],
+  "operations": {
+    "Source_metadata_reads_only": true,
+    "Source_edits": 0,
+    "imports": 0,
+    "tests": 0,
+    "models": 0,
+    "Native": 0,
+    "Expected_payload": 0,
+    "pool": 0
+  }
+}

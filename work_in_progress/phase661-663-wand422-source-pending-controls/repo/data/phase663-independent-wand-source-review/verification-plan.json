@@ -1,0 +1,183 @@
+{
+  "schema": "phase663-wand-finite-verification-plan/1",
+  "status": "STATIC_PLAN_ONLY_NOT_EXECUTION_RELEASE",
+  "spec": {
+    "path": "docs/phase663_wand_independent_verification_spec.md",
+    "size": 1903,
+    "sha256": "cc32812b113e99dfeb3397de3c219f2e0abc4944350c2f2305675cbc5145d7d6"
+  },
+  "source_freeze": {
+    "path": "data/phase662-wand422-source/candidate-source-freeze.json",
+    "size": 4440,
+    "sha256": "9761cd6ba037f16cef4b060e32186e95976ec333aad2cabb7374073cbb2d49c1"
+  },
+  "natural_job": {
+    "path": "data/phase662-wand422-source/source-job.json",
+    "size": 2967,
+    "sha256": "b5597c364a595e8a786fd141c6a664f79e59851e3a528fbdb03a22da39e51480"
+  },
+  "groups": [
+    {
+      "id": "01_domain",
+      "cases": 6,
+      "direct_calls": 6,
+      "expected_rejects": 4,
+      "draws": 0,
+      "operations": [
+        "new public validate original15 layout PASS and reuse fixture for sole component",
+        "old public validate_layout rejects422",
+        "new public validator rejects otherwise valid fixture containing422 and foreign experimental164",
+        "new public validator rejects second422 on one side with nonoverlapping geometry",
+        "new public validator rejects character_class1",
+        "new public validator accepts same layout with Wand removed (no constructor/run)"
+      ]
+    },
+    {
+      "id": "02_live_threshold",
+      "cases": 4,
+      "direct_calls": 4,
+      "draws": 11,
+      "operations": [
+        "trigger counts(Mana,Lucky,Regen)=(0,0,0), least index0: Mana1, no use/Empower, activation",
+        "three trigger cases counts(9,9,9), least indices0/1/2 respectively: selected type10 then most sole index0 uses1 and Empower1 parent equals real use event id"
+      ],
+      "assertions": [
+        "each trigger exactly one cooldown draw then least draw then conditional most draw",
+        "each cooldown chosen factor1.0 yields3.3 and adds3.3 to trigger_time",
+        "least grant is logged and synchronous stat20 callback completed before use; use then Empower stat20 changes preserve per-event sequence",
+        "activation after conversion; sameframe limiter reset only in explicit testcase reset"
+      ]
+    },
+    {
+      "id": "03_most_order",
+      "cases": 3,
+      "direct_calls": 3,
+      "draws": 3,
+      "operations": [
+        "use helper subset(105,101,102),counts(5,5,2),choice1 selectsLucky",
+        "use helper counts(8,2,1),choice0 singleton selectsMana; one INTdraw width1",
+        "use helper counts(0,0,0),choice2 width3 then returnsNone; no event"
+      ],
+      "assertions": [
+        "set out-of-subset Empower99; never selects it",
+        "subset/order immutable"
+      ]
+    },
+    {
+      "id": "04_clamp_zero",
+      "cases": 2,
+      "direct_calls": 2,
+      "draws": 2,
+      "operations": [
+        "own counts(2,1,0),request5: chooser then clamp actual Mana loss2, returnsrealuseevent",
+        "own counts(2,1,0),request0: chooser still consumed then None, no loss/event"
+      ]
+    },
+    {
+      "id": "05_target_protection",
+      "cases": 2,
+      "direct_calls": 2,
+      "draws": 2,
+      "operations": [
+        "use=False,opponentMana2/buffProtect1/request1: protective event, actualLoss0/returnNone; own unchanged",
+        "use=True,ownMana2/buffProtect1/request1: own use1 returns event, protection unchanged; opponent unchanged"
+      ],
+      "assertions": [
+        "parent=previous real event id remains unchanged on returned/protection event",
+        "no random protection enabled; one chooser each"
+      ]
+    },
+    {
+      "id": "06_NULL_composition",
+      "cases": 1,
+      "direct_calls": 3,
+      "draws": 1,
+      "operations": [
+        "helper request0 on own positive stacks =>None; call give_stack Empower1 with parent None; activate same Wand once"
+      ],
+      "limits": [
+        "synthetic component composition only; default Wand uses1 and threshold implies nonzero max; not claimed natural NULL branch coverage"
+      ]
+    },
+    {
+      "id": "07_limiter",
+      "cases": 1,
+      "direct_calls": 1,
+      "draws": 3,
+      "operations": [
+        "set sameframe activation count3; trigger with(9,9,9),least0/most0: gain/use/Empower still happen, cooldown3.3 once; activate increments4 but emits no Activation"
+      ],
+      "assertions": [
+        "no early limiter check inserted before conversion",
+        "record event deltas, not inferred total"
+      ]
+    },
+    {
+      "id": "08_feedback_and_types",
+      "cases": 2,
+      "direct_calls": 2,
+      "expected_rejects": 2,
+      "draws": 0,
+      "operations": [
+        "remove_most_buffs use=1 rejects strictBOOL before draw",
+        "remove_most_buffs amount=True rejects strictnumeric before draw"
+      ],
+      "cross_case_assertions": [
+        "during02 gain/use/Empower changes, prepared Wolper registered coefficient equals(0.7*base_stamina_regen)/100; stat20 follows +c,-c,+c in Source arithmetic and actual event numbers",
+        "during03/04/05 own use loss gives synchronous negative feedback; protected actualLoss0 does not create a loss notification",
+        "no fake listener, no monkeypatch, no forced flush"
+      ]
+    }
+  ],
+  "budget": {
+    "families": 8,
+    "component_subcases": 21,
+    "direct_top_calls": 23,
+    "expected_rejects": 6,
+    "component_INT_draws": 17,
+    "component_REAL_cooldown_draws": 5,
+    "component_total_draws": 22,
+    "component_constructor": 1,
+    "component_prepare_only": 1,
+    "component_activate_from_checkpoint": 0,
+    "component_step": 0,
+    "component_run": 0,
+    "natural_constructor": 1,
+    "natural_prepare": 1,
+    "natural_activate": 1,
+    "natural_fullrun_max": 1,
+    "natural_simulation_seconds": 120,
+    "batch_inner_wall_seconds": 35,
+    "outer_wall_seconds": 40,
+    "Native": 0,
+    "Expected": 0,
+    "old_battles": 0
+  },
+  "draw_contract": {
+    "cooldown_factor": 1.0,
+    "Wand_P_cooldown_bounds": [
+      0.95,
+      1.05
+    ],
+    "least_label": "least_buff:P:wand:P:0",
+    "most_label_own": "most_buff:P:wand:P",
+    "most_label_opponent": "most_buff:P:wand:O",
+    "strict_width_order": true,
+    "no_skip_singleton_or_zero": true,
+    "natural_draws": "unknown until single execution; no prefilled success/count"
+  },
+  "state_setup": "one real production Engine using validated presealed fixture, prepare once without lifecycle activation; reset explicit synthetic counts+permanent records/history baselines/activation-limiter fields consistently percase. No setter replacement or fake Engine. Initial HP180 within admitted bounds.",
+  "output_policy": [
+    "freeze exact script/full rows/dependency pins before Root execution release",
+    "preload stdlib before strict read audit, use actual module origin paths and profile calls",
+    "seal actual raw natural output before result assertions; serialize each report once and hash same bytes for owner",
+    "stop first unexpected failure; retain partial and no automatic repair/retry",
+    "actual control calls, nested methods, constructors and natural lifecycle reported separately",
+    "report natural thresholdconversion/returneduseparent/feedback/limiter HIT or NOT_HIT; no layout or seed changes"
+  ],
+  "unreleased": [
+    "no candidate import/helper/constructor/model yet",
+    "executable harness and final source pins to be frozen before invocation",
+    "Native and formal/general admission not implied"
+  ]
+}
