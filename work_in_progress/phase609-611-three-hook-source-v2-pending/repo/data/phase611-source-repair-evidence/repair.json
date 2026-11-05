@@ -1,0 +1,58 @@
+{
+  "schema": "phase611-source-preparer-repair/1",
+  "old_producer": {
+    "path": "tests/phase610_prepare_three_selected_hook_source.py",
+    "size": 21159,
+    "sha256": "ccfcdd9a0726773818e9cf6d9016d937f40213fd6db63d1fee00d4658d6cbc48"
+  },
+  "new_producer": {
+    "path": "tests/phase611_prepare_three_selected_hook_source_v2.py",
+    "size": 22109,
+    "sha256": "c10c7b4da1bd956fd29f97a66336e97fdda1cd3fef09ab4e392a6fbbdcaace43"
+  },
+  "changed_functions": [
+    "Delta.py_assignment",
+    "main"
+  ],
+  "exact_functions": [
+    "pin",
+    "read",
+    "save",
+    "py_functions",
+    "gd_functions",
+    "Delta.__init__",
+    "Delta.replace",
+    "Delta.inverse"
+  ],
+  "algorithm_change": "Delta.py_assignment: exact top-level Name/col0 and full physical-line leading+trailing LF;strict count1 and inverse unchanged",
+  "main_changes": "OUT path,actual provenance611refs,local1/cumulative2 attempt metadata only",
+  "Source_generation_attempts_this_version": 1,
+  "cumulative_Source_generation_attempts": 2,
+  "partial610_preserved": {
+    "path": "data/phase610-source-first-error-freeze/owned-files.json",
+    "size": 1037,
+    "sha256": "cb924911a8f67ad438243254e99789a194fc062f53523bfae6c1d57cc387c57d"
+  },
+  "source_owner": {
+    "path": "data/phase610-three-selected-hook-source-v2/source-owner.json",
+    "size": 34004,
+    "sha256": "ac6e00700048b876a654e5837415a794c4c00bf7b7d3618d95267f50ab1db156"
+  },
+  "source_freeze": {
+    "path": "data/phase610-three-selected-hook-source-v2/combined-source-freeze.json",
+    "size": 65722,
+    "sha256": "a1dc715f1bcf704906baacc7c481147f63f5f0cbec7b80cb0d0739ffd47fa4d4"
+  },
+  "source_sink_exact_functions": 102,
+  "source_schema_exact_helpers": 76,
+  "schema_changed_functions": [
+    "validate_record"
+  ],
+  "compile_objects": 1,
+  "generated_schema_imports": 0,
+  "helper_calls": 0,
+  "tests": 0,
+  "Native": 0,
+  "Expected": 0,
+  "pool": 0
+}

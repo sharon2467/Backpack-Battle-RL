@@ -1,0 +1,59 @@
+--- tests/phase610_prepare_three_selected_hook_source.py
++++ tests/phase611_prepare_three_selected_hook_source_v2.py
+@@ -10,7 +10,7 @@
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+ OLD = ROOT / 'data/phase572-mixed-observer-source-v2'
+-OUT = ROOT / 'data/phase610-three-selected-hook-source'
++OUT = ROOT / 'data/phase610-three-selected-hook-source-v2'
+ VERSION = '7-mixed-modifiers-A-610-hooks110'
+ PROFILE = 'observer7-mixed-modifiers-A-hooks110-native-tape/1'
+ 
+@@ -65,8 +65,15 @@
+                  and len(n.targets) == 1 and isinstance(n.targets[0], ast.Name) and n.targets[0].id == name]
+         assert len(nodes) == 1, 'one exact top-level assignment:' + name
+         node = nodes[0]
+-        before = ast.get_source_segment(self.text, node)
+-        self.replace(before, name + ' = ' + repr(value), 'exact assignment:' + name)
++        assert node.col_offset == 0, 'top-level physical line starts at column0:' + name
++        lines = self.text.splitlines(keepends=True)
++        start = sum(len(line) for line in lines[:node.lineno - 1])
++        end = sum(len(line) for line in lines[:node.end_lineno])
++        assert start > 0 and self.text[start - 1] == '\n', 'preceding full-line LF:' + name
++        assert self.text[end - 1] == '\n', 'terminating full-line LF:' + name
++        assert node.end_col_offset == len(lines[node.end_lineno - 1].removesuffix('\n').encode('utf-8')), 'complete statement line:' + name
++        before = self.text[start - 1:end]
++        self.replace(before, '\n' + name + ' = ' + repr(value) + '\n', 'exact AST physical-line assignment:' + name)
+ 
+     def inverse(self):
+         text = self.text
+@@ -252,7 +259,7 @@
+              historical_single001_authority_exhausted=True,new_attempt=None,
+              implementation_scope_excludes=['consumer','host','restore','Original','pool']))
+         save(OUT/'compile-only.json',dict(schema='phase610-source-compile/1',objects=[pin(schema_path)],
+-             schema_imports=0,helper_calls=0,tests=0,GD_parse=0,Native=0,models=0,Expected=0,pool_operations=0,generation_attempts=1))
++             schema_imports=0,helper_calls=0,tests=0,GD_parse=0,Native=0,models=0,Expected=0,pool_operations=0,generation_attempts=1,cumulative_generation_attempts=2))
+         save(OUT/'source-authority.json',dict(schema='phase610-source-authority/1',
+              old_source_owner=pin(OLD/'source-owner.json'),old_source_freeze=pin(OLD/'combined-source-freeze.json'),
+              design_owner=pin(ROOT/'data/phase604-selected-hook-gap-design/owned-files.json'),
+@@ -264,7 +271,10 @@
+         new_files += [producer,pin(ROOT/'docs/phase610_three_selected_hook_source_spec.md'),
+                       pin(ROOT/'data/phase610-root-three-hook-source-release/release.json'),
+                       pin(ROOT/'data/phase609-independent-hook-design-review/review.json'),
+-                      pin(ROOT/'data/phase604-selected-hook-gap-design/owned-files.json')]
++                      pin(ROOT/'data/phase604-selected-hook-gap-design/owned-files.json'),
++                      pin(ROOT/'docs/phase611_three_hook_source_preparer_repair_spec.md'),
++                      pin(ROOT/'data/phase611-root-three-hook-producer-v2-release/release.json'),
++                      pin(ROOT/'data/phase610-source-first-error-freeze/owned-files.json')]
+         unique = {}
+         for row in new_files:
+             assert row['path'] not in unique or unique[row['path']] == row, 'one fixed Source identity per path'
+@@ -294,7 +304,7 @@
+                               freeze=pin(OUT/'combined-source-freeze.json'),target_count=count,install_bytes=total)))
+     except BaseException as exc:
+         save(OUT/'first-error.json',dict(schema='phase610-source-first-error/1',type=type(exc).__name__,
+-             message=str(exc),traceback=traceback.format_exc(),generation_attempts=1,schema_imports=0,
++             message=str(exc),traceback=traceback.format_exc(),generation_attempts=1,cumulative_generation_attempts=2,schema_imports=0,
+              helper_calls=0,GD_parse=0,Native=0,Expected=0,pool=0))
+         save(OUT/'partial-owner.json',dict(schema='phase610-partial-source-owner/1',
+              files=[pin(p) for p in sorted(OUT.rglob('*')) if p.is_file()],no_more_writes=True))

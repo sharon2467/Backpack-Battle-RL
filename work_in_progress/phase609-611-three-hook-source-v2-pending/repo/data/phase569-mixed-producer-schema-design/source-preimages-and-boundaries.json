@@ -1,0 +1,341 @@
+{
+  "deltas": {
+    "Utility_body_edits": 0,
+    "char_REAL_fields": [
+      "baseStaminaRegen",
+      "staminaRegen"
+    ],
+    "common_Item_REAL_fields": [
+      "doubleActivationChance",
+      "doubleAttackEffectChance"
+    ],
+    "new_enter_leave_sites": 0,
+    "prepared_fact_hardzero": "replace only newprofile; actual cache/UID/cut joined expectation required",
+    "subtypes": {
+      "bowl": {
+        "speedBonusGiven": "float"
+      },
+      "enchanted": {
+        "buffs": "int1 post-ready"
+      },
+      "wolper": {
+        "numBuffs": "int3 post-ready",
+        "staminaRegenPerBuff": "null|float before prepare; float afterward"
+      }
+    },
+    "transparent_callsite_labels": 2
+  },
+  "erratum": {
+    "Original029_uncompressed_bytes": 124607186,
+    "authority": "Root explicit569 correction; no archive/payload reread",
+    "frozen_old_plan": {
+      "path": "docs/phase564_joint_native_followup_plan_spec.md",
+      "sha256": "87e5ae43ad5af37f034c5d33bad6417befe4a99360d5a6f40010398144329ff4",
+      "size": 13385
+    },
+    "old_frozen_plan_modified": false
+  },
+  "execution": {
+    "Expected": 0,
+    "Native": 0,
+    "candidate_imports": 0,
+    "compile": 0,
+    "helper": 0,
+    "implementation": 0,
+    "model": 0,
+    "pool": 0,
+    "tests": 0
+  },
+  "files": {
+    "collector": {
+      "path": "data/phase502-whelp-observer-source-v4/collector.gd",
+      "sha256": "640bdb9b1a62e57827faed1775054d7450a411ca3b647f70f286b851436f1dfd",
+      "size": 64612
+    },
+    "item": {
+      "path": "data/phase359-king-producer-source/after-source/Items/Item.gd",
+      "sha256": "2fc1d658db352a7ecae8c2bfb60640a019284992a9c5f9a14c87baea50721631",
+      "size": 178363
+    },
+    "producer": {
+      "path": "tests/phase502_prepare_whelp_observer_source_v4.py",
+      "sha256": "a03ac14077c964017568cc7f449b1680964858daecf78855b8ba218ea78f0aff",
+      "size": 42564
+    },
+    "schema": {
+      "path": "data/phase502-whelp-observer-source-v4/schema/phase502_whelp_observer_schema.py",
+      "sha256": "d5531e3e9b119f0309140cb50dff2c7f545abb5ec3500d488bde29cacdb8f193",
+      "size": 197522
+    },
+    "sink": {
+      "path": "data/phase502-whelp-observer-source-v4/after-source/native_random_observer_sink_v7.gd",
+      "sha256": "41d500e34557cf731baea0c3e150e3d0d0815d26b5bea87c21ab3a81cd2b7162",
+      "size": 102916
+    },
+    "util_unchanged": {
+      "path": "data/phase359-king-producer-source/after-source/Utility/Util.gd",
+      "sha256": "d437e9338c8c4587c0cddd29e848bef54e8b621169dd364ceaa341fbc7a1e507",
+      "size": 46276
+    }
+  },
+  "pending_interfaces": [
+    "new private mixed-prepared-facts helper exact call splice into existing full binding join",
+    "post-ready/prepare checks record pooled pre-values, do not assume every object fresh",
+    "Root Native case/run/seeds before executable tuple; Source56501 is not Native seed"
+  ],
+  "preparation_notes": [
+    "A direct metadata key lookup confirmed common hook Item lacks double-chance fields; the failed lookup was a read-only Source query, not Source generation or SUT execution.",
+    "Existing optional Util labels allow both native return wrapper bodies and primitive site definitions to remain exact."
+  ],
+  "reused_index_refs": [
+    {
+      "path": "data/phase502-whelp-observer-source-v4/source-tuple.json",
+      "sha256": "026877626166fe632c08bd3cba28aec191561373b2167f3c6d15d1f1fac86658",
+      "size": 2001
+    },
+    {
+      "path": "data/phase502-whelp-observer-source-v4/combined-source-freeze.json",
+      "sha256": "04e152576b706f66da05d33fe493670604eca14110cbe98e73ee5f3703afb44a",
+      "size": 58760
+    },
+    {
+      "path": "data/phase502-whelp-observer-source-v4/native-patch-source.json",
+      "sha256": "3425d9aff911e076c57b7dc89e48e67003e95a42df99ffff732f002b132e77fc",
+      "size": 31034
+    },
+    {
+      "path": "data/phase528-input-birth-guard-repair-source/source-context.json",
+      "sha256": "cbd0862d9ce5d0a7d57db71612bf4945c672f4c9963d77648e72605c06f99d95",
+      "size": 7440
+    },
+    {
+      "path": "tests/phase528_initial_receipt.py",
+      "sha256": "95173bc927049e101c7a3d696ebad050eabf744adb5ddec00ba3db9e3650963a",
+      "size": 16745
+    },
+    {
+      "path": "data/phase566-independent-final-acceptance/review.json",
+      "sha256": "37609aabbdfd5cfce50f02a7c4677f499282328903be0136d540e62747476c49",
+      "size": 24506
+    },
+    {
+      "path": "docs/phase564_joint_native_followup_plan_spec.md",
+      "sha256": "87e5ae43ad5af37f034c5d33bad6417befe4a99360d5a6f40010398144329ff4",
+      "size": 13385
+    }
+  ],
+  "schema": "phase569-preimages/1",
+  "selected_function_preimages": [
+    {
+      "end_line": 168,
+      "function": "verify_preimages",
+      "kind": "producer",
+      "line": 149,
+      "sha256": "79d8efc698c9fb0de1a119f0f1d4370ad79cd35845bab798fe868c01e204c105"
+    },
+    {
+      "end_line": 214,
+      "function": "build_plan",
+      "kind": "producer",
+      "line": 171,
+      "sha256": "05fdc828cf2d24cbea04f0e75b9f35cf40cf397f47566e2d83c140b5e50a3ded"
+    },
+    {
+      "end_line": 279,
+      "function": "derive_sink",
+      "kind": "producer",
+      "line": 252,
+      "sha256": "4b9c7ab621e68d71d0e049e4a5d86ac5d2d84b3f2f618b44f947d78aa60471c6"
+    },
+    {
+      "end_line": 297,
+      "function": "derive_collector",
+      "kind": "producer",
+      "line": 289,
+      "sha256": "2328c43f962d7b0d794b03f04cd2072818a49828f6e3a56e02735e6786ef2460"
+    },
+    {
+      "end_line": 446,
+      "function": "derive_schema",
+      "kind": "producer",
+      "line": 382,
+      "sha256": "e91acef118e364c85a8a43d85d47c8b3bbe8b6da395431930564a8ca09e637ba"
+    },
+    {
+      "end_line": 546,
+      "function": "freeze_source",
+      "kind": "producer",
+      "line": 449,
+      "sha256": "4b98f933d6dd1c1287107ef876535e574f3f875f9109076f8c8bf359782de869"
+    },
+    {
+      "end_line": 585,
+      "function": "main",
+      "kind": "producer",
+      "line": 549,
+      "sha256": "43c24907e2db8243b796f686f0f000111779f3b82aa17da9d94a1199b2ecf35c"
+    },
+    {
+      "end_line": 4445,
+      "function": "trigger",
+      "kind": "item",
+      "line": 4437,
+      "sha256": "5c7acadf2ae653d427c8e0da56e41d9f0d888d7b4d09e8780ec068c0878f88c1"
+    },
+    {
+      "end_line": 5602,
+      "function": "getLeastStacks",
+      "kind": "item",
+      "line": 5578,
+      "sha256": "071ce341a16aa6ef59f44a89a48acdb1a7bd6233eb5f59c29e647087bbfcea24"
+    },
+    {
+      "end_line": 460,
+      "function": "pickRandomElement",
+      "kind": "util_unchanged",
+      "line": 456,
+      "sha256": "613890c3bb60db47cca154b1f453a7ec0510164c9ef7385f0d66000055f8f0de"
+    },
+    {
+      "end_line": 1027,
+      "function": "flip",
+      "kind": "util_unchanged",
+      "line": 1023,
+      "sha256": "2b0224dbec92c00afd55e39b77aaf43095e8109a1f75bc084714a672e9ae9720"
+    },
+    {
+      "end_line": 247,
+      "function": "state",
+      "kind": "sink",
+      "line": 210,
+      "sha256": "69dd794a3615ebffb0c6a76415c75e157e8fed7c38c39c25ce2078ba749343be"
+    },
+    {
+      "end_line": 558,
+      "function": "context",
+      "kind": "sink",
+      "line": 517,
+      "sha256": "69b6ba41644f822f5cca58dbd0b4781ad7f74be4a640c5ec47e5cb8e1ca93f17"
+    },
+    {
+      "end_line": 654,
+      "function": "metadata",
+      "kind": "sink",
+      "line": 624,
+      "sha256": "fc91d10f590031aab0887975a2408c9e1ed3315e7a4ed6882cc8804140bdb3a8"
+    },
+    {
+      "end_line": 808,
+      "function": "selected_king_facts",
+      "kind": "sink",
+      "line": 782,
+      "sha256": "bc7018d0013064867c7740b7eb67db6f23bcf23cdd7b27af7129285eb35e884d"
+    },
+    {
+      "end_line": 1307,
+      "function": "bind_fixed_inventory",
+      "kind": "sink",
+      "line": 1227,
+      "sha256": "b7427582beab11837131c6c2d20fa48035160ba1173ef9b48d5f22c32162c74d"
+    },
+    {
+      "end_line": 1385,
+      "function": "source_resources",
+      "kind": "sink",
+      "line": 1376,
+      "sha256": "143e35b786659e3cf7959d1801c7bc3b8123fae1e9c2ffd0b1a262481e6fc496"
+    },
+    {
+      "end_line": 377,
+      "function": "place_player_items",
+      "kind": "collector",
+      "line": 354,
+      "sha256": "bf9599ca831582efbe1077407ef2a8f9a01591897b7ddebedc9ea8e4d8899770"
+    },
+    {
+      "end_line": 598,
+      "function": "fields",
+      "kind": "collector",
+      "line": 591,
+      "sha256": "83710b545c3a95cfdb2866420f71e5e0f21b949b9a9d2eb053cbaf8ee66a8f9a"
+    },
+    {
+      "end_line": 672,
+      "function": "state_snapshot",
+      "kind": "collector",
+      "line": 603,
+      "sha256": "fb90fd726e3fcf29cf970e2a6c4d67e1cebd0b8cd9694784b27276d4b0637ec7"
+    },
+    {
+      "end_line": 820,
+      "function": "slot_spec",
+      "kind": "collector",
+      "line": 813,
+      "sha256": "7330331539064603e9981686b4e9f4bbdb033a5fa2285a45e129a2023bae9c6d"
+    },
+    {
+      "end_line": 1171,
+      "function": "validate_state",
+      "kind": "schema",
+      "line": 1106,
+      "sha256": "360113e93062eaf714404b720b8bde3ac6eec36463c7c48695f764bbf4ac9f59"
+    },
+    {
+      "end_line": 1182,
+      "function": "primitive_context",
+      "kind": "schema",
+      "line": 1174,
+      "sha256": "5c85bb9516aa6f7fe6077fb0c68261bc11a8e5cb4b6690f5800753880afb911b"
+    },
+    {
+      "end_line": 1189,
+      "function": "validate_primitive",
+      "kind": "schema",
+      "line": 1185,
+      "sha256": "b4fb9bb71d3b1052fa9eb8a05750ec3e6c76e87288e6af3a3c7252edf0f88b57"
+    },
+    {
+      "end_line": 1231,
+      "function": "validate_resources",
+      "kind": "schema",
+      "line": 1204,
+      "sha256": "399deef5915f72254e12844efbb2b2bb0e65bf1b6da77c6c693da85db072cab6"
+    },
+    {
+      "end_line": 775,
+      "function": "validate_single_king_fresh_facts",
+      "kind": "schema",
+      "line": 695,
+      "sha256": "4cf4baa8fb52872e9e0ee1cba009981ab5c05e4e1b3855f45b9e03cdb7867c71"
+    },
+    {
+      "end_line": 814,
+      "function": "validate_single_king_source_defaults",
+      "kind": "schema",
+      "line": 801,
+      "sha256": "f8f217ecec8694fe5e68936f9d33b37138f24d6668a8f62e01fce2a8dcf8640d"
+    },
+    {
+      "end_line": 1454,
+      "function": "validate_observation_records",
+      "kind": "schema",
+      "line": 1435,
+      "sha256": "f789c4e069ac6a666e2f37f4b36368c0990e67fd50c4c12b70290bfa5ed1523e"
+    },
+    {
+      "end_line": 2034,
+      "function": "join_binding_provenance",
+      "kind": "schema",
+      "line": 1953,
+      "sha256": "682d9472036686fbf9f2c9723f09b78add853b50da3069d7cde9667c3f723f20"
+    },
+    {
+      "end_line": 2055,
+      "function": "validate_sources_with_binding",
+      "kind": "schema",
+      "line": 2037,
+      "sha256": "065c908788a95aacb75e60d05aa9ae7261a309457f2a219b57265a72e4292d6a"
+    }
+  ],
+  "status": "DESIGN_ONLY_PENDING_INDEPENDENT570"
+}
