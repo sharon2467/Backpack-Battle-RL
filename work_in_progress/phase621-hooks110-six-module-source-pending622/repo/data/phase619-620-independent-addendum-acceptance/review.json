@@ -1,0 +1,77 @@
+{
+  "schema": "phase619-620-independent-addendum-acceptance/1",
+  "status": "DESIGN_ADDENDUM_ACCEPTED_SOURCE_IMPLEMENTATION_PENDING",
+  "addendum_owner": {
+    "path": "data/phase619-load-schema-identity-addendum/owned-files.json",
+    "size": 676,
+    "sha256": "7be1edf0fe7a0cf94a530368a02b9379ce74346f9e7e2c5878f18dacca432cae"
+  },
+  "addendum": {
+    "path": "data/phase619-load-schema-identity-addendum/delta-addendum.json",
+    "size": 1757,
+    "sha256": "0a80c5f199f13d22cb99443edbc7070305e9b6e438b014b57f6c0a4b84501240"
+  },
+  "spec": {
+    "path": "docs/phase619_load_schema_identity_addendum_spec.md",
+    "size": 3188,
+    "sha256": "2409f26dc0b643b0be05b967c3e1b892bfb860d192fa2281751cb863ff69dccf"
+  },
+  "run_selection": {
+    "path": "data/phase620-root-source-run-selection/selection.json",
+    "size": 1008,
+    "sha256": "0c3faf35a9e84ed70f63ad3b91ab306c4ac811071aeea6042e4170fe35a849e4"
+  },
+  "run_selection_owner": {
+    "path": "data/phase620-root-source-run-selection/owned-files.json",
+    "size": 250,
+    "sha256": "aaea741d64d6aa92ed7b47d9fe17a337518047a40b74c1941851d2803c40f00f"
+  },
+  "prior_conditional_review": {
+    "path": "data/phase618-independent-rebinding-design-review/review.json",
+    "size": 6540,
+    "sha256": "bae78082f4d66c7d4b26cf23d69c1fa7cbc6fe4d4f6603370efdf578ecad01df"
+  },
+  "resolved_condition": "A_LOAD_SCHEMA_FIXED_IDENTITY_REBIND",
+  "finding": "619 adds load_schema to the planned delta and explicitly changes exactly the two blocking identity predicates identified by618. Bytes/size/SHA,29roles,12descriptors,isolated no-cache load and finally cleanup remain mandatory. Optional module-name/error text changes are diagnostic only. No global572 replacement.",
+  "Source_current_check": {
+    "old_bridge_exact": {
+      "path": "tests/phase578_input_bridge.py",
+      "size": 46200,
+      "sha256": "168c604bb3e954d1b9a502d395d010f991fd0cbc8e44f97a2f7dfab6dd1dabd6"
+    },
+    "load_schema_preimage_exact": {
+      "size": 830,
+      "sha256": "4449cf7fbebee94d44a932cd4ea991eb64a584fb2b6be04d92b166fd34bb2ab3"
+    },
+    "required_literal_occurrences": [
+      1,
+      1
+    ],
+    "implementation_tested": false
+  },
+  "run_binding": {
+    "selected": "original030-mixed-modifiers-A-single-002",
+    "scope": "Source namespace only",
+    "source_tuple_proposed_run": "remains null",
+    "historical572geometry": "unchanged exact provenance",
+    "Native_authorized": false,
+    "root_oracle_authorized": false,
+    "models_allowed": 0,
+    "input_builds_allowed": 0,
+    "Expected_allowed": 0,
+    "actual_UID_clock_branch_private_state": null,
+    "run_absence": "Only Root620 recorded absence; this metadata review did not stat or create the Original run path."
+  },
+  "remaining": "After621 freeze, independently verify real Source delta/fullinverse/pins and prepare bounded new seam controls. Actual calls still require separate Root release. No future capture,INPUT,model or strict8 acceptance is inferred.",
+  "operations": {
+    "Source_modifications": 0,
+    "compile": 0,
+    "imports": 0,
+    "helpers": 0,
+    "schema_controls": 0,
+    "models": 0,
+    "Native": 0,
+    "Expected": 0,
+    "pool_or_run_path_access": 0
+  }
+}

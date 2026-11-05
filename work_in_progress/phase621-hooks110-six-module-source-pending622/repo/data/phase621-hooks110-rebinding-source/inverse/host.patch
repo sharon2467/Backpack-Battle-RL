@@ -1,0 +1,191 @@
+--- tests/phase590_oracle_host.py
++++ tests/phase621_oracle_host.py
+@@ -7,26 +7,26 @@
+ import re
+ import shutil
+ import stat
+-from phase590_oracle_storage import (directory,member,pin,read,write_new,sync,budget,check_ready,lease,
++from phase621_oracle_storage import (directory,member,pin,read,write_new,sync,budget,check_ready,lease,
+                                      reset_previous,install,archive_streaming,c,check_source_descriptor,MAX_INSTALL_PAYLOADS,MAX_INSTALL_BYTES,
+                                      regular_target,state_write,_source_signature)
+ from phase363_oracle_process import execute_process,rename_capture,usage
+ 
+-SOURCE = 'data/phase590-case030-host-restore-source'
+-OBSERVER_SOURCE = 'data/phase572-mixed-observer-source-v2'
++SOURCE = 'data/phase621-hooks110-rebinding-source/host'
++OBSERVER_SOURCE = 'data/phase610-three-selected-hook-source-v2'
+ CASE = 'NATIVE-030-MIXED-MODIFIERS-A'
+-RUN_NAME = 'original030-mixed-modifiers-A-single-001'
+-HOST_REVIEW_SCHEMA = 'phase587-independent-host-restore-source-review/1'
++RUN_NAME = 'original030-mixed-modifiers-A-single-002'
++HOST_REVIEW_SCHEMA = 'phase621-independent-host-source-review/1'
+ HOST_REVIEW_STATUS = 'ACCEPTED_SOURCE_ONLY_PENDING_ROOT_EXECUTE'
+-OBSERVER_FREEZE = {'path': 'data/phase572-mixed-observer-source-v2/combined-source-freeze.json', 'size': 61333, 'sha256': '8db47db5bfa19a2bd3607192a5f1e9b3054f65951f44ba0fed9447715f09e254'}
+-OBSERVER_OWNER = {'path': 'data/phase572-mixed-observer-source-v2/source-owner.json', 'size': 29475, 'sha256': '3f35f3a12a45d698b77362ed86143adbda9d85352b1c2a34ee1387a83ba728c6'}
+-OBSERVER_REVIEW = {'path': 'data/phase575-independent-final-acceptance/review.json', 'size': 31553, 'sha256': '526d09b0de3948ff8932d7064dc6ef934c6674cfb89d8a6621f203c056edd3a7'}
+-OBSERVER_REVIEW_OWNER = {'path': 'data/phase575-independent-final-acceptance/owned-files.json', 'size': 259, 'sha256': '4db96106966e44b8871392fab2b849b776bcaf9c77d649699849971b2c2201bd'}
++OBSERVER_FREEZE = {'path': 'data/phase610-three-selected-hook-source-v2/combined-source-freeze.json', 'size': 65722, 'sha256': 'a1dc715f1bcf704906baacc7c481147f63f5f0cbec7b80cb0d0739ffd47fa4d4'}
++OBSERVER_OWNER = {'path': 'data/phase610-three-selected-hook-source-v2/source-owner.json', 'size': 34004, 'sha256': 'ac6e00700048b876a654e5837415a794c4c00bf7b7d3618d95267f50ab1db156'}
++OBSERVER_REVIEW = {'path': 'data/phase612-independent-final-acceptance/source-acceptance.json', 'size': 2149, 'sha256': '792949a478ecc560d8aa488791c7b4a359500954ca46fb4c7a36eda5f4e922e5'}
++OBSERVER_REVIEW_OWNER = {'path': 'data/phase612-independent-final-acceptance/owned-files.json', 'size': 484, 'sha256': 'c67f4a92d524edc744ffec1422a313538030b5a98afd6f3fce9a601a6e875ccd'}
+ CASE_INPUTS = {'custom_player.json': {'path': 'data/phase572-mixed-observer-source-v2/case-inputs/custom_player.json', 'size': 1915, 'sha256': 'da55a52433bf6ccb98cd69633729a9bf287c1475a2c5e4d15d3adedc44f157ea'}, 'custom_opponent.json': {'path': 'data/phase572-mixed-observer-source-v2/case-inputs/custom_opponent.json', 'size': 585, 'sha256': '07fa05c47df31b06145471a3710c8e5a2ef0b67d1c49a89dadad79f283ea5424'}, 'native_capture_config.json': {'path': 'data/phase572-mixed-observer-source-v2/case-inputs/native_capture_config.json', 'size': 240, 'sha256': '8755cd0dce426ac29dca4fde7c2fac96dde2036255648a8e4b72594b7cdb8f36'}}
+ POLICY = 'bounded-writers-and-monitored-process/1'
+ RESTORE_POLICY = 'restore-predecessor-after-independent-readback-root-commit/1'
+ NAMES = ('custom_player.json','custom_opponent.json','native_capture_config.json')
+-SOURCE_AUTHORITY = {'path': 'data/phase572-mixed-observer-source-v2/source-authority.json', 'size': 10120, 'sha256': '1f4dc976d91ad6c1b313b6c1d52601acfdb26a1fbb5fe6bfe626e587a1d56d40'}
++SOURCE_AUTHORITY = {'path': 'data/phase610-three-selected-hook-source-v2/source-authority.json', 'size': 1131, 'sha256': '906c1a3aa4f50344537f0dfb2842a7f15f8195422fefd67a340b41d460343abd'}
+ BASELINE_SOURCE_REFERENCE = '/workspace/godotsteam-startup-20261013/baseline/Backpack Battles'
+ ABSOLUTE_SOURCE_PINS = {'/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Sheets/CSV/ItemData.csv': {'path': '/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Sheets/CSV/ItemData.csv', 'sha256': '26f5433cf37cd33c066dd505672fcb292e7570ede8c823c5a10f9bc21208a473', 'size': 80933}, '/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Sheets/ItemBook.gd': {'path': '/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Sheets/ItemBook.gd', 'sha256': '6b0f0b78c0ee1a0529e7740b424b157837b614cbd74c3e8f22886f9509cb9d84', 'size': 48708}, '/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd': {'path': '/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd', 'sha256': '7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f', 'size': 170717}, '/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Wolpertinger.gd': {'path': '/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Wolpertinger.gd', 'sha256': '5607b4eea0e69fa4f1f46f2a646e1c3a4c12668be75c45269cf0a2ce6b258ea2', 'size': 522}, '/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Wolpertinger.tscn': {'path': '/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Wolpertinger.tscn', 'sha256': '69c0834d5d21b5adb9e6484c71261b0a305ccc192d651cf6ddd14be138ebe462', 'size': 1402}}
+ LAWFUL = ('fixture.json','player_fixture.json','observer7-input.jsonl','observer7-lineage.jsonl',
+@@ -35,8 +35,13 @@
+           'king-rng-checkpoint.json','king-slot-bindings.json')
+ 
+ 
+-OBSERVER_TUPLE = {'path': 'data/phase572-mixed-observer-source-v2/source-tuple.json', 'size': 2870, 'sha256': '7134099050c0847030bdf824f986cf95ab9258f222a866a898f57099610cf086'}
+-OBSERVER_SCHEMA = {'path': 'data/phase572-mixed-observer-source-v2/schema/phase572_mixed_observer_schema.py', 'sha256': 'fd7da3dd9c95e44de14b09557130659a0ab6d20713f447695fc19a89e5ee9b43', 'size': 206103}
++OBSERVER_TUPLE = {'path': 'data/phase610-three-selected-hook-source-v2/source-tuple.json', 'size': 2916, 'sha256': 'd6d33c940c4bcf49ac81b5572a3fee9439172fdc5c7cef096d37e4f60cae8b21'}
++OBSERVER_SCHEMA = {'path': 'data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py', 'sha256': 'a33d2b90669388e9b3b1973a70234a5ec672f480167c27a26e07245fff84f45c', 'size': 208143}
++
++LEGACY_OBSERVER_OWNER = {'path': 'data/phase572-mixed-observer-source-v2/source-owner.json', 'size': 29475, 'sha256': '3f35f3a12a45d698b77362ed86143adbda9d85352b1c2a34ee1387a83ba728c6'}
++LEGACY_OBSERVER_FREEZE = {'path': 'data/phase572-mixed-observer-source-v2/combined-source-freeze.json', 'size': 61333, 'sha256': '8db47db5bfa19a2bd3607192a5f1e9b3054f65951f44ba0fed9447715f09e254'}
++LEGACY_SOURCE_AUTHORITY = {'path': 'data/phase572-mixed-observer-source-v2/source-authority.json', 'size': 10120, 'sha256': '1f4dc976d91ad6c1b313b6c1d52601acfdb26a1fbb5fe6bfe626e587a1d56d40'}
++OBSERVER_CENSUS = {'path': 'data/phase610-three-selected-hook-source-v2/site-census.json', 'size': 15511, 'sha256': '97b1c797e2e6e62dd966714463e2f70f8fb985902433828bb4f8dceae49b93df'}
+ 
+ 
+ def descriptor(source_root,row):
+@@ -67,18 +72,28 @@
+ 
+ def validate_observer_review(value,receipt,source_tuple):
+     if (type(value) is not dict or receipt!=OBSERVER_REVIEW or source_tuple!=OBSERVER_TUPLE
+-            or value.get('schema')!='phase575-independent-final-acceptance/1'
++            or value.get('schema')!='phase612-selected-three-hook-source-acceptance/1'
+             or value.get('status')!='ACCEPTED_SOURCE_AND_FINITE_SYNTHETIC_SCHEMA_ONLY'):
+-        raise ValueError('exact575 Source-only receipt and tuple binding required')
+-    source=value.get('Source');zero=value.get('zero_calls')
+-    if type(source) is not dict or type(zero) is not dict:
+-        raise ValueError('575 required actual Source/zero_calls fields')
+-    for key,expected in (('owner',OBSERVER_OWNER),('schema',OBSERVER_SCHEMA),('actual_install_targets',79),('actual_install_source_bytes',817389),('fixed_aliases',29),('descriptor_ids',12),('King_count',0)):
+-        if key not in source or type(source[key]) is not type(expected) or source[key]!=expected:
+-            raise ValueError('575 actual Source field: '+key)
+-    for key in ('Native','model','Expected','full_binding_join','actual_capture_inputs'):
+-        if key not in zero or type(zero[key]) is not int or zero[key]!=0:
+-            raise ValueError('575 Source-only exact integer zero: '+key)
++        raise ValueError('exact612 Source-only receipt and tuple binding required')
++    for key,expected in (('source_owner',OBSERVER_OWNER),('source_freeze',OBSERVER_FREEZE),
++                         ('source_tuple',OBSERVER_TUPLE),('schema_module',OBSERVER_SCHEMA)):
++        if key not in value or type(value[key]) is not dict or value[key]!=expected:
++            raise ValueError('612 actual Source descriptor:'+key)
++    if value.get('source_static_pass') is not True:
++        raise ValueError('612 actual static acceptance required')
++    controls=value.get('finite_schema_controls')
++    expected={'top_calls':13,'positive':6,'expected_reject':7,'schema_imports':1}
++    if type(controls) is not dict or set(controls)!=set(expected):
++        raise ValueError('612 exact finite-control fields')
++    for key,count in expected.items():
++        if type(controls[key]) is not int or controls[key]!=count:
++            raise ValueError('612 strict finite counter:'+key)
++    for key in ('native','models','Godot','fulljoin','fullcapture'):
++        if type(value.get(key)) is not int or value[key]!=0:
++            raise ValueError('612 Source-only strictINT0:'+key)
++    if (value.get('actual_Native_facts') is not False or value.get('operational_authority') is not False
++            or 'new_run' not in value or value['new_run'] is not None):
++        raise ValueError('612 receipt is not operational or actual Native authority')
+ 
+ 
+ def source_gate(source_root,config_descriptor):
+@@ -116,13 +131,13 @@
+     if leaves.get(str(Path(__file__).relative_to(root)))!=pin(Path(__file__)) or leaves.get(config['source_freeze']['path'])!=pin(freeze_path):
+         raise ValueError('owner must actually cover host and freeze')
+     reviews=config['reviews']
+-    if type(reviews) is not dict or set(reviews)!={'observer575','host_source'}:
++    if type(reviews) is not dict or set(reviews)!={'observer612','host_source'}:
+         raise ValueError('both actual observer463 and new host Source reviews required')
+     for role,review in reviews.items():
+         if type(review) is not dict or set(review)!={'receipt','owner'}: raise ValueError('closed review descriptors')
+         receipt=descriptor(root,review['receipt']); owned=verify_owner(root,review['owner']); result=read(receipt)
+         if owned.get(review['receipt']['path'])!=pin(receipt): raise ValueError('owned independent Source receipt')
+-        if role=='observer575':
++        if role=='observer612':
+             if review['owner']!=OBSERVER_REVIEW_OWNER:raise ValueError('actual463 review owner')
+             validate_observer_review(result,review['receipt'],config['active_source_tuple'])
+         elif (result.get('schema')!=HOST_REVIEW_SCHEMA or result.get('status')!=HOST_REVIEW_STATUS
+@@ -453,8 +468,8 @@
+ """Expected/control SOURCE helpers; loaded by the actual391 host after descriptor checks."""
+ 
+ TERMINAL_POLICY = 'first-actual-idle-after-at-least-two-future-physics/1'
+-OBSERVER_VERSION = '7-mixed-modifiers-A-572'
+-OBSERVER_PROFILE = 'observer7-mixed-modifiers-A-native-tape/1'
++OBSERVER_VERSION = '7-mixed-modifiers-A-610-hooks110'
++OBSERVER_PROFILE = 'observer7-mixed-modifiers-A-hooks110-native-tape/1'
+ 
+ 
+ def validate_active_source_tuple(root, freeze):
+@@ -466,16 +481,16 @@
+         raise ValueError('exact502v4 tuple descriptor')
+     value=read(check_source_descriptor(root,freeze['active_source_tuple']))
+     keys=set(('actual_Native_UID_cut_cache_clock_setup', 'actual_Native_below_master', 'case', 'collector', 'default_p1_rule', 'direct_primitive_wrapper', 'fixed_fixture', 'fixed_plan', 'global_seed', 'host_execution_ready', 'model_input_or_runtime_admitted', 'native_patch', 'observer_version', 'operational_authority', 'producer', 'profile', 'project_install_count', 'project_install_source_bytes', 'proposed_run', 'schema', 'schema_module', 'sink', 'source_case_draft', 'status', 'terminal_policy', 'transparent_callsite_labels', 'util_seed'))
+-    if (type(value) is not dict or set(value)!=keys or value['schema']!='phase572-zero-king-mixed-observer-source-tuple/1'
++    if (type(value) is not dict or set(value)!=keys or value['schema']!='phase610-selected-three-hook-source-tuple/1'
+             or value['model_input_or_runtime_admitted'] is not False or value['host_execution_ready'] is not False
+             or value['case']!=CASE or value['operational_authority'] is not False
+             or value['status']!='SOURCE_ONLY_NOT_OPERATIONAL'
+-            or value['actual_Native_UID_cut_cache_clock_setup']!='UNOBSERVED' or value['actual_Native_below_master'] is not None
++            or value['actual_Native_UID_cut_cache_clock_setup']!='UNOBSERVED_FOR_FUTURE_COMPLETE_RECORD;partial030_not_admitted' or value['actual_Native_below_master'] is not None
+             or type(value['global_seed']) is not int or value['global_seed']!=57101
+             or type(value['util_seed']) is not int or value['util_seed']!=57102
+-            or value['proposed_run']!=RUN_NAME
++            or value['proposed_run'] is not None
+             or type(value['project_install_count']) is not int or value['project_install_count']!=79
+-            or type(value['project_install_source_bytes']) is not int or value['project_install_source_bytes']!=817389
++            or type(value['project_install_source_bytes']) is not int or value['project_install_source_bytes']!=817696
+             or value['transparent_callsite_labels']!=['double_activation','least_buff']):
+         raise ValueError('closed502 zeroKing tuple and historical false flags')
+     if (value['profile'],value['observer_version'],value['terminal_policy']) != (OBSERVER_PROFILE,OBSERVER_VERSION,TERMINAL_POLICY):
+@@ -495,12 +510,12 @@
+         row=freeze['paths'][target]
+         if value[key]!=dict(path=row['after_path'],**row['after']):raise ValueError('direct source-to-target mismatch')
+     patch=read(check_source_descriptor(root,value['native_patch']))
+-    if patch != dict(schema='phase572-native-patch-source/1',paths=freeze['paths'],producer=value['producer'],sink=value['sink'],
++    if patch != dict(schema='phase610-selected-three-hook-native-patch-source/1',paths=freeze['paths'],producer=value['producer'],sink=value['sink'],
+                      profile=OBSERVER_PROFILE,observer_version=OBSERVER_VERSION,terminal_policy=TERMINAL_POLICY,status='SOURCE_ONLY_NOT_OPERATIONAL'):
+         raise ValueError('actual76 patch declaration mismatch')
+     plan=read(check_source_descriptor(root,value['fixed_plan']))
+     fixture=read(check_source_descriptor(root,value['fixed_fixture']))
+-    if (plan.get('fixture')!=fixture or plan.get('profile')!=OBSERVER_PROFILE or plan.get('version')!=OBSERVER_VERSION
++    if (plan.get('fixture')!=fixture or plan.get('profile')!='observer7-mixed-modifiers-A-native-tape/1' or plan.get('version')!='7-mixed-modifiers-A-572'
+             or plan.get('source_case')!='MIXED-MODIFIERS-A-572' or plan.get('native_case')!=CASE
+             or len(plan.get('slots',[]))!=29 or fixture.get('below_master','MISSING') is not None):
+         raise ValueError('exact proposed29 geometry; actual native branch not prefilled')
+@@ -517,9 +532,29 @@
+         raise ValueError('derived actual case/sourceauthority binding')
+     if declared.get(SOURCE_AUTHORITY['path'])!=SOURCE_AUTHORITY:raise ValueError('sourceauthority outside graph')
+     authority=read(check_source_descriptor(root,SOURCE_AUTHORITY))
+-    if (authority.get('schema')!='phase572-source-authority/1' or type(authority.get('origin')) is not dict
+-            or {row['path']:row for row in authority['origin'].values() if Path(row['path']).is_absolute()}!=ABSOLUTE_SOURCE_PINS):
+-        raise ValueError('exact502 two absolute sourceorigin authorities')
++    if (authority.get('schema')!='phase610-source-authority/1'
++            or authority.get('old_source_owner')!=LEGACY_OBSERVER_OWNER
++            or authority.get('old_source_freeze')!=LEGACY_OBSERVER_FREEZE
++            or authority.get('current_run_authority','MISSING') is not None
++            or authority.get('scope')!='SOURCE_ONLY_NO_NEW_ATTEMPT_AUTHORITY'):
++        raise ValueError('exact610 wrapper; no invented operational origin')
++    for row in (LEGACY_OBSERVER_OWNER,LEGACY_OBSERVER_FREEZE,LEGACY_SOURCE_AUTHORITY,OBSERVER_CENSUS):
++        if declared.get(row['path'])!=row:raise ValueError('fixed legacy/census leaf outside graph')
++        check_source_descriptor(root,row)
++    legacy_leaves=verify_owner(root,LEGACY_OBSERVER_OWNER)
++    for row in (LEGACY_OBSERVER_FREEZE,LEGACY_SOURCE_AUTHORITY):
++        if legacy_leaves.get(row['path'])!={k:row[k] for k in ('size','sha256')}:
++            raise ValueError('owned fixed legacy origin hop')
++    origin=read(check_source_descriptor(root,LEGACY_SOURCE_AUTHORITY))
++    if (origin.get('schema')!='phase572-source-authority/1' or type(origin.get('origin')) is not dict
++            or {row['path']:row for row in origin['origin'].values() if Path(row['path']).is_absolute()}!=ABSOLUTE_SOURCE_PINS):
++        raise ValueError('same exact five legacy absolute origins; no fallback')
++    census=read(check_source_descriptor(root,OBSERVER_CENSUS))
++    for key,expected in (('old_sites',107),('new_sites',110)):
++        if type(census.get(key)) is not int or census[key]!=expected:
++            raise ValueError('exact owned110 method census')
++    if census.get('old_sites_deep_equal') is not True or census.get('old_MATRIX_deep_equal') is not True:
++        raise ValueError('old107 mappings must remain exact')
+     return value
+ 
+ 

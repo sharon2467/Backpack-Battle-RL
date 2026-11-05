@@ -1,0 +1,65 @@
+{
+  "C": {
+    "B2": {
+      "path": "tests/phase621_shared_callback_guard.py",
+      "sha256": "6742fe2cf640c73c1fa99539de5c61f83b39e25062ef2aeb9cfa1a49d7f116a3",
+      "size": 10282
+    },
+    "B2_keys": 5,
+    "adapter": {
+      "path": "tests/phase621_mixed_business_output.py",
+      "sha256": "cb48328cc0a8274516e33367640af7933676c47950fff11f1b1d54f37b435558",
+      "size": 51283
+    },
+    "comparison_keys": 20,
+    "launcher": {
+      "path": "tests/phase621_mixed_tape_run.py",
+      "sha256": "dc07ef763a33424a352e01d6e86dffa091148e7a7535686fce420e798e29f5fe",
+      "size": 31520
+    },
+    "model_output_prefix": "phase582-",
+    "model_request_keys": 17
+  },
+  "current_permissions": {
+    "Expected": 0,
+    "input_build": 0,
+    "models": 0,
+    "oracle": false
+  },
+  "host": {
+    "CLI": "existing --plan or --execute exactchoice;not invoked",
+    "config_template": {
+      "path": "data/phase621-hooks110-rebinding-source/host/root-config-template.json",
+      "sha256": "0aabd7ae046718eb0b57baf25e41373b685c529f0191ae6d5d7df4e76544f53c",
+      "size": 2128
+    },
+    "module": {
+      "path": "tests/phase621_oracle_host.py",
+      "sha256": "663870cdaba2fc60318f8c3efea621c8f3788adaa5ab8548a60b83a49e6129b2",
+      "size": 50013
+    },
+    "review_schema": "phase621-independent-host-source-review/1",
+    "review_status": "ACCEPTED_SOURCE_ONLY_PENDING_ROOT_EXECUTE"
+  },
+  "input": {
+    "context": {
+      "path": "data/phase621-hooks110-rebinding-source/input/source-context.json",
+      "sha256": "00cfabe5a263ec9259f833477ba8f819307880b6223f41662453cdd609a21fe1",
+      "size": 8502
+    },
+    "module": {
+      "path": "tests/phase621_input_bridge.py",
+      "sha256": "29edf5627c66256bc4f0ee2299343a2904577323961417444797b726cfc7df2d",
+      "size": 46253
+    },
+    "raw_leaves": 12,
+    "request_keys": 7,
+    "request_template": {
+      "path": "data/phase621-hooks110-rebinding-source/input/request-template.json",
+      "sha256": "c4577c8a3ba3fad23139cd19bb2673b3c0f04468e0635345d802ae4eafb67db3",
+      "size": 439
+    }
+  },
+  "recovery_pair_implemented": false,
+  "schema": "phase621-source-API/1"
+}

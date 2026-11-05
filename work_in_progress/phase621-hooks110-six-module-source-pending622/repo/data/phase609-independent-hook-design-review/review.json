@@ -1,0 +1,115 @@
+{
+  "schema": "phase609-independent-selected-hook-design-review/1",
+  "status": "DESIGN_PASS_REQUIRED_RECEIVER_GATE_DETAIL_EXPLICIT",
+  "references": {
+    "design_SPEC": {
+      "path": "docs/phase604_selected_combat_hook_coverage_design_spec.md",
+      "size": 6124,
+      "sha256": "00956b4c288d3b839bc332070577e7ed08489798009cf1a25c3f5e3dd831ecff"
+    },
+    "design_owner": {
+      "path": "data/phase604-selected-hook-gap-design/owned-files.json",
+      "size": 941,
+      "sha256": "7aad2ae11c9c16bca4daec60893165832a7ef8c4f1d50277e5595af18fe82db8"
+    },
+    "selected_census": {
+      "path": "data/phase604-selected-hook-gap-design/selected-script-census.json",
+      "size": 11341,
+      "sha256": "53e1258cce1b9ee1792dd99bf99bfc8fc0b458f50c486ce777bd50766b840ea0"
+    },
+    "hook_gaps": {
+      "path": "data/phase604-selected-hook-gap-design/hook-gaps.json",
+      "size": 3317,
+      "sha256": "561f64d0da963507acf8536c3351ebd82eda68ff1317e2ae01cb8053ae833016"
+    },
+    "source_pins": {
+      "path": "data/phase604-selected-hook-gap-design/source-pins.json",
+      "size": 7844,
+      "sha256": "039211c34585e6b4ce249dba1b90903fa2cff32bbd61e9caadfb47a5d92334d1"
+    },
+    "actual_failure_authority": {
+      "path": "data/phase601-root-failed030-authority/authority.json",
+      "size": 8428,
+      "sha256": "acde0c7ae926c0f1b097e7cee662fbd93416a68352d51c6c556d7c021fd04495"
+    },
+    "READY_tiny_readback": {
+      "path": "data/phase608-independent-ready-tiny-review/review.json",
+      "size": 3586,
+      "sha256": "8bb716b1ecc2d24bca09bd9e69198393c966aca41f3b058352db94722f9fef0a"
+    }
+  },
+  "independent_static_checks": {
+    "owner_payloads": 4,
+    "source_pins_all_SHA_verified": 36,
+    "scene_roots_independently_resolved": 12,
+    "unique_root_ancestor_scripts": 15,
+    "extends_lines_match_census": true,
+    "inserted_method_site_census": 26,
+    "already_accepted": 23,
+    "missing": 3,
+    "old_sink_MATRIX_site_key_sets_equal": 107,
+    "three_after_source_descriptors_match_real590_freeze": true,
+    "three_method_slice_hashes_verified": true,
+    "each_method_entry_count": 1,
+    "each_method_implicit_leave_count": 1,
+    "method_argument": "damageRes:DamageResult",
+    "implicit_return_value": {
+      "type": "null"
+    },
+    "WoodenSword_scene_uses": "Items/Weapon.gd"
+  },
+  "missing_sites": [
+    {
+      "site": "Items/MagicStaff.gd::onPreDealDamage_early",
+      "descriptor": 32,
+      "evidence": "STATIC_ONLY_NOT_NATIVE_HIT"
+    },
+    {
+      "site": "Items/Exclusive/ThornShortbow.gd::onDealtDamage",
+      "descriptor": 233,
+      "evidence": "ACTUAL600_FAILURE_SITE_REACHED_SEQ4906; does not prove full handler business completed"
+    },
+    {
+      "site": "Items/Exclusive/LuckyShortbow.gd::onPreDealDamage_early",
+      "descriptor": 234,
+      "evidence": "STATIC_ONLY_NOT_NATIVE_HIT"
+    }
+  ],
+  "implementation_acceptance_requirements": [
+    "Add exactly the three named runtime/item sites to a new immutable sink SITES and schema MATRIX. Old107 key/value entries remain exact; new total110. No wildcard/unknown-site fallback.",
+    "Keep all three installed method bodies, source_observable including SOURCE_UNKNOWN_SELECTED_HOOK, typed DamageResult codec, Timer API forms, primitive/RNG wrappers and business code exact. No new method instrumentation or extra runtime invocation.",
+    "Each new site must require its exact INT descriptor32/233/234. BOOL/REAL/foreign descriptor and wrong receiver class must actually reject; retain the existing role/UID/descriptor provenance association.",
+    "Concrete class detail: existing validate_typed(native_ref) at schema77–82 only validates class as text. Descriptor-only admission does not establish wrong-class rejection at validate_record. The three-site receiver predicate should explicitly require RigidBody2D, derived from Weapon→Item→RigidBody2D and sink ref get_class at104. Alternatively a wrong-class test must be assigned to an actual retained identity-join entry which rejects it; do not label codec/descriptor-only acceptance as class proof.",
+    "Preserve complete arguments_exact=[damageRes], typed damage_result validation and implicit NULL return requirement. Existing unknown site, unsupported return edge and complete record identity checks remain enforced.",
+    "Freeze the actual new producer/schema/collector tuple and real79-target byte total. Do not reuse817389 as an unmeasured size or present new metadata as actual Native facts.",
+    "Use immutable downstream source-context/reference bindings when separately adapting the reader/launcher; keep B580 business15 and strict eight-part semantics unchanged. Do not suppress new gameplay differences by output filtering."
+  ],
+  "minimal_followup": {
+    "Source_scope": "Sink3 map entries, schema3 method specs/strict selected receiver predicate, precise metadata/identity changes only; existing method Sources unchanged.",
+    "independent_checks": "Static old107/subtrees/unknown guard/body conservation, exact110 census, three typed enter/implicit-return pairs and bounded unknown/foreign/type/DamageResult/nonNULL rejection controls after an explicit release.",
+    "current_release": "Design review only; no implementation or dynamic control has been executed by this review."
+  },
+  "future_capture_conditions": [
+    "First030 attempt remains failed and its authority exhausted; its partial12 filenames cannot become complete INPUT.",
+    "Any future run needs a new Root-selected unique run/config/release plus fresh source/resource/space/process/locked gates. No attempt002 or new seed is authorized here.",
+    "The completed607/608 predecessor READY restoration is recovery evidence only; future recovery must use that new attempt own actual state/controls/journal, never the601 failed-state snapshot.",
+    "Future actual INPUT private/UID/cut/branch/clock, B1/B2, model seal and strict8 remain mandatory."
+  ],
+  "activity": {
+    "Source_code_edits": 0,
+    "SUT_imports": 0,
+    "compile_calls": 0,
+    "schema_helpers": 0,
+    "Godot_parse": 0,
+    "Native_launches": 0,
+    "model_runs": 0,
+    "Expected_payload_reads": 0,
+    "pool_operations": 0,
+    "static_Original_scene_script_reads": "Only the36 pinned necessary Source files, no UI/72/global item audit."
+  },
+  "limits": [
+    "Census completeness is bounded to these12 scene roots and15 root/ancestor scripts; it is not proof that every future callback or branch executed.",
+    "Only Thorn reached the actual failing selected-hook observation; Staff/Lucky remain static coverage obligations.",
+    "No Native/business equivalence or formal/general support promotion follows from this design PASS."
+  ]
+}
