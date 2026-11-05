@@ -1,0 +1,113 @@
+{
+  "schema": "phase617-independent-receipt-sparse-readback/1",
+  "status": "PASS_EXACT_SPARSE_DECHECKOUT_READBACK",
+  "release_result": {
+    "path": "data/phase616-root-receipt-sparse-release/result.json",
+    "size": 1311,
+    "sha256": "6cdb6c7f65f1b50503f91cf83fbf40847516144e26353988a7ee8eefa82bc35b"
+  },
+  "release_owner": {
+    "path": "data/phase616-root-receipt-sparse-release/owned-files.json",
+    "size": 1409,
+    "sha256": "0211dd0782beb22abe497be1292f81604c0c4c78442549ad492dc55bbf6e1cc3"
+  },
+  "proof": {
+    "path": "data/phase614-receipt-clone-space-proof/proof.json",
+    "size": 672211,
+    "sha256": "5e86c88d52a0670f16d53a8ee419a9517f4f9c18b9ee5e9a299af7babe4b99fe"
+  },
+  "prior_independent_review": {
+    "path": "data/phase615-independent-receipt-sparse-review/review.json",
+    "size": 12666,
+    "sha256": "cf2071718c0426219dd8901393aac0a8409c60d403133a615bddfc534b599639"
+  },
+  "clone": "/workspace/backpack-github-receipt-clone-20261030",
+  "HEAD": "2059ab3fcd0b1298b4533bb94aebd2c8d0e066fe",
+  "checks": {
+    "Root_owner_leaves_exact_SHA": 6,
+    "HEAD_unchanged_clean_before_after": true,
+    "old_patterns_exact_approved_before": true,
+    "current_patterns_exact_approved_after": true,
+    "omitted_archive_paths_absent": 50,
+    "omitted_file_paths_absent": 2084,
+    "Git_blob_oid_type_size_still_present": 2084,
+    "Git_object_check": "One read-only cat-file --batch-check; no blob payload reread or checkout.",
+    "no_alternates": true,
+    "kept_archive_count": 4,
+    "kept_manifest_and_entry_descriptor_SHA_checks": 8,
+    "kept_archive_payload_ordinary_file_size_checks": 291,
+    "public_runtime_headless_engine_entrypoints_present": true
+  },
+  "retained_descriptors": [
+    {
+      "path": "/workspace/backpack-github-receipt-clone-20261030/work_in_progress/phase600-602-original030-partial-and-recovery-design/FILES.json",
+      "size": 5314,
+      "sha256": "5a810a1e378fc070a9117bc0e3008c74f694df96eef7284b388c52519de6a78a"
+    },
+    {
+      "path": "/workspace/backpack-github-receipt-clone-20261030/work_in_progress/phase603-608-actual-failed030-recovery-complete/FILES.json",
+      "size": 11422,
+      "sha256": "604fee3e8b0ee465afd737c28f0c9dca1c3e789e780d10cefb1e91c2a74d18de"
+    },
+    {
+      "path": "/workspace/backpack-github-receipt-clone-20261030/work_in_progress/phase609-611-three-hook-source-v2-pending/FILES.json",
+      "size": 37408,
+      "sha256": "db8d528c77df0fa48783f6a6e3dbc01fc47dd507d07db39c38483ecaa3487664"
+    },
+    {
+      "path": "/workspace/backpack-github-receipt-clone-20261030/work_in_progress/phase612-hooks110-source-and-finite-schema-accepted/FILES.json",
+      "size": 4685,
+      "sha256": "5179a49a855703795c8e8e89b8e386288a2cfc3b430587ce92b6b2c41b3527df"
+    },
+    {
+      "path": "/workspace/backpack-github-receipt-clone-20261030/recovery_checkpoint/CURRENT-WORK.md",
+      "size": 9513,
+      "sha256": "efb823795a6102dc38f22a985ef880ac05016e185408c165a3376aea6a51d662"
+    },
+    {
+      "path": "/workspace/backpack-github-receipt-clone-20261030/recovery_checkpoint/RESUME-STATE.json",
+      "size": 15873,
+      "sha256": "8e013114b6fb92ff93e77da95aed795ed12c29a2985dc07c2dd42c3f89e05f6e"
+    },
+    {
+      "path": "/workspace/backpack-github-receipt-clone-20261030/recovery_checkpoint/RESUME-HISTORY-through538.json",
+      "size": 24711,
+      "sha256": "9f7653da46d68e865a7edc540cf607086b5e4f7eb2b848e3ef3d443251e15187"
+    },
+    {
+      "path": "/workspace/backpack-github-receipt-clone-20261030/python_engine/experimental_nonking/manifest.json",
+      "size": 4311,
+      "sha256": "e381ce4ff39994d41df5b26fa9c60b604f4307b1c41270acc43bceb66bcb83c6"
+    }
+  ],
+  "space_arithmetic": {
+    "Root_observed_free_before": 5929385984,
+    "Root_observed_free_after": 6027251712,
+    "difference_verified": 97865728,
+    "Root_observed_margin_verified": 121671680,
+    "fresh_startup_gate_still_required": true,
+    "scope": "Arithmetic verification of the recorded before/after snapshots; not a new space measurement or Native gate result."
+  },
+  "review_utility_diagnostic": {
+    "first_attempt": "Read-only metadata checker guessed a root engine.py path; assertion failed before Git batch-check.",
+    "actual_manifest_path": "native_replay_v8/engine.py",
+    "correction": "Use existing manifest-declared engine path; no package change, SUT or sparse retry. Original failed utility retained at /tmp/phase617_tiny_readback_first.py."
+  },
+  "operations": {
+    "sparse_changes": 0,
+    "unlink": 0,
+    "restore": 0,
+    "SUT_import_or_call": 0,
+    "model": 0,
+    "Native": 0,
+    "pool": 0,
+    "large_blob_content_reads": 0
+  },
+  "evidence_limits": [
+    "Root reports no object/ref pruning or mutation; independently checked unchanged HEAD and availability of every omitted object. No claim of full platform process visibility.",
+    "Kept FILES/entry metadata SHA checked; payload presence/type/size checked. Root616 full retained payload SHA and prior615 object/current/publication full SHA remain distinct evidence, not repeated here.",
+    "Historical Expected business bytes were not decoded or reread in this tiny review; only archive manifests/Git object metadata were inspected.",
+    "No new Original capture, source change, model execution or restore test is authorized by this receipt."
+  ],
+  "remaining": "Any future Native operation requires its separate exact Source/config/authority and fresh locked/resource/space gates; whole project remains incomplete."
+}
