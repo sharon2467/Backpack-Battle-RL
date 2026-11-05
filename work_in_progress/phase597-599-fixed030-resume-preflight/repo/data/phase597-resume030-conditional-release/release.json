@@ -1,0 +1,40 @@
+{
+  "schema": "phase597-root-fixed030-conditional-execution-release/1",
+  "utc": "2026-11-05T08:18:12.506573+00:00",
+  "basis": "Explicit task resume;fixed030 after fresh startup checks;previous false-authority draft preserved.",
+  "config": {
+    "path": "data/phase597-resume030-conditional-release/oracle-acceptance.json",
+    "size": 3597,
+    "sha256": "e5ccc41095e84fc644175910e229240a9749562ea1d98bb9d8e5fae17f51b7fd"
+  },
+  "Source_SPEC": {
+    "path": "docs/phase597_resume030_execution_spec.md",
+    "size": 3257,
+    "sha256": "11cbfcfe44e8f05ba1e55f823d98ebdf2a3d7ab4f0e2915e67b4fecda4de9623"
+  },
+  "case": "NATIVE-030-MIXED-MODIFIERS-A",
+  "run": "/workspace/native-combat-20261013/runs/original030-mixed-modifiers-A-single-001",
+  "max_parse": 1,
+  "max_battle": 1,
+  "parse_seconds": 30,
+  "battle_seconds": 300,
+  "collector_seconds": 295,
+  "internal_seconds": 120,
+  "global_seed": 57101,
+  "util_seed": 57102,
+  "targets": 79,
+  "source_bytes": 817389,
+  "case_inputs": 3,
+  "plan_allowed": true,
+  "execute_conditions": [
+    "actual plan success",
+    "independent actual plan acceptance",
+    "repeat fresh gates under existing lease",
+    "actual predecessor backups before mutation"
+  ],
+  "automatic_retry": false,
+  "models": 0,
+  "input_builds": 0,
+  "Expected_comparison": 0,
+  "new_Source_changes": 0
+}

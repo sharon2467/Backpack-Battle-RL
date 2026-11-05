@@ -1,0 +1,11 @@
+# Fixed030 resume and accepted actual read-only preflight
+
+A new immutable configuration changes only the previous595 draft authorization from false to true. It permits the reviewed fixed030 operation conditionally; model, INPUT build and Expected comparison permissions remain strict integer zero. The old draft and Source are unchanged. Config SHA256: e5ccc41095e84fc644175910e229240a9749562ea1d98bb9d8e5fae17f51b7fd (3597 bytes).
+
+The actual598 read-only plan passed once: Source gate, resources, payload graph, full predecessor integrity/process checks, space and unique030 path. PID896 was reaped with exit0, no stderr,10.472900325 seconds. No lease, pool mutation or Original process occurred. The plan measured6060601344 free bytes against5905580032 required; this is a snapshot and must be repeated during execution. Actual predecessor is original027-king-single-A-20261026-attempt06, not029.
+
+Independent599 accepts the actual plan and permits Root to execute once under597, retaining repeated execution/lock gates and real predecessor backups. Fixed case: NATIVE-030-MIXED-MODIFIERS-A,29 items(P23/O6),seeds57101/57102,79 project targets/817389 bytes plus3 separate case inputs. At most one parse<=30s and one battle<=300s,collector295/internal120. Parse failure prohibits battle; no retry/reseed. Installation preimages and O∪N∪F recovery evidence must be preserved; restore and independent readback precede the final Root READY commit.
+
+At this checkpoint no capture has started. Private resource-monitoring text is excluded from the public technical contract and independent review export; the original private files remain unchanged locally. The technical export differs only by removing that unrelated sentence. The release's historical Source_SPEC reference is informational and is not a runtime dependency; use the included public execution contract. All runtime config, Source references, actual plan and technical acceptance are preserved.
+
+Overlay repo/ on the previous complete checkpoint. No successful old test orOriginal029 capture/restore should be repeated. Actual030 INPUT/B1/model/strict8 remain pending; formal75/public runtime564 and whole-project IN_PROGRESS boundaries are unchanged.
