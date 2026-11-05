@@ -1,0 +1,436 @@
+{
+  "schema": "phase641-independent-actual-recovery-final/1",
+  "status": "PASS_INDEPENDENT_PHYSICAL_READBACK_PENDING_SEPARATE_ROOT_READY",
+  "reader_result": {
+    "path": "data/phase625-readback-actual002-first-001/result.json",
+    "size": 3610330,
+    "sha256": "69f5093bf83db3cc113072f6339e8e5da5977605cec21f3b7921fee2e165f3c0"
+  },
+  "reader_owner": {
+    "path": "data/phase625-readback-actual002-first-001/owned-files.json",
+    "size": 1494,
+    "sha256": "01a0258043e047af7da0792b14c8040a5412754eaacda691fc3e4e8737d7ed45"
+  },
+  "invocation_owner": {
+    "path": "data/phase641-independent-readback-invocation/owned-files.json",
+    "size": 1415,
+    "sha256": "f73b2023747f8977fbf9a3d43ca3cb571fd602f33c850fb095329da0fc68790f"
+  },
+  "request": {
+    "path": "data/phase640-root-actual002-readback-request/readback-request.json",
+    "size": 2791,
+    "sha256": "3451b66e8d770a0728b32e68b01d9e9f57f2e8c6a3bf778d427d8ae860bf7ebe"
+  },
+  "accepted_Source": {
+    "path": "data/phase628-independent-recovery-source-review/review.json",
+    "size": 6047,
+    "sha256": "493ad0a67cba157e66902f3658542599a8f340d47e9847f798a1b08df967b6d9"
+  },
+  "actual_restore_receipt": {
+    "path": "/workspace/python-original-engine/repo/data/phase625-restore-actual002-first-001/result.json",
+    "size": 7223,
+    "sha256": "9ad14499eea0e3147fe32f3a3af5beb44bd101279141320c6f37d7ea3bde4f67"
+  },
+  "owners_verified": [
+    {
+      "owner": {
+        "path": "data/phase625-readback-actual002-first-001/owned-files.json",
+        "size": 1494,
+        "sha256": "01a0258043e047af7da0792b14c8040a5412754eaacda691fc3e4e8737d7ed45"
+      },
+      "files": 7
+    },
+    {
+      "owner": {
+        "path": "data/phase641-independent-readback-invocation/owned-files.json",
+        "size": 1415,
+        "sha256": "f73b2023747f8977fbf9a3d43ca3cb571fd602f33c850fb095329da0fc68790f"
+      },
+      "files": 7
+    }
+  ],
+  "execution": {
+    "exit": 0,
+    "pid": 6972,
+    "reaped": true,
+    "outer_timeout": false,
+    "wall_seconds": 23.917708774999483,
+    "stdout_bytes": 106,
+    "stderr_bytes": 0,
+    "reader_invocations": 1,
+    "restore_calls": 0,
+    "Native": 0,
+    "models": 0,
+    "state_READY_writes": 0
+  },
+  "reader_inner_seconds": 23.78186506900238,
+  "physical_scope": {
+    "roots": {
+      "run": "/workspace/native-combat-20261013/runs/original030-mixed-modifiers-A-single-002",
+      "pool": "/workspace/native-combat-20261013/pool",
+      "baseline": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles",
+      "previous_run": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06"
+    },
+    "inventory_checks": {
+      "previous-bundle-actual": {
+        "entries": 17,
+        "regular_files": 15,
+        "manifest_file_bytes_not_total_io": 17267581
+      },
+      "baseline-actual": {
+        "entries": 15665,
+        "regular_files": 15418,
+        "manifest_file_bytes_not_total_io": 616167851
+      },
+      "project-actual": {
+        "entries": 15669,
+        "regular_files": 15422,
+        "manifest_file_bytes_not_total_io": 616396845
+      },
+      "staged-actual": {
+        "entries": 3,
+        "regular_files": 2,
+        "manifest_file_bytes_not_total_io": 3273
+      },
+      "previous-driver-actual": {
+        "entries": 198,
+        "regular_files": 197,
+        "manifest_file_bytes_not_total_io": 2804691
+      }
+    },
+    "helper_counts": {
+      "process_check": 2,
+      "require": 864002,
+      "<genexpr>": 460506,
+      "relevant": 468,
+      "stamp": 2,
+      "inventory": 8,
+      "visit": 31941,
+      "safe_path": 110636,
+      "<lambda>": 189511,
+      "load_bundle": 1,
+      "read": 8,
+      "digest": 211,
+      "overlay_plan": 1,
+      "index": 6,
+      "validate_archive": 1,
+      "retained": 1
+    },
+    "compaction_module_loads": 1,
+    "same_lock_acquisitions": 1,
+    "preimages": {
+      "controls": 3,
+      "old_patch_backups": 75,
+      "old_marker": 1,
+      "new_journal": 79
+    },
+    "full_paths_SHA_mode_mtime_and_existing_directory_checks_passed": true,
+    "retained_driver_bundle_provenance_and_previous_restore_materials_passed": true,
+    "writer_success_not_substituted_for_independent_inventory": true
+  },
+  "state": {
+    "pending_unchanged": {
+      "path": "/workspace/native-combat-20261013/pool/state.json",
+      "size": 634,
+      "sha256": "bdc79025829f1542d8046ece7614fc06e53dc30dfc7a15c1c0172884e18fbcef"
+    },
+    "caller_before_after_exact": true,
+    "state_READY_writes": 0,
+    "pool_ready_written": false,
+    "Root_saved_READY_commit_still_pending": true
+  },
+  "process_scope": {
+    "process_before": {
+      "checked_utc": "2026-11-05T11:17:26.718610+00:00",
+      "active_matches": [],
+      "inspection_gaps": [
+        {
+          "pid": 1,
+          "unreadable": "cwd"
+        },
+        {
+          "pid": 1,
+          "unreadable": "fd"
+        },
+        {
+          "pid": 1,
+          "unreadable": "maps"
+        },
+        {
+          "pid": 2,
+          "unreadable": "cwd"
+        },
+        {
+          "pid": 2,
+          "unreadable": "fd"
+        },
+        {
+          "pid": 2,
+          "unreadable": "maps"
+        },
+        {
+          "pid": 3,
+          "unreadable": "cwd"
+        },
+        {
+          "pid": 3,
+          "unreadable": "fd"
+        },
+        {
+          "pid": 3,
+          "unreadable": "maps"
+        },
+        {
+          "pid": 124,
+          "unreadable": "cwd"
+        },
+        {
+          "pid": 124,
+          "unreadable": "fd"
+        },
+        {
+          "pid": 124,
+          "unreadable": "maps"
+        },
+        {
+          "pid": 175,
+          "unreadable": "cwd"
+        },
+        {
+          "pid": 175,
+          "unreadable": "fd"
+        },
+        {
+          "pid": 175,
+          "unreadable": "maps"
+        },
+        {
+          "pid": 443,
+          "unreadable": "cwd"
+        },
+        {
+          "pid": 443,
+          "unreadable": "fd"
+        },
+        {
+          "pid": 443,
+          "unreadable": "maps"
+        },
+        {
+          "pid": 6964,
+          "unreadable": "cwd"
+        },
+        {
+          "pid": 6964,
+          "unreadable": "fd"
+        },
+        {
+          "pid": 6964,
+          "unreadable": "maps"
+        },
+        {
+          "pid": 6966,
+          "unreadable": "cwd"
+        },
+        {
+          "pid": 6966,
+          "unreadable": "fd"
+        },
+        {
+          "pid": 6966,
+          "unreadable": "maps"
+        }
+      ],
+      "process_inspection_complete": false,
+      "operational_scope": "original-readable-reference-check-with-exclusive-pool-lock/1",
+      "global_process_completeness_claimed": false,
+      "excluded_reader_pid": 6972
+    },
+    "process_after": {
+      "checked_utc": "2026-11-05T11:17:50.387806+00:00",
+      "active_matches": [],
+      "inspection_gaps": [
+        {
+          "pid": 1,
+          "unreadable": "cwd"
+        },
+        {
+          "pid": 1,
+          "unreadable": "fd"
+        },
+        {
+          "pid": 1,
+          "unreadable": "maps"
+        },
+        {
+          "pid": 2,
+          "unreadable": "cwd"
+        },
+        {
+          "pid": 2,
+          "unreadable": "fd"
+        },
+        {
+          "pid": 2,
+          "unreadable": "maps"
+        },
+        {
+          "pid": 3,
+          "unreadable": "cwd"
+        },
+        {
+          "pid": 3,
+          "unreadable": "fd"
+        },
+        {
+          "pid": 3,
+          "unreadable": "maps"
+        },
+        {
+          "pid": 124,
+          "unreadable": "cwd"
+        },
+        {
+          "pid": 124,
+          "unreadable": "fd"
+        },
+        {
+          "pid": 124,
+          "unreadable": "maps"
+        },
+        {
+          "pid": 175,
+          "unreadable": "cwd"
+        },
+        {
+          "pid": 175,
+          "unreadable": "fd"
+        },
+        {
+          "pid": 175,
+          "unreadable": "maps"
+        },
+        {
+          "pid": 443,
+          "unreadable": "cwd"
+        },
+        {
+          "pid": 443,
+          "unreadable": "fd"
+        },
+        {
+          "pid": 443,
+          "unreadable": "maps"
+        },
+        {
+          "pid": 6964,
+          "unreadable": "cwd"
+        },
+        {
+          "pid": 6964,
+          "unreadable": "fd"
+        },
+        {
+          "pid": 6964,
+          "unreadable": "maps"
+        },
+        {
+          "pid": 6966,
+          "unreadable": "cwd"
+        },
+        {
+          "pid": 6966,
+          "unreadable": "fd"
+        },
+        {
+          "pid": 6966,
+          "unreadable": "maps"
+        }
+      ],
+      "process_inspection_complete": false,
+      "operational_scope": "original-readable-reference-check-with-exclusive-pool-lock/1",
+      "global_process_completeness_claimed": false,
+      "excluded_reader_pid": 6972
+    }
+  },
+  "read_disclosure": {
+    "distinct_recorded_open_paths": 31628,
+    "old_capture_unique_physical_paths": 33,
+    "old_capture_manifest_file_bytes_not_total_IO": 153609018,
+    "old_capture_filenames": [
+      "event_references.json",
+      "events.jsonl",
+      "final_state.json",
+      "fixture.json",
+      "histories.json",
+      "instances.json",
+      "king-capture-endpoint.json",
+      "king-clock-checkpoint.json",
+      "king-clock-passes.jsonl",
+      "king-collector-cut.json",
+      "king-final-source.json",
+      "king-input-facts.json",
+      "king-post-cleanup-source.json",
+      "king-rng-checkpoint.json",
+      "king-slot-bindings.json",
+      "king-ui-authority.jsonl",
+      "native_manifest.json",
+      "observer7-allocations.jsonl",
+      "observer7-input.jsonl",
+      "observer7-lineage.jsonl",
+      "observer7-metadata.jsonl",
+      "observer7-primitives.jsonl",
+      "observer7-registration.jsonl",
+      "observer7-runtime.jsonl",
+      "observer7-status.json",
+      "phases.json",
+      "player_fixture.json",
+      "player_setup_evidence.json",
+      "preflight.json",
+      "rules_preflight.json",
+      "source-window-diagnostic.jsonl",
+      "unselected-source-lineage.jsonl",
+      "validation.json"
+    ],
+    "new002_capture_payload_paths_read": 0,
+    "Expected_semantic_decoding": 0,
+    "meaning": "Old retained capture includes Expected business bytes read for physical hashing only. These reads are not zero; no projection, replay, model or Expected semantic decode. Manifest sizes are not a claim of total IO bytes. Existing retained output-root/generated exclusions and relaxed user-special representation are unchanged."
+  },
+  "source_and_config_after": {
+    "Source": [
+      {
+        "path": "tests/phase625_independent_predecessor_readback.py",
+        "size": 25387,
+        "sha256": "7ed1f741969f391a2c42d8e7b950cbc93cb4bdc814725aec2b0106928849a4f4"
+      },
+      {
+        "path": "tests/native_run_compaction.py",
+        "size": 27304,
+        "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260"
+      },
+      {
+        "path": "data/phase621-hooks110-rebinding-source/host/combined-source-freeze.json",
+        "size": 71732,
+        "sha256": "2df37012b8f3313ce010104a0fe835a87f066556c965753fede8c3874a1e748a"
+      }
+    ],
+    "pending": {
+      "path": "/workspace/native-combat-20261013/pool/state.json",
+      "size": 634,
+      "sha256": "bdc79025829f1542d8046ece7614fc06e53dc30dfc7a15c1c0172884e18fbcef"
+    },
+    "request": {
+      "path": "data/phase640-root-actual002-readback-request/readback-request.json",
+      "size": 2791,
+      "sha256": "3451b66e8d770a0728b32e68b01d9e9f57f2e8c6a3bf778d427d8ae860bf7ebe"
+    }
+  },
+  "limits": [
+    "One actual full reader invocation only; no retry, writer rerun, Native startup, model, INPUT build or comparison.",
+    "Physical readback PASS belongs to its actual locked interval. Root must separately validate current state and perform any savedREADY commit; this reader did not write READY.",
+    "Visible-reference process checks contain real permission gaps; global process completeness is false. Earlier owned zombies are not claimed reaped.",
+    "No new Native semantic equivalence/formal75 admission or B1/B2/strict8 result follows from physical restoration."
+  ],
+  "independent_postprocessing": "Only read and authenticated the existing reader outputs and counters; did not rerun inventory or read current pool again.",
+  "remaining_blockers_to_Root_READY_decision": []
+}

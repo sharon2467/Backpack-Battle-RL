@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "/workspace/python-original-engine/repo/tests/phase621_input_bridge.py", line 589, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/workspace/python-original-engine/repo/tests/phase621_input_bridge.py", line 586, in main
+    print(json.dumps(build_from_files(args.output_new,{'path':args.request,'size':args.request_size,'sha256':args.request_sha256}),sort_keys=True))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/python-original-engine/repo/tests/phase621_input_bridge.py", line 564, in build_from_files
+    bundle,proof,receipt,witness=project_from_bytes(raw12,request_raw,request_pin,context_raw,schema_raw)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/python-original-engine/repo/tests/phase621_input_bridge.py", line 525, in project_from_bytes
+    decoded,aliases,validation=decode_lawful12(raw12,request,schema)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/python-original-engine/repo/tests/phase621_input_bridge.py", line 270, in decode_lawful12
+    binding=schema.validate_binding_carrier(raw12['king-slot-bindings.json'],schema.BINDING_FIXED_PLAN)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py", line 1959, in validate_binding_carrier
+    return _binding_validate_value(value, fixed_plan)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py", line 1913, in _binding_validate_value
+    if integer(row['input_slot'], 0, 19) != spec['input_slot']:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py", line 48, in integer
+    if type(value) is not int or not low<=value<=high: raise ValueError('integer range/type')
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: integer range/type
