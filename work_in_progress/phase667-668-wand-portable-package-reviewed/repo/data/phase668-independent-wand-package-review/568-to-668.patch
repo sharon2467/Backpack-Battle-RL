@@ -1,0 +1,50 @@
+--- /workspace/python-original-engine/repo/tests/phase568_independent_portable_package.py
++++ /workspace/python-original-engine/repo/tests/phase668_independent_portable_package.py
+@@ -2,10 +2,10 @@
+ import argparse,dataclasses,hashlib,importlib,json,math,os,random,re,signal,stat,struct,sys,time,types,typing
+ from pathlib import Path
+ ROOT=Path(__file__).resolve().parents[1]
+-PLAN=ROOT/'data/phase568-independent-package-source'
++PLAN=ROOT/'data/phase668-independent-wand-package-review'
+ PACKAGE=Path('/workspace/backpack-github-receipt-clone-20261030/python_engine/experimental_nonking')
+-OUT=ROOT/'data/phase568-independent-package-first-001'
+-TRUSTED='e381ce4ff39994d41df5b26fa9c60b604f4307b1c41270acc43bceb66bcb83c6'
++OUT=ROOT/'data/phase668-independent-package-first-001'
++TRUSTED='a41a107f160e171e1824f78388d2f15921a04a82e566675ff422d312c9c6ed0d'
+ COUNTS={};STAGE='preflight'
+ FORBIDDEN={'initialize','initialize_squirrel','initialize_experimental_nonking','_initialize_fixture','run_batch','CombatEngine.__init__','HeadlessBattle.__init__','CombatRandom.__init__','GodotPCGInteger.__init__','OriginalRNG.__init__','CombatEngine.prepare_only','CombatEngine.activate_from_checkpoint','CombatEngine.run','CombatEngine.step','HeadlessBattle.run','HeadlessBattle.step'}
+ def sha(b):return hashlib.sha256(b).hexdigest()
+@@ -25,7 +25,7 @@
+   save('before.json',refs)
+   allowed={str((ROOT/x['path']).resolve())for x in refs}|{str((PLAN/'pins.json').resolve())}
+   original_files=sorted(str(p.relative_to(PACKAGE))for p in PACKAGE.rglob('*')if p.is_file())
+-  assert len(original_files)==23
++  assert len(original_files)==24
+   sys.dont_write_bytecode=True;sys.pycache_prefix=str(OUT/'unused-bytecode-cache');sys.path.insert(0,str(PACKAGE))
+   def audit(event,args):
+    if event=='open':
+@@ -47,7 +47,7 @@
+   STAGE='verifier_import';v=importlib.import_module('verify_manifest');assert Path(v.__file__).resolve()==PACKAGE/'verify_manifest.py'
+   assert not any(x=='headless'or x.startswith(('native_replay_v7','native_replay_v8'))for x in sys.modules)
+   STAGE='verifier_call';verified=v.verify(PACKAGE,TRUSTED);save('verifier-result.json',verified)
+-  assert verified==dict(status='VERIFIED_LISTED_PACKAGE_BYTES',files=22,source_files=15,manifest_sha256=TRUSTED,battle_modules_imported=0,battle_calls=0)
++  assert verified==dict(status='VERIFIED_LISTED_PACKAGE_BYTES',files=23,source_files=15,manifest_sha256=TRUSTED,battle_modules_imported=0,battle_calls=0)
+   sys.addaudithook(audit)
+   STAGE='headless_import';h=importlib.import_module('headless')
+   for name,mod in list(sys.modules.items()):
+@@ -55,7 +55,7 @@
+     p=Path(mod.__file__).resolve();assert str(p)in allowed and p.is_relative_to(PACKAGE),(name,p)
+     imports.append(dict(name=name,path=str(p),sha256=sha(p.read_bytes())))
+   validated=[]
+-  for name,count,kinds in [('Mixed-Modifiers',29,{1,5,11,14,22,32,162,164,231,233,234,385})]:
++  for name,count,kinds in [('Wand',15,{1,11,22,231,422})]:
+    layout=json.loads((PACKAGE/('examples/layout-'+name+'.json')).read_bytes())
+    STAGE='public_validate_'+name;fixture=h.validate_experimental_nonking_layout(layout);save('returned-fixture-'+name+'.json',fixture)
+    assert fixture['schema']==1 and fixture['rules']=='default' and fixture['mode']=='Unranked'
+@@ -79,5 +79,5 @@
+   save('result.json',result);save('owned-files.json',dict(files=[pin(p)for p in sorted(OUT.iterdir())if p.is_file()],sealed=True))
+  print(json.dumps(result));return 0 if status.startswith('PASS')else 1
+ if __name__=='__main__':
+- def timeout(signum,frame):raise TimeoutError('phase56820second wall deadline')
++ def timeout(signum,frame):raise TimeoutError('phase66820second wall deadline')
+  signal.signal(signal.SIGALRM,timeout);signal.alarm(20);sys.exit(main())
