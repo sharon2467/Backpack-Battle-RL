@@ -1,0 +1,59 @@
+{
+  "schema": "phase619-load-schema-identity-addendum/1",
+  "status": "DESIGN_ONLY_NOT_IMPLEMENTED",
+  "parent_design_owner": {
+    "path": "data/phase613-minimal-rebinding-design/owned-files.json",
+    "size": 968,
+    "sha256": "32d9308e352b547a8c61563b3ebc2c7cecca4e3ebe8affc05a5f0b29ef4a90d4"
+  },
+  "review": {
+    "path": "data/phase618-independent-rebinding-design-review/review.json",
+    "size": 6540,
+    "sha256": "bae78082f4d66c7d4b26cf23d69c1fa7cbc6fe4d4f6603370efdf578ecad01df"
+  },
+  "Source_run_selection": {
+    "path": "data/phase620-root-source-run-selection/selection.json",
+    "size": 1008,
+    "sha256": "0c3faf35a9e84ed70f63ad3b91ab306c4ac811071aeea6042e4170fe35a849e4"
+  },
+  "file": {
+    "path": "tests/phase578_input_bridge.py",
+    "size": 46200,
+    "sha256": "168c604bb3e954d1b9a502d395d010f991fd0cbc8e44f97a2f7dfab6dd1dabd6"
+  },
+  "function": "load_schema",
+  "line": 251,
+  "end_line": 262,
+  "preimage_with_LF": {
+    "size": 830,
+    "sha256": "4449cf7fbebee94d44a932cd4ea991eb64a584fb2b6be04d92b166fd34bb2ab3"
+  },
+  "required_replacements": [
+    {
+      "before": "7-mixed-modifiers-A-572",
+      "after": "7-mixed-modifiers-A-610-hooks110"
+    },
+    {
+      "before": "observer7-mixed-modifiers-A-native-tape/1",
+      "after": "observer7-mixed-modifiers-A-hooks110-native-tape/1"
+    }
+  ],
+  "optional_diagnostics": [
+    "_phase578_exact572_schema",
+    "EXACT_PINNED572_SCHEMA_BYTES"
+  ],
+  "unchanged": [
+    "schema bytes/size/SHA",
+    "29FIXED_ROLES",
+    "12DESCRIPTOR_IDS",
+    "no cache shortcut",
+    "isolated module load",
+    "finally deletion",
+    "all projections/initial/Tape"
+  ],
+  "A_changed_functions_final": [
+    "authenticate_request",
+    "load_schema"
+  ],
+  "Native_authorized": false
+}

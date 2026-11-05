@@ -1,0 +1,257 @@
+{
+  "schema": "phase613-function-rebind-design/1",
+  "status": "DESIGN_ONLY_NOT_IMPLEMENTED",
+  "rows": [
+    {
+      "block": "A",
+      "file": "tests/phase578_input_bridge.py",
+      "functions": [
+        "authenticate_request"
+      ],
+      "constants": [
+        "RUN",
+        "SCHEMA_PIN",
+        "FIXED_SOURCE_BINDINGS",
+        "SOURCE_RULES"
+      ],
+      "notes": "new immutable bridge/context path whitelist and new fixed run only; other functions exact",
+      "preimage": {
+        "path": "tests/phase578_input_bridge.py",
+        "size": 46200,
+        "sha256": "168c604bb3e954d1b9a502d395d010f991fd0cbc8e44f97a2f7dfab6dd1dabd6"
+      },
+      "function_preimages": [
+        {
+          "function": "authenticate_request",
+          "line": 200,
+          "end_line": 240,
+          "size_with_LF": 4545,
+          "sha256_with_LF": "5d7cb1460abe0f659b418e50ec2428716b20521b075e8b940f4fc1b4f049b2c0"
+        }
+      ]
+    },
+    {
+      "block": "A-initial",
+      "file": "tests/phase578_initial_receipt.py",
+      "functions": [],
+      "constants": [],
+      "notes": "wholefile exact reuse",
+      "preimage": {
+        "path": "tests/phase578_initial_receipt.py",
+        "size": 18104,
+        "sha256": "b0bda89872eae4310bf32788954077b838364895a424d27120ef77b34905aaf5"
+      },
+      "function_preimages": []
+    },
+    {
+      "block": "C-launcher",
+      "file": "tests/phase583_mixed_tape_run.py",
+      "functions": [],
+      "constants": [
+        "INPUT_SOURCE",
+        "FIXED_INPUTS",
+        "CLOSURE_EXTRACTOR",
+        "CLOSURE_BASIS",
+        "CANDIDATE_CONTEXT"
+      ],
+      "notes": "bodyexact,17request/oneinstance/gate/finalaux/seal unchanged",
+      "preimage": {
+        "path": "tests/phase583_mixed_tape_run.py",
+        "size": 31555,
+        "sha256": "7067c27a55c07c15e7087d73bb658c876675263511fd592c3bdcecbe3730fc16"
+      },
+      "function_preimages": []
+    },
+    {
+      "block": "C-B2",
+      "file": "tests/phase583_shared_callback_guard.py",
+      "functions": [],
+      "constants": [
+        "SOURCE_BASIS"
+      ],
+      "notes": "tuple only; full extractor bodyexact/actualnewwindow required",
+      "preimage": {
+        "path": "tests/phase583_shared_callback_guard.py",
+        "size": 10277,
+        "sha256": "8135d94dc867d9ee5545578ddd68a1c8a3f13b8a0812910f531de13ce6b728a5"
+      },
+      "function_preimages": []
+    },
+    {
+      "block": "C-adapter",
+      "file": "tests/phase583_mixed_business_output.py",
+      "functions": [],
+      "constants": [
+        "NATIVE_PROFILE",
+        "NATIVE_SITES"
+      ],
+      "notes": "exact old107 union3; all20helpers/full8bodyexact",
+      "preimage": {
+        "path": "tests/phase583_mixed_business_output.py",
+        "size": 51117,
+        "sha256": "7e77bb077c056903d7b03f7ac52b0913ab2e8ae11c69b74e0c732b1d6564a01e"
+      },
+      "function_preimages": []
+    },
+    {
+      "block": "host",
+      "file": "tests/phase590_oracle_host.py",
+      "functions": [
+        "validate_observer_review",
+        "source_gate",
+        "validate_active_source_tuple"
+      ],
+      "constants": [
+        "SOURCE",
+        "OBSERVER_SOURCE",
+        "RUN_NAME",
+        "OBSERVER_FREEZE",
+        "OBSERVER_OWNER",
+        "OBSERVER_REVIEW",
+        "OBSERVER_REVIEW_OWNER",
+        "OBSERVER_TUPLE",
+        "OBSERVER_SCHEMA",
+        "SOURCE_AUTHORITY",
+        "OBSERVER_PROFILE",
+        "OBSERVER_VERSION",
+        "HOST_REVIEW_SCHEMA",
+        "HOST_REVIEW_STATUS"
+      ],
+      "notes": "new import namespace; preserve plan/execute/physical bodies. Actual612schema; SourceNull vs Rootoperational run distinct; fixed historical geometry/origin",
+      "preimage": {
+        "path": "tests/phase590_oracle_host.py",
+        "size": 47098,
+        "sha256": "a034d77ba22937ba5e638c40f5d3711e1141bdfd5e4691592dd2baaf9bf12b6b"
+      },
+      "function_preimages": [
+        {
+          "function": "validate_observer_review",
+          "line": 68,
+          "end_line": 81,
+          "size_with_LF": 1198,
+          "sha256_with_LF": "b22b35621bfabbcabff33ea2214f2fa301b8f1d770d1f0f01b2b5b62c834a8e2"
+        },
+        {
+          "function": "source_gate",
+          "line": 84,
+          "end_line": 140,
+          "size_with_LF": 4861,
+          "sha256_with_LF": "ef3697b119b363cf96af669559490483e1c8fd2273a91f2659a726f814566e90"
+        },
+        {
+          "function": "validate_active_source_tuple",
+          "line": 460,
+          "end_line": 523,
+          "size_with_LF": 6198,
+          "sha256_with_LF": "5585364f7e6b866dd0f5917c4b6d51c2c570fe14b35ea3f0caf90171b7133bb0"
+        }
+      ]
+    },
+    {
+      "block": "storage",
+      "file": "tests/phase590_oracle_storage.py",
+      "functions": [],
+      "constants": [
+        "MAX_INSTALL_BYTES"
+      ],
+      "notes": "817696 only plus newmodulepath; allbodies exact",
+      "preimage": {
+        "path": "tests/phase590_oracle_storage.py",
+        "size": 21560,
+        "sha256": "e2079576bec0f5f60b0cf4b5934ce394b0142c6b49de1cf1e11aa5ebb083b9b7"
+      },
+      "function_preimages": []
+    },
+    {
+      "block": "recovery-success",
+      "file": "tests/phase590_restore_predecessor.py",
+      "functions": [
+        "validate_request"
+      ],
+      "constants": [
+        "RUN",
+        "FREEZE",
+        "SOURCES"
+      ],
+      "notes": "newnamespace/run/freeze/817696 guard only;actualPENDING12 mandatory",
+      "preimage": {
+        "path": "tests/phase590_restore_predecessor.py",
+        "size": 27962,
+        "sha256": "06604457afbc94aaf50dd16c1661b5a7dd1314c96ae6e53ff4f2273d1a67b5a2"
+      },
+      "function_preimages": [
+        {
+          "function": "validate_request",
+          "line": 120,
+          "end_line": 140,
+          "size_with_LF": 1962,
+          "sha256_with_LF": "78d08bcb152e96a0639384bba3c4b9dba2c2944c303bdf49155058326c1109f5"
+        }
+      ]
+    },
+    {
+      "block": "recovery-failure",
+      "file": "tests/phase602_failed030_binding.py",
+      "functions": [],
+      "constants": [
+        "MATERIAL_PINS",
+        "EXPECTED_ARGV",
+        "EXPECTED_HOST_FREEZE",
+        "FIXED_RUN",
+        "FIXED_POOL",
+        "FIXED_PREVIOUS",
+        "FIXED_REASON"
+      ],
+      "notes": "PATTERN_REFERENCE_ONLY; actual newfailure executionPID/state/configfacts pending; source-specific updates require separate actualbinding/review,not blindcopy",
+      "preimage": {
+        "path": "tests/phase602_failed030_binding.py",
+        "size": 12472,
+        "sha256": "563e8550ff49f4af8e565b6ff35692d9f1d8e945b28c34c3cd5ad3f479e859ee"
+      },
+      "function_preimages": []
+    },
+    {
+      "block": "recovery-reader",
+      "file": "tests/phase590_independent_predecessor_readback.py",
+      "functions": [
+        "readback",
+        "main"
+      ],
+      "constants": [
+        "RUN",
+        "FREEZE"
+      ],
+      "notes": "identity/count/namespace only; physicalchecks exact;newactual8refs",
+      "preimage": {
+        "path": "tests/phase590_independent_predecessor_readback.py",
+        "size": 25372,
+        "sha256": "17bcaeb33ea7cfdd440f0231d0ac33fdca02b14871c298e0ca7bb027b55a07da"
+      },
+      "function_preimages": [
+        {
+          "function": "readback",
+          "line": 120,
+          "end_line": 306,
+          "size_with_LF": 13968,
+          "sha256_with_LF": "fa67ced544122b2b45e7689ffef85024980958f7d62106c42a1ae652de0c1efd"
+        },
+        {
+          "function": "main",
+          "line": 309,
+          "end_line": 417,
+          "size_with_LF": 6472,
+          "sha256_with_LF": "6262d68f51e0aedfe3e8078a7e882af0bb030f0d662865b15e2fa1d83c3d2efd"
+        }
+      ]
+    }
+  ],
+  "B580_all15_exact": true,
+  "unchanged_Runtime_ABI14": true,
+  "unchanged_model_request_keys": 17,
+  "unchanged_comparison_keys": 20,
+  "unchanged_B2_binding_keys": 5,
+  "Root_run_proposal": "original030-mixed-modifiers-A-single-002",
+  "selected_run": null,
+  "new_Native_authorized": false,
+  "all_actual_input_output_descriptors_unbound": true
+}

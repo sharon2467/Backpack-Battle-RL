@@ -1,0 +1,87 @@
+{
+  "schema": "phase618-independent-rebinding-design-review/1",
+  "status": "CONDITIONAL_DESIGN_PASS_REQUIRED_LOAD_SCHEMA_IDENTITY_REBIND",
+  "design_owner": {
+    "path": "data/phase613-minimal-rebinding-design/owned-files.json",
+    "size": 968,
+    "sha256": "32d9308e352b547a8c61563b3ebc2c7cecca4e3ebe8affc05a5f0b29ef4a90d4"
+  },
+  "design_spec": {
+    "path": "docs/phase613_repaired110_minimal_rebinding_design_spec.md",
+    "size": 7040,
+    "sha256": "265acd38480917858073dec82a0f73df33ac648294771dcf1e3edb4ad16de54f"
+  },
+  "Source_pin_manifest": {
+    "path": "data/phase613-minimal-rebinding-design/source-pins.json",
+    "size": 5295,
+    "sha256": "aa7b440de887f7fada68e05232b2cb11c2fc671ac948148e88d2eb6ff03c84f7"
+  },
+  "checks": {
+    "design_payloads_exact": 4,
+    "Source_receipt_pin_leaves_exact": 27,
+    "function_preimages_AST_body_LF_exact": 7,
+    "receipt612_actual_shape_and_owner_checked": true,
+    "new_tuple_nullrun_and_Source_flags_preserved": true,
+    "old572_sourceauthority_present_in_exact_oldowner": true,
+    "absolute_origin_descriptors_fixed_count": 5,
+    "absolute_origin_payload_reads": 0,
+    "adapter_old_sites": 107,
+    "adapter_new_sites": 110,
+    "added_sites": [
+      "Items/Exclusive/LuckyShortbow.gd::onPreDealDamage_early",
+      "Items/Exclusive/ThornShortbow.gd::onDealtDamage",
+      "Items/MagicStaff.gd::onPreDealDamage_early"
+    ]
+  },
+  "required_addendum": [
+    {
+      "id": "A_LOAD_SCHEMA_FIXED_IDENTITY_REBIND",
+      "severity": "Required before implementation freeze; minimal design omission, not current candidate runtime failure",
+      "source": {
+        "path": "tests/phase578_input_bridge.py",
+        "size": 46200,
+        "sha256": "168c604bb3e954d1b9a502d395d010f991fd0cbc8e44f97a2f7dfab6dd1dabd6"
+      },
+      "function": "load_schema",
+      "line": 258,
+      "current_predicate": "module.VERSION=='7-mixed-modifiers-A-572' and module.PROFILE=='observer7-mixed-modifiers-A-native-tape/1'",
+      "new_exact_VERSION": "7-mixed-modifiers-A-610-hooks110",
+      "new_exact_PROFILE": "observer7-mixed-modifiers-A-hooks110-native-tape/1",
+      "reason": "After SCHEMA_PIN rebinding, the exact new schema would pass its byte hash then fail this literal old-version/profile predicate. A declared authenticate_request-only function delta cannot implement this transition. No SUT was run.",
+      "minimal_fix": "Add load_schema to A changed-function list, replacing only these exact identity literals; optional diagnostic module-name namespace may change. Keep schema bytes/hash, actual29roles, fixed12descriptor equality, isolated load and finally cleanup exact. Keep project/decode/Tape/initial routines unchanged.",
+      "finite_obligation": "One narrow identity-loading seam check against frozen new schema in a later explicitly released batch; no duplicate13 record controls/fullcapture needed."
+    }
+  ],
+  "accepted_minimal_interfaces": {
+    "A": "One new bridge + immutable context. initial578 and runtime14ABI unchanged. Authenticate new path/run/context and exact observer Source/612 receipt. Include the one load_schema literal rebind stated above. No values from partial600 or previous case.",
+    "C": "Three thin modules: explicit new A/context/B2 pins; exact110 native sites and native profile. Preserve20neutral helpers, full8 comparisons, source casts, same-instance B1/finalaux/common seal and actual-window requirement. No original record/body trimming.",
+    "host": "Validate actual612 receipt fields and its exact owner; native/models/Godot/fulljoin/fullcapture strictINT0 and false authorities. Verify4 Source descriptors. Counts79/817696/110 come from frozen graph/census. New host review must cover actual derivedfreeze. Keep16configkeys and model/input/Expected permissions strictINT0.",
+    "tuple_and_plan": "Tuple proposed_run remains null with exact future-unobserved marker. Root selected operational run must be a separate nonempty fixed constant/derivedfreeze binding; historical572 fixed-plan pin retains only exact geometry/config provenance, not proof of current observer version or future attempt.",
+    "origin": "No origin field invented on610 wrapper. Follow only its exact old_source_owner/freeze to explicitly pinned572 source-authority in that owner, then exactly5 absolute Source descriptors. No recursion, discovery or fallback.",
+    "storage": "Only817696 cap and mechanical namespace;79limit/reserve and physical/lease/process kernels unchanged.",
+    "recovery": "Normal complete PENDING route needs new immutable590-pair identities and actual12/8evidence. Generic failed route needs fresh actual failure authority/state/config/execution/controls/saved0;602 is pattern reference only,601/oldPID/failedstate cannot be reused. Both files-only routes must preserve state until independent physical PASS and separate RootREADY."
+  },
+  "implementation_order": [
+    "Root may explicitly select original030-mixed-modifiers-A-single-002 as Source identity only; the613 frozen selected_run=null remains historical. No capture authority follows from that choice.",
+    "Add the load_schema identity seam to immutable implementation SPEC/delta map, then freeze A with existing B580 identity and separately bind new immutable context; no B/core changes.",
+    "Freeze C descriptors against A/context and exact observer tuple. Keep actual INPUT/window/gate/model/Expected descriptors unfilled.",
+    "Freeze new host/storage after run selection; independent Source review afterwards avoids self-hash acceptance cycles. Normal restore/reader binding must be ready before any separately authorized operation; actual evidence remains pending.",
+    "Later actual config/resources/unique-run/process/READY/space and repeated lock gates require explicit Root operational release. No execution is approved by this design verdict."
+  ],
+  "remaining_values": "Actualprevious from new lease, actualUID/cuts/branch/72premises/cache/window/clock and fullcapture are unknown. Current restored027 snapshot and565Source BOOL are not future Native input.",
+  "operations": {
+    "compile": 0,
+    "SUT_import": 0,
+    "helper": 0,
+    "host_plan": 0,
+    "pool": 0,
+    "Native": 0,
+    "Expected": 0,
+    "model": 0
+  },
+  "scope_limits": [
+    "Design only. Existing612Source+finite controls not re-executed and not treated as complete Native gates.",
+    "No old72/UI/107-wide semantic audit, no recovery rehearsal or resource payload hashing.",
+    "Whole project remains incomplete; no formal75/general Native promotion."
+  ]
+}
