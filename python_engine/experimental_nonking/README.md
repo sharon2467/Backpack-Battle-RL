@@ -146,14 +146,33 @@ Mana payment1 and Thorn attack-parent3. Positive Spear Block loss was NOT_HIT in
 that natural case; its declared component behavior passed. It had29 items,
 222 events,273 selected Source draws and26 business Timers. Counts describe that
 finite Source case, not predictions for arbitrary inputs or Native observations.
-Wolpertinger, Enchanted Weapons, Bowl and their joint Native comparison remain pending.
+Fixed original030 single002 has since passed an independent strict eight-section
+conditional-Tape comparison: events, references/parent chains, histories, RNG,
+final state, callbacks, Timer API and terminal cuts all matched. Original and
+Python each had239 events,279 selected draws,1116 clock passes and32 real Timers.
+This is a separate captured case; it does not change the earlier Source-run counts.
+[Independent acceptance and HIT/NOT_HIT evidence](https://github.com/sharon2467/Backpack-Battle-RL/tree/3b8f24b53b0161f96844b2cc6f97e5546c0e5041/work_in_progress/phase657-actual002-strict8-accepted)
+binds review SHA64fd9752aceb68182af9171d5546c0d6dd89896b48ed1b177c15282e1d9400a3.
+The case hit Squirrel loss/gain, Thorn damage-parent Spikes and Lucky gains.
+Staff positive Mana and Pet successful extraactivation were NOT_HIT. It does not
+admit every branch, all84 combinations or general King. Original capture was
+complete while its process exit was not clean; diagnostics remain archived.
 
 Separately, fixed original029 has a strict eight-section conditional-Tape comparison
 for its29-item whelp/Squirrel-family layout. That validates that fixed captured
 case with actual Native clocks/inputs; it does not include162/231/385 or establish production
 seed/session equivalence. This package uses fresh Source objects and the existing
 two-stream `headless-sha256-domains/1` policy, not captured Native history or a replay
-bundle. Current conservative code coverage/native-pending labels are retained exactly.
+bundle. Its Source seed is not the original57101/57102 seed pair. The archived
+captured Python launcher uses accepted Tape/clock INPUT; this public Source API
+does not accept that captured runtime DTO or promise its239/279/1116 result.
+Read-only applicability658 found13 of15 files byte-exact to captured candidate580;
+the engine/genuine differences provide captured admission/gates/clock/cleanup,
+with the conserved business methods separately traced. This evidence does not
+turn those two files into identical runtime entry points. All15 package Source
+files, four examples and the API remain unchanged; no new replay product or
+Oracle dependency is introduced. Existing conservative code labels are retained;
+this README and lineage distinguish the new fixed-case evidence from general admission.
 
 The read-only verifier imports no battle modules. The manifest pins all22 listed payloads
 (15 Source, this README, four examples, lineage, verifier); the manifest itself is pinned
