@@ -1,0 +1,89 @@
+--- old590
++++ tests/phase602_failed030_independent_readback.py
+@@ -21,6 +21,23 @@
+ FREEZE = {'path': 'data/phase590-case030-host-restore-source/combined-source-freeze.json', 'size': 65460, 'sha256': '2655616e809ea39c7cf6f4d3d6eed24dd68cce2cf134b7d499c213cee292f6b6'}
+ EVIDENCE = {'restore_receipt', 'restore_owner', 'controls_manifest', 'patch_inventory',
+             'install_journal', 'previous_proof', 'previous_bundle_manifest', 'pending_state'}
++
++FAILURE_BINDING = {'path': 'tests/phase602_failed030_binding.py', 'size': 12472, 'sha256': '563e8550ff49f4af8e565b6ff35692d9f1d8e945b28c34c3cd5ad3f479e859ee'}
++FAILURE_MATERIALS = {'authority': {'path': 'data/phase601-root-failed030-authority/authority.json', 'size': 8428, 'sha256': 'acde0c7ae926c0f1b097e7cee662fbd93416a68352d51c6c556d7c021fd04495'}, 'authority_owner': {'path': 'data/phase601-root-failed030-authority/owned-files.json', 'size': 531, 'sha256': '033b4c6563c5d31d6a4688a1a82cafe3d8f355141aa62258177112ce69caf77a'}, 'saved_failed': {'path': 'data/phase601-root-failed030-authority/actual-failed-state.json', 'size': 246, 'sha256': '698998f49b9bbe4dba03693016c3b35aca6d7a7129278aa187a77ba5ad7bc6ed'}, 'execute_owner': {'path': 'data/phase600-root-fixed030-execute-first-001/owned-files.json', 'size': 1399, 'sha256': 'd31a4321a490e47a93cc38a5fe5d122ccfa2c0390e7f43a9068e9e0ea5c00f74'}, 'invocation': {'path': 'data/phase600-root-fixed030-execute-first-001/invocation.json', 'size': 901, 'sha256': 'e722ee4b3db7f6f531f09be656b0ada6e712d9778a53c02e5fafffe10cae66c1'}, 'execution': {'path': 'data/phase600-root-fixed030-execute-first-001/execution.json', 'size': 1130, 'sha256': 'b60cf3213d4e7ac9b034d58080ef49fe394be423afd53d99a592009aa91b7410'}, 'first_error': {'path': 'data/phase600-root-fixed030-execute-first-001/first-error.json', 'size': 1130, 'sha256': 'b60cf3213d4e7ac9b034d58080ef49fe394be423afd53d99a592009aa91b7410'}, 'release': {'path': 'data/phase600-root-fixed030-execute-first-001/release.json', 'size': 1054, 'sha256': '8b66346f7d25c240fafd5f9806f8ee2f438a58fc53de4dbb8272c5b6bf5b7b13'}, 'config': {'path': 'data/phase597-resume030-conditional-release/oracle-acceptance.json', 'size': 3597, 'sha256': 'e5ccc41095e84fc644175910e229240a9749562ea1d98bb9d8e5fae17f51b7fd'}, 'config_owner': {'path': 'data/phase597-resume030-conditional-release/owned-files.json', 'size': 659, 'sha256': 'd583e4d370100b16d9d33d57e4677c2d000b36ad4272b3935ca950c02c7451ad'}}
++
++
++def failure_association(state_image, controls, saved_ready, evidence, previous, role):
++    raw_source = descriptor(FAILURE_BINDING)
++    raw_materials = {key: descriptor(row) for key, row in FAILURE_MATERIALS.items()}
++    module = types.ModuleType('_phase602_fixed_failure_binding')
++    module.__file__ = str(path_of(FAILURE_BINDING['path']))
++    exec(compile(raw_source, module.__file__, 'exec'), module.__dict__)
++    provenance = module.validate_failure_association(raw_materials, state_image, controls, saved_ready,
++                                                    evidence, str(previous), role)
++    equal(descriptor(FAILURE_BINDING), raw_source, 'fixed binding Source unchanged')
++    for key, row in FAILURE_MATERIALS.items():
++        equal(descriptor(row), raw_materials[key], 'fixed failure authority unchanged:' + key)
++    return provenance
+ 
+ 
+ def require(condition, message):
+@@ -120,7 +137,7 @@
+ def readback(request, c, out, result):
+     require(type(request) is dict and set(request) == {'schema', 'case_id', 'run', 'pool', 'baseline',
+             'previous_run', 'relocations', 'host_source_freeze', 'evidence'}, 'closed readback request')
+-    require(request['schema'] == 'phase590-fixed-predecessor-readback-request/1' and request['case_id'] == CASE,
++    require(request['schema'] == 'phase602-fixed-failed030-readback-request/1' and request['case_id'] == CASE,
+             'fixed readback case')
+     require(request['host_source_freeze'] == FREEZE, 'exact accepted464v2 Source freeze')
+     freeze = decoded(descriptor(FREEZE))
+@@ -172,13 +189,6 @@
+         for key, row in evidence.items():
+             equal(descriptor(row), raw_evidence[key], 'locked evidence unchanged:' + key)
+         pending = decoded(raw_evidence['pending_state'])
+-        require(pending.get('status') == 'failed' and pending.get('reason') == 'PENDING_INDEPENDENT_PREDECESSOR_RESTORE',
+-                'pool must remain failed/PENDING until separate Root commit')
+-        require(relocate(pending['run'], mapping) == run and relocate(pending['previous_run'], mapping) == previous,
+-                'pending-state run association')
+-        require(relocate(pending['control_preimages']['path'], mapping) == controls and
+-                pending['control_preimages']['manifest'] == {k: evidence['controls_manifest'][k] for k in ('size', 'sha256')}
+-                and pending['control_preimages']['restored'] is False, 'pending-state backup association')
+         def no_process(label):
+             value = c.process_check(pool)
+             require(value['active_matches'] == [], 'no readable active pool references')
+@@ -208,6 +218,8 @@
+         old_state = decoded(saved_images['state.json']['raw'])
+         require(old_state.get('status') == 'ready' and relocate(old_state['run'], mapping) == previous,
+                 'actual pre-busy predecessor ready image')
++        result['failure_authority'] = failure_association(stable(pool / 'state.json'), control_manifest, old_state,
++                                                           evidence, previous, 'reader')
+ 
+         def inventory_check(label, path, expected):
+             actual = c.inventory(path)
+@@ -313,10 +325,10 @@
+     parser.add_argument('--output-new', required=True)
+     args = parser.parse_args()
+     out = path_of(args.output_new)
+-    require(out.parent == ROOT / 'data' and out.name.startswith('phase590-readback-'), 'new local phase468 report directory only')
++    require(out.parent == ROOT / 'data' and out.name.startswith('phase602-readback-'), 'new local phase468 report directory only')
+     out.mkdir(exist_ok=False)
+     started = time.monotonic()
+-    result = {'schema': 'phase590-independent-readback-result/1', 'status': 'RUNNING', 'native': 0, 'models': 0,
++    result = {'schema': 'phase602-independent-failed030-readback-result/1', 'status': 'RUNNING', 'native': 0, 'models': 0,
+               'Expected_semantic_decoding': 0, 'restore_calls': 0, 'READY_writes': 0, 'helper_entries': {},
+               'compaction_module_loads': 0, 'readonly_lock_acquisitions': 0}
+     code = 1
+@@ -340,6 +352,8 @@
+         read_roots = [path_of(request[k]) for k in ('run', 'pool', 'baseline', 'previous_run')]
+         explicit = {config_path, Path(__file__).absolute(), path_of(HELPER['path']), path_of(FREEZE['path'])}
+         explicit.update(path_of(row['path']) for row in request['evidence'].values())
++        explicit.add(path_of(FAILURE_BINDING['path']))
++        explicit.update(path_of(row['path']) for row in FAILURE_MATERIALS.values())
+         def audit(event, values):
+             if event in ('subprocess.Popen', 'os.system', 'os.exec', 'os.posix_spawn', 'socket.connect', 'socket.bind'):
+                 raise ValueError('readback cannot launch process/network')
+@@ -412,7 +426,7 @@
+         for p in sorted(out.iterdir()):
+             if p.is_file():
+                 files.append(dict(path=str(p.relative_to(ROOT)), **stable(p)['identity']))
+-        save(out / 'owned-files.json', {'schema': 'phase590-readback-output-owner/1', 'files': files, 'no_more_writes': True})
++        save(out / 'owned-files.json', {'schema': 'phase602-readback-output-owner/1', 'files': files, 'no_more_writes': True})
+         print(json.dumps({'status': result['status'], 'elapsed_seconds': result['elapsed_seconds']}), flush=True)
+     return code
+ 

@@ -1,0 +1,37 @@
+{
+  "schema": "phase602-recovery-source-api/1",
+  "status": "SOURCE_ONLY_NOT_RESTORE_AUTHORIZATION",
+  "pure_binding": "validate_failure_association(raw_materials,state_image,controls,saved_ready,evidence,previous,role)",
+  "pair_adapter": "failure_association(state_image,controls,saved_ready,evidence,previous,role)",
+  "writer": {
+    "module": {
+      "path": "tests/phase602_failed030_restore_predecessor.py",
+      "size": 30524,
+      "sha256": "8f21ae49adf586050cb6a816d07318d6b60d310cf4130e553473fe2b3404b597"
+    },
+    "request_schema": "phase602-fixed-failed030-restore-request/1",
+    "request_keys": 7,
+    "evidence_count": 12,
+    "output_prefix": "phase602-restore-"
+  },
+  "reader": {
+    "module": {
+      "path": "tests/phase602_failed030_independent_readback.py",
+      "size": 27870,
+      "sha256": "6e6b1a30c757cd134a39391a5e57bca5068530b4aa314d309970eef1a06c69b1"
+    },
+    "request_schema": "phase602-fixed-failed030-readback-request/1",
+    "request_keys": 9,
+    "evidence_count": 8,
+    "output_prefix": "phase602-readback-"
+  },
+  "host_source_freeze": {
+    "path": "data/phase590-case030-host-restore-source/combined-source-freeze.json",
+    "size": 65460,
+    "sha256": "2655616e809ea39c7cf6f4d3d6eed24dd68cce2cf134b7d499c213cee292f6b6"
+  },
+  "state_writes": 0,
+  "actual_requests": null,
+  "restore_calls": 0,
+  "readback_calls": 0
+}

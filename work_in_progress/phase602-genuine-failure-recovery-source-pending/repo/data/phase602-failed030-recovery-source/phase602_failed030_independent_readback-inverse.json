@@ -1,0 +1,58 @@
+{
+  "schema": "phase602-exact-inverse/1",
+  "target": {
+    "path": "tests/phase602_failed030_independent_readback.py",
+    "size": 27870,
+    "sha256": "6e6b1a30c757cd134a39391a5e57bca5068530b4aa314d309970eef1a06c69b1"
+  },
+  "changes": [
+    {
+      "offset": 914,
+      "before": "\n\ndef require(condition, message):",
+      "after": "\nFAILURE_BINDING = {'path': 'tests/phase602_failed030_binding.py', 'size': 12472, 'sha256': '563e8550ff49f4af8e565b6ff35692d9f1d8e945b28c34c3cd5ad3f479e859ee'}\nFAILURE_MATERIALS = {'authority': {'path': 'data/phase601-root-failed030-authority/authority.json', 'size': 8428, 'sha256': 'acde0c7ae926c0f1b097e7cee662fbd93416a68352d51c6c556d7c021fd04495'}, 'authority_owner': {'path': 'data/phase601-root-failed030-authority/owned-files.json', 'size': 531, 'sha256': '033b4c6563c5d31d6a4688a1a82cafe3d8f355141aa62258177112ce69caf77a'}, 'saved_failed': {'path': 'data/phase601-root-failed030-authority/actual-failed-state.json', 'size': 246, 'sha256': '698998f49b9bbe4dba03693016c3b35aca6d7a7129278aa187a77ba5ad7bc6ed'}, 'execute_owner': {'path': 'data/phase600-root-fixed030-execute-first-001/owned-files.json', 'size': 1399, 'sha256': 'd31a4321a490e47a93cc38a5fe5d122ccfa2c0390e7f43a9068e9e0ea5c00f74'}, 'invocation': {'path': 'data/phase600-root-fixed030-execute-first-001/invocation.json', 'size': 901, 'sha256': 'e722ee4b3db7f6f531f09be656b0ada6e712d9778a53c02e5fafffe10cae66c1'}, 'execution': {'path': 'data/phase600-root-fixed030-execute-first-001/execution.json', 'size': 1130, 'sha256': 'b60cf3213d4e7ac9b034d58080ef49fe394be423afd53d99a592009aa91b7410'}, 'first_error': {'path': 'data/phase600-root-fixed030-execute-first-001/first-error.json', 'size': 1130, 'sha256': 'b60cf3213d4e7ac9b034d58080ef49fe394be423afd53d99a592009aa91b7410'}, 'release': {'path': 'data/phase600-root-fixed030-execute-first-001/release.json', 'size': 1054, 'sha256': '8b66346f7d25c240fafd5f9806f8ee2f438a58fc53de4dbb8272c5b6bf5b7b13'}, 'config': {'path': 'data/phase597-resume030-conditional-release/oracle-acceptance.json', 'size': 3597, 'sha256': 'e5ccc41095e84fc644175910e229240a9749562ea1d98bb9d8e5fae17f51b7fd'}, 'config_owner': {'path': 'data/phase597-resume030-conditional-release/owned-files.json', 'size': 659, 'sha256': 'd583e4d370100b16d9d33d57e4677c2d000b36ad4272b3935ca950c02c7451ad'}}\n\n\ndef failure_association(state_image, controls, saved_ready, evidence, previous, role):\n    raw_source = descriptor(FAILURE_BINDING)\n    raw_materials = {key: descriptor(row) for key, row in FAILURE_MATERIALS.items()}\n    module = types.ModuleType('_phase602_fixed_failure_binding')\n    module.__file__ = str(path_of(FAILURE_BINDING['path']))\n    exec(compile(raw_source, module.__file__, 'exec'), module.__dict__)\n    provenance = module.validate_failure_association(raw_materials, state_image, controls, saved_ready,\n                                                    evidence, str(previous), role)\n    equal(descriptor(FAILURE_BINDING), raw_source, 'fixed binding Source unchanged')\n    for key, row in FAILURE_MATERIALS.items():\n        equal(descriptor(row), raw_materials[key], 'fixed failure authority unchanged:' + key)\n    return provenance\n\n\ndef require(condition, message):",
+      "label": "same fixed authority/predicate declarations"
+    },
+    {
+      "offset": 11811,
+      "before": "        require(pending.get('status') == 'failed' and pending.get('reason') == 'PENDING_INDEPENDENT_PREDECESSOR_RESTORE',\n                'pool must remain failed/PENDING until separate Root commit')\n        require(relocate(pending['run'], mapping) == run and relocate(pending['previous_run'], mapping) == previous,\n                'pending-state run association')\n        require(relocate(pending['control_preimages']['path'], mapping) == controls and\n                pending['control_preimages']['manifest'] == {k: evidence['controls_manifest'][k] for k in ('size', 'sha256')}\n                and pending['control_preimages']['restored'] is False, 'pending-state backup association')\n",
+      "after": "",
+      "label": "remove inapplicable reader PENDING association only"
+    },
+    {
+      "offset": 13671,
+      "before": "        require(old_state.get('status') == 'ready' and relocate(old_state['run'], mapping) == previous,\n                'actual pre-busy predecessor ready image')\n",
+      "after": "        require(old_state.get('status') == 'ready' and relocate(old_state['run'], mapping) == previous,\n                'actual pre-busy predecessor ready image')\n        result['failure_authority'] = failure_association(stable(pool / 'state.json'), control_manifest, old_state,\n                                                           evidence, previous, 'reader')\n",
+      "label": "reader same genuine failure association under original lock"
+    },
+    {
+      "offset": 23042,
+      "before": "        explicit.update(path_of(row['path']) for row in request['evidence'].values())\n",
+      "after": "        explicit.update(path_of(row['path']) for row in request['evidence'].values())\n        explicit.add(path_of(FAILURE_BINDING['path']))\n        explicit.update(path_of(row['path']) for row in FAILURE_MATERIALS.values())\n",
+      "label": "explicit fixed metadata/source read closure only"
+    },
+    {
+      "offset": 7986,
+      "before": "phase590-fixed-predecessor-readback-request/1",
+      "after": "phase602-fixed-failed030-readback-request/1",
+      "label": "declarative namespace:phase590-fixed-predecessor-readback-request/1"
+    },
+    {
+      "offset": 21536,
+      "before": "'phase590-readback-'",
+      "after": "'phase602-readback-'",
+      "label": "declarative namespace:'phase590-readback-'"
+    },
+    {
+      "offset": 21689,
+      "before": "phase590-independent-readback-result/1",
+      "after": "phase602-independent-failed030-readback-result/1",
+      "label": "declarative namespace:phase590-independent-readback-result/1"
+    },
+    {
+      "offset": 27606,
+      "before": "phase590-readback-output-owner/1",
+      "after": "phase602-readback-output-owner/1",
+      "label": "declarative namespace:phase590-readback-output-owner/1"
+    }
+  ]
+}

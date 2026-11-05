@@ -1,0 +1,7 @@
+# Genuine failed030 recovery Source; independent controls pending
+
+One isolated Source generation compiled three objects without import/helper/restore/readback orpool writes. New pair accepts only the exact actual failed030 association,not PENDING/READY orarbitraryfailure. Fixed601authority,600owned failedexecution and597owned config are hash-bound;the snapshot andsaved pre-busy controls establish actual027predecessor. Existingrequest7/9,evidence12/8 remain closed. New output prefixes:phase602-restore-/phase602-readback-.
+
+Source owner SHA256d3249a2e0533e8e1e331be929c4d3661baf88d68d84b47c1ea8066ba71f005df;freeze ba253d52e9541c149554f580b741aff7d0eb9c6f000aaa3b71e519490fa5155f. Root verified30references/330768B. Writer/reader call the same small purefailure predicate after savedimage0validation under their original locks. Full inverse/function reports preserve selection/apply/atomic/process/metadata/inventory kernels. Independent static review andat most sixpure associationcontrols are pending;no actual restoration is claimed.
+
+No current state was changed tofakePENDING. Old590andthefailed Original030run remain unchanged. The previous checkpoint contains the complete476-file partialcapsule andfailure evidence. Actual files-onlyrestore,independent fullphysicalreadback andseparate RootREADY commit remain necessary. No newOriginal attempt,INPUT build ormodel is authorized bythisSourcearchive. Formal75/publicruntime564 remain unchanged.

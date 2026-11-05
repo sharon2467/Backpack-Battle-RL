@@ -1,0 +1,41 @@
+{
+  "schema": "phase602-root-fixed-failure-recovery-source-release/1",
+  "utc": "2026-11-05T08:39:44.943273+00:00",
+  "Source_plan": {
+    "path": "docs/phase601_failed030_minimal_restore_adaptation_spec.md",
+    "size": 7415,
+    "sha256": "28870f366b4dfc4c3200d00b1481c2565d8592a75b0e65d9531536cbb9898286"
+  },
+  "bound_addendum": {
+    "path": "docs/phase601_failed030_restore_bound_addendum.md",
+    "size": 3746,
+    "sha256": "963ebf85c1417238a33aedfad0bc3fc69f6d0a95e9194eae5e8501891a95d763"
+  },
+  "design_owner": {
+    "path": "data/phase601-failed030-restore-design-bound/owned-files.json",
+    "size": 1224,
+    "sha256": "24cd607e6b72009ff09becb8140f9ca04a13de25762973b20945d93abab1e48e"
+  },
+  "independent_design": {
+    "path": "data/phase601-independent-failure-and-recovery-review/review.json",
+    "size": 8267,
+    "sha256": "f9d8cb6384e8df1270f99a93f9708a44759b31e59cde3e9071c23bfa66af8dc9"
+  },
+  "failure_authority": {
+    "path": "data/phase601-root-failed030-authority/authority.json",
+    "size": 8428,
+    "sha256": "acde0c7ae926c0f1b097e7cee662fbd93416a68352d51c6c556d7c021fd04495"
+  },
+  "scope": "Generate isolated failure-specific writer and independent physical reader;one narrow shared predicate permitted. Only actual failed-state association and declared namespaces change. No PENDING write or altered physicalkernel.",
+  "Source_directory": "data/phase602-failed030-recovery-source",
+  "module_prefix": "tests/phase602_failed030_",
+  "generation_attempts": 1,
+  "compile_objects_max": 3,
+  "old590_unchanged": true,
+  "O_union_N_union_F_selector_apply_lock_process_metadata_inventory_exact": true,
+  "helper_import_test_live_restore_readback_poolwrites": 0,
+  "Original": 0,
+  "models": 0,
+  "Expected": 0,
+  "first_error": "Stop/save partial owner/error;no silent retry."
+}

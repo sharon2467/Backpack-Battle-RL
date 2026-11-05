@@ -1,0 +1,68 @@
+{
+  "schema": "phase602-conservation/1",
+  "files": [
+    {
+      "file": "tests/phase602_failed030_restore_predecessor.py",
+      "changed_functions": [
+        "validate_request",
+        "prepare",
+        "main"
+      ],
+      "exact_functions": [
+        "require",
+        "signature",
+        "stable",
+        "path_of",
+        "descriptor",
+        "decoded",
+        "equal",
+        "save",
+        "load_modules",
+        "image_record",
+        "row_record",
+        "check_image",
+        "no_process",
+        "action",
+        "public_action",
+        "select_restore_images",
+        "recheck_target",
+        "finish_metadata",
+        "apply",
+        "restore"
+      ],
+      "added_functions": [
+        "failure_association"
+      ],
+      "full_inverse": true,
+      "preimage_size": 27962,
+      "preimage_sha256": "06604457afbc94aaf50dd16c1661b5a7dd1314c96ae6e53ff4f2273d1a67b5a2"
+    },
+    {
+      "file": "tests/phase602_failed030_independent_readback.py",
+      "changed_functions": [
+        "readback",
+        "main"
+      ],
+      "exact_functions": [
+        "require",
+        "signature",
+        "stable",
+        "path_of",
+        "descriptor",
+        "decoded",
+        "relocate",
+        "difference",
+        "equal",
+        "save"
+      ],
+      "added_functions": [
+        "failure_association"
+      ],
+      "full_inverse": true,
+      "preimage_size": 25372,
+      "preimage_sha256": "17bcaeb33ea7cfdd440f0231d0ac33fdca02b14871c298e0ca7bb027b55a07da"
+    }
+  ],
+  "shared_wrapper_exact": true,
+  "old590_unchanged": true
+}

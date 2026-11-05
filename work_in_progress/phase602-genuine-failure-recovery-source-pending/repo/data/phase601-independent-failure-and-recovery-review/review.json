@@ -1,0 +1,177 @@
+{
+  "schema": "phase601-independent-failure-and-recovery-design-review/1",
+  "status": "DESIGN_PASS_FOR_NARROW_SOURCE_ADAPTATION_ONLY",
+  "case": "NATIVE-030-MIXED-MODIFIERS-A",
+  "references": {
+    "design": {
+      "path": "docs/phase601_failed030_minimal_restore_adaptation_spec.md",
+      "size": 7415,
+      "sha256": "28870f366b4dfc4c3200d00b1481c2565d8592a75b0e65d9531536cbb9898286"
+    },
+    "design_owner": {
+      "path": "data/phase601-failed030-restore-design/owned-files.json",
+      "size": 654,
+      "sha256": "93bc4244bea66f56b25ae830924093b1d547b8bb5d35634d9d0ce3262d1598f7"
+    },
+    "failure_authority": {
+      "path": "data/phase601-root-failed030-authority/authority.json",
+      "size": 8428,
+      "sha256": "acde0c7ae926c0f1b097e7cee662fbd93416a68352d51c6c556d7c021fd04495"
+    },
+    "failure_authority_owner": {
+      "path": "data/phase601-root-failed030-authority/owned-files.json",
+      "size": 531,
+      "sha256": "033b4c6563c5d31d6a4688a1a82cafe3d8f355141aa62258177112ce69caf77a"
+    },
+    "root_execution": {
+      "path": "data/phase600-root-fixed030-execute-first-001/execution.json",
+      "size": 1130,
+      "sha256": "b60cf3213d4e7ac9b034d58080ef49fe394be423afd53d99a592009aa91b7410"
+    },
+    "root_execution_owner": {
+      "path": "data/phase600-root-fixed030-execute-first-001/owned-files.json",
+      "size": 1399,
+      "sha256": "d31a4321a490e47a93cc38a5fe5d122ccfa2c0390e7f43a9068e9e0ea5c00f74"
+    },
+    "source_freeze": {
+      "path": "data/phase590-case030-host-restore-source/combined-source-freeze.json",
+      "size": 65460,
+      "sha256": "2655616e809ea39c7cf6f4d3d6eed24dd68cce2cf134b7d499c213cee292f6b6"
+    }
+  },
+  "observed_failure": {
+    "root_host": {
+      "pid": 1188,
+      "reaped": true,
+      "exit": 1,
+      "wall_seconds": 61.61610683000072,
+      "automatic_retry": false
+    },
+    "parse": {
+      "exit": 0,
+      "process_clean_exit": true,
+      "pgid": 1197,
+      "live_remaining": [],
+      "zombies_not_claimed_reaped": [
+        1207
+      ]
+    },
+    "native": {
+      "exit": 2,
+      "process_clean_exit": false,
+      "pgid": 1257,
+      "live_remaining": [],
+      "zombies_not_claimed_reaped": [
+        1267
+      ]
+    },
+    "capture_complete": false,
+    "lawful_filenames_present": 12,
+    "missing_validation": true,
+    "missing_terminal": true,
+    "full_INPUT_admitted": false,
+    "collector_control": "observer7 durable failure; stopped by existing idle driver",
+    "observer_control": {
+      "code": "SOURCE_UNKNOWN_SELECTED_HOOK",
+      "site": "Items/Exclusive/ThornShortbow.gd::onDealtDamage",
+      "sequence": 4906
+    },
+    "precedence": "Partition selects collector if present; this is not a chronological ordering proof.",
+    "process_scope": "Saved monitors and Root task-owned group snapshot only. No independent fresh /proc scan performed; no global process completeness asserted."
+  },
+  "actual_state_boundary": {
+    "saved_descriptor": {
+      "path": "/workspace/python-original-engine/repo/data/phase601-root-failed030-authority/actual-failed-state.json",
+      "size": 246,
+      "sha256": "698998f49b9bbe4dba03693016c3b35aca6d7a7129278aa187a77ba5ad7bc6ed"
+    },
+    "shape": [
+      "reason",
+      "run",
+      "status",
+      "utc"
+    ],
+    "status": "failed",
+    "reason": "RuntimeError('first original030 failed/partial; preserve, no retry')",
+    "mode": 384,
+    "mtime_ns": 1793867367371782844,
+    "current_pool_state_independently_reread": false,
+    "previous_and_control_fields_absent": true,
+    "old_writer_block": "tests/phase590_restore_predecessor.py:231-235 requires PENDING reason and previous/control fields.",
+    "old_reader_block": "tests/phase590_independent_predecessor_readback.py:175-181 requires the same association.",
+    "no_fabricated_PENDING": true
+  },
+  "material_closure": {
+    "descriptor_verifications": 194,
+    "verification_log": {
+      "path": "data/phase601-independent-failure-and-recovery-review/verified-readonly-files.json",
+      "size": 47279,
+      "sha256": "cba387218b6b98e6b3f0fad8b2465f2f0ed7a0a3fcd2cf4d09d4d341726538ec"
+    },
+    "evidence_metadata": "11 saved metadata descriptors verified; twelfth pending_state slot checked against the Root-owned saved failed bytes, not a new live pool sample.",
+    "controls": {
+      "count": 3,
+      "bytes_mode_mtime_exact": true,
+      "fixtures_semantic_decode": false,
+      "saved_state_status": "ready",
+      "previous_run": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06"
+    },
+    "old_installed_patch_backups": 75,
+    "old_marker_backups": 1,
+    "old_backup_bytes_mode_mtime_exact": true,
+    "prior_project_equals_saved_previous_compaction_project": true,
+    "new_journal": {
+      "rows": 79,
+      "after_bytes": 817389,
+      "present_before_backups": 77,
+      "backup_bytes_exact": true,
+      "order": "freeze.paths insertion order followed by collector, config, marker",
+      "backup_metadata_not_substituted_for_original_metadata": true
+    },
+    "pool_before_graph_present_and_hash_bound": true,
+    "current_live_graph_not_inventoried": true,
+    "new030_compaction_not_required_for_failed_case": true
+  },
+  "design_assessment": {
+    "verdict": "Minimal case-specific replacement of the failed/PENDING association is sufficient in design; no physical-kernel relaxation is needed.",
+    "shortest_source_path": [
+      "Create an immutable writer/reader pair; leave590 and all600 failures unchanged.",
+      "Pin actual Root authority and its owner,600 owner/invocation/execution/first-error/config, saved failed bytes and exact controls/journal/pool-before descriptors. Validate owner membership; an unowned boolean is insufficient.",
+      "Under the existing exclusive lock require exact failed-state bytes, metadata and four-key shape. Require the actual run/reason and reaped failed execution; reject PENDING, READY and unrelated failure shapes.",
+      "Reuse controls image validation; after saved_state is available bind controls.previous_run == saved_state.run == fixed PREVIOUS, with saved_state ready and distinct from030. Bind the previous bundle from that preserved state.",
+      "Keep selector, O-union-N-union-F authority, ordinary-file checks, metadata restoration, directory ordering, lock/process/currentgraph checks and zero-state-write behavior unchanged.",
+      "The independent reader uses the same fixed failure association and independently checks complete physical restoration; writer success alone does not suffice."
+    ],
+    "historical_unbound_design_fields": "601 design was frozen before Root authority existed. Preserve its null placeholders; new executable Source must bind the supplied real authority/owner and previous/bundle identities, never accept null equality.",
+    "finite_association_controls": "At most the six design vectors, only after separate Root release; no controls executed by this review.",
+    "implementation_blockers": [],
+    "operational_work_still_required": [
+      "Independent frozen-source delta review and separately authorized finite association controls",
+      "Root actual restore request/release",
+      "Fresh locked failed-state/process/current project+staged equality and all unchanged restore prerequisites",
+      "One independent complete physical readback",
+      "Separate Root-only saved READY commit after physical PASS"
+    ]
+  },
+  "activity": {
+    "production_imports": 0,
+    "production_helper_calls": 0,
+    "host_calls": 0,
+    "restore_calls": 0,
+    "reader_calls": 0,
+    "pool_inventory_calls": 0,
+    "pool_writes": 0,
+    "state_writes": 0,
+    "Native_launches": 0,
+    "models": 0,
+    "LAWFUL_payload_decode": 0,
+    "Expected_payload_reads": 0,
+    "Expected_semantic_decode": 0,
+    "source_edits": 0
+  },
+  "limits": [
+    "This is a readonly evidence/design acceptance, not restored-state physical PASS or permission to run the old590 pair.",
+    "Task-scoped process settlement does not prove global absence of writers; actual recovery retains its fresh process and lock gates.",
+    "Observer hook repair and any future capture are separate work; the failed partial record cannot be promoted to complete INPUT, runtime equivalence or formal support."
+  ]
+}
