@@ -1,0 +1,182 @@
+{
+  "schema": "phase622-independent-static-source-review/1",
+  "status": "STATIC_SOURCE_PASS_CONTROLS_PENDING_ROOT_RELEASE",
+  "owner": {
+    "path": "data/phase621-hooks110-rebinding-source/owned-files.json",
+    "size": 43954,
+    "sha256": "87e66b7c2dbb51cbc7eed9240dbef8576e4ec95d8c15ba2283e2e54ab771afa7"
+  },
+  "freeze": {
+    "path": "data/phase621-hooks110-rebinding-source/source-freeze.json",
+    "size": 46159,
+    "sha256": "0fbd6140a31da594d26949a1357ff03b9814955804de9e5da193e1ed88b1c528"
+  },
+  "repo_owned_leaf_hashes_checked": 216,
+  "absolute_Source_origin_descriptors_only": [
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Sheets/CSV/ItemData.csv",
+      "sha256": "26f5433cf37cd33c066dd505672fcb292e7570ede8c823c5a10f9bc21208a473",
+      "size": 80933
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Sheets/ItemBook.gd",
+      "sha256": "6b0f0b78c0ee1a0529e7740b424b157837b614cbd74c3e8f22886f9509cb9d84",
+      "size": 48708
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Item.gd",
+      "sha256": "7d2bf930d1a0d2ccdf57ccbbc4bbd4c9a3b985a210c42ec8cfa6291e8aae780f",
+      "size": 170717
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Wolpertinger.gd",
+      "sha256": "5607b4eea0e69fa4f1f46f2a646e1c3a4c12668be75c45269cf0a2ce6b258ea2",
+      "size": 522
+    },
+    {
+      "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Wolpertinger.tscn",
+      "sha256": "69c0834d5d21b5adb9e6484c71261b0a305ccc192d651cf6ddd14be138ebe462",
+      "size": 1402
+    }
+  ],
+  "absolute_Source_payload_reads": 0,
+  "modules": [
+    {
+      "module": "A",
+      "before": {
+        "path": "tests/phase578_input_bridge.py",
+        "size": 46200,
+        "sha256": "168c604bb3e954d1b9a502d395d010f991fd0cbc8e44f97a2f7dfab6dd1dabd6"
+      },
+      "after": {
+        "path": "tests/phase621_input_bridge.py",
+        "size": 46253,
+        "sha256": "29edf5627c66256bc4f0ee2299343a2904577323961417444797b726cfc7df2d"
+      },
+      "whole_inverse_exact": true,
+      "changed_functions": [
+        "authenticate_request",
+        "load_schema"
+      ],
+      "unchanged_definition_occurrences": 28
+    },
+    {
+      "module": "host",
+      "before": {
+        "path": "tests/phase590_oracle_host.py",
+        "size": 47098,
+        "sha256": "a034d77ba22937ba5e638c40f5d3711e1141bdfd5e4691592dd2baaf9bf12b6b"
+      },
+      "after": {
+        "path": "tests/phase621_oracle_host.py",
+        "size": 50013,
+        "sha256": "663870cdaba2fc60318f8c3efea621c8f3788adaa5ab8548a60b83a49e6129b2"
+      },
+      "whole_inverse_exact": true,
+      "changed_functions": [
+        "source_gate",
+        "validate_active_source_tuple",
+        "validate_observer_review"
+      ],
+      "unchanged_definition_occurrences": 15
+    },
+    {
+      "module": "storage",
+      "before": {
+        "path": "tests/phase590_oracle_storage.py",
+        "size": 21560,
+        "sha256": "e2079576bec0f5f60b0cf4b5934ce394b0142c6b49de1cf1e11aa5ebb083b9b7"
+      },
+      "after": {
+        "path": "tests/phase621_oracle_storage.py",
+        "size": 21560,
+        "sha256": "6c9972d3fe23223542b92f78f18c0ac575a1cdaf4e7649f0b21ce09ba3dac676"
+      },
+      "whole_inverse_exact": true,
+      "changed_functions": [],
+      "unchanged_definition_occurrences": 23
+    },
+    {
+      "module": "launcher",
+      "before": {
+        "path": "tests/phase583_mixed_tape_run.py",
+        "size": 31555,
+        "sha256": "7067c27a55c07c15e7087d73bb658c876675263511fd592c3bdcecbe3730fc16"
+      },
+      "after": {
+        "path": "tests/phase621_mixed_tape_run.py",
+        "size": 31520,
+        "sha256": "dc07ef763a33424a352e01d6e86dffa091148e7a7535686fce420e798e29f5fe"
+      },
+      "whole_inverse_exact": true,
+      "changed_functions": [],
+      "unchanged_definition_occurrences": 14
+    },
+    {
+      "module": "adapter",
+      "before": {
+        "path": "tests/phase583_mixed_business_output.py",
+        "size": 51117,
+        "sha256": "7e77bb077c056903d7b03f7ac52b0913ab2e8ae11c69b74e0c732b1d6564a01e"
+      },
+      "after": {
+        "path": "tests/phase621_mixed_business_output.py",
+        "size": 51283,
+        "sha256": "cb48328cc0a8274516e33367640af7933676c47950fff11f1b1d54f37b435558"
+      },
+      "whole_inverse_exact": true,
+      "changed_functions": [],
+      "unchanged_definition_occurrences": 39
+    },
+    {
+      "module": "B2",
+      "before": {
+        "path": "tests/phase583_shared_callback_guard.py",
+        "size": 10277,
+        "sha256": "8135d94dc867d9ee5545578ddd68a1c8a3f13b8a0812910f531de13ce6b728a5"
+      },
+      "after": {
+        "path": "tests/phase621_shared_callback_guard.py",
+        "size": 10282,
+        "sha256": "6742fe2cf640c73c1fa99539de5c61f83b39e25062ef2aeb9cfa1a49d7f116a3"
+      },
+      "whole_inverse_exact": true,
+      "changed_functions": [],
+      "unchanged_definition_occurrences": 3
+    }
+  ],
+  "B580_all15_byteexact": true,
+  "initial578_byteexact": true,
+  "C20_full8_B2_getters_bodyexact": true,
+  "contract_only_native_profile_changed": true,
+  "actual612_owned_receipt_shape_and4descriptors_checked": true,
+  "newtuple_nullrun_vs_separate_fixed002": true,
+  "historical572plan_identity_not_promoted_to_currentversion": true,
+  "fixed_one_hop_origin5_no_fallback": true,
+  "load_schema_two_literal_fix_present": true,
+  "templates": "falseRoot/resources[]/hostreviewnull/actual12empty; fixed candidate/context metadata do not imply actual INPUT/B2/model/Expected",
+  "static_only_dynamic_exclusions": [
+    "Complete positive tuple with legacy owner/origin5 is not executed; would read5 absolute Source leaves.",
+    "source_gate/host-review/resources/plan/lease/restore/readback and selector are not executed.",
+    "Future actual Root readonly plan must traverse those real gates before operational release."
+  ],
+  "operations": {
+    "Source_imports": 0,
+    "helper": 0,
+    "schema": 0,
+    "models": 0,
+    "Native": 0,
+    "Expected": 0,
+    "pool": 0
+  },
+  "tests_planned": {
+    "top": 11,
+    "positive": 2,
+    "reject": 9,
+    "frozen_module_loads": 7,
+    "nested_actual_schema_loads": 1,
+    "schema_validator_calls": 0,
+    "inner_seconds": 15,
+    "outer_seconds": 20
+  }
+}

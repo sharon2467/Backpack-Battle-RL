@@ -1,0 +1,69 @@
+{
+  "schema": "phase622-exact-execution-plan/1",
+  "status": "FROZEN_NOT_EXECUTED_PENDING_ROOT_RELEASE",
+  "argv": [
+    "python",
+    "-I",
+    "-B",
+    "/workspace/python-original-engine/repo/tests/phase622_independent_rebinding_controls.py",
+    "--pins",
+    "/workspace/python-original-engine/repo/data/phase622-independent-source-plan/source-pins.json",
+    "--pins-sha256",
+    "8d2ba977c827e2ae86bb1e5a2549867be8eb66eaf9c0ce975db3f3a8118e23b1"
+  ],
+  "cwd": "/tmp",
+  "output_new": "/workspace/python-original-engine/repo/data/phase622-independent-controls-first-001",
+  "script": {
+    "path": "tests/phase622_independent_rebinding_controls.py",
+    "size": 10584,
+    "sha256": "c5400ab8cb3b0734721429c1abe1a6a4d5936bfe9cfcef1f34f4974aa7b89473"
+  },
+  "pins": {
+    "path": "data/phase622-independent-source-plan/source-pins.json",
+    "size": 7898,
+    "sha256": "8d2ba977c827e2ae86bb1e5a2549867be8eb66eaf9c0ce975db3f3a8118e23b1"
+  },
+  "vectors": {
+    "path": "data/phase622-independent-source-plan/vectors.json",
+    "size": 21593,
+    "sha256": "4669f0c113e08d389774af586235e15eae538f6b43a63b0b43f31835805767a2"
+  },
+  "Source_review": {
+    "path": "data/phase622-independent-source-plan/static-review.json",
+    "size": 6370,
+    "sha256": "fdb083d6a7388f51888c95a180773447673d170661da6666eba04b1819cede6b"
+  },
+  "budget": {
+    "processes": 1,
+    "inner_seconds": 15,
+    "outer_seconds": 20,
+    "top_calls": 11,
+    "positive": 2,
+    "expected_reject": 9,
+    "production_module_evals": 7,
+    "nested_schema_evals": 1,
+    "total_successful_imports": 8,
+    "schema_validator_calls": 0,
+    "initial_receipt_function_calls": 0,
+    "SUT_calls_at_freeze": 0
+  },
+  "assertions": [
+    "First unexpected exception stops; no retries or mutation of Source/vectors.",
+    "All11 input byte/canonical identities stable; Source pins before/after exact.",
+    "Bad schema bytes rejected before additional exec; real returned schema identity and cache removal checked.",
+    "Tuple run/profile/origin failures are precise early association failures before legacy owner or absolute Source origins; no deeper-branch coverage claimed.",
+    "Profile records all seven modules and relative/absolute real schema filename; forbidden operational functions raise.",
+    "Audit allows only pinned repository files. No baseline, resources, pool, Expected or Native access.",
+    "All stdlib roots from exact closure preimported before audit; no broad stdlib allowlist.",
+    "Reports serialize once; owner uses identical in-memory bytes, writes list is pre-result snapshot."
+  ],
+  "not_dynamic": [
+    "full tuple positive",
+    "deep one-hop origin/owner verification",
+    "source_gate and hostreview",
+    "resources/Ready/plan/lease/install/restore/readback",
+    "schema validation/fulljoin",
+    "actual INPUT/B2/B1/model/strict8/Native"
+  ],
+  "after_success": "Independent reviewer judges actual output; only then a new phase621-independent-host-source-review/1 receipt may be issued, status ACCEPTED_SOURCE_ONLY_PENDING_ROOT_EXECUTE, source_freeze actual host combined descriptor, observer_source_owner actual610 descriptor, native/models strictINT0. No operational authorization."
+}

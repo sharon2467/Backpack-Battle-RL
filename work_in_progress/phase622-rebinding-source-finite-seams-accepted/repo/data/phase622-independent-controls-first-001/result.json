@@ -1,0 +1,964 @@
+{
+  "schema": "phase622-independent-seam-controls/1",
+  "status": "PASS_SOURCE_SEAMS_ONLY",
+  "cases": [
+    {
+      "id": "01-load-new-schema",
+      "api": "load_schema",
+      "status": "PASS",
+      "schema_evals_before": 0,
+      "returned": {
+        "module": "_phase578_exact572_schema",
+        "file": "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py",
+        "VERSION": "7-mixed-modifiers-A-610-hooks110",
+        "PROFILE": "observer7-mixed-modifiers-A-hooks110-native-tape/1",
+        "roles": 29,
+        "ids": [
+          1,
+          5,
+          11,
+          14,
+          22,
+          32,
+          162,
+          164,
+          231,
+          233,
+          234,
+          385
+        ],
+        "uncached": true
+      },
+      "input_before": "a33d2b90669388e9b3b1973a70234a5ec672f480167c27a26e07245fff84f45c",
+      "input_after": "a33d2b90669388e9b3b1973a70234a5ec672f480167c27a26e07245fff84f45c",
+      "schema_evals_after": 1
+    },
+    {
+      "id": "02-bad-schema-bytes",
+      "api": "load_schema",
+      "status": "PASS",
+      "schema_evals_before": 1,
+      "first_reject": {
+        "type": "Rejected",
+        "message": "EXACT_PINNED572_SCHEMA_BYTES"
+      },
+      "input_before": "b840ade88bf23f7f2a189ad8d9e4e81149ef5d639b326a8477108295612461c4",
+      "input_after": "b840ade88bf23f7f2a189ad8d9e4e81149ef5d639b326a8477108295612461c4",
+      "schema_evals_after": 1
+    },
+    {
+      "id": "03-actual612-receipt",
+      "api": "validate_observer_review",
+      "status": "PASS",
+      "schema_evals_before": 1,
+      "returned": null,
+      "input_before": "f80cf9cf2e768fbfefb86da7e2fd235fe18c549f71e12e1d5efe3b3db4846e9c",
+      "input_after": "f80cf9cf2e768fbfefb86da7e2fd235fe18c549f71e12e1d5efe3b3db4846e9c",
+      "schema_evals_after": 1
+    },
+    {
+      "id": "04-stale575-schema",
+      "api": "validate_observer_review",
+      "status": "PASS",
+      "schema_evals_before": 1,
+      "first_reject": {
+        "type": "ValueError",
+        "message": "exact612 Source-only receipt and tuple binding required"
+      },
+      "input_before": "3be94558b995cb49f24f4b6ea2b75b50414d244214767219a93b56349bf9740a",
+      "input_after": "3be94558b995cb49f24f4b6ea2b75b50414d244214767219a93b56349bf9740a",
+      "schema_evals_after": 1
+    },
+    {
+      "id": "05-BOOL-models-zero",
+      "api": "validate_observer_review",
+      "status": "PASS",
+      "schema_evals_before": 1,
+      "first_reject": {
+        "type": "ValueError",
+        "message": "612 Source-only strictINT0:models"
+      },
+      "input_before": "08da6619633c4ac8de983ab9196c0a1c56f92aea3a0463322590bb0cce0ff6da",
+      "input_after": "08da6619633c4ac8de983ab9196c0a1c56f92aea3a0463322590bb0cce0ff6da",
+      "schema_evals_after": 1
+    },
+    {
+      "id": "06-wrong-observer-owner",
+      "api": "validate_observer_review",
+      "status": "PASS",
+      "schema_evals_before": 1,
+      "first_reject": {
+        "type": "ValueError",
+        "message": "612 actual Source descriptor:source_owner"
+      },
+      "input_before": "e9cb28d6f9cb240514461ebc567f397dd647b3a72080c952a27f3def4517d484",
+      "input_after": "e9cb28d6f9cb240514461ebc567f397dd647b3a72080c952a27f3def4517d484",
+      "schema_evals_after": 1
+    },
+    {
+      "id": "07-operational-authority",
+      "api": "validate_observer_review",
+      "status": "PASS",
+      "schema_evals_before": 1,
+      "first_reject": {
+        "type": "ValueError",
+        "message": "612 receipt is not operational or actual Native authority"
+      },
+      "input_before": "374f7c824e2817479a72d9c8be85d358275d52b47d0324411038376b6bb76231",
+      "input_after": "374f7c824e2817479a72d9c8be85d358275d52b47d0324411038376b6bb76231",
+      "schema_evals_after": 1
+    },
+    {
+      "id": "08-BOOL-finite-count",
+      "api": "validate_observer_review",
+      "status": "PASS",
+      "schema_evals_before": 1,
+      "first_reject": {
+        "type": "ValueError",
+        "message": "612 strict finite counter:schema_imports"
+      },
+      "input_before": "5d61d85a4cebd59d649754dd0cbe4b2bcc7bf019ed9d3296d343363663d57a6b",
+      "input_after": "5d61d85a4cebd59d649754dd0cbe4b2bcc7bf019ed9d3296d343363663d57a6b",
+      "schema_evals_after": 1
+    },
+    {
+      "id": "09-old001-run",
+      "api": "validate_active_source_tuple",
+      "status": "PASS",
+      "schema_evals_before": 1,
+      "first_reject": {
+        "type": "ValueError",
+        "message": "host case/run/profile mismatch"
+      },
+      "input_before": "2fea05d1af6f2aef75f6bacfc3fc0a0af1917082f047c01c7cf2d97d10c5298a",
+      "input_after": "2fea05d1af6f2aef75f6bacfc3fc0a0af1917082f047c01c7cf2d97d10c5298a",
+      "schema_evals_after": 1
+    },
+    {
+      "id": "10-old-profile",
+      "api": "validate_active_source_tuple",
+      "status": "PASS",
+      "schema_evals_before": 1,
+      "first_reject": {
+        "type": "ValueError",
+        "message": "host case/run/profile mismatch"
+      },
+      "input_before": "80032256883085cd4326687388ffe65773d10803fd0ff033c6023720e7d51443",
+      "input_after": "80032256883085cd4326687388ffe65773d10803fd0ff033c6023720e7d51443",
+      "schema_evals_after": 1
+    },
+    {
+      "id": "11-foreign-origin",
+      "api": "validate_active_source_tuple",
+      "status": "PASS",
+      "schema_evals_before": 1,
+      "first_reject": {
+        "type": "ValueError",
+        "message": "derived actual case/sourceauthority binding"
+      },
+      "input_before": "43687a81fe845bf18c83dbe187c8826dba45923bbdfa3a580624d1f338eb41ec",
+      "input_after": "43687a81fe845bf18c83dbe187c8826dba45923bbdfa3a580624d1f338eb41ec",
+      "schema_evals_after": 1
+    }
+  ],
+  "top_entered": 11,
+  "top_completed": 11,
+  "positive": 2,
+  "rejected": 9,
+  "module_eval_attempts": 7,
+  "module_imports_completed": 7,
+  "schema_eval_attempts": 1,
+  "schema_imports_completed": 1,
+  "profile": {
+    "/workspace/python-original-engine/repo/tests/native_run_compaction.py::<module>": 1,
+    "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py::<module>": 1,
+    "/workspace/python-original-engine/repo/tests/phase363_oracle_process.py::<module>": 1,
+    "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py::<module>": 1,
+    "/workspace/python-original-engine/repo/tests/phase621_oracle_host.py::<module>": 1,
+    "/workspace/python-original-engine/repo/tests/phase578_initial_receipt.py::<module>": 1,
+    "/workspace/python-original-engine/repo/tests/phase578_initial_receipt.py::<genexpr>": 28,
+    "/workspace/python-original-engine/repo/tests/phase621_input_bridge.py::<module>": 1,
+    "/workspace/python-original-engine/repo/tests/phase621_input_bridge.py::Rejected": 1,
+    "/workspace/python-original-engine/repo/tests/phase621_input_bridge.py::load_schema": 2,
+    "/workspace/python-original-engine/repo/tests/phase621_input_bridge.py::require": 4,
+    "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py::<module>": 1,
+    "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py::<genexpr>": 14,
+    "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py::FramePass": 1,
+    "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py::ClockSchedule": 1,
+    "/workspace/python-original-engine/repo/tests/phase621_oracle_host.py::validate_observer_review": 6,
+    "/workspace/python-original-engine/repo/tests/phase621_oracle_host.py::validate_active_source_tuple": 3,
+    "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py::check_source_descriptor": 19,
+    "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py::_read_source": 19,
+    "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py::_source_descriptor": 19,
+    "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py::_identity": 19,
+    "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py::<genexpr>": 1935,
+    "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py::directory": 38,
+    "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py::member": 19,
+    "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py::regular_target": 38,
+    "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py::_source_signature": 114,
+    "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py::read": 9,
+    "/workspace/python-original-engine/repo/tests/phase621_oracle_host.py::_payload_rows": 1
+  },
+  "origins": {
+    "native_run_compaction": "/workspace/python-original-engine/repo/tests/native_run_compaction.py",
+    "phase363_oracle_storage": "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py",
+    "phase363_oracle_process": "/workspace/python-original-engine/repo/tests/phase363_oracle_process.py",
+    "phase621_oracle_storage": "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py",
+    "phase621_oracle_host": "/workspace/python-original-engine/repo/tests/phase621_oracle_host.py",
+    "phase578_initial_receipt": "/workspace/python-original-engine/repo/tests/phase578_initial_receipt.py",
+    "phase621_input_bridge": "/workspace/python-original-engine/repo/tests/phase621_input_bridge.py",
+    "nested_schema": "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py"
+  },
+  "read_audit": [
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/after-source/Items/Exclusive/Squirrel.gd",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase571-root-future030-source-binding/source-binding.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/collector.gd",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/fixed-plan.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/fixed-v8-fixture.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/source-default-p1-rule.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/after-source/native_random_observer_sink_v7.gd",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/combined-source-freeze.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/native-patch-source.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/source-tuple.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase612-independent-final-acceptance/owned-files.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase612-independent-final-acceptance/source-acceptance.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase621-hooks110-rebinding-source/host/combined-source-freeze.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase621-hooks110-rebinding-source/owned-files.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase621-hooks110-rebinding-source/source-freeze.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase622-independent-source-plan/import-closure.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase622-independent-source-plan/static-review.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase622-independent-source-plan/vectors.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase622_repaired110_independent_seam_control_spec.md",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/native_run_compaction.py",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase363_oracle_process.py",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase578_initial_receipt.py",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase611_prepare_three_selected_hook_source_v2.py",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase621_input_bridge.py",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase621_mixed_business_output.py",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase621_mixed_tape_run.py",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase621_oracle_host.py",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase621_shared_callback_guard.py",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase622_independent_rebinding_controls.py",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase622-independent-source-plan/vectors.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/native_run_compaction.py",
+      "stage": "module_load"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py",
+      "stage": "module_load"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase363_oracle_process.py",
+      "stage": "module_load"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py",
+      "stage": "module_load"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase621_oracle_host.py",
+      "stage": "module_load"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase578_initial_receipt.py",
+      "stage": "module_load"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase621_input_bridge.py",
+      "stage": "module_load"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase621-hooks110-rebinding-source/host/combined-source-freeze.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/combined-source-freeze.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/combined-source-freeze.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/source-tuple.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/source-tuple.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase621-hooks110-rebinding-source/host/combined-source-freeze.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/combined-source-freeze.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/combined-source-freeze.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/source-tuple.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/source-tuple.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase621-hooks110-rebinding-source/host/combined-source-freeze.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/combined-source-freeze.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/combined-source-freeze.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/source-tuple.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/source-tuple.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/fixed-v8-fixture.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/fixed-plan.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/native-patch-source.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase611_prepare_three_selected_hook_source_v2.py",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/after-source/native_random_observer_sink_v7.gd",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/collector.gd",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/after-source/Items/Exclusive/Squirrel.gd",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/source-default-p1-rule.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase571-root-future030-source-binding/source-binding.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/native-patch-source.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/native-patch-source.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/fixed-plan.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/fixed-plan.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/fixed-v8-fixture.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/fixed-v8-fixture.json",
+      "stage": "controls"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/after-source/Items/Exclusive/Squirrel.gd",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase571-root-future030-source-binding/source-binding.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/collector.gd",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/fixed-plan.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/fixed-v8-fixture.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/source-default-p1-rule.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/after-source/native_random_observer_sink_v7.gd",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/combined-source-freeze.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/native-patch-source.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/source-tuple.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase612-independent-final-acceptance/owned-files.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase612-independent-final-acceptance/source-acceptance.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase621-hooks110-rebinding-source/host/combined-source-freeze.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase621-hooks110-rebinding-source/owned-files.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase621-hooks110-rebinding-source/source-freeze.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase622-independent-source-plan/import-closure.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase622-independent-source-plan/static-review.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase622-independent-source-plan/vectors.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase622_repaired110_independent_seam_control_spec.md",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/native_run_compaction.py",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase363_oracle_process.py",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase578_initial_receipt.py",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase611_prepare_three_selected_hook_source_v2.py",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase621_input_bridge.py",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase621_mixed_business_output.py",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase621_mixed_tape_run.py",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase621_oracle_host.py",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase621_shared_callback_guard.py",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase622_independent_rebinding_controls.py",
+      "stage": "after"
+    }
+  ],
+  "writes": [],
+  "forbidden_calls": [],
+  "native": 0,
+  "models": 0,
+  "Expected": 0,
+  "actual_pool_baseline_resources": 0,
+  "pins_before": [
+    {
+      "path": "data/phase502-whelp-observer-source-v4/after-source/Items/Exclusive/Squirrel.gd",
+      "size": 547,
+      "sha256": "afbba6556077e0f30f6cd5d6abced0949cd64c5979e2554326ef1303076dd1e5"
+    },
+    {
+      "path": "data/phase571-root-future030-source-binding/source-binding.json",
+      "size": 1265,
+      "sha256": "09c8e95ba808339412e2259fa4577e32332f9399e23b44995eba313b8614816b"
+    },
+    {
+      "path": "data/phase572-mixed-observer-source-v2/collector.gd",
+      "size": 64932,
+      "sha256": "51ed1ebd6762fe93306ae97e732fca65ffa82dc41355023f7ce7418473d8a21c"
+    },
+    {
+      "path": "data/phase572-mixed-observer-source-v2/fixed-plan.json",
+      "size": 25245,
+      "sha256": "0ffdfe84818ccccd594de3dae3ad087e38a33f9c58328c5c94146bee2ecc0bd4"
+    },
+    {
+      "path": "data/phase572-mixed-observer-source-v2/fixed-v8-fixture.json",
+      "size": 4297,
+      "sha256": "70a6a2adf352251d3c6666c018837918b3f95c30688ea3a2b209b10828bf39e0"
+    },
+    {
+      "path": "data/phase572-mixed-observer-source-v2/source-default-p1-rule.json",
+      "size": 3020,
+      "sha256": "a5e2eb856eb82197357c5871282c41dfb48c5cd38cc7b5bec7fcc8734bc99ef9"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/after-source/native_random_observer_sink_v7.gd",
+      "size": 106018,
+      "sha256": "150b82c5b5898165dd8b547cabd73fd065cf1d5e709f9a9294ec6cdfea2e7e97"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/combined-source-freeze.json",
+      "size": 65722,
+      "sha256": "a1dc715f1bcf704906baacc7c481147f63f5f0cbec7b80cb0d0739ffd47fa4d4"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/native-patch-source.json",
+      "size": 31140,
+      "sha256": "4cf492d1f593d3494894ee2ee6604bcd4165dbd00d8c96b96d7cc10fd4f7343c"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py",
+      "size": 208143,
+      "sha256": "a33d2b90669388e9b3b1973a70234a5ec672f480167c27a26e07245fff84f45c"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/source-tuple.json",
+      "size": 2916,
+      "sha256": "d6d33c940c4bcf49ac81b5572a3fee9439172fdc5c7cef096d37e4f60cae8b21"
+    },
+    {
+      "path": "data/phase612-independent-final-acceptance/owned-files.json",
+      "size": 484,
+      "sha256": "c67f4a92d524edc744ffec1422a313538030b5a98afd6f3fce9a601a6e875ccd"
+    },
+    {
+      "path": "data/phase612-independent-final-acceptance/source-acceptance.json",
+      "size": 2149,
+      "sha256": "792949a478ecc560d8aa488791c7b4a359500954ca46fb4c7a36eda5f4e922e5"
+    },
+    {
+      "path": "data/phase621-hooks110-rebinding-source/host/combined-source-freeze.json",
+      "size": 71732,
+      "sha256": "2df37012b8f3313ce010104a0fe835a87f066556c965753fede8c3874a1e748a"
+    },
+    {
+      "path": "data/phase621-hooks110-rebinding-source/owned-files.json",
+      "size": 43954,
+      "sha256": "87e66b7c2dbb51cbc7eed9240dbef8576e4ec95d8c15ba2283e2e54ab771afa7"
+    },
+    {
+      "path": "data/phase621-hooks110-rebinding-source/source-freeze.json",
+      "size": 46159,
+      "sha256": "0fbd6140a31da594d26949a1357ff03b9814955804de9e5da193e1ed88b1c528"
+    },
+    {
+      "path": "data/phase622-independent-source-plan/import-closure.json",
+      "size": 4722,
+      "sha256": "7e0d66dfa0144b382264162956f24f1e46a13f26424ab447ffcbd5eddd4b6617"
+    },
+    {
+      "path": "data/phase622-independent-source-plan/static-review.json",
+      "size": 6370,
+      "sha256": "fdb083d6a7388f51888c95a180773447673d170661da6666eba04b1819cede6b"
+    },
+    {
+      "path": "data/phase622-independent-source-plan/vectors.json",
+      "size": 21593,
+      "sha256": "4669f0c113e08d389774af586235e15eae538f6b43a63b0b43f31835805767a2"
+    },
+    {
+      "path": "docs/phase622_repaired110_independent_seam_control_spec.md",
+      "size": 4420,
+      "sha256": "6025f9d8097f2e954c2b42c964d4a6757d6dddfe33301e1478920d96a5d8d521"
+    },
+    {
+      "path": "tests/native_run_compaction.py",
+      "size": 27304,
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260"
+    },
+    {
+      "path": "tests/phase363_oracle_process.py",
+      "size": 13665,
+      "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f"
+    },
+    {
+      "path": "tests/phase363_oracle_storage.py",
+      "size": 15496,
+      "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc"
+    },
+    {
+      "path": "tests/phase578_initial_receipt.py",
+      "size": 18104,
+      "sha256": "b0bda89872eae4310bf32788954077b838364895a424d27120ef77b34905aaf5"
+    },
+    {
+      "path": "tests/phase611_prepare_three_selected_hook_source_v2.py",
+      "size": 22109,
+      "sha256": "c10c7b4da1bd956fd29f97a66336e97fdda1cd3fef09ab4e392a6fbbdcaace43"
+    },
+    {
+      "path": "tests/phase621_input_bridge.py",
+      "size": 46253,
+      "sha256": "29edf5627c66256bc4f0ee2299343a2904577323961417444797b726cfc7df2d"
+    },
+    {
+      "path": "tests/phase621_mixed_business_output.py",
+      "size": 51283,
+      "sha256": "cb48328cc0a8274516e33367640af7933676c47950fff11f1b1d54f37b435558"
+    },
+    {
+      "path": "tests/phase621_mixed_tape_run.py",
+      "size": 31520,
+      "sha256": "dc07ef763a33424a352e01d6e86dffa091148e7a7535686fce420e798e29f5fe"
+    },
+    {
+      "path": "tests/phase621_oracle_host.py",
+      "size": 50013,
+      "sha256": "663870cdaba2fc60318f8c3efea621c8f3788adaa5ab8548a60b83a49e6129b2"
+    },
+    {
+      "path": "tests/phase621_oracle_storage.py",
+      "size": 21560,
+      "sha256": "6c9972d3fe23223542b92f78f18c0ac575a1cdaf4e7649f0b21ce09ba3dac676"
+    },
+    {
+      "path": "tests/phase621_shared_callback_guard.py",
+      "size": 10282,
+      "sha256": "6742fe2cf640c73c1fa99539de5c61f83b39e25062ef2aeb9cfa1a49d7f116a3"
+    },
+    {
+      "path": "tests/phase622_independent_rebinding_controls.py",
+      "size": 10584,
+      "sha256": "c5400ab8cb3b0734721429c1abe1a6a4d5936bfe9cfcef1f34f4974aa7b89473"
+    }
+  ],
+  "pins_after": [
+    {
+      "path": "data/phase502-whelp-observer-source-v4/after-source/Items/Exclusive/Squirrel.gd",
+      "size": 547,
+      "sha256": "afbba6556077e0f30f6cd5d6abced0949cd64c5979e2554326ef1303076dd1e5"
+    },
+    {
+      "path": "data/phase571-root-future030-source-binding/source-binding.json",
+      "size": 1265,
+      "sha256": "09c8e95ba808339412e2259fa4577e32332f9399e23b44995eba313b8614816b"
+    },
+    {
+      "path": "data/phase572-mixed-observer-source-v2/collector.gd",
+      "size": 64932,
+      "sha256": "51ed1ebd6762fe93306ae97e732fca65ffa82dc41355023f7ce7418473d8a21c"
+    },
+    {
+      "path": "data/phase572-mixed-observer-source-v2/fixed-plan.json",
+      "size": 25245,
+      "sha256": "0ffdfe84818ccccd594de3dae3ad087e38a33f9c58328c5c94146bee2ecc0bd4"
+    },
+    {
+      "path": "data/phase572-mixed-observer-source-v2/fixed-v8-fixture.json",
+      "size": 4297,
+      "sha256": "70a6a2adf352251d3c6666c018837918b3f95c30688ea3a2b209b10828bf39e0"
+    },
+    {
+      "path": "data/phase572-mixed-observer-source-v2/source-default-p1-rule.json",
+      "size": 3020,
+      "sha256": "a5e2eb856eb82197357c5871282c41dfb48c5cd38cc7b5bec7fcc8734bc99ef9"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/after-source/native_random_observer_sink_v7.gd",
+      "size": 106018,
+      "sha256": "150b82c5b5898165dd8b547cabd73fd065cf1d5e709f9a9294ec6cdfea2e7e97"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/combined-source-freeze.json",
+      "size": 65722,
+      "sha256": "a1dc715f1bcf704906baacc7c481147f63f5f0cbec7b80cb0d0739ffd47fa4d4"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/native-patch-source.json",
+      "size": 31140,
+      "sha256": "4cf492d1f593d3494894ee2ee6604bcd4165dbd00d8c96b96d7cc10fd4f7343c"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py",
+      "size": 208143,
+      "sha256": "a33d2b90669388e9b3b1973a70234a5ec672f480167c27a26e07245fff84f45c"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/source-tuple.json",
+      "size": 2916,
+      "sha256": "d6d33c940c4bcf49ac81b5572a3fee9439172fdc5c7cef096d37e4f60cae8b21"
+    },
+    {
+      "path": "data/phase612-independent-final-acceptance/owned-files.json",
+      "size": 484,
+      "sha256": "c67f4a92d524edc744ffec1422a313538030b5a98afd6f3fce9a601a6e875ccd"
+    },
+    {
+      "path": "data/phase612-independent-final-acceptance/source-acceptance.json",
+      "size": 2149,
+      "sha256": "792949a478ecc560d8aa488791c7b4a359500954ca46fb4c7a36eda5f4e922e5"
+    },
+    {
+      "path": "data/phase621-hooks110-rebinding-source/host/combined-source-freeze.json",
+      "size": 71732,
+      "sha256": "2df37012b8f3313ce010104a0fe835a87f066556c965753fede8c3874a1e748a"
+    },
+    {
+      "path": "data/phase621-hooks110-rebinding-source/owned-files.json",
+      "size": 43954,
+      "sha256": "87e66b7c2dbb51cbc7eed9240dbef8576e4ec95d8c15ba2283e2e54ab771afa7"
+    },
+    {
+      "path": "data/phase621-hooks110-rebinding-source/source-freeze.json",
+      "size": 46159,
+      "sha256": "0fbd6140a31da594d26949a1357ff03b9814955804de9e5da193e1ed88b1c528"
+    },
+    {
+      "path": "data/phase622-independent-source-plan/import-closure.json",
+      "size": 4722,
+      "sha256": "7e0d66dfa0144b382264162956f24f1e46a13f26424ab447ffcbd5eddd4b6617"
+    },
+    {
+      "path": "data/phase622-independent-source-plan/static-review.json",
+      "size": 6370,
+      "sha256": "fdb083d6a7388f51888c95a180773447673d170661da6666eba04b1819cede6b"
+    },
+    {
+      "path": "data/phase622-independent-source-plan/vectors.json",
+      "size": 21593,
+      "sha256": "4669f0c113e08d389774af586235e15eae538f6b43a63b0b43f31835805767a2"
+    },
+    {
+      "path": "docs/phase622_repaired110_independent_seam_control_spec.md",
+      "size": 4420,
+      "sha256": "6025f9d8097f2e954c2b42c964d4a6757d6dddfe33301e1478920d96a5d8d521"
+    },
+    {
+      "path": "tests/native_run_compaction.py",
+      "size": 27304,
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260"
+    },
+    {
+      "path": "tests/phase363_oracle_process.py",
+      "size": 13665,
+      "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f"
+    },
+    {
+      "path": "tests/phase363_oracle_storage.py",
+      "size": 15496,
+      "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc"
+    },
+    {
+      "path": "tests/phase578_initial_receipt.py",
+      "size": 18104,
+      "sha256": "b0bda89872eae4310bf32788954077b838364895a424d27120ef77b34905aaf5"
+    },
+    {
+      "path": "tests/phase611_prepare_three_selected_hook_source_v2.py",
+      "size": 22109,
+      "sha256": "c10c7b4da1bd956fd29f97a66336e97fdda1cd3fef09ab4e392a6fbbdcaace43"
+    },
+    {
+      "path": "tests/phase621_input_bridge.py",
+      "size": 46253,
+      "sha256": "29edf5627c66256bc4f0ee2299343a2904577323961417444797b726cfc7df2d"
+    },
+    {
+      "path": "tests/phase621_mixed_business_output.py",
+      "size": 51283,
+      "sha256": "cb48328cc0a8274516e33367640af7933676c47950fff11f1b1d54f37b435558"
+    },
+    {
+      "path": "tests/phase621_mixed_tape_run.py",
+      "size": 31520,
+      "sha256": "dc07ef763a33424a352e01d6e86dffa091148e7a7535686fce420e798e29f5fe"
+    },
+    {
+      "path": "tests/phase621_oracle_host.py",
+      "size": 50013,
+      "sha256": "663870cdaba2fc60318f8c3efea621c8f3788adaa5ab8548a60b83a49e6129b2"
+    },
+    {
+      "path": "tests/phase621_oracle_storage.py",
+      "size": 21560,
+      "sha256": "6c9972d3fe23223542b92f78f18c0ac575a1cdaf4e7649f0b21ce09ba3dac676"
+    },
+    {
+      "path": "tests/phase621_shared_callback_guard.py",
+      "size": 10282,
+      "sha256": "6742fe2cf640c73c1fa99539de5c61f83b39e25062ef2aeb9cfa1a49d7f116a3"
+    },
+    {
+      "path": "tests/phase622_independent_rebinding_controls.py",
+      "size": 10584,
+      "sha256": "c5400ab8cb3b0734721429c1abe1a6a4d5936bfe9cfcef1f34f4974aa7b89473"
+    }
+  ],
+  "pins_unchanged": true,
+  "elapsed_seconds": 0.1720591070006776,
+  "remaining": "Full positive tuple/deep legacy owner and five absolute origins/source_gate/host-review/resource/plan/lease/Native/restore are NOT executed. No actual INPUT/B2/B1/model/Native admission.",
+  "writes_scope": "Pre-result serialization snapshot; reporting write guard remains enabled, not claimed complete report-stage write audit."
+}

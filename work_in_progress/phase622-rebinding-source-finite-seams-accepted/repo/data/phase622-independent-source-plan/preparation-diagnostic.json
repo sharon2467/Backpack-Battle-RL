@@ -1,0 +1,12 @@
+{
+  "schema": "phase622-readonly-preparation-diagnostic/1",
+  "status": "RESOLVED_WITHOUT_SUT",
+  "operation": "Source descriptor hash review utility",
+  "first_exception": "AssertionError: absolute repo candidate-source-freeze descriptor compared with a relative display path",
+  "cause": "Review utility textual path normalization, not Source bytes/API failure",
+  "correction": "Compare size/SHA and resolved repository path identity; preserve absolute descriptor as authored",
+  "candidate_imports": 0,
+  "helper_calls": 0,
+  "Source_changes": 0,
+  "vectors_adjusted_from_runtime": false
+}

@@ -1,0 +1,356 @@
+{
+  "schema": "phase622-independent-final-review/1",
+  "status": "ACCEPTED_SOURCE_AND_FINITE_SEAMS_ONLY",
+  "scope": "621 repaired110 six-module rebinding; run002 is a Source identity, not Native execution authority",
+  "evidence": {
+    "static_review": {
+      "path": "data/phase622-independent-source-plan/static-review.json",
+      "size": 6370,
+      "sha256": "fdb083d6a7388f51888c95a180773447673d170661da6666eba04b1819cede6b"
+    },
+    "frozen_plan_owner": {
+      "path": "data/phase622-independent-source-plan/owned-files.json",
+      "size": 1855,
+      "sha256": "c645341fd17cb161534e48c7c03e1803e603cd274dd167ff8f2440d15fca26ef"
+    },
+    "plan": {
+      "path": "data/phase622-independent-source-plan/execution-plan.json",
+      "size": 3200,
+      "sha256": "0ec07a865f0067330cf4b659793c9820469501a554323bb959b4b130ce841c26"
+    },
+    "actual_result": {
+      "path": "data/phase622-independent-controls-first-001/result.json",
+      "size": 37775,
+      "sha256": "0c3d3a429c6628fee31a2b21f9023fe1974c5b0d50b31172004698430577ef9d"
+    },
+    "actual_owner": {
+      "path": "data/phase622-independent-controls-first-001/owned-files.json",
+      "size": 258,
+      "sha256": "3c35b2bd119d90b250c7d7edfd88546f34fad82a9d2cee881e9292770ba004f6"
+    },
+    "Root_execution_owner": {
+      "path": "data/phase622-root-unique-seam-control-release/owned-files.json",
+      "size": 1205,
+      "sha256": "69884dfe0e7ae870ec8236255bb0746737c5a9bbb0788815527deca96669bde3"
+    },
+    "source_owner": {
+      "path": "data/phase621-hooks110-rebinding-source/owned-files.json",
+      "size": 43954,
+      "sha256": "87e66b7c2dbb51cbc7eed9240dbef8576e4ec95d8c15ba2283e2e54ab771afa7"
+    },
+    "source_freeze": {
+      "path": "data/phase621-hooks110-rebinding-source/source-freeze.json",
+      "size": 46159,
+      "sha256": "0fbd6140a31da594d26949a1357ff03b9814955804de9e5da193e1ed88b1c528"
+    }
+  },
+  "owner_checks": [
+    {
+      "owner": {
+        "path": "data/phase622-independent-source-plan/owned-files.json",
+        "size": 1855,
+        "sha256": "c645341fd17cb161534e48c7c03e1803e603cd274dd167ff8f2440d15fca26ef"
+      },
+      "files_checked": 9
+    },
+    {
+      "owner": {
+        "path": "data/phase622-independent-controls-first-001/owned-files.json",
+        "size": 258,
+        "sha256": "3c35b2bd119d90b250c7d7edfd88546f34fad82a9d2cee881e9292770ba004f6"
+      },
+      "files_checked": 1
+    },
+    {
+      "owner": {
+        "path": "data/phase622-root-unique-seam-control-release/owned-files.json",
+        "size": 1205,
+        "sha256": "69884dfe0e7ae870ec8236255bb0746737c5a9bbb0788815527deca96669bde3"
+      },
+      "files_checked": 6
+    }
+  ],
+  "Source_after": {
+    "all32_pins_exact": true,
+    "pins": {
+      "path": "data/phase622-independent-source-plan/source-pins.json",
+      "size": 7898,
+      "sha256": "8d2ba977c827e2ae86bb1e5a2549867be8eb66eaf9c0ce975db3f3a8118e23b1"
+    },
+    "Source_changed": false
+  },
+  "actual_calls": {
+    "top": 11,
+    "positive": 2,
+    "expected_reject": 9,
+    "load_schema": 2,
+    "schema_eval_attempts": 1,
+    "schema_imports_completed": 1,
+    "required_module_evals_completed": 7,
+    "validate_observer_review": 6,
+    "validate_active_source_tuple_early_rejections": 3,
+    "schema_validators": 0,
+    "initial_receipt_functions": 0,
+    "complete_tuple_positive": 0,
+    "source_gate": 0,
+    "verify_owner": 0,
+    "hostreview_branch": 0
+  },
+  "cases": [
+    {
+      "id": "01-load-new-schema",
+      "api": "load_schema",
+      "status": "PASS",
+      "first_reject": null,
+      "input_hash_independently_recomputed": "a33d2b90669388e9b3b1973a70234a5ec672f480167c27a26e07245fff84f45c",
+      "unchanged": true
+    },
+    {
+      "id": "02-bad-schema-bytes",
+      "api": "load_schema",
+      "status": "PASS",
+      "first_reject": {
+        "type": "Rejected",
+        "message": "EXACT_PINNED572_SCHEMA_BYTES"
+      },
+      "input_hash_independently_recomputed": "b840ade88bf23f7f2a189ad8d9e4e81149ef5d639b326a8477108295612461c4",
+      "unchanged": true
+    },
+    {
+      "id": "03-actual612-receipt",
+      "api": "validate_observer_review",
+      "status": "PASS",
+      "first_reject": null,
+      "input_hash_independently_recomputed": "f80cf9cf2e768fbfefb86da7e2fd235fe18c549f71e12e1d5efe3b3db4846e9c",
+      "unchanged": true
+    },
+    {
+      "id": "04-stale575-schema",
+      "api": "validate_observer_review",
+      "status": "PASS",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "exact612 Source-only receipt and tuple binding required"
+      },
+      "input_hash_independently_recomputed": "3be94558b995cb49f24f4b6ea2b75b50414d244214767219a93b56349bf9740a",
+      "unchanged": true
+    },
+    {
+      "id": "05-BOOL-models-zero",
+      "api": "validate_observer_review",
+      "status": "PASS",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "612 Source-only strictINT0:models"
+      },
+      "input_hash_independently_recomputed": "08da6619633c4ac8de983ab9196c0a1c56f92aea3a0463322590bb0cce0ff6da",
+      "unchanged": true
+    },
+    {
+      "id": "06-wrong-observer-owner",
+      "api": "validate_observer_review",
+      "status": "PASS",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "612 actual Source descriptor:source_owner"
+      },
+      "input_hash_independently_recomputed": "e9cb28d6f9cb240514461ebc567f397dd647b3a72080c952a27f3def4517d484",
+      "unchanged": true
+    },
+    {
+      "id": "07-operational-authority",
+      "api": "validate_observer_review",
+      "status": "PASS",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "612 receipt is not operational or actual Native authority"
+      },
+      "input_hash_independently_recomputed": "374f7c824e2817479a72d9c8be85d358275d52b47d0324411038376b6bb76231",
+      "unchanged": true
+    },
+    {
+      "id": "08-BOOL-finite-count",
+      "api": "validate_observer_review",
+      "status": "PASS",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "612 strict finite counter:schema_imports"
+      },
+      "input_hash_independently_recomputed": "5d61d85a4cebd59d649754dd0cbe4b2bcc7bf019ed9d3296d343363663d57a6b",
+      "unchanged": true
+    },
+    {
+      "id": "09-old001-run",
+      "api": "validate_active_source_tuple",
+      "status": "PASS",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "host case/run/profile mismatch"
+      },
+      "input_hash_independently_recomputed": "2fea05d1af6f2aef75f6bacfc3fc0a0af1917082f047c01c7cf2d97d10c5298a",
+      "unchanged": true
+    },
+    {
+      "id": "10-old-profile",
+      "api": "validate_active_source_tuple",
+      "status": "PASS",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "host case/run/profile mismatch"
+      },
+      "input_hash_independently_recomputed": "80032256883085cd4326687388ffe65773d10803fd0ff033c6023720e7d51443",
+      "unchanged": true
+    },
+    {
+      "id": "11-foreign-origin",
+      "api": "validate_active_source_tuple",
+      "status": "PASS",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "derived actual case/sourceauthority binding"
+      },
+      "input_hash_independently_recomputed": "43687a81fe845bf18c83dbe187c8826dba45923bbdfa3a580624d1f338eb41ec",
+      "unchanged": true
+    }
+  ],
+  "schema_identity": {
+    "actual_returned": {
+      "module": "_phase578_exact572_schema",
+      "file": "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py",
+      "VERSION": "7-mixed-modifiers-A-610-hooks110",
+      "PROFILE": "observer7-mixed-modifiers-A-hooks110-native-tape/1",
+      "roles": 29,
+      "ids": [
+        1,
+        5,
+        11,
+        14,
+        22,
+        32,
+        162,
+        164,
+        231,
+        233,
+        234,
+        385
+      ],
+      "uncached": true
+    },
+    "actual_Source": {
+      "path": "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py",
+      "sha256": "a33d2b90669388e9b3b1973a70234a5ec672f480167c27a26e07245fff84f45c",
+      "size": 208143
+    },
+    "bad_bytes_did_not_reexec": true,
+    "cache_removal": "Actual production loader finally deleted its temporary module; post-return assertion passed. Legacy diagnostic module name does not substitute old schema VERSION/PROFILE."
+  },
+  "execution": {
+    "exit": 0,
+    "pid": 5266,
+    "reaped": true,
+    "outer_timeout": false,
+    "seconds": 0.2279545630008215,
+    "stdout_bytes": 0,
+    "stderr_bytes": 0
+  },
+  "harness_inner_seconds": 0.1720591070006776,
+  "profile_review": {
+    "all_module_origins_exact": {
+      "native_run_compaction": "/workspace/python-original-engine/repo/tests/native_run_compaction.py",
+      "phase363_oracle_storage": "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py",
+      "phase363_oracle_process": "/workspace/python-original-engine/repo/tests/phase363_oracle_process.py",
+      "phase621_oracle_storage": "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py",
+      "phase621_oracle_host": "/workspace/python-original-engine/repo/tests/phase621_oracle_host.py",
+      "phase578_initial_receipt": "/workspace/python-original-engine/repo/tests/phase578_initial_receipt.py",
+      "phase621_input_bridge": "/workspace/python-original-engine/repo/tests/phase621_input_bridge.py",
+      "nested_schema": "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py"
+    },
+    "production_profile": {
+      "/workspace/python-original-engine/repo/tests/native_run_compaction.py::<module>": 1,
+      "/workspace/python-original-engine/repo/tests/phase363_oracle_storage.py::<module>": 1,
+      "/workspace/python-original-engine/repo/tests/phase363_oracle_process.py::<module>": 1,
+      "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py::<module>": 1,
+      "/workspace/python-original-engine/repo/tests/phase621_oracle_host.py::<module>": 1,
+      "/workspace/python-original-engine/repo/tests/phase578_initial_receipt.py::<module>": 1,
+      "/workspace/python-original-engine/repo/tests/phase578_initial_receipt.py::<genexpr>": 28,
+      "/workspace/python-original-engine/repo/tests/phase621_input_bridge.py::<module>": 1,
+      "/workspace/python-original-engine/repo/tests/phase621_input_bridge.py::Rejected": 1,
+      "/workspace/python-original-engine/repo/tests/phase621_input_bridge.py::load_schema": 2,
+      "/workspace/python-original-engine/repo/tests/phase621_input_bridge.py::require": 4,
+      "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py::<module>": 1,
+      "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py::<genexpr>": 14,
+      "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py::FramePass": 1,
+      "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py::ClockSchedule": 1,
+      "/workspace/python-original-engine/repo/tests/phase621_oracle_host.py::validate_observer_review": 6,
+      "/workspace/python-original-engine/repo/tests/phase621_oracle_host.py::validate_active_source_tuple": 3,
+      "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py::check_source_descriptor": 19,
+      "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py::_read_source": 19,
+      "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py::_source_descriptor": 19,
+      "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py::_identity": 19,
+      "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py::<genexpr>": 1935,
+      "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py::directory": 38,
+      "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py::member": 19,
+      "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py::regular_target": 38,
+      "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py::_source_signature": 114,
+      "/workspace/python-original-engine/repo/tests/phase621_oracle_storage.py::read": 9,
+      "/workspace/python-original-engine/repo/tests/phase621_oracle_host.py::_payload_rows": 1
+    },
+    "forbidden_operational_calls": 0,
+    "C_modules_and_candidate_imports": 0,
+    "profile_scope": "Exact production filenames including real relative schema compile filename; not a whole-process global proof."
+  },
+  "IO_review": {
+    "read_audit_events_by_stage": {
+      "before": 34,
+      "module_load": 7,
+      "controls": 31,
+      "after": 32
+    },
+    "controls_unique_paths": [
+      "/workspace/python-original-engine/repo/data/phase502-whelp-observer-source-v4/after-source/Items/Exclusive/Squirrel.gd",
+      "/workspace/python-original-engine/repo/data/phase571-root-future030-source-binding/source-binding.json",
+      "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/collector.gd",
+      "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/fixed-plan.json",
+      "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/fixed-v8-fixture.json",
+      "/workspace/python-original-engine/repo/data/phase572-mixed-observer-source-v2/source-default-p1-rule.json",
+      "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/after-source/native_random_observer_sink_v7.gd",
+      "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/combined-source-freeze.json",
+      "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/native-patch-source.json",
+      "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py",
+      "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/source-tuple.json",
+      "/workspace/python-original-engine/repo/data/phase621-hooks110-rebinding-source/host/combined-source-freeze.json",
+      "/workspace/python-original-engine/repo/tests/phase611_prepare_three_selected_hook_source_v2.py"
+    ],
+    "all_reads_within32_pinned_repo_files": true,
+    "absolute_Original_origins_payload_reads": 0,
+    "pool_resources_baseline_Expected_reads": 0,
+    "report_owner_matches_written_result_bytes": true,
+    "writes_list_is_pre_result_snapshot": true,
+    "not_claimed": "The recorded writes list is not a complete report-stage write log; report-write guard remained active."
+  },
+  "static_conservation_reused": {
+    "six_full_inverses": true,
+    "host_three_functions_A_two_functions_changed": true,
+    "storage_C_function_bodies_exact": true,
+    "initial578_B58015_C20_full8_B2_bodyexact": true,
+    "comparison_contract_only_native_profile": true
+  },
+  "limits": [
+    "Tuple cases prove exact early run/profile/origin association rejection, not complete tuple/deep origin5/owner positive validation.",
+    "source_gate and actual host-review branch were inspected statically and not dynamically executed. Future actual readonly plan must traverse those gates plus resources, Ready/process and budget gates.",
+    "No actual new INPUT, UID, clocks, B2 window, B1, full model or strict8 acceptance; no Native startup or restoration.",
+    "Accepted controls do not promote formal75/general Native support or authorize capture/configuration.",
+    "Current schema/control acceptance and run002 Source binding cannot make partial030 an admitted full record."
+  ],
+  "independent_review_operations": {
+    "SUT_calls": 0,
+    "Source_imports": 0,
+    "schema_imports": 0,
+    "Native": 0,
+    "model": 0,
+    "pool": 0,
+    "Expected": 0
+  },
+  "native": 0,
+  "models": 0
+}

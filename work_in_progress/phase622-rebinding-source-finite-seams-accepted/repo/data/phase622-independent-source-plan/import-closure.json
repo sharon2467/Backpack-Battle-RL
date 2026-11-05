@@ -1,0 +1,148 @@
+{
+  "schema": "phase622-exact-import-closure/1",
+  "modules": [
+    {
+      "name": "native_run_compaction",
+      "path": "tests/native_run_compaction.py",
+      "size": 27304,
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260"
+    },
+    {
+      "name": "phase363_oracle_storage",
+      "path": "tests/phase363_oracle_storage.py",
+      "size": 15496,
+      "sha256": "ca098c2900a1e9d1c255c5e77009456c6b00cf285dba90a96def7ba5d39792fc"
+    },
+    {
+      "name": "phase363_oracle_process",
+      "path": "tests/phase363_oracle_process.py",
+      "size": 13665,
+      "sha256": "b61dffa5c79874307ed548ddb2015ee03b9d5bdca9d45003ed844a9532cef00f"
+    },
+    {
+      "name": "phase621_oracle_storage",
+      "path": "tests/phase621_oracle_storage.py",
+      "size": 21560,
+      "sha256": "6c9972d3fe23223542b92f78f18c0ac575a1cdaf4e7649f0b21ce09ba3dac676"
+    },
+    {
+      "name": "phase621_oracle_host",
+      "path": "tests/phase621_oracle_host.py",
+      "size": 50013,
+      "sha256": "663870cdaba2fc60318f8c3efea621c8f3788adaa5ab8548a60b83a49e6129b2"
+    },
+    {
+      "name": "phase578_initial_receipt",
+      "path": "tests/phase578_initial_receipt.py",
+      "size": 18104,
+      "sha256": "b0bda89872eae4310bf32788954077b838364895a424d27120ef77b34905aaf5"
+    },
+    {
+      "name": "phase621_input_bridge",
+      "path": "tests/phase621_input_bridge.py",
+      "size": 46253,
+      "sha256": "29edf5627c66256bc4f0ee2299343a2904577323961417444797b726cfc7df2d"
+    }
+  ],
+  "nested_schema": {
+    "path": "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py",
+    "sha256": "a33d2b90669388e9b3b1973a70234a5ec672f480167c27a26e07245fff84f45c",
+    "size": 208143
+  },
+  "imports_AST": {
+    "tests/native_run_compaction.py": [
+      "from __future__ import annotations",
+      "import argparse",
+      "import contextlib",
+      "import ctypes",
+      "import datetime",
+      "import fcntl",
+      "import hashlib",
+      "import json",
+      "import os",
+      "from pathlib import Path, PurePosixPath",
+      "import shutil",
+      "import stat",
+      "import tempfile",
+      "import zipfile"
+    ],
+    "tests/phase363_oracle_storage.py": [
+      "from pathlib import Path, PurePosixPath",
+      "import contextlib",
+      "import fcntl",
+      "import hashlib",
+      "import json",
+      "import os",
+      "import shutil",
+      "import stat",
+      "import zipfile",
+      "import native_run_compaction as c"
+    ],
+    "tests/phase363_oracle_process.py": [
+      "from pathlib import Path",
+      "import os",
+      "import shutil",
+      "import signal",
+      "import selectors",
+      "import subprocess",
+      "import sys",
+      "import time",
+      "import math",
+      "from phase363_oracle_storage import directory, pin, write_new"
+    ],
+    "tests/phase621_oracle_storage.py": [
+      "from pathlib import Path, PurePosixPath",
+      "import contextlib",
+      "import fcntl",
+      "import hashlib",
+      "import json",
+      "import os",
+      "import shutil",
+      "import stat",
+      "import zipfile",
+      "import native_run_compaction as c"
+    ],
+    "tests/phase621_oracle_host.py": [
+      "from pathlib import Path",
+      "import argparse",
+      "import hashlib",
+      "import json",
+      "import os",
+      "import re",
+      "import shutil",
+      "import stat",
+      "from phase621_oracle_storage import (directory,member,pin,read,write_new,sync,budget,check_ready,lease,\n                                     reset_previous,install,archive_streaming,c,check_source_descriptor,MAX_INSTALL_PAYLOADS,MAX_INSTALL_BYTES,\n                                     regular_target,state_write,_source_signature)",
+      "from phase363_oracle_process import execute_process,rename_capture,usage",
+      "import sys",
+      "from types import ModuleType",
+      "import stat"
+    ],
+    "tests/phase578_initial_receipt.py": [
+      "from copy import deepcopy",
+      "import json",
+      "import re"
+    ],
+    "tests/phase621_input_bridge.py": [
+      "import argparse",
+      "from copy import deepcopy",
+      "import hashlib",
+      "import json",
+      "import math",
+      "import os",
+      "from pathlib import Path",
+      "import re",
+      "import stat",
+      "import struct",
+      "import sys",
+      "import types",
+      "from phase578_initial_receipt import build_initial_receipt,value_index"
+    ],
+    "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py": [
+      "import hashlib, json, math, re, struct",
+      "from copy import deepcopy",
+      "from dataclasses import dataclass",
+      "from types import SimpleNamespace"
+    ]
+  },
+  "no_baseline_reads": true
+}
