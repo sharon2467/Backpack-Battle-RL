@@ -1,0 +1,127 @@
+{
+  "schema": "phase631-independent-plan-invocation-review/1",
+  "status": "ACCEPTED_CALLER_PATH_CORRECTION_ONLY_NOT_PLAN_PASS",
+  "failure_evidence": {
+    "owner": {
+      "path": "data/phase630-root-fixed002-readonly-plan-first-001/owned-files.json",
+      "size": 1259,
+      "sha256": "4d115abbb177f16ad3690da592f76050deb560b2ba482a9d04e7f8cead7bb108"
+    },
+    "owner_files_verified": 6,
+    "invocation": {
+      "path": "data/phase630-root-fixed002-readonly-plan-first-001/invocation.json",
+      "size": 1043,
+      "sha256": "f0537753d99fee9b0f0922e80680eaf4feaec1fb137fc3f25a3094a53a507bfa"
+    },
+    "stderr": {
+      "path": "data/phase630-root-fixed002-readonly-plan-first-001/stderr.txt",
+      "size": 1427,
+      "sha256": "3c0c72b868f93fd010c2106836e208ed88ddddead85507858ac4dde0b7661bfd"
+    },
+    "execution": {
+      "path": "data/phase630-root-fixed002-readonly-plan-first-001/execution.json",
+      "size": 182,
+      "sha256": "4ef93fc65e3a67b7cb8bb540396aaab4fb3a31f973802c3ae9a6cae7877f363b"
+    },
+    "original_error_preserved": true
+  },
+  "finding": {
+    "classification": "Root CLI invocation/config descriptor path representation error; not production Source failure or platform permission denial",
+    "exact_rejection": "unapproved absolute Source reference",
+    "why": "CLI passes --config unchanged as descriptor.path. descriptor permits absolute paths only for five exact frozen Original Source origins; the repository config is not one. Relative paths are resolved beneath --source-root by the existing member guard.",
+    "first_failure_order": "main\u2192plan\u2192source_gate\u2192descriptor, rejecting absolute membership before config read, resource_gate, pool/check_ready, lease or any Original process. This is established from the actual traceback and unchanged Source ordering, not a new execution/profile.",
+    "Source_change_required": false,
+    "do_not_relax": "Retain the absolute Source origin whitelist and all descriptor/hash/path checks."
+  },
+  "Source": {
+    "host": {
+      "path": "tests/phase621_oracle_host.py",
+      "size": 50013,
+      "sha256": "663870cdaba2fc60318f8c3efea621c8f3788adaa5ab8548a60b83a49e6129b2"
+    },
+    "targeted_slices": [
+      {
+        "function": "descriptor",
+        "line": 47,
+        "end_line": 58,
+        "size_with_LF": 878,
+        "sha256_with_LF": "70400ccf39b9acf467bc8485f65aa89e94f4d0e64b0abb44fc5e809c6eda2cd8"
+      },
+      {
+        "function": "source_gate",
+        "line": 99,
+        "end_line": 155,
+        "size_with_LF": 4861,
+        "sha256_with_LF": "b144ec8074ab8e7f167b772b6c27888b7ae42c4549195f4902968f4fca34aa39"
+      },
+      {
+        "function": "plan",
+        "line": 174,
+        "end_line": 195,
+        "size_with_LF": 2041,
+        "sha256_with_LF": "ea4a9e0cc8fa1b1c8d15922cb087ef1fac68e0271830646f164ba284beb1341f"
+      },
+      {
+        "function": "main",
+        "line": 634,
+        "end_line": 643,
+        "size_with_LF": 984,
+        "sha256_with_LF": "411a4f30b845e508ff7e1f70e2b69bc34fd04fcebab067f3ea8747ab860f81f7"
+      }
+    ],
+    "absolute_origin_count": 5
+  },
+  "configuration": {
+    "path": "data/phase629-root-fixed002-conditional-release/oracle-acceptance.json",
+    "size": 3628,
+    "sha256": "a9419a16b9d26e6cadf2da806d8b0d7e79fb27ef9b120f253af4201ee033a5d8"
+  },
+  "proposed_correction": {
+    "argv": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "-B",
+      "/workspace/python-original-engine/repo/tests/phase621_oracle_host.py",
+      "--source-root",
+      "/workspace/python-original-engine/repo",
+      "--task-root",
+      "/workspace/godotsteam-startup-20261013",
+      "--baseline",
+      "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles",
+      "--pool",
+      "/workspace/native-combat-20261013/pool",
+      "--runs-root",
+      "/workspace/native-combat-20261013/runs",
+      "--config",
+      "data/phase629-root-fixed002-conditional-release/oracle-acceptance.json",
+      "--config-size",
+      "3628",
+      "--config-sha256",
+      "a9419a16b9d26e6cadf2da806d8b0d7e79fb27ef9b120f253af4201ee033a5d8",
+      "--plan"
+    ],
+    "cwd": "/workspace/python-original-engine/repo",
+    "outer_timeout": 120,
+    "changed_argument_index": 14,
+    "before": "/workspace/python-original-engine/repo/data/phase629-root-fixed002-conditional-release/oracle-acceptance.json",
+    "after": "data/phase629-root-fixed002-conditional-release/oracle-acceptance.json",
+    "other_arguments_exact": true,
+    "same_config_bytes": true,
+    "same_readonly_plan_mode": true
+  },
+  "remaining": [
+    "Corrected invocation has not run; no successful readonly plan or resource/pool/startup gate is claimed.",
+    "Root may make its separately authorized readonly plan invocation in a new output directory;630 first failure remains immutable.",
+    "Capture/execute and restoration are not authorized by this review; any later operation still requires its actual gates and release."
+  ],
+  "independent_operations": {
+    "SUT_import": 0,
+    "helper": 0,
+    "plan": 0,
+    "Native": 0,
+    "battle": 0,
+    "pool_resource_reads": 0,
+    "Expected": 0,
+    "Source_writes": 0
+  },
+  "review_read_diagnostic": "Initial display command used stderr instead of actual owned stderr.txt; no file was changed and the exact owner-listed stderr.txt was then read. Not an additional plan attempt."
+}

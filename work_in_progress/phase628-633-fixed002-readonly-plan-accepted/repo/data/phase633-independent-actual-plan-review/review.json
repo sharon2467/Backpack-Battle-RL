@@ -1,0 +1,191 @@
+{
+  "schema": "phase633-independent-actual-plan-review/1",
+  "status": "ACTUAL_READONLY_PLAN_ACCEPTED_PENDING_SEPARATE_EXECUTE_RELEASE",
+  "actual_plan": {
+    "path": "data/phase632-root-fixed002-readonly-plan-relative-001/stdout.json",
+    "size": 79656,
+    "sha256": "34f43ed167e696b1923550730ec9be2143d727082ba05fd82479a881b93f772f"
+  },
+  "actual_owner": {
+    "path": "data/phase632-root-fixed002-readonly-plan-relative-001/owned-files.json",
+    "size": 1067,
+    "sha256": "255af379faf626cb58e85fefd8b053e33318ce3f952563501e04f1f9e7907326"
+  },
+  "owned_files_verified": 5,
+  "actual_execution": {
+    "pid": 6087,
+    "pgid": 6087,
+    "reaped": true,
+    "returncode": 0,
+    "elapsed_seconds": 11.283987711998634,
+    "timed_out": false,
+    "plan_calls": 1,
+    "oracle_battle_calls": 0
+  },
+  "actual_invocation": {
+    "path": "data/phase632-root-fixed002-readonly-plan-relative-001/invocation.json",
+    "size": 1291,
+    "sha256": "0e41349b6d5fa754576541ed99948cd57bedf9b26521af8c2978a48461fece43"
+  },
+  "config": {
+    "path": "data/phase629-root-fixed002-conditional-release/oracle-acceptance.json",
+    "size": 3628,
+    "sha256": "a9419a16b9d26e6cadf2da806d8b0d7e79fb27ef9b120f253af4201ee033a5d8"
+  },
+  "configuration_same_bytes_as629": true,
+  "corrected_argv_exact631": true,
+  "host_Source": {
+    "path": "tests/phase621_oracle_host.py",
+    "sha256": "663870cdaba2fc60318f8c3efea621c8f3788adaa5ab8548a60b83a49e6129b2",
+    "size": 50013
+  },
+  "host_freeze": {
+    "path": "data/phase621-hooks110-rebinding-source/host/combined-source-freeze.json",
+    "sha256": "2df37012b8f3313ce010104a0fe835a87f066556c965753fede8c3874a1e748a",
+    "size": 71732
+  },
+  "reviews": {
+    "host_source": {
+      "receipt": {
+        "path": "data/phase622-independent-final-acceptance/host-source-review.json",
+        "size": 1218,
+        "sha256": "dbf2c78f34858b1eb54f66264b1f89fa60cc77c3ee33efb7c12b8547c3caf46a"
+      },
+      "owner": {
+        "path": "data/phase622-independent-final-acceptance/owned-files.json",
+        "size": 459,
+        "sha256": "da960f6bebc50499cb9c0eaf3f3360a9054f0bb0a5306f935b4545ed8db53a20"
+      }
+    },
+    "observer612": {
+      "owner": {
+        "path": "data/phase612-independent-final-acceptance/owned-files.json",
+        "sha256": "c67f4a92d524edc744ffec1422a313538030b5a98afd6f3fce9a601a6e875ccd",
+        "size": 484
+      },
+      "receipt": {
+        "path": "data/phase612-independent-final-acceptance/source-acceptance.json",
+        "sha256": "792949a478ecc560d8aa488791c7b4a359500954ca46fb4c7a36eda5f4e922e5",
+        "size": 2149
+      }
+    }
+  },
+  "success_recovery_Source_acceptance": {
+    "path": "data/phase628-independent-recovery-source-review/review.json",
+    "size": 6047,
+    "sha256": "493ad0a67cba157e66902f3658542599a8f340d47e9847f798a1b08df967b6d9"
+  },
+  "actual_gate_conclusion": {
+    "basis": "The owned process exited0 and produced a complete plan from the unchanged pinned host. Static unconditional call order shows full source_gate, tuple/deep owner/origin/resource, payload, check_ready inventory/process, budget and unique-run checks completed before return. No per-helper trace or second invocation is claimed.",
+    "deep_Source_tuple_owner_origin5": "Actual path traversed successfully in632; earlier622 static-only coverage remains honestly historical.",
+    "resources": "Actual host resource_gate passed; independent633 did not reread resource binaries.",
+    "predecessor": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06",
+    "READY_inventory_process": "Actual check_ready returned the predecessor; scoped readable-process semantics do not imply global process completeness.",
+    "run002_absent_at_plan": true,
+    "space": {
+      "reserve": 4294967296,
+      "attempt": 1610612736,
+      "free": 6008930304,
+      "required": 5905580032,
+      "margin": 103350272
+    },
+    "unlocked": true,
+    "lease_acquired": false
+  },
+  "fixed_case": {
+    "case": "NATIVE-030-MIXED-MODIFIERS-A",
+    "run": "/workspace/native-combat-20261013/runs/original030-mixed-modifiers-A-single-002",
+    "Source_attempt_field": 1,
+    "slots": 29,
+    "global_seed": 57101,
+    "util_seed": 57102,
+    "native_config": {
+      "case_id": "NATIVE-030-MIXED-MODIFIERS-A",
+      "global_seed": 57101,
+      "player_fixture_enabled": true,
+      "schema": "native-combat-capture/1",
+      "timeouts": {
+        "battle_seconds": 120,
+        "total_seconds": 295
+      },
+      "util_seed": 57102
+    },
+    "patch_targets": 76,
+    "artifacts": 3,
+    "install_total": 79,
+    "install_bytes": 817696,
+    "case_inputs": {
+      "custom_player.json": {
+        "path": "data/phase572-mixed-observer-source-v2/case-inputs/custom_player.json",
+        "sha256": "da55a52433bf6ccb98cd69633729a9bf287c1475a2c5e4d15d3adedc44f157ea",
+        "size": 1915
+      },
+      "custom_opponent.json": {
+        "path": "data/phase572-mixed-observer-source-v2/case-inputs/custom_opponent.json",
+        "sha256": "07fa05c47df31b06145471a3710c8e5a2ef0b67d1c49a89dadad79f283ea5424",
+        "size": 585
+      },
+      "native_capture_config.json": {
+        "path": "data/phase572-mixed-observer-source-v2/case-inputs/native_capture_config.json",
+        "sha256": "8755cd0dce426ac29dca4fde7c2fac96dde2036255648a8e4b72594b7cdb8f36",
+        "size": 240
+      }
+    },
+    "driver_descriptor_count": 194,
+    "driver_membership_complete_for_execute_payload_graph": true,
+    "collector_scope": "FIXED_29_ITEM_ZERO_KING_MIXED_ORACLE_ONLY"
+  },
+  "source_order_evidence": [
+    {
+      "function": "plan",
+      "line": 174,
+      "end_line": 195,
+      "sha256_with_LF": "ea4a9e0cc8fa1b1c8d15922cb087ef1fac68e0271830646f164ba284beb1341f"
+    },
+    {
+      "function": "source_gate",
+      "line": 99,
+      "end_line": 155,
+      "sha256_with_LF": "b144ec8074ab8e7f167b772b6c27888b7ae42c4549195f4902968f4fca34aa39"
+    },
+    {
+      "function": "validate_active_source_tuple",
+      "line": 475,
+      "end_line": 558,
+      "sha256_with_LF": "7e56114ee973f926995410dfe97ec50ee373deb8495e2f4629125efd6f4abbaf"
+    },
+    {
+      "function": "resource_gate",
+      "line": 158,
+      "end_line": 171,
+      "sha256_with_LF": "bf3d4d84f745eadbb1b2f83b729a2b4960f7fb08d6ef724b83eda07683f9d8db"
+    }
+  ],
+  "actual_zeros": {
+    "oracle_processes": 0,
+    "models": 0,
+    "projection_calls": 0,
+    "Game_copies": 0
+  },
+  "readiness_limits": [
+    "This is an accepted actual readonly plan, not execute/capture success or a locked predecessor image.",
+    "Root may separately release one fixed002 execution under629; execute must repeat its fresh plan/source/resource/budget/unique checks and all required exclusive-lease Ready/process gates.",
+    "Save actual state raw bytes and mode/mtime, fixtures, old patch/marker and new journal before relying on a restoration request. No stale snapshot substitutes for these actual materials.",
+    "First operational error stops and preserves evidence; no automatic retry. Generic failed state cannot use successful-PENDING recovery or old601authority.",
+    "625 remains Source-only: actual writer/request, independent physical readback and Root READY commit require their separate actual evidence and permissions.",
+    "No actual INPUT, B2/B1, model or strict8 validation is established. Formal/general Native support is not promoted.",
+    "630 invocation failure remains preserved and is not overwritten by632 success."
+  ],
+  "real_remaining_blockers": [],
+  "independent_review_operations": {
+    "SUT": 0,
+    "plan": 0,
+    "inventory": 0,
+    "pool_reads": 0,
+    "resource_payload_reads": 0,
+    "Native": 0,
+    "Expected": 0,
+    "capture": 0,
+    "restore": 0
+  }
+}

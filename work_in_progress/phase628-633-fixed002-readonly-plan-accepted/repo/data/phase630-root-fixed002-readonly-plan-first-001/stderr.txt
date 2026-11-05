@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/workspace/python-original-engine/repo/tests/phase621_oracle_host.py", line 646, in <module>
+    if __name__=='__main__': main()
+                             ^^^^^^
+  File "/workspace/python-original-engine/repo/tests/phase621_oracle_host.py", line 643, in main
+    print(json.dumps(function(args.source_root,value,args.task_root,args.baseline,args.pool,args.runs_root),indent=2),flush=True)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/python-original-engine/repo/tests/phase621_oracle_host.py", line 175, in plan
+    root,config,freeze=source_gate(source_root,config_descriptor)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/python-original-engine/repo/tests/phase621_oracle_host.py", line 100, in source_gate
+    root=directory(source_root); config_path=descriptor(root,config_descriptor); config=read(config_path)
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/python-original-engine/repo/tests/phase621_oracle_host.py", line 52, in descriptor
+    if ABSOLUTE_SOURCE_PINS.get(row['path'])!=row:raise ValueError('unapproved absolute Source reference')
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: unapproved absolute Source reference

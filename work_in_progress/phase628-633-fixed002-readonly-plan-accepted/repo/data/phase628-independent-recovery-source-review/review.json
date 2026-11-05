@@ -1,0 +1,168 @@
+{
+  "schema": "phase628-independent-recovery-source-review/1",
+  "status": "ACCEPTED_SOURCE_ONLY_PENDING_ROOT_OPERATIONAL_RELEASE",
+  "Source_owner": {
+    "path": "data/phase625-fixed002-success-recovery-source/owned-files.json",
+    "size": 4296,
+    "sha256": "4996e4d38292ad125be1531c429c7e764beebae0da7400513afa166da8472b92"
+  },
+  "Source_freeze": {
+    "path": "data/phase625-fixed002-success-recovery-source/source-freeze.json",
+    "size": 2691,
+    "sha256": "e6650efda5a4b74d9c9031a64e0e70a0cd24aa082ad25de7634a7742e41873e5"
+  },
+  "owned_refs_checked": 22,
+  "accepted_design": {
+    "path": "data/phase624-independent-recovery-design-review/review.json",
+    "size": 5520,
+    "sha256": "ab32a6ce5152a99fc624e6f63e60b9f31fa2cc0a1b118e66d79a5ea6d6c4a41e"
+  },
+  "modules": [
+    {
+      "role": "writer",
+      "source": {
+        "path": "tests/phase625_restore_predecessor.py",
+        "size": 27971,
+        "sha256": "32ec2cd28c615604556d8bea5580177540cf46e69da0b1310eeb5b69a756c8e9"
+      },
+      "preimage": {
+        "path": "tests/phase590_restore_predecessor.py",
+        "size": 27962,
+        "sha256": "06604457afbc94aaf50dd16c1661b5a7dd1314c96ae6e53ff4f2273d1a67b5a2"
+      },
+      "full_inverse_exact": true,
+      "total_top_level_functions": 23,
+      "raw_exact_functions": [
+        "action",
+        "apply",
+        "check_image",
+        "decoded",
+        "descriptor",
+        "equal",
+        "finish_metadata",
+        "image_record",
+        "load_modules",
+        "no_process",
+        "path_of",
+        "public_action",
+        "recheck_target",
+        "require",
+        "restore",
+        "row_record",
+        "save",
+        "select_restore_images",
+        "signature",
+        "stable"
+      ],
+      "changed_only_declared_literals": [
+        "main",
+        "prepare",
+        "validate_request"
+      ],
+      "all_function_bodies_exact_after_finite_literal_normalization": true,
+      "inverse_replacements": 8
+    },
+    {
+      "role": "reader",
+      "source": {
+        "path": "tests/phase625_independent_predecessor_readback.py",
+        "size": 25387,
+        "sha256": "7ed1f741969f391a2c42d8e7b950cbc93cb4bdc814725aec2b0106928849a4f4"
+      },
+      "preimage": {
+        "path": "tests/phase590_independent_predecessor_readback.py",
+        "size": 25372,
+        "sha256": "17bcaeb33ea7cfdd440f0231d0ac33fdca02b14871c298e0ca7bb027b55a07da"
+      },
+      "full_inverse_exact": true,
+      "total_top_level_functions": 12,
+      "raw_exact_functions": [
+        "decoded",
+        "descriptor",
+        "difference",
+        "equal",
+        "path_of",
+        "relocate",
+        "require",
+        "save",
+        "signature",
+        "stable"
+      ],
+      "changed_only_declared_literals": [
+        "main",
+        "readback"
+      ],
+      "all_function_bodies_exact_after_finite_literal_normalization": true,
+      "inverse_replacements": 7
+    }
+  ],
+  "actual_corpus": {
+    "targets": 79,
+    "bytes": 817696,
+    "host_freeze": {
+      "path": "data/phase621-hooks110-rebinding-source/host/combined-source-freeze.json",
+      "size": 71732,
+      "sha256": "2df37012b8f3313ce010104a0fe835a87f066556c965753fede8c3874a1e748a"
+    }
+  },
+  "new_protocol": {
+    "writer_request_schema": "phase625-fixed002-predecessor-restore-request/1",
+    "reader_request_schema": "phase625-fixed002-predecessor-readback-request/1",
+    "writer_output_prefix": "phase625-restore-",
+    "reader_output_prefix": "phase625-readback-",
+    "request_key_counts": [
+      7,
+      9
+    ],
+    "evidence_counts": [
+      12,
+      8
+    ],
+    "same_CLI": [
+      "--config",
+      "--config-sha256",
+      "--output-new"
+    ]
+  },
+  "template_failclosed_static": {
+    "writer": "False explicit restoration authorization rejects before previous/evidence/physical processing. Main still performs ordinary report/config lifecycle; no invocation was made.",
+    "reader": "Null previous cannot satisfy absolute runtime paths. It may authenticate the frozen Source descriptor before that rejection, and has no pool/restore admission.",
+    "actual_previous": null,
+    "all_evidence_unbound": true,
+    "not_runtime_authorized": true
+  },
+  "conserved_physical_boundary": [
+    "selector/apply/restore currentgraph, O\u222aN\u222aF and backup authority",
+    "exclusive same-inode lock, scoped readable process checks with global completeness not claimed",
+    "regular/stable bytes, atomic/fsync, mode/mtime and directory metadata",
+    "strict actual PENDING/run/previous/control-preimage association",
+    "state/READY writes zero; actual independent readback remains distinct from writer receipt success",
+    "Compaction unchanged, storage dependency rebinding to already accepted exact621 module"
+  ],
+  "verification_plan": {
+    "path": "data/phase628-independent-recovery-source-review/verification-plan.json",
+    "size": 1108,
+    "sha256": "0efa42d5971227a62a00b77ba85444eb32cf6c653ff30d928af029fbceeda50a"
+  },
+  "dynamic_coverage": "NONE: no module/helper/early-negative/physical invocation. Static mechanical proof is sufficient for this Source delta; no new synthetic physical PASS is invented.",
+  "failure_route": "Unsupported. Generic failure requires new real owned failure authority and separately reviewed case-specific Source/request; no old601 authority or manufactured PENDING.",
+  "remaining": [
+    "Root decides separate operational release after complete reviewable config and fresh gates.626/627 remains false-authority draft.",
+    "Actual operation/lease supplies previous and all12/8 material descriptors; no earlier snapshot is substituted.",
+    "Successful files-only restoration leaves real PENDING state unchanged. Independent full physical PASS must precede separate Root READY commit."
+  ],
+  "operations": {
+    "Source_imports": 0,
+    "compile": 0,
+    "helper": 0,
+    "tests": 0,
+    "host_plan": 0,
+    "pool_resource_reads": 0,
+    "restore": 0,
+    "readback": 0,
+    "Native": 0,
+    "Expected": 0,
+    "state_writes": 0
+  },
+  "blockers": []
+}

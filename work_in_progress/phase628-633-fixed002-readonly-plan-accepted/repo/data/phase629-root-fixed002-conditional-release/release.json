@@ -1,0 +1,57 @@
+{
+  "schema": "phase629-root-repaired-fixed002-conditional-release/1",
+  "utc": "2026-11-05T11:01:39.354801+00:00",
+  "config": {
+    "path": "data/phase629-root-fixed002-conditional-release/oracle-acceptance.json",
+    "size": 3628,
+    "sha256": "a9419a16b9d26e6cadf2da806d8b0d7e79fb27ef9b120f253af4201ee033a5d8"
+  },
+  "SPEC": {
+    "path": "docs/phase629_fixed002_conditional_execution_spec.md",
+    "size": 1977,
+    "sha256": "90297b7d95e0fdbe212fc08ef837822d0505beff37ab43518734e485acab79c7"
+  },
+  "independent_reviews": [
+    {
+      "path": "data/phase622-independent-final-acceptance/review.json",
+      "size": 15815,
+      "sha256": "74452a53652982568d3d99964be016c5ecfc6a896ca7915359e3804a180ee8f5"
+    },
+    {
+      "path": "data/phase627-independent-config-draft-review/review.json",
+      "size": 8998,
+      "sha256": "a9bd29f85adc2032681f947d5245fe1c6c3ba76ce9ed86231fe61a5e3854acd5"
+    },
+    {
+      "path": "data/phase628-independent-recovery-source-review/review.json",
+      "size": 6047,
+      "sha256": "493ad0a67cba157e66902f3658542599a8f340d47e9847f798a1b08df967b6d9"
+    }
+  ],
+  "Source_run": "/workspace/native-combat-20261013/runs/original030-mixed-modifiers-A-single-002",
+  "CASE": "NATIVE-030-MIXED-MODIFIERS-A",
+  "targets": 79,
+  "source_bytes": 817696,
+  "layout": "samefixed29P23O6",
+  "global_seed": 57101,
+  "util_seed": 57102,
+  "plan_allowed": true,
+  "execute_conditions": [
+    "actualfreshreadonlyplanPASS",
+    "independentactualplanacceptance",
+    "repeatgatesunderlease",
+    "actualsavedpredecessorbackupsbeforemutation"
+  ],
+  "max_parse": 1,
+  "max_battle": 1,
+  "parse_seconds": 30,
+  "battle_seconds": 300,
+  "collector_seconds": 295,
+  "internal_seconds": 120,
+  "automatic_retry": false,
+  "models": 0,
+  "inputbuilds": 0,
+  "Expected_comparison": 0,
+  "success_recovery_Source": "data/phase625-fixed002-success-recovery-source/source-freeze.json",
+  "failure_route": "Preserveactualfailedstate/newownedauthority/separatelyreviewedadaptation;never601reuse orfakePENDING"
+}
