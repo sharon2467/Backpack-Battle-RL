@@ -1,0 +1,243 @@
+{
+  "schema": "phase603-independent-source-and-pure-association-acceptance/1",
+  "status": "ACCEPTED_SOURCE_AND_FINITE_PURE_ASSOCIATION_ONLY",
+  "references": {
+    "source_review": {
+      "path": "data/phase603-independent-source-plan/static-review.json",
+      "size": 4382,
+      "sha256": "35a20f1837bdb6c693fa50fbd4bb1db2274631185d1d417ec0e7dff43ae7cdcc"
+    },
+    "plan_owner": {
+      "path": "data/phase603-independent-source-plan/owned-files.json",
+      "size": 1479,
+      "sha256": "0fe7e09be80d56902e3af503c6137f6a2cfdcfc968ad3d71492fce3fced3ab58"
+    },
+    "execution_plan": {
+      "path": "data/phase603-independent-source-plan/execution-plan.json",
+      "size": 2391,
+      "sha256": "ec1e924cc262a455e8302945dd26ebb70d753f6171961f0f2f12b612b1883afc"
+    },
+    "pins": {
+      "path": "data/phase603-independent-source-plan/pins.json",
+      "size": 6946,
+      "sha256": "8d708ef377423a2f98bd67849a2011d52152850b2d71f0a9c65d2fcdca29618b"
+    },
+    "vectors": {
+      "path": "data/phase603-independent-source-plan/vectors.json",
+      "size": 73360,
+      "sha256": "4a74f5e12ae23974dea0c47de0c745ca689a03722a0e13b7d79161c27fcc08f9"
+    },
+    "actual_result": {
+      "path": "data/phase603-independent-controls-first-001/result.json",
+      "size": 25759,
+      "sha256": "b4e71bafe5fe17702eb311d3b216e83ec396e29966c8862977e80524fbb67c2f"
+    },
+    "actual_owner": {
+      "path": "data/phase603-independent-controls-first-001/owned-files.json",
+      "size": 258,
+      "sha256": "bf48a1e8592881571de985a67b60a167b76b560902e0007db5b3d9d7b0dead93"
+    },
+    "root_release": {
+      "path": "data/phase603-root-unique-association-control-release/release.json",
+      "size": 766,
+      "sha256": "aa8cb90ba05706d39511c4729f7f9dee258a33d5d54f71d476e81a0c3939d85c"
+    },
+    "root_execution": {
+      "path": "data/phase603-root-unique-association-control-release/execution.json",
+      "size": 150,
+      "sha256": "3467699f2ba91182ba47852318c0f93e82cf686da463a50f10ebb8d8c63000af"
+    },
+    "root_owner": {
+      "path": "data/phase603-root-unique-association-control-release/owned-files.json",
+      "size": 1247,
+      "sha256": "5e8233b2c9b7b1e2159d479b2be79b33e61e9fb67612a8f63056ad60d2e61856"
+    },
+    "source_owner": {
+      "path": "data/phase602-failed030-recovery-source/owned-files.json",
+      "size": 5857,
+      "sha256": "d3249a2e0533e8e1e331be929c4d3661baf88d68d84b47c1ea8066ba71f005df"
+    },
+    "source_freeze": {
+      "path": "data/phase602-failed030-recovery-source/source-freeze.json",
+      "size": 4552,
+      "sha256": "ba253d52e9541c149554f580b741aff7d0eb9c6f000aaa3b71e519490fa5155f"
+    },
+    "failure_authority": {
+      "path": "data/phase601-root-failed030-authority/authority.json",
+      "size": 8428,
+      "sha256": "acde0c7ae926c0f1b097e7cee662fbd93416a68352d51c6c556d7c021fd04495"
+    }
+  },
+  "actual_execution": {
+    "invocations": 1,
+    "pid": 2342,
+    "reaped": true,
+    "exit": 0,
+    "stdout_bytes": 0,
+    "stderr_bytes": 0,
+    "outer_timeout": false,
+    "outer_seconds": 0.1277587010008574,
+    "inner_seconds": 0.056863007999709225,
+    "module_eval_attempts": 1,
+    "module_imports_completed": 1,
+    "top_entered": 6,
+    "top_completed": 6,
+    "positive": 2,
+    "expected_reject": 4,
+    "retry": 0
+  },
+  "cases": [
+    {
+      "id": "01_fixed_writer_association",
+      "role": "writer",
+      "status": "PASS",
+      "first_reject": null,
+      "input_before": "8ad5ae5d75a822597d3a31d4c3d52367c221332bc84c2e5268d7cf44566a2540",
+      "input_after": "8ad5ae5d75a822597d3a31d4c3d52367c221332bc84c2e5268d7cf44566a2540"
+    },
+    {
+      "id": "02_reader_eight_key_association",
+      "role": "reader",
+      "status": "PASS",
+      "first_reject": null,
+      "input_before": "68425f4422dd7bf9d245de08e5417ef1fef93a3917d03d97eac9ccf4914558fe",
+      "input_after": "68425f4422dd7bf9d245de08e5417ef1fef93a3917d03d97eac9ccf4914558fe"
+    },
+    {
+      "id": "03_strict_state_metadata_type",
+      "role": "writer",
+      "status": "PASS",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "locked failed metadata:mode:type"
+      },
+      "input_before": "a72b4e6017a7f99233f84a771c676beaae15537db468b880c487facea2dc3431",
+      "input_after": "a72b4e6017a7f99233f84a771c676beaae15537db468b880c487facea2dc3431"
+    },
+    {
+      "id": "04_changed_execute_owner_bytes",
+      "role": "writer",
+      "status": "PASS",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "fixed material SHA:execute_owner/size:value"
+      },
+      "input_before": "e4888f99b86c8c8be860623cee3c559cf492d1147cbf6db7e92545c909fba68f",
+      "input_after": "e4888f99b86c8c8be860623cee3c559cf492d1147cbf6db7e92545c909fba68f"
+    },
+    {
+      "id": "05_saved_ready_foreign_predecessor",
+      "role": "writer",
+      "status": "PASS",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "saved ready predecessor:value"
+      },
+      "input_before": "119ca944ede9ad6b5a08f5a74bc5aa854145d1c0f1650cb320dc4b3116d63a20",
+      "input_after": "119ca944ede9ad6b5a08f5a74bc5aa854145d1c0f1650cb320dc4b3116d63a20"
+    },
+    {
+      "id": "06_foreign_controls_descriptor",
+      "role": "writer",
+      "status": "PASS",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "actual owned evidence:controls_manifest/sha256:value"
+      },
+      "input_before": "2564bcf7b1a694e7144ed50e3802cf9821aefbc52cde7c1f4eb5967850a2b8cf",
+      "input_after": "2564bcf7b1a694e7144ed50e3802cf9821aefbc52cde7c1f4eb5967850a2b8cf"
+    }
+  ],
+  "independent_checks": {
+    "plan_argv_matches_actual_invocation": true,
+    "plan_owner_actual_owner_root_owner_all_members_actual_bytes_verified": true,
+    "report_owner_matches_actual_result_bytes": true,
+    "pins_before_after_and_current_exact": 25,
+    "all_six_expected_returns_or_first_rejections_match_presealed_vectors": true,
+    "all_six_argument_hashes_independently_recomputed_from_vectors_and_fixed_material_bytes": true,
+    "arguments_before_after_equal": true,
+    "module_constants_unchanged_recorded": true,
+    "origin": {
+      "_phase603_actual_binding": "/workspace/python-original-engine/repo/tests/phase602_failed030_binding.py"
+    },
+    "profile": {
+      "/workspace/python-original-engine/repo/tests/phase602_failed030_binding.py::<module>": 1,
+      "/workspace/python-original-engine/repo/tests/phase602_failed030_binding.py::validate_failure_association": 6,
+      "/workspace/python-original-engine/repo/tests/phase602_failed030_binding.py::_require": 4933,
+      "/workspace/python-original-engine/repo/tests/phase602_failed030_binding.py::_same": 1001,
+      "/workspace/python-original-engine/repo/tests/phase602_failed030_binding.py::_decode": 57,
+      "/workspace/python-original-engine/repo/tests/phase602_failed030_binding.py::pairs": 433,
+      "/workspace/python-original-engine/repo/tests/phase602_failed030_binding.py::_owned": 35,
+      "/workspace/python-original-engine/repo/tests/phase602_failed030_binding.py::_path": 545,
+      "/workspace/python-original-engine/repo/tests/phase602_failed030_binding.py::_descriptor": 190,
+      "/workspace/python-original-engine/repo/tests/phase602_failed030_binding.py::<genexpr>": 12350
+    },
+    "profile_other_production_modules": 0,
+    "forbidden_calls": [],
+    "read_audit_events": 62,
+    "read_audit_unique_paths": 25,
+    "read_audit_all_in_exact_repo_pin_allowlist": true,
+    "read_events_during_controls": 0,
+    "physical_pool_baseline_resource_Expected_reads": 0,
+    "write_audit_limit": "result.writes is the serialization snapshot before result.json write, not a complete report-phase write log; exact report bytes are independently owner-verified."
+  },
+  "positive_scope": {
+    "writer": "Pure fixed association accepted the preserved actual failed bytes/metadata, all12 fixed evidence descriptors and controls/saved-ready previous027 linkage. This did not open or compare the current pool.",
+    "reader": "Pure eight-key association accepted six shared fixed descriptors plus explicitly synthetic unopened restore_receipt/restore_owner slots. The production reader ownership check is conserved statically; actual writer receipt verification was not exercised.",
+    "returned_state_writes": 0,
+    "returned_partial_capture_admitted": false
+  },
+  "rejection_scope": {
+    "03": "BOOL mode rejected at locked failed metadata type; no coercion.",
+    "04": "Changed execute-owner bytes rejected at fixed material size guard before owner JSON decoding; not claimed as a deep ownership failure.",
+    "05": "Saved ready image naming030 instead of027 rejected at predecessor association.",
+    "06": "Foreign controls descriptor hash rejected at final fixed evidence descriptor comparison."
+  },
+  "static_source_acceptance_reused": {
+    "owner_references_verified": 30,
+    "full_file_inverse_count": 2,
+    "writer_old_functions_exact": 20,
+    "reader_old_functions_exact": 10,
+    "shared_loading_wrapper_exact": true,
+    "pure_helper_called_after_saved0_validation_inside_original_lock": true,
+    "physical_writes_after_full_prepare_only": true,
+    "no_PENDING_fabrication": true,
+    "physical_selector_apply_restore_process_inventory_metadata_state_checks_preserved": true,
+    "request_keys": [
+      7,
+      9
+    ],
+    "evidence_keys": [
+      12,
+      8
+    ],
+    "writer_prefix": "phase602-restore-",
+    "reader_prefix": "phase602-readback-"
+  },
+  "not_executed": {
+    "writer_reader_compaction_imports": 0,
+    "production_failure_association_wrapper": 0,
+    "host_plan": 0,
+    "lease": 0,
+    "process_check": 0,
+    "pool_inventory": 0,
+    "restore": 0,
+    "full_independent_readback": 0,
+    "state_or_READY_writes": 0,
+    "Native": 0,
+    "model": 0,
+    "INPUT_build": 0,
+    "Expected_business_decode": 0
+  },
+  "next_required": [
+    "Root may prepare a concrete new7-key602 restore request with the12 actual descriptors, exact current failed-state identity and explicit root_restore_authorized true, then separately release the single writer invocation.",
+    "Real writer must retain fresh locked state/process/currentgraph/backup gates. The historical scoped monitor evidence and these pure controls cannot substitute for them.",
+    "After an actual owned writer receipt, Root supplies the real9-key readback request/eight evidence descriptors and separately releases the independent full physical reader.",
+    "Only after actual independent physical PASS may Root separately commit the saved ready-state bytes and metadata. Until then preserve the true246B failed state, never invent PENDING."
+  ],
+  "limits": [
+    "No actual restoration or restored-state physical PASS has occurred in this review.",
+    "The partial030 capture remains incomplete and is not admitted as full INPUT; observer hook repair and any new capture are separate decisions.",
+    "Source and finite pure-association acceptance does not promote Native, runtime equality, formal75 or general engine support."
+  ]
+}

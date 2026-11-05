@@ -1,0 +1,662 @@
+{
+  "schema": "phase603-independent-association-controls/1",
+  "status": "PASS_PURE_FAILURE_ASSOCIATION_ONLY",
+  "cases": [
+    {
+      "id": "01_fixed_writer_association",
+      "role": "writer",
+      "status": "PASS",
+      "expected_rejection_depth": null,
+      "returned": {
+        "authority": {
+          "path": "data/phase601-root-failed030-authority/authority.json",
+          "size": 8428,
+          "sha256": "acde0c7ae926c0f1b097e7cee662fbd93416a68352d51c6c556d7c021fd04495"
+        },
+        "authority_owner": {
+          "path": "data/phase601-root-failed030-authority/owned-files.json",
+          "size": 531,
+          "sha256": "033b4c6563c5d31d6a4688a1a82cafe3d8f355141aa62258177112ce69caf77a"
+        },
+        "actual_failed_state": {
+          "path": "/workspace/native-combat-20261013/pool/state.json",
+          "size": 246,
+          "sha256": "698998f49b9bbe4dba03693016c3b35aca6d7a7129278aa187a77ba5ad7bc6ed"
+        },
+        "root_execution": {
+          "path": "data/phase600-root-fixed030-execute-first-001/execution.json",
+          "size": 1130,
+          "sha256": "b60cf3213d4e7ac9b034d58080ef49fe394be423afd53d99a592009aa91b7410"
+        },
+        "previous_run": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06",
+        "state_writes": 0,
+        "partial_capture_admitted": false
+      },
+      "input_before": "8ad5ae5d75a822597d3a31d4c3d52367c221332bc84c2e5268d7cf44566a2540",
+      "input_after": "8ad5ae5d75a822597d3a31d4c3d52367c221332bc84c2e5268d7cf44566a2540"
+    },
+    {
+      "id": "02_reader_eight_key_association",
+      "role": "reader",
+      "status": "PASS",
+      "expected_rejection_depth": null,
+      "returned": {
+        "authority": {
+          "path": "data/phase601-root-failed030-authority/authority.json",
+          "size": 8428,
+          "sha256": "acde0c7ae926c0f1b097e7cee662fbd93416a68352d51c6c556d7c021fd04495"
+        },
+        "authority_owner": {
+          "path": "data/phase601-root-failed030-authority/owned-files.json",
+          "size": 531,
+          "sha256": "033b4c6563c5d31d6a4688a1a82cafe3d8f355141aa62258177112ce69caf77a"
+        },
+        "actual_failed_state": {
+          "path": "/workspace/native-combat-20261013/pool/state.json",
+          "size": 246,
+          "sha256": "698998f49b9bbe4dba03693016c3b35aca6d7a7129278aa187a77ba5ad7bc6ed"
+        },
+        "root_execution": {
+          "path": "data/phase600-root-fixed030-execute-first-001/execution.json",
+          "size": 1130,
+          "sha256": "b60cf3213d4e7ac9b034d58080ef49fe394be423afd53d99a592009aa91b7410"
+        },
+        "previous_run": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06",
+        "state_writes": 0,
+        "partial_capture_admitted": false
+      },
+      "input_before": "68425f4422dd7bf9d245de08e5417ef1fef93a3917d03d97eac9ccf4914558fe",
+      "input_after": "68425f4422dd7bf9d245de08e5417ef1fef93a3917d03d97eac9ccf4914558fe"
+    },
+    {
+      "id": "03_strict_state_metadata_type",
+      "role": "writer",
+      "status": "PASS",
+      "expected_rejection_depth": "state metadata strict type after all immutable material SHA/ownership associations",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "locked failed metadata:mode:type"
+      },
+      "input_before": "a72b4e6017a7f99233f84a771c676beaae15537db468b880c487facea2dc3431",
+      "input_after": "a72b4e6017a7f99233f84a771c676beaae15537db468b880c487facea2dc3431"
+    },
+    {
+      "id": "04_changed_execute_owner_bytes",
+      "role": "writer",
+      "status": "PASS",
+      "expected_rejection_depth": "fixed raw material size/SHA guard before owner decoding; not a deep owner-membership rejection",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "fixed material SHA:execute_owner/size:value"
+      },
+      "input_before": "e4888f99b86c8c8be860623cee3c559cf492d1147cbf6db7e92545c909fba68f",
+      "input_after": "e4888f99b86c8c8be860623cee3c559cf492d1147cbf6db7e92545c909fba68f"
+    },
+    {
+      "id": "05_saved_ready_foreign_predecessor",
+      "role": "writer",
+      "status": "PASS",
+      "expected_rejection_depth": "saved_ready run association after controls fixed previous validation",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "saved ready predecessor:value"
+      },
+      "input_before": "119ca944ede9ad6b5a08f5a74bc5aa854145d1c0f1650cb320dc4b3116d63a20",
+      "input_after": "119ca944ede9ad6b5a08f5a74bc5aa854145d1c0f1650cb320dc4b3116d63a20"
+    },
+    {
+      "id": "06_foreign_controls_descriptor",
+      "role": "writer",
+      "status": "PASS",
+      "expected_rejection_depth": "final per-evidence descriptor equality after fixed materials, state, controls and saved ready associations",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "actual owned evidence:controls_manifest/sha256:value"
+      },
+      "input_before": "2564bcf7b1a694e7144ed50e3802cf9821aefbc52cde7c1f4eb5967850a2b8cf",
+      "input_after": "2564bcf7b1a694e7144ed50e3802cf9821aefbc52cde7c1f4eb5967850a2b8cf"
+    }
+  ],
+  "top_entered": 6,
+  "top_completed": 6,
+  "positive": 2,
+  "rejected": 4,
+  "module_eval_attempts": 1,
+  "module_imports_completed": 1,
+  "profile": {
+    "/workspace/python-original-engine/repo/tests/phase602_failed030_binding.py::<module>": 1,
+    "/workspace/python-original-engine/repo/tests/phase602_failed030_binding.py::validate_failure_association": 6,
+    "/workspace/python-original-engine/repo/tests/phase602_failed030_binding.py::_require": 4933,
+    "/workspace/python-original-engine/repo/tests/phase602_failed030_binding.py::_same": 1001,
+    "/workspace/python-original-engine/repo/tests/phase602_failed030_binding.py::_decode": 57,
+    "/workspace/python-original-engine/repo/tests/phase602_failed030_binding.py::pairs": 433,
+    "/workspace/python-original-engine/repo/tests/phase602_failed030_binding.py::_owned": 35,
+    "/workspace/python-original-engine/repo/tests/phase602_failed030_binding.py::_path": 545,
+    "/workspace/python-original-engine/repo/tests/phase602_failed030_binding.py::_descriptor": 190,
+    "/workspace/python-original-engine/repo/tests/phase602_failed030_binding.py::<genexpr>": 12350
+  },
+  "origins": {
+    "_phase603_actual_binding": "/workspace/python-original-engine/repo/tests/phase602_failed030_binding.py"
+  },
+  "read_audit": [
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase603_independent_failure_binding_controls.py",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase603_failed030_association_independent_control_spec.md",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase603-independent-source-plan/vectors.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase603-independent-source-plan/static-review.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase603-independent-source-plan/conservation-check.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase602-failed030-recovery-source/owned-files.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase602-failed030-recovery-source/source-freeze.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase602_failed030_binding.py",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase602_failed030_restore_predecessor.py",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase602_failed030_independent_readback.py",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase590_restore_predecessor.py",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase590_independent_predecessor_readback.py",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase590_oracle_storage.py",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/native_run_compaction.py",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase590-case030-host-restore-source/combined-source-freeze.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase601-root-failed030-authority/authority.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase601-root-failed030-authority/owned-files.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase601-root-failed030-authority/actual-failed-state.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase600-root-fixed030-execute-first-001/owned-files.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase600-root-fixed030-execute-first-001/invocation.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase600-root-fixed030-execute-first-001/execution.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase600-root-fixed030-execute-first-001/first-error.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase600-root-fixed030-execute-first-001/release.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase597-resume030-conditional-release/oracle-acceptance.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase597-resume030-conditional-release/owned-files.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase603-independent-source-plan/vectors.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase601-root-failed030-authority/authority.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase601-root-failed030-authority/owned-files.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase601-root-failed030-authority/actual-failed-state.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase600-root-fixed030-execute-first-001/owned-files.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase600-root-fixed030-execute-first-001/invocation.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase600-root-fixed030-execute-first-001/execution.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase600-root-fixed030-execute-first-001/first-error.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase600-root-fixed030-execute-first-001/release.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase597-resume030-conditional-release/oracle-acceptance.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase597-resume030-conditional-release/owned-files.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase602_failed030_binding.py",
+      "stage": "module_load"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase603_independent_failure_binding_controls.py",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase603_failed030_association_independent_control_spec.md",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase603-independent-source-plan/vectors.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase603-independent-source-plan/static-review.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase603-independent-source-plan/conservation-check.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase602-failed030-recovery-source/owned-files.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase602-failed030-recovery-source/source-freeze.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase602_failed030_binding.py",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase602_failed030_restore_predecessor.py",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase602_failed030_independent_readback.py",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase590_restore_predecessor.py",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase590_independent_predecessor_readback.py",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase590_oracle_storage.py",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/native_run_compaction.py",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase590-case030-host-restore-source/combined-source-freeze.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase601-root-failed030-authority/authority.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase601-root-failed030-authority/owned-files.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase601-root-failed030-authority/actual-failed-state.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase600-root-fixed030-execute-first-001/owned-files.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase600-root-fixed030-execute-first-001/invocation.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase600-root-fixed030-execute-first-001/execution.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase600-root-fixed030-execute-first-001/first-error.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase600-root-fixed030-execute-first-001/release.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase597-resume030-conditional-release/oracle-acceptance.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase597-resume030-conditional-release/owned-files.json",
+      "stage": "after"
+    }
+  ],
+  "writes": [],
+  "forbidden_calls": [],
+  "production_writer_reader_imports": 0,
+  "production_wrapper_calls": 0,
+  "host_calls": 0,
+  "restore_calls": 0,
+  "readback_calls": 0,
+  "pool_reads": 0,
+  "pool_writes": 0,
+  "Native": 0,
+  "models": 0,
+  "Expected": 0,
+  "pins_before": [
+    {
+      "path": "tests/phase603_independent_failure_binding_controls.py",
+      "size": 9683,
+      "sha256": "4e46464f08153c25af7435d46dd7a493d8989c3767425a3e7843bc444f39f947"
+    },
+    {
+      "path": "docs/phase603_failed030_association_independent_control_spec.md",
+      "size": 5513,
+      "sha256": "f3279c8129d3a8e4d6478da81acb74fa074923bfe2a6dcc466470e7b4e129bbb"
+    },
+    {
+      "path": "data/phase603-independent-source-plan/vectors.json",
+      "size": 73360,
+      "sha256": "4a74f5e12ae23974dea0c47de0c745ca689a03722a0e13b7d79161c27fcc08f9"
+    },
+    {
+      "path": "data/phase603-independent-source-plan/static-review.json",
+      "size": 4382,
+      "sha256": "35a20f1837bdb6c693fa50fbd4bb1db2274631185d1d417ec0e7dff43ae7cdcc"
+    },
+    {
+      "path": "data/phase603-independent-source-plan/conservation-check.json",
+      "size": 1281,
+      "sha256": "f1b8014b4fdee6137a6bb0c5c280021bef09adb817e682e296384049dfbc79d1"
+    },
+    {
+      "path": "data/phase602-failed030-recovery-source/owned-files.json",
+      "size": 5857,
+      "sha256": "d3249a2e0533e8e1e331be929c4d3661baf88d68d84b47c1ea8066ba71f005df"
+    },
+    {
+      "path": "data/phase602-failed030-recovery-source/source-freeze.json",
+      "size": 4552,
+      "sha256": "ba253d52e9541c149554f580b741aff7d0eb9c6f000aaa3b71e519490fa5155f"
+    },
+    {
+      "path": "tests/phase602_failed030_binding.py",
+      "size": 12472,
+      "sha256": "563e8550ff49f4af8e565b6ff35692d9f1d8e945b28c34c3cd5ad3f479e859ee"
+    },
+    {
+      "path": "tests/phase602_failed030_restore_predecessor.py",
+      "size": 30524,
+      "sha256": "8f21ae49adf586050cb6a816d07318d6b60d310cf4130e553473fe2b3404b597"
+    },
+    {
+      "path": "tests/phase602_failed030_independent_readback.py",
+      "size": 27870,
+      "sha256": "6e6b1a30c757cd134a39391a5e57bca5068530b4aa314d309970eef1a06c69b1"
+    },
+    {
+      "path": "tests/phase590_restore_predecessor.py",
+      "size": 27962,
+      "sha256": "06604457afbc94aaf50dd16c1661b5a7dd1314c96ae6e53ff4f2273d1a67b5a2"
+    },
+    {
+      "path": "tests/phase590_independent_predecessor_readback.py",
+      "size": 25372,
+      "sha256": "17bcaeb33ea7cfdd440f0231d0ac33fdca02b14871c298e0ca7bb027b55a07da"
+    },
+    {
+      "path": "tests/phase590_oracle_storage.py",
+      "size": 21560,
+      "sha256": "e2079576bec0f5f60b0cf4b5934ce394b0142c6b49de1cf1e11aa5ebb083b9b7"
+    },
+    {
+      "path": "tests/native_run_compaction.py",
+      "size": 27304,
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260"
+    },
+    {
+      "path": "data/phase590-case030-host-restore-source/combined-source-freeze.json",
+      "size": 65460,
+      "sha256": "2655616e809ea39c7cf6f4d3d6eed24dd68cce2cf134b7d499c213cee292f6b6"
+    },
+    {
+      "path": "data/phase601-root-failed030-authority/authority.json",
+      "size": 8428,
+      "sha256": "acde0c7ae926c0f1b097e7cee662fbd93416a68352d51c6c556d7c021fd04495"
+    },
+    {
+      "path": "data/phase601-root-failed030-authority/owned-files.json",
+      "size": 531,
+      "sha256": "033b4c6563c5d31d6a4688a1a82cafe3d8f355141aa62258177112ce69caf77a"
+    },
+    {
+      "path": "data/phase601-root-failed030-authority/actual-failed-state.json",
+      "size": 246,
+      "sha256": "698998f49b9bbe4dba03693016c3b35aca6d7a7129278aa187a77ba5ad7bc6ed"
+    },
+    {
+      "path": "data/phase600-root-fixed030-execute-first-001/owned-files.json",
+      "size": 1399,
+      "sha256": "d31a4321a490e47a93cc38a5fe5d122ccfa2c0390e7f43a9068e9e0ea5c00f74"
+    },
+    {
+      "path": "data/phase600-root-fixed030-execute-first-001/invocation.json",
+      "size": 901,
+      "sha256": "e722ee4b3db7f6f531f09be656b0ada6e712d9778a53c02e5fafffe10cae66c1"
+    },
+    {
+      "path": "data/phase600-root-fixed030-execute-first-001/execution.json",
+      "size": 1130,
+      "sha256": "b60cf3213d4e7ac9b034d58080ef49fe394be423afd53d99a592009aa91b7410"
+    },
+    {
+      "path": "data/phase600-root-fixed030-execute-first-001/first-error.json",
+      "size": 1130,
+      "sha256": "b60cf3213d4e7ac9b034d58080ef49fe394be423afd53d99a592009aa91b7410"
+    },
+    {
+      "path": "data/phase600-root-fixed030-execute-first-001/release.json",
+      "size": 1054,
+      "sha256": "8b66346f7d25c240fafd5f9806f8ee2f438a58fc53de4dbb8272c5b6bf5b7b13"
+    },
+    {
+      "path": "data/phase597-resume030-conditional-release/oracle-acceptance.json",
+      "size": 3597,
+      "sha256": "e5ccc41095e84fc644175910e229240a9749562ea1d98bb9d8e5fae17f51b7fd"
+    },
+    {
+      "path": "data/phase597-resume030-conditional-release/owned-files.json",
+      "size": 659,
+      "sha256": "d583e4d370100b16d9d33d57e4677c2d000b36ad4272b3935ca950c02c7451ad"
+    }
+  ],
+  "module_constants_unchanged": true,
+  "pins_after": [
+    {
+      "path": "tests/phase603_independent_failure_binding_controls.py",
+      "size": 9683,
+      "sha256": "4e46464f08153c25af7435d46dd7a493d8989c3767425a3e7843bc444f39f947"
+    },
+    {
+      "path": "docs/phase603_failed030_association_independent_control_spec.md",
+      "size": 5513,
+      "sha256": "f3279c8129d3a8e4d6478da81acb74fa074923bfe2a6dcc466470e7b4e129bbb"
+    },
+    {
+      "path": "data/phase603-independent-source-plan/vectors.json",
+      "size": 73360,
+      "sha256": "4a74f5e12ae23974dea0c47de0c745ca689a03722a0e13b7d79161c27fcc08f9"
+    },
+    {
+      "path": "data/phase603-independent-source-plan/static-review.json",
+      "size": 4382,
+      "sha256": "35a20f1837bdb6c693fa50fbd4bb1db2274631185d1d417ec0e7dff43ae7cdcc"
+    },
+    {
+      "path": "data/phase603-independent-source-plan/conservation-check.json",
+      "size": 1281,
+      "sha256": "f1b8014b4fdee6137a6bb0c5c280021bef09adb817e682e296384049dfbc79d1"
+    },
+    {
+      "path": "data/phase602-failed030-recovery-source/owned-files.json",
+      "size": 5857,
+      "sha256": "d3249a2e0533e8e1e331be929c4d3661baf88d68d84b47c1ea8066ba71f005df"
+    },
+    {
+      "path": "data/phase602-failed030-recovery-source/source-freeze.json",
+      "size": 4552,
+      "sha256": "ba253d52e9541c149554f580b741aff7d0eb9c6f000aaa3b71e519490fa5155f"
+    },
+    {
+      "path": "tests/phase602_failed030_binding.py",
+      "size": 12472,
+      "sha256": "563e8550ff49f4af8e565b6ff35692d9f1d8e945b28c34c3cd5ad3f479e859ee"
+    },
+    {
+      "path": "tests/phase602_failed030_restore_predecessor.py",
+      "size": 30524,
+      "sha256": "8f21ae49adf586050cb6a816d07318d6b60d310cf4130e553473fe2b3404b597"
+    },
+    {
+      "path": "tests/phase602_failed030_independent_readback.py",
+      "size": 27870,
+      "sha256": "6e6b1a30c757cd134a39391a5e57bca5068530b4aa314d309970eef1a06c69b1"
+    },
+    {
+      "path": "tests/phase590_restore_predecessor.py",
+      "size": 27962,
+      "sha256": "06604457afbc94aaf50dd16c1661b5a7dd1314c96ae6e53ff4f2273d1a67b5a2"
+    },
+    {
+      "path": "tests/phase590_independent_predecessor_readback.py",
+      "size": 25372,
+      "sha256": "17bcaeb33ea7cfdd440f0231d0ac33fdca02b14871c298e0ca7bb027b55a07da"
+    },
+    {
+      "path": "tests/phase590_oracle_storage.py",
+      "size": 21560,
+      "sha256": "e2079576bec0f5f60b0cf4b5934ce394b0142c6b49de1cf1e11aa5ebb083b9b7"
+    },
+    {
+      "path": "tests/native_run_compaction.py",
+      "size": 27304,
+      "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260"
+    },
+    {
+      "path": "data/phase590-case030-host-restore-source/combined-source-freeze.json",
+      "size": 65460,
+      "sha256": "2655616e809ea39c7cf6f4d3d6eed24dd68cce2cf134b7d499c213cee292f6b6"
+    },
+    {
+      "path": "data/phase601-root-failed030-authority/authority.json",
+      "size": 8428,
+      "sha256": "acde0c7ae926c0f1b097e7cee662fbd93416a68352d51c6c556d7c021fd04495"
+    },
+    {
+      "path": "data/phase601-root-failed030-authority/owned-files.json",
+      "size": 531,
+      "sha256": "033b4c6563c5d31d6a4688a1a82cafe3d8f355141aa62258177112ce69caf77a"
+    },
+    {
+      "path": "data/phase601-root-failed030-authority/actual-failed-state.json",
+      "size": 246,
+      "sha256": "698998f49b9bbe4dba03693016c3b35aca6d7a7129278aa187a77ba5ad7bc6ed"
+    },
+    {
+      "path": "data/phase600-root-fixed030-execute-first-001/owned-files.json",
+      "size": 1399,
+      "sha256": "d31a4321a490e47a93cc38a5fe5d122ccfa2c0390e7f43a9068e9e0ea5c00f74"
+    },
+    {
+      "path": "data/phase600-root-fixed030-execute-first-001/invocation.json",
+      "size": 901,
+      "sha256": "e722ee4b3db7f6f531f09be656b0ada6e712d9778a53c02e5fafffe10cae66c1"
+    },
+    {
+      "path": "data/phase600-root-fixed030-execute-first-001/execution.json",
+      "size": 1130,
+      "sha256": "b60cf3213d4e7ac9b034d58080ef49fe394be423afd53d99a592009aa91b7410"
+    },
+    {
+      "path": "data/phase600-root-fixed030-execute-first-001/first-error.json",
+      "size": 1130,
+      "sha256": "b60cf3213d4e7ac9b034d58080ef49fe394be423afd53d99a592009aa91b7410"
+    },
+    {
+      "path": "data/phase600-root-fixed030-execute-first-001/release.json",
+      "size": 1054,
+      "sha256": "8b66346f7d25c240fafd5f9806f8ee2f438a58fc53de4dbb8272c5b6bf5b7b13"
+    },
+    {
+      "path": "data/phase597-resume030-conditional-release/oracle-acceptance.json",
+      "size": 3597,
+      "sha256": "e5ccc41095e84fc644175910e229240a9749562ea1d98bb9d8e5fae17f51b7fd"
+    },
+    {
+      "path": "data/phase597-resume030-conditional-release/owned-files.json",
+      "size": 659,
+      "sha256": "d583e4d370100b16d9d33d57e4677c2d000b36ad4272b3935ca950c02c7451ad"
+    }
+  ],
+  "pins_unchanged": true,
+  "elapsed_seconds": 0.056863007999709225,
+  "remaining": "Pure association only; production loading, locked live state/process/graph, restore and full physical readback are not executed.",
+  "write_audit_scope": "writes is the serialization snapshot before result.json write; it is not the complete reporting write log. The write permission guard remains active."
+}

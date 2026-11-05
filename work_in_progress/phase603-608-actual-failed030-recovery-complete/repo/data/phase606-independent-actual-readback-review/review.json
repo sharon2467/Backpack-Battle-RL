@@ -1,0 +1,261 @@
+{
+  "schema": "phase606-independent-actual-failed030-physical-readback-review/1",
+  "status": "PASS_ACTUAL_PREDECESSOR_PHYSICAL_READBACK_ROOT_READY_PENDING",
+  "references": {
+    "request": {
+      "path": "data/phase606-root-independent-readback-request/request.json",
+      "size": 2783,
+      "sha256": "9733c49461397e3447b68451c5ef251b882b00696f27d422dbf0ad5a947dbaeb"
+    },
+    "Root_release": {
+      "path": "data/phase606-root-independent-readback-request/release.json",
+      "size": 881,
+      "sha256": "5f3f82536c8c1ab2deeef9476bfe930c482e11022e83a11e341e665f14023795"
+    },
+    "request_owner": {
+      "path": "data/phase606-root-independent-readback-request/owned-files.json",
+      "size": 534,
+      "sha256": "324916dfd856e2643c55d4026e630a551dc62e78ed52c9b192f8bd92254e5f6f"
+    },
+    "actual_reader_result": {
+      "path": "data/phase602-readback-failed030-first-001/result.json",
+      "size": 3611956,
+      "sha256": "3dabbd8aca70d42ac068d80a136481ac1cac43d34b82d968e92537648d683ca3"
+    },
+    "actual_reader_owner": {
+      "path": "data/phase602-readback-failed030-first-001/owned-files.json",
+      "size": 1494,
+      "sha256": "a22f7a3781ccd44529fe32b2b25c3f62aee0e9c596f2f83992b6423073998273"
+    },
+    "invocation_owner": {
+      "path": "data/phase606-independent-reader-invocation-first-001/owned-files.json",
+      "size": 1736,
+      "sha256": "c5abe0e5df7e03c369b92f2b96de7a4d03a536d6dbb6f17dbc2f5abc13f7670a"
+    },
+    "execution": {
+      "path": "data/phase606-independent-reader-invocation-first-001/execution.json",
+      "size": 179,
+      "sha256": "f5e29131089690210ff6235c2c67d0116e444c99168c2896797966d158225a65"
+    },
+    "before": {
+      "path": "data/phase606-independent-reader-invocation-first-001/before.json",
+      "size": 1430,
+      "sha256": "fcf2be503cbb153b6e697746991abe631d2f2e9a2a927b654c0504be548f079c"
+    },
+    "after": {
+      "path": "data/phase606-independent-reader-invocation-first-001/after.json",
+      "size": 802,
+      "sha256": "2f32e919766728cb28a0f8799c8c0354de8e477cb0033f29870f564e3069fde0"
+    },
+    "writer_result": {
+      "path": "data/phase602-restore-failed030-first-001/result.json",
+      "size": 8283,
+      "sha256": "671188adfe5aa5395aa8ef650ccb1fb1fd48f735a9b5802de9d3ad0b2c3d36ca"
+    },
+    "writer_owner": {
+      "path": "data/phase602-restore-failed030-first-001/owned-files.json",
+      "size": 665,
+      "sha256": "9f0686357ba1bdd4e6bd4f9b7fb1f48e6148466df631e12ae493396ff2216640"
+    },
+    "accepted_Source_and_synthetic": {
+      "path": "data/phase603-independent-final-acceptance/review.json",
+      "size": 11018,
+      "sha256": "45c8f1961e906322a714994175f2a3420175c85deedcd69e98396e13ada2f07c"
+    },
+    "Source_freeze": {
+      "path": "data/phase602-failed030-recovery-source/source-freeze.json",
+      "size": 4552,
+      "sha256": "ba253d52e9541c149554f580b741aff7d0eb9c6f000aaa3b71e519490fa5155f"
+    }
+  },
+  "execution": {
+    "pid": 2482,
+    "exit": 0,
+    "reaped": true,
+    "outer_timeout": false,
+    "seconds": 27.63119313199968,
+    "stdout_bytes": 107,
+    "stderr_bytes": 0,
+    "automatic_retry": false,
+    "reader_invocations": 1,
+    "reader_elapsed_seconds": 27.510771180999654,
+    "owned_child_settled": true
+  },
+  "actual_request_and_authority": {
+    "request_keys": 9,
+    "evidence_count": 8,
+    "actual_failed_state": {
+      "path": "/workspace/native-combat-20261013/pool/state.json",
+      "size": 246,
+      "sha256": "698998f49b9bbe4dba03693016c3b35aca6d7a7129278aa187a77ba5ad7bc6ed",
+      "mode": 384,
+      "mtime_ns": 1793867367371782844
+    },
+    "before_after_failed_bytes_mode_mtime_exact": true,
+    "failed_state_reason": "RuntimeError('first original030 failed/partial; preserve, no retry')",
+    "no_pool_PENDING_fabrication": true,
+    "previous_run": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06",
+    "failure_association": {
+      "authority": {
+        "path": "data/phase601-root-failed030-authority/authority.json",
+        "size": 8428,
+        "sha256": "acde0c7ae926c0f1b097e7cee662fbd93416a68352d51c6c556d7c021fd04495"
+      },
+      "authority_owner": {
+        "path": "data/phase601-root-failed030-authority/owned-files.json",
+        "size": 531,
+        "sha256": "033b4c6563c5d31d6a4688a1a82cafe3d8f355141aa62258177112ce69caf77a"
+      },
+      "actual_failed_state": {
+        "path": "/workspace/native-combat-20261013/pool/state.json",
+        "size": 246,
+        "sha256": "698998f49b9bbe4dba03693016c3b35aca6d7a7129278aa187a77ba5ad7bc6ed"
+      },
+      "root_execution": {
+        "path": "data/phase600-root-fixed030-execute-first-001/execution.json",
+        "size": 1130,
+        "sha256": "b60cf3213d4e7ac9b034d58080ef49fe394be423afd53d99a592009aa91b7410"
+      },
+      "previous_run": "/workspace/native-combat-20261013/runs/original027-king-single-A-20261026-attempt06",
+      "state_writes": 0,
+      "partial_capture_admitted": false
+    },
+    "writer_receipt_role": "Hash-owned provenance only; its success status was not substituted for physical equality."
+  },
+  "actual_physical_checks": {
+    "same_inode_exclusive_readonly_lock_acquisitions": 1,
+    "inventory_checks": {
+      "previous-bundle-actual": {
+        "entries": 17,
+        "regular_files": 15,
+        "manifest_file_bytes_not_total_io": 17267581
+      },
+      "baseline-actual": {
+        "entries": 15665,
+        "regular_files": 15418,
+        "manifest_file_bytes_not_total_io": 616167851
+      },
+      "project-actual": {
+        "entries": 15669,
+        "regular_files": 15422,
+        "manifest_file_bytes_not_total_io": 616396845
+      },
+      "staged-actual": {
+        "entries": 3,
+        "regular_files": 2,
+        "manifest_file_bytes_not_total_io": 3273
+      },
+      "previous-driver-actual": {
+        "entries": 198,
+        "regular_files": 197,
+        "manifest_file_bytes_not_total_io": 2804691
+      }
+    },
+    "full_path_SHA_mode_mtime_equality_required": true,
+    "previous_provenance_and_bundle_proof_hashes_verified": true,
+    "old_saved_fixture_bytes_and_metadata_match_staged": true,
+    "preimages": {
+      "controls": 3,
+      "old_patch_backups": 75,
+      "old_marker": 1,
+      "new_journal": 79
+    },
+    "saved_current_graphs_owned": true,
+    "retained": {
+      "saved_retained_capture_files_physically_read": 33,
+      "saved_retained_capture_manifest_bytes_not_total_io": 153609018,
+      "explicit_business_payload_examples_physically_hashed": [
+        "capture/events.jsonl",
+        "capture/final_state.json",
+        "capture/histories.json"
+      ],
+      "semantic_decode": 0,
+      "all_retained_capture_files_are_not_labelled_Expected": true
+    },
+    "retained_scope": "Physical hash-only of old retained capture bytes; Expected semantic decoding0. Existing c.retained output-root-mtime/generated exclusions and relaxed user-special representation preserved.",
+    "helper_entries": {
+      "process_check": 2,
+      "require": 864004,
+      "<genexpr>": 460606,
+      "relevant": 560,
+      "stamp": 2,
+      "inventory": 8,
+      "visit": 31941,
+      "safe_path": 110636,
+      "<lambda>": 189511,
+      "load_bundle": 1,
+      "read": 8,
+      "digest": 211,
+      "overlay_plan": 1,
+      "index": 6,
+      "validate_archive": 1,
+      "retained": 1
+    },
+    "actual_opened_paths_unique": 31610
+  },
+  "process_scope": {
+    "process_before": {
+      "checked_utc": "2026-11-05T09:03:26.535284+00:00",
+      "active_matches": [],
+      "inspection_gap_count": 24,
+      "process_inspection_complete": false,
+      "global_process_completeness_claimed": false,
+      "excluded_self_pid": 2482,
+      "operational_scope": "original-readable-reference-check-with-exclusive-pool-lock/1"
+    },
+    "process_after": {
+      "checked_utc": "2026-11-05T09:03:53.954102+00:00",
+      "active_matches": [],
+      "inspection_gap_count": 24,
+      "process_inspection_complete": false,
+      "global_process_completeness_claimed": false,
+      "excluded_self_pid": 2482,
+      "operational_scope": "original-readable-reference-check-with-exclusive-pool-lock/1"
+    }
+  },
+  "seal_validation": {
+    "actual_reader_owner_all_members_verified": true,
+    "invocation_owner_all_members_verified": true,
+    "Root_request_owner_all_members_verified": true,
+    "reader_and_request_before_after_exact": true,
+    "reader_source_after": {
+      "script": {
+        "size": 27870,
+        "sha256": "6e6b1a30c757cd134a39391a5e57bca5068530b4aa314d309970eef1a06c69b1"
+      },
+      "compaction": {
+        "path": "tests/native_run_compaction.py",
+        "size": 27304,
+        "sha256": "829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260"
+      },
+      "host_source_freeze": {
+        "path": "data/phase590-case030-host-restore-source/combined-source-freeze.json",
+        "size": 65460,
+        "sha256": "2655616e809ea39c7cf6f4d3d6eed24dd68cce2cf134b7d499c213cee292f6b6"
+      },
+      "unchanged": true
+    },
+    "frozen_result_not_modified": true
+  },
+  "activity": {
+    "actual_reader_calls": 1,
+    "production_compaction_module_loads": 1,
+    "process_checks": 2,
+    "inventory_calls_including_retained_subinventories": 8,
+    "restore_calls": 0,
+    "pool_state_writes": 0,
+    "pool_READY_writes": 0,
+    "pool_project_data_writes": 0,
+    "Original_launches": 0,
+    "model_runs": 0,
+    "new_capture_calls": 0,
+    "Expected_semantic_decode": 0,
+    "old_retained_physical_payload_reads": "nonzero; see retained manifest accounting, including historical business payloads"
+  },
+  "limits": [
+    "This PASS describes the restored predecessor physical state during the one locked readback; it does not claim READY has been committed.",
+    "Original scoped process semantics remain: no readable active pool references, with inspection gaps preserved and global completeness false. No permission escalation or safety-setting change occurred.",
+    "Raw030 capture remains failed/partial. No INPUT projection, engine equivalence, comparison or Native support acceptance follows from physical recovery.",
+    "Root alone may separately verify fresh scoped settlement/lock and commit the saved pre-busy ready-state bytes and metadata. No further writer or inventory rerun is implied."
+  ]
+}

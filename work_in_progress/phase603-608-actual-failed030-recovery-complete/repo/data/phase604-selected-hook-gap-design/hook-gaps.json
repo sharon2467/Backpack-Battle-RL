@@ -1,0 +1,104 @@
+{
+  "schema": "phase604-fixed-selected-hook-gaps/1",
+  "status": "DESIGN_ONLY_NOT_IMPLEMENTED",
+  "old_sites": 107,
+  "proposed_sites": 110,
+  "old_key_values_must_remain_exact": true,
+  "unknown_selected_hard_reject_unchanged": true,
+  "new_sites": [
+    {
+      "site": "Items/Exclusive/LuckyShortbow.gd::onPreDealDamage_early",
+      "descriptor": 234,
+      "source": {
+        "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/LuckyShortbow.gd",
+        "size": 519,
+        "sha256": "e75d49b40ed1ec7662936a5b8a8983398136b918bd3da8a494d1178bfcc394b6"
+      },
+      "method_line": 5,
+      "method_end_line": 11,
+      "method_sha256": "cfd646b0a2ca8060eba470e33420f6b8204f865ac16c84553998e84efd037f07",
+      "entry_count": 1,
+      "leave_count": 1,
+      "state_schema": "item",
+      "channel": "runtime",
+      "arguments_exact": [
+        "damageRes"
+      ],
+      "argument_types": {
+        "damageRes": "damage_result"
+      },
+      "explicit_returns": [],
+      "return_edge": "return_implicit",
+      "return_value": {
+        "type": "null"
+      },
+      "observed_native_hit": false,
+      "observed_evidence": "STATIC_ONLY_NOT_NATIVE_HIT"
+    },
+    {
+      "site": "Items/Exclusive/ThornShortbow.gd::onDealtDamage",
+      "descriptor": 233,
+      "source": {
+        "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/ThornShortbow.gd",
+        "size": 513,
+        "sha256": "3a15e80d1e8793b5fd5637520f5e724aa305131ed5452b6021328587cb9f0162"
+      },
+      "method_line": 5,
+      "method_end_line": 11,
+      "method_sha256": "3e25ef52f9dc4d07ba21f8758e243dfac8b7c5729c67a7af1df53e2c06ee8f7a",
+      "entry_count": 1,
+      "leave_count": 1,
+      "state_schema": "item",
+      "channel": "runtime",
+      "arguments_exact": [
+        "damageRes"
+      ],
+      "argument_types": {
+        "damageRes": "damage_result"
+      },
+      "explicit_returns": [],
+      "return_edge": "return_implicit",
+      "return_value": {
+        "type": "null"
+      },
+      "observed_native_hit": true,
+      "observed_evidence": "600 SOURCE_UNKNOWN_SELECTED_HOOK seq4906"
+    },
+    {
+      "site": "Items/MagicStaff.gd::onPreDealDamage_early",
+      "descriptor": 32,
+      "source": {
+        "path": "data/phase359-king-producer-source/after-source/Items/MagicStaff.gd",
+        "size": 770,
+        "sha256": "607a380bc9654e72523aba0583dc33c5a726c331db54a908d43869393c8c6f49"
+      },
+      "method_line": 9,
+      "method_end_line": 18,
+      "method_sha256": "a653a75e68e5d4bceec90215d56936f13968cf237ee587e87124635b02d7d01b",
+      "entry_count": 1,
+      "leave_count": 1,
+      "state_schema": "item",
+      "channel": "runtime",
+      "arguments_exact": [
+        "damageRes"
+      ],
+      "argument_types": {
+        "damageRes": "damage_result"
+      },
+      "explicit_returns": [],
+      "return_edge": "return_implicit",
+      "return_value": {
+        "type": "null"
+      },
+      "observed_native_hit": false,
+      "observed_evidence": "STATIC_ONLY_NOT_NATIVE_HIT"
+    }
+  ],
+  "new_method_instrumentation": 0,
+  "new_primitive_wrappers": 0,
+  "original_business_and_RNG_bytes_changed": 0,
+  "capture001_authority_exhausted": true,
+  "future_native_authorized": false,
+  "future_attempt_name": null,
+  "partial030_input_admitted": false
+}

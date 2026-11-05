@@ -1,0 +1,13 @@
+# Actual failed030 recovery completed, independently verified
+
+603 independently accepted the isolated recovery Source andsixpure association controls(2positive/4reject),25pins unchanged. This Source accepts the genuine frozen failedstate directly;it never creates PENDING. Real605 writer ran once,PID2452 reaped/exit0,10.5657s:7file replacements/74skips,8directory metadata repairs/240skips,state/READYwrites0. The inherited report status contains a historical pending label only;actualstate remained the original246B failure record.
+
+Independent606 actual fullphysical reader ran once,PID2482 reaped/exit0,27.631s. Baseline15665/project15669/staged3/bundle17/driver198 entries andretained/preimage authorities passed. Failure bytes/mode/mtime stayed exact. Historical capture33files153609018B was physically hashed,including event/final/history files;semanticExpected decoding0. Two process checks found no readable active matches buteach retained24inspection gaps andglobal completeness=false. No guard was removed orpermission bypassed.
+
+After independent physicalPASS,Root607 reacquired the same lock andatomically committed only actualsaved controls image0. One statewrite,projectwrites0. Independent608 tinyreadback confirms ordinary singlelink currentstate exactly4243B,SHA256e92ce49332709fe5cf71665b8add0f2ee47acaff4a04c5318f9d06ff0a543431,mode0600,mtime1793007805399408434,ready/runoriginal027-king-single-A-20261026-attempt06. No fullreader/test was repeated forpackaging. The originalfailure record andcompletepartial030capsule remain inpriorcheckpoints andoriginalrun.
+
+Independent606final SHA256a6dc2da4bc27511275f24eaac7f693ae59679e2a5a6f778e694701393dc1c1cd;608tiny SHA2568bb716b1ecc2d24bca09bd9e69198393c966aca41f3b058352db94722f9fef0a. All sourceplans,vectors,actualresults/owners,requests,Rootcommit andtechnicalevidence are included. Overlay repo/ onthepriorcomplete checkpoint;do not rerunrestoration orcommit READY duringordinaryresume.
+
+604 hookrepair DESIGN ONLY is also included:fixed12actualscene roots/15scripts/26inserted itemhooks yield23accepted and3missing(Staff32 early,Thorn233 dealt,Lucky234 early). OnlyThornwasactual600failureHIT. Proposalpreservesold107andunknownselectedhardreject,adding3businesssites for110;noSourcefix ornewOriginalattempt occurred in604. Nextindependentdesignreview/sourcegeneration remainsseparate.
+
+The failed030 single001 remains incomplete,no validnewINPUT/model/strict8 andnoformalpromotion. Formal75/publicruntime564 unchanged;wholeproject IN_PROGRESS. Its oneOriginalattempt authorization is spent;noautomaticretry orreuseof601failureauthority foranotherattempt.

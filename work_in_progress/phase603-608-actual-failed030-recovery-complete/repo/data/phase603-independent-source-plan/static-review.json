@@ -1,0 +1,111 @@
+{
+  "schema": "phase603-independent-source-review/1",
+  "status": "STATIC_SOURCE_PASS_PENDING_FINITE_ROOT_RELEASE",
+  "source_owner": {
+    "path": "data/phase602-failed030-recovery-source/owned-files.json",
+    "size": 5857,
+    "sha256": "d3249a2e0533e8e1e331be929c4d3661baf88d68d84b47c1ea8066ba71f005df"
+  },
+  "source_freeze": {
+    "path": "data/phase602-failed030-recovery-source/source-freeze.json",
+    "size": 4552,
+    "sha256": "ba253d52e9541c149554f580b741aff7d0eb9c6f000aaa3b71e519490fa5155f"
+  },
+  "independent_conservation": {
+    "path": "data/phase603-independent-source-plan/conservation-check.json",
+    "size": 1281,
+    "sha256": "f1b8014b4fdee6137a6bb0c5c280021bef09adb817e682e296384049dfbc79d1"
+  },
+  "fixed_binding": {
+    "materials": 10,
+    "material_keys_closed": true,
+    "bytes_SHA_before_decode": true,
+    "metadata_duplicate_nonfinite_rejection": true,
+    "typed_equal": true,
+    "authority_owner_two_members": true,
+    "execution_owner_four_members": [
+      "execution",
+      "first_error",
+      "invocation",
+      "release"
+    ],
+    "config_owner": "actual597, distinct from600",
+    "config_tied_through": [
+      "600release.config",
+      "exact600invocation.argv",
+      "601authority.root_config"
+    ],
+    "fixed_execution_exit": 1,
+    "fixed_host_pid": 1188,
+    "reaped_strict_true": true,
+    "automatic_retry_strict_false": true,
+    "no_mutable_boolean_certificate": true
+  },
+  "production_call_sites": {
+    "writer": "prepare:267 after ordinary stable control images and saved ready status/run check; restore lock acquired at443, apply only453 after full prepare and state recheck. No pool write before association. Report directory creation is outside physical pool and precedes association.",
+    "reader": "readback:221 after exclusive lock, locked evidence re-read, process check and saved0 validation; complete physical inventory follows.",
+    "shared_wrapper": "identical source; exact binding source and all10 metadata descriptors are loaded and re-read for equality after pure call.",
+    "source_namespaces": {
+      "writer_request": "phase602-fixed-failed030-restore-request/1",
+      "reader_request": "phase602-fixed-failed030-readback-request/1",
+      "writer_prefix": "phase602-restore-",
+      "reader_prefix": "phase602-readback-"
+    },
+    "request_shape": [
+      7,
+      9
+    ],
+    "evidence_shape": [
+      12,
+      8
+    ]
+  },
+  "conserved": {
+    "writer_exact_function_count": 20,
+    "reader_exact_function_count": 10,
+    "full_file_inverse_count": 2,
+    "physical_selector_apply_restore_process_statechecks_exact": true,
+    "state_writes": 0,
+    "PENDING_not_written": true,
+    "new_helper_no_IO_no_process": true
+  },
+  "static_only_boundaries": [
+    "No writer or reader was imported/called. No lock/currentstate/currentgraph/process inspection or restoration was performed.",
+    "Runtime pure controls will not prove physical controls-image SHA/metadata, current graph or true writer receipt ownership; the existing production checks remain mandatory.",
+    "Saved scoped monitor settlement is historical evidence, not fresh process clearance or global completeness.",
+    "Current failure metadata must be revalidated under the same original lock during separately authorized real restoration.",
+    "No change to retained payloads, genuine/input/comparison behavior or observer hook failure."
+  ],
+  "finite_scope": {
+    "top_calls": 6,
+    "positive": 2,
+    "negative": 4,
+    "binding_module_imports": 1,
+    "operational_imports": 0,
+    "raw_fixed_materials": 10,
+    "actual_pool_reads": 0,
+    "actual_capture_reads": 0,
+    "control_arguments_origin": "Copied saved control and saved0 metadata are sealed inside vectors; runtime reads only repo Source/protocol files.",
+    "owner_tamper_rejection_is_first_SHA_not_deep_membership": true
+  },
+  "stdlib_import_preload": {
+    "tested_source_AST_complete_imports": [
+      "hashlib",
+      "json"
+    ],
+    "all_tested_imports_preloaded_before_audit": true,
+    "__future___also_preloaded": true,
+    "no_dynamic_or_repo_import_in_binding": true
+  },
+  "activity_before_release": {
+    "candidate_module_imports": 0,
+    "candidate_function_calls": 0,
+    "writer_reader_calls": 0,
+    "Native": 0,
+    "Expected": 0,
+    "pool_reads": 0,
+    "pool_writes": 0,
+    "script_compile_only": 1
+  },
+  "blockers": []
+}

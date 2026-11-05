@@ -1,0 +1,64 @@
+{
+  "owner_refs_verified": 30,
+  "modules": [
+    {
+      "file": "tests/phase602_failed030_restore_predecessor.py",
+      "full_inverse_exact": true,
+      "changed": [
+        "validate_request",
+        "prepare",
+        "main"
+      ],
+      "exact": [
+        "require",
+        "signature",
+        "stable",
+        "path_of",
+        "descriptor",
+        "decoded",
+        "equal",
+        "save",
+        "load_modules",
+        "image_record",
+        "row_record",
+        "check_image",
+        "no_process",
+        "action",
+        "public_action",
+        "select_restore_images",
+        "recheck_target",
+        "finish_metadata",
+        "apply",
+        "restore"
+      ],
+      "added": [
+        "failure_association"
+      ]
+    },
+    {
+      "file": "tests/phase602_failed030_independent_readback.py",
+      "full_inverse_exact": true,
+      "changed": [
+        "readback",
+        "main"
+      ],
+      "exact": [
+        "require",
+        "signature",
+        "stable",
+        "path_of",
+        "descriptor",
+        "decoded",
+        "relocate",
+        "difference",
+        "equal",
+        "save"
+      ],
+      "added": [
+        "failure_association"
+      ]
+    }
+  ],
+  "shared_wrapper_exact": true,
+  "material_constants_exact": true
+}

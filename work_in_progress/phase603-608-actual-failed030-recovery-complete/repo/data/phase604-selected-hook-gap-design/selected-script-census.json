@@ -1,0 +1,363 @@
+{
+  "schema": "phase604-selected-script-hook-census/1",
+  "descriptor_count": 12,
+  "descriptor_roots": [
+    {
+      "descriptor": 1,
+      "scene": "Items/WoodenSword.tscn",
+      "root_script": "Items/Weapon.gd",
+      "inheritance": [
+        "Items/Weapon.gd",
+        "Items/Item.gd"
+      ],
+      "missing_sites": []
+    },
+    {
+      "descriptor": 5,
+      "scene": "Items/Banana.tscn",
+      "root_script": "Items/Banana.gd",
+      "inheritance": [
+        "Items/Banana.gd",
+        "Items/Food.gd",
+        "Items/Item.gd"
+      ],
+      "missing_sites": []
+    },
+    {
+      "descriptor": 11,
+      "scene": "Items/LeatherBag.tscn",
+      "root_script": "Items/Bag.gd",
+      "inheritance": [
+        "Items/Bag.gd",
+        "Items/Item.gd"
+      ],
+      "missing_sites": []
+    },
+    {
+      "descriptor": 14,
+      "scene": "Items/Spear.tscn",
+      "root_script": "Items/Spear.gd",
+      "inheritance": [
+        "Items/Spear.gd",
+        "Items/Weapon.gd",
+        "Items/Item.gd"
+      ],
+      "missing_sites": []
+    },
+    {
+      "descriptor": 22,
+      "scene": "Items/Blueberries.tscn",
+      "root_script": "Items/Blueberries.gd",
+      "inheritance": [
+        "Items/Blueberries.gd",
+        "Items/Food.gd",
+        "Items/Item.gd"
+      ],
+      "missing_sites": []
+    },
+    {
+      "descriptor": 32,
+      "scene": "Items/MagicStaff.tscn",
+      "root_script": "Items/MagicStaff.gd",
+      "inheritance": [
+        "Items/MagicStaff.gd",
+        "Items/Weapon.gd",
+        "Items/Item.gd"
+      ],
+      "missing_sites": [
+        "Items/MagicStaff.gd::onPreDealDamage_early"
+      ]
+    },
+    {
+      "descriptor": 162,
+      "scene": "Items/Exclusive/BowlofTreats.tscn",
+      "root_script": "Items/Exclusive/BowlofTreats.gd",
+      "inheritance": [
+        "Items/Exclusive/BowlofTreats.gd",
+        "Items/Food.gd",
+        "Items/Item.gd"
+      ],
+      "missing_sites": []
+    },
+    {
+      "descriptor": 164,
+      "scene": "Items/Exclusive/Squirrel.tscn",
+      "root_script": "Items/Exclusive/Squirrel.gd",
+      "inheritance": [
+        "Items/Exclusive/Squirrel.gd",
+        "Items/Exclusive/ForestFriend.gd",
+        "Items/Item.gd"
+      ],
+      "missing_sites": []
+    },
+    {
+      "descriptor": 231,
+      "scene": "Items/Wolpertinger.tscn",
+      "root_script": "Items/Wolpertinger.gd",
+      "inheritance": [
+        "Items/Wolpertinger.gd",
+        "Items/Item.gd"
+      ],
+      "missing_sites": []
+    },
+    {
+      "descriptor": 233,
+      "scene": "Items/Exclusive/ThornShortbow.tscn",
+      "root_script": "Items/Exclusive/ThornShortbow.gd",
+      "inheritance": [
+        "Items/Exclusive/ThornShortbow.gd",
+        "Items/Weapon.gd",
+        "Items/Item.gd"
+      ],
+      "missing_sites": [
+        "Items/Exclusive/ThornShortbow.gd::onDealtDamage"
+      ]
+    },
+    {
+      "descriptor": 234,
+      "scene": "Items/Exclusive/LuckyShortbow.tscn",
+      "root_script": "Items/Exclusive/LuckyShortbow.gd",
+      "inheritance": [
+        "Items/Exclusive/LuckyShortbow.gd",
+        "Items/Weapon.gd",
+        "Items/Item.gd"
+      ],
+      "missing_sites": [
+        "Items/Exclusive/LuckyShortbow.gd::onPreDealDamage_early"
+      ]
+    },
+    {
+      "descriptor": 385,
+      "scene": "Items/Exclusive/EnchantedWeapons.tscn",
+      "root_script": "Items/Exclusive/EnchantedWeapons.gd",
+      "inheritance": [
+        "Items/Exclusive/EnchantedWeapons.gd",
+        "Items/Item.gd"
+      ],
+      "missing_sites": []
+    }
+  ],
+  "unique_root_and_ancestor_scripts": 15,
+  "scripts": {
+    "Items/Weapon.gd": {
+      "source": {
+        "path": "data/phase359-king-producer-source/after-source/Items/Weapon.gd",
+        "size": 649,
+        "sha256": "e1870f0dd5c8c23b84aca154ffbdfec8f4418b37c740d7bd94f7764ec8bd5295"
+      },
+      "extends": "Item",
+      "hook_sites": [
+        "Items/Weapon.gd::attack",
+        "Items/Weapon.gd::doCooldownEffect"
+      ],
+      "missing_sites": [],
+      "installed_patch": true
+    },
+    "Items/Item.gd": {
+      "source": {
+        "path": "data/phase572-mixed-observer-source-v2/after-source/Items/Item.gd",
+        "size": 178614,
+        "sha256": "11fb434eaa028eb965e10883d84ef7028ee96bdfbf2f53bdc71af64332ae0429"
+      },
+      "extends": "RigidBody2D",
+      "hook_sites": [
+        "Items/Item.gd::_physics_process",
+        "Items/Item.gd::_ready",
+        "Items/Item.gd::activate",
+        "Items/Item.gd::addBonusDamage",
+        "Items/Item.gd::cleanseRandomDebuffs",
+        "Items/Item.gd::combatEnd",
+        "Items/Item.gd::consume",
+        "Items/Item.gd::getMostStacks",
+        "Items/Item.gd::giveMana",
+        "Items/Item.gd::giveMana_capped",
+        "Items/Item.gd::giveMaxHealth",
+        "Items/Item.gd::giveMostBuffs",
+        "Items/Item.gd::healthToBlock",
+        "Items/Item.gd::miniActivate",
+        "Items/Item.gd::pickRandomStacks",
+        "Items/Item.gd::prepare",
+        "Items/Item.gd::rollChance",
+        "Items/Item.gd::stealLife",
+        "Items/Item.gd::tryUseMana",
+        "Items/Item.gd::useMana"
+      ],
+      "missing_sites": [],
+      "installed_patch": true
+    },
+    "Items/Banana.gd": {
+      "source": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Banana.gd",
+        "size": 74,
+        "sha256": "34f0516d8615a93129edb30e59598a62183a7a10947ad83c65445f7323f157f0"
+      },
+      "extends": "Food",
+      "hook_sites": [],
+      "missing_sites": [],
+      "installed_patch": false
+    },
+    "Items/Food.gd": {
+      "source": {
+        "path": "data/phase359-king-producer-source/after-source/Items/Food.gd",
+        "size": 337,
+        "sha256": "07a477dc16365fa0d5e8cfaca3cf9aacaca76eaef4b9d3d05740b5f874340d37"
+      },
+      "extends": "Item",
+      "hook_sites": [
+        "Items/Food.gd::prepare"
+      ],
+      "missing_sites": [],
+      "installed_patch": true
+    },
+    "Items/Bag.gd": {
+      "source": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Bag.gd",
+        "size": 6520,
+        "sha256": "104ad86cfe3be4b189799b34b04a2fa4fcaa95883eb6e6ee286018b33ad8afb4"
+      },
+      "extends": "Item",
+      "hook_sites": [],
+      "missing_sites": [],
+      "installed_patch": false
+    },
+    "Items/Spear.gd": {
+      "source": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Spear.gd",
+        "size": 338,
+        "sha256": "3854241d238f7e928d381b8803df9456a05810bd12d9fcddf41f6037d96669da"
+      },
+      "extends": "Weapon",
+      "hook_sites": [],
+      "missing_sites": [],
+      "installed_patch": false
+    },
+    "Items/Blueberries.gd": {
+      "source": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Blueberries.gd",
+        "size": 140,
+        "sha256": "13ad54f17dc6e4d12977f5c46b79e624530d77a68cef18092a4fc9089357a155"
+      },
+      "extends": "Food",
+      "hook_sites": [],
+      "missing_sites": [],
+      "installed_patch": false
+    },
+    "Items/MagicStaff.gd": {
+      "source": {
+        "path": "data/phase359-king-producer-source/after-source/Items/MagicStaff.gd",
+        "size": 770,
+        "sha256": "607a380bc9654e72523aba0583dc33c5a726c331db54a908d43869393c8c6f49"
+      },
+      "extends": "Weapon",
+      "hook_sites": [
+        "Items/MagicStaff.gd::onPreDealDamage_early"
+      ],
+      "missing_sites": [
+        "Items/MagicStaff.gd::onPreDealDamage_early"
+      ],
+      "installed_patch": true
+    },
+    "Items/Exclusive/BowlofTreats.gd": {
+      "source": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/BowlofTreats.gd",
+        "size": 975,
+        "sha256": "eb7dab954433ec19ad719a80ff93ba1b511aad026e5d640f6c58fc6a07887604"
+      },
+      "extends": "Food",
+      "hook_sites": [],
+      "missing_sites": [],
+      "installed_patch": false
+    },
+    "Items/Exclusive/Squirrel.gd": {
+      "source": {
+        "path": "data/phase502-whelp-observer-source-v4/after-source/Items/Exclusive/Squirrel.gd",
+        "size": 547,
+        "sha256": "afbba6556077e0f30f6cd5d6abced0949cd64c5979e2554326ef1303076dd1e5"
+      },
+      "extends": "\"res://Items/Exclusive/ForestFriend.gd\"",
+      "hook_sites": [],
+      "missing_sites": [],
+      "installed_patch": true
+    },
+    "Items/Exclusive/ForestFriend.gd": {
+      "source": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/ForestFriend.gd",
+        "size": 236,
+        "sha256": "d1d067d4526a53313e28df3fd3a441415c76a2fcb1368d823d51f3d30eb57147"
+      },
+      "extends": "Item",
+      "hook_sites": [],
+      "missing_sites": [],
+      "installed_patch": false
+    },
+    "Items/Wolpertinger.gd": {
+      "source": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Wolpertinger.gd",
+        "size": 522,
+        "sha256": "5607b4eea0e69fa4f1f46f2a646e1c3a4c12668be75c45269cf0a2ce6b258ea2"
+      },
+      "extends": "Item",
+      "hook_sites": [],
+      "missing_sites": [],
+      "installed_patch": false
+    },
+    "Items/Exclusive/ThornShortbow.gd": {
+      "source": {
+        "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/ThornShortbow.gd",
+        "size": 513,
+        "sha256": "3a15e80d1e8793b5fd5637520f5e724aa305131ed5452b6021328587cb9f0162"
+      },
+      "extends": "Weapon",
+      "hook_sites": [
+        "Items/Exclusive/ThornShortbow.gd::onDealtDamage"
+      ],
+      "missing_sites": [
+        "Items/Exclusive/ThornShortbow.gd::onDealtDamage"
+      ],
+      "installed_patch": true
+    },
+    "Items/Exclusive/LuckyShortbow.gd": {
+      "source": {
+        "path": "data/phase359-king-producer-source/after-source/Items/Exclusive/LuckyShortbow.gd",
+        "size": 519,
+        "sha256": "e75d49b40ed1ec7662936a5b8a8983398136b918bd3da8a494d1178bfcc394b6"
+      },
+      "extends": "Weapon",
+      "hook_sites": [
+        "Items/Exclusive/LuckyShortbow.gd::onPreDealDamage_early"
+      ],
+      "missing_sites": [
+        "Items/Exclusive/LuckyShortbow.gd::onPreDealDamage_early"
+      ],
+      "installed_patch": true
+    },
+    "Items/Exclusive/EnchantedWeapons.gd": {
+      "source": {
+        "path": "/workspace/godotsteam-startup-20261013/baseline/Backpack Battles/Items/Exclusive/EnchantedWeapons.gd",
+        "size": 270,
+        "sha256": "5b8ce556c4ac56c6e6b7e3749ba8cf761d3380174c467bae4bef98976264abec"
+      },
+      "extends": "Item",
+      "hook_sites": [],
+      "missing_sites": [],
+      "installed_patch": false
+    }
+  },
+  "selected_item_method_sites": 26,
+  "old_selected_item_sites": 23,
+  "missing_sites": [
+    "Items/Exclusive/LuckyShortbow.gd::onPreDealDamage_early",
+    "Items/Exclusive/ThornShortbow.gd::onDealtDamage",
+    "Items/MagicStaff.gd::onPreDealDamage_early"
+  ],
+  "existing_registered_AutoHide_sites": [
+    "Utility/AutoHideParticles.gd::_ready",
+    "Utility/AutoHideParticles.gd::activate",
+    "Utility/AutoHideParticles.gd::deactivate",
+    "Utility/AutoHideParticles.gd::instantClear",
+    "Utility/AutoHideParticles.gd::startTimer",
+    "Utility/AutoHideParticles.gd::timeout"
+  ],
+  "AutoHide_missing": [],
+  "scope": "Only fixed12 root scripts and actual Item inheritance; existing registered AutoHide checked, no new UI traversal or global98 admission."
+}
