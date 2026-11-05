@@ -1,0 +1,77 @@
+{
+  "schema": "phase625-success-pending-conservation/1",
+  "modules": [
+    {
+      "role": "writer",
+      "source": {
+        "path": "tests/phase625_restore_predecessor.py",
+        "size": 27971,
+        "sha256": "32ec2cd28c615604556d8bea5580177540cf46e69da0b1310eeb5b69a756c8e9"
+      },
+      "changed_functions": [
+        "validate_request",
+        "prepare",
+        "main"
+      ],
+      "exact_functions": [
+        "require",
+        "signature",
+        "stable",
+        "path_of",
+        "descriptor",
+        "decoded",
+        "equal",
+        "save",
+        "load_modules",
+        "image_record",
+        "row_record",
+        "check_image",
+        "no_process",
+        "action",
+        "public_action",
+        "select_restore_images",
+        "recheck_target",
+        "finish_metadata",
+        "apply",
+        "restore"
+      ],
+      "all_bodies_exact_after_declared_normalization": true,
+      "full_inverse": true
+    },
+    {
+      "role": "reader",
+      "source": {
+        "path": "tests/phase625_independent_predecessor_readback.py",
+        "size": 25387,
+        "sha256": "7ed1f741969f391a2c42d8e7b950cbc93cb4bdc814725aec2b0106928849a4f4"
+      },
+      "changed_functions": [
+        "readback",
+        "main"
+      ],
+      "exact_functions": [
+        "require",
+        "signature",
+        "stable",
+        "path_of",
+        "descriptor",
+        "decoded",
+        "relocate",
+        "difference",
+        "equal",
+        "save"
+      ],
+      "all_bodies_exact_after_declared_normalization": true,
+      "full_inverse": true
+    }
+  ],
+  "pending_association_unchanged": true,
+  "failure_authority_added": false,
+  "all_kernels_body_exact_after_declared_count_namespace_only": true,
+  "case": "NATIVE-030-MIXED-MODIFIERS-A",
+  "Source_run": "original030-mixed-modifiers-A-single-002",
+  "project_targets": 79,
+  "project_bytes": 817696,
+  "state_writes": 0,
+  "READY_writes": 0
+}

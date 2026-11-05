@@ -1,0 +1,116 @@
+{
+  "schema": "phase624-independent-recovery-design-review/1",
+  "status": "DESIGN_PASS_SOURCE_IMPLEMENTATION_ONLY",
+  "design_owner": {
+    "path": "data/phase623-pending002-recovery-and-config-design/owned-files.json",
+    "size": 1936,
+    "sha256": "e408e65e28cd198d5eb681b4d236c12cba2a8025f0ad100050c8ba499227005e"
+  },
+  "design_refs_checked": 9,
+  "scope": "623 successful-PENDING002 recovery pair and non-authorized configuration draft. No production invocation.",
+  "checks": {
+    "false_config_only_difference": "reviews.host_source null pair replaced by actual owned622 Source-only review",
+    "closed16keys": true,
+    "root_authorization": false,
+    "model_input_Expected_permissions": "strict INT0",
+    "resources_empty": true,
+    "historical_resources": "Six descriptors equal595 metadata only; no resource payload/stat/fresh gate performed",
+    "real_host_review_owned": true,
+    "actual621_host_freeze": {
+      "path": "data/phase621-hooks110-rebinding-source/host/combined-source-freeze.json",
+      "size": 71732,
+      "sha256": "2df37012b8f3313ce010104a0fe835a87f066556c965753fede8c3874a1e748a"
+    },
+    "actual621_storage": {
+      "path": "tests/phase621_oracle_storage.py",
+      "size": 21560,
+      "sha256": "6c9972d3fe23223542b92f78f18c0ac575a1cdaf4e7649f0b21ce09ba3dac676"
+    },
+    "fixed_run": "original030-mixed-modifiers-A-single-002",
+    "install_payloads": 79,
+    "install_bytes": 817696,
+    "new_previous_and_requests_unbound": true,
+    "function_preimages_verified": [
+      {
+        "role": "writer",
+        "function": "validate_request",
+        "line": 120,
+        "end_line": 140,
+        "size_with_LF": 1962,
+        "sha256_with_LF": "78d08bcb152e96a0639384bba3c4b9dba2c2944c303bdf49155058326c1109f5"
+      },
+      {
+        "role": "writer",
+        "function": "prepare",
+        "line": 227,
+        "end_line": 354,
+        "size_with_LF": 9354,
+        "sha256_with_LF": "5c46eff04cdb5bd1c81ab8472c6f60dd70f649362be0c4cbb93b6c53f04d6e44"
+      },
+      {
+        "role": "writer",
+        "function": "main",
+        "line": 449,
+        "end_line": 499,
+        "size_with_LF": 2876,
+        "sha256_with_LF": "913485544227635f2d131cc770beef30a816c474f9ee8b1dd8f37d17e690d137"
+      },
+      {
+        "role": "reader",
+        "function": "readback",
+        "line": 120,
+        "end_line": 306,
+        "size_with_LF": 13968,
+        "sha256_with_LF": "fa67ced544122b2b45e7689ffef85024980958f7d62106c42a1ae652de0c1efd"
+      },
+      {
+        "role": "reader",
+        "function": "main",
+        "line": 309,
+        "end_line": 417,
+        "size_with_LF": 6472,
+        "sha256_with_LF": "6262d68f51e0aedfe3e8078a7e882af0bb030f0d662865b15e2fa1d83c3d2efd"
+      }
+    ],
+    "identity_literal_census_verified": true
+  },
+  "minimal_implementation": {
+    "modules": 2,
+    "base": "Immutable590 successful-PENDING writer/reader",
+    "writer_functions": "prepare corpus guard817389\u2192817696; validate_request/main namespace strings only; RUN/FREEZE/storage constants mechanically rebound",
+    "reader_functions": "readback corpus guard817389\u2192817696 and request namespace; main report namespace; RUN/FREEZE constants rebound",
+    "preserve": "O\u222aN\u222aF selector, exact currentgraph/backup authority, physical metadata/atomic/fsync, directory restoration, exclusive lock and scopedprocess, full independent readback, zero state/READY writes",
+    "proof_after_implementation": "Whole-file inverse to590 and precise function census; source closure includes actual621storage and unchanged compaction. No broad old recovery rerun."
+  },
+  "failure_boundary": {
+    "success_route": "Requires actual failed/PENDING state with run/previous/control-manifest association from the new operation, not a pre-run snapshot.",
+    "generic_failure": "Do not invoke this successful-PENDING pair or reuse601authority. Preserve real state; separate actual owned failure/execution/config/saved0 association and reviewed602-pattern Source/request are required.",
+    "incomplete_materials": "Missing journal/currentgraph/backups block writes; no promise every partial failure is recoverable."
+  },
+  "required_future_gates": [
+    "Separate Root Source-only generation release for two isolated modules and independent Source/necessary identity-control acceptance.",
+    "Fresh actual resource/space/process/READY/unique002/target gates and explicit authorized immutable Root configuration;623 draft remains NOT_AUTHORIZED.",
+    "Same-lock fresh preimage preservation before reset; actual previous/controls/journal/pool-before determine runtime requests.",
+    "Only actual full independent physical readback PASS may precede a separate Root savedREADY commit."
+  ],
+  "limits": [
+    "Design acceptance is not implementation acceptance, operational permission, Native startup, actual restore/readback, or actual INPUT/model/strict8 validation.",
+    "Historical six resource references and stored READYPREDECESSOR values do not certify current physical state.",
+    "Selected002/CASE030/seeds/layout are Source bindings only. No new Native facts are filled.",
+    "Scoped process proof remains task/readable-reference evidence, never global process completeness."
+  ],
+  "operations": {
+    "SUT": 0,
+    "Source_imports": 0,
+    "compile": 0,
+    "helper_calls": 0,
+    "pool_reads": 0,
+    "resource_payload_reads": 0,
+    "Native": 0,
+    "Expected": 0,
+    "restore": 0,
+    "readback": 0,
+    "state_writes": 0
+  },
+  "actual_blockers": []
+}

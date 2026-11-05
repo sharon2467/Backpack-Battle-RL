@@ -1,0 +1,58 @@
+--- tests/phase590_restore_predecessor.py
++++ tests/phase625_restore_predecessor.py
+@@ -16,11 +16,11 @@
+ ROOT = Path(__file__).resolve().parents[1]
+ NATIVE = Path('/workspace/native-combat-20261013')
+ POOL = NATIVE / 'pool'
+-RUN = NATIVE / 'runs/original030-mixed-modifiers-A-single-001'
++RUN = NATIVE / 'runs/original030-mixed-modifiers-A-single-002'
+ PREVIOUS = None
+ CASE = 'NATIVE-030-MIXED-MODIFIERS-A'
+-FREEZE = {'path': 'data/phase590-case030-host-restore-source/combined-source-freeze.json', 'size': 65460, 'sha256': '2655616e809ea39c7cf6f4d3d6eed24dd68cce2cf134b7d499c213cee292f6b6'}
+-SOURCES = {'compaction': {'path': 'tests/native_run_compaction.py', 'size': 27304, 'sha256': '829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260'}, 'storage': {'path': 'tests/phase590_oracle_storage.py', 'size': 21560, 'sha256': 'e2079576bec0f5f60b0cf4b5934ce394b0142c6b49de1cf1e11aa5ebb083b9b7'}}
++FREEZE = {'path': 'data/phase621-hooks110-rebinding-source/host/combined-source-freeze.json', 'size': 71732, 'sha256': '2df37012b8f3313ce010104a0fe835a87f066556c965753fede8c3874a1e748a'}
++SOURCES = {'compaction': {'path': 'tests/native_run_compaction.py', 'size': 27304, 'sha256': '829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260'}, 'storage': {'path': 'tests/phase621_oracle_storage.py', 'size': 21560, 'sha256': '6c9972d3fe23223542b92f78f18c0ac575a1cdaf4e7649f0b21ce09ba3dac676'}}
+ CONTROLS = RUN / 'output/predecessor-control-preimages'
+ PATCH = RUN / 'output/previous-source-preimages'
+ JOURNAL = RUN / 'output/source-preimages'
+@@ -120,7 +120,7 @@
+ def validate_request(request):
+     global PREVIOUS,BUNDLE,EVIDENCE_PATHS
+     require(type(request) is dict and set(request)=={'schema','case_id','previous_run','writer','source_freeze','evidence','root_restore_authorized'},'closed case030 restore request')
+-    require(request['schema']=='phase590-fixed-predecessor-restore-request/1' and request['case_id']==CASE
++    require(request['schema']=='phase625-fixed002-predecessor-restore-request/1' and request['case_id']==CASE
+             and request['root_restore_authorized'] is True,'explicit new Root restoration authorization')
+     previous=path_of(request['previous_run'])
+     require(previous.is_absolute() and previous.parent==RUN.parent and previous!=RUN,'fixed runs root and distinct actual predecessor')
+@@ -296,7 +296,7 @@
+     check_image(old_images[MARKER], old[MARKER], 'old marker backup')
+     expected_after={name:row['after'] for name,row in freeze['paths'].items()}
+     expected_after.update({name:{key:row[key] for key in ('size','sha256')} for name,row in freeze['artifacts'].items()})
+-    require(len(expected_after)==79 and sum(row['size'] for row in expected_after.values())==817389,'exact new79 install corpus')
++    require(len(expected_after)==79 and sum(row['size'] for row in expected_after.values())==817696,'exact new79 install corpus')
+     journal=evidence['install_journal']
+     equal([row['path'] for row in journal],list(freeze['paths'])+['native_combat_capture.gd','native_capture_config.json',MARKER],'exact actual79 journal order')
+     journal_images={}
+@@ -453,11 +453,11 @@
+     parser.add_argument('--output-new', required=True)
+     args = parser.parse_args()
+     out = path_of(args.output_new)
+-    require(out.parent == ROOT / 'data' and out.name.startswith('phase590-restore-'), 'unique local phase469 report only')
++    require(out.parent == ROOT / 'data' and out.name.startswith('phase625-restore-'), 'unique local phase469 report only')
+     require(not out.exists() and not out.is_symlink(), 'report must be new')
+     out.mkdir(mode=0o700)
+     started = time.monotonic()
+-    result = {'schema': 'phase590-fixed-predecessor-restore-result/1', 'case_id': CASE, 'run': str(RUN),
++    result = {'schema': 'phase625-fixed002-predecessor-restore-result/1', 'case_id': CASE, 'run': str(RUN),
+               'previous_run': None, 'pool': str(POOL), 'status': 'RUNNING', 'write_phase_entered': False,
+               'file_operations': {'replace': 0, 'metadata': 0, 'unlink': 0, 'skip': 0},
+               'directory_operations': {'metadata': 0, 'skip': 0}, 'READY_writes': 0, 'state_writes': 0,
+@@ -494,7 +494,7 @@
+         for path in sorted(out.iterdir()):
+             if path.is_file():
+                 files.append(dict(path=str(path.relative_to(ROOT)), **stable(path)['identity']))
+-        save(out / 'owned-files.json', {'schema': 'phase590-restore-output-owner/1', 'files': files, 'no_more_writes': True})
++        save(out / 'owned-files.json', {'schema': 'phase625-restore-output-owner/1', 'files': files, 'no_more_writes': True})
+         print(json.dumps({'status': result['status'], 'elapsed_seconds': result['elapsed_seconds']}), flush=True)
+     return code
+ 

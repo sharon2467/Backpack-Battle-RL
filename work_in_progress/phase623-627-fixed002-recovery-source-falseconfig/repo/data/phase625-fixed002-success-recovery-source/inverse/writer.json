@@ -1,0 +1,64 @@
+{
+  "schema": "phase625-complete-source-inverse/1",
+  "before": {
+    "path": "tests/phase590_restore_predecessor.py",
+    "size": 27962,
+    "sha256": "06604457afbc94aaf50dd16c1661b5a7dd1314c96ae6e53ff4f2273d1a67b5a2"
+  },
+  "after": {
+    "path": "tests/phase625_restore_predecessor.py",
+    "size": 27971,
+    "sha256": "32ec2cd28c615604556d8bea5580177540cf46e69da0b1310eeb5b69a756c8e9"
+  },
+  "replacements": [
+    {
+      "offset": 367,
+      "before": "\nRUN = NATIVE / 'runs/original030-mixed-modifiers-A-single-001'\n",
+      "after": "\nRUN = NATIVE / 'runs/original030-mixed-modifiers-A-single-002'\n",
+      "label": "AST complete physical-line assignment:RUN"
+    },
+    {
+      "offset": 484,
+      "before": "\nFREEZE = {'path': 'data/phase590-case030-host-restore-source/combined-source-freeze.json', 'size': 65460, 'sha256': '2655616e809ea39c7cf6f4d3d6eed24dd68cce2cf134b7d499c213cee292f6b6'}\n",
+      "after": "\nFREEZE = {'path': 'data/phase621-hooks110-rebinding-source/host/combined-source-freeze.json', 'size': 71732, 'sha256': '2df37012b8f3313ce010104a0fe835a87f066556c965753fede8c3874a1e748a'}\n",
+      "label": "AST complete physical-line assignment:FREEZE"
+    },
+    {
+      "offset": 671,
+      "before": "\nSOURCES = {'compaction': {'path': 'tests/native_run_compaction.py', 'size': 27304, 'sha256': '829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260'}, 'storage': {'path': 'tests/phase590_oracle_storage.py', 'size': 21560, 'sha256': 'e2079576bec0f5f60b0cf4b5934ce394b0142c6b49de1cf1e11aa5ebb083b9b7'}}\n",
+      "after": "\nSOURCES = {'compaction': {'path': 'tests/native_run_compaction.py', 'size': 27304, 'sha256': '829475e4ba5ee4a3ce3e3ce7a1d600b53cfa6ab243020a8528b6758675e6c260'}, 'storage': {'path': 'tests/phase621_oracle_storage.py', 'size': 21560, 'sha256': '6c9972d3fe23223542b92f78f18c0ac575a1cdaf4e7649f0b21ce09ba3dac676'}}\n",
+      "label": "AST complete physical-line assignment:SOURCES"
+    },
+    {
+      "offset": 16171,
+      "before": "sum(row['size'] for row in expected_after.values())==817389",
+      "after": "sum(row['size'] for row in expected_after.values())==817696",
+      "label": "exact79 corpus binding only"
+    },
+    {
+      "offset": 4985,
+      "before": "'phase590-fixed-predecessor-restore-request/1'",
+      "after": "'phase625-fixed002-predecessor-restore-request/1'",
+      "label": "declarative namespace:'phase590-fixed-predecessor-restore-request/1'"
+    },
+    {
+      "offset": 25398,
+      "before": "'phase590-restore-'",
+      "after": "'phase625-restore-'",
+      "label": "declarative namespace:'phase590-restore-'"
+    },
+    {
+      "offset": 25615,
+      "before": "'phase590-fixed-predecessor-restore-result/1'",
+      "after": "'phase625-fixed002-predecessor-restore-result/1'",
+      "label": "declarative namespace:'phase590-fixed-predecessor-restore-result/1'"
+    },
+    {
+      "offset": 27707,
+      "before": "'phase590-restore-output-owner/1'",
+      "after": "'phase625-restore-output-owner/1'",
+      "label": "declarative namespace:'phase590-restore-output-owner/1'"
+    }
+  ],
+  "exact": true
+}

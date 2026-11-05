@@ -1,0 +1,58 @@
+{
+  "schema": "phase625-complete-source-inverse/1",
+  "before": {
+    "path": "tests/phase590_independent_predecessor_readback.py",
+    "size": 25372,
+    "sha256": "17bcaeb33ea7cfdd440f0231d0ac33fdca02b14871c298e0ca7bb027b55a07da"
+  },
+  "after": {
+    "path": "tests/phase625_independent_predecessor_readback.py",
+    "size": 25387,
+    "sha256": "7ed1f741969f391a2c42d8e7b950cbc93cb4bdc814725aec2b0106928849a4f4"
+  },
+  "replacements": [
+    {
+      "offset": 343,
+      "before": "\nRUN = 'original030-mixed-modifiers-A-single-001'\n",
+      "after": "\nRUN = 'original030-mixed-modifiers-A-single-002'\n",
+      "label": "AST complete physical-line assignment:RUN"
+    },
+    {
+      "offset": 547,
+      "before": "\nFREEZE = {'path': 'data/phase590-case030-host-restore-source/combined-source-freeze.json', 'size': 65460, 'sha256': '2655616e809ea39c7cf6f4d3d6eed24dd68cce2cf134b7d499c213cee292f6b6'}\n",
+      "after": "\nFREEZE = {'path': 'data/phase621-hooks110-rebinding-source/host/combined-source-freeze.json', 'size': 71732, 'sha256': '2df37012b8f3313ce010104a0fe835a87f066556c965753fede8c3874a1e748a'}\n",
+      "label": "AST complete physical-line assignment:FREEZE"
+    },
+    {
+      "offset": 16810,
+      "before": "sum(x['size'] for x in expected_after.values()) == 817389",
+      "after": "sum(x['size'] for x in expected_after.values()) == 817696",
+      "label": "exact79 corpus binding only"
+    },
+    {
+      "offset": 5155,
+      "before": "'phase590-fixed-predecessor-readback-request/1'",
+      "after": "'phase625-fixed002-predecessor-readback-request/1'",
+      "label": "declarative namespace:'phase590-fixed-predecessor-readback-request/1'"
+    },
+    {
+      "offset": 19193,
+      "before": "'phase590-readback-'",
+      "after": "'phase625-readback-'",
+      "label": "declarative namespace:'phase590-readback-'"
+    },
+    {
+      "offset": 19345,
+      "before": "'phase590-independent-readback-result/1'",
+      "after": "'phase625-independent-fixed002-readback-result/1'",
+      "label": "declarative namespace:'phase590-independent-readback-result/1'"
+    },
+    {
+      "offset": 25122,
+      "before": "'phase590-readback-output-owner/1'",
+      "after": "'phase625-readback-output-owner/1'",
+      "label": "declarative namespace:'phase590-readback-output-owner/1'"
+    }
+  ],
+  "exact": true
+}

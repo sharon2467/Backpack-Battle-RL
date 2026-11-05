@@ -1,0 +1,30 @@
+{
+  "schema": "phase625-success-recovery-source-api/1",
+  "writer": {
+    "path": "tests/phase625_restore_predecessor.py",
+    "size": 27971,
+    "sha256": "32ec2cd28c615604556d8bea5580177540cf46e69da0b1310eeb5b69a756c8e9"
+  },
+  "reader": {
+    "path": "tests/phase625_independent_predecessor_readback.py",
+    "size": 25387,
+    "sha256": "7ed1f741969f391a2c42d8e7b950cbc93cb4bdc814725aec2b0106928849a4f4"
+  },
+  "CLI": [
+    "--config",
+    "--config-sha256",
+    "--output-new"
+  ],
+  "writer_output_prefix": "phase625-restore-",
+  "reader_output_prefix": "phase625-readback-",
+  "writer_request_keys": 7,
+  "writer_evidence": 12,
+  "reader_request_keys": 9,
+  "reader_evidence": 8,
+  "actualprevious": null,
+  "root_restore_authorized": false,
+  "requires_complete_actual_PENDING": true,
+  "failure_route": "NOT_AUTHORIZED_OR_SUPPORTED; newactualRootauthority+separateSource required after failure",
+  "restore_calls": 0,
+  "readback_calls": 0
+}

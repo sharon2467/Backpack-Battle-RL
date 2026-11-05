@@ -1,0 +1,174 @@
+{
+  "schema": "phase623-successful002-recovery-design/1",
+  "status": "DESIGN_ONLY_SOURCE_NOT_IMPLEMENTED",
+  "case": "NATIVE-030-MIXED-MODIFIERS-A",
+  "selected_Source_run": "original030-mixed-modifiers-A-single-002",
+  "host_source_freeze": {
+    "path": "data/phase621-hooks110-rebinding-source/host/combined-source-freeze.json",
+    "size": 71732,
+    "sha256": "2df37012b8f3313ce010104a0fe835a87f066556c965753fede8c3874a1e748a"
+  },
+  "host_Source_review": {
+    "path": "data/phase622-independent-final-acceptance/host-source-review.json",
+    "size": 1218,
+    "sha256": "dbf2c78f34858b1eb54f66264b1f89fa60cc77c3ee33efb7c12b8547c3caf46a"
+  },
+  "storage": {
+    "path": "tests/phase621_oracle_storage.py",
+    "size": 21560,
+    "sha256": "6c9972d3fe23223542b92f78f18c0ac575a1cdaf4e7649f0b21ce09ba3dac676"
+  },
+  "modules": [
+    {
+      "role": "writer",
+      "preimage": {
+        "path": "tests/phase590_restore_predecessor.py",
+        "size": 27962,
+        "sha256": "06604457afbc94aaf50dd16c1661b5a7dd1314c96ae6e53ff4f2273d1a67b5a2"
+      },
+      "function_preimages": [
+        {
+          "function": "validate_request",
+          "line": 120,
+          "end_line": 140,
+          "size_with_LF": 1962,
+          "sha256_with_LF": "78d08bcb152e96a0639384bba3c4b9dba2c2944c303bdf49155058326c1109f5"
+        },
+        {
+          "function": "prepare",
+          "line": 227,
+          "end_line": 354,
+          "size_with_LF": 9354,
+          "sha256_with_LF": "5c46eff04cdb5bd1c81ab8472c6f60dd70f649362be0c4cbb93b6c53f04d6e44"
+        },
+        {
+          "function": "main",
+          "line": 449,
+          "end_line": 499,
+          "size_with_LF": 2876,
+          "sha256_with_LF": "913485544227635f2d131cc770beef30a816c474f9ee8b1dd8f37d17e690d137"
+        }
+      ],
+      "identity_literal_census": [
+        {
+          "line": 19,
+          "value": "runs/original030-mixed-modifiers-A-single-001"
+        },
+        {
+          "line": 22,
+          "value": "data/phase590-case030-host-restore-source/combined-source-freeze.json"
+        },
+        {
+          "line": 460,
+          "value": "phase590-fixed-predecessor-restore-result/1"
+        },
+        {
+          "line": 123,
+          "value": "phase590-fixed-predecessor-restore-request/1"
+        },
+        {
+          "line": 299,
+          "value": 817389
+        },
+        {
+          "line": 456,
+          "value": "phase590-restore-"
+        },
+        {
+          "line": 497,
+          "value": "phase590-restore-output-owner/1"
+        }
+      ],
+      "allowed_changes": [
+        "RUN→fixed002",
+        "FREEZE→actual621hostderivedfreeze",
+        "namespace/schema/output-prefix declarations",
+        "817389→817696 exact79 corpus guard",
+        "SOURCES.storage→actual621storage"
+      ],
+      "physical_body_changes": 0
+    },
+    {
+      "role": "reader",
+      "preimage": {
+        "path": "tests/phase590_independent_predecessor_readback.py",
+        "size": 25372,
+        "sha256": "17bcaeb33ea7cfdd440f0231d0ac33fdca02b14871c298e0ca7bb027b55a07da"
+      },
+      "function_preimages": [
+        {
+          "function": "readback",
+          "line": 120,
+          "end_line": 306,
+          "size_with_LF": 13968,
+          "sha256_with_LF": "fa67ced544122b2b45e7689ffef85024980958f7d62106c42a1ae652de0c1efd"
+        },
+        {
+          "function": "main",
+          "line": 309,
+          "end_line": 417,
+          "size_with_LF": 6472,
+          "sha256_with_LF": "6262d68f51e0aedfe3e8078a7e882af0bb030f0d662865b15e2fa1d83c3d2efd"
+        }
+      ],
+      "identity_literal_census": [
+        {
+          "line": 18,
+          "value": "original030-mixed-modifiers-A-single-001"
+        },
+        {
+          "line": 21,
+          "value": "data/phase590-case030-host-restore-source/combined-source-freeze.json"
+        },
+        {
+          "line": 319,
+          "value": "phase590-independent-readback-result/1"
+        },
+        {
+          "line": 123,
+          "value": "phase590-fixed-predecessor-readback-request/1"
+        },
+        {
+          "line": 316,
+          "value": "phase590-readback-"
+        },
+        {
+          "line": 415,
+          "value": "phase590-readback-output-owner/1"
+        },
+        {
+          "line": 279,
+          "value": 817389
+        }
+      ],
+      "allowed_changes": [
+        "RUN→fixed002",
+        "FREEZE→actual621hostderivedfreeze",
+        "namespace/schema/output-prefix declarations",
+        "817389→817696 exact79 corpus guard"
+      ],
+      "physical_body_changes": 0
+    }
+  ],
+  "requests": {
+    "writer_keys": 7,
+    "writer_evidence": 12,
+    "reader_keys": 9,
+    "reader_evidence": 8
+  },
+  "future_Module_namespace": "Assigned by next explicit Root Source release;no module generated here",
+  "physical_kernels_exact": [
+    "select_restore_images",
+    "apply",
+    "restore lock and state-unchanged checks",
+    "ordinary/stable/atomic/fsync",
+    "mode/mtime and directory metadata",
+    "scopedprocess",
+    "complete inventory and retained-evidence readback"
+  ],
+  "actual_previous": null,
+  "actual_requests": null,
+  "restore_calls": 0,
+  "reader_calls": 0,
+  "state_writes": 0
+}
