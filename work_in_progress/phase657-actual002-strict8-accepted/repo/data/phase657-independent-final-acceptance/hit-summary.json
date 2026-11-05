@@ -1,0 +1,294 @@
+{
+  "schema": "phase657-fixed002-business-hit-summary/1",
+  "basis": "Existing sealed model records, whose full eight-section projections matched Native in657. No further Expected read or comparison; raw Native method-entry census was not persisted by caller, so not fabricated here.",
+  "item12_summary": [
+    {
+      "item_index": 1,
+      "roles": [
+        "P:22",
+        "O:5"
+      ],
+      "activations": 20,
+      "event_type_counts": {
+        "1": 19,
+        "0": 20,
+        "15": 3,
+        "3": 1
+      },
+      "events_with_parent": 0,
+      "out_of_stamina": 3
+    },
+    {
+      "item_index": 5,
+      "roles": [
+        "P:20"
+      ],
+      "activations": 5,
+      "event_type_counts": {
+        "12": 5,
+        "13": 5,
+        "0": 5
+      },
+      "events_with_parent": 0,
+      "out_of_stamina": 0
+    },
+    {
+      "item_index": 11,
+      "roles": [
+        "P:0",
+        "P:1",
+        "P:2",
+        "P:3",
+        "P:4",
+        "P:5",
+        "P:6",
+        "P:7",
+        "P:8",
+        "P:9",
+        "P:10",
+        "P:11",
+        "O:0",
+        "O:1",
+        "O:2",
+        "O:3"
+      ],
+      "activations": 0,
+      "event_type_counts": {},
+      "events_with_parent": 0,
+      "out_of_stamina": 0
+    },
+    {
+      "item_index": 14,
+      "roles": [
+        "P:16"
+      ],
+      "activations": 7,
+      "event_type_counts": {
+        "1": 7,
+        "0": 7,
+        "15": 4
+      },
+      "events_with_parent": 0,
+      "out_of_stamina": 4
+    },
+    {
+      "item_index": 22,
+      "roles": [
+        "P:21"
+      ],
+      "activations": 7,
+      "event_type_counts": {
+        "105": 7,
+        "0": 7
+      },
+      "events_with_parent": 0,
+      "out_of_stamina": 0
+    },
+    {
+      "item_index": 32,
+      "roles": [
+        "P:15"
+      ],
+      "activations": 1,
+      "event_type_counts": {
+        "1": 1,
+        "0": 1,
+        "15": 8
+      },
+      "events_with_parent": 0,
+      "out_of_stamina": 8
+    },
+    {
+      "item_index": 162,
+      "roles": [
+        "P:12"
+      ],
+      "activations": 5,
+      "event_type_counts": {
+        "101": 1,
+        "104": 2,
+        "0": 5,
+        "107": 1,
+        "106": 3,
+        "105": 2,
+        "103": 1
+      },
+      "events_with_parent": 0,
+      "out_of_stamina": 0
+    },
+    {
+      "item_index": 164,
+      "roles": [
+        "P:14"
+      ],
+      "activations": 4,
+      "event_type_counts": {
+        "0": 4,
+        "106": 2,
+        "105": 2,
+        "102": 2
+      },
+      "events_with_parent": 0,
+      "out_of_stamina": 0
+    },
+    {
+      "item_index": 231,
+      "roles": [
+        "P:13",
+        "O:4"
+      ],
+      "activations": 6,
+      "event_type_counts": {
+        "107": 3,
+        "103": 4,
+        "106": 3,
+        "0": 6,
+        "102": 3,
+        "104": 1,
+        "105": 1,
+        "101": 1
+      },
+      "events_with_parent": 0,
+      "out_of_stamina": 0
+    },
+    {
+      "item_index": 233,
+      "roles": [
+        "P:17"
+      ],
+      "activations": 7,
+      "event_type_counts": {
+        "3": 1,
+        "0": 7,
+        "15": 2,
+        "1": 7,
+        "104": 4
+      },
+      "events_with_parent": 4,
+      "out_of_stamina": 2
+    },
+    {
+      "item_index": 234,
+      "roles": [
+        "P:18"
+      ],
+      "activations": 6,
+      "event_type_counts": {
+        "101": 7,
+        "1": 6,
+        "0": 6,
+        "15": 3
+      },
+      "events_with_parent": 0,
+      "out_of_stamina": 3
+    },
+    {
+      "item_index": 385,
+      "roles": [
+        "P:19"
+      ],
+      "activations": 3,
+      "event_type_counts": {
+        "102": 2,
+        "0": 3,
+        "107": 1
+      },
+      "events_with_parent": 0,
+      "out_of_stamina": 0
+    }
+  ],
+  "observed": [
+    "Bowl ledger reached100 with5 activations; two Pet final doubleActivationChance0.2 and four Weapon final doubleAttackEffectChance0.25 matched final comparison.",
+    "Squirrel emitted3 actual negative buff changes and corresponding positive gains; all selected pitch/roll rows matched RNG section.",
+    "Least-buff activations, Food resource effects, attack events and full histories including requested stat3/9 passed exact comparison."
+  ],
+  "new_hook_effect_evidence": [
+    {
+      "site": "Items/MagicStaff.gd::onPreDealDamage_early",
+      "role": "P:15",
+      "evidence": "1 successful attack/activation,6 damage,8 out-of-stamina; Source path implies early handler reached for actual attack. No raw enter count asserted.",
+      "Mana_spend_effect_events": 0,
+      "positive_Mana_bonus_branch": "NOT_HIT_IN_EVENT_EVIDENCE"
+    },
+    {
+      "site": "Items/Exclusive/ThornShortbow.gd::onDealtDamage",
+      "role": "P:17",
+      "Spikes_gain_events": 4,
+      "parents": [
+        68,
+        173,
+        203,
+        236
+      ],
+      "effect": "HIT"
+    },
+    {
+      "site": "Items/Exclusive/LuckyShortbow.gd::onPreDealDamage_early",
+      "role": "P:18",
+      "Lucky_gain_events": 7,
+      "effect": "HIT"
+    }
+  ],
+  "not_hit": [
+    "Pet extra activation: all7 actual .2-roll values were above.2; installed positive chance and roll ordering were exercised, successful extra branch was not.",
+    "Staff positive Mana-payment/bonus branch has no negative Mana event fromP15.",
+    "No generalized limiter4/5, exact-zero chance boundary, allseed, alllayout or generalKing claim."
+  ],
+  "Pet_extra_rolls": [
+    {
+      "label": "double_activation:P:14",
+      "value": 0.5432533621788025,
+      "threshold": 0.2
+    },
+    {
+      "label": "double_activation:P:13",
+      "value": 0.4988199472427368,
+      "threshold": 0.2
+    },
+    {
+      "label": "double_activation:P:14",
+      "value": 0.21838951110839844,
+      "threshold": 0.2
+    },
+    {
+      "label": "double_activation:P:13",
+      "value": 0.6342324614524841,
+      "threshold": 0.2
+    },
+    {
+      "label": "double_activation:P:14",
+      "value": 0.7579265832901001,
+      "threshold": 0.2
+    },
+    {
+      "label": "double_activation:P:14",
+      "value": 0.30795833468437195,
+      "threshold": 0.2
+    },
+    {
+      "label": "double_activation:P:13",
+      "value": 0.26962438225746155,
+      "threshold": 0.2
+    }
+  ],
+  "Squirrel_loss_events": [
+    {
+      "id": 74,
+      "type": 106,
+      "amount": -1,
+      "parent": null
+    },
+    {
+      "id": 132,
+      "type": 105,
+      "amount": -1,
+      "parent": null
+    },
+    {
+      "id": 184,
+      "type": 102,
+      "amount": -1,
+      "parent": null
+    }
+  ]
+}

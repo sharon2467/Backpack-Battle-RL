@@ -1,0 +1,87 @@
+{
+  "schema": "phase657-independent-output-preflight/1",
+  "status": "ACCEPTED_SEALED_OUTPUT_B1_B2_READY_FOR_ONE_COMPARISON",
+  "output_seal": {
+    "path": "/workspace/python-original-engine/repo/data/phase582-case030-single002-model-first-001/output-seal.json",
+    "size": 1053,
+    "sha256": "be73c99468ff655ea3add25f333db2f14082e345832262b83ffc6521315fff20"
+  },
+  "raw_model": {
+    "path": "/workspace/python-original-engine/repo/data/phase582-case030-single002-model-first-001/model-output.json",
+    "size": 16262769,
+    "sha256": "33485109de62d890d584b838997e6dc06b9c765ab0ac2ec52531d2a4b3b02910"
+  },
+  "model_events": 239,
+  "B1": {
+    "schema": "phase582-same-instance-prepared-business-gate/1",
+    "status": "PASS_PRE_ACTIVATION_SAME_INSTANCE",
+    "consumer_cache_roles": [
+      "O:4",
+      "P:12",
+      "P:13",
+      "P:14",
+      "P:19",
+      "P:20",
+      "P:21"
+    ],
+    "caches": {
+      "P:12": [
+        "P:20",
+        "P:21"
+      ],
+      "P:13": [],
+      "P:14": [
+        "P:12"
+      ],
+      "P:19": [
+        "P:15",
+        "P:18",
+        "P:16",
+        "P:17"
+      ],
+      "P:20": [
+        "P:12"
+      ],
+      "P:21": [
+        "P:12"
+      ],
+      "O:4": []
+    },
+    "listeners": {},
+    "timer_count": 32,
+    "Tape_position": 0,
+    "passes_consumed": 0,
+    "scope": "Actual business cache and mixed typed fields; full colors/current remain provenance"
+  },
+  "B2": {
+    "receipt": {
+      "path": "/workspace/python-original-engine/repo/data/phase655-root-actual002-B2-first-001/closure.json",
+      "size": 13418,
+      "sha256": "67e1bf7ac18047bfd6cb05217a21104bb17df4420f7803cc4fd50a5fed2655ad"
+    },
+    "rows": 1121,
+    "roles": 29,
+    "conditional_noop_slots": 31,
+    "full_FX_UI_gate_called": false
+  },
+  "same_seal_aux": {
+    "path": "/workspace/python-original-engine/repo/data/phase582-case030-single002-model-first-001/final-business-aux.json",
+    "size": 1488,
+    "sha256": "cde8344a6f3c53a0acaa511543d3f0db4332754a545be81c3b70b954e52a5a56"
+  },
+  "actual_execution_counts": {
+    "candidate_import_attempts": 1,
+    "construct_attempts": 1,
+    "prepare_attempts": 1,
+    "prepared_gate_attempts": 1,
+    "activate_attempts": 1,
+    "full_run_attempts": 1
+  },
+  "Tape": 279,
+  "clock": 1116,
+  "Expected_payload_reads": 0,
+  "comparison_calls": 0,
+  "candidate_imports": 0,
+  "native_process_clean_exit": false,
+  "scope": "Seal and linkage acceptance only; no strict8 outcome yet."
+}
