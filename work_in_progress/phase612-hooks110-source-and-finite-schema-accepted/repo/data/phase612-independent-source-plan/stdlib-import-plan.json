@@ -1,0 +1,36 @@
+{
+  "schema": "phase612-stdlib-preload-plan/1",
+  "schema_imports": [
+    "import hashlib, json, math, re, struct",
+    "from copy import deepcopy",
+    "from dataclasses import dataclass",
+    "from types import SimpleNamespace"
+  ],
+  "pre_audit": [
+    "__future__",
+    "argparse",
+    "copy",
+    "dataclasses",
+    "hashlib",
+    "json",
+    "math",
+    "os",
+    "pathlib",
+    "re",
+    "signal",
+    "stat",
+    "struct",
+    "sys",
+    "time",
+    "traceback",
+    "types"
+  ],
+  "SUT_nested_local_imports": [],
+  "schema_module_static_imports": [
+    "import hashlib, json, math, re, struct",
+    "from copy import deepcopy",
+    "from dataclasses import dataclass",
+    "from types import SimpleNamespace"
+  ],
+  "execution": false
+}

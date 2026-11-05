@@ -1,0 +1,283 @@
+{
+  "schema": "phase612-independent-final-acceptance/1",
+  "status": "ACCEPTED_SOURCE_AND_FINITE_SYNTHETIC_SCHEMA_ONLY",
+  "source_owner": {
+    "path": "data/phase610-three-selected-hook-source-v2/source-owner.json",
+    "size": 34004,
+    "sha256": "ac6e00700048b876a654e5837415a794c4c00bf7b7d3618d95267f50ab1db156"
+  },
+  "source_freeze": {
+    "path": "data/phase610-three-selected-hook-source-v2/combined-source-freeze.json",
+    "size": 65722,
+    "sha256": "a1dc715f1bcf704906baacc7c481147f63f5f0cbec7b80cb0d0739ffd47fa4d4"
+  },
+  "source_tuple": {
+    "path": "data/phase610-three-selected-hook-source-v2/source-tuple.json",
+    "size": 2916,
+    "sha256": "d6d33c940c4bcf49ac81b5572a3fee9439172fdc5c7cef096d37e4f60cae8b21"
+  },
+  "schema_module": {
+    "path": "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py",
+    "size": 208143,
+    "sha256": "a33d2b90669388e9b3b1973a70234a5ec672f480167c27a26e07245fff84f45c"
+  },
+  "static_review": {
+    "path": "data/phase612-independent-source-plan/static-review.json",
+    "size": 6958,
+    "sha256": "1f2639f4a540d5f6bf821505b55fb30185691909e7d2edac9a2ad75f8f58772c"
+  },
+  "plan_owner": {
+    "path": "data/phase612-independent-source-plan/owned-files.json",
+    "size": 1874,
+    "sha256": "e903e2842b4c440c9bac18b46b2d28467a3bfe83d42e6eaa7ffffecabc7f4def"
+  },
+  "actual_result": {
+    "path": "data/phase612-independent-controls-first-001/result.json",
+    "size": 25158,
+    "sha256": "cd343facebead0936dac30d0728985d5900d4bbab9aa3e8d4a29dfcd06bdf35e"
+  },
+  "actual_owner": {
+    "path": "data/phase612-independent-controls-first-001/owned-files.json",
+    "size": 258,
+    "sha256": "6fbf9554151e54dcbdab5880c65397667e7ffc190639fb0ecb488bde70cd4c3a"
+  },
+  "Root_execution_owner": {
+    "path": "data/phase612-root-unique-schema-control-release/owned-files.json",
+    "size": 1224,
+    "sha256": "3e13cd3065cd5dad0d162f8823a645582bf77caa8b6be6329be3541ae0b767ab"
+  },
+  "Root_execution": {
+    "exit": 0,
+    "pid": 3444,
+    "reaped": true,
+    "outer_timeout": false,
+    "seconds": 0.17217840900048031,
+    "stdout_bytes": 0,
+    "stderr_bytes": 0
+  },
+  "owner_files_checked": {
+    "data/phase612-independent-source-plan/owned-files.json": 9,
+    "data/phase612-independent-controls-first-001/owned-files.json": 1,
+    "data/phase612-root-unique-schema-control-release/owned-files.json": 6
+  },
+  "Source_pins_current_before_after_exact": 22,
+  "verdict": {
+    "cases": 13,
+    "positive": 6,
+    "expected_reject": 7,
+    "schema_eval_attempts": 1,
+    "schema_imports_completed": 1,
+    "actual_schema_origin": {
+      "_phase612_actual_frozen_schema": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py"
+    },
+    "input_hashes_match_presealed_vectors_and_after": true,
+    "MATRIX_CONTRACT_unchanged": true,
+    "first_rejection_messages_exact": true,
+    "inner_owner_matches_actual_disk_result": true
+  },
+  "cases": [
+    {
+      "id": "01-32-enter",
+      "status": "PASS",
+      "input_canonical": "1b3d2414ce9391b6672133edff79e42df74ed220cf3a4466b3072b8c35f10aba",
+      "first_reject": null,
+      "actual_layer": "actual selected site + typed argument/state + strict receiver"
+    },
+    {
+      "id": "02-32-return_implicit",
+      "status": "PASS",
+      "input_canonical": "23d8f9e0e6aa336d3f62e9c2105e9c75c0dc78120799205d75e84c8ae2ea42ba",
+      "first_reject": null,
+      "actual_layer": "actual selected site + typed argument/state + strict receiver"
+    },
+    {
+      "id": "03-233-enter",
+      "status": "PASS",
+      "input_canonical": "99674929dc21516a09a74f51ad755faa75142735cb55a247842a2ef2c4c48ed7",
+      "first_reject": null,
+      "actual_layer": "actual selected site + typed argument/state + strict receiver"
+    },
+    {
+      "id": "04-233-return_implicit",
+      "status": "PASS",
+      "input_canonical": "9e6f67b4f0182e0cce3cffce44c10ed02743a9f976f2a82ffd469251f2d1c0a7",
+      "first_reject": null,
+      "actual_layer": "actual selected site + typed argument/state + strict receiver"
+    },
+    {
+      "id": "05-234-enter",
+      "status": "PASS",
+      "input_canonical": "2bebfe9be510b9e34b8df277ca02a09751a9a00aac3e9f5d8906e5905f67ad01",
+      "first_reject": null,
+      "actual_layer": "actual selected site + typed argument/state + strict receiver"
+    },
+    {
+      "id": "06-234-return_implicit",
+      "status": "PASS",
+      "input_canonical": "2058ff445f96b868762da19184f8549b632f87658a150e1e56d7a829f2e98277",
+      "first_reject": null,
+      "actual_layer": "actual selected site + typed argument/state + strict receiver"
+    },
+    {
+      "id": "07-wrong-class",
+      "status": "PASS",
+      "input_canonical": "d229ece17ddd488b034f3a727a2de02ae6860efa8d756fb9581e92c73f0a76d4",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "selected damage hook receiver class must be exact RigidBody2D"
+      },
+      "actual_layer": "new selected receiver class"
+    },
+    {
+      "id": "08-BOOL-index",
+      "status": "PASS",
+      "input_canonical": "ef3ca5a742a82f92663cba990e7453d19fc8ee671384f591ca5403b02121094a",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "item descriptor INT"
+      },
+      "actual_layer": "existing validate_state before new selected gate"
+    },
+    {
+      "id": "09-REAL-index",
+      "status": "PASS",
+      "input_canonical": "dfa278882b2dc40c8ff422062b0a06a21ea113b98c7abdc0a8881c9a5c9a2344",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "item descriptor INT"
+      },
+      "actual_layer": "existing validate_state before new selected gate"
+    },
+    {
+      "id": "10-wrong-descriptor",
+      "status": "PASS",
+      "input_canonical": "7c0278983119fffd07013d2ad9fceb90eef25b2377411bf0b7342fb2b45a1439",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "selected damage hook strict INT descriptor mismatch"
+      },
+      "actual_layer": "new exact site descriptor before role/index join"
+    },
+    {
+      "id": "11-unknown-site",
+      "status": "PASS",
+      "input_canonical": "9d61a6c87f5f9e0b249032c67add366c5d450ffb512e8d3012fc575b87357fe8",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "unknown record site"
+      },
+      "actual_layer": "base record unknown site"
+    },
+    {
+      "id": "12-malformed-DamageResult",
+      "status": "PASS",
+      "input_canonical": "f807ba201eeefd410ebbff8c2dd3e2992f0b4851fc8f6c9672dedad2ae3f837d",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "damage field type damage"
+      },
+      "actual_layer": "existing typed DamageResult damage field"
+    },
+    {
+      "id": "13-nonNULL-return",
+      "status": "PASS",
+      "input_canonical": "1694fb8fc20cfe52fce664688c2395e9b089af0598984e063b811280faa934fb",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "original observer implicit return is NULL"
+      },
+      "actual_layer": "existing source implicit return gate"
+    }
+  ],
+  "profile": {
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:1::<module>": 1,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:405::<genexpr>": 14,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:959::FramePass": 1,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:968::ClockSchedule": 1,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:1282::validate_record": 13,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:227::_base_validate_record": 13,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:42::exact": 843,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:47::integer": 415,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:59::text": 78,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:1087::validate_typed": 634,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:65::validate_typed": 634,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:53::decimal": 376,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:1125::validate_state": 11,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:1094::validate_cache": 18,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:1237::argument_fields": 5
+  },
+  "read_audit_review": {
+    "events": 46,
+    "before": 23,
+    "module_source_load": 1,
+    "after": 22,
+    "schema_eval_reads": 0,
+    "control_period_reads": 0,
+    "outside_pinned_repo_paths": 0,
+    "forbidden_function_calls": 0,
+    "fulljoin": 0,
+    "fullcapture_decode": 0,
+    "note": "Pin/protocol reads are distinct from zero SUT-stage I/O. writes snapshot excludes later report writes; actual result/owner bytes were independently hashed."
+  },
+  "retained_static_evidence": {
+    "whole_file_inverse": [
+      "schema",
+      "sink"
+    ],
+    "old_sites": 107,
+    "new_sites": [
+      "Items/Exclusive/LuckyShortbow.gd::onPreDealDamage_early",
+      "Items/Exclusive/ThornShortbow.gd::onDealtDamage",
+      "Items/MagicStaff.gd::onPreDealDamage_early"
+    ],
+    "site_count": 110,
+    "old107_SITES_MATRIX_deep_equal": true,
+    "CONTRACT_and_TimerAPI_extra_edges_exact": true,
+    "sink_function_bodies_exact": 102,
+    "schema_function_bodies_exact": 77,
+    "schema_changed_functions": [
+      "('validate_record', 1)"
+    ],
+    "project_targets_changed": [
+      "native_random_observer_sink_v7.gd"
+    ],
+    "other_patch_targets_exact": 75,
+    "artifacts_exact": 3,
+    "case_inputs_exact": 3,
+    "collector_exact": true,
+    "install_count": 79,
+    "install_bytes": 817696,
+    "selected3_instrumented_methods_unchanged": true,
+    "schema_unique_helper_names_exact": 76,
+    "function_count_note": "Occurrence-aware AST count includes both validate_typed definitions (78 functions,77 unchanged); author name-keyed census has77 names,76 unchanged."
+  },
+  "evidence_scope": {
+    "Staff32": "STATIC_ONLY Original execution evidence; synthetic typed enter/return admitted here.",
+    "Lucky234": "STATIC_ONLY Original execution evidence; synthetic typed enter/return admitted here.",
+    "Thorn233": "Prior600 failure-site HIT at unknown-selected-hook seq4906; not complete original handler/capture execution. Synthetic typed enter/return admitted here.",
+    "old107": "Static deep equality/body conservation; no old complete suite or capture rerun."
+  },
+  "actual_operations": {
+    "schema_top_calls": 13,
+    "schema_imports": 1,
+    "producer_generation_in_this_review": 0,
+    "Godot": 0,
+    "Native": 0,
+    "models": 0,
+    "Expected_semantic_decode": 0,
+    "pool": 0,
+    "reviewer_reexecution": 0
+  },
+  "history_preserved": [
+    "600 failed partial capture remains incomplete and not admitted as actual INPUT.",
+    "610 strictcount producer failure retained;611 immutable Source repair accepted statically.",
+    "612 review-only metadata-key/absolute-path formatting diagnostics retained; neither was schema SUT failure."
+  ],
+  "remaining": [
+    "No fullcapture/fulljoin/actual Native UID, clock, environment or hook completion validation.",
+    "No Godot purity or native support promotion; formal75/general coverage unchanged.",
+    "New immutable host/reader context/config/explicit execution authority still required; future run remains null.",
+    "New Original002 is not authorized by this acceptance; whole project remains incomplete."
+  ],
+  "consumer_contract_note": "No frozen host/schema declares a closed schema for the new Source acceptance receipt. A separately owned phase612 receipt supplies actual descriptors and counts for future explicit binding; it is not a substitute for old575 acceptance or any fullcapture gate."
+}

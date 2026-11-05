@@ -1,0 +1,2780 @@
+{
+  "schema": "phase612-frozen-schema-record-vectors/1",
+  "synthetic": true,
+  "Native_fact": false,
+  "full_capture": false,
+  "calls": 13,
+  "positives": 6,
+  "rejects": 7,
+  "construction": "Literal typed rows composed from exact frozen schema shape and new fixed sites; no validator or candidate used to derive values.",
+  "cases": [
+    {
+      "id": "01-32-enter",
+      "row": {
+        "schema": "observer7-record/1",
+        "sequence": 0,
+        "channel": "runtime",
+        "site": "Items/MagicStaff.gd::onPreDealDamage_early",
+        "edge": "enter",
+        "subject": {
+          "type": "native_ref",
+          "native_id": "91032",
+          "role": "P:15",
+          "class": "RigidBody2D"
+        },
+        "stamp": {
+          "physics_frame": "0",
+          "idle_frame": "0",
+          "util_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "combat_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "phase": "synthetic"
+        },
+        "payload": {
+          "state": {
+            "activationsThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                }
+              ]
+            },
+            "consumed": {
+              "type": "bool",
+              "value": false
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                }
+              ]
+            },
+            "descriptorIndex": {
+              "type": "int",
+              "decimal": "32"
+            },
+            "faceDirection": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "iterationCooldown": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "lastActivationTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "lastTriggerTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "ownerType": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "placed": {
+              "type": "bool",
+              "value": true
+            },
+            "speedScale": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "triggerTime": {
+              "type": "float",
+              "binary64_be": "4010000000000000"
+            },
+            "triggersThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "doubleActivationChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "doubleAttackEffectChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            }
+          },
+          "arguments": {
+            "type": "dictionary",
+            "entries": [
+              {
+                "key": {
+                  "type": "string",
+                  "value": "damageRes"
+                },
+                "value": {
+                  "type": "damage_result",
+                  "native_id": "92001",
+                  "event": {
+                    "type": "null"
+                  },
+                  "damageSource": {
+                    "type": "null"
+                  },
+                  "damage": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "healthDamage": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "hit": {
+                    "type": "bool",
+                    "value": true
+                  },
+                  "critical": {
+                    "type": "bool",
+                    "value": false
+                  },
+                  "damageReduction": {
+                    "type": "int",
+                    "decimal": "0"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "expected": {
+        "returns_input": true
+      },
+      "layer": "actual selected site + typed argument/state + strict receiver"
+    },
+    {
+      "id": "02-32-return_implicit",
+      "row": {
+        "schema": "observer7-record/1",
+        "sequence": 1,
+        "channel": "runtime",
+        "site": "Items/MagicStaff.gd::onPreDealDamage_early",
+        "edge": "return_implicit",
+        "subject": {
+          "type": "native_ref",
+          "native_id": "91032",
+          "role": "P:15",
+          "class": "RigidBody2D"
+        },
+        "stamp": {
+          "physics_frame": "0",
+          "idle_frame": "0",
+          "util_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "combat_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "phase": "synthetic"
+        },
+        "payload": {
+          "state": {
+            "activationsThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                }
+              ]
+            },
+            "consumed": {
+              "type": "bool",
+              "value": false
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                }
+              ]
+            },
+            "descriptorIndex": {
+              "type": "int",
+              "decimal": "32"
+            },
+            "faceDirection": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "iterationCooldown": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "lastActivationTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "lastTriggerTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "ownerType": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "placed": {
+              "type": "bool",
+              "value": true
+            },
+            "speedScale": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "triggerTime": {
+              "type": "float",
+              "binary64_be": "4010000000000000"
+            },
+            "triggersThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "doubleActivationChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "doubleAttackEffectChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            }
+          },
+          "return_value": {
+            "type": "null"
+          }
+        }
+      },
+      "expected": {
+        "returns_input": true
+      },
+      "layer": "actual selected site + typed argument/state + strict receiver"
+    },
+    {
+      "id": "03-233-enter",
+      "row": {
+        "schema": "observer7-record/1",
+        "sequence": 2,
+        "channel": "runtime",
+        "site": "Items/Exclusive/ThornShortbow.gd::onDealtDamage",
+        "edge": "enter",
+        "subject": {
+          "type": "native_ref",
+          "native_id": "91233",
+          "role": "P:17",
+          "class": "RigidBody2D"
+        },
+        "stamp": {
+          "physics_frame": "0",
+          "idle_frame": "0",
+          "util_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "combat_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "phase": "synthetic"
+        },
+        "payload": {
+          "state": {
+            "activationsThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                }
+              ]
+            },
+            "consumed": {
+              "type": "bool",
+              "value": false
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                }
+              ]
+            },
+            "descriptorIndex": {
+              "type": "int",
+              "decimal": "233"
+            },
+            "faceDirection": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "iterationCooldown": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "lastActivationTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "lastTriggerTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "ownerType": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "placed": {
+              "type": "bool",
+              "value": true
+            },
+            "speedScale": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "triggerTime": {
+              "type": "float",
+              "binary64_be": "4010000000000000"
+            },
+            "triggersThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "doubleActivationChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "doubleAttackEffectChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            }
+          },
+          "arguments": {
+            "type": "dictionary",
+            "entries": [
+              {
+                "key": {
+                  "type": "string",
+                  "value": "damageRes"
+                },
+                "value": {
+                  "type": "damage_result",
+                  "native_id": "92001",
+                  "event": {
+                    "type": "null"
+                  },
+                  "damageSource": {
+                    "type": "null"
+                  },
+                  "damage": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "healthDamage": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "hit": {
+                    "type": "bool",
+                    "value": true
+                  },
+                  "critical": {
+                    "type": "bool",
+                    "value": false
+                  },
+                  "damageReduction": {
+                    "type": "int",
+                    "decimal": "0"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "expected": {
+        "returns_input": true
+      },
+      "layer": "actual selected site + typed argument/state + strict receiver"
+    },
+    {
+      "id": "04-233-return_implicit",
+      "row": {
+        "schema": "observer7-record/1",
+        "sequence": 3,
+        "channel": "runtime",
+        "site": "Items/Exclusive/ThornShortbow.gd::onDealtDamage",
+        "edge": "return_implicit",
+        "subject": {
+          "type": "native_ref",
+          "native_id": "91233",
+          "role": "P:17",
+          "class": "RigidBody2D"
+        },
+        "stamp": {
+          "physics_frame": "0",
+          "idle_frame": "0",
+          "util_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "combat_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "phase": "synthetic"
+        },
+        "payload": {
+          "state": {
+            "activationsThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                }
+              ]
+            },
+            "consumed": {
+              "type": "bool",
+              "value": false
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                }
+              ]
+            },
+            "descriptorIndex": {
+              "type": "int",
+              "decimal": "233"
+            },
+            "faceDirection": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "iterationCooldown": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "lastActivationTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "lastTriggerTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "ownerType": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "placed": {
+              "type": "bool",
+              "value": true
+            },
+            "speedScale": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "triggerTime": {
+              "type": "float",
+              "binary64_be": "4010000000000000"
+            },
+            "triggersThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "doubleActivationChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "doubleAttackEffectChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            }
+          },
+          "return_value": {
+            "type": "null"
+          }
+        }
+      },
+      "expected": {
+        "returns_input": true
+      },
+      "layer": "actual selected site + typed argument/state + strict receiver"
+    },
+    {
+      "id": "05-234-enter",
+      "row": {
+        "schema": "observer7-record/1",
+        "sequence": 4,
+        "channel": "runtime",
+        "site": "Items/Exclusive/LuckyShortbow.gd::onPreDealDamage_early",
+        "edge": "enter",
+        "subject": {
+          "type": "native_ref",
+          "native_id": "91234",
+          "role": "P:18",
+          "class": "RigidBody2D"
+        },
+        "stamp": {
+          "physics_frame": "0",
+          "idle_frame": "0",
+          "util_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "combat_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "phase": "synthetic"
+        },
+        "payload": {
+          "state": {
+            "activationsThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                }
+              ]
+            },
+            "consumed": {
+              "type": "bool",
+              "value": false
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                }
+              ]
+            },
+            "descriptorIndex": {
+              "type": "int",
+              "decimal": "234"
+            },
+            "faceDirection": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "iterationCooldown": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "lastActivationTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "lastTriggerTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "ownerType": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "placed": {
+              "type": "bool",
+              "value": true
+            },
+            "speedScale": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "triggerTime": {
+              "type": "float",
+              "binary64_be": "4010000000000000"
+            },
+            "triggersThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "doubleActivationChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "doubleAttackEffectChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            }
+          },
+          "arguments": {
+            "type": "dictionary",
+            "entries": [
+              {
+                "key": {
+                  "type": "string",
+                  "value": "damageRes"
+                },
+                "value": {
+                  "type": "damage_result",
+                  "native_id": "92001",
+                  "event": {
+                    "type": "null"
+                  },
+                  "damageSource": {
+                    "type": "null"
+                  },
+                  "damage": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "healthDamage": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "hit": {
+                    "type": "bool",
+                    "value": true
+                  },
+                  "critical": {
+                    "type": "bool",
+                    "value": false
+                  },
+                  "damageReduction": {
+                    "type": "int",
+                    "decimal": "0"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "expected": {
+        "returns_input": true
+      },
+      "layer": "actual selected site + typed argument/state + strict receiver"
+    },
+    {
+      "id": "06-234-return_implicit",
+      "row": {
+        "schema": "observer7-record/1",
+        "sequence": 5,
+        "channel": "runtime",
+        "site": "Items/Exclusive/LuckyShortbow.gd::onPreDealDamage_early",
+        "edge": "return_implicit",
+        "subject": {
+          "type": "native_ref",
+          "native_id": "91234",
+          "role": "P:18",
+          "class": "RigidBody2D"
+        },
+        "stamp": {
+          "physics_frame": "0",
+          "idle_frame": "0",
+          "util_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "combat_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "phase": "synthetic"
+        },
+        "payload": {
+          "state": {
+            "activationsThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                }
+              ]
+            },
+            "consumed": {
+              "type": "bool",
+              "value": false
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                }
+              ]
+            },
+            "descriptorIndex": {
+              "type": "int",
+              "decimal": "234"
+            },
+            "faceDirection": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "iterationCooldown": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "lastActivationTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "lastTriggerTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "ownerType": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "placed": {
+              "type": "bool",
+              "value": true
+            },
+            "speedScale": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "triggerTime": {
+              "type": "float",
+              "binary64_be": "4010000000000000"
+            },
+            "triggersThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "doubleActivationChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "doubleAttackEffectChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            }
+          },
+          "return_value": {
+            "type": "null"
+          }
+        }
+      },
+      "expected": {
+        "returns_input": true
+      },
+      "layer": "actual selected site + typed argument/state + strict receiver"
+    },
+    {
+      "id": "07-wrong-class",
+      "row": {
+        "schema": "observer7-record/1",
+        "sequence": 2,
+        "channel": "runtime",
+        "site": "Items/Exclusive/ThornShortbow.gd::onDealtDamage",
+        "edge": "enter",
+        "subject": {
+          "type": "native_ref",
+          "native_id": "91233",
+          "role": "P:17",
+          "class": "Node"
+        },
+        "stamp": {
+          "physics_frame": "0",
+          "idle_frame": "0",
+          "util_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "combat_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "phase": "synthetic"
+        },
+        "payload": {
+          "state": {
+            "activationsThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                }
+              ]
+            },
+            "consumed": {
+              "type": "bool",
+              "value": false
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                }
+              ]
+            },
+            "descriptorIndex": {
+              "type": "int",
+              "decimal": "233"
+            },
+            "faceDirection": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "iterationCooldown": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "lastActivationTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "lastTriggerTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "ownerType": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "placed": {
+              "type": "bool",
+              "value": true
+            },
+            "speedScale": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "triggerTime": {
+              "type": "float",
+              "binary64_be": "4010000000000000"
+            },
+            "triggersThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "doubleActivationChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "doubleAttackEffectChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            }
+          },
+          "arguments": {
+            "type": "dictionary",
+            "entries": [
+              {
+                "key": {
+                  "type": "string",
+                  "value": "damageRes"
+                },
+                "value": {
+                  "type": "damage_result",
+                  "native_id": "92001",
+                  "event": {
+                    "type": "null"
+                  },
+                  "damageSource": {
+                    "type": "null"
+                  },
+                  "damage": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "healthDamage": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "hit": {
+                    "type": "bool",
+                    "value": true
+                  },
+                  "critical": {
+                    "type": "bool",
+                    "value": false
+                  },
+                  "damageReduction": {
+                    "type": "int",
+                    "decimal": "0"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "expected": {
+        "exception": "ValueError",
+        "message": "selected damage hook receiver class must be exact RigidBody2D"
+      },
+      "layer": "new selected receiver class"
+    },
+    {
+      "id": "08-BOOL-index",
+      "row": {
+        "schema": "observer7-record/1",
+        "sequence": 2,
+        "channel": "runtime",
+        "site": "Items/Exclusive/ThornShortbow.gd::onDealtDamage",
+        "edge": "enter",
+        "subject": {
+          "type": "native_ref",
+          "native_id": "91233",
+          "role": "P:17",
+          "class": "RigidBody2D"
+        },
+        "stamp": {
+          "physics_frame": "0",
+          "idle_frame": "0",
+          "util_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "combat_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "phase": "synthetic"
+        },
+        "payload": {
+          "state": {
+            "activationsThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                }
+              ]
+            },
+            "consumed": {
+              "type": "bool",
+              "value": false
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                }
+              ]
+            },
+            "descriptorIndex": {
+              "type": "bool",
+              "value": true
+            },
+            "faceDirection": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "iterationCooldown": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "lastActivationTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "lastTriggerTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "ownerType": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "placed": {
+              "type": "bool",
+              "value": true
+            },
+            "speedScale": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "triggerTime": {
+              "type": "float",
+              "binary64_be": "4010000000000000"
+            },
+            "triggersThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "doubleActivationChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "doubleAttackEffectChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            }
+          },
+          "arguments": {
+            "type": "dictionary",
+            "entries": [
+              {
+                "key": {
+                  "type": "string",
+                  "value": "damageRes"
+                },
+                "value": {
+                  "type": "damage_result",
+                  "native_id": "92001",
+                  "event": {
+                    "type": "null"
+                  },
+                  "damageSource": {
+                    "type": "null"
+                  },
+                  "damage": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "healthDamage": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "hit": {
+                    "type": "bool",
+                    "value": true
+                  },
+                  "critical": {
+                    "type": "bool",
+                    "value": false
+                  },
+                  "damageReduction": {
+                    "type": "int",
+                    "decimal": "0"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "expected": {
+        "exception": "ValueError",
+        "message": "item descriptor INT"
+      },
+      "layer": "existing validate_state before new selected gate"
+    },
+    {
+      "id": "09-REAL-index",
+      "row": {
+        "schema": "observer7-record/1",
+        "sequence": 2,
+        "channel": "runtime",
+        "site": "Items/Exclusive/ThornShortbow.gd::onDealtDamage",
+        "edge": "enter",
+        "subject": {
+          "type": "native_ref",
+          "native_id": "91233",
+          "role": "P:17",
+          "class": "RigidBody2D"
+        },
+        "stamp": {
+          "physics_frame": "0",
+          "idle_frame": "0",
+          "util_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "combat_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "phase": "synthetic"
+        },
+        "payload": {
+          "state": {
+            "activationsThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                }
+              ]
+            },
+            "consumed": {
+              "type": "bool",
+              "value": false
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                }
+              ]
+            },
+            "descriptorIndex": {
+              "type": "float",
+              "binary64_be": "406d200000000000"
+            },
+            "faceDirection": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "iterationCooldown": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "lastActivationTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "lastTriggerTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "ownerType": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "placed": {
+              "type": "bool",
+              "value": true
+            },
+            "speedScale": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "triggerTime": {
+              "type": "float",
+              "binary64_be": "4010000000000000"
+            },
+            "triggersThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "doubleActivationChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "doubleAttackEffectChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            }
+          },
+          "arguments": {
+            "type": "dictionary",
+            "entries": [
+              {
+                "key": {
+                  "type": "string",
+                  "value": "damageRes"
+                },
+                "value": {
+                  "type": "damage_result",
+                  "native_id": "92001",
+                  "event": {
+                    "type": "null"
+                  },
+                  "damageSource": {
+                    "type": "null"
+                  },
+                  "damage": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "healthDamage": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "hit": {
+                    "type": "bool",
+                    "value": true
+                  },
+                  "critical": {
+                    "type": "bool",
+                    "value": false
+                  },
+                  "damageReduction": {
+                    "type": "int",
+                    "decimal": "0"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "expected": {
+        "exception": "ValueError",
+        "message": "item descriptor INT"
+      },
+      "layer": "existing validate_state before new selected gate"
+    },
+    {
+      "id": "10-wrong-descriptor",
+      "row": {
+        "schema": "observer7-record/1",
+        "sequence": 2,
+        "channel": "runtime",
+        "site": "Items/Exclusive/ThornShortbow.gd::onDealtDamage",
+        "edge": "enter",
+        "subject": {
+          "type": "native_ref",
+          "native_id": "91233",
+          "role": "P:17",
+          "class": "RigidBody2D"
+        },
+        "stamp": {
+          "physics_frame": "0",
+          "idle_frame": "0",
+          "util_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "combat_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "phase": "synthetic"
+        },
+        "payload": {
+          "state": {
+            "activationsThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                }
+              ]
+            },
+            "consumed": {
+              "type": "bool",
+              "value": false
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                }
+              ]
+            },
+            "descriptorIndex": {
+              "type": "int",
+              "decimal": "32"
+            },
+            "faceDirection": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "iterationCooldown": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "lastActivationTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "lastTriggerTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "ownerType": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "placed": {
+              "type": "bool",
+              "value": true
+            },
+            "speedScale": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "triggerTime": {
+              "type": "float",
+              "binary64_be": "4010000000000000"
+            },
+            "triggersThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "doubleActivationChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "doubleAttackEffectChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            }
+          },
+          "arguments": {
+            "type": "dictionary",
+            "entries": [
+              {
+                "key": {
+                  "type": "string",
+                  "value": "damageRes"
+                },
+                "value": {
+                  "type": "damage_result",
+                  "native_id": "92001",
+                  "event": {
+                    "type": "null"
+                  },
+                  "damageSource": {
+                    "type": "null"
+                  },
+                  "damage": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "healthDamage": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "hit": {
+                    "type": "bool",
+                    "value": true
+                  },
+                  "critical": {
+                    "type": "bool",
+                    "value": false
+                  },
+                  "damageReduction": {
+                    "type": "int",
+                    "decimal": "0"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "expected": {
+        "exception": "ValueError",
+        "message": "selected damage hook strict INT descriptor mismatch"
+      },
+      "layer": "new exact site descriptor before role/index join"
+    },
+    {
+      "id": "11-unknown-site",
+      "row": {
+        "schema": "observer7-record/1",
+        "sequence": 2,
+        "channel": "runtime",
+        "site": "Items/Exclusive/ThornShortbow.gd::unknown_hook",
+        "edge": "enter",
+        "subject": {
+          "type": "native_ref",
+          "native_id": "91233",
+          "role": "P:17",
+          "class": "RigidBody2D"
+        },
+        "stamp": {
+          "physics_frame": "0",
+          "idle_frame": "0",
+          "util_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "combat_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "phase": "synthetic"
+        },
+        "payload": {
+          "state": {
+            "activationsThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                }
+              ]
+            },
+            "consumed": {
+              "type": "bool",
+              "value": false
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                }
+              ]
+            },
+            "descriptorIndex": {
+              "type": "int",
+              "decimal": "233"
+            },
+            "faceDirection": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "iterationCooldown": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "lastActivationTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "lastTriggerTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "ownerType": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "placed": {
+              "type": "bool",
+              "value": true
+            },
+            "speedScale": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "triggerTime": {
+              "type": "float",
+              "binary64_be": "4010000000000000"
+            },
+            "triggersThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "doubleActivationChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "doubleAttackEffectChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            }
+          },
+          "arguments": {
+            "type": "dictionary",
+            "entries": [
+              {
+                "key": {
+                  "type": "string",
+                  "value": "damageRes"
+                },
+                "value": {
+                  "type": "damage_result",
+                  "native_id": "92001",
+                  "event": {
+                    "type": "null"
+                  },
+                  "damageSource": {
+                    "type": "null"
+                  },
+                  "damage": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "healthDamage": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "hit": {
+                    "type": "bool",
+                    "value": true
+                  },
+                  "critical": {
+                    "type": "bool",
+                    "value": false
+                  },
+                  "damageReduction": {
+                    "type": "int",
+                    "decimal": "0"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "expected": {
+        "exception": "ValueError",
+        "message": "unknown record site"
+      },
+      "layer": "base record unknown site"
+    },
+    {
+      "id": "12-malformed-DamageResult",
+      "row": {
+        "schema": "observer7-record/1",
+        "sequence": 2,
+        "channel": "runtime",
+        "site": "Items/Exclusive/ThornShortbow.gd::onDealtDamage",
+        "edge": "enter",
+        "subject": {
+          "type": "native_ref",
+          "native_id": "91233",
+          "role": "P:17",
+          "class": "RigidBody2D"
+        },
+        "stamp": {
+          "physics_frame": "0",
+          "idle_frame": "0",
+          "util_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "combat_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "phase": "synthetic"
+        },
+        "payload": {
+          "state": {
+            "activationsThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                }
+              ]
+            },
+            "consumed": {
+              "type": "bool",
+              "value": false
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                }
+              ]
+            },
+            "descriptorIndex": {
+              "type": "int",
+              "decimal": "233"
+            },
+            "faceDirection": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "iterationCooldown": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "lastActivationTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "lastTriggerTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "ownerType": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "placed": {
+              "type": "bool",
+              "value": true
+            },
+            "speedScale": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "triggerTime": {
+              "type": "float",
+              "binary64_be": "4010000000000000"
+            },
+            "triggersThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "doubleActivationChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "doubleAttackEffectChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            }
+          },
+          "arguments": {
+            "type": "dictionary",
+            "entries": [
+              {
+                "key": {
+                  "type": "string",
+                  "value": "damageRes"
+                },
+                "value": {
+                  "type": "damage_result",
+                  "native_id": "92001",
+                  "event": {
+                    "type": "null"
+                  },
+                  "damageSource": {
+                    "type": "null"
+                  },
+                  "damage": {
+                    "type": "float",
+                    "binary64_be": "0000000000000000"
+                  },
+                  "healthDamage": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "hit": {
+                    "type": "bool",
+                    "value": true
+                  },
+                  "critical": {
+                    "type": "bool",
+                    "value": false
+                  },
+                  "damageReduction": {
+                    "type": "int",
+                    "decimal": "0"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "expected": {
+        "exception": "ValueError",
+        "message": "damage field type damage"
+      },
+      "layer": "existing typed DamageResult damage field"
+    },
+    {
+      "id": "13-nonNULL-return",
+      "row": {
+        "schema": "observer7-record/1",
+        "sequence": 3,
+        "channel": "runtime",
+        "site": "Items/Exclusive/ThornShortbow.gd::onDealtDamage",
+        "edge": "return_implicit",
+        "subject": {
+          "type": "native_ref",
+          "native_id": "91233",
+          "role": "P:17",
+          "class": "RigidBody2D"
+        },
+        "stamp": {
+          "physics_frame": "0",
+          "idle_frame": "0",
+          "util_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "combat_time": {
+            "type": "float",
+            "binary64_be": "0000000000000000"
+          },
+          "phase": "synthetic"
+        },
+        "payload": {
+          "state": {
+            "activationsThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "cachedAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "array",
+                    "values": []
+                  }
+                }
+              ]
+            },
+            "consumed": {
+              "type": "bool",
+              "value": false
+            },
+            "currentAffectedItems": {
+              "type": "dictionary",
+              "entries": [
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "0"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "2"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "4"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                },
+                {
+                  "key": {
+                    "type": "int",
+                    "decimal": "7"
+                  },
+                  "value": {
+                    "type": "dictionary",
+                    "entries": []
+                  }
+                }
+              ]
+            },
+            "descriptorIndex": {
+              "type": "int",
+              "decimal": "233"
+            },
+            "faceDirection": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "iterationCooldown": {
+              "type": "float",
+              "binary64_be": "3ff0000000000000"
+            },
+            "lastActivationTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "lastTriggerTime": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "ownerType": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "placed": {
+              "type": "bool",
+              "value": true
+            },
+            "speedScale": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "triggerTime": {
+              "type": "float",
+              "binary64_be": "4010000000000000"
+            },
+            "triggersThisFrame": {
+              "type": "int",
+              "decimal": "0"
+            },
+            "doubleActivationChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            },
+            "doubleAttackEffectChance": {
+              "type": "float",
+              "binary64_be": "0000000000000000"
+            }
+          },
+          "return_value": {
+            "type": "int",
+            "decimal": "0"
+          }
+        }
+      },
+      "expected": {
+        "exception": "ValueError",
+        "message": "original observer implicit return is NULL"
+      },
+      "layer": "existing source implicit return gate"
+    }
+  ]
+}

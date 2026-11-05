@@ -1,0 +1,14 @@
+{
+  "schema": "phase612-review-metadata-diagnostic/1",
+  "error": "KeyError: 'case_inputs'",
+  "cause": "Read-only review utility assumed a nonexistent combined-freeze top-level key. Actual case input descriptors are in files[].",
+  "scope": "review utility only; no schema import/helper/producer/Godot/model/pool calls",
+  "already_completed": "owner hashes, two inverse checks, old107/deep MATRIX/CONTRACT,76helpers,102sink bodies,75other targets",
+  "correction": "Compare exact three case-input descriptors in files[]; no Source/input/assertion change.",
+  "sealing_followup_diagnostic": {
+    "error": "ValueError: Original absolute Source path is not beneath repository",
+    "cause": "Review pin formatter used relative_to on an already-declared absolute Source descriptor.",
+    "correction": "Retain absolute path for that explicit owner leaf; do not rewrite its authority or widen the future SUT read scope.",
+    "SUT_calls": 0
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "schema": "phase612-exact-schema-control-execution-plan/1",
+  "status": "FROZEN_NOT_EXECUTED_PENDING_ROOT_RELEASE",
+  "argv": [
+    "python",
+    "-I",
+    "-B",
+    "/workspace/python-original-engine/repo/tests/phase612_independent_three_hook_schema_controls.py",
+    "--pins",
+    "/workspace/python-original-engine/repo/data/phase612-independent-source-plan/pins.json",
+    "--pins-sha256",
+    "550851b1f6d8f8f35cb35c62ebcb0c460ba317b43806b4bd88de1ff85d436a2a"
+  ],
+  "cwd": "/tmp",
+  "inner_seconds": 15,
+  "outer_seconds": 20,
+  "fresh_processes": 1,
+  "output_new": "/workspace/python-original-engine/repo/data/phase612-independent-controls-first-001",
+  "script": {
+    "path": "tests/phase612_independent_three_hook_schema_controls.py",
+    "size": 9959,
+    "sha256": "3f30bec834dee8367796fdd840a85fc16c98e7b43c420b8c43388d8a1518baba"
+  },
+  "pins": {
+    "path": "data/phase612-independent-source-plan/pins.json",
+    "size": 5291,
+    "sha256": "550851b1f6d8f8f35cb35c62ebcb0c460ba317b43806b4bd88de1ff85d436a2a"
+  },
+  "budgets": {
+    "module_eval_attempts": 1,
+    "schema_imports_completed": 1,
+    "validate_record_top": 13,
+    "positive": 6,
+    "expected_reject": 7,
+    "nested_helpers": "actual profile by absolute filename:firstline:function; not additional top calls",
+    "fulljoin": 0,
+    "fullcapture": 0,
+    "producer": 0,
+    "Godot": 0,
+    "Native": 0,
+    "models": 0,
+    "Expected": 0,
+    "pool": 0
+  },
+  "pins_count": 22,
+  "stopping": "First unexpected error stops immediately and preserves partial result; no retry, source change or continuing remaining vectors.",
+  "reporting": "Serialize result once; owner uses exact serialized bytes. writes is pre-result snapshot. Traceback captures frame metadata without reading arbitrary traceback source.",
+  "scope": "Finite synthetic schema record admission only; no Godot hook completion, capture/lineage/fulljoin/host/Native admission or formal support upgrade.",
+  "already_executed": false
+}

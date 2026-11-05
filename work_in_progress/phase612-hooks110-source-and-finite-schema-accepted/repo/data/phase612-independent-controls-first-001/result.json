@@ -1,0 +1,587 @@
+{
+  "schema": "phase612-independent-schema-controls/1",
+  "status": "PASS_FINITE_SYNTHETIC_SCHEMA_RECORDS_ONLY",
+  "cases": [
+    {
+      "id": "01-32-enter",
+      "status": "PASS",
+      "expected_rejection_layer": "actual selected site + typed argument/state + strict receiver",
+      "returned_canonical": "1b3d2414ce9391b6672133edff79e42df74ed220cf3a4466b3072b8c35f10aba",
+      "input_before": "1b3d2414ce9391b6672133edff79e42df74ed220cf3a4466b3072b8c35f10aba",
+      "input_after": "1b3d2414ce9391b6672133edff79e42df74ed220cf3a4466b3072b8c35f10aba"
+    },
+    {
+      "id": "02-32-return_implicit",
+      "status": "PASS",
+      "expected_rejection_layer": "actual selected site + typed argument/state + strict receiver",
+      "returned_canonical": "23d8f9e0e6aa336d3f62e9c2105e9c75c0dc78120799205d75e84c8ae2ea42ba",
+      "input_before": "23d8f9e0e6aa336d3f62e9c2105e9c75c0dc78120799205d75e84c8ae2ea42ba",
+      "input_after": "23d8f9e0e6aa336d3f62e9c2105e9c75c0dc78120799205d75e84c8ae2ea42ba"
+    },
+    {
+      "id": "03-233-enter",
+      "status": "PASS",
+      "expected_rejection_layer": "actual selected site + typed argument/state + strict receiver",
+      "returned_canonical": "99674929dc21516a09a74f51ad755faa75142735cb55a247842a2ef2c4c48ed7",
+      "input_before": "99674929dc21516a09a74f51ad755faa75142735cb55a247842a2ef2c4c48ed7",
+      "input_after": "99674929dc21516a09a74f51ad755faa75142735cb55a247842a2ef2c4c48ed7"
+    },
+    {
+      "id": "04-233-return_implicit",
+      "status": "PASS",
+      "expected_rejection_layer": "actual selected site + typed argument/state + strict receiver",
+      "returned_canonical": "9e6f67b4f0182e0cce3cffce44c10ed02743a9f976f2a82ffd469251f2d1c0a7",
+      "input_before": "9e6f67b4f0182e0cce3cffce44c10ed02743a9f976f2a82ffd469251f2d1c0a7",
+      "input_after": "9e6f67b4f0182e0cce3cffce44c10ed02743a9f976f2a82ffd469251f2d1c0a7"
+    },
+    {
+      "id": "05-234-enter",
+      "status": "PASS",
+      "expected_rejection_layer": "actual selected site + typed argument/state + strict receiver",
+      "returned_canonical": "2bebfe9be510b9e34b8df277ca02a09751a9a00aac3e9f5d8906e5905f67ad01",
+      "input_before": "2bebfe9be510b9e34b8df277ca02a09751a9a00aac3e9f5d8906e5905f67ad01",
+      "input_after": "2bebfe9be510b9e34b8df277ca02a09751a9a00aac3e9f5d8906e5905f67ad01"
+    },
+    {
+      "id": "06-234-return_implicit",
+      "status": "PASS",
+      "expected_rejection_layer": "actual selected site + typed argument/state + strict receiver",
+      "returned_canonical": "2058ff445f96b868762da19184f8549b632f87658a150e1e56d7a829f2e98277",
+      "input_before": "2058ff445f96b868762da19184f8549b632f87658a150e1e56d7a829f2e98277",
+      "input_after": "2058ff445f96b868762da19184f8549b632f87658a150e1e56d7a829f2e98277"
+    },
+    {
+      "id": "07-wrong-class",
+      "status": "PASS",
+      "expected_rejection_layer": "new selected receiver class",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "selected damage hook receiver class must be exact RigidBody2D"
+      },
+      "input_before": "d229ece17ddd488b034f3a727a2de02ae6860efa8d756fb9581e92c73f0a76d4",
+      "input_after": "d229ece17ddd488b034f3a727a2de02ae6860efa8d756fb9581e92c73f0a76d4"
+    },
+    {
+      "id": "08-BOOL-index",
+      "status": "PASS",
+      "expected_rejection_layer": "existing validate_state before new selected gate",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "item descriptor INT"
+      },
+      "input_before": "ef3ca5a742a82f92663cba990e7453d19fc8ee671384f591ca5403b02121094a",
+      "input_after": "ef3ca5a742a82f92663cba990e7453d19fc8ee671384f591ca5403b02121094a"
+    },
+    {
+      "id": "09-REAL-index",
+      "status": "PASS",
+      "expected_rejection_layer": "existing validate_state before new selected gate",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "item descriptor INT"
+      },
+      "input_before": "dfa278882b2dc40c8ff422062b0a06a21ea113b98c7abdc0a8881c9a5c9a2344",
+      "input_after": "dfa278882b2dc40c8ff422062b0a06a21ea113b98c7abdc0a8881c9a5c9a2344"
+    },
+    {
+      "id": "10-wrong-descriptor",
+      "status": "PASS",
+      "expected_rejection_layer": "new exact site descriptor before role/index join",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "selected damage hook strict INT descriptor mismatch"
+      },
+      "input_before": "7c0278983119fffd07013d2ad9fceb90eef25b2377411bf0b7342fb2b45a1439",
+      "input_after": "7c0278983119fffd07013d2ad9fceb90eef25b2377411bf0b7342fb2b45a1439"
+    },
+    {
+      "id": "11-unknown-site",
+      "status": "PASS",
+      "expected_rejection_layer": "base record unknown site",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "unknown record site"
+      },
+      "input_before": "9d61a6c87f5f9e0b249032c67add366c5d450ffb512e8d3012fc575b87357fe8",
+      "input_after": "9d61a6c87f5f9e0b249032c67add366c5d450ffb512e8d3012fc575b87357fe8"
+    },
+    {
+      "id": "12-malformed-DamageResult",
+      "status": "PASS",
+      "expected_rejection_layer": "existing typed DamageResult damage field",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "damage field type damage"
+      },
+      "input_before": "f807ba201eeefd410ebbff8c2dd3e2992f0b4851fc8f6c9672dedad2ae3f837d",
+      "input_after": "f807ba201eeefd410ebbff8c2dd3e2992f0b4851fc8f6c9672dedad2ae3f837d"
+    },
+    {
+      "id": "13-nonNULL-return",
+      "status": "PASS",
+      "expected_rejection_layer": "existing source implicit return gate",
+      "first_reject": {
+        "type": "ValueError",
+        "message": "original observer implicit return is NULL"
+      },
+      "input_before": "1694fb8fc20cfe52fce664688c2395e9b089af0598984e063b811280faa934fb",
+      "input_after": "1694fb8fc20cfe52fce664688c2395e9b089af0598984e063b811280faa934fb"
+    }
+  ],
+  "top_entered": 13,
+  "top_completed": 13,
+  "positive": 6,
+  "rejected": 7,
+  "module_eval_attempts": 1,
+  "module_imports_completed": 1,
+  "profile": {
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:1::<module>": 1,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:405::<genexpr>": 14,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:959::FramePass": 1,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:968::ClockSchedule": 1,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:1282::validate_record": 13,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:227::_base_validate_record": 13,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:42::exact": 843,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:47::integer": 415,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:59::text": 78,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:1087::validate_typed": 634,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:65::validate_typed": 634,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:53::decimal": 376,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:1125::validate_state": 11,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:1094::validate_cache": 18,
+    "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py:1237::argument_fields": 5
+  },
+  "origins": {
+    "_phase612_actual_frozen_schema": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py"
+  },
+  "read_audit": [
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-source-first-error-freeze/owned-files.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/after-source/native_random_observer_sink_v7.gd",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/combined-source-freeze.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/conservation.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/inverse/schema.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/inverse/sink.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/site-census.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/source-authority.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/source-owner.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/source-tuple.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase611-source-repair-evidence/owned-files.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase611-source-repair-evidence/producer.patch",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase611-source-repair-evidence/repair.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase612-independent-source-plan/static-metadata-first-error.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase612-independent-source-plan/static-review.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase612-independent-source-plan/stdlib-import-plan.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase612-independent-source-plan/vector-static-review.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase612-independent-source-plan/vectors.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase612_three_hook_independent_schema_control_spec.md",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase611_prepare_three_selected_hook_source_v2.py",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase612_independent_three_hook_schema_controls.py",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase612-independent-source-plan/vectors.json",
+      "stage": "before"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py",
+      "stage": "module_load"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-source-first-error-freeze/owned-files.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/after-source/native_random_observer_sink_v7.gd",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/combined-source-freeze.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/conservation.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/inverse/schema.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/inverse/sink.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/site-census.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/source-authority.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/source-owner.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase610-three-selected-hook-source-v2/source-tuple.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase611-source-repair-evidence/owned-files.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase611-source-repair-evidence/producer.patch",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase611-source-repair-evidence/repair.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase612-independent-source-plan/static-metadata-first-error.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase612-independent-source-plan/static-review.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase612-independent-source-plan/stdlib-import-plan.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase612-independent-source-plan/vector-static-review.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/data/phase612-independent-source-plan/vectors.json",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/docs/phase612_three_hook_independent_schema_control_spec.md",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase611_prepare_three_selected_hook_source_v2.py",
+      "stage": "after"
+    },
+    {
+      "path": "/workspace/python-original-engine/repo/tests/phase612_independent_three_hook_schema_controls.py",
+      "stage": "after"
+    }
+  ],
+  "writes": [],
+  "forbidden_calls": [],
+  "schema_SUT_stage_reads": 0,
+  "fulljoin": 0,
+  "fullcapture_decode": 0,
+  "producer": 0,
+  "Godot": 0,
+  "Native": 0,
+  "models": 0,
+  "Expected": 0,
+  "pool_reads": 0,
+  "pool_writes": 0,
+  "actual_Native_facts": false,
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "synthetic_record_envelopes": true,
+  "pins_before": [
+    {
+      "path": "data/phase610-source-first-error-freeze/owned-files.json",
+      "size": 1037,
+      "sha256": "cb924911a8f67ad438243254e99789a194fc062f53523bfae6c1d57cc387c57d"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/after-source/native_random_observer_sink_v7.gd",
+      "size": 106018,
+      "sha256": "150b82c5b5898165dd8b547cabd73fd065cf1d5e709f9a9294ec6cdfea2e7e97"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/combined-source-freeze.json",
+      "size": 65722,
+      "sha256": "a1dc715f1bcf704906baacc7c481147f63f5f0cbec7b80cb0d0739ffd47fa4d4"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/conservation.json",
+      "size": 10277,
+      "sha256": "1788fb9322eadfe77431afeaa68c854cb46226039389764acdac101fe527e636"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/inverse/schema.json",
+      "size": 134299,
+      "sha256": "69f88620445bda761994fdccd3dd73aeeb4f9dd5cf3b0f3ee00cfa202715b0a9"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/inverse/sink.json",
+      "size": 22399,
+      "sha256": "d8dc66fc238a9b6307a7cdffa528957e259c98b3190dae5d54300a2fe0bb0b6b"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py",
+      "size": 208143,
+      "sha256": "a33d2b90669388e9b3b1973a70234a5ec672f480167c27a26e07245fff84f45c"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/site-census.json",
+      "size": 15511,
+      "sha256": "97b1c797e2e6e62dd966714463e2f70f8fb985902433828bb4f8dceae49b93df"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/source-authority.json",
+      "size": 1131,
+      "sha256": "906c1a3aa4f50344537f0dfb2842a7f15f8195422fefd67a340b41d460343abd"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/source-owner.json",
+      "size": 34004,
+      "sha256": "ac6e00700048b876a654e5837415a794c4c00bf7b7d3618d95267f50ab1db156"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/source-tuple.json",
+      "size": 2916,
+      "sha256": "d6d33c940c4bcf49ac81b5572a3fee9439172fdc5c7cef096d37e4f60cae8b21"
+    },
+    {
+      "path": "data/phase611-source-repair-evidence/owned-files.json",
+      "size": 1436,
+      "sha256": "284821d7e9afba09aedf6f9bbf3e65a57ca503852b4c0601bdf1a74ef7256268"
+    },
+    {
+      "path": "data/phase611-source-repair-evidence/producer.patch",
+      "size": 4251,
+      "sha256": "fd3346ddeb1d345a2de6565da2b5f24dfd8f0c0a00c8296d5ebd6ff655cdd40d"
+    },
+    {
+      "path": "data/phase611-source-repair-evidence/repair.json",
+      "size": 1906,
+      "sha256": "48ebb3e52b26636cea06fc8112e862a87ed76ea662536c8ead95d6a1bcc1dd38"
+    },
+    {
+      "path": "data/phase612-independent-source-plan/static-metadata-first-error.json",
+      "size": 945,
+      "sha256": "265718c06b87177d6ca946c6dae46db52fcef61d8db777da4212f70da195ac70"
+    },
+    {
+      "path": "data/phase612-independent-source-plan/static-review.json",
+      "size": 6958,
+      "sha256": "1f2639f4a540d5f6bf821505b55fb30185691909e7d2edac9a2ad75f8f58772c"
+    },
+    {
+      "path": "data/phase612-independent-source-plan/stdlib-import-plan.json",
+      "size": 746,
+      "sha256": "7537ed938faa634bcbcbf324c0f98c00a152d0582e6f07e953b9cec32db6a59c"
+    },
+    {
+      "path": "data/phase612-independent-source-plan/vector-static-review.json",
+      "size": 718,
+      "sha256": "364f00afd7c5cec74f960b1efd559a3a904894f2b89218abb5b5862b3055f798"
+    },
+    {
+      "path": "data/phase612-independent-source-plan/vectors.json",
+      "size": 77523,
+      "sha256": "46ee11340f807d001e21b6f2dbc3eb0b25c77bd446c639895e2c249899124864"
+    },
+    {
+      "path": "docs/phase612_three_hook_independent_schema_control_spec.md",
+      "size": 4207,
+      "sha256": "f77b5f3d8c4cbafd9848958a3a48debf6e7f197e7f9c0814c2ccd88c76bff5ac"
+    },
+    {
+      "path": "tests/phase611_prepare_three_selected_hook_source_v2.py",
+      "size": 22109,
+      "sha256": "c10c7b4da1bd956fd29f97a66336e97fdda1cd3fef09ab4e392a6fbbdcaace43"
+    },
+    {
+      "path": "tests/phase612_independent_three_hook_schema_controls.py",
+      "size": 9959,
+      "sha256": "3f30bec834dee8367796fdd840a85fc16c98e7b43c420b8c43388d8a1518baba"
+    }
+  ],
+  "module_constants_unchanged": true,
+  "pins_after": [
+    {
+      "path": "data/phase610-source-first-error-freeze/owned-files.json",
+      "size": 1037,
+      "sha256": "cb924911a8f67ad438243254e99789a194fc062f53523bfae6c1d57cc387c57d"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/after-source/native_random_observer_sink_v7.gd",
+      "size": 106018,
+      "sha256": "150b82c5b5898165dd8b547cabd73fd065cf1d5e709f9a9294ec6cdfea2e7e97"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/combined-source-freeze.json",
+      "size": 65722,
+      "sha256": "a1dc715f1bcf704906baacc7c481147f63f5f0cbec7b80cb0d0739ffd47fa4d4"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/conservation.json",
+      "size": 10277,
+      "sha256": "1788fb9322eadfe77431afeaa68c854cb46226039389764acdac101fe527e636"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/inverse/schema.json",
+      "size": 134299,
+      "sha256": "69f88620445bda761994fdccd3dd73aeeb4f9dd5cf3b0f3ee00cfa202715b0a9"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/inverse/sink.json",
+      "size": 22399,
+      "sha256": "d8dc66fc238a9b6307a7cdffa528957e259c98b3190dae5d54300a2fe0bb0b6b"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/schema/phase610_mixed_observer_schema.py",
+      "size": 208143,
+      "sha256": "a33d2b90669388e9b3b1973a70234a5ec672f480167c27a26e07245fff84f45c"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/site-census.json",
+      "size": 15511,
+      "sha256": "97b1c797e2e6e62dd966714463e2f70f8fb985902433828bb4f8dceae49b93df"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/source-authority.json",
+      "size": 1131,
+      "sha256": "906c1a3aa4f50344537f0dfb2842a7f15f8195422fefd67a340b41d460343abd"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/source-owner.json",
+      "size": 34004,
+      "sha256": "ac6e00700048b876a654e5837415a794c4c00bf7b7d3618d95267f50ab1db156"
+    },
+    {
+      "path": "data/phase610-three-selected-hook-source-v2/source-tuple.json",
+      "size": 2916,
+      "sha256": "d6d33c940c4bcf49ac81b5572a3fee9439172fdc5c7cef096d37e4f60cae8b21"
+    },
+    {
+      "path": "data/phase611-source-repair-evidence/owned-files.json",
+      "size": 1436,
+      "sha256": "284821d7e9afba09aedf6f9bbf3e65a57ca503852b4c0601bdf1a74ef7256268"
+    },
+    {
+      "path": "data/phase611-source-repair-evidence/producer.patch",
+      "size": 4251,
+      "sha256": "fd3346ddeb1d345a2de6565da2b5f24dfd8f0c0a00c8296d5ebd6ff655cdd40d"
+    },
+    {
+      "path": "data/phase611-source-repair-evidence/repair.json",
+      "size": 1906,
+      "sha256": "48ebb3e52b26636cea06fc8112e862a87ed76ea662536c8ead95d6a1bcc1dd38"
+    },
+    {
+      "path": "data/phase612-independent-source-plan/static-metadata-first-error.json",
+      "size": 945,
+      "sha256": "265718c06b87177d6ca946c6dae46db52fcef61d8db777da4212f70da195ac70"
+    },
+    {
+      "path": "data/phase612-independent-source-plan/static-review.json",
+      "size": 6958,
+      "sha256": "1f2639f4a540d5f6bf821505b55fb30185691909e7d2edac9a2ad75f8f58772c"
+    },
+    {
+      "path": "data/phase612-independent-source-plan/stdlib-import-plan.json",
+      "size": 746,
+      "sha256": "7537ed938faa634bcbcbf324c0f98c00a152d0582e6f07e953b9cec32db6a59c"
+    },
+    {
+      "path": "data/phase612-independent-source-plan/vector-static-review.json",
+      "size": 718,
+      "sha256": "364f00afd7c5cec74f960b1efd559a3a904894f2b89218abb5b5862b3055f798"
+    },
+    {
+      "path": "data/phase612-independent-source-plan/vectors.json",
+      "size": 77523,
+      "sha256": "46ee11340f807d001e21b6f2dbc3eb0b25c77bd446c639895e2c249899124864"
+    },
+    {
+      "path": "docs/phase612_three_hook_independent_schema_control_spec.md",
+      "size": 4207,
+      "sha256": "f77b5f3d8c4cbafd9848958a3a48debf6e7f197e7f9c0814c2ccd88c76bff5ac"
+    },
+    {
+      "path": "tests/phase611_prepare_three_selected_hook_source_v2.py",
+      "size": 22109,
+      "sha256": "c10c7b4da1bd956fd29f97a66336e97fdda1cd3fef09ab4e392a6fbbdcaace43"
+    },
+    {
+      "path": "tests/phase612_independent_three_hook_schema_controls.py",
+      "size": 9959,
+      "sha256": "3f30bec834dee8367796fdd840a85fc16c98e7b43c420b8c43388d8a1518baba"
+    }
+  ],
+  "pins_unchanged": true,
+  "elapsed_seconds": 0.11790230300175608,
+  "remaining": "No actual Native hook execution, complete capture/fulljoin, Godot purity, actual UID/clock, host or runtime admission has been validated.",
+  "write_audit_scope": "writes is the serialization snapshot before result.json write; not a complete reporting write log. The write permission guard remains active."
+}
