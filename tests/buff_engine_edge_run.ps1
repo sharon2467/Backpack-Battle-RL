@@ -1,11 +1,12 @@
 param(
     [string]$RunId = (Get-Date -Format 'yyyyMMdd_HHmmss'),
-    [ValidateSet('source_probe', 'smoke', 'negative_left', 'full_cap')][string]$Mode = 'source_probe',
+    [ValidateSet('source_probe', 'smoke', 'negative_left', 'full_cap', 'cleanse_resistance')][string]$Mode = 'source_probe',
     [int]$TimeoutSeconds = 180,
     [ValidateSet('original', 'godotsteam')][string]$Engine = 'original',
     [switch]$TemporarilyHideInstalledPack,
     [switch]$EnableEditorStartupFeatures,
-    [switch]$DisableSteamIntegration
+    [switch]$DisableSteamIntegration,
+    [switch]$PreviewOnly
 )
 $ErrorActionPreference = 'Stop'
 
@@ -28,12 +29,14 @@ function Add-OracleObservation([string]$Text, [string]$Needle, [string]$Replacem
 }
 
 if ($RunId -notmatch '^[A-Za-z0-9_-]+$') { throw 'Invalid RunId' }
+if (($Mode -eq 'cleanse_resistance' -or $PreviewOnly) -and ($Engine -ne 'godotsteam' -or $TemporarilyHideInstalledPack -or $EnableEditorStartupFeatures -or $DisableSteamIntegration)) { throw 'Cleanse experiment uses only GodotSteam without installation or feature adaptation switches' }
+if ($PreviewOnly -and $Mode -ne 'cleanse_resistance') { throw 'PreviewOnly is limited to the cleanse experiment' }
 if ($EnableEditorStartupFeatures -and ($Engine -ne 'original' -or $Mode -eq 'source_probe')) { throw 'Startup features require explicit original engine and a non-metadata mode' }
 if ($DisableSteamIntegration -and -not $EnableEditorStartupFeatures) { throw 'Disabling Steam requires explicit startup feature adaptation' }
 if ($TimeoutSeconds -lt 10 -or $TimeoutSeconds -gt 600) { throw 'TimeoutSeconds must be in 10..600' }
 $oracleRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $oracleProject = (Resolve-Path (Join-Path $oracleRoot 'Backpack Battles')).Path
-$oracleRun = Join-Path $oracleRoot ('data/buff_engine_edge/' + $RunId)
+$oracleRun = Join-Path $oracleRoot ($(if ($Mode -eq 'cleanse_resistance') { 'data/buff_cleanse_resistance/' } else { 'data/buff_engine_edge/' }) + $RunId)
 $oracleData = Join-Path $oracleRun 'data'
 $oracleOriginalExe = 'E:/steam/steamapps/common/Backpack Battles/BackpackBattles.exe'
 $oraclePack = 'E:/steam/steamapps/common/Backpack Battles/BackpackBattles.pck'
@@ -42,7 +45,8 @@ $oracleExe = if ($Engine -eq 'original') { $oracleOriginalExe } else { 'E:/godot
 $oracleProjectFile = Join-Path $oracleProject 'project.godot'
 $oracleBuffFile = Join-Path $oracleProject 'Core/Buff.gd'
 $oracleJson = Join-Path $oracleRoot 'data/custom_opponent.json'
-$oracleSharedPaths = @($oracleProjectFile, $oracleBuffFile, (Join-Path $oracleProject 'Core/Character.gd'), (Join-Path $oracleProject 'Core/Game.gd'), (Join-Path $oracleProject 'Utility/SteamHelper.gd'), (Join-Path $oracleProject 'Sheets/CSV/ItemData.csv'), (Join-Path $oracleProject 'Sheets/CSV/ItemData_e.csv'), $oracleJson, $oracleOriginalExe, $oraclePack, $oracleExe)
+$oracleSharedPaths = @($oracleProjectFile, $oracleBuffFile, (Join-Path $oracleProject 'Core/Character.gd'), (Join-Path $oracleProject 'Core/Game.gd'), (Join-Path $oracleProject 'Utility/SteamHelper.gd'), (Join-Path $oracleProject 'Sheets/CSV/ItemData.csv'), (Join-Path $oracleProject 'Sheets/CSV/ItemData_e.csv'), $oracleJson, $oracleExe)
+if ($Engine -eq 'original') { $oracleSharedPaths += $oraclePack }
 if (Test-Path -LiteralPath $oracleRun) { throw "Evidence path already exists: $oracleRun" }
 if ($TemporarilyHideInstalledPack) {
     if ($Engine -ne 'original') { throw 'PCK rename is only allowed with explicit original engine' }
@@ -52,7 +56,8 @@ if ($TemporarilyHideInstalledPack) {
     if (-not [StringComparer]::OrdinalIgnoreCase.Equals([IO.Path]::GetDirectoryName([IO.Path]::GetFullPath($oracleTemporaryPack)), $oracleInstallation)) { throw 'Temporary package path is outside named installation directory' }
 }
 $oracleBefore = Get-OracleSourceHashes $oracleSharedPaths
-if ($oracleBefore[$oracleOriginalExe] -ne '4522A5F2B71FE2AA5F7F730A2BD71F66F4F8112609164BCEF39C110F047AD577') { throw 'Unexpected original executable SHA256' }
+if ($Engine -eq 'original' -and $oracleBefore[$oracleOriginalExe] -ne '4522A5F2B71FE2AA5F7F730A2BD71F66F4F8112609164BCEF39C110F047AD577') { throw 'Unexpected original executable SHA256' }
+if ($Engine -eq 'godotsteam' -and $oracleBefore[$oracleExe] -ne '100B76E344A040D2CA50D1B4D03B097A259C35B32D5865043F33486A666EDA1C') { throw 'Unexpected selected GodotSteam executable SHA256' }
 $oraclePreviousAppData = $env:APPDATA
 $oraclePreviousLocalAppData = $env:LOCALAPPDATA
 $oraclePreviousData = $env:BB_BUFF_EDGE_RUN_DATA
@@ -85,8 +90,9 @@ try {
         }
         $oracleAutoload = 'BuffEngineEdge="*' + (Join-Path $PSScriptRoot 'buff_engine_edge_battle.gd').Replace('\','/') + '"'
         $oracleText = Add-OracleObservation $oracleText 'ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"' ($oracleAutoload + "`n" + 'ControllerIcons="*res://addons/controller_icons/ControllerIcons.gd"')
-        Write-OracleUtf8 $oracleProjectFile $oracleText
-        $oracleWritten[$oracleProjectFile] = (Get-FileHash -LiteralPath $oracleProjectFile -Algorithm SHA256).Hash
+        $oraclePreparedProject = if ($PreviewOnly) { Join-Path $oracleRun 'prepared_project.godot' } else { $oracleProjectFile }
+        Write-OracleUtf8 $oraclePreparedProject $oracleText
+        if (-not $PreviewOnly) { $oracleWritten[$oracleProjectFile] = (Get-FileHash -LiteralPath $oracleProjectFile -Algorithm SHA256).Hash }
         $oracleText = [IO.File]::ReadAllText($oracleBuffFile).Replace("`r`n", "`n")
         $oracleNeedle = "`tvar event = null`n`t`n`tif amount > 0:"
         $oracleReplacement = @'
@@ -116,19 +122,49 @@ try {
         $oracleText = Add-OracleObservation $oracleText $oracleNeedle ("`t`tBuffEngineEdge.observe(`"before_reflect_dispatch`", oracle_call_id, self, {`"amount`":amount,`"reflected_count`":reflected,`"event_id`":event.id if event != null else -1})`n" + $oracleNeedle)
         $oracleNeedle = "`n`treturn event`n"
         $oracleText = Add-OracleObservation $oracleText $oracleNeedle ("`n`tBuffEngineEdge.observe(`"exit`", oracle_call_id, self, {`"event_id`":event.id if event != null else -1})" + $oracleNeedle)
-        Write-OracleUtf8 $oracleBuffFile $oracleText
-        $oracleWritten[$oracleBuffFile] = (Get-FileHash -LiteralPath $oracleBuffFile -Algorithm SHA256).Hash
-        $oracleLocations = @(Select-String -LiteralPath $oracleBuffFile,$oracleProjectFile -Pattern 'BuffEngineEdge|oracle_call_id' | Select-Object Path,LineNumber,Line)
+        if ($Mode -eq 'cleanse_resistance') {
+            $oracleNeedle = "`tamount = min(current, amount)"
+            $oracleReplacement = @'
+	var oracle_loss_call_id = BuffEngineEdge.new_call_id()
+	BuffEngineEdge.observe("lose_enter", oracle_loss_call_id, self, {"request":amount,"used":used,"source":item.descriptor.identifier if item != null else null,"trigger_parent":triggerEvent.id if triggerEvent != null else -1})
+	amount = min(current, amount)
+	BuffEngineEdge.observe("lose_after_cap", oracle_loss_call_id, self, {"amount":amount})
+'@
+            $oracleText = Add-OracleObservation $oracleText $oracleNeedle $oracleReplacement
+            $oracleNeedle = "`t`tamount = clamp(amount, 0, current)"
+            $oracleText = Add-OracleObservation $oracleText $oracleNeedle ($oracleNeedle + "`n`t`tBuffEngineEdge.observe(`"lose_after_probability`", oracle_loss_call_id, self, {`"amount`":amount,`"protected`":protected})")
+            $oracleNeedle = "`t`t`tresistStacks -= protectedByStacks"
+            $oracleText = Add-OracleObservation $oracleText $oracleNeedle ($oracleNeedle + "`n`t`t`tBuffEngineEdge.observe(`"lose_after_type_resist`", oracle_loss_call_id, self, {`"amount`":amount,`"protected`":protected,`"protected_by_type`":protectedByStacks})")
+            $oracleNeedle = "`t`tif protected > 0:"
+            $oracleText = Add-OracleObservation $oracleText $oracleNeedle ("`t`tBuffEngineEdge.observe(`"lose_after_global_protect`", oracle_loss_call_id, self, {`"amount`":amount,`"protected`":protected})`n" + $oracleNeedle)
+            $oracleNeedle = "`t`t`tEventBus.logEvent(protectedEvent)"
+            $oracleText = Add-OracleObservation $oracleText $oracleNeedle ($oracleNeedle + "`n`t`t`tBuffEngineEdge.observe(`"lose_protect_event`", oracle_loss_call_id, self, {`"protected_event_id`":protectedEvent.id})")
+            $oracleNeedle = "`treturn changeCurrentLogShowLabel(false, amount, item, triggerEvent, used)"
+            $oracleReplacement = @'
+	var oracle_loss_event = changeCurrentLogShowLabel(false, amount, item, triggerEvent, used)
+	BuffEngineEdge.observe("lose_exit", oracle_loss_call_id, self, {"event_id":oracle_loss_event.id if oracle_loss_event != null else -1})
+	return oracle_loss_event
+'@
+            $oracleText = Add-OracleObservation $oracleText $oracleNeedle $oracleReplacement
+            $oracleNeedle = "`tvar change = min(current, amount)"
+            $oracleText = Add-OracleObservation $oracleText $oracleNeedle ($oracleNeedle + "`n`tBuffEngineEdge.observe(`"lose_actual`", BuffEngineEdge.current_call_id(self), self, {`"actual`":change,`"timeout`":isTimeout})")
+        }
+        $oraclePreparedBuff = if ($PreviewOnly) { Join-Path $oracleRun 'prepared_Buff.gd' } else { $oracleBuffFile }
+        Write-OracleUtf8 $oraclePreparedBuff $oracleText
+        if (-not $PreviewOnly) { $oracleWritten[$oracleBuffFile] = (Get-FileHash -LiteralPath $oracleBuffFile -Algorithm SHA256).Hash }
+        $oracleLocations = @(Select-String -LiteralPath $oraclePreparedBuff,$oraclePreparedProject -Pattern 'BuffEngineEdge|oracle_call_id|oracle_loss' | Select-Object Path,LineNumber,Line)
         Write-OracleUtf8 (Join-Path $oracleRun 'probe_locations.json') ($oracleLocations | ConvertTo-Json)
-        $oracleDiff = & git -c core.autocrlf=false diff --no-index -- (Join-Path $oracleRun 'original_bytes/Buff.gd.bin') $oracleBuffFile
+        $oracleDiff = & git -c core.autocrlf=false diff --no-index -- (Join-Path $oracleRun 'original_bytes/Buff.gd.bin') $oraclePreparedBuff
         Write-OracleUtf8 (Join-Path $oracleRun 'buff_observation.diff') ($oracleDiff -join "`n")
-        $oracleDiff = & git -c core.autocrlf=false diff --no-index -- (Join-Path $oracleRun 'original_bytes/project.godot.bin') $oracleProjectFile
+        $oracleDiff = & git -c core.autocrlf=false diff --no-index -- (Join-Path $oracleRun 'original_bytes/project.godot.bin') $oraclePreparedProject
         Write-OracleUtf8 (Join-Path $oracleRun 'autoload_observation.diff') ($oracleDiff -join "`n")
+        if ($PreviewOnly) { Write-Output "BUFF_EDGE_PREVIEW_ONLY $oracleRun"; return }
     }
     $oracleCases = switch ($Mode) {
         'source_probe' { @(@{name='source_probe';mode='source_probe'}) }
         'smoke' { @(@{name='smoke';mode='smoke'}) }
         'full_cap' { @(@{name='full_cap';mode='full_cap'}) }
+        'cleanse_resistance' { @(@{name='C_overlap';mode='cleanse_resistance';mirrors=$true},@{name='C_no_mirror';mode='cleanse_resistance';mirrors=$false}) }
         default { @(@{name='N_overlap';mode='negative_left';elephants=$true;mirrors=$true},@{name='R_resist_only';mode='negative_left';elephants=$true;mirrors=$false},@{name='F_reflect_only';mode='negative_left';elephants=$false;mirrors=$true}) }
     }
     if ($Mode -ne 'source_probe') {
@@ -139,6 +175,12 @@ try {
             foreach ($x in 0..6) { $oracleOpponentItems += @{item_index=148;x=$x;y=0;f=0} }
             $oracleOpponentItems += @{item_index=332;x=7;y=0;f=0}
         }
+        if ($Mode -eq 'cleanse_resistance') {
+            $oracleOpponentItems = @()
+            foreach ($y in @(0,2,4)) { foreach ($x in @(0,2,4,6)) { $oracleOpponentItems += @{item_index=11;x=$x;y=$y;f=0} } }
+            foreach ($x in 0..6) { $oracleOpponentItems += @{item_index=148;x=$x;y=0;f=0} }
+            $oracleOpponentItems += @{item_index=424;x=3;y=3;f=0}
+        }
         $oracleOpponent = @{schema_version=1;game_version='1.1.8';class=0;health=25;stamina=5;items=$oracleOpponentItems}
         Write-OracleUtf8 $oracleJson ($oracleOpponent | ConvertTo-Json -Depth 8)
         $oracleWritten[$oracleJson] = (Get-FileHash -LiteralPath $oracleJson -Algorithm SHA256).Hash
@@ -146,6 +188,9 @@ try {
     }
     foreach ($oracleCase in $oracleCases) {
         $oracleCaseName = $oracleCase.name
+        $oracleCase.expected_engine = $Engine
+        $oracleCase.expected_exe_sha256 = $oracleBefore[$oracleExe]
+        $oracleCase.original_buff_sha256 = $oracleBefore[$oracleBuffFile]
         Write-OracleUtf8 (Join-Path $oracleData 'case.json') ($oracleCase | ConvertTo-Json)
         Write-OracleUtf8 (Join-Path $oracleData ($oracleCaseName + '_case.json')) ($oracleCase | ConvertTo-Json)
         $oracleCaseAppData = Join-Path $oracleRun ('appdata/' + $oracleCaseName)
@@ -160,9 +205,11 @@ try {
         $oracleArguments = @('--path',('"'+$oracleProject+'"'),'--windowed','--resolution','1280x720')
         if ($Mode -eq 'source_probe') { $oracleArguments += @('--script',('"'+(Join-Path $PSScriptRoot 'buff_engine_source_probe.gd')+'"')) }
         Write-Output "BUFF_EDGE_START $oracleCaseName engine=$Engine"
+        $oracleStartedUtc = [DateTime]::UtcNow
         $oracleProcess = Start-Process -FilePath $oracleExe -WorkingDirectory $oracleProject -ArgumentList $oracleArguments -WindowStyle Hidden -RedirectStandardOutput $oracleStdout -RedirectStandardError $oracleStderr -PassThru
-        Write-OracleUtf8 (Join-Path $oracleData ($oracleCaseName + '_process.json')) (@{pid=$oracleProcess.Id;exe=$oracleExe;engine=$Engine;working_directory=$oracleProject;arguments=$oracleArguments} | ConvertTo-Json)
+        Write-OracleUtf8 (Join-Path $oracleData ($oracleCaseName + '_process.json')) (@{pid=$oracleProcess.Id;exe=$oracleExe;engine=$Engine;working_directory=$oracleProject;arguments=$oracleArguments;runner_launch_utc=$oracleStartedUtc.ToString('o')} | ConvertTo-Json)
         if (-not $oracleProcess.WaitForExit($TimeoutSeconds * 1000)) { throw "Own experiment process timed out: $oracleCaseName PID=$($oracleProcess.Id)" }
+        $oracleExitedUtc = [DateTime]::UtcNow
         $oracleProcess.Refresh()
         $oracleLines = @(Get-Content -LiteralPath $oracleStdout)
         $oracleLog = Get-ChildItem -LiteralPath $oracleCaseAppData -Filter godot.log -File -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
@@ -170,7 +217,7 @@ try {
             Copy-Item -LiteralPath $oracleLog.FullName -Destination (Join-Path $oracleData ($oracleCaseName + '_godot.log'))
             if (-not ($oracleLines | Where-Object { $_.StartsWith('BUFF_EDGE_') })) { $oracleLines = @(Get-Content -LiteralPath $oracleLog.FullName) }
         }
-        Write-OracleUtf8 (Join-Path $oracleData ($oracleCaseName + '_exit.json')) (@{exit_code=$oracleProcess.ExitCode} | ConvertTo-Json)
+        Write-OracleUtf8 (Join-Path $oracleData ($oracleCaseName + '_exit.json')) (@{exit_code=$oracleProcess.ExitCode;runner_observed_exit_utc=$oracleExitedUtc.ToString('o');runner_elapsed_seconds=($oracleExitedUtc-$oracleStartedUtc).TotalSeconds} | ConvertTo-Json)
         $oracleMarker = if ($Mode -eq 'source_probe') { 'BUFF_EDGE_SOURCE_PASS' } else { 'BUFF_EDGE_PASS ' }
         if ($oracleProcess.ExitCode -ne 0 -or -not ($oracleLines | Where-Object { $_.StartsWith($oracleMarker) })) {
             $oracleLines | Select-Object -Last 20
@@ -183,7 +230,29 @@ try {
             $oracleTrace = @($oracleLines | Where-Object { $_.StartsWith('BUFF_EDGE_TRACE ') } | ForEach-Object { $_.Substring(16) | ConvertFrom-Json })
             $oracleEvents = @($oracleLines | Where-Object { $_.StartsWith('BUFF_EDGE_EVENT ') } | ForEach-Object { $_.Substring(16) | ConvertFrom-Json })
             $oracleFinal = $oracleLines | Where-Object { $_.StartsWith('BUFF_EDGE_FINAL ') } | Select-Object -Last 1 | ForEach-Object { $_.Substring(16) | ConvertFrom-Json }
-            if ($Mode -eq 'full_cap') {
+            if ($Mode -eq 'cleanse_resistance') {
+                $oracleCleanseFinal = $oracleLines | Where-Object { $_.StartsWith('BUFF_EDGE_CLEANSE_FINAL ') } | Select-Object -Last 1 | ForEach-Object { $_.Substring(24) | ConvertFrom-Json }
+                $oracleSuccess = $oracleTrace | Where-Object { $_.call_id -eq $oracleCleanseFinal.successful_lose_id -and $_.stage -eq 'lose_exit' } | Select-Object -First 1
+                if ($null -eq $oracleSuccess -or $oracleSuccess.source -ne 'Wisdom Puppy' -or $oracleSuccess.target -ne 0 -or $oracleSuccess.type -ne 110 -or $oracleSuccess.used -or $oracleSuccess.initial_current -le 0 -or $oracleSuccess.initial_resist_stacks -ne 0 -or $oracleSuccess.actual -ne 1 -or $oracleSuccess.current -ne ($oracleSuccess.initial_current - 1)) { throw 'Missing natural Puppy cleanse with no typed resistance' }
+                $oracleSuccessEvent = $oracleEvents | Where-Object { $_.id -eq $oracleSuccess.event_id -and $_.origin -eq 'Wisdom Puppy' -and $_.target -eq 0 -and $_.params.amount -eq -1 -and -not $_.params.protected -and -not $_.params.resisted -and -not $_.params.used } | Select-Object -First 1
+                if ($null -eq $oracleSuccessEvent) { throw 'Natural cleanse lacks the actual negative native Cold event' }
+                $oracleBlockedGain = $null
+                $oracleBlockedLoss = $null
+                $oracleProtectEvent = $null
+                if ($oracleCase.mirrors) {
+                    $oracleBlockedGain = $oracleTrace | Where-Object { $_.call_id -eq $oracleCleanseFinal.blocked_gain_id -and $_.stage -eq 'after_own_resist' } | Select-Object -First 1
+                    $oracleGainBefore = $oracleTrace | Where-Object { $_.call_id -eq $oracleCleanseFinal.blocked_gain_id -and $_.stage -eq 'before_own_resist' } | Select-Object -First 1
+                    $oracleBlockedLoss = $oracleTrace | Where-Object { $_.call_id -eq $oracleCleanseFinal.blocked_lose_id -and $_.stage -eq 'lose_exit' } | Select-Object -First 1
+                    if ($null -eq $oracleBlockedGain -or $oracleBlockedGain.source -ne 'Snowmaster' -or $oracleBlockedGain.target -ne 0 -or $oracleBlockedGain.initial_current -le 0 -or $oracleBlockedGain.initial_resist_stacks -ne 0 -or $oracleBlockedGain.request -ne 1 -or $oracleGainBefore.left -ne -1 -or $oracleGainBefore.resisted -ne 1 -or $oracleGainBefore.reflected_count -ne 1 -or $oracleBlockedGain.own_stacks_used -ne -1 -or $oracleBlockedGain.resist_stacks -ne 1) { throw 'Missing natural already-Cold negative-left regeneration' }
+                    if ($null -eq $oracleBlockedLoss -or $oracleBlockedLoss.source -ne 'Wisdom Puppy' -or $oracleBlockedLoss.target -ne 0 -or $oracleBlockedLoss.used -or $oracleBlockedLoss.initial_current -le 0 -or $oracleBlockedLoss.initial_resist_stacks -ne 1 -or $oracleBlockedLoss.protected_by_type -ne 1 -or $oracleBlockedLoss.protected -ne 1 -or $oracleBlockedLoss.actual -ne 0 -or $oracleBlockedLoss.current -ne $oracleBlockedLoss.initial_current -or $oracleBlockedLoss.resist_stacks -ne 0 -or $oracleBlockedLoss.event_id -ne -1) { throw 'Puppy did not consume the regenerated typed reserve and prevent its own cleanse' }
+                    if ($oracleTrace | Where-Object { $_.target -eq 0 -and $_.type -eq 110 -and $_.stage -in @('enter','lose_enter') -and $_.call_id -gt $oracleBlockedGain.call_id -and $_.call_id -lt $oracleBlockedLoss.call_id }) { throw 'Another target Cold operation interrupted the claimed regeneration/cleanse chain' }
+                    $oracleProtectEvent = $oracleEvents | Where-Object { $_.id -eq $oracleBlockedLoss.protected_event_id -and $_.origin -eq 'Wisdom Puppy' -and $_.target -eq 0 -and $_.params.protected -and $_.params.amount -eq 1 } | Select-Object -First 1
+                    if ($null -eq $oracleProtectEvent) { throw 'Blocked cleanse lacks its real native Protect event' }
+                    if (-not ($oracleEvents | Where-Object { $_.target -eq 0 -and $_.params.amount -gt 0 -and -not $_.params.protected -and -not $_.params.resisted -and $_.time -lt $oracleBlockedGain.combat_time })) { throw 'No actual positive Cold event preceded regeneration' }
+                }
+                if ($oracleFinal.player_damage_resistance -ne 105 -or $oracleFinal.opponent_damage_resistance -ne 105) { throw 'Natural Deer damage resistance changed' }
+                $oracleResult = @{case=$oracleCaseName;passed=$true;engine=$Engine;regenerated_gain=$oracleBlockedGain;blocked_cleanse=$oracleBlockedLoss;protect_event=$oracleProtectEvent;successful_cleanse=$oracleSuccess;successful_event=$oracleSuccessEvent;final=$oracleCleanseFinal;native_cold_events=$oracleEvents;global_positive_inventory_tested=$false}
+            } elseif ($Mode -eq 'full_cap') {
                 $oracleNaturalPartial = @($oracleTrace | Where-Object { $_.stage -eq 'before_reflect_dispatch' -and $_.source -eq 'Gigawatz' -and $_.target -eq 1 -and $_.initial_current -lt 10000 -and $_.reflected_count -in @(1,2) })
                 $oracleSuppressed = @($oracleTrace | Where-Object { $_.stage -eq 'cap_zero_return' -and $_.source -eq 'Gigawatz' -and $_.target -eq 1 -and $_.initial_current -eq 10000 -and $_.reflected_count -in @(1,2) })
                 if ($oracleNaturalPartial.Count -eq 0 -or $oracleSuppressed.Count -eq 0 -or -not $oracleFinal.precap_partial -or -not $oracleFinal.cap_partial -or -not $oracleFinal.cap_full) { throw 'Full-cap observations incomplete' }

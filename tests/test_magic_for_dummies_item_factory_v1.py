@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import ANY, Mock
+from unittest.mock import ANY, Mock, call
 
 from basic_backpack_v1 import ITEM_CATALOG, place_item
 from battle_initializer_v1 import initialize_battle
@@ -140,7 +140,11 @@ class MagicForDummiesItemFactoryV1Test(unittest.TestCase):
         self.assertEqual(owner.health, 18)
         self.assertEqual(owner.max_health, 28)
         self.assertEqual(guide.spell_weight, 0)
-        battle.emit_signal.assert_called_once_with(guide, "item_activation", ANY)
+        battle.emit_signal.assert_has_calls([
+            call(owner, "character_mana_changed", ANY),
+            call(guide, "item_activation", ANY),
+        ])
+        self.assertEqual(battle.emit_signal.call_count, 2)
 
     def test_insufficient_mana_skips_effect_but_emits_activation(self):
         guide, battle, owner, _, context = self.make_state(mana=0)
@@ -164,7 +168,11 @@ class MagicForDummiesItemFactoryV1Test(unittest.TestCase):
         self.assertEqual(owner.buffs.Mana, 0)
         self.assertEqual(owner.health, 18)
         self.assertEqual(owner.max_health, 28)
-        battle.emit_signal.assert_called_once_with(guide, "item_activation", ANY)
+        battle.emit_signal.assert_has_calls([
+            call(owner, "character_mana_changed", ANY),
+            call(guide, "item_activation", ANY),
+        ])
+        self.assertEqual(battle.emit_signal.call_count, 2)
 
     def test_counts_only_starred_spell_instances(self):
         guide, battle, owner, _, context = self.make_state()

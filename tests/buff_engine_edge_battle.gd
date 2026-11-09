@@ -15,6 +15,12 @@ var partial_before_cap = false
 var partial_at_cap = false
 var full_at_cap = false
 var last_report_time = -30.0
+var regeneration_candidate = -1
+var blocked_cleanse = false
+var successful_cleanse = false
+var blocked_gain_id = -1
+var blocked_lose_id = -1
+var successful_lose_id = -1
 
 func _ready() -> void:
 	var project_dir = ProjectSettings.globalize_path("res://project.godot").get_base_dir()
@@ -32,6 +38,8 @@ func _ready() -> void:
 	var loaded_buff_sha = File.new().get_sha256("res://Core/Buff.gd").to_lower()
 	var environment_row = {"case":case_data.get("name", "unknown"), "exe":OS.get_executable_path(), "engine":Engine.get_version_info(), "project":project_dir, "user_data":OS.get_user_data_dir(), "editor_feature":OS.has_feature("editor"), "full_feature":OS.has_feature("full_version"), "disable_steam_feature":OS.has_feature("disable_steam_integration"), "custom_features_setting":ProjectSettings.get_setting("custom_features") if ProjectSettings.has_setting("custom_features") else null, "EDITOR":Game.EDITOR, "FULLVERSION":Game.FULLVERSION, "game_version":Game.VERSION, "loaded_buff_sha256":loaded_buff_sha,"loaded_game_sha256":File.new().get_sha256("res://Core/Game.gd"),"time_scale":Engine.time_scale}
 	environment_row["underscore_custom_features_setting"] = ProjectSettings.get_setting("_custom_features") if ProjectSettings.has_setting("_custom_features") else null
+	environment_row["exe_sha256"] = File.new().get_sha256(OS.get_executable_path()).to_lower()
+	environment_row["original_buff_sha256"] = case_data.get("original_buff_sha256", "")
 	environment_row["has_custom_feature_callable"] = ProjectSettings.has_method("has_custom_feature")
 	if ProjectSettings.has_method("has_custom_feature"):
 		environment_row["custom_editor_feature"] = ProjectSettings.call("has_custom_feature", "editor")
@@ -47,6 +55,12 @@ func _ready() -> void:
 		environment_file.store_string(JSON.print(environment_row))
 		environment_file.close()
 	print("BUFF_EDGE_ENV ", JSON.print(environment_row))
+	if environment_row.exe_sha256 != String(case_data.get("expected_exe_sha256", "")).to_lower():
+		fail("unexpected executable fingerprint")
+		return
+	if case_data.get("expected_engine", "") == "godotsteam" and (Engine.get_version_info().major != 3 or Engine.get_version_info().minor != 6 or Engine.get_version_info().patch != 2):
+		fail("selected GodotSteam runtime is not version 3.6.2")
+		return
 	if loaded_buff_sha != OS.get_environment("BB_BUFF_EDGE_EXPECTED_SHA").to_lower():
 		fail("unexpected observed Buff source hash")
 		return
@@ -63,7 +77,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if done:
 		return
-	var timeout = 400000 if case_data.get("mode", "") == "full_cap" else 150000
+	var timeout = 400000 if case_data.get("mode", "") in ["full_cap", "cleanse_resistance"] else 150000
 	if OS.get_ticks_msec() - started_at > timeout:
 		fail("timeout stage=" + String(stage))
 		return
@@ -72,7 +86,7 @@ func _process(_delta: float) -> void:
 			return
 		if not Game.sceneAnimation.is_connected("animation_finished", Game, "onSceneAnimationFinished"):
 			return
-		for name in ["Leather Bag", "Holy Armor", "Elephant Rune", "Magic Mirror", "Pocket Sand", "Deer Totem", "Hawk Rune", "Chili Pepper", "Gigawatz"]:
+		for name in ["Leather Bag", "Holy Armor", "Elephant Rune", "Magic Mirror", "Pocket Sand", "Deer Totem", "Hawk Rune", "Chili Pepper", "Gigawatz", "Dragonskin Boots", "Wisdom Puppy", "Snowmaster"]:
 			var descriptor = ItemBook.getDescriptor(name)
 			if descriptor == null or descriptor.scene == null:
 				fail("required descriptor unavailable: " + name)
@@ -103,10 +117,28 @@ func _process(_delta: float) -> void:
 			return
 		combat_at = OS.get_ticks_msec()
 		print("BUFF_EDGE_COMBAT ", JSON.print({"case":case_data.name, "opponent_items":Game.OPPONENT.INVENTORY.getItems().size(), "time_scale":Engine.time_scale}))
+		if case_data.mode == "cleanse_resistance":
+			var cold_state = Game.PLAYER.buffs[Game.EventType.Cold]
+			var expected_reflect = 40 if case_data.mirrors else 0
+			print("BUFF_EDGE_CLEANSE_PREPARED ", JSON.print({"case":case_data.name,"resist":cold_state.resistChancePercent,"reflect":cold_state.reflectChancePercent,"typed":cold_state.resistStacks,"global":Game.PLAYER.debuffResistStacks,"player_resistance":Game.PLAYER.damageResistance,"opponent_resistance":Game.OPPONENT.damageResistance,"time_scale":Engine.time_scale}))
+			if cold_state.resistChancePercent != 40 or cold_state.reflectChancePercent != expected_reflect or Game.PLAYER.damageResistance != 105 or Game.OPPONENT.damageResistance != 105 or Engine.time_scale != 1:
+				fail("natural prepared parameters differ from the declared layout")
+				return
 		capture("combat")
 		stage = 3
 	elif stage == 3:
-		if case_data.mode == "full_cap":
+		if case_data.mode == "cleanse_resistance":
+			var cleanse_combat_time = Game.combatTimer.combatTime
+			if cleanse_combat_time - last_report_time >= 30:
+				last_report_time = cleanse_combat_time
+				print("BUFF_EDGE_PROGRESS ", JSON.print({"case":case_data.name,"time":cleanse_combat_time,"cold":Game.PLAYER.getCold(),"typed":Game.PLAYER.buffs[Game.EventType.Cold].resistStacks,"blocked":blocked_cleanse,"success":successful_cleanse}))
+			if successful_cleanse and (blocked_cleanse or not case_data.mirrors):
+				capture("observed")
+				finish()
+			elif cleanse_combat_time >= 300:
+				capture("timeout")
+				fail("complete natural regeneration/cleanse chain not observed by combat time 300")
+		elif case_data.mode == "full_cap":
 			var combat_time = Game.combatTimer.combatTime
 			if combat_time - last_report_time >= 30:
 				last_report_time = combat_time
@@ -123,19 +155,27 @@ func _process(_delta: float) -> void:
 
 func setup_case() -> void:
 	Game.PLAYER.INVENTORY.reset()
-	if case_data.mode == "full_cap":
+	if case_data.mode in ["full_cap", "cleanse_resistance"]:
 		for y in [0, 2, 4]:
 			for x in [0, 2, 4, 6]:
 				add_item("Leather Bag", x, y)
 		for x in range(7):
 			add_item("Deer Totem", x, 0)
-		for x in range(8):
-			add_item("Chili Pepper", x, 2)
-		add_item("Hawk Rune", 7, 0)
-		add_item("Gigawatz", 7, 1)
-		for y in [4, 5]:
+		if case_data.mode == "cleanse_resistance":
+			add_item("Dragonskin Boots", 0, 2)
+			add_item("Dragonskin Boots", 1, 2)
+			if case_data.mirrors:
+				add_item("Magic Mirror", 3, 2)
+				add_item("Magic Mirror", 7, 2)
+			add_item("Wisdom Puppy", 5, 4)
+		else:
 			for x in range(8):
-				add_item("Hawk Rune", x, y)
+				add_item("Chili Pepper", x, 2)
+			add_item("Hawk Rune", 7, 0)
+			add_item("Gigawatz", 7, 1)
+			for y in [4, 5]:
+				for x in range(8):
+					add_item("Hawk Rune", x, y)
 	else:
 		for cell in [[0, 0], [2, 0], [0, 2], [2, 2]]:
 			add_item("Leather Bag", cell[0], cell[1])
@@ -190,12 +230,30 @@ func new_call_id() -> int:
 	next_id += 1
 	return next_id
 
+func current_call_id(buff: Reference) -> int:
+	if active_calls.empty():
+		return -1
+	var current_id = active_calls.back()
+	var details = call_data.get(current_id, {})
+	if details.get("operation", "") == "lose" and details.get("buff_instance_id", -1) == buff.get_instance_id():
+		return current_id
+	return -1
+
 func observe(label: String, call_id: int, buff: Reference, payload: Dictionary = {}) -> void:
-	if label == "enter":
+	if call_id < 0:
+		return
+	if label in ["enter", "lose_enter"]:
 		var parent_call = active_calls.back() if not active_calls.empty() else -1
 		call_data[call_id] = payload.duplicate()
 		call_data[call_id]["parent_call"] = parent_call
 		call_data[call_id]["initial_current"] = buff.current
+		call_data[call_id]["initial_resist_stacks"] = buff.resistStacks
+		call_data[call_id]["operation"] = "lose" if label == "lose_enter" else "gain"
+		call_data[call_id]["buff_instance_id"] = buff.get_instance_id()
+		if case_data.get("mode", "") == "cleanse_resistance" and buff.type == Game.EventType.Cold and buff.character.playerId == 0:
+			if label == "lose_enter" and payload.get("source", "") == "Wisdom Puppy":
+				call_data[call_id]["regeneration_gain_id"] = regeneration_candidate
+			regeneration_candidate = -1
 		active_calls.push_back(call_id)
 		if case_data.get("mode", "") == "full_cap" and payload.get("incoming_reflected", false) and parent_call >= 0:
 			var parent_call_data = call_data[parent_call]
@@ -205,11 +263,15 @@ func observe(label: String, call_id: int, buff: Reference, payload: Dictionary =
 				full_at_cap = true
 	if payload.has("reflected_count"):
 		call_data[call_id]["last_reflected_count"] = payload.reflected_count
+	if call_data[call_id].get("operation", "") == "lose":
+		for key in payload:
+			call_data[call_id][key] = payload[key]
 	var row = call_data.get(call_id, {}).duplicate()
 	row["case"] = case_data.get("name", "startup")
 	row["stage"] = label
 	row["call_id"] = call_id
 	row["time"] = Util.time
+	row["combat_time"] = Game.combatTimer.combatTime if Game.combatTimer != null else null
 	row["frame"] = Util.frameCounter
 	row["target"] = buff.character.playerId
 	row["type"] = buff.type
@@ -222,7 +284,20 @@ func observe(label: String, call_id: int, buff: Reference, payload: Dictionary =
 	row["global_reflect"] = buff.character.debuffReflectStacks
 	for key in payload:
 		row[key] = payload[key]
+	if case_data.get("mode", "") == "cleanse_resistance" and row.type == Game.EventType.Cold and row.target == 0:
+		if label == "after_own_resist" and row.initial_current > 0 and row.initial_resist_stacks == 0 and row.get("source", "") == "Snowmaster" and row.get("request", 0) == 1 and row.get("left", 99) == 0 and row.get("own_stacks_used", 0) == -1 and row.resist_stacks == 1:
+			regeneration_candidate = call_id
+		if label == "lose_exit" and row.get("source", "") == "Wisdom Puppy" and not row.get("used", true) and row.initial_current > 0:
+			if row.initial_resist_stacks == 0 and row.get("actual", -1) == 1 and row.current == row.initial_current - 1:
+				successful_cleanse = true
+				successful_lose_id = call_id
+			if row.initial_resist_stacks == 1 and row.get("regeneration_gain_id", -1) >= 0 and row.get("actual", -1) == 0 and row.get("protected_by_type", 0) == 1 and row.current == row.initial_current and row.resist_stacks == 0:
+				blocked_cleanse = true
+				blocked_gain_id = row.regeneration_gain_id
+				blocked_lose_id = call_id
 	var keep = true
+	if case_data.get("mode", "") == "cleanse_resistance":
+		keep = row.type == Game.EventType.Cold
 	if case_data.get("mode", "") == "full_cap":
 		keep = row.type == 109 and (row.source == "Gigawatz" or (row.target == 1 and row.initial_current >= 9990))
 		if row.get("incoming_reflected", false) and row.parent_call >= 0:
@@ -234,7 +309,7 @@ func observe(label: String, call_id: int, buff: Reference, payload: Dictionary =
 		print("BUFF_EDGE_TRACE ", JSON.print(row))
 		if row.get("event_id", -1) >= 0:
 			expected_events[row.event_id] = true
-	if label == "exit" or label == "cap_zero_return":
+	if label in ["exit", "cap_zero_return", "lose_exit"]:
 		if not active_calls.empty() and active_calls.back() == call_id:
 			active_calls.pop_back()
 		call_data.erase(call_id)
@@ -259,8 +334,10 @@ func finish() -> void:
 	done = true
 	if case_data.mode != "smoke":
 		for event in Game.combatLog.events:
-			if event.type == Game.EventType.Blind and (case_data.mode != "full_cap" or expected_events.has(event.id) or (event.origin is Item and event.origin.descriptor.identifier == "Gigawatz")):
+			if (case_data.mode == "cleanse_resistance" and event.type == Game.EventType.Cold) or (case_data.mode != "cleanse_resistance" and event.type == Game.EventType.Blind and (case_data.mode != "full_cap" or expected_events.has(event.id) or (event.origin is Item and event.origin.descriptor.identifier == "Gigawatz"))):
 				print("BUFF_EDGE_EVENT ", JSON.print({"case":case_data.name, "id":event.id, "time":event.timestamp, "type":event.type, "target":event.target, "origin":event.origin.descriptor.identifier if event.origin is Item else null, "parent":event.parentEvent.id if event.parentEvent != null else -1, "params":event.params}))
 		print("BUFF_EDGE_FINAL ", JSON.print({"case":case_data.name, "fight_ended":Game.fightEnded, "player_blind":Game.PLAYER.getBlind(), "opponent_blind":Game.OPPONENT.getBlind(), "player_blind_resist_stacks":Game.PLAYER.buffs[Game.EventType.Blind].resistStacks, "player_resist_chance":Game.PLAYER.buffs[Game.EventType.Blind].resistChancePercent, "player_reflect_chance":Game.PLAYER.buffs[Game.EventType.Blind].reflectChancePercent, "player_damage_resistance":Game.PLAYER.damageResistance,"opponent_damage_resistance":Game.OPPONENT.damageResistance,"precap_partial":partial_before_cap,"cap_partial":partial_at_cap,"cap_full":full_at_cap}))
+	if case_data.mode == "cleanse_resistance":
+		print("BUFF_EDGE_CLEANSE_FINAL ", JSON.print({"case":case_data.name,"cold":Game.PLAYER.getCold(),"typed":Game.PLAYER.buffs[Game.EventType.Cold].resistStacks,"global":Game.PLAYER.debuffResistStacks,"blocked":blocked_cleanse,"successful":successful_cleanse,"blocked_gain_id":blocked_gain_id,"blocked_lose_id":blocked_lose_id,"successful_lose_id":successful_lose_id,"combat_time":Game.combatTimer.combatTime}))
 	print("BUFF_EDGE_PASS ", JSON.print({"case":case_data.name, "mode":case_data.mode, "game_version":Game.VERSION}))
 	get_tree().quit(0)

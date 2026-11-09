@@ -65,6 +65,8 @@ class BattleItem:
         self.last_activation_frame: int | None = None
         self.activations_this_frame = 0
         self.damage_multiplier = 1.0
+        self.stack_powers: dict[str, float] = {}
+        self.stack_amplification_chances: dict[str, float] = {}
         self.crit_tokens = 0
         self.damage_range_acc = 0.0
         self.chance_rng = BalancedRngState()

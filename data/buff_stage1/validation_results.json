@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-09",
+  "phase": "buff_stack_alignment_stage1",
+  "python": "C:/Users/win/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/python.exe",
+  "sandbox_permissions": "require_escalated",
+  "baseline": {
+    "log": "baseline_20261109_135330.log",
+    "status": "OK",
+    "tests": 581
+  },
+  "specialized": {
+    "log": "affected_02.log",
+    "status": "OK",
+    "tests": 28
+  },
+  "affected": {
+    "log": "affected_02.log",
+    "modules": [
+      "buff_stack_alignment",
+      "battle_logging",
+      "item_factory_registry",
+      "magic_for_dummies_item_factory",
+      "item_behavior_alignment"
+    ],
+    "status": "OK",
+    "tests": 287
+  },
+  "attack_regression": {
+    "log": "attack_regression_02.log",
+    "status": "OK",
+    "tests": 61
+  },
+  "final": {
+    "seconds": 0.188,
+    "command": "-m unittest discover -s tests -v",
+    "status": "OK",
+    "log": "full_final.log",
+    "tests": 609
+  },
+  "retained_native_evidence": [
+    "data/buff_engine_edge/native_negative_left_20261109_07/results.json",
+    "data/buff_engine_edge/native_full_cap_20261109_08/results.json"
+  ],
+  "native_engine_rerun": false,
+  "phase2_tested": false,
+  "production_fix_required_by_tests": false,
+  "fixture_updates": "Added core stack log/signal assertions and nonzero default reflection draws; retained numerical and activation assertions",
+  "limits": "Mechanism RNG draw order verified; no claim of native cosmetic RNG or whole-seed parity"
+}

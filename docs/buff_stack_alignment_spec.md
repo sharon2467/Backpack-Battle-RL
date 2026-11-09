@@ -1,8 +1,10 @@
 # Buff层操作对齐 SPEC
 
-2026-11-09 · **方案草案，未实施**。本轮仅审计并写本文，未改代码/测试/数据，未运行测试或引擎；全部宝石工作暂停，旧宝石SPEC不改。
+2026-11-09 · **一阶段已完成**。10类型永久层与五Effect适配已实现并通过609项全套测试；二期未实施，全部宝石工作暂停，旧宝石SPEC不改。
 
-后续已用原exe与真实物品摆盘核实本文的负left/满cap提前返回两项异常，见[原引擎实测结果](buff_engine_edge_verification_results.md)。此证据补充不改变本文设计或实施状态；临时批次等其他验证门槛仍保留。
+已用原exe与真实物品摆盘核实本文的负left/满cap提前返回两项异常，见[原引擎实测结果](buff_engine_edge_verification_results.md)。此证据补充不改变本文设计；临时批次等其他验证门槛仍保留。
+
+另用用户指定GodotSteam3.6.2运行1.1.8源码，已验证[已有Cold后再生专用抵抗层并阻挡自身净化的完整链](buff_cleanse_resistance_engine_results.md)。此为不同于前轮安装exe3.6.0的实验组合，不改变本期规则或实现。
 
 ## 1. Requirements（需求）
 
@@ -12,11 +14,11 @@
 
 **分两阶段**：首期仅现有7 Buff（Empower、Heat、Luck、Mana、Regeneration、Spikes、Vampirism）和3 Debuff（Poison、Blind、Cold）的永久层、即时事件、五Effect适配。临时层、Delayed队列、Block关联迁移另期。所有测试在tests、输出在data、文档在docs；不接入宝石、狂怒或局外功能。
 
-### 1.1 现有行为与调用合同
+### 1.1 实施前基线与保留的调用合同
 
 五构造都要求名称是受支持的精确str、amount为非负精确int，拒绝bool/float；`apply(context: BattleContext) -> bool`。位置为`item_effects_v1.py:215-425`。
 
-| Effect | 当前目标与写入 | bool / 零值 |
+| Effect | 实施前目标与写入 | 保留的bool / 零值 |
 | --- | --- | --- |
 | GainBuff | owner.buffs += request | request>0；0=False |
 | InflictDebuff | opponent.debuffs += request | request>0；0=False |
@@ -24,7 +26,7 @@
 | BuffRemoval | opponent Buff扣min(current,request) | actual>0；0=False |
 | CleanseDebuff | owner Debuff扣min(current,request) | actual>0；0=False |
 
-目前无上限/抵抗/放大/保护/反弹/层变化signal；每次apply含失败/零值都写原action、request/final/success日志。五处setattr是根生产代码全部Buff/Debuff运行时写点；其他模块读slot，测试还会直接赋初值。`BuffSlot/DebuffSlot`为7/3整数，`__annotations__`用于合法名称和遍历，不能把修饰参数塞进这些slot。
+实施前没有上限/抵抗/放大/保护/反弹/层变化signal；每次apply含失败/零值都写原action、request/final/success日志。原五处setattr是当时根生产代码全部Buff/Debuff运行时写点，本期已改由core增减入口提交；其他模块仍读slot，测试可直接赋初值。`BuffSlot/DebuffSlot`保留7/3整数，`__annotations__`用于合法名称和遍历，不把修饰参数塞进这些slot。
 
 唯一依赖五类bool的现生产调用者是`MagicForDummies.run_effect:604`：Use成功才加生命，缺蓝仍激活；Wand及其他物品忽略这五类返回。`CleanseDebuffEffect`暂无生产调用者。现测试锁定上述合同（`tests/test_item_factory_registry_v1.py:2559-2737,3847-3886`），日志测试还锁定原action顺序和零变化记录（`tests/test_battle_logging_v1.py:294-364,632-655`）。
 
@@ -56,7 +58,7 @@ amount>0时按10000-current截断；截断恰0直接return，跳过待反弹
 反弹入站仍受目标抵抗/抵抗层，不再来源放大或再次反弹
 ```
 
-普通roll是`rng.random() <= percent/100`，不钳制、不用Balanced、不做端点短路（`Utility/Util.gd:1007-1014`）；0%抽到精确0也必须真实反弹。抵抗与反弹重叠可使left负，源码min(left,resistStacks)的负消耗可能增加抵抗层；不得擅自max(0)修正。满cap提前return、负left等先照源码实现，作为原引擎验证门槛。视觉标签也消耗原全局RNG（`Character.gd:688-691`），本批只对齐机制随机次数，不宣称完整seed同轨。
+普通roll是`rng.random() <= percent/100`，不钳制、不用Balanced、不做端点短路（`Utility/Util.gd:1007-1014`）；0%抽到精确0也必须真实反弹。抵抗与反弹重叠可使left负，源码min(left,resistStacks)的负消耗会增加抵抗层；不得擅自max(0)修正。满cap提前return及负left已由上述原引擎实验核实，本期保留其控制流。视觉标签也消耗原全局RNG（`Character.gd:688-691`），本批只对齐机制随机次数，不宣称完整seed同轨。
 
 **lose流程**：先cap=min(current,request)。非used时按cap层对cleanseProtection正概率增加保护、负概率扩大移除，再clamp到0..current；扣该类型resistStacks保护（Buff/Debuff均适用），再扣角色buffProtectStacks（仅Buff且非Block）。记录正量Protect事件，实际扣层后发负成功事件。used跳过全部保护/保护层，但仍最多扣已有量。首期没有临时组成量；保护并非全有或全无检定。
 
@@ -90,7 +92,7 @@ Wand即时永久路径属于主验收：`Exclusive/Wand.gd:11-24`调用`giveLeas
 
 ### 2.4 逐函数接口与伪代码
 
-下表类型缩写仅供文档：`PS=PlayerState, BI=BattleItem, BC=BattleContext, SC=StackChangeContext, LH=LogHandle, Seq=Sequence`；`R=godot_round`为已有函数。`StackState/StackResult/SC`使用上述字段的dataclass构造，无隐藏算法。拟新增/修改函数全部列下，未列函数保持。
+下表类型缩写仅供文档：`PS=PlayerState, BI=BattleItem, BC=BattleContext, SC=StackChangeContext, LH=LogHandle, Seq=Sequence`；`R=godot_round`为已有函数。`StackState/StackResult/SC`使用上述字段的dataclass构造，无隐藏算法。本期新增/修改函数全部列下，未列函数保持。
 
 **构造接口保持**：
 
@@ -166,24 +168,28 @@ flowchart LR
 
 ## 3. Tasks（任务拆解）
 
-全部未实施。
+一阶段已按下表完成；二期未实施。
 
 | 任务 / 依赖 | 产物与验证 |
 | --- | --- |
-| [ ] T1 / 无 | 固定五Effect现合同、源码流程和10类型边界；先列兼容/日志变化 |
-| [ ] T2 / T1 | 普通metadata、SC与StackResult、slot/state查询及commit；验证固定target/source/delta及无Item事件规则 |
-| [ ] T3 / T2 | gain/lose/try-use、逐层抵抗/放大/反弹/保护/上限；保留异常控制流 |
-| [ ] T4 / T3 | 五Effect接入、一次power缩放、bool兼容与单写者日志；Wand/Book等现路径专项 |
-| [ ] T5 / T4 | 增加tests下专项、必要回归；更新随机fixtures和日志断言，再跑受影响模块/全套unittest |
-| [ ] T6 / T5 | 匹配Godot3.6/1.1.8核实首期异常、事件/机制RNG；证据data、结论docs |
+| [x] T1 / 无 | 固定五Effect现合同、源码流程和10类型边界；列明兼容/日志变化 |
+| [x] T2 / T1 | 普通metadata、SC与StackResult、slot/state查询及commit；验证固定target/source/delta及无Item事件规则 |
+| [x] T3 / T2 | gain/lose/try-use、逐层抵抗/放大/反弹/保护/上限；保留异常控制流 |
+| [x] T4 / T3 | 五Effect接入、一次power缩放、bool兼容与单写者日志；Wand/Book等现路径专项 |
+| [x] T5 / T4 | tests专项及必要回归；更新随机fixtures和日志断言，通过受影响模块/全套unittest |
+| [x] T6 / T5 | 复用既有原exe3.6/1.1.8两异常证据，通过Python对应确定性回归；机制draw次数/顺序按源码专项验证，不宣称原引擎全seed同轨 |
 | [ ] 后续二期 / T6及另写SPEC | 永久量/临时批次求总数、读取接口迁移与到期连锁验证，Delayed、Block整条迁移及未接父链；不以首期完成替代 |
+
+实施落在`battle_module_v1.py`、`item_effects_v1.py`、`item_factory_registry_v1.py`；逐段源码复核通过，命令与解释器见[最终验收清单](../data/buff_stage1/validation_results.json)。新增[28项专项](../tests/test_buff_stack_alignment_v1.py)；[受影响验证](../data/buff_stage1/affected_02.log)为28专项加259项既有测试，共287项通过；[攻击回归](../data/buff_stage1/attack_regression_02.log)61项通过。[基线](../data/buff_stage1/baseline_20261109_135330.log)581项通过，[最终全套](../data/buff_stage1/full_final.log)609项通过。既有Broom随机fixture补入默认0%反弹新增的一次普通draw，生产机制无需为旧序列回退。
+
+本次实施使用指定Python绝对路径运行验证，没有重跑原引擎；原生两异常证据复用前述实验，机制RNG按源码和确定性回归核对。原工程/安装/摆盘输入的既有10文件SHA复核一致；二期、Block及宝石未实施，不据本批测试宣称全部原版等价。
 
 ## 4. Acceptance Criteria / Tests（验收标准）
 
 1. **现接口兼容**：五构造验证不变；Gain/Inflict/Remove/Cleanse的0=False，Use0=True；Use不足不扣、raw used允许部分扣。Magic书缺蓝仍激活、足蓝消费后加生命，Wand即时给予→消耗→Empower不误入Delayed。
 2. **增层**：7/3类型、cap10000、source power只在物品适配乘一次并R；正/负/零总抵抗及批量放大，Debuff概率/全局层反弹→专用/全局抵抗层顺序。反弹不再power/amp/反弹，但可再抵抗；直接source不换成目标或根攻击者。
 3. **减层**：最多现有量；正/负保护概率、专用抵抗层、全局Buff保护；used全部跳过。保护成功时项目Cleanse bool=False，不把原包装预cap返回误判为actual。
-4. **随机/异常**：统计机制draw次序含默认0%反弹及精确0真实命中；与旧Inflict同seed后续序列允许改变，更新fixtures而非强保旧路径。负left及满cap提前return照源码，Godot核实前不宣称完全等价。
+4. **随机/异常**：统计机制draw次序含默认0%反弹及精确0真实命中；与旧Inflict同seed后续序列允许改变，更新fixtures而非强保旧路径。负left及满cap提前return按原引擎已证控制流回归，其余范围不由这两项实验代替验证。
 5. **事件/重入**：先写值并固定delta再记录成功event/signal；双方监听者改owner视角但target/source不变，Luck发lucky信号；回调再改同层不影响外层delta。五Effect的item=None仍支持数值/bool/attempt，power默认1，无成功event/signal；反弹在原目标回调后。
 6. **日志**：Stack/Resist/Protect由core单写；Effect attempt单列且不双计；零/失败无成功signal。核心显式parent保留，不自动借攻击context；现Broom/Rat/Wand/Book未补父链和二期边界写明。
-7. **范围/验证**：不改Block、攻击、总线接口或宝石文档；临时/Delayed入口不假装可用。使用AGENTS指定本机Python绝对路径，专项→受影响模块→全套回归；本轮不执行。静态审计、Python验证、原引擎验证分别记录，未核实项不标“原版全部等价”。
+7. **范围/验证**：不改Block、攻击、总线接口或宝石文档；临时/Delayed入口不假装可用。已使用AGENTS指定Python绝对路径完成专项、受影响模块及全套回归。源码审查、Python验证、复用的原引擎证据分别记录，未核实项不标“原版全部等价”。

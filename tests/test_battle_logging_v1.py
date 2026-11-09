@@ -155,7 +155,6 @@ class BattleLoggingV1Test(unittest.TestCase):
             "count_before",
             "count_after",
             "requested",
-            "actual",
         }
         project_root = Path(__file__).resolve().parents[1]
         source_files = (
@@ -182,6 +181,17 @@ class BattleLoggingV1Test(unittest.TestCase):
                 set(),
                 source_file,
             )
+            for node in ast.walk(tree):
+                if not isinstance(node, ast.Dict):
+                    continue
+                fields = {key.value: value for key, value in zip(node.keys, node.values)
+                          if isinstance(key, ast.Constant) and isinstance(key.value, str)}
+                if "actual" in fields:
+                    action = fields.get("action")
+                    self.assertIsInstance(action, ast.Constant, source_file)
+                    self.assertIn(action.value,
+                                  {"stack_change", "stack_resisted", "stack_protected"},
+                                  source_file)
 
     def test_new_battle_states_have_independent_empty_logs(self):
         first = BattleState()
@@ -285,10 +295,10 @@ class BattleLoggingV1Test(unittest.TestCase):
             {"pocket_sand": PocketSand},
         )
 
-        self.assertEqual(len(result["log"]), 2)
+        self.assertEqual(len(result["log"]), 3)
         self.assertEqual(
             result["log"][0]["data"]["action"],
-            "inflict_debuff",
+            "stack_change",
         )
 
     def test_start_of_battle_items_log_effect_then_activation(self):
@@ -302,16 +312,19 @@ class BattleLoggingV1Test(unittest.TestCase):
         for item_type, action, status_name, amount in cases:
             with self.subTest(item_type=item_type.__name__):
                 item = item_type(item_key="item1", player_id=0)
-                state, context = make_item_context(item)
+                state, context = make_item_context(item, rng=SequenceRng(random_values=[0.9]))
 
                 item.combatStart(context)
 
-                self.assertEqual(actions(state), [action, "item_activation"])
+                self.assertEqual(actions(state), ["stack_change", action, "item_activation"])
                 self.assertNotIn("event", state.log[0])
-                data = state.log[0]["data"]
+                self.assertEqual(state.log[0]["data"]["amount"], amount)
+                data = state.log[1]["data"]
                 self.assertEqual(data.get("buff", data.get("debuff")), status_name)
                 self.assertEqual(data["stack_gained"], amount)
                 self.assertEqual(data["final_stack_gained"], amount)
+                self.assertEqual(data["event_kind"], "effect_attempt")
+                self.assertFalse(data["contributes_to_stack_totals"])
 
     def test_shiny_shell_logs_capped_heal_then_activation(self):
         item = ShinyShell(item_key="shell1", player_id=0)
@@ -334,11 +347,12 @@ class BattleLoggingV1Test(unittest.TestCase):
 
         self.assertEqual(
             actions(state),
-            ["gain_buff", "use_buff", "gain_buff", "item_activation"],
+            ["stack_change", "gain_buff", "stack_change", "use_buff",
+             "stack_change", "gain_buff", "item_activation"],
         )
-        self.assertEqual(state.log[0]["data"]["buff"], "Mana")
         self.assertEqual(state.log[1]["data"]["buff"], "Mana")
-        self.assertEqual(state.log[2]["data"]["buff"], "Empower")
+        self.assertEqual(state.log[3]["data"]["buff"], "Mana")
+        self.assertEqual(state.log[5]["data"]["buff"], "Empower")
 
     def test_magic_for_dummies_logs_failure_and_success_paths(self):
         failed_item = MagicForDummies(item_key="book1", player_id=0)
@@ -359,7 +373,7 @@ class BattleLoggingV1Test(unittest.TestCase):
 
         self.assertEqual(
             actions(state),
-            ["use_buff", "gain_max_health", "item_activation"],
+            ["stack_change", "use_buff", "gain_max_health", "item_activation"],
         )
         self.assertEqual(context.owner.max_health, 28)
         self.assertEqual(context.owner.health, 28)
@@ -659,7 +673,7 @@ class BattleLoggingV1Test(unittest.TestCase):
         state, context = make_item_context(
             item,
             rng=SequenceRng(
-                random_values=[0.0, 0.5],
+                random_values=[0.0, 0.9, 0.5],
                 randint_values=[5],
             ),
         )
@@ -671,13 +685,14 @@ class BattleLoggingV1Test(unittest.TestCase):
             [
                 "attack",
                 "inflict_poison_check",
+                "stack_change",
                 "inflict_debuff",
                 "inflict_blind_check",
                 "item_activation",
             ],
         )
         self.assertTrue(state.log[1]["data"]["success"])
-        self.assertFalse(state.log[3]["data"]["success"])
+        self.assertFalse(state.log[4]["data"]["success"])
 
     def test_attack_log_precedes_miss_reaction(self):
         broom = Broom(item_key="broom1", player_id=0)

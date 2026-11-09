@@ -447,7 +447,10 @@ class AttackResolutionV1Test(unittest.TestCase):
                 defender = PlayerState(player_id=1, health=20)
                 battle = BattleState(
                     players=[attacker, defender],
-                    rng=SequenceRng(random_values=[0.0], randint_values=[5]),
+                    rng=SequenceRng(
+                        random_values=[0.0, 0.9] if item_type is Broom else [0.0],
+                        randint_values=[5],
+                    ),
                 )
                 battle.prepareItems()
 

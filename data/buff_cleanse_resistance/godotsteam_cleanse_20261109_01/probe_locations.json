@@ -1,0 +1,112 @@
+[
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\Backpack Battles\\Core\\Buff.gd",
+    "LineNumber": 80,
+    "Line": "\tvar oracle_call_id = BuffEngineEdge.new_call_id()"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\Backpack Battles\\Core\\Buff.gd",
+    "LineNumber": 81,
+    "Line": "\tBuffEngineEdge.observe(\"enter\", oracle_call_id, self, {\"request\":amount,\"duration\":duration,\"incoming_reflected\":reflect,\"source\":item.descriptor.identifier if item != null else null,\"trigger_parent\":triggerEvent.id if triggerEvent != null else -1})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\Backpack Battles\\Core\\Buff.gd",
+    "LineNumber": 101,
+    "Line": "\t\tBuffEngineEdge.observe(\"after_resist\", oracle_call_id, self, {\"amount\":amount,\"resisted\":resisted,\"left\":left})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\Backpack Battles\\Core\\Buff.gd",
+    "LineNumber": 131,
+    "Line": "\t\t\tBuffEngineEdge.observe(\"before_own_resist\", oracle_call_id, self, {\"amount\":amount,\"resisted\":resisted,\"left\":left,\"reflected_count\":reflected})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\Backpack Battles\\Core\\Buff.gd",
+    "LineNumber": 136,
+    "Line": "\t\t\tBuffEngineEdge.observe(\"after_own_resist\", oracle_call_id, self, {\"amount\":amount,\"resisted\":resisted,\"left\":left,\"reflected_count\":reflected,\"own_stacks_used\":ownStacksUsed})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\Backpack Battles\\Core\\Buff.gd",
+    "LineNumber": 152,
+    "Line": "\t\t\tBuffEngineEdge.observe(\"before_cap\", oracle_call_id, self, {\"amount\":amount,\"resisted\":resisted,\"reflected_count\":reflected})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\Backpack Battles\\Core\\Buff.gd",
+    "LineNumber": 154,
+    "Line": "\t\t\tBuffEngineEdge.observe(\"after_cap\", oracle_call_id, self, {\"amount\":amount,\"resisted\":resisted,\"reflected_count\":reflected})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\Backpack Battles\\Core\\Buff.gd",
+    "LineNumber": 156,
+    "Line": "\t\t\t\tBuffEngineEdge.observe(\"cap_zero_return\", oracle_call_id, self, {\"amount\":amount,\"reflected_count\":reflected})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\Backpack Battles\\Core\\Buff.gd",
+    "LineNumber": 201,
+    "Line": "\t\tBuffEngineEdge.observe(\"before_reflect_dispatch\", oracle_call_id, self, {\"amount\":amount,\"reflected_count\":reflected,\"event_id\":event.id if event != null else -1})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\Backpack Battles\\Core\\Buff.gd",
+    "LineNumber": 206,
+    "Line": "\tBuffEngineEdge.observe(\"exit\", oracle_call_id, self, {\"event_id\":event.id if event != null else -1})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\Backpack Battles\\Core\\Buff.gd",
+    "LineNumber": 212,
+    "Line": "\tvar oracle_loss_call_id = BuffEngineEdge.new_call_id()"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\Backpack Battles\\Core\\Buff.gd",
+    "LineNumber": 213,
+    "Line": "\tBuffEngineEdge.observe(\"lose_enter\", oracle_loss_call_id, self, {\"request\":amount,\"used\":used,\"source\":item.descriptor.identifier if item != null else null,\"trigger_parent\":triggerEvent.id if triggerEvent != null else -1})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\Backpack Battles\\Core\\Buff.gd",
+    "LineNumber": 215,
+    "Line": "\tBuffEngineEdge.observe(\"lose_after_cap\", oracle_loss_call_id, self, {\"amount\":amount})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\Backpack Battles\\Core\\Buff.gd",
+    "LineNumber": 233,
+    "Line": "\t\tBuffEngineEdge.observe(\"lose_after_probability\", oracle_loss_call_id, self, {\"amount\":amount,\"protected\":protected})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\Backpack Battles\\Core\\Buff.gd",
+    "LineNumber": 240,
+    "Line": "\t\t\tBuffEngineEdge.observe(\"lose_after_type_resist\", oracle_loss_call_id, self, {\"amount\":amount,\"protected\":protected,\"protected_by_type\":protectedByStacks})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\Backpack Battles\\Core\\Buff.gd",
+    "LineNumber": 252,
+    "Line": "\t\tBuffEngineEdge.observe(\"lose_after_global_protect\", oracle_loss_call_id, self, {\"amount\":amount,\"protected\":protected})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\Backpack Battles\\Core\\Buff.gd",
+    "LineNumber": 258,
+    "Line": "\t\t\tBuffEngineEdge.observe(\"lose_protect_event\", oracle_loss_call_id, self, {\"protected_event_id\":protectedEvent.id})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\Backpack Battles\\Core\\Buff.gd",
+    "LineNumber": 298,
+    "Line": "\tvar oracle_loss_event = changeCurrentLogShowLabel(false, amount, item, triggerEvent, used)"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\Backpack Battles\\Core\\Buff.gd",
+    "LineNumber": 299,
+    "Line": "\tBuffEngineEdge.observe(\"lose_exit\", oracle_loss_call_id, self, {\"event_id\":oracle_loss_event.id if oracle_loss_event != null else -1})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\Backpack Battles\\Core\\Buff.gd",
+    "LineNumber": 300,
+    "Line": "\treturn oracle_loss_event"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\Backpack Battles\\Core\\Buff.gd",
+    "LineNumber": 307,
+    "Line": "\tBuffEngineEdge.observe(\"lose_actual\", BuffEngineEdge.current_call_id(self), self, {\"actual\":change,\"timeout\":isTimeout})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\Backpack Battles\\project.godot",
+    "LineNumber": 468,
+    "Line": "BuffEngineEdge=\"*C:/Users/win/OneDrive/文档/背包乱斗/tests/buff_engine_edge_battle.gd\""
+  }
+]

@@ -3632,7 +3632,8 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
 
     def test_rat_activation_ignores_attack_statuses_and_applies_debuffs(self):
         rng = Mock()
-        rng.random.side_effect = [0.74, 0.04]
+        # One 0%-reflection draw follows each successful debuff application.
+        rng.random.side_effect = [0.74, 0.9, 0.04, 0.9]
         rng.randint.return_value = 5
         rat, context = self.make_rat_context(
             rng=rng,
@@ -3652,7 +3653,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         self.assertEqual(context.opponent.debuffs.Poison, 1)
         self.assertEqual(context.opponent.debuffs.Blind, 1)
         rng.randint.assert_called_once_with(5, 5)
-        self.assertEqual(rng.random.call_count, 2)
+        self.assertEqual(rng.random.call_count, 4)
         dispatch_spy.assert_called_once_with(rat)
 
     def test_rat_forced_attack_miss_emits_without_status_rng(self):
@@ -3688,7 +3689,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
 
     def test_rat_debuff_chances_use_shared_balanced_state(self):
         rng = Mock()
-        rng.random.side_effect = [0.75, 0.10]
+        rng.random.side_effect = [0.75, 0.9, 0.10]
         rng.randint.return_value = 5
         rat, context = self.make_rat_context(rng=rng)
 
@@ -4186,7 +4187,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
 
     def test_broom_lethal_attack_inflicts_blind_before_death_and_clears_bonus(self):
         rng = Mock()
-        rng.random.return_value = 0.0
+        rng.random.side_effect = [0.0, 0.0, 0.9]
         rng.randint.return_value = 4
         broom, context, _ = self.make_broom_context(
             frame_delta=1.7, opponent_health=1, rng=rng,
@@ -4236,7 +4237,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
 
     def test_broom_on_hit_inflicts_blind_when_chance_succeeds(self):
         rng = Mock()
-        rng.random.side_effect = [0.0, 0.329]
+        rng.random.side_effect = [0.0, 0.329, 0.9]
         rng.randint.return_value = 2
         broom, context, _ = self.make_broom_context(
             frame_delta=1.7,
@@ -4250,7 +4251,7 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         self.assertEqual(context.opponent.debuffs.Blind, 3)
         self.assertEqual(
             rng.method_calls,
-            [call.random(), call.randint(2, 4), call.random()],
+            [call.random(), call.randint(2, 4), call.random(), call.random()],
         )
 
     def test_broom_on_hit_does_not_inflict_blind_when_chance_fails(
@@ -5449,7 +5450,15 @@ class GooblingSpecTest(unittest.TestCase):
 
                 item.combatStart(battle.build_context(item))
 
-                battle.emit_signal.assert_called_once()
+                signals = [entry.args[1] for entry in battle.emit_signal.call_args_list]
+                changed_signal = {
+                    PocketSand: "character_blind_changed",
+                    HealingHerbs: "character_regeneration_changed",
+                    Flame: "character_heat_changed",
+                    WalrusTusk: "character_spikes_changed",
+                }.get(item_type)
+                self.assertEqual(signals, ([changed_signal] if changed_signal else [])
+                                 + ["item_activation"])
                 self.assertEqual(battle.emit_signal.call_args.args[1], "item_activation")
 
 

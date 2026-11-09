@@ -83,6 +83,14 @@ class DebuffSlot:
 
 
 @dataclass
+class StackState:
+    resist_chance_percent: float = 0.0
+    resist_stacks: int = 0
+    reflect_chance_percent: float = 0.0
+    cleanse_protection_chance_percent: float = 0.0
+
+
+@dataclass
 class BalancedRngState:
     expected_wins: float = 0.0
     wins: int = 0
@@ -163,6 +171,10 @@ class PlayerState:
     accuracy_rng: BalancedRngState = field(default_factory=BalancedRngState)
     crit_rng: BalancedRngState = field(default_factory=BalancedRngState)
     crit_resistance_rng: BalancedRngState = field(default_factory=BalancedRngState)
+    stack_states: dict[str, StackState] = field(default_factory=dict)
+    debuff_resist_stacks: int = 0
+    debuff_reflect_stacks: int = 0
+    buff_protect_stacks: int = 0
 
     def __setattr__(self, name, value):
         if (
@@ -295,6 +307,12 @@ class LogHandle:
 
 
 @dataclass
+class StackResult:
+    delta: int
+    event: StackChangeContext | None
+
+
+@dataclass
 class BattleState:
     frame: int = 0
     time: float = 0.0
@@ -419,6 +437,218 @@ class BattleState:
             }
         )
         return LogHandle(self, sequence)
+
+    def _stack_slot(
+        self, target: PlayerState, stack_name: str,
+    ) -> BuffSlot | DebuffSlot:
+        if (
+            not isinstance(target, PlayerState)
+            or self.get_player(target.player_id) is not target
+        ):
+            raise ValueError("stack target is not part of this battle")
+        if type(stack_name) is not str:
+            raise ValueError("unsupported stack name")
+        if stack_name in BuffSlot.__annotations__:
+            return target.buffs
+        if stack_name in DebuffSlot.__annotations__:
+            return target.debuffs
+        raise ValueError("unsupported stack name")
+
+    def _stack_state(self, target: PlayerState, stack_name: str) -> StackState:
+        self._stack_slot(target, stack_name)
+        if stack_name not in target.stack_states:
+            target.stack_states[stack_name] = StackState()
+        return target.stack_states[stack_name]
+
+    def _commit_stack_delta(
+        self, target: PlayerState, stack_name: str, delta: int, *,
+        source_item: BattleItem | None = None,
+        used: bool = False, reflected: bool = False,
+        trigger_log_handle: LogHandle | None = None,
+    ) -> StackResult:
+        slot = self._stack_slot(target, stack_name)
+        result = StackResult(delta, None)
+        if delta == 0:
+            return result
+        setattr(slot, stack_name, getattr(slot, stack_name) + delta)
+        if source_item is None:
+            return result
+
+        log_handle = self.record_log(source_item, {
+            "action": "stack_change", "stack_name": stack_name,
+            "amount": delta, "actual": delta,
+            "target_player_id": target.player_id,
+            "used": used, "reflected": reflected, "timeout": False,
+            "trigger_log_sequence": (
+                trigger_log_handle.sequence if trigger_log_handle else None
+            ),
+        })
+        event = StackChangeContext(
+            battle_state=self, item=source_item, owner=target,
+            opponent=self.get_opponent(target.player_id),
+            target=target, stack_name=stack_name, amount=delta,
+            source_item=source_item, used=used, reflected=reflected,
+            timeout=False, trigger_log_handle=trigger_log_handle,
+            log_handle=log_handle,
+        )
+        result.event = event
+        signal_stack = "lucky" if stack_name == "Luck" else stack_name.lower()
+        self.emit_signal(target, f"character_{signal_stack}_changed", event)
+        return result
+
+    def gain_stacks(
+        self, target: PlayerState, stack_name: str, amount: int, *,
+        source_item: BattleItem | None = None,
+        trigger_log_handle: LogHandle | None = None,
+        reflected: bool = False,
+    ) -> StackResult:
+        slot = self._stack_slot(target, stack_name)
+        if type(amount) is not int or amount < 0:
+            raise ValueError("gained stack amount must be a non-negative int")
+        result = StackResult(0, None)
+        if amount == 0:
+            return result
+
+        state = self._stack_state(target, stack_name)
+        resisted = 0
+        resist_chance = state.resist_chance_percent
+        if source_item is not None and not reflected:
+            resist_chance -= source_item.stack_amplification_chances.get(stack_name, 0.0)
+        if resist_chance > 0:
+            for _ in range(amount):
+                if self.rng.random() <= resist_chance / 100.0:
+                    resisted += 1
+        elif resist_chance < 0:
+            for _ in range(amount):
+                if self.rng.random() <= -resist_chance / 100.0:
+                    amount += 1
+
+        left = amount - resisted
+        reflected_amount = 0
+        if stack_name in DebuffSlot.__annotations__:
+            if not reflected:
+                # Even 0% consumes a roll and can match an exact zero draw.
+                for _ in range(amount):
+                    if self.rng.random() <= state.reflect_chance_percent / 100.0:
+                        reflected_amount += 1
+                left -= reflected_amount
+                if left > 0:
+                    reflected_by_stacks = min(left, target.debuff_reflect_stacks)
+                    if reflected_by_stacks > 0:
+                        reflected_amount += reflected_by_stacks
+                        left -= reflected_by_stacks
+                        target.debuff_reflect_stacks -= reflected_by_stacks
+                if reflected_amount > 0:
+                    amount -= reflected_amount
+
+            # Original overlap can make left negative and increase resist_stacks.
+            own_stacks_used = min(left, state.resist_stacks)
+            resisted += own_stacks_used
+            left -= own_stacks_used
+            state.resist_stacks -= own_stacks_used
+            if left > 0:
+                character_stacks_used = min(left, target.debuff_resist_stacks)
+                resisted += character_stacks_used
+                target.debuff_resist_stacks -= character_stacks_used
+
+        if resisted > 0:
+            amount -= resisted
+            self.record_log(source_item, {
+                "action": "stack_resisted", "stack_name": stack_name,
+                "amount": resisted, "actual": resisted,
+                "target_player_id": target.player_id, "reflected": reflected,
+                "trigger_log_sequence": (
+                    trigger_log_handle.sequence if trigger_log_handle else None
+                ),
+            })
+        if amount > 0:
+            amount = min(amount, 10000 - getattr(slot, stack_name))
+            # Original cap-zero return also discards pending partial reflection.
+            if amount == 0:
+                return result
+            result = self._commit_stack_delta(
+                target, stack_name, amount, source_item=source_item,
+                reflected=reflected, trigger_log_handle=trigger_log_handle,
+            )
+        if reflected_amount > 0:
+            self.gain_stacks(
+                self.get_opponent(target.player_id), stack_name, reflected_amount,
+                source_item=source_item, trigger_log_handle=trigger_log_handle,
+                reflected=True,
+            )
+        return result
+
+    def lose_stacks(
+        self, target: PlayerState, stack_name: str, amount: int, *,
+        source_item: BattleItem | None = None,
+        trigger_log_handle: LogHandle | None = None,
+        used: bool = False,
+    ) -> StackResult:
+        slot = self._stack_slot(target, stack_name)
+        if type(amount) is not int or amount < 0:
+            raise ValueError("removed stack amount must be a non-negative int")
+        if amount == 0:
+            return StackResult(0, None)
+
+        current = getattr(slot, stack_name)
+        amount = min(current, amount)
+        if not used:
+            state = self._stack_state(target, stack_name)
+            protected = 0
+            protection_chance = state.cleanse_protection_chance_percent
+            if protection_chance > 0:
+                for _ in range(amount):
+                    if self.rng.random() <= protection_chance / 100.0:
+                        protected += 1
+            elif protection_chance < 0:
+                for _ in range(amount):
+                    if self.rng.random() <= -protection_chance / 100.0:
+                        protected -= 1
+            amount = max(0, min(current, amount - protected))
+            # 原版此处未限制 isBuff，疑似漏判，会连自身减益净化也阻挡；为复现原版保留。
+            if amount > 0 and state.resist_stacks > 0:
+                protected_by_stacks = min(amount, state.resist_stacks)
+                protected += protected_by_stacks
+                amount -= protected_by_stacks
+                state.resist_stacks -= protected_by_stacks
+            if (
+                stack_name in BuffSlot.__annotations__
+                and amount > 0 and target.buff_protect_stacks > 0
+            ):
+                protected_by_stacks = min(amount, target.buff_protect_stacks)
+                protected += protected_by_stacks
+                amount -= protected_by_stacks
+                target.buff_protect_stacks -= protected_by_stacks
+            if protected > 0:
+                self.record_log(source_item, {
+                    "action": "stack_protected", "stack_name": stack_name,
+                    "amount": protected, "actual": protected,
+                    "target_player_id": target.player_id,
+                    "trigger_log_sequence": (
+                        trigger_log_handle.sequence if trigger_log_handle else None
+                    ),
+                })
+
+        actual = min(getattr(slot, stack_name), amount)
+        return self._commit_stack_delta(
+            target, stack_name, -actual, source_item=source_item, used=used,
+            trigger_log_handle=trigger_log_handle,
+        )
+
+    def try_use_stacks(
+        self, target: PlayerState, stack_name: str, amount: int, *,
+        source_item: BattleItem | None = None,
+        trigger_log_handle: LogHandle | None = None,
+    ) -> StackResult:
+        slot = self._stack_slot(target, stack_name)
+        if type(amount) is not int or amount < 0:
+            raise ValueError("used stack amount must be a non-negative int")
+        if getattr(slot, stack_name) < amount:
+            return StackResult(0, None)
+        return self.lose_stacks(
+            target, stack_name, amount, source_item=source_item,
+            trigger_log_handle=trigger_log_handle, used=True,
+        )
 
     def record_player_state_snapshot(self) -> None:
         if not self.collect_player_state_history:
@@ -956,6 +1186,19 @@ class BattleContext:
         else:
             raise ValueError(f"item has unknown player_id: {item.player_id}")
         return replace(self, item=item, owner=owner, opponent=opponent)
+
+
+@dataclass
+class StackChangeContext(BattleContext):
+    target: PlayerState
+    stack_name: str
+    amount: int
+    source_item: BattleItem | None
+    used: bool
+    reflected: bool
+    timeout: bool
+    trigger_log_handle: LogHandle | None
+    log_handle: LogHandle
 
 
 @dataclass

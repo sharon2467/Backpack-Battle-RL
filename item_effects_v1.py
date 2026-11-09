@@ -10,6 +10,7 @@ from battle_module_v1 import (
     BattleContext,
     BuffSlot,
     DebuffSlot,
+    godot_round,
 )
 
 if TYPE_CHECKING:
@@ -228,17 +229,25 @@ class GainBuffEffect(Effect):
         self.amount = amount
 
     def apply(self, context: BattleContext) -> bool:
-        old_stacks = getattr(context.owner.buffs, self.buff_name)
-        application = self.amount
-        setattr(
-            context.owner.buffs,
-            self.buff_name,
-            old_stacks + application,
+        power = (
+            context.item.stack_powers.get(self.buff_name, 1.0)
+            if context.item is not None else 1.0
         )
+        scaled = godot_round(self.amount * power)
+        application = 0
+        if scaled > 0:
+            application = context.battle_state.gain_stacks(
+                context.owner,
+                self.buff_name,
+                scaled,
+                source_item=context.item,
+            ).delta
         context.battle_state.record_log(
             context.item,
             {
                 "action": "gain_buff",
+                "event_kind": "effect_attempt",
+                "contributes_to_stack_totals": False,
                 "target_player_id": context.owner.player_id,
                 "buff": self.buff_name,
                 "stack_gained": self.amount,
@@ -265,40 +274,28 @@ class UseBuffEffect(Effect):
         self.amount = amount
 
     def apply(self, context: BattleContext) -> bool:
-        available = getattr(context.owner.buffs, self.buff_name)
-        if available < self.amount:
-            context.battle_state.record_log(
-                context.item,
-                {
-                    "action": "use_buff",
-                    "target_player_id": context.owner.player_id,
-                    "buff": self.buff_name,
-                    "stack_used": self.amount,
-                    "final_stack_used": 0,
-                    "success": False,
-                },
-            )
-            return False
-
-        remaining = available - self.amount
-        actual_used = available - remaining
-        setattr(
-            context.owner.buffs,
+        result = context.battle_state.try_use_stacks(
+            context.owner,
             self.buff_name,
-            remaining,
+            self.amount,
+            source_item=context.item,
         )
+        actual_used = -result.delta
+        success = self.amount == 0 or result.delta == -self.amount
         context.battle_state.record_log(
             context.item,
             {
                 "action": "use_buff",
+                "event_kind": "effect_attempt",
+                "contributes_to_stack_totals": False,
                 "target_player_id": context.owner.player_id,
                 "buff": self.buff_name,
                 "stack_used": self.amount,
                 "final_stack_used": actual_used,
-                "success": True,
+                "success": success,
             },
         )
-        return True
+        return success
 
 
 class BuffRemovalEffect(Effect):
@@ -317,22 +314,20 @@ class BuffRemovalEffect(Effect):
         self.amount = amount
 
     def apply(self, context: BattleContext) -> bool:
-        old_stacks = getattr(
-            context.opponent.buffs,
+        result = context.battle_state.lose_stacks(
+            context.opponent,
             self.buff_name,
+            self.amount,
+            source_item=context.item,
+            used=False,
         )
-        removal = self.amount
-        # Future modifiers and removal protection can adjust removal here.
-        actual_removal = min(old_stacks, removal)
-        setattr(
-            context.opponent.buffs,
-            self.buff_name,
-            old_stacks - actual_removal,
-        )
+        actual_removal = -result.delta
         context.battle_state.record_log(
             context.item,
             {
                 "action": "remove_buff",
+                "event_kind": "effect_attempt",
+                "contributes_to_stack_totals": False,
                 "target_player_id": context.opponent.player_id,
                 "buff": self.buff_name,
                 "stack_removed": self.amount,
@@ -359,21 +354,25 @@ class InflictDebuffEffect(Effect):
         self.amount = amount
 
     def apply(self, context: BattleContext) -> bool:
-        old_stacks = getattr(
-            context.opponent.debuffs,
-            self.debuff_name,
+        power = (
+            context.item.stack_powers.get(self.debuff_name, 1.0)
+            if context.item is not None else 1.0
         )
-        application = self.amount
-        # Future duplicate, resist, and reflect modifiers can adjust this.
-        setattr(
-            context.opponent.debuffs,
-            self.debuff_name,
-            old_stacks + application,
-        )
+        scaled = godot_round(self.amount * power)
+        application = 0
+        if scaled > 0:
+            application = context.battle_state.gain_stacks(
+                context.opponent,
+                self.debuff_name,
+                scaled,
+                source_item=context.item,
+            ).delta
         context.battle_state.record_log(
             context.item,
             {
                 "action": "inflict_debuff",
+                "event_kind": "effect_attempt",
+                "contributes_to_stack_totals": False,
                 "target_player_id": context.opponent.player_id,
                 "debuff": self.debuff_name,
                 "stack_gained": self.amount,
@@ -400,21 +399,20 @@ class CleanseDebuffEffect(Effect):
         self.amount = amount
 
     def apply(self, context: BattleContext) -> bool:
-        old_stacks = getattr(
-            context.owner.debuffs,
+        result = context.battle_state.lose_stacks(
+            context.owner,
             self.debuff_name,
+            self.amount,
+            source_item=context.item,
+            used=False,
         )
-        cleansing = self.amount
-        actual_cleansing = min(old_stacks, cleansing)
-        setattr(
-            context.owner.debuffs,
-            self.debuff_name,
-            old_stacks - actual_cleansing,
-        )
+        actual_cleansing = -result.delta
         context.battle_state.record_log(
             context.item,
             {
                 "action": "cleanse_debuff",
+                "event_kind": "effect_attempt",
+                "contributes_to_stack_totals": False,
                 "target_player_id": context.owner.player_id,
                 "debuff": self.debuff_name,
                 "stack_removed": self.amount,

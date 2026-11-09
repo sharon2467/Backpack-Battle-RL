@@ -147,7 +147,7 @@ class ItemBehaviorAlignmentTest(unittest.TestCase):
     def test_rat_shares_chance_state_between_poison_and_blind(self):
         rat = Rat(item_key="rat", player_id=0)
         battle = self.battle(rat)
-        battle.rng = Mock(random=Mock(side_effect=[0.8, 0.08]),
+        battle.rng = Mock(random=Mock(side_effect=[0.8, 0.9, 0.08]),
                           randint=Mock(return_value=5))
         rat.run_effect([True], battle.build_context(rat))
         self.assertEqual(battle.players[1].debuffs.Poison, 1)
