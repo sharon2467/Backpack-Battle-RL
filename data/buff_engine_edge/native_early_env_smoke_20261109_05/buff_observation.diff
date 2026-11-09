@@ -1,0 +1,61 @@
+diff --git "a/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\data\\buff_engine_edge\\native_early_env_smoke_20261109_05\\original_bytes\\Buff.gd.bin" "b/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\Backpack Battles\\Core\\Buff.gd"
+index 9351ec3..46afcd8 100644
+--- "a/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\data\\buff_engine_edge\\native_early_env_smoke_20261109_05\\original_bytes\\Buff.gd.bin"
++++ "b/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\Backpack Battles\\Core\\Buff.gd"	
+@@ -77,6 +77,8 @@ func gainTemporary(amount: int, duration: float, item = null,
+ 	triggerEvent = null, reflect: bool = false):
+ 	
+ 	var event = null
++	var oracle_call_id = BuffEngineEdge.new_call_id()
++	BuffEngineEdge.observe("enter", oracle_call_id, self, {"request":amount,"duration":duration,"incoming_reflected":reflect,"source":item.descriptor.identifier if item != null else null,"trigger_parent":triggerEvent.id if triggerEvent != null else -1})
+ 	
+ 	if amount > 0:
+ 		
+@@ -96,6 +98,7 @@ func gainTemporary(amount: int, duration: float, item = null,
+ 					amount += 1
+ 		
+ 		var left = amount - resisted
++		BuffEngineEdge.observe("after_resist", oracle_call_id, self, {"amount":amount,"resisted":resisted,"left":left})
+ 		
+ 		var reflected = 0
+ 		
+@@ -125,10 +128,12 @@ func gainTemporary(amount: int, duration: float, item = null,
+ 					Util.spawnReflectLabel(type, target.randBuffLabelPos(), reflected)
+ 				
+ 			
++			BuffEngineEdge.observe("before_own_resist", oracle_call_id, self, {"amount":amount,"resisted":resisted,"left":left,"reflected_count":reflected})
+ 			var ownStacksUsed = min(left, resistStacks)
+ 			resisted += ownStacksUsed
+ 			left -= ownStacksUsed
+ 			resistStacks -= ownStacksUsed
++			BuffEngineEdge.observe("after_own_resist", oracle_call_id, self, {"amount":amount,"resisted":resisted,"left":left,"reflected_count":reflected,"own_stacks_used":ownStacksUsed})
+ 			
+ 			if left > 0:
+ 				var characterStacksUsed = min(left, character.debuffResistStacks)
+@@ -144,8 +149,12 @@ func gainTemporary(amount: int, duration: float, item = null,
+ 			
+ 		
+ 		if amount > 0:
++			BuffEngineEdge.observe("before_cap", oracle_call_id, self, {"amount":amount,"resisted":resisted,"reflected_count":reflected})
+ 			amount = int(min(amount, MAX_STACKS - current))
+-			if amount == 0: return null
++			BuffEngineEdge.observe("after_cap", oracle_call_id, self, {"amount":amount,"resisted":resisted,"reflected_count":reflected})
++			if amount == 0:
++				BuffEngineEdge.observe("cap_zero_return", oracle_call_id, self, {"amount":amount,"reflected_count":reflected})
++				return null
+ 			
+ 			current += amount
+ 			counter.updateHud(current)
+@@ -189,10 +198,12 @@ func gainTemporary(amount: int, duration: float, item = null,
+ 				
+ 				EventBus.emitEvent(character, signalName, event, [event.getAmount(), event])
+ 		
++		BuffEngineEdge.observe("before_reflect_dispatch", oracle_call_id, self, {"amount":amount,"reflected_count":reflected,"event_id":event.id if event != null else -1})
+ 		if reflected > 0:
+ 			character.opponent.gainStacksTemporary(type, reflected, duration, 
+ 				item, triggerEvent, true)
+ 		
++	BuffEngineEdge.observe("exit", oracle_call_id, self, {"event_id":event.id if event != null else -1})
+ 	return event
+ 
+ 
