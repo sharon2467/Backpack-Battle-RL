@@ -447,9 +447,13 @@ class AttackEffect(Effect):
     def apply(
         self,
         context: BattleContext,
-        attack_type: str,
+        attack_type: tuple[str, ...],
     ) -> bool:
-        if attack_type not in SUPPORTED_ATTACK_TYPES:
+        if (
+            not isinstance(attack_type, tuple)
+            or not attack_type
+            or any(kind not in SUPPORTED_ATTACK_TYPES for kind in attack_type)
+        ):
             raise ValueError(f"unsupported attack type: {attack_type}")
         if not self.damage_modifier_prepared:
             self.prepare_damage_modifier(context)
@@ -466,7 +470,7 @@ class AttackEffect(Effect):
             attacker=context.owner,
             defender=context.opponent,
             source_item=context.item,
-            attack_types=(attack_type,),
+            attack_types=attack_type,
             min_damage=self.min_damage + damage,
             max_damage=self.max_damage + damage,
             accuracy=accuracy,
@@ -559,7 +563,7 @@ class FoodLinkedMeleeAttackEffect(AttackEffect):
     def prepare_damage_modifier(self, context: BattleContext) -> None:
         if self.qualifying_food_count is None:
             qualifying_food_count = 0
-            for linked_key in context.item.linked_items:
+            for linked_key in context.item.marker_items["star"]:
                 linked_item = context.owner.items[linked_key]
                 if "Food" in linked_item.item_types:
                     qualifying_food_count += 1

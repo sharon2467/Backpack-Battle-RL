@@ -74,9 +74,16 @@ class TestSourceItem(BattleItem):
 
 
 class SequenceRng:
+    def shuffle(self, items):
+        # These tests isolate attack/log ordering from preparation randomness.
+        pass
+
     def __init__(self, random_values=(), randint_values=()):
         self.random_values = list(random_values)
         self.randint_values = list(randint_values)
+
+    def choice(self, values):
+        return values[0]
 
     def random(self):
         if not self.random_values:
@@ -278,13 +285,13 @@ class BattleLoggingV1Test(unittest.TestCase):
             {"pocket_sand": PocketSand},
         )
 
-        self.assertEqual(len(result["log"]), 1)
+        self.assertEqual(len(result["log"]), 2)
         self.assertEqual(
             result["log"][0]["data"]["action"],
             "inflict_debuff",
         )
 
-    def test_start_of_battle_items_log_their_effect_without_activation(self):
+    def test_start_of_battle_items_log_effect_then_activation(self):
         cases = (
             (PocketSand, "inflict_debuff", "Blind", 1),
             (HealingHerbs, "gain_buff", "Regeneration", 2),
@@ -297,9 +304,9 @@ class BattleLoggingV1Test(unittest.TestCase):
                 item = item_type(item_key="item1", player_id=0)
                 state, context = make_item_context(item)
 
-                item.run_effect([True], context)
+                item.combatStart(context)
 
-                self.assertEqual(actions(state), [action])
+                self.assertEqual(actions(state), [action, "item_activation"])
                 self.assertNotIn("event", state.log[0])
                 data = state.log[0]["data"]
                 self.assertEqual(data.get("buff", data.get("debuff")), status_name)
@@ -337,15 +344,17 @@ class BattleLoggingV1Test(unittest.TestCase):
         failed_item = MagicForDummies(item_key="book1", player_id=0)
         failed_state, failed_context = make_item_context(failed_item)
 
+        failed_item.prepare(failed_context)
         failed_item.run_effect([True], failed_context)
 
-        self.assertEqual(actions(failed_state), ["use_buff"])
+        self.assertEqual(actions(failed_state), ["use_buff", "item_activation"])
         self.assertFalse(failed_state.log[0]["data"]["success"])
 
         item = MagicForDummies(item_key="book2", player_id=0)
         state, context = make_item_context(item)
         context.owner.buffs.Mana = 1
 
+        item.prepare(context)
         item.run_effect([True], context)
 
         self.assertEqual(
@@ -362,9 +371,9 @@ class BattleLoggingV1Test(unittest.TestCase):
         context.owner.items[sword.item_key] = sword
         item.add_linked_item(sword.item_key)
 
-        item.run_effect([True], context)
+        item.combatStart(context)
 
-        self.assertEqual(actions(state), ["modify_linked_weapon_damage"])
+        self.assertEqual(actions(state), ["modify_linked_weapon_damage", "item_activation"])
         targets = state.log[0]["data"]["targets"]
         self.assertEqual(targets[0]["item_key"], "sword1")
         self.assertEqual(targets[0]["damage_modifier_delta"], 1)
@@ -373,7 +382,7 @@ class BattleLoggingV1Test(unittest.TestCase):
 
         empty_item = Whetstone(item_key="whetstone2", player_id=0)
         empty_state, empty_context = make_item_context(empty_item)
-        empty_item.run_effect([True], empty_context)
+        empty_item.combatStart(empty_context)
         self.assertEqual(empty_state.log[0]["data"]["targets"], [])
         self.assertFalse(empty_state.log[0]["data"]["success"])
 
@@ -410,6 +419,7 @@ class BattleLoggingV1Test(unittest.TestCase):
                     source_item=source,
                 )
 
+                item.prepare(context)
                 item.activate_item(context)
 
                 self.assertEqual(actions(state), expected_actions)
@@ -490,6 +500,10 @@ class BattleLoggingV1Test(unittest.TestCase):
         )
 
         item.activate_item(context.for_item(item))
+        self.assertEqual(actions(state), ["on_attacked_check", "prevent_attack_damage"])
+        self.assertEqual(state.players[1].stamina, 5.0)
+        item.activate_item(state.build_attack_reaction_context(
+            item, ATTACK_PHASE_CHARACTER_ATTACKED, event).for_item(item))
 
         self.assertEqual(
             actions(state),
@@ -595,10 +609,11 @@ class BattleLoggingV1Test(unittest.TestCase):
 
         self.assertEqual(
             actions(state),
-            ["attack", "remove_block", "item_activation"],
+            ["spend_stamina", "remove_block", "attack", "item_activation"],
         )
+        self.assertEqual(state.log[0]["data"]["stamina_spent"], 0)
         self.assertEqual(state.log[1]["data"]["block_removed"], 4)
-        self.assertEqual(state.log[1]["data"]["final_block_removed"], 3)
+        self.assertEqual(state.log[1]["data"]["final_block_removed"], 4)
 
     def test_banana_logs_capped_heal_stamina_and_activation(self):
         item = Banana(item_key="banana1", player_id=0)
@@ -720,13 +735,13 @@ class BattleLoggingV1Test(unittest.TestCase):
         with self.assertRaises(_BattleFinishedSignal):
             state.stop_if_battle_ended()
 
-        self.assertEqual(actions(state), ["attack", "remove_block"])
+        self.assertEqual(actions(state), ["spend_stamina", "remove_block", "attack"])
         self.assertEqual(
-            state.log[0]["data"]["final_block_damage"],
+            state.log[2]["data"]["final_block_damage"],
             0,
         )
         self.assertEqual(
-            state.log[0]["data"]["final_health_damage"],
+            state.log[2]["data"]["final_health_damage"],
             2,
         )
 

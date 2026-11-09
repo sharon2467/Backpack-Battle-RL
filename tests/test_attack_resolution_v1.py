@@ -43,6 +43,10 @@ from item_triggers_v1 import (
 
 
 class SequenceRng:
+    def shuffle(self, items):
+        # Attack pipeline tests control connection order independently of RNG draws.
+        pass
+
     def __init__(self, random_values=(), randint_values=()):
         self.random_values = list(random_values)
         self.randint_values = list(randint_values)
@@ -344,7 +348,7 @@ class AttackResolutionV1Test(unittest.TestCase):
         initial_event.defender.buffs.Spikes = 1
 
         hit = AttackEffect(5, 5, 100).apply(
-            battle.build_context(initial_event.source_item), "melee",
+            battle.build_context(initial_event.source_item), ("melee",),
         )
 
         self.assertTrue(hit)
@@ -448,7 +452,7 @@ class AttackResolutionV1Test(unittest.TestCase):
                 battle.prepareItems()
 
                 hit = AttackEffect(5, 5, 100).apply(
-                    battle.build_context(item), item.icon_types[0],
+                    battle.build_context(item), item.attack_types,
                 )
 
                 self.assertTrue(hit)
@@ -592,7 +596,7 @@ class AttackResolutionV1Test(unittest.TestCase):
             rng=rng,
         )
         attacker.items[attacker_reaction.item_key] = attacker_reaction
-        attacker_reaction.onPrepare(battle.build_context(attacker_reaction))
+        attacker_reaction.prepare(battle.build_context(attacker_reaction))
         event = self.make_event(
             attacker,
             defender,
@@ -781,7 +785,7 @@ class AttackResolutionV1Test(unittest.TestCase):
         battle, _, defender, source = self.make_battle(rng=rng)
         effect = AttackEffect(1, 3, 50)
 
-        result = effect.apply(battle.build_context(source), "melee")
+        result = effect.apply(battle.build_context(source), ("melee",))
 
         self.assertFalse(result)
         self.assertEqual(defender.health, 20)
@@ -802,7 +806,7 @@ class AttackResolutionV1Test(unittest.TestCase):
         defender.buffs.Spikes = 5
         effect = AttackEffect(5, 5, 100)
 
-        result = effect.apply(battle.build_context(source), "melee")
+        result = effect.apply(battle.build_context(source), ("melee",))
 
         self.assertTrue(result)
         self.assertEqual(defender.health, 20)
@@ -815,7 +819,7 @@ class AttackResolutionV1Test(unittest.TestCase):
         battle = CapturingBattleState(players=[attacker, defender])
         effect = AttackEffect(1, 3, 90)
 
-        result = effect.apply(battle.build_context(source), "melee")
+        result = effect.apply(battle.build_context(source), ("melee",))
 
         self.assertFalse(result)
         self.assertEqual(battle.captured_values, (None, 0, 0, False))
@@ -833,7 +837,7 @@ class AttackResolutionV1Test(unittest.TestCase):
         battle = CapturingBattleState(players=[attacker, defender])
         effect = AttackEffect(1, 3, 90)
 
-        effect.apply(battle.build_context(source), "melee")
+        effect.apply(battle.build_context(source), ("melee",))
 
         self.assertEqual(battle.captured_event.min_damage, 1)
         self.assertEqual(battle.captured_event.max_damage, 3)

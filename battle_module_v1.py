@@ -2,7 +2,7 @@ from __future__ import annotations
 import math
 import random
 from dataclasses import asdict, dataclass, field, replace
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Sequence
 
 if TYPE_CHECKING:
     from item_factory_registry_v1 import BattleItem
@@ -87,13 +87,16 @@ class BalancedRngState:
     expected_wins: float = 0.0
     wins: int = 0
     last_result: bool = False
+    last_roll: float | None = None
 
     def reset(self) -> None:
         self.expected_wins = 0.0
         self.wins = 0
         self.last_result = False
+        self.last_roll = None
 
     def roll_percent(self, percent: float, rng) -> bool:
+        self.last_roll = None
         target = percent / 100.0
         if target <= 0:
             return False
@@ -110,7 +113,8 @@ class BalancedRngState:
             chance *= 0.5
         elif not self.last_result and target > 0.6:
             chance *= 2.0
-        self.last_result = rng.random() <= chance
+        self.last_roll = rng.random()
+        self.last_result = self.last_roll <= chance
         if self.last_result:
             self.wins += 1
         return self.last_result
@@ -244,6 +248,42 @@ def make_attack_event(
     )
 
 
+def validate_gem_sockets(players: Sequence[PlayerState]) -> None:
+    """Check socket relationships without changing items or battle state."""
+    for player in players:
+        seen_instances = set()
+        socketed_keys = set()
+        for key, item in player.items.items():
+            if not key or key != item.item_key or item.player_id != player.player_id:
+                raise ValueError("item key or player does not match its registration")
+            if id(item) in seen_instances:
+                raise ValueError("item instance is registered more than once")
+            seen_instances.add(id(item))
+            if len(item.gemsocket) != item.socket_count:
+                raise ValueError("gem socket count does not match slot storage")
+            if "Gem" in item.item_types and item.socket_count != 0:
+                raise ValueError("gems cannot have sockets")
+            for gem_key in item.gemsocket:
+                if gem_key is None:
+                    continue
+                if "Gem" in item.item_types:
+                    raise ValueError("a gem cannot host another gem")
+                if gem_key not in player.items:
+                    raise ValueError("socketed gem is missing from player items")
+                gem = player.items[gem_key]
+                if "Gem" not in gem.item_types:
+                    raise ValueError("socketed item must be a gem")
+                if gem.belongs_to != key or gem.gem_type != item.item_types:
+                    raise ValueError("gem binding does not match its host")
+                if gem_key in socketed_keys:
+                    raise ValueError("gem is referenced by more than one socket")
+                socketed_keys.add(gem_key)
+        for key, item in player.items.items():
+            if item.belongs_to is not None:
+                if "Gem" not in item.item_types or key not in socketed_keys:
+                    raise ValueError("item binding has no matching gem socket")
+
+
 class _BattleFinishedSignal(Exception):
     pass
 
@@ -260,6 +300,7 @@ class BattleState:
     time: float = 0.0
     players: list[PlayerState] = field(default_factory=list)
     active_items: list[BattleItem] = field(default_factory=list)
+    battle_items: list[BattleItem] = field(default_factory=list, init=False)
     winner: object = None
     frame_delta: float = 1.0 / 30.0
     next_regeneration_time: float = FIRST_REGENERATION_TIME
@@ -272,15 +313,47 @@ class BattleState:
         default_factory=list,
     )
     _bus_cache: dict[tuple[object, str], list[tuple[BattleItem,int]]] = field(default_factory=dict, init=False, repr=False)
-    def prepareItems(self):
+    has_prepared: bool = field(default=False, init=False)
+    combat_started: bool = field(default=False, init=False)
+
+    def prepareItems(self) -> None:
+        if self.has_prepared or self.combat_started:
+            raise ValueError("battle has already been prepared or started")
+        if self.time != 0.0 or self.frame != 0 or self.winner is not None:
+            raise ValueError("battle time and frame must be zero before preparation")
+        if len(self.players) != 2 or self.players[0].player_id == self.players[1].player_id:
+            raise ValueError("battle preparation requires two distinct players")
+        items = [item for player in self.players for item in player.items.values()]
+        if any(item.has_prepared for item in items):
+            raise ValueError("item has already been prepared")
         for player in self.players:
+            player_items = [item for item in player.items.values() if item.belongs_to is None]
+            self.rng.shuffle(player_items)
+            player_items.sort(key=lambda item: item.getTriggerPriority(), reverse=True)
+            self.battle_items.extend(player_items)
             player.accuracy_rng.reset()
             player.crit_rng.reset()
             player.crit_resistance_rng.reset()
-            for item in player.items.values():
-                item.damage_range_acc = 0.0
-                context = self.build_context(item)
-                item.onPrepare(context)
+        self.active_items = [item for item in self.active_items if item.belongs_to is None]
+        for item in self.battle_items:
+            item.prepare(self.build_context(item))
+        self.has_prepared = True
+
+    def start_combat(self) -> None:
+        if self.combat_started:
+            return
+        if not self.has_prepared:
+            raise ValueError("battle must be prepared before starting combat")
+        self.combat_started = True
+        self.emit_signal(None, "combat_start")
+        if self.winner is not None:
+            return
+        for phase in ("preCombatStart", "combatStart", "postCombatStart"):
+            for item in self.battle_items:
+                getattr(item, phase)(self.build_context(item))
+                if self.winner is not None:
+                    return
+
     def emit_signal(
         self,
         emitter: BattleItem | PlayerState | None,
@@ -371,7 +444,10 @@ class BattleState:
             ),4)
 
     def step(self):
+        if not self.has_prepared:
+            raise ValueError("battle must be prepared before stepping")
         try:
+            self.start_combat()
             self.stop_if_battle_ended()
             self.regenerate_stamina()
             for active_item in list(self.active_items):
@@ -390,6 +466,8 @@ class BattleState:
         return self.winner
 
     def run(self, max_frames: int, frame_delta: float = 1.0 / 30.0):
+        if not self.has_prepared:
+            raise ValueError("battle must be prepared before running")
         self.frame_delta = frame_delta
         for _ in range(max_frames):
             if self.winner is not None:
@@ -586,6 +664,18 @@ class BattleState:
             attack_type in event.attack_types
             for attack_type in ("melee", "ranged")
         )
+        self._determine_attack_hit(event, item, is_attack)
+        if not event.hit:
+            self._record_attack_miss(event)
+        else:
+            self._roll_attack_damage(event, item, is_attack)
+            self._apply_attack_crit(event, item)
+            self._apply_attack_mitigation(event, item, is_attack)
+            self._commit_attack_hit(event, item)
+        self._finish_attack(event, item, is_attack)
+        return event
+
+    def _determine_attack_hit(self, event: AttackEvent, item: BattleItem | None, is_attack: bool) -> None:
         if event.can_miss:
             event.hit = event.defender.accuracy_rng.roll_percent(event.accuracy, self.rng)
             if event.hit and event.defender.dodge_stacks > 0:
@@ -603,141 +693,142 @@ class BattleState:
             if early_hook is not None:
                 early_hook(context)
 
-        if not event.hit:
-            event.log_handle=self.record_log(
-                event.source_item,
-                {
-                    "action": "attack",
-                    "target_player_id": event.defender.player_id,
-                    "attack_types": list(event.attack_types),
-                    "hit": False,
-                },
-            )
-            if event.is_resolved:
-                raise ValueError("cannot resolve an already resolved attack event")
-            if event.hit is not False:
-                raise ValueError("cannot resolve an attack whose hit result changed")
-            event.is_resolved = True
-        else:
-            min_damage = float(event.min_damage)
-            max_damage = float(event.max_damage)
-            if item is not None:
-                if is_attack:
-                    min_damage, max_damage = math.ceil(min_damage), math.ceil(max_damage)
-                    if self.canBeEmpowered(event):
-                        empower = event.attacker.empower_damage * event.attacker.buffs.Empower
-                        min_damage += empower
-                        max_damage += empower
-                    factor = 1.0 + sum(event.attacker.typed_damage_factors.get(t, 0.0)
-                                       for t in event.attack_types)
-                    event.min_damage = max(0, godot_round(min_damage * factor * item.damage_multiplier))
-                    event.max_damage = max(0, godot_round(max_damage * factor * item.damage_multiplier))
-                else:
-                    # updateEffect assigns the modified float to integer endpoints.
-                    factor = 1.0 + event.attacker.typed_damage_factors.get("effect", 0.0)
-                    event.min_damage = max(0, int(min_damage * factor * item.damage_multiplier))
-                    event.max_damage = max(0, int(max_damage * factor * item.damage_multiplier))
-                event.rolled_damage = item.roll_damage(event.min_damage, event.max_damage, self.rng)
-            else:
-                event.rolled_damage = self.rng.randint(event.min_damage, event.max_damage)
-            event.pending_damage += event.rolled_damage
-            if "fatigue" in event.attack_types:
-                event.pending_damage += event.defender.bonus_fatigue_damage
+    def _record_attack_miss(self, event: AttackEvent) -> None:
+        event.log_handle=self.record_log(
+            event.source_item,
+            {
+                "action": "attack",
+                "target_player_id": event.defender.player_id,
+                "attack_types": list(event.attack_types),
+                "hit": False,
+            },
+        )
+        if event.is_resolved:
+            raise ValueError("cannot resolve an already resolved attack event")
+        if event.hit is not False:
+            raise ValueError("cannot resolve an attack whose hit result changed")
+        event.is_resolved = True
 
-
-            if event.can_crit:
-                crit = event.defender.crit_rng.roll_percent(event.crit_chance, self.rng)
-                if not event.crit and item is not None and item.crit_tokens > 0:
-                    item.crit_tokens-=1
-                    crit=True
-                if event.crit==False and event.attacker.crit_tokens>0:
-                    event.attacker.crit_tokens-=1
-                    crit=True
-                if crit:
-                    crit_resisted = event.defender.crit_resistance_rng.roll_percent(
-                        event.defender.crit_resistance, self.rng,
-                    )
-                    if crit_resisted:
-                        crit=False
-                    elif event.defender.crit_resist_stacks>0:
-                        event.defender.crit_resist_stacks-=1
-                        crit=False
-                event.crit=crit
-                if event.crit:
-                    event.pending_damage = int(
-                        event.pending_damage * event.crit_multiplier
-                    )
-            else:
-                event.crit = False
-
-            r=max(min(event.defender.damage_resistance/100,1.0),-10.0)
-            event.pending_damage = godot_round(float(event.pending_damage) * (1-r))
+    def _roll_attack_damage(self, event: AttackEvent, item: BattleItem | None, is_attack: bool) -> None:
+        min_damage = float(event.min_damage)
+        max_damage = float(event.max_damage)
+        if item is not None:
             if is_attack:
-                event.pending_damage = event.pending_damage - event.defender.damage_reduction
-
-            event.pending_damage =0 if event.defender.invulnerable else event.pending_damage
-
-
-            context = self.build_attack_reaction_context(
-                item, ATTACK_PHASE_PRE_TAKE_DAMAGE, event,
-            )
-            self.emit_signal(event.defender, ATTACK_PHASE_PRE_TAKE_DAMAGE, context)
-            event.pending_damage = max(0, event.pending_damage-event.prevented_damage)
-
-
-            if is_attack and item is not None:
-                context = self.build_attack_reaction_context(
-                    item, ATTACK_PHASE_PRE_DEAL_DAMAGE_LATE, event,
-                )
-                self.emit_signal(item, ATTACK_PHASE_PRE_DEAL_DAMAGE_LATE, context)
-                late_hook = getattr(item, "onPreDealDamage_late", None)
-                if late_hook is not None:
-                    late_hook(context)
-
-            context = self.build_attack_reaction_context(
-                item, ATTACK_PHASE_PRE_TAKE_DAMAGE_LATE, event,
-            )
-            self.emit_signal(event.defender, ATTACK_PHASE_PRE_TAKE_DAMAGE_LATE, context)
-
-
-            if event.is_resolved:
-                raise ValueError("cannot commit a resolved attack event")
-            if event.hit is not True:
-                raise ValueError("cannot commit an attack that did not hit")
-            if event.pending_damage < 0:
-                raise ValueError("pending attack damage cannot be negative")
-
-            if event.can_be_blocked:
-                event.block_damage = min(event.defender.block, event.pending_damage)
-                event.health_damage = event.pending_damage - event.block_damage
+                min_damage, max_damage = math.ceil(min_damage), math.ceil(max_damage)
+                if self.canBeEmpowered(event):
+                    empower = event.attacker.empower_damage * event.attacker.buffs.Empower
+                    min_damage += empower
+                    max_damage += empower
+                factor = 1.0 + sum(event.attacker.typed_damage_factors.get(t, 0.0)
+                                   for t in event.attack_types)
+                event.min_damage = max(0, godot_round(min_damage * factor * item.damage_multiplier))
+                event.max_damage = max(0, godot_round(max_damage * factor * item.damage_multiplier))
             else:
-                event.block_damage = 0
-                event.health_damage = event.pending_damage
-            event.is_resolved = True
-            log_handle = self.record_log(
-                item if item is not None else event.attack_types[0].title(),
-                {
-                    "action": "attack" if item is not None else event.attack_types[0] + "_damage",
-                    "target_player_id": event.defender.player_id,
-                    "attack_types": list(event.attack_types),
-                    "hit": True,
-                    "block_damage": event.block_damage,
-                    "health_damage": event.health_damage,
-                    "final_block_damage": event.block_damage,
-                    "final_health_damage": event.health_damage,
-                    "critical": event.crit,
-                    "trigger_log_sequence": (
-                        event.trigger_log_handle.sequence if event.trigger_log_handle else None
-                    ),
-                },
-            )
-            event.log_handle = log_handle
-            self.commit_health_reduction(
-                    event.defender,
-                    event.block_damage,
-                    event.health_damage,
-            )
+                # updateEffect assigns the modified float to integer endpoints.
+                factor = 1.0 + event.attacker.typed_damage_factors.get("effect", 0.0)
+                event.min_damage = max(0, int(min_damage * factor * item.damage_multiplier))
+                event.max_damage = max(0, int(max_damage * factor * item.damage_multiplier))
+            event.rolled_damage = item.roll_damage(event.min_damage, event.max_damage, self.rng)
+        else:
+            event.rolled_damage = self.rng.randint(event.min_damage, event.max_damage)
+        event.pending_damage += event.rolled_damage
+        if "fatigue" in event.attack_types:
+            event.pending_damage += event.defender.bonus_fatigue_damage
 
+    def _apply_attack_crit(self, event: AttackEvent, item: BattleItem | None) -> None:
+        if event.can_crit:
+            crit = event.defender.crit_rng.roll_percent(event.crit_chance, self.rng)
+            if not event.crit and item is not None and item.crit_tokens > 0:
+                item.crit_tokens-=1
+                crit=True
+            if event.crit==False and event.attacker.crit_tokens>0:
+                event.attacker.crit_tokens-=1
+                crit=True
+            if crit:
+                crit_resisted = event.defender.crit_resistance_rng.roll_percent(
+                    event.defender.crit_resistance, self.rng,
+                )
+                if crit_resisted:
+                    crit=False
+                elif event.defender.crit_resist_stacks>0:
+                    event.defender.crit_resist_stacks-=1
+                    crit=False
+            event.crit=crit
+            if event.crit:
+                event.pending_damage = int(
+                    event.pending_damage * event.crit_multiplier
+                )
+        else:
+            event.crit = False
+
+    def _apply_attack_mitigation(self, event: AttackEvent, item: BattleItem | None, is_attack: bool) -> None:
+        r=max(min(event.defender.damage_resistance/100,1.0),-10.0)
+        event.pending_damage = godot_round(float(event.pending_damage) * (1-r))
+        if is_attack:
+            event.pending_damage = event.pending_damage - event.defender.damage_reduction
+
+        event.pending_damage =0 if event.defender.invulnerable else event.pending_damage
+
+        context = self.build_attack_reaction_context(
+            item, ATTACK_PHASE_PRE_TAKE_DAMAGE, event,
+        )
+        self.emit_signal(event.defender, ATTACK_PHASE_PRE_TAKE_DAMAGE, context)
+        event.pending_damage = max(0, event.pending_damage-event.prevented_damage)
+
+        if is_attack and item is not None:
+            context = self.build_attack_reaction_context(
+                item, ATTACK_PHASE_PRE_DEAL_DAMAGE_LATE, event,
+            )
+            self.emit_signal(item, ATTACK_PHASE_PRE_DEAL_DAMAGE_LATE, context)
+            late_hook = getattr(item, "onPreDealDamage_late", None)
+            if late_hook is not None:
+                late_hook(context)
+
+        context = self.build_attack_reaction_context(
+            item, ATTACK_PHASE_PRE_TAKE_DAMAGE_LATE, event,
+        )
+        self.emit_signal(event.defender, ATTACK_PHASE_PRE_TAKE_DAMAGE_LATE, context)
+
+    def _commit_attack_hit(self, event: AttackEvent, item: BattleItem | None) -> None:
+        if event.is_resolved:
+            raise ValueError("cannot commit a resolved attack event")
+        if event.hit is not True:
+            raise ValueError("cannot commit an attack that did not hit")
+        if event.pending_damage < 0:
+            raise ValueError("pending attack damage cannot be negative")
+
+        if event.can_be_blocked:
+            event.block_damage = min(event.defender.block, event.pending_damage)
+            event.health_damage = event.pending_damage - event.block_damage
+        else:
+            event.block_damage = 0
+            event.health_damage = event.pending_damage
+        event.is_resolved = True
+        log_handle = self.record_log(
+            item if item is not None else event.attack_types[0].title(),
+            {
+                "action": "attack" if item is not None else event.attack_types[0] + "_damage",
+                "target_player_id": event.defender.player_id,
+                "attack_types": list(event.attack_types),
+                "hit": True,
+                "block_damage": event.block_damage,
+                "health_damage": event.health_damage,
+                "final_block_damage": event.block_damage,
+                "final_health_damage": event.health_damage,
+                "critical": event.crit,
+                "trigger_log_sequence": (
+                    event.trigger_log_handle.sequence if event.trigger_log_handle else None
+                ),
+            },
+        )
+        event.log_handle = log_handle
+        self.commit_health_reduction(
+                event.defender,
+                event.block_damage,
+                event.health_damage,
+        )
+
+    def _finish_attack(self, event: AttackEvent, item: BattleItem | None, is_attack: bool) -> None:
         post_context = self.build_attack_reaction_context(
             item, ATTACK_PHASE_CHARACTER_ATTACKED, event,
         )
@@ -760,7 +851,6 @@ class BattleState:
                 item, ATTACK_PHASE_ATTACKED, event,
             )
             self.emit_signal(item, ATTACK_PHASE_ATTACKED, context)
-        return event
 
     def apply_spikes(self, event: AttackEvent) -> None:
         if (

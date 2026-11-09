@@ -185,6 +185,8 @@ class BattleModuleV1Test(unittest.TestCase):
             },
         )
         battle = BattleState(players=[owner, opponent])
+        # Bus tests use a fixed registration order; lifecycle tests cover shuffling.
+        battle.rng.shuffle = Mock()
         battle.prepareItems()
         return battle, owner, opponent
 
@@ -335,7 +337,8 @@ class BattleModuleV1Test(unittest.TestCase):
         first.event_log = second.event_log = order
         source.emit_activation(battle.build_context(source))
 
-        self.assertEqual(order, [("second1", source), ("first1", source)])
+        self.assertEqual(order, [(item.item_key, source) for item in battle.battle_items
+                                 if item in (first, second)])
 
     def test_activation_bus_isolates_owners_with_identical_source_keys(self):
         source = ActivationListenerItem(
@@ -499,9 +502,10 @@ class BattleModuleV1Test(unittest.TestCase):
         self.assertEqual(len(first_listener.contexts), 1)
         self.assertIs(first_listener.contexts[0].source_item, first_source)
 
-    def test_battle_item_requires_at_least_one_trigger(self):
-        with self.assertRaises(ValueError):
-            BattleItem(item_id="empty", item_key="empty1", triggers=[], effects=[Effect()])
+    def test_battle_item_allows_lifecycle_only_items(self):
+        item = BattleItem(item_id="empty", item_key="empty1", triggers=[], effects=[Effect()])
+        self.assertEqual(item.triggers, [])
+        self.assertEqual(item.trigger_results, [])
 
     def test_battle_item_requires_at_least_one_effect(self):
         with self.assertRaises(ValueError):
@@ -860,6 +864,7 @@ class BattleModuleV1Test(unittest.TestCase):
         })
         opponent = PlayerState(player_id=1, health=10)
         battle = BattleState(players=[owner, opponent], active_items=[active_item])
+        battle.prepareItems()
 
         battle.step()
 
@@ -880,6 +885,7 @@ class BattleModuleV1Test(unittest.TestCase):
         })
         opponent = PlayerState(player_id=1, health=10)
         battle = BattleState(players=[owner, opponent], active_items=[active_item])
+        battle.prepareItems()
 
         battle.step()
 
@@ -913,6 +919,7 @@ class BattleModuleV1Test(unittest.TestCase):
         })
         opponent = PlayerState(player_id=1, health=10)
         battle = BattleState(players=[owner, opponent], active_items=[active_item])
+        battle.prepareItems()
 
         battle.step()
 
@@ -935,6 +942,7 @@ class BattleModuleV1Test(unittest.TestCase):
         owner = PlayerState(player_id=0, health=10, items={"active1": active_item})
         opponent = PlayerState(player_id=1, health=10)
         battle = BattleState(players=[owner, opponent], active_items=[active_item])
+        battle.prepareItems()
 
         battle.step()
 
@@ -967,6 +975,7 @@ class BattleModuleV1Test(unittest.TestCase):
         })
         opponent = PlayerState(player_id=1, health=10)
         battle = BattleState(players=[owner, opponent], active_items=[first_item, second_item])
+        battle.prepareItems()
 
         battle.step()
 
@@ -996,6 +1005,7 @@ class BattleModuleV1Test(unittest.TestCase):
             players=[first_player, second_player],
             frame_delta=0.5,
         )
+        battle.prepareItems()
 
         battle.step()
 
@@ -1035,6 +1045,7 @@ class BattleModuleV1Test(unittest.TestCase):
             active_items=[active_item],
             frame_delta=0.25,
         )
+        battle.prepareItems()
 
         battle.step()
 
@@ -1249,6 +1260,7 @@ class BattleModuleV1Test(unittest.TestCase):
         first_player = PlayerState(player_id=0, health=100)
         second_player = PlayerState(player_id=1, health=100)
         battle = BattleState(players=[first_player, second_player])
+        battle.prepareItems()
 
         battle.run(max_frames=16, frame_delta=1.0)
 
@@ -1270,6 +1282,7 @@ class BattleModuleV1Test(unittest.TestCase):
         first_player = PlayerState(player_id=0, health=100)
         second_player = PlayerState(player_id=1, health=100)
         battle = BattleState(players=[first_player, second_player])
+        battle.prepareItems()
 
         battle.run(max_frames=19, frame_delta=1.0)
 
@@ -1283,10 +1296,13 @@ class BattleModuleV1Test(unittest.TestCase):
         first_player = PlayerState(player_id=0, health=100)
         second_player = PlayerState(player_id=1, health=100)
         battle = BattleState(
-            frame=16,
-            time=16.0,
+
             players=[first_player, second_player],
         )
+        battle.prepareItems()
+        battle.start_combat()
+        battle.frame = 16
+        battle.time = 16.0
 
         battle.run(max_frames=1, frame_delta=2.0)
 
@@ -1306,11 +1322,14 @@ class BattleModuleV1Test(unittest.TestCase):
         )
         second_player = PlayerState(player_id=1, health=100)
         battle = BattleState(
-            frame=16,
-            time=16.0,
+
             frame_delta=1.0,
             players=[first_player, second_player],
         )
+        battle.prepareItems()
+        battle.start_combat()
+        battle.frame = 16
+        battle.time = 16.0
 
         battle.step()
 
@@ -1353,11 +1372,13 @@ class BattleModuleV1Test(unittest.TestCase):
         first_player = PlayerState(player_id=0, health=100)
         second_player = PlayerState(player_id=1, health=100)
         battle = RecordingFatigueBattleState(
-            frame=16,
-            time=16.0,
             frame_delta=1.0,
             players=[first_player, second_player],
         )
+        battle.prepareItems()
+        battle.start_combat()
+        battle.frame = 16
+        battle.time = 16.0
 
         battle.step()
 
@@ -1367,11 +1388,14 @@ class BattleModuleV1Test(unittest.TestCase):
         first_player = PlayerState(player_id=0, health=1)
         second_player = PlayerState(player_id=1, health=1)
         battle = BattleState(
-            frame=16,
-            time=16.0,
+
             frame_delta=1.0,
             players=[first_player, second_player],
         )
+        battle.prepareItems()
+        battle.start_combat()
+        battle.frame = 16
+        battle.time = 16.0
 
         battle.step()
 
@@ -1387,11 +1411,14 @@ class BattleModuleV1Test(unittest.TestCase):
         first_player = PlayerState(player_id=0, health=1)
         second_player = PlayerState(player_id=1, health=1)
         battle = BattleState(
-            frame=16,
-            time=16.0,
+
             frame_delta=3.0,
             players=[first_player, second_player],
         )
+        battle.prepareItems()
+        battle.start_combat()
+        battle.frame = 16
+        battle.time = 16.0
 
         battle.step()
 
@@ -1432,6 +1459,7 @@ class BattleModuleV1Test(unittest.TestCase):
             players=[first, second],
             frame_delta=0.5,
         )
+        battle.prepareItems()
 
         battle.step()
         self.assertEqual(first.health, 5)
@@ -1446,6 +1474,7 @@ class BattleModuleV1Test(unittest.TestCase):
         first = PlayerState(player_id=0, health=10)
         second = PlayerState(player_id=1, health=10)
         battle = BattleState(players=[first, second])
+        battle.prepareItems()
 
         battle.run(max_frames=4, frame_delta=1.0)
 
@@ -1456,6 +1485,7 @@ class BattleModuleV1Test(unittest.TestCase):
         first = PlayerState(player_id=0, health=5, max_health=10)
         second = PlayerState(player_id=1, health=10, max_health=10)
         battle = BattleState(players=[first, second], frame_delta=1.0)
+        battle.prepareItems()
 
         battle.step()
         first.buffs.Regeneration = 2
@@ -1477,6 +1507,7 @@ class BattleModuleV1Test(unittest.TestCase):
             players=[first, second],
             frame_delta=6.0,
         )
+        battle.prepareItems()
 
         battle.step()
 
@@ -1491,11 +1522,13 @@ class BattleModuleV1Test(unittest.TestCase):
         first.debuffs.Poison = 1
         second.debuffs.Poison = 1
         battle = BattleState(
-            time=1.0,
             frame_delta=1.0,
             players=[first, second],
             next_regeneration_time=3.0,
         )
+        battle.prepareItems()
+        battle.start_combat()
+        battle.time = 1.0
 
         battle.step()
 
@@ -1519,12 +1552,14 @@ class BattleModuleV1Test(unittest.TestCase):
         first = PlayerState(player_id=0, health=10)
         second = PlayerState(player_id=1, health=10)
         battle = RecordingBattleState(
-            time=16.0,
             frame_delta=1.0,
             players=[first, second],
             next_regeneration_time=17.0,
             next_poison_time=18.0,
         )
+        battle.prepareItems()
+        battle.start_combat()
+        battle.time = 16.0
 
         battle.step()
 
@@ -1553,13 +1588,15 @@ class BattleModuleV1Test(unittest.TestCase):
         first = PlayerState(player_id=0, health=10)
         second = PlayerState(player_id=1, health=10)
         battle = RecordingBattleState(
-            time=17.0,
             frame_delta=1.0,
             players=[first, second],
             next_regeneration_time=19.0,
             next_poison_time=18.0,
             next_nightfall_fatigue_time=18.0,
         )
+        battle.prepareItems()
+        battle.start_combat()
+        battle.time = 17.0
 
         battle.step()
 
@@ -1592,10 +1629,12 @@ class BattleModuleV1Test(unittest.TestCase):
         first = PlayerState(player_id=0, health=10)
         second = PlayerState(player_id=1, health=10)
         battle = RecordingBattleState(
-            time=16.0,
             frame_delta=3.0,
             players=[first, second],
         )
+        battle.prepareItems()
+        battle.start_combat()
+        battle.time = 16.0
 
         battle.step()
 
@@ -1607,11 +1646,13 @@ class BattleModuleV1Test(unittest.TestCase):
         second = PlayerState(player_id=1, health=1)
         second.debuffs.Poison = 1
         battle = BattleState(
-            time=1.0,
             frame_delta=1.0,
             players=[first, second],
             next_regeneration_time=3.0,
         )
+        battle.prepareItems()
+        battle.start_combat()
+        battle.time = 1.0
 
         battle.step()
 
@@ -1619,13 +1660,16 @@ class BattleModuleV1Test(unittest.TestCase):
         self.assertEqual(battle.next_poison_time, 4.0)
         self.assertEqual(battle.next_regeneration_time, 3.0)
 
-    def test_non_two_player_system_state_only_advances_time(self):
+    def test_non_two_player_state_cannot_prepare_or_advance(self):
         player = PlayerState(player_id=0, health=10)
         battle = BattleState(players=[player], frame_delta=1.0)
 
-        battle.step()
+        with self.assertRaises(ValueError):
+            battle.prepareItems()
+        with self.assertRaises(ValueError):
+            battle.step()
 
-        self.assertEqual(battle.time, 1.0)
+        self.assertEqual(battle.time, 0.0)
         self.assertEqual(
             battle.next_regeneration_time,
             FIRST_REGENERATION_TIME,
@@ -1636,6 +1680,7 @@ class BattleModuleV1Test(unittest.TestCase):
         first = PlayerState(player_id=0, health=10)
         second = PlayerState(player_id=1, health=10)
         battle = BattleState(players=[first, second])
+        battle.prepareItems()
 
         self.assertEqual(battle.frame_delta, 1.0 / 30.0)
         battle.run(max_frames=1)
@@ -1666,11 +1711,14 @@ class BattleModuleV1Test(unittest.TestCase):
         )
         second_player = PlayerState(player_id=1, health=10)
         battle = BattleState(
-            frame=16,
-            time=16.0,
+
             players=[first_player, second_player],
             active_items=[active_item],
         )
+        battle.prepareItems()
+        battle.start_combat()
+        battle.frame = 16
+        battle.time = 16.0
 
         battle.step()
 
@@ -1722,6 +1770,7 @@ class BattleModuleV1Test(unittest.TestCase):
             players=[first_player, second_player],
             active_items=[first_item, second_item],
         )
+        battle.prepareItems()
 
         battle.step()
 

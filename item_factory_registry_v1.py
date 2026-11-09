@@ -1,6 +1,9 @@
+from __future__ import annotations
+
 from battle_module_v1 import (
     ITEM_MARKER_TYPES,
     BattleContext,
+    BalancedRngState,
     BuffSlot,
     ItemActivationContext,
 )
@@ -20,7 +23,7 @@ class BattleItem:
     icon_types = ()
     is_active_item = False
     is_crafted = False
-
+    socket_count = 0
     def __init__(
         self,
         item_id:str|None=None,
@@ -54,12 +57,17 @@ class BattleItem:
             marker_type: []
             for marker_type in ITEM_MARKER_TYPES
         }
+        self.gemsocket = [None for _ in range(self.socket_count)]
+        self.belongs_to: str | None = None
+        self.gem_type: tuple[str, ...] = ()
         self.has_prepared = False
+        self.consumed = False
+        self.last_activation_frame: int | None = None
+        self.activations_this_frame = 0
         self.damage_multiplier = 1.0
         self.crit_tokens = 0
         self.damage_range_acc = 0.0
-        if not self.triggers:
-            raise ValueError("battle item must have at least one trigger")
+        self.chance_rng = BalancedRngState()
         if not self.effects:
             raise ValueError("battle item must have at least one effect")
         self.trigger_results = [False for _ in self.triggers]
@@ -68,6 +76,8 @@ class BattleItem:
             trigger.idx = idx
         for effect in self.effects:
             effect.item = self
+    def roll_chance(self, chance: float, rng) -> bool:
+        return self.chance_rng.roll_percent(chance * 100.0, rng)
 
     def roll_damage(self, min_damage: int, max_damage: int, rng) -> int:
         damage = rng.randint(min_damage, max_damage)
@@ -104,6 +114,8 @@ class BattleItem:
         return results
 
     def activate_item(self, context:BattleContext , trigger_index:int|None=None)->None:
+        if not self.triggers and trigger_index is None:
+            return
         trigger_results = self.update_triggers(context, trigger_index)
         self.run_effect(trigger_results, context)
 
@@ -111,6 +123,12 @@ class BattleItem:
         if context.item is not self:
             raise ValueError("activation context item mismatch")
         if context.battle_state.winner is not None:
+            return
+        if self.last_activation_frame != context.battle_state.frame:
+            self.last_activation_frame = context.battle_state.frame
+            self.activations_this_frame = 0
+        self.activations_this_frame += 1
+        if self.activations_this_frame > 3:
             return
         context.battle_state.record_log(
             self,
@@ -146,22 +164,120 @@ class BattleItem:
         if linked_key not in self.marker_items[marker_type]:
             self.marker_items[marker_type].append(linked_key)
         self.add_linked_item(linked_key)
-    def onPrepare(self, context:BattleContext)->None:
+    def add_gems(self, gem: BattleItem) -> None:
+        if self.has_prepared or gem.has_prepared:
+            raise ValueError("cannot socket gems after preparation")
+        if self is gem or "Gem" in self.item_types:
+            raise ValueError("a gem cannot host another gem")
+        if not self.item_key or not gem.item_key or self.item_key == gem.item_key:
+            raise ValueError("host and gem require distinct nonempty item keys")
+        if self.player_id != gem.player_id:
+            raise ValueError("host and gem must belong to the same player")
+        if "Gem" not in gem.item_types or gem.socket_count != 0 or gem.gemsocket:
+            raise ValueError("socketed item must be a gem without sockets")
+        if gem.belongs_to is not None:
+            raise ValueError("gem is already socketed")
+        for i in range(len(self.gemsocket)):
+            if self.gemsocket[i] is None:
+                self.gemsocket[i] = gem.item_key
+                gem.belongs_to = self.item_key
+                gem.gem_type = self.item_types
+                return
+        raise ValueError("no available gem sockets")
+
+    def get_gems(self, context: BattleContext) -> list[BattleItem]:
+        return [context.owner.items[key] for key in self.gemsocket if key is not None]
+
+    def getTriggerPriority(self) -> int:
+        return 0
+
+    def prepare(self, context: BattleContext) -> None:
         if self.has_prepared:
             raise ValueError("item has already been prepared")
+        self.damage_range_acc = 0.0
+        self.chance_rng.reset()
+        for gem in self.get_gems(context):
+            gem.prepare(context.for_item(gem))
         for trigger in self.triggers:
             trigger.connect_bus(context)
+        self.onPrepare(context)
         self.has_prepared = True
 
+    def onPrepare(self, context: BattleContext) -> None:
+        pass
+
+    def preCombatStart(self, context: BattleContext) -> None:
+        for gem in self.get_gems(context):
+            gem.preCombatStart(context.for_item(gem))
+            context.battle_state.check_battle_end()
+            if context.battle_state.winner is not None:
+                return
+        if self.belongs_to is None:
+            for trigger in self.triggers:
+                if isinstance(trigger, CooldownTrigger):
+                    trigger.initialize_for_combat(context)
+        self.onPreCombatStart(context)
+
+    def onPreCombatStart(self, context: BattleContext) -> None:
+        pass
+
+    def combatStart(self, context: BattleContext) -> None:
+        for gem in self.get_gems(context):
+            gem.combatStart(context.for_item(gem))
+            context.battle_state.check_battle_end()
+            if context.battle_state.winner is not None:
+                return
+        self.onCombatStart(context)
+
+    def onCombatStart(self, context: BattleContext) -> None:
+        pass
+
+    def postCombatStart(self, context: BattleContext) -> None:
+        for gem in self.get_gems(context):
+            gem.postCombatStart(context.for_item(gem))
+            context.battle_state.check_battle_end()
+            if context.battle_state.winner is not None:
+                return
+        self.onPostCombatStart(context)
+
+    def onPostCombatStart(self, context: BattleContext) -> None:
+        pass
+
+    def consume(self, context: BattleContext) -> None:
+        self.emit_activation(context)
+        self.consumed = True
+
 class Weapon(BattleItem):
-    def __init__(self,item_id: str | None = None, item_key: str | None = None, player_id: int | None = None,is_active_item: bool = True, triggers: list = [], effects: list = []):
+    def __init__(self,item_id: str | None = None, item_key: str | None = None, player_id: int | None = None,is_active_item: bool = True,
+                    cooldown: float = 0.0,min_damage: int = 1,max_damage: int = 1,accuracy: float = 100.0,stamina_cost: float = 0.0,attack_types: tuple[str, ...] = ("melee",),
+                    triggers: Sequence[Trigger] | None = None,effects: Sequence[Effect] | None = None,is_trigger_append=True, is_effect_append=True
+
+                ):
+        self.cooldown = cooldown
+        self.min_damage = min_damage
+        self.max_damage = max_damage
+        self.accuracy = accuracy
+        self.stamina_cost = stamina_cost
+        self.attack_types = attack_types
+        triggers_temp=[CooldownTrigger(cooldown_seconds=cooldown)]
+        effects_temp=[StaminaConsumptionEffect(stamina_cost=stamina_cost),AttackEffect(min_damage=min_damage,max_damage=max_damage,accuracy=accuracy)]
+        if triggers is not None:
+            if is_trigger_append:
+                triggers_temp.extend(triggers)
+            else:
+                triggers_temp=triggers
+        if effects is not None:
+            if is_effect_append:
+                effects_temp.extend(effects)
+            else:
+                effects_temp=effects
         super().__init__(
             item_id=item_id,
             item_key=item_key,
             player_id=player_id,
             is_active_item=is_active_item,
-            triggers=triggers,
-            effects=effects,
+            triggers=triggers_temp,
+            effects=effects_temp,
         )
         if not 'Weapon' in self.item_types:
             raise ValueError("Weapon must have 'Weapon' in item_types")
@@ -171,6 +287,18 @@ class Weapon(BattleItem):
         pass
     def onDealtDamage(self, context: BattleContext) -> None:
         pass
+    def run_effect(
+        self,
+        trigger_results: list[bool],
+        context: BattleContext,
+    ) -> None:
+        if not trigger_results[0]:
+            return
+        if not self.effects[0].apply(context):
+            return
+        self.effects[1].apply(context, attack_type=self.attack_types)
+        self.emit_activation(context)
+
 class PocketSand(BattleItem):
     item_id = "pocket_sand"
     display_name = "Pocket Sand"
@@ -179,7 +307,7 @@ class PocketSand(BattleItem):
     cost = 2
     item_types = ("Accessory",)
     icon_types = ("nature",)
-    is_active_item = True
+    is_active_item = False
     socket_count = 0
 
     def __init__(
@@ -192,18 +320,14 @@ class PocketSand(BattleItem):
             item_id=item_id,
             item_key=item_key,
             player_id=player_id,
-            is_active_item=True,
-            triggers=[StartOfBattleTrigger()],
+            is_active_item=False,
+            triggers=[],
             effects=[InflictDebuffEffect("Blind", 1)],
         )
 
-    def run_effect(
-        self,
-        trigger_results: list[bool],
-        context: BattleContext,
-    ) -> None:
-        if trigger_results[0]:
-            self.effects[0].apply(context)
+    def onCombatStart(self, context: BattleContext) -> None:
+        self.effects[0].apply(context)
+        self.consume(context)
 
 
 class HealingHerbs(BattleItem):
@@ -214,7 +338,7 @@ class HealingHerbs(BattleItem):
     cost = 4
     item_types = ("Accessory",)
     icon_types = ("nature",)
-    is_active_item = True
+    is_active_item = False
     socket_count = 0
 
     def __init__(
@@ -227,18 +351,14 @@ class HealingHerbs(BattleItem):
             item_id=item_id,
             item_key=item_key,
             player_id=player_id,
-            is_active_item=True,
-            triggers=[StartOfBattleTrigger()],
+            is_active_item=False,
+            triggers=[],
             effects=[GainBuffEffect("Regeneration", 2)],
         )
 
-    def run_effect(
-        self,
-        trigger_results: list[bool],
-        context: BattleContext,
-    ) -> None:
-        if trigger_results[0]:
-            self.effects[0].apply(context)
+    def onCombatStart(self, context: BattleContext) -> None:
+        self.effects[0].apply(context)
+        self.consume(context)
 
 
 class Flame(BattleItem):
@@ -249,7 +369,7 @@ class Flame(BattleItem):
     cost = 1
     item_types = ("Accessory",)
     icon_types = ("fire",)
-    is_active_item = True
+    is_active_item = False
     socket_count = 0
 
     def __init__(
@@ -262,18 +382,14 @@ class Flame(BattleItem):
             item_id=item_id,
             item_key=item_key,
             player_id=player_id,
-            is_active_item=True,
-            triggers=[StartOfBattleTrigger()],
+            is_active_item=False,
+            triggers=[],
             effects=[GainBuffEffect("Heat", 1)],
         )
 
-    def run_effect(
-        self,
-        trigger_results: list[bool],
-        context: BattleContext,
-    ) -> None:
-        if trigger_results[0]:
-            self.effects[0].apply(context)
+    def onCombatStart(self, context: BattleContext) -> None:
+        self.effects[0].apply(context)
+        self.consume(context)
 
 
 class WalrusTusk(BattleItem):
@@ -284,7 +400,7 @@ class WalrusTusk(BattleItem):
     cost = 4
     item_types = ("Accessory",)
     icon_types = ("nature",)
-    is_active_item = True
+    is_active_item = False
     socket_count = 0
 
     def __init__(
@@ -297,18 +413,14 @@ class WalrusTusk(BattleItem):
             item_id=item_id,
             item_key=item_key,
             player_id=player_id,
-            is_active_item=True,
-            triggers=[StartOfBattleTrigger()],
+            is_active_item=False,
+            triggers=[],
             effects=[GainBuffEffect("Spikes", 1)],
         )
 
-    def run_effect(
-        self,
-        trigger_results: list[bool],
-        context: BattleContext,
-    ) -> None:
-        if trigger_results[0]:
-            self.effects[0].apply(context)
+    def onCombatStart(self, context: BattleContext) -> None:
+        self.effects[0].apply(context)
+        self.consume(context)
 
 
 class ShinyShell(BattleItem):
@@ -396,17 +508,15 @@ class WandOfEquilibrium(BattleItem):
         )
         self._empower_effect = empower_effect
 
-    def _least_resource_name(self, buffs: BuffSlot) -> str:
-        return min(
-            self.RESOURCE_NAMES,
-            key=lambda resource_name: getattr(buffs, resource_name),
-        )
+    def _least_resource_name(self, buffs: BuffSlot, rng) -> str:
+        minimum = min(getattr(buffs, name) for name in self.RESOURCE_NAMES)
+        return rng.choice([name for name in self.RESOURCE_NAMES
+                           if getattr(buffs, name) == minimum])
 
-    def _most_resource_name(self, buffs: BuffSlot) -> str:
-        return max(
-            self.RESOURCE_NAMES,
-            key=lambda resource_name: getattr(buffs, resource_name),
-        )
+    def _most_resource_name(self, buffs: BuffSlot, rng) -> str:
+        maximum = max(getattr(buffs, name) for name in self.RESOURCE_NAMES)
+        return rng.choice([name for name in self.RESOURCE_NAMES
+                           if getattr(buffs, name) == maximum])
 
     def run_effect(
         self,
@@ -417,14 +527,14 @@ class WandOfEquilibrium(BattleItem):
             return
 
         buffs = context.owner.buffs
-        least_resource = self._least_resource_name(buffs)
+        least_resource = self._least_resource_name(buffs, context.battle_state.rng)
         self._gain_effects_by_name[least_resource].apply(context)
 
         if max(
             getattr(buffs, resource_name)
             for resource_name in self.RESOURCE_NAMES
         ) >= 10:
-            most_resource = self._most_resource_name(buffs)
+            most_resource = self._most_resource_name(buffs, context.battle_state.rng)
             self._use_effects_by_name[most_resource].apply(context)
             self._empower_effect.apply(context)
 
@@ -481,6 +591,9 @@ class MagicForDummies(BattleItem):
             + self.spell_weight * self.MAX_HEALTH_PER_SPELL_WEIGHT
         )
 
+    def onPrepare(self, context: BattleContext) -> None:
+        self._prepare_spell_weight(context)
+
     def run_effect(
         self,
         trigger_results: list[bool],
@@ -488,11 +601,8 @@ class MagicForDummies(BattleItem):
     ) -> None:
         if not trigger_results[0]:
             return
-        if not self.effects[0].apply(context):
-            return
-
-        self._prepare_spell_weight(context)
-        self.effects[1].apply(context)
+        if self.effects[0].apply(context):
+            self.effects[1].apply(context)
         self.emit_activation(context)
 
 
@@ -504,7 +614,7 @@ class Whetstone(BattleItem):
     cost = 4
     item_types = ("Accessory",)
     icon_types = ()
-    is_active_item = True
+    is_active_item = False
     socket_count = 0
 
     def __init__(
@@ -517,18 +627,14 @@ class Whetstone(BattleItem):
             item_id=item_id,
             item_key=item_key,
             player_id=player_id,
-            is_active_item=True,
-            triggers=[StartOfBattleTrigger()],
+            is_active_item=False,
+            triggers=[],
             effects=[LinkedWeaponDamageEffect(amount=1)],
         )
 
-    def run_effect(
-        self,
-        trigger_results: list[bool],
-        context: BattleContext,
-    ) -> None:
-        if trigger_results[0]:
-            self.effects[0].apply(context)
+    def onCombatStart(self, context: BattleContext) -> None:
+        self.effects[0].apply(context)
+        self.emit_activation(context)
 
 
 class Twine(BattleItem):
@@ -573,6 +679,9 @@ class Twine(BattleItem):
             if "Neutral" in context.owner.items[linked_key].item_classes
         )
 
+    def onPrepare(self, context: BattleContext) -> None:
+        self._prepare_neutral_item_count(context)
+
     def run_effect(
         self,
         trigger_results: list[bool],
@@ -581,14 +690,13 @@ class Twine(BattleItem):
         if not trigger_results[0]:
             return
 
-        self._prepare_neutral_item_count(context)
         chance = min(
             1.0,
             self.BASE_CHANCE
             + self.neutral_item_count * self.CHANCE_PER_NEUTRAL,
         )
-        roll = context.battle_state.rng.random()
-        success = roll < chance
+        success = self.roll_chance(chance, context.battle_state.rng)
+        roll = self.chance_rng.last_roll
         source_item = getattr(context, "source_item", None)
         context.battle_state.record_log(
             self,
@@ -685,23 +793,28 @@ class WoodenBuckler(BattleItem):
                     attack_types=("melee",),
                     chance=0.3,
                 ),
+                ShieldBlockedTrigger(),
             ],
             effects=[
                 PreventAttackDamageEffect(amount=7),
                 RemoveOpponentStaminaEffect(amount=0.3),
             ],
         )
+        self.blocked_attack_event = None
 
     def run_effect(
         self,
         trigger_results: list[bool],
         context: BattleContext,
     ) -> None:
-        if not trigger_results[0]:
-            return
-        self.effects[0].apply(context)
-        self.effects[1].apply(context)
-        self.emit_activation(context)
+        if trigger_results[0]:
+            self.blocked_attack_event = context.attack_event
+            self.effects[0].apply(context)
+        if trigger_results[1]:
+            self.effects[1].apply(context)
+            self.emit_activation(context)
+            context.battle_state.emit_signal(self, "blocked", context)
+            self.blocked_attack_event = None
 
 
 class Broom(Weapon):
@@ -726,22 +839,14 @@ class Broom(Weapon):
             item_key=item_key,
             player_id=player_id,
             is_active_item=True,
-            triggers=[
-                CooldownTrigger(cooldown_seconds=1.7),
-                AttackMissTrigger(),
-            ],
-            effects=[
-                StaminaConsumptionEffect(stamina_cost=1.2),
-                AttackEffect(
-                    min_damage=2,
-                    max_damage=4,
-                    accuracy=95,
-                ),
-                InflictDebuffEffect(
-                    debuff_name="Blind",
-                    amount=1,
-                ),
-            ],
+            cooldown=1.7,
+            min_damage=2,
+            max_damage=4,
+            accuracy=95,
+            stamina_cost=1.2,
+            attack_types=("melee",),
+            triggers=[AttackMissTrigger()],
+            effects=[InflictDebuffEffect(debuff_name="Blind", amount=1)]
         )
         self.miss_damage_bonus = 0
 
@@ -781,7 +886,7 @@ class Broom(Weapon):
             return
         if not self.effects[0].apply(context):
             return
-        self.effects[1].apply(context, "melee")
+        self.effects[1].apply(context, self.attack_types)
         self.emit_activation(context)
         if self.miss_damage_bonus > 0:
             consumed_bonus = self.miss_damage_bonus
@@ -798,8 +903,8 @@ class Broom(Weapon):
 
     def onDealtDamage(self, context: BattleContext) -> None:
         if context.attack_event.hit is True:
-            blind_roll = context.battle_state.rng.random()
-            blind_success = blind_roll < 0.33
+            blind_success = self.roll_chance(0.33, context.battle_state.rng)
+            blind_roll = self.chance_rng.last_roll
             context.battle_state.record_log(
                 self,
                 {
@@ -835,29 +940,13 @@ class WoodenSword(Weapon):
             item_key=item_key,
             player_id=player_id,
             is_active_item=True,
-            triggers=[CooldownTrigger(cooldown_seconds=1.4)],
-            effects=[
-                StaminaConsumptionEffect(stamina_cost=1.0),
-                AttackEffect(
-                    min_damage=1,
-                    max_damage=3,
-                    accuracy=90,
-                ),
-            ],
+            cooldown=1.4,
+            min_damage=1,
+            max_damage=3,
+            accuracy=90,
+            stamina_cost=1.0,
+            attack_types=("melee",),
         )
-
-    def run_effect(
-        self,
-        trigger_results: list[bool],
-        context: BattleContext,
-    ) -> None:
-        if not trigger_results[0]:
-            return
-        if not self.effects[0].apply(context):
-            return
-        self.effects[1].apply(context, "melee")
-        self.emit_activation(context)
-
 
 class Shortbow(Weapon):
     item_id = "shortbow"
@@ -881,28 +970,14 @@ class Shortbow(Weapon):
             item_key=item_key,
             player_id=player_id,
             is_active_item=True,
-            triggers=[CooldownTrigger(cooldown_seconds=1.7)],
-            effects=[
-                StaminaConsumptionEffect(stamina_cost=0.7),
-                AttackEffect(
-                    min_damage=2,
-                    max_damage=3,
-                    accuracy=85,
-                ),
-            ],
+            cooldown=1.7,
+            min_damage=2,
+            max_damage=3,
+            accuracy=85,
+            stamina_cost=0.7,
+            attack_types=("ranged",),
         )
 
-    def run_effect(
-        self,
-        trigger_results: list[bool],
-        context: BattleContext,
-    ) -> None:
-        if not trigger_results[0]:
-            return
-        if not self.effects[0].apply(context):
-            return
-        self.effects[1].apply(context, "ranged")
-        self.emit_activation(context)
 
 
 class Stone(Weapon):
@@ -927,28 +1002,17 @@ class Stone(Weapon):
             item_key=item_key,
             player_id=player_id,
             is_active_item=True,
+            min_damage=2,
+            max_damage=4,
+            accuracy=70,
+            attack_types=("ranged",),
             triggers=[AfterTimeTrigger(delay_seconds=2.5)],
-            effects=[
-                AttackEffect(
-                    min_damage=2,
-                    max_damage=4,
-                    accuracy=70,
-                ),
-                RemoveOpponentBlockEffect(amount=4),
-            ],
+            effects=[RemoveOpponentBlockEffect(amount=4)],
+            is_trigger_append=False,
         )
 
-    def run_effect(
-        self,
-        trigger_results: list[bool],
-        context: BattleContext,
-    ) -> None:
-        if not trigger_results[0]:
-            return
-        hit = self.effects[0].apply(context, "ranged")
-        if hit:
-            self.effects[1].apply(context)
-        self.emit_activation(context)
+    def onPreDealDamage_late(self, context: BattleContext) -> None:
+        self.effects[2].apply(context)
 
 
 class Banana(BattleItem):
@@ -979,6 +1043,10 @@ class Banana(BattleItem):
                 RegenerateStaminaEffect(amount=1.0),
             ],
         )
+
+    def onPrepare(self, context: BattleContext) -> None:
+        self.triggers[0].prepare_speed_modifiers(context)
+        self.triggers[0].speed_modifiers_prepared = True
 
     def run_effect(
         self,
@@ -1024,6 +1092,10 @@ class Garlic(BattleItem):
             ],
         )
 
+    def onPrepare(self, context: BattleContext) -> None:
+        self.triggers[0].prepare_speed_modifiers(context)
+        self.triggers[0].speed_modifiers_prepared = True
+
     def run_effect(
         self,
         trigger_results: list[bool],
@@ -1032,8 +1104,8 @@ class Garlic(BattleItem):
         if not trigger_results[0]:
             return
         self.effects[0].apply(context)
-        removal_roll = context.battle_state.rng.random()
-        removal_success = removal_roll < 0.30
+        removal_success = self.roll_chance(0.30, context.battle_state.rng)
+        removal_roll = self.chance_rng.last_roll
         context.battle_state.record_log(
             self,
             {
@@ -1070,29 +1142,23 @@ class Pan(Weapon):
             item_key=item_key,
             player_id=player_id,
             is_active_item=True,
-            triggers=[CooldownTrigger(cooldown_seconds=2.2)],
+            cooldown=2.2,
+            attack_types=("melee",),
             effects=[
-                StaminaConsumptionEffect(stamina_cost=2.0),
-                FoodLinkedMeleeAttackEffect(
-                    min_damage=5,
-                    max_damage=6,
-                    accuracy=85,
-                    damage_per_food=1,
-                ),
+            StaminaConsumptionEffect(stamina_cost=2.0),
+            FoodLinkedMeleeAttackEffect(
+                min_damage=5,
+                max_damage=6,
+                accuracy=85,
+                damage_per_food=1,
+            ),
             ],
+            is_effect_append=False
         )
 
-    def run_effect(
-        self,
-        trigger_results: list[bool],
-        context: BattleContext,
-    ) -> None:
-        if not trigger_results[0]:
-            return
-        if not self.effects[0].apply(context):
-            return
-        self.effects[1].apply(context, "melee")
-        self.emit_activation(context)
+    def onPreCombatStart(self, context: BattleContext) -> None:
+        self.effects[1].prepare_damage_modifier(context)
+        self.effects[1].damage_modifier_prepared = True
 
 
 class Rat(BattleItem):
@@ -1117,21 +1183,7 @@ class Rat(BattleItem):
             item_key=item_key,
             player_id=player_id,
             is_active_item=True,
-            triggers=[
-                ItemAcceleratedCooldownTrigger(
-                    cooldown_seconds=3.3,
-                    acceleration_conditions=[
-                        {
-                            "item_type": "Pet",
-                            "accelerate": 0.15,
-                        },
-                        {
-                            "item_type": "Food",
-                            "accelerate": 0.15,
-                        },
-                    ],
-                )
-            ],
+            triggers=[CooldownTrigger(cooldown_seconds=3.3)],
             effects=[
                 AttackEffect(
                     min_damage=5,
@@ -1143,6 +1195,14 @@ class Rat(BattleItem):
             ],
         )
 
+    def onCombatStart(self, context: BattleContext) -> None:
+        count = sum(
+            1 for key in self.marker_items["star"]
+            if "Pet" in context.owner.items[key].item_types
+            or "Food" in context.owner.items[key].item_types
+        )
+        self.triggers[0].stack_speed_modifier(count * 0.15)
+
     def run_effect(
         self,
         trigger_results: list[bool],
@@ -1150,11 +1210,11 @@ class Rat(BattleItem):
     ) -> None:
         if not trigger_results[0]:
             return
-        if not self.effects[0].apply(context, "effect"):
+        if not self.effects[0].apply(context, ("effect",)):
             self.emit_activation(context)
             return
-        poison_roll = context.battle_state.rng.random()
-        poison_success = poison_roll < 0.75
+        poison_success = self.roll_chance(0.75, context.battle_state.rng)
+        poison_roll = self.chance_rng.last_roll
         context.battle_state.record_log(
             self,
             {
@@ -1166,8 +1226,8 @@ class Rat(BattleItem):
         )
         if poison_success:
             self.effects[1].apply(context)
-        blind_roll = context.battle_state.rng.random()
-        blind_success = blind_roll < 0.10
+        blind_success = self.roll_chance(0.10, context.battle_state.rng)
+        blind_roll = self.chance_rng.last_roll
         context.battle_state.record_log(
             self,
             {

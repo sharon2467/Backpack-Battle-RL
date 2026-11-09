@@ -207,6 +207,7 @@ class PlayerStateHistoryV1Test(unittest.TestCase):
                 PlayerState(player_id=1, health=10),
             ],
         )
+        battle.prepareItems()
 
         battle.step()
 
@@ -233,6 +234,7 @@ class PlayerStateHistoryV1Test(unittest.TestCase):
             frame_delta=1.0,
             collect_player_state_history=True,
         )
+        battle.prepareItems()
 
         battle.step()
 
@@ -251,6 +253,7 @@ class PlayerStateHistoryV1Test(unittest.TestCase):
             players=[first, second],
             collect_player_state_history=True,
         )
+        battle.prepareItems()
 
         battle.step()
         first.buffs.Heat = 1
@@ -287,6 +290,7 @@ class PlayerStateHistoryV1Test(unittest.TestCase):
             active_items=[item],
             collect_player_state_history=True,
         )
+        battle.prepareItems()
 
         battle.step()
 
@@ -308,12 +312,16 @@ class PlayerStateHistoryV1Test(unittest.TestCase):
             debuffs=DebuffSlot(Poison=1),
         )
         battle = BattleState(
-            frame=1,
-            time=1.0,
+
+
             players=[first, second],
             frame_delta=1.0,
             collect_player_state_history=True,
         )
+        battle.prepareItems()
+        battle.start_combat()
+        battle.frame = 1
+        battle.time = 1.0
 
         battle.step()
 
@@ -336,6 +344,7 @@ class PlayerStateHistoryV1Test(unittest.TestCase):
             active_items=[item],
             collect_player_state_history=True,
         )
+        battle.prepareItems()
 
         with self.assertRaisesRegex(RuntimeError, "unexpected item failure"):
             battle.step()

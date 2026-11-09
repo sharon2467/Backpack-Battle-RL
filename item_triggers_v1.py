@@ -23,23 +23,6 @@ class Trigger:
     def connect_bus(self, context:BattleContext)->None:
         pass
 
-class StartOfBattleTrigger(Trigger):
-    def __init__(self):
-        super().__init__()
-        self.has_triggered = False
-
-    def update(self, context: BattleContext) -> bool:
-        if isinstance(context, AttackReactionContext):
-            return False
-        if self.has_triggered or context.battle_state.frame != 0:
-            return False
-
-        self.has_triggered = True
-        return True
-    def connect_bus(self, context: BattleContext) -> None:
-        context.battle_state.connect(None, "start_of_battle", (self.item, self.idx))
-
-
 class ActivationTrigger(Trigger):
 
     def __init__(self, marker_type: str = "star"):
@@ -115,12 +98,12 @@ class CooldownTrigger(Trigger):
         self.speed_modifiers += amount
     def prepare_speed_modifiers(self,context:BattleContext) -> None:
         pass
-    def update(self, context: BattleContext) -> bool:
-        if isinstance(context, AttackReactionContext):
-            return False
+    def initialize_for_combat(self, context: BattleContext) -> None:
+        self.cooldown_progress = 0.0
         if not self.speed_modifiers_prepared:
             self.prepare_speed_modifiers(context)
             self.speed_modifiers_prepared = True
+    def update(self, context: BattleContext) -> bool:
         status_faster = min(
             10.0,
             max(
@@ -197,6 +180,7 @@ class ItemAcceleratedCooldownTrigger(CooldownTrigger):
         self,
         cooldown_seconds: float,
         acceleration_conditions: list[dict[str, object]],
+        allow_same_item: bool = False
     ):
         super().__init__(cooldown_seconds)
         if type(acceleration_conditions) is not list:
@@ -236,6 +220,7 @@ class ItemAcceleratedCooldownTrigger(CooldownTrigger):
 
         self.acceleration_conditions = validated_conditions
         self.item_acceleration: float | None = None
+        self.allow_same_item = allow_same_item
 
     def _matches_condition(
         self,
@@ -272,6 +257,8 @@ class ItemAcceleratedCooldownTrigger(CooldownTrigger):
                 for condition in self.acceleration_conditions:
                     if self._matches_condition(linked_item, condition):
                         item_acceleration += condition["accelerate"]
+                        if not self.allow_same_item:
+                            break
             self.item_acceleration = item_acceleration
 
         self.stack_speed_modifier(self.item_acceleration)
@@ -326,8 +313,8 @@ class OnAttackedTrigger(Trigger):
             for attack_type in self.attack_types
         ):
             return False
-        roll = context.battle_state.rng.random()
-        success = roll < self.chance
+        success = context.item.roll_chance(self.chance, context.battle_state.rng)
+        roll = context.item.chance_rng.last_roll
         context.battle_state.record_log(
             context.item,
             {
@@ -351,5 +338,19 @@ class OnAttackedTrigger(Trigger):
             },
         )
         return success
+    def connect_bus(self, context: BattleContext) -> None:
+        context.battle_state.connect(context.owner, self.attack_phase, (self.item, self.idx))
+
+
+class ShieldBlockedTrigger(Trigger):
+    attack_phase = ATTACK_PHASE_CHARACTER_ATTACKED
+
+    def update(self, context: BattleContext) -> bool:
+        return (
+            isinstance(context, AttackReactionContext)
+            and context.attack_phase == self.attack_phase
+            and context.attack_event is context.item.blocked_attack_event
+        )
+
     def connect_bus(self, context: BattleContext) -> None:
         context.battle_state.connect(context.owner, self.attack_phase, (self.item, self.idx))

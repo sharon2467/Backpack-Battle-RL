@@ -117,12 +117,13 @@ class MagicForDummiesItemFactoryV1Test(unittest.TestCase):
             wraps=battle.emit_signal
         )
 
+        guide.prepare(context)
         guide.activate_item(context)
 
         self.assertEqual(owner.buffs.Mana, 1)
         self.assertEqual(owner.health, 10)
         self.assertEqual(owner.max_health, 20)
-        self.assertIsNone(guide.spell_weight)
+        self.assertEqual(guide.spell_weight, 0)
         battle.emit_signal.assert_not_called()
 
     def test_success_uses_mana_and_gains_base_max_health(self):
@@ -132,6 +133,7 @@ class MagicForDummiesItemFactoryV1Test(unittest.TestCase):
             wraps=battle.emit_signal
         )
 
+        guide.prepare(context)
         guide.activate_item(context)
 
         self.assertEqual(owner.buffs.Mana, 0)
@@ -140,19 +142,21 @@ class MagicForDummiesItemFactoryV1Test(unittest.TestCase):
         self.assertEqual(guide.spell_weight, 0)
         battle.emit_signal.assert_called_once_with(guide, "item_activation", ANY)
 
-    def test_insufficient_mana_skips_effect_and_activation(self):
+    def test_insufficient_mana_skips_effect_but_emits_activation(self):
         guide, battle, owner, _, context = self.make_state(mana=0)
         battle.frame_delta = 5.0
         battle.emit_signal = Mock(
             wraps=battle.emit_signal
         )
 
+        guide.prepare(context)
         guide.activate_item(context)
 
         self.assertEqual(owner.health, 10)
         self.assertEqual(owner.max_health, 20)
-        self.assertIsNone(guide.spell_weight)
-        battle.emit_signal.assert_not_called()
+        self.assertEqual(guide.spell_weight, 0)
+        battle.emit_signal.assert_called_once()
+        battle.emit_signal.reset_mock()
 
         owner.buffs.Mana = 1
         guide.activate_item(context)
@@ -192,6 +196,7 @@ class MagicForDummiesItemFactoryV1Test(unittest.TestCase):
         )
         battle.frame_delta = 5.0
 
+        guide.prepare(context)
         guide.activate_item(context)
 
         self.assertEqual(guide.spell_weight, 1)
@@ -210,6 +215,7 @@ class MagicForDummiesItemFactoryV1Test(unittest.TestCase):
         )
         battle.frame_delta = 5.0
 
+        guide.prepare(context)
         guide.activate_item(context)
 
         self.assertEqual(guide.spell_weight, 2)
@@ -227,6 +233,7 @@ class MagicForDummiesItemFactoryV1Test(unittest.TestCase):
         guide.add_marker_item("star", spell.item_key)
         battle.frame_delta = 5.0
 
+        guide.prepare(context)
         guide.activate_item(context)
 
         self.assertEqual(guide.marker_items["star"], [spell.item_key])
@@ -243,6 +250,7 @@ class MagicForDummiesItemFactoryV1Test(unittest.TestCase):
         )
         battle.frame_delta = 5.0
 
+        guide.prepare(context)
         guide.activate_item(context)
         self.add_item(
             guide,

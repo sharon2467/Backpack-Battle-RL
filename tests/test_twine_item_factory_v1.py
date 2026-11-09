@@ -175,7 +175,7 @@ class TwineItemFactoryV1Test(unittest.TestCase):
             neutral_count=1,
         )
         battle.rng = Mock()
-        battle.rng.random.side_effect = [0.99, 0.40]
+        battle.rng.random.side_effect = [0.99, 0.60]
 
         twine.activate_item(context)
         second_neutral = Stone(
@@ -190,7 +190,7 @@ class TwineItemFactoryV1Test(unittest.TestCase):
         self.assertEqual(owner.health, 10)
         self.assertEqual(owner.max_health, 20)
 
-    def test_twine_invalid_activation_does_not_prepare_count(self):
+    def test_twine_invalid_activation_keeps_prepared_count(self):
         _, twine, battle, owner, opponent, _ = self.make_twine_state(
             neutral_count=1,
         )
@@ -206,7 +206,7 @@ class TwineItemFactoryV1Test(unittest.TestCase):
             ),
         )
 
-        self.assertIsNone(twine.neutral_item_count)
+        self.assertEqual(twine.neutral_item_count, 1)
         battle.rng.random.assert_not_called()
 
     def test_twine_diamond_only_activation_does_not_roll(self):
@@ -217,7 +217,7 @@ class TwineItemFactoryV1Test(unittest.TestCase):
 
         source.emit_activation(battle.build_context(source))
 
-        self.assertIsNone(twine.neutral_item_count)
+        self.assertEqual(twine.neutral_item_count, 0)
         self.assertEqual(owner.health, 10)
         self.assertEqual(owner.max_health, 20)
         battle.rng.random.assert_not_called()
@@ -319,7 +319,7 @@ class TwineItemFactoryV1Test(unittest.TestCase):
     def test_twine_failed_roll_changes_nothing_and_does_not_emit(self):
         source, twine, battle, owner, _, _ = self.make_twine_state()
         battle.rng = Mock()
-        battle.rng.random.return_value = 0.20
+        battle.rng.random.return_value = 0.21
         dispatch_spy = spy_on_item_activation(battle)
 
         source.emit_activation(battle.build_context(source))

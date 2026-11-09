@@ -211,6 +211,7 @@ class DamagePipelineSpecTest(unittest.TestCase):
         self.assertEqual(seen, ["continued"])
 
     def test_top_level_item_finishes_then_next_item_is_skipped(self):
+        self.b.prepareItems()
         seen = []
         def activate(ctx):
             self.b.resolve_attack(self.event(100))
@@ -230,6 +231,7 @@ class DamagePipelineSpecTest(unittest.TestCase):
         self.assertEqual(self.a.stamina, before)
 
     def test_fatigue_stops_between_players(self):
+        self.b.prepareItems()
         self.b.commit_health_reduction(self.d, 0, 99)
         self.b.time = 16
         self.b.frame_delta = 1
@@ -238,6 +240,7 @@ class DamagePipelineSpecTest(unittest.TestCase):
         self.assertEqual((self.d.fatigue_damage, self.a.fatigue_damage), (1, 0))
 
     def test_regeneration_unhealing_stops_following_system_tick(self):
+        self.b.prepareItems()
         self.b.commit_health_reduction(self.a, 0, 99)
         self.d.buffs.Regeneration = 2
         self.d.unhealing_amount = 1
