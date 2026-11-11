@@ -1,0 +1,65 @@
+diff --git "a/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\data\\buff_natural_reentry\\natural_20261110_01\\test_scripts\\buff_stage2_t0_battle.gd" "b/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\tests\\buff_stage2_t0_battle.gd"
+index a8ef7c5..f49fe5e 100644
+--- "a/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\data\\buff_natural_reentry\\natural_20261110_01\\test_scripts\\buff_stage2_t0_battle.gd"
++++ "b/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\tests\\buff_stage2_t0_battle.gd"
+@@ -36,6 +36,7 @@ var call_metadata = {}
+ var natural_reentries = []
+ var natural_timeout_checks = []
+ var natural_crown_use = false
++var natural_crown_use_actual = false
+ 
+ func _ready() -> void:
+ 	run_dir = OS.get_environment("BB_BUFF_T0_RUN_DATA")
+@@ -117,10 +118,15 @@ func _process(_delta: float) -> void:
+ 		if case_data.name.begins_with("natural_"):
+ 			if round_count >= 2:
+ 				var preconditions_met = false
++				var matching_reentry = false
+ 				for check in natural_timeout_checks:
+ 					preconditions_met = preconditions_met or check.met
+-				var chain_met = natural_crown_use and not natural_items["Mana Potion"].isFull
+-				var expected_batch = not natural_reentries.empty() if case_data.name == "natural_linked" else natural_reentries.empty()
++					if check.met:
++						for reentry in natural_reentries:
++							if reentry.old_timeout_call == check.call_id and reentry.buff_id == check.buff_id and reentry.old_batch_id == check.batch_id and reentry.new_batch_id != check.batch_id and reentry.before_old_remove and reentry.gain_source == natural_items["Strong Stone Skin Potion"].get_instance_id() and reentry.request == 2 and reentry.duration == 4:
++								matching_reentry = true
++				var chain_met = natural_crown_use and natural_crown_use_actual and not natural_items["Mana Potion"].isFull
++				var expected_batch = matching_reentry if case_data.name == "natural_linked" else natural_reentries.empty()
+ 				var covered = preconditions_met and chain_met and expected_batch
+ 				if (Game.combatTimer.combatTime >= 9.0 and covered) or Game.combatTimer.combatTime >= 12.0 or Game.fightEnded:
+ 					finish("observed" if covered else "incomplete", "natural item chain measured" if covered else "natural prerequisites or expected batch were not covered")
+@@ -346,7 +352,7 @@ func run_actions() -> void:
+ 				if input.open(second_path,File.READ) != OK:
+ 					finish("error", "second opponent fixture unavailable")
+ 					return
+-				var fixture_text = input.get_as_text()
++				var fixture_bytes = input.get_buffer(input.get_len())
+ 				input.close()
+ 				if File.new().get_sha256(case_data.opponent_path).to_lower() != String(case_data.opponent_first_sha256).to_lower():
+ 					finish("error", "opponent input changed concurrently before fixture switch")
+@@ -354,7 +360,7 @@ func run_actions() -> void:
+ 				if input.open(case_data.opponent_path,File.WRITE) != OK:
+ 					finish("error", "cannot switch backed-up opponent input")
+ 					return
+-				input.store_string(fixture_text)
++				input.store_buffer(fixture_bytes)
+ 				input.close()
+ 				var written_sha = File.new().get_sha256(case_data.opponent_path)
+ 				snapshot("fixture_input_switch", {"path":case_data.opponent_path,"expected_sha256":case_data.opponent_second_sha256,"actual_sha256":written_sha})
+@@ -422,6 +428,8 @@ func observe(label: String,call_id: int,subject: Object,payload: Dictionary={})
+ 		if case_data.name.begins_with("natural_") and round_count == 2 and not natural_items.empty():
+ 			if label == "lose_request" and subject.character == Game.PLAYER and subject.type == Game.EventType.Mana and payload.source == natural_items["Crown"].get_instance_id() and payload.used and payload.request == 10:
+ 				natural_crown_use = true
++			if label == "change_actual" and subject.character == Game.PLAYER and subject.type == Game.EventType.Mana and payload.source == natural_items["Crown"].get_instance_id() and payload.used and payload.actual == 10:
++				natural_crown_use_actual = true
+ 			if label == "timeout_selected" and subject.character == Game.PLAYER and subject.type == Game.EventType.Spikes and payload.source == natural_items["Strong Stone Skin Potion"].get_instance_id():
+ 				var check = {"call_id":call_id,"buff_id":subject.get_instance_id(),"batch_id":payload.batch_id,"selected_amount":payload.selected_amount,"toad_used":natural_items["Toad"].usedBuffs,"mana":Game.PLAYER.getMana(),"crown_state":natural_items["Crown"].crownState,"mana_potion_full":natural_items["Mana Potion"].isFull,"strong_potion_full":natural_items["Strong Stone Skin Potion"].isFull,"engine_physics_frame":Engine.get_physics_frames(),"observation":observation_sequence+1}
+ 				check["met"] = check.selected_amount == 2 and check.toad_used in [8,9] and check.mana == 9 and check.crown_state == 0 and check.mana_potion_full and not check.strong_potion_full
+@@ -552,6 +560,7 @@ func finish(status: String,message: String="") -> void:
+ 		result["natural_timeout_checks"] = natural_timeout_checks
+ 		result["natural_reentries"] = natural_reentries
+ 		result["natural_crown_use_request"] = natural_crown_use
++		result["natural_crown_use_actual"] = natural_crown_use_actual
+ 	var file = File.new()
+ 	if file.open(run_dir.plus_file("result.json"),File.WRITE) == OK:
+ 		file.store_string(JSON.print(result))

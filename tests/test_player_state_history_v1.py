@@ -243,8 +243,14 @@ class PlayerStateHistoryV1Test(unittest.TestCase):
         self.assertEqual(snapshot["sequence"], 0)
         self.assertEqual(snapshot["frame"], 1)
         self.assertEqual(snapshot["time"], 1.0)
-        self.assertEqual(snapshot["players"][0]["health"], 7)
+        # Timer equality at zero does not fire; the next step crosses below it.
+        self.assertEqual(snapshot["players"][0]["health"], 5)
         self.assertEqual(snapshot["players"][0]["stamina"], 1.0)
+        battle.step()
+        second_snapshot = battle.player_state_history[1]
+        self.assertEqual((second_snapshot["frame"], second_snapshot["time"]), (2, 2.0))
+        self.assertEqual(second_snapshot["players"][0]["health"], 7)
+        self.assertEqual(second_snapshot["players"][0]["stamina"], 2.0)
 
     def test_multiple_steps_record_one_independent_snapshot_each(self):
         first = PlayerState(player_id=0, health=10, max_health=10)
@@ -256,9 +262,9 @@ class PlayerStateHistoryV1Test(unittest.TestCase):
         battle.prepareItems()
 
         battle.step()
-        first.buffs.Heat = 1
+        battle.gain_stacks(first, "Heat", 1)
         battle.step()
-        first.buffs.Heat = 2
+        battle.gain_stacks(first, "Heat", 1)
         battle.step()
 
         self.assertEqual(len(battle.player_state_history), 3)
@@ -274,7 +280,7 @@ class PlayerStateHistoryV1Test(unittest.TestCase):
             [0, 1, 2],
         )
 
-    def test_item_lethal_step_records_terminal_state_without_advancing_time(
+    def test_item_lethal_step_records_terminal_state_after_item_phase_clock_advance(
         self,
     ):
         item = LethalItem()
@@ -297,11 +303,11 @@ class PlayerStateHistoryV1Test(unittest.TestCase):
         self.assertEqual(battle.winner, 0)
         self.assertEqual(len(battle.player_state_history), 1)
         snapshot = battle.player_state_history[0]
-        self.assertEqual(snapshot["frame"], 0)
-        self.assertEqual(snapshot["time"], 0.0)
+        self.assertEqual(snapshot["frame"], 1)
+        self.assertEqual(snapshot["time"], round(battle.frame_delta, 3))
         self.assertEqual(snapshot["players"][1]["health"], 0)
 
-    def test_system_lethal_step_records_terminal_state_after_time_advances(
+    def test_system_lethal_step_records_terminal_state_before_clock_advance(
         self,
     ):
         first = PlayerState(player_id=0, health=10, max_health=10)
@@ -312,24 +318,23 @@ class PlayerStateHistoryV1Test(unittest.TestCase):
             debuffs=DebuffSlot(Poison=1),
         )
         battle = BattleState(
-
-
             players=[first, second],
             frame_delta=1.0,
             collect_player_state_history=True,
         )
         battle.prepareItems()
-        battle.start_combat()
-        battle.frame = 1
-        battle.time = 1.0
-
-        battle.step()
+        battle.run(3, frame_delta=1.0)
 
         self.assertEqual(battle.winner, 0)
-        snapshot = battle.player_state_history[0]
+        self.assertEqual(len(battle.player_state_history), 3)
+        snapshot = battle.player_state_history[-1]
+        self.assertEqual(snapshot["sequence"], 2)
         self.assertEqual(snapshot["frame"], 2)
         self.assertEqual(snapshot["time"], 2.0)
         self.assertEqual(snapshot["players"][1]["health"], 0)
+        self.assertEqual(battle.player_state_history[-2]["players"][1]["health"], 1)
+        poison = next(row for row in battle.log if row["data"]["action"] == "poison_damage")
+        self.assertEqual((poison["frame"], poison["time"]), (2, 2.0))
 
     def test_unexpected_step_exception_does_not_record_partial_snapshot(self):
         item = ErrorItem()

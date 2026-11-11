@@ -1,6 +1,7 @@
 from __future__ import annotations
 import math
 import random
+import struct
 from dataclasses import asdict, dataclass, field, replace
 from typing import TYPE_CHECKING, Sequence
 
@@ -26,9 +27,10 @@ SUPPORTED_ATTACK_REACTION_PHASES = (
 )
 NIGHTFALL_FATIGUE_START_TIME = 17.0
 NIGHTFALL_FATIGUE_INTERVAL = 1.0
-STATUS_TICK_INTERVAL = 2.0
-FIRST_REGENERATION_TIME = 1.0
-FIRST_POISON_TIME = 2.0
+_STACK_TIMER_ORDER = (
+    "Block", "Luck", "Regeneration", "Vampirism", "Spikes", "Mana",
+    "Empower", "Heat", "Poison", "Blind", "Cold",
+)
 DEFAULT_ATTACK_FLAGS = {
     name: dict(zip(
         ("can_be_blocked", "can_be_spiked", "can_be_vampiric",
@@ -83,11 +85,69 @@ class DebuffSlot:
 
 
 @dataclass
+class PhysicsTimerState:
+    wait_time: float = 1.0
+    time_left: float = -1.0
+    processing: bool = False
+
+
+def _godot_float32(value: float) -> float:
+    return struct.unpack("<f", struct.pack("<f", float(value)))[0]
+
+
+def _start_timer(timer: PhysicsTimerState, duration: float) -> None:
+    duration = _godot_float32(duration)
+    if duration > 0:
+        timer.wait_time = duration
+    timer.time_left = timer.wait_time
+    timer.processing = True
+
+
+def _stop_timer(timer: PhysicsTimerState) -> None:
+    timer.time_left = -1.0
+    timer.processing = False
+
+
+def _timer_time_left(timer: PhysicsTimerState) -> float:
+    return _godot_float32(max(timer.time_left, 0.0))
+
+
+def _advance_timer(
+    timer: PhysicsTimerState, delta: float, *, one_shot: bool,
+) -> bool:
+    if not timer.processing:
+        return False
+    timer.time_left -= _godot_float32(delta)
+    if timer.time_left < 0:
+        if one_shot:
+            _stop_timer(timer)
+        else:
+            timer.time_left += timer.wait_time
+        return True
+    return False
+
+
+@dataclass(eq=False)
+class TemporaryStackBatch:
+    amount: int
+    expires_at: float
+    source_item: BattleItem | None = None
+
+
+@dataclass
 class StackState:
     resist_chance_percent: float = 0.0
     resist_stacks: int = 0
     reflect_chance_percent: float = 0.0
     cleanse_protection_chance_percent: float = 0.0
+    permanent_stacks: int = field(default=0, init=False)
+    temporary_stacks: list[TemporaryStackBatch] = field(
+        default_factory=list, init=False,
+    )
+    next_temporary_index: int = field(default=0, init=False)
+    timer: PhysicsTimerState = field(
+        default_factory=PhysicsTimerState, init=False,
+    )
 
 
 @dataclass
@@ -175,6 +235,22 @@ class PlayerState:
     debuff_resist_stacks: int = 0
     debuff_reflect_stacks: int = 0
     buff_protect_stacks: int = 0
+    status_tick_timer: PhysicsTimerState = field(
+        default_factory=PhysicsTimerState, init=False,
+    )
+    status_tick_counter: int = field(default=0, init=False)
+
+    def __post_init__(self) -> None:
+        for name in _STACK_TIMER_ORDER:
+            if name not in self.stack_states:
+                self.stack_states[name] = StackState()
+            if name == "Block":
+                current = self.block
+            elif name in BuffSlot.__annotations__:
+                current = getattr(self.buffs, name)
+            else:
+                current = getattr(self.debuffs, name)
+            self.stack_states[name].permanent_stacks = current
 
     def __setattr__(self, name, value):
         if (
@@ -320,10 +396,7 @@ class BattleState:
     active_items: list[BattleItem] = field(default_factory=list)
     battle_items: list[BattleItem] = field(default_factory=list, init=False)
     winner: object = None
-    frame_delta: float = 1.0 / 30.0
-    next_regeneration_time: float = FIRST_REGENERATION_TIME
-    next_poison_time: float = FIRST_POISON_TIME
-    next_nightfall_fatigue_time: float = NIGHTFALL_FATIGUE_START_TIME
+    frame_delta: float = 1.0 / 60.0
     rng: random.Random = field(default_factory=random.Random)
     log: list[dict[str, object]] = field(default_factory=list)
     collect_player_state_history: bool = False
@@ -333,6 +406,16 @@ class BattleState:
     _bus_cache: dict[tuple[object, str], list[tuple[BattleItem,int]]] = field(default_factory=dict, init=False, repr=False)
     has_prepared: bool = field(default=False, init=False)
     combat_started: bool = field(default=False, init=False)
+    signals_delayed: bool = field(default=False, init=False)
+    _pending_signals: list[tuple] = field(
+        default_factory=list, init=False, repr=False,
+    )
+    fatigue_start_timer: PhysicsTimerState = field(
+        default_factory=PhysicsTimerState, init=False,
+    )
+    fatigue_tick_timer: PhysicsTimerState = field(
+        default_factory=PhysicsTimerState, init=False,
+    )
 
     def prepareItems(self) -> None:
         if self.has_prepared or self.combat_started:
@@ -366,6 +449,11 @@ class BattleState:
         self.emit_signal(None, "combat_start")
         if self.winner is not None:
             return
+        _start_timer(self.fatigue_start_timer, NIGHTFALL_FATIGUE_START_TIME - 3.0)
+        _stop_timer(self.fatigue_tick_timer)
+        for player in self.players:
+            player.status_tick_counter = 0
+            _start_timer(player.status_tick_timer, 1.0)
         for phase in ("preCombatStart", "combatStart", "postCombatStart"):
             for item in self.battle_items:
                 getattr(item, phase)(self.build_context(item))
@@ -373,6 +461,21 @@ class BattleState:
                     return
 
     def emit_signal(
+        self,
+        emitter: BattleItem | PlayerState | None,
+        signalName: str,
+        event_context: BattleContext | None = None,
+    ) -> None:
+        if event_context is not None and event_context.battle_state is not self:
+            raise ValueError("event context belongs to another battle")
+        if self.winner is not None:
+            return
+        if self.signals_delayed:
+            self._pending_signals.append((emitter, signalName, event_context))
+            return
+        self._emit_signal_now(emitter, signalName, event_context)
+
+    def _emit_signal_now(
         self,
         emitter: BattleItem | PlayerState | None,
         signalName: str,
@@ -397,6 +500,28 @@ class BattleState:
                     else self.build_context(listener_item)
                 )
                 listener_item.activate_item(context,listener_idx)
+
+    def set_signals_delayed(self, delayed: bool) -> None:
+        if type(delayed) is not bool:
+            raise ValueError("signals_delayed must be a bool")
+        self.signals_delayed = delayed
+
+    def flush_signals(self) -> None:
+        self.signals_delayed = False
+        pending = self._pending_signals.copy()
+        self._pending_signals.clear()
+        try:
+            for emitter, signal_name, context in pending:
+                if self.winner is not None:
+                    self._pending_signals.clear()
+                    return
+                self._emit_signal_now(emitter, signal_name, context)
+        except _BattleFinishedSignal:
+            self._pending_signals.clear()
+            raise
+        if self.winner is not None:
+            self._pending_signals.clear()
+
     def connect(self, emitter, signalName, listener:tuple[BattleItem,int]):
         if hasattr(emitter, "item_key"):
             emitter_key = ("item",emitter.player_id,emitter.item_key)
@@ -440,7 +565,7 @@ class BattleState:
 
     def _stack_slot(
         self, target: PlayerState, stack_name: str,
-    ) -> BuffSlot | DebuffSlot:
+    ) -> tuple[BuffSlot | DebuffSlot | PlayerState, str]:
         if (
             not isinstance(target, PlayerState)
             or self.get_player(target.player_id) is not target
@@ -449,15 +574,19 @@ class BattleState:
         if type(stack_name) is not str:
             raise ValueError("unsupported stack name")
         if stack_name in BuffSlot.__annotations__:
-            return target.buffs
+            return target.buffs, stack_name
         if stack_name in DebuffSlot.__annotations__:
-            return target.debuffs
+            return target.debuffs, stack_name
+        if stack_name == "Block":
+            return target, "block"
         raise ValueError("unsupported stack name")
 
     def _stack_state(self, target: PlayerState, stack_name: str) -> StackState:
-        self._stack_slot(target, stack_name)
+        slot, attribute = self._stack_slot(target, stack_name)
         if stack_name not in target.stack_states:
-            target.stack_states[stack_name] = StackState()
+            state = StackState()
+            state.permanent_stacks = getattr(slot, attribute)
+            target.stack_states[stack_name] = state
         return target.stack_states[stack_name]
 
     def _commit_stack_delta(
@@ -465,31 +594,39 @@ class BattleState:
         source_item: BattleItem | None = None,
         used: bool = False, reflected: bool = False,
         trigger_log_handle: LogHandle | None = None,
+        timeout: bool = False,
+        duration: float = -1.0,
     ) -> StackResult:
-        slot = self._stack_slot(target, stack_name)
+        slot, attribute = self._stack_slot(target, stack_name)
+        current = getattr(slot, attribute)
+        if delta < 0:
+            delta = -min(current, -delta)
         result = StackResult(delta, None)
         if delta == 0:
             return result
-        setattr(slot, stack_name, getattr(slot, stack_name) + delta)
+        setattr(slot, attribute, current + delta)
         if source_item is None:
             return result
 
-        log_handle = self.record_log(source_item, {
+        log_data = {
             "action": "stack_change", "stack_name": stack_name,
             "amount": delta, "actual": delta,
             "target_player_id": target.player_id,
-            "used": used, "reflected": reflected, "timeout": False,
+            "used": used, "reflected": reflected, "timeout": timeout,
             "trigger_log_sequence": (
                 trigger_log_handle.sequence if trigger_log_handle else None
             ),
-        })
+        }
+        if delta > 0 and duration > 0:
+            log_data["duration"] = duration
+        log_handle = self.record_log(source_item, log_data)
         event = StackChangeContext(
             battle_state=self, item=source_item, owner=target,
             opponent=self.get_opponent(target.player_id),
             target=target, stack_name=stack_name, amount=delta,
             source_item=source_item, used=used, reflected=reflected,
-            timeout=False, trigger_log_handle=trigger_log_handle,
-            log_handle=log_handle,
+            timeout=timeout, trigger_log_handle=trigger_log_handle,
+            log_handle=log_handle, duration=duration,
         )
         result.event = event
         signal_stack = "lucky" if stack_name == "Luck" else stack_name.lower()
@@ -501,10 +638,21 @@ class BattleState:
         source_item: BattleItem | None = None,
         trigger_log_handle: LogHandle | None = None,
         reflected: bool = False,
+        duration: float = -1.0,
     ) -> StackResult:
-        slot = self._stack_slot(target, stack_name)
+        slot, attribute = self._stack_slot(target, stack_name)
         if type(amount) is not int or amount < 0:
             raise ValueError("gained stack amount must be a non-negative int")
+        if type(duration) not in (int, float) or not math.isfinite(duration):
+            raise ValueError("stack duration must be a finite real number")
+        duration = float(duration)
+        if duration >= 0:
+            try:
+                timer_duration = _godot_float32(duration)
+            except OverflowError:
+                raise ValueError("stack duration must fit a finite float32") from None
+            if not math.isfinite(timer_duration):
+                raise ValueError("stack duration must fit a finite float32")
         result = StackResult(0, None)
         if amount == 0:
             return result
@@ -562,19 +710,34 @@ class BattleState:
                 ),
             })
         if amount > 0:
-            amount = min(amount, 10000 - getattr(slot, stack_name))
+            maximum = 100000 if stack_name == "Block" else 10000
+            amount = min(amount, maximum - getattr(slot, attribute))
             # Original cap-zero return also discards pending partial reflection.
             if amount == 0:
                 return result
+            if duration < 0:
+                state.permanent_stacks += amount
+            else:
+                state.temporary_stacks.append(TemporaryStackBatch(
+                    amount, self.time + duration, source_item,
+                ))
+                if _timer_time_left(state.timer) <= 0:
+                    _start_timer(state.timer, duration)
+                    state.next_temporary_index = 0
+                elif duration < _timer_time_left(state.timer):
+                    _stop_timer(state.timer)
+                    _start_timer(state.timer, duration)
+                    state.next_temporary_index = len(state.temporary_stacks) - 1
             result = self._commit_stack_delta(
                 target, stack_name, amount, source_item=source_item,
                 reflected=reflected, trigger_log_handle=trigger_log_handle,
+                duration=duration,
             )
         if reflected_amount > 0:
             self.gain_stacks(
                 self.get_opponent(target.player_id), stack_name, reflected_amount,
                 source_item=source_item, trigger_log_handle=trigger_log_handle,
-                reflected=True,
+                reflected=True, duration=duration,
             )
         return result
 
@@ -584,16 +747,16 @@ class BattleState:
         trigger_log_handle: LogHandle | None = None,
         used: bool = False,
     ) -> StackResult:
-        slot = self._stack_slot(target, stack_name)
+        slot, attribute = self._stack_slot(target, stack_name)
         if type(amount) is not int or amount < 0:
             raise ValueError("removed stack amount must be a non-negative int")
         if amount == 0:
             return StackResult(0, None)
 
-        current = getattr(slot, stack_name)
+        current = getattr(slot, attribute)
         amount = min(current, amount)
+        state = self._stack_state(target, stack_name)
         if not used:
-            state = self._stack_state(target, stack_name)
             protected = 0
             protection_chance = state.cleanse_protection_chance_percent
             if protection_chance > 0:
@@ -629,9 +792,41 @@ class BattleState:
                     ),
                 })
 
-        actual = min(getattr(slot, stack_name), amount)
+        if state.permanent_stacks >= amount:
+            state.permanent_stacks -= amount
+        else:
+            temporary_to_remove = amount - state.permanent_stacks
+            state.permanent_stacks = 0
+            while temporary_to_remove > 0:
+                if not state.temporary_stacks:
+                    self.record_log("Stacks", {
+                        "action": "stack_diagnostic",
+                        "reason": "private_amount_missing",
+                        "event_kind": "diagnostic",
+                        "contributes_to_stack_totals": False,
+                        "stack_name": stack_name,
+                        "target_player_id": target.player_id,
+                        "remaining": temporary_to_remove,
+                    })
+                    break
+                farthest_index = 0
+                for index in range(1, len(state.temporary_stacks)):
+                    if (
+                        state.temporary_stacks[index].expires_at
+                        > state.temporary_stacks[farthest_index].expires_at
+                    ):
+                        farthest_index = index
+                farthest = state.temporary_stacks[farthest_index]
+                if farthest.amount > temporary_to_remove:
+                    farthest.amount -= temporary_to_remove
+                    temporary_to_remove = 0
+                else:
+                    temporary_to_remove -= farthest.amount
+                    del state.temporary_stacks[farthest_index]
+                    if not state.temporary_stacks:
+                        _stop_timer(state.timer)
         return self._commit_stack_delta(
-            target, stack_name, -actual, source_item=source_item, used=used,
+            target, stack_name, -amount, source_item=source_item, used=used,
             trigger_log_handle=trigger_log_handle,
         )
 
@@ -640,15 +835,119 @@ class BattleState:
         source_item: BattleItem | None = None,
         trigger_log_handle: LogHandle | None = None,
     ) -> StackResult:
-        slot = self._stack_slot(target, stack_name)
+        slot, attribute = self._stack_slot(target, stack_name)
         if type(amount) is not int or amount < 0:
             raise ValueError("used stack amount must be a non-negative int")
-        if getattr(slot, stack_name) < amount:
+        if getattr(slot, attribute) < amount:
             return StackResult(0, None)
         return self.lose_stacks(
             target, stack_name, amount, source_item=source_item,
             trigger_log_handle=trigger_log_handle, used=True,
         )
+
+    def _on_stack_timeout(self, target: PlayerState, stack_name: str) -> None:
+        state = self._stack_state(target, stack_name)
+        slot, attribute = self._stack_slot(target, stack_name)
+        while True:
+            index = state.next_temporary_index
+            if not 0 <= index < len(state.temporary_stacks):
+                self.record_log("Stacks", {
+                    "action": "stack_diagnostic",
+                    "reason": "invalid_timeout_index",
+                    "event_kind": "diagnostic",
+                    "contributes_to_stack_totals": False,
+                    "stack_name": stack_name,
+                    "target_player_id": target.player_id,
+                    "index": index,
+                    "batch_count": len(state.temporary_stacks),
+                })
+                return
+            selected = state.temporary_stacks[index]
+            self._commit_stack_delta(
+                target, stack_name,
+                -min(getattr(slot, attribute), selected.amount),
+                source_item=selected.source_item, timeout=True,
+                trigger_log_handle=None,
+            )
+
+            # The callback may change this shared index. Preserve Array.remove's
+            # behavior rather than removing the previously selected object.
+            index = state.next_temporary_index
+            if 0 <= index < len(state.temporary_stacks):
+                del state.temporary_stacks[index]
+            else:
+                self.record_log("Stacks", {
+                    "action": "stack_diagnostic",
+                    "reason": "invalid_remove_index",
+                    "event_kind": "diagnostic",
+                    "contributes_to_stack_totals": False,
+                    "stack_name": stack_name,
+                    "target_player_id": target.player_id,
+                    "index": index,
+                    "batch_count": len(state.temporary_stacks),
+                })
+            if not state.temporary_stacks:
+                # A callback may have restarted the timer; an empty tail does
+                # not cancel that restart in the original implementation.
+                return
+
+            earliest_index = 0
+            for index in range(1, len(state.temporary_stacks)):
+                if (
+                    state.temporary_stacks[index].expires_at
+                    < state.temporary_stacks[earliest_index].expires_at
+                ):
+                    earliest_index = index
+            state.next_temporary_index = earliest_index
+            delay = state.temporary_stacks[earliest_index].expires_at - self.time
+            if delay <= 0.01:
+                continue
+            _start_timer(state.timer, delay)
+            return
+
+    def _tick_internal_timers(self) -> None:
+        if len(self.players) != 2:
+            return
+        player, opponent = self.players
+        timers = [("status", opponent, None, opponent.status_tick_timer)]
+        timers.extend(
+            ("stack", opponent, name, self._stack_state(opponent, name).timer)
+            for name in _STACK_TIMER_ORDER
+        )
+        timers.extend((
+            ("fatigue_start", None, None, self.fatigue_start_timer),
+            ("fatigue_tick", None, None, self.fatigue_tick_timer),
+            ("status", player, None, player.status_tick_timer),
+        ))
+        timers.extend(
+            ("stack", player, name, self._stack_state(player, name).timer)
+            for name in _STACK_TIMER_ORDER
+        )
+        # Freeze only active references, then inspect their live fields when
+        # visited. A previously inactive timer started below waits one step.
+        timers = [entry for entry in timers if entry[3].processing]
+        for kind, target, stack_name, timer in timers:
+            if not _advance_timer(
+                timer, self.frame_delta, one_shot=kind != "status",
+            ):
+                continue
+            if kind == "status":
+                if target.status_tick_counter % 2 == 0:
+                    self._apply_regeneration_tick(target)
+                else:
+                    self._apply_poison_tick(target)
+                target.status_tick_counter += 1
+            elif kind == "stack":
+                self._on_stack_timeout(target, stack_name)
+            elif kind == "fatigue_start":
+                _start_timer(self.fatigue_tick_timer, 3.0)
+            else:
+                self.inflict_fatigue(opponent, nightfall=True)
+                self.stop_if_battle_ended()
+                self.inflict_fatigue(player, nightfall=True)
+                self.stop_if_battle_ended()
+                _start_timer(self.fatigue_tick_timer, NIGHTFALL_FATIGUE_INTERVAL)
+            self.stop_if_battle_ended()
 
     def record_player_state_snapshot(self) -> None:
         if not self.collect_player_state_history:
@@ -673,21 +972,32 @@ class BattleState:
                 player.stamina + self.frame_delta,
             ),4)
 
-    def step(self):
+    def step(self) -> object | None:
         if not self.has_prepared:
             raise ValueError("battle must be prepared before stepping")
+        if (
+            type(self.frame_delta) not in (int, float)
+            or not math.isfinite(self.frame_delta) or self.frame_delta <= 0
+        ):
+            raise ValueError("frame_delta must be a positive finite number")
+        try:
+            delta = _godot_float32(self.frame_delta)
+        except OverflowError:
+            raise ValueError("frame_delta must fit a positive finite float32") from None
+        if not math.isfinite(delta) or delta <= 0:
+            raise ValueError("frame_delta must fit a positive finite float32")
+        self.frame_delta = delta
         try:
             self.start_combat()
             self.stop_if_battle_ended()
+            self._tick_internal_timers()
+            self.frame += 1
+            self.time += delta
             self.regenerate_stamina()
             for active_item in list(self.active_items):
                 context = self.build_context(active_item)
                 active_item.activate_item(context)
                 self.stop_if_battle_ended()
-
-            self.frame += 1
-            self.time += self.frame_delta
-            self._apply_system_triggers()
         except _BattleFinishedSignal:
             self.record_player_state_snapshot()
             return self.winner
@@ -695,26 +1005,51 @@ class BattleState:
         self.record_player_state_snapshot()
         return self.winner
 
-    def run(self, max_frames: int, frame_delta: float = 1.0 / 30.0):
+    def run(
+        self, max_frames: int, frame_delta: float = 1.0 / 60.0,
+    ) -> object | None:
         if not self.has_prepared:
             raise ValueError("battle must be prepared before running")
-        self.frame_delta = frame_delta
+        if (
+            type(frame_delta) not in (int, float)
+            or not math.isfinite(frame_delta) or frame_delta <= 0
+        ):
+            raise ValueError("frame_delta must be a positive finite number")
+        try:
+            delta = _godot_float32(frame_delta)
+        except OverflowError:
+            raise ValueError("frame_delta must fit a positive finite float32") from None
+        if not math.isfinite(delta) or delta <= 0:
+            raise ValueError("frame_delta must fit a positive finite float32")
+        self.frame_delta = delta
         for _ in range(max_frames):
             if self.winner is not None:
                 break
             self.step()
         return self.winner
 
-    def check_battle_end(self):
-        if self.winner is not None or len(self.players) != 2:
+    def check_battle_end(self) -> None:
+        if len(self.players) != 2:
             return
-        if not any(player.is_dead for player in self.players):
+        if self.winner is None:
+            if not any(player.is_dead for player in self.players):
+                return
+            player, opponent = self.players
+            self.winner = (player if opponent.health <= 0 else opponent).player_id
+        if self.winner is None:
             return
-        player, opponent = self.players
-        self.winner = (player if opponent.health <= 0 else opponent).player_id
+        for player in self.players:
+            _stop_timer(player.status_tick_timer)
+            for state in player.stack_states.values():
+                _stop_timer(state.timer)
+                state.temporary_stacks.clear()
+        _stop_timer(self.fatigue_start_timer)
+        _stop_timer(self.fatigue_tick_timer)
+        self._pending_signals.clear()
 
-    def stop_if_battle_ended(self):
+    def stop_if_battle_ended(self) -> None:
         if self.winner is not None:
+            self.check_battle_end()
             raise _BattleFinishedSignal()
 
     def inflict_fatigue(
@@ -803,42 +1138,6 @@ class BattleState:
         )
         self.resolve_attack(event)
         return event.block_damage + event.health_damage
-
-    def _apply_system_triggers(self)->None:
-        if len(self.players) != 2:
-            return
-
-        regeneration_due = self.time >= self.next_regeneration_time
-        poison_due = self.time >= self.next_poison_time
-        fatigue_due = self.time >= self.next_nightfall_fatigue_time
-
-        if regeneration_due:
-            self.next_regeneration_time += STATUS_TICK_INTERVAL
-        if poison_due:
-            self.next_poison_time += STATUS_TICK_INTERVAL
-        if fatigue_due:
-            self.next_nightfall_fatigue_time += NIGHTFALL_FATIGUE_INTERVAL
-
-        enemy = self.players[1]
-        player = self.players[0]
-
-        if regeneration_due:
-            self._apply_regeneration_tick(enemy)
-            self.stop_if_battle_ended()
-        if poison_due:
-            self._apply_poison_tick(enemy)
-            self.stop_if_battle_ended()
-        if fatigue_due:
-            self.inflict_fatigue(enemy, nightfall=True)
-            self.stop_if_battle_ended()
-            self.inflict_fatigue(player, nightfall=True)
-            self.stop_if_battle_ended()
-        if poison_due:
-            self._apply_poison_tick(player)
-            self.stop_if_battle_ended()
-        if regeneration_due:
-            self._apply_regeneration_tick(player)
-            self.stop_if_battle_ended()
 
     def build_context(self, item: BattleItem)->BattleContext:
         owner = self.get_player(item.player_id)
@@ -931,6 +1230,9 @@ class BattleState:
                 "target_player_id": event.defender.player_id,
                 "attack_types": list(event.attack_types),
                 "hit": False,
+                "trigger_log_sequence": (
+                    event.trigger_log_handle.sequence if event.trigger_log_handle else None
+                ),
             },
         )
         if event.is_resolved:
@@ -1034,6 +1336,11 @@ class BattleState:
             event.block_damage = 0
             event.health_damage = event.pending_damage
         event.is_resolved = True
+        self.commit_health_reduction(
+            event.defender,
+            event.block_damage,
+            event.health_damage,
+        )
         log_handle = self.record_log(
             item if item is not None else event.attack_types[0].title(),
             {
@@ -1052,11 +1359,6 @@ class BattleState:
             },
         )
         event.log_handle = log_handle
-        self.commit_health_reduction(
-                event.defender,
-                event.block_damage,
-                event.health_damage,
-        )
 
     def _finish_attack(self, event: AttackEvent, item: BattleItem | None, is_attack: bool) -> None:
         post_context = self.build_attack_reaction_context(
@@ -1139,7 +1441,7 @@ class BattleState:
         player: PlayerState,
         blocked_damage: int,
         health_damage: int,
-    ):
+    ) -> None:
         if self.get_player(player.player_id) is not player:
             raise ValueError("health reduction target is not part of this battle")
         if (
@@ -1152,7 +1454,9 @@ class BattleState:
         if blocked_damage > player.block:
             raise ValueError("blocked damage cannot exceed current block")
 
-        player.block -= blocked_damage
+        self.lose_stacks(
+            player, "Block", blocked_damage, source_item=None, used=False,
+        )
         object.__setattr__(
             player,
             "health",
@@ -1199,6 +1503,7 @@ class StackChangeContext(BattleContext):
     timeout: bool
     trigger_log_handle: LogHandle | None
     log_handle: LogHandle
+    duration: float = -1.0
 
 
 @dataclass

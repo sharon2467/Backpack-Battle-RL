@@ -1,4 +1,5 @@
 import random
+import struct
 import unittest
 from unittest.mock import Mock
 
@@ -9,6 +10,9 @@ from item_factory_registry_v1 import (
     PocketSand, Twine, WalrusTusk, Whetstone, WoodenSword,
 )
 from item_triggers_v1 import ActivationTrigger
+
+
+FRAME_DELTA = struct.unpack("<f", struct.pack("<f", 1.0 / 60.0))[0]
 
 
 class RecordingItem(BattleItem):
@@ -153,7 +157,9 @@ class CombatStartLifecycleTest(unittest.TestCase):
                 battle = self.battle(*items, active_items=items)
                 battle.prepareItems()
                 battle.step()
-                self.assertAlmostEqual(banana.triggers[0].cooldown_progress, 1.02 / 30)
+                self.assertEqual(battle.frame_delta, FRAME_DELTA)
+                self.assertAlmostEqual(banana.triggers[0].cooldown_progress,
+                                       1.02 * FRAME_DELTA)
                 self.assertEqual(battle.players[0].buffs.Heat, 1)
 
     def test_step_run_and_explicit_start_share_one_opening(self):
@@ -169,6 +175,7 @@ class CombatStartLifecycleTest(unittest.TestCase):
         battle.run(2)
         self.assertEqual([event[0] for event in events], ["prepare", "pre", "start", "post"])
         self.assertEqual(battle.frame, 3)
+        self.assertEqual(battle.time, 3 * FRAME_DELTA)
 
     def test_unprepared_entry_points_raise(self):
         for method, args in (("start_combat", ()), ("step", ()), ("run", (0,))):

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import math
 from typing import TYPE_CHECKING
 
 from battle_module_v1 import (
@@ -10,6 +11,8 @@ from battle_module_v1 import (
     BattleContext,
     BuffSlot,
     DebuffSlot,
+    LogHandle,
+    StackResult,
     godot_round,
 )
 
@@ -83,7 +86,12 @@ class GainMaxHealthEffect(Effect):
             )
         self.amount = amount
 
-    def apply(self, context: BattleContext) -> bool:
+    def apply(
+        self,
+        context: BattleContext,
+        *,
+        trigger_log_handle: LogHandle | None = None,
+    ) -> bool:
         context.owner.max_health += self.amount
         context.owner.health += self.amount
         context.battle_state.record_log(
@@ -92,6 +100,9 @@ class GainMaxHealthEffect(Effect):
                 "action": "gain_max_health",
                 "target_player_id": context.owner.player_id,
                 "max_health_gained": self.amount,
+                "trigger_log_sequence": (
+                    trigger_log_handle.sequence if trigger_log_handle else None
+                ),
             },
         )
         return True
@@ -164,24 +175,54 @@ class RegenerateStaminaEffect(Effect):
 
 
 class GainBlockEffect(Effect):
-    def __init__(self, amount: int):
+    def __init__(self, amount: int, *, duration: float = -1.0) -> None:
         super().__init__()
         if type(amount) is not int or amount < 0:
             raise ValueError("block amount must be a non-negative int")
         self.amount = amount
+        if type(duration) not in (int, float) or not math.isfinite(duration):
+            raise ValueError("stack duration must be a finite int or float")
+        self.duration = float(duration)
 
-    def apply(self, context: BattleContext) -> bool:
-        old_block = context.owner.block
-        context.owner.block = old_block + self.amount
-        actual_gain = context.owner.block - old_block
+    def apply(
+        self,
+        context: BattleContext,
+        *,
+        trigger_log_handle: LogHandle | None = None,
+    ) -> bool:
+        power = (
+            context.item.stack_powers.get("Block", 1.0)
+            if context.item is not None else 1.0
+        )
+        scaled = godot_round(self.amount * power)
+        result = StackResult(0, None)
+        if scaled > 0:
+            result = context.battle_state.gain_stacks(
+                context.owner,
+                "Block",
+                scaled,
+                source_item=context.item,
+                trigger_log_handle=trigger_log_handle,
+                duration=self.duration,
+            )
+        actual_gain = result.delta
+        if result.event is not None:
+            context.battle_state.emit_signal(
+                context.item, "gave_block", result.event
+            )
         context.battle_state.record_log(
             context.item,
             {
                 "action": "gain_block",
+                "event_kind": "effect_attempt",
+                "contributes_to_stack_totals": False,
                 "target_player_id": context.owner.player_id,
                 "block_gained": self.amount,
                 "final_block_gained": actual_gain,
                 "success": actual_gain > 0,
+                "trigger_log_sequence": (
+                    trigger_log_handle.sequence if trigger_log_handle else None
+                ),
             },
         )
         return actual_gain > 0
@@ -196,25 +237,43 @@ class RemoveOpponentBlockEffect(Effect):
             )
         self.amount = amount
 
-    def apply(self, context: BattleContext) -> bool:
-        block_before = context.opponent.block
-        actual_removal = min(block_before, self.amount)
-        context.opponent.block -= actual_removal
+    def apply(
+        self,
+        context: BattleContext,
+        *,
+        trigger_log_handle: LogHandle | None = None,
+    ) -> bool:
+        result = context.battle_state.lose_stacks(
+            context.opponent,
+            "Block",
+            self.amount,
+            source_item=context.item,
+            trigger_log_handle=trigger_log_handle,
+            used=False,
+        )
+        actual_removal = -result.delta
         context.battle_state.record_log(
             context.item,
             {
                 "action": "remove_block",
+                "event_kind": "effect_attempt",
+                "contributes_to_stack_totals": False,
                 "target_player_id": context.opponent.player_id,
                 "block_removed": self.amount,
                 "final_block_removed": actual_removal,
                 "success": actual_removal > 0,
+                "trigger_log_sequence": (
+                    trigger_log_handle.sequence if trigger_log_handle else None
+                ),
             },
         )
         return actual_removal > 0
 
 
 class GainBuffEffect(Effect):
-    def __init__(self, buff_name: str, amount: int):
+    def __init__(
+        self, buff_name: str, amount: int, *, duration: float = -1.0
+    ) -> None:
         super().__init__()
         if (
             type(buff_name) is not str
@@ -227,8 +286,16 @@ class GainBuffEffect(Effect):
             )
         self.buff_name = buff_name
         self.amount = amount
+        if type(duration) not in (int, float) or not math.isfinite(duration):
+            raise ValueError("stack duration must be a finite int or float")
+        self.duration = float(duration)
 
-    def apply(self, context: BattleContext) -> bool:
+    def apply(
+        self,
+        context: BattleContext,
+        *,
+        trigger_log_handle: LogHandle | None = None,
+    ) -> bool:
         power = (
             context.item.stack_powers.get(self.buff_name, 1.0)
             if context.item is not None else 1.0
@@ -241,6 +308,8 @@ class GainBuffEffect(Effect):
                 self.buff_name,
                 scaled,
                 source_item=context.item,
+                trigger_log_handle=trigger_log_handle,
+                duration=self.duration,
             ).delta
         context.battle_state.record_log(
             context.item,
@@ -253,6 +322,9 @@ class GainBuffEffect(Effect):
                 "stack_gained": self.amount,
                 "final_stack_gained": application,
                 "success": application > 0,
+                "trigger_log_sequence": (
+                    trigger_log_handle.sequence if trigger_log_handle else None
+                ),
             },
         )
         return application > 0
@@ -273,12 +345,27 @@ class UseBuffEffect(Effect):
         self.buff_name = buff_name
         self.amount = amount
 
-    def apply(self, context: BattleContext) -> bool:
+    def apply(
+        self,
+        context: BattleContext,
+        *,
+        trigger_log_handle: LogHandle | None = None,
+    ) -> bool:
+        result = self.apply_result(context, trigger_log_handle=trigger_log_handle)
+        return self.amount == 0 or result.delta == -self.amount
+
+    def apply_result(
+        self,
+        context: BattleContext,
+        *,
+        trigger_log_handle: LogHandle | None = None,
+    ) -> StackResult:
         result = context.battle_state.try_use_stacks(
             context.owner,
             self.buff_name,
             self.amount,
             source_item=context.item,
+            trigger_log_handle=trigger_log_handle,
         )
         actual_used = -result.delta
         success = self.amount == 0 or result.delta == -self.amount
@@ -293,9 +380,12 @@ class UseBuffEffect(Effect):
                 "stack_used": self.amount,
                 "final_stack_used": actual_used,
                 "success": success,
+                "trigger_log_sequence": (
+                    trigger_log_handle.sequence if trigger_log_handle else None
+                ),
             },
         )
-        return success
+        return result
 
 
 class BuffRemovalEffect(Effect):
@@ -313,12 +403,18 @@ class BuffRemovalEffect(Effect):
         self.buff_name = buff_name
         self.amount = amount
 
-    def apply(self, context: BattleContext) -> bool:
+    def apply(
+        self,
+        context: BattleContext,
+        *,
+        trigger_log_handle: LogHandle | None = None,
+    ) -> bool:
         result = context.battle_state.lose_stacks(
             context.opponent,
             self.buff_name,
             self.amount,
             source_item=context.item,
+            trigger_log_handle=trigger_log_handle,
             used=False,
         )
         actual_removal = -result.delta
@@ -333,13 +429,18 @@ class BuffRemovalEffect(Effect):
                 "stack_removed": self.amount,
                 "final_stack_removed": actual_removal,
                 "success": actual_removal > 0,
+                "trigger_log_sequence": (
+                    trigger_log_handle.sequence if trigger_log_handle else None
+                ),
             },
         )
         return actual_removal > 0
 
 
 class InflictDebuffEffect(Effect):
-    def __init__(self, debuff_name: str, amount: int):
+    def __init__(
+        self, debuff_name: str, amount: int, *, duration: float = -1.0
+    ) -> None:
         super().__init__()
         if (
             type(debuff_name) is not str
@@ -352,8 +453,16 @@ class InflictDebuffEffect(Effect):
             )
         self.debuff_name = debuff_name
         self.amount = amount
+        if type(duration) not in (int, float) or not math.isfinite(duration):
+            raise ValueError("stack duration must be a finite int or float")
+        self.duration = float(duration)
 
-    def apply(self, context: BattleContext) -> bool:
+    def apply(
+        self,
+        context: BattleContext,
+        *,
+        trigger_log_handle: LogHandle | None = None,
+    ) -> bool:
         power = (
             context.item.stack_powers.get(self.debuff_name, 1.0)
             if context.item is not None else 1.0
@@ -366,6 +475,8 @@ class InflictDebuffEffect(Effect):
                 self.debuff_name,
                 scaled,
                 source_item=context.item,
+                trigger_log_handle=trigger_log_handle,
+                duration=self.duration,
             ).delta
         context.battle_state.record_log(
             context.item,
@@ -378,6 +489,9 @@ class InflictDebuffEffect(Effect):
                 "stack_gained": self.amount,
                 "final_stack_gained": application,
                 "success": application > 0,
+                "trigger_log_sequence": (
+                    trigger_log_handle.sequence if trigger_log_handle else None
+                ),
             },
         )
         return application > 0
@@ -398,12 +512,18 @@ class CleanseDebuffEffect(Effect):
         self.debuff_name = debuff_name
         self.amount = amount
 
-    def apply(self, context: BattleContext) -> bool:
+    def apply(
+        self,
+        context: BattleContext,
+        *,
+        trigger_log_handle: LogHandle | None = None,
+    ) -> bool:
         result = context.battle_state.lose_stacks(
             context.owner,
             self.debuff_name,
             self.amount,
             source_item=context.item,
+            trigger_log_handle=trigger_log_handle,
             used=False,
         )
         actual_cleansing = -result.delta
@@ -418,6 +538,9 @@ class CleanseDebuffEffect(Effect):
                 "stack_removed": self.amount,
                 "final_stack_removed": actual_cleansing,
                 "success": actual_cleansing > 0,
+                "trigger_log_sequence": (
+                    trigger_log_handle.sequence if trigger_log_handle else None
+                ),
             },
         )
         return actual_cleansing > 0
@@ -446,7 +569,21 @@ class AttackEffect(Effect):
         self,
         context: BattleContext,
         attack_type: tuple[str, ...],
+        *,
+        trigger_log_handle: LogHandle | None = None,
     ) -> bool:
+        result = self.apply_result(
+            context, attack_type, trigger_log_handle=trigger_log_handle
+        )
+        return result.hit is True
+
+    def apply_result(
+        self,
+        context: BattleContext,
+        attack_type: tuple[str, ...],
+        *,
+        trigger_log_handle: LogHandle | None = None,
+    ) -> AttackEvent:
         if (
             not isinstance(attack_type, tuple)
             or not attack_type
@@ -472,9 +609,10 @@ class AttackEffect(Effect):
             min_damage=self.min_damage + damage,
             max_damage=self.max_damage + damage,
             accuracy=accuracy,
+            trigger_log_handle=trigger_log_handle,
         )
         resolved_event = context.battle_state.resolve_attack(event)
-        return resolved_event.hit is True
+        return resolved_event
 
     def stack_damage_modifier(self, amount: int) -> None:
         self.damage_modifier += amount

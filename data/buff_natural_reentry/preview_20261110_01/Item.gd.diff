@@ -1,0 +1,21 @@
+diff --git "a/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\data\\buff_natural_reentry\\preview_20261110_01\\original_bytes\\Item.gd.bin" "b/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\data\\buff_natural_reentry\\preview_20261110_01\\prepared\\Item.gd"
+index a8fb32a..14c9794 100644
+--- "a/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\data\\buff_natural_reentry\\preview_20261110_01\\original_bytes\\Item.gd.bin"
++++ "b/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\data\\buff_natural_reentry\\preview_20261110_01\\prepared\\Item.gd"
+@@ -4407,6 +4407,8 @@ func checkTriggerCount(limit: int) -> bool:
+ 	return true
+ 
+ func trigger():
++	var t0_call_id = T0Probe.new_call_id()
++	T0Probe.observe("item_trigger_enter", t0_call_id, self)
+ 	iterationCooldown = adjustCooldown()
+ 	triggerTime += iterationCooldown
+ 	
+@@ -4414,6 +4416,7 @@ func trigger():
+ 	
+ 	if doubleActivationChance > 0 and Util.flip(doubleActivationChance):
+ 		doCooldownEffect()
++	T0Probe.observe("item_trigger_exit",t0_call_id,self)
+ 
+ func doCooldownEffect():
+ 	pass

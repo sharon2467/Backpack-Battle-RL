@@ -1,0 +1,108 @@
+test_battle_must_start_with_full_stamina (test_main_v1.MainV1Test.test_battle_must_start_with_full_stamina) ... ok
+test_health_and_max_health_must_be_positive_ints (test_main_v1.MainV1Test.test_health_and_max_health_must_be_positive_ints) ... ok
+test_health_cannot_exceed_max_health (test_main_v1.MainV1Test.test_health_cannot_exceed_max_health) ... ok
+test_lethal_fatigue_returns_player_win_without_draw (test_main_v1.MainV1Test.test_lethal_fatigue_returns_player_win_without_draw) ... FAIL
+test_load_battle_run_file_reads_and_validates_json (test_main_v1.MainV1Test.test_load_battle_run_file_reads_and_validates_json) ... ok
+test_main_default_frame_delta_is_one_thirtieth (test_main_v1.MainV1Test.test_main_default_frame_delta_is_one_thirtieth) ... FAIL
+test_main_prints_error_result_for_missing_factory (test_main_v1.MainV1Test.test_main_prints_error_result_for_missing_factory) ... ok
+test_main_prints_success_result_for_empty_battle (test_main_v1.MainV1Test.test_main_prints_success_result_for_empty_battle) ... ok
+test_missing_item_factory_fails (test_main_v1.MainV1Test.test_missing_item_factory_fails) ... ok
+test_missing_required_player_field_fails (test_main_v1.MainV1Test.test_missing_required_player_field_fails) ... ok
+test_missing_stamina_player_fields_fail (test_main_v1.MainV1Test.test_missing_stamina_player_fields_fail) ... ok
+test_normalize_player_specs_keeps_class_id_as_metadata (test_main_v1.MainV1Test.test_normalize_player_specs_keeps_class_id_as_metadata) ... ok
+test_requires_exactly_two_players (test_main_v1.MainV1Test.test_requires_exactly_two_players) ... ok
+test_run_battle_from_config_returns_max_frames_result (test_main_v1.MainV1Test.test_run_battle_from_config_returns_max_frames_result) ... ok
+test_run_battle_from_config_returns_winner_result (test_main_v1.MainV1Test.test_run_battle_from_config_returns_winner_result) ... FAIL
+test_run_battle_from_file_loads_json_then_runs (test_main_v1.MainV1Test.test_run_battle_from_file_loads_json_then_runs) ... ok
+test_run_battle_serializes_fatigue_damage (test_main_v1.MainV1Test.test_run_battle_serializes_fatigue_damage) ... FAIL
+test_run_battle_serializes_regeneration_and_lethal_poison (test_main_v1.MainV1Test.test_run_battle_serializes_regeneration_and_lethal_poison) ... FAIL
+test_stamina_player_fields_must_be_positive_numbers (test_main_v1.MainV1Test.test_stamina_player_fields_must_be_positive_numbers) ... ok
+test_unknown_schema_version_fails (test_main_v1.MainV1Test.test_unknown_schema_version_fails) ... ok
+test_compress_player_state_history_does_not_merge_equal_states_across_change (test_player_state_history_v1.PlayerStateHistoryV1Test.test_compress_player_state_history_does_not_merge_equal_states_across_change) ... ok
+test_compress_player_state_history_does_not_mutate_or_alias_input (test_player_state_history_v1.PlayerStateHistoryV1Test.test_compress_player_state_history_does_not_mutate_or_alias_input) ... ok
+test_compress_player_state_history_handles_empty_and_single_record (test_player_state_history_v1.PlayerStateHistoryV1Test.test_compress_player_state_history_handles_empty_and_single_record) ... ok
+test_compression_accepts_final_partial_recovery_at_max_stamina (test_player_state_history_v1.PlayerStateHistoryV1Test.test_compression_accepts_final_partial_recovery_at_max_stamina) ... ok
+test_compression_accepts_stamina_floating_point_error (test_player_state_history_v1.PlayerStateHistoryV1Test.test_compression_accepts_stamina_floating_point_error) ... ok
+test_compression_merges_exact_frame_delta_stamina_recovery (test_player_state_history_v1.PlayerStateHistoryV1Test.test_compression_merges_exact_frame_delta_stamina_recovery) ... ok
+test_compression_rejects_non_stamina_state_change (test_player_state_history_v1.PlayerStateHistoryV1Test.test_compression_rejects_non_stamina_state_change) ... ok
+test_compression_rejects_stamina_spending_and_non_natural_gain (test_player_state_history_v1.PlayerStateHistoryV1Test.test_compression_rejects_stamina_spending_and_non_natural_gain) ... ok
+test_item_lethal_step_records_terminal_state_without_advancing_time (test_player_state_history_v1.PlayerStateHistoryV1Test.test_item_lethal_step_records_terminal_state_without_advancing_time) ... FAIL
+test_multiple_steps_record_one_independent_snapshot_each (test_player_state_history_v1.PlayerStateHistoryV1Test.test_multiple_steps_record_one_independent_snapshot_each) ... ok
+test_new_battle_states_have_independent_empty_player_state_histories (test_player_state_history_v1.PlayerStateHistoryV1Test.test_new_battle_states_have_independent_empty_player_state_histories) ... ok
+test_run_config_validates_applies_and_compresses_player_state_history (test_player_state_history_v1.PlayerStateHistoryV1Test.test_run_config_validates_applies_and_compresses_player_state_history) ... ok
+test_serialize_player_state_copies_supported_combat_fields_without_backpack_state (test_player_state_history_v1.PlayerStateHistoryV1Test.test_serialize_player_state_copies_supported_combat_fields_without_backpack_state) ... ok
+test_serialized_player_state_is_detached_and_json_serializable (test_player_state_history_v1.PlayerStateHistoryV1Test.test_serialized_player_state_is_detached_and_json_serializable) ... ok
+test_step_does_not_record_history_when_collection_is_disabled (test_player_state_history_v1.PlayerStateHistoryV1Test.test_step_does_not_record_history_when_collection_is_disabled) ... ok
+test_step_records_state_after_frame_and_system_resolution (test_player_state_history_v1.PlayerStateHistoryV1Test.test_step_records_state_after_frame_and_system_resolution) ... FAIL
+test_success_result_player_state_history_is_json_serializable (test_player_state_history_v1.PlayerStateHistoryV1Test.test_success_result_player_state_history_is_json_serializable) ... ok
+test_system_lethal_step_records_terminal_state_after_time_advances (test_player_state_history_v1.PlayerStateHistoryV1Test.test_system_lethal_step_records_terminal_state_after_time_advances) ... FAIL
+test_unexpected_step_exception_does_not_record_partial_snapshot (test_player_state_history_v1.PlayerStateHistoryV1Test.test_unexpected_step_exception_does_not_record_partial_snapshot) ... ok
+
+======================================================================
+FAIL: test_lethal_fatigue_returns_player_win_without_draw (test_main_v1.MainV1Test.test_lethal_fatigue_returns_player_win_without_draw)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_main_v1.py", line 329, in test_lethal_fatigue_returns_player_win_without_draw
+    self.assertEqual(result["winner"], 0)
+AssertionError: None != 0
+
+======================================================================
+FAIL: test_main_default_frame_delta_is_one_thirtieth (test_main_v1.MainV1Test.test_main_default_frame_delta_is_one_thirtieth)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_main_v1.py", line 138, in test_main_default_frame_delta_is_one_thirtieth
+    self.assertEqual(DEFAULT_FRAME_DELTA, 1.0 / 30.0)
+AssertionError: 0.016666666666666666 != 0.03333333333333333
+
+======================================================================
+FAIL: test_run_battle_from_config_returns_winner_result (test_main_v1.MainV1Test.test_run_battle_from_config_returns_winner_result)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_main_v1.py", line 241, in test_run_battle_from_config_returns_winner_result
+    self.assertEqual(result["frame"], 0)
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_run_battle_serializes_fatigue_damage (test_main_v1.MainV1Test.test_run_battle_serializes_fatigue_damage)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_main_v1.py", line 258, in test_run_battle_serializes_fatigue_damage
+    self.assertEqual(result["players"][0]["fatigue_damage"], 1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_run_battle_serializes_regeneration_and_lethal_poison (test_main_v1.MainV1Test.test_run_battle_serializes_regeneration_and_lethal_poison)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_main_v1.py", line 307, in test_run_battle_serializes_regeneration_and_lethal_poison
+    self.assertEqual(result["winner"], 0)
+AssertionError: None != 0
+
+======================================================================
+FAIL: test_item_lethal_step_records_terminal_state_without_advancing_time (test_player_state_history_v1.PlayerStateHistoryV1Test.test_item_lethal_step_records_terminal_state_without_advancing_time)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_player_state_history_v1.py", line 300, in test_item_lethal_step_records_terminal_state_without_advancing_time
+    self.assertEqual(snapshot["frame"], 0)
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_step_records_state_after_frame_and_system_resolution (test_player_state_history_v1.PlayerStateHistoryV1Test.test_step_records_state_after_frame_and_system_resolution)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_player_state_history_v1.py", line 246, in test_step_records_state_after_frame_and_system_resolution
+    self.assertEqual(snapshot["players"][0]["health"], 7)
+AssertionError: 5 != 7
+
+======================================================================
+FAIL: test_system_lethal_step_records_terminal_state_after_time_advances (test_player_state_history_v1.PlayerStateHistoryV1Test.test_system_lethal_step_records_terminal_state_after_time_advances)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_player_state_history_v1.py", line 328, in test_system_lethal_step_records_terminal_state_after_time_advances
+    self.assertEqual(battle.winner, 0)
+AssertionError: None != 0
+
+----------------------------------------------------------------------
+Ran 39 tests in 0.015s
+
+FAILED (failures=8)

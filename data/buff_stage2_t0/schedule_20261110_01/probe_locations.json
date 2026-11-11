@@ -1,0 +1,287 @@
+[
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 53,
+    "Line": "\tvar t0_call_id = T0Probe.new_call_id()"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 54,
+    "Line": "\tT0Probe.observe(\"buff_reset_enter\", t0_call_id, self)"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 60,
+    "Line": "\tT0Probe.observe(\"buff_reset_exit\",t0_call_id,self)"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 81,
+    "Line": "\tvar t0_call_id = T0Probe.new_call_id()"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 82,
+    "Line": "\tT0Probe.observe(\"buff_gainTemporary_enter\", t0_call_id, self)"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 84,
+    "Line": "\tT0Probe.observe(\"gain_request\", t0_call_id, self, {\"request\":amount,\"duration\":duration,\"reflected_in\":reflect,\"source\":item.get_instance_id() if item != null else -1,\"parent\":triggerEvent.id if triggerEvent != null else -1})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 105,
+    "Line": "\t\tT0Probe.observe(\"gain_after_resist\",t0_call_id,self,{\"amount\":amount,\"resisted\":resisted,\"left\":left})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 135,
+    "Line": "\t\t\tT0Probe.observe(\"gain_after_reflect\",t0_call_id,self,{\"amount\":amount,\"resisted\":resisted,\"left\":left,\"reflected_count\":reflected})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 155,
+    "Line": "\t\t\tT0Probe.observe(\"gain_before_cap\",t0_call_id,self,{\"amount\":amount,\"reflected_count\":reflected})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 157,
+    "Line": "\t\t\tT0Probe.observe(\"gain_after_cap\",t0_call_id,self,{\"amount\":amount,\"reflected_count\":reflected})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 159,
+    "Line": "\t\t\t\tT0Probe.observe(\"buff_gainTemporary_exit\",t0_call_id,self,{\"cap_zero\":true})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 171,
+    "Line": "\t\t\t\tT0Probe.observe(\"gain_batch_added\",t0_call_id,self,{\"batch_id\":tempStacks.get_instance_id(),\"timeout\":timeout})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 176,
+    "Line": "\t\t\t\t\tT0Probe.observe(\"gain_timer_stopped_start\",t0_call_id,self)"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 182,
+    "Line": "\t\t\t\t\t\tT0Probe.observe(\"gain_timer_running_restart\",t0_call_id,self)"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 211,
+    "Line": "\tT0Probe.observe(\"buff_gainTemporary_exit\",t0_call_id,self,{\"event_id\":event.id if event != null else -1})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 216,
+    "Line": "\tvar t0_call_id = T0Probe.new_call_id()"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 217,
+    "Line": "\tT0Probe.observe(\"buff_loseStacks_enter\", t0_call_id, self)"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 219,
+    "Line": "\tT0Probe.observe(\"lose_request\",t0_call_id,self,{\"request\":amount,\"used\":used,\"source\":item.get_instance_id() if item != null else -1,\"parent\":triggerEvent.id if triggerEvent != null else -1})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 286,
+    "Line": "\t\t\tT0Probe.observe(\"lose_selected_batch\",t0_call_id,self,{\"selected_index\":farthestIndex,\"batch_id\":farthest.get_instance_id(),\"remaining_request\":tempToCleanse})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 300,
+    "Line": "\tvar t0_event = changeCurrentLogShowLabel(false,amount,item,triggerEvent,used)"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 301,
+    "Line": "\tT0Probe.observe(\"buff_loseStacks_exit\",t0_call_id,self,{\"event_id\":t0_event.id if t0_event != null else -1})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 302,
+    "Line": "\treturn t0_event"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 307,
+    "Line": "\tvar t0_call_id = T0Probe.new_call_id()"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 308,
+    "Line": "\tT0Probe.observe(\"buff_changeCurrentLogShowLabel_enter\", t0_call_id, self)"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 311,
+    "Line": "\tT0Probe.observe(\"change_actual\",t0_call_id,self,{\"actual\":change,\"requested\":amount,\"timeout\":isTimeout,\"used\":used,\"source\":item.get_instance_id() if item != null else -1,\"parent\":triggerEvent.id if triggerEvent != null else -1})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 315,
+    "Line": "\t\tT0Probe.observe(\"change_committed\",t0_call_id,self,{\"actual\":change,\"timeout\":isTimeout})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 334,
+    "Line": "\t\t\tT0Probe.observe(\"change_before_signal\",t0_call_id,self,{\"event_id\":event.id,\"actual\":change,\"timeout\":isTimeout})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 340,
+    "Line": "\t\t\tT0Probe.observe(\"buff_changeCurrentLogShowLabel_exit\",t0_call_id,self,{\"event_id\":event.id})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 343,
+    "Line": "\tT0Probe.observe(\"buff_changeCurrentLogShowLabel_exit\",t0_call_id,self,{\"event_id\":-1})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 347,
+    "Line": "\tvar t0_call_id = T0Probe.new_call_id()"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 348,
+    "Line": "\tT0Probe.observe(\"buff_onTimeout_enter\", t0_call_id, self)"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 350,
+    "Line": "\tT0Probe.observe(\"timeout_selected\",t0_call_id,self,{\"batch_id\":timedOutStacks.get_instance_id(),\"selected_amount\":timedOutStacks.amount,\"selected_timeout\":timedOutStacks.timeout,\"source\":timedOutStacks.item.get_instance_id() if timedOutStacks.item != null else -1})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 352,
+    "Line": "\tT0Probe.observe(\"timeout_before_remove\",t0_call_id,self,{\"selected_batch\":timedOutStacks.get_instance_id()})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 354,
+    "Line": "\tT0Probe.observe(\"timeout_after_remove\",t0_call_id,self)"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 371,
+    "Line": "\t\tT0Probe.observe(\"timeout_delay\",t0_call_id,self,{\"delay\":delay,\"earliest\":earliestTimeout,\"recursive\":delay <= 0.01})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 376,
+    "Line": "\tT0Probe.observe(\"buff_onTimeout_exit\",t0_call_id,self)"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 379,
+    "Line": "\tvar t0_call_id = T0Probe.new_call_id()"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 380,
+    "Line": "\tT0Probe.observe(\"buff_combatEnd_enter\", t0_call_id, self)"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Buff.gd",
+    "LineNumber": 383,
+    "Line": "\tT0Probe.observe(\"buff_combatEnd_exit\",t0_call_id,self)"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Character.gd",
+    "LineNumber": 329,
+    "Line": "\tvar t0_call_id = T0Probe.new_call_id()"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Character.gd",
+    "LineNumber": 330,
+    "Line": "\tT0Probe.observe(\"character_combatStart_enter\", t0_call_id, self)"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Character.gd",
+    "LineNumber": 339,
+    "Line": "\tT0Probe.observe(\"character_combatStart_exit\",t0_call_id,self)"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Character.gd",
+    "LineNumber": 342,
+    "Line": "\tvar t0_call_id = T0Probe.new_call_id()"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Character.gd",
+    "LineNumber": 343,
+    "Line": "\tT0Probe.observe(\"character_combatEnd_enter\", t0_call_id, self)"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Character.gd",
+    "LineNumber": 353,
+    "Line": "\tT0Probe.observe(\"character_combatEnd_exit\",t0_call_id,self)"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Character.gd",
+    "LineNumber": 356,
+    "Line": "\tvar t0_call_id = T0Probe.new_call_id()"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Character.gd",
+    "LineNumber": 357,
+    "Line": "\tT0Probe.observe(\"character_cleanse_enter\", t0_call_id, self)"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Character.gd",
+    "LineNumber": 408,
+    "Line": "\tT0Probe.observe(\"character_cleanse_exit\",t0_call_id,self)"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Character.gd",
+    "LineNumber": 411,
+    "Line": "\tvar t0_call_id = T0Probe.new_call_id()"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Character.gd",
+    "LineNumber": 412,
+    "Line": "\tT0Probe.observe(\"character_onTick_enter\", t0_call_id, self)"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Character.gd",
+    "LineNumber": 415,
+    "Line": "\t\tT0Probe.observe(\"tick_read_regen\",t0_call_id,self,{\"value\":regen})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Character.gd",
+    "LineNumber": 421,
+    "Line": "\t\tT0Probe.observe(\"tick_read_poison\",t0_call_id,self,{\"value\":poison})"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Character.gd",
+    "LineNumber": 428,
+    "Line": "\tT0Probe.observe(\"character_onTick_exit\",t0_call_id,self)"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Item.gd",
+    "LineNumber": 4410,
+    "Line": "\tvar t0_call_id = T0Probe.new_call_id()"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Item.gd",
+    "LineNumber": 4411,
+    "Line": "\tT0Probe.observe(\"item_trigger_enter\", t0_call_id, self)"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\Item.gd",
+    "LineNumber": 4419,
+    "Line": "\tT0Probe.observe(\"item_trigger_exit\",t0_call_id,self)"
+  },
+  {
+    "Path": "C:\\Users\\win\\OneDrive\\文档\\背包乱斗\\data\\buff_stage2_t0\\schedule_20261110_01\\prepared\\project.godot",
+    "LineNumber": 468,
+    "Line": "T0Probe=\"*C:/Users/win/OneDrive/文档/背包乱斗/tests/buff_stage2_t0_battle.gd\""
+  }
+]

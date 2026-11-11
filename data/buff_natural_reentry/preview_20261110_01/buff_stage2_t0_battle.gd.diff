@@ -1,0 +1,255 @@
+diff --git "a/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\data\\buff_stage2_t0\\edge_20261110_01\\test_scripts\\buff_stage2_t0_battle.gd" "b/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\tests\\buff_stage2_t0_battle.gd"
+index 3630a1c..a8ef7c5 100644
+--- "a/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\data\\buff_stage2_t0\\edge_20261110_01\\test_scripts\\buff_stage2_t0_battle.gd"
++++ "b/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\tests\\buff_stage2_t0_battle.gd"
+@@ -31,6 +31,11 @@ var shop_cleanse_seen = false
+ var second_requested = false
+ var finish_time = 0.8
+ var round_event_archive = []
++var natural_items = {}
++var call_metadata = {}
++var natural_reentries = []
++var natural_timeout_checks = []
++var natural_crown_use = false
+ 
+ func _ready() -> void:
+ 	run_dir = OS.get_environment("BB_BUFF_T0_RUN_DATA")
+@@ -44,6 +49,9 @@ func _ready() -> void:
+ 		finish("error", "invalid case.json")
+ 		return
+ 	case_data = parsed.result
++	if case_data.name.begins_with("natural_") and File.new().get_sha256(run_dir.plus_file("opponent_second.json")).to_lower() != String(case_data.opponent_second_sha256).to_lower():
++		finish("error", "second opponent fixture unavailable or changed")
++		return
+ 	var fingerprints = {}
+ 	var source_match = true
+ 	for path in case_data.observed_hashes:
+@@ -74,14 +82,17 @@ func _process(_delta: float) -> void:
+ 			return
+ 		if not Game.sceneAnimation.is_connected("animation_finished", Game, "onSceneAnimationFinished"):
+ 			return
+-		for name in ["Leather Bag", "Banana"]:
++		var required_names = ["Leather Bag", "Banana"]
++		if case_data.name.begins_with("natural_"):
++			required_names += ["Fanny Pack","Leather Armor","Heart Container","Hungry Blade","Strong Stone Skin Potion","Toad","Crown","Healing Herbs","Blueberries","Mana Potion"]
++		for name in required_names:
+ 			if ItemBook.getDescriptor(name) == null:
+ 				finish("error", "missing descriptor " + name)
+ 				return
+ 		if case_data.name == "smoke":
+ 			finish("observed", "native title and descriptors ready")
+ 			return
+-		Game.instanceCharacter(0)
++		Game.instanceCharacter(1 if case_data.name.begins_with("natural_") else 0)
+ 		Game.initStartInventory()
+ 		Game.startFreshRun(Game.Mode.Unranked)
+ 		stage = 1
+@@ -103,7 +114,17 @@ func _process(_delta: float) -> void:
+ 			snapshot("combat_ready")
+ 			stage = 3
+ 	elif stage == 3:
+-		if case_data.name == "lifecycle_natural":
++		if case_data.name.begins_with("natural_"):
++			if round_count >= 2:
++				var preconditions_met = false
++				for check in natural_timeout_checks:
++					preconditions_met = preconditions_met or check.met
++				var chain_met = natural_crown_use and not natural_items["Mana Potion"].isFull
++				var expected_batch = not natural_reentries.empty() if case_data.name == "natural_linked" else natural_reentries.empty()
++				var covered = preconditions_met and chain_met and expected_batch
++				if (Game.combatTimer.combatTime >= 9.0 and covered) or Game.combatTimer.combatTime >= 12.0 or Game.fightEnded:
++					finish("observed" if covered else "incomplete", "natural item chain measured" if covered else "natural prerequisites or expected batch were not covered")
++		elif case_data.name == "lifecycle_natural":
+ 			if round_count >= 2 and not Game.fightEnded and Game.combatTimer.combatTime >= 0.8:
+ 				finish("observed", "natural end, shop cleanse, and second combat observed")
+ 		elif Game.combatTimer.combatTime >= finish_time:
+@@ -121,8 +142,12 @@ func _physics_process(_delta: float) -> void:
+ 
+ func setup_layout() -> void:
+ 	Game.PLAYER.INVENTORY.reset()
++	natural_items.clear()
++	var natural_second = case_data.name.begins_with("natural_") and round_count == 1
+ 	for y in [0,2,4]:
+ 		for x in [0,2,4,6]:
++			if natural_second and x == 4 and y == 2:
++				continue
+ 			var bag = add_item("Leather Bag",x,y)
+ 			if y == 0 and x == 0:
+ 				source_a = bag
+@@ -135,6 +160,15 @@ func setup_layout() -> void:
+ 	source_aliases[source_a.get_instance_id()] = "A"
+ 	source_aliases[source_b.get_instance_id()] = "B"
+ 	source_aliases[source_c.get_instance_id()] = "C"
++	if natural_second:
++		var placements = [["Fanny Pack",4,2],["Fanny Pack",4,3],["Leather Armor",0,0],["Heart Container",4,0],["Hungry Blade",6,2],["Strong Stone Skin Potion",2,2],["Toad",4,3],["Crown",0,3],["Healing Herbs",0,4],["Healing Herbs",1,4],["Healing Herbs",0,5],["Healing Herbs",1,5],["Blueberries",2,0],["Blueberries",3,0],["Blueberries",2,1],["Blueberries",3,1],["Blueberries",3,2],["Blueberries",4,2],["Blueberries",5,2],["Blueberries",3,3]]
++		placements.push_back(["Mana Potion",2,4] if case_data.name == "natural_linked" else ["Mana Potion",7,3])
++		for placement in placements:
++			var item = add_item(placement[0],placement[1],placement[2])
++			if done:
++				return
++			natural_items[placement[0]] = item
++			source_aliases[item.get_instance_id()] = placement[0] + ":" + String(item.get_instance_id())
+ 	if case_data.name.begins_with("phase_"):
+ 		banana = add_item("Banana",0,2)
+ 	var layout = []
+@@ -142,7 +176,22 @@ func setup_layout() -> void:
+ 		var cells = []
+ 		for cell in item.occupiedCells:
+ 			cells.push_back([cell.x,cell.y])
+-		layout.push_back({"instance":item.get_instance_id(),"source_alias":source_aliases.get(item.get_instance_id(),""),"name":item.descriptor.identifier,"cells":cells,"face":item.faceDirection})
++		var entry = {"instance":item.get_instance_id(),"source_alias":source_aliases.get(item.get_instance_id(),""),"name":item.descriptor.identifier,"cells":cells,"face":item.faceDirection}
++		if natural_second:
++			entry["params"] = item.descriptor.params
++			entry["named_params"] = item.descriptor.namedParams
++			entry["base_cooldown"] = item.getBaseCooldown()
++			entry["affected_cells"] = []
++			for cell in item.getAffectedCellsInInventory():
++				entry.affected_cells.push_back([cell.x,cell.y])
++			entry["affected_items"] = []
++			for affected in item.getAffectedItems_nocache():
++				entry.affected_items.push_back({"id":affected.get_instance_id(),"name":affected.descriptor.identifier})
++			if item.isBag():
++				entry["inside_items"] = []
++				for inside in item.getItemsInside():
++					entry.inside_items.push_back({"id":inside.get_instance_id(),"name":inside.descriptor.identifier})
++		layout.push_back(entry)
+ 	snapshot("layout", {"items":layout})
+ 
+ func add_item(name: String,x: int,y: int,f: int=0) -> Item:
+@@ -172,6 +221,11 @@ func start_case() -> void:
+ 	var player = Game.PLAYER
+ 	for signal_name in ["character_lucky_changed","character_empower_changed","character_spikes_changed","character_mana_changed","character_blind_changed","character_regeneration_changed"]:
+ 		EventBus.connectEvent(player,signal_name,self,"on_stack_changed")
++	if case_data.name.begins_with("natural_"):
++		snapshot("natural_round_start", {"evidence_kind":"only natural items; driver invokes no stack, counter, timer, HP, or RNG APIs","base_health":player.getCurrentHealth(),"character_id":player.get_instance_id(),"selected_class":Game.curClass})
++		if round_count == 2 and player.getCurrentHealth() < 35:
++			finish("incomplete", "natural second combat base health below 35")
++		return
+ 	snapshot("case_api_begin", {"case":case_data.name,"round":round_count,"evidence_kind":"controlled original API; natural timers and callbacks"})
+ 	match case_data.name:
+ 		"zero_fresh":
+@@ -271,7 +325,7 @@ func run_actions() -> void:
+ 		player.gainStacksTemporary(Game.EventType.Regeneration,1,tick_duration,source_a)
+ 		player.gainStacksTemporary(Game.EventType.Lucky,1,item_duration,source_b)
+ 		snapshot("phase_api_after")
+-	elif case_data.name == "lifecycle_natural":
++	elif case_data.name == "lifecycle_natural" or case_data.name.begins_with("natural_"):
+ 		if round_count == 1 and Game.fightEnded and character_ended and not shop_requested:
+ 			shop_requested = true
+ 			for event in Game.combatLog.events:
+@@ -280,11 +334,43 @@ func run_actions() -> void:
+ 			Game.switchToShop()
+ 		elif shop_requested and shop_cleanse_seen and not second_requested and Game.state == Game.State.Shop and Game.canSwitchToCombat:
+ 			second_requested = true
++			if case_data.name.begins_with("natural_"):
++				if player.getCurrentHealth() < 35:
++					finish("incomplete", "natural shop health below 35")
++					return
++				var second_path = run_dir.plus_file("opponent_second.json")
++				if File.new().get_sha256(second_path).to_lower() != String(case_data.opponent_second_sha256).to_lower():
++					finish("error", "second opponent fixture fingerprint mismatch")
++					return
++				var input = File.new()
++				if input.open(second_path,File.READ) != OK:
++					finish("error", "second opponent fixture unavailable")
++					return
++				var fixture_text = input.get_as_text()
++				input.close()
++				if File.new().get_sha256(case_data.opponent_path).to_lower() != String(case_data.opponent_first_sha256).to_lower():
++					finish("error", "opponent input changed concurrently before fixture switch")
++					return
++				if input.open(case_data.opponent_path,File.WRITE) != OK:
++					finish("error", "cannot switch backed-up opponent input")
++					return
++				input.store_string(fixture_text)
++				input.close()
++				var written_sha = File.new().get_sha256(case_data.opponent_path)
++				snapshot("fixture_input_switch", {"path":case_data.opponent_path,"expected_sha256":case_data.opponent_second_sha256,"actual_sha256":written_sha})
++				if written_sha.to_lower() != String(case_data.opponent_second_sha256).to_lower():
++					finish("error", "written second opponent fingerprint mismatch")
++					return
++				setup_layout()
++				if done:
++					return
+ 			snapshot("lifecycle_second_combat_before", {"api":"Game.switchToCombat()"})
+ 			Game.switchToCombat()
+ 
+ func on_stack_changed(amount: int,event: CombatEvent) -> void:
+ 	snapshot("notification", {"amount":amount,"event_id":event.id,"type":event.type,"target":event.target,"source":event.origin.get_instance_id() if event.origin is Item else -1,"params":event.params})
++	if case_data.name.begins_with("natural_"):
++		return
+ 	if done or reaction_done or amount >= 0 or not event.getParam("timeout",false) or event.origin != source_a:
+ 		return
+ 	var player = Game.PLAYER
+@@ -323,6 +409,31 @@ func observe(label: String,call_id: int,subject: Object,payload: Dictionary={})
+ 		metadata["current"] = subject.current
+ 		metadata["permanent"] = subject.permanentStacks
+ 		metadata["next_index"] = subject.nextTemporaryTimeout
++		if label.ends_with("_enter"):
++			call_metadata[call_id] = {"label":label,"buff_id":subject.get_instance_id(),"player":subject.character.playerId,"type":subject.type}
++		if label == "gain_request":
++			call_metadata[call_id]["source"] = payload.source
++			call_metadata[call_id]["duration"] = payload.duration
++			call_metadata[call_id]["request"] = payload.request
++		if label == "timeout_selected":
++			call_metadata[call_id]["old_batch"] = payload.batch_id
++		if label == "timeout_before_remove":
++			call_metadata[call_id]["before_remove_observed"] = true
++		if case_data.name.begins_with("natural_") and round_count == 2 and not natural_items.empty():
++			if label == "lose_request" and subject.character == Game.PLAYER and subject.type == Game.EventType.Mana and payload.source == natural_items["Crown"].get_instance_id() and payload.used and payload.request == 10:
++				natural_crown_use = true
++			if label == "timeout_selected" and subject.character == Game.PLAYER and subject.type == Game.EventType.Spikes and payload.source == natural_items["Strong Stone Skin Potion"].get_instance_id():
++				var check = {"call_id":call_id,"buff_id":subject.get_instance_id(),"batch_id":payload.batch_id,"selected_amount":payload.selected_amount,"toad_used":natural_items["Toad"].usedBuffs,"mana":Game.PLAYER.getMana(),"crown_state":natural_items["Crown"].crownState,"mana_potion_full":natural_items["Mana Potion"].isFull,"strong_potion_full":natural_items["Strong Stone Skin Potion"].isFull,"engine_physics_frame":Engine.get_physics_frames(),"observation":observation_sequence+1}
++				check["met"] = check.selected_amount == 2 and check.toad_used in [8,9] and check.mana == 9 and check.crown_state == 0 and check.mana_potion_full and not check.strong_potion_full
++				natural_timeout_checks.push_back(check)
++			if label == "gain_batch_added" and subject.character == Game.PLAYER and subject.type == Game.EventType.Spikes:
++				for ancestor in active_calls:
++					var ancestor_info = call_metadata.get(ancestor,{})
++					if ancestor_info.get("label","") == "buff_onTimeout_enter" and ancestor_info.get("buff_id",-1) == subject.get_instance_id():
++						var gain_info = call_metadata[call_id]
++						var reentry = {"old_timeout_call":ancestor,"new_gain_call":call_id,"buff_id":subject.get_instance_id(),"old_batch_id":ancestor_info.get("old_batch",-1),"new_batch_id":payload.batch_id,"gain_source":gain_info.get("source",-1),"duration":gain_info.get("duration",null),"request":gain_info.get("request",null),"before_old_remove":not ancestor_info.get("before_remove_observed",false),"active_calls":active_calls.duplicate(),"engine_physics_frame":Engine.get_physics_frames(),"observation":observation_sequence+1}
++						natural_reentries.push_back(reentry)
++						metadata["natural_reentry"] = reentry
+ 		if label == "buff_onTimeout_exit":
+ 			timeout_return_frames[subject.get_instance_id()] = Engine.get_physics_frames()
+ 		if label == "buff_onTimeout_enter":
+@@ -387,6 +498,28 @@ func snapshot(label: String,payload: Dictionary={}) -> void:
+ 		var tick = character.tickTimer
+ 		characters.push_back({"id":character.get_instance_id(),"player":character.playerId,"health":character.getCurrentHealth(),"tick_counter":character.tickCounter,"global_reflect":character.debuffReflectStacks,"states":states,"tick_timer":{"id":tick.get_instance_id(),"path":String(tick.get_path()),"index":tick.get_index(),"priority":tick.process_priority,"mode":tick.process_mode,"is_physics":tick.process_mode==Timer.TIMER_PROCESS_PHYSICS,"wait_time":tick.wait_time,"time_left":tick.get_time_left(),"stopped":tick.is_stopped()}})
+ 	row["characters"] = characters
++	if case_data.name.begins_with("natural_"):
++		row["active_calls"] = active_calls.duplicate()
++		row["natural_items"] = []
++		if not natural_items.empty():
++			for item in Game.PLAYER.INVENTORY.getItems():
++				var name = item.descriptor.identifier
++				if not name in ["Toad","Crown","Strong Stone Skin Potion","Mana Potion","Heart Container","Hungry Blade","Blueberries","Fanny Pack"]:
++					continue
++				var item_row = {"name":name,"id":item.get_instance_id(),"trigger_time":item.triggerTime,"speed":item.getSpeed(),"base_cooldown":item.getBaseCooldown(),"params":item.descriptor.params}
++				if name == "Toad":
++					item_row["used"] = item.usedBuffs
++					item_row["gained"] = item.gainedBuffs
++				elif name == "Crown":
++					item_row["crown_state"] = item.crownState
++				elif name in ["Strong Stone Skin Potion","Mana Potion"]:
++					item_row["full"] = item.isFull
++					item_row["affected"] = []
++					for affected in item.getAffectedItems():
++						item_row.affected.push_back({"id":affected.get_instance_id(),"name":affected.descriptor.identifier})
++				elif name == "Heart Container":
++					item_row["activated"] = item.activated
++				row.natural_items.push_back(item_row)
+ 	if banana != null and is_instance_valid(banana):
+ 		row["banana"] = {"id":banana.get_instance_id(),"path":String(banana.get_path()),"index":banana.get_index(),"priority":banana.process_priority,"trigger_time":banana.triggerTime,"speed":banana.getSpeed(),"processing":banana.is_physics_processing()}
+ 	traces.push_back(row)
+@@ -415,6 +548,10 @@ func finish(status: String,message: String="") -> void:
+ 		if frame in item_frames:
+ 			item_matches.push_back(frame)
+ 	var result = {"status":status,"message":message,"case":case_data,"rounds":round_count,"reaction_executed":reaction_done,"action_executed":action_done,"timeout_frames":timeout_frames,"tick_frames":tick_frames,"item_frames":item_frames,"actual_tick_frame_matches":tick_matches,"actual_item_frame_matches":item_matches,"observations":traces,"events":events,"previous_round_events":round_event_archive,"elapsed_wall_ms":OS.get_ticks_msec()-started_wall}
++	if case_data.name.begins_with("natural_"):
++		result["natural_timeout_checks"] = natural_timeout_checks
++		result["natural_reentries"] = natural_reentries
++		result["natural_crown_use_request"] = natural_crown_use
+ 	var file = File.new()
+ 	if file.open(run_dir.plus_file("result.json"),File.WRITE) == OK:
+ 		file.store_string(JSON.print(result))

@@ -1,0 +1,175 @@
+diff --git "a/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\data\\buff_natural_reentry\\natural_20261110_01\\original_bytes\\Buff.gd.bin" "b/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\data\\buff_natural_reentry\\natural_20261110_01\\prepared\\Buff.gd"
+index 9351ec3..253fe83 100644
+--- "a/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\data\\buff_natural_reentry\\natural_20261110_01\\original_bytes\\Buff.gd.bin"
++++ "b/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\data\\buff_natural_reentry\\natural_20261110_01\\prepared\\Buff.gd"
+@@ -50,11 +50,14 @@ func setStacks(amount: int):
+ 	counter.updateHud(current)
+ 
+ func reset():
++	var t0_call_id = T0Probe.new_call_id()
++	T0Probe.observe("buff_reset_enter", t0_call_id, self)
+ 	setStacks(0)
+ 	resistStacks = 0
+ 	resistChancePercent = 0.0
+ 	cleanseProtectionChancePercent = 0.0
+ 	reflectChancePercent = 0.0
++	T0Probe.observe("buff_reset_exit",t0_call_id,self)
+ 
+ func changeResistChance(chance):
+ 	resistChancePercent += chance
+@@ -75,7 +78,10 @@ func gainStacks(amount: int, item = null, triggerEvent = null,
+ 
+ func gainTemporary(amount: int, duration: float, item = null, 
+ 	triggerEvent = null, reflect: bool = false):
++	var t0_call_id = T0Probe.new_call_id()
++	T0Probe.observe("buff_gainTemporary_enter", t0_call_id, self)
+ 	
++	T0Probe.observe("gain_request", t0_call_id, self, {"request":amount,"duration":duration,"reflected_in":reflect,"source":item.get_instance_id() if item != null else -1,"parent":triggerEvent.id if triggerEvent != null else -1})
+ 	var event = null
+ 	
+ 	if amount > 0:
+@@ -96,6 +102,7 @@ func gainTemporary(amount: int, duration: float, item = null,
+ 					amount += 1
+ 		
+ 		var left = amount - resisted
++		T0Probe.observe("gain_after_resist",t0_call_id,self,{"amount":amount,"resisted":resisted,"left":left})
+ 		
+ 		var reflected = 0
+ 		
+@@ -125,6 +132,7 @@ func gainTemporary(amount: int, duration: float, item = null,
+ 					Util.spawnReflectLabel(type, target.randBuffLabelPos(), reflected)
+ 				
+ 			
++			T0Probe.observe("gain_after_reflect",t0_call_id,self,{"amount":amount,"resisted":resisted,"left":left,"reflected_count":reflected})
+ 			var ownStacksUsed = min(left, resistStacks)
+ 			resisted += ownStacksUsed
+ 			left -= ownStacksUsed
+@@ -144,8 +152,12 @@ func gainTemporary(amount: int, duration: float, item = null,
+ 			
+ 		
+ 		if amount > 0:
++			T0Probe.observe("gain_before_cap",t0_call_id,self,{"amount":amount,"reflected_count":reflected})
+ 			amount = int(min(amount, MAX_STACKS - current))
+-			if amount == 0: return null
++			T0Probe.observe("gain_after_cap",t0_call_id,self,{"amount":amount,"reflected_count":reflected})
++			if amount == 0:
++				T0Probe.observe("buff_gainTemporary_exit",t0_call_id,self,{"cap_zero":true})
++				return null
+ 			
+ 			current += amount
+ 			counter.updateHud(current)
+@@ -156,15 +168,18 @@ func gainTemporary(amount: int, duration: float, item = null,
+ 				var timeout = Util.time + duration
+ 				var tempStacks = TemporaryStacks.new(amount, timeout, item)
+ 				temporaryStacks.push_back(tempStacks)
++				T0Probe.observe("gain_batch_added",t0_call_id,self,{"batch_id":tempStacks.get_instance_id(),"timeout":timeout})
+ 				
+ 				if timer.is_stopped():
+ 					timer.start(duration)
+ 					nextTemporaryTimeout = 0
++					T0Probe.observe("gain_timer_stopped_start",t0_call_id,self)
+ 				else:
+ 					if duration < timer.get_time_left():
+ 						timer.stop()
+ 						timer.start(duration)
+ 						nextTemporaryTimeout = temporaryStacks.size() - 1
++						T0Probe.observe("gain_timer_running_restart",t0_call_id,self)
+ 			
+ 			
+ 			
+@@ -193,11 +208,15 @@ func gainTemporary(amount: int, duration: float, item = null,
+ 			character.opponent.gainStacksTemporary(type, reflected, duration, 
+ 				item, triggerEvent, true)
+ 		
++	T0Probe.observe("buff_gainTemporary_exit",t0_call_id,self,{"event_id":event.id if event != null else -1})
+ 	return event
+ 
+ 
+ func loseStacks(amount: int, item = null, triggerEvent = null, used = false):
++	var t0_call_id = T0Probe.new_call_id()
++	T0Probe.observe("buff_loseStacks_enter", t0_call_id, self)
+ 	
++	T0Probe.observe("lose_request",t0_call_id,self,{"request":amount,"used":used,"source":item.get_instance_id() if item != null else -1,"parent":triggerEvent.id if triggerEvent != null else -1})
+ 	amount = min(current, amount)
+ 	
+ 	if not used:
+@@ -264,6 +283,7 @@ func loseStacks(amount: int, item = null, triggerEvent = null, used = false):
+ 					farthestIndex = i
+ 			
+ 			var farthest = temporaryStacks[farthestIndex]
++			T0Probe.observe("lose_selected_batch",t0_call_id,self,{"selected_index":farthestIndex,"batch_id":farthest.get_instance_id(),"remaining_request":tempToCleanse})
+ 			if farthest.amount > tempToCleanse:
+ 				farthest.amount -= tempToCleanse
+ 				tempToCleanse = 0
+@@ -277,16 +297,22 @@ func loseStacks(amount: int, item = null, triggerEvent = null, used = false):
+ 					
+ 					timer.stop()
+ 	
+-	return changeCurrentLogShowLabel(false, amount, item, triggerEvent, used)
++	var t0_event = changeCurrentLogShowLabel(false,amount,item,triggerEvent,used)
++	T0Probe.observe("buff_loseStacks_exit",t0_call_id,self,{"event_id":t0_event.id if t0_event != null else -1})
++	return t0_event
+ 
+ 
+ func changeCurrentLogShowLabel(isTimeout: bool, amount: int, 
+ 	item = null, triggerEvent = null, used: bool = false):
++	var t0_call_id = T0Probe.new_call_id()
++	T0Probe.observe("buff_changeCurrentLogShowLabel_enter", t0_call_id, self)
+ 		
+ 	var change = min(current, amount)
++	T0Probe.observe("change_actual",t0_call_id,self,{"actual":change,"requested":amount,"timeout":isTimeout,"used":used,"source":item.get_instance_id() if item != null else -1,"parent":triggerEvent.id if triggerEvent != null else -1})
+ 
+ 	if change > 0:
+ 		current -= change
++		T0Probe.observe("change_committed",t0_call_id,self,{"actual":change,"timeout":isTimeout})
+ 		counter.updateHud(current)
+ 		
+ 		
+@@ -305,19 +331,27 @@ func changeCurrentLogShowLabel(isTimeout: bool, amount: int,
+ 			else:
+ 				event = Game.combatLog.createEvent_Stack(type, item, - change, character.playerId, triggerEvent, used)
+ 				
++			T0Probe.observe("change_before_signal",t0_call_id,self,{"event_id":event.id,"actual":change,"timeout":isTimeout})
+ 			EventBus.emitEvent(character, signalName, event, [event.getAmount(), event])
+ 			
+ 			var appliedToOpponent = (character != item.character())
+ 			Util.spawnBuffLabel_item(type, item, - change, appliedToOpponent)
+ 			
++			T0Probe.observe("buff_changeCurrentLogShowLabel_exit",t0_call_id,self,{"event_id":event.id})
+ 			return event
+ 	
++	T0Probe.observe("buff_changeCurrentLogShowLabel_exit",t0_call_id,self,{"event_id":-1})
+ 	return null
+ 
+ func onTimeout():
++	var t0_call_id = T0Probe.new_call_id()
++	T0Probe.observe("buff_onTimeout_enter", t0_call_id, self)
+ 	var timedOutStacks: TemporaryStacks = temporaryStacks[nextTemporaryTimeout]
++	T0Probe.observe("timeout_selected",t0_call_id,self,{"batch_id":timedOutStacks.get_instance_id(),"selected_amount":timedOutStacks.amount,"selected_timeout":timedOutStacks.timeout,"source":timedOutStacks.item.get_instance_id() if timedOutStacks.item != null else -1})
+ 	changeCurrentLogShowLabel(true, timedOutStacks.amount, timedOutStacks.item)
++	T0Probe.observe("timeout_before_remove",t0_call_id,self,{"selected_batch":timedOutStacks.get_instance_id()})
+ 	temporaryStacks.remove(nextTemporaryTimeout)
++	T0Probe.observe("timeout_after_remove",t0_call_id,self)
+ 	
+ 	
+ 	
+@@ -334,14 +368,19 @@ func onTimeout():
+ 				
+ 		nextTemporaryTimeout = earliestIndex
+ 		var delay = earliestTimeout - Util.time
++		T0Probe.observe("timeout_delay",t0_call_id,self,{"delay":delay,"earliest":earliestTimeout,"recursive":delay <= 0.01})
+ 		if delay <= 0.01:
+ 			onTimeout()
+ 		else:
+ 			timer.start(delay)
++	T0Probe.observe("buff_onTimeout_exit",t0_call_id,self)
+ 
+ func combatEnd():
++	var t0_call_id = T0Probe.new_call_id()
++	T0Probe.observe("buff_combatEnd_enter", t0_call_id, self)
+ 	timer.stop()
+ 	temporaryStacks.clear()
++	T0Probe.observe("buff_combatEnd_exit",t0_call_id,self)
+ 
+ class TemporaryStacks extends Reference:
+ 	var amount: int

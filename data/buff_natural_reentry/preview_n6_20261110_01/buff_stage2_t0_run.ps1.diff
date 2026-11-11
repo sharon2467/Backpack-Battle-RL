@@ -1,0 +1,23 @@
+diff --git "a/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\data\\buff_natural_reentry\\natural_20261110_02\\test_scripts\\buff_stage2_t0_run.ps1" "b/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\tests\\buff_stage2_t0_run.ps1"
+index 58fd7e8..6bc77aa 100644
+--- "a/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\data\\buff_natural_reentry\\natural_20261110_02\\test_scripts\\buff_stage2_t0_run.ps1"
++++ "b/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\tests\\buff_stage2_t0_run.ps1"
+@@ -35,7 +35,7 @@ $t0CharacterFile = Join-Path $t0Project 'Core/Character.gd'
+ $t0ItemFile = Join-Path $t0Project 'Items/Item.gd'
+ $t0Changed = @($t0ProjectFile,$t0BuffFile,$t0CharacterFile,$t0ItemFile,$t0Json)
+ $t0Paths = @($t0ProjectFile,$t0BuffFile,$t0CharacterFile,$t0ItemFile,(Join-Path $t0Project 'Core/Game.gd'),(Join-Path $t0Project 'Utility/SteamHelper.gd'),(Join-Path $t0Project 'Sheets/CSV/ItemData.csv'),(Join-Path $t0Project 'Sheets/CSV/ItemData_e.csv'),$t0Json,$t0Exe)
+-$t0NaturalNames = @('natural_linked','natural_unlinked')
++$t0NaturalNames = @('natural_linked','natural_unlinked','natural_wrong_remove')
+ $t0Names = @('smoke','zero_fresh','zero_reused','zero_running','equal_forward','equal_reverse','tolerance_inside','tolerance_outside','cross_start_forward','cross_start_reverse','phase_physics','phase_deferred','reentry_use','reentry_lose','reentry_gain','stale_far_first','stale_early_first','cap_expiry','reset_controlled','lifecycle_natural') + $t0NaturalNames
+ if ($Cases -contains 'all') { $Cases = $t0Names | Where-Object { $_ -ne 'smoke' -and $_ -notin $t0NaturalNames } }
+ if (@($Cases | Where-Object { $_ -notin $t0Names }).Count) { throw 'Unknown case' }
+@@ -171,6 +171,9 @@ try {
+         $t0KnownJsonHashes += $t0Written[$t0Json]
+         Write-T0Utf8 (Join-Path $t0CaseDir 'opponent_input.json') ($t0Opponent | ConvertTo-Json -Depth 6)
+         if ($t0Natural) {
++            $t0Case.warmup_rounds = if ($t0Case.name -eq 'natural_wrong_remove') { 4 } else { 1 }
++            $t0Case.main_round = $t0Case.warmup_rounds + 1
++            $t0Case.wall_deadline = if ($t0Case.name -eq 'natural_wrong_remove') { 225 } else { 105 }
+             $t0Second = @{schema_version=1;game_version='1.1.8';class=0;health=25;stamina=5;items=($t0OpponentItems + @{item_index=17;x=0;y=0;f=0})}
+             $t0SecondPath = Join-Path $t0CaseDir 'opponent_second.json'
+             Write-T0Utf8 $t0SecondPath ($t0Second | ConvertTo-Json -Depth 6)

@@ -56,8 +56,8 @@ class DamageItem(BattleItem):
 
 class StatusSetupEffect(Effect):
     def apply(self, context):
-        context.owner.buffs.Regeneration = 2
-        context.opponent.debuffs.Poison = 1
+        context.battle_state.gain_stacks(context.owner, "Regeneration", 2)
+        context.battle_state.gain_stacks(context.opponent, "Poison", 1)
         return True
 
 
@@ -69,10 +69,12 @@ class StatusSetupItem(BattleItem):
             is_active_item=True,
             **kwargs,
         )
+        self.has_applied = False
 
     def run_effect(self, trigger_results, context):
-        if trigger_results[0]:
+        if trigger_results[0] and not self.has_applied:
             self.effects[0].apply(context)
+            self.has_applied = True
 
 
 def make_damage_factory(damage=100):
@@ -128,15 +130,15 @@ def minimal_config(players=None, settings=None):
 
 
 class MainV1Test(unittest.TestCase):
-    def test_main_default_frame_delta_is_one_thirtieth(self):
+    def test_main_default_frame_delta_is_sixty_hz_and_accumulates_float32_delta(self):
         result = run_battle_from_config(
             minimal_config(settings={"max_frames": 1}),
             item_factories={},
             item_catalog={},
         )
 
-        self.assertEqual(DEFAULT_FRAME_DELTA, 1.0 / 30.0)
-        self.assertEqual(result["time"], 1.0 / 30.0)
+        self.assertEqual(DEFAULT_FRAME_DELTA, 1.0 / 60.0)
+        self.assertEqual(result["time"], 0.01666666753590107)
 
     def test_normalize_player_specs_keeps_class_id_as_metadata(self):
         player_specs, metadata = normalize_player_specs(minimal_config())
@@ -238,8 +240,8 @@ class MainV1Test(unittest.TestCase):
 
         self.assertEqual(result["winner"], 0)
         self.assertEqual(result["finish_reason"], "winner")
-        self.assertEqual(result["frame"], 0)
-        self.assertEqual(result["time"], 0.0)
+        self.assertEqual(result["frame"], 1)
+        self.assertEqual(result["time"], 1.0)
         self.assertEqual(result["players"][1]["health"], -75)
         self.assertEqual(
             result["active_items"],
@@ -249,7 +251,7 @@ class MainV1Test(unittest.TestCase):
     def test_run_battle_serializes_fatigue_damage(self):
         result = run_battle_from_config(
             minimal_config(
-                settings={"max_frames": 17, "frame_delta": 1.0},
+                settings={"max_frames": 19, "frame_delta": 1.0},
             ),
             item_factories={},
             item_catalog={},
@@ -257,6 +259,12 @@ class MainV1Test(unittest.TestCase):
 
         self.assertEqual(result["players"][0]["fatigue_damage"], 1)
         self.assertEqual(result["players"][1]["fatigue_damage"], 1)
+        # With explicit one-second steps, strict Timer <0 and a newly started
+        # inactive timer waiting for the next step put the first tick at step19.
+        ticks = [row for row in result["log"]
+                 if row["data"]["action"] == "fatigue_damage"]
+        self.assertEqual([(row["frame"], row["time"]) for row in ticks],
+                         [(18, 18.0), (18, 18.0)])
 
     def test_run_battle_serializes_regeneration_and_lethal_poison(self):
         config = minimal_config(
@@ -287,7 +295,7 @@ class MainV1Test(unittest.TestCase):
                     "placements": [],
                 },
             ],
-            settings={"max_frames": 2, "frame_delta": 1.0},
+            settings={"max_frames": 3, "frame_delta": 1.0},
         )
         item_catalog = {
             "status_setup": {
@@ -315,7 +323,7 @@ class MainV1Test(unittest.TestCase):
 
     def test_lethal_fatigue_returns_player_win_without_draw(self):
         config = minimal_config(
-            settings={"max_frames": 17, "frame_delta": 1.0},
+            settings={"max_frames": 19, "frame_delta": 1.0},
         )
         config["players"][0]["health"] = 1
         config["players"][1]["health"] = 1
@@ -328,8 +336,9 @@ class MainV1Test(unittest.TestCase):
 
         self.assertEqual(result["winner"], 0)
         self.assertEqual(result["finish_reason"], "winner")
-        self.assertEqual(result["frame"], 17)
-        self.assertEqual(result["time"], 17.0)
+        # Internal lethal damage stops before advancing this step's clock.
+        self.assertEqual(result["frame"], 18)
+        self.assertEqual(result["time"], 18.0)
         self.assertEqual(result["players"][0]["health"], 1)
         self.assertEqual(result["players"][0]["fatigue_damage"], 0)
         self.assertEqual(result["players"][1]["health"], 0)

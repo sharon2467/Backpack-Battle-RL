@@ -8,6 +8,8 @@ from battle_module_v1 import (
     ATTACK_PHASE_CHARACTER_ATTACKED,
     AttackEvent,
     BattleState,
+    BuffSlot,
+    DebuffSlot,
     ItemActivationContext,
     PlayerState,
     _BattleFinishedSignal,
@@ -106,10 +108,12 @@ def make_item_context(
     owner_max_health=20,
     owner_stamina=5.0,
     owner_max_stamina=5.0,
+    owner_buffs=None,
     opponent_health=20,
     opponent_max_health=20,
     opponent_stamina=5.0,
     opponent_max_stamina=5.0,
+    opponent_block=0,
     rng=None,
 ):
     owner = PlayerState(
@@ -118,6 +122,7 @@ def make_item_context(
         max_health=owner_max_health,
         stamina=owner_stamina,
         max_stamina=owner_max_stamina,
+        buffs=owner_buffs if owner_buffs is not None else BuffSlot(),
         items={item.item_key: item},
     )
     opponent = PlayerState(
@@ -126,6 +131,7 @@ def make_item_context(
         max_health=opponent_max_health,
         stamina=opponent_stamina,
         max_stamina=opponent_max_stamina,
+        block=opponent_block,
     )
     state = BattleState(
         players=[owner, opponent],
@@ -338,10 +344,9 @@ class BattleLoggingV1Test(unittest.TestCase):
 
     def test_wand_logs_gain_conversion_and_activation_in_order(self):
         item = WandOfEquilibrium(item_key="wand1", player_id=0)
-        state, context = make_item_context(item)
-        context.owner.buffs.Mana = 9
-        context.owner.buffs.Luck = 10
-        context.owner.buffs.Regeneration = 10
+        state, context = make_item_context(
+            item, owner_buffs=BuffSlot(Mana=9, Luck=10, Regeneration=10),
+        )
 
         item.run_effect([True], context)
 
@@ -353,6 +358,10 @@ class BattleLoggingV1Test(unittest.TestCase):
         self.assertEqual(state.log[1]["data"]["buff"], "Mana")
         self.assertEqual(state.log[3]["data"]["buff"], "Mana")
         self.assertEqual(state.log[5]["data"]["buff"], "Empower")
+        self.assertTrue(state.log[2]["data"]["used"])
+        self.assertEqual(state.log[2]["data"]["amount"], -1)
+        self.assertEqual(state.log[4]["data"]["trigger_log_sequence"], 2)
+        self.assertFalse(state.log[3]["data"]["contributes_to_stack_totals"])
 
     def test_magic_for_dummies_logs_failure_and_success_paths(self):
         failed_item = MagicForDummies(item_key="book1", player_id=0)
@@ -365,8 +374,7 @@ class BattleLoggingV1Test(unittest.TestCase):
         self.assertFalse(failed_state.log[0]["data"]["success"])
 
         item = MagicForDummies(item_key="book2", player_id=0)
-        state, context = make_item_context(item)
-        context.owner.buffs.Mana = 1
+        state, context = make_item_context(item, owner_buffs=BuffSlot(Mana=1))
 
         item.prepare(context)
         item.run_effect([True], context)
@@ -377,6 +385,11 @@ class BattleLoggingV1Test(unittest.TestCase):
         )
         self.assertEqual(context.owner.max_health, 28)
         self.assertEqual(context.owner.health, 28)
+        self.assertEqual(state.log[0]["data"]["amount"], -1)
+        self.assertTrue(state.log[0]["data"]["used"])
+        self.assertEqual(state.log[1]["data"]["event_kind"], "effect_attempt")
+        self.assertFalse(state.log[1]["data"]["contributes_to_stack_totals"])
+        self.assertEqual(state.log[2]["data"]["trigger_log_sequence"], 0)
 
     def test_whetstone_logs_modified_targets_and_empty_case(self):
         item = Whetstone(item_key="whetstone1", player_id=0)
@@ -612,22 +625,30 @@ class BattleLoggingV1Test(unittest.TestCase):
         item = Stone(item_key="stone1", player_id=0)
         state, context = make_item_context(
             item,
+            opponent_block=5,
             rng=SequenceRng(
                 random_values=[0.0],
                 randint_values=[2],
             ),
         )
-        context.opponent.block = 5
-
         item.run_effect([True], context)
 
         self.assertEqual(
             actions(state),
-            ["spend_stamina", "remove_block", "attack", "item_activation"],
+            ["spend_stamina", "stack_change", "remove_block", "attack", "item_activation"],
         )
         self.assertEqual(state.log[0]["data"]["stamina_spent"], 0)
-        self.assertEqual(state.log[1]["data"]["block_removed"], 4)
-        self.assertEqual(state.log[1]["data"]["final_block_removed"], 4)
+        self.assertEqual(state.log[1]["data"]["stack_name"], "Block")
+        self.assertEqual(state.log[1]["data"]["amount"], -4)
+        self.assertEqual(state.log[1]["data"]["target_player_id"], 1)
+        self.assertFalse(state.log[1]["data"]["used"])
+        self.assertEqual(state.log[2]["data"]["block_removed"], 4)
+        self.assertEqual(state.log[2]["data"]["final_block_removed"], 4)
+        self.assertEqual(state.log[2]["data"]["event_kind"], "effect_attempt")
+        self.assertFalse(state.log[2]["data"]["contributes_to_stack_totals"])
+        self.assertEqual(state.log[3]["data"]["final_block_damage"], 1)
+        self.assertEqual(state.log[3]["data"]["final_health_damage"], 1)
+        self.assertEqual((context.opponent.block, context.opponent.health), (0, 19))
 
     def test_banana_logs_capped_heal_stamina_and_activation(self):
         item = Banana(item_key="banana1", player_id=0)
@@ -659,14 +680,21 @@ class BattleLoggingV1Test(unittest.TestCase):
         self.assertEqual(
             actions(state),
             [
+                "stack_change",
                 "gain_block",
                 "remove_vampirism_check",
                 "remove_buff",
                 "item_activation",
             ],
         )
-        self.assertEqual(state.log[2]["data"]["stack_removed"], 1)
-        self.assertEqual(state.log[2]["data"]["final_stack_removed"], 0)
+        self.assertEqual(state.log[0]["data"]["stack_name"], "Block")
+        self.assertEqual(state.log[0]["data"]["amount"], 3)
+        self.assertEqual(state.log[0]["data"]["target_player_id"], 0)
+        self.assertEqual(state.log[1]["data"]["event_kind"], "effect_attempt")
+        self.assertFalse(state.log[1]["data"]["contributes_to_stack_totals"])
+        self.assertEqual(state.log[3]["data"]["stack_removed"], 1)
+        self.assertEqual(state.log[3]["data"]["final_stack_removed"], 0)
+        self.assertFalse(state.log[3]["data"]["success"])
 
     def test_rat_logs_independent_proc_checks_after_attack(self):
         item = Rat(item_key="rat1", player_id=0)
@@ -707,6 +735,7 @@ class BattleLoggingV1Test(unittest.TestCase):
         )
         state.players[1].items[attack_source.item_key] = attack_source
         state.prepareItems()
+        parent = state.record_log(attack_source, {"action": "upstream_effect"})
         event = AttackEvent(
             attacker=state.players[1],
             defender=state.players[0],
@@ -715,24 +744,28 @@ class BattleLoggingV1Test(unittest.TestCase):
             min_damage=1,
             max_damage=1,
             accuracy=0,
+            trigger_log_handle=parent,
         )
 
         state.resolve_attack(event)
 
         self.assertEqual(
             actions(state),
-            ["attack", "gain_miss_damage_bonus"],
+            ["upstream_effect", "attack", "gain_miss_damage_bonus"],
         )
-        self.assertFalse(state.log[0]["data"]["hit"])
+        self.assertFalse(state.log[1]["data"]["hit"])
         self.assertEqual(
-            state.log[0]["data"],
+            state.log[1]["data"],
             {
                 "action": "attack",
                 "target_player_id": 0,
                 "attack_types": ["ranged"],
                 "hit": False,
+                "trigger_log_sequence": parent.sequence,
             },
         )
+        self.assertEqual(event.log_handle.sequence, 1)
+        self.assertEqual(broom.miss_damage_bonus, 2)
 
     def test_lethal_attack_completes_log_before_stop_signal(self):
         item = Stone(item_key="stone1", player_id=0)
@@ -776,8 +809,8 @@ class BattleLoggingV1Test(unittest.TestCase):
             player_id=1,
             health=10,
             max_health=10,
+            buffs=BuffSlot(Spikes=2),
         )
-        defender.buffs.Spikes = 2
         state = BattleState(
             players=[attacker, defender],
             rng=SequenceRng(
@@ -810,10 +843,10 @@ class BattleLoggingV1Test(unittest.TestCase):
             max_health=10,
             stamina=5.0,
             max_stamina=5.0,
+            buffs=BuffSlot(Regeneration=2),
+            debuffs=DebuffSlot(Poison=1),
         )
         state = BattleState(players=[target, PlayerState(player_id=1, health=10, max_health=10)])
-        target.buffs.Regeneration = 2
-        target.debuffs.Poison = 1
 
         state._apply_regeneration_tick(target)
         state._apply_poison_tick(target)

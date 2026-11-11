@@ -537,8 +537,11 @@ class WandOfEquilibrium(BattleItem):
             for resource_name in self.RESOURCE_NAMES
         ) >= 10:
             most_resource = self._most_resource_name(buffs, context.battle_state.rng)
-            self._use_effects_by_name[most_resource].apply(context)
-            self._empower_effect.apply(context)
+            result = self._use_effects_by_name[most_resource].apply_result(context)
+            self._empower_effect.apply(
+                context,
+                trigger_log_handle=(result.event.log_handle if result.event else None),
+            )
 
         self.emit_activation(context)
 
@@ -603,8 +606,12 @@ class MagicForDummies(BattleItem):
     ) -> None:
         if not trigger_results[0]:
             return
-        if self.effects[0].apply(context):
-            self.effects[1].apply(context)
+        result = self.effects[0].apply_result(context)
+        if self.effects[0].amount == 0 or result.delta == -self.effects[0].amount:
+            self.effects[1].apply(
+                context,
+                trigger_log_handle=(result.event.log_handle if result.event else None),
+            )
         self.emit_activation(context)
 
 
@@ -917,7 +924,10 @@ class Broom(Weapon):
                 },
             )
             if blind_success:
-                self.effects[2].apply(context)
+                self.effects[2].apply(
+                    context,
+                    trigger_log_handle=context.attack_event.log_handle,
+                )
 
 
 class WoodenSword(Weapon):
@@ -1212,7 +1222,8 @@ class Rat(BattleItem):
     ) -> None:
         if not trigger_results[0]:
             return
-        if not self.effects[0].apply(context, ("effect",)):
+        attack_result = self.effects[0].apply_result(context, ("effect",))
+        if attack_result.hit is not True:
             self.emit_activation(context)
             return
         poison_success = self.roll_chance(0.75, context.battle_state.rng)
@@ -1227,7 +1238,9 @@ class Rat(BattleItem):
             },
         )
         if poison_success:
-            self.effects[1].apply(context)
+            self.effects[1].apply(
+                context, trigger_log_handle=attack_result.log_handle
+            )
         blind_success = self.roll_chance(0.10, context.battle_state.rng)
         blind_roll = self.chance_rng.last_roll
         context.battle_state.record_log(
@@ -1240,7 +1253,9 @@ class Rat(BattleItem):
             },
         )
         if blind_success:
-            self.effects[2].apply(context)
+            self.effects[2].apply(
+                context, trigger_log_handle=attack_result.log_handle
+            )
         self.emit_activation(context)
 
 

@@ -5,6 +5,7 @@ Native edge fixtures: data/buff_engine_edge/native_negative_left_20261109_07
 and native_full_cap_20261109_08 (see the matching report in docs).
 """
 import unittest
+from dataclasses import replace
 
 from battle_module_v1 import (
     BattleContext, BattleState, BuffSlot, DebuffSlot, PlayerState,
@@ -59,6 +60,19 @@ class BuffStackAlignmentTest(unittest.TestCase):
     def records(self, action):
         return [row for row in self.battle.log if row["data"]["action"] == action]
 
+    def initial(self, target, name, current=None, state=None):
+        """Arrange ordinary initial slots through PlayerState's constructor seed."""
+        buffs, debuffs = replace(target.buffs), replace(target.debuffs)
+        if current is not None:
+            setattr(buffs if name in BuffSlot.__annotations__ else debuffs, name, current)
+        states = dict(target.stack_states)
+        if state is not None:
+            states[name] = state
+        seeded = PlayerState(player_id=target.player_id, buffs=buffs,
+                             debuffs=debuffs, stack_states=states)
+        target.buffs, target.debuffs, target.stack_states = buffs, debuffs, seeded.stack_states
+        return seeded.stack_states[name]
+
     def observe(self, target, name, *, side=0, callback=None):
         observer = StackObserver("observer" + str(side), side, callback)
         self.battle.players[side].items[observer.item_key] = observer
@@ -94,7 +108,7 @@ class BuffStackAlignmentTest(unittest.TestCase):
         foreign = PlayerState(player_id=0)
         for operation in (self.battle.gain_stacks, self.battle.lose_stacks,
                           self.battle.try_use_stacks):
-            for target, name, amount in ((foreign, "Mana", 0), (self.owner, "Block", 0),
+            for target, name, amount in ((foreign, "Mana", 0), (self.owner, "Unknown", 0),
                                          (self.owner, "mana", 0), (self.owner, True, 0),
                                          (self.owner, "Mana", -1), (self.owner, "Mana", True),
                                          (self.owner, "Mana", 1.0)):
@@ -103,10 +117,12 @@ class BuffStackAlignmentTest(unittest.TestCase):
                         operation(target, name, amount)
             result = operation(self.owner, "Mana", 0, source_item=self.source)
             self.assertEqual((result.delta, result.event), (0, None))
-        self.assertEqual((self.battle.log, self.owner.stack_states, self.rng.seen), ([], {}, []))
+        self.assertEqual((self.battle.log, self.rng.seen), ([], []))
+        self.assertEqual(len(self.owner.stack_states), 11)
+        self.assertTrue(all(state == StackState() for state in self.owner.stack_states.values()))
 
     def test_gain_caps_actual_delta_and_emits_nothing_at_full_cap(self):
-        self.owner.buffs.Mana = 9998
+        self.initial(self.owner, 'Mana', current=9998)
         observer = self.observe(self.owner, "mana")
         first = self.battle.gain_stacks(self.owner, "Mana", 7, source_item=self.source)
         second = self.battle.gain_stacks(self.owner, "Mana", 1, source_item=self.source)
@@ -115,9 +131,9 @@ class BuffStackAlignmentTest(unittest.TestCase):
         self.assertEqual(len(observer.contexts), 1)
 
     def test_raw_use_is_partial_but_try_use_is_atomic_and_both_skip_protection(self):
-        self.owner.buffs.Mana = 2
+        self.initial(self.owner, 'Mana', current=2)
         state = StackState(cleanse_protection_chance_percent=100, resist_stacks=4)
-        self.owner.stack_states["Mana"] = state
+        self.owner.stack_states["Mana"] = self.initial(self.owner, 'Mana', state=state)
         self.owner.buff_protect_stacks = 5
         failed = self.battle.try_use_stacks(self.owner, "Mana", 3, source_item=self.source)
         self.assertEqual((failed.delta, self.owner.buffs.Mana), (0, 2))
@@ -129,9 +145,9 @@ class BuffStackAlignmentTest(unittest.TestCase):
         self.assertEqual(self.records("stack_protected"), [])
 
     def test_remove_rolls_per_capped_layer_then_type_and_global_protection(self):
-        self.owner.buffs.Mana = 10
+        self.initial(self.owner, 'Mana', current=10)
         state = StackState(cleanse_protection_chance_percent=50, resist_stacks=1)
-        self.owner.stack_states["Mana"] = state
+        self.owner.stack_states["Mana"] = self.initial(self.owner, 'Mana', state=state)
         self.owner.buff_protect_stacks = 1
         self.rng.values = [0.1, 0.9, 0.2, 0.8, 0.7]
         result = self.battle.lose_stacks(self.owner, "Mana", 5, source_item=self.source)
@@ -143,8 +159,8 @@ class BuffStackAlignmentTest(unittest.TestCase):
         self.assertEqual(self.rng.values, [])
 
     def test_negative_protection_expands_removal_but_never_above_current(self):
-        self.owner.buffs.Mana = 3
-        self.owner.stack_states["Mana"] = StackState(cleanse_protection_chance_percent=-100)
+        self.initial(self.owner, 'Mana', current=3)
+        self.owner.stack_states["Mana"] = self.initial(self.owner, 'Mana', state=StackState(cleanse_protection_chance_percent=-100))
         self.rng.values = [0.5, 0.5]
         result = self.battle.lose_stacks(self.owner, "Mana", 2, source_item=self.source)
         self.assertEqual((result.delta, self.owner.buffs.Mana), (-3, 0))
@@ -152,27 +168,27 @@ class BuffStackAlignmentTest(unittest.TestCase):
         self.assertEqual(len(self.rng.seen), 2)
 
     def test_debuff_type_protection_does_not_consume_global_buff_protection(self):
-        self.owner.debuffs.Cold = 5
+        self.initial(self.owner, 'Cold', current=5)
         state = StackState(resist_stacks=2)
-        self.owner.stack_states["Cold"] = state
+        self.owner.stack_states["Cold"] = self.initial(self.owner, 'Cold', state=state)
         self.owner.buff_protect_stacks = 20
         result = self.battle.lose_stacks(self.owner, "Cold", 3, source_item=self.source)
         self.assertEqual((result.delta, state.resist_stacks, self.owner.buff_protect_stacks), (-1, 0, 20))
 
     def test_negative_protection_cancellation_only_logs_positive_protected_amount(self):
-        self.owner.buffs.Mana = 5
-        self.owner.stack_states["Mana"] = StackState(
-            cleanse_protection_chance_percent=-100, resist_stacks=1)
+        self.initial(self.owner, 'Mana', current=5)
+        self.owner.stack_states["Mana"] = self.initial(self.owner, 'Mana', state=StackState(
+            cleanse_protection_chance_percent=-100, resist_stacks=1))
         self.rng.values = [0.5]
         result = self.battle.lose_stacks(self.owner, "Mana", 1, source_item=self.source)
         self.assertEqual(result.delta, -1)
         self.assertEqual(self.records("stack_protected"), [])
 
     def test_resist_then_reflect_draws_original_amount_before_dedicated_resist(self):
-        self.enemy.stack_states["Blind"] = StackState(
-            resist_chance_percent=50, reflect_chance_percent=33, resist_stacks=2)
+        self.enemy.stack_states["Blind"] = self.initial(self.enemy, 'Blind', state=StackState(
+            resist_chance_percent=50, reflect_chance_percent=33, resist_stacks=2))
         self.enemy.debuff_reflect_stacks = 1
-        self.owner.stack_states["Blind"] = StackState(resist_chance_percent=50)
+        self.owner.stack_states["Blind"] = self.initial(self.owner, 'Blind', state=StackState(resist_chance_percent=50))
         # R=1 from three draws; F=1 from all three (not the two left).
         # The global reflector takes the last free layer before type resistance.
         self.rng.values = [0.1, 0.9, 0.7, 0.8, 0.2, 0.7, 0.2, 0.8]
@@ -186,7 +202,7 @@ class BuffStackAlignmentTest(unittest.TestCase):
         self.assertEqual(self.rng.values, [])
 
     def test_amplification_rolls_original_request_then_reflection_rolls_expanded_amount(self):
-        self.enemy.stack_states["Blind"] = StackState(resist_chance_percent=25)
+        self.enemy.stack_states["Blind"] = self.initial(self.enemy, 'Blind', state=StackState(resist_chance_percent=25))
         self.source.stack_amplification_chances["Blind"] = 75
         self.source.stack_powers["Blind"] = 100  # The core receives already-scaled units.
         self.rng.values = [0.2, 0.9, 0.7, 0.8, 0.9]
@@ -196,7 +212,7 @@ class BuffStackAlignmentTest(unittest.TestCase):
 
     def test_dedicated_resist_precedes_global_resist_and_only_spends_what_is_needed(self):
         state = StackState(resist_stacks=2)
-        self.enemy.stack_states["Blind"] = state
+        self.enemy.stack_states["Blind"] = self.initial(self.enemy, 'Blind', state=state)
         self.enemy.debuff_resist_stacks = 3
         self.rng.values = [0.8] * 4
         first = self.battle.gain_stacks(self.enemy, "Blind", 1, source_item=self.source)
@@ -208,7 +224,7 @@ class BuffStackAlignmentTest(unittest.TestCase):
         self.assertEqual([row["data"]["amount"] for row in self.records("stack_resisted")], [1, 3])
 
     def test_zero_total_resistance_skips_resist_draws_but_zero_reflect_still_draws(self):
-        self.enemy.stack_states["Blind"] = StackState(resist_chance_percent=25)
+        self.enemy.stack_states["Blind"] = self.initial(self.enemy, 'Blind', state=StackState(resist_chance_percent=25))
         self.source.stack_amplification_chances["Blind"] = 25
         self.rng.values = [0.8]
         result = self.battle.gain_stacks(self.enemy, "Blind", 1, source_item=self.source)
@@ -234,7 +250,7 @@ class BuffStackAlignmentTest(unittest.TestCase):
             with self.subTest(resist=resist, reflect=reflect):
                 self.setUp()
                 state = StackState(resist_chance_percent=resist, reflect_chance_percent=reflect)
-                self.enemy.stack_states["Blind"] = state
+                self.enemy.stack_states["Blind"] = self.initial(self.enemy, 'Blind', state=state)
                 self.rng.values = draws
                 result = self.battle.gain_stacks(self.enemy, "Blind", 1, source_item=self.source)
                 self.assertEqual(result.delta, 0)
@@ -255,8 +271,8 @@ class BuffStackAlignmentTest(unittest.TestCase):
         ):
             with self.subTest(current=current, request=request, draws=draws):
                 self.setUp()
-                self.enemy.debuffs.Blind = current
-                self.enemy.stack_states["Blind"] = StackState(reflect_chance_percent=20)
+                self.initial(self.enemy, 'Blind', current=current)
+                self.enemy.stack_states["Blind"] = self.initial(self.enemy, 'Blind', state=StackState(reflect_chance_percent=20))
                 self.rng.values = draws
                 result = self.battle.gain_stacks(self.enemy, "Blind", request, source_item=self.source)
                 self.assertEqual(result.delta, expected_delta)
@@ -269,10 +285,10 @@ class BuffStackAlignmentTest(unittest.TestCase):
     def test_reflection_keeps_source_parent_and_skips_power_amplification_and_rebounce(self):
         self.source.stack_powers["Blind"] = 1.5
         self.source.stack_amplification_chances["Blind"] = 100
-        self.enemy.stack_states["Blind"] = StackState(
-            resist_chance_percent=100, reflect_chance_percent=100)
-        self.owner.stack_states["Blind"] = StackState(
-            resist_chance_percent=100, reflect_chance_percent=100)
+        self.enemy.stack_states["Blind"] = self.initial(self.enemy, 'Blind', state=StackState(
+            resist_chance_percent=100, reflect_chance_percent=100))
+        self.owner.stack_states["Blind"] = self.initial(self.owner, 'Blind', state=StackState(
+            resist_chance_percent=100, reflect_chance_percent=100))
         self.rng.values = [0.5] * 6
         parent = self.battle.record_log("Root", {"action": "parent"})
         result = self.battle.gain_stacks(self.enemy, "Blind", 3,
@@ -319,9 +335,9 @@ class BuffStackAlignmentTest(unittest.TestCase):
     def test_source_none_still_records_resist_and_protect_without_success_signal(self):
         blind = self.observe(self.owner, "blind")
         mana = self.observe(self.owner, "mana")
-        self.owner.stack_states["Blind"] = StackState(resist_chance_percent=50)
-        self.owner.stack_states["Mana"] = StackState(cleanse_protection_chance_percent=50)
-        self.owner.buffs.Mana = 2
+        self.owner.stack_states["Blind"] = self.initial(self.owner, 'Blind', state=StackState(resist_chance_percent=50))
+        self.owner.stack_states["Mana"] = self.initial(self.owner, 'Mana', state=StackState(cleanse_protection_chance_percent=50))
+        self.initial(self.owner, 'Mana', current=2)
         self.rng.values = [0.1, 0.9, 0.8, 0.8, 0.1, 0.9]
         gained = self.battle.gain_stacks(self.owner, "Blind", 2)
         lost = self.battle.lose_stacks(self.owner, "Mana", 2)
@@ -347,11 +363,11 @@ class BuffStackAlignmentTest(unittest.TestCase):
         self.assertEqual((attempt["final_stack_gained"], attempt["success"]), (3, True))
 
     def test_reflection_occurs_after_original_target_callback(self):
-        self.enemy.stack_states["Blind"] = StackState(reflect_chance_percent=50)
+        self.enemy.stack_states["Blind"] = self.initial(self.enemy, 'Blind', state=StackState(reflect_chance_percent=50))
         self.rng.values = [0.1, 0.9]
         def reserve_resistance(event):
             self.assertEqual(self.owner.debuffs.Blind, 0)
-            self.owner.stack_states["Blind"] = StackState(resist_stacks=1)
+            self.owner.stack_states["Blind"] = self.initial(self.owner, 'Blind', state=StackState(resist_stacks=1))
         self.observe(self.enemy, "blind", callback=reserve_resistance)
         result = self.battle.gain_stacks(self.enemy, "Blind", 2, source_item=self.source)
         self.assertEqual((result.delta, self.enemy.debuffs.Blind, self.owner.debuffs.Blind), (1, 1, 0))
@@ -360,7 +376,7 @@ class BuffStackAlignmentTest(unittest.TestCase):
         self.assertTrue(self.battle.log[-1]["data"]["reflected"])
 
     def test_effect_attempt_is_diagnostic_and_core_records_each_actual_change_once(self):
-        self.enemy.stack_states["Blind"] = StackState(resist_chance_percent=50)
+        self.enemy.stack_states["Blind"] = self.initial(self.enemy, 'Blind', state=StackState(resist_chance_percent=50))
         self.rng.values = [0.1, 0.9, 0.8, 0.8]
         self.assertIs(InflictDebuffEffect("Blind", 2).apply(self.context), True)
         self.assertEqual([r["data"]["action"] for r in self.battle.log],
@@ -384,11 +400,11 @@ class BuffStackAlignmentTest(unittest.TestCase):
         self.assertTrue(all(r["data"]["event_kind"] == "effect_attempt" for r in self.battle.log))
         self.assertIs(GainBuffEffect("Mana", 2).apply(context), True)
         self.assertIs(UseBuffEffect("Mana", 1).apply(context), True)
-        self.enemy.buffs.Mana = 1
+        self.initial(self.enemy, 'Mana', current=1)
         self.assertIs(BuffRemovalEffect("Mana", 1).apply(context), True)
         self.rng.values = [0.8]
         self.assertIs(InflictDebuffEffect("Blind", 1).apply(context), True)
-        self.owner.debuffs.Blind = 1
+        self.initial(self.owner, 'Blind', current=1)
         self.assertIs(CleanseDebuffEffect("Blind", 1).apply(context), True)
         self.assertEqual(self.records("stack_change"), [])
 
@@ -401,9 +417,9 @@ class BuffStackAlignmentTest(unittest.TestCase):
         self.assertEqual(self.enemy.debuffs.Blind, 1)
         self.source.stack_powers.update(Mana=0, Blind=0)
         self.assertIs(UseBuffEffect("Mana", 1).apply(self.context), True)
-        self.enemy.buffs.Mana = 2
+        self.initial(self.enemy, 'Mana', current=2)
         self.assertIs(BuffRemovalEffect("Mana", 1).apply(self.context), True)
-        self.owner.debuffs.Blind = 2
+        self.initial(self.owner, 'Blind', current=2)
         self.assertIs(CleanseDebuffEffect("Blind", 1).apply(self.context), True)
         self.assertEqual((self.owner.buffs.Mana, self.enemy.buffs.Mana, self.owner.debuffs.Blind), (1, 1, 1))
         self.assertIs(GainBuffEffect("Mana", 2).apply(self.context), False)
@@ -411,8 +427,8 @@ class BuffStackAlignmentTest(unittest.TestCase):
         self.assertEqual(self.rng.values, [])
 
     def test_cleanse_bool_reports_actual_removal_not_native_precap_request(self):
-        self.owner.debuffs.Blind = 2
-        self.owner.stack_states["Blind"] = StackState(cleanse_protection_chance_percent=100)
+        self.initial(self.owner, 'Blind', current=2)
+        self.owner.stack_states["Blind"] = self.initial(self.owner, 'Blind', state=StackState(cleanse_protection_chance_percent=100))
         self.rng.values = [0.5, 0.5]
         self.assertIs(CleanseDebuffEffect("Blind", 5).apply(self.context), False)
         self.assertEqual(self.owner.debuffs.Blind, 2)
@@ -423,7 +439,7 @@ class BuffStackAlignmentTest(unittest.TestCase):
         wand = WandOfEquilibrium(item_key="wand", player_id=0)
         self.owner.items["wand"] = wand
         self.owner.buffs = BuffSlot(Mana=9, Luck=10, Regeneration=10)
-        self.owner.stack_states["Mana"] = StackState(cleanse_protection_chance_percent=100, resist_stacks=5)
+        self.owner.stack_states["Mana"] = self.initial(self.owner, 'Mana', state=StackState(cleanse_protection_chance_percent=100, resist_stacks=5))
         self.owner.buff_protect_stacks = 5
         wand.run_effect([True], self.battle.build_context(wand))
         self.assertEqual((self.owner.buffs.Mana, self.owner.buffs.Empower), (9, 1))
@@ -439,8 +455,8 @@ class BuffStackAlignmentTest(unittest.TestCase):
         book.run_effect([True], context)
         self.assertEqual((self.owner.max_health, self.owner.buffs.Mana), (20, 0))
         self.assertEqual(len(self.records("item_activation")), 1)
-        self.owner.buffs.Mana = 1
-        self.owner.stack_states["Mana"] = StackState(cleanse_protection_chance_percent=100)
+        self.initial(self.owner, 'Mana', current=1)
+        self.owner.stack_states["Mana"] = self.initial(self.owner, 'Mana', state=StackState(cleanse_protection_chance_percent=100))
         book.run_effect([True], context)
         self.assertEqual((self.owner.health, self.owner.max_health, self.owner.buffs.Mana), (28, 28, 0))
         self.assertEqual(len(self.records("item_activation")), 2)

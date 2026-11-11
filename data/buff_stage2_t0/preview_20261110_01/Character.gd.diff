@@ -1,0 +1,65 @@
+diff --git "a/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\data\\buff_stage2_t0\\preview_20261110_01\\original_bytes\\Character.gd.bin" "b/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\data\\buff_stage2_t0\\preview_20261110_01\\prepared\\Character.gd"
+index 3429f5a..fbe3549 100644
+--- "a/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\data\\buff_stage2_t0\\preview_20261110_01\\original_bytes\\Character.gd.bin"
++++ "b/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\data\\buff_stage2_t0\\preview_20261110_01\\prepared\\Character.gd"
+@@ -326,6 +326,8 @@ func prepare():
+ 			autoRageItem = battleRageItems.pick_random()
+ 
+ func combatStart():
++	var t0_call_id = T0Probe.new_call_id()
++	T0Probe.observe("character_combatStart_enter", t0_call_id, self)
+ 	stunnedDuration = 0.0
+ 	set_physics_process(true)
+ 	combatDefaultPos = spriteNode.position
+@@ -334,8 +336,11 @@ func combatStart():
+ 	
+ 	if autoRageItem != null:
+ 		autoRageTimer.start(AUTO_RAGE_DELAY)
++	T0Probe.observe("character_combatStart_exit",t0_call_id,self)
+ 
+ func combatEnd():
++	var t0_call_id = T0Probe.new_call_id()
++	T0Probe.observe("character_combatEnd_enter", t0_call_id, self)
+ 	set_physics_process(false)
+ 	tickTimer.stop()
+ 	attackMovingForward = false
+@@ -345,8 +350,11 @@ func combatEnd():
+ 	battleRageTimer.stop()
+ 	autoRageTimer.stop()
+ 	invulnerabilityTimer.stop()
++	T0Probe.observe("character_combatEnd_exit",t0_call_id,self)
+ 
+ func cleanse():
++	var t0_call_id = T0Probe.new_call_id()
++	T0Probe.observe("character_cleanse_enter", t0_call_id, self)
+ 	isDead = false
+ 	temporaryMaxHealth = 0
+ 	temporaryMaxHealthGain = 1.0
+@@ -397,21 +405,27 @@ func cleanse():
+ 	
+ 	poisonDamageSource.critChancePercent = 0
+ 	spikeDamageSource.critChancePercent = 0
++	T0Probe.observe("character_cleanse_exit",t0_call_id,self)
+ 
+ func onTick():
++	var t0_call_id = T0Probe.new_call_id()
++	T0Probe.observe("character_onTick_enter", t0_call_id, self)
+ 	if tickCounter % 2 == 0:
+ 		var regen = getRegeneration()
++		T0Probe.observe("tick_read_regen",t0_call_id,self,{"value":regen})
+ 		if regen > 0:
+ 			heal(regen, Game.EventType.Regeneration)
+ 			buffs[Game.EventType.Regeneration].counter.activate()
+ 	else:
+ 		var poison = getPoison()
++		T0Probe.observe("tick_read_poison",t0_call_id,self,{"value":poison})
+ 		if poison > 0:
+ 			poisonDamageSource.setDamage(poison)
+ 			takeDamage(poisonDamageSource)
+ 			buffs[Game.EventType.Poison].counter.activate()
+ 		
+ 	tickCounter += 1
++	T0Probe.observe("character_onTick_exit",t0_call_id,self)
+ 
+ func replayEvent(event):
+ 	var origin = event.getOrigin()

@@ -1,0 +1,63 @@
+diff --git "a/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\data\\buff_stage2_t0\\edge_20261110_01\\test_scripts\\buff_stage2_t0_run.ps1" "b/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\tests\\buff_stage2_t0_run.ps1"
+index 5b7a810..58fd7e8 100644
+--- "a/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\data\\buff_stage2_t0\\edge_20261110_01\\test_scripts\\buff_stage2_t0_run.ps1"
++++ "b/C:\\Users\\win\\OneDrive\\\346\226\207\346\241\243\\\350\203\214\345\214\205\344\271\261\346\226\227\\tests\\buff_stage2_t0_run.ps1"
+@@ -35,9 +35,13 @@ $t0CharacterFile = Join-Path $t0Project 'Core/Character.gd'
+ $t0ItemFile = Join-Path $t0Project 'Items/Item.gd'
+ $t0Changed = @($t0ProjectFile,$t0BuffFile,$t0CharacterFile,$t0ItemFile,$t0Json)
+ $t0Paths = @($t0ProjectFile,$t0BuffFile,$t0CharacterFile,$t0ItemFile,(Join-Path $t0Project 'Core/Game.gd'),(Join-Path $t0Project 'Utility/SteamHelper.gd'),(Join-Path $t0Project 'Sheets/CSV/ItemData.csv'),(Join-Path $t0Project 'Sheets/CSV/ItemData_e.csv'),$t0Json,$t0Exe)
+-$t0Names = @('smoke','zero_fresh','zero_reused','zero_running','equal_forward','equal_reverse','tolerance_inside','tolerance_outside','cross_start_forward','cross_start_reverse','phase_physics','phase_deferred','reentry_use','reentry_lose','reentry_gain','stale_far_first','stale_early_first','cap_expiry','reset_controlled','lifecycle_natural')
+-if ($Cases -contains 'all') { $Cases = $t0Names | Where-Object { $_ -ne 'smoke' } }
++$t0NaturalNames = @('natural_linked','natural_unlinked')
++$t0Names = @('smoke','zero_fresh','zero_reused','zero_running','equal_forward','equal_reverse','tolerance_inside','tolerance_outside','cross_start_forward','cross_start_reverse','phase_physics','phase_deferred','reentry_use','reentry_lose','reentry_gain','stale_far_first','stale_early_first','cap_expiry','reset_controlled','lifecycle_natural') + $t0NaturalNames
++if ($Cases -contains 'all') { $Cases = $t0Names | Where-Object { $_ -ne 'smoke' -and $_ -notin $t0NaturalNames } }
+ if (@($Cases | Where-Object { $_ -notin $t0Names }).Count) { throw 'Unknown case' }
++$t0Natural = @($Cases | Where-Object { $_ -in $t0NaturalNames }).Count -gt 0
++if ($t0Natural -and @($Cases | Where-Object { $_ -notin $t0NaturalNames }).Count) { throw 'Natural and controlled T0 cases must run separately' }
++if ($t0Natural) { $t0Run = Join-Path $t0Root ('data/buff_natural_reentry/' + $RunId) }
+ if (Test-Path -LiteralPath $t0Run) { throw 'Evidence directory already exists' }
+ if (Get-Process -Name 'godotsteam.362.editor.win64' -ErrorAction SilentlyContinue) { throw 'Existing user GodotSteam process: refusing temporary source changes' }
+ $t0Before = Get-T0Hashes $t0Paths
+@@ -47,6 +51,7 @@ $t0Written = @{}
+ $t0Prepared = @{}
+ $t0Process = $null
+ $t0Results = @()
++$t0KnownJsonHashes = @()
+ $t0PreviousEnv = @{}
+ foreach ($name in @('APPDATA','LOCALAPPDATA','BB_BUFF_T0_RUN_DATA')) { $t0PreviousEnv[$name] = [Environment]::GetEnvironmentVariable($name,'Process') }
+ try {
+@@ -158,13 +163,23 @@ try {
+         $t0Case.tolerance_b = if ($t0Case.name -eq 'tolerance_inside') { 0.125 } else { 0.16 }
+         $t0Case.phase_offset = 0.0
+         $t0Case.equal_duration = $EqualDuration
+-        Write-T0Utf8 (Join-Path $t0CaseDir 'case.json') ($t0Case | ConvertTo-Json -Depth 6)
+         $t0OpponentItems = @()
+         foreach ($y in @(0,2,4)) { foreach ($x in @(0,2,4,6)) { $t0OpponentItems += @{item_index=11;x=$x;y=$y;f=0} } }
+         $t0Opponent = @{schema_version=1;game_version='1.1.8';class=0;health=25;stamina=5;items=$t0OpponentItems}
+         Write-T0Utf8 $t0Json ($t0Opponent | ConvertTo-Json -Depth 6)
+         $t0Written[$t0Json] = (Get-FileHash -LiteralPath $t0Json -Algorithm SHA256).Hash
++        $t0KnownJsonHashes += $t0Written[$t0Json]
+         Write-T0Utf8 (Join-Path $t0CaseDir 'opponent_input.json') ($t0Opponent | ConvertTo-Json -Depth 6)
++        if ($t0Natural) {
++            $t0Second = @{schema_version=1;game_version='1.1.8';class=0;health=25;stamina=5;items=($t0OpponentItems + @{item_index=17;x=0;y=0;f=0})}
++            $t0SecondPath = Join-Path $t0CaseDir 'opponent_second.json'
++            Write-T0Utf8 $t0SecondPath ($t0Second | ConvertTo-Json -Depth 6)
++            $t0Case.opponent_path = $t0Json
++            $t0Case.opponent_first_sha256 = $t0Written[$t0Json]
++            $t0Case.opponent_second_sha256 = (Get-FileHash -LiteralPath $t0SecondPath -Algorithm SHA256).Hash
++            $t0KnownJsonHashes += $t0Case.opponent_second_sha256
++        }
++        Write-T0Utf8 (Join-Path $t0CaseDir 'case.json') ($t0Case | ConvertTo-Json -Depth 6)
+         $env:APPDATA = Join-Path $t0CaseDir 'appdata'
+         $env:LOCALAPPDATA = Join-Path $t0CaseDir 'localappdata'
+         $env:BB_BUFF_T0_RUN_DATA = $t0CaseDir
+@@ -202,7 +217,8 @@ try {
+     foreach ($path in $t0Written.Keys) {
+         try {
+             $currentHash = if (Test-Path -LiteralPath $path) { (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash } else { 'MISSING' }
+-            if ($currentHash -ne $t0Written[$path]) { throw "Concurrent change, refusing overwrite: $path" }
++            $knownWrite = if ($path -eq $t0Json) { $currentHash -in $t0KnownJsonHashes } else { $currentHash -eq $t0Written[$path] }
++            if (-not $knownWrite) { throw "Concurrent change, refusing overwrite: $path" }
+             if ($null -eq $t0Backups[$path]) { Remove-Item -LiteralPath $path } else { [IO.File]::WriteAllBytes($path,$t0Backups[$path]) }
+         } catch { $t0RestoreErrors += $_.Exception.Message }
+     }

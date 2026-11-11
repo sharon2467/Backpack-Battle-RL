@@ -1,0 +1,306 @@
+...................................................................................................................F.....F..F......F......................................................F................................................FFFF....F..F............E.............................................FF.....................................................................................F..F.FF................................E..................................................................................................................E......................................................................................................................
+======================================================================
+ERROR: test_status_and_fatigue_follow_native_sixtieth_step_boundaries (test_buff_stack_stage2_v1.InternalPhaseTest.test_status_and_fatigue_follow_native_sixtieth_step_boundaries)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_buff_stack_stage2_v1.py", line 538, in test_status_and_fatigue_follow_native_sixtieth_step_boundaries
+    battle.step()
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\battle_module_v1.py", line 993, in step
+    self._tick_internal_timers()
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\battle_module_v1.py", line 945, in _tick_internal_timers
+    self.inflict_fatigue(opponent, nightfall=True)
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\battle_module_v1.py", line 1075, in inflict_fatigue
+    self.resolve_attack(event)
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\battle_module_v1.py", line 1200, in resolve_attack
+    self._roll_attack_damage(event, item, is_attack)
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\battle_module_v1.py", line 1265, in _roll_attack_damage
+    event.rolled_damage = self.rng.randint(event.min_damage, event.max_damage)
+                          ^^^^^^^^^^^^^^^^
+AttributeError: 'Draws' object has no attribute 'randint'
+
+======================================================================
+ERROR: test_broom_lethal_attack_inflicts_blind_before_death_and_clears_bonus (test_item_factory_registry_v1.ItemFactoryRegistryV1Test.test_broom_lethal_attack_inflicts_blind_before_death_and_clears_bonus)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_item_factory_registry_v1.py", line 4202, in test_broom_lethal_attack_inflicts_blind_before_death_and_clears_bonus
+    context.battle_state.step()
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\battle_module_v1.py", line 999, in step
+    active_item.activate_item(context)
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\item_factory_registry_v1.py", line 122, in activate_item
+    self.run_effect(trigger_results, context)
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\item_factory_registry_v1.py", line 898, in run_effect
+    self.effects[1].apply(context, self.attack_types)
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\item_effects_v1.py", line 575, in apply
+    result = self.apply_result(
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\item_effects_v1.py", line 614, in apply_result
+    resolved_event = context.battle_state.resolve_attack(event)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\battle_module_v1.py", line 1204, in resolve_attack
+    self._finish_attack(event, item, is_attack)
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\battle_module_v1.py", line 1375, in _finish_attack
+    dealt_hook(post_context)
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\item_factory_registry_v1.py", line 927, in onDealtDamage
+    self.effects[2].apply(
+TypeError: ItemFactoryRegistryV1Test.test_broom_lethal_attack_inflicts_blind_before_death_and_clears_bonus.<locals>.observe_blind() got an unexpected keyword argument 'trigger_log_handle'
+
+======================================================================
+ERROR: test_rat_forced_attack_miss_emits_without_status_rng (test_item_factory_registry_v1.ItemFactoryRegistryV1Test.test_rat_forced_attack_miss_emits_without_status_rng)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_item_factory_registry_v1.py", line 3667, in test_rat_forced_attack_miss_emits_without_status_rng
+    rat.activate_item(context)
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\item_factory_registry_v1.py", line 122, in activate_item
+    self.run_effect(trigger_results, context)
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\item_factory_registry_v1.py", line 1225, in run_effect
+    attack_result = self.effects[0].apply_result(context, ("effect",))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\item_effects_v1.py", line 614, in apply_result
+    resolved_event = context.battle_state.resolve_attack(event)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\battle_module_v1.py", line 1200, in resolve_attack
+    self._roll_attack_damage(event, item, is_attack)
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\battle_module_v1.py", line 1263, in _roll_attack_damage
+    event.rolled_damage = item.roll_damage(event.min_damage, event.max_damage, self.rng)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\item_factory_registry_v1.py", line 86, in roll_damage
+    difference = damage - 0.5 * (min_damage + max_damage)
+                 ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for -: 'Mock' and 'float'
+
+======================================================================
+FAIL: test_attack_log_precedes_miss_reaction (test_battle_logging_v1.BattleLoggingV1Test.test_attack_log_precedes_miss_reaction)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_battle_logging_v1.py", line 727, in test_attack_log_precedes_miss_reaction
+    self.assertEqual(
+AssertionError: {'act[47 chars]types': ['ranged'], 'hit': False, 'trigger_log_sequence': None} != {'act[47 chars]types': ['ranged'], 'hit': False}
+  {'action': 'attack',
+   'attack_types': ['ranged'],
+   'hit': False,
+-  'target_player_id': 0,
+?                       ^
+
++  'target_player_id': 0}
+?                       ^
+
+-  'trigger_log_sequence': None}
+
+======================================================================
+FAIL: test_garlic_logs_block_roll_zero_removal_and_activation (test_battle_logging_v1.BattleLoggingV1Test.test_garlic_logs_block_roll_zero_removal_and_activation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_battle_logging_v1.py", line 659, in test_garlic_logs_block_roll_zero_removal_and_activation
+    self.assertEqual(
+AssertionError: Lists differ: ['stack_change', 'gain_block', 'remove_vamp[42 chars]ion'] != ['gain_block', 'remove_vampirism_check', 'r[26 chars]ion']
+
+First differing element 0:
+'stack_change'
+'gain_block'
+
+First list contains 1 additional elements.
+First extra element 4:
+'item_activation'
+
++ ['gain_block', 'remove_vampirism_check', 'remove_buff', 'item_activation']
+- ['stack_change',
+-  'gain_block',
+-  'remove_vampirism_check',
+-  'remove_buff',
+-  'item_activation']
+
+======================================================================
+FAIL: test_magic_for_dummies_logs_failure_and_success_paths (test_battle_logging_v1.BattleLoggingV1Test.test_magic_for_dummies_logs_failure_and_success_paths)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_battle_logging_v1.py", line 374, in test_magic_for_dummies_logs_failure_and_success_paths
+    self.assertEqual(
+AssertionError: Lists differ: ['stack_diagnostic', 'stack_change', 'use_buff', [32 chars]ion'] != ['stack_change', 'use_buff', 'gain_max_health', 'item_activation']
+
+First differing element 0:
+'stack_diagnostic'
+'stack_change'
+
+First list contains 1 additional elements.
+First extra element 4:
+'item_activation'
+
++ ['stack_change', 'use_buff', 'gain_max_health', 'item_activation']
+- ['stack_diagnostic',
+-  'stack_change',
+-  'use_buff',
+-  'gain_max_health',
+-  'item_activation']
+
+======================================================================
+FAIL: test_stone_logs_attack_block_removal_and_activation (test_battle_logging_v1.BattleLoggingV1Test.test_stone_logs_attack_block_removal_and_activation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_battle_logging_v1.py", line 624, in test_stone_logs_attack_block_removal_and_activation
+    self.assertEqual(
+AssertionError: Lists differ: ['spend_stamina', 'stack_diagnostic', 'stack_change', 'remov[53 chars]ion'] != ['spend_stamina', 'remove_block', 'attack', 'item_activation']
+
+First differing element 1:
+'stack_diagnostic'
+'remove_block'
+
+First list contains 3 additional elements.
+First extra element 4:
+'stack_diagnostic'
+
++ ['spend_stamina', 'remove_block', 'attack', 'item_activation']
+- ['spend_stamina',
+-  'stack_diagnostic',
+-  'stack_change',
+-  'remove_block',
+-  'stack_diagnostic',
+-  'attack',
+-  'item_activation']
+
+======================================================================
+FAIL: test_internal_fatigue_precedes_an_item_kill (test_battle_module_v1.BattleModuleV1Test.test_internal_fatigue_precedes_an_item_kill)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_battle_module_v1.py", line 1525, in test_internal_fatigue_precedes_an_item_kill
+    self.assertEqual((first.health, second.health), (9, 0))
+AssertionError: Tuples differ: (9, -1) != (9, 0)
+
+First differing element 1:
+-1
+0
+
+- (9, -1)
+?     ^^
+
++ (9, 0)
+?     ^
+
+
+======================================================================
+FAIL: test_public_operations_validate_before_zero_shortcut (test_buff_stack_alignment_v1.BuffStackAlignmentTest.test_public_operations_validate_before_zero_shortcut) (operation='gain_stacks', name='Block', amount=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_buff_stack_alignment_v1.py", line 102, in test_public_operations_validate_before_zero_shortcut
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_public_operations_validate_before_zero_shortcut (test_buff_stack_alignment_v1.BuffStackAlignmentTest.test_public_operations_validate_before_zero_shortcut) (operation='lose_stacks', name='Block', amount=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_buff_stack_alignment_v1.py", line 102, in test_public_operations_validate_before_zero_shortcut
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_public_operations_validate_before_zero_shortcut (test_buff_stack_alignment_v1.BuffStackAlignmentTest.test_public_operations_validate_before_zero_shortcut) (operation='try_use_stacks', name='Block', amount=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_buff_stack_alignment_v1.py", line 102, in test_public_operations_validate_before_zero_shortcut
+    with self.assertRaises(ValueError):
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_public_operations_validate_before_zero_shortcut (test_buff_stack_alignment_v1.BuffStackAlignmentTest.test_public_operations_validate_before_zero_shortcut)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_buff_stack_alignment_v1.py", line 106, in test_public_operations_validate_before_zero_shortcut
+    self.assertEqual((self.battle.log, self.owner.stack_states, self.rng.seen), ([], {}, []))
+AssertionError: Tuples differ: ([], {'Block': StackState(resist_chance_percent[2950 chars], []) != ([], {}, [])
+
+First differing element 1:
+{'Block': StackState(resist_chance_percent[2945 chars]se))}
+{}
+
+Diff is 6069 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_remove_rolls_per_capped_layer_then_type_and_global_protection (test_buff_stack_alignment_v1.BuffStackAlignmentTest.test_remove_rolls_per_capped_layer_then_type_and_global_protection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_buff_stack_alignment_v1.py", line 140, in test_remove_rolls_per_capped_layer_then_type_and_global_protection
+    self.assertEqual([r["data"]["action"] for r in self.battle.log],
+AssertionError: Lists differ: ['stack_protected', 'stack_diagnostic', 'stack_change'] != ['stack_protected', 'stack_change']
+
+First differing element 1:
+'stack_diagnostic'
+'stack_change'
+
+First list contains 1 additional elements.
+First extra element 2:
+'stack_change'
+
+- ['stack_protected', 'stack_diagnostic', 'stack_change']
+?                     --------------------
+
++ ['stack_protected', 'stack_change']
+
+======================================================================
+FAIL: test_source_none_still_records_resist_and_protect_without_success_signal (test_buff_stack_alignment_v1.BuffStackAlignmentTest.test_source_none_still_records_resist_and_protect_without_success_signal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_buff_stack_alignment_v1.py", line 331, in test_source_none_still_records_resist_and_protect_without_success_signal
+    self.assertEqual([row["data"]["action"] for row in self.battle.log],
+AssertionError: Lists differ: ['stack_resisted', 'stack_protected', 'stack_diagnostic'] != ['stack_resisted', 'stack_protected']
+
+First list contains 1 additional elements.
+First extra element 2:
+'stack_diagnostic'
+
+- ['stack_resisted', 'stack_protected', 'stack_diagnostic']
+?                                     --------------------
+
++ ['stack_resisted', 'stack_protected']
+
+======================================================================
+FAIL: test_flame_heat_applies_before_first_cooldown_in_either_polling_order (test_combat_start_lifecycle_v1.CombatStartLifecycleTest.test_flame_heat_applies_before_first_cooldown_in_either_polling_order) (flame_first=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_combat_start_lifecycle_v1.py", line 156, in test_flame_heat_applies_before_first_cooldown_in_either_polling_order
+    self.assertAlmostEqual(banana.triggers[0].cooldown_progress, 1.02 / 30)
+AssertionError: 0.017000000886619092 != 0.034 within 7 places (0.01699999911338091 difference)
+
+======================================================================
+FAIL: test_flame_heat_applies_before_first_cooldown_in_either_polling_order (test_combat_start_lifecycle_v1.CombatStartLifecycleTest.test_flame_heat_applies_before_first_cooldown_in_either_polling_order) (flame_first=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_combat_start_lifecycle_v1.py", line 156, in test_flame_heat_applies_before_first_cooldown_in_either_polling_order
+    self.assertAlmostEqual(banana.triggers[0].cooldown_progress, 1.02 / 30)
+AssertionError: 0.017000000886619092 != 0.034 within 7 places (0.01699999911338091 difference)
+
+======================================================================
+FAIL: test_linked_broom_opponent_miss_branch_does_not_advance_goobling (test_item_factory_registry_v1.GooblingSpecTest.test_linked_broom_opponent_miss_branch_does_not_advance_goobling)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_item_factory_registry_v1.py", line 5317, in test_linked_broom_opponent_miss_branch_does_not_advance_goobling
+    self.assertEqual(broom.miss_damage_bonus, 2)
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_linked_weapon_miss_still_advances_goobling (test_item_factory_registry_v1.GooblingSpecTest.test_linked_weapon_miss_still_advances_goobling)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_item_factory_registry_v1.py", line 5203, in test_linked_weapon_miss_still_advances_goobling
+    self.assertEqual(goobling.triggers[0].activation_count, 1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_linked_wooden_buckler_advances_on_successful_reaction (test_item_factory_registry_v1.GooblingSpecTest.test_linked_wooden_buckler_advances_on_successful_reaction)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_item_factory_registry_v1.py", line 5239, in test_linked_wooden_buckler_advances_on_successful_reaction
+    self.assertEqual(goobling.triggers[0].activation_count, 1)
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_linked_wooden_buckler_does_not_advance_when_chance_fails (test_item_factory_registry_v1.GooblingSpecTest.test_linked_wooden_buckler_does_not_advance_when_chance_fails)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\win\OneDrive\�ĵ�\�����Ҷ�\tests\test_item_factory_registry_v1.py", line 5278, in test_linked_wooden_buckler_does_not_advance_when_chance_fails
+    self.assertEqual(battle.players[0].health, 19)
+AssertionError: 20 != 19
+
+----------------------------------------------------------------------
+Ran 661 tests in 0.281s
+
+FAILED (failures=17, errors=3)

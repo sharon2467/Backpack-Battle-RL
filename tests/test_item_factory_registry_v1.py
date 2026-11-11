@@ -3659,14 +3659,17 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
     def test_rat_forced_attack_miss_emits_without_status_rng(self):
         rng = Mock()
         rat, context = self.make_rat_context(rng=rng)
-        rat.effects[0].apply = Mock(return_value=False)
+        miss = AttackEvent(attacker=context.owner, defender=context.opponent,
+                           source_item=rat, attack_types=("effect",),
+                           min_damage=5, max_damage=5, accuracy=1.0, hit=False)
+        rat.effects[0].apply_result = Mock(return_value=miss)
         dispatch_spy = spy_on_item_activation(
             context.battle_state
         )
 
         rat.activate_item(context)
 
-        rat.effects[0].apply.assert_called_once_with(context, ("effect",))
+        rat.effects[0].apply_result.assert_called_once_with(context, ("effect",))
         rng.random.assert_not_called()
         rng.randint.assert_not_called()
         dispatch_spy.assert_called_once_with(rat)
@@ -4195,9 +4198,9 @@ class ItemFactoryRegistryV1Test(unittest.TestCase):
         self.resolve_opponent_attack(context, accuracy=0)
         seen = []
         original_apply = broom.effects[2].apply
-        def observe_blind(ctx):
+        def observe_blind(ctx, *, trigger_log_handle=None):
             seen.append((ctx.opponent.is_dead, ctx.battle_state.winner))
-            return original_apply(ctx)
+            return original_apply(ctx, trigger_log_handle=trigger_log_handle)
         broom.effects[2].apply = observe_blind
         context.battle_state.step()
         self.assertEqual(seen, [(False, None)])
@@ -5165,7 +5168,7 @@ class GooblingSpecTest(unittest.TestCase):
             stamina=0.0,
             max_stamina=0.0,
         )
-        battle.frame_delta = 1.4
+        battle.frame_delta = 1.5  # dt32(1.4) is below the exact 1.4 s weapon CD.
         battle.rng = Mock()
         goobling = battle.players[0].items["goobling1"]
 
@@ -5191,7 +5194,7 @@ class GooblingSpecTest(unittest.TestCase):
                 },
             ]
         )
-        battle.frame_delta = 1.4
+        battle.frame_delta = 1.5  # dt32(1.4) is below the exact 1.4 s weapon CD.
         battle.rng = Mock()
         battle.rng.random.return_value = 0.99
         goobling = battle.players[0].items["goobling1"]
@@ -5228,7 +5231,7 @@ class GooblingSpecTest(unittest.TestCase):
                 }
             ],
         )
-        battle.frame_delta = 1.4
+        battle.frame_delta = 1.5  # dt32(1.4) is below the exact 1.4 s weapon CD.
         battle.rng = Mock()
         battle.rng.random.side_effect = [0.0, 0.29]
         battle.rng.randint.return_value = 1
@@ -5266,7 +5269,7 @@ class GooblingSpecTest(unittest.TestCase):
                 }
             ],
         )
-        battle.frame_delta = 1.4
+        battle.frame_delta = 1.5  # dt32(1.4) is below the exact 1.4 s weapon CD.
         battle.rng = Mock()
         battle.rng.random.side_effect = [0.0, 0.31]
         battle.rng.randint.return_value = 1
@@ -5304,7 +5307,7 @@ class GooblingSpecTest(unittest.TestCase):
                 }
             ],
         )
-        battle.frame_delta = 1.4
+        battle.frame_delta = 1.5  # dt32(1.4) is below the exact 1.4 s weapon CD.
         battle.rng = Mock()
         battle.rng.random.return_value = 0.99
         broom = battle.players[0].items["broom1"]

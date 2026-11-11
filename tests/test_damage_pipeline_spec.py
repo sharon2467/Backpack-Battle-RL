@@ -7,7 +7,7 @@ from unittest.mock import Mock
 from battle_module_v1 import (
     BattleState, PlayerState, BalancedRngState, godot_round, make_attack_event,
     ATTACK_PHASE_CHARACTER_DAMAGED, ATTACK_PHASE_PRE_TAKE_DAMAGE,
-    _BattleFinishedSignal,
+    _BattleFinishedSignal, _start_timer, _stop_timer,
 )
 from item_factory_registry_v1 import WoodenSword
 from item_triggers_v1 import OnAttackedTrigger
@@ -224,7 +224,7 @@ class DamagePipelineSpecTest(unittest.TestCase):
         self.b.active_items = [first, second]
         self.assertEqual(self.b.step(), 0)
         self.assertEqual(seen, ["tail"])
-        self.assertEqual(self.b.frame, 0)
+        self.assertEqual(self.b.frame, 1)
         self.assertNotIn("item_activation", [x["data"]["action"] for x in self.b.log])
         before = self.a.stamina
         self.b.step()
@@ -232,20 +232,22 @@ class DamagePipelineSpecTest(unittest.TestCase):
 
     def test_fatigue_stops_between_players(self):
         self.b.prepareItems()
+        self.b.start_combat()
         self.b.commit_health_reduction(self.d, 0, 99)
-        self.b.time = 16
         self.b.frame_delta = 1
-        self.b.next_regeneration_time = self.b.next_poison_time = 100
+        _stop_timer(self.b.fatigue_start_timer)
+        _start_timer(self.b.fatigue_tick_timer, 0.5)
         self.b.step()
         self.assertEqual((self.d.fatigue_damage, self.a.fatigue_damage), (1, 0))
 
     def test_regeneration_unhealing_stops_following_system_tick(self):
         self.b.prepareItems()
+        self.b.start_combat()
         self.b.commit_health_reduction(self.a, 0, 99)
         self.d.buffs.Regeneration = 2
         self.d.unhealing_amount = 1
         self.d.debuffs.Poison = 5
-        self.b.next_regeneration_time = self.b.next_poison_time = 1
+        _start_timer(self.d.status_tick_timer, 0.5)
         self.b.frame_delta = 1
         self.b.step()
         self.assertEqual(self.b.winner, 1)

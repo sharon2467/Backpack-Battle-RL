@@ -193,3 +193,5 @@ flowchart LR
 5. **事件/重入**：先写值并固定delta再记录成功event/signal；双方监听者改owner视角但target/source不变，Luck发lucky信号；回调再改同层不影响外层delta。五Effect的item=None仍支持数值/bool/attempt，power默认1，无成功event/signal；反弹在原目标回调后。
 6. **日志**：Stack/Resist/Protect由core单写；Effect attempt单列且不双计；零/失败无成功signal。核心显式parent保留，不自动借攻击context；现Broom/Rat/Wand/Book未补父链和二期边界写明。
 7. **范围/验证**：不改Block、攻击、总线接口或宝石文档；临时/Delayed入口不假装可用。已使用AGENTS指定Python绝对路径完成专项、受影响模块及全套回归。源码审查、Python验证、复用的原引擎证据分别记录，未核实项不标“原版全部等价”。
+
+后续临时层、Delayed、Block及父链迁移计划见[Buff二期SPEC](buff_stack_stage2_spec.md)；该二期草案未实施。
